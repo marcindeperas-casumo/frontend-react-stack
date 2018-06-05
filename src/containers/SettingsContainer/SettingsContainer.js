@@ -44,24 +44,14 @@ export default class SettingsContainer extends React.Component {
     );
   }
 
-  loadingState() {
-    return <div>loading...</div>;
-  }
-
-  loadedState() {
-    return (
+  render() {
+    return ReactDOM.createPortal(
       <Settings
         {...{
           ...this.state.data,
           onChangeEmail: this.onChangeEmail.bind(this)
         }}
-      />
-    );
-  }
-
-  render() {
-    return ReactDOM.createPortal(
-      <div>{false ? this.loadingState() : this.loadedState()}</div>,
+      />,
       this.el
     );
   }
