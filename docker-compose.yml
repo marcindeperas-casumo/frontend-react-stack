@@ -1,0 +1,28 @@
+version: '2'
+services:
+  mobile-react-stack:
+    build: .
+    command: yarn start
+    volumes:
+      - .:/usr/app/
+    ports:
+      - "3000:3000"
+    links:
+      - api-gw
+  sumo-proxy:
+    image: nginx
+    volumes:
+      - ~/tmp/casumo-frontend/web:/var/www/mobile:ro
+      - ~/.config/casumo-proxy/build:/etc/nginx/conf.d:ro
+      - ~/.config/casumo-proxy/ssl-certificates:/etc/nginx/ssl-certificates:ro
+      - ./http_mobile.conf:/etc/nginx/conf.d/http_mobile.conf:ro
+    ports:
+      - 80:80
+      - 443:443
+    links:
+      - mobile-react-stack
+      - api-gw
+  api-gw:
+      build: ./api-gw/
+      ports:
+        - "3101:3101"

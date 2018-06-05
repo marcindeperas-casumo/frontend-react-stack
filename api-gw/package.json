@@ -1,0 +1,14 @@
+{
+  "name": "api-gw",
+  "version": "1.0.0",
+  "private": true,
+  "main": "app.js",
+  "scripts": {
+    "start": "./bin/www"
+  },
+  "dependencies": {
+    "express": "^4.13.3",
+    "http-proxy": "^1.17.0"
+  },
+  "devDependencies": {}
+}
