@@ -54,3 +54,7 @@ ln -s $(pwd)/ ~/tmp/casumo-frontend;
 - Turn of the `casumo-proxy`
 - `yarn env:up` (and you can run `yarn env:down` in case you want to clean up)
 - Goto [https://mobile.dev](https://mobile.dev)
+
+---
+
+[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc)
