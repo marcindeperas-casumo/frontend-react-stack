@@ -1,7 +1,13 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import Settings from "../../components/Settings";
-import { playerSettings, changeEmail } from "../../api";
+import {
+  playerSettings,
+  changeEmail,
+  setAdventurerPublicity,
+  setNewsletterSubscription
+} from "../../api";
+import { toPlayerSettingsData, toPlayerConfigurationData } from "../../utils";
 import "../../App.css";
 
 export default class SettingsContainer extends React.Component {
@@ -20,11 +26,18 @@ export default class SettingsContainer extends React.Component {
     this.setState({ ...this.state, loading: true });
 
     playerSettings()
-      .then(data => {
+      .then(data => [
+        toPlayerSettingsData(data),
+        toPlayerConfigurationData(data)
+      ])
+      .then(([playerSettings, playerConfiguration]) => {
         this.setState({
           ...this.state,
           loading: false,
-          data
+          data: {
+            ...playerSettings,
+            ...playerConfiguration
+          }
         });
       })
       .catch(console.error);
@@ -44,12 +57,34 @@ export default class SettingsContainer extends React.Component {
     );
   }
 
+  onChangeAdventurerPublicity(onState) {
+    setAdventurerPublicity(onState).then(() => {
+      this.setState(prevState => ({
+        ...prevState,
+        data: { ...this.state.data, adventurerPublic: onState }
+      }));
+    });
+  }
+
+  onChangeNewsletterSubscription(onState) {
+    setNewsletterSubscription(onState).then(()=> {
+      this.setState(prevState => ({
+        ...prevState,
+        data: { ...this.state.data, subscribedToNewsletters: onState }
+      }));
+    })
+  }
+
   render() {
     return ReactDOM.createPortal(
       <Settings
         {...{
           ...this.state.data,
-          onChangeEmail: this.onChangeEmail.bind(this)
+          onChangeEmail: this.onChangeEmail.bind(this),
+          onChangeAdventurerPublicity: this.onChangeAdventurerPublicity.bind(
+            this
+          ),
+          onChangeNewsletterSubscription: this.onChangeNewsletterSubscription.bind(this)
         }}
       />,
       this.el

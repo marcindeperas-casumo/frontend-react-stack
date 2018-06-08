@@ -10,8 +10,10 @@ const renderCardGame = (src, i) => (
   </div>
 );
 
-export default ({ games }) => (
-  <Carousel emulateTouch centerMode showThumbs={false}>
-    {games.map(renderCardGame)}
-  </Carousel>
-);
+export default ({ games }) => {
+  return (
+    <Carousel emulateTouch centerMode showThumbs={false}>
+      {games.map(renderCardGame)}
+    </Carousel>
+  );
+};

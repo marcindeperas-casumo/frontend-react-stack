@@ -34,7 +34,10 @@ export default class SuggestedGamesContainer extends React.Component {
   }
 
   renderLoading() {
-    return <div>Loading suggested games</div>;
+    return <div style={{
+      height: '246px',
+      backgroundColor: 'lightgrey'
+    }}>Loading suggested games</div>;
   }
 
   renderLoaded() {

@@ -1,4 +1,4 @@
-import { toPlayerSettingsData, sleep, cacheLocallyForMs } from "./utils";
+import { sleep, cacheLocallyForMs, usingPOST, usingGET } from "./utils";
 
 const cacheFor10s = cacheLocallyForMs(10000);
 const fromHandshakeToPlayerSettings = data => {
@@ -12,22 +12,30 @@ const fromHandshakeToPlayerSettings = data => {
 };
 
 export const playerSettings = () => {
-  return fetch("/api-gw/api/common/handshake", {
-    credentials: "same-origin"
-  })
+  return usingGET("/api-gw/api/common/handshake")
     .then(sleep(2000))
     .then(data => data.json())
-    .then(fromHandshakeToPlayerSettings)
-    .then(toPlayerSettingsData);
+    .then(fromHandshakeToPlayerSettings);
+};
+
+export const setAdventurerPublicity = (on = false) => {
+  return usingPOST("/api-gw/api/common/command/setAdventurerPublicity", {
+    body: JSON.stringify({
+      on
+    })
+  });
+};
+
+export const setNewsletterSubscription = (on = false) => {
+  return usingPOST("/api-gw/api/common/command/setNewsletterSubscription", {
+    body: JSON.stringify({
+      on
+    })
+  });
 };
 
 export const changeEmail = ({ email, password }) => {
-  return fetch("/api-gw/api/common/command/changeEmail", {
-    method: "POST",
-    credentials: "same-origin",
-    headers: {
-      "content-type": "application/json"
-    },
+  return usingPOST("/api-gw/api/common/command/changeEmail", {
     body: JSON.stringify({
       email,
       plaintextPassword: password

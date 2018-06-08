@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import LoadableText from './LoadableText'
+import LoadableText from "./LoadableText";
 
 export default class Settings extends Component {
   render() {
@@ -8,7 +8,8 @@ export default class Settings extends Component {
       mobileNumber,
       address = [],
       email,
-      onChangeEmail
+      subscribedToNewsletters,
+      onChangeNewsletterSubscription
     } = this.props;
 
     return (
@@ -21,15 +22,16 @@ export default class Settings extends Component {
               <li className="list-item inactive">
                 <div>
                   <div>Full Name</div>
-                  <LoadableText text={fullName}/>
+                  <LoadableText text={fullName} />
                 </div>
               </li>
 
               <li className="list-item inactive">
                 <div>
                   <div>Email</div>
-                  <div id="settings-email"><LoadableText text={email}/></div>
-                  <button onClick={onChangeEmail}>change</button>
+                  <div id="settings-email">
+                    <LoadableText text={email} />
+                  </div>
                 </div>
               </li>
 
@@ -58,6 +60,21 @@ export default class Settings extends Component {
                       </React.Fragment>
                     ))}
                   </div>
+                </div>
+              </li>
+              <li className="list-item inactive">
+                <div>
+                  <div>Subscribed To Newsletters</div>
+                  <button
+                    className={
+                      "btn " + (subscribedToNewsletters ? "blue" : "green")
+                    }
+                    onClick={() =>
+                      onChangeNewsletterSubscription(!subscribedToNewsletters)
+                    }
+                  >
+                    Turn {subscribedToNewsletters ? "off" : "on"}
+                  </button>
                 </div>
               </li>
             </ul>

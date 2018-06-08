@@ -23,6 +23,9 @@ export const toPlayerSettingsData = data => {
   };
 };
 
+export const toPlayerConfigurationData = ({ configuration = {} } = {}) =>
+  configuration;
+
 export const sleep = ms => data => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -87,3 +90,21 @@ export const cacheLocallyForMs = ms => {
       .catch(console.error);
   };
 };
+
+const commonFetch = (url, options) => {
+  return fetch(url, {
+    credentials: "same-origin",
+    ...options
+  });
+};
+
+export const usingPOST = (url, options) =>
+  commonFetch(url, {
+    method: "POST",
+    headers: {
+      "content-type": "application/json"
+    },
+    ...options
+  });
+
+export const usingGET = commonFetch;
