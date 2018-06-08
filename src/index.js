@@ -8,7 +8,7 @@ import legacyBridge from './legacyBridge';
 window.bridge = legacyBridge;
 const root = document.getElementById('root');
 
-legacyBridge.on('router:navigation:complete', (data) => {
+legacyBridge.on('mobile-router:navigation:attached', (data) => {
     legacyBridge.emit('$RESET');
     legacyBridge.emit(data.config.id);
 });
