@@ -48,18 +48,19 @@ router.get("/api/gamebrowser/latestPlayedGames", function(req, res) {
 
 router.all("/api/gamebrowser/*", function(req, res) {
   req.url = req.url.replace("/api/gamebrowser/", "/api/");
+  gameBrowserProxy.web(req, res);;
 
-  fetch(
-    "http://common.at.casumotest.local:8080/api/common/query/request-meta-data",
-    {
-      headers: { Cookie: req.headers.cookie }
-    }
-  )
-    .then(body => body.json())
-    .then(({ playerId }) => {
-      req.headers["X-player-id"] = playerId;
-      return gameBrowserProxy.web(req, res);
-    });
+  // fetch(
+  //   "http://common.at.casumotest.local:8080/api/common/query/request-meta-data",
+  //   {
+  //     headers: { Cookie: req.headers.cookie }
+  //   }
+  // )
+  //   .then(body => body.json())
+  //   .then(({ playerId }) => {
+  //     req.headers["X-player-id"] = playerId;
+  //     return gameBrowserProxy.web(req, res);
+  //   });
 });
 
 router.all("/*", function(req, res) {
