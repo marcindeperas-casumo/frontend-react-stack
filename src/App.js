@@ -15,12 +15,12 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
-    legacyBridge.on('$RESET', () => {
+    legacyBridge.on("$RESET", () => {
       this.setState(prevState => ({
         ...prevState,
         ...blankState()
-      }))
-    })
+      }));
+    });
 
     legacyBridge.on("new-stack-poc", data => {
       this.setState(prevState => ({
@@ -41,7 +41,7 @@ export default class App extends React.Component {
     const { settings, suggestedGames } = this.state;
     return (
       <div>
-        root
+        Le React App
         {settings && <SettingsContainer />}
         {suggestedGames && <SuggestedGamesContainer />}
       </div>

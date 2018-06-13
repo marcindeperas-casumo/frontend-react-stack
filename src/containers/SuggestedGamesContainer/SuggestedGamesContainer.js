@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import SuggestedGames from "../../components/SuggestedGames";
+import Helmet from "react-helmet";
 import { suggestedGames } from "../../api";
 
 export default class SuggestedGamesContainer extends React.Component {
@@ -34,15 +35,28 @@ export default class SuggestedGamesContainer extends React.Component {
   }
 
   renderLoading() {
-    return <div style={{
-      height: '246px',
-      backgroundColor: 'lightgrey'
-    }}>Loading suggested games</div>;
+    return (
+      <div
+        style={{
+          height: "246px",
+          backgroundColor: "lightgrey"
+        }}
+      >
+        Loading suggested games
+      </div>
+    );
   }
 
   renderLoaded() {
     const { games } = this.state;
-    return <SuggestedGames games={games} />;
+    return (
+      <React.Fragment>
+        <Helmet>
+          <title> Luke</title>
+        </Helmet>
+        <SuggestedGames games={games} />
+      </React.Fragment>
+    );
   }
 
   render() {
