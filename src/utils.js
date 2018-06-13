@@ -94,17 +94,19 @@ export const cacheLocallyForMs = ms => {
 const commonFetch = (url, options) => {
   return fetch(url, {
     credentials: "same-origin",
+    headers: {
+      "content-type": "application/json"
+    },
     ...options
-  });
+  }).then(x => x.json());
 };
 
 export const usingPOST = (url, options) =>
   commonFetch(url, {
     method: "POST",
-    headers: {
-      "content-type": "application/json"
-    },
     ...options
   });
 
 export const usingGET = commonFetch;
+
+export const mockWith = mockFn => actualFn => (...args) => mockFn(...args);
