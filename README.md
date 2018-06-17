@@ -26,10 +26,12 @@ a couple of config folders from the casumo-proxy and also overrides the
 
 ### `api-gw`
 
-This is a simple node service that services as frontend API gateway. We could
+Ditching this concept for now since it was causing some latency issues and we can get away with anything we need through an nginx proxy.
+
+~~This is a simple node service that services as frontend API gateway. We could
 easily get away with just using nginx for this, at the same time if we need a
 minor change, merge between multiple endpoints in a single api, all these
-changes can be done at this layer, without depending on any backend resources.
+changes can be done at this layer, without depending on any backend resources.~~
 
 ## Development instructions
 

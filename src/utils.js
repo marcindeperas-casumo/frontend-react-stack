@@ -1,3 +1,5 @@
+import isPromise from "is-promise";
+
 export const toMobileNumber = phoneNumber =>
   `${phoneNumber.prefix} ${phoneNumber.number}`;
 
@@ -92,7 +94,7 @@ export const cacheLocallyForMs = ms => {
 };
 
 const commonFetch = (url, options) => {
-  return fetch(url, {
+  return fetch("/api-gw/api/" + url, {
     credentials: "same-origin",
     headers: {
       "content-type": "application/json"
@@ -110,3 +112,27 @@ export const usingPOST = (url, options) =>
 export const usingGET = commonFetch;
 
 export const mockWith = mockFn => actualFn => (...args) => mockFn(...args);
+
+export const once = fn => {
+  let run = false;
+  let lastValue;
+  return (...args) => {
+    if (!run) {
+      run = true;
+      lastValue = fn(...args);
+    } else {
+    }
+    return lastValue;
+  };
+};
+
+export const compose2 = (f, g) => (...args) => f(g(...args));
+export const property = k => obj => obj[k];
+
+export const rejectIfNotPromise = fn => a =>
+  isPromise(a) ? fn(a) : Promise.reject(new TypeError("Expected promise"));
+
+export const trace = x => {
+  console.log(x);
+  return x;
+};

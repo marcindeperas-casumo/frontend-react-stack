@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import SuggestedGames from "../../components/SuggestedGames";
-import Helmet from "react-helmet";
-import { suggestedGames } from "../../api";
+import gameBrowserService from "../../features/top-lists/game-browser";
+import ListContainer from "../../components/ListContainer";
+import { trace } from "../../utils";
 
 export default class SuggestedGamesContainer extends React.Component {
   constructor(props) {
@@ -11,7 +11,7 @@ export default class SuggestedGamesContainer extends React.Component {
     this.el = document.createElement("div");
     this.state = {
       loading: false,
-      games: []
+      data: []
     };
   }
 
@@ -19,12 +19,17 @@ export default class SuggestedGamesContainer extends React.Component {
     this.otherComponentRoot.appendChild(this.el);
     this.setState({ ...this.state, loading: true });
 
-    suggestedGames()
+    window.gameBrowserService = gameBrowserService;
+    console.log(gameBrowserService);
+
+    gameBrowserService
+      .allTopLists()
+      .then(trace)
       .then(data => {
         this.setState({
           ...this.state,
           loading: false,
-          games: data
+          data
         });
       })
       .catch(console.error);
@@ -47,22 +52,13 @@ export default class SuggestedGamesContainer extends React.Component {
     );
   }
 
-  renderLoaded() {
-    const { games } = this.state;
-    return (
-      <React.Fragment>
-        <Helmet>
-          <title> Luke</title>
-        </Helmet>
-        <SuggestedGames games={games} />
-      </React.Fragment>
-    );
-  }
-
   render() {
-    const { loading } = this.state;
+    const { data } = this.state;
+
     return ReactDOM.createPortal(
-      loading ? this.renderLoading() : this.renderLoaded(),
+      <React.Fragment>
+        {data.map(x => <ListContainer key={x.title} {...x} />)}
+      </React.Fragment>,
       this.el
     );
   }
