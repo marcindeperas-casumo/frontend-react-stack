@@ -1,5 +1,5 @@
 import { usingGET } from "../../../utils";
-import queryString from "query-string";
+import { stringify } from "qs";
 
 // TODO: How are we going to get these?
 //
@@ -18,7 +18,8 @@ export const queryHandshake = () =>
 
 export const queryTopList = ({ id, variant, hash, page = 0, pageSize = 10 }) =>
   usingGET(
-    `gamebrowser/games-lists/${getPlatform()}/${getCountryCode()}/${id}?${queryString.stringify(
-      { hash, variant, page, pageSize }
+    `gamebrowser/games-lists/${getPlatform()}/${getCountryCode()}/${id}?${stringify(
+      { hash, variant, page, pageSize },
+      { skipNulls: true }
     )}`
   );
