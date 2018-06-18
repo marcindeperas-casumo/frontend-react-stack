@@ -12,7 +12,11 @@ export default class GamePlate extends React.Component {
     } = this.props;
 
     return (
-      <div>
+      <div
+        style={{
+          display: inMaintenanceMode && "none"
+        }}
+      >
         <a href={`/en/play/${slug}`}>
           <div
             style={{
