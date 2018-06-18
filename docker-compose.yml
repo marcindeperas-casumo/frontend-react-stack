@@ -1,8 +1,10 @@
 version: '2'
 services:
   mobile-react-stack:
-    build: .
     command: yarn start
+    build:
+      context: .
+      dockerfile: dev.Dockerfile
     volumes:
       - .:/usr/app/
     ports:

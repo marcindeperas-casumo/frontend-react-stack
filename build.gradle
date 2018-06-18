@@ -1,0 +1,27 @@
+buildscript {
+    repositories {
+        maven { url 'https://repository.casumocave.com/repository/releases' }
+    }
+    dependencies {
+        classpath 'com.casumo.plugins:casumo-artifact-plugins:6.+'
+    }
+}
+
+apply plugin: 'casumo-docker'
+apply plugin: 'casumo-release'
+
+casumoDocker.image 'mobile-react-stack-poc'
+
+repositories {
+    maven { url 'https://repository.casumocave.com/repository/releases' }
+}
+
+casumoRelease {
+    github {
+        repoName 'mobile-react-stack-poc'
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '4.6'
+}

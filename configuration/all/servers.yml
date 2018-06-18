@@ -1,0 +1,6 @@
+servers:
+  test:
+  - ttdocker05.casumotest.local
+  - ttdocker06.casumotest.local
+  dynamic:
+  - "ttnode1-{{dynamic_env}}"

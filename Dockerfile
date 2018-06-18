@@ -1,3 +1,6 @@
-FROM node:7.7.2-alpine
+FROM nginx:latest
 
-WORKDIR /usr/app
+RUN rm -rf /usr/share/nginx/html/*
+
+ADD nginx/server.conf /etc/nginx/conf.d/default.conf
+ADD build /usr/share/nginx/html
