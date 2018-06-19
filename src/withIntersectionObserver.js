@@ -1,5 +1,9 @@
 import React, { Component } from "react";
 import Observer from "@researchgate/react-intersection-observer";
+// Add intersection observer polyfill since this feature is experimental and
+// some browsers might not have implemented it yet
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+import "intersection-observer";
 
 export default threshold => BaseComponent => {
   const displayName =
