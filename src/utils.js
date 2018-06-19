@@ -136,3 +136,6 @@ export const trace = x => {
   console.log(x);
   return x;
 };
+
+export const filter = (arr, predicate) => arr.filter(predicate);
+export const not = x => !x;

@@ -32,6 +32,7 @@ type GameBrowserService = {
 };
 
 export default (): GameBrowserService => {
+  // Doing the handshake once should be enough then we can cache the result
   const cachedHandshake = once(queryHandshake);
   const topListIds = compose2(getTopListIds, cachedHandshake);
   const topLists = compose2(getTopListsFromHandshake, cachedHandshake);
@@ -54,6 +55,9 @@ export default (): GameBrowserService => {
     return lists.filter(x => x.games.length > 0);
   };
 
+  // TODO: event handlers for anything that need to update the game lists.
+  // Eventually this will need to connect with cometd, listen for event and
+  // update the internal state of the games.
   const onGameMaintenanceModeChange = () => {};
 
   return {
