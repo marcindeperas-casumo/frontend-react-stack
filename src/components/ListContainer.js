@@ -1,9 +1,9 @@
 import React from "react";
 import ListHeading from "./ListHeading";
 import ScrollingContainer from "./ScrollingContainer";
-import LazyGamePlate from "./LazyGamePlate";
+import GamePlate from "./GamePlate";
 
-const renderGamePlate = game => <LazyGamePlate key={game.slug} {...game} />;
+const renderGamePlate = game => <GamePlate key={game.slug} {...game} />;
 const renderEmptyListOfGames = () => <div>EMPTY_LIST</div>;
 const renderListOfGamePlates = (games = []) => games.map(renderGamePlate);
 
