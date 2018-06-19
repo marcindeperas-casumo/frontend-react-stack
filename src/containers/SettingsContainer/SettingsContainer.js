@@ -7,13 +7,17 @@ import {
   setAdventurerPublicity,
   setNewsletterSubscription
 } from "../../api";
-import { toPlayerSettingsData, toPlayerConfigurationData } from "../../utils";
+import {
+  toPlayerSettingsData,
+  toPlayerConfigurationData,
+  getHostElement
+} from "../../utils";
 import "../../App.css";
 
 export default class SettingsContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.settingsRoot = document.getElementById("settingsApp");
+    this.settingsRoot = getHostElement("settingsApp");
     this.state = {
       loading: false,
       data: {}
@@ -67,12 +71,12 @@ export default class SettingsContainer extends React.Component {
   }
 
   onChangeNewsletterSubscription(onState) {
-    setNewsletterSubscription(onState).then(()=> {
+    setNewsletterSubscription(onState).then(() => {
       this.setState(prevState => ({
         ...prevState,
         data: { ...this.state.data, subscribedToNewsletters: onState }
       }));
-    })
+    });
   }
 
   render() {
@@ -84,7 +88,9 @@ export default class SettingsContainer extends React.Component {
           onChangeAdventurerPublicity: this.onChangeAdventurerPublicity.bind(
             this
           ),
-          onChangeNewsletterSubscription: this.onChangeNewsletterSubscription.bind(this)
+          onChangeNewsletterSubscription: this.onChangeNewsletterSubscription.bind(
+            this
+          )
         }}
       />,
       this.el

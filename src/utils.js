@@ -139,3 +139,16 @@ export const trace = x => {
 
 export const filter = (arr, predicate) => arr.filter(predicate);
 export const not = x => !x;
+
+export const getBodyTag = () => window.document.getElementsByTagName("body")[0];
+export const getHostElement = id => {
+  const el = window.document.getElementById(id);
+  if (!el) {
+    console.warn(
+      `Trying to find element with id #${id} but it was not found. Going to fallback on the body tag instead.`
+    );
+    return getBodyTag();
+  }
+
+  return el;
+};

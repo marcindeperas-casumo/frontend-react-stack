@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import gameBrowserService from "../../features/top-lists/game-browser";
 import ListContainer from "../../components/ListContainer";
-import { trace } from "../../utils";
+import { trace, getHostElement } from "../../utils";
 
 export default class SuggestedGamesContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.otherComponentRoot = document.getElementById("otherComponent");
+    this.otherComponentRoot = getHostElement("otherComponent");
     this.el = document.createElement("div");
     this.state = {
       loading: false,
