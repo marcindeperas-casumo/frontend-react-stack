@@ -47,7 +47,6 @@ mkdir -p ~/tmp;
 ln -s $(pwd)/ ~/tmp/casumo-frontend;
 ```
 
-- `deploy common mobile-react-stack-poc`
 - switch to `mobile-react-stack-poc` branch on casumo-frontend
 
 ### Development mode
