@@ -52,7 +52,7 @@ ln -s $(pwd)/ ~/tmp/casumo-frontend;
 ### Development mode
 
 - Start mobile app (`gulp dev`)
-- Turn of the `casumo-proxy`
+- Turn off the `casumo-proxy`
 - `yarn env:up` (and you can run `yarn env:down` in case you want to clean up)
 - Goto [https://mobile.dev](https://mobile.dev)
 
