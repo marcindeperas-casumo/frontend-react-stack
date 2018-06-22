@@ -58,4 +58,4 @@ ln -s $(pwd)/ ~/tmp/casumo-frontend;
 
 ---
 
-[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc)
+[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc) - [Routing Configuration](https://github.com/Casumo/routing-configuration/compare/master...mobile-react-stack-poc)
