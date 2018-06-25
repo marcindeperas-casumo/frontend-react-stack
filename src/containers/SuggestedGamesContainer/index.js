@@ -1,8 +1,5 @@
-import React from "react";
-import Loadable from "react-loadable";
+import { defaultComponentLoader } from "../../utils";
 
-export default Loadable({
-  loader: () => import("./SuggestedGamesContainer"),
-  // We do not need this for the time being
-  loading: () => () => <React.Fragment />
-});
+export default defaultComponentLoader(() =>
+  import("./SuggestedGamesContainer")
+);
