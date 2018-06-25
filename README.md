@@ -51,9 +51,10 @@ ln -s $(pwd)/ ~/tmp/casumo-frontend;
 
 ### Development mode
 
-- Start mobile app (`gulp dev`)
-- Turn off the `casumo-proxy`
-- `yarn env:up` (and you can run `yarn env:down` in case you want to clean up)
+- Turn off the `casumo-proxy` (a similar service will be initialised by the `mobile-react-stack-poc` repository)
+- Within the `casumo-frontent` repository run `gulp dev` (make sure you are on the `mobile-react-stack-poc` branch)
+- Within the `mobile-react-stack-poc` repository run `yarn env:up` to start all the service needed
+- Run `yarn env:down` in case you want to cleanup the docker services
 - Goto [https://mobile.dev](https://mobile.dev)
 
 ---
