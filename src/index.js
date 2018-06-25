@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
+import "./index.scss";
 import App from "./App";
 import legacyBridge from "./legacyBridge";
 // import registerServiceWorker from './registerServiceWorker';

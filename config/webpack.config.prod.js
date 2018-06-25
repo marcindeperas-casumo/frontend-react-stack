@@ -139,9 +139,32 @@ module.exports = {
             // Preprocess our own .css files
             // This is the place to add your own loaders (e.g. sass/less etc.)
             // for a list of loaders, see https://webpack.js.org/loaders/#styling
-            test: /\.css$/,
+            test: /\.scss$/,
             exclude: /node_modules/,
-            use: ['style-loader', 'css-loader'],
+            use: [
+              'style-loader',
+              {
+                loader: 'css-loader',
+                options: {
+                  importLoaders: 1,
+                },
+              },
+              {
+                loader: 'postcss-loader',
+                options: {
+                  // Necessary for external CSS imports to work
+                  // https://github.com/facebookincubator/create-react-app/issues/2677
+                  ident: 'postcss',
+                  plugins: () => [
+                    autoprefixer()
+                  ],
+                },
+              },
+              {
+                loader: 'sass-loader',
+                options: {}
+              }
+            ]
           },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.

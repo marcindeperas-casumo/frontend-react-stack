@@ -1,3 +1,5 @@
-FROM node:7.7.2-alpine
+FROM node:8-alpine
 
 WORKDIR /usr/app
+
+COPY . /usr/app
