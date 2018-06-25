@@ -1,5 +1,8 @@
-import { asyncComponent } from 'react-async-component';
+import React from "react";
+import Loadable from "react-loadable";
 
-export default asyncComponent({
-  resolve: () => import('./SettingsContainer')
+export default Loadable({
+  loader: () => import("./SettingsContainer"),
+  // We do not need this for the time being
+  loading: () => () => <React.Fragment />
 });
