@@ -1,5 +1,6 @@
-import { usingGET } from "../../../utils";
 import { stringify } from "qs";
+import { usingGET, cacheLocallyForMs } from "../../../utils";
+import sessionService from "../../session";
 
 // TODO: How are we going to get these?
 //
@@ -11,15 +12,34 @@ const getPlatform = () => "mobile";
 //
 // In terms of good API design, should we let the consumer (mobile) to specify
 // the country code, or shall we let the back-end infer it from the request?
-const getCountryCode = () => "mt";
+const getCountryCode = async () => {
+  const { country } = await sessionService.currentPlayer();
 
-export const queryHandshake = () =>
-  usingGET(`gamebrowser/handshake/${getPlatform()}/${getCountryCode()}`);
+  return country;
+};
 
-export const queryTopList = ({ id, variant, hash, page = 0, pageSize = 10 }) =>
-  usingGET(
-    `gamebrowser/games-lists/${getPlatform()}/${getCountryCode()}/${id}?${stringify(
+const cacheFor10 = cacheLocallyForMs(30000);
+const cachedCountryCode = cacheFor10(() => getCountryCode());
+
+export const queryHandshake = async () => {
+  const countryCode = await cachedCountryCode();
+  const platform = getPlatform();
+  return usingGET(`gamebrowser/handshake/${platform}/${countryCode}`);
+};
+
+export const queryTopList = async ({
+  id,
+  variant,
+  hash,
+  page = 0,
+  pageSize = 10
+}) => {
+  const countryCode = await cachedCountryCode();
+  const platform = getPlatform();
+  return usingGET(
+    `gamebrowser/games-lists/${platform}/${countryCode}/${id}?${stringify(
       { hash, variant, page, pageSize },
       { skipNulls: true }
     )}`
   );
+};

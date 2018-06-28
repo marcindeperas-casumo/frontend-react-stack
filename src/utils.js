@@ -1,6 +1,7 @@
 import React from "react";
 import Loadable from "react-loadable";
 import isPromise from "is-promise";
+import { isUndefined } from "util";
 
 export const toMobileNumber = phoneNumber =>
   `${phoneNumber.prefix} ${phoneNumber.number}`;
@@ -131,6 +132,9 @@ export const once = fn => {
 export const compose2 = (f, g) => (...args) => f(g(...args));
 export const property = k => obj => obj[k];
 
+export const notUndefined = x =>
+  isUndefined(x) ? Promise.reject(new TypeError("Expected promise")) : x;
+
 export const rejectIfNotPromise = fn => a =>
   isPromise(a) ? fn(a) : Promise.reject(new TypeError("Expected promise"));
 
@@ -180,3 +184,42 @@ const Loading = props => {
     return null;
   }
 };
+
+export const compose = (...fns) => iv =>
+  fns.reduceRight((acc, curr) => curr(acc), iv);
+
+export const composePromises = (...fns) => iv =>
+  fns.reduceRight(async (acc, curr) => curr(await acc), iv);
+
+export const applyOnPromise = pf => px =>
+  (isPromise(pf) ? pf : Promise.resolve(pf)).then(f => px.then(x => f(x)));
+export const identity = id => id;
+
+export const throwIf = (predicate, e) => x => {
+  if (predicate(x)) {
+    throw e;
+  }
+  return x;
+};
+
+export const tryCatch = (fn, throwError) => async (...args) => {
+  try {
+    return await fn(...args);
+  } catch (e) {
+    throw throwError;
+  }
+};
+
+export const defaultValue = (v, defaultValue) => {
+  if (isUndefined(v)) {
+    return defaultValue;
+  }
+
+  return v;
+};
+
+export const overAll = arr => fns =>
+  fns.reduce((acc, curr, i) => {
+    acc.push(curr(arr[i]));
+    return acc;
+  }, []);

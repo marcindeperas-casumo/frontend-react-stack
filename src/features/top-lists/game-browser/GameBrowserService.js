@@ -34,6 +34,10 @@ type GameBrowserService = {
 export default (): GameBrowserService => {
   // Doing the handshake once should be enough then we can cache the result
   const cachedHandshake = once(queryHandshake);
+
+  // () => Promise<Handshake>
+  // P<Hnadshake> =>
+
   const topListIds = compose2(getTopListIds, cachedHandshake);
   const topLists = compose2(getTopListsFromHandshake, cachedHandshake);
   const topListGamesByTopListId = id => {

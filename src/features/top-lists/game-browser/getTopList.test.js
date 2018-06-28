@@ -9,7 +9,6 @@ test("should return top list", async () => {
     id: "liveCasino",
     variant: "default"
   });
-  console.log({ topList });
 
   expect(topList).toMatchObject({
     title: "Live Casino"

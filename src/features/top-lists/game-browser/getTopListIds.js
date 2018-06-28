@@ -1,5 +1,7 @@
-import { property, rejectIfNotPromise } from "../../../utils";
+import {
+  composePromises,
+  notUndefined,
+  property as getProperty
+} from "../../../utils";
 
-export default rejectIfNotPromise(handshakePromise =>
-  handshakePromise.then(property("topListIds"))
-);
+export default composePromises(getProperty("topListIds"), notUndefined);

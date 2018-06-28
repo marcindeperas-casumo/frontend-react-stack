@@ -35,6 +35,8 @@ export default class App extends React.Component {
         suggestedGames: true
       }));
     });
+
+    window.debug = { session: import("./features/session") };
   }
 
   render() {
