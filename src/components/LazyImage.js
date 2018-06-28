@@ -1,29 +1,44 @@
 import React from "react";
-import IntersectingObserverRender from "./IntersectingObserverRender";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import DummyImage from "./DummyImage";
+import Observer from "@researchgate/react-intersection-observer";
+// Add intersection observer polyfill since this feature is experimental and
+// some browsers might not have implemented it yet
+// https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API
+import "intersection-observer";
+
+class StatefulResponsiveImage extends React.Component {
+  render() {
+    const { isIntersecting } = this.props;
+
+    return isIntersecting ? (
+      <ResponsiveImage {...this.props} />
+    ) : (
+      <DummyImage {...this.props} />
+    );
+  }
+}
 
 export default class LazyImage extends React.Component {
-  renderIntersecting({ src, alt, ...rest }) {
-    return <img src={src} alt={alt} {...rest} />;
-  }
+  state = {
+    intersectionRatio: 0,
+    isIntersecting: false
+  };
 
-  renderNotIntersecting(...args) {
-    // For some reason when calling this in JSX <DummyImage /> webpack will
-    // enter a strange state where it keep fetching the same chunk over and over
-    // again. Therefore as a workaround we will be calling the stateless
-    // component as a function.
-    return DummyImage(...args);
-  }
+  handleChange = ({ intersectionRatio, isIntersecting }, unobserve) => {
+    if (isIntersecting) {
+      unobserve();
+    }
+    this.setState({ intersectionRatio, isIntersecting });
+  };
 
   render() {
+    const { isIntersecting } = this.state;
+
     return (
-      <IntersectingObserverRender
-        doRender={({ isIntersecting }) => {
-          return isIntersecting
-            ? this.renderIntersecting(this.props)
-            : this.renderNotIntersecting(this.props);
-        }}
-      />
+      <Observer onChange={this.handleChange}>
+        <StatefulResponsiveImage {...{ ...this.props, isIntersecting }} />
+      </Observer>
     );
   }
 }
