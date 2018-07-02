@@ -22,7 +22,7 @@ $game-tile-widths: (
 .c-game-tile__overlay {
     align-items: center;
     background-color: rgba(cudl-palette(teal), 0.9);
-    display: flex;
+    display: none;
     flex-direction: column;
     justify-content: space-between;
 }
@@ -30,4 +30,8 @@ $game-tile-widths: (
 .c-game-tile__overlay--maintenance {
     background-color: rgba(cudl-palette(grey), 0.9);
     justify-content: center;
+}
+
+.c-game-tile:focus .c-game-tile__overlay {
+    display: flex;
 }

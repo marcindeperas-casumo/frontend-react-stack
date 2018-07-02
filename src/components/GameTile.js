@@ -45,10 +45,7 @@ export default class GameTile extends React.Component {
       "o-ratio__content",
       "c-game-tile__overlay",
       "u-padding-vert--normal",
-      "u-padding-horiz--small",
-      {
-        "u-display--none": !this.state.isOverlayVisible
-      }
+      "u-padding-horiz--small"
     );
 
     if (inMaintenanceMode) {
