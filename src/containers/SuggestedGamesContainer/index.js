@@ -1,5 +1,5 @@
-import { asyncComponent } from 'react-async-component';
+import { defaultComponentLoader } from "../../utils";
 
-export default asyncComponent({
-  resolve: () => import('./SuggestedGamesContainer')
-});
+export default defaultComponentLoader(() =>
+  import("./SuggestedGamesContainer")
+);

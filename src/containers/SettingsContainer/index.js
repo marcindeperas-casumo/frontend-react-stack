@@ -1,5 +1,3 @@
-import { asyncComponent } from 'react-async-component';
+import { defaultComponentLoader } from "../../utils";
 
-export default asyncComponent({
-  resolve: () => import('./SettingsContainer')
-});
+export default defaultComponentLoader(() => import("./SettingsContainer"));

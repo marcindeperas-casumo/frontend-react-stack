@@ -47,16 +47,16 @@ mkdir -p ~/tmp;
 ln -s $(pwd)/ ~/tmp/casumo-frontend;
 ```
 
-- `deploy common mobile-react-stack-poc`
 - switch to `mobile-react-stack-poc` branch on casumo-frontend
 
 ### Development mode
 
-- Start mobile app (`gulp dev`)
-- Turn of the `casumo-proxy`
-- `yarn env:up` (and you can run `yarn env:down` in case you want to clean up)
+- Turn off the `casumo-proxy` (a similar service will be initialised by the `mobile-react-stack-poc` repository)
+- Within the `casumo-frontent` repository run `gulp dev` (make sure you are on the `mobile-react-stack-poc` branch)
+- Within the `mobile-react-stack-poc` repository run `yarn env:up` to start all the service needed
+- Run `yarn env:down` in case you want to cleanup the docker services
 - Goto [https://mobile.dev](https://mobile.dev)
 
 ---
 
-[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc)
+[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc) - [Routing Configuration](https://github.com/Casumo/routing-configuration/compare/master...mobile-react-stack-poc)
