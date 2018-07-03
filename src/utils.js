@@ -62,37 +62,58 @@ export const bridgeFactory = () => {
 };
 
 export const cacheLocallyForMs = ms => {
-  let lastUpdated = 0;
-  let lastValue;
+  let lastValue = {
+    lastUpdated: 0
+  };
   console.log(`🏝 Setting up local cache for ${ms}ms`);
 
   return performCall => (...args) => {
     const now = new Date().getTime();
-    console.log(`🏝 Last updated: ${lastUpdated}, now: ${now}`);
-    if (now - lastUpdated <= ms) {
+    console.log(`🏝 Last updated: ${lastValue.lastUpdated}, now: ${now}`);
+    if (now - lastValue.lastUpdated <= ms) {
       console.log(
-        `🏝 Still ${ms - (now - lastUpdated)}ms before the cache expires.`,
-        { lastValue }
+        `🏝 Still ${ms -
+          (now - lastValue.lastUpdated)}ms before the cache expires.`,
+        lastValue
       );
-      return Promise.resolve(lastValue);
+      return lastValue.success
+        ? Promise.resolve(lastValue.value)
+        : Promise.reject(lastValue.error);
     }
 
     console.log(`🏝 Returning a promise to perform work`);
-    return new Promise(resolve => {
+    return new Promise((resolve, reject) => {
       console.log(`🏝 Performing work`);
-      return resolve(performCall(...args));
+      try {
+        const result = performCall(...args);
+        resolve(result);
+      } catch (e) {
+        console.log("CACHE ERROR", e);
+        reject(e);
+      }
     })
       .then(value => {
-        lastValue = value;
-        lastUpdated = new Date().getTime();
+        lastValue = {
+          success: true,
+          value,
+          lastUpdated: new Date().getTime()
+        };
         console.log(`🏝 Work performed updating internal values`, {
-          lastValue,
-          lastUpdated
+          lastValue
         });
 
         return value;
       })
-      .catch(console.error);
+      .catch(e => {
+        console.error("performCall Error", e);
+        lastValue = {
+          success: false,
+          error: e,
+          lastUpdated: new Date().getTime()
+        };
+
+        return Promise.reject(e);
+      });
   };
 };
 
@@ -206,7 +227,7 @@ export const tryCatch = (fn, throwError) => async (...args) => {
   try {
     return await fn(...args);
   } catch (e) {
-    throw throwError;
+    throw new Error(throwError.message);
   }
 };
 

@@ -38,6 +38,8 @@
     "prop-types": "^15.6.1",
     "qs": "^6.5.2",
     "raf": "3.4.0",
+    "ramda": "^0.25.0",
+    "ramda-fantasy": "^0.8.0",
     "react": "^16.3.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
@@ -61,7 +63,7 @@
     "prestart": "yarn --pure-lockfile",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom --verbose"
+    "test": "node scripts/test.js --env=jsdom"
   },
   "jest": {
     "collectCoverageFrom": [

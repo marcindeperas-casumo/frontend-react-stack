@@ -89,9 +89,24 @@ describe("currentPlayer()", () => {
       }
     });
 
-    expect(await service.currentPlayer()).toMatchObject({
+    expect(await service.currentPlayerFP()).toMatchObject({
       casumoName: "player-1",
       playerId: 123
     });
+  });
+
+  test("should not fail if no session", async () => {
+    queryHandshake.mockResolvedValue({});
+    expect(await service.currentPlayerFP()).toEqual(null);
+  });
+
+  test("should not fail if rejected", async () => {
+    queryHandshake.mockRejectedValue("Rejection error");
+
+    expect.assertions(1);
+
+    await expect(service.currentPlayerFP()).rejects.toEqual(
+      Error("Failed to get session")
+    );
   });
 });

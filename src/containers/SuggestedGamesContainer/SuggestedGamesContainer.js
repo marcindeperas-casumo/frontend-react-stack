@@ -32,7 +32,14 @@ export default class SuggestedGamesContainer extends React.Component {
           data
         });
       })
-      .catch(console.error);
+      .catch(e => {
+        this.setState({
+          ...this.state,
+          loading: false,
+          data: []
+        });
+        console.error(e);
+      });
   }
 
   componentWillUnmount() {
