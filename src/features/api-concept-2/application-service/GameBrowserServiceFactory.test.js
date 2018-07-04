@@ -1,6 +1,6 @@
-import gameBrowserClientMock from "../service-clients/GameBrowserClientFactory";
-import service from "./GameBrowserServiceFactory";
-jest.mock("../service-clients/GameBrowserClientFactory");
+import gameBrowserClientMock from "../service-clients/GameBrowserClient";
+import service from "./GameBrowserService";
+jest.mock("../service-clients/GameBrowserClient");
 
 describe("Game Browser Service", () => {
   beforeEach(() => {
@@ -19,9 +19,9 @@ describe("Game Browser Service", () => {
     service.config.set({ country: "mt", device: "mobile" });
   });
 
-  // afterEach(() => {
-  //   console.log(gameBrowserClientMock.handshake.mock.calls);
-  // });
+  afterEach(() => {
+    console.log(gameBrowserClientMock.handshake.mock.calls);
+  });
 
   test("should return ids", async () => {
     const response = await service.getIds();

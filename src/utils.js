@@ -283,3 +283,18 @@ export const cacheFunction = ({ fn, cache }) => async (...args) => {
 
   return cache.get();
 };
+
+export const ServiceConfig = ({ defaultOptions, configCache }) => {
+  return {
+    get: () => {
+      return configCache.get();
+    },
+    set: options => {
+      configCache.set({
+        ...configCache.get(),
+        ...defaultOptions,
+        ...options
+      });
+    }
+  };
+};

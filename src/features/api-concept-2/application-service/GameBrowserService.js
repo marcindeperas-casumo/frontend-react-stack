@@ -1,25 +1,20 @@
-import { cacheFunction, SimpleCache } from "../../../utils";
-import GameBrowserClientFactory from "../service-clients/GameBrowserClientFactory";
+import { cacheFunction, ServiceConfig, SimpleCache } from "../../../utils";
+import GameBrowserClient from "../service-clients/GameBrowserClient";
 
 const handshakeCache = SimpleCache();
 const configCache = SimpleCache();
 const defaultOptions = {};
 
+const handshakeParams = ({ country }) => ({ country });
+
+const serviceConfig = ServiceConfig({ defaultOptions, configCache });
 const config = {
-  get: () => {
-    return configCache.get();
-  },
-  set: options => {
+  ...serviceConfig,
+  set: (...args) => {
     handshakeCache.invalidate();
-    configCache.set({
-      ...configCache.get(),
-      ...defaultOptions,
-      ...options
-    });
+    serviceConfig.set(...args);
   }
 };
-
-const handshakeParams = ({ country }) => ({ country });
 
 export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
   const cachedHandshake = cacheFunction({
@@ -67,5 +62,5 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
 };
 
 export default GameBrowserServiceFactory({
-  gameBrowserClient: GameBrowserClientFactory
+  gameBrowserClient: GameBrowserClient
 });

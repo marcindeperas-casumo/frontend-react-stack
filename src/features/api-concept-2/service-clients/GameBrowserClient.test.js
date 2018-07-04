@@ -1,4 +1,4 @@
-import { GameBrowserClientFactory } from "./GameBrowserClientFactory";
+import { GameBrowserClientFactory } from "./GameBrowserClient";
 
 describe("GameBrowserClientFactory", () => {
   let client;
@@ -9,7 +9,7 @@ describe("GameBrowserClientFactory", () => {
 
   beforeEach(() => {
     jest.resetAllMocks();
-    client = GameBrowserClientFactory({ httpService });
+    client = GameBrowserClientFactory({ http: httpService });
   });
 
   test("should call http service", () => {
