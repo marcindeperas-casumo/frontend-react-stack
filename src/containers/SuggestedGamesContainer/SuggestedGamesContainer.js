@@ -4,6 +4,7 @@ import gameBrowserService from "../../features/top-lists/game-browser";
 import ListContainer from "../../components/ListContainer";
 import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserService";
 import { trace, getHostElement } from "../../utils";
+import SessionService from "../../features/api-concept-2/application-service/SessionService";
 
 export default class SuggestedGamesContainer extends React.Component {
   constructor(props) {

@@ -1,7 +1,7 @@
+import isPromise from "is-promise";
 import React from "react";
 import Loadable from "react-loadable";
-import isPromise from "is-promise";
-import { isUndefined } from "util";
+import { isNullOrUndefined, isUndefined } from "util";
 
 export const toMobileNumber = phoneNumber =>
   `${phoneNumber.prefix} ${phoneNumber.number}`;
@@ -298,3 +298,8 @@ export const ServiceConfig = ({ defaultOptions, configCache }) => {
     }
   };
 };
+
+export const isNotNullOrUndefined = compose(
+  not,
+  isNullOrUndefined
+);

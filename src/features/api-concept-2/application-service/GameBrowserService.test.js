@@ -1,13 +1,16 @@
 import gameBrowserClientMock from "../service-clients/GameBrowserClient";
-import service from "./GameBrowserService";
+import { GameBrowserServiceFactory } from "./GameBrowserService";
 jest.mock("../service-clients/GameBrowserClient");
 
 describe("Game Browser Service", () => {
+  let service;
+
   beforeEach(() => {
+    service = GameBrowserServiceFactory({
+      gameBrowserClient: gameBrowserClientMock
+    });
+
     jest.resetAllMocks();
-    gameBrowserClientMock.getById.mockImplementation(({ id, hash }) =>
-      Promise.resolve({ id, hash, topListIds: [id] })
-    );
 
     gameBrowserClientMock.handshake.mockResolvedValue({
       gamesLists: {
@@ -88,6 +91,7 @@ describe("Game Browser Service", () => {
 
   describe("allTopLists()", () => {
     test("should call gamesList API with the relevant parameters", async () => {
+      service.config.set({ country: "mt", device: "mobile" });
       await service.allTopLists();
       expect(gameBrowserClientMock.gamesLists).toHaveBeenCalled();
       expect(gameBrowserClientMock.gamesLists).toHaveBeenCalledWith(

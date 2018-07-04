@@ -1,19 +1,12 @@
-import { isNullOrUndefined } from "util";
 import {
   cacheFunction,
   compose,
-  not,
+  isNotNullOrUndefined,
   property,
   ServiceConfig,
-  SimpleCache,
-  trace
+  SimpleCache
 } from "../../../utils";
 import GameBrowserClient from "../service-clients/GameBrowserClient";
-
-const notNullOrUndefined = compose(
-  not,
-  isNullOrUndefined
-);
 
 const handshakeParams = ({ country, platform }) => ({ country, platform });
 
@@ -48,7 +41,7 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
     const gameListsRequests = handshake.topListIds
       .map(property)
       .map(propertyFn => propertyFn(handshake.gamesLists))
-      .filter(notNullOrUndefined)
+      .filter(isNotNullOrUndefined)
       .map(async ({ id, variants, title }) => {
         const games = await gameBrowserClient.gamesLists({
           ...handshakeParams(config.get()),

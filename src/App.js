@@ -2,6 +2,7 @@ import React from "react";
 import SettingsContainer from "./containers/SettingsContainer";
 import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
 import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
+import SessionService from "./features/api-concept-2/application-service/SessionService";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
@@ -15,9 +16,10 @@ export default class App extends React.Component {
     this.state = blankState();
   }
 
-  componentWillMount() {
-    // this needs to be managed by the session
-    GameBrowserService.config.set({ country: "mt", platform: "mobile" });
+  async componentWillMount() {
+    // This needs to move to an "app config" place
+    const country = await SessionService.country();
+    GameBrowserService.config.set({ country, platform: "mobile" });
 
     legacyBridge.on("$RESET", () => {
       this.setState(prevState => ({
