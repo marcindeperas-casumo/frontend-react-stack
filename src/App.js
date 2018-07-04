@@ -1,9 +1,10 @@
 import React from "react";
 import SettingsContainer from "./containers/SettingsContainer";
 import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
+import legacyBridge from "./legacyBridge";
 import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
 import SessionService from "./features/api-concept-2/application-service/SessionService";
-import legacyBridge from "./legacyBridge";
+import CommonService from "./features/api-concept-2/application-service/CommonService";
 
 const blankState = () => ({
   settings: false,
@@ -16,10 +17,27 @@ export default class App extends React.Component {
     this.state = blankState();
   }
 
-  async componentWillMount() {
-    // This needs to move to an "app config" place
-    const country = await SessionService.country();
-    GameBrowserService.config.set({ country, platform: "mobile" });
+  componentWillMount() {
+    // DO NOT LEAVE THESE HERE! We should find a better place to place this
+    // functionality.
+    //
+    // Decide if we want to keep the async function to pull in the initial
+    // country value, or else refactor the config to start accepting a promise
+    // (this might need a bigger to support async configs in services).
+    //
+    // Also we need to decide where we are going to place these
+    // ApplicationEvents to react app binding. And make sure that the bridge
+    // works fine with promise callbacks.
+    legacyBridge.on("ApplicationEvents/onLogin", async () => {
+      CommonService.invalidateHandshake();
+      const country = await SessionService.country();
+      GameBrowserService.config.set({ country, platform: "mobile" });
+    });
+
+    (async () => {
+      const country = await SessionService.country();
+      GameBrowserService.config.set({ country, platform: "mobile" });
+    })();
 
     legacyBridge.on("$RESET", () => {
       this.setState(prevState => ({

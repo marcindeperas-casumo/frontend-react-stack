@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.scss";
 import App from "./App";
+import "./index.scss";
 import legacyBridge from "./legacyBridge";
 // import registerServiceWorker from './registerServiceWorker';
 
@@ -14,5 +14,4 @@ legacyBridge.on("mobile-router:navigation:attached", data => {
 });
 
 ReactDOM.render(<App />, root);
-
 // registerServiceWorker();
