@@ -2,7 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import gameBrowserService from "../../features/top-lists/game-browser";
 import ListContainer from "../../components/ListContainer";
-import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserServiceFactory";
+import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserService";
 import { trace, getHostElement } from "../../utils";
 
 export default class SuggestedGamesContainer extends React.Component {
@@ -23,8 +23,9 @@ export default class SuggestedGamesContainer extends React.Component {
     window.gameBrowserService = gameBrowserService;
     console.log(gameBrowserService, { GameBrowserService });
 
-    gameBrowserService
-      .allTopLists()
+    GameBrowserService.allTopLists()
+      // gameBrowserService
+      //   .allTopLists()
       .then(trace)
       .then(data => {
         this.setState({

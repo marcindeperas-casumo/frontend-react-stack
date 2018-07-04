@@ -13,9 +13,9 @@ describe("GameBrowserClientFactory", () => {
   });
 
   test("should call http service", () => {
-    client.handshake({ country: "mt" });
+    client.handshake({ country: "mt", platform: "foo" });
     expect(httpService.get).toHaveBeenCalledWith(
-      "gamebrowser/handshake/mobile/mt"
+      "gamebrowser/handshake/foo/mt"
     );
   });
 

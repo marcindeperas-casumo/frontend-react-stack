@@ -1,6 +1,7 @@
 import React from "react";
 import SettingsContainer from "./containers/SettingsContainer";
 import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
+import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
@@ -15,6 +16,9 @@ export default class App extends React.Component {
   }
 
   componentWillMount() {
+    // this needs to be managed by the session
+    GameBrowserService.config.set({ country: "mt", platform: "mobile" });
+
     legacyBridge.on("$RESET", () => {
       this.setState(prevState => ({
         ...prevState,
