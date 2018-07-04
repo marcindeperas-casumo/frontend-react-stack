@@ -1,8 +1,12 @@
-const httpService = {};
+import { usingGET } from "../../../utils";
+const httpService = {
+  get: usingGET
+};
 
 export const GameBrowserClientFactory = ({ httpService }) => {
   return {
-    handshake: () => httpService.get("/api/handshake"),
+    handshake: ({ country }) =>
+      httpService.get(`gamebrowser/handshake/mobile/${country}`),
     getById: ({ id }) => httpService.get(`/api/${id}`)
   };
 };

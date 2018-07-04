@@ -1,36 +1,52 @@
+import { cacheFunction, SimpleCache } from "../../../utils";
 import GameBrowserClientFactory from "../service-clients/GameBrowserClientFactory";
-import handshakeHolderFactory from "./handshakeHolderFactory";
 
-export const GameBrowserServiceFactory = ({
-  gameBrowserClient,
-  handshakeHolder
-}) => {
-  const getHandshake = async () => {
-    if (handshakeHolder.empty()) {
-      handshakeHolder.update(await gameBrowserClient.handshake());
-    }
+const handshakeCache = SimpleCache();
+const configCache = SimpleCache();
+const defaultOptions = {};
 
-    return handshakeHolder.value();
-  };
+const config = {
+  get: () => {
+    return configCache.get();
+  },
+  set: options => {
+    handshakeCache.invalidate();
+    configCache.set({
+      ...configCache.get(),
+      ...defaultOptions,
+      ...options
+    });
+  }
+};
+
+const handshakeParams = ({ country }) => ({ country });
+
+export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
+  const cachedHandshake = cacheFunction({
+    fn: (options, ...restArgs) =>
+      gameBrowserClient.handshake(
+        { ...options, ...handshakeParams(configCache.get()) },
+        ...restArgs
+      ),
+    cache: handshakeCache
+  });
 
   const getHash = async ({ id }) => {
-    const handshake = await getHandshake();
+    const handshake = await cachedHandshake();
     return handshake.hash[`i${id}`];
   };
+
+  const listItemToItemIdModel = async id => ({
+    id,
+    hash: await getHash({ id })
+  });
+
   const getIds = async () => {
-    const handshake = await getHandshake();
-    return Promise.all(
-      handshake.list.map(async id => {
-        const hash = await getHash({ id });
-        return {
-          id,
-          hash
-        };
-      })
-    );
+    const handshake = await cachedHandshake();
+    return Promise.all(handshake.topListIds.map(listItemToItemIdModel));
   };
 
-  const invalidateHandshake = () => handshakeHolder.invalidate();
+  const invalidateHandshake = () => handshakeCache.invalidate();
 
   const getAll = async () => {
     const ids = await getIds();
@@ -43,13 +59,13 @@ export const GameBrowserServiceFactory = ({
   };
 
   return {
-    invalidateHandshake,
     getIds,
-    getAll
+    getAll,
+    invalidateHandshake,
+    config
   };
 };
 
 export default GameBrowserServiceFactory({
-  gameBrowserClient: GameBrowserClientFactory,
-  handshakeHolder: handshakeHolderFactory()
+  gameBrowserClient: GameBrowserClientFactory
 });

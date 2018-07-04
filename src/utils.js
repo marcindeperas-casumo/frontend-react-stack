@@ -244,3 +244,42 @@ export const overAll = arr => fns =>
     acc.push(curr(arr[i]));
     return acc;
   }, []);
+
+export const SimpleCache = () => {
+  let internalValue = {};
+  let valueSet = false;
+
+  const isEmpty = () => {
+    return !valueSet;
+  };
+
+  const set = newValue => {
+    internalValue = { ...newValue };
+    valueSet = true;
+    return;
+  };
+
+  const get = () => {
+    return internalValue;
+  };
+
+  const invalidate = () => {
+    internalValue = {};
+    valueSet = false;
+  };
+
+  return {
+    isEmpty,
+    get,
+    set,
+    invalidate
+  };
+};
+
+export const cacheFunction = ({ fn, cache }) => async (...args) => {
+  if (cache.isEmpty()) {
+    cache.set(await fn(...args));
+  }
+
+  return cache.get();
+};

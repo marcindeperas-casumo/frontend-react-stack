@@ -13,13 +13,15 @@ describe("GameBrowserClientFactory", () => {
   });
 
   test("should call http service", () => {
-    client.handshake();
-    expect(httpService.get).toHaveBeenCalledWith("/api/handshake");
+    client.handshake({ country: "mt" });
+    expect(httpService.get).toHaveBeenCalledWith(
+      "gamebrowser/handshake/mobile/mt"
+    );
   });
 
   test("should return a resolved promise", async () => {
     httpService.get.mockResolvedValue({ foo: "bar" });
-    const response = await client.handshake();
+    const response = await client.handshake({ country: "mt" });
 
     expect(response).toEqual({
       foo: "bar"
