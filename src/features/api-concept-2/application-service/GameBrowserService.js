@@ -5,15 +5,10 @@ import {
   not,
   property,
   ServiceConfig,
-  SimpleCache
+  SimpleCache,
+  trace
 } from "../../../utils";
 import GameBrowserClient from "../service-clients/GameBrowserClient";
-
-const handshakeCache = SimpleCache();
-const configCache = SimpleCache();
-const defaultOptions = {
-  platform: "mobile"
-};
 
 const notNullOrUndefined = compose(
   not,
@@ -22,75 +17,55 @@ const notNullOrUndefined = compose(
 
 const handshakeParams = ({ country, platform }) => ({ country, platform });
 
-const serviceConfig = ServiceConfig({ defaultOptions, configCache });
-const config = {
-  ...serviceConfig,
-  set: (...args) => {
-    handshakeCache.invalidate();
-    serviceConfig.set(...args);
-  }
-};
-
 export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
+  const handshakeCache = SimpleCache();
+  const defaultOptions = {
+    platform: "mobile"
+  };
+  const serviceConfig = ServiceConfig({
+    defaultOptions,
+    configCache: SimpleCache()
+  });
+
+  const config = {
+    ...serviceConfig,
+    set: (...args) => {
+      handshakeCache.invalidate();
+      serviceConfig.set(...args);
+    }
+  };
+
   const cachedHandshake = cacheFunction({
-    fn: (options, ...restArgs) =>
-      gameBrowserClient.handshake(
-        { ...options, ...handshakeParams(configCache.get()) },
-        ...restArgs
-      ),
+    fn: () => gameBrowserClient.handshake(handshakeParams(config.get())),
     cache: handshakeCache
   });
 
-  const getHash = async ({ id }) => {
-    const handshake = await cachedHandshake();
-    return handshake.hash[`i${id}`];
-  };
-
-  const listItemToItemIdModel = async id => ({
-    id,
-    hash: await getHash({ id })
-  });
-
-  const getIds = async () => {
-    const handshake = await cachedHandshake();
-    return Promise.all(handshake.topListIds.map(listItemToItemIdModel));
-  };
-
   const invalidateHandshake = () => handshakeCache.invalidate();
-
-  const getAll = async () => {
-    const ids = await getIds();
-
-    return Promise.all(
-      ids.map(
-        async ({ id, hash }) => await gameBrowserClient.getById({ id, hash })
-      )
-    );
-  };
 
   const allTopLists = async ({ variant = "default" } = {}) => {
     const handshake = await cachedHandshake();
 
-    return Promise.all(
-      handshake.topListIds
-        .map(property)
-        .map(propertyFn => propertyFn(handshake.gamesLists))
-        .filter(notNullOrUndefined)
-        .map(async ({ id, variants, title }) => {
-          const games = await gameBrowserClient.gamesLists({
-            ...handshakeParams(config.get()),
-            id: id,
-            hash: variants[variant].hash,
-            variant,
-            pageSize: 10
-          });
+    const gameListsRequests = handshake.topListIds
+      .map(property)
+      .map(propertyFn => propertyFn(handshake.gamesLists))
+      .filter(notNullOrUndefined)
+      .map(async ({ id, variants, title }) => {
+        const games = await gameBrowserClient.gamesLists({
+          ...handshakeParams(config.get()),
+          id: id,
+          hash: variants[variant].hash,
+          variant,
+          pageSize: 10
+        });
 
-          return { games: games.games, id, title };
-        })
-    ).then(gameLists =>
+        return { games: games.games, id, title };
+      });
+
+    return Promise.all(gameListsRequests).then(gameLists =>
       gameLists.filter(
         compose(
-          a => a.length > 0,
+          i => i > 0,
+          property("length"),
           property("games")
         )
       )
@@ -98,15 +73,9 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
   };
 
   return {
-    getIds,
-    getAll,
     invalidateHandshake,
     config,
     allTopLists
-    // allTopLists
-    // topListIds
-    // topLists
-    // topListGamesByTopListId
   };
 };
 

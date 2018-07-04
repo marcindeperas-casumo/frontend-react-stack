@@ -151,7 +151,7 @@ export const once = fn => {
 };
 
 export const compose2 = (f, g) => (...args) => f(g(...args));
-export const property = k => obj => obj[k];
+export const property = k => obj => obj && obj[k];
 
 export const notUndefined = x =>
   isUndefined(x) ? Promise.reject(new TypeError("Expected promise")) : x;
