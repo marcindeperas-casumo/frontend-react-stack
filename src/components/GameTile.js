@@ -6,23 +6,6 @@ import { AlertIcon, PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import LazyImage from "./LazyImage";
 
 export default class GameTile extends React.Component {
-  constructor() {
-    super();
-    this.state = {
-      isOverlayVisible: false
-    };
-    this.onBlur = this.onBlur.bind(this);
-    this.showOverlay = this.showOverlay.bind(this);
-  }
-
-  showOverlay() {
-    this.setState({ isOverlayVisible: true });
-  }
-
-  onBlur() {
-    this.setState({ isOverlayVisible: false });
-  }
-
   render() {
     const {
       className,
