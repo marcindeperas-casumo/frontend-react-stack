@@ -14,10 +14,10 @@ $game-tile-widths: (
 );
 
 .c-game-tile {
-    @include cudl-breakpoint-with($game-tile-widths, max-width);
+    @include cudl-breakpoint-with($game-tile-widths, width);
     cursor: pointer;
     outline: none;
-    width: 100%;
+    max-width: 170px;
 }
 
 .c-game-tile__overlay {
