@@ -8,7 +8,7 @@ const renderEmptyListOfGames = () => <div>EMPTY_LIST</div>;
 const renderListOfGameTiles = (games = []) => games.map(renderGameTile);
 
 const ListContainer = ({ title, games }) => (
-  <div>
+  <div className="u-padding-bottom--semi@mobile">
     <Heading
       className="u-padding-top--semi u-padding-bottom--small u-padding-left--small u-padding-left--xlarge@tablet
       u-padding-bottom--normal@tablet u-padding-left--xlarge@desktop u-padding-bottom--normal@desktop"
