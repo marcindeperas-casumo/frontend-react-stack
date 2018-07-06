@@ -1,0 +1,38 @@
+@import 'cudl-compile';
+@import 'cudl-breakpoints';
+// prevent colors package from compiling
+@include cudl-prevent-compile(cudl-sass-colors);
+@import 'cudl-colors';
+// remove compile block incase needed later
+@include cudl-reset-compile(cudl-sass-colors);
+
+$game-tile-widths: (
+    mobile: 43%,
+    phablet: 26%,
+    tablet: 26%,
+    desktop: 15%
+);
+
+.c-game-tile {
+    @include cudl-breakpoint-with($game-tile-widths, width);
+    cursor: pointer;
+    outline: none;
+    max-width: 170px;
+}
+
+.c-game-tile__overlay {
+    align-items: center;
+    background-color: rgba(cudl-palette(teal), 0.9);
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.c-game-tile__overlay--maintenance {
+    background-color: rgba(cudl-palette(grey), 0.9);
+    justify-content: center;
+}
+
+.c-game-tile:focus .c-game-tile__overlay {
+    display: flex;
+}
