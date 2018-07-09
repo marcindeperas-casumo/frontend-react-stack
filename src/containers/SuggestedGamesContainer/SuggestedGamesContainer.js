@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 import gameBrowserService from "../../features/top-lists/game-browser";
 import ListContainer from "../../components/ListContainer";
 import SkeletonGameTiles from "../../components/SkeletonGameTiles";
+import { trace, getHostElement } from "../../utils";
 
 export default class SuggestedGamesContainer extends React.Component {
   constructor(props) {
