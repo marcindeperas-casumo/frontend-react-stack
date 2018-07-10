@@ -246,7 +246,7 @@ export const overAll = arr => fns =>
   }, []);
 
 export const SimpleCache = () => {
-  let internalValue = {};
+  let internalValue = null;
   let valueSet = false;
 
   const isEmpty = () => {
@@ -254,7 +254,7 @@ export const SimpleCache = () => {
   };
 
   const set = newValue => {
-    internalValue = { ...newValue };
+    internalValue = newValue;
     valueSet = true;
     return;
   };
@@ -264,7 +264,7 @@ export const SimpleCache = () => {
   };
 
   const invalidate = () => {
-    internalValue = {};
+    internalValue = null;
     valueSet = false;
   };
 
@@ -276,22 +276,25 @@ export const SimpleCache = () => {
   };
 };
 
-export const cacheFunction = ({ fn, cache }) => async (...args) => {
+export const cacheFunction = ({ fn, cache = SimpleCache() }) => async () => {
+  // NOTE: The return cached function does not accept any arguments. In case you
+  // want to start accepting arguments, make sure that the cache is also based
+  // on the arguments.
   if (cache.isEmpty()) {
-    cache.set(await fn(...args));
+    cache.set(await fn());
   }
 
   return cache.get();
 };
 
-export const ServiceConfig = ({ defaultOptions, configCache }) => {
+export const ServiceConfig = ({ defaultOptions, cache }) => {
   return {
     get: () => {
-      return configCache.get();
+      return cache.get();
     },
     set: options => {
-      configCache.set({
-        ...configCache.get(),
+      cache.set({
+        ...cache.get(),
         ...defaultOptions,
         ...options
       });
