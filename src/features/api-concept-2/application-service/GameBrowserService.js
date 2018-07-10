@@ -17,7 +17,7 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
   };
   const serviceConfig = ServiceConfig({
     defaultOptions,
-    configCache: SimpleCache()
+    cache: SimpleCache()
   });
 
   const config = {
@@ -54,15 +54,13 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
         return { games: games.games, id, title };
       });
 
-    return Promise.all(gameListsRequests).then(gameLists =>
-      gameLists.filter(
-        compose(
-          i => i > 0,
-          property("length"),
-          property("games")
-        )
-      )
+    const hasSomeGames = compose(
+      i => i > 0,
+      property("length"),
+      property("games")
     );
+
+    return (await Promise.all(gameListsRequests)).filter(hasSomeGames);
   };
 
   return {
