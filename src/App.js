@@ -1,11 +1,13 @@
 import React from "react";
 import SettingsContainer from "./containers/SettingsContainer";
 import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
+import LiveCasinoLobbyContainer from "./containers/LiveCasinoLobbyContainer";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
   settings: false,
-  suggestedGames: false
+  suggestedGames: false,
+  liveCasinoLobby: false
 });
 
 export default class App extends React.Component {
@@ -32,18 +34,19 @@ export default class App extends React.Component {
     legacyBridge.on("games-top", data => {
       this.setState(prevState => ({
         ...prevState,
-        suggestedGames: true
+        // suggestedGames: true,
+        liveCasinoLobby: true
       }));
     });
   }
 
   render() {
-    const { settings, suggestedGames } = this.state;
+    const { settings, suggestedGames, liveCasinoLobby } = this.state;
     return (
       <div>
-        Le React App
         {settings && <SettingsContainer />}
         {suggestedGames && <SuggestedGamesContainer />}
+        {liveCasinoLobby && <LiveCasinoLobbyContainer />}
       </div>
     );
   }

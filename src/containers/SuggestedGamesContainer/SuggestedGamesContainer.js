@@ -18,10 +18,9 @@ export default class SuggestedGamesContainer extends React.Component {
 
   componentWillMount() {
     this.otherComponentRoot.appendChild(this.el);
-    this.setState({ ...this.state, loading: true });
 
     window.gameBrowserService = gameBrowserService;
-    console.log(gameBrowserService);
+    console.log('gameBrowserService', gameBrowserService);
 
     gameBrowserService
       .allTopLists()
@@ -34,6 +33,10 @@ export default class SuggestedGamesContainer extends React.Component {
         });
       })
       .catch(console.error);
+  }
+
+  componentDidMount() {
+    this.setState({ ...this.state, loading: true });
   }
 
   componentWillUnmount() {

@@ -10,11 +10,13 @@ import "intersection-observer";
 class StatefulResponsiveImage extends React.Component {
   render() {
     const { isIntersecting } = this.props;
+    const imageProps = Object.assign({}, this.props);
+    delete imageProps.isIntersecting;
 
     return isIntersecting ? (
-      <ResponsiveImage {...this.props} />
+      <ResponsiveImage {...imageProps} />
     ) : (
-      <DummyImage {...this.props} />
+      <DummyImage {...imageProps} />
     );
   }
 }
