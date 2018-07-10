@@ -15,6 +15,7 @@ $game-tile-widths: (
 
 .c-game-tile {
     @include cudl-breakpoint-with($game-tile-widths, width);
+    background-color: cudl-palette(grey, light-2);
     cursor: pointer;
     outline: none;
     max-width: 170px;

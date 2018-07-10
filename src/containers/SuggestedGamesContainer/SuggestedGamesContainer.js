@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import gameBrowserService from "../../features/top-lists/game-browser";
 import ListContainer from "../../components/ListContainer";
+import SkeletonGameTiles from "../../components/SkeletonGameTiles";
 import { trace, getHostElement } from "../../utils";
 
 export default class SuggestedGamesContainer extends React.Component {
@@ -39,25 +40,26 @@ export default class SuggestedGamesContainer extends React.Component {
     this.otherComponentRoot.removeChild(this.el);
   }
 
-  renderLoading() {
-    return (
-      <div
-        style={{
-          height: "246px",
-          backgroundColor: "lightgrey"
-        }}
-      >
-        Loading suggested games
-      </div>
-    );
-  }
-
   render() {
-    const { data } = this.state;
+    const { data, loading } = this.state;
 
     return ReactDOM.createPortal(
       <React.Fragment>
-        {data.map(x => <ListContainer key={x.title} {...x} />)}
+        {loading ? (
+          <div className="u-padding-bottom--semi@mobile">
+            {Array.from(Array(4).keys()).map((i) => (
+              <SkeletonGameTiles
+                key={i}
+                tileWidth={170}
+                tileHeight={204}
+                preserveAspectRatio="none"
+                className="u-padding-top--semi u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+              />
+            ))}
+          </div>
+        ) : (
+          data.map(x => <ListContainer key={x.title} {...x} />)
+        )}
       </React.Fragment>,
       this.el
     );
