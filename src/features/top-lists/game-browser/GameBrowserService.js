@@ -10,7 +10,7 @@ type GameSlug = string;
 type TopListId = string;
 type TopList = {
   id: TopListId,
-  title: string
+  title: string,
 };
 type TopListGame = {
   name: string,
@@ -19,7 +19,7 @@ type TopListGame = {
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,
-  jackpotId?: string
+  jackpotId?: string,
 };
 
 type GameBrowserService = {
@@ -28,7 +28,7 @@ type GameBrowserService = {
   topListGamesByTopListId(
     topListId: TopListId,
     variant: GameListVariant
-  ): Promise<TopListGame[]>
+  ): Promise<TopListGame[]>,
 };
 
 export default (): GameBrowserService => {
@@ -45,7 +45,7 @@ export default (): GameBrowserService => {
       // Or something completely different.
       handshakePromise: cachedHandshake(),
       id: id,
-      variant: "default"
+      variant: "default",
     });
   };
 
@@ -65,6 +65,6 @@ export default (): GameBrowserService => {
     topListIds,
     topLists,
     topListGamesByTopListId,
-    onGameMaintenanceModeChange
+    onGameMaintenanceModeChange,
   };
 };

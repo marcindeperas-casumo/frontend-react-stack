@@ -18,15 +18,15 @@ test("should return top lists from handshake", async () => {
           id: "id-1",
           title: "title id 1",
           image: "",
-          variants: {}
+          variants: {},
         },
         "id-2": {
           id: "id-1",
           title: "title id 1",
           image: "",
-          variants: {}
-        }
-      }
+          variants: {},
+        },
+      },
     })
   );
 
@@ -35,7 +35,7 @@ test("should return top lists from handshake", async () => {
       id: "id-1",
       title: "title id 1",
       image: "",
-      variants: {}
-    }
+      variants: {},
+    },
   ]);
 });

@@ -14,7 +14,7 @@ test("should return the top list ids from the handshake", async () => {
 
   const actualValue = await getTopListIds(
     Promise.resolve({
-      topListIds: ["id-1", "id-2"]
+      topListIds: ["id-1", "id-2"],
     })
   );
 

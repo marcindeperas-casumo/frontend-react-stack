@@ -1,6 +1,6 @@
 import * as React from "react";
 import classNames from "classnames";
-import Heading from '@casumo/cmp-heading';
+import Heading from "@casumo/cmp-heading";
 import { AlertIcon, PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 
 import LazyImage from "./LazyImage";
@@ -13,7 +13,7 @@ export default class GameTile extends React.Component {
       slug,
       logo,
       name,
-      inMaintenanceMode
+      inMaintenanceMode,
     } = this.props;
 
     const componentClasses = classNames(
@@ -69,10 +69,7 @@ export default class GameTile extends React.Component {
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
           />
-          <a
-            href={`/en/play/${slug}`}
-            onMouseDown={e => e.preventDefault()}
-          >
+          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
             <MoreIcon
               size="med"
               className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--micro"

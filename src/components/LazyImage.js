@@ -22,7 +22,7 @@ class StatefulResponsiveImage extends React.Component {
 export default class LazyImage extends React.Component {
   state = {
     intersectionRatio: 0,
-    isIntersecting: false
+    isIntersecting: false,
   };
 
   handleChange = ({ intersectionRatio, isIntersecting }, unobserve) => {

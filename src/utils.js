@@ -9,7 +9,7 @@ export const toAddress = address => [
   address.addressLines.street,
   address.addressLines.city,
   address.addressLines.zip,
-  address.country
+  address.country,
 ];
 
 export const toPlayerSettingsData = data => {
@@ -23,7 +23,7 @@ export const toPlayerSettingsData = data => {
     email: data.contactInfo.email,
     mobileNumber: toMobileNumber(data.contactInfo.phoneNumber),
     address: toAddress(data.contactInfo.primaryAddress),
-    offersByEmail: true
+    offersByEmail: true,
   };
 };
 
@@ -56,7 +56,7 @@ export const bridgeFactory = () => {
           listener(data);
         });
       }
-    }
+    },
   };
 };
 
@@ -86,7 +86,7 @@ export const cacheLocallyForMs = ms => {
         lastUpdated = new Date().getTime();
         console.log(`🏝 Work performed updating internal values`, {
           lastValue,
-          lastUpdated
+          lastUpdated,
         });
 
         return value;
@@ -99,16 +99,16 @@ const commonFetch = (url, options) => {
   return fetch("/api-gw/api/" + url, {
     credentials: "same-origin",
     headers: {
-      "content-type": "application/json"
+      "content-type": "application/json",
     },
-    ...options
+    ...options,
   }).then(x => x.json());
 };
 
 export const usingPOST = (url, options) =>
   commonFetch(url, {
     method: "POST",
-    ...options
+    ...options,
   });
 
 export const usingGET = commonFetch;
@@ -158,7 +158,7 @@ export const getHostElement = id => {
 export const defaultComponentLoader = loader =>
   Loadable({
     loader,
-    loading: Loading
+    loading: Loading,
   });
 
 const Loading = props => {

@@ -21,16 +21,16 @@ export const playerSettings = () => {
 export const setAdventurerPublicity = (on = false) => {
   return usingPOST("/api-gw/api/common/command/setAdventurerPublicity", {
     body: JSON.stringify({
-      on
-    })
+      on,
+    }),
   });
 };
 
 export const setNewsletterSubscription = (on = false) => {
   return usingPOST("/api-gw/api/common/command/setNewsletterSubscription", {
     body: JSON.stringify({
-      on
-    })
+      on,
+    }),
   });
 };
 
@@ -38,8 +38,8 @@ export const changeEmail = ({ email, password }) => {
   return usingPOST("/api-gw/api/common/command/changeEmail", {
     body: JSON.stringify({
       email,
-      plaintextPassword: password
-    })
+      plaintextPassword: password,
+    }),
   });
 };
 
@@ -49,7 +49,7 @@ const fetchSuggestedGames = () => {
     .then(() => [
       "https://images.casumo.com/2018/05/vikings_go_to_hell_thumbnail.jpg?dpr=2.63&markscale=100&markalign=top%2Ccenter&mark=https%3A%2F%2Fimages.casumo.com%2F2018%2F05%2Fvikings_go_to_hell_logo.png&w=205",
       "https://images.casumo.com/2018/05/lost_relics_thumbnail.jpg?dpr=2.63&markscale=100&markalign=top%2Ccenter&mark=https%3A%2F%2Fimages.casumo.com%2F2018%2F05%2Flost_relics_logo.png&w=206",
-      "https://images.casumo.com/2016/05/live-blackjack-bg.jpg?dpr=2.63&markscale=100&markalign=top%2Ccenter&mark=https%3A%2F%2Fimages.casumo.com%2F2016%2F05%2Flive-blackjack-logo.png&w=206"
+      "https://images.casumo.com/2016/05/live-blackjack-bg.jpg?dpr=2.63&markscale=100&markalign=top%2Ccenter&mark=https%3A%2F%2Fimages.casumo.com%2F2016%2F05%2Flive-blackjack-logo.png&w=206",
     ]);
 };
 

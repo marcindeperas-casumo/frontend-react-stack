@@ -5,12 +5,12 @@ import {
   playerSettings,
   changeEmail,
   setAdventurerPublicity,
-  setNewsletterSubscription
+  setNewsletterSubscription,
 } from "../../api";
 import {
   toPlayerSettingsData,
   toPlayerConfigurationData,
-  getHostElement
+  getHostElement,
 } from "../../utils";
 import "../../App.css";
 
@@ -20,7 +20,7 @@ export default class SettingsContainer extends React.Component {
     this.settingsRoot = getHostElement("settingsApp");
     this.state = {
       loading: false,
-      data: {}
+      data: {},
     };
     this.el = document.createElement("div");
   }
@@ -32,7 +32,7 @@ export default class SettingsContainer extends React.Component {
     playerSettings()
       .then(data => [
         toPlayerSettingsData(data),
-        toPlayerConfigurationData(data)
+        toPlayerConfigurationData(data),
       ])
       .then(([playerSettings, playerConfiguration]) => {
         this.setState({
@@ -40,8 +40,8 @@ export default class SettingsContainer extends React.Component {
           loading: false,
           data: {
             ...playerSettings,
-            ...playerConfiguration
-          }
+            ...playerConfiguration,
+          },
         });
       })
       .catch(console.error);
@@ -56,7 +56,7 @@ export default class SettingsContainer extends React.Component {
     changeEmail({ email, password: "Pass123" }).then(() =>
       this.setState(prevState => ({
         ...prevState,
-        data: { ...this.state.data, email }
+        data: { ...this.state.data, email },
       }))
     );
   }
@@ -65,7 +65,7 @@ export default class SettingsContainer extends React.Component {
     setAdventurerPublicity(onState).then(() => {
       this.setState(prevState => ({
         ...prevState,
-        data: { ...this.state.data, adventurerPublic: onState }
+        data: { ...this.state.data, adventurerPublic: onState },
       }));
     });
   }
@@ -74,7 +74,7 @@ export default class SettingsContainer extends React.Component {
     setNewsletterSubscription(onState).then(() => {
       this.setState(prevState => ({
         ...prevState,
-        data: { ...this.state.data, subscribedToNewsletters: onState }
+        data: { ...this.state.data, subscribedToNewsletters: onState },
       }));
     });
   }
@@ -90,7 +90,7 @@ export default class SettingsContainer extends React.Component {
           ),
           onChangeNewsletterSubscription: this.onChangeNewsletterSubscription.bind(
             this
-          )
+          ),
         }}
       />,
       this.el

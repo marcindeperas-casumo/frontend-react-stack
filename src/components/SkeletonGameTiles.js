@@ -6,7 +6,7 @@ type Props = {
   numberOfTiles: number,
   tileWidth: number,
   tileHeight: number,
-  tileGap?: number
+  tileGap?: number,
 };
 
 const SkeletonGameTiles = ({

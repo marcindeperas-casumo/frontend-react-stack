@@ -9,7 +9,7 @@ export default class Settings extends Component {
       address = [],
       email,
       subscribedToNewsletters,
-      onChangeNewsletterSubscription
+      onChangeNewsletterSubscription,
     } = this.props;
 
     return (
