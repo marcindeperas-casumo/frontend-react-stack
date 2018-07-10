@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@casumo/cmp-heading": "1.1.0",
-    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-icons": "1.1.0",
+    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-scrollable": "1.1.0",
     "@casumo/cmp-skeleton": "1.0.1",
     "@casumo/cudl": "2.0.0",
@@ -68,7 +68,8 @@
     "prestart": "yarn --pure-lockfile",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "format": "prettier --write '**/*.{js,css,md,json}'"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -115,7 +116,8 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.74.0"
+    "flow-bin": "^0.74.0",
+    "prettier": "^1.13.7"
   },
   "proxy": {
     "/api-gw": {
