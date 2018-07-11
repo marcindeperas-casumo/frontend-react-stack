@@ -2,14 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { getHostElement } from "../../utils";
-
-import api from './lobbyAPI';
-import lobbyWS from './lobbyWS';
+import lobbyWS from './ws';
 
 export default class LiveCasinoLobbyContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.liveCasinoLobby = getHostElement("liveCasinoLobby");
+    this.hostElement = getHostElement("liveCasinoLobby");
     this.el = document.createElement("div");
     this.state = {
       loading: false,
@@ -18,29 +16,23 @@ export default class LiveCasinoLobbyContainer extends React.Component {
     };
   }
 
-  async fetch () {
-    try {
-      const r = await api.list();
-      const data = Object.values(r.data.tables)
-        .filter(o => o.display === 'on_mobile' ? o : null);
+  onmessage (data) {
+    console.log('onmessage data', data);
 
-      this.setState({ ...this.state, data: data });
-      console.log('LiveCasinoLobbyContainer data', this.state.data);
+    if (data.type === 'State') {
+      const tables = Object.keys(data.tables).map(k => ({...data.tables[k], id: k}));
+      this.setState({ ...this.state, data: tables });
 
-    } catch (e) {
-      this.setState({ ...this.state, error: true });
-      console.error('LiveCasinoLobbyContainer error', e);
+      console.log('onmessage tables', tables);
     }
   }
 
   componentWillMount () {
-    this.liveCasinoLobby.appendChild(this.el);
-    // fetch data from REST API
-    this.fetch();
-    // connect to Websockets and listen
+    this.hostElement.appendChild(this.el);
+    // connect to Websockets and listen for updates
     const ws = lobbyWS.connect();
-    ws.onopen = e => console.log('ws onopen', e);
-    ws.onmessage = e => console.log('ws onmessage', e.data);
+    ws.onopen = e => console.log('ws onopen');
+    ws.onmessage = e => this.onmessage(JSON.parse(e.data));
   }
 
   componentDidMount () {
@@ -48,7 +40,7 @@ export default class LiveCasinoLobbyContainer extends React.Component {
   }
 
   componentWillUnmount () {
-    this.liveCasinoLobby.removeChild(this.el);
+    this.hostElement.removeChild(this.el);
   }
 
   render () {
@@ -56,7 +48,7 @@ export default class LiveCasinoLobbyContainer extends React.Component {
 
     return ReactDOM.createPortal(
       <React.Fragment>
-        {data.map(x => <div key={x.name}>{x.name}</div>)}
+        {data.map(x => <div key={x.id}>{x.name}</div>)}
       </React.Fragment>,
       this.el
     );
