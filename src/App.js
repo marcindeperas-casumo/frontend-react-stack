@@ -51,18 +51,25 @@ export default class App extends React.Component {
 
     legacyBridge.on("games-top", data => {
       this.setState({
-        suggestedGames: true && this.state.isAuthenticated
+        suggestedGames: true
       });
     });
   }
 
   render() {
-    const { settings, suggestedGames, handshakeLoading } = this.state;
+    const {
+      settings,
+      suggestedGames,
+      handshakeLoading,
+      isAuthenticated
+    } = this.state;
     return (
       <div>
         Le React App
         {!handshakeLoading && settings && <SettingsContainer />}
-        {!handshakeLoading && suggestedGames && <SuggestedGamesContainer />}
+        {!handshakeLoading &&
+          isAuthenticated &&
+          suggestedGames && <SuggestedGamesContainer />}
       </div>
     );
   }
