@@ -1,11 +1,16 @@
-import * as React from "react";
+import Heading from "@casumo/cmp-heading";
+import { AlertIcon, MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
-import Heading from '@casumo/cmp-heading';
-import { AlertIcon, PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-
+import * as React from "react";
+import SessionService from "../features/api-concept-2/application-service/SessionService";
 import LazyImage from "./LazyImage";
+import legacyBridge from "../legacyBridge";
 
 export default class GameTile extends React.Component {
+  async p() {
+    return !(await SessionService.isAuthenticated());
+  }
+
   render() {
     const {
       className,
@@ -68,11 +73,14 @@ export default class GameTile extends React.Component {
           <PlayIcon
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
+            onClick={() =>
+              legacyBridge.emit("ApplicationEvents/launchGame", {
+                slug,
+                playForFun: false
+              })
+            }
           />
-          <a
-            href={`/en/play/${slug}`}
-            onMouseDown={e => e.preventDefault()}
-          >
+          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
             <MoreIcon
               size="med"
               className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--micro"

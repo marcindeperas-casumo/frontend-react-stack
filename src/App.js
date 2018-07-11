@@ -15,6 +15,7 @@ export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      isAuthenticated: false,
       handshakeLoading: false,
       ...blankState()
     };
@@ -26,14 +27,16 @@ export default class App extends React.Component {
     });
 
     legacyBridge.on("ApplicationEvents/onLogin", async () => {
+      this.setState({ isAuthenticated: true });
       CommonService.invalidateHandshake();
       const country = await SessionService.country();
       GameBrowserService.config.set({ country, platform: "mobile" });
     });
 
-    SessionService.country().then(country => {
+    SessionService.country().then(async country => {
+      const isAuthenticated = await SessionService.isAuthenticated();
       GameBrowserService.config.set({ country, platform: "mobile" });
-      this.setState({ handshakeLoading: false });
+      this.setState({ handshakeLoading: false, isAuthenticated });
     });
 
     legacyBridge.on("$RESET", () => {
@@ -48,7 +51,7 @@ export default class App extends React.Component {
 
     legacyBridge.on("games-top", data => {
       this.setState({
-        suggestedGames: true
+        suggestedGames: true && this.state.isAuthenticated
       });
     });
   }
