@@ -2,7 +2,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 
 import { getHostElement } from "../../utils";
-import api from './api'
+
+import api from './lobbyAPI';
+import lobbyWS from './lobbyWS';
 
 export default class LiveCasinoLobbyContainer extends React.Component {
   constructor(props) {
@@ -33,7 +35,12 @@ export default class LiveCasinoLobbyContainer extends React.Component {
 
   componentWillMount () {
     this.liveCasinoLobby.appendChild(this.el);
+    // fetch data from REST API
     this.fetch();
+    // connect to Websockets and listen
+    const ws = lobbyWS.connect();
+    ws.onopen = e => console.log('ws onopen', e);
+    ws.onmessage = e => console.log('ws onmessage', e.data);
   }
 
   componentDidMount () {
@@ -49,7 +56,7 @@ export default class LiveCasinoLobbyContainer extends React.Component {
 
     return ReactDOM.createPortal(
       <React.Fragment>
-        {data.map(x => x.name)}
+        {data.map(x => <div key={x.name}>{x.name}</div>)}
       </React.Fragment>,
       this.el
     );
