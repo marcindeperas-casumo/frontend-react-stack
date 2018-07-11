@@ -306,3 +306,9 @@ export const isNotNullOrUndefined = compose(
   not,
   isNullOrUndefined
 );
+
+export const decodeString = s =>
+  new DOMParser().parseFromString(
+    `<!doctype html><body>${s}</body></html>`,
+    "text/html"
+  ).body.textContent;

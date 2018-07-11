@@ -2,24 +2,21 @@ import Heading from "@casumo/cmp-heading";
 import { AlertIcon, MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import * as React from "react";
-import SessionService from "../features/api-concept-2/application-service/SessionService";
-import LazyImage from "./LazyImage";
 import legacyBridge from "../legacyBridge";
+import { decodeString } from "../utils";
+import LazyImage from "./LazyImage";
 
 export default class GameTile extends React.Component {
-  async p() {
-    return !(await SessionService.isAuthenticated());
-  }
-
   render() {
     const {
       className,
       logoBackground,
       slug,
       logo,
-      name,
       inMaintenanceMode
     } = this.props;
+
+    const name = decodeString(this.props.name);
 
     const componentClasses = classNames(
       "c-game-tile",
