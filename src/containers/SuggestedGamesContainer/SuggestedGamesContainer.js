@@ -17,6 +17,12 @@ export default class SuggestedGamesContainer extends React.Component {
   }
 
   componentWillMount() {
+    if (this.otherComponentRoot.tagName.toUpperCase() !== "BODY") {
+      while (this.otherComponentRoot.hasChildNodes()) {
+        this.otherComponentRoot.removeChild(this.otherComponentRoot.lastChild);
+      }
+    }
+
     this.otherComponentRoot.appendChild(this.el);
     this.setState({ ...this.state, loading: true });
 
