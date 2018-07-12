@@ -59,9 +59,9 @@ export default class App extends React.Component {
   renderSuggestedGames() {
     const { handshakeLoading, isAuthenticated } = this.state;
     return (
-      handshakeLoading ^ isAuthenticated && (
+      (handshakeLoading || isAuthenticated) && (
         <SuggestedGamesContainer
-          showSkeleton={handshakeLoading && !isAuthenticated}
+          showSkeleton={handshakeLoading}
         />
       )
     );
