@@ -8,6 +8,15 @@ import { decodeString } from "../utils";
 import LazyImage from "./LazyImage";
 
 export default class GameTile extends React.Component {
+  emitLaunchGameAction() {
+    const { slug } = this.props;
+
+    legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
+      slug,
+      playForFun: false
+    });
+  }
+
   render() {
     const {
       className,
@@ -66,17 +75,11 @@ export default class GameTile extends React.Component {
           alt={name}
           dpr={3}
         />
-        <div className={overlayClasses}>
+        <div className={overlayClasses} onClick={() => this.emitLaunchGameAction()}>
           <Heading className="t-color-white" size="milli" text={name} />
           <PlayIcon
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
-            onClick={() =>
-              legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
-                slug,
-                playForFun: false
-              })
-            }
           />
           <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
             <MoreIcon
