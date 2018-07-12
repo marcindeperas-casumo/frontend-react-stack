@@ -62,12 +62,7 @@ export default class GameTile extends React.Component {
     }
 
     return (
-      <div
-        className={componentClasses}
-        tabIndex={0}
-        onBlur={this.onBlur}
-        onClick={this.showOverlay}
-      >
+      <div className={componentClasses} tabIndex={0}>
         <LazyImage
           className="o-ratio__content"
           src={logoBackground}
@@ -75,7 +70,10 @@ export default class GameTile extends React.Component {
           alt={name}
           dpr={3}
         />
-        <div className={overlayClasses} onClick={() => this.emitLaunchGameAction()}>
+        <div
+          className={overlayClasses}
+          onClick={() => this.emitLaunchGameAction()}
+        >
           <Heading className="t-color-white" size="milli" text={name} />
           <PlayIcon
             size="med"
