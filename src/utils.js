@@ -130,35 +130,6 @@ export const getHostElement = id => {
   return el;
 };
 
-const Loading = props => {
-  if (props.error) {
-    return (
-      <div>
-        Error! <button onClick={props.retry}>Retry</button>
-      </div>
-    );
-  } else if (props.timedOut) {
-    return (
-      <div>
-        Taking a long time... <button onClick={props.retry}>Retry</button>
-      </div>
-    );
-  } else if (props.pastDelay) {
-    return <div>Loading...</div>;
-  } else {
-    return null;
-  }
-};
-
-export const defaultComponentLoader = ({
-  loader,
-  loading = props => <Loading {...props} />
-}) =>
-  Loadable({
-    loader,
-    loading
-  });
-
 export const compose = (...fns) => iv =>
   fns.reduceRight((acc, curr) => curr(acc), iv);
 

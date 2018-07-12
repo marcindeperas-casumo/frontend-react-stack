@@ -1,8 +1,8 @@
 import React from "react";
-import { defaultComponentLoader } from "../../utils";
+import Loadable from "react-loadable";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
-export default defaultComponentLoader({
+export default Loadable({
   loader: () => import("./GamesListsPortal"),
   loading: () => <GamesListsSkeleton />
 });
