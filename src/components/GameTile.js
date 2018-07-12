@@ -1,7 +1,8 @@
 import Heading from "@casumo/cmp-heading";
 import { AlertIcon, MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
-import * as React from "react";
+import React from "react";
+import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
 import legacyBridge from "../legacyBridge";
 import { decodeString } from "../utils";
 import LazyImage from "./LazyImage";
@@ -71,7 +72,7 @@ export default class GameTile extends React.Component {
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
             onClick={() =>
-              legacyBridge.emit("ApplicationEvents/launchGame", {
+              legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
                 slug,
                 playForFun: false
               })

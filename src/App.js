@@ -1,5 +1,5 @@
 import React from "react";
-import SettingsContainer from "./containers/SettingsContainer";
+import { REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE, REACT_APP_EVENT_ON_LOGIN } from "./constants";
 import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
 import CommonService from "./features/api-concept-2/application-service/CommonService";
 import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
@@ -26,7 +26,7 @@ export default class App extends React.Component {
       handshakeLoading: true
     });
 
-    legacyBridge.on("ApplicationEvents/onLogin", async () => {
+    legacyBridge.on(REACT_APP_EVENT_ON_LOGIN, async () => {
       this.setState({ isAuthenticated: true });
       CommonService.invalidateHandshake();
       const country = await SessionService.country();
@@ -39,14 +39,8 @@ export default class App extends React.Component {
       this.setState({ handshakeLoading: false, isAuthenticated });
     });
 
-    legacyBridge.on("$RESET", () => {
+    legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE, () => {
       this.setState(blankState());
-    });
-
-    legacyBridge.on("new-stack-poc", data => {
-      this.setState({
-        settings: true
-      });
     });
 
     legacyBridge.on("games-top", data => {
@@ -60,21 +54,13 @@ export default class App extends React.Component {
     const { handshakeLoading, isAuthenticated } = this.state;
     return (
       (handshakeLoading || isAuthenticated) && (
-        <SuggestedGamesContainer
-          showSkeleton={handshakeLoading}
-        />
+        <SuggestedGamesContainer showSkeleton={handshakeLoading} />
       )
     );
   }
 
   render() {
-    const { settings, suggestedGames, handshakeLoading } = this.state;
-    return (
-      <div>
-        Le React App
-        {!handshakeLoading && settings && <SettingsContainer />}
-        {suggestedGames && this.renderSuggestedGames()}
-      </div>
-    );
+    const { suggestedGames } = this.state;
+    return <div>{suggestedGames && this.renderSuggestedGames()}</div>;
   }
 }
