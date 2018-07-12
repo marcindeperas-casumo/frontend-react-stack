@@ -4,9 +4,9 @@ import {
   REACT_APP_EVENT_ON_LOGIN
 } from "./constants";
 import GamesLists from "./containers/GamesLists";
-import CommonService from "./features/api-concept-2/application-service/CommonService";
-import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
-import SessionService from "./features/api-concept-2/application-service/SessionService";
+import CommonService from "./applicationService/CommonService";
+import GameBrowserService from "./applicationService/GameBrowserService";
+import SessionService from "./applicationService/SessionService";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({

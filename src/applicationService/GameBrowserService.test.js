@@ -1,6 +1,6 @@
-import gameBrowserClientMock from "../service-clients/GameBrowserClient";
+import gameBrowserClientMock from "../serviceClients/GameBrowserClient";
 import { GameBrowserServiceFactory } from "./GameBrowserService";
-jest.mock("../service-clients/GameBrowserClient");
+jest.mock("../serviceClients/GameBrowserClient");
 
 describe("Game Browser Service", () => {
   let service;

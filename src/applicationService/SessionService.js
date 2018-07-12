@@ -4,7 +4,7 @@ import {
   composePromises,
   isNotNullOrUndefined,
   property
-} from "../../../utils";
+} from "../utils";
 import commonService from "./CommonService";
 import countryGuesserService from "./CountryGuesserService";
 

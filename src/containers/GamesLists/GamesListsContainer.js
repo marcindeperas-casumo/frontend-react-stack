@@ -1,6 +1,6 @@
 import React from "react";
 import ListContainer from "../../components/ListContainer";
-import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserService";
+import GameBrowserService from "../../applicationService/GameBrowserService";
 import { trace } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 

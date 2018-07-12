@@ -5,8 +5,8 @@ import {
   property,
   ServiceConfig,
   SimpleCache
-} from "../../../utils";
-import GameBrowserClient from "../service-clients/GameBrowserClient";
+} from "../utils";
+import GameBrowserClient from "../serviceClients/GameBrowserClient";
 
 const handshakeParams = ({ country, platform }) => ({ country, platform });
 

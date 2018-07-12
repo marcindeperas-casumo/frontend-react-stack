@@ -1,5 +1,5 @@
-import { cacheFunction, SimpleCache } from "../../../utils";
-import CommonClient from "../service-clients/CommonClient";
+import { cacheFunction, SimpleCache } from "../utils";
+import CommonClient from "../serviceClients/CommonClient";
 
 export const CommonServiceFactory = ({ commonClient }) => {
   const handshakeCache = SimpleCache();

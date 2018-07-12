@@ -1,7 +1,7 @@
-import commonClientMock from "../service-clients/CommonClient";
+import commonClientMock from "../serviceClients/CommonClient";
 import { CommonServiceFactory } from "./CommonService";
 
-jest.mock("../service-clients/CommonClient");
+jest.mock("../serviceClients/CommonClient");
 
 describe("Game Browser Service", () => {
   let service;
