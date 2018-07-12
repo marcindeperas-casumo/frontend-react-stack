@@ -39,7 +39,6 @@
     "jest": "^23.2.0",
     "node-sass": "^4.9.0",
     "object-assign": "4.1.1",
-    "object-path": "^0.11.4",
     "postcss-loader": "2.1.5",
     "promise": "8.0.1",
     "prop-types": "^15.6.1",

@@ -1,4 +1,3 @@
-import { get } from "object-path";
 import {
   compose,
   composePromises,
@@ -16,8 +15,11 @@ const currentPlayerFromHandshake = compose(
   ([session, players]) => players.players[session.id],
   x => [pullSession(x), pullPlayers(x)]
 );
-const countryFromPlayer = player =>
-  get(player, "contactInfo.primaryAddress.country");
+const countryFromPlayer = compose(
+  property("country"),
+  property("primaryAddress"),
+  property("contactInfo")
+);
 
 export const SessionServiceFactory = ({
   commonService,
