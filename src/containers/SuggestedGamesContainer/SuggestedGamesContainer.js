@@ -1,15 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import ListContainer from "../../components/ListContainer";
-import SkeletonGameTiles from "../../components/SkeletonGameTiles";
 import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserService";
-import { getHostElement, trace } from "../../utils";
+import { trace } from "../../utils";
+import SuggestedGamesSkeleton from "./SuggestedGamesSkeleton";
 
 export default class SuggestedGamesContainer extends React.Component {
   constructor(props) {
     super(props);
-    this.otherComponentRoot = getHostElement("otherComponent");
-    this.el = document.createElement("div");
     this.state = {
       loading: false,
       data: []
@@ -17,16 +14,7 @@ export default class SuggestedGamesContainer extends React.Component {
   }
 
   componentWillMount() {
-    if (this.otherComponentRoot.tagName.toUpperCase() !== "BODY") {
-      while (this.otherComponentRoot.hasChildNodes()) {
-        this.otherComponentRoot.removeChild(this.otherComponentRoot.lastChild);
-      }
-    }
-
-    this.otherComponentRoot.appendChild(this.el);
     this.setState({ ...this.state, loading: true });
-
-    console.log({ GameBrowserService });
 
     GameBrowserService.allTopLists()
       .then(trace)
@@ -47,32 +35,14 @@ export default class SuggestedGamesContainer extends React.Component {
       });
   }
 
-  componentWillUnmount() {
-    this.otherComponentRoot.removeChild(this.el);
-  }
-
   render() {
     const { data, loading } = this.state;
 
-    return ReactDOM.createPortal(
+    return (
       <React.Fragment>
-        {loading ? (
-          <div className="u-padding-bottom--semi@mobile">
-            {Array.from(Array(4).keys()).map(i => (
-              <SkeletonGameTiles
-                key={i}
-                tileWidth={170}
-                tileHeight={204}
-                preserveAspectRatio="none"
-                className="u-padding-top--semi u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
-              />
-            ))}
-          </div>
-        ) : (
-          data.map(x => <ListContainer key={x.title} {...x} />)
-        )}
-      </React.Fragment>,
-      this.el
+        {loading && <SuggestedGamesSkeleton />}
+        {!loading && data.map(x => <ListContainer key={x.title} {...x} />)}
+      </React.Fragment>
     );
   }
 }

@@ -180,12 +180,6 @@ export const getHostElement = id => {
   return el;
 };
 
-export const defaultComponentLoader = loader =>
-  Loadable({
-    loader,
-    loading: Loading
-  });
-
 const Loading = props => {
   if (props.error) {
     return (
@@ -205,6 +199,15 @@ const Loading = props => {
     return null;
   }
 };
+
+export const defaultComponentLoader = ({
+  loader,
+  loading = props => <Loading {...props} />
+}) =>
+  Loadable({
+    loader,
+    loading
+  });
 
 export const compose = (...fns) => iv =>
   fns.reduceRight((acc, curr) => curr(acc), iv);

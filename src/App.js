@@ -56,20 +56,24 @@ export default class App extends React.Component {
     });
   }
 
+  renderSuggestedGames() {
+    const { handshakeLoading, isAuthenticated } = this.state;
+    return (
+      handshakeLoading ^ isAuthenticated && (
+        <SuggestedGamesContainer
+          showSkeleton={handshakeLoading && !isAuthenticated}
+        />
+      )
+    );
+  }
+
   render() {
-    const {
-      settings,
-      suggestedGames,
-      handshakeLoading,
-      isAuthenticated
-    } = this.state;
+    const { settings, suggestedGames, handshakeLoading } = this.state;
     return (
       <div>
         Le React App
         {!handshakeLoading && settings && <SettingsContainer />}
-        {!handshakeLoading &&
-          isAuthenticated &&
-          suggestedGames && <SuggestedGamesContainer />}
+        {suggestedGames && this.renderSuggestedGames()}
       </div>
     );
   }
