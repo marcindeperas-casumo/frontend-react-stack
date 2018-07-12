@@ -27,9 +27,4 @@ describe("GameBrowserClientFactory", () => {
       foo: "bar"
     });
   });
-
-  test("should call http service with id", async () => {
-    await client.getById({ id: 1 });
-    expect(httpService.get).toBeCalledWith("/api/1");
-  });
 });

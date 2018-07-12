@@ -24,9 +24,7 @@ export const GameBrowserClientFactory = ({ http }) => {
           { hash, variant, page, pageSize },
           { skipNulls: true }
         )}`
-      ),
-
-    getById: ({ id }) => http.get(`/api/${id}`)
+      )
   };
 };
 
