@@ -2,6 +2,10 @@
 # yarn lockfile v1
 
 
+"@casumo/cmp-card@^0.1.0-alpha.404ed1d2":
+  version "0.1.0-alpha.404ed1d2"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-0.1.0-alpha.404ed1d2.tgz#aebff1626727f98a6e39eb525f195955f751d966"
+
 "@casumo/cmp-heading@1.1.0":
   version "1.1.0"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-heading/-/cmp-heading-1.1.0.tgz#a2bac1c7c4daeadb8f92e1f40e198e58ebaa5c6c"

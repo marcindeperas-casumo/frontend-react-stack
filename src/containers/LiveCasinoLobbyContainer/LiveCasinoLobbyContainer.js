@@ -1,6 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 
+import Card from '@casumo/cmp-card';
+
 import { getHostElement } from "../../utils";
 import lobbyWS from './ws';
 
@@ -94,7 +96,7 @@ export default class LiveCasinoLobbyContainer extends React.Component {
       'PlayersUpdated': () => {
         this.setState(prevState => {
             const newData = [...prevState.data];
-            console.log('index', index, newData[index]);
+            console.log('index', index, newData[index].name);
             newData[index].players = data.players;
             return {data: newData};
         });
@@ -138,9 +140,24 @@ export default class LiveCasinoLobbyContainer extends React.Component {
   render () {
     const { data } = this.state;
 
+    // TODO get placeholder if no image
+    const getImg = o => o.videoSnapshot && o.videoSnapshot.thumbnails
+      ? o.videoSnapshot.thumbnails['L']
+      : null;
+    // TODO get active currency!
+    const getBetLimits = betLimits => betLimits[Object.keys(betLimits)[0]];
+
     return ReactDOM.createPortal(
       <React.Fragment>
-        {data.map(x => <div key={x.id}>{x.name}, {x.players}</div>)}
+        {data.map(o => (
+          <Card
+              key={o.id}
+              imgSrc={getImg(o)}
+              title={o.name}
+              betLimits={getBetLimits(o.betLimits)}
+              players={o.players}
+          />
+        ))}
       </React.Fragment>,
       this.el
     );
