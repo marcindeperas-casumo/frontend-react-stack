@@ -1,13 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { getHostElement } from "../../utils";
-import SuggestedGamesContainer from "./SuggestedGamesContainer";
-import SuggestedGamesSkeleton from "./SuggestedGamesSkeleton";
+import GamesListsContainer from "./GamesListsContainer";
+import GamesListsSkeleton from "./GamesListsSkeleton";
 
-export default class SuggestedGamesPortal extends React.Component {
+const GAMES_LISTS_HOST_ID = "react-host-games-lists";
+
+export default class GamesListsPortal extends React.Component {
   constructor(props) {
     super(props);
-    this.otherComponentRoot = getHostElement("otherComponent");
+    this.otherComponentRoot = getHostElement(GAMES_LISTS_HOST_ID);
     this.el = document.createElement("div");
   }
 
@@ -29,11 +31,7 @@ export default class SuggestedGamesPortal extends React.Component {
     const { showSkeleton } = this.props;
     return ReactDOM.createPortal(
       <React.Fragment>
-        {showSkeleton ? (
-          <SuggestedGamesSkeleton />
-        ) : (
-          <SuggestedGamesContainer />
-        )}
+        {showSkeleton ? <GamesListsSkeleton /> : <GamesListsContainer />}
       </React.Fragment>,
       this.el
     );

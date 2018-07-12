@@ -1,14 +1,16 @@
 import React from "react";
-import { REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE, REACT_APP_EVENT_ON_LOGIN } from "./constants";
-import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
+import {
+  REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE,
+  REACT_APP_EVENT_ON_LOGIN
+} from "./constants";
+import GamesLists from "./containers/GamesLists";
 import CommonService from "./features/api-concept-2/application-service/CommonService";
 import GameBrowserService from "./features/api-concept-2/application-service/GameBrowserService";
 import SessionService from "./features/api-concept-2/application-service/SessionService";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
-  settings: false,
-  suggestedGames: false
+  gamesLists: false
 });
 
 export default class App extends React.Component {
@@ -45,22 +47,22 @@ export default class App extends React.Component {
 
     legacyBridge.on("games-top", data => {
       this.setState({
-        suggestedGames: true
+        gamesLists: true
       });
     });
   }
 
-  renderSuggestedGames() {
+  renderGamesLists() {
     const { handshakeLoading, isAuthenticated } = this.state;
     return (
       (handshakeLoading || isAuthenticated) && (
-        <SuggestedGamesContainer showSkeleton={handshakeLoading} />
+        <GamesLists showSkeleton={handshakeLoading} />
       )
     );
   }
 
   render() {
-    const { suggestedGames } = this.state;
-    return <div>{suggestedGames && this.renderSuggestedGames()}</div>;
+    const { gamesLists } = this.state;
+    return <div>{gamesLists && this.renderGamesLists()}</div>;
   }
 }

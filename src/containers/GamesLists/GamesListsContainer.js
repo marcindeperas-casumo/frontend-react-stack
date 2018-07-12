@@ -2,9 +2,9 @@ import React from "react";
 import ListContainer from "../../components/ListContainer";
 import GameBrowserService from "../../features/api-concept-2/application-service/GameBrowserService";
 import { trace } from "../../utils";
-import SuggestedGamesSkeleton from "./SuggestedGamesSkeleton";
+import GamesListsSkeleton from "./GamesListsSkeleton";
 
-export default class SuggestedGamesContainer extends React.Component {
+export default class GamesListsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -40,7 +40,7 @@ export default class SuggestedGamesContainer extends React.Component {
 
     return (
       <React.Fragment>
-        {loading && <SuggestedGamesSkeleton />}
+        {loading && <GamesListsSkeleton />}
         {!loading && data.map(x => <ListContainer key={x.title} {...x} />)}
       </React.Fragment>
     );
