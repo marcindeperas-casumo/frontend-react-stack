@@ -1,6 +1,6 @@
 import React from "react";
 import {
-  REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE,
+  REACT_APP_EVENT_ALL_PORTALS_CLEAR,
   REACT_APP_EVENT_ON_LOGIN
 } from "./constants";
 import GamesLists from "./containers/GamesLists";
@@ -41,7 +41,7 @@ export default class App extends React.Component {
       this.setState({ handshakeLoading: false, isAuthenticated });
     });
 
-    legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE, () => {
+    legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_CLEAR, () => {
       this.setState(blankState());
     });
 

@@ -1,7 +1,7 @@
 // REACT_APP* events are events that the react app will be responsible to react
 // to.
 export const REACT_APP_EVENT_ON_LOGIN = "REACT_APP_EVENT/onLogin";
-export const REACT_APP_EVENT_ALL_PORTALS_GO_BYE_BYE =
+export const REACT_APP_EVENT_ALL_PORTALS_CLEAR =
   "REACT_APP_EVENT/allPortalsGoByeBye";
 export const REACT_APP_EVENT_ROUTE_CHANGE = "REACT_APP_EVENT/routeChange";
 
