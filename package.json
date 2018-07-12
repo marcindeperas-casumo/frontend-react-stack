@@ -4,8 +4,8 @@
   "private": true,
   "dependencies": {
     "@casumo/cmp-heading": "1.1.0",
-    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-icons": "1.1.0",
+    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-scrollable": "1.1.0",
     "@casumo/cmp-skeleton": "1.0.1",
     "@casumo/cudl": "2.0.0",
@@ -45,8 +45,6 @@
     "prop-types": "^15.6.1",
     "qs": "^6.5.2",
     "raf": "3.4.0",
-    "ramda": "^0.25.0",
-    "ramda-fantasy": "^0.8.0",
     "react": "^16.3.2",
     "react-dev-utils": "^5.0.1",
     "react-dom": "^16.3.2",
