@@ -1,35 +1,7 @@
-import isPromise from "is-promise";
 import React from "react";
 import Loadable from "react-loadable";
-import { isNullOrUndefined, isUndefined } from "util";
 
-export const toMobileNumber = phoneNumber =>
-  `${phoneNumber.prefix} ${phoneNumber.number}`;
-
-export const toAddress = address => [
-  address.addressLines.street,
-  address.addressLines.city,
-  address.addressLines.zip,
-  address.country
-];
-
-export const toPlayerSettingsData = data => {
-  if (!data) {
-    return {};
-  }
-  return {
-    fullName: `${data.contactInfo.name.firstName} ${
-      data.contactInfo.name.lastName
-    }`,
-    email: data.contactInfo.email,
-    mobileNumber: toMobileNumber(data.contactInfo.phoneNumber),
-    address: toAddress(data.contactInfo.primaryAddress),
-    offersByEmail: true
-  };
-};
-
-export const toPlayerConfigurationData = ({ configuration = {} } = {}) =>
-  configuration;
+export const isNullOrUndefined = x => x === null || x === undefined;
 
 export const sleep = ms => data => {
   return new Promise(resolve => {
@@ -135,29 +107,7 @@ export const usingPOST = (url, options) =>
 
 export const usingGET = commonFetch;
 
-export const mockWith = mockFn => actualFn => (...args) => mockFn(...args);
-
-export const once = fn => {
-  let run = false;
-  let lastValue;
-  return (...args) => {
-    if (!run) {
-      run = true;
-      lastValue = fn(...args);
-    } else {
-    }
-    return lastValue;
-  };
-};
-
-export const compose2 = (f, g) => (...args) => f(g(...args));
 export const property = k => obj => obj && obj[k];
-
-export const notUndefined = x =>
-  isUndefined(x) ? Promise.reject(new TypeError("Expected promise")) : x;
-
-export const rejectIfNotPromise = fn => a =>
-  isPromise(a) ? fn(a) : Promise.reject(new TypeError("Expected promise"));
 
 export const trace = x => {
   console.log(x);
@@ -215,38 +165,7 @@ export const compose = (...fns) => iv =>
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
-export const applyOnPromise = pf => px =>
-  (isPromise(pf) ? pf : Promise.resolve(pf)).then(f => px.then(x => f(x)));
 export const identity = id => id;
-
-export const throwIf = (predicate, e) => x => {
-  if (predicate(x)) {
-    throw e;
-  }
-  return x;
-};
-
-export const tryCatch = (fn, throwError) => async (...args) => {
-  try {
-    return await fn(...args);
-  } catch (e) {
-    throw new Error(throwError.message);
-  }
-};
-
-export const defaultValue = (v, defaultValue) => {
-  if (isUndefined(v)) {
-    return defaultValue;
-  }
-
-  return v;
-};
-
-export const overAll = arr => fns =>
-  fns.reduce((acc, curr, i) => {
-    acc.push(curr(arr[i]));
-    return acc;
-  }, []);
 
 export const SimpleCache = () => {
   let internalValue = null;
