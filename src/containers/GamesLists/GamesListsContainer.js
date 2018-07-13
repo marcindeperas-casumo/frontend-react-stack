@@ -9,7 +9,7 @@ export default class GamesListsContainer extends React.Component {
     super(props);
     this.state = {
       loading: false,
-      data: []
+      data: [],
     };
   }
 
@@ -22,14 +22,14 @@ export default class GamesListsContainer extends React.Component {
         this.setState({
           ...this.state,
           loading: false,
-          data
+          data,
         });
       })
       .catch(e => {
         this.setState({
           ...this.state,
           loading: false,
-          data: []
+          data: [],
         });
         console.error(e);
       });

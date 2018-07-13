@@ -9,7 +9,7 @@ describe("cacheFunction()", () => {
 
   test("should call fn once", async () => {
     const cachedFn = cacheFunction({
-      fn: subjectFn
+      fn: subjectFn,
     });
 
     await cachedFn();
@@ -22,7 +22,7 @@ describe("cacheFunction()", () => {
     const cache = SimpleCache();
     const cachedFn = cacheFunction({
       fn: subjectFn,
-      cache
+      cache,
     });
 
     await cachedFn();
@@ -35,7 +35,7 @@ describe("cacheFunction()", () => {
   test("should return the cached value ", async () => {
     subjectFn.mockReturnValue("foo");
     const cachedFn = cacheFunction({
-      fn: subjectFn
+      fn: subjectFn,
     });
 
     const resultFirstCall = await cachedFn();
@@ -50,7 +50,7 @@ describe("cacheFunction()", () => {
     const cache = SimpleCache();
     const cachedFn = cacheFunction({
       fn: subjectFn,
-      cache
+      cache,
     });
 
     const resultFirstCall = await cachedFn();

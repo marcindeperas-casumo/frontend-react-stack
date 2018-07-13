@@ -3,7 +3,7 @@ import commonServiceMock from "./CommonService";
 import countryGuesserServiceMock from "./CountryGuesserService";
 import {
   authenticatedResponse,
-  unauthenticatedResponse
+  unauthenticatedResponse,
 } from "./__mocks__/handshake";
 
 jest.mock("./CommonService");
@@ -16,7 +16,7 @@ describe("SessionService", () => {
     jest.resetAllMocks();
     service = SessionServiceFactory({
       commonService: commonServiceMock,
-      countryGuesserService: countryGuesserServiceMock
+      countryGuesserService: countryGuesserServiceMock,
     });
     commonServiceMock.handshake.mockResolvedValue(authenticatedResponse);
   });

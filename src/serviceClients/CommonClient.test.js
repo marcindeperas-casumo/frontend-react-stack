@@ -3,7 +3,7 @@ import { CommonClientFactory } from "./CommonClient";
 describe("CommonClient", () => {
   let client;
   const httpService = {
-    get: jest.fn()
+    get: jest.fn(),
   };
 
   beforeEach(() => {

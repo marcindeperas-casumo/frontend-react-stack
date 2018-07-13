@@ -1,7 +1,7 @@
 import { usingGET } from "../utils";
 
 const httpService = {
-  get: usingGET
+  get: usingGET,
 };
 
 export const CommonClientFactory = ({ http }) => {

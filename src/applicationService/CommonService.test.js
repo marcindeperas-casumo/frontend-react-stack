@@ -30,7 +30,7 @@ describe("Game Browser Service", () => {
     expect(commonClientMock.handshake).toHaveBeenCalledTimes(1);
   });
 
-  test('should call handshake again if it is invalidated', async () => {
+  test("should call handshake again if it is invalidated", async () => {
     await service.handshake();
     service.invalidateHandshake();
     await service.handshake();

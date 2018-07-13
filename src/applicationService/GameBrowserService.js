@@ -4,7 +4,7 @@ import {
   isNotNullOrUndefined,
   property,
   ServiceConfig,
-  SimpleCache
+  SimpleCache,
 } from "../utils";
 import GameBrowserClient from "../serviceClients/GameBrowserClient";
 
@@ -13,11 +13,11 @@ const handshakeParams = ({ country, platform }) => ({ country, platform });
 export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
   const handshakeCache = SimpleCache();
   const defaultOptions = {
-    platform: "mobile"
+    platform: "mobile",
   };
   const serviceConfig = ServiceConfig({
     defaultOptions,
-    cache: SimpleCache()
+    cache: SimpleCache(),
   });
 
   const config = {
@@ -25,12 +25,12 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
     set: (...args) => {
       handshakeCache.invalidate();
       serviceConfig.set(...args);
-    }
+    },
   };
 
   const cachedHandshake = cacheFunction({
     fn: () => gameBrowserClient.handshake(handshakeParams(config.get())),
-    cache: handshakeCache
+    cache: handshakeCache,
   });
 
   const invalidateHandshake = () => handshakeCache.invalidate();
@@ -48,7 +48,7 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
           id: id,
           hash: variants[variant].hash,
           variant,
-          pageSize: 10
+          pageSize: 10,
         });
 
         return { games: games.games, id, title };
@@ -66,10 +66,10 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
   return {
     invalidateHandshake,
     config,
-    allTopLists
+    allTopLists,
   };
 };
 
 export default GameBrowserServiceFactory({
-  gameBrowserClient: GameBrowserClient
+  gameBrowserClient: GameBrowserClient,
 });

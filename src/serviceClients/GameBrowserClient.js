@@ -2,7 +2,7 @@ import { stringify } from "qs";
 import { usingGET } from "../utils";
 
 const httpService = {
-  get: usingGET
+  get: usingGET,
 };
 
 export const GameBrowserClientFactory = ({ http }) => {
@@ -17,14 +17,14 @@ export const GameBrowserClientFactory = ({ http }) => {
       hash,
       variant,
       page = 0,
-      pageSize = 5
+      pageSize = 5,
     }) =>
       usingGET(
         `gamebrowser/games-lists/${platform}/${country}/${id}?${stringify(
           { hash, variant, page, pageSize },
           { skipNulls: true }
         )}`
-      )
+      ),
   };
 };
 

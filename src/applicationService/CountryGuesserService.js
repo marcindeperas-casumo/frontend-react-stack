@@ -1,6 +1,6 @@
 export const CountryGuesserService = () => {
   return {
-    guess: () => "mt"
+    guess: () => "mt",
   };
 };
 

@@ -6,15 +6,15 @@ export const CommonServiceFactory = ({ commonClient }) => {
 
   const cachedHandshake = cacheFunction({
     fn: () => commonClient.handshake(),
-    cache: handshakeCache
+    cache: handshakeCache,
   });
 
   return {
     handshake: () => cachedHandshake(),
-    invalidateHandshake: () => handshakeCache.invalidate()
+    invalidateHandshake: () => handshakeCache.invalidate(),
   };
 };
 
 export default CommonServiceFactory({
-  commonClient: CommonClient
+  commonClient: CommonClient,
 });

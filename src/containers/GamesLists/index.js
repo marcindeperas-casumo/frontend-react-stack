@@ -4,5 +4,5 @@ import GamesListsSkeleton from "./GamesListsSkeleton";
 
 export default Loadable({
   loader: () => import("./GamesListsPortal"),
-  loading: () => <GamesListsSkeleton />
+  loading: () => <GamesListsSkeleton />,
 });

@@ -2,7 +2,7 @@ import {
   compose,
   composePromises,
   isNotNullOrUndefined,
-  property
+  property,
 } from "../utils";
 import commonService from "./CommonService";
 import countryGuesserService from "./CountryGuesserService";
@@ -23,7 +23,7 @@ const countryFromPlayer = compose(
 
 export const SessionServiceFactory = ({
   commonService,
-  countryGuesserService
+  countryGuesserService,
 }) => {
   const getSession = composePromises(pullSession, commonService.handshake);
 
@@ -43,5 +43,5 @@ export const SessionServiceFactory = ({
 
 export default SessionServiceFactory({
   commonService,
-  countryGuesserService
+  countryGuesserService,
 });

@@ -4,7 +4,7 @@ describe("GameBrowserClientFactory", () => {
   let client;
 
   const httpService = {
-    get: jest.fn()
+    get: jest.fn(),
   };
 
   beforeEach(() => {
@@ -24,7 +24,7 @@ describe("GameBrowserClientFactory", () => {
     const response = await client.handshake({ country: "mt" });
 
     expect(response).toEqual({
-      foo: "bar"
+      foo: "bar",
     });
   });
 });

@@ -5,7 +5,7 @@ import "./index.scss";
 import legacyBridge from "./legacyBridge";
 import {
   REACT_APP_EVENT_ALL_PORTALS_CLEAR,
-  REACT_APP_EVENT_ROUTE_CHANGE
+  REACT_APP_EVENT_ROUTE_CHANGE,
 } from "./constants";
 // import registerServiceWorker from './registerServiceWorker';
 

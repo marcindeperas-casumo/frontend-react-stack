@@ -7,7 +7,7 @@ describe("Game Browser Service", () => {
 
   beforeEach(() => {
     service = GameBrowserServiceFactory({
-      gameBrowserClient: gameBrowserClientMock
+      gameBrowserClient: gameBrowserClientMock,
     });
 
     jest.resetAllMocks();
@@ -20,13 +20,13 @@ describe("Game Browser Service", () => {
           variants: {
             default: {
               totalGames: 10,
-              hash: "top-list-hash-default-variant"
+              hash: "top-list-hash-default-variant",
             },
-            guests: { totalGames: 5, hash: "top-list-hash-guests-variant" }
-          }
-        }
+            guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+          },
+        },
       },
-      topListIds: ["top-list-1", "top-list-2"]
+      topListIds: ["top-list-1", "top-list-2"],
     });
 
     gameBrowserClientMock.gamesLists.mockImplementation(x =>
@@ -64,7 +64,7 @@ describe("Game Browser Service", () => {
 
     expect(gameBrowserClientMock.handshake).toHaveBeenCalledWith(
       expect.objectContaining({
-        country: "mt"
+        country: "mt",
       })
     );
   });
@@ -74,7 +74,7 @@ describe("Game Browser Service", () => {
 
     expect(gameBrowserClientMock.handshake).toHaveBeenCalledWith(
       expect.objectContaining({
-        country: "mt"
+        country: "mt",
       })
     );
 
@@ -84,7 +84,7 @@ describe("Game Browser Service", () => {
 
     expect(gameBrowserClientMock.handshake).toHaveBeenCalledWith(
       expect.objectContaining({
-        country: "gb"
+        country: "gb",
       })
     );
   });
@@ -101,7 +101,7 @@ describe("Game Browser Service", () => {
           id: "top-list-1",
           hash: "top-list-hash-default-variant",
           variant: "default",
-          pageSize: 10
+          pageSize: 10,
         })
       );
     });
@@ -109,7 +109,7 @@ describe("Game Browser Service", () => {
     test("should return all top lists", async () => {
       const response = await service.allTopLists();
       expect(response).toEqual([
-        { id: "top-list-1", title: "Top List 1", games: ["game-1"] }
+        { id: "top-list-1", title: "Top List 1", games: ["game-1"] },
       ]);
     });
 

@@ -2,7 +2,7 @@ export const authenticatedResponse = {
   "common/composition/session": {
     roles: ["player"],
     id: "b41053a0-79d5-11e2-90cd-005056bf3256",
-    sessionId: "d11e2d96-7dcb-42fb-b055-fbc0f66b8016"
+    sessionId: "d11e2d96-7dcb-42fb-b055-fbc0f66b8016",
   },
 
   "common/composition/players": {
@@ -15,7 +15,7 @@ export const authenticatedResponse = {
           id: "4294b2b0-9e15-11e3-bf7b-005056a02908",
           balance: { amount: 218548.6815, iso4217CurrencyCode: "EUR" },
           depositsBlocked: false,
-          withdrawalsBlocked: false
+          withdrawalsBlocked: false,
         },
         contactInfo: {
           name: { firstName: "Mark", lastName: "Busuttil" },
@@ -26,10 +26,10 @@ export const authenticatedResponse = {
           gender: "MALE",
           primaryAddress: {
             country: "gb",
-            addressLines: { zip: "asd123", city: "asd", street: "asd" }
+            addressLines: { zip: "asd123", city: "asd", street: "asd" },
           },
           nationality: null,
-          pendingEmailValidation: null
+          pendingEmailValidation: null,
         },
         configuration: {
           language: "en",
@@ -39,13 +39,13 @@ export const authenticatedResponse = {
           contactByPhone: true,
           contactByPost: true,
           withdrawalNotifications: false,
-          subscribedToSMSNewsletters: true
+          subscribedToSMSNewsletters: true,
         },
         referrerInfo: {
           offerId: "default",
           targetCampaignId: "",
           metadata: {},
-          referrer: "void"
+          referrer: "void",
         },
         registrationDate: 1361196953000,
         firstDepositDate: 1448440434000,
@@ -53,7 +53,7 @@ export const authenticatedResponse = {
           id: "4294b2b0-9e15-11e3-bf7b-005056a02908",
           balance: { amount: 79.9993, iso4217CurrencyCode: "EUR" },
           wageringRequirement: { amount: 5358.0, iso4217CurrencyCode: "EUR" },
-          automaticConversionLimit: { amount: 4.0, iso4217CurrencyCode: "EUR" }
+          automaticConversionLimit: { amount: 4.0, iso4217CurrencyCode: "EUR" },
         },
         blocked: false,
         market: "___en",
@@ -69,7 +69,7 @@ export const authenticatedResponse = {
             identifier: "444433******1111",
             lastUsageTime: 1513616956000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "b33c82c0-2ee3-11e6-b14c-005056a9c7cf",
@@ -79,7 +79,7 @@ export const authenticatedResponse = {
             identifier: "426397******1307",
             lastUsageTime: 1465553818000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "3cfe8200-934f-11e5-b6a6-005056a9c7cf",
@@ -89,7 +89,7 @@ export const authenticatedResponse = {
             identifier: "netellertest_eur@neteller.com",
             lastUsageTime: 1448444033000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "ded53d30-3111-11e5-8d96-005056a9c7cf",
@@ -99,7 +99,7 @@ export const authenticatedResponse = {
             identifier: "426397******1307",
             lastUsageTime: 1437646052000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "37f4d1a0-9e15-11e3-bf7b-005056a02908",
@@ -109,7 +109,7 @@ export const authenticatedResponse = {
             identifier: "453285******1100",
             lastUsageTime: 1415294560000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "84624bc0-3367-11e4-bc6b-005056a02908",
@@ -119,7 +119,7 @@ export const authenticatedResponse = {
             identifier: "martin.rylander@devcode.se",
             lastUsageTime: 1409765608000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "03feb630-3367-11e4-bc6b-005056a02908",
@@ -129,7 +129,7 @@ export const authenticatedResponse = {
             identifier: "martin.rylander@devcode.se",
             lastUsageTime: 1409755027000,
             deleted: true,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "37f6f480-9e15-11e3-bf7b-005056a02908",
@@ -139,7 +139,7 @@ export const authenticatedResponse = {
             identifier: "martin.rylander@devcode.se",
             lastUsageTime: 1399413554000,
             deleted: true,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "37f63130-9e15-11e3-bf7b-005056a02908",
@@ -149,7 +149,7 @@ export const authenticatedResponse = {
             identifier: "448508******4456",
             lastUsageTime: 1374834534000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "37fb8860-9e15-11e3-bf7b-005056a02908",
@@ -159,7 +159,7 @@ export const authenticatedResponse = {
             identifier: "********0503",
             lastUsageTime: 1365524934000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "38009170-9e15-11e3-bf7b-005056a02908",
@@ -169,7 +169,7 @@ export const authenticatedResponse = {
             identifier: "492959******0267",
             lastUsageTime: 1365524883000,
             deleted: false,
-            verificationState: null
+            verificationState: null,
           },
           {
             id: "3801f100-9e15-11e3-bf7b-005056a02908",
@@ -179,8 +179,8 @@ export const authenticatedResponse = {
             identifier: "491655******0736",
             lastUsageTime: 1364485640000,
             deleted: false,
-            verificationState: null
-          }
+            verificationState: null,
+          },
         ],
         changePasswordTicketId: null,
         welcomeOfferId: "wo-100depbonusmax300-20fsstarburstonreg",
@@ -191,12 +191,12 @@ export const authenticatedResponse = {
         phoneNumberVerificationCodeRequestTimes: 0,
         playerTournamentCampaign: {
           hasParticipatedInTournaments: true,
-          tournaments: {}
+          tournaments: {},
         },
         featureFlags: [
           "AML_FLOW_17608",
           "MOBILE_VERIFICATION",
-          "SPRING_CAMPAIGN_2018"
+          "SPRING_CAMPAIGN_2018",
         ],
         complianceState: {
           AML: {
@@ -204,15 +204,15 @@ export const authenticatedResponse = {
             state: "PASSED",
             playerBlockDate: null,
             depositBlockDate: null,
-            withdrawalBlockDate: null
-          }
+            withdrawalBlockDate: null,
+          },
         },
         emailVerified: true,
         extentOfGambling: null,
-        testPlayer: false
-      }
-    }
-  }
+        testPlayer: false,
+      },
+    },
+  },
 };
 
 export const unauthenticatedResponse = {};
