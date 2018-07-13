@@ -12,11 +12,11 @@ export default async ({ handshakePromise, id, variant }) => {
     id,
     variant,
     hash,
-    pageSize: MAX_GAMES_PER_TOP_LIST
+    pageSize: MAX_GAMES_PER_TOP_LIST,
   })).games;
 
   return {
     title: topListDef.title,
-    games: games
+    games: games,
   };
 };

@@ -4,17 +4,19 @@
   "private": true,
   "dependencies": {
     "@casumo/cmp-heading": "1.1.0",
-    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-icons": "1.1.0",
+    "@casumo/cmp-responsive-image": "1.1.0",
     "@casumo/cmp-scrollable": "1.1.0",
     "@casumo/cmp-skeleton": "1.0.1",
     "@casumo/cudl": "2.0.0",
     "@researchgate/react-intersection-observer": "^0.7.3",
     "autoprefixer": "7.1.6",
+    "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.2",
+    "babel-preset-flow": "^6.23.0",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "6.26.0",
     "case-sensitive-paths-webpack-plugin": "2.1.1",
@@ -23,15 +25,18 @@
     "css-loader": "0.28.11",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
-    "eslint": "4.10.0",
+    "eslint": "^5.1.0",
+    "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
+    "flow-bin": "^0.74.0",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
     "intersection-observer": "^0.5.0",
@@ -40,6 +45,7 @@
     "node-sass": "^4.9.0",
     "object-assign": "4.1.1",
     "postcss-loader": "2.1.5",
+    "prettier": "^1.13.7",
     "promise": "8.0.1",
     "prop-types": "^15.6.1",
     "qs": "^6.5.2",
@@ -68,7 +74,8 @@
     "prestart": "yarn --pure-lockfile",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "format": "prettier --write '**/*.{js,css,scss,md,json}'"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -110,13 +117,18 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": "error"
+    }
   },
-  "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-flow": "^6.23.0",
-    "flow-bin": "^0.74.0"
-  },
+  "devDependencies": {},
   "proxy": {
     "/api-gw": {
       "target": "http://sumo-proxy/"

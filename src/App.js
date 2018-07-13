@@ -5,7 +5,7 @@ import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
   settings: false,
-  suggestedGames: false
+  suggestedGames: false,
 });
 
 export default class App extends React.Component {
@@ -18,21 +18,21 @@ export default class App extends React.Component {
     legacyBridge.on("$RESET", () => {
       this.setState(prevState => ({
         ...prevState,
-        ...blankState()
+        ...blankState(),
       }));
     });
 
     legacyBridge.on("new-stack-poc", data => {
       this.setState(prevState => ({
         ...prevState,
-        settings: true
+        settings: true,
       }));
     });
 
     legacyBridge.on("games-top", data => {
       this.setState(prevState => ({
         ...prevState,
-        suggestedGames: true
+        suggestedGames: true,
       }));
     });
   }

@@ -11,4 +11,5 @@ export default rejectIfNotPromise(handshakePromise =>
     return (topListIds || [])
       .map(property)
       .map(propertyFn => propertyFn(gamesLists));
-  }));
+  })
+);

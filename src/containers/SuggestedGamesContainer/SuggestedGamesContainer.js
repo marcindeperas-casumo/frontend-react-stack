@@ -12,7 +12,7 @@ export default class SuggestedGamesContainer extends React.Component {
     this.el = document.createElement("div");
     this.state = {
       loading: false,
-      data: []
+      data: [],
     };
   }
 
@@ -30,7 +30,7 @@ export default class SuggestedGamesContainer extends React.Component {
         this.setState({
           ...this.state,
           loading: false,
-          data
+          data,
         });
       })
       .catch(console.error);
@@ -47,7 +47,7 @@ export default class SuggestedGamesContainer extends React.Component {
       <React.Fragment>
         {loading ? (
           <div className="u-padding-bottom--semi@mobile">
-            {Array.from(Array(4).keys()).map((i) => (
+            {Array.from(Array(4).keys()).map(i => (
               <SkeletonGameTiles
                 key={i}
                 tileWidth={170}
