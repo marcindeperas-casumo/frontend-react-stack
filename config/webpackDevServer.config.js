@@ -1,13 +1,13 @@
-'use strict';
+"use strict";
 
-const errorOverlayMiddleware = require('react-dev-utils/errorOverlayMiddleware');
-const noopServiceWorkerMiddleware = require('react-dev-utils/noopServiceWorkerMiddleware');
-const ignoredFiles = require('react-dev-utils/ignoredFiles');
-const config = require('./webpack.config.dev');
-const paths = require('./paths');
+const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
+const noopServiceWorkerMiddleware = require("react-dev-utils/noopServiceWorkerMiddleware");
+const ignoredFiles = require("react-dev-utils/ignoredFiles");
+const config = require("./webpack.config.dev");
+const paths = require("./paths");
 
-const protocol = process.env.HTTPS === 'true' ? 'https' : 'http';
-const host = process.env.HOST || '0.0.0.0';
+const protocol = process.env.HTTPS === "true" ? "https" : "http";
+const host = process.env.HOST || "0.0.0.0";
 
 module.exports = function(proxy, allowedHost) {
   const a = {
@@ -32,7 +32,7 @@ module.exports = function(proxy, allowedHost) {
     compress: true,
     // Silence WebpackDevServer's own logs since they're generally not useful.
     // It will still show compile warnings and errors with this setting.
-    clientLogLevel: 'none',
+    clientLogLevel: "none",
     // By default WebpackDevServer serves physical files from current directory
     // in addition to all the virtual build products that it serves from memory.
     // This is confusing because those files won’t automatically be available in
@@ -70,7 +70,7 @@ module.exports = function(proxy, allowedHost) {
       ignored: ignoredFiles(paths.appSrc),
     },
     // Enable HTTPS if the HTTPS environment variable is set to 'true'
-    https: protocol === 'https',
+    https: protocol === "https",
     host: host,
     overlay: false,
     historyApiFallback: {
@@ -91,6 +91,6 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
     },
   };
-  console.log('a', a);
+  console.log("a", a);
   return a;
 };

@@ -1,20 +1,32 @@
-import * as React from "react";
+import Heading from "@casumo/cmp-heading";
+import { AlertIcon, MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
-import Heading from '@casumo/cmp-heading';
-import { AlertIcon, PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-
+import React from "react";
+import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
+import legacyBridge from "../legacyBridge";
+import { decodeString } from "../utils";
 import LazyImage from "./LazyImage";
 
 export default class GameTile extends React.Component {
+  emitLaunchGameAction() {
+    const { slug } = this.props;
+
+    legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
+      slug,
+      playForFun: false,
+    });
+  }
+
   render() {
     const {
       className,
       logoBackground,
       slug,
       logo,
-      name,
-      inMaintenanceMode
+      inMaintenanceMode,
     } = this.props;
+
+    const name = decodeString(this.props.name);
 
     const componentClasses = classNames(
       "c-game-tile",
@@ -50,12 +62,7 @@ export default class GameTile extends React.Component {
     }
 
     return (
-      <div
-        className={componentClasses}
-        tabIndex={0}
-        onBlur={this.onBlur}
-        onClick={this.showOverlay}
-      >
+      <div className={componentClasses} tabIndex={0}>
         <LazyImage
           className="o-ratio__content"
           src={logoBackground}
@@ -63,16 +70,16 @@ export default class GameTile extends React.Component {
           alt={name}
           dpr={3}
         />
-        <div className={overlayClasses}>
+        <div
+          className={overlayClasses}
+          onClick={() => this.emitLaunchGameAction()}
+        >
           <Heading className="t-color-white" size="milli" text={name} />
           <PlayIcon
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
           />
-          <a
-            href={`/en/play/${slug}`}
-            onMouseDown={e => e.preventDefault()}
-          >
+          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
             <MoreIcon
               size="med"
               className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--micro"

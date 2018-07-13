@@ -1,12 +1,12 @@
 /* @flow */
-import * as React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import React from "react";
 
 type Props = {
   numberOfTiles: number,
   tileWidth: number,
   tileHeight: number,
-  tileGap?: number
+  tileGap?: number,
 };
 
 const SkeletonGameTiles = ({
