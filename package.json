@@ -39,9 +39,11 @@
     "flow-bin": "^0.74.0",
     "fs-extra": "3.0.1",
     "html-webpack-plugin": "2.29.0",
+    "husky": "^0.14.3",
     "intersection-observer": "^0.5.0",
     "is-promise": "^2.1.0",
     "jest": "^23.2.0",
+    "lint-staged": "^7.2.0",
     "node-sass": "^4.9.0",
     "object-assign": "4.1.1",
     "postcss-loader": "2.1.5",
@@ -72,6 +74,7 @@
     "env:up": "docker-compose up --build --force-recreate",
     "env:down": "docker-compose down",
     "prestart": "yarn --pure-lockfile",
+    "precommit": "lint-staged",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -109,6 +112,12 @@
       "jsx",
       "node",
       "mjs"
+    ]
+  },
+  "lint-staged": {
+    "*.{js,css,scss,md}": [
+      "eslint --fix",
+      "git add"
     ]
   },
   "babel": {
