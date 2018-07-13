@@ -9,7 +9,7 @@ import GameBrowserService from "./applicationService/GameBrowserService";
 import SessionService from "./applicationService/SessionService";
 import legacyBridge from "./legacyBridge";
 
-const blankState = () => ({
+const initialPortalsState = () => ({
   gamesLists: false,
 });
 
@@ -19,7 +19,7 @@ export default class App extends React.Component {
     this.state = {
       isAuthenticated: false,
       handshakeLoading: false,
-      ...blankState(),
+      ...initialPortalsState(),
     };
   }
 
@@ -42,7 +42,7 @@ export default class App extends React.Component {
     });
 
     legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_CLEAR, () => {
-      this.setState(blankState());
+      this.setState(initialPortalsState());
     });
 
     legacyBridge.on("games-top", data => {
