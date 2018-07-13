@@ -20,16 +20,19 @@ function responseTime() {
   };
 }
 
-const http = require('http');
-const keepAliveAgent = new http.Agent({ keepAlive: true, keepAliveMsecs: 6000 });
+const http = require("http");
+const keepAliveAgent = new http.Agent({
+  keepAlive: true,
+  keepAliveMsecs: 6000,
+});
 
 var testProxy = httpProxy.createProxyServer({
   changeOrigin: true,
-  target: "http://httpbin.org/"
+  target: "http://httpbin.org/",
 });
 var commonProxy = httpProxy.createProxyServer({
   changeOrigin: true,
-  target: "http://common.at.casumotest.local:8080/"
+  target: "http://common.at.casumotest.local:8080/",
 });
 var gameBrowserProxy = httpProxy.createProxyServer({
   changeOrigin: true,
@@ -54,7 +57,7 @@ router.get("/api/gamebrowser/latestPlayedGames", function(req, res) {
   fetch(
     "http://common.at.casumotest.local:8080/api/common/query/request-meta-data",
     {
-      headers: { Cookie: req.headers.cookie }
+      headers: { Cookie: req.headers.cookie },
     }
   )
     .then(body => body.json())

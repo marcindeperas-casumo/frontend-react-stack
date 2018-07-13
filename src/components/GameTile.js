@@ -13,7 +13,7 @@ export default class GameTile extends React.Component {
 
     legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
       slug,
-      playForFun: false
+      playForFun: false,
     });
   }
 
@@ -23,7 +23,7 @@ export default class GameTile extends React.Component {
       logoBackground,
       slug,
       logo,
-      inMaintenanceMode
+      inMaintenanceMode,
     } = this.props;
 
     const name = decodeString(this.props.name);

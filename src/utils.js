@@ -1,6 +1,3 @@
-import React from "react";
-import Loadable from "react-loadable";
-
 export const isNullOrUndefined = x => x === null || x === undefined;
 
 export const sleep = ms => data => {
@@ -29,13 +26,13 @@ export const bridgeFactory = () => {
           listener(data);
         });
       }
-    }
+    },
   };
 };
 
 export const cacheLocallyForMs = ms => {
   let lastValue = {
-    lastUpdated: 0
+    lastUpdated: 0,
   };
   console.log(`🏝 Setting up local cache for ${ms}ms`);
 
@@ -68,10 +65,10 @@ export const cacheLocallyForMs = ms => {
         lastValue = {
           success: true,
           value,
-          lastUpdated: new Date().getTime()
+          lastUpdated: new Date().getTime(),
         };
         console.log(`🏝 Work performed updating internal values`, {
-          lastValue
+          lastValue,
         });
 
         return value;
@@ -81,7 +78,7 @@ export const cacheLocallyForMs = ms => {
         lastValue = {
           success: false,
           error: e,
-          lastUpdated: new Date().getTime()
+          lastUpdated: new Date().getTime(),
         };
 
         return Promise.reject(e);
@@ -93,16 +90,16 @@ const commonFetch = (url, options) => {
   return fetch("/api-gw/api/" + url, {
     credentials: "same-origin",
     headers: {
-      "content-type": "application/json"
+      "content-type": "application/json",
     },
-    ...options
+    ...options,
   }).then(x => x.json());
 };
 
 export const usingPOST = (url, options) =>
   commonFetch(url, {
     method: "POST",
-    ...options
+    ...options,
   });
 
 export const usingGET = commonFetch;
@@ -165,7 +162,7 @@ export const SimpleCache = () => {
     isEmpty,
     get,
     set,
-    invalidate
+    invalidate,
   };
 };
 
@@ -189,9 +186,9 @@ export const ServiceConfig = ({ defaultOptions, cache }) => {
       cache.set({
         ...cache.get(),
         ...defaultOptions,
-        ...options
+        ...options,
       });
-    }
+    },
   };
 };
 

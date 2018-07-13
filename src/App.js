@@ -1,7 +1,7 @@
 import React from "react";
 import {
   REACT_APP_EVENT_ALL_PORTALS_CLEAR,
-  REACT_APP_EVENT_ON_LOGIN
+  REACT_APP_EVENT_ON_LOGIN,
 } from "./constants";
 import GamesLists from "./containers/GamesLists";
 import CommonService from "./applicationService/CommonService";
@@ -10,7 +10,7 @@ import SessionService from "./applicationService/SessionService";
 import legacyBridge from "./legacyBridge";
 
 const blankState = () => ({
-  gamesLists: false
+  gamesLists: false,
 });
 
 export default class App extends React.Component {
@@ -19,13 +19,13 @@ export default class App extends React.Component {
     this.state = {
       isAuthenticated: false,
       handshakeLoading: false,
-      ...blankState()
+      ...blankState(),
     };
   }
 
   componentWillMount() {
     this.setState({
-      handshakeLoading: true
+      handshakeLoading: true,
     });
 
     legacyBridge.on(REACT_APP_EVENT_ON_LOGIN, async () => {
@@ -47,7 +47,7 @@ export default class App extends React.Component {
 
     legacyBridge.on("games-top", data => {
       this.setState({
-        gamesLists: true
+        gamesLists: true,
       });
     });
   }
