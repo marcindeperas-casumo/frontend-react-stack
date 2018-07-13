@@ -75,7 +75,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "format": "prettier --write '**/*.{js,css,md,json}'"
+    "format": "prettier --write '**/*.{js,css,scss,md,json}'"
   },
   "jest": {
     "collectCoverageFrom": [
