@@ -13,7 +13,7 @@ export default class GamesListsContainer extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({ ...this.state, loading: true });
 
     GameBrowserService.allTopLists()

@@ -13,7 +13,7 @@ export default class GamesListsPortal extends React.Component {
     this.el = document.createElement("div");
   }
 
-  componentWillMount() {
+  componentDidMount() {
     if (this.otherComponentRoot.tagName.toUpperCase() !== "BODY") {
       while (this.otherComponentRoot.hasChildNodes()) {
         this.otherComponentRoot.removeChild(this.otherComponentRoot.lastChild);

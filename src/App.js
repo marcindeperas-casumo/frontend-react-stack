@@ -23,7 +23,7 @@ export default class App extends React.Component {
     };
   }
 
-  componentWillMount() {
+  componentDidMount() {
     this.setState({
       handshakeLoading: true,
     });
