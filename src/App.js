@@ -1,50 +1,68 @@
 import React from "react";
-import SettingsContainer from "./containers/SettingsContainer";
-import SuggestedGamesContainer from "./containers/SuggestedGamesContainer";
+import {
+  REACT_APP_EVENT_ALL_PORTALS_CLEAR,
+  REACT_APP_EVENT_ON_LOGIN,
+} from "./constants";
+import GamesLists from "./containers/GamesLists";
+import CommonService from "./applicationService/CommonService";
+import GameBrowserService from "./applicationService/GameBrowserService";
+import SessionService from "./applicationService/SessionService";
 import legacyBridge from "./legacyBridge";
 
-const blankState = () => ({
-  settings: false,
-  suggestedGames: false,
+const initialPortalsState = () => ({
+  gamesLists: false,
 });
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-    this.state = blankState();
+    this.state = {
+      isAuthenticated: false,
+      handshakeLoading: false,
+      ...initialPortalsState(),
+    };
   }
 
-  componentWillMount() {
-    legacyBridge.on("$RESET", () => {
-      this.setState(prevState => ({
-        ...prevState,
-        ...blankState(),
-      }));
+  componentDidMount() {
+    this.setState({
+      handshakeLoading: true,
     });
 
-    legacyBridge.on("new-stack-poc", data => {
-      this.setState(prevState => ({
-        ...prevState,
-        settings: true,
-      }));
+    legacyBridge.on(REACT_APP_EVENT_ON_LOGIN, async () => {
+      this.setState({ isAuthenticated: true });
+      CommonService.invalidateHandshake();
+      const country = await SessionService.country();
+      GameBrowserService.config.set({ country, platform: "mobile" });
+    });
+
+    SessionService.country().then(async country => {
+      const isAuthenticated = await SessionService.isAuthenticated();
+      GameBrowserService.config.set({ country, platform: "mobile" });
+      this.setState({ handshakeLoading: false, isAuthenticated });
+    });
+
+    legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_CLEAR, () => {
+      this.setState(initialPortalsState());
     });
 
     legacyBridge.on("games-top", data => {
-      this.setState(prevState => ({
-        ...prevState,
-        suggestedGames: true,
-      }));
+      this.setState({
+        gamesLists: true,
+      });
     });
   }
 
-  render() {
-    const { settings, suggestedGames } = this.state;
+  renderGamesLists() {
+    const { handshakeLoading, isAuthenticated } = this.state;
     return (
-      <div>
-        Le React App
-        {settings && <SettingsContainer />}
-        {suggestedGames && <SuggestedGamesContainer />}
-      </div>
+      (handshakeLoading || isAuthenticated) && (
+        <GamesLists showSkeleton={handshakeLoading} />
+      )
     );
+  }
+
+  render() {
+    const { gamesLists } = this.state;
+    return <div>{gamesLists && this.renderGamesLists()}</div>;
   }
 }

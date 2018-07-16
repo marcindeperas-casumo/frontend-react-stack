@@ -1,6 +1,6 @@
 /* @flow */
-import * as React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import React from "react";
 
 type Props = {
   numberOfTiles: number,
