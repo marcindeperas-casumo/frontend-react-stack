@@ -87,7 +87,7 @@ export const cacheLocallyForMs = ms => {
 };
 
 const commonFetch = (url, options) => {
-  return fetch("/api-gw/api/" + url, {
+  return fetch("/api/" + url, {
     credentials: "same-origin",
     headers: {
       "content-type": "application/json",
