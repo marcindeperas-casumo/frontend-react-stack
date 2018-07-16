@@ -148,7 +148,7 @@
   },
   "devDependencies": {},
   "proxy": {
-    "/api-gw": {
+    "/api": {
       "target": "http://sumo-proxy/"
     }
   }
