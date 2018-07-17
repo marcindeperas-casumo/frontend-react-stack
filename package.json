@@ -126,7 +126,7 @@
       "eslint --fix",
       "git add"
     ],
-    "*.{css, scss}": [
+    "*.{css,scss}": [
       "stylelint --fix",
       "git add"
     ]
