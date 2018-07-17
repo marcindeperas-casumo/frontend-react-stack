@@ -23,6 +23,5 @@
                 "pseudo": "::?[a-z-]+"
             }
         }]
-    },
-    "ignoreFiles": "./packages/**/test/*.scss"
+    }
 }
