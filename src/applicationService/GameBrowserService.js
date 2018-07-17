@@ -48,7 +48,7 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
           id: id,
           hash: variants[variant].hash,
           variant,
-          pageSize: 10,
+          pageSize: 20,
         });
 
         return { games: games.games, id, title };
