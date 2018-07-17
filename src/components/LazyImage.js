@@ -14,7 +14,15 @@ class StatefulResponsiveImage extends React.Component {
     return isIntersecting ? (
       <ResponsiveImage {...rest} />
     ) : (
-      <DummyImage {...rest} />
+      <ResponsiveImage
+        {...rest}
+        mark={null}
+        dpr={1}
+        imgixOpts={{
+          w: 19,
+          blur: 2000,
+        }}
+      />
     );
   }
 }
