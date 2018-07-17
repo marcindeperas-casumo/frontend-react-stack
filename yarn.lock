@@ -100,9 +100,9 @@
   version "1.1.0"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.1.0.tgz#baa7838a3e88973c5e7e0b90ce24cc1704398c68"
 
-"@casumo/cmp-responsive-image@1.1.0":
-  version "1.1.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.1.0.tgz#d81b787d186d41704ae18452d444af17a794748d"
+"@casumo/cmp-responsive-image@1.1.2":
+  version "1.1.2"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.1.2.tgz#d45be2e99c62e374122cbf2e8d3018e80b073895"
 
 "@casumo/cmp-scrollable@1.1.0":
   version "1.1.0"
