@@ -1,6 +1,5 @@
 import React from "react";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
-import DummyImage from "./DummyImage";
 import Observer from "@researchgate/react-intersection-observer";
 // Add intersection observer polyfill since this feature is experimental and
 // some browsers might not have implemented it yet
@@ -12,9 +11,17 @@ class StatefulResponsiveImage extends React.Component {
     const { isIntersecting, ...rest } = this.props;
 
     return isIntersecting ? (
-      <ResponsiveImage {...rest} />
+      <ResponsiveImage {...rest} imgixOpts={{ w: 170 }} />
     ) : (
-      <DummyImage {...rest} />
+      <ResponsiveImage
+        {...rest}
+        mark={null}
+        dpr={1}
+        imgixOpts={{
+          w: 19,
+          blur: 2000,
+        }}
+      />
     );
   }
 }
