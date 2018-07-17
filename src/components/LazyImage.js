@@ -11,7 +11,7 @@ class StatefulResponsiveImage extends React.Component {
     const { isIntersecting, ...rest } = this.props;
 
     return isIntersecting ? (
-      <ResponsiveImage {...rest} />
+      <ResponsiveImage {...rest} imgixOpts={{ w: 170 }} />
     ) : (
       <ResponsiveImage
         {...rest}
