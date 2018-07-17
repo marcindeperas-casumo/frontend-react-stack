@@ -2,5 +2,8 @@ servers:
   test:
   - ttdocker05.casumotest.local
   - ttdocker06.casumotest.local
+  live:
+  - mtdocker01.casumo.local
+  - mtdocker02.casumo.local
   dynamic:
   - "ttnode1-{{dynamic_env}}"
