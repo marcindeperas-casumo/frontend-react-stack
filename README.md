@@ -57,6 +57,13 @@ ln -s $(pwd)/ ~/tmp/casumo-frontend;
 - Run `yarn env:down` in case you want to cleanup the docker services
 - Goto [https://mobile.dev](https://mobile.dev)
 
+### Deploy to production
+
+```sh
+# ssh in to the deploy machine
+deploy-service mobile-react-stack-poc master
+```
+
 ---
 
 [Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc) - [Routing Configuration](https://github.com/Casumo/routing-configuration/compare/master...mobile-react-stack-poc)
