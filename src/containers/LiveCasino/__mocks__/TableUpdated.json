@@ -1,0 +1,63 @@
+{
+  "type": "TableUpdated",
+  "id": "msuazorbxevqtgpg",
+  "tableId": "0tr4xv25ub15zgq9",
+  "table": {
+    "gameType": "Blackjack",
+    "name": "Blackjack VIP A",
+    "open": true,
+    "betLimits": {
+      "EUR": {
+        "symbol": "€",
+        "min": 50,
+        "max": 5000
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 50,
+        "max": 5000
+      }
+    },
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "dealer": {
+      "dealerId": "met4cdmrmu6aagp7",
+      "name": "Anete"
+    },
+    "seats": 12,
+    "betBehind": true,
+    "seatsTaken": [],
+    "seatsLimit": 3,
+    "dealerHand": [
+      26,
+      8,
+      8,
+      9,
+      8,
+      9,
+      17,
+      17,
+      17,
+      7
+    ],
+    "players": 0,
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/hs_t2_med?size=S",
+        "M": "/tablePicture/hs_t2_med?size=M",
+        "L": "/tablePicture/hs_t2_med?size=L",
+        "XL": "/tablePicture/hs_t2_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/hs_t2_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/hs_t2_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/hs_t2_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/hs_t2_med_XL.jpg"
+      }
+    },
+    "display": "on_mobile",
+    "sitesAssigned": [],
+    "sitesBlocked": []
+  }
+}

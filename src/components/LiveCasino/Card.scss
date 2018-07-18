@@ -1,0 +1,65 @@
+@import 'cudl-compile';
+@include cudl-prevent-compile(cudl-sass-colors);
+@import 'cudl-colors';
+@include cudl-reset-compile(cudl-sass-colors);
+@import 'cudl-typography';
+
+.c-card {
+    position: relative;
+    width: 90vw;
+    background-color: #fff;
+    
+    &__img {
+        display: flex;
+        align-items: flex-end;
+        justify-content: center;
+        border-radius: 8px;
+        min-height: 220px;
+        overflow: hidden;
+        background-size: cover;
+    }
+
+    &__body {
+        display: flex;
+    }
+
+    &__info {
+        flex: 1;
+        min-width: 0;
+    }
+
+    &__title {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    &__footer {
+        border-top: 1px solid lighten(cudl-palette(grey), 25%);
+    }
+
+    &__players {
+        flex-grow: 1;
+    }
+
+    &__players-number {
+        position: relative;
+        top: 1px;
+        padding-right: 4px;
+    }
+}
+
+// .c-card__jackpot {
+//     flex: 1;
+//     color: white;
+//     text-align: center;
+
+//     &-amount {
+//         border-radius: 100em;
+//         background-color: cudl-palette(red);
+//     }
+
+//     &-text {
+//         text-transform: uppercase;
+//     }
+// }

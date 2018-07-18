@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@casumo/cmp-button": "^1.1.0",
     "@casumo/cmp-card": "^0.1.0-alpha.404ed1d2",
     "@casumo/cmp-heading": "1.1.0",
     "@casumo/cmp-icons": "1.1.0",
@@ -26,6 +27,8 @@
     "css-loader": "0.28.11",
     "dotenv": "4.0.0",
     "dotenv-expand": "4.2.0",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
@@ -82,6 +85,7 @@
     "format": "prettier --write '**/*.{js,css,scss,md,json}'"
   },
   "jest": {
+    "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js",
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],
@@ -102,9 +106,6 @@
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web"
-    },
     "moduleFileExtensions": [
       "web.js",
       "js",

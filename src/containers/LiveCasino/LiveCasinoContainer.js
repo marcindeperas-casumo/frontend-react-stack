@@ -1,7 +1,6 @@
 import React from "react";
 
-import Card from "@casumo/cmp-card";
-
+import LiveCasinoList from "../../components/LiveCasino/LiveCasinoList";
 import lobbyWS from "./ws";
 
 export default class LiveCasinoContainer extends React.Component {
@@ -15,105 +14,61 @@ export default class LiveCasinoContainer extends React.Component {
   }
 
   processType(data) {
-    const index = this.state.data.findIndex(e => e.id === data.tableId);
+    const i = this.state.data.findIndex(e => e.id === data.tableId);
+    const exists = i !== -1;
+    const updateState = prop => {
+      if (exists) {
+        const d = [...this.state.data];
+        d[i][prop] = data[prop];
+        this.setState({ ...this.state, data: d });
+      }
+    };
     const types = {
-      // all tables
       State: () => {
-        const tables = Object.keys(data.tables).map(k => ({
-          ...data.tables[k],
-          id: k,
-        }));
+        const tables = Object.keys(data.tables)
+          .map(k => ({
+            ...data.tables[k],
+            id: k,
+          }))
+          .filter(table => table.open && table.display === "on_mobile");
         this.setState({ ...this.state, data: tables });
       },
-      // tables status
+
       TableAssigned: () => {
         this.setState(prevState => {
-          const newTable = data.table;
-          newTable.id = data.tableId;
-          return { data: [...prevState.data, newTable] };
-        });
-      },
-      TableUnassigned: () => {
-        this.setState({
-          data: this.state.data.filter((_, i) => i !== index),
-        });
-      },
-      TableUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index] = data.table;
-          return { data: newData };
-        });
-      },
-      TableOpened: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].open = true;
-          return { data: newData };
-        });
-      },
-      TableClosed: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].open = false;
-          return { data: newData };
-        });
-      },
-      // seats
-      SeatsUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].seatsTaken = data.seatsTaken;
-          return { data: newData };
-        });
-      },
-      // numbers
-      RouletteNumbersUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].results = data.results;
-          return { data: newData };
-        });
-      },
-      BaccaratRoadUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].road = data.road;
-          return { data: newData };
-        });
-      },
-      MoneyWheelNumbersUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].results = data.results;
-          return { data: newData };
-        });
-      },
-      // players
-      PlayersUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          console.log("index", index, newData[index].name);
-          newData[index].players = data.players;
-          return { data: newData };
-        });
-      },
-      // hours
-      OperationHoursUpdated: () => {
-        this.setState(prevState => {
-          const newData = [...prevState.data];
-          newData[index].operationHours = data.operationHours;
-          return { data: newData };
+          const t = data.table;
+          t.id = data.tableId;
+          return { data: [...prevState.data, t] };
         });
       },
 
+      TableUnassigned: () =>
+        this.setState({ data: this.state.data.splice(i, 1) }),
+
+      TableUpdated: () => {
+        const d = [...this.state.data];
+        if (exists) {
+          d[i] = data.table;
+          d[i].id = data.tableId;
+          this.setState({ ...this.state, data: d });
+        }
+      },
+
+      TableOpened: () => updateState("open"),
+      TableClosed: () => updateState("open"),
+      SeatsUpdated: () => updateState("seatsTaken"),
+      RouletteNumbersUpdated: () => updateState("results"),
+      BaccaratRoadUpdated: () => updateState("road"),
+      MoneyWheelNumbersUpdated: () => updateState("results"),
+      PlayersUpdated: () => updateState("players"),
+      OperationHoursUpdated: () => updateState("operationHours"),
       default: () => null,
     };
     return (types[data.type] || types["default"])();
   }
 
   onmessage(data) {
-    console.log("onmessage data", data, this.state);
+    // console.log("onmessage data", data, this.state);
     this.processType(data);
   }
 
@@ -128,26 +83,19 @@ export default class LiveCasinoContainer extends React.Component {
 
   render() {
     const { data } = this.state;
-    // TODO get placeholder if no image
-
-    const getImg = o =>
-      o.videoSnapshot && o.videoSnapshot.thumbnails
-        ? o.videoSnapshot.thumbnails["L"]
-        : null;
-    // TODO get active currency!
-    const getBetLimits = betLimits => betLimits[Object.keys(betLimits)[0]];
 
     return (
       <React.Fragment>
-        {data.map(o => (
-          <Card
-            key={o.id}
-            imgSrc={getImg(o)}
-            title={o.name}
-            betLimits={getBetLimits(o.betLimits)}
-            players={o.players}
-          />
-        ))}
+        <LiveCasinoList
+          title="Roulette Games"
+          type="Roulette"
+          data={data.filter(table => table.gameType === "Roulette")}
+        />
+        <LiveCasinoList
+          title="Roulette Games"
+          type="Blackjack"
+          data={data.filter(table => table.gameType === "Blackjack")}
+        />
       </React.Fragment>
     );
   }
