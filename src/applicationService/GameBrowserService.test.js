@@ -101,7 +101,7 @@ describe("Game Browser Service", () => {
           id: "top-list-1",
           hash: "top-list-hash-default-variant",
           variant: "default",
-          pageSize: 10,
+          pageSize: 20,
         })
       );
     });
