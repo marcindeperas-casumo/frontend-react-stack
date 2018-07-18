@@ -1,0 +1,27 @@
+{
+    "extends": ["stylelint-config-sass-guidelines", "stylelint-prettier/recommended"],
+    "plugins": [
+        "stylelint-selector-pattern",
+        "stylelint-prettier"
+    ],
+    "rules": {
+        "prettier/prettier": true,
+        "indentation": 2,
+        "max-nesting-depth": 5,
+        "color-named": ['never', ignore: ["inside-function"]],
+        "property-no-unknown": [true, ignoreProperties: ["error", "warn"]],
+        "selector-class-pattern": null,
+        "scss/selector-no-redundant-nesting-selector": true,
+        "xi/selector-pattern": ["^({namespace}{block}({element})?({modifier})?({breakpoint})?({state})?({pseudo})?)$", {
+            "subpatterns": {
+                "namespace": ".(o-|c-|u-|t-|s-|is-|has-|_|js-|qa-)",
+                "block": "[a-z][a-z0-9-]+",
+                "modifier": "--[a-z0-9-]+",
+                "breakpoint": "[\\\\@a-z0-9-]+",
+                "element": "__[a-z][a-z0-9-]+",
+                "state": ".(is-|has-)[a-z0-9-]+",
+                "pseudo": "::?[a-z-]+"
+            }
+        }]
+    }
+}
