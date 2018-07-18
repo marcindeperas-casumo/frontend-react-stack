@@ -1,24 +1,15 @@
 @import "cudl-compile";
-@import "cudl-breakpoints";
 // prevent colors package from compiling
 @include cudl-prevent-compile(cudl-sass-colors);
 @import "cudl-colors";
 // remove compile block incase needed later
 @include cudl-reset-compile(cudl-sass-colors);
 
-$game-tile-widths: (
-  mobile: 43%,
-  phablet: 26%,
-  tablet: 26%,
-  desktop: 15%,
-);
-
 .c-game-tile {
-  @include cudl-breakpoint-with($game-tile-widths, width);
   background-color: cudl-palette(grey, light-2);
   cursor: pointer;
   outline: none;
-  max-width: 170px;
+  overflow: hidden;
 }
 
 .c-game-tile__overlay {
@@ -35,6 +26,7 @@ $game-tile-widths: (
   justify-content: center;
 }
 
+//stylelint-disable-next-line xi/selector-pattern
 .c-game-tile:focus .c-game-tile__overlay {
   display: flex;
 }
