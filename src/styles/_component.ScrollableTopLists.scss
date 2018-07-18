@@ -5,17 +5,18 @@
 @include cudl-reset-compile(cudl-sass-spacers);
 
 $game-tile-widths: (
-    mobile: 43%,
-    phablet: 26%,
-    tablet: 26%,
-    desktop: 15%,
+  mobile: 43%,
+  phablet: 26%,
+  tablet: 26%,
+  desktop: 15%,
 );
 
 .c-scrollable-game {
-    @include cudl-breakpoint-with($game-tile-widths, width);
-    max-width: 170px;
+  @include cudl-breakpoint-with($game-tile-widths, width);
+  max-width: 170px;
 
-    &:not(:first-child) {
-        margin-left: $cudl-spacer-size-default;
-    }
+  //stylelint-disable-next-line xi/selector-pattern
+  &:not(:first-child) {
+    margin-left: $cudl-spacer-size-default;
+  }
 }
