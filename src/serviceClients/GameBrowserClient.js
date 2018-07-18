@@ -19,11 +19,16 @@ export const GameBrowserClientFactory = ({ http }) => {
       page = 0,
       pageSize = 5,
     }) =>
-      usingGET(
+      http.get(
         `gamebrowser/games-lists/${platform}/${country}/${id}?${stringify(
           { hash, variant, page, pageSize },
           { skipNulls: true }
         )}`
+      ),
+
+    latestPlayedGames: ({ playerId, pageSize = 5 }) =>
+      http.get(
+        `gamebrowser/latestPlayedGames/player/${playerId}?numberOfGames=${pageSize}`
       ),
   };
 };

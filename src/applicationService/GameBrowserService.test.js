@@ -1,6 +1,8 @@
 import gameBrowserClientMock from "../serviceClients/GameBrowserClient";
+import sessionServiceMock from "../applicationService/SessionService";
 import { GameBrowserServiceFactory } from "./GameBrowserService";
 jest.mock("../serviceClients/GameBrowserClient");
+jest.mock("../applicationService/SessionService");
 
 describe("Game Browser Service", () => {
   let service;
@@ -8,6 +10,7 @@ describe("Game Browser Service", () => {
   beforeEach(() => {
     service = GameBrowserServiceFactory({
       gameBrowserClient: gameBrowserClientMock,
+      sessionService: sessionServiceMock,
     });
 
     jest.resetAllMocks();
@@ -128,6 +131,18 @@ describe("Game Browser Service", () => {
     test("should not blow up if games is not an array", async () => {
       gameBrowserClientMock.gamesLists.mockResolvedValue({});
       await service.allTopLists();
+    });
+  });
+
+  describe("latestPlayedGames", () => {
+    test("should call the API with the playerId", async () => {
+      sessionServiceMock.playerId.mockResolvedValue("player-id-123");
+
+      await service.latestPlayedGames();
+
+      expect(gameBrowserClientMock.latestPlayedGames).toHaveBeenCalledWith(
+        expect.objectContaining({ playerId: "player-id-123" })
+      );
     });
   });
 });

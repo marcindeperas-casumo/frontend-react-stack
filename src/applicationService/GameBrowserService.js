@@ -7,10 +7,14 @@ import {
   SimpleCache,
 } from "../utils";
 import GameBrowserClient from "../serviceClients/GameBrowserClient";
+import SessionService from "./SessionService";
 
 const handshakeParams = ({ country, platform }) => ({ country, platform });
 
-export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
+export const GameBrowserServiceFactory = ({
+  gameBrowserClient,
+  sessionService,
+}) => {
   const handshakeCache = SimpleCache();
   const defaultOptions = {
     platform: "mobile",
@@ -63,13 +67,20 @@ export const GameBrowserServiceFactory = ({ gameBrowserClient }) => {
     return (await Promise.all(gameListsRequests)).filter(hasSomeGames);
   };
 
+  const latestPlayedGames = async () => {
+    const playerId = await sessionService.playerId();
+    return gameBrowserClient.latestPlayedGames({ playerId, pageSize: 20 });
+  };
+
   return {
     invalidateHandshake,
     config,
     allTopLists,
+    latestPlayedGames,
   };
 };
 
 export default GameBrowserServiceFactory({
   gameBrowserClient: GameBrowserClient,
+  sessionService: SessionService,
 });

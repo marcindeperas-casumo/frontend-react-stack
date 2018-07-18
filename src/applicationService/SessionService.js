@@ -3,6 +3,7 @@ import {
   composePromises,
   isNotNullOrUndefined,
   property,
+  trace,
 } from "../utils";
 import commonService from "./CommonService";
 import countryGuesserService from "./CountryGuesserService";
@@ -38,7 +39,15 @@ export const SessionServiceFactory = ({
     return countryFromPlayer(currentPlayer);
   };
 
-  return { isAuthenticated, country };
+  const playerId = async () => {
+    if (!(await isAuthenticated())) {
+      return null;
+    }
+
+    return composePromises(property("id"), getSession)();
+  };
+
+  return { isAuthenticated, country, playerId };
 };
 
 export default SessionServiceFactory({
