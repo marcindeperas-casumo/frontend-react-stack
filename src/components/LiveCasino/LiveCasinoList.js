@@ -16,7 +16,8 @@ const getOverlayData = (o, type) =>
   o.gameType === "Roulette" ? (
     <LiveCasinoTableData results={o.results} />
   ) : null;
-// TODO get active currency!
+
+// TODO get active currency
 const getBetLimits = betLimits => betLimits["EUR"] || betLimits[0];
 
 const LiveCasinoList = ({ title, type, data, ...props }) => (

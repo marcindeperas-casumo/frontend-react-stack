@@ -1,33 +1,28 @@
-@import 'cudl-compile';
+@import "cudl-compile";
 @include cudl-prevent-compile(cudl-sass-colors);
-@import 'cudl-colors';
+@import "cudl-colors";
 @include cudl-reset-compile(cudl-sass-colors);
 
-
 .c-casino-table-data {
-    color: white;
-    
-    &__results {
+  color: #fff;
 
-    }
+  &__results-numbers {
+    display: flex;
+    flex-direction: row;
+  }
 
-    &__results-numbers {
-        display: flex;
-        flex-direction: row;
-    }
+  &__results-number {
+    align-items: center;
+    background-color: cudl-palette(teal);
+    border-radius: 50%;
+    display: flex;
+    height: 35px;
+    justify-content: center;
+    width: 35px;
+  }
 
-    &__results-number {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        background-color: cudl-palette(teal);
-        border-radius: 50%;
-        width: 35px;
-        height: 35px;
-    }
-
-    &__results-title {
-        text-align: center;
-        text-transform: uppercase;
-    }
+  &__results-title {
+    text-align: center;
+    text-transform: uppercase;
+  }
 }
