@@ -9,7 +9,7 @@ import {
 import GameBrowserClient from "../serviceClients/GameBrowserClient";
 import SessionService from "./SessionService";
 
-const handshakeParams = ({ country, platform }) => ({ country, platform });
+const countryAndPlatform = ({ country, platform }) => ({ country, platform });
 
 export const GameBrowserServiceFactory = ({
   gameBrowserClient,
@@ -33,11 +33,59 @@ export const GameBrowserServiceFactory = ({
   };
 
   const cachedHandshake = cacheFunction({
-    fn: () => gameBrowserClient.handshake(handshakeParams(config.get())),
+    fn: () => gameBrowserClient.handshake(countryAndPlatform(config.get())),
     cache: handshakeCache,
   });
 
   const invalidateHandshake = () => handshakeCache.invalidate();
+
+  const playerLatestPlayedGames = async () =>
+    gameBrowserClient.latestPlayedGames({
+      playerId: await sessionService.playerId(),
+      pageSize: 20,
+    });
+
+  const gamesByProviderGameNames = async ({
+    hash,
+    variant,
+    providerGameNames,
+  }) => {
+    return await gameBrowserClient.gamesByProviderGameNames({
+      ...countryAndPlatform(config.get()),
+      hash,
+      variant,
+      providerGameNames,
+    });
+  };
+
+  const topListDefForId = async ({ id }) => {
+    const handshake = await cachedHandshake();
+    return handshake.gamesLists[id];
+  };
+
+  const latestPlayedGames = async ({ variant = "default" } = {}) => {
+    const latestPlayedProviderGameNames = await playerLatestPlayedGames();
+
+    if (
+      !latestPlayedProviderGameNames ||
+      latestPlayedProviderGameNames.length === 0
+    ) {
+      return null;
+    }
+
+    const { variants } = await topListDefForId({ id: "allGames" });
+    const { id, title } = await topListDefForId({ id: "latestPlayedGames" });
+
+    const games = await gamesByProviderGameNames({
+      variant,
+      hash: variants[variant].hash,
+      providerGameNames: latestPlayedProviderGameNames.map(
+        property("gameName")
+      ),
+    });
+
+    return { games: games.games, id, title };
+  };
 
   const allTopLists = async ({ variant = "default" } = {}) => {
     const handshake = await cachedHandshake();
@@ -48,7 +96,7 @@ export const GameBrowserServiceFactory = ({
       .filter(isNotNullOrUndefined)
       .map(async ({ id, variants, title }) => {
         const games = await gameBrowserClient.gamesLists({
-          ...handshakeParams(config.get()),
+          ...countryAndPlatform(config.get()),
           id: id,
           hash: variants[variant].hash,
           variant,
@@ -58,18 +106,13 @@ export const GameBrowserServiceFactory = ({
         return { games: games.games, id, title };
       });
 
-    const hasSomeGames = compose(
-      i => i > 0,
-      property("length"),
-      property("games")
+    return (await Promise.all([...gameListsRequests])).filter(
+      compose(
+        i => i > 0,
+        property("length"),
+        property("games")
+      )
     );
-
-    return (await Promise.all(gameListsRequests)).filter(hasSomeGames);
-  };
-
-  const latestPlayedGames = async () => {
-    const playerId = await sessionService.playerId();
-    return gameBrowserClient.latestPlayedGames({ playerId, pageSize: 20 });
   };
 
   return {

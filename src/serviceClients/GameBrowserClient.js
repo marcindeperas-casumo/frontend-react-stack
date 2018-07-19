@@ -30,6 +30,19 @@ export const GameBrowserClientFactory = ({ http }) => {
       http.get(
         `gamebrowser/latestPlayedGames/player/${playerId}?numberOfGames=${pageSize}`
       ),
+    gamesByProviderGameNames: ({
+      platform,
+      country,
+      providerGameNames,
+      variant,
+      hash,
+    }) =>
+      http.get(
+        `gamebrowser/games-by-provider-game-names/${platform}/${country}?${stringify(
+          { hash, variant, providerGameNames: providerGameNames },
+          { arrayFormat: "brackets" }
+        )}`
+      ),
   };
 };
 

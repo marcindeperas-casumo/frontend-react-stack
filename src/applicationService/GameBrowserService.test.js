@@ -135,14 +135,87 @@ describe("Game Browser Service", () => {
   });
 
   describe("latestPlayedGames", () => {
-    test("should call the API with the playerId", async () => {
-      sessionServiceMock.playerId.mockResolvedValue("player-id-123");
+    beforeEach(() => {
+      gameBrowserClientMock.handshake.mockResolvedValue({
+        gamesLists: {
+          "top-list-1": {
+            id: "top-list-1",
+            title: "Top List 1",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+          allGames: {
+            id: "allGames",
+            title: "allGames",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+          latestPlayedGames: {
+            id: "latestPlayedGames",
+            title: "Latest Played Games",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+        },
+        topListIds: ["top-list-1", "latestPlayedGames"],
+      });
 
+      gameBrowserClientMock.latestPlayedGames.mockResolvedValue([
+        { gameName: "game-id-1" },
+      ]);
+
+      gameBrowserClientMock.gamesByProviderGameNames.mockResolvedValue({
+        games: [
+          {
+            name: "Fake Game",
+          },
+        ],
+      });
+    });
+
+    test("should call gamesByProviderGameNames with the player's latest payed games", async () => {
       await service.latestPlayedGames();
 
-      expect(gameBrowserClientMock.latestPlayedGames).toHaveBeenCalledWith(
-        expect.objectContaining({ playerId: "player-id-123" })
+      expect(gameBrowserClientMock.gamesByProviderGameNames).toBeCalledWith(
+        expect.objectContaining({
+          providerGameNames: ["game-id-1"],
+        })
       );
+    });
+
+    test("should return the latest played games", async () => {
+      expect(await service.latestPlayedGames()).toEqual({
+        id: "latestPlayedGames",
+        title: "Latest Played Games",
+        games: [
+          {
+            name: "Fake Game",
+          },
+        ],
+      });
+    });
+
+    test("should not call gamesByProviderGameNames if player has no latest played games", async () => {
+      gameBrowserClientMock.latestPlayedGames.mockResolvedValue([]);
+      await service.latestPlayedGames();
+      expect(
+        gameBrowserClientMock.gamesByProviderGameNames
+      ).not.toHaveBeenCalled();
     });
   });
 });
