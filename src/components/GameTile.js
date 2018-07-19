@@ -70,14 +70,12 @@ export default class GameTile extends React.Component {
           alt={name}
           dpr={3}
         />
-        <div
-          className={overlayClasses}
-          onClick={() => this.emitLaunchGameAction()}
-        >
+        <div className={overlayClasses}>
           <Heading className="t-color-white" size="milli" text={name} />
           <PlayIcon
             size="med"
             className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--small"
+            onClick={() => this.emitLaunchGameAction()}
           />
           <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
             <MoreIcon
