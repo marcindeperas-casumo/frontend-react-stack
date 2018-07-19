@@ -33,10 +33,8 @@ describe("LiveCasinoContainer", () => {
   describe("should set correct state when `onmessage`", () => {
     it("if `TableUpdated` type", () => {
       component.instance().onmessage(TableUpdated);
-      const table = component
-        .update()
-        .state()
-        .data.find(o => o.id === TableUpdated.tableId);
+      const d = component.update().state().data;
+      const table = d.find(o => o.id === TableUpdated.tableId);
 
       expect(table.id).toEqual(TableUpdated.tableId);
       expect(table.open).toEqual(TableUpdated.table.open);

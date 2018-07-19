@@ -1,13 +1,14 @@
 import React from "react";
 
 import LiveCasinoList from "../../components/LiveCasino/LiveCasinoList";
+import LiveCasinoListSkeleton from "../../components/LiveCasino/LiveCasinoListSkeleton";
 import lobbyWS from "./ws";
 
 export default class LiveCasinoContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      loading: true,
       error: false,
       data: [],
     };
@@ -16,6 +17,7 @@ export default class LiveCasinoContainer extends React.Component {
   processType(data) {
     const i = this.state.data.findIndex(e => e.id === data.tableId);
     const exists = i !== -1;
+
     const updateState = prop => {
       if (exists) {
         const d = [...this.state.data];
@@ -23,6 +25,7 @@ export default class LiveCasinoContainer extends React.Component {
         this.setState({ ...this.state, data: d });
       }
     };
+
     const types = {
       State: () => {
         const tables = Object.keys(data.tables)
@@ -31,7 +34,7 @@ export default class LiveCasinoContainer extends React.Component {
             id: k,
           }))
           .filter(table => table.open && table.display === "on_mobile");
-        this.setState({ ...this.state, data: tables });
+        this.setState({ ...this.state, data: tables, loading: false });
       },
 
       TableAssigned: () => {
@@ -43,7 +46,7 @@ export default class LiveCasinoContainer extends React.Component {
       },
 
       TableUnassigned: () =>
-        this.setState({ data: this.state.data.splice(i, 1) }),
+        this.setState({ ...this.state, data: this.state.data.splice(i, 1) }),
 
       TableUpdated: () => {
         const d = [...this.state.data];
@@ -68,12 +71,10 @@ export default class LiveCasinoContainer extends React.Component {
   }
 
   onmessage(data) {
-    // console.log("onmessage data", data, this.state);
     this.processType(data);
   }
 
   componentDidMount() {
-    this.setState({ ...this.state, loading: true });
     // connect to Websockets and listen for updates
     const ws = lobbyWS.connect();
     ws.onopen = e => console.log("ws onopen");
@@ -82,20 +83,48 @@ export default class LiveCasinoContainer extends React.Component {
   }
 
   render() {
-    const { data } = this.state;
+    const { data, loading } = this.state;
+    const lists = [
+      {
+        title: "Roulette Games",
+        type: "Roulette",
+        data: data.filter(table => table.gameType === "Roulette"),
+      },
+      {
+        title: "Blackjack Games",
+        type: "Blackjack",
+        data: data.filter(table => table.gameType === "Blackjack"),
+      },
+    ];
 
     return (
       <React.Fragment>
-        <LiveCasinoList
-          title="Roulette Games"
-          type="Roulette"
-          data={data.filter(table => table.gameType === "Roulette")}
-        />
-        <LiveCasinoList
-          title="Roulette Games"
-          type="Blackjack"
-          data={data.filter(table => table.gameType === "Blackjack")}
-        />
+        {loading ? (
+          <React.Fragment>
+            {lists.map(o => (
+              <LiveCasinoListSkeleton
+                key={o.type}
+                cardWidth={320}
+                cardHeight={340}
+                colorLow="#eff6f6"
+                colorHi="#ffffff"
+                preserveAspectRatio="none"
+                className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+              />
+            ))}
+          </React.Fragment>
+        ) : (
+          <React.Fragment>
+            {lists.map(o => (
+              <LiveCasinoList
+                key={o.type}
+                title={o.title}
+                type={o.type}
+                data={o.data}
+              />
+            ))}
+          </React.Fragment>
+        )}
       </React.Fragment>
     );
   }

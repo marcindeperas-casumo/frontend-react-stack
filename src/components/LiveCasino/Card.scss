@@ -1,52 +1,52 @@
-@import 'cudl-compile';
+@import "cudl-compile";
 @include cudl-prevent-compile(cudl-sass-colors);
-@import 'cudl-colors';
+@import "cudl-colors";
 @include cudl-reset-compile(cudl-sass-colors);
-@import 'cudl-typography';
+@import "cudl-typography";
 
 .c-card {
+  background-color: #fff;
+  position: relative;
+  width: 320px;
+
+  &__img {
+    align-items: flex-end;
+    background-size: cover;
+    border-radius: 8px;
+    display: flex;
+    height: 200px;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  &__body {
+    display: flex;
+  }
+
+  &__info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__footer {
+    border-top: 1px solid lighten(cudl-palette(grey), 25%);
+  }
+
+  &__players {
+    flex-grow: 1;
+  }
+
+  &__players-number {
+    padding-right: 4px;
     position: relative;
-    width: 90vw;
-    background-color: #fff;
-    
-    &__img {
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        border-radius: 8px;
-        min-height: 220px;
-        overflow: hidden;
-        background-size: cover;
-    }
-
-    &__body {
-        display: flex;
-    }
-
-    &__info {
-        flex: 1;
-        min-width: 0;
-    }
-
-    &__title {
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-    }
-
-    &__footer {
-        border-top: 1px solid lighten(cudl-palette(grey), 25%);
-    }
-
-    &__players {
-        flex-grow: 1;
-    }
-
-    &__players-number {
-        position: relative;
-        top: 1px;
-        padding-right: 4px;
-    }
+    top: 1px;
+  }
 }
 
 // .c-card__jackpot {

@@ -34,7 +34,7 @@ const LiveCasinoList = ({ title, type, data, ...props }) => (
       ) : (
         data.map(o => (
           <Card
-            className="u-padding-right--small@mobile"
+            className="u-padding-right--small"
             key={o.id}
             imgSrc={getImg(o)}
             overlayData={getOverlayData(o, type)}
