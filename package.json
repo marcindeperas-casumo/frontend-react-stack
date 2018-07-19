@@ -160,7 +160,7 @@
   "devDependencies": {},
   "proxy": {
     "/api": {
-      "target": "http://sumo-proxy/"
+      "target": "http://mobile.dev/"
     }
   }
 }
