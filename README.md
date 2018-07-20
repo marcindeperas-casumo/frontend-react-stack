@@ -30,9 +30,11 @@ source files is made, the target app will be reloaded.
 Whilst developing CUDL components should generally be done within the storybook environment it can be useful to
 see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
 
-- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components`
-- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the PoC
-- Any changes you make to the component will now flow through to the PoC
+- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components` then run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
+- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack
+- In the react-stack find the file that consumes the component you've linked and append /dist to its path.
+- Should Flow complain add `// $FlowFixMe` on the line above so webpack compiles.
+- Now any changes you make to the component will now flow through to the PoC
 
 ### Deploy to production
 
