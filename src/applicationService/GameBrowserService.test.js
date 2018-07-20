@@ -188,7 +188,7 @@ describe("Game Browser Service", () => {
       });
     });
 
-    test("should call gamesByProviderGameNames with the player's latest payed games", async () => {
+    test("should call gamesByProviderGameNames with the player's latest played games", async () => {
       await service.latestPlayedGames();
 
       expect(gameBrowserClientMock.gamesByProviderGameNames).toBeCalledWith(
