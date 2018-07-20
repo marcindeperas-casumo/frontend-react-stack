@@ -3,10 +3,13 @@ import React from "react";
 import classNames from "classnames";
 
 import "./Card.scss";
+import LazyImage from "./LazyImage";
 
 import Heading from "@casumo/cmp-heading";
 import Button from "@casumo/cmp-button";
 import { AvatarHeadIcon } from "@casumo/cmp-icons";
+
+import { decodeString } from "../utils";
 
 type Props = {
   // Additional css classes
@@ -35,19 +38,31 @@ const Card = ({
   className,
   overlayData,
   imgSrc,
-  title,
   betLimits,
   players,
   providerLogoSrc,
   disabled,
+
+  name,
+  logoBackground,
+  slug,
+  logo,
+  inMaintenanceMode,
   ...props
 }: Props) => {
   const componentClasses = classNames("c-card", className);
-  const styleImg = { backgroundImage: `url("${imgSrc}")` };
+
+  const title = decodeString(name);
 
   return (
-    <div className={componentClasses} {...props}>
-      <div className="c-card__img" style={styleImg}>
+    <div className={componentClasses}>
+      <div className="c-card__top">
+        <LazyImage
+          className="c-card__img"
+          src={logoBackground}
+          alt={title}
+          dpr={3}
+        />
         {overlayData}
       </div>
 

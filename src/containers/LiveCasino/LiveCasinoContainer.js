@@ -71,6 +71,7 @@ export default class LiveCasinoContainer extends React.Component {
   }
 
   onmessage(data) {
+    console.log("onmessage", data);
     this.processType(data);
   }
 
@@ -89,11 +90,6 @@ export default class LiveCasinoContainer extends React.Component {
         title: "Roulette Games",
         type: "Roulette",
         data: data.filter(table => table.gameType === "Roulette"),
-      },
-      {
-        title: "Blackjack Games",
-        type: "Blackjack",
-        data: data.filter(table => table.gameType === "Blackjack"),
       },
     ];
 

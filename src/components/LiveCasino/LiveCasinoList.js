@@ -3,7 +3,7 @@ import React from "react";
 import Heading from "@casumo/cmp-heading";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 
-import Card from "./Card";
+import Card from "../Card";
 import LiveCasinoTableData from "./LiveCasinoTableData";
 
 // TODO get placeholder if no image
@@ -35,7 +35,7 @@ const LiveCasinoList = ({ title, type, data, ...props }) => (
       ) : (
         data.map(o => (
           <Card
-            className="u-padding-right--small"
+            className="u-margin-right"
             key={o.id}
             imgSrc={getImg(o)}
             overlayData={getOverlayData(o, type)}

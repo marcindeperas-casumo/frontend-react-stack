@@ -9,14 +9,14 @@
   position: relative;
   width: 320px;
 
-  &__img {
-    align-items: flex-end;
-    background-size: cover;
-    border-radius: 8px;
-    display: flex;
+  &__top {
     height: 200px;
-    justify-content: center;
-    overflow: hidden;
+  }
+
+  &__img {
+    border-radius: 8px;
+    min-width: 100%;
+    position: absolute;
   }
 
   &__body {

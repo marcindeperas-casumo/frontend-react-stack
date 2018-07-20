@@ -4,7 +4,6 @@ import {
   REACT_APP_EVENT_ON_LOGIN,
 } from "./constants";
 import GamesLists from "./containers/GamesLists";
-import LiveCasino from "./containers/LiveCasino";
 import CommonService from "./applicationService/CommonService";
 import GameBrowserService from "./applicationService/GameBrowserService";
 import SessionService from "./applicationService/SessionService";
@@ -12,7 +11,6 @@ import legacyBridge from "./legacyBridge";
 
 const initialPortalsState = () => ({
   gamesLists: false,
-  liveCasino: false,
 });
 
 export default class App extends React.Component {
@@ -49,32 +47,19 @@ export default class App extends React.Component {
 
     legacyBridge.on("games-top", data => {
       this.setState({
-        liveCasino: true,
+        gamesLists: true,
       });
     });
   }
 
   render() {
-    const {
-      gamesLists,
-      liveCasino,
-      handshakeLoading,
-      isAuthenticated,
-    } = this.state;
+    const { gamesLists, handshakeLoading, isAuthenticated } = this.state;
 
     const renderGamesLists = () =>
       (handshakeLoading || isAuthenticated) && (
         <GamesLists showSkeleton={handshakeLoading} />
       );
 
-    const renderLiveCasino = () =>
-      (handshakeLoading || isAuthenticated) && <LiveCasino />;
-
-    return (
-      <div>
-        {gamesLists && renderGamesLists()}
-        {liveCasino && renderLiveCasino()}
-      </div>
-    );
+    return <div>{gamesLists && renderGamesLists()}</div>;
   }
 }
