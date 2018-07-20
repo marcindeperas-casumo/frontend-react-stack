@@ -58,7 +58,7 @@ export const GameBrowserServiceFactory = ({
     });
   };
 
-  const topListDefForId = async ({ id }) => {
+  const gameListMetaDataById = async ({ id }) => {
     const handshake = await cachedHandshake();
     return handshake.gamesLists[id];
   };
@@ -73,8 +73,10 @@ export const GameBrowserServiceFactory = ({
       return null;
     }
 
-    const { variants } = await topListDefForId({ id: "allGames" });
-    const { id, title } = await topListDefForId({ id: "latestPlayedGames" });
+    const { variants } = await gameListMetaDataById({ id: "allGames" });
+    const { id, title } = await gameListMetaDataById({
+      id: "latestPlayedGames",
+    });
 
     const games = await gamesByProviderGameNames({
       variant,
