@@ -11,7 +11,7 @@ type Props = {
   cornerRadius?: string,
 };
 
-const GameListSkeletonCards = ({
+const GameListSkeleton = ({
   items = 8,
   itemWidth,
   itemRatio = 120 / 100,
@@ -109,4 +109,4 @@ const GameListSkeletonCards = ({
   );
 };
 
-export default GameListSkeletonCards;
+export default GameListSkeleton;
