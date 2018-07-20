@@ -39,7 +39,7 @@ export const GameBrowserClientFactory = ({ http }) => {
     }) =>
       http.get(
         `gamebrowser/games-by-provider-game-names/${platform}/${country}?${stringify(
-          { hash, variant, providerGameNames: providerGameNames },
+          { hash, variant, providerGameNames },
           { arrayFormat: "brackets" }
         )}`
       ),
