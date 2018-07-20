@@ -25,6 +25,15 @@ source files is made, the target app will be reloaded.
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
 
+### Linking Dependencies
+
+Whilst developing CUDL components should generally be done within the storybook environment it can be useful to
+see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
+
+- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components`
+- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the PoC
+- Any changes you make to the component will now flow through to the PoC
+
 ### Deploy to production
 
 ```sh
