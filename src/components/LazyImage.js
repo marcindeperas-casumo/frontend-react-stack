@@ -18,7 +18,7 @@ class StatefulResponsiveImage extends React.Component {
         mark={null}
         dpr={1}
         imgixOpts={{
-          w: 19,
+          w: 5,
           blur: 2000,
         }}
       />
