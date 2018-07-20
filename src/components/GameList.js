@@ -1,6 +1,7 @@
 import React from "react";
 import Heading from "@casumo/cmp-heading";
 import ScrollingContainer from "@casumo/cmp-scrollable";
+
 import GameTile from "./GameTile";
 import Card from "./Card";
 
@@ -23,7 +24,7 @@ const renderEmptyList = () => <div>EMPTY_LIST</div>;
 const renderList = ({ id, games = [] }) =>
   games.map(gameCardsIds.includes(id) ? renderGameCard : renderGameTile);
 
-const ListContainer = ({ id, title, games }) => (
+const GameList = ({ id, title, games }) => (
   <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
     <Heading
       className="u-padding-bottom--small u-padding-bottom--normal@tablet u-padding-bottom--normal@desktop
@@ -38,4 +39,4 @@ const ListContainer = ({ id, title, games }) => (
   </div>
 );
 
-export default ListContainer;
+export default GameList;

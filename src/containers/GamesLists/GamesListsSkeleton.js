@@ -1,14 +1,24 @@
 import React from "react";
-import SkeletonGameTiles from "../../components/SkeletonGameTiles";
+import GameListSkeleton from "../../components/GameListSkeleton";
+
+const mockSkeleton = [
+  { id: "lastPlayedGames", display: "tiles" },
+  { id: "popularGames", display: "tiles" },
+  { id: "liveCasinoGames", display: "cards" },
+  { id: "newGames", display: "tiles" },
+  { id: "casumoFavouriteGames", display: "tiles" },
+  { id: "casumoJackpotGames", display: "tiles" },
+];
 
 export default () => (
   <div>
-    {Array.from(Array(4).keys()).map(i => (
-      <SkeletonGameTiles
-        key={i}
-        tileWidth={175}
-        tileGap={10}
-        tileRadius={8}
+    {mockSkeleton.map(({ id, display }) => (
+      <GameListSkeleton
+        key={id}
+        itemWidth={display === "cards" ? 345 : 175}
+        itemGap={10}
+        cornerRadius={8}
+        display={display}
         preserveAspectRatio="xMinYMin"
         colorLow="#eff6f6"
         colorHi="#ffffff"

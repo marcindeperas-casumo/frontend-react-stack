@@ -1,7 +1,7 @@
 import React from "react";
 import GameBrowserService from "../../applicationService/GameBrowserService";
-import ListContainer from "../../components/ListContainer";
-import { identity, trace } from "../../utils";
+import GameList from "../../components/GameList";
+import { identity } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 export default class GamesListsContainer extends React.Component {
@@ -48,7 +48,7 @@ export default class GamesListsContainer extends React.Component {
     return (
       <React.Fragment>
         {loading && <GamesListsSkeleton />}
-        {!loading && data.map(x => <ListContainer key={x.title} {...x} />)}
+        {!loading && data.map(x => <GameList key={x.title} {...x} />)}
       </React.Fragment>
     );
   }

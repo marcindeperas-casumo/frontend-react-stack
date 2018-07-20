@@ -60,6 +60,7 @@ const Card = ({
         <LazyImage
           className="c-card__img"
           src={logoBackground}
+          mark={logo}
           alt={title}
           dpr={3}
         />

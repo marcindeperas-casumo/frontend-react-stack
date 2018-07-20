@@ -5,17 +5,17 @@
 @import "cudl-typography";
 
 .c-card {
-  background-color: #fff;
   position: relative;
   width: 320px;
 
   &__top {
+    background-color: lighten(cudl-palette(grey), 25%);
     height: 200px;
   }
 
   &__img {
     border-radius: 8px;
-    min-width: 100%;
+    max-width: 100%;
     position: absolute;
   }
 
