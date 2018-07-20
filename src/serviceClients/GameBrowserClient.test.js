@@ -27,4 +27,10 @@ describe("GameBrowserClientFactory", () => {
       foo: "bar",
     });
   });
+
+  test("should call http service with the playerId", async () => {
+    await client.latestPlayedGames({ playerId: "123" });
+
+    expect(httpService.get).toBeCalledWith(expect.stringContaining("/123"));
+  });
 });

@@ -1,7 +1,7 @@
 import React from "react";
-import ListContainer from "../../components/ListContainer";
 import GameBrowserService from "../../applicationService/GameBrowserService";
-import { trace } from "../../utils";
+import ListContainer from "../../components/ListContainer";
+import { identity, trace } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 export default class GamesListsContainer extends React.Component {
@@ -16,8 +16,15 @@ export default class GamesListsContainer extends React.Component {
   componentDidMount() {
     this.setState({ ...this.state, loading: true });
 
-    GameBrowserService.allTopLists()
-      .then(trace)
+    Promise.all([
+      GameBrowserService.latestPlayedGames(),
+      GameBrowserService.allTopLists(),
+    ])
+      .then(([latestPlayedGames, allTopLists]) => {
+        // `latestPlayedGames` could be `null`, in case the player hasn't played any
+        // game yet. That is why we need to run a identity filter.
+        return [latestPlayedGames, ...allTopLists].filter(identity);
+      })
       .then(data => {
         this.setState({
           ...this.state,

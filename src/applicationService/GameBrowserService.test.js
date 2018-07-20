@@ -1,6 +1,8 @@
 import gameBrowserClientMock from "../serviceClients/GameBrowserClient";
+import sessionServiceMock from "../applicationService/SessionService";
 import { GameBrowserServiceFactory } from "./GameBrowserService";
 jest.mock("../serviceClients/GameBrowserClient");
+jest.mock("../applicationService/SessionService");
 
 describe("Game Browser Service", () => {
   let service;
@@ -8,6 +10,7 @@ describe("Game Browser Service", () => {
   beforeEach(() => {
     service = GameBrowserServiceFactory({
       gameBrowserClient: gameBrowserClientMock,
+      sessionService: sessionServiceMock,
     });
 
     jest.resetAllMocks();
@@ -128,6 +131,91 @@ describe("Game Browser Service", () => {
     test("should not blow up if games is not an array", async () => {
       gameBrowserClientMock.gamesLists.mockResolvedValue({});
       await service.allTopLists();
+    });
+  });
+
+  describe("latestPlayedGames", () => {
+    beforeEach(() => {
+      gameBrowserClientMock.handshake.mockResolvedValue({
+        gamesLists: {
+          "top-list-1": {
+            id: "top-list-1",
+            title: "Top List 1",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+          allGames: {
+            id: "allGames",
+            title: "allGames",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+          latestPlayedGames: {
+            id: "latestPlayedGames",
+            title: "Latest Played Games",
+            variants: {
+              default: {
+                totalGames: 10,
+                hash: "top-list-hash-default-variant",
+              },
+              guests: { totalGames: 5, hash: "top-list-hash-guests-variant" },
+            },
+          },
+        },
+        topListIds: ["top-list-1", "latestPlayedGames"],
+      });
+
+      gameBrowserClientMock.latestPlayedGames.mockResolvedValue([
+        { gameName: "game-id-1" },
+      ]);
+
+      gameBrowserClientMock.gamesByProviderGameNames.mockResolvedValue({
+        games: [
+          {
+            name: "Fake Game",
+          },
+        ],
+      });
+    });
+
+    test("should call gamesByProviderGameNames with the player's latest played games", async () => {
+      await service.latestPlayedGames();
+
+      expect(gameBrowserClientMock.gamesByProviderGameNames).toBeCalledWith(
+        expect.objectContaining({
+          providerGameNames: ["game-id-1"],
+        })
+      );
+    });
+
+    test("should return the latest played games", async () => {
+      expect(await service.latestPlayedGames()).toEqual({
+        id: "latestPlayedGames",
+        title: "Latest Played Games",
+        games: [
+          {
+            name: "Fake Game",
+          },
+        ],
+      });
+    });
+
+    test("should not call gamesByProviderGameNames if player has no latest played games", async () => {
+      gameBrowserClientMock.latestPlayedGames.mockResolvedValue([]);
+      await service.latestPlayedGames();
+      expect(
+        gameBrowserClientMock.gamesByProviderGameNames
+      ).not.toHaveBeenCalled();
     });
   });
 });
