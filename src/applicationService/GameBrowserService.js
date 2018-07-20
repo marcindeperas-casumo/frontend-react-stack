@@ -89,6 +89,12 @@ export const GameBrowserServiceFactory = ({
     return { games: games.games, id, title };
   };
 
+  const hasSomeGames = compose(
+    i => i > 0,
+    property("length"),
+    property("games")
+  );
+
   const allTopLists = async ({ variant = "default" } = {}) => {
     const handshake = await cachedHandshake();
 
@@ -108,13 +114,7 @@ export const GameBrowserServiceFactory = ({
         return { games: games.games, id, title };
       });
 
-    return (await Promise.all([...gameListsRequests])).filter(
-      compose(
-        i => i > 0,
-        property("length"),
-        property("games")
-      )
-    );
+    return (await Promise.all(gameListsRequests)).filter(hasSomeGames);
   };
 
   return {
