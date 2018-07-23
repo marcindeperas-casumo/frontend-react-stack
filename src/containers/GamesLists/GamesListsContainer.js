@@ -1,8 +1,16 @@
 import React from "react";
-import GameBrowserService from "../../applicationService/GameBrowserService";
+import GameBrowserService, {
+  gameInMaintenanceMode,
+} from "../../applicationService/GameBrowserService";
 import ListContainer from "../../components/ListContainer";
-import { identity, trace } from "../../utils";
+import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
+
+const gamesNotInMaintenance = compose(
+  not,
+  gameInMaintenanceMode
+);
+const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -45,10 +53,23 @@ export default class GamesListsContainer extends React.Component {
   render() {
     const { data, loading } = this.state;
 
+    // Filter out games in maintenance. Unless they are the last played games
+    // list.
+    const filteredList = data.map(gameList => {
+      if (gameList.id === "latestPlayedGames") {
+        return gameList;
+      }
+
+      return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
+    });
+
     return (
       <React.Fragment>
         {loading && <GamesListsSkeleton />}
-        {!loading && data.map(x => <ListContainer key={x.title} {...x} />)}
+        {!loading &&
+          filteredList.map(gameList => (
+            <ListContainer key={gameList.title} {...gameList} />
+          ))}
       </React.Fragment>
     );
   }

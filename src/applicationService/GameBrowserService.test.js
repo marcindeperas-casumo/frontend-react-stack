@@ -1,6 +1,10 @@
 import gameBrowserClientMock from "../serviceClients/GameBrowserClient";
 import sessionServiceMock from "../applicationService/SessionService";
-import { GameBrowserServiceFactory } from "./GameBrowserService";
+import {
+  GameBrowserServiceFactory,
+  gameInMaintenanceMode,
+} from "./GameBrowserService";
+import { compose, not } from "../utils";
 jest.mock("../serviceClients/GameBrowserClient");
 jest.mock("../applicationService/SessionService");
 
@@ -216,6 +220,27 @@ describe("Game Browser Service", () => {
       expect(
         gameBrowserClientMock.gamesByProviderGameNames
       ).not.toHaveBeenCalled();
+    });
+  });
+
+  describe("gameInMaintenanceMode()", () => {
+    test("should filter games in maintenance mode", () => {
+      expect(
+        [
+          {
+            name: "game 1",
+            inMaintenanceMode: true,
+          },
+          {
+            name: "game 2",
+            inMaintenanceMode: false,
+          },
+        ].filter(gameInMaintenanceMode)
+      ).toEqual([
+        expect.objectContaining({
+          name: "game 1",
+        }),
+      ]);
     });
   });
 });
