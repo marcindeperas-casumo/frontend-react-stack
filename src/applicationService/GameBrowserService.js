@@ -10,6 +10,7 @@ import GameBrowserClient from "../serviceClients/GameBrowserClient";
 import SessionService from "./SessionService";
 
 const countryAndPlatform = ({ country, platform }) => ({ country, platform });
+export const gameInMaintenanceMode = game => Boolean(game.inMaintenanceMode);
 
 export const GameBrowserServiceFactory = ({
   gameBrowserClient,

@@ -9,7 +9,7 @@
   width: 320px;
 
   &__top {
-    background-color: lighten(cudl-palette(grey), 25%);
+    background-color: cudl-palette(grey, light-1);
     height: 200px;
   }
 
@@ -35,7 +35,7 @@
   }
 
   &__footer {
-    border-top: 1px solid lighten(cudl-palette(grey), 25%);
+    border-top: 1px solid cudl-palette(grey, light-1);
   }
 
   &__players {
