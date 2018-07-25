@@ -49,4 +49,22 @@ describe("SessionService", () => {
       expect(country).toEqual("FOO");
     });
   });
+
+  describe("playerId", () => {
+    test("should return the player id if the session is authenticated", async () => {
+      commonServiceMock.handshake.mockResolvedValue(authenticatedResponse);
+
+      const playerId = await service.playerId();
+
+      expect(playerId).toBe("b41053a0-79d5-11e2-90cd-005056bf3256");
+    });
+
+    test("should return null if the session is not authenticated", async () => {
+      commonServiceMock.handshake.mockResolvedValue(unauthenticatedResponse);
+
+      const playerId = await service.playerId();
+
+      expect(playerId).toBeNull();
+    });
+  });
 });
