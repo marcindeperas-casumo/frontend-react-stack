@@ -16,7 +16,7 @@ const renderImage = o => {
     <ResponsiveImage
       className="c-card__img-pic"
       src={src}
-      imgixOpts={{ w: 320, h: 200, fit: "clamp" }}
+      imgixOpts={{ w: 320, h: 180, fit: "clamp" }}
       mark={o.logo}
     />
   );
@@ -48,6 +48,7 @@ const GameList = ({ id, title, games }) => (
               title={decodeString(o.name)}
               players={o.lobby && o.lobby.players}
               cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
+              betLimits={o.lobby && o.lobby.betLimits["EUR"]}
             />
           ))
         : games.map(o => {

@@ -3,17 +3,18 @@ import processType from "./LiveCasinoProcessType";
 const testURL = window.location.hostname.concat("/api/lobby/live");
 const testConn = `wss://casumo0000000001:test123@${testURL}`;
 
-const getRandom = (min, max) => Math.random() * (max - min) + min;
-
 const defaultOptions = {
+  // attempt to connect immediately upon instantiation
   connectOnOpen: true,
+  // attempt to reconnect when on error
   reconnectOnError: false,
+  // exponential back-off configuration for auto-reconnect
+  reconnectDecay: 1.4,
   reconnectInterval: 1000,
-  reconnectDelay: 1.5,
-  maxReconnectInterval: 30000,
+  reconnectIntervalMax: 3000,
+  // maximum reconnection attempts to make, infinite if null
   maxReconnectAttempts: null,
-  timeoutInterval: 2000,
-  randomRatio: 3,
+  // called clean close should reconnect or not
   reconnectOnCleanClose: false,
 };
 
@@ -91,18 +92,15 @@ class LiveCasinoClient {
   }
 
   _getTimeout() {
-    let timeout =
-      this.options.reconnectInterval *
-      Math.pow(this.options.reconnectDecay, this._reconnectAttempts);
+    const {
+      reconnectInterval,
+      reconnectDecay,
+      reconnectIntervalMax,
+    } = this.options;
 
-    timeout =
-      timeout > this.options.maxReconnectInterval
-        ? this.options.maxReconnectInterval
-        : timeout;
-
-    return this.options.randomRatio
-      ? getRandom(timeout / this.options.randomRatio, timeout)
-      : timeout;
+    const timeout =
+      reconnectInterval * Math.pow(reconnectDecay, this.reconnectAttempts);
+    return timeout > reconnectIntervalMax ? reconnectIntervalMax : timeout;
   }
 
   _syncState() {
