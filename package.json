@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@casumo/cmp-button": "^1.1.0",
     "@casumo/cmp-heading": "1.1.0",
     "@casumo/cmp-icons": "1.1.0",
     "@casumo/cmp-responsive-image": "1.1.3",

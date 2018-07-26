@@ -1,28 +1,33 @@
 import React from "react";
 import Heading from "@casumo/cmp-heading";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 
+import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
+import legacyBridge from "../legacyBridge";
+import { decodeString } from "../utils";
 import GameTile from "./GameTile";
 import Card from "./Card";
 
-// the ids to display games as Cards
-const gameCardsIds = ["liveCasinoGames"];
+const renderImage = o => {
+  const src =
+    (o.lobby && o.lobby.videoSnapshot.thumbnails["L"]) || o.logoBackground;
+  return (
+    <ResponsiveImage
+      className="c-card__img-pic"
+      src={src}
+      imgixOpts={{ w: 320, h: 200, fit: "clamp" }}
+      mark={o.logo}
+    />
+  );
+};
 
-const renderGameTile = game => (
-  <GameTile
-    className="c-scrollable-game t-border-r--8"
-    key={game.slug}
-    {...game}
-  />
-);
-
-const renderGameCard = game => (
-  <Card className="u-margin-right" key={game.slug} {...game} />
-);
-
-const renderEmptyList = () => <div>EMPTY_LIST</div>;
-const renderList = ({ id, games = [] }) =>
-  games.map(gameCardsIds.includes(id) ? renderGameCard : renderGameTile);
+const emitLaunchGame = slug => {
+  legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
+    slug,
+    playForFun: false,
+  });
+};
 
 const GameList = ({ id, title, games }) => (
   <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
@@ -34,7 +39,26 @@ const GameList = ({ id, title, games }) => (
       size="uno"
     />
     <ScrollingContainer padded>
-      {games.length === 0 ? renderEmptyList() : renderList({ id, games })}
+      {id === "liveCasinoGames"
+        ? games.map(o => (
+            <Card
+              className="u-margin-right"
+              key={o.slug}
+              image={renderImage(o)}
+              title={decodeString(o.name)}
+              players={o.lobby && o.lobby.players}
+              cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
+            />
+          ))
+        : games.map(o => {
+            return (
+              <GameTile
+                className="c-scrollable-game t-border-r--8"
+                key={o.slug}
+                {...o}
+              />
+            );
+          })}
     </ScrollingContainer>
   </div>
 );
