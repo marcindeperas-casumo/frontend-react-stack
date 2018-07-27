@@ -82,7 +82,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'"
+    "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
+    "storybook": "start-storybook -p 6006"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -154,7 +155,12 @@
       }
     }
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "@storybook/react": "^3.4.8",
+    "@storybook/addon-actions": "^3.4.8",
+    "@storybook/addon-links": "^3.4.8",
+    "@storybook/addons": "^3.4.8"
+  },
   "proxy": {
     "/api": {
       "target": "http://mobile.dev/"
