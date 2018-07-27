@@ -12,14 +12,7 @@ import Card from "./Card";
 const renderImage = o => {
   const src =
     (o.lobby && o.lobby.videoSnapshot.thumbnails["L"]) || o.logoBackground;
-  return (
-    <ResponsiveImage
-      className="c-card__img-pic"
-      src={src}
-      imgixOpts={{ w: 320, h: 180, fit: "clamp" }}
-      mark={o.logo}
-    />
-  );
+  return <ResponsiveImage className="c-card__img-pic" src={src} />;
 };
 
 const emitLaunchGame = slug => {
@@ -42,7 +35,7 @@ const GameList = ({ id, title, games }) => (
       {id === "liveCasinoGames"
         ? games.map(o => (
             <Card
-              className="u-margin-right"
+              className="u-margin-right--small"
               key={o.slug}
               image={renderImage(o)}
               title={decodeString(o.name)}

@@ -14,18 +14,33 @@ const gamesNotInMaintenance = compose(
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
+const liveCasinoLobbyGames = (games, lobby) => {
+  console.log("games", games);
+  const list = [...games];
+  const lobbyData = list.map(o => {
+    if (lobby.length) {
+      const t = lobby.find(t => t.id === o.providerGameId);
+      return t ? { ...o, lobby: { ...t } } : o;
+    } else {
+      return o;
+    }
+  });
+  return lobbyData.filter(o => o.lobby);
+};
+
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loading: false,
+      loadingTop: false,
       data: [],
+      loadingLobby: true,
       lobby: [],
     };
   }
 
   componentDidMount() {
-    this.setState({ ...this.state, loading: true });
+    this.setState({ ...this.state, loadingTop: true });
 
     Promise.all([
       GameBrowserService.latestPlayedGames(),
@@ -40,16 +55,18 @@ export default class GamesListsContainer extends React.Component {
         this.setState(
           {
             ...this.state,
-            loading: false,
+            loadingTop: false,
             data,
           },
           this.launchLiveCasinoSocket
         );
       })
+      // we got liveCasinoGames so grab lobby data
+      .then(() => this.launchLiveCasinoSocket)
       .catch(e => {
         this.setState({
           ...this.state,
-          loading: false,
+          loadingTop: false,
           data: [],
         });
         console.error(e);
@@ -62,49 +79,46 @@ export default class GamesListsContainer extends React.Component {
     ws.onmessage = m => {
       const data = ws.processType(this.state.data, m);
       if (data)
-        this.setState({ ...this.state, lobby: data }, () =>
-          console.log("liveCasinoData updated", this.state.lobby)
+        this.setState(
+          {
+            ...this.state,
+            lobby: data,
+            loadingLobby: false,
+          },
+          () => console.log("liveCasino updated", this.state.lobby)
         );
     };
   }
 
   render() {
-    const { data, loading, lobby } = this.state;
+    const { data, loadingTop, loadingLobby, lobby } = this.state;
 
-    // Filter out games in maintenance. Unless they are the last played games
-    // list.
+    // Filter out games in maintenance.
+    // Unless they are the last played games list.
     const filteredList = data.map(gameList => {
       if (gameList.id === "latestPlayedGames") {
         return gameList;
+      }
+      if (gameList.id === "liveCasinoGames") {
+        // grab LiveCasino lobby data with games list
+        const list = { ...gameList };
+        list.games = liveCasinoLobbyGames(list.games, lobby);
+        return list;
       }
 
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
-    // Merge Live Casino data with games list.
-    const mergedList = filteredList.map(gameList => {
-      if (gameList.id === "liveCasinoGames") {
-        const list = { ...gameList };
-        const mergedGames = gameList.games.map(o => {
-          if (lobby.length) {
-            const t = lobby.find(t => t.id === o.providerGameId);
-            return t ? { ...o, lobby: { ...t } } : o;
-          } else {
-            return o;
-          }
-        });
-        list.games = mergedGames;
-        return list;
-      }
-      return gameList;
-    });
-
     return (
       <React.Fragment>
-        {loading && <GamesListsSkeleton />}
-        {!loading &&
-          mergedList.map(gameList => (
-            <GameList key={gameList.title} {...gameList} />
+        {loadingTop && <GamesListsSkeleton />}
+        {!loadingTop &&
+          filteredList.map(gameList => (
+            <GameList
+              key={gameList.title}
+              loadingLobby={loadingLobby}
+              {...gameList}
+            />
           ))}
       </React.Fragment>
     );
