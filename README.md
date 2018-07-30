@@ -22,11 +22,13 @@ source files is made, the target app will be reloaded.
 
 - Make sure you are running [casumo-proxy](https://github.com/Casumo/casumo-frontend-proxy) 2.5.0+
 - Add the following to your [.casumo-proxy-local](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/CustomEnv.md) for casumo-frontend:
-    ```json
-    "reactStackService": {
-        "local": "host.docker.internal:3000"
-    }
-    ```
+
+```json
+"reactStackService": {
+    "local": "host.docker.internal:3000"
+}
+```
+
 - Within the `casumo-frontend` repository run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
@@ -51,4 +53,7 @@ deploy-service mobile-react-stack-poc master
 
 ---
 
-[Project Board](https://github.com/Casumo/Home/projects/91) - [Casumo Frontend Branch](https://github.com/Casumo/casumo-frontend/tree/mobile-react-stack-poc) - [Casumo Engine Branch](https://github.com/Casumo/Casumo-Engine/tree/mobile-react-stack-poc) - [Routing Configuration](https://github.com/Casumo/routing-configuration/compare/master...mobile-react-stack-poc)
+### Resources
+
+- [FAC Business Idea](https://docs.google.com/document/d/1VUJQ2RFFmRxU06dJRsL1vDy2QBPGjQUEJG8kr5qV3eQ/preview)
+- [Project Board](https://github.com/Casumo/Home/projects/91)
