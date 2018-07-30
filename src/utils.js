@@ -118,7 +118,7 @@ export const getBodyTag = () => window.document.getElementsByTagName("body")[0];
 export const getHostElement = id => {
   const el = window.document.getElementById(id);
   if (!el) {
-    console.warn(
+    console.error(
       `Trying to find element with id #${id} but it was not found. Going to fallback on the body tag instead.`
     );
     return getBodyTag();
