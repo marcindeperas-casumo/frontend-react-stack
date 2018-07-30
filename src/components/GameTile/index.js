@@ -1,11 +1,10 @@
 import Heading from "@casumo/cmp-heading";
-import { MoreIcon } from "@casumo/cmp-icons";
+import { MoreIcon, AlertIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import React from "react";
 import { decodeString } from "../../utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
-import TemporaryUnavailable from "./TemporaryUnavailable";
 
 const GameTile = ({
   logoBackground,
@@ -52,7 +51,7 @@ const GameTile = ({
       />
 
       {inMaintenanceMode ? (
-        <TemporaryUnavailable />
+        <AlertIcon className="t-color-white" size="med" />
       ) : (
         <PlayAction launchGame={launchGame} />
       )}
