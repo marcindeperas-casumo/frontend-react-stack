@@ -121,12 +121,16 @@
     ]
   },
   "lint-staged": {
-    "*.{js}": [
+    "*.js": [
       "eslint --fix",
       "git add"
     ],
     "*.{css,scss}": [
       "stylelint --fix",
+      "git add"
+    ],
+    "*.md": [
+      "prettier --parser markdown --write",
       "git add"
     ]
   },

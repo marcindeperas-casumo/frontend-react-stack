@@ -15,7 +15,6 @@ const gamesNotInMaintenance = compose(
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
 const liveCasinoLobbyGames = (games, lobby) => {
-  console.log("games", games);
   const list = [...games];
   const lobbyData = list.map(o => {
     if (lobby.length) {
