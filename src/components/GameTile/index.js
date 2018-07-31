@@ -23,7 +23,7 @@ const GameTile = ({
       "o-ratio--game-tile",
       "c-scrollable-game",
       "t-border-r--8",
-      inMaintenanceMode && "c-game-tile--maintenance"
+      inMaintenanceMode && "t-greyscale"
     )}
     tabIndex={0}
   >
