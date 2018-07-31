@@ -2,14 +2,24 @@ import React from "react";
 import Heading from "@casumo/cmp-heading";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 import GameTile from "./GameTile";
+import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
+import legacyBridge from "../legacyBridge";
 
 const renderGameTile = game => (
   <GameTile
-    className="c-scrollable-game t-border-r--8"
     key={game.slug}
     {...game}
+    launchGame={() => {
+      const { slug } = game;
+
+      legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
+        slug,
+        playForFun: false,
+      });
+    }}
   />
 );
+
 const renderEmptyListOfGames = () => <div>EMPTY_LIST</div>;
 const renderListOfGameTiles = (games = []) => games.map(renderGameTile);
 

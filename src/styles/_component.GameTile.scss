@@ -22,8 +22,7 @@
 }
 
 .c-game-tile__overlay--maintenance {
-  background-color: rgba(cudl-palette(grey), 0.9);
-  justify-content: center;
+  background-color: rgba(cudl-palette(grey, "dark-1"), 0.9);
 }
 
 //stylelint-disable-next-line xi/selector-pattern
