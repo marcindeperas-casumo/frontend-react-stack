@@ -34,7 +34,7 @@ const renderCards = ({ games }) =>
       className="u-margin-right--small"
       key={o.slug}
       image={renderImage(o)}
-      cardData={renderCardData(o.lobby.results)}
+      cardData={o.lobby && renderCardData(o.lobby.results)}
       title={decodeString(o.name)}
       players={o.lobby && o.lobby.players}
       cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}

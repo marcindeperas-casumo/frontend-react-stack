@@ -14,18 +14,13 @@ const gamesNotInMaintenance = compose(
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
-const liveCasinoLobbyGames = (games, lobby) => {
-  const list = [...games];
-  const lobbyData = list.map(o => {
-    if (lobby.length) {
+const liveCasinoLobbyGames = (games, lobby) =>
+  [...games]
+    .map(o => {
       const t = lobby.find(t => t.id === o.providerGameId);
       return t ? { ...o, lobby: { ...t } } : o;
-    } else {
-      return o;
-    }
-  });
-  return lobbyData.filter(o => o.lobby);
-};
+    })
+    .filter(o => o.lobby);
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -94,7 +89,7 @@ export default class GamesListsContainer extends React.Component {
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
-      if (gameList.id === "liveCasinoGames") {
+      if (lobby.length !== 0 && gameList.id === "liveCasinoGames") {
         // grab LiveCasino lobby data with games list
         const list = { ...gameList };
         list.games = liveCasinoLobbyGames(list.games, lobby);
