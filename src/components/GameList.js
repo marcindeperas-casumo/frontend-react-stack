@@ -56,7 +56,7 @@ const renderList = ({ display, games }) => (
 const renderSkeleton = ({ display }) => (
   <GameListSkeleton
     itemWidth={display === "cards" ? 336 : 180}
-    itemRatio={display === "cards" ? 0.96 : 1.2}
+    itemRatio={display === "cards" ? 0.92 : 1.2}
     itemGap={display === "cards" ? 16 : 8}
     display={display}
     title={false}
