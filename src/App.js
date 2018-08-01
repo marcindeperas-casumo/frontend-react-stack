@@ -52,14 +52,17 @@ export default class App extends React.Component {
     });
   }
 
-  render() {
-    const { gamesLists, handshakeLoading, isAuthenticated } = this.state;
-
-    const renderGamesLists = () =>
+  renderGamesLists() {
+    const { handshakeLoading, isAuthenticated } = this.state;
+    return (
       (handshakeLoading || isAuthenticated) && (
         <GamesLists showSkeleton={handshakeLoading} />
-      );
+      )
+    );
+  }
 
-    return <div>{gamesLists && renderGamesLists()}</div>;
+  render() {
+    const { gamesLists } = this.state;
+    return <div>{gamesLists && this.renderGamesLists()}</div>;
   }
 }
