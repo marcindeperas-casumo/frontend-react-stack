@@ -11,6 +11,7 @@ import { decodeString } from "../utils";
 import GameTile from "./GameTile";
 import Matcher from "./Matcher";
 import CardData from "./CardData";
+import GameListSkeleton from "./GameListSkeleton";
 
 const renderImage = o => {
   const src =
@@ -46,12 +47,28 @@ const renderTiles = ({ games }) =>
     <GameTile className="c-scrollable-game t-border-r--8" key={o.slug} {...o} />
   ));
 
+const renderSkeleton = ({ display }) => (
+  <GameListSkeleton
+    itemWidth={display === "cards" ? 336 : 180}
+    itemRatio={display === "cards" ? 0.96 : 1.2}
+    itemGap={display === "cards" ? 16 : 8}
+    display={display}
+    title={false}
+    preserveAspectRatio="xMinYMin"
+    colorLow="#eff6f6"
+    colorHi="#ffffff"
+    className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop
+    u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+  />
+);
+
 const CardsOrTiles = props => (
   <Matcher
-    getKey={({ display }) => display}
+    getKey={({ display, games }) => (games.length ? display : "loading")}
     matchers={{
       cards: renderCards,
       tiles: renderTiles,
+      loading: renderSkeleton,
     }}
     {...props}
   />

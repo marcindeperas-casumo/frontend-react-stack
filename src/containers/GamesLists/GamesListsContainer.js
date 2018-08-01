@@ -5,8 +5,8 @@ import GameBrowserService, {
 import GameList from "../../components/GameList";
 import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
-
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
+import { SKELETON_LIST_MOCK } from "../../constants";
 
 const gamesNotInMaintenance = compose(
   not,
@@ -106,7 +106,8 @@ export default class GamesListsContainer extends React.Component {
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
-    const getDisplay = id => (id === "liveCasinoGames" ? "cards" : "tiles");
+    const getDisplay = id =>
+      SKELETON_LIST_MOCK.find(o => o.id === id).display || "tiles";
 
     return (
       <React.Fragment>

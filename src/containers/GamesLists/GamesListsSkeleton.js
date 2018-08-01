@@ -1,17 +1,10 @@
 import React from "react";
 import GameListSkeleton from "../../components/GameListSkeleton";
-
-const mockSkeleton = [
-  { id: "popularGames", display: "tiles" },
-  { id: "liveCasinoGames", display: "cards" },
-  { id: "newGames", display: "tiles" },
-  { id: "casumoFavouriteGames", display: "tiles" },
-  { id: "casumoJackpotGames", display: "tiles" },
-];
+import { SKELETON_LIST_MOCK } from "../../constants";
 
 const GameListsSkeleton = () => (
   <div>
-    {mockSkeleton.map(({ id, display }) => (
+    {SKELETON_LIST_MOCK.map(({ id, display }) => (
       <GameListSkeleton
         key={id}
         itemWidth={display === "cards" ? 336 : 180}
