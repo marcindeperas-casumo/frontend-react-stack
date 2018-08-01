@@ -31,15 +31,14 @@ export default class GamesListsContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      loadingTop: false,
+      loading: false,
       data: [],
-      loadingLobby: true,
       lobby: [],
     };
   }
 
   componentDidMount() {
-    this.setState({ ...this.state, loadingTop: true });
+    this.setState({ ...this.state, loading: true });
 
     Promise.all([
       GameBrowserService.latestPlayedGames(),
@@ -54,7 +53,7 @@ export default class GamesListsContainer extends React.Component {
         this.setState(
           {
             ...this.state,
-            loadingTop: false,
+            loading: false,
             data,
           },
           this.launchLiveCasinoSocket
@@ -63,7 +62,7 @@ export default class GamesListsContainer extends React.Component {
       .catch(e => {
         this.setState({
           ...this.state,
-          loadingTop: false,
+          loading: false,
           data: [],
         });
         console.error(e);
@@ -80,7 +79,6 @@ export default class GamesListsContainer extends React.Component {
           {
             ...this.state,
             lobby: data,
-            loadingLobby: false,
           },
           () => console.log("liveCasino updated", this.state.lobby)
         );
@@ -88,7 +86,7 @@ export default class GamesListsContainer extends React.Component {
   }
 
   render() {
-    const { data, loadingTop, loadingLobby, lobby } = this.state;
+    const { data, loading, lobby } = this.state;
 
     // Filter out games in maintenance.
     // Unless they are the last played games list.
@@ -111,12 +109,11 @@ export default class GamesListsContainer extends React.Component {
 
     return (
       <React.Fragment>
-        {loadingTop && <GamesListsSkeleton />}
-        {!loadingTop &&
+        {loading && <GamesListsSkeleton />}
+        {!loading &&
           filteredList.map(gameList => (
             <GameList
               key={gameList.title}
-              loadingLobby={loadingLobby}
               display={getDisplay(gameList.id)}
               {...gameList}
             />

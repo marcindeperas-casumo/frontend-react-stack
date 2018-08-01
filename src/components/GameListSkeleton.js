@@ -36,7 +36,7 @@ const GameListSkeleton = ({
         <React.Fragment key={pos}>
           <rect
             x={x}
-            y={itemHeight - (itemHeight - 30)}
+            y={title ? itemHeight - (itemHeight - 30) : 0}
             rx={cornerRadius}
             ry={cornerRadius}
             width={itemWidth}
@@ -101,7 +101,7 @@ const GameListSkeleton = ({
         <rect
           key={pos}
           x={x}
-          y="40"
+          y={title ? 40 : 0}
           rx={cornerRadius}
           ry={cornerRadius}
           width={itemWidth}

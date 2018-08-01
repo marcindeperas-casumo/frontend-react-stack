@@ -47,6 +47,12 @@ const renderTiles = ({ games }) =>
     <GameTile className="c-scrollable-game t-border-r--8" key={o.slug} {...o} />
   ));
 
+const renderList = ({ display, games }) => (
+  <ScrollingContainer padded>
+    <CardsOrTiles display={display} games={games} />
+  </ScrollingContainer>
+);
+
 const renderSkeleton = ({ display }) => (
   <GameListSkeleton
     itemWidth={display === "cards" ? 336 : 180}
@@ -57,36 +63,49 @@ const renderSkeleton = ({ display }) => (
     preserveAspectRatio="xMinYMin"
     colorLow="#eff6f6"
     colorHi="#ffffff"
-    className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop
+    className="u-padding-top--semi@tablet u-padding-top--semi@desktop
     u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
   />
 );
 
 const CardsOrTiles = props => (
   <Matcher
-    getKey={({ display, games }) => (games.length ? display : "loading")}
+    getKey={({ display }) => display}
     matchers={{
       cards: renderCards,
       tiles: renderTiles,
+    }}
+    {...props}
+  />
+);
+
+const LoadingOrList = props => (
+  <Matcher
+    getKey={({ condition }) => condition}
+    matchers={{
+      list: renderList,
       loading: renderSkeleton,
     }}
     {...props}
   />
 );
 
-const GameList = ({ title, games, display }) => (
-  <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
-    <Heading
-      className="u-padding-bottom--small u-padding-bottom--normal@tablet u-padding-bottom--normal@desktop
-      u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
-      text={title}
-      rank={3}
-      size="uno"
-    />
-    <ScrollingContainer padded>
-      <CardsOrTiles display={display} games={games} />
-    </ScrollingContainer>
-  </div>
-);
+const GameList = props => {
+  const { games, title } = props;
+  const loading = games.length ? "list" : "loading";
+  return (
+    <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
+      <Heading
+        className="u-padding-bottom--small u-padding-bottom--normal@tablet u-padding-bottom--normal@desktop
+        u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+        text={title}
+        rank={3}
+        size="uno"
+      />
+
+      <LoadingOrList condition={loading} {...props} />
+    </div>
+  );
+};
 
 export default GameList;
