@@ -60,8 +60,6 @@ export default class GamesListsContainer extends React.Component {
           this.launchLiveCasinoSocket
         );
       })
-      // we got liveCasinoGames so grab lobby data
-      .then(() => this.launchLiveCasinoSocket)
       .catch(e => {
         this.setState({
           ...this.state,
@@ -108,6 +106,8 @@ export default class GamesListsContainer extends React.Component {
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
+    const getDisplay = id => (id === "liveCasinoGames" ? "cards" : "tiles");
+
     return (
       <React.Fragment>
         {loadingTop && <GamesListsSkeleton />}
@@ -116,6 +116,7 @@ export default class GamesListsContainer extends React.Component {
             <GameList
               key={gameList.title}
               loadingLobby={loadingLobby}
+              display={getDisplay(gameList.id)}
               {...gameList}
             />
           ))}

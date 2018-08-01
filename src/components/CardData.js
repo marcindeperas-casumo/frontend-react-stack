@@ -14,38 +14,70 @@ type Props = {
 };
 
 const numbers = {
-    red: [
-        "1", "3", "5", "7", "9", "12", "14", "16", "18",
-        "19", "21", "23", "25", "27", "30", "32", "34", "36"
-    ],
-    black: [
-        "2", "4", "6", "8", "10", "11", "13", "15", "17",
-        "20", "22", "24", "26", "28", "29", "31", "33", "35"
-    ],
-    green: ["0", "00"],
+  "t-background-red": [
+    "1",
+    "3",
+    "5",
+    "7",
+    "9",
+    "12",
+    "14",
+    "16",
+    "18",
+    "19",
+    "21",
+    "23",
+    "25",
+    "27",
+    "30",
+    "32",
+    "34",
+    "36",
+  ],
+  "t-background-grey-dark-2": [
+    "2",
+    "4",
+    "6",
+    "8",
+    "10",
+    "11",
+    "13",
+    "15",
+    "17",
+    "20",
+    "22",
+    "24",
+    "26",
+    "28",
+    "29",
+    "31",
+    "33",
+    "35",
+  ],
+  "t-background-green-light-1": ["0", "00"],
 };
 
-const getColor = (n) => {
-    let color;
-    Object.entries(numbers).some(([k, v]) => {
-        let exists = v.includes(n);
-        color = exists ? k : "green";  // default green
-        return exists;
-    });
-    return color;
-}
-
-console.log(getColor("1"));
+const getColor = n => {
+  let color;
+  Object.entries(numbers).some(([k, v]) => {
+    let exists = v.includes(n);
+    color = exists ? k : "t-background-green-light-1";
+    return exists;
+  });
+  return color;
+};
 
 const CardData = ({ className, results, max = 5, ...props }: Props) => {
   return (
-    <div className="c-card-data" {...props}>
+    <div className="c-card-data t-color-white" {...props}>
       {results.length && (
         <div className="c-card-data__results u-padding">
           <div className="c-card-data__results-numbers">
             {results.slice(0, max).map((n, i) => (
               <div
-                className={`c-card-data__results-number --${getColor(n)} u-padding u-margin-horiz--micro`}
+                className={`c-card-data__results-number ${getColor(
+                  n
+                )} u-padding u-margin-horiz--micro`}
                 key={i}
               >
                 {n}

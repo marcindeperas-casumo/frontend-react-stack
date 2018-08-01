@@ -3,17 +3,23 @@
 @import "cudl-colors";
 @include cudl-reset-compile(cudl-sass-colors);
 
-.c-casino-table-data {
-  color: #fff;
+.c-card-data {
+  align-items: flex-end;
+  display: flex;
+  flex: 1;
+
+  &__results {
+    flex: 1;
+  }
 
   &__results-numbers {
     display: flex;
     flex-direction: row;
+    justify-content: center;
   }
 
   &__results-number {
     align-items: center;
-    background-color: cudl-palette(teal);
     border-radius: 50%;
     display: flex;
     height: 35px;
