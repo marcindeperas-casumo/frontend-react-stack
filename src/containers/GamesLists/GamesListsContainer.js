@@ -6,7 +6,6 @@ import GameList from "../../components/GameList";
 import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
-import { SKELETON_LIST_MOCK } from "../../constants";
 
 const gamesNotInMaintenance = compose(
   not,
@@ -21,6 +20,9 @@ const liveCasinoLobbyGames = (list, lobby) =>
       return t ? { ...o, lobby: { ...t } } : o;
     })
     .filter(o => o.lobby);
+
+const LIVECASINO_IDS = ["liveCasino", "liveCasinoGames"];
+const ifLiveCasino = arg => LIVECASINO_IDS.includes(arg);
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -65,20 +67,23 @@ export default class GamesListsContainer extends React.Component {
   }
 
   launchLiveCasinoSocket() {
-    const ws = new LiveCasinoClient();
-    const lc = this.state.data.find(o => o.id === "liveCasinoGames");
-    ws.onmessage = m => {
-      const args = { games: lc.games, lobby: this.state.lobby, payload: m };
-      const lobbyData = ws.processType(args);
-      if (lobbyData)
-        this.setState(
-          {
-            ...this.state,
-            lobby: lobbyData,
-          },
-          () => console.log("liveCasino lobby updated")
-        );
-    };
+    console.log("state data", this.state.data);
+    const lc = this.state.data.find(o => ifLiveCasino(o.id));
+    if (lc) {
+      const ws = new LiveCasinoClient();
+      ws.onmessage = m => {
+        const args = { games: lc.games, lobby: this.state.lobby, payload: m };
+        const lobbyData = ws.processType(args);
+        if (lobbyData)
+          this.setState(
+            {
+              ...this.state,
+              lobby: lobbyData,
+            },
+            () => console.log("liveCasino lobby updated")
+          );
+      };
+    }
   }
 
   render() {
@@ -90,7 +95,7 @@ export default class GamesListsContainer extends React.Component {
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
-      if (lobby.length !== 0 && gameList.id === "liveCasinoGames") {
+      if (lobby.length !== 0 && ifLiveCasino(gameList.id)) {
         // grab LiveCasino lobby data with games list
         const list = { ...gameList };
         list.games = liveCasinoLobbyGames(list.games, lobby);
@@ -100,9 +105,6 @@ export default class GamesListsContainer extends React.Component {
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
-    const getDisplay = id =>
-      SKELETON_LIST_MOCK.find(o => o.id === id).display || "tiles";
-
     return (
       <React.Fragment>
         {loading && <GamesListsSkeleton />}
@@ -110,7 +112,7 @@ export default class GamesListsContainer extends React.Component {
           filteredList.map(gameList => (
             <GameList
               key={gameList.title}
-              display={getDisplay(gameList.id)}
+              display={ifLiveCasino(gameList.id) ? "cards" : "tiles"}
               {...gameList}
             />
           ))}

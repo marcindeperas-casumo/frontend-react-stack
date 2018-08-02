@@ -1,16 +1,15 @@
 import React from "react";
 import GameListSkeleton from "../../components/GameListSkeleton";
-import { SKELETON_LIST_MOCK } from "../../constants";
 
 const GameListsSkeleton = () => (
   <div>
-    {SKELETON_LIST_MOCK.map(({ id, display }) => (
+    {Array.from(Array(4).keys()).map(i => (
       <GameListSkeleton
-        key={id}
-        itemWidth={display === "cards" ? 336 : 180}
-        itemRatio={display === "cards" ? 0.96 : 1.2}
-        itemGap={display === "cards" ? 16 : 8}
-        display={display}
+        key={i}
+        itemWidth={180}
+        itemRatio={1.2}
+        itemGap={8}
+        display={"tiles"}
         preserveAspectRatio="xMinYMin"
         colorLow="#eff6f6"
         colorHi="#ffffff"
