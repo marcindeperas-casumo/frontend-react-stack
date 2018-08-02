@@ -213,6 +213,85 @@ export const authenticatedResponse = {
       },
     },
   },
+  "common/composition/wpInterface": {
+    rootContentHashes: {
+      de: "rootContentHash_de",
+      no: "rootContentHash_no",
+      fi: "rootContentHash_fi",
+      sv: "rootContentHash_sv",
+      dk: "rootContentHash_dk",
+      en: "rootContentHash_en",
+      gb: "rootContentHash_gb",
+      ca: "rootContentHash_ca",
+    },
+    marketHashes: {
+      fi_fi: {
+        fi: "5210e7fde8bb3396f6467aed7207f803",
+      },
+      se_sv: {
+        sv: "2da3cee94be9278f48d84c5bfedd7f96",
+      },
+      gb_en: {
+        gb: "f32f96761a501c616e76a5a67e45badd",
+      },
+      dk_da: {
+        dk: "8d4da4800a241c8cdb4a4269fb8c60f4",
+      },
+      ca_en: {
+        ca: "8e81f55215710334319654fe73ebdcc0",
+      },
+      no_no: {
+        no: "4f5719c658c57e9b336d0aeaa6e9d9fa",
+      },
+      ___en: {
+        en: "8e4f1a5db790a1331baa71fead339c24",
+      },
+      de_de: {
+        de: "c288d9af3d607de5e71c2068072edcee",
+      },
+    },
+    contentOverrides: {},
+  },
 };
 
-export const unauthenticatedResponse = {};
+export const unauthenticatedResponse = {
+  "common/composition/wpInterface": {
+    rootContentHashes: {
+      de: "rootContentHash_de",
+      no: "rootContentHash_no",
+      fi: "rootContentHash_fi",
+      sv: "rootContentHash_sv",
+      dk: "rootContentHash_dk",
+      en: "rootContentHash_en",
+      gb: "rootContentHash_gb",
+      ca: "rootContentHash_ca",
+    },
+    marketHashes: {
+      fi_fi: {
+        fi: "5210e7fde8bb3396f6467aed7207f803",
+      },
+      se_sv: {
+        sv: "2da3cee94be9278f48d84c5bfedd7f96",
+      },
+      gb_en: {
+        gb: "f32f96761a501c616e76a5a67e45badd",
+      },
+      dk_da: {
+        dk: "8d4da4800a241c8cdb4a4269fb8c60f4",
+      },
+      ca_en: {
+        ca: "8e81f55215710334319654fe73ebdcc0",
+      },
+      no_no: {
+        no: "4f5719c658c57e9b336d0aeaa6e9d9fa",
+      },
+      ___en: {
+        en: "8e4f1a5db790a1331baa71fead339c24",
+      },
+      de_de: {
+        de: "c288d9af3d607de5e71c2068072edcee",
+      },
+    },
+    contentOverrides: {},
+  },
+};
