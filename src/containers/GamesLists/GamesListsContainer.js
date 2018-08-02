@@ -14,8 +14,8 @@ const gamesNotInMaintenance = compose(
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
-const liveCasinoLobbyGames = (games, lobby) =>
-  [...games]
+const liveCasinoLobbyGames = (list, lobby) =>
+  [...list]
     .map(o => {
       const t = lobby.find(t => t.id === o.providerGameId);
       return t ? { ...o, lobby: { ...t } } : o;
@@ -66,16 +66,17 @@ export default class GamesListsContainer extends React.Component {
 
   launchLiveCasinoSocket() {
     const ws = new LiveCasinoClient();
-
+    const lc = this.state.data.find(o => o.id === "liveCasinoGames");
     ws.onmessage = m => {
-      const data = ws.processType(this.state.data, m);
-      if (data)
+      const args = { games: lc.games, lobby: this.state.lobby, payload: m };
+      const lobbyData = ws.processType(args);
+      if (lobbyData)
         this.setState(
           {
             ...this.state,
-            lobby: data,
+            lobby: lobbyData,
           },
-          () => console.log("liveCasino updated", this.state.lobby)
+          () => console.log("liveCasino lobby updated")
         );
     };
   }
