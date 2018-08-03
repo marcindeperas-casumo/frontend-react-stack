@@ -1,7 +1,7 @@
-// - Compares Live Casino lobby retrieved from gameBrowser
-//   against Evolution Lobby API `State`.
-
-// - Checks type and updates table props accordongly.
+// Compares Live Casino lobby retrieved from gameBrowser
+// against Evolution Lobby API `State`.
+// Checks type and updates table props accordongly.
+// Returns Lobby State or null.
 
 export const LiveCasinoProcessType = ({ games, lobby, payload }) => {
   const lobbyData = [...lobby];
@@ -18,12 +18,13 @@ export const LiveCasinoProcessType = ({ games, lobby, payload }) => {
 
   const types = {
     State: () => {
-      return Object.keys(payload.tables)
+      const newLobbyData = Object.keys(payload.tables)
         .map(k => ({
           ...payload.tables[k],
           id: k,
         }))
         .filter(table => ids.includes(table.id));
+      return newLobbyData;
     },
 
     TableUpdated: () => {
