@@ -95,7 +95,7 @@ export default class GamesListsContainer extends React.Component {
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
-      if (lobby.length !== 0 && ifLiveCasino(gameList.id)) {
+      if (ifLiveCasino(gameList.id)) {
         // grab LiveCasino lobby data with games list
         const list = { ...gameList };
         list.games = liveCasinoLobbyGames(list.games, lobby);
