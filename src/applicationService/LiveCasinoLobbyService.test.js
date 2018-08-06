@@ -18,17 +18,17 @@ describe("liveCasinoProcessType", () => {
       expect(l).toEqual(lobby);
     });
 
-    test("if `PlayersUpdated` type", () => {
+    test("if `PlayersUpdated` type received", () => {
       args = { games, lobby, payload: PlayersUpdated };
-      const r = liveCasinoProcessType(args);
-      const game = r.find(o => o.id === args.payload.tableId);
+      const l = liveCasinoProcessType(args);
+      const game = l.find(o => o.id === args.payload.tableId);
       expect(game.players).toEqual(args.payload.players);
     });
 
-    test("if `RouletteNumbersUpdated` type", () => {
+    test("if `RouletteNumbersUpdated` type received", () => {
       args = { games, lobby, payload: RouletteNumbersUpdated };
-      const r = liveCasinoProcessType(args);
-      const game = r.find(o => o.id === args.payload.tableId);
+      const l = liveCasinoProcessType(args);
+      const game = l.find(o => o.id === args.payload.tableId);
       expect(game.results).toEqual(args.payload.results);
     });
   });

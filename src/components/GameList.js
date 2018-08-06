@@ -10,7 +10,7 @@ import { decodeString } from "../utils";
 
 import GameTile from "./GameTile";
 import Matcher from "./Matcher";
-import CardData from "./CardData";
+import CardData from "./liveCasino/CardData";
 import GameListSkeleton from "./GameListSkeleton";
 
 const renderImage = o => {
@@ -26,7 +26,7 @@ const emitLaunchGame = slug => {
   });
 };
 
-const renderCardData = results => results && <CardData results={results} />;
+const renderCardData = game => game.results && <CardData game={game} />;
 
 const renderCards = ({ games }) =>
   games.map(o => (
@@ -34,7 +34,7 @@ const renderCards = ({ games }) =>
       className="u-margin-right--small"
       key={o.slug}
       image={renderImage(o)}
-      cardData={o.lobby && renderCardData(o.lobby.results)}
+      cardData={o.lobby && renderCardData(o.lobby)}
       title={decodeString(o.name)}
       players={o.lobby && o.lobby.players}
       cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}

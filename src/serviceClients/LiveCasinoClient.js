@@ -1,5 +1,3 @@
-import processType from "./LiveCasinoProcessType";
-
 const testURL = window.location.hostname.concat("/api/livecasino/evo");
 const testConn = `wss://casumo0000000001:807e4edc8b6b5f88249deba32dd00b674d586071@${testURL}`;
 
@@ -51,8 +49,6 @@ class LiveCasinoClient {
     if (typeof code === "undefined") code = 1000;
     if (this.socket) this.socket.close(code, reason);
   }
-
-  processType = (dataState, payload) => processType(dataState, payload);
 
   _onmessage(m) {
     const d = JSON.parse(m.data);

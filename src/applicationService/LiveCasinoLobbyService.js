@@ -1,9 +1,9 @@
 // Compares Live Casino lobby retrieved from gameBrowser
 // against Evolution Lobby API `State`.
-// Checks type and updates table props accordongly.
-// Returns Lobby State or null.
+// Checks type and updates game data accordongly.
+// Returns new lobby state or null.
 
-export const LiveCasinoProcessType = ({ games, lobby, payload }) => {
+const liveCasinoLobbyService = ({ games, lobby, payload }) => {
   const lobbyData = [...lobby];
   const i = lobbyData.findIndex(g => g.id === payload.tableId);
   const exists = i !== -1;
@@ -46,4 +46,16 @@ export const LiveCasinoProcessType = ({ games, lobby, payload }) => {
   return (types[payload.type] || types["default"])();
 };
 
-export default LiveCasinoProcessType;
+const liveCasinoMarketsIds = ["liveCasino", "liveCasinoGames"];
+export const ifLiveCasino = arg => liveCasinoMarketsIds.includes(arg);
+
+export const getLiveCasinoGames = (list, lobby) => {
+  return [...list]
+    .map(o => {
+      const t = lobby.find(t => t.id === o.providerGameId);
+      return t ? { ...o, lobby: { ...t } } : o;
+    })
+    .filter(o => o.lobby);
+};
+
+export default liveCasinoLobbyService;

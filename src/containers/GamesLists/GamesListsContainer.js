@@ -5,24 +5,18 @@ import GameBrowserService, {
 import GameList from "../../components/GameList";
 import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
+
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
+import liveCasinoLobbyService, {
+  ifLiveCasino,
+  getLiveCasinoGames,
+} from "../../applicationService/LiveCasinoLobbyService";
 
 const gamesNotInMaintenance = compose(
   not,
   gameInMaintenanceMode
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
-
-const liveCasinoLobbyGames = (list, lobby) =>
-  [...list]
-    .map(o => {
-      const t = lobby.find(t => t.id === o.providerGameId);
-      return t ? { ...o, lobby: { ...t } } : o;
-    })
-    .filter(o => o.lobby);
-
-const LIVECASINO_IDS = ["liveCasino", "liveCasinoGames"];
-const ifLiveCasino = arg => LIVECASINO_IDS.includes(arg);
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -67,21 +61,17 @@ export default class GamesListsContainer extends React.Component {
   }
 
   launchLiveCasinoSocket() {
-    console.log("state data", this.state.data);
     const lc = this.state.data.find(o => ifLiveCasino(o.id));
     if (lc) {
       const ws = new LiveCasinoClient();
       ws.onmessage = m => {
         const args = { games: lc.games, lobby: this.state.lobby, payload: m };
-        const lobbyData = ws.processType(args);
+        const lobbyData = liveCasinoLobbyService(args);
         if (lobbyData)
-          this.setState(
-            {
-              ...this.state,
-              lobby: lobbyData,
-            },
-            () => console.log("liveCasino lobby updated")
-          );
+          this.setState({
+            ...this.state,
+            lobby: lobbyData,
+          });
       };
     }
   }
@@ -89,17 +79,19 @@ export default class GamesListsContainer extends React.Component {
   render() {
     const { data, loading, lobby } = this.state;
 
-    // Filter out games in maintenance.
-    // Unless they are the last played games list.
     const filteredList = data.map(gameList => {
+      // Filter out games in maintenance
+      // unless they are the last played games list.
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
+      // Filter out games in Lobby against gameBrowser data
+      // for Live Casino.
       if (ifLiveCasino(gameList.id)) {
-        // grab LiveCasino lobby data with games list
-        const list = { ...gameList };
-        list.games = liveCasinoLobbyGames(list.games, lobby);
-        return list;
+        return {
+          ...gameList,
+          games: getLiveCasinoGames(gameList.games, lobby),
+        };
       }
 
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
