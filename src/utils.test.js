@@ -1,4 +1,4 @@
-import { cacheFunction, SimpleCache } from "./utils";
+import { cacheFunction, SimpleCache, matchingGroups } from "./utils";
 
 describe("cacheFunction()", () => {
   const subjectFn = jest.fn();
@@ -61,5 +61,54 @@ describe("cacheFunction()", () => {
 
     expect(resultFirstCall).toEqual("foo");
     expect(resultSecondCall).toEqual("bar");
+  });
+});
+
+describe("matchingGroups()", () => {
+  test("should return one unmatched if there are no matches", () => {
+    const result = matchingGroups("foo", "bar");
+    expect(result).toEqual([{ type: "unmatched", value: "foo" }]);
+  });
+
+  test("should return the first match occurrence", () => {
+    const result = matchingGroups("foo foo", "foo");
+    expect(result).toEqual([
+      { type: "matched", value: "foo" },
+      { type: "unmatched", value: " foo" },
+    ]);
+  });
+
+  test("should return the first match occurrence at non 0", () => {
+    const result = matchingGroups("bar foo foo", "foo");
+    expect(result).toEqual([
+      { type: "unmatched", value: "bar " },
+      { type: "matched", value: "foo" },
+      { type: "unmatched", value: " foo" },
+    ]);
+  });
+
+  test("should return matching group at [0] if occurrence is at the beginning", () => {
+    const result = matchingGroups("starburst", "star");
+    expect(result).toEqual([
+      { type: "matched", value: "star" },
+      { type: "unmatched", value: "burst" },
+    ]);
+  });
+
+  test("should return matching group at [1] if occurrence is in the middle", () => {
+    const result = matchingGroups("bar bar foo sheep", "foo");
+    expect(result).toEqual([
+      { type: "unmatched", value: "bar bar " },
+      { type: "matched", value: "foo" },
+      { type: "unmatched", value: " sheep" },
+    ]);
+  });
+
+  test("should return matching at the end if occurrence is at the end", () => {
+    const result = matchingGroups("foo sheep", "sheep");
+    expect(result).toEqual([
+      { type: "unmatched", value: "foo " },
+      { type: "matched", value: "sheep" },
+    ]);
   });
 });
