@@ -58,7 +58,7 @@ const moneyWheelNumbers = {
   "05": "t-background-purple",
   "10": "t-background-green-light-1",
   "20": "t-background-orange t-color-grey-dark-2",
-  "40": "t-background-red-light-1",
+  "40": "t-background-red",
   X7: "t-background-grey-dark-2",
 };
 

@@ -1,5 +1,6 @@
 const testURL = window.location.hostname.concat("/api/livecasino/evo");
 const testConn = `wss://casumo0000000001:807e4edc8b6b5f88249deba32dd00b674d586071@${testURL}`;
+// const testConn = `wss://casumo0000000001:test123@${testURL}`;
 
 const defaultOptions = {
   // attempt to connect immediately upon instantiation

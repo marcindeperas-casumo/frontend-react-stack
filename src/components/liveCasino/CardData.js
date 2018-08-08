@@ -21,7 +21,6 @@ const getNumberColor = (type, n) => {
 };
 
 const CardData = ({ className, game, max = 5, ...props }: Props) => {
-  console.log(game.results);
   return (
     <div className="c-card-data t-color-white" {...props}>
       {game.results.length && (

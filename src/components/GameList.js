@@ -38,7 +38,7 @@ const renderCards = ({ games }) =>
       title={decodeString(o.name)}
       players={o.lobby && o.lobby.players}
       cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
-      betLimits={o.lobby && o.lobby.betLimits["EUR"]}
+      betLimits={o.lobby && o.lobby.betLimits}
     />
   ));
 

@@ -7,16 +7,14 @@ import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
-import liveCasinoLobbyService, {
-  ifLiveCasino,
-  getLiveCasinoGames,
-} from "../../applicationService/LiveCasinoLobbyService";
+import liveCasinoLobbyService from "../../applicationService/LiveCasinoLobbyService";
 
 const gamesNotInMaintenance = compose(
   not,
   gameInMaintenanceMode
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
+const ifLiveCasino = liveCasinoLobbyService.ifLiveCasino;
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -66,7 +64,7 @@ export default class GamesListsContainer extends React.Component {
       const ws = new LiveCasinoClient();
       ws.onmessage = m => {
         const args = { games: lc.games, lobby: this.state.lobby, payload: m };
-        const lobbyData = liveCasinoLobbyService(args);
+        const lobbyData = liveCasinoLobbyService.processLobby(args);
         if (lobbyData)
           this.setState({
             ...this.state,
@@ -90,7 +88,10 @@ export default class GamesListsContainer extends React.Component {
       if (ifLiveCasino(gameList.id)) {
         return {
           ...gameList,
-          games: getLiveCasinoGames(gameList.games, lobby),
+          games: liveCasinoLobbyService.getLiveCasinoGames(
+            gameList.games,
+            lobby
+          ),
         };
       }
 
