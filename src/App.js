@@ -7,7 +7,7 @@ import GamesLists from "./containers/GamesLists";
 import CommonService from "./applicationService/CommonService";
 import GameBrowserService from "./applicationService/GameBrowserService";
 import SessionService from "./applicationService/SessionService";
-import LiveCasinoLobbyService from "./applicationService/LiveCasinoLobbyService";
+import LiveCasinoService from "./applicationService/LiveCasinoService";
 import legacyBridge from "./legacyBridge";
 
 const initialPortalsState = () => ({
@@ -39,11 +39,12 @@ export default class App extends React.Component {
     SessionService.country().then(async country => {
       const isAuthenticated = await SessionService.isAuthenticated();
       GameBrowserService.config.set({ country, platform: "mobile" });
+      LiveCasinoService.config.set({ country });
       this.setState({ handshakeLoading: false, isAuthenticated });
     });
 
     SessionService.iso4217CurrencyCode().then(async currency => {
-      LiveCasinoLobbyService.config.set({ currency });
+      LiveCasinoService.config.set({ currency });
     });
 
     legacyBridge.on(REACT_APP_EVENT_ALL_PORTALS_CLEAR, () => {

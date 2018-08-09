@@ -1,10 +1,9 @@
 import { ServiceConfig, SimpleCache } from "../utils";
 import sessionService from "./SessionService";
 
-export const LiveCasinoLobbyService = ({ sessionService }) => {
+export const LiveCasinoService = ({ sessionService }) => {
   const defaultOptions = {
     currency: "EUR",
-    ids: ["liveCasinoGames", "liveCasino"],
   };
   const serviceConfig = ServiceConfig({
     defaultOptions,
@@ -18,7 +17,7 @@ export const LiveCasinoLobbyService = ({ sessionService }) => {
     },
   };
 
-  const ifLiveCasino = id => config.get().ids.includes(id);
+  const ifLiveCasino = id => ["liveCasinoGames", "liveCasino"].includes(id);
 
   // Compares Live Casino lobby retrieved from gameBrowser
   // against Evolution Lobby API `State`.
@@ -73,6 +72,7 @@ export const LiveCasinoLobbyService = ({ sessionService }) => {
       .map(o => {
         const t = lobby.find(t => t.id === o.providerGameId);
         const betLimits = t.betLimits[config.get().currency];
+
         return { ...o, lobby: { ...t, betLimits: betLimits } };
       });
   };
@@ -85,4 +85,4 @@ export const LiveCasinoLobbyService = ({ sessionService }) => {
   };
 };
 
-export default LiveCasinoLobbyService({ sessionService });
+export default LiveCasinoService({ sessionService });

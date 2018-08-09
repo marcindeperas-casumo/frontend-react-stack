@@ -10,7 +10,7 @@ import { decodeString } from "../utils";
 
 import GameTile from "./GameTile";
 import Matcher from "./Matcher";
-import CardData from "./liveCasino/CardData";
+import CardData from "./CardData";
 import GameListSkeleton from "./GameListSkeleton";
 
 const renderImage = o => {

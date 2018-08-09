@@ -27,6 +27,7 @@ class LiveCasinoClient {
     this.url = url || testConn;
     this.options = Object.assign({}, defaultOptions, options);
     this.reconnectAttempts = 0;
+    this.exponentialTimeout = 0;
     this.socketState = this.CONNECTING;
     if (this.options.connectOnOpen) this.open();
   }
@@ -64,7 +65,7 @@ class LiveCasinoClient {
   _onclose(e) {
     this._syncState();
     this._reconnect(e);
-    console.log("LiveCasinoClient: connection closed", e);
+    // console.log("LiveCasinoClient: connection closed", e);
   }
 
   _onerror(e) {
@@ -72,7 +73,7 @@ class LiveCasinoClient {
     this.socket.close();
     this._syncState();
     if (this.options.reconnectOnError) this._reconnect(e);
-    console.log("LiveCasinoClient: error", e);
+    // console.log("LiveCasinoClient: error", e);
   }
 
   _reconnect(e) {
@@ -85,10 +86,10 @@ class LiveCasinoClient {
         this.reconnectAttempts++;
         this.open();
       }
-    }, this._getTimeout());
+    }, this._getExponentialBackOffTimeout());
   }
 
-  _getTimeout() {
+  _getExponentialBackOffTimeout() {
     const {
       reconnectInterval,
       reconnectDecay,
@@ -97,7 +98,9 @@ class LiveCasinoClient {
 
     const timeout =
       reconnectInterval * Math.pow(reconnectDecay, this.reconnectAttempts);
-    return timeout > reconnectIntervalMax ? reconnectIntervalMax : timeout;
+    this.exponentialTimeout =
+      timeout > reconnectIntervalMax ? reconnectIntervalMax : timeout;
+    return this.exponentialTimeout;
   }
 
   _syncState() {

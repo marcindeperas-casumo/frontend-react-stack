@@ -1,5 +1,5 @@
 import React from "react";
-import LiveCasinoLobbyService from "./LiveCasinoLobbyService";
+import LiveCasinoService from "./LiveCasinoService";
 
 import games from "./__mocks__/gameBrowserLiveCasinoGames.json";
 import lobby from "./__mocks__/lobbyState.json";
@@ -14,20 +14,20 @@ describe("liveCasinoProcessType", () => {
   describe("should return correct state", () => {
     test("if `State` type received and lobby is empty", () => {
       args = { games, lobby: [], payload: State };
-      const l = LiveCasinoLobbyService.processLobby(args);
+      const l = LiveCasinoService.processLobby(args);
       expect(l).toEqual(lobby);
     });
 
     test("if `PlayersUpdated` type received", () => {
       args = { games, lobby, payload: PlayersUpdated };
-      const l = LiveCasinoLobbyService.processLobby(args);
+      const l = LiveCasinoService.processLobby(args);
       const game = l.find(o => o.id === args.payload.tableId);
       expect(game.players).toEqual(args.payload.players);
     });
 
     test("if `RouletteNumbersUpdated` type received", () => {
       args = { games, lobby, payload: RouletteNumbersUpdated };
-      const l = LiveCasinoLobbyService.processLobby(args);
+      const l = LiveCasinoService.processLobby(args);
       const game = l.find(o => o.id === args.payload.tableId);
       expect(game.results).toEqual(args.payload.results);
     });
