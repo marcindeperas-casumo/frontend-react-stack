@@ -1,8 +1,12 @@
 [
   {
-    "gameType": "Roulette",
     "name": "Casumo Roulette",
-    "open": true,
+    "players": 7,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "mayhshubiktqjq2x",
+      "name": "Darryl"
+    },
     "betLimits": {
       "OMR": {
         "symbol": "OMR",
@@ -895,26 +899,6 @@
         "max": 20000
       }
     },
-    "operationHours": {
-      "type": "FullTime"
-    },
-    "dealer": {
-      "dealerId": "lzlkqhotx5gqbrcd",
-      "name": "Aleksandrs"
-    },
-    "results": [
-      "14",
-      "21",
-      "8",
-      "27",
-      "1",
-      "1",
-      "9",
-      "35",
-      "1",
-      "30"
-    ],
-    "players": 2,
     "videoSnapshot": {
       "links": {
         "S": "/tablePicture/csor1_imrs_med?size=S",
@@ -929,15 +913,35 @@
         "XL": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_XL.jpg"
       }
     },
+    "open": true,
+    "results": [
+      "11",
+      "30",
+      "22",
+      "8",
+      "20",
+      "10",
+      "33",
+      "2",
+      "29",
+      "31"
+    ],
+    "gameType": "Roulette",
+    "operationHours": {
+      "type": "FullTime"
+    },
     "display": "on_desktop",
     "sitesAssigned": [],
-    "sitesBlocked": [],
     "id": "madlz3bzhyeabit4"
   },
   {
-    "gameType": "Roulette",
     "name": "Lightning Roulette",
-    "open": true,
+    "players": 604,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "laclgaupe6baesx3",
+      "name": "Kristap"
+    },
     "betLimits": {
       "EUR": {
         "symbol": "€",
@@ -950,26 +954,6 @@
         "max": 10000
       }
     },
-    "operationHours": {
-      "type": "FullTime"
-    },
-    "dealer": {
-      "dealerId": "k3vkjla7264ad7od",
-      "name": "Reinis"
-    },
-    "results": [
-      "15",
-      "1",
-      "18",
-      "16",
-      "36",
-      "32",
-      "13",
-      "22",
-      "13",
-      "0"
-    ],
-    "players": 475,
     "videoSnapshot": {
       "links": {
         "S": "/tablePicture/lightr1_imrs_med?size=S",
@@ -984,15 +968,35 @@
         "XL": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_XL.jpg"
       }
     },
+    "open": true,
+    "results": [
+      "15",
+      "1",
+      "18",
+      "16",
+      "36",
+      "32",
+      "13",
+      "22",
+      "13",
+      "0"
+    ],
+    "gameType": "Roulette",
+    "operationHours": {
+      "type": "FullTime"
+    },
     "display": "on_desktop",
     "sitesAssigned": [],
-    "sitesBlocked": [],
     "id": "LightningTable01"
   },
   {
-    "gameType": "MoneyWheel",
     "name": "Dream Catcher",
-    "open": true,
+    "players": 338,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "zuqkg19ufiert6e5",
+      "name": "Alina"
+    },
     "betLimits": {
       "OMR": {
         "symbol": "OMR",
@@ -1885,25 +1889,6 @@
         "max": 5000
       }
     },
-    "operationHours": {
-      "type": "FullTime"
-    },
-    "dealer": {
-      "dealerId": "jgrswrpj3kcvvz57",
-      "name": "Valerija"
-    },
-    "results": [
-      "01",
-      "02",
-      "02",
-      "01",
-      "02",
-      "02",
-      "05",
-      "40",
-      "01"
-    ],
-    "players": 298,
     "videoSnapshot": {
       "links": {
         "S": "/tablePicture/dc1_mw_med?size=S",
@@ -1918,15 +1903,34 @@
         "XL": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_XL.jpg"
       }
     },
+    "open": true,
+    "results": [
+      "02",
+      "01",
+      "02",
+      "01",
+      "05",
+      "10",
+      "01",
+      "01",
+      "01"
+    ],
+    "gameType": "MoneyWheel",
+    "operationHours": {
+      "type": "FullTime"
+    },
     "display": "on_desktop",
     "sitesAssigned": [],
-    "sitesBlocked": [],
     "id": "MOWDream00000001"
   },
   {
-    "gameType": "UTH",
     "name": "Ultimate Texas Hold'em",
-    "open": true,
+    "players": 48,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "llolaq5a5ntaoc7t",
+      "name": "Kristaps"
+    },
     "betLimits": {
       "EUR": {
         "symbol": "€",
@@ -1939,14 +1943,6 @@
         "max": 500
       }
     },
-    "operationHours": {
-      "type": "FullTime"
-    },
-    "dealer": {
-      "dealerId": "mjtopdln6byalybj",
-      "name": "Germans"
-    },
-    "players": 34,
     "videoSnapshot": {
       "links": {
         "S": "/tablePicture/pk_uth1_med?size=S",
@@ -1961,15 +1957,23 @@
         "XL": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_XL.jpg"
       }
     },
+    "open": true,
+    "gameType": "UTH",
+    "operationHours": {
+      "type": "FullTime"
+    },
     "display": "on_desktop",
     "sitesAssigned": [],
-    "sitesBlocked": [],
     "id": "UTHTable00000001"
   },
   {
-    "gameType": "TopCard",
     "name": "Football studio",
-    "open": true,
+    "players": 84,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "mlotnwe4vknadism",
+      "name": "Kajs"
+    },
     "betLimits": {
       "OMR": {
         "symbol": "OMR",
@@ -2862,14 +2866,6 @@
         "max": 20000
       }
     },
-    "operationHours": {
-      "type": "FullTime"
-    },
-    "dealer": {
-      "dealerId": "mlotnwe4vknadism",
-      "name": "Kajs"
-    },
-    "players": 79,
     "videoSnapshot": {
       "links": {
         "S": "/tablePicture/topcr1_bs_med?size=S",
@@ -2884,9 +2880,13 @@
         "XL": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_XL.jpg"
       }
     },
+    "open": true,
+    "gameType": "TopCard",
+    "operationHours": {
+      "type": "FullTime"
+    },
     "display": "on_desktop",
     "sitesAssigned": [],
-    "sitesBlocked": [],
     "id": "TopCard000000001"
   }
 ]

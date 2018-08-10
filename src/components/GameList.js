@@ -13,11 +13,9 @@ import Matcher from "./Matcher";
 import CardData from "./CardData";
 import GameListSkeleton from "./GameListSkeleton";
 
-const renderImage = o => {
-  const src =
-    (o.lobby && o.lobby.videoSnapshot.thumbnails["L"]) || o.logoBackground;
-  return <ResponsiveImage className="c-card__img-pic" src={src} />;
-};
+const renderImage = src => (
+  <ResponsiveImage className="c-card__img-pic" src={src} />
+);
 
 const emitLaunchGame = slug => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
@@ -33,12 +31,12 @@ const renderCards = ({ games }) =>
     <Card
       className="u-margin-right--small"
       key={o.slug}
-      image={renderImage(o)}
-      cardData={o.lobby && renderCardData(o.lobby)}
+      image={renderImage(o.lobby.image)}
+      cardData={renderCardData(o.lobby)}
       title={decodeString(o.name)}
-      players={o.lobby && o.lobby.players}
+      players={o.lobby.players}
       cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
-      betLimits={o.lobby && o.lobby.betLimits}
+      betLimits={o.lobby.bets}
     />
   ));
 

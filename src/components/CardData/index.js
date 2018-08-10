@@ -29,7 +29,7 @@ const CardData = ({ className, game, max = 5, ...props }: Props) => {
             {game.results.slice(0, max).map((n, i) => (
               <div
                 className={`c-card-data__results-number ${getNumberColor(
-                  game.gameType,
+                  game.type,
                   n
                 )} u-padding u-margin-horiz--micro`}
                 key={i}

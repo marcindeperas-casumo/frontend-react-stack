@@ -3839,22 +3839,22 @@
         "type": "FullTime"
       },
       "dealer": {
-        "dealerId": "lzlkqhotx5gqbrcd",
-        "name": "Aleksandrs"
+        "dealerId": "mayhshubiktqjq2x",
+        "name": "Darryl"
       },
       "results": [
-        "14",
-        "21",
+        "11",
+        "30",
+        "22",
         "8",
-        "27",
-        "1",
-        "1",
-        "9",
-        "35",
-        "1",
-        "30"
+        "20",
+        "10",
+        "33",
+        "2",
+        "29",
+        "31"
       ],
-      "players": 2,
+      "players": 7,
       "videoSnapshot": {
         "links": {
           "S": "/tablePicture/csor1_imrs_med?size=S",
@@ -31550,8 +31550,8 @@
         "type": "FullTime"
       },
       "dealer": {
-        "dealerId": "k3vkjla7264ad7od",
-        "name": "Reinis"
+        "dealerId": "laclgaupe6baesx3",
+        "name": "Kristap"
       },
       "results": [
         "15",
@@ -31565,7 +31565,7 @@
         "13",
         "0"
       ],
-      "players": 475,
+      "players": 604,
       "videoSnapshot": {
         "links": {
           "S": "/tablePicture/lightr1_imrs_med?size=S",
@@ -39717,21 +39717,21 @@
         "type": "FullTime"
       },
       "dealer": {
-        "dealerId": "jgrswrpj3kcvvz57",
-        "name": "Valerija"
+        "dealerId": "zuqkg19ufiert6e5",
+        "name": "Alina"
       },
       "results": [
-        "01",
-        "02",
         "02",
         "01",
         "02",
-        "02",
+        "01",
         "05",
-        "40",
+        "10",
+        "01",
+        "01",
         "01"
       ],
-      "players": 298,
+      "players": 338,
       "videoSnapshot": {
         "links": {
           "S": "/tablePicture/dc1_mw_med?size=S",
@@ -80324,10 +80324,10 @@
         "type": "FullTime"
       },
       "dealer": {
-        "dealerId": "mjtopdln6byalybj",
-        "name": "Germans"
+        "dealerId": "llolaq5a5ntaoc7t",
+        "name": "Kristaps"
       },
-      "players": 34,
+      "players": 48,
       "videoSnapshot": {
         "links": {
           "S": "/tablePicture/pk_uth1_med?size=S",
@@ -86491,7 +86491,7 @@
         "dealerId": "mlotnwe4vknadism",
         "name": "Kajs"
       },
-      "players": 79,
+      "players": 84,
       "videoSnapshot": {
         "links": {
           "S": "/tablePicture/topcr1_bs_med?size=S",

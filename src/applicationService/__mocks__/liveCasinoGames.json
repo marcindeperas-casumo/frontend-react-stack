@@ -1,0 +1,139 @@
+[
+  {
+    "name": "Casumo Roulette",
+    "slug": "casumo-roulette",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-bg.jpg",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-logo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "providerGameId": "madlz3bzhyeabit4",
+    "lobby": {
+      "players": 7,
+      "results": [
+        "11",
+        "30",
+        "22",
+        "8",
+        "20",
+        "10",
+        "33",
+        "2",
+        "29",
+        "31"
+      ],
+      "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_M.jpg",
+      "bets": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "type": "Roulette"
+    }
+  },
+  {
+    "name": "Dream Catcher",
+    "slug": "dream-catcher",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2017/09/dream_catcher_bg-copy.jpg",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2017/05/dream_catcher_logo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "providerGameId": "MOWDream00000001",
+    "lobby": {
+      "players": 338,
+      "results": [
+        "02",
+        "01",
+        "02",
+        "01",
+        "05",
+        "10",
+        "01",
+        "01",
+        "01"
+      ],
+      "image": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_M.jpg",
+      "bets": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "type": "MoneyWheel"
+    }
+  },
+  {
+    "name": "Evolution Lightning Roulette",
+    "slug": "evolution-lightning-roulette",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/04/lightning-bg.png",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2018/04/lightningroulette-logo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "providerGameId": "LightningTable01",
+    "lobby": {
+      "players": 3,
+      "results": [
+        "31",
+        "30",
+        "29",
+        "28",
+        "27",
+        "26",
+        "25",
+        "24",
+        "23",
+        "22"
+      ],
+      "image": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_M.jpg",
+      "bets": {
+        "symbol": "£",
+        "min": 0.2,
+        "max": 10000
+      },
+      "type": "Roulette"
+    }
+  },
+  {
+    "name": "Evolution Live Ultimate Texas Hold&#8217;em",
+    "slug": "evolution-live-ultimate-texas-holdem",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2016/12/Ultimate-bp.png",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2016/12/Ultimate-logo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "providerGameId": "UTHTable00000001",
+    "lobby": {
+      "players": 48,
+      "results": null,
+      "image": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_M.jpg",
+      "bets": {
+        "symbol": "£",
+        "min": 0.5,
+        "max": 500
+      },
+      "type": "UTH"
+    }
+  },
+  {
+    "name": "Evolution Live Football Studio",
+    "slug": "evolution-live-football-studio",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/06/FootballStudio.jpg",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2018/06/FootballLogo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "providerGameId": "TopCard000000001",
+    "lobby": {
+      "players": 84,
+      "results": null,
+      "image": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_M.jpg",
+      "bets": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "type": "TopCard"
+    }
+  }
+]

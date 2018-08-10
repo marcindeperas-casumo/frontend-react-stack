@@ -1,9 +1,10 @@
 import { ServiceConfig, SimpleCache } from "../utils";
-import sessionService from "./SessionService";
+import { compose, property } from "../utils";
 
-export const LiveCasinoService = ({ sessionService }) => {
+export const LiveCasinoService = () => {
   const defaultOptions = {
-    currency: "EUR",
+    defaultCurrency: "EUR",
+    marketsIds: ["liveCasinoGames", "liveCasino"],
   };
   const serviceConfig = ServiceConfig({
     defaultOptions,
@@ -17,7 +18,7 @@ export const LiveCasinoService = ({ sessionService }) => {
     },
   };
 
-  const ifLiveCasino = id => ["liveCasinoGames", "liveCasino"].includes(id);
+  const ifLiveCasino = id => config.get().marketsIds.includes(id);
 
   // Compares Live Casino lobby retrieved from gameBrowser
   // against Evolution Lobby API `State`.
@@ -66,15 +67,33 @@ export const LiveCasinoService = ({ sessionService }) => {
     return (types[payload.type] || types["default"])();
   };
 
-  const getLiveCasinoGames = (list, lobby) => {
-    return [...list]
-      .filter(o => lobby.find(t => t.id === o.providerGameId))
-      .map(o => {
-        const t = lobby.find(t => t.id === o.providerGameId);
-        const betLimits = t.betLimits[config.get().currency];
+  const getImageForTable = compose(
+    property("M"),
+    property("thumbnails"),
+    property("videoSnapshot")
+  );
 
-        return { ...o, lobby: { ...t, betLimits: betLimits } };
+  const getBetsForTable = currency => property(currency);
+  const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
+
+  const getLiveCasinoGames = (list, lobby) => {
+    const currency = config.get().currency;
+    const lobbyGames = [...list]
+      .filter(game => lobby.find(t => t.id === game.providerGameId))
+      .map(game => {
+        const table = lobby.find(t => t.id === game.providerGameId);
+        return {
+          ...game,
+          lobby: {
+            players: table.players,
+            results: table.results || null,
+            image: getImageForTable(table),
+            bets: getBetsCurrency(table.betLimits, currency),
+            type: table.gameType,
+          },
+        };
       });
+    return lobbyGames;
   };
 
   return {
@@ -85,4 +104,4 @@ export const LiveCasinoService = ({ sessionService }) => {
   };
 };
 
-export default LiveCasinoService({ sessionService });
+export default LiveCasinoService();
