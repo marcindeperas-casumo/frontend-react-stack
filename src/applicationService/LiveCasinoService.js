@@ -5,6 +5,7 @@ export const LiveCasinoService = () => {
   const defaultOptions = {
     defaultCurrency: "EUR",
     marketsIds: ["liveCasinoGames", "liveCasino"],
+    lobbyLink: "https://evo-livecasino.casumo.com/mobile/index.html",
   };
   const serviceConfig = ServiceConfig({
     defaultOptions,
@@ -19,6 +20,7 @@ export const LiveCasinoService = () => {
   };
 
   const ifLiveCasino = id => config.get().marketsIds.includes(id);
+  const getLobbyLink = () => config.get().lobbyLink;
 
   // Compares Live Casino lobby retrieved from gameBrowser
   // against Evolution Lobby API `State`.
@@ -78,11 +80,10 @@ export const LiveCasinoService = () => {
 
   const getLiveCasinoGames = (list, lobby) => {
     const currency = config.get().currency;
-    const lobbyGames = [...list]
-      .filter(game => lobby.find(t => t.id === game.providerGameId))
-      .map(game => {
-        const table = lobby.find(t => t.id === game.providerGameId);
-        return {
+    const lobbyGames = list.reduce((memo, game) => {
+      const table = lobby.find(t => t.id === game.providerGameId);
+      if (table) {
+        memo.push({
           ...game,
           lobby: {
             players: table.players,
@@ -91,14 +92,17 @@ export const LiveCasinoService = () => {
             bets: getBetsCurrency(table.betLimits, currency),
             type: table.gameType,
           },
-        };
-      });
+        });
+      }
+      return memo;
+    }, []);
     return lobbyGames;
   };
 
   return {
     config,
     ifLiveCasino,
+    getLobbyLink,
     processLobby,
     getLiveCasinoGames,
   };

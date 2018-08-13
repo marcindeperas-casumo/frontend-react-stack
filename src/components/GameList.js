@@ -3,6 +3,7 @@ import Heading from "@casumo/cmp-heading";
 import Card from "@casumo/cmp-card";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import ScrollingContainer from "@casumo/cmp-scrollable";
+import classNames from "classnames";
 
 import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
 import legacyBridge from "../legacyBridge";
@@ -89,17 +90,37 @@ const LoadingOrList = props => (
 );
 
 const GameList = props => {
-  const { games, title } = props;
+  const { games, title, link } = props;
   const loading = games.length ? "list" : "loading";
   return (
     <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
-      <Heading
-        className="u-padding-bottom--small u-padding-bottom--normal@tablet u-padding-bottom--normal@desktop
-        u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
-        text={title}
-        rank={3}
-        size="uno"
-      />
+      <div className="u-display--flex">
+        <Heading
+          className={classNames(
+            "u-padding-bottom--small",
+            "u-padding-bottom--normal@tablet",
+            "u-padding-bottom--normal@desktop",
+            "u-padding-left--small",
+            "u-padding-left--xlarge@tablet",
+            "u-padding-left--xlarge@desktop",
+            link && "flex-1"
+          )}
+          text={title}
+          rank={3}
+          size="uno"
+        />
+
+        {link && (
+          <a
+            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop"
+            target="_blank"
+            href={link}
+            rel="noopener noreferrer"
+          >
+            Go To Lobby
+          </a>
+        )}
+      </div>
 
       <LoadingOrList condition={loading} {...props} />
     </div>
