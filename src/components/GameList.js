@@ -27,7 +27,9 @@ const renderImage = src => (
 const renderPlayers = n => (
   <div className="o-flex-align--center">
     <PlayerIcon className="u-margin-vert t-color-grey" size="sml" />
-    <span className="u-margin-left--micro u-margin-vert">{n}</span>
+    <span className="u-margin-left--micro u-margin-vert u-font-weight-bold">
+      {n}
+    </span>
   </div>
 );
 
@@ -118,6 +120,7 @@ const GameList = props => {
             "u-padding-left--small",
             "u-padding-left--xlarge@tablet",
             "u-padding-left--xlarge@desktop",
+            "u-font-weight-normal",
             link && "flex-1"
           )}
           text={title}
@@ -127,7 +130,7 @@ const GameList = props => {
 
         {link && (
           <a
-            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight--bold"
+            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
             target="_blank"
             href={link}
             rel="noopener noreferrer"

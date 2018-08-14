@@ -1,7 +1,21 @@
 // Overrides css causing issues
-// [1] reset css applies font-weight normal to Hx elements
+
+@supports (-webkit-line-clamp: 2) {
+  //stylelint-disable-next-line xi/selector-pattern
+  .Heading-c-heading-md {
+    //stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-box-orient: vertical;
+    //stylelint-disable-next-line value-no-vendor-prefix
+    display: -webkit-box;
+    height: 45px;
+    //stylelint-disable-next-line property-no-vendor-prefix
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+}
 
 //stylelint-disable-next-line xi/selector-pattern
-.Heading-c-heading-md {
-  font-weight: 700; // [1]
+.Scrollable-o-scrollable__wrap > * {
+  vertical-align: top;
 }

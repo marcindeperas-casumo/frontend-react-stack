@@ -140,7 +140,7 @@
   version "1.0.2"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-1.0.2.tgz#3c7857e63d0a18ac012e5dca154441f94164ace4"
 
-"@casumo/cudl-borders@^1.0.2":
+"@casumo/cudl-borders@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-borders/-/cudl-borders-1.0.3.tgz#2cf8ee553ae4741a29eb34e61ae6d0b58d8f6870"
   dependencies:
@@ -150,7 +150,7 @@
     "@casumo/cudl-props" "^1.0.3"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-breakpoints@^1.0.2", "@casumo/cudl-breakpoints@^1.0.3":
+"@casumo/cudl-breakpoints@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-breakpoints/-/cudl-breakpoints-1.0.3.tgz#bfb751481f1b926f8efde6adab60554e1c6cf94b"
   dependencies:
@@ -161,7 +161,7 @@
     "@casumo/cudl-units" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-buttons@^1.0.2":
+"@casumo/cudl-buttons@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-buttons/-/cudl-buttons-1.0.3.tgz#d17061219b5e1c27f8aa5b68fefe5319e05cb986"
   dependencies:
@@ -186,7 +186,7 @@
     "@casumo/cudl-mock" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-display@^1.0.2":
+"@casumo/cudl-display@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-display/-/cudl-display-1.0.3.tgz#cdf4678908ee192c70ca9747ca0fc7f66bf6c939"
   dependencies:
@@ -195,7 +195,7 @@
     "@casumo/cudl-utils" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-flex@^1.0.2":
+"@casumo/cudl-flex@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-flex/-/cudl-flex-1.0.3.tgz#ca253d4a25c3a75cb544c51936542a480e5d84b9"
   dependencies:
@@ -203,7 +203,7 @@
     "@casumo/cudl-compile" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-icons@^1.0.2":
+"@casumo/cudl-icons@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-icons/-/cudl-icons-1.0.3.tgz#61d6d86f2abc244e5fdd56b64a79312194ab93f4"
   dependencies:
@@ -211,7 +211,7 @@
     "@casumo/cudl-props" "^1.0.3"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-layout@^1.0.2":
+"@casumo/cudl-layout@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-layout/-/cudl-layout-1.0.3.tgz#60e35c76531ecbf99cc059574f162d8bb98e6635"
   dependencies:
@@ -228,19 +228,12 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-offsets@^1.0.2":
+"@casumo/cudl-offsets@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-offsets/-/cudl-offsets-1.0.3.tgz#fd4cbee927dff648283e68d564379f7fa93b1b78"
   dependencies:
     "@casumo/cudl-compile" "^1.0.2"
     "@casumo/cudl-widths" "^1.0.3"
-    sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-props@^1.0.2":
-  version "1.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-props/-/cudl-props-1.0.2.tgz#f588d61b5a402ba5f37c6adeeceb852848b94cf3"
-  dependencies:
-    "@casumo/cudl-mock" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-props@^1.0.3":
@@ -250,7 +243,7 @@
     "@casumo/cudl-mock" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-ratio@^1.0.2":
+"@casumo/cudl-ratio@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-ratio/-/cudl-ratio-1.0.3.tgz#25ce78fb6b41d9d50b27e19b47c926ac1ffdb14b"
   dependencies:
@@ -265,16 +258,16 @@
     "@casumo/cudl-compile" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-scrollable@^1.0.2":
-  version "1.0.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-scrollable/-/cudl-scrollable-1.0.3.tgz#66c2f9e5ee2195f116ca5409c8b6d0f4be041275"
+"@casumo/cudl-scrollable@^1.0.4":
+  version "1.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-scrollable/-/cudl-scrollable-1.0.4.tgz#43764a05deabaa339425e4fb859cdbb119a6a00a"
   dependencies:
     "@casumo/cudl-breakpoints" "^1.0.3"
     "@casumo/cudl-compile" "^1.0.2"
     "@casumo/cudl-spacers" "^1.0.3"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-spacers@^1.0.2", "@casumo/cudl-spacers@^1.0.3":
+"@casumo/cudl-spacers@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-spacers/-/cudl-spacers-1.0.3.tgz#cafd21dd43ca708da7de61ddbd3972e8ea655b01"
   dependencies:
@@ -291,13 +284,13 @@
     "@casumo/cudl-mock" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-typography@^2.0.1":
-  version "2.0.1"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-typography/-/cudl-typography-2.0.1.tgz#9259d92ba7af73df843d9183ab58f287449cf1ef"
+"@casumo/cudl-typography@^3.0.0":
+  version "3.0.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-typography/-/cudl-typography-3.0.0.tgz#e12bb7cba1c64392c94b8093ea43b9008a26cc59"
   dependencies:
     "@casumo/cudl-compile" "^1.0.2"
     "@casumo/cudl-mock" "^1.0.2"
-    "@casumo/cudl-props" "^1.0.2"
+    "@casumo/cudl-props" "^1.0.3"
     "@casumo/cudl-units" "^1.0.2"
     "@casumo/cudl-utils" "^1.0.2"
     sass-pathfinder "^0.0.5"
@@ -315,7 +308,7 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-widths@^1.0.2", "@casumo/cudl-widths@^1.0.3":
+"@casumo/cudl-widths@^1.0.3":
   version "1.0.3"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-widths/-/cudl-widths-1.0.3.tgz#d3d8258d5b12a9ee854868bec5a5830dbad84162"
   dependencies:
@@ -333,31 +326,31 @@
     "@casumo/cudl-utils" "^1.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@^2.0.0":
-  version "2.0.1"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-2.0.1.tgz#5ff23f3bb7cd6e498e113d6d22c3de1f90eb5b04"
+"@casumo/cudl@^3.0.1":
+  version "3.0.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-3.0.1.tgz#d1076d7bf5e1480db3f28007e0b81d7d372aeeab"
   dependencies:
-    "@casumo/cudl-borders" "^1.0.2"
-    "@casumo/cudl-breakpoints" "^1.0.2"
-    "@casumo/cudl-buttons" "^1.0.2"
+    "@casumo/cudl-borders" "^1.0.3"
+    "@casumo/cudl-breakpoints" "^1.0.3"
+    "@casumo/cudl-buttons" "^1.0.3"
     "@casumo/cudl-colors" "^2.0.1"
     "@casumo/cudl-compile" "^1.0.2"
-    "@casumo/cudl-display" "^1.0.2"
-    "@casumo/cudl-flex" "^1.0.2"
-    "@casumo/cudl-icons" "^1.0.2"
-    "@casumo/cudl-layout" "^1.0.2"
+    "@casumo/cudl-display" "^1.0.3"
+    "@casumo/cudl-flex" "^1.0.3"
+    "@casumo/cudl-icons" "^1.0.3"
+    "@casumo/cudl-layout" "^1.0.3"
     "@casumo/cudl-mock" "^1.0.2"
-    "@casumo/cudl-offsets" "^1.0.2"
-    "@casumo/cudl-props" "^1.0.2"
-    "@casumo/cudl-ratio" "^1.0.2"
+    "@casumo/cudl-offsets" "^1.0.3"
+    "@casumo/cudl-props" "^1.0.3"
+    "@casumo/cudl-ratio" "^1.0.3"
     "@casumo/cudl-reset" "^1.0.2"
-    "@casumo/cudl-scrollable" "^1.0.2"
-    "@casumo/cudl-spacers" "^1.0.2"
+    "@casumo/cudl-scrollable" "^1.0.4"
+    "@casumo/cudl-spacers" "^1.0.3"
     "@casumo/cudl-types" "^1.0.2"
-    "@casumo/cudl-typography" "^2.0.1"
+    "@casumo/cudl-typography" "^3.0.0"
     "@casumo/cudl-units" "^1.0.2"
     "@casumo/cudl-utils" "^1.0.2"
-    "@casumo/cudl-widths" "^1.0.2"
+    "@casumo/cudl-widths" "^1.0.3"
     "@casumo/cudl-zindex" "^1.0.2"
     sass-pathfinder "^0.0.5"
 

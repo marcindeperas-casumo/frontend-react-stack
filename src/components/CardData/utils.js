@@ -46,7 +46,7 @@ export const getRouletteColor = n => {
   let color;
   Object.entries(rouletteNumbers).some(([k, v]) => {
     let exists = v.includes(n);
-    color = exists ? k : "t-background-green-light-1";
+    color = exists ? k : "green-light-1";
     return exists;
   });
   return color;
@@ -65,7 +65,7 @@ const moneyWheelNumbers = {
 export const getDreamCatcherColor = n => {
   let color;
   Object.entries(moneyWheelNumbers).some(([k, v]) => {
-    color = n === k ? v : "t-background-green-light-1";
+    color = n === k ? v : "green-light-1";
     return n === k;
   });
   return color;

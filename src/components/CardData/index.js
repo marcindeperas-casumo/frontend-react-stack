@@ -24,18 +24,25 @@ const CardData = ({ className, game, max = 5, ...props }: Props) => {
     game.results.length && (
       <div className="o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
         <div className="o-layout o-layout--gap u-margin-bottom">
-          {game.results.slice(0, max).map((n, i) => (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={getNumberColor(game.type, n)}
-              circle={true}
-            >
-              {isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)}
-            </Badge>
-          ))}
+          {game.results.slice(0, max).map((n, i) => {
+            const color = getNumberColor(game.type, n);
+            return (
+              <Badge
+                key={i}
+                tag="div"
+                bgColor={color}
+                txtColor={color === "yellow" ? "grey-dark-3" : "white"}
+                circle={true}
+              >
+                {isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)}
+              </Badge>
+            );
+          })}
         </div>
-        <Text size="xs" className="t-color-white u-margin-bottom--normal">
+        <Text
+          className="t-color-white u-margin-bottom--normal u-font-weight-bold"
+          size="xs"
+        >
           RECENT NUMBERS
         </Text>
       </div>

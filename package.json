@@ -11,7 +11,7 @@
     "@casumo/cmp-responsive-image": "^1.1.5",
     "@casumo/cmp-scrollable": "^1.1.2",
     "@casumo/cmp-skeleton": "^1.0.2",
-    "@casumo/cudl": "^2.0.0",
+    "@casumo/cudl": "^3.0.1",
     "@researchgate/react-intersection-observer": "^0.7.3",
     "autoprefixer": "7.1.6",
     "babel-cli": "^6.26.0",
