@@ -1,9 +1,8 @@
 /* @flow */
 import React from "react";
 
-import Heading from "@casumo/cmp-heading";
-
-import "./CardData.scss";
+import Badge from "@casumo/cmp-badge";
+import Text from "@casumo/cmp-text";
 
 import { getRouletteColor, getDreamCatcherColor } from "./utils";
 
@@ -22,31 +21,25 @@ const getNumberColor = (type, n) => {
 
 const CardData = ({ className, game, max = 5, ...props }: Props) => {
   return (
-    <div className="c-card-data t-color-white" {...props}>
-      {game.results.length && (
-        <div className="c-card-data__results u-padding">
-          <div className="c-card-data__results-numbers">
-            {game.results.slice(0, max).map((n, i) => (
-              <div
-                className={`c-card-data__results-number ${getNumberColor(
-                  game.type,
-                  n
-                )} u-padding u-margin-horiz--micro`}
-                key={i}
-              >
-                {isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)}
-              </div>
-            ))}
-          </div>
-          <Heading
-            className="c-card-data__results-title u-margin-bottom--small u-margin-top--micro"
-            text="recent numbers"
-            size="milli"
-            rank="4"
-          />
+    game.results.length && (
+      <div className="o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+        <div className="o-layout o-layout--gap u-margin-bottom">
+          {game.results.slice(0, max).map((n, i) => (
+            <Badge
+              key={i}
+              tag="div"
+              bgColor={getNumberColor(game.type, n)}
+              circle={true}
+            >
+              {isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)}
+            </Badge>
+          ))}
         </div>
-      )}
-    </div>
+        <Text size="xs" className="t-color-white u-margin-bottom--normal">
+          RECENT NUMBERS
+        </Text>
+      </div>
+    )
   );
 };
 

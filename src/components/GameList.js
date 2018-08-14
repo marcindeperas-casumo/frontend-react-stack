@@ -1,7 +1,8 @@
 import React from "react";
 import Heading from "@casumo/cmp-heading";
 import Card from "@casumo/cmp-card";
-import ResponsiveImage from "@casumo/cmp-responsive-image";
+import { PlayerIcon } from "@casumo/cmp-icons";
+import LazyImage from "./LazyImage";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 import classNames from "classnames";
 
@@ -15,8 +16,22 @@ import CardData from "./CardData";
 import GameListSkeleton from "./GameListSkeleton";
 
 const renderImage = src => (
-  <ResponsiveImage className="c-card__img-pic" src={src} />
+  <LazyImage
+    className="c-card__img-pic"
+    style={{ width: "100%" }}
+    src={src}
+    dpr={3}
+  />
 );
+
+const renderPlayers = n => (
+  <div className="o-flex-align--center">
+    <PlayerIcon className="u-margin-vert t-color-grey" size="sml" />
+    <span className="u-margin-left--micro u-margin-vert">{n}</span>
+  </div>
+);
+
+const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
 const emitLaunchGame = slug => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
@@ -34,10 +49,10 @@ const renderCards = ({ games }) =>
       key={o.slug}
       image={renderImage(o.lobby.image)}
       cardData={renderCardData(o.lobby)}
-      title={decodeString(o.name)}
-      players={o.lobby.players}
+      heading={decodeString(o.name)}
+      footer={renderPlayers(o.lobby.players)}
       cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
-      betLimits={o.lobby.bets}
+      text={renderBets(o.lobby.bets)}
     />
   ));
 
@@ -112,7 +127,7 @@ const GameList = props => {
 
         {link && (
           <a
-            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop"
+            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight--bold"
             target="_blank"
             href={link}
             rel="noopener noreferrer"

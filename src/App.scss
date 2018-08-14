@@ -1,0 +1,7 @@
+// Overrides css causing issues
+// [1] reset css applies font-weight normal to Hx elements
+
+//stylelint-disable-next-line xi/selector-pattern
+.Heading-c-heading-md {
+  font-weight: 700; // [1]
+}

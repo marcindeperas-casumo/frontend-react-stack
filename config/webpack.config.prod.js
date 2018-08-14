@@ -1,5 +1,3 @@
-"use strict";
-
 const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
@@ -13,6 +11,9 @@ const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const paths = require("./paths");
 const getClientEnvironment = require("./env");
 const cudl = require("@casumo/cudl");
+
+const PurgecssPlugin = require("purgecss-webpack-plugin");
+const glob = require("glob-all");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -318,6 +319,12 @@ module.exports = {
     // new ExtractTextPlugin({
     //   filename: cssFilename,
     // }),
+    // Remove unused css with Purgecss. See https://github.com/FullHuman/purgecss
+    // for more information about purgecss.
+    // Specify the path of the html files and source files
+    new PurgecssPlugin({
+      paths: [...glob.sync(`${paths.appSrc}/**/*.{js,jsx,mjs}`)],
+    }),
     // Generate a manifest file which contains a mapping of all asset filenames
     // to their corresponding output file so that tools can pick it up without
     // having to parse `index.html`.

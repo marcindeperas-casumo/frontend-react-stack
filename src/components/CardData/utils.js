@@ -1,5 +1,5 @@
 const rouletteNumbers = {
-  "t-background-red": [
+  red: [
     "1",
     "3",
     "5",
@@ -19,7 +19,7 @@ const rouletteNumbers = {
     "34",
     "36",
   ],
-  "t-background-grey-dark-2": [
+  "grey-dark-2": [
     "2",
     "4",
     "6",
@@ -39,7 +39,7 @@ const rouletteNumbers = {
     "33",
     "35",
   ],
-  "t-background-green-light-1": ["0", "00"],
+  "green-light-1": ["0", "00"],
 };
 
 export const getRouletteColor = n => {
@@ -53,13 +53,13 @@ export const getRouletteColor = n => {
 };
 
 const moneyWheelNumbers = {
-  "01": "t-background-yellow t-color-grey-dark-2",
-  "02": "t-background-blue-light-1",
-  "05": "t-background-purple",
-  "10": "t-background-green-light-1",
-  "20": "t-background-orange t-color-grey-dark-2",
-  "40": "t-background-red",
-  X7: "t-background-grey-dark-2",
+  "01": "yellow",
+  "02": "blue-light-1",
+  "05": "purple",
+  "10": "green-light-1",
+  "20": "orange",
+  "40": "red",
+  X7: "grey-dark-2",
 };
 
 export const getDreamCatcherColor = n => {
