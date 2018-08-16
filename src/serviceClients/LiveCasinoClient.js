@@ -1,6 +1,5 @@
-const testURL = window.location.hostname.concat("/api/livecasino/evo");
-const testConn = `wss://casumo0000000001:807e4edc8b6b5f88249deba32dd00b674d586071@${testURL}`;
-// const testConn = `wss://casumo0000000001:test123@${testURL}`;
+const path = window.location.hostname.concat("/api/livecasino/evo");
+const urlConn = `wss://${path}`;
 
 const defaultOptions = {
   // attempt to connect immediately upon instantiation
@@ -24,7 +23,7 @@ class LiveCasinoClient {
   CLOSED = 3;
 
   constructor(url, options = {}) {
-    this.url = url || testConn;
+    this.url = url || urlConn;
     this.options = Object.assign({}, defaultOptions, options);
     this.reconnectAttempts = 0;
     this.exponentialTimeout = 0;

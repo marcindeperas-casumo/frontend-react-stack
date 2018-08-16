@@ -26,11 +26,25 @@ export const LiveCasinoService = () => {
   // against Evolution Lobby API `State`.
   // Checks type and updates game data accordongly.
   // Returns new lobby state or null.
+  let now = new Date();
+  let done = false;
   const processLobby = ({ games, lobby, payload }) => {
     const lobbyData = [...lobby];
     const i = lobbyData.findIndex(g => g.id === payload.tableId);
     const exists = i !== -1;
     const ids = games.map(g => g.providerGameId);
+    const timestamp = new Date();
+
+    const throttle = (time, payload) => {
+      if (time - now < 5000) {
+        done = true;
+      } else {
+        console.log("throttling pass", payload);
+        done = false;
+        now = new Date();
+      }
+      return done;
+    };
 
     const updateProp = prop => {
       if (exists) {
@@ -63,20 +77,20 @@ export const LiveCasinoService = () => {
       SeatsUpdated: () => updateProp("seatsTaken"),
       RouletteNumbersUpdated: () => updateProp("results"),
       MoneyWheelNumbersUpdated: () => updateProp("results"),
-      PlayersUpdated: () => updateProp("players"),
+      PlayersUpdated: () =>
+        !throttle(timestamp, payload) && updateProp("players"),
       default: () => null,
     };
     return (types[payload.type] || types["default"])();
   };
 
+  const getBetsForTable = currency => property(currency);
+  const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
   const getImageForTable = compose(
     property("M"),
     property("thumbnails"),
     property("videoSnapshot")
   );
-
-  const getBetsForTable = currency => property(currency);
-  const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
 
   const getLiveCasinoGames = (list, lobby) => {
     const currency = config.get().currency;
