@@ -40,9 +40,9 @@ see your changes in place in the PoC. This can be achieved by making use of npm/
 
 - Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components` then run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
 - Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack
-- In the react-stack find the file that consumes the component you've linked and append /dist to its path.
-- Should Flow complain add `// $FlowFixMe` on the line above so webpack compiles.
-- Now any changes you make to the component will now flow through to the PoC
+- In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
+- You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
+- Any changes you make to the component will now flow through to the PoC
 
 ### Deploy to production
 
