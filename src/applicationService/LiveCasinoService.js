@@ -21,13 +21,15 @@ export const LiveCasinoService = () => {
 
   const ifLiveCasino = id => config.get().marketsIds.includes(id);
   const getLobbyLink = () => config.get().lobbyLink;
+  const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
+  const exists = i => i >= 0;
 
   const processType = (lobbyData, payload) => {
-    const i = lobbyData.findIndex(g => g.id === payload.tableId);
-    const exists = i !== -1;
+    const i = getIndex(lobbyData, payload);
+    const isInLobby = exists(i);
 
     const updateProp = prop => {
-      if (exists) {
+      if (isInLobby) {
         lobbyData[i][prop] = payload[prop];
         console.log(prop, payload.tableId, lobbyData[i][prop]);
         return lobbyData;
@@ -36,7 +38,7 @@ export const LiveCasinoService = () => {
 
     const type = {
       TableUpdated: () => {
-        if (exists) {
+        if (isInLobby) {
           lobbyData[i] = payload.table;
           lobbyData[i].id = payload.tableId;
           return lobbyData;
@@ -57,20 +59,19 @@ export const LiveCasinoService = () => {
 
   let throttleNow = new Date();
   let throttleMemo = [];
-  const processLobby = ({ games, lobby, payload }, limit = 5000) => {
+  const processLobby = ({ games, lobby, payload }, limit = 10000) => {
     const lobbyData = [...lobby];
-    const i = lobbyData.findIndex(g => g.id === payload.tableId);
-    const exists = i !== -1;
+    const i = getIndex(lobbyData, payload);
+    const isInLobby = exists(i);
     const ids = games.map(g => g.providerGameId);
 
     const timestamp = new Date();
     const throttle = time => {
       if (time - throttleNow < limit) {
-        const inMemo = throttleMemo.findIndex(
-          g => g.tableId === payload.tableId
-        );
-        if (exists) {
-          if (inMemo !== -1) throttleMemo[inMemo] = payload;
+        const m = throttleMemo.findIndex(g => g.tableId === payload.tableId);
+        const isInMemo = exists(m);
+        if (isInLobby) {
+          if (isInMemo) throttleMemo[m] = payload;
           else throttleMemo.push(payload);
         }
         return;
@@ -80,9 +81,7 @@ export const LiveCasinoService = () => {
         throttleMemo = [];
         throttleNow = new Date();
         let l;
-        memo.forEach(payloadData => {
-          l = processType(lobbyData, payloadData);
-        });
+        memo.forEach(payloadData => (l = processType(lobbyData, payloadData)));
         return l;
       }
     };
