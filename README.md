@@ -29,7 +29,10 @@ source files is made, the target app will be reloaded.
 }
 ```
 
-- Within the `casumo-frontend` repository run `gulp dev`
+**Note:** If you don't have a `.casumo-proxy-local` file, create one under `/web` and make sure to add this snippet wrapped in an object.
+
+- Run `casumo-proxy use local` in order to proxy to local
+- Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
 
