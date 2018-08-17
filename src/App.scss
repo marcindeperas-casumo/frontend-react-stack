@@ -1,4 +1,4 @@
-// Overrides css causing issues
+@import "cudl-breakpoints";
 
 @supports (-webkit-line-clamp: 2) {
   //stylelint-disable-next-line xi/selector-pattern
@@ -7,7 +7,6 @@
     -webkit-box-orient: vertical;
     //stylelint-disable-next-line value-no-vendor-prefix
     display: -webkit-box;
-    height: 45px;
     //stylelint-disable-next-line property-no-vendor-prefix
     -webkit-line-clamp: 2;
     overflow: hidden;
@@ -15,7 +14,19 @@
   }
 }
 
+// TEMPORARY
+// Overrides css causing issues
+
 //stylelint-disable-next-line xi/selector-pattern
 .Scrollable-o-scrollable__wrap > * {
   vertical-align: top;
+}
+
+$cards-body-heights: (
+  mobile: 105px,
+  desktop: 110px,
+);
+//stylelint-disable-next-line xi/selector-pattern
+.Card-c-card .o-flex.u-padding-top--small.u-padding-bottom--normal {
+  @include cudl-breakpoint-with($cards-body-heights, height);
 }

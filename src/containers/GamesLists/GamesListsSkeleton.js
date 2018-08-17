@@ -6,7 +6,7 @@ const GameListsSkeleton = () => (
     {Array.from(Array(4).keys()).map(i => (
       <GameListSkeleton
         key={i}
-        itemWidth={180}
+        itemWidth={170}
         itemRatio={1.2}
         itemGap={8}
         display={"tiles"}

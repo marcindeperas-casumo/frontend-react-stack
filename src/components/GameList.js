@@ -71,16 +71,15 @@ const renderList = ({ display, games }) => (
 
 const renderSkeleton = ({ display }) => (
   <GameListSkeleton
-    itemWidth={display === "cards" ? 336 : 180}
-    itemRatio={display === "cards" ? 0.92 : 1.2}
+    itemWidth={display === "cards" ? 320 : 160}
+    itemRatio={display === "cards" ? 0.98 : 1.2}
     itemGap={display === "cards" ? 16 : 8}
     display={display}
     title={false}
     preserveAspectRatio="xMinYMin"
     colorLow="#eff6f6"
     colorHi="#ffffff"
-    className="u-padding-top--semi@tablet u-padding-top--semi@desktop
-    u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+    className="u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
   />
 );
 

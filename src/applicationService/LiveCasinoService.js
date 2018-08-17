@@ -81,7 +81,7 @@ export const LiveCasinoService = () => {
         throttleMemo = [];
         throttleNow = new Date();
         let l;
-        memo.forEach(payloadData => (l = processType(lobbyData, payloadData)));
+        memo.forEach(d => (l = processType(lobbyData, d)));
         return l;
       }
     };

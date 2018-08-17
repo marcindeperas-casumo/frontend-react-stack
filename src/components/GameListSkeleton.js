@@ -27,7 +27,11 @@ const GameListSkeleton = ({
   const skeletonWidth = itemWidth * items;
   const itemHeight = itemWidth * itemRatio;
   const displayCards = display === "cards";
-  const skeletonHeight = displayCards ? itemHeight : itemHeight + 40;
+  const skeletonHeight = displayCards
+    ? itemHeight
+    : title
+      ? itemHeight + 40
+      : itemHeight;
 
   const renderCards = () =>
     Array.from(Array(items).keys()).map(pos => {
@@ -40,35 +44,35 @@ const GameListSkeleton = ({
             rx={cornerRadius}
             ry={cornerRadius}
             width={itemWidth}
-            height={itemHeight - 120}
+            height={itemHeight - 135}
           />
           <rect
             x={x}
-            y={itemHeight - 80}
-            rx={cornerRadius}
-            ry={cornerRadius}
-            width={itemWidth / 3}
-            height="14"
-          />
-          <rect
-            x={x}
-            y={itemHeight - 60}
+            y={itemHeight - 120}
             rx={cornerRadius}
             ry={cornerRadius}
             width={(45 / 100) * itemWidth}
+            height="18"
+          />
+          <rect
+            x={x}
+            y={itemHeight - 95}
+            rx={cornerRadius}
+            ry={cornerRadius}
+            width={itemWidth / 4}
             height="14"
           />
           <rect
             x={x + itemWidth - (40 / 100) * itemWidth}
-            y={itemHeight - 80}
-            rx="20"
-            ry="20"
+            y={itemHeight - 120}
+            rx="25"
+            ry="25"
             width={(40 / 100) * itemWidth}
-            height="35"
+            height="50"
           />
           <rect
             x={x}
-            y={itemHeight - 20}
+            y={itemHeight - 30}
             rx="0"
             ry="0"
             width={itemWidth}
@@ -76,19 +80,11 @@ const GameListSkeleton = ({
           />
           <rect
             x={x}
-            y={itemHeight - 12}
-            rx="6"
-            ry="6"
-            width={(15 / 100) * itemWidth}
-            height="12"
-          />
-          <rect
-            x={x + itemWidth - (20 / 100) * itemWidth}
-            y={itemHeight - 12}
-            rx="6"
-            ry="6"
-            width={(20 / 100) * itemWidth}
-            height="12"
+            y={itemHeight - 20}
+            rx="8"
+            ry="8"
+            width="28"
+            height="16"
           />
         </React.Fragment>
       );
