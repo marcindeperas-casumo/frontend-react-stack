@@ -22,48 +22,19 @@ export const LiveCasinoService = () => {
   const ifLiveCasino = id => config.get().marketsIds.includes(id);
   const getLobbyLink = () => config.get().lobbyLink;
 
-  // Compares Live Casino lobby retrieved from gameBrowser
-  // against Evolution Lobby API `State`.
-  // Checks type and updates game data accordongly.
-  // Returns new lobby state or null.
-  let now = new Date();
-  let done = false;
-  const processLobby = ({ games, lobby, payload }) => {
-    const lobbyData = [...lobby];
+  const processType = (lobbyData, payload) => {
     const i = lobbyData.findIndex(g => g.id === payload.tableId);
     const exists = i !== -1;
-    const ids = games.map(g => g.providerGameId);
-    const timestamp = new Date();
-
-    const throttle = (time, payload) => {
-      if (time - now < 5000) {
-        done = true;
-      } else {
-        console.log("throttling pass", payload);
-        done = false;
-        now = new Date();
-      }
-      return done;
-    };
 
     const updateProp = prop => {
       if (exists) {
         lobbyData[i][prop] = payload[prop];
+        console.log(prop, payload.tableId, lobbyData[i][prop]);
         return lobbyData;
       }
     };
 
-    const types = {
-      State: () => {
-        const newLobbyData = Object.keys(payload.tables)
-          .map(k => ({
-            ...payload.tables[k],
-            id: k,
-          }))
-          .filter(table => ids.includes(table.id));
-        return newLobbyData;
-      },
-
+    const type = {
       TableUpdated: () => {
         if (exists) {
           lobbyData[i] = payload.table;
@@ -77,11 +48,58 @@ export const LiveCasinoService = () => {
       SeatsUpdated: () => updateProp("seatsTaken"),
       RouletteNumbersUpdated: () => updateProp("results"),
       MoneyWheelNumbersUpdated: () => updateProp("results"),
-      PlayersUpdated: () =>
-        !throttle(timestamp, payload) && updateProp("players"),
-      default: () => null,
+      PlayersUpdated: () => updateProp("players"),
+      default: () => undefined,
     };
-    return (types[payload.type] || types["default"])();
+
+    return (type[payload.type] || type["default"])();
+  };
+
+  let throttleNow = new Date();
+  let throttleMemo = [];
+  const processLobby = ({ games, lobby, payload }, limit = 5000) => {
+    const lobbyData = [...lobby];
+    const i = lobbyData.findIndex(g => g.id === payload.tableId);
+    const exists = i !== -1;
+    const ids = games.map(g => g.providerGameId);
+
+    const timestamp = new Date();
+    const throttle = time => {
+      if (time - throttleNow < limit) {
+        const inMemo = throttleMemo.findIndex(
+          g => g.tableId === payload.tableId
+        );
+        if (exists) {
+          if (inMemo !== -1) throttleMemo[inMemo] = payload;
+          else throttleMemo.push(payload);
+        }
+        return;
+      } else {
+        console.log("throttling pass");
+        const memo = [...throttleMemo];
+        throttleMemo = [];
+        throttleNow = new Date();
+        let l;
+        memo.forEach(payloadData => {
+          l = processType(lobbyData, payloadData);
+        });
+        return l;
+      }
+    };
+
+    const processState = () => {
+      const newLobbyData = Object.keys(payload.tables)
+        .map(k => ({
+          ...payload.tables[k],
+          id: k,
+        }))
+        .filter(table => ids.includes(table.id));
+      return newLobbyData;
+    };
+
+    if (payload.type === "State") return processState(lobbyData, payload);
+    if (limit !== 0) return throttle(timestamp);
+    else return processType(lobbyData, payload);
   };
 
   const getBetsForTable = currency => property(currency);

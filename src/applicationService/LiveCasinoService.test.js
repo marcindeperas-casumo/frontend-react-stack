@@ -47,7 +47,7 @@ describe("liveCasinoProcessType", () => {
     });
   });
 
-  describe("LiveCasinoService processLobby", () => {
+  describe("LiveCasinoService processLobby NO throttle", () => {
     describe("should return new Lobby state", () => {
       test("when `State` type received and lobby is empty", () => {
         args = { games, lobby: [], payload: State };
@@ -57,14 +57,14 @@ describe("liveCasinoProcessType", () => {
 
       test("when `PlayersUpdated` type received", () => {
         args = { games, lobby, payload: PlayersUpdated };
-        const l = LiveCasinoService.processLobby(args);
+        const l = LiveCasinoService.processLobby(args, 0);
         const game = l.find(o => o.id === args.payload.tableId);
         expect(game.players).toEqual(args.payload.players);
       });
 
       test("when `RouletteNumbersUpdated` type received", () => {
         args = { games, lobby, payload: RouletteNumbersUpdated };
-        const l = LiveCasinoService.processLobby(args);
+        const l = LiveCasinoService.processLobby(args, 0);
         const game = l.find(o => o.id === args.payload.tableId);
         expect(game.results).toEqual(args.payload.results);
       });
@@ -73,8 +73,39 @@ describe("liveCasinoProcessType", () => {
     describe("should return null", () => {
       test("when unknown type received", () => {
         args = { games, lobby: [], payload: {} };
-        const l = LiveCasinoService.processLobby(args);
-        expect(l).toBe(null);
+        const l = LiveCasinoService.processLobby(args, 0);
+        expect(l).toBe(undefined);
+      });
+    });
+  });
+
+  describe("LiveCasinoService processLobby throttle", () => {
+    let limit = 5000;
+    describe("should return udefined before 5s", () => {
+      test("when `PlayersUpdated` type received", () => {
+        args = { games, lobby, payload: PlayersUpdated };
+        const l = LiveCasinoService.processLobby(args, limit);
+        expect(l).toBe(undefined);
+      });
+    });
+
+    describe("should return new Lobby state after 5s", () => {
+      test("when `PlayersUpdated` type received", () => {
+        args = { games, lobby, payload: PlayersUpdated };
+        LiveCasinoService.processLobby(args, limit);
+        setTimeout(() => {
+          const l = LiveCasinoService.processLobby(args, limit);
+          const game = l.find(o => o.id === args.payload.tableId);
+          expect(game.players).toEqual(args.payload.players);
+        }, limit);
+      });
+    });
+
+    describe("should return null", () => {
+      test("when unknown type received", () => {
+        args = { games, lobby: [], payload: {} };
+        const l = LiveCasinoService.processLobby(args, limit);
+        expect(l).toBe(undefined);
       });
     });
   });
