@@ -113,6 +113,7 @@ const GameList = props => {
       <div className="u-display--flex">
         <Heading
           className={classNames(
+            "c-scrollable-list-title",
             "u-padding-bottom--small",
             "u-padding-bottom--normal@tablet",
             "u-padding-bottom--normal@desktop",

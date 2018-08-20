@@ -104,7 +104,7 @@ export const LiveCasinoService = () => {
   const getBetsForTable = currency => property(currency);
   const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
   const getImageForTable = compose(
-    property("M"),
+    property("L"),
     property("thumbnails"),
     property("videoSnapshot")
   );
