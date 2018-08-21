@@ -31,7 +31,7 @@ const GameTile = ({
     tabIndex={0}
   >
     <LazyImage
-      className="o-ratio__content"
+      className="o-ratio__content t-border-r--8"
       src={logoBackground}
       mark={logo}
       alt={name}
@@ -44,7 +44,8 @@ const GameTile = ({
         "c-game-tile__overlay",
         inMaintenanceMode && "c-game-tile__overlay--maintenance",
         "u-padding-vert--normal",
-        "u-padding-horiz--small"
+        "u-padding-horiz--small",
+        "t-border-r--8"
       )}
     >
       <Heading

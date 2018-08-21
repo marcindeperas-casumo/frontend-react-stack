@@ -202,3 +202,45 @@ export const decodeString = s =>
     `<!doctype html><body>${s}</body></html>`,
     "text/html"
   ).body.textContent;
+
+/**
+ * Use this method when you want to know which parts of the string are the
+ * "matched" and "unmatched" groups for a given search term.
+ * @param {string} str String to search into
+ * @param {string} searchTerm Search term to search into a given string
+ */
+export const matchingGroups = (str, searchTerm) => {
+  const matchType = (type, value) => ({
+    type,
+    value,
+  });
+
+  const unmatched = value => matchType("unmatched", value);
+  const matched = value => matchType("matched", value);
+
+  const normalizedStr = str.toLowerCase();
+  const normalizedTarget = searchTerm.toLowerCase();
+
+  const searchIdx = normalizedStr.search(normalizedTarget);
+  const found = searchIdx >= 0;
+
+  if (!found || searchTerm === "") {
+    return [unmatched(str)];
+  }
+
+  const matchers = [];
+
+  if (searchIdx !== 0) {
+    matchers.push(unmatched(str.substr(0, searchIdx)));
+  }
+
+  matchers.push(matched(str.substr(searchIdx, searchTerm.length)));
+
+  if (searchIdx + searchTerm.length < str.length) {
+    matchers.push(
+      unmatched(str.substr(searchIdx + searchTerm.length, str.length - 1))
+    );
+  }
+
+  return matchers;
+};
