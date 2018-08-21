@@ -135,7 +135,7 @@ const GameList = props => {
             href={link}
             rel="noopener noreferrer"
           >
-            Go To Lobby
+            Go to lobby
           </a>
         )}
       </div>

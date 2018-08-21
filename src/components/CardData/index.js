@@ -40,7 +40,7 @@ const CardData = ({ className, game, max = 5, ...props }: Props) => {
           })}
         </div>
         <Text
-          className="t-color-white u-margin-bottom--normal u-font-weight-bold"
+          className="t-color-white u-margin-bottom--small u-font-weight-bold"
           size="xs"
         >
           RECENT NUMBERS
