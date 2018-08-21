@@ -1,9 +1,10 @@
 import React from "react";
+import CMSField from "../../containers/CMSField";
 
 const TemporaryUnavailable = () => (
-  <span size="med" className="t-color-white">
-    Temporary unavailable
-  </span>
+  <React.Fragment>
+    {<CMSField slug="mobile.game-details" field="game_in_maintenance_text" />}
+  </React.Fragment>
 );
 
 export default TemporaryUnavailable;

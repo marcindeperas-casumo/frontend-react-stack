@@ -4,8 +4,8 @@ import sessionService from "./SessionService";
 import cmsClient from "../serviceClients/CMSClient";
 
 const fromCommonHandshake = k => property(`common/composition/${k}`);
-
 const pullWPInterface = fromCommonHandshake("wpInterface");
+const slugCache = {};
 
 export const CMSServiceFactory = ({
   commonService,
@@ -20,11 +20,22 @@ export const CMSServiceFactory = ({
       commonService.handshake
     )();
 
-  const getPage = async ({ slug }) =>
-    cmsClient.queryPage({
-      slug,
-      lang: await sessionService.country(),
-      hash: await cmsHashForLang(await sessionService.country()),
+  const getPage = ({ slug }) =>
+    new Promise(async resolve => {
+      const country = await sessionService.country();
+      const hash = await cmsHashForLang(country);
+
+      setTimeout(() => {
+        if (!Object.keys(slugCache).includes(slug)) {
+          slugCache[slug] = cmsClient.queryPage({
+            slug,
+            lang: country,
+            hash: hash,
+          });
+        }
+
+        return resolve(slugCache[slug]);
+      }, 1);
     });
 
   return { cmsHashForLang, getPage };

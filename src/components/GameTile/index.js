@@ -5,6 +5,8 @@ import React from "react";
 import { decodeString } from "../../utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
+import CMSField from "../../containers/CMSField";
+import TemporaryUnavailable from "./TemporaryUnavailable";
 
 const GameTile = ({
   logoBackground,
@@ -23,6 +25,7 @@ const GameTile = ({
       "o-ratio--game-tile",
       "c-scrollable-game",
       "t-border-r--8",
+      "t-color-white",
       inMaintenanceMode && "t-greyscale"
     )}
     tabIndex={0}
@@ -51,7 +54,7 @@ const GameTile = ({
       />
 
       {inMaintenanceMode ? (
-        <AlertIcon className="t-color-white" size="med" />
+        <TemporaryUnavailable />
       ) : (
         <PlayAction launchGame={launchGame} />
       )}
