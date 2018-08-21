@@ -165,10 +165,5 @@
     "@storybook/addon-links": "^3.4.8",
     "@storybook/addons": "^3.4.8",
     "@storybook/react": "^3.4.8"
-  },
-  "proxy": {
-    "/api": {
-      "target": "http://mobile.dev/"
-    }
   }
 }
