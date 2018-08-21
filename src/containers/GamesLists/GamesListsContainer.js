@@ -72,6 +72,13 @@ export default class GamesListsContainer extends React.Component {
             lobby: lobbyData,
           });
       };
+      ws.onerror = e => {
+        if (e === "MAX_RECONNECT")
+          this.setState({
+            ...this.state,
+            lobbyError: true,
+          });
+      };
     }
   }
 
@@ -86,7 +93,7 @@ export default class GamesListsContainer extends React.Component {
       }
       // Filter out games in Lobby against gameBrowser data
       // for Live Casino.
-      if (ifLiveCasino(gameList.id)) {
+      if (ifLiveCasino(gameList.id) && !this.state.lobbyError) {
         return {
           ...gameList,
           games: LiveCasinoService.getLiveCasinoGames(gameList.games, lobby),
@@ -103,7 +110,11 @@ export default class GamesListsContainer extends React.Component {
           filteredList.map(gameList => (
             <GameList
               key={gameList.title}
-              display={ifLiveCasino(gameList.id) ? "cards" : "tiles"}
+              display={
+                ifLiveCasino(gameList.id) && !this.state.lobbyError
+                  ? "cards"
+                  : "tiles"
+              }
               link={ifLiveCasino(gameList.id) ? getLobbyLink() : null}
               {...gameList}
             />

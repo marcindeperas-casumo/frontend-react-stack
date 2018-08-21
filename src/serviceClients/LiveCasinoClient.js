@@ -11,7 +11,7 @@ const defaultOptions = {
   reconnectInterval: 1000,
   reconnectIntervalMax: 3000,
   // maximum reconnection attempts to make, infinite if null
-  maxReconnectAttempts: null,
+  maxReconnectAttempts: 3,
   // called clean close should reconnect or not
   reconnectOnCleanClose: false,
 };
@@ -32,13 +32,12 @@ class LiveCasinoClient {
   }
 
   open() {
-    this.socket = new WebSocket(this.url);
     if (
       this.options.maxReconnectAttempts &&
-      this.options.maxReconnectAttempts < this.reconnectAttempts
+      this.reconnectAttempts >= this.options.maxReconnectAttempts
     )
-      return;
-
+      return this.onerror("MAX_RECONNECT");
+    this.socket = new WebSocket(this.url);
     this._syncState();
     this.socket.onmessage = this._onmessage.bind(this);
     this.socket.onopen = this._onopen.bind(this);

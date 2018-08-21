@@ -22,7 +22,7 @@
         "29",
         "31"
       ],
-      "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_M.jpg",
+      "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_L.jpg",
       "bets": {
         "symbol": "£",
         "min": 1,
@@ -53,7 +53,7 @@
         "01",
         "01"
       ],
-      "image": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_M.jpg",
+      "image": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_L.jpg",
       "bets": {
         "symbol": "£",
         "min": 0.1,
@@ -85,7 +85,7 @@
         "23",
         "22"
       ],
-      "image": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_M.jpg",
+      "image": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_L.jpg",
       "bets": {
         "symbol": "£",
         "min": 0.2,
@@ -106,7 +106,7 @@
     "lobby": {
       "players": 48,
       "results": null,
-      "image": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_M.jpg",
+      "image": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_L.jpg",
       "bets": {
         "symbol": "£",
         "min": 0.5,
@@ -127,7 +127,7 @@
     "lobby": {
       "players": 84,
       "results": null,
-      "image": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_M.jpg",
+      "image": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_L.jpg",
       "bets": {
         "symbol": "£",
         "min": 1,

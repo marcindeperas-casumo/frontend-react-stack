@@ -21,6 +21,7 @@ export const LiveCasinoService = () => {
 
   const ifLiveCasino = id => config.get().marketsIds.includes(id);
   const getLobbyLink = () => config.get().lobbyLink;
+
   const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
   const exists = i => i >= 0;
 
