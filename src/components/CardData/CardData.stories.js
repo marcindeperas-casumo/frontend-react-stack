@@ -7,12 +7,12 @@ import { action } from "@storybook/addon-actions";
 import Card from "@casumo/cmp-card";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 
-import CardData from "./CardData";
+import CardDataResults from "./Results";
 
 const stories = storiesOf("Card", module);
 
 const renderImage = src => <ResponsiveImage src={src} />;
-const renderCardData = results => <CardData results={results} />;
+const renderCardData = results => <CardDataResults results={results} />;
 
 stories.add(
   "Default",

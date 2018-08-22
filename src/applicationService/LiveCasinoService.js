@@ -64,7 +64,17 @@ export const LiveCasinoService = () => {
     const lobbyData = [...lobby];
     const i = getIndex(lobbyData, payload);
     const isInLobby = exists(i);
-    const ids = games.map(g => g.providerGameId);
+
+    // TEMPORARY !!!
+    // match Casumo Blackjack test id against prod data
+    // this game is not in evo test
+    // const ids = games.map(g => g.providerGameId);
+    const ids = games.map(
+      g =>
+        g.providerGameId === "lnte5m7j7jdaadpm"
+          ? "lnqzgbjt756qbnoj"
+          : g.providerGameId
+    );
 
     const timestamp = new Date();
     const throttle = time => {
@@ -98,7 +108,8 @@ export const LiveCasinoService = () => {
     };
 
     if (payload.type === "State") return processState(lobbyData, payload);
-    if (limit !== 0) return throttle(timestamp);
+    if (limit !== 0 && payload.type !== "SeatsUpdated")
+      return throttle(timestamp);
     else return processType(lobbyData, payload);
   };
 
@@ -113,16 +124,28 @@ export const LiveCasinoService = () => {
   const getLiveCasinoGames = (list, lobby) => {
     const currency = config.get().currency;
     const lobbyGames = list.reduce((memo, game) => {
-      const table = lobby.find(t => t.id === game.providerGameId);
+      // TEMPORARY !!!
+      // match Casumo Blackjack test id against prod data
+      // this game is not in evo test
+      // const table = lobby.find(t => t.id === game.providerGameId);
+      const table =
+        game.providerGameId === "lnte5m7j7jdaadpm"
+          ? lobby.find(t => t.id === "lnqzgbjt756qbnoj")
+          : lobby.find(t => t.id === game.providerGameId);
+
       if (table) {
         memo.push({
           ...game,
           lobby: {
-            players: table.players,
-            results: table.results || null,
+            type: table.gameType,
             image: getImageForTable(table),
             bets: getBetsCurrency(table.betLimits, currency),
-            type: table.gameType,
+            players: table.players,
+            results: table.results || null,
+            betBehind: table.betBehind,
+            seats: table.seatsTaken
+              ? table.seats - table.seatsTaken.length
+              : null,
           },
         });
       }

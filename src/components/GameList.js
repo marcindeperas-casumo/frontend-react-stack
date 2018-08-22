@@ -42,7 +42,7 @@ const emitLaunchGame = slug => {
   });
 };
 
-const renderCardData = game => game.results && <CardData game={game} />;
+const renderCardData = game => <CardData game={game} />;
 
 const renderCards = ({ games }) =>
   games.map(o => (
@@ -63,6 +63,17 @@ const renderTiles = ({ games }) =>
     <GameTile className="c-scrollable-game t-border-r--8" key={o.slug} {...o} />
   ));
 
+const CardsOrTiles = props => (
+  <Matcher
+    getKey={({ display }) => display}
+    matchers={{
+      cards: renderCards,
+      tiles: renderTiles,
+    }}
+    {...props}
+  />
+);
+
 const renderList = ({ display, games }) => (
   <ScrollingContainer padded>
     <CardsOrTiles display={display} games={games} />
@@ -80,17 +91,6 @@ const renderSkeleton = ({ display }) => (
     colorLow="#eff6f6"
     colorHi="#ffffff"
     className="u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
-  />
-);
-
-const CardsOrTiles = props => (
-  <Matcher
-    getKey={({ display }) => display}
-    matchers={{
-      cards: renderCards,
-      tiles: renderTiles,
-    }}
-    {...props}
   />
 );
 
