@@ -44,7 +44,7 @@ export const SessionServiceFactory = ({
 
   const language = async () => {
     if (!(await isAuthenticated())) {
-      // TODO
+      // This should be refactored as language guesser
       return countryGuesserService.guess();
     }
 
