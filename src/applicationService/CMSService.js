@@ -20,23 +20,20 @@ export const CMSServiceFactory = ({
       commonService.handshake
     )();
 
-  const getPage = ({ slug }) =>
-    new Promise(async resolve => {
-      const country = await sessionService.country();
-      const hash = await cmsHashForLang(country);
+  const getPage = async ({ slug }) => {
+    const country = await sessionService.country();
+    const hash = await cmsHashForLang(country);
 
-      setTimeout(() => {
-        if (!Object.keys(slugCache).includes(slug)) {
-          slugCache[slug] = cmsClient.queryPage({
-            slug,
-            lang: country,
-            hash: hash,
-          });
-        }
+    if (!Object.keys(slugCache).includes(slug)) {
+      slugCache[slug] = cmsClient.queryPage({
+        slug,
+        lang: country,
+        hash: hash,
+      });
+    }
 
-        return resolve(slugCache[slug]);
-      }, 1);
-    });
+    return slugCache[slug];
+  };
 
   return { cmsHashForLang, getPage };
 };
