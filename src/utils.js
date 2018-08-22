@@ -244,3 +244,5 @@ export const matchingGroups = (str, searchTerm) => {
 
   return matchers;
 };
+
+export const fromCommonHandshake = k => property(`common/composition/${k}`);

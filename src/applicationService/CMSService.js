@@ -1,9 +1,8 @@
-import { composePromises, property } from "../utils";
+import { composePromises, property, fromCommonHandshake } from "../utils";
 import commonService from "./CommonService";
 import sessionService from "./SessionService";
 import cmsClient from "../serviceClients/CMSClient";
 
-const fromCommonHandshake = k => property(`common/composition/${k}`);
 const pullWPInterface = fromCommonHandshake("wpInterface");
 const slugCache = {};
 
