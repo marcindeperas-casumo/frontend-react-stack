@@ -1,5 +1,6 @@
 import React from "react";
 import CMSService from "../applicationService/CMSService";
+import { identity } from "../utils";
 
 export default class CMSField extends React.Component {
   constructor(props) {
@@ -17,8 +18,8 @@ export default class CMSField extends React.Component {
     });
   }
   render() {
+    const { view = identity } = this.props;
     const { text } = this.state;
-
-    return text;
+    return view(text);
   }
 }
