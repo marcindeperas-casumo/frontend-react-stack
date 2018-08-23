@@ -9,6 +9,7 @@
     "jackpotId": null,
     "providerGameId": "madlz3bzhyeabit4",
     "lobby": {
+      "betBehind": null,
       "players": 7,
       "results": [
         "11",
@@ -28,6 +29,7 @@
         "min": 1,
         "max": 10000
       },
+      "seats": null,
       "type": "Roulette"
     }
   },
@@ -41,6 +43,7 @@
     "jackpotId": null,
     "providerGameId": "MOWDream00000001",
     "lobby": {
+      "betBehind": null,
       "players": 338,
       "results": [
         "02",
@@ -59,6 +62,7 @@
         "min": 0.1,
         "max": 2500
       },
+      "seats": null,
       "type": "MoneyWheel"
     }
   },
@@ -72,6 +76,7 @@
     "jackpotId": null,
     "providerGameId": "LightningTable01",
     "lobby": {
+      "betBehind": null,
       "players": 3,
       "results": [
         "31",
@@ -91,6 +96,7 @@
         "min": 0.2,
         "max": 10000
       },
+      "seats": null,
       "type": "Roulette"
     }
   },
@@ -104,6 +110,7 @@
     "jackpotId": null,
     "providerGameId": "UTHTable00000001",
     "lobby": {
+      "betBehind": null,
       "players": 48,
       "results": null,
       "image": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_L.jpg",
@@ -112,6 +119,7 @@
         "min": 0.5,
         "max": 500
       },
+      "seats": null,
       "type": "UTH"
     }
   },
@@ -125,6 +133,7 @@
     "jackpotId": null,
     "providerGameId": "TopCard000000001",
     "lobby": {
+      "betBehind": null,
       "players": 84,
       "results": null,
       "image": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_L.jpg",
@@ -133,6 +142,7 @@
         "min": 1,
         "max": 10000
       },
+      "seats": null,
       "type": "TopCard"
     }
   }

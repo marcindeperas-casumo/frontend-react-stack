@@ -1,5 +1,5 @@
 import React from "react";
-import LiveCasinoService from "./LiveCasinoService";
+import LiveCasinoServiceEvo from "./LiveCasinoServiceEvo";
 
 import games from "./__mocks__/gameBrowserLiveCasinoGames.json";
 import lobby from "./__mocks__/lobbyState.json";
@@ -15,7 +15,7 @@ describe("liveCasinoProcessType", () => {
   let conf;
 
   beforeEach(() => {
-    service = LiveCasinoService;
+    service = LiveCasinoServiceEvo;
     conf = { country: "GB", currency: "GBP" };
     service.config.set(conf);
   });
@@ -51,20 +51,20 @@ describe("liveCasinoProcessType", () => {
     describe("should return new Lobby state", () => {
       test("when `State` type received and lobby is empty", () => {
         args = { games, lobby: [], payload: State };
-        const l = LiveCasinoService.processLobby(args);
+        const l = service.processLobby(args);
         expect(l).toEqual(lobby);
       });
 
       test("when `PlayersUpdated` type received", () => {
         args = { games, lobby, payload: PlayersUpdated };
-        const l = LiveCasinoService.processLobby(args, 0);
+        const l = service.processLobby(args, 0);
         const game = l.find(o => o.id === args.payload.tableId);
         expect(game.players).toEqual(args.payload.players);
       });
 
       test("when `RouletteNumbersUpdated` type received", () => {
         args = { games, lobby, payload: RouletteNumbersUpdated };
-        const l = LiveCasinoService.processLobby(args, 0);
+        const l = service.processLobby(args, 0);
         const game = l.find(o => o.id === args.payload.tableId);
         expect(game.results).toEqual(args.payload.results);
       });
@@ -73,7 +73,7 @@ describe("liveCasinoProcessType", () => {
     describe("should return null", () => {
       test("when unknown type received", () => {
         args = { games, lobby: [], payload: {} };
-        const l = LiveCasinoService.processLobby(args, 0);
+        const l = service.processLobby(args, 0);
         expect(l).toBe(undefined);
       });
     });
@@ -84,7 +84,7 @@ describe("liveCasinoProcessType", () => {
     describe("should return udefined before 5s", () => {
       test("when `PlayersUpdated` type received", () => {
         args = { games, lobby, payload: PlayersUpdated };
-        const l = LiveCasinoService.processLobby(args, limit);
+        const l = service.processLobby(args, limit);
         expect(l).toBe(undefined);
       });
     });
@@ -92,9 +92,9 @@ describe("liveCasinoProcessType", () => {
     describe("should return new Lobby state after 5s", () => {
       test("when `PlayersUpdated` type received", () => {
         args = { games, lobby, payload: PlayersUpdated };
-        LiveCasinoService.processLobby(args, limit);
+        service.processLobby(args, limit);
         setTimeout(() => {
-          const l = LiveCasinoService.processLobby(args, limit);
+          const l = service.processLobby(args, limit);
           const game = l.find(o => o.id === args.payload.tableId);
           expect(game.players).toEqual(args.payload.players);
         }, limit);
@@ -104,7 +104,7 @@ describe("liveCasinoProcessType", () => {
     describe("should return null", () => {
       test("when unknown type received", () => {
         args = { games, lobby: [], payload: {} };
-        const l = LiveCasinoService.processLobby(args, limit);
+        const l = service.processLobby(args, limit);
         expect(l).toBe(undefined);
       });
     });

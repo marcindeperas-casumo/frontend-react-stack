@@ -21,10 +21,11 @@ export const LiveCasinoService = () => {
 
   const ifLiveCasino = id => config.get().marketsIds.includes(id);
   const getLobbyLink = () => config.get().lobbyLink;
-
   const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
   const exists = i => i >= 0;
 
+  // processes push updates types from websocket client
+  // returns updated lobby list or undefined
   const processType = (lobbyData, payload) => {
     const i = getIndex(lobbyData, payload);
     const isInLobby = exists(i);
@@ -60,21 +61,25 @@ export const LiveCasinoService = () => {
 
   let throttleNow = new Date();
   let throttleMemo = [];
+  // sets initial lobby State data as first payload
+  // then implements throttling updating UI every 10 second
+  // by default with latest data and clear the memo
   const processLobby = ({ games, lobby, payload }, limit = 10000) => {
     const lobbyData = [...lobby];
     const i = getIndex(lobbyData, payload);
     const isInLobby = exists(i);
 
-    // TEMPORARY !!!
-    // match Casumo Blackjack test id against prod data
-    // this game is not in evo test
-    // const ids = games.map(g => g.providerGameId);
-    const ids = games.map(
-      g =>
+    const ids = games.map(g => {
+      const id =
         g.providerGameId === "lnte5m7j7jdaadpm"
           ? "lnqzgbjt756qbnoj"
-          : g.providerGameId
-    );
+          : g.providerGameId;
+      const table = lobby.find(t => t.id === id);
+      return {
+        id,
+        type: table ? table.gameType : null,
+      };
+    });
 
     const timestamp = new Date();
     const throttle = time => {
@@ -103,13 +108,21 @@ export const LiveCasinoService = () => {
           ...payload.tables[k],
           id: k,
         }))
-        .filter(table => ids.includes(table.id));
+        .filter(table => ids.find(t => t.id === table.id));
       return newLobbyData;
     };
 
+    const blackjackGameType = id => {
+      const o = ids.find(t => t.id === id);
+      return o ? o.type === "Blackjack" : false;
+    };
+
+    // this would be the first payload received
     if (payload.type === "State") return processState(lobbyData, payload);
-    if (limit !== 0 && payload.type !== "SeatsUpdated")
+    // for the rest check if throttling is active and game is not blackjack type
+    if (limit !== 0 && !blackjackGameType(payload.tableId))
       return throttle(timestamp);
+    // otherwise update the UI
     else return processType(lobbyData, payload);
   };
 
@@ -121,12 +134,11 @@ export const LiveCasinoService = () => {
     property("videoSnapshot")
   );
 
-  const getLiveCasinoGames = (list, lobby) => {
+  // compares games list from cms against lobby data
+  // returns lobby list of games with lobby data
+  const getLiveCasinoGames = (games, lobby) => {
     const currency = config.get().currency;
-    const lobbyGames = list.reduce((memo, game) => {
-      // TEMPORARY !!!
-      // match Casumo Blackjack test id against prod data
-      // this game is not in evo test
+    const lobbyGames = games.reduce((memo, game) => {
       // const table = lobby.find(t => t.id === game.providerGameId);
       const table =
         game.providerGameId === "lnte5m7j7jdaadpm"
@@ -142,7 +154,7 @@ export const LiveCasinoService = () => {
             bets: getBetsCurrency(table.betLimits, currency),
             players: table.players,
             results: table.results || null,
-            betBehind: table.betBehind,
+            betBehind: table.betBehind || null,
             seats: table.seatsTaken
               ? table.seats - table.seatsTaken.length
               : null,
