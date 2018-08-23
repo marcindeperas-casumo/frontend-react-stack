@@ -53,14 +53,21 @@ const renderCards = ({ games }) =>
       cardData={renderCardData(o.lobby)}
       heading={decodeString(o.name)}
       footer={renderPlayers(o.lobby.players)}
-      cta={{ text: "Play Now", link: () => emitLaunchGame(o.slug) }}
+      cta={{
+        text: "Play Now",
+        onClick: () => emitLaunchGame(o.slug),
+      }}
       text={renderBets(o.lobby.bets)}
     />
   ));
 
 const renderTiles = ({ games }) =>
-  games.map(o => (
-    <GameTile className="c-scrollable-game t-border-r--8" key={o.slug} {...o} />
+  games.map(game => (
+    <GameTile
+      key={game.slug}
+      {...game}
+      launchGame={() => emitLaunchGame(game.slug)}
+    />
   ));
 
 const CardsOrTiles = props => (

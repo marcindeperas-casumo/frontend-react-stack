@@ -7,6 +7,8 @@ import Matcher from "../Matcher";
 
 import { getRouletteColor, getDreamCatcherColor } from "./utils";
 
+import "./CardData.scss";
+
 type Props = {
   className?: string,
   /** lobby game data */
@@ -87,7 +89,7 @@ const CardData = ({ className, game, ...props }: Props) => {
       : null;
   return (
     condition && (
-      <div className="o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+      <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
         <Type condition={condition} game={game} />
       </div>
     )
