@@ -1,6 +1,6 @@
 import { JackpotsClientFactory, JackpotsAPIUrl } from "./JackpotsClient";
 
-describe("CommonClient", () => {
+describe("JackpotsClient", () => {
   let client;
   const httpService = {
     get: jest.fn(),
