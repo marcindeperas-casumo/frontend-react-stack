@@ -1,20 +1,26 @@
 import React from "react";
-import CMSService from "../applicationService/CMSService";
+import sentenceCase from "sentence-case";
+import { getCMSField } from "../applicationService/CMSService";
 import { identity } from "../utils";
 
 export default class CMSField extends React.Component {
   constructor(props) {
     super(props);
-    const { field, slug } = this.props;
+    const { field } = this.props;
     this.state = {
-      text: field + " " + slug,
+      text: sentenceCase(field),
     };
   }
-  componentDidMount() {
-    CMSService.getPage({ slug: this.props.slug }).then(v => {
-      this.setState({
-        text: v.fields[this.props.field],
-      });
+  async componentDidMount() {
+    const { field, slug } = this.props;
+    const text = await getCMSField({
+      slug,
+      field,
+      fallbackTextFn: () => sentenceCase(field),
+    });
+
+    this.setState({
+      text,
     });
   }
   render() {

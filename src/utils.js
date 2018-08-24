@@ -254,3 +254,8 @@ export const matchingGroups = (str, searchTerm) => {
 };
 
 export const fromCommonHandshake = k => property(`common/composition/${k}`);
+export const ifThenElse = (condition, thenPart, elsePart) => subject =>
+  condition(subject) ? thenPart(subject) : elsePart(subject);
+export const throwError = e => () => {
+  throw e;
+};

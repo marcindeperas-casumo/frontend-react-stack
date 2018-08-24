@@ -1,5 +1,5 @@
 import Heading from "@casumo/cmp-heading";
-import { MoreIcon, AlertIcon } from "@casumo/cmp-icons";
+import { MoreIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import React from "react";
 import { decodeString } from "../../utils";
