@@ -1,7 +1,17 @@
 import { ServiceConfig, SimpleCache } from "../utils";
 import { compose, property } from "../utils";
 
-export const LiveCasinoService = () => {
+const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
+const exists = i => i >= 0;
+const getBetsForTable = currency => property(currency);
+const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
+const getImageForTable = compose(
+  property("L"),
+  property("thumbnails"),
+  property("videoSnapshot")
+);
+
+export const LiveCasinoServiceEvo = () => {
   const defaultOptions = {
     defaultCurrency: "EUR",
     marketsIds: ["liveCasinoGames", "liveCasino"],
@@ -18,11 +28,6 @@ export const LiveCasinoService = () => {
       serviceConfig.set(...args);
     },
   };
-
-  const ifLiveCasino = id => config.get().marketsIds.includes(id);
-  const getLobbyLink = () => config.get().lobbyLink;
-  const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
-  const exists = i => i >= 0;
 
   // processes push updates types from websocket client
   // returns updated lobby list or undefined
@@ -46,9 +51,6 @@ export const LiveCasinoService = () => {
           return lobbyData;
         }
       },
-
-      TableOpened: () => updateProp("open"),
-      TableClosed: () => updateProp("open"),
       SeatsUpdated: () => updateProp("seatsTaken"),
       RouletteNumbersUpdated: () => updateProp("results"),
       MoneyWheelNumbersUpdated: () => updateProp("results"),
@@ -126,14 +128,6 @@ export const LiveCasinoService = () => {
     else return processType(lobbyData, payload);
   };
 
-  const getBetsForTable = currency => property(currency);
-  const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
-  const getImageForTable = compose(
-    property("L"),
-    property("thumbnails"),
-    property("videoSnapshot")
-  );
-
   // compares games list from cms against lobby data
   // returns lobby list of games with lobby data
   const getLiveCasinoGames = (games, lobby) => {
@@ -166,13 +160,16 @@ export const LiveCasinoService = () => {
     return lobbyGames;
   };
 
+  const ifLiveCasinoId = id => config.get().marketsIds.includes(id);
+  const getLobbyLink = () => config.get().lobbyLink;
+
   return {
     config,
-    ifLiveCasino,
-    getLobbyLink,
     processLobby,
     getLiveCasinoGames,
+    ifLiveCasinoId,
+    getLobbyLink,
   };
 };
 
-export default LiveCasinoService();
+export default LiveCasinoServiceEvo();

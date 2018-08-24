@@ -14,14 +14,6 @@
   }
 }
 
-// TEMPORARY
-// Overrides css causing issues
-
-//stylelint-disable-next-line xi/selector-pattern
-.Scrollable-o-scrollable__wrap > * {
-  vertical-align: top;
-}
-
 $cards-body-heights: (
   mobile: 105px,
   desktop: 110px,

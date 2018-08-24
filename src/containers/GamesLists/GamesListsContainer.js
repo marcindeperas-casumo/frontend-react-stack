@@ -8,14 +8,18 @@ import GamesListsSkeleton from "./GamesListsSkeleton";
 
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
 import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
+const {
+  processLobby,
+  getLiveCasinoGames,
+  ifLiveCasinoId,
+  getLobbyLink,
+} = LiveCasinoServiceEvo;
 
 const gamesNotInMaintenance = compose(
   not,
   gameInMaintenanceMode
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
-const ifLiveCasino = LiveCasinoServiceEvo.ifLiveCasino;
-const getLobbyLink = LiveCasinoServiceEvo.getLobbyLink;
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -60,12 +64,12 @@ export default class GamesListsContainer extends React.Component {
   }
 
   launchLiveCasinoSocket() {
-    const lc = this.state.data.find(o => ifLiveCasino(o.id));
+    const lc = this.state.data.find(o => ifLiveCasinoId(o.id));
     if (lc) {
       const ws = new LiveCasinoClient();
       ws.onmessage = m => {
         const args = { games: lc.games, lobby: this.state.lobby, payload: m };
-        const lobbyData = LiveCasinoServiceEvo.processLobby(args);
+        const lobbyData = processLobby(args);
         if (lobbyData)
           this.setState({
             ...this.state,
@@ -93,10 +97,10 @@ export default class GamesListsContainer extends React.Component {
       }
       // Filter out games in Lobby against gameBrowser data
       // for Live Casino.
-      if (ifLiveCasino(gameList.id) && !this.state.lobbyError) {
+      if (ifLiveCasinoId(gameList.id) && !this.state.lobbyError) {
         return {
           ...gameList,
-          games: LiveCasinoServiceEvo.getLiveCasinoGames(gameList.games, lobby),
+          games: getLiveCasinoGames(gameList.games, lobby),
         };
       }
 
@@ -111,11 +115,11 @@ export default class GamesListsContainer extends React.Component {
             <GameList
               key={gameList.title}
               display={
-                ifLiveCasino(gameList.id) && !this.state.lobbyError
+                ifLiveCasinoId(gameList.id) && !this.state.lobbyError
                   ? "cards"
                   : "tiles"
               }
-              link={ifLiveCasino(gameList.id) ? getLobbyLink() : null}
+              link={ifLiveCasinoId(gameList.id) ? getLobbyLink() : null}
               {...gameList}
             />
           ))}

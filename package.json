@@ -9,7 +9,7 @@
     "@casumo/cmp-heading": "^1.1.4",
     "@casumo/cmp-icons": "^1.1.3",
     "@casumo/cmp-responsive-image": "^1.1.5",
-    "@casumo/cmp-scrollable": "^1.1.2",
+    "@casumo/cmp-scrollable": "^1.1.3",
     "@casumo/cmp-skeleton": "^1.0.2",
     "@casumo/cudl": "^3.0.1",
     "@researchgate/react-intersection-observer": "^0.7.3",
