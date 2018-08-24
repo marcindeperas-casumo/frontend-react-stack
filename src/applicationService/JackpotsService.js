@@ -11,8 +11,6 @@ const getJackpots = async () => {
     handshake,
     `common/composition/players.players[${playerId}].market`
   );
-
-  debugger;
   const jackpots = await jackpotsClient.jackpots(market);
 
   return jackpots.map(jackpot => ({
