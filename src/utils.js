@@ -93,7 +93,15 @@ const commonFetch = (url, options) => {
       "content-type": "application/json",
     },
     ...options,
-  }).then(x => x.json());
+  })
+    .then(response => response.text())
+    .then(text => {
+      if (text === "") {
+        return {};
+      }
+
+      return JSON.parse(text);
+    });
 };
 
 export const usingPOST = (url, options) =>
