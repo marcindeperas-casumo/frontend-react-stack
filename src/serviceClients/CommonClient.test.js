@@ -1,4 +1,4 @@
-import { CommonClientFactory } from "./CommonClient";
+import { CommonClientFactory, handshakeAPIUrl } from "./CommonClient";
 
 describe("CommonClient", () => {
   let client;
@@ -12,6 +12,6 @@ describe("CommonClient", () => {
 
   test("should call https service with handshake url once", () => {
     client.handshake();
-    expect(httpService.get).toHaveBeenCalledWith("common/handshake");
+    expect(httpService.get).toHaveBeenCalledWith(handshakeAPIUrl);
   });
 });
