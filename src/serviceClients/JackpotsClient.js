@@ -7,7 +7,9 @@ const httpService = {
 export const JackpotsAPIUrl = "common/query/jackpots";
 
 export const JackpotsClientFactory = ({ http }) => {
-  const jackpots = () => http.get(JackpotsAPIUrl);
+  const defaultMarket = "___en";
+  const jackpots = (market = defaultMarket) =>
+    http.get(`${JackpotsAPIUrl}/${market}`);
 
   return { jackpots };
 };

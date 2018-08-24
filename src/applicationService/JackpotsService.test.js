@@ -1,7 +1,10 @@
 import jackpotsClientMock from "../serviceClients/JackpotsClient";
+import commonClientMock from "../serviceClients/CommonClient";
+
 import { JackpotsServiceFactory } from "./JackpotsService";
 
 jest.mock("../serviceClients/JackpotsClient");
+jest.mock("../serviceClients/CommonClient");
 
 describe("Jackpots service", () => {
   let service;
@@ -15,6 +18,9 @@ describe("Jackpots service", () => {
       amount: "1.000,00 €",
     },
   ];
+  const handshake = {
+    market: "___en",
+  };
 
   const jackpots = [
     {
@@ -47,6 +53,7 @@ describe("Jackpots service", () => {
     service = JackpotsServiceFactory();
     jest.resetAllMocks();
     jackpotsClientMock.jackpots.mockResolvedValue(Promise.resolve(jackpots));
+    commonClientMock.handshake.mockResolvedValue(Promise.resolve(handshake));
   });
 
   test("should return the transformed jackpots fetched from the API", async () => {
