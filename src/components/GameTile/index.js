@@ -1,4 +1,4 @@
-import Heading from "@casumo/cmp-heading";
+import Text from "@casumo/cmp-text";
 import { MoreIcon, AlertIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import React from "react";
@@ -45,11 +45,9 @@ const GameTile = ({
         "t-border-r--8"
       )}
     >
-      <Heading
-        className="t-color-white"
-        size="milli"
-        text={decodeString(name)}
-      />
+      <Text size="sm" className="t-color-white u-text-clamp">
+        {decodeString(name)}
+      </Text>
 
       {inMaintenanceMode ? (
         <AlertIcon className="t-color-white" size="med" />
