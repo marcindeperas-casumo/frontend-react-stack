@@ -5,7 +5,6 @@ import React from "react";
 import { decodeString } from "../../utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
-import CMSField from "../../containers/CMSField";
 import TemporaryUnavailable from "./TemporaryUnavailable";
 
 const GameTile = ({
@@ -48,11 +47,7 @@ const GameTile = ({
         "t-border-r--8"
       )}
     >
-      <Heading
-        className="t-color-white"
-        size="milli"
-        text={decodeString(name)}
-      />
+      <Heading size="milli" text={decodeString(name)} />
 
       {inMaintenanceMode ? (
         <TemporaryUnavailable />
