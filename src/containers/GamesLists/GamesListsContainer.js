@@ -2,8 +2,9 @@ import React from "react";
 import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
-import ListContainer from "../../components/ListContainer";
-import { identity, compose, not } from "../../lib/utils";
+import JackpotsService from "../../applicationService/JackpotsService";
+import GamesList from "../../components/GamesList";
+import { identity, compose, not } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 const gamesNotInMaintenance = compose(
@@ -27,6 +28,7 @@ export default class GamesListsContainer extends React.Component {
     Promise.all([
       GameBrowserService.latestPlayedGames(),
       GameBrowserService.allTopLists(),
+      JackpotsService.jackpots(),
     ])
       .then(([latestPlayedGames, allTopLists]) => {
         // `latestPlayedGames` could be `null`, in case the player hasn't played any
@@ -68,7 +70,7 @@ export default class GamesListsContainer extends React.Component {
         {loading && <GamesListsSkeleton />}
         {!loading &&
           filteredList.map(gameList => (
-            <ListContainer key={gameList.title} {...gameList} />
+            <GamesList key={gameList.title} {...gameList} />
           ))}
       </React.Fragment>
     );
