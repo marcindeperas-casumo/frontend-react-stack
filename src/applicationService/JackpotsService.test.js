@@ -22,37 +22,41 @@ describe("Jackpots service", () => {
     market: "___en",
   };
 
-  const jackpots = [
-    {
-      games: [],
-      jackpotId: "netent-bingo",
-      jackpotType: "Local",
-      iso4217CurrencyCode: "EUR",
-      jackpotAmount: 1000.0,
-      formattedJackpotAmount: "1.000,00 €",
-      latestPayoutDate: 1535097917328,
-      payoutCount: 0,
-      totalJackpotAmountPaidOut: 0.0,
-      formattedTotalJackpotAmountPaidOut: "0,00 €",
-    },
-    {
-      games: [],
-      jackpotId: "playngo-114",
-      jackpotType: "Unknown",
-      iso4217CurrencyCode: "EUR",
-      jackpotAmount: 1000.0,
-      formattedJackpotAmount: "1.000,00 €",
-      latestPayoutDate: -3600000,
-      payoutCount: 0,
-      totalJackpotAmountPaidOut: 0.0,
-      formattedTotalJackpotAmountPaidOut: "0,00 €",
-    },
-  ];
+  const jackpotsResponse = {
+    jackpots: [
+      {
+        games: [],
+        jackpotId: "netent-bingo",
+        jackpotType: "Local",
+        iso4217CurrencyCode: "EUR",
+        jackpotAmount: 1000.0,
+        formattedJackpotAmount: "1.000,00 €",
+        latestPayoutDate: 1535097917328,
+        payoutCount: 0,
+        totalJackpotAmountPaidOut: 0.0,
+        formattedTotalJackpotAmountPaidOut: "0,00 €",
+      },
+      {
+        games: [],
+        jackpotId: "playngo-114",
+        jackpotType: "Unknown",
+        iso4217CurrencyCode: "EUR",
+        jackpotAmount: 1000.0,
+        formattedJackpotAmount: "1.000,00 €",
+        latestPayoutDate: -3600000,
+        payoutCount: 0,
+        totalJackpotAmountPaidOut: 0.0,
+        formattedTotalJackpotAmountPaidOut: "0,00 €",
+      },
+    ],
+  };
 
   beforeEach(() => {
     service = JackpotsServiceFactory();
     jest.resetAllMocks();
-    jackpotsClientMock.jackpots.mockResolvedValue(Promise.resolve(jackpots));
+    jackpotsClientMock.jackpots.mockResolvedValue(
+      Promise.resolve(jackpotsResponse.jackpots)
+    );
     commonClientMock.handshake.mockResolvedValue(Promise.resolve(handshake));
   });
 
