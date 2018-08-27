@@ -55,7 +55,7 @@ describe("Jackpots service", () => {
     service = JackpotsServiceFactory();
     jest.resetAllMocks();
     jackpotsClientMock.jackpots.mockResolvedValue(
-      Promise.resolve(jackpotsResponse.jackpots)
+      Promise.resolve(jackpotsResponse)
     );
     commonClientMock.handshake.mockResolvedValue(Promise.resolve(handshake));
   });
