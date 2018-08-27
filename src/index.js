@@ -1,12 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/App";
-import "./index.scss";
 import legacyBridge from "./legacyBridge";
 import {
   REACT_APP_EVENT_ALL_PORTALS_CLEAR,
   REACT_APP_EVENT_ROUTE_CHANGE,
 } from "./constants";
+import "./styles/index.scss";
 // import registerServiceWorker from './registerServiceWorker';
 
 window.bridge = legacyBridge;

@@ -1,8 +1,8 @@
 // ---- Settings ----------------------------------------------------------- //
-@import "./styles/settings.ratio";
-@import "./styles/settings.spacers";
-@import "./styles/settings.breakpoints";
-@import "./styles/settings.borders";
+@import "./settings.ratio";
+@import "./settings.spacers";
+@import "./settings.breakpoints";
+@import "./settings.borders";
 
 // ---- Tools -------------------------------------------------------------- //
 @import "cudl-zindex";
@@ -11,13 +11,13 @@
 @import "cudl-ratio";
 
 // ---- Components --------------------------------------------------------- //
-@import "./styles/component.GameTile";
-@import "./styles/component.ScrollableTopLists";
+@import "./component.GameTile";
+@import "./component.ScrollableTopLists";
 
 // ---- Theme -------------------------------------------------------------- //
 @import "cudl-colors";
 @import "cudl-borders";
-@import "./styles/theme.greyscale";
+@import "./theme.greyscale";
 
 // ---- Utilities ---------------------------------------------------------- //
 @import "cudl-display";
