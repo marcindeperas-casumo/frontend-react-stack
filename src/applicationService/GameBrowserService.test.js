@@ -4,7 +4,7 @@ import {
   GameBrowserServiceFactory,
   gameInMaintenanceMode,
 } from "./GameBrowserService";
-import { compose, not } from "../utils";
+import { compose, not } from "../lib/utils";
 jest.mock("../serviceClients/GameBrowserClient");
 jest.mock("../applicationService/SessionService");
 

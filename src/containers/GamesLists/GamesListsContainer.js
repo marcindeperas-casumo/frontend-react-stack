@@ -3,7 +3,7 @@ import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import ListContainer from "../../components/ListContainer";
-import { identity, compose, not } from "../../utils";
+import { identity, compose, not } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 const gamesNotInMaintenance = compose(
