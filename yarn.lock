@@ -96,6 +96,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@casumo/cmp-badge@^1.0.4":
+  version "1.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.0.4.tgz#9019a32f6b5823f5902e73317d9cb077e1c26982"
+  dependencies:
+    "@casumo/cmp-text" "^1.0.2"
+
 "@casumo/cmp-heading@1.1.0":
   version "1.1.0"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-heading/-/cmp-heading-1.1.0.tgz#a2bac1c7c4daeadb8f92e1f40e198e58ebaa5c6c"
@@ -115,6 +121,10 @@
 "@casumo/cmp-skeleton@1.0.1":
   version "1.0.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-skeleton/-/cmp-skeleton-1.0.1.tgz#b6ee22adeab6b470b4f578789b913f20a8e8d76b"
+
+"@casumo/cmp-text@^1.0.2":
+  version "1.0.2"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-1.0.2.tgz#3c7857e63d0a18ac012e5dca154441f94164ace4"
 
 "@casumo/cudl-borders@^1.0.1":
   version "1.0.1"
