@@ -3,7 +3,7 @@ import jackpotsClient from "../serviceClients/JackpotsClient";
 import sessionService from "../applicationService/SessionService";
 
 const getJackpots = async () => {
-  const market = sessionService.market();
+  const market = await sessionService.market();
   const { jackpots } = await jackpotsClient.jackpots(market);
 
   return jackpots.map(jackpot => ({
@@ -12,8 +12,16 @@ const getJackpots = async () => {
   }));
 };
 
+const getJackpotById = async gameId => {
+  const jackpots = await getJackpots();
+  let gameJackpot = jackpots.find(jackpot => jackpot.gameId === gameId);
+
+  return gameJackpot || null;
+};
+
 export const JackpotsServiceFactory = () => ({
   jackpots: cacheFunction({ fn: getJackpots }),
+  getJackpotById: cacheFunction({ fn: getJackpotById }),
 });
 
 export default JackpotsServiceFactory();
