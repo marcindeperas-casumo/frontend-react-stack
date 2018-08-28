@@ -1,3 +1,3 @@
-import { bridgeFactory } from "./utils";
+import { bridgeFactory } from "./lib/utils";
 
 export default bridgeFactory();
