@@ -28,23 +28,36 @@ export function CometDFactory(cometd) {
    * Use "/**" after the channel name to subscribe to all sub-channels.
    * @param {string} channel - The name of the channel starting with a "/", e.g. "/foo/bar"
    * @param {function} callback - Called for every new message on the channel with parsed "message.data" property
+   * @param {function} onSubscriptionReady - Call
    */
-  async function subscribe(channel, callback) {
+  async function subscribe(channel, callback, onSubscriptionReady = () => {}) {
+    let subscription;
+    const subscribeProps = {};
+
     await context.init();
 
-    return new Promise(resolve =>
-      cometd.subscribe(channel, parseMessage(callback), {}, resolve)
-    );
+    return new Promise(resolve => {
+      subscription = cometd.subscribe(
+        channel,
+        parseMessage(callback),
+        subscribeProps,
+        resolve
+      );
+    }).then(() => subscription);
   }
 
   /**
-   * Removes all subscriptions from a channel.
-   * @param {string} channel - The name of the channel.
+   * Removes an existing subscription
+   * @param {string} subscription - The subscription to unsubscribe from.
    */
-  async function unsubscribe(channel) {
+  async function unsubscribe(subscription) {
+    const unsubscribeProps = {};
+
     await context.init();
 
-    return new Promise(resolve => cometd.unsubscribe(channel, {}, resolve));
+    return new Promise(resolve =>
+      cometd.unsubscribe(subscription, unsubscribeProps, resolve)
+    );
   }
 
   function isInitialised() {

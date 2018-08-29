@@ -2,6 +2,7 @@ import { CometDFactory } from "../cometd";
 
 describe("CometD", () => {
   const url = "http://foo.com/cometd";
+  const subscription = "123456789";
   let cometd;
   let cometdMock;
 
@@ -9,10 +10,11 @@ describe("CometD", () => {
     cometdMock = {
       configure: jest.fn(),
       handshake: jest.fn(cb => cb({ successful: true })),
-      subscribe: jest.fn((channel, cb, subscribeProps, subscribeCb) =>
-        subscribeCb()
-      ),
-      unsubscribe: jest.fn((channel, unsubscribeProps, unsubscribeCb) =>
+      subscribe: jest.fn((channel, cb, subscribeProps, subscribeCb) => {
+        subscribeCb();
+        return subscription;
+      }),
+      unsubscribe: jest.fn((subscription, unsubscribeProps, unsubscribeCb) =>
         unsubscribeCb()
       ),
     };
@@ -56,6 +58,12 @@ describe("CometD", () => {
       expect(cometd.init.mock.calls.length).toBe(1);
     });
 
+    test("should resolve with the subscription", async () => {
+      const newSubscription = await cometd.subscribe("/channel", () => {});
+
+      expect(newSubscription).toBe(subscription);
+    });
+
     test("should parse the message coming down the channel", async () => {
       const callback = jest.fn();
       const data = { foo: "bar" };
@@ -67,6 +75,15 @@ describe("CometD", () => {
       cometdMock.subscribe.mock.calls[0][1](payload);
 
       expect(callback.mock.calls[0][0]).toEqual(data);
+    });
+  });
+
+  describe(".unsubscribe()", () => {
+    test("should call cometdMock.unsubscribe() with the subscription", async () => {
+      await cometd.unsubscribe(subscription);
+
+      expect(cometdMock.unsubscribe.mock.calls.length).toBe(1);
+      expect(cometdMock.unsubscribe.mock.calls[0][0]).toBe(subscription);
     });
   });
 });
