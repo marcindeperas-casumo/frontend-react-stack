@@ -6,8 +6,8 @@ import com.casumo.jenkins.PipelineBuilder
 
 new PipelineBuilder(this)
         .checkout()
-        .customStep('Build', this.&npmBuild)
         .customStep('Tests', this.&runTests)
+        .customStep('Build', this.&npmBuild)
         .gradleDockerPublish()
         .gradleRelease()
         .build()
