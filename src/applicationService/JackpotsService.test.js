@@ -55,8 +55,8 @@ describe("Jackpots service", () => {
   });
 
   test("should cache the API results and return cached value after the first call", async () => {
-    const result1 = await service.jackpots();
-    const result2 = await service.jackpots();
+    await service.jackpots();
+    await service.jackpots();
 
     expect(jackpotsClientMock.jackpots).toHaveBeenCalledTimes(0);
   });
