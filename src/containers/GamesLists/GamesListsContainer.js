@@ -3,7 +3,7 @@ import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import GamesList from "../../components/GamesList";
-import { identity, compose, not, arrayToObject } from "../../utils";
+import { identity, compose, not, arrayToObject } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 import JackpotsService from "../../applicationService/JackpotsService";
 
