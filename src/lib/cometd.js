@@ -22,6 +22,13 @@ export function CometDFactory(cometd) {
     return handshakePromise;
   }
 
+  /**
+   * Subscribes a callback to a channel name.
+   * Use "/*" after the channel name to subscribe to all sub-channels one level deep.
+   * Use "/**" after the channel name to subscribe to all sub-channels.
+   * @param {string} channel - The name of the channel starting with a "/", e.g. "/foo/bar"
+   * @param {function} callback - Called for every new message on the channel with parsed "message.data" property
+   */
   async function subscribe(channel, callback) {
     await context.init();
 
@@ -30,6 +37,10 @@ export function CometDFactory(cometd) {
     );
   }
 
+  /**
+   * Removes all subscriptions from a channel.
+   * @param {string} channel - The name of the channel.
+   */
   async function unsubscribe(channel) {
     await context.init();
 
