@@ -38,8 +38,8 @@ const GameTile = ({
     />
 
     {jackpotInfo && (
-      <div className="o-ratio__content o-flex o-flex--align-center o-flex--justify-center">
-        <JackpotTicker {...jackpotInfo} />
+      <div className="o-ratio__content o-flex o-flex-align--end o-flex-justify--center">
+        <JackpotTicker {...jackpotInfo} className="u-margin-bottom--normal" />
       </div>
     )}
 
