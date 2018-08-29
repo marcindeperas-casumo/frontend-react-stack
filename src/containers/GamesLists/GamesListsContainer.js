@@ -3,7 +3,7 @@ import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import GamesList from "../../components/GamesList";
-import { identity, compose, not, trace } from "../../utils";
+import { identity, compose, not, arrayToObject } from "../../utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 import JackpotsService from "../../applicationService/JackpotsService";
 
@@ -31,25 +31,24 @@ export default class GamesListsContainer extends React.Component {
       JackpotsService.jackpots(),
     ])
       .then(([latestPlayedGames, allTopLists, jackpots]) => {
-        const jackpotsById = jackpots.reduce((acc, curr) => {
-          acc[curr.jackpotId] = curr;
-          return acc;
-        }, {});
+        const jackpotsDataById = arrayToObject(jackpots, "jackpotId");
         // `latestPlayedGames` could be `null`, in case the player hasn't played any
         // game yet. That is why we need to run a identity filter.
-        return trace(
-          [latestPlayedGames, ...allTopLists].filter(identity).map(list => {
+        return [latestPlayedGames, ...allTopLists]
+          .filter(identity)
+          .map(list => {
             return {
               ...list,
-              games: list.games.map(g => {
+              games: list.games.map(game => {
                 return {
-                  ...g,
-                  jackpotId: !!g.jackpotId ? jackpotsById[g.jackpotId] : null,
+                  ...game,
+                  jackpotInfo: !!game.jackpotId
+                    ? jackpotsDataById[game.jackpotId]
+                    : null,
                 };
               }),
             };
-          })
-        );
+          });
       })
       .then(data => {
         this.setState({

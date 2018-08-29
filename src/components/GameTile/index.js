@@ -15,7 +15,7 @@ const GameTile = ({
   className,
   inMaintenanceMode,
   launchGame,
-  jackpotId,
+  jackpotInfo,
 }) => (
   <div
     className={classNames(
@@ -37,9 +37,9 @@ const GameTile = ({
       dpr={3}
     />
 
-    {jackpotId && (
+    {jackpotInfo && (
       <div className="o-ratio__content o-flex o-flex--align-center o-flex--justify-center">
-        <JackpotTicker {...jackpotId} />
+        <JackpotTicker {...jackpotInfo} />
       </div>
     )}
 
