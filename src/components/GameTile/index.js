@@ -5,7 +5,7 @@ import React from "react";
 import { decodeString } from "../../lib/utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
-import JackpotTicker from "../../containers/JackpotTickerContainer";
+import JackpotTicker from "../../components/JackpotTicker";
 
 const GameTile = ({
   logoBackground,
@@ -36,9 +36,13 @@ const GameTile = ({
       alt={name}
       dpr={3}
     />
-    <div className="o-ratio__content o-flex o-flex--align-center o-flex--justify-center">
-      <JackpotTicker gameId={jackpotId} />
-    </div>
+
+    {jackpotId && (
+      <div className="o-ratio__content o-flex o-flex--align-center o-flex--justify-center">
+        <JackpotTicker {...jackpotId} />
+      </div>
+    )}
+
     <div
       className={classNames(
         "flex-vertical",

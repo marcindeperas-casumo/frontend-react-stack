@@ -1,10 +1,10 @@
 import React from "react";
 import Badge from "@casumo/cmp-badge";
 
-export default function JackpotTicker({ jackpotAmount }) {
-  if (!jackpotAmount) {
+export default function JackpotTicker({ formattedJackpotAmount }) {
+  if (!formattedJackpotAmount) {
     return null;
   }
 
-  return <Badge>{jackpotAmount}</Badge>;
+  return <Badge>{formattedJackpotAmount}</Badge>;
 }

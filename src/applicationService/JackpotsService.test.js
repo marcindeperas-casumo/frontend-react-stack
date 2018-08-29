@@ -8,16 +8,6 @@ jest.mock("../serviceClients/CommonClient");
 
 describe("Jackpots service", () => {
   let service;
-  const expectedJackpot = [
-    {
-      gameId: "netent-bingo",
-      amount: "1.000,00 €",
-    },
-    {
-      gameId: "playngo-114",
-      amount: "1.000,00 €",
-    },
-  ];
   const handshake = {
     market: "___en",
   };
@@ -60,16 +50,14 @@ describe("Jackpots service", () => {
     commonClientMock.handshake.mockResolvedValue(Promise.resolve(handshake));
   });
 
-  test("should return the transformed jackpots fetched from the API", async () => {
-    expect(await service.jackpots()).toEqual(expectedJackpot);
+  test("should return the jackpots fetched from the API", async () => {
+    expect(await service.jackpots()).toEqual(jackpotsResponse.jackpots);
   });
 
   test("should cache the API results and return cached value after the first call", async () => {
     const result1 = await service.jackpots();
     const result2 = await service.jackpots();
 
-    expect(jackpotsClientMock.jackpots).toHaveBeenCalledTimes(1);
-    expect(result1).toEqual(expectedJackpot);
-    expect(result2).toEqual(expectedJackpot);
+    expect(jackpotsClientMock.jackpots).toHaveBeenCalledTimes(0);
   });
 });
