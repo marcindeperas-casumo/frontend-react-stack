@@ -17,5 +17,5 @@ def npmBuild() {
 }
 
 def runTests() {
-    sh "yarn test"
+    sh "yarn test:ci"
 }
