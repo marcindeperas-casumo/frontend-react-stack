@@ -3,7 +3,7 @@ import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import GameList from "../../components/GameList";
-import { identity, compose, not } from "../../utils";
+import { identity, compose, not } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";

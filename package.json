@@ -90,6 +90,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
+    "test:ci": "CI=yes npm run test",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
     "storybook": "start-storybook -p 6006"
   },

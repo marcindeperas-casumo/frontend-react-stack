@@ -2,13 +2,13 @@ import React from "react";
 import {
   REACT_APP_EVENT_ALL_PORTALS_CLEAR,
   REACT_APP_EVENT_ON_LOGIN,
-} from "./constants";
-import GamesLists from "./containers/GamesLists";
-import CommonService from "./applicationService/CommonService";
-import GameBrowserService from "./applicationService/GameBrowserService";
-import SessionService from "./applicationService/SessionService";
-import LiveCasinoServiceEvo from "./applicationService/LiveCasinoServiceEvo";
-import legacyBridge from "./legacyBridge";
+} from "../../constants";
+import GamesLists from "../../containers/GamesLists";
+import CommonService from "../../applicationService/CommonService";
+import GameBrowserService from "../../applicationService/GameBrowserService";
+import SessionService from "../../applicationService/SessionService";
+import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
+import legacyBridge from "../../legacyBridge";
 
 import "./App.scss";
 
