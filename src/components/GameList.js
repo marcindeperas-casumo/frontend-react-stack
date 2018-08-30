@@ -8,7 +8,7 @@ import classNames from "classnames";
 
 import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
 import legacyBridge from "../legacyBridge";
-import { decodeString } from "../utils";
+import { decodeString } from "../lib/utils";
 
 import GameTile from "./GameTile";
 import Matcher from "./Matcher";

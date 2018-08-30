@@ -1,5 +1,5 @@
-import { ServiceConfig, SimpleCache } from "../utils";
-import { compose, property } from "../utils";
+import { ServiceConfig, SimpleCache } from "../lib/utils";
+import { compose, property } from "../lib/utils";
 
 const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
 const exists = i => i >= 0;

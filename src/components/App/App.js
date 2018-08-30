@@ -10,7 +10,7 @@ import SessionService from "../../applicationService/SessionService";
 import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
 import legacyBridge from "../../legacyBridge";
 
-import "./App.scss";
+import "./App.css";
 
 const initialPortalsState = () => ({
   gamesLists: false,
