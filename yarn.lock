@@ -187,49 +187,48 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@casumo/cmp-badge@^1.0.2":
-  version "1.0.4"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.0.4.tgz#9019a32f6b5823f5902e73317d9cb077e1c26982"
+"@casumo/cmp-badge@^1.0.6":
+  version "1.0.6"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.0.6.tgz#a305fecb2007d81eb182ae5eff586d824675d278"
   dependencies:
-    "@casumo/cmp-text" "^1.0.2"
+    "@casumo/cmp-text" "^1.0.3"
 
-"@casumo/cmp-button@^1.1.2":
+"@casumo/cmp-button@^1.1.3":
+  version "1.1.3"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-1.1.3.tgz#b8dd9ae12c7757f32adef4e5e44ed705c1772881"
+
+"@casumo/cmp-card@^1.1.2":
   version "1.1.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-1.1.2.tgz#fd1c88f83d599b04615ce6ae63eea91e90e7f4bd"
-
-"@casumo/cmp-card@^1.0.8":
-  version "1.0.8"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-1.0.8.tgz#aecccb0fd23415db5ee94ff2f9d73f13e1f1af64"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-1.1.2.tgz#60c409f5e4b070490b15861d069d555c32412258"
   dependencies:
-    "@casumo/cmp-button" "^1.1.2"
-    "@casumo/cmp-heading" "^1.1.4"
-    "@casumo/cmp-icons" "^1.1.3"
-    "@casumo/cmp-responsive-image" "^1.1.5"
-    "@casumo/cmp-text" "^1.0.2"
+    "@casumo/cmp-button" "^1.1.3"
+    "@casumo/cmp-icons" "^1.1.4"
+    "@casumo/cmp-responsive-image" "^1.1.7"
+    "@casumo/cmp-text" "^1.0.3"
 
 "@casumo/cmp-heading@^1.1.4":
   version "1.1.4"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-heading/-/cmp-heading-1.1.4.tgz#c7b13855ac4d4c4c55ab96a738f37f390f6c5508"
 
-"@casumo/cmp-icons@^1.1.3":
-  version "1.1.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.1.3.tgz#f9e4ccf772f287e8ff3a026c005fd79908ca695b"
+"@casumo/cmp-icons@^1.1.4":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.1.4.tgz#8767d64eb84ef97a20d11dca5a9830e162e51992"
 
-"@casumo/cmp-responsive-image@^1.1.5":
-  version "1.1.5"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.1.5.tgz#9ba4f85df746f57b518515439fee5d482af1fb29"
+"@casumo/cmp-responsive-image@^1.1.7":
+  version "1.1.7"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.1.7.tgz#1cead5ee1c796c51bb79a78c55737870694ce5d6"
 
-"@casumo/cmp-scrollable@^1.1.3":
-  version "1.1.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-scrollable/-/cmp-scrollable-1.1.3.tgz#7f7c71b3dd391da39f451949d4a855a187047958"
+"@casumo/cmp-scrollable@^1.1.4":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-scrollable/-/cmp-scrollable-1.1.4.tgz#7234d962f5c3ed4b53f01e135580166114f48051"
 
-"@casumo/cmp-skeleton@^1.0.2":
+"@casumo/cmp-skeleton@^1.0.4":
+  version "1.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-skeleton/-/cmp-skeleton-1.0.4.tgz#63efdacc05510150cb9e4e91340b9fcfb783c868"
+
+"@casumo/cmp-text@^1.0.3":
   version "1.0.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-skeleton/-/cmp-skeleton-1.0.3.tgz#5fd2df68a098026a31f7ef0c2c42054483b57eb2"
-
-"@casumo/cmp-text@^1.0.2":
-  version "1.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-1.0.2.tgz#3c7857e63d0a18ac012e5dca154441f94164ace4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-1.0.3.tgz#20ffee5b49fdeb461d056907b375f417ec5afd63"
 
 "@casumo/cudl-borders@^1.0.3":
   version "1.0.3"

@@ -25,7 +25,7 @@ const renderImage = src => (
 );
 
 const renderPlayers = n => (
-  <div className="o-flex-align--center">
+  <div className="o-flex-align--center t-color-black">
     <PlayerIcon className="u-margin-vert t-color-grey" size="sml" />
     <span className="u-margin-left--micro u-margin-vert u-font-weight-bold">
       {n}
