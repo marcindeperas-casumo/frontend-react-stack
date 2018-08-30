@@ -37,13 +37,13 @@ describe("liveCasinoProcessType", () => {
     });
   });
 
-  describe("LiveCasinoService ifLiveCasino", () => {
+  describe("LiveCasinoService ifLiveCasinoId", () => {
     test("should match ids for different markets", () => {
-      expect(service.ifLiveCasino("someGamesListId")).toBe(false);
+      expect(service.ifLiveCasinoId("someGamesListId")).toBe(false);
     });
 
     test("should match ids for different markets", () => {
-      expect(service.ifLiveCasino("liveCasino")).toBe(true);
+      expect(service.ifLiveCasinoId("liveCasino")).toBe(true);
     });
   });
 
