@@ -50,6 +50,21 @@ describe("SessionService", () => {
     });
   });
 
+  describe("market()", () => {
+    test("should return the players market", async () => {
+      const market = await service.market();
+      expect(market).toEqual("___en");
+    });
+
+    test("should return the default market if a user is not authenticated", async () => {
+      commonServiceMock.handshake.mockResolvedValue(unauthenticatedResponse);
+
+      const market = await service.market();
+
+      expect(market).toEqual("___en");
+    });
+  });
+
   describe("playerId", () => {
     test("should return the player id if the session is authenticated", async () => {
       commonServiceMock.handshake.mockResolvedValue(authenticatedResponse);

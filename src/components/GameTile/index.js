@@ -5,7 +5,10 @@ import React from "react";
 import { decodeString } from "../../lib/utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
+import JackpotTicker from "../../components/JackpotTicker";
 
+export const jackpotTickerClass =
+  "u-margin-bottom--normal u-padding-horiz--small u-padding-vert";
 const GameTile = ({
   logoBackground,
   logo,
@@ -14,6 +17,7 @@ const GameTile = ({
   className,
   inMaintenanceMode,
   launchGame,
+  jackpotInfo,
 }) => (
   <div
     className={classNames(
@@ -34,6 +38,13 @@ const GameTile = ({
       alt={name}
       dpr={3}
     />
+
+    {jackpotInfo && (
+      <div className="o-ratio__content o-flex o-flex-align--end o-flex-justify--center">
+        <JackpotTicker {...jackpotInfo} className={jackpotTickerClass} />
+      </div>
+    )}
+
     <div
       className={classNames(
         "flex-vertical",
