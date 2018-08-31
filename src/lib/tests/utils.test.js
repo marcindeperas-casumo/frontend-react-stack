@@ -129,7 +129,7 @@ describe("arrayToObject()", () => {
       {
         name: "jack",
         country: "uk",
-        spiritAnimal: "🐫",
+        spiritAnimal: "🐧",
       },
     ];
     const result = arrayToObject(array, "name");
@@ -142,7 +142,7 @@ describe("arrayToObject()", () => {
       jack: {
         name: "jack",
         country: "uk",
-        spiritAnimal: "🐫",
+        spiritAnimal: "🐧",
       },
     });
   });
