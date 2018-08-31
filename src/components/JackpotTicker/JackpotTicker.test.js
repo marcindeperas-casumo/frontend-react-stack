@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import JackpotTicker from "./JackpotTicker";
+import { jackpotTickerClass } from "../GameTile";
 import Badge from "@casumo/cmp-badge";
 
 describe("JackpotTicker", () => {
@@ -14,7 +15,7 @@ describe("JackpotTicker", () => {
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
-    ).toBe(true);
+    ).toEqual(true);
   });
 
   test("should NOT render the Badge component if formattedJackpotAmount is null", () => {
@@ -25,6 +26,18 @@ describe("JackpotTicker", () => {
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
-    ).toBe(false);
+    ).toEqual(false);
+  });
+
+  test("should apply jackpotTickerClass to the Badge", () => {
+    formattedJackpotAmount = "12347 €";
+    const rendered = shallow(
+      <JackpotTicker
+        formattedJackpotAmount={formattedJackpotAmount}
+        className={jackpotTickerClass}
+      />
+    );
+
+    expect(rendered.hasClass(jackpotTickerClass)).toEqual(true);
   });
 });

@@ -7,6 +7,8 @@ import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
 import JackpotTicker from "../../components/JackpotTicker";
 
+export const jackpotTickerClass =
+  "u-margin-bottom--normal u-padding-horiz--small u-padding-vert";
 const GameTile = ({
   logoBackground,
   logo,
@@ -39,7 +41,7 @@ const GameTile = ({
 
     {jackpotInfo && (
       <div className="o-ratio__content o-flex o-flex-align--end o-flex-justify--center">
-        <JackpotTicker {...jackpotInfo} className="u-margin-bottom--normal" />
+        <JackpotTicker {...jackpotInfo} className={jackpotTickerClass} />
       </div>
     )}
 
