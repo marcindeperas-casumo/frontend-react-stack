@@ -1,10 +1,11 @@
+import { MoreIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
-import { MoreIcon, AlertIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import React from "react";
 import { decodeString } from "../../lib/utils";
 import LazyImage from "../LazyImage";
 import PlayAction from "./PlayAction";
+import TemporaryUnavailable from "./TemporaryUnavailable";
 import JackpotTicker from "../../components/JackpotTicker";
 
 export const jackpotTickerClass =
@@ -27,6 +28,7 @@ const GameTile = ({
       "o-ratio--game-tile",
       "c-scrollable-game",
       "t-border-r--8",
+      "t-color-white",
       inMaintenanceMode && "t-greyscale"
     )}
     tabIndex={0}
@@ -61,7 +63,7 @@ const GameTile = ({
       </Text>
 
       {inMaintenanceMode ? (
-        <AlertIcon className="t-color-white" size="med" />
+        <TemporaryUnavailable />
       ) : (
         <PlayAction launchGame={launchGame} />
       )}

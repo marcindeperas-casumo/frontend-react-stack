@@ -63,6 +63,7 @@
     "react-responsive-carousel": "^3.1.39",
     "resolve": "1.6.0",
     "sass-loader": "^7.0.3",
+    "sentence-case": "^2.1.1",
     "style-loader": "0.19.0",
     "stylelint": "^9.2.1",
     "stylelint-config-prettier": "^3.3.0",
