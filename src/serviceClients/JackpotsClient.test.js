@@ -14,7 +14,7 @@ describe("JackpotsClient", () => {
     const market = "foo";
     const currencyCode = "bar";
 
-    client.jackpots(market, currencyCode);
+    client.jackpots({ market, currencyCode });
     expect(httpService.get).toHaveBeenCalledWith(
       `${JackpotsAPIUrl}/${market}/currency/${currencyCode}`
     );
