@@ -11,9 +11,12 @@ describe("JackpotsClient", () => {
   });
 
   test("should call https service with jackpots url once", () => {
-    const market = "foobar";
+    const market = "foo";
+    const currencyCode = "bar";
 
-    client.jackpots(market);
-    expect(httpService.get).toHaveBeenCalledWith(`${JackpotsAPIUrl}/${market}`);
+    client.jackpots({ market, currencyCode });
+    expect(httpService.get).toHaveBeenCalledWith(
+      `${JackpotsAPIUrl}/${market}/currency/${currencyCode}`
+    );
   });
 });
