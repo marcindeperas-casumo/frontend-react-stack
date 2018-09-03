@@ -10,7 +10,7 @@ else
     message="precommit_on_$(git log -1 --format=%H)"
     git stash -k -m$message
 
-    # because git stash always success
+    # because git stash always succeeds
     # we need to check if we have stashed successfully
     lastStash=$(git stash list -1)
     if [[ $lastStash == *$message* ]]; then
