@@ -5,7 +5,7 @@ import {
   property,
   ServiceConfig,
   SimpleCache,
-} from "../utils";
+} from "../lib/utils";
 import GameBrowserClient from "../serviceClients/GameBrowserClient";
 import SessionService from "./SessionService";
 

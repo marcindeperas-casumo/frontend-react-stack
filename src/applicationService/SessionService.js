@@ -3,7 +3,7 @@ import {
   composePromises,
   isNotNullOrUndefined,
   property,
-} from "../utils";
+} from "../lib/utils";
 import commonService from "./CommonService";
 import countryGuesserService from "./CountryGuesserService";
 
@@ -47,10 +47,19 @@ export const SessionServiceFactory = ({
       // This should be refactored as language guesser
       return countryGuesserService.guess();
     }
-
     const handshake = await commonService.handshake();
     const currentPlayer = currentPlayerFromHandshake(handshake);
     return languageFromPlayer(currentPlayer);
+  };
+
+  const market = async () => {
+    const defaultMarket = "___en";
+    if (!(await isAuthenticated())) {
+      return defaultMarket;
+    }
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+    return currentPlayer.market;
   };
 
   const playerId = async () => {
@@ -61,7 +70,7 @@ export const SessionServiceFactory = ({
     return composePromises(property("id"), getSession)();
   };
 
-  return { isAuthenticated, country, language, playerId };
+  return { isAuthenticated, country, language, playerId, market };
 };
 
 export default SessionServiceFactory({

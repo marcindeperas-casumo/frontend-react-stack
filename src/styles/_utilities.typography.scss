@@ -1,0 +1,16 @@
+.u-font-weight-bold {
+  font-weight: 700;
+}
+
+.u-text-capitalize {
+  text-transform: capitalize;
+}
+
+.u-text-clamp {
+  /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+  -webkit-box-orient: vertical;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
+}

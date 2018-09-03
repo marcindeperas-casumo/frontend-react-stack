@@ -1,5 +1,5 @@
 import { stringify } from "qs";
-import { usingGET } from "../utils";
+import { usingGET } from "../lib/utils";
 
 const httpService = {
   get: usingGET,

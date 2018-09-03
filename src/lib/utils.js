@@ -141,6 +141,13 @@ export const compose = (...fns) => iv =>
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
+export const arrayToObject = (array, key) => {
+  return array.reduce((obj, item) => {
+    obj[item[key]] = item;
+    return obj;
+  }, {});
+};
+
 export const identity = id => id;
 
 export const SimpleCache = () => {

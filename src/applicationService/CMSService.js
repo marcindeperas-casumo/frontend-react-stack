@@ -7,7 +7,7 @@ import {
   ifThenElse,
   isNullOrUndefined,
   identity,
-} from "../utils";
+} from "../lib/utils";
 import commonService from "./CommonService";
 import sessionService from "./SessionService";
 
