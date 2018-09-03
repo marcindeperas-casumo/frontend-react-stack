@@ -15,6 +15,10 @@ const currentPlayerFromHandshake = compose(
   ([session, players]) => players.players[session.id],
   x => [pullSession(x), pullPlayers(x)]
 );
+const languageFromPlayer = compose(
+  property("language"),
+  property("configuration")
+);
 const countryFromPlayer = compose(
   property("country"),
   property("primaryAddress"),
@@ -43,6 +47,26 @@ export const SessionServiceFactory = ({
     return countryFromPlayer(currentPlayer);
   };
 
+  const language = async () => {
+    if (!(await isAuthenticated())) {
+      // This should be refactored as language guesser
+      return countryGuesserService.guess();
+    }
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+    return languageFromPlayer(currentPlayer);
+  };
+
+  const market = async () => {
+    const defaultMarket = "___en";
+    if (!(await isAuthenticated())) {
+      return defaultMarket;
+    }
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+    return currentPlayer.market;
+  };
+
   const playerId = async () => {
     if (!(await isAuthenticated())) {
       return null;
@@ -59,7 +83,14 @@ export const SessionServiceFactory = ({
     return currencyFromPlayerWallet(currentPlayer);
   };
 
-  return { isAuthenticated, country, playerId, iso4217CurrencyCode };
+  return {
+    isAuthenticated,
+    country,
+    language,
+    playerId,
+    market,
+    iso4217CurrencyCode,
+  };
 };
 
 export default SessionServiceFactory({

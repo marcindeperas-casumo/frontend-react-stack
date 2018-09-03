@@ -93,7 +93,15 @@ const commonFetch = (url, options) => {
       "content-type": "application/json",
     },
     ...options,
-  }).then(x => x.json());
+  })
+    .then(response => response.text())
+    .then(text => {
+      if (text === "") {
+        return {};
+      }
+
+      return JSON.parse(text);
+    });
 };
 
 export const usingPOST = (url, options) =>
@@ -132,6 +140,13 @@ export const compose = (...fns) => iv =>
 
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
+
+export const arrayToObject = (array, key) => {
+  return array.reduce((obj, item) => {
+    obj[item[key]] = item;
+    return obj;
+  }, {});
+};
 
 export const identity = id => id;
 
@@ -243,4 +258,11 @@ export const matchingGroups = (str, searchTerm) => {
   }
 
   return matchers;
+};
+
+export const fromCommonHandshake = k => property(`common/composition/${k}`);
+export const ifThenElse = (condition, thenPart, elsePart) => subject =>
+  condition(subject) ? thenPart(subject) : elsePart(subject);
+export const throwError = e => () => {
+  throw e;
 };

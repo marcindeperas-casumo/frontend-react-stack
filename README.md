@@ -47,10 +47,19 @@ see your changes in place in the PoC. This can be achieved by making use of npm/
 - You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
 - Any changes you make to the component will now flow through to the PoC
 
+### Deploy to test
+
+```sh
+ssh <assigned-ssh-username>@ttrelease01
+
+deploy-service mobile-react-stack-poc <branch-name>
+```
+
 ### Deploy to production
 
 ```sh
-# ssh in to the deploy machine
+ssh ops@live-release
+
 deploy-service mobile-react-stack-poc master
 ```
 
