@@ -28,14 +28,14 @@ export const CMSServiceFactory = ({
     )();
 
   const getPage = async ({ slug }) => {
-    const country = await sessionService.country();
-    const hash = await cmsHashForLang(country);
+    const lang = await sessionService.language();
+    const hash = await cmsHashForLang(lang);
 
     if (!Object.keys(slugCache).includes(slug)) {
       slugCache[slug] = cmsClient.queryPage({
         slug,
-        lang: country,
-        hash: hash,
+        lang,
+        hash,
       });
     }
 
