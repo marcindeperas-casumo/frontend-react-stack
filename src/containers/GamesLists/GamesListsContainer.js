@@ -2,9 +2,10 @@ import React from "react";
 import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
-import ListContainer from "../../components/ListContainer";
-import { identity, compose, not } from "../../lib/utils";
+import GamesList from "../../components/GamesList";
+import { identity, compose, not, arrayToObject } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
+import JackpotsService from "../../applicationService/JackpotsService";
 
 const gamesNotInMaintenance = compose(
   not,
@@ -27,11 +28,27 @@ export default class GamesListsContainer extends React.Component {
     Promise.all([
       GameBrowserService.latestPlayedGames(),
       GameBrowserService.allTopLists(),
+      JackpotsService.jackpots(),
     ])
-      .then(([latestPlayedGames, allTopLists]) => {
+      .then(([latestPlayedGames, allTopLists, jackpots]) => {
+        const jackpotsDataById = arrayToObject(jackpots, "jackpotId");
         // `latestPlayedGames` could be `null`, in case the player hasn't played any
         // game yet. That is why we need to run a identity filter.
-        return [latestPlayedGames, ...allTopLists].filter(identity);
+        return [latestPlayedGames, ...allTopLists]
+          .filter(identity)
+          .map(list => {
+            return {
+              ...list,
+              games: list.games.map(game => {
+                return {
+                  ...game,
+                  jackpotInfo: !!game.jackpotId
+                    ? jackpotsDataById[game.jackpotId]
+                    : null,
+                };
+              }),
+            };
+          });
       })
       .then(data => {
         this.setState({
@@ -68,7 +85,7 @@ export default class GamesListsContainer extends React.Component {
         {loading && <GamesListsSkeleton />}
         {!loading &&
           filteredList.map(gameList => (
-            <ListContainer key={gameList.title} {...gameList} />
+            <GamesList key={gameList.title} {...gameList} />
           ))}
       </React.Fragment>
     );

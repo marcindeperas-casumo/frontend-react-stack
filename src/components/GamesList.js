@@ -23,7 +23,7 @@ const renderGameTile = game => (
 const renderEmptyListOfGames = () => <div>EMPTY_LIST</div>;
 const renderListOfGameTiles = (games = []) => games.map(renderGameTile);
 
-const ListContainer = ({ title, games }) => (
+const GamesList = ({ title, games }) => (
   <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
     <Text
       className="u-font-weight-bold u-text-capitalize u-padding-bottom--small u-padding-left--small u-padding-bottom--normal@tablet
@@ -40,4 +40,4 @@ const ListContainer = ({ title, games }) => (
   </div>
 );
 
-export default ListContainer;
+export default GamesList;

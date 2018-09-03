@@ -38,6 +38,17 @@ export const SessionServiceFactory = ({
     return countryFromPlayer(currentPlayer);
   };
 
+  const market = async () => {
+    const defaultMarket = "___en";
+    if (!(await isAuthenticated())) {
+      return defaultMarket;
+    }
+
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+    return currentPlayer.market;
+  };
+
   const playerId = async () => {
     if (!(await isAuthenticated())) {
       return null;
@@ -46,7 +57,7 @@ export const SessionServiceFactory = ({
     return composePromises(property("id"), getSession)();
   };
 
-  return { isAuthenticated, country, playerId };
+  return { isAuthenticated, country, playerId, market };
 };
 
 export default SessionServiceFactory({
