@@ -1,3 +1,4 @@
+import { stringify } from "qs";
 import { usingGET } from "../lib/utils";
 
 const httpService = {
@@ -6,7 +7,12 @@ const httpService = {
 
 export const CMSClientFactory = ({ http }) => {
   const queryPage = ({ lang, slug, hash }) =>
-    http.get(`cmsquery/v2/root/${lang}/${slug}?hash=${hash}`);
+    http.get(
+      `cmsquery/v2/root/${lang}/${slug}?${stringify(
+        { hash },
+        { skipNulls: true }
+      )}`
+    );
 
   return { queryPage };
 };
