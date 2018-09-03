@@ -8,8 +8,9 @@ export const JackpotsAPIUrl = "common/query/jackpots";
 
 export const JackpotsClientFactory = ({ http }) => {
   const defaultMarket = "___en";
-  const jackpots = (market = defaultMarket) =>
-    http.get(`${JackpotsAPIUrl}/${market}`);
+  const defaultCurrency = "EUR";
+  const jackpots = (market = defaultMarket, currencyCode = defaultCurrency) =>
+    http.get(`${JackpotsAPIUrl}/${market}/currency/${currencyCode}`);
 
   return { jackpots };
 };

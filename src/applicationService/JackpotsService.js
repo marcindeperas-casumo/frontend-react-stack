@@ -5,7 +5,8 @@ import sessionService from "../applicationService/SessionService";
 const cachedJackpots = cacheFunction({
   fn: async () => {
     const market = await sessionService.market();
-    const { jackpots } = await jackpotsClient.jackpots(market);
+    const currencyCode = await sessionService.currencyCode();
+    const { jackpots } = await jackpotsClient.jackpots(market, currencyCode);
     return jackpots;
   },
 });
