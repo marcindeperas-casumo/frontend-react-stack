@@ -29,3 +29,8 @@
 .c-game-tile:focus .c-game-tile__overlay {
   display: flex;
 }
+
+//stylelint-disable-next-line xi/selector-pattern
+.c-game-tile:focus .c-jackpot-ticker {
+  display: none;
+}
