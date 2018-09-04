@@ -9,7 +9,7 @@ import TemporaryUnavailable from "./TemporaryUnavailable";
 import JackpotTicker from "../../components/JackpotTicker";
 
 export const jackpotTickerClass =
-  "u-margin-bottom--normal u-padding-horiz--small u-padding-vert";
+  "c-jackpot-ticker u-margin-bottom--normal u-padding-horiz--small u-padding-vert";
 const GameTile = ({
   logoBackground,
   logo,
