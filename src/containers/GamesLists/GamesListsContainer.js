@@ -2,19 +2,13 @@ import React from "react";
 import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
-import GameList from "../../components/GameList";
-import { identity, compose, not, arrayToObject } from "../../lib/utils";
-import GamesListsSkeleton from "./GamesListsSkeleton";
 import JackpotsService from "../../applicationService/JackpotsService";
-
-import LiveCasinoClient from "../../serviceClients/LiveCasinoClient";
 import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
-const {
-  processLobby,
-  getLiveCasinoGames,
-  ifLiveCasinoId,
-  getLobbyLink,
-} = LiveCasinoServiceEvo;
+import GameList from "../../components/GameList";
+import { arrayToObject, compose, identity, not } from "../../lib/utils";
+import GamesListsSkeleton from "./GamesListsSkeleton";
+
+const { ifLiveCasinoId, getLobbyLink } = LiveCasinoServiceEvo;
 
 const gamesNotInMaintenance = compose(
   not,
@@ -35,6 +29,7 @@ export default class GamesListsContainer extends React.Component {
   componentDidMount() {
     this.setState({ ...this.state, loading: true });
 
+    // We need to make this promise cancelable
     Promise.all([
       GameBrowserService.latestPlayedGames(),
       GameBrowserService.allTopLists(),
@@ -42,6 +37,7 @@ export default class GamesListsContainer extends React.Component {
     ])
       .then(([latestPlayedGames, allTopLists, jackpots]) => {
         const jackpotsDataById = arrayToObject(jackpots, "jackpotId");
+
         // `latestPlayedGames` could be `null`, in case the player hasn't played any
         // game yet. That is why we need to run a identity filter.
         return [latestPlayedGames, ...allTopLists]
@@ -61,14 +57,11 @@ export default class GamesListsContainer extends React.Component {
           });
       })
       .then(data => {
-        this.setState(
-          {
-            ...this.state,
-            loading: false,
-            data,
-          },
-          this.launchLiveCasinoSocket
-        );
+        this.setState({
+          ...this.state,
+          loading: false,
+          data,
+        });
       })
       .catch(e => {
         this.setState({
@@ -80,31 +73,8 @@ export default class GamesListsContainer extends React.Component {
       });
   }
 
-  launchLiveCasinoSocket() {
-    const lc = this.state.data.find(o => ifLiveCasinoId(o.id));
-    if (lc) {
-      const ws = new LiveCasinoClient();
-      ws.onmessage = m => {
-        const args = { games: lc.games, lobby: this.state.lobby, payload: m };
-        const lobbyData = processLobby(args);
-        if (lobbyData)
-          this.setState({
-            ...this.state,
-            lobby: lobbyData,
-          });
-      };
-      ws.onerror = e => {
-        if (e === "MAX_RECONNECT")
-          this.setState({
-            ...this.state,
-            lobbyError: true,
-          });
-      };
-    }
-  }
-
   render() {
-    const { data, loading, lobby } = this.state;
+    const { data, loading } = this.state;
 
     const filteredList = data.map(gameList => {
       // Filter out games in maintenance
@@ -112,15 +82,6 @@ export default class GamesListsContainer extends React.Component {
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
-      // Filter out games in Lobby against gameBrowser data
-      // for Live Casino.
-      if (ifLiveCasinoId(gameList.id) && !this.state.lobbyError) {
-        return {
-          ...gameList,
-          games: getLiveCasinoGames(gameList.games, lobby),
-        };
-      }
-
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
