@@ -1,6 +1,6 @@
 export const types = {
   TEST: "TEST",
 };
-export function testredux() {
-  return { type: types.TEST };
-}
+export const testredux = () => ({
+  type: types.TEST,
+});
