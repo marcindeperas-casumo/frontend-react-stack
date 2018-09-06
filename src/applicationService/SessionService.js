@@ -19,6 +19,11 @@ const languageFromPlayer = compose(
   property("language"),
   property("configuration")
 );
+const currencyFromPlayer = compose(
+  property("iso4217CurrencyCode"),
+  property("balance"),
+  property("wallet")
+);
 const countryFromPlayer = compose(
   property("country"),
   property("primaryAddress"),
@@ -67,6 +72,17 @@ export const SessionServiceFactory = ({
     return currentPlayer.market;
   };
 
+  const currencyCode = async () => {
+    const defaultCurrency = "EUR";
+    if (!(await isAuthenticated())) {
+      return defaultCurrency;
+    }
+
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+    return currencyFromPlayer(currentPlayer);
+  };
+
   const playerId = async () => {
     if (!(await isAuthenticated())) {
       return null;
@@ -90,6 +106,7 @@ export const SessionServiceFactory = ({
     playerId,
     market,
     iso4217CurrencyCode,
+    currencyCode,
   };
 };
 

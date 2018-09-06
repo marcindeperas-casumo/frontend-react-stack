@@ -65,6 +65,21 @@ describe("SessionService", () => {
     });
   });
 
+  describe("currencyCode()", () => {
+    test("should return the players wallet currency code", async () => {
+      const currencyCode = await service.currencyCode();
+      expect(currencyCode).toEqual("EUR");
+    });
+
+    test("should return the default currency code if a user is not authenticated", async () => {
+      commonServiceMock.handshake.mockResolvedValue(unauthenticatedResponse);
+
+      const currencyCode = await service.currencyCode();
+
+      expect(currencyCode).toEqual("EUR");
+    });
+  });
+
   describe("playerId", () => {
     test("should return the player id if the session is authenticated", async () => {
       commonServiceMock.handshake.mockResolvedValue(authenticatedResponse);
