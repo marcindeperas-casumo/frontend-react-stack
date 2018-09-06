@@ -97,6 +97,9 @@ export const GameBrowserServiceFactory = ({
   );
 
   const gameFetcherById = {
+    // Having multiple listIds for the same type is a bit risky. Let's
+    // streamline this.
+    liveCasino: (...args) => gameFetcherById.liveCasinoGames(...args),
     liveCasinoGames: async ({ id, variants, title, variant, currency }) => {
       const liveCasinoGamesList = await gameFetcherById.DEFAULT({
         id,
