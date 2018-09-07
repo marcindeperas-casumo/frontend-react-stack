@@ -73,7 +73,7 @@ const renderSeats = ({ game }) => (
         />
       )}
     </Badge>
-    <Text className="t-color-white u-margin-bottom--small u-font-weight-bold">
+    <Text className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase">
       {game.seats ? (
         <CMSField
           slug="mobile.live-casino-cards-content"
