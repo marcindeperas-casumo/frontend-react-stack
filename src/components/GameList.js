@@ -27,9 +27,9 @@ const renderImage = src => (
 );
 
 const renderPlayers = n => (
-  <div className="o-flex-align--center t-color-black">
+  <div className="o-flex-align--center">
     <PlayerIcon className="u-margin-vert t-color-grey" size="sml" />
-    <span className="u-margin-left--micro u-margin-vert u-font-weight-bold">
+    <span className="u-margin-left--micro u-margin-vert u-font-weight-bold t-color-grey-dark-2">
       {n}
     </span>
   </div>
@@ -53,7 +53,11 @@ const renderCards = ({ games }) =>
       key={o.slug}
       image={renderImage(o.lobby.image)}
       cardData={renderCardData(o.lobby)}
-      heading={decodeString(o.name)}
+      heading={
+        <Text tag="strong" className="t-color-grey-dark-2">
+          {decodeString(o.name)}
+        </Text>
+      }
       footer={renderPlayers(o.lobby.players)}
       cta={{
         text: (
