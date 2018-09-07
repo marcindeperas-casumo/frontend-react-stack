@@ -56,6 +56,30 @@ const renderResults = ({ game }) => (
   </React.Fragment>
 );
 
+const OpenSeats = () => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field="open_seats"
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
+);
+
+const TableFull = () => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field="table_full"
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
+);
+
 const renderSeats = ({ game }) => (
   <React.Fragment>
     <Badge
@@ -69,32 +93,12 @@ const renderSeats = ({ game }) => (
         <CMSField
           slug="mobile.live-casino-cards-content"
           field="bet_behind"
-          view={Text}
+          view={text => <Text tag="span">{text}</Text>}
         />
       )}
     </Badge>
     <Text className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase">
-      {game.seats ? (
-        <CMSField
-          slug="mobile.live-casino-cards-content"
-          field="open_seats"
-          view={text => (
-            <Text size="xs" tag="span">
-              {text}
-            </Text>
-          )}
-        />
-      ) : (
-        <CMSField
-          slug="mobile.live-casino-cards-content"
-          field="table_full"
-          view={text => (
-            <Text size="xs" tag="span">
-              {text}
-            </Text>
-          )}
-        />
-      )}
+      {game.seats ? <OpenSeats /> : <TableFull />}
     </Text>
   </React.Fragment>
 );
