@@ -61,7 +61,7 @@ const renderCards = ({ games }) =>
       footer={renderPlayers(o.lobby.players)}
       cta={{
         text: (
-          <Text className="u-text-transform-capitalize" tag="strong">
+          <Text className="u-text-transform-capitalize u-font-weight-bold">
             <CMSField
               slug="mobile.live-casino-cards-content"
               field="play_now"
