@@ -20,3 +20,7 @@ $game-tile-widths: (
     margin-left: $cudl-spacer-size-default;
   }
 }
+
+.c-scrollable-list-title {
+  text-transform: capitalize;
+}

@@ -16,7 +16,11 @@ export default class CMSField extends React.Component {
     const text = await getCMSField({
       slug,
       field,
-      fallbackTextFn: () => sentenceCase(field),
+      fallbackTextFn: () => {
+        console.warn("Using fallback value", { slug, field });
+
+        return sentenceCase(field);
+      },
     });
 
     this.setState({

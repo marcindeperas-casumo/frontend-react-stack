@@ -29,6 +29,11 @@ const countryFromPlayer = compose(
   property("primaryAddress"),
   property("contactInfo")
 );
+const currencyFromPlayerWallet = compose(
+  property("iso4217CurrencyCode"),
+  property("balance"),
+  property("wallet")
+);
 
 export const SessionServiceFactory = ({
   commonService,
@@ -41,9 +46,9 @@ export const SessionServiceFactory = ({
     if (!(await isAuthenticated())) {
       return countryGuesserService.guess();
     }
-
     const handshake = await commonService.handshake();
     const currentPlayer = currentPlayerFromHandshake(handshake);
+
     return countryFromPlayer(currentPlayer);
   };
 
@@ -86,7 +91,23 @@ export const SessionServiceFactory = ({
     return composePromises(property("id"), getSession)();
   };
 
-  return { isAuthenticated, country, language, playerId, market, currencyCode };
+  const iso4217CurrencyCode = async () => {
+    if (!(await isAuthenticated())) return null;
+    const handshake = await commonService.handshake();
+    const currentPlayer = currentPlayerFromHandshake(handshake);
+
+    return currencyFromPlayerWallet(currentPlayer);
+  };
+
+  return {
+    isAuthenticated,
+    country,
+    language,
+    playerId,
+    market,
+    iso4217CurrencyCode,
+    currencyCode,
+  };
 };
 
 export default SessionServiceFactory({

@@ -1,14 +1,15 @@
 import React from "react";
-import SkeletonGameTiles from "../../components/SkeletonGameTiles";
+import GameListSkeleton from "../../components/GameListSkeleton";
 
-export default () => (
+const GameListsSkeleton = () => (
   <div>
     {Array.from(Array(4).keys()).map(i => (
-      <SkeletonGameTiles
+      <GameListSkeleton
         key={i}
-        tileWidth={175}
-        tileGap={10}
-        tileRadius={8}
+        itemWidth={170}
+        itemRatio={1.2}
+        itemGap={8}
+        display={"tiles"}
         preserveAspectRatio="xMinYMin"
         colorLow="#eff6f6"
         colorHi="#ffffff"
@@ -18,3 +19,5 @@ export default () => (
     ))}
   </div>
 );
+
+export default GameListsSkeleton;

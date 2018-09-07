@@ -2,10 +2,13 @@ import React from "react";
 import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
-import GamesList from "../../components/GamesList";
-import { identity, compose, not, arrayToObject } from "../../lib/utils";
-import GamesListsSkeleton from "./GamesListsSkeleton";
 import JackpotsService from "../../applicationService/JackpotsService";
+import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
+import GameList from "../../components/GameList";
+import { arrayToObject, compose, identity, not } from "../../lib/utils";
+import GamesListsSkeleton from "./GamesListsSkeleton";
+
+const { ifLiveCasinoId, getLobbyLink } = LiveCasinoServiceEvo;
 
 const gamesNotInMaintenance = compose(
   not,
@@ -19,12 +22,14 @@ export default class GamesListsContainer extends React.Component {
     this.state = {
       loading: false,
       data: [],
+      lobby: [],
     };
   }
 
   componentDidMount() {
     this.setState({ ...this.state, loading: true });
 
+    // We need to make this promise cancelable
     Promise.all([
       GameBrowserService.latestPlayedGames(),
       GameBrowserService.allTopLists(),
@@ -32,6 +37,7 @@ export default class GamesListsContainer extends React.Component {
     ])
       .then(([latestPlayedGames, allTopLists, jackpots]) => {
         const jackpotsDataById = arrayToObject(jackpots, "jackpotId");
+
         // `latestPlayedGames` could be `null`, in case the player hasn't played any
         // game yet. That is why we need to run a identity filter.
         return [latestPlayedGames, ...allTopLists]
@@ -70,13 +76,12 @@ export default class GamesListsContainer extends React.Component {
   render() {
     const { data, loading } = this.state;
 
-    // Filter out games in maintenance. Unless they are the last played games
-    // list.
     const filteredList = data.map(gameList => {
+      // Filter out games in maintenance
+      // unless they are the last played games list.
       if (gameList.id === "latestPlayedGames") {
         return gameList;
       }
-
       return { ...gameList, games: removeGamesInMaintenance(gameList.games) };
     });
 
@@ -85,7 +90,16 @@ export default class GamesListsContainer extends React.Component {
         {loading && <GamesListsSkeleton />}
         {!loading &&
           filteredList.map(gameList => (
-            <GamesList key={gameList.title} {...gameList} />
+            <GameList
+              key={gameList.title}
+              display={
+                ifLiveCasinoId(gameList.id) && !this.state.lobbyError
+                  ? "cards"
+                  : "tiles"
+              }
+              link={ifLiveCasinoId(gameList.id) ? getLobbyLink() : null}
+              {...gameList}
+            />
           ))}
       </React.Fragment>
     );

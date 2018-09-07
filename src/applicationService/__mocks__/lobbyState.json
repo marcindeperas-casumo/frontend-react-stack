@@ -1,0 +1,2892 @@
+[
+  {
+    "name": "Casumo Roulette",
+    "players": 7,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "mayhshubiktqjq2x",
+      "name": "Darryl"
+    },
+    "betLimits": {
+      "OMR": {
+        "symbol": "OMR",
+        "min": 0.4,
+        "max": 4000
+      },
+      "BBD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "PLN": {
+        "symbol": "PLN",
+        "min": 4,
+        "max": 40000
+      },
+      "CUC": {
+        "symbol": "CUC",
+        "min": 1,
+        "max": 10000
+      },
+      "SVC": {
+        "symbol": "₡",
+        "min": 10,
+        "max": 100000
+      },
+      "BMD": {
+        "symbol": "BMD",
+        "min": 1,
+        "max": 10000
+      },
+      "TJS": {
+        "symbol": "TJS",
+        "min": 10,
+        "max": 100000
+      },
+      "TND": {
+        "symbol": "TND",
+        "min": 2,
+        "max": 20000
+      },
+      "GNF": {
+        "symbol": "GNF",
+        "min": 10000,
+        "max": 100000000
+      },
+      "KR2": {
+        "symbol": "KR2",
+        "min": 1,
+        "max": 10000
+      },
+      "PKR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "BC2": {
+        "symbol": "mBCH",
+        "min": 6,
+        "max": 60000
+      },
+      "FKP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "MUR": {
+        "symbol": "₨",
+        "min": 40,
+        "max": 400000
+      },
+      "XAF": {
+        "symbol": "XAF",
+        "min": 500,
+        "max": 5000000
+      },
+      "SAR": {
+        "symbol": "SAR",
+        "min": 4,
+        "max": 40000
+      },
+      "VEF": {
+        "symbol": "VEF",
+        "min": 10,
+        "max": 100000
+      },
+      "CAD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "HKD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "PYG": {
+        "symbol": "PYG",
+        "min": 5000,
+        "max": 50000000
+      },
+      "MGA": {
+        "symbol": "MGA",
+        "min": 3000,
+        "max": 30000000
+      },
+      "AUD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "AMD": {
+        "symbol": "AMD",
+        "min": 500,
+        "max": 5000000
+      },
+      "YER": {
+        "symbol": "﷼",
+        "min": 200,
+        "max": 2000000
+      },
+      "ID2": {
+        "symbol": "ID2",
+        "min": 10,
+        "max": 100000
+      },
+      "MMK": {
+        "symbol": "MMK",
+        "min": 1000,
+        "max": 10000000
+      },
+      "SEK": {
+        "symbol": "kr",
+        "min": 10,
+        "max": 100000
+      },
+      "TRY": {
+        "symbol": "TRY",
+        "min": 5,
+        "max": 50000
+      },
+      "KES": {
+        "symbol": "KES",
+        "min": 100,
+        "max": 1000000
+      },
+      "GEL": {
+        "symbol": "GEL",
+        "min": 3,
+        "max": 30000
+      },
+      "GTQ": {
+        "symbol": "GTQ",
+        "min": 10,
+        "max": 100000
+      },
+      "TZS": {
+        "symbol": "TZS",
+        "min": 2000,
+        "max": 20000000
+      },
+      "CUP": {
+        "symbol": "£",
+        "min": 30,
+        "max": 300000
+      },
+      "ALL": {
+        "symbol": "ALL",
+        "min": 100,
+        "max": 1000000
+      },
+      "ERN": {
+        "symbol": "ERN",
+        "min": 20,
+        "max": 200000
+      },
+      "BRL": {
+        "symbol": "R$",
+        "min": 3,
+        "max": 30000
+      },
+      "UGX": {
+        "symbol": "UGX",
+        "min": 3000,
+        "max": 30000000
+      },
+      "GIP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "KRW": {
+        "symbol": "₩",
+        "min": 1000,
+        "max": 10000000
+      },
+      "JOD": {
+        "symbol": "JOD",
+        "min": 1,
+        "max": 10000
+      },
+      "IQD": {
+        "symbol": "IQD",
+        "min": 1000,
+        "max": 10000000
+      },
+      "VUV": {
+        "symbol": "VUV",
+        "min": 100,
+        "max": 1000000
+      },
+      "UZS": {
+        "symbol": "UZS",
+        "min": 3000,
+        "max": 30000000
+      },
+      "UAH": {
+        "symbol": "₴",
+        "min": 30,
+        "max": 300000
+      },
+      "ZWD": {
+        "symbol": "$",
+        "min": 400,
+        "max": 4000000
+      },
+      "PEN": {
+        "symbol": "S/.",
+        "min": 3,
+        "max": 30000
+      },
+      "KMF": {
+        "symbol": "KMF",
+        "min": 500,
+        "max": 5000000
+      },
+      "DOP": {
+        "symbol": "₱",
+        "min": 50,
+        "max": 500000
+      },
+      "BDT": {
+        "symbol": "BDT",
+        "min": 100,
+        "max": 1000000
+      },
+      "LKR": {
+        "symbol": "₨",
+        "min": 200,
+        "max": 2000000
+      },
+      "FJD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "LSL": {
+        "symbol": "LSL",
+        "min": 10,
+        "max": 100000
+      },
+      "BSD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "SRD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "SHP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "LRD": {
+        "symbol": "$",
+        "min": 100,
+        "max": 1000000
+      },
+      "QAR": {
+        "symbol": "﷼",
+        "min": 4,
+        "max": 40000
+      },
+      "BND": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "TMT": {
+        "symbol": "TMT",
+        "min": 4,
+        "max": 40000
+      },
+      "CDF": {
+        "symbol": "CDF",
+        "min": 1000,
+        "max": 10000000
+      },
+      "XB3": {
+        "symbol": "μBTC",
+        "min": 400,
+        "max": 4000000
+      },
+      "STD": {
+        "symbol": "STD",
+        "min": 20000,
+        "max": 200000000
+      },
+      "SZL": {
+        "symbol": "SZL",
+        "min": 10,
+        "max": 100000
+      },
+      "CZK": {
+        "symbol": "Kč",
+        "min": 30,
+        "max": 300000
+      },
+      "BGN": {
+        "symbol": "BGN",
+        "min": 2,
+        "max": 20000
+      },
+      "JMD": {
+        "symbol": "$",
+        "min": 100,
+        "max": 1000000
+      },
+      "ZMW": {
+        "symbol": "ZMW",
+        "min": 10,
+        "max": 100000
+      },
+      "UYU": {
+        "symbol": "₱",
+        "min": 30,
+        "max": 300000
+      },
+      "NPR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "EGP": {
+        "symbol": "£",
+        "min": 20,
+        "max": 200000
+      },
+      "AZN": {
+        "symbol": "AZN",
+        "min": 2,
+        "max": 20000
+      },
+      "ETH": {
+        "symbol": "Ξ",
+        "min": 0.001,
+        "max": 10
+      },
+      "CLP": {
+        "symbol": "$",
+        "min": 500,
+        "max": 5000000
+      },
+      "XPD": {
+        "symbol": "XPD",
+        "min": 0.001,
+        "max": 10
+      },
+      "TKN": {
+        "symbol": "",
+        "min": 10,
+        "max": 100000
+      },
+      "MOP": {
+        "symbol": "MOP",
+        "min": 10,
+        "max": 100000
+      },
+      "SCR": {
+        "symbol": "₨",
+        "min": 10,
+        "max": 100000
+      },
+      "HTG": {
+        "symbol": "HTG",
+        "min": 100,
+        "max": 1000000
+      },
+      "VND": {
+        "symbol": "₫",
+        "min": 20000,
+        "max": 200000000
+      },
+      "LAK": {
+        "symbol": "₭",
+        "min": 10000,
+        "max": 100000000
+      },
+      "BTN": {
+        "symbol": "BTN",
+        "min": 100,
+        "max": 1000000
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "TWD": {
+        "symbol": "元",
+        "min": 30,
+        "max": 300000
+      },
+      "DZD": {
+        "symbol": "DZD",
+        "min": 100,
+        "max": 1000000
+      },
+      "MXN": {
+        "symbol": "$",
+        "min": 20,
+        "max": 200000
+      },
+      "XDR": {
+        "symbol": "XDR",
+        "min": 1,
+        "max": 10000
+      },
+      "AWG": {
+        "symbol": "ƒ",
+        "min": 2,
+        "max": 20000
+      },
+      "THB": {
+        "symbol": "฿",
+        "min": 30,
+        "max": 300000
+      },
+      "ISK": {
+        "symbol": "ISK",
+        "min": 100,
+        "max": 1000000
+      },
+      "LT2": {
+        "symbol": "mLTC",
+        "min": 6,
+        "max": 60000
+      },
+      "LBP": {
+        "symbol": "£",
+        "min": 2000,
+        "max": 20000000
+      },
+      "SGD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "MWK": {
+        "symbol": "MWK",
+        "min": 1000,
+        "max": 10000000
+      },
+      "WST": {
+        "symbol": "WST",
+        "min": 3,
+        "max": 30000
+      },
+      "DJF": {
+        "symbol": "DJF",
+        "min": 200,
+        "max": 2000000
+      },
+      "KZT": {
+        "symbol": "KZT",
+        "min": 300,
+        "max": 3000000
+      },
+      "CRC": {
+        "symbol": "₡",
+        "min": 500,
+        "max": 5000000
+      },
+      "LYD": {
+        "symbol": "LYD",
+        "min": 1,
+        "max": 10000
+      },
+      "NGN": {
+        "symbol": "NGN",
+        "min": 300,
+        "max": 3000000
+      },
+      "BIF": {
+        "symbol": "BIF",
+        "min": 2000,
+        "max": 20000000
+      },
+      "CHF": {
+        "symbol": "CHF",
+        "min": 1,
+        "max": 10000
+      },
+      "RWF": {
+        "symbol": "RWF",
+        "min": 1000,
+        "max": 10000000
+      },
+      "AED": {
+        "symbol": "AED",
+        "min": 4,
+        "max": 40000
+      },
+      "INR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "IMP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "LTC": {
+        "symbol": "Ł",
+        "min": 0.006,
+        "max": 60
+      },
+      "XOF": {
+        "symbol": "XOF",
+        "min": 500,
+        "max": 5000000
+      },
+      "MRO": {
+        "symbol": "MRO",
+        "min": 400,
+        "max": 4000000
+      },
+      "XBT": {
+        "symbol": "Ƀ",
+        "min": 0.0004,
+        "max": 4
+      },
+      "PGK": {
+        "symbol": "PGK",
+        "min": 3,
+        "max": 30000
+      },
+      "CNY": {
+        "symbol": "¥",
+        "min": 10,
+        "max": 100000
+      },
+      "PHP": {
+        "symbol": "PHP",
+        "min": 50,
+        "max": 500000
+      },
+      "MDL": {
+        "symbol": "MDL",
+        "min": 20,
+        "max": 200000
+      },
+      "SYP": {
+        "symbol": "£",
+        "min": 200,
+        "max": 2000000
+      },
+      "RON": {
+        "symbol": "RON",
+        "min": 4,
+        "max": 40000
+      },
+      "AFN": {
+        "symbol": "AFN",
+        "min": 100,
+        "max": 1000000
+      },
+      "KHR": {
+        "symbol": "KHR",
+        "min": 4000,
+        "max": 40000000
+      },
+      "XPT": {
+        "symbol": "XPT",
+        "min": 0.001,
+        "max": 10
+      },
+      "GGP": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "COP": {
+        "symbol": "$",
+        "min": 3000,
+        "max": 30000000
+      },
+      "DKK": {
+        "symbol": "kr.",
+        "min": 10,
+        "max": 100000
+      },
+      "KYD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "XPF": {
+        "symbol": "XPF",
+        "min": 200,
+        "max": 2000000
+      },
+      "GMD": {
+        "symbol": "GMD",
+        "min": 50,
+        "max": 500000
+      },
+      "MVR": {
+        "symbol": "MVR",
+        "min": 20,
+        "max": 200000
+      },
+      "TTD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "PAB": {
+        "symbol": "PAB",
+        "min": 1,
+        "max": 10000
+      },
+      "XAU": {
+        "symbol": "XAU",
+        "min": 0.001,
+        "max": 10
+      },
+      "XAG": {
+        "symbol": "XAG",
+        "min": 0.05,
+        "max": 500
+      },
+      "JPY": {
+        "symbol": "¥",
+        "min": 100,
+        "max": 1000000
+      },
+      "TOP": {
+        "symbol": "TOP",
+        "min": 2,
+        "max": 20000
+      },
+      "BWP": {
+        "symbol": "BWP",
+        "min": 10,
+        "max": 100000
+      },
+      "MKD": {
+        "symbol": "MKD",
+        "min": 50,
+        "max": 500000
+      },
+      "ARS": {
+        "symbol": "$",
+        "min": 20,
+        "max": 200000
+      },
+      "HUF": {
+        "symbol": "HUF",
+        "min": 300,
+        "max": 3000000
+      },
+      "TVD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "MYR": {
+        "symbol": "MYR",
+        "min": 5,
+        "max": 50000
+      },
+      "USD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "SPL": {
+        "symbol": "SPL",
+        "min": 0.2,
+        "max": 2000
+      },
+      "SLL": {
+        "symbol": "SLL",
+        "min": 10000,
+        "max": 100000000
+      },
+      "MAD": {
+        "symbol": "MAD",
+        "min": 10,
+        "max": 100000
+      },
+      "RUB": {
+        "symbol": "RUB",
+        "min": 50,
+        "max": 500000
+      },
+      "JEP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "MNT": {
+        "symbol": "₮",
+        "min": 2000,
+        "max": 20000000
+      },
+      "BOB": {
+        "symbol": "BOB",
+        "min": 10,
+        "max": 100000
+      },
+      "GYD": {
+        "symbol": "$",
+        "min": 200,
+        "max": 2000000
+      },
+      "SBD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "VN2": {
+        "symbol": "VN2",
+        "min": 20,
+        "max": 200000
+      },
+      "BHD": {
+        "symbol": "BHD",
+        "min": 0.4,
+        "max": 4000
+      },
+      "HNL": {
+        "symbol": "HNL",
+        "min": 20,
+        "max": 200000
+      },
+      "ET2": {
+        "symbol": "mETH",
+        "min": 1,
+        "max": 10000
+      },
+      "XCD": {
+        "symbol": "$",
+        "min": 3,
+        "max": 30000
+      },
+      "XB2": {
+        "symbol": "mBTC",
+        "min": 0.4,
+        "max": 4000
+      },
+      "NZD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "KGS": {
+        "symbol": "KGS",
+        "min": 100,
+        "max": 1000000
+      },
+      "IN2": {
+        "symbol": "",
+        "min": 1,
+        "max": 10000
+      },
+      "AOA": {
+        "symbol": "AOA",
+        "min": 200,
+        "max": 2000000
+      },
+      "BZD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "IDR": {
+        "symbol": "IDR",
+        "min": 10000,
+        "max": 100000000
+      },
+      "SOS": {
+        "symbol": "SOS",
+        "min": 500,
+        "max": 5000000
+      },
+      "NIO": {
+        "symbol": "NIO",
+        "min": 30,
+        "max": 300000
+      },
+      "GHS": {
+        "symbol": "GH¢",
+        "min": 4,
+        "max": 40000
+      },
+      "ANG": {
+        "symbol": "ƒ",
+        "min": 2,
+        "max": 20000
+      },
+      "RSD": {
+        "symbol": "RSD",
+        "min": 100,
+        "max": 1000000
+      },
+      "ILS": {
+        "symbol": "₪",
+        "min": 4,
+        "max": 40000
+      },
+      "NOK": {
+        "symbol": "kr",
+        "min": 10,
+        "max": 100000
+      },
+      "KWD": {
+        "symbol": "KWD",
+        "min": 0.3,
+        "max": 3000
+      },
+      "NAD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "ETB": {
+        "symbol": "ETB",
+        "min": 20,
+        "max": 200000
+      },
+      "BYN": {
+        "symbol": "BYN",
+        "min": 2,
+        "max": 20000
+      },
+      "KPW": {
+        "symbol": "₩",
+        "min": 1000,
+        "max": 10000000
+      },
+      "EUR": {
+        "symbol": "€",
+        "min": 1,
+        "max": 10000
+      },
+      "CVE": {
+        "symbol": "CVE",
+        "min": 100,
+        "max": 1000000
+      },
+      "ZAR": {
+        "symbol": "R",
+        "min": 10,
+        "max": 100000
+      },
+      "IRR": {
+        "symbol": "﷼",
+        "min": 30000,
+        "max": 300000000
+      },
+      "BCH": {
+        "symbol": "BCH",
+        "min": 0.006,
+        "max": 60
+      },
+      "HRK": {
+        "symbol": "HRK",
+        "min": 10,
+        "max": 100000
+      },
+      "BAM": {
+        "symbol": "BAM",
+        "min": 2,
+        "max": 20000
+      }
+    },
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/csor1_imrs_med?size=S",
+        "M": "/tablePicture/csor1_imrs_med?size=M",
+        "L": "/tablePicture/csor1_imrs_med?size=L",
+        "XL": "/tablePicture/csor1_imrs_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_XL.jpg"
+      }
+    },
+    "open": true,
+    "results": [
+      "11",
+      "30",
+      "22",
+      "8",
+      "20",
+      "10",
+      "33",
+      "2",
+      "29",
+      "31"
+    ],
+    "gameType": "Roulette",
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "display": "on_desktop",
+    "sitesAssigned": [],
+    "id": "madlz3bzhyeabit4"
+  },
+  {
+    "name": "Lightning Roulette",
+    "players": 604,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "laclgaupe6baesx3",
+      "name": "Kristap"
+    },
+    "betLimits": {
+      "EUR": {
+        "symbol": "€",
+        "min": 0.2,
+        "max": 10000
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 0.2,
+        "max": 10000
+      }
+    },
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/lightr1_imrs_med?size=S",
+        "M": "/tablePicture/lightr1_imrs_med?size=M",
+        "L": "/tablePicture/lightr1_imrs_med?size=L",
+        "XL": "/tablePicture/lightr1_imrs_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_XL.jpg"
+      }
+    },
+    "open": true,
+    "results": [
+      "15",
+      "1",
+      "18",
+      "16",
+      "36",
+      "32",
+      "13",
+      "22",
+      "13",
+      "0"
+    ],
+    "gameType": "Roulette",
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "display": "on_desktop",
+    "sitesAssigned": [],
+    "id": "LightningTable01"
+  },
+  {
+    "name": "Dream Catcher",
+    "players": 338,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "zuqkg19ufiert6e5",
+      "name": "Alina"
+    },
+    "betLimits": {
+      "OMR": {
+        "symbol": "OMR",
+        "min": 0.04,
+        "max": 1000
+      },
+      "BBD": {
+        "symbol": "$",
+        "min": 0.2,
+        "max": 5000
+      },
+      "PLN": {
+        "symbol": "PLN",
+        "min": 0.4,
+        "max": 10000
+      },
+      "CUC": {
+        "symbol": "CUC",
+        "min": 0.1,
+        "max": 2500
+      },
+      "SVC": {
+        "symbol": "₡",
+        "min": 1,
+        "max": 25000
+      },
+      "BMD": {
+        "symbol": "BMD",
+        "min": 0.1,
+        "max": 2500
+      },
+      "TJS": {
+        "symbol": "TJS",
+        "min": 1,
+        "max": 25000
+      },
+      "TND": {
+        "symbol": "TND",
+        "min": 0.2,
+        "max": 5000
+      },
+      "GNF": {
+        "symbol": "GNF",
+        "min": 1000,
+        "max": 25000000
+      },
+      "KR2": {
+        "symbol": "KR2",
+        "min": 0.1,
+        "max": 2500
+      },
+      "PKR": {
+        "symbol": "₨",
+        "min": 10,
+        "max": 250000
+      },
+      "BC2": {
+        "symbol": "mBCH",
+        "min": 0.6,
+        "max": 15000
+      },
+      "FKP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "MUR": {
+        "symbol": "₨",
+        "min": 4,
+        "max": 100000
+      },
+      "XAF": {
+        "symbol": "XAF",
+        "min": 50,
+        "max": 1250000
+      },
+      "SAR": {
+        "symbol": "SAR",
+        "min": 0.4,
+        "max": 10000
+      },
+      "VEF": {
+        "symbol": "VEF",
+        "min": 1,
+        "max": 25000
+      },
+      "CAD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "HKD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 25000
+      },
+      "PYG": {
+        "symbol": "PYG",
+        "min": 500,
+        "max": 12500000
+      },
+      "MGA": {
+        "symbol": "MGA",
+        "min": 300,
+        "max": 7500000
+      },
+      "AUD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "AMD": {
+        "symbol": "AMD",
+        "min": 50,
+        "max": 1250000
+      },
+      "YER": {
+        "symbol": "﷼",
+        "min": 20,
+        "max": 500000
+      },
+      "ID2": {
+        "symbol": "ID2",
+        "min": 1,
+        "max": 25000
+      },
+      "MMK": {
+        "symbol": "MMK",
+        "min": 100,
+        "max": 2500000
+      },
+      "SEK": {
+        "symbol": "kr",
+        "min": 1,
+        "max": 25000
+      },
+      "TRY": {
+        "symbol": "TRY",
+        "min": 0.5,
+        "max": 12500
+      },
+      "KES": {
+        "symbol": "KES",
+        "min": 10,
+        "max": 250000
+      },
+      "GEL": {
+        "symbol": "GEL",
+        "min": 0.3,
+        "max": 7500
+      },
+      "GTQ": {
+        "symbol": "GTQ",
+        "min": 1,
+        "max": 25000
+      },
+      "TZS": {
+        "symbol": "TZS",
+        "min": 200,
+        "max": 5000000
+      },
+      "CUP": {
+        "symbol": "£",
+        "min": 3,
+        "max": 75000
+      },
+      "ALL": {
+        "symbol": "ALL",
+        "min": 10,
+        "max": 250000
+      },
+      "ERN": {
+        "symbol": "ERN",
+        "min": 2,
+        "max": 50000
+      },
+      "BRL": {
+        "symbol": "R$",
+        "min": 0.3,
+        "max": 7500
+      },
+      "UGX": {
+        "symbol": "UGX",
+        "min": 300,
+        "max": 7500000
+      },
+      "GIP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "KRW": {
+        "symbol": "₩",
+        "min": 100,
+        "max": 2500000
+      },
+      "JOD": {
+        "symbol": "JOD",
+        "min": 0.1,
+        "max": 2500
+      },
+      "IQD": {
+        "symbol": "IQD",
+        "min": 100,
+        "max": 2500000
+      },
+      "VUV": {
+        "symbol": "VUV",
+        "min": 10,
+        "max": 250000
+      },
+      "UZS": {
+        "symbol": "UZS",
+        "min": 300,
+        "max": 7500000
+      },
+      "UAH": {
+        "symbol": "₴",
+        "min": 3,
+        "max": 75000
+      },
+      "ZWD": {
+        "symbol": "$",
+        "min": 40,
+        "max": 1000000
+      },
+      "PEN": {
+        "symbol": "S/.",
+        "min": 0.3,
+        "max": 7500
+      },
+      "KMF": {
+        "symbol": "KMF",
+        "min": 50,
+        "max": 1250000
+      },
+      "DOP": {
+        "symbol": "₱",
+        "min": 5,
+        "max": 125000
+      },
+      "BDT": {
+        "symbol": "BDT",
+        "min": 10,
+        "max": 250000
+      },
+      "LKR": {
+        "symbol": "₨",
+        "min": 20,
+        "max": 500000
+      },
+      "FJD": {
+        "symbol": "$",
+        "min": 0.2,
+        "max": 5000
+      },
+      "LSL": {
+        "symbol": "LSL",
+        "min": 1,
+        "max": 25000
+      },
+      "BSD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "SRD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 25000
+      },
+      "SHP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "LRD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 250000
+      },
+      "QAR": {
+        "symbol": "﷼",
+        "min": 0.4,
+        "max": 10000
+      },
+      "BND": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "TMT": {
+        "symbol": "TMT",
+        "min": 0.4,
+        "max": 10000
+      },
+      "CDF": {
+        "symbol": "CDF",
+        "min": 100,
+        "max": 2500000
+      },
+      "XB3": {
+        "symbol": "μBTC",
+        "min": 40,
+        "max": 1000000
+      },
+      "STD": {
+        "symbol": "STD",
+        "min": 2000,
+        "max": 50000000
+      },
+      "SZL": {
+        "symbol": "SZL",
+        "min": 1,
+        "max": 25000
+      },
+      "CZK": {
+        "symbol": "Kč",
+        "min": 3,
+        "max": 75000
+      },
+      "BGN": {
+        "symbol": "BGN",
+        "min": 0.2,
+        "max": 5000
+      },
+      "JMD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 250000
+      },
+      "ZMW": {
+        "symbol": "ZMW",
+        "min": 1,
+        "max": 25000
+      },
+      "UYU": {
+        "symbol": "₱",
+        "min": 3,
+        "max": 75000
+      },
+      "NPR": {
+        "symbol": "₨",
+        "min": 10,
+        "max": 250000
+      },
+      "EGP": {
+        "symbol": "£",
+        "min": 2,
+        "max": 50000
+      },
+      "AZN": {
+        "symbol": "AZN",
+        "min": 0.2,
+        "max": 5000
+      },
+      "ETH": {
+        "symbol": "Ξ",
+        "min": 0.0001,
+        "max": 2.5
+      },
+      "CLP": {
+        "symbol": "$",
+        "min": 50,
+        "max": 1250000
+      },
+      "XPD": {
+        "symbol": "XPD",
+        "min": 0.0001,
+        "max": 2.5
+      },
+      "TKN": {
+        "symbol": "",
+        "min": 1,
+        "max": 25000
+      },
+      "MOP": {
+        "symbol": "MOP",
+        "min": 1,
+        "max": 25000
+      },
+      "SCR": {
+        "symbol": "₨",
+        "min": 1,
+        "max": 25000
+      },
+      "HTG": {
+        "symbol": "HTG",
+        "min": 10,
+        "max": 250000
+      },
+      "VND": {
+        "symbol": "₫",
+        "min": 2000,
+        "max": 50000000
+      },
+      "LAK": {
+        "symbol": "₭",
+        "min": 1000,
+        "max": 25000000
+      },
+      "BTN": {
+        "symbol": "BTN",
+        "min": 10,
+        "max": 250000
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "TWD": {
+        "symbol": "元",
+        "min": 3,
+        "max": 75000
+      },
+      "DZD": {
+        "symbol": "DZD",
+        "min": 10,
+        "max": 250000
+      },
+      "MXN": {
+        "symbol": "$",
+        "min": 2,
+        "max": 50000
+      },
+      "XDR": {
+        "symbol": "XDR",
+        "min": 0.1,
+        "max": 2500
+      },
+      "AWG": {
+        "symbol": "ƒ",
+        "min": 0.2,
+        "max": 5000
+      },
+      "THB": {
+        "symbol": "฿",
+        "min": 3,
+        "max": 75000
+      },
+      "ISK": {
+        "symbol": "ISK",
+        "min": 10,
+        "max": 250000
+      },
+      "LT2": {
+        "symbol": "mLTC",
+        "min": 0.6,
+        "max": 15000
+      },
+      "LBP": {
+        "symbol": "£",
+        "min": 200,
+        "max": 5000000
+      },
+      "SGD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "MWK": {
+        "symbol": "MWK",
+        "min": 100,
+        "max": 2500000
+      },
+      "WST": {
+        "symbol": "WST",
+        "min": 0.3,
+        "max": 7500
+      },
+      "DJF": {
+        "symbol": "DJF",
+        "min": 20,
+        "max": 500000
+      },
+      "KZT": {
+        "symbol": "KZT",
+        "min": 30,
+        "max": 750000
+      },
+      "CRC": {
+        "symbol": "₡",
+        "min": 50,
+        "max": 1250000
+      },
+      "LYD": {
+        "symbol": "LYD",
+        "min": 0.1,
+        "max": 2500
+      },
+      "NGN": {
+        "symbol": "NGN",
+        "min": 30,
+        "max": 750000
+      },
+      "BIF": {
+        "symbol": "BIF",
+        "min": 200,
+        "max": 5000000
+      },
+      "CHF": {
+        "symbol": "CHF",
+        "min": 0.1,
+        "max": 2500
+      },
+      "RWF": {
+        "symbol": "RWF",
+        "min": 100,
+        "max": 2500000
+      },
+      "AED": {
+        "symbol": "AED",
+        "min": 0.4,
+        "max": 10000
+      },
+      "INR": {
+        "symbol": "₨",
+        "min": 10,
+        "max": 250000
+      },
+      "IMP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "LTC": {
+        "symbol": "Ł",
+        "min": 0.0006,
+        "max": 15
+      },
+      "XOF": {
+        "symbol": "XOF",
+        "min": 50,
+        "max": 1250000
+      },
+      "MRO": {
+        "symbol": "MRO",
+        "min": 40,
+        "max": 1000000
+      },
+      "XBT": {
+        "symbol": "Ƀ",
+        "min": 0.00004,
+        "max": 1
+      },
+      "PGK": {
+        "symbol": "PGK",
+        "min": 0.3,
+        "max": 7500
+      },
+      "CNY": {
+        "symbol": "¥",
+        "min": 1,
+        "max": 25000
+      },
+      "PHP": {
+        "symbol": "PHP",
+        "min": 5,
+        "max": 125000
+      },
+      "MDL": {
+        "symbol": "MDL",
+        "min": 2,
+        "max": 50000
+      },
+      "SYP": {
+        "symbol": "£",
+        "min": 20,
+        "max": 500000
+      },
+      "RON": {
+        "symbol": "RON",
+        "min": 0.4,
+        "max": 10000
+      },
+      "AFN": {
+        "symbol": "AFN",
+        "min": 10,
+        "max": 250000
+      },
+      "KHR": {
+        "symbol": "KHR",
+        "min": 400,
+        "max": 10000000
+      },
+      "XPT": {
+        "symbol": "XPT",
+        "min": 0.0001,
+        "max": 2.5
+      },
+      "GGP": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "COP": {
+        "symbol": "$",
+        "min": 300,
+        "max": 7500000
+      },
+      "DKK": {
+        "symbol": "kr.",
+        "min": 1,
+        "max": 25000
+      },
+      "KYD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "XPF": {
+        "symbol": "XPF",
+        "min": 20,
+        "max": 500000
+      },
+      "GMD": {
+        "symbol": "GMD",
+        "min": 5,
+        "max": 125000
+      },
+      "MVR": {
+        "symbol": "MVR",
+        "min": 2,
+        "max": 50000
+      },
+      "TTD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 25000
+      },
+      "PAB": {
+        "symbol": "PAB",
+        "min": 0.1,
+        "max": 2500
+      },
+      "XAU": {
+        "symbol": "XAU",
+        "min": 0.0001,
+        "max": 2.5
+      },
+      "XAG": {
+        "symbol": "XAG",
+        "min": 0.005,
+        "max": 125
+      },
+      "JPY": {
+        "symbol": "¥",
+        "min": 10,
+        "max": 250000
+      },
+      "TOP": {
+        "symbol": "TOP",
+        "min": 0.2,
+        "max": 5000
+      },
+      "BWP": {
+        "symbol": "BWP",
+        "min": 1,
+        "max": 25000
+      },
+      "MKD": {
+        "symbol": "MKD",
+        "min": 5,
+        "max": 125000
+      },
+      "ARS": {
+        "symbol": "$",
+        "min": 2,
+        "max": 50000
+      },
+      "HUF": {
+        "symbol": "HUF",
+        "min": 30,
+        "max": 750000
+      },
+      "TVD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "MYR": {
+        "symbol": "MYR",
+        "min": 0.5,
+        "max": 12500
+      },
+      "USD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "SPL": {
+        "symbol": "SPL",
+        "min": 0.02,
+        "max": 500
+      },
+      "SLL": {
+        "symbol": "SLL",
+        "min": 1000,
+        "max": 25000000
+      },
+      "MAD": {
+        "symbol": "MAD",
+        "min": 1,
+        "max": 25000
+      },
+      "RUB": {
+        "symbol": "RUB",
+        "min": 5,
+        "max": 125000
+      },
+      "JEP": {
+        "symbol": "£",
+        "min": 0.1,
+        "max": 2500
+      },
+      "MNT": {
+        "symbol": "₮",
+        "min": 200,
+        "max": 5000000
+      },
+      "BOB": {
+        "symbol": "BOB",
+        "min": 1,
+        "max": 25000
+      },
+      "GYD": {
+        "symbol": "$",
+        "min": 20,
+        "max": 500000
+      },
+      "SBD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 25000
+      },
+      "VN2": {
+        "symbol": "VN2",
+        "min": 2,
+        "max": 50000
+      },
+      "BHD": {
+        "symbol": "BHD",
+        "min": 0.04,
+        "max": 1000
+      },
+      "HNL": {
+        "symbol": "HNL",
+        "min": 2,
+        "max": 50000
+      },
+      "ET2": {
+        "symbol": "mETH",
+        "min": 0.1,
+        "max": 2500
+      },
+      "XCD": {
+        "symbol": "$",
+        "min": 0.3,
+        "max": 7500
+      },
+      "XB2": {
+        "symbol": "mBTC",
+        "min": 0.04,
+        "max": 1000
+      },
+      "NZD": {
+        "symbol": "$",
+        "min": 0.1,
+        "max": 2500
+      },
+      "KGS": {
+        "symbol": "KGS",
+        "min": 10,
+        "max": 250000
+      },
+      "IN2": {
+        "symbol": "",
+        "min": 0.1,
+        "max": 2500
+      },
+      "AOA": {
+        "symbol": "AOA",
+        "min": 20,
+        "max": 500000
+      },
+      "BZD": {
+        "symbol": "$",
+        "min": 0.2,
+        "max": 5000
+      },
+      "IDR": {
+        "symbol": "IDR",
+        "min": 1000,
+        "max": 25000000
+      },
+      "SOS": {
+        "symbol": "SOS",
+        "min": 50,
+        "max": 1250000
+      },
+      "NIO": {
+        "symbol": "NIO",
+        "min": 3,
+        "max": 75000
+      },
+      "GHS": {
+        "symbol": "GH¢",
+        "min": 0.4,
+        "max": 10000
+      },
+      "ANG": {
+        "symbol": "ƒ",
+        "min": 0.2,
+        "max": 5000
+      },
+      "RSD": {
+        "symbol": "RSD",
+        "min": 10,
+        "max": 250000
+      },
+      "ILS": {
+        "symbol": "₪",
+        "min": 0.4,
+        "max": 10000
+      },
+      "NOK": {
+        "symbol": "kr",
+        "min": 1,
+        "max": 25000
+      },
+      "KWD": {
+        "symbol": "KWD",
+        "min": 0.03,
+        "max": 750
+      },
+      "NAD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 25000
+      },
+      "ETB": {
+        "symbol": "ETB",
+        "min": 2,
+        "max": 50000
+      },
+      "BYN": {
+        "symbol": "BYN",
+        "min": 0.2,
+        "max": 5000
+      },
+      "KPW": {
+        "symbol": "₩",
+        "min": 100,
+        "max": 2500000
+      },
+      "EUR": {
+        "symbol": "€",
+        "min": 0.1,
+        "max": 2500
+      },
+      "CVE": {
+        "symbol": "CVE",
+        "min": 10,
+        "max": 250000
+      },
+      "ZAR": {
+        "symbol": "R",
+        "min": 1,
+        "max": 25000
+      },
+      "IRR": {
+        "symbol": "﷼",
+        "min": 3000,
+        "max": 75000000
+      },
+      "BCH": {
+        "symbol": "BCH",
+        "min": 0.0006,
+        "max": 15
+      },
+      "HRK": {
+        "symbol": "HRK",
+        "min": 1,
+        "max": 25000
+      },
+      "BAM": {
+        "symbol": "BAM",
+        "min": 0.2,
+        "max": 5000
+      }
+    },
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/dc1_mw_med?size=S",
+        "M": "/tablePicture/dc1_mw_med?size=M",
+        "L": "/tablePicture/dc1_mw_med?size=L",
+        "XL": "/tablePicture/dc1_mw_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_XL.jpg"
+      }
+    },
+    "open": true,
+    "results": [
+      "02",
+      "01",
+      "02",
+      "01",
+      "05",
+      "10",
+      "01",
+      "01",
+      "01"
+    ],
+    "gameType": "MoneyWheel",
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "display": "on_desktop",
+    "sitesAssigned": [],
+    "id": "MOWDream00000001"
+  },
+  {
+    "name": "Ultimate Texas Hold'em",
+    "players": 48,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "llolaq5a5ntaoc7t",
+      "name": "Kristaps"
+    },
+    "betLimits": {
+      "EUR": {
+        "symbol": "€",
+        "min": 0.5,
+        "max": 500
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 0.5,
+        "max": 500
+      }
+    },
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/pk_uth1_med?size=S",
+        "M": "/tablePicture/pk_uth1_med?size=M",
+        "L": "/tablePicture/pk_uth1_med?size=L",
+        "XL": "/tablePicture/pk_uth1_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_XL.jpg"
+      }
+    },
+    "open": true,
+    "gameType": "UTH",
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "display": "on_desktop",
+    "sitesAssigned": [],
+    "id": "UTHTable00000001"
+  },
+  {
+    "name": "Football studio",
+    "players": 84,
+    "sitesBlocked": [],
+    "dealer": {
+      "dealerId": "mlotnwe4vknadism",
+      "name": "Kajs"
+    },
+    "betLimits": {
+      "OMR": {
+        "symbol": "OMR",
+        "min": 0.4,
+        "max": 4000
+      },
+      "BBD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "PLN": {
+        "symbol": "PLN",
+        "min": 4,
+        "max": 40000
+      },
+      "CUC": {
+        "symbol": "CUC",
+        "min": 1,
+        "max": 10000
+      },
+      "SVC": {
+        "symbol": "₡",
+        "min": 10,
+        "max": 100000
+      },
+      "BMD": {
+        "symbol": "BMD",
+        "min": 1,
+        "max": 10000
+      },
+      "TJS": {
+        "symbol": "TJS",
+        "min": 10,
+        "max": 100000
+      },
+      "TND": {
+        "symbol": "TND",
+        "min": 2,
+        "max": 20000
+      },
+      "GNF": {
+        "symbol": "GNF",
+        "min": 10000,
+        "max": 100000000
+      },
+      "KR2": {
+        "symbol": "KR2",
+        "min": 1,
+        "max": 10000
+      },
+      "PKR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "BC2": {
+        "symbol": "mBCH",
+        "min": 6,
+        "max": 60000
+      },
+      "FKP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "MUR": {
+        "symbol": "₨",
+        "min": 40,
+        "max": 400000
+      },
+      "XAF": {
+        "symbol": "XAF",
+        "min": 500,
+        "max": 5000000
+      },
+      "SAR": {
+        "symbol": "SAR",
+        "min": 4,
+        "max": 40000
+      },
+      "VEF": {
+        "symbol": "VEF",
+        "min": 10,
+        "max": 100000
+      },
+      "CAD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "HKD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "PYG": {
+        "symbol": "PYG",
+        "min": 5000,
+        "max": 50000000
+      },
+      "MGA": {
+        "symbol": "MGA",
+        "min": 3000,
+        "max": 30000000
+      },
+      "AUD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "AMD": {
+        "symbol": "AMD",
+        "min": 500,
+        "max": 5000000
+      },
+      "YER": {
+        "symbol": "﷼",
+        "min": 200,
+        "max": 2000000
+      },
+      "ID2": {
+        "symbol": "ID2",
+        "min": 10,
+        "max": 100000
+      },
+      "MMK": {
+        "symbol": "MMK",
+        "min": 1000,
+        "max": 10000000
+      },
+      "SEK": {
+        "symbol": "kr",
+        "min": 10,
+        "max": 100000
+      },
+      "TRY": {
+        "symbol": "TRY",
+        "min": 5,
+        "max": 50000
+      },
+      "KES": {
+        "symbol": "KES",
+        "min": 100,
+        "max": 1000000
+      },
+      "GEL": {
+        "symbol": "GEL",
+        "min": 3,
+        "max": 30000
+      },
+      "GTQ": {
+        "symbol": "GTQ",
+        "min": 10,
+        "max": 100000
+      },
+      "TZS": {
+        "symbol": "TZS",
+        "min": 2000,
+        "max": 20000000
+      },
+      "CUP": {
+        "symbol": "£",
+        "min": 30,
+        "max": 300000
+      },
+      "ALL": {
+        "symbol": "ALL",
+        "min": 100,
+        "max": 1000000
+      },
+      "ERN": {
+        "symbol": "ERN",
+        "min": 20,
+        "max": 200000
+      },
+      "BRL": {
+        "symbol": "R$",
+        "min": 3,
+        "max": 30000
+      },
+      "UGX": {
+        "symbol": "UGX",
+        "min": 3000,
+        "max": 30000000
+      },
+      "GIP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "KRW": {
+        "symbol": "₩",
+        "min": 1000,
+        "max": 10000000
+      },
+      "JOD": {
+        "symbol": "JOD",
+        "min": 1,
+        "max": 10000
+      },
+      "IQD": {
+        "symbol": "IQD",
+        "min": 1000,
+        "max": 10000000
+      },
+      "VUV": {
+        "symbol": "VUV",
+        "min": 100,
+        "max": 1000000
+      },
+      "UZS": {
+        "symbol": "UZS",
+        "min": 3000,
+        "max": 30000000
+      },
+      "UAH": {
+        "symbol": "₴",
+        "min": 30,
+        "max": 300000
+      },
+      "ZWD": {
+        "symbol": "$",
+        "min": 400,
+        "max": 4000000
+      },
+      "PEN": {
+        "symbol": "S/.",
+        "min": 3,
+        "max": 30000
+      },
+      "KMF": {
+        "symbol": "KMF",
+        "min": 500,
+        "max": 5000000
+      },
+      "DOP": {
+        "symbol": "₱",
+        "min": 50,
+        "max": 500000
+      },
+      "BDT": {
+        "symbol": "BDT",
+        "min": 100,
+        "max": 1000000
+      },
+      "LKR": {
+        "symbol": "₨",
+        "min": 200,
+        "max": 2000000
+      },
+      "FJD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "LSL": {
+        "symbol": "LSL",
+        "min": 10,
+        "max": 100000
+      },
+      "BSD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "SRD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "SHP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "LRD": {
+        "symbol": "$",
+        "min": 100,
+        "max": 1000000
+      },
+      "QAR": {
+        "symbol": "﷼",
+        "min": 4,
+        "max": 40000
+      },
+      "BND": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "TMT": {
+        "symbol": "TMT",
+        "min": 4,
+        "max": 40000
+      },
+      "CDF": {
+        "symbol": "CDF",
+        "min": 1000,
+        "max": 10000000
+      },
+      "XB3": {
+        "symbol": "μBTC",
+        "min": 400,
+        "max": 4000000
+      },
+      "STD": {
+        "symbol": "STD",
+        "min": 20000,
+        "max": 200000000
+      },
+      "SZL": {
+        "symbol": "SZL",
+        "min": 10,
+        "max": 100000
+      },
+      "CZK": {
+        "symbol": "Kč",
+        "min": 30,
+        "max": 300000
+      },
+      "BGN": {
+        "symbol": "BGN",
+        "min": 2,
+        "max": 20000
+      },
+      "JMD": {
+        "symbol": "$",
+        "min": 100,
+        "max": 1000000
+      },
+      "ZMW": {
+        "symbol": "ZMW",
+        "min": 10,
+        "max": 100000
+      },
+      "UYU": {
+        "symbol": "₱",
+        "min": 30,
+        "max": 300000
+      },
+      "NPR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "EGP": {
+        "symbol": "£",
+        "min": 20,
+        "max": 200000
+      },
+      "AZN": {
+        "symbol": "AZN",
+        "min": 2,
+        "max": 20000
+      },
+      "ETH": {
+        "symbol": "Ξ",
+        "min": 0.001,
+        "max": 10
+      },
+      "CLP": {
+        "symbol": "$",
+        "min": 500,
+        "max": 5000000
+      },
+      "XPD": {
+        "symbol": "XPD",
+        "min": 0.001,
+        "max": 10
+      },
+      "TKN": {
+        "symbol": "",
+        "min": 10,
+        "max": 100000
+      },
+      "MOP": {
+        "symbol": "MOP",
+        "min": 10,
+        "max": 100000
+      },
+      "SCR": {
+        "symbol": "₨",
+        "min": 10,
+        "max": 100000
+      },
+      "HTG": {
+        "symbol": "HTG",
+        "min": 100,
+        "max": 1000000
+      },
+      "VND": {
+        "symbol": "₫",
+        "min": 20000,
+        "max": 200000000
+      },
+      "LAK": {
+        "symbol": "₭",
+        "min": 10000,
+        "max": 100000000
+      },
+      "BTN": {
+        "symbol": "BTN",
+        "min": 100,
+        "max": 1000000
+      },
+      "GBP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "TWD": {
+        "symbol": "元",
+        "min": 30,
+        "max": 300000
+      },
+      "DZD": {
+        "symbol": "DZD",
+        "min": 100,
+        "max": 1000000
+      },
+      "MXN": {
+        "symbol": "$",
+        "min": 20,
+        "max": 200000
+      },
+      "XDR": {
+        "symbol": "XDR",
+        "min": 1,
+        "max": 10000
+      },
+      "AWG": {
+        "symbol": "ƒ",
+        "min": 2,
+        "max": 20000
+      },
+      "THB": {
+        "symbol": "฿",
+        "min": 30,
+        "max": 300000
+      },
+      "ISK": {
+        "symbol": "ISK",
+        "min": 100,
+        "max": 1000000
+      },
+      "LT2": {
+        "symbol": "mLTC",
+        "min": 6,
+        "max": 60000
+      },
+      "LBP": {
+        "symbol": "£",
+        "min": 2000,
+        "max": 20000000
+      },
+      "SGD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "MWK": {
+        "symbol": "MWK",
+        "min": 1000,
+        "max": 10000000
+      },
+      "WST": {
+        "symbol": "WST",
+        "min": 3,
+        "max": 30000
+      },
+      "DJF": {
+        "symbol": "DJF",
+        "min": 200,
+        "max": 2000000
+      },
+      "KZT": {
+        "symbol": "KZT",
+        "min": 300,
+        "max": 3000000
+      },
+      "CRC": {
+        "symbol": "₡",
+        "min": 500,
+        "max": 5000000
+      },
+      "LYD": {
+        "symbol": "LYD",
+        "min": 1,
+        "max": 10000
+      },
+      "NGN": {
+        "symbol": "NGN",
+        "min": 300,
+        "max": 3000000
+      },
+      "BIF": {
+        "symbol": "BIF",
+        "min": 2000,
+        "max": 20000000
+      },
+      "CHF": {
+        "symbol": "CHF",
+        "min": 1,
+        "max": 10000
+      },
+      "RWF": {
+        "symbol": "RWF",
+        "min": 1000,
+        "max": 10000000
+      },
+      "AED": {
+        "symbol": "AED",
+        "min": 4,
+        "max": 40000
+      },
+      "INR": {
+        "symbol": "₨",
+        "min": 100,
+        "max": 1000000
+      },
+      "IMP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "LTC": {
+        "symbol": "Ł",
+        "min": 0.006,
+        "max": 60
+      },
+      "XOF": {
+        "symbol": "XOF",
+        "min": 500,
+        "max": 5000000
+      },
+      "MRO": {
+        "symbol": "MRO",
+        "min": 400,
+        "max": 4000000
+      },
+      "XBT": {
+        "symbol": "Ƀ",
+        "min": 0.0004,
+        "max": 4
+      },
+      "PGK": {
+        "symbol": "PGK",
+        "min": 3,
+        "max": 30000
+      },
+      "CNY": {
+        "symbol": "¥",
+        "min": 10,
+        "max": 100000
+      },
+      "PHP": {
+        "symbol": "PHP",
+        "min": 50,
+        "max": 500000
+      },
+      "MDL": {
+        "symbol": "MDL",
+        "min": 20,
+        "max": 200000
+      },
+      "SYP": {
+        "symbol": "£",
+        "min": 200,
+        "max": 2000000
+      },
+      "RON": {
+        "symbol": "RON",
+        "min": 4,
+        "max": 40000
+      },
+      "AFN": {
+        "symbol": "AFN",
+        "min": 100,
+        "max": 1000000
+      },
+      "KHR": {
+        "symbol": "KHR",
+        "min": 4000,
+        "max": 40000000
+      },
+      "XPT": {
+        "symbol": "XPT",
+        "min": 0.001,
+        "max": 10
+      },
+      "GGP": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "COP": {
+        "symbol": "$",
+        "min": 3000,
+        "max": 30000000
+      },
+      "DKK": {
+        "symbol": "kr.",
+        "min": 10,
+        "max": 100000
+      },
+      "KYD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "XPF": {
+        "symbol": "XPF",
+        "min": 200,
+        "max": 2000000
+      },
+      "GMD": {
+        "symbol": "GMD",
+        "min": 50,
+        "max": 500000
+      },
+      "MVR": {
+        "symbol": "MVR",
+        "min": 20,
+        "max": 200000
+      },
+      "TTD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "PAB": {
+        "symbol": "PAB",
+        "min": 1,
+        "max": 10000
+      },
+      "XAU": {
+        "symbol": "XAU",
+        "min": 0.001,
+        "max": 10
+      },
+      "XAG": {
+        "symbol": "XAG",
+        "min": 0.05,
+        "max": 500
+      },
+      "JPY": {
+        "symbol": "¥",
+        "min": 100,
+        "max": 1000000
+      },
+      "TOP": {
+        "symbol": "TOP",
+        "min": 2,
+        "max": 20000
+      },
+      "BWP": {
+        "symbol": "BWP",
+        "min": 10,
+        "max": 100000
+      },
+      "MKD": {
+        "symbol": "MKD",
+        "min": 50,
+        "max": 500000
+      },
+      "ARS": {
+        "symbol": "$",
+        "min": 20,
+        "max": 200000
+      },
+      "HUF": {
+        "symbol": "HUF",
+        "min": 300,
+        "max": 3000000
+      },
+      "TVD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "MYR": {
+        "symbol": "MYR",
+        "min": 5,
+        "max": 50000
+      },
+      "USD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "SPL": {
+        "symbol": "SPL",
+        "min": 0.2,
+        "max": 2000
+      },
+      "SLL": {
+        "symbol": "SLL",
+        "min": 10000,
+        "max": 100000000
+      },
+      "MAD": {
+        "symbol": "MAD",
+        "min": 10,
+        "max": 100000
+      },
+      "RUB": {
+        "symbol": "RUB",
+        "min": 50,
+        "max": 500000
+      },
+      "JEP": {
+        "symbol": "£",
+        "min": 1,
+        "max": 10000
+      },
+      "MNT": {
+        "symbol": "₮",
+        "min": 2000,
+        "max": 20000000
+      },
+      "BOB": {
+        "symbol": "BOB",
+        "min": 10,
+        "max": 100000
+      },
+      "GYD": {
+        "symbol": "$",
+        "min": 200,
+        "max": 2000000
+      },
+      "SBD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "VN2": {
+        "symbol": "VN2",
+        "min": 20,
+        "max": 200000
+      },
+      "BHD": {
+        "symbol": "BHD",
+        "min": 0.4,
+        "max": 4000
+      },
+      "HNL": {
+        "symbol": "HNL",
+        "min": 20,
+        "max": 200000
+      },
+      "ET2": {
+        "symbol": "mETH",
+        "min": 1,
+        "max": 10000
+      },
+      "XCD": {
+        "symbol": "$",
+        "min": 3,
+        "max": 30000
+      },
+      "XB2": {
+        "symbol": "mBTC",
+        "min": 0.4,
+        "max": 4000
+      },
+      "NZD": {
+        "symbol": "$",
+        "min": 1,
+        "max": 10000
+      },
+      "KGS": {
+        "symbol": "KGS",
+        "min": 100,
+        "max": 1000000
+      },
+      "IN2": {
+        "symbol": "",
+        "min": 1,
+        "max": 10000
+      },
+      "AOA": {
+        "symbol": "AOA",
+        "min": 200,
+        "max": 2000000
+      },
+      "BZD": {
+        "symbol": "$",
+        "min": 2,
+        "max": 20000
+      },
+      "IDR": {
+        "symbol": "IDR",
+        "min": 10000,
+        "max": 100000000
+      },
+      "SOS": {
+        "symbol": "SOS",
+        "min": 500,
+        "max": 5000000
+      },
+      "NIO": {
+        "symbol": "NIO",
+        "min": 30,
+        "max": 300000
+      },
+      "GHS": {
+        "symbol": "GH¢",
+        "min": 4,
+        "max": 40000
+      },
+      "ANG": {
+        "symbol": "ƒ",
+        "min": 2,
+        "max": 20000
+      },
+      "RSD": {
+        "symbol": "RSD",
+        "min": 100,
+        "max": 1000000
+      },
+      "ILS": {
+        "symbol": "₪",
+        "min": 4,
+        "max": 40000
+      },
+      "NOK": {
+        "symbol": "kr",
+        "min": 10,
+        "max": 100000
+      },
+      "KWD": {
+        "symbol": "KWD",
+        "min": 0.3,
+        "max": 3000
+      },
+      "NAD": {
+        "symbol": "$",
+        "min": 10,
+        "max": 100000
+      },
+      "ETB": {
+        "symbol": "ETB",
+        "min": 20,
+        "max": 200000
+      },
+      "BYN": {
+        "symbol": "BYN",
+        "min": 2,
+        "max": 20000
+      },
+      "KPW": {
+        "symbol": "₩",
+        "min": 1000,
+        "max": 10000000
+      },
+      "EUR": {
+        "symbol": "€",
+        "min": 1,
+        "max": 10000
+      },
+      "CVE": {
+        "symbol": "CVE",
+        "min": 100,
+        "max": 1000000
+      },
+      "ZAR": {
+        "symbol": "R",
+        "min": 10,
+        "max": 100000
+      },
+      "IRR": {
+        "symbol": "﷼",
+        "min": 30000,
+        "max": 300000000
+      },
+      "BCH": {
+        "symbol": "BCH",
+        "min": 0.006,
+        "max": 60
+      },
+      "HRK": {
+        "symbol": "HRK",
+        "min": 10,
+        "max": 100000
+      },
+      "BAM": {
+        "symbol": "BAM",
+        "min": 2,
+        "max": 20000
+      }
+    },
+    "videoSnapshot": {
+      "links": {
+        "S": "/tablePicture/topcr1_bs_med?size=S",
+        "M": "/tablePicture/topcr1_bs_med?size=M",
+        "L": "/tablePicture/topcr1_bs_med?size=L",
+        "XL": "/tablePicture/topcr1_bs_med?size=XL"
+      },
+      "thumbnails": {
+        "S": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_S.jpg",
+        "M": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_M.jpg",
+        "L": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_L.jpg",
+        "XL": "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_XL.jpg"
+      }
+    },
+    "open": true,
+    "gameType": "TopCard",
+    "operationHours": {
+      "type": "FullTime"
+    },
+    "display": "on_desktop",
+    "sitesAssigned": [],
+    "id": "TopCard000000001"
+  }
+]
