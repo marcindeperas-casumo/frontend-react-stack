@@ -129,7 +129,7 @@ export const GameBrowserServiceFactory = ({
 
       return {
         ...liveCasinoGamesList,
-        games: liveCasinoTables.map(table => ({
+        games: liveCasinoTables.filter(({ open }) => !!open).map(table => ({
           ...liveCasinoGamesById[table.tableId],
           lobby: {
             tableId: table.tableId,
