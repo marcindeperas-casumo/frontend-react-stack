@@ -26,7 +26,7 @@ const renderListOfGameTiles = (games = []) => games.map(renderGameTile);
 const GamesList = ({ title, games }) => (
   <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
     <Text
-      className="u-font-weight-bold u-text-capitalize u-padding-bottom--small u-padding-left--small u-padding-bottom--normal@tablet
+      className="u-font-weight-bold u-text-transform-capitalize u-padding-bottom--small u-padding-left--small u-padding-bottom--normal@tablet
       u-padding-bottom--normal@desktop u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
       tag="h3"
     >
