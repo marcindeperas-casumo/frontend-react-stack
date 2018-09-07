@@ -26,7 +26,6 @@ const GameTile = ({
       "c-game-tile",
       "o-ratio",
       "o-ratio--game-tile",
-      "c-scrollable-game",
       "t-border-r--8",
       "t-color-white",
       inMaintenanceMode && "t-greyscale"

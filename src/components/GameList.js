@@ -2,6 +2,7 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Heading from "@casumo/cmp-heading";
 import Card from "@casumo/cmp-card";
+import Flex from "@casumo/cmp-flex";
 import { PlayerIcon } from "@casumo/cmp-icons";
 import LazyImage from "./LazyImage";
 import ScrollingContainer from "@casumo/cmp-scrollable";
@@ -48,39 +49,40 @@ const renderCardData = game => <CardData game={game} />;
 
 const renderCards = ({ games }) =>
   games.map(o => (
-    <Card
-      className="u-margin-right--small"
-      key={o.slug}
-      image={renderImage(o.lobby.image)}
-      cardData={renderCardData(o.lobby)}
-      heading={
-        <Text tag="strong" className="t-color-grey-dark-2">
-          {decodeString(o.name)}
-        </Text>
-      }
-      footer={renderPlayers(o.lobby.players)}
-      cta={{
-        text: (
-          <Text className="u-text-transform-capitalize">
-            <CMSField
-              slug="mobile.live-casino-cards-content"
-              field="play_now"
-            />
+    <Flex.Item className="o-flex__item-fixed-size o-flex" key={o.slug}>
+      <Card
+        image={renderImage(o.lobby.image)}
+        cardData={renderCardData(o.lobby)}
+        heading={
+          <Text tag="strong" className="t-color-grey-dark-2">
+            {decodeString(o.name)}
           </Text>
-        ),
-        onClick: () => emitLaunchGame(o.slug),
-      }}
-      text={renderBets(o.lobby.bets)}
-    />
+        }
+        footer={renderPlayers(o.lobby.players)}
+        cta={{
+          text: (
+            <Text className="u-text-transform-capitalize">
+              <CMSField
+                slug="mobile.live-casino-cards-content"
+                field="play_now"
+              />
+            </Text>
+          ),
+          onClick: () => emitLaunchGame(o.slug),
+        }}
+        text={renderBets(o.lobby.bets)}
+      />
+    </Flex.Item>
   ));
 
 const renderTiles = ({ games }) =>
   games.map(game => (
-    <GameTile
+    <Flex.Item
+      className="o-flex__item-fixed-size o-flex c-scrollable-game"
       key={game.slug}
-      {...game}
-      launchGame={() => emitLaunchGame(game.slug)}
-    />
+    >
+      <GameTile {...game} launchGame={() => emitLaunchGame(game.slug)} />
+    </Flex.Item>
   ));
 
 const CardsOrTiles = props => (
@@ -95,7 +97,14 @@ const CardsOrTiles = props => (
 );
 
 const renderList = ({ display, games }) => (
-  <ScrollingContainer padded>
+  <ScrollingContainer
+    padding={{
+      default: "small",
+      tablet: "xlarge",
+      desktop: "xlarge",
+    }}
+    itemSpacing={display === "cards" ? "small" : "default"}
+  >
     <CardsOrTiles display={display} games={games} />
   </ScrollingContainer>
 );
@@ -133,7 +142,7 @@ const GameList = props => {
       <div className="u-display--flex">
         <Heading
           className={classNames(
-            "c-scrollable-list-title",
+            "u-text-transform-capitalize",
             "u-padding-bottom--small",
             "u-padding-bottom--normal@tablet",
             "u-padding-bottom--normal@desktop",
