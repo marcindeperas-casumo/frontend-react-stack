@@ -3,9 +3,10 @@ import React from "react";
 import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
+import CMSField from "../CMSField";
 import Matcher from "../Matcher";
 
-import { getRouletteColor, getDreamCatcherColor } from "./utils";
+import { getDreamCatcherColor, getRouletteColor } from "./utils";
 
 import "./CardData.scss";
 
@@ -40,12 +41,18 @@ const renderResults = ({ game }) => (
         );
       })}
     </div>
-    <Text
-      className="t-color-white u-margin-bottom--small u-font-weight-bold"
-      size="xs"
-    >
-      RECENT NUMBERS
-    </Text>
+    <CMSField
+      slug="mobile.live-casino-cards-content"
+      field="recent_numbers"
+      view={text => (
+        <Text
+          size="xs"
+          className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+        >
+          {text}
+        </Text>
+      )}
+    />
   </React.Fragment>
 );
 
@@ -58,13 +65,36 @@ const renderSeats = ({ game }) => (
       txtColor="white"
       circle={!!game.seats}
     >
-      {game.seats || "Bet Behind"}
+      {game.seats || (
+        <CMSField
+          slug="mobile.live-casino-cards-content"
+          field="bet_behind"
+          view={Text}
+        />
+      )}
     </Badge>
-    <Text
-      className="t-color-white u-margin-bottom--small u-font-weight-bold"
-      size="xs"
-    >
-      {game.seats ? "OPEN SEATS" : "TABLE FULL"}
+    <Text className="t-color-white u-margin-bottom--small u-font-weight-bold">
+      {game.seats ? (
+        <CMSField
+          slug="mobile.live-casino-cards-content"
+          field="open_seats"
+          view={text => (
+            <Text size="xs" tag="span">
+              {text}
+            </Text>
+          )}
+        />
+      ) : (
+        <CMSField
+          slug="mobile.live-casino-cards-content"
+          field="table_full"
+          view={text => (
+            <Text size="xs" tag="span">
+              {text}
+            </Text>
+          )}
+        />
+      )}
     </Text>
   </React.Fragment>
 );

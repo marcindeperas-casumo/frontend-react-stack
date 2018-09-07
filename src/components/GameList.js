@@ -1,4 +1,5 @@
 import React from "react";
+import Text from "@casumo/cmp-text";
 import Heading from "@casumo/cmp-heading";
 import Card from "@casumo/cmp-card";
 import { PlayerIcon } from "@casumo/cmp-icons";
@@ -14,6 +15,7 @@ import GameTile from "./GameTile";
 import Matcher from "./Matcher";
 import CardData from "./CardData";
 import GameListSkeleton from "./GameListSkeleton";
+import CMSField from "./CMSField";
 
 const renderImage = src => (
   <LazyImage
@@ -54,7 +56,14 @@ const renderCards = ({ games }) =>
       heading={decodeString(o.name)}
       footer={renderPlayers(o.lobby.players)}
       cta={{
-        text: "Play Now",
+        text: (
+          <Text>
+            <CMSField
+              slug="mobile.live-casino-cards-content"
+              field="play_now"
+            />
+          </Text>
+        ),
         onClick: () => emitLaunchGame(o.slug),
       }}
       text={renderBets(o.lobby.bets)}
@@ -136,14 +145,20 @@ const GameList = props => {
         />
 
         {link && (
-          <a
-            className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
-            target="_blank"
-            href={link}
-            rel="noopener noreferrer"
-          >
-            Go to lobby
-          </a>
+          <CMSField
+            slug="mobile.live-casino-cards-content"
+            field="go_to_lobby"
+            view={text => (
+              <a
+                className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
+                target="_blank"
+                href={link}
+                rel="noopener noreferrer"
+              >
+                {text}
+              </a>
+            )}
+          />
         )}
       </div>
 
