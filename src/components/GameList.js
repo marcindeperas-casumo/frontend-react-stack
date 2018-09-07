@@ -1,6 +1,5 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
-import Heading from "@casumo/cmp-heading";
 import Card from "@casumo/cmp-card";
 import Flex from "@casumo/cmp-flex";
 import { PlayerIcon } from "@casumo/cmp-icons";
@@ -140,7 +139,7 @@ const GameList = props => {
   return (
     <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
       <div className="u-display--flex">
-        <Heading
+        <Text
           className={classNames(
             "u-text-transform-capitalize",
             "u-padding-bottom--small",
@@ -149,13 +148,13 @@ const GameList = props => {
             "u-padding-left--small",
             "u-padding-left--xlarge@tablet",
             "u-padding-left--xlarge@desktop",
-            "u-font-weight-normal",
+            "u-font-weight-bold",
             link && "flex-1"
           )}
-          text={title}
-          rank={3}
-          size="uno"
-        />
+          tag="h3"
+        >
+          {title}
+        </Text>
 
         {link && (
           <CMSField
