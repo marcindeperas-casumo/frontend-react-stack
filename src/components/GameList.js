@@ -61,7 +61,7 @@ const renderCards = ({ games }) =>
       footer={renderPlayers(o.lobby.players)}
       cta={{
         text: (
-          <Text className="u-text-transform-capitalize">
+          <Text className="u-text-transform-capitalize u-font-weight-bold">
             <CMSField
               slug="mobile.live-casino-cards-content"
               field="play_now"
@@ -148,22 +148,23 @@ const GameList = props => {
           size="uno"
         />
 
-        {link && (
-          <CMSField
-            slug="mobile.live-casino-cards-content"
-            field="go_to_lobby"
-            view={text => (
-              <a
-                className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
-                target="_blank"
-                href={link}
-                rel="noopener noreferrer"
-              >
-                {text}
-              </a>
-            )}
-          />
-        )}
+        {link &&
+          !window.native && (
+            <CMSField
+              slug="mobile.live-casino-cards-content"
+              field="go_to_lobby"
+              view={text => (
+                <a
+                  className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
+                  target="_blank"
+                  href={link}
+                  rel="noopener noreferrer"
+                >
+                  {text}
+                </a>
+              )}
+            />
+          )}
       </div>
 
       <LoadingOrList condition={loading} {...props} />
