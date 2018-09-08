@@ -93,11 +93,18 @@ const renderSeats = ({ game }) => (
         <CMSField
           slug="mobile.live-casino-cards-content"
           field="bet_behind"
-          view={text => <Text tag="span">{text}</Text>}
+          view={text => (
+            <Text size="xs" tag="span">
+              {text}
+            </Text>
+          )}
         />
       )}
     </Badge>
-    <Text className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase">
+    <Text
+      size="xs"
+      className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+    >
       {game.seats ? <OpenSeats /> : <TableFull />}
     </Text>
   </React.Fragment>
