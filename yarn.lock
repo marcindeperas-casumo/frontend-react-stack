@@ -290,10 +290,6 @@
   version "2.0.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-flex/-/cmp-flex-2.0.1.tgz#2e9a1cc25a91cdc8fb8b0cd987cf75347763225c"
 
-"@casumo/cmp-heading@^1.1.6":
-  version "1.1.6"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-heading/-/cmp-heading-1.1.6.tgz#df7e26bdf3cc1dfd6db8db50871d3ce16487bbb1"
-
 "@casumo/cmp-icons@^1.1.5":
   version "1.1.5"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.1.5.tgz#6b27f3741c44663f3dac2f804dc5d348cac7267b"
