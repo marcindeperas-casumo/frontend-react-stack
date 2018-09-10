@@ -155,24 +155,6 @@ const GameList = props => {
         >
           {title}
         </Text>
-
-        {link &&
-          !window.native && (
-            <CMSField
-              slug="mobile.live-casino-cards-content"
-              field="go_to_lobby"
-              view={text => (
-                <a
-                  className="u-padding-right--small u-padding-right--xlarge@tablet u-padding-right--xlarge@desktop u-font-weight-bold"
-                  target="_blank"
-                  href={link}
-                  rel="noopener noreferrer"
-                >
-                  {text}
-                </a>
-              )}
-            />
-          )}
       </div>
 
       <LoadingOrList condition={loading} {...props} />
