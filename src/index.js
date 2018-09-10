@@ -8,7 +8,7 @@ import {
 } from "./constants";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
-import store from "./store";
+import store from "./configureStore";
 
 window.bridge = legacyBridge;
 const root = document.getElementById("root");
