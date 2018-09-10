@@ -14,13 +14,4 @@ $game-tile-widths: (
 .c-scrollable-game {
   @include cudl-breakpoint-with($game-tile-widths, width);
   max-width: 170px;
-
-  //stylelint-disable-next-line xi/selector-pattern
-  &:not(:first-child) {
-    margin-left: $cudl-spacer-size-default;
-  }
-}
-
-.c-scrollable-list-title {
-  text-transform: capitalize;
 }
