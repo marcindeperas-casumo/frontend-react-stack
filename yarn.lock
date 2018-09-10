@@ -277,9 +277,9 @@
   version "1.1.4"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-1.1.4.tgz#1f92b3466cafc6866f51acaff40f56a1b2bfc3c9"
 
-"@casumo/cmp-card@^1.1.3":
-  version "1.1.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-1.1.3.tgz#f32092a48b36396b3c8456ac7909d784501ff2e9"
+"@casumo/cmp-card@^1.2.1":
+  version "1.2.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-1.2.1.tgz#1bee9f391c3bf6dc8e0c124e610ad471522cb3a3"
   dependencies:
     "@casumo/cmp-button" "^1.1.4"
     "@casumo/cmp-icons" "^1.1.5"
