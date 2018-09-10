@@ -19,7 +19,7 @@ legacyBridge.on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
 });
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store()}>
     <App />
   </Provider>,
   root
