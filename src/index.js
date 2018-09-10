@@ -8,13 +8,7 @@ import {
 } from "./constants";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
-import reducers from "./reducers";
-
-let store = createStore(
-  reducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+import store from "./configureStore";
 
 window.bridge = legacyBridge;
 const root = document.getElementById("root");
@@ -25,7 +19,7 @@ legacyBridge.on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
 });
 
 ReactDOM.render(
-  <Provider store={store}>
+  <Provider store={store()}>
     <App />
   </Provider>,
   root
