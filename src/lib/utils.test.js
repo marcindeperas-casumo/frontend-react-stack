@@ -3,7 +3,7 @@ import {
   SimpleCache,
   matchingGroups,
   arrayToObject,
-} from "../utils";
+} from "./utils";
 
 describe("cacheFunction()", () => {
   const subjectFn = jest.fn();
