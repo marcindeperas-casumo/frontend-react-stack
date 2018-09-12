@@ -1,4 +1,9 @@
-import { cacheFunction, SimpleCache, matchingGroups } from "./utils";
+import {
+  cacheFunction,
+  SimpleCache,
+  matchingGroups,
+  arrayToObject,
+} from "../utils";
 
 describe("cacheFunction()", () => {
   const subjectFn = jest.fn();
@@ -110,5 +115,35 @@ describe("matchingGroups()", () => {
       { type: "unmatched", value: "foo " },
       { type: "matched", value: "sheep" },
     ]);
+  });
+});
+
+describe("arrayToObject()", () => {
+  test("should return an object from an array", () => {
+    const array = [
+      {
+        name: "michele",
+        country: "it",
+        spiritAnimal: "🦔",
+      },
+      {
+        name: "jack",
+        country: "uk",
+        spiritAnimal: "🐧",
+      },
+    ];
+    const result = arrayToObject(array, "name");
+    expect(result).toEqual({
+      michele: {
+        name: "michele",
+        country: "it",
+        spiritAnimal: "🦔",
+      },
+      jack: {
+        name: "jack",
+        country: "uk",
+        spiritAnimal: "🐧",
+      },
+    });
   });
 });
