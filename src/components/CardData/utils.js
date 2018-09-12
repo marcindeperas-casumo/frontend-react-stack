@@ -1,4 +1,4 @@
-const rouletteNumbers = {
+export const rouletteNumbers = {
   red: [
     "1",
     "3",
