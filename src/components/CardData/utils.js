@@ -59,13 +59,12 @@ const moneyWheelNumbers = {
   "10": "green-light-1",
   "20": "orange",
   "40": "red",
-  X7: "grey-dark-2",
 };
 
 export const getDreamCatcherColor = n => {
   let color;
   Object.entries(moneyWheelNumbers).some(([k, v]) => {
-    color = n === k ? v : "green-light-1";
+    color = n === k ? v : "grey-dark-2";
     return n === k;
   });
   return color;
