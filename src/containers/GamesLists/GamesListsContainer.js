@@ -16,6 +16,8 @@ const gamesNotInMaintenance = compose(
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
 
+const exclusiveGamesList = gameListId => gameListId === "exclusiveGames";
+
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
     super(props);
@@ -95,7 +97,9 @@ export default class GamesListsContainer extends React.Component {
               display={
                 ifLiveCasinoId(gameList.id) && !this.state.lobbyError
                   ? "cards"
-                  : "tiles"
+                  : exclusiveGamesList(gameList.id)
+                    ? "exclusiveTiles"
+                    : "tiles"
               }
               link={ifLiveCasinoId(gameList.id) ? getLobbyLink() : null}
               {...gameList}
