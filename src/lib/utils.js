@@ -1,4 +1,6 @@
-export const isNullOrUndefined = x => x === null || x === undefined;
+import * as R from "ramda";
+
+export const isNullOrUndefined = R.isNil;
 
 export const sleep = ms => data => {
   return new Promise(resolve => {
@@ -112,15 +114,12 @@ export const usingPOST = (url, options) =>
 
 export const usingGET = commonFetch;
 
-export const property = k => obj => obj && obj[k];
+export const property = R.prop;
 
 export const trace = x => {
   console.log(x);
   return x;
 };
-
-export const filter = (arr, predicate) => arr.filter(predicate);
-export const not = x => !x;
 
 export const getBodyTag = () => window.document.getElementsByTagName("body")[0];
 export const getHostElement = id => {
@@ -135,8 +134,7 @@ export const getHostElement = id => {
   return el;
 };
 
-export const compose = (...fns) => iv =>
-  fns.reduceRight((acc, curr) => curr(acc), iv);
+export const compose = R.compose; // (...fns) => iv => fns.reduceRight((acc, curr) => curr(acc), iv);
 
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
@@ -148,8 +146,9 @@ export const arrayToObject = (array, key) => {
   }, {});
 };
 
-export const identity = id => id;
+export const identity = R.identity; //id => id;
 
+// TODO: replace with memoizeWith
 export const SimpleCache = () => {
   let internalValue = null;
   let valueSet = false;
@@ -181,6 +180,7 @@ export const SimpleCache = () => {
   };
 };
 
+// TODO: replace with memoizeWith
 export const cacheFunction = ({ fn, cache = SimpleCache() }) => async () => {
   // NOTE: The return cached function does not accept any arguments. In case you
   // want to start accepting arguments, make sure that the cache is also based
@@ -207,10 +207,7 @@ export const ServiceConfig = ({ defaultOptions, cache }) => {
   };
 };
 
-export const isNotNullOrUndefined = compose(
-  not,
-  isNullOrUndefined
-);
+export const isNotNullOrUndefined = R.complement(R.isNil); //compose(isNullOrUndefined);
 
 export const decodeString = s =>
   new DOMParser().parseFromString(
@@ -261,8 +258,12 @@ export const matchingGroups = (str, searchTerm) => {
 };
 
 export const fromCommonHandshake = k => property(`common/composition/${k}`);
-export const ifThenElse = (condition, thenPart, elsePart) => subject =>
-  condition(subject) ? thenPart(subject) : elsePart(subject);
-export const throwError = e => () => {
-  throw e;
-};
+
+export const ifThenElse = R.ifElse;
+// export const ifThenElse = (condition, thenPart, elsePart) => subject =>
+//   condition(subject) ? thenPart(subject) : elsePart(subject);
+// export const throwError = e => () => {
+//   throw e;
+// };
+
+export const not = R.not;

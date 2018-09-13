@@ -1,3 +1,5 @@
+import { unary } from "ramda";
+
 import {
   cacheFunction,
   compose,
@@ -162,7 +164,8 @@ export const GameBrowserServiceFactory = ({
     const currency = await sessionService.iso4217CurrencyCode();
 
     const gameListsRequests = handshake.topListIds
-      .map(property)
+      // .map(unary(property))
+      .map(x => property(x))
       .map(propertyFn => propertyFn(handshake.gamesLists))
       .filter(isNotNullOrUndefined)
       .map(async ({ id, variants, title }) => {
