@@ -1,13 +1,6 @@
-import { unary } from "ramda";
+import { complement, compose, prop, isNil } from "ramda";
 
-import {
-  cacheFunction,
-  compose,
-  isNotNullOrUndefined,
-  property,
-  ServiceConfig,
-  SimpleCache,
-} from "../lib/utils";
+import { cacheFunction, ServiceConfig, SimpleCache } from "../lib/utils";
 import GameBrowserClient from "../serviceClients/GameBrowserClient";
 import SessionService from "./SessionService";
 
@@ -84,9 +77,7 @@ export const GameBrowserServiceFactory = ({
     const games = await gamesByProviderGameNames({
       variant,
       hash: variants[variant].hash,
-      providerGameNames: latestPlayedProviderGameNames.map(
-        property("gameName")
-      ),
+      providerGameNames: latestPlayedProviderGameNames.map(prop("gameName")),
     });
 
     return { games: games.games, id, title };
@@ -94,8 +85,8 @@ export const GameBrowserServiceFactory = ({
 
   const hasSomeGames = compose(
     i => i > 0,
-    property("length"),
-    property("games")
+    prop("length"),
+    prop("games")
   );
 
   const gameFetcherById = {
@@ -124,9 +115,9 @@ export const GameBrowserServiceFactory = ({
       });
 
       const getImageForTable = compose(
-        property("L"),
-        property("thumbnails"),
-        property("videoSnapshot")
+        prop("L"),
+        prop("thumbnails"),
+        prop("videoSnapshot")
       );
 
       return {
@@ -163,28 +154,28 @@ export const GameBrowserServiceFactory = ({
     const handshake = await cachedHandshake();
     const currency = await sessionService.iso4217CurrencyCode();
 
-    const gameListsRequests = handshake.topListIds
-      // .map(unary(property))
-      .map(x => property(x))
-      .map(propertyFn => propertyFn(handshake.gamesLists))
-      .filter(isNotNullOrUndefined)
-      .map(async ({ id, variants, title }) => {
-        // Here we need to specifically load the live casino games differently
-        // We will
-        //  0. Load the original games list
-        //  1. Load the live tables data
-        //  2. Merge the data together
-        //  3. Return it as if it was a top list
-        const games = await (gameFetcherById[id] || gameFetcherById.DEFAULT)({
-          currency,
-          id,
-          variants,
-          title,
-          variant,
-        });
-
-        return { games: games.games, id, title };
+    const processLiveGames = async ({ id, variants, title }) => {
+      // Here we need to specifically load the live casino games differently
+      // We will
+      //  0. Load the original games list
+      //  1. Load the live tables data
+      //  2. Merge the data together
+      //  3. Return it as if it was a top list
+      const games = await (gameFetcherById[id] || gameFetcherById.DEFAULT)({
+        currency,
+        id,
+        variants,
+        title,
+        variant,
       });
+
+      return { games: games.games, id, title };
+    };
+
+    const gameListsRequests = handshake.topListIds
+      .map(id => prop(id, handshake.gamesLists))
+      .filter(complement(isNil))
+      .map(processLiveGames);
 
     return (await Promise.all(gameListsRequests)).filter(hasSomeGames);
   };

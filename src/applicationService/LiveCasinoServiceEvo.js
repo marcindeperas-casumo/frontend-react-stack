@@ -1,14 +1,14 @@
+import { compose, flip, prop } from "ramda";
+
 import { ServiceConfig, SimpleCache } from "../lib/utils";
-import { compose, property } from "../lib/utils";
 
 const getIndex = (d, p) => d.findIndex(g => g.id === p.tableId);
 const exists = i => i >= 0;
-const getBetsForTable = currency => property(currency);
-const getBetsCurrency = (b, c) => getBetsForTable(c)(b);
+const getBetsCurrency = flip(prop);
 const getImageForTable = compose(
-  property("L"),
-  property("thumbnails"),
-  property("videoSnapshot")
+  prop("L"),
+  prop("thumbnails"),
+  prop("videoSnapshot")
 );
 
 export const LiveCasinoServiceEvo = () => {

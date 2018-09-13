@@ -1,9 +1,6 @@
-import {
-  compose,
-  composePromises,
-  isNotNullOrUndefined,
-  property,
-} from "../lib/utils";
+import { compose, complement, isNil, prop as property } from "ramda";
+
+import { composePromises } from "../lib/utils";
 import commonService from "./CommonService";
 import countryGuesserService from "./CountryGuesserService";
 
@@ -41,7 +38,7 @@ export const SessionServiceFactory = ({
 }) => {
   const getSession = composePromises(pullSession, commonService.handshake);
 
-  const isAuthenticated = composePromises(isNotNullOrUndefined, getSession);
+  const isAuthenticated = composePromises(complement(isNil), getSession);
   const country = async () => {
     if (!(await isAuthenticated())) {
       return countryGuesserService.guess();
