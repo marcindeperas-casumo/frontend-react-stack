@@ -1,4 +1,4 @@
-export const rouletteNumbers = {
+export const rouletteResults = {
   red: [
     "1",
     "3",
@@ -44,7 +44,7 @@ export const rouletteNumbers = {
 
 export const getRouletteColor = n => {
   let color;
-  Object.entries(rouletteNumbers).some(([k, v]) => {
+  Object.entries(rouletteResults).some(([k, v]) => {
     let exists = v.includes(n);
     color = exists ? k : "green-light-1";
     return exists;
@@ -52,7 +52,7 @@ export const getRouletteColor = n => {
   return color;
 };
 
-const moneyWheelNumbers = {
+const moneyWheelResults = {
   "01": "yellow",
   "02": "blue-light-1",
   "05": "purple",
@@ -61,9 +61,24 @@ const moneyWheelNumbers = {
   "40": "red",
 };
 
-export const getDreamCatcherColor = n => {
+export const getMoneyWheelColor = n => {
   let color;
-  Object.entries(moneyWheelNumbers).some(([k, v]) => {
+  Object.entries(moneyWheelResults).some(([k, v]) => {
+    color = n === k ? v : "grey-dark-2";
+    return n === k;
+  });
+  return color;
+};
+
+const topCardResults = {
+  L: "red",
+  T: "grey-dark-2",
+  R: "blue-light-1",
+};
+
+export const getTopCardColor = n => {
+  let color;
+  Object.entries(topCardResults).some(([k, v]) => {
     color = n === k ? v : "grey-dark-2";
     return n === k;
   });

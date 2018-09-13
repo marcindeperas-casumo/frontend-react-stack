@@ -1,7 +1,8 @@
 import {
   getRouletteColor,
-  getDreamCatcherColor,
-  rouletteNumbers,
+  getMoneyWheelColor,
+  getTopCardColor,
+  rouletteResults,
 } from "./utils";
 
 const rouletteRed = [
@@ -50,44 +51,59 @@ const rouletteGreen = ["0", "00"];
 
 describe("getRouletteColor()", () => {
   test("should return `red` for red numbers", () => {
-    expect(rouletteRed).toEqual(rouletteNumbers["red"]);
+    expect(rouletteRed).toEqual(rouletteResults["red"]);
     rouletteRed.forEach(n => expect(getRouletteColor(n)).toBe("red"));
   });
 
   test("should return `grey-dark-2` for black numbers", () => {
-    expect(rouletteBlack).toEqual(rouletteNumbers["grey-dark-2"]);
+    expect(rouletteBlack).toEqual(rouletteResults["grey-dark-2"]);
     rouletteBlack.forEach(n => expect(getRouletteColor(n)).toBe("grey-dark-2"));
   });
 
   test("should return `green-light-1` for 0 and 00", () => {
-    expect(rouletteGreen).toEqual(rouletteNumbers["green-light-1"]);
+    expect(rouletteGreen).toEqual(rouletteResults["green-light-1"]);
     rouletteGreen.forEach(n =>
       expect(getRouletteColor(n)).toBe("green-light-1")
     );
   });
 });
 
-describe("getDreamCatcherColor()", () => {
+describe("getMoneyWheelColor()", () => {
   test("should return `yellow` colour for `01`", () =>
-    expect(getDreamCatcherColor("01")).toBe("yellow"));
+    expect(getMoneyWheelColor("01")).toBe("yellow"));
 
   test("should return `blue-light-1` colour for `02`", () =>
-    expect(getDreamCatcherColor("02")).toBe("blue-light-1"));
+    expect(getMoneyWheelColor("02")).toBe("blue-light-1"));
 
   test("should return `purple` colour for `05`", () =>
-    expect(getDreamCatcherColor("05")).toBe("purple"));
+    expect(getMoneyWheelColor("05")).toBe("purple"));
 
   test("should return `green-light-1` colour for `10`", () =>
-    expect(getDreamCatcherColor("10")).toBe("green-light-1"));
+    expect(getMoneyWheelColor("10")).toBe("green-light-1"));
 
   test("should return `orange` colour for `20`", () =>
-    expect(getDreamCatcherColor("20")).toBe("orange"));
+    expect(getMoneyWheelColor("20")).toBe("orange"));
 
   test("should return `red` colour for `40`", () =>
-    expect(getDreamCatcherColor("40")).toBe("red"));
+    expect(getMoneyWheelColor("40")).toBe("red"));
 
-  test("should return `grey-dark-2` colour for multipliers X2 and X7", () => {
-    expect(getDreamCatcherColor("X2")).toBe("grey-dark-2");
-    expect(getDreamCatcherColor("X7")).toBe("grey-dark-2");
+  test("should return `grey-dark-2` colour for multipliers X2, X7 and by default", () => {
+    expect(getMoneyWheelColor("X2")).toBe("grey-dark-2");
+    expect(getMoneyWheelColor("X7")).toBe("grey-dark-2");
+    expect(getMoneyWheelColor("XX")).toBe("grey-dark-2");
   });
+});
+
+describe("getTopCardColor()", () => {
+  test("should return `red` colour for `L`", () =>
+    expect(getTopCardColor("L")).toBe("red"));
+
+  test("should return `grey-dark-2` colour for `T`", () =>
+    expect(getTopCardColor("T")).toBe("grey-dark-2"));
+
+  test("should return `red` colour for `R`", () =>
+    expect(getTopCardColor("R")).toBe("blue-light-1"));
+
+  test("should return `grey-dark-2` colour by default", () =>
+    expect(getTopCardColor("W")).toBe("grey-dark-2"));
 });
