@@ -51,11 +51,11 @@ const renderResults = ({ game }) => (
             txtColor={color === "yellow" ? "grey-dark-3" : "white"}
             circle={true}
           >
-            {game.type !== "TopCard"
-              ? isNaN(parseInt(n, 10))
+            {game.type === "TopCard"
+              ? letters[n]
+              : isNaN(parseInt(n, 10))
                 ? n
-                : parseInt(n, 10)
-              : letters[n]}
+                : parseInt(n, 10)}
           </Badge>
         );
       })}
