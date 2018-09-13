@@ -24,31 +24,19 @@ const getBgColor = (type, n) => {
   if (type === "TopCard") return getTopCardColor(n);
 };
 
-const RecentLetters = () => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field="recent_letters"
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
-
-const RecentNumbers = () => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field="recent_numbers"
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
-
 const letters = { L: "H", T: "D", R: "A" };
+
+const getText = field => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field={field}
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
+);
 
 const renderResults = ({ game }) => (
   <React.Fragment>
@@ -76,33 +64,11 @@ const renderResults = ({ game }) => (
       size="xs"
       className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
     >
-      {game.type === "TopCard" ? <RecentLetters /> : <RecentNumbers />}
+      {game.type === "TopCard"
+        ? getText("recent_letters")
+        : getText("recent_numbers")}
     </Text>
   </React.Fragment>
-);
-
-const OpenSeats = () => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field="open_seats"
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
-
-const TableFull = () => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field="table_full"
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
 );
 
 const renderSeats = ({ game }) => (
@@ -130,7 +96,7 @@ const renderSeats = ({ game }) => (
       size="xs"
       className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
     >
-      {game.seats ? <OpenSeats /> : <TableFull />}
+      {game.seats ? getText("open_seats") : getText("table_full")}
     </Text>
   </React.Fragment>
 );
