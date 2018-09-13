@@ -51,11 +51,13 @@ export default class App extends React.Component {
       this.setState(initialPortalsState());
     });
 
-    legacyBridge.on("games-top", data => {
-      this.setState({
-        gamesLists: true,
-      });
-    });
+    ["games-top", "games"].map(eventName =>
+      legacyBridge.on(eventName, data => {
+        this.setState({
+          gamesLists: true,
+        });
+      })
+    );
   }
 
   renderGamesLists() {
