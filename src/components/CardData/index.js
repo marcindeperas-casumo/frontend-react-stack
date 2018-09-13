@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 import CMSField from "../CMSField";
 import Matcher from "../Matcher";
 
-import { getMoneyWheelColor, getTopCardColor, getRouletteColor } from "./utils";
+import { getBadgeColor, topCardLetters } from "./utils";
 
 import "./CardData.scss";
 
@@ -17,14 +17,6 @@ type Props = {
   /** maximum result numbers to show */
   max: number,
 };
-
-const getBgColor = (type, n) => {
-  if (type === "MoneyWheel") return getMoneyWheelColor(n);
-  if (type === "Roulette") return getRouletteColor(n);
-  if (type === "TopCard") return getTopCardColor(n);
-};
-
-const letters = { L: "H", T: "D", R: "A" };
 
 const getText = field => (
   <CMSField
@@ -42,7 +34,7 @@ const renderResults = ({ game }) => (
   <React.Fragment>
     <div className="o-layout o-layout--gap u-margin-bottom">
       {game.results.slice(0, 5).map((n, i) => {
-        const color = getBgColor(game.type, n);
+        const color = getBadgeColor(game.type, n);
         return (
           <Badge
             key={i}
@@ -52,7 +44,7 @@ const renderResults = ({ game }) => (
             circle={true}
           >
             {game.type === "TopCard"
-              ? letters[n]
+              ? topCardLetters[n]
               : isNaN(parseInt(n, 10))
                 ? n
                 : parseInt(n, 10)}
