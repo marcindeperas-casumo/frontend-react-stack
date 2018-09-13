@@ -35,7 +35,7 @@ const renderPlayers = n => (
   </div>
 );
 
-const renderBets = o => null;
+const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
 const emitLaunchGame = slug => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
@@ -141,6 +141,7 @@ const GameList = props => {
       <div className="u-display--flex">
         <Text
           className={classNames(
+            "u-text-transform-capitalize",
             "u-padding-bottom--small",
             "u-padding-bottom--normal@tablet",
             "u-padding-bottom--normal@desktop",
