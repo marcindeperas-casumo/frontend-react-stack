@@ -130,7 +130,7 @@ export const GameBrowserServiceFactory = ({
             image: getImageForTable(table),
             bets: table.betLimits[currency],
             players: table.players,
-            results: table.results || table.history || null,
+            results: table.results || null,
             betBehind: table.betBehind || null,
             seats: table.seatsTaken
               ? table.seats - table.seatsTaken.length

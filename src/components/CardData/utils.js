@@ -1,6 +1,4 @@
-export const topCardLetters = { L: "H", T: "D", R: "A" };
-
-export const rouletteResults = {
+export const rouletteNumbers = {
   red: [
     "1",
     "3",
@@ -44,9 +42,9 @@ export const rouletteResults = {
   "green-light-1": ["0", "00"],
 };
 
-const getRouletteColor = n => {
+export const getRouletteColor = n => {
   let color;
-  Object.entries(rouletteResults).some(([k, v]) => {
+  Object.entries(rouletteNumbers).some(([k, v]) => {
     let exists = v.includes(n);
     color = exists ? k : "green-light-1";
     return exists;
@@ -54,7 +52,7 @@ const getRouletteColor = n => {
   return color;
 };
 
-const moneyWheelResults = {
+const moneyWheelNumbers = {
   "01": "yellow",
   "02": "blue-light-1",
   "05": "purple",
@@ -63,32 +61,11 @@ const moneyWheelResults = {
   "40": "red",
 };
 
-const getMoneyWheelColor = n => {
+export const getDreamCatcherColor = n => {
   let color;
-  Object.entries(moneyWheelResults).some(([k, v]) => {
+  Object.entries(moneyWheelNumbers).some(([k, v]) => {
     color = n === k ? v : "grey-dark-2";
     return n === k;
   });
   return color;
-};
-
-const topCardResults = {
-  L: "red",
-  T: "grey-dark-2",
-  R: "blue-light-1",
-};
-
-const getTopCardColor = n => {
-  let color;
-  Object.entries(topCardResults).some(([k, v]) => {
-    color = n === k ? v : "grey-dark-2";
-    return n === k;
-  });
-  return color;
-};
-
-export const getBadgeColor = (type, n) => {
-  if (type === "MoneyWheel") return getMoneyWheelColor(n);
-  if (type === "Roulette") return getRouletteColor(n);
-  if (type === "TopCard") return getTopCardColor(n);
 };
