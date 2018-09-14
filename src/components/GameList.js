@@ -161,7 +161,6 @@ const GameList = props => {
       <div className="u-display--flex">
         <Text
           className={classNames(
-            "u-text-transform-capitalize",
             "u-padding-bottom--small",
             "u-padding-bottom--normal@tablet",
             "u-padding-bottom--normal@desktop",
