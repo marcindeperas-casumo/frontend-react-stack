@@ -1,13 +1,7 @@
+import { compose, identity, ifElse, isNil, prop } from "ramda";
+
 import cmsClient from "../serviceClients/CMSClient";
-import {
-  compose,
-  composePromises,
-  fromCommonHandshake,
-  property,
-  ifThenElse,
-  isNullOrUndefined,
-  identity,
-} from "../lib/utils";
+import { composePromises, fromCommonHandshake } from "../lib/utils";
 import commonService from "./CommonService";
 import sessionService from "./SessionService";
 
@@ -21,8 +15,8 @@ export const CMSServiceFactory = ({
 }) => {
   const cmsHashForLang = async lang =>
     composePromises(
-      property(lang),
-      property("rootContentHashes"),
+      prop(lang),
+      prop("rootContentHashes"),
       pullWPInterface,
       commonService.handshake
     )();
@@ -52,17 +46,17 @@ const service = CMSServiceFactory({
 });
 
 export const getCMSField = ({ slug, field, fallbackTextFn }) => {
-  const cmsFields = property("fields");
+  const cmsFields = prop("fields");
   const cmsField = compose(
-    property(field),
+    prop(field),
     cmsFields
   );
 
   const hasCMSFields = cmsResponse => !!cmsFields(cmsResponse);
-  const getCMSText = ifThenElse(
+  const getCMSText = ifElse(
     hasCMSFields,
     compose(
-      ifThenElse(isNullOrUndefined, fallbackTextFn, identity),
+      ifElse(isNil, fallbackTextFn, identity),
       cmsField
     ),
     fallbackTextFn
