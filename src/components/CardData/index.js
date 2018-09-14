@@ -31,7 +31,7 @@ const getText = field => (
 );
 
 const renderResults = ({ game }) => {
-  const results = game.results.map(v => (v === "S" ? "T" : v)).slice(0, 5);
+  const results = game.results.slice(0, 5).map(v => (v === "S" ? "T" : v));
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
