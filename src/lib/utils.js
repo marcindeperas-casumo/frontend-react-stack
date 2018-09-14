@@ -1,4 +1,4 @@
-export const isNullOrUndefined = x => x === null || x === undefined;
+import { prop } from "ramda";
 
 export const sleep = ms => data => {
   return new Promise(resolve => {
@@ -112,15 +112,10 @@ export const usingPOST = (url, options) =>
 
 export const usingGET = commonFetch;
 
-export const property = k => obj => obj && obj[k];
-
 export const trace = x => {
   console.log(x);
   return x;
 };
-
-export const filter = (arr, predicate) => arr.filter(predicate);
-export const not = x => !x;
 
 export const getBodyTag = () => window.document.getElementsByTagName("body")[0];
 export const getHostElement = id => {
@@ -135,9 +130,6 @@ export const getHostElement = id => {
   return el;
 };
 
-export const compose = (...fns) => iv =>
-  fns.reduceRight((acc, curr) => curr(acc), iv);
-
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
@@ -147,8 +139,6 @@ export const arrayToObject = (array, key) => {
     return obj;
   }, {});
 };
-
-export const identity = id => id;
 
 export const SimpleCache = () => {
   let internalValue = null;
@@ -207,11 +197,6 @@ export const ServiceConfig = ({ defaultOptions, cache }) => {
   };
 };
 
-export const isNotNullOrUndefined = compose(
-  not,
-  isNullOrUndefined
-);
-
 export const decodeString = s =>
   new DOMParser().parseFromString(
     `<!doctype html><body>${s}</body></html>`,
@@ -260,9 +245,4 @@ export const matchingGroups = (str, searchTerm) => {
   return matchers;
 };
 
-export const fromCommonHandshake = k => property(`common/composition/${k}`);
-export const ifThenElse = (condition, thenPart, elsePart) => subject =>
-  condition(subject) ? thenPart(subject) : elsePart(subject);
-export const throwError = e => () => {
-  throw e;
-};
+export const fromCommonHandshake = k => prop(`common/composition/${k}`);
