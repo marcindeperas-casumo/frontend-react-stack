@@ -5,12 +5,11 @@ import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import JackpotsService from "../../applicationService/JackpotsService";
-import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
 import GameList from "../../components/GameList";
 import { arrayToObject } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
-const { ifLiveCasinoId, getLobbyLink } = LiveCasinoServiceEvo;
+const ifLiveCasinoId = id => ["liveCasinoGames", "liveCasino"].includes(id);
 
 const gamesNotInMaintenance = compose(
   not,
@@ -103,7 +102,6 @@ export default class GamesListsContainer extends React.Component {
                     ? "exclusiveTiles"
                     : "tiles"
               }
-              link={ifLiveCasinoId(gameList.id) ? getLobbyLink() : null}
               {...gameList}
             />
           ))}
