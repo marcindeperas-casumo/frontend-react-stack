@@ -1,11 +1,13 @@
 import React from "react";
+import { compose, identity, not } from "ramda";
+
 import GameBrowserService, {
   gameInMaintenanceMode,
 } from "../../applicationService/GameBrowserService";
 import JackpotsService from "../../applicationService/JackpotsService";
 import LiveCasinoServiceEvo from "../../applicationService/LiveCasinoServiceEvo";
 import GameList from "../../components/GameList";
-import { arrayToObject, compose, identity, not } from "../../lib/utils";
+import { arrayToObject } from "../../lib/utils";
 import GamesListsSkeleton from "./GamesListsSkeleton";
 
 const { ifLiveCasinoId, getLobbyLink } = LiveCasinoServiceEvo;
