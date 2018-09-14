@@ -4,14 +4,26 @@
 @import "cudl-spacers";
 @include cudl-reset-compile(cudl-sass-spacers);
 
-$game-tile-widths: (
+$top-game-tile-widths: (
   mobile: 43%,
   phablet: 26%,
   tablet: 26%,
   desktop: 15%,
 );
 
-.c-scrollable-game {
-  @include cudl-breakpoint-with($game-tile-widths, width);
+$exclusive-game-tile-widths: (
+  mobile: 48%,
+  phablet: 31%,
+  tablet: 31%,
+  desktop: 20%,
+);
+
+.c-top-game {
+  @include cudl-breakpoint-with($top-game-tile-widths, width);
   max-width: 170px;
+}
+
+.c-exclusive-game {
+  @include cudl-breakpoint-with($exclusive-game-tile-widths, width);
+  max-width: 188px;
 }

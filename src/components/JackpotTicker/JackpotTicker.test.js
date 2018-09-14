@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import JackpotTicker from "./JackpotTicker";
-import { jackpotTickerClass } from "../GameTile";
+import { jackpotTickerClass } from "../GameTile/GameTileJackpot";
 import Badge from "@casumo/cmp-badge";
 
 describe("JackpotTicker", () => {

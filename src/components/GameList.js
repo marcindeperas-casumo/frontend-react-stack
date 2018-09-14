@@ -77,10 +77,29 @@ const renderCards = ({ games }) =>
 const renderTiles = ({ games }) =>
   games.map(game => (
     <Flex.Item
-      className="o-flex__item-fixed-size o-flex c-scrollable-game"
+      className="o-flex__item-fixed-size o-flex c-top-game"
       key={game.slug}
     >
       <GameTile {...game} launchGame={() => emitLaunchGame(game.slug)} />
+    </Flex.Item>
+  ));
+
+const renderExclusiveTiles = ({ games }) =>
+  games.map(game => (
+    <Flex.Item
+      className="o-flex__item-fixed-size o-flex c-exclusive-game"
+      key={game.slug}
+    >
+      <GameTile
+        {...game}
+        ratio="game-tile-exclusive"
+        imgixOpts={{
+          w: 188,
+          h: 280,
+          fit: "crop",
+        }}
+        launchGame={() => emitLaunchGame(game.slug)}
+      />
     </Flex.Item>
   ));
 
@@ -90,6 +109,7 @@ const CardsOrTiles = props => (
     matchers={{
       cards: renderCards,
       tiles: renderTiles,
+      exclusiveTiles: renderExclusiveTiles,
     }}
     {...props}
   />
@@ -137,7 +157,7 @@ const GameList = props => {
   const { games, title, link } = props;
   const loading = games.length ? "list" : "loading";
   return (
-    <div className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop">
+    <div className="u-padding-top--semi">
       <div className="u-display--flex">
         <Text
           className={classNames(
