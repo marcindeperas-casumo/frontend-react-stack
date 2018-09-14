@@ -5,7 +5,6 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "../CMSField";
 import Matcher from "../Matcher";
-import { reject } from "ramda";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
@@ -32,8 +31,7 @@ const getText = field => (
 );
 
 const renderResults = ({ game }) => {
-  // rejects `Suited Tie` from results and limit to 5
-  const results = reject(v => v === "S", game.results.slice(0, 5));
+  const results = game.results.slice(0, 5).map(v => (v === "S" ? "T" : v));
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
