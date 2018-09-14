@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 import CMSField from "../CMSField";
 import Matcher from "../Matcher";
 
-import { getBadgeColor, topCardLetters } from "./utils";
+import { getDreamCatcherColor, getRouletteColor } from "./utils";
 
 import "./CardData.scss";
 
@@ -18,23 +18,16 @@ type Props = {
   max: number,
 };
 
-const getText = field => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field={field}
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
+const getNumberColor = (type, n) => {
+  if (type === "MoneyWheel") return getDreamCatcherColor(n);
+  if (type === "Roulette") return getRouletteColor(n);
+};
 
 const renderResults = ({ game }) => (
   <React.Fragment>
     <div className="o-layout o-layout--gap u-margin-bottom">
       {game.results.slice(0, 5).map((n, i) => {
-        const color = getBadgeColor(game.type, n);
+        const color = getNumberColor(game.type, n);
         return (
           <Badge
             key={i}
@@ -43,24 +36,48 @@ const renderResults = ({ game }) => (
             txtColor={color === "yellow" ? "grey-dark-3" : "white"}
             circle={true}
           >
-            {game.type === "TopCard"
-              ? topCardLetters[n]
-              : isNaN(parseInt(n, 10))
-                ? n
-                : parseInt(n, 10)}
+            {isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)}
           </Badge>
         );
       })}
     </div>
-    <Text
-      size="xs"
-      className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
-    >
-      {game.type === "TopCard"
-        ? getText("recent_letters")
-        : getText("recent_numbers")}
-    </Text>
+    <CMSField
+      slug="mobile.live-casino-cards-content"
+      field="recent_numbers"
+      view={text => (
+        <Text
+          size="xs"
+          className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+        >
+          {text}
+        </Text>
+      )}
+    />
   </React.Fragment>
+);
+
+const OpenSeats = () => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field="open_seats"
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
+);
+
+const TableFull = () => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field="table_full"
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
 );
 
 const renderSeats = ({ game }) => (
@@ -88,7 +105,7 @@ const renderSeats = ({ game }) => (
       size="xs"
       className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
     >
-      {game.seats ? getText("open_seats") : getText("table_full")}
+      {game.seats ? <OpenSeats /> : <TableFull />}
     </Text>
   </React.Fragment>
 );
@@ -106,15 +123,15 @@ const Type = props => (
 );
 
 const CardData = ({ className, game, ...props }: Props) => {
-  let renderType = null;
-  if (game.type === "Blackjack") renderType = "seats";
-  if (["MoneyWheel", "Roulette", "TopCard"].includes(game.type))
-    renderType = "results";
-
+  const condition = game.results
+    ? "results"
+    : game.type === "Blackjack"
+      ? "seats"
+      : null;
   return (
-    renderType && (
+    condition && (
       <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        <Type condition={renderType} game={game} />
+        <Type condition={condition} game={game} />
       </div>
     )
   );
