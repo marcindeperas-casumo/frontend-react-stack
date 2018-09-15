@@ -40,7 +40,8 @@
     "test": "node scripts/test.js --env=jsdom",
     "test:ci": "CI=yes npm run test",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
-    "storybook": "start-storybook -p 6006"
+    "storybook": "start-storybook -p 6006",
+    "generate-component": "./scripts/generate-component.js ./src/components"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js",
