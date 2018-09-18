@@ -1,7 +1,7 @@
 import React from "react";
 import GameListImage from "./GameListImage";
-import GameListPlayers from "./GameListPlayers";
-import GameListCards from "./GameListCards";
+import GameListPlayers from "../LiveCasinoCard/CardPlayers";
+import GameListCards from "../LiveCasinoCard/LiveCasinoCard";
 import GameListTiles from "./GameListTiles";
 import GameListTitle from "./GameListTitle";
 import GameListExclusiveTiles from "./GameListExclusiveTiles";
@@ -9,7 +9,7 @@ import ScrollingContainer from "@casumo/cmp-scrollable";
 import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
 import legacyBridge from "../../legacyBridge";
 import Matcher from "../Matcher";
-import CardData from "../CardData";
+import CardData from "../LiveCasinoCard";
 import GameListSkeleton from "./GameListSkeleton";
 
 const renderImage = src => <GameListImage src={src} />;

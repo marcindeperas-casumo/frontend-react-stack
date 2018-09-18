@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import CMSField from "../CMSField";
-import { emitLaunchGame } from "./GameList";
+import { emitLaunchGame } from "../GameList/GameList";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
