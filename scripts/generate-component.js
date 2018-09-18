@@ -9,6 +9,7 @@
  *     <component-name>/
  *         +- <component-name>.js
  *         +- <component-name>.test.js
+ *         +- <component-name>.stories.js
  *         +- index.js
  *
  * Examples:
@@ -26,6 +27,7 @@ const FILE_TEMPLATES = {
   "index.js": 'export { default } from "./{{ componentName }}.js";\n',
   "{{ componentName }}.js": getComponentTemplate(),
   "{{ componentName }}.test.js": getComponentTestTemplate(),
+  "{{ componentName }}.stories.js": getComponentStoryTemplate(),
 };
 
 checkUsage();
@@ -109,6 +111,17 @@ describe("{{ componentName }}", () => {
 `);
 }
 /* eslint-enable */
+
+function getComponentStoryTemplate() {
+  return `import React from "react";
+import { storiesOf } from "@storybook/react";
+import {{ componentName }} from "./{{ componentName }}";
+
+storiesOf("Michele", module)
+  .add("Default", () => <Michele />)
+  .add("With a twist!", () => <Michele />);
+`;
+}
 
 function capitalize(string) {
   return `${string.charAt(0).toUpperCase()}${string.slice(1)}`;
