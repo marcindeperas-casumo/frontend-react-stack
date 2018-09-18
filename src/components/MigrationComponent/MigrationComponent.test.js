@@ -12,17 +12,17 @@ describe("MigrationComponent", () => {
     expect(component.contains(child)).toBe(true);
   });
 
-  test("may have a migrationKey prop", () => {
+  test("should have a migrationKey prop value", () => {
     expect(() => {
       shallow(
-        <MigrationComponent>
+        <MigrationComponent migrationKey="">
           <div>foo</div>
         </MigrationComponent>
       );
-    }).toThrowError("may have a migrationKey prop");
+    }).toThrowError("should have a migrationKey prop value");
   });
 
-  test("may have only one child element", () => {
+  test("should have only one child element", () => {
     expect(() => {
       shallow(
         <MigrationComponent migrationKey="foo">
@@ -30,6 +30,6 @@ describe("MigrationComponent", () => {
           <div>foo</div>
         </MigrationComponent>
       );
-    }).toThrow("may have only one child element");
+    }).toThrow("should have only one child element");
   });
 });
