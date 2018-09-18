@@ -3,12 +3,14 @@ import { storiesOf } from "@storybook/react";
 import { number, boolean } from "@storybook/addon-knobs/react";
 import EitherOr from "./EitherOr";
 
+import isNotChromatic from "../../.storybook/isNotChromatic";
+
 const stories = storiesOf("EitherOr", module);
 
 const LowerCaseExample = ({ k1 }) => k1.toLowerCase();
 const UpperCaseExample = ({ k1 }) => k1.toUpperCase();
 
-if (!navigator.userAgent.match(/Chromatic/)) {
+if (isNotChromatic) {
   stories
     .add("Default", () => {
       return (
