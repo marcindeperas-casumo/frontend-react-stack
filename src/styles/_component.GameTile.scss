@@ -34,3 +34,8 @@
 .c-game-tile:focus .c-jackpot-ticker {
   display: none;
 }
+
+.c-jackpot-ticker {
+  white-space: nowrap;
+  width: 100%;
+}
