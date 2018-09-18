@@ -54,13 +54,15 @@ const CardsOrTiles = props => (
   />
 );
 
+const paddingPerDevice = {
+  default: "small",
+  tablet: "xlarge",
+  desktop: "xlarge",
+};
+
 const renderList = ({ display, games }) => (
   <ScrollingContainer
-    padding={{
-      default: "small",
-      tablet: "xlarge",
-      desktop: "xlarge",
-    }}
+    padding={paddingPerDevice}
     itemSpacing={display === "cards" ? "small" : "default"}
   >
     <CardsOrTiles display={display} games={games} />
@@ -73,7 +75,6 @@ const renderSkeleton = ({ display }) => (
     itemRatio={display === "cards" ? 0.98 : 1.2}
     itemGap={display === "cards" ? 16 : 8}
     display={display}
-    title={false}
     preserveAspectRatio="xMinYMin"
     colorLow="#eff6f6"
     colorHi="#ffffff"
