@@ -34,14 +34,15 @@
   },
   "scripts": {
     "flow": "flow",
-    "precommit": "scripts/pre-commit.sh",
+    "precommit": "scripts/pre-commit.sh && scripts/forgotten-statements.sh",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "test:ci": "CI=yes npm run test",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
     "storybook": "start-storybook -p 6006",
-    "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --script-name storybook --exit-zero-on-changes"
+    "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --script-name storybook --exit-zero-on-changes",
+    "generate-component": "./scripts/generate-component.js ./src/components"
   },
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js",
