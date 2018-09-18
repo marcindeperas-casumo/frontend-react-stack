@@ -117,9 +117,9 @@ function getComponentStoryTemplate() {
 import { storiesOf } from "@storybook/react";
 import {{ componentName }} from "./{{ componentName }}";
 
-storiesOf("Michele", module)
-  .add("Default", () => <Michele />)
-  .add("With a twist!", () => <Michele />);
+storiesOf("{{ componentName }}", module)
+  .add("Default", () => <{{ componentName }} />)
+  .add("With a twist! 👀", () => <{{ componentName }} />);
 `;
 }
 
