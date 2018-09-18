@@ -1,3 +1,3 @@
-const isNotChromatic = !!navigator.userAgent.match(/Chromatic/);
+const isNotChromatic = !navigator.userAgent.match(/Chromatic/);
 
 export default isNotChromatic;
