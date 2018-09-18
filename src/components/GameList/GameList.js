@@ -54,7 +54,6 @@ const CardsOrTiles = props => (
   />
 );
 
-// move the component back here
 const renderList = ({ display, games }) => (
   <ScrollingContainer
     padding={{
