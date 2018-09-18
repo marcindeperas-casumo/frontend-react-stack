@@ -9,6 +9,7 @@ new PipelineBuilder(this)
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .customStep('Build', this.&npmBuild)
+        .customStep('Chromatic', this.&runChromatic)
         .gradleDockerPublish()
         .gradleRelease()
         .build()
@@ -23,4 +24,8 @@ def npmBuild() {
 
 def runTests() {
     sh "yarn test:ci"
+}
+
+def runChromatic () {
+    sh "yarn chromatic"
 }
