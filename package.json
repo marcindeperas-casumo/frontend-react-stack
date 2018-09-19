@@ -75,7 +75,30 @@
       "jsx",
       "node",
       "mjs"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^Containers(.*)$": [
+        "<rootDir>/src/containers/$1"
+      ],
+      "^Components(.*)$": [
+        "<rootDir>/src/components/$1"
+      ],
+      "^Reducers(.*)$": [
+        "<rootDir>/src/reducers/$1"
+      ],
+      "^Sagas(.*)$": [
+        "<rootDir>/src/sagas/$1"
+      ],
+      "^Services(.*)$": [
+        "<rootDir>/src/applicationService/$1"
+      ],
+      "^Clients(.*)$": [
+        "<rootDir>/src/serviceClients/$1"
+      ],
+      "^Utils(.*)$": [
+        "<rootDir>/src/utils/$1"
+      ]
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -101,12 +124,15 @@
     "parser": "babel-eslint",
     "plugins": [
       "prettier",
+      "import",
       "flowtype"
     ],
     "extends": [
       "react-app",
       "prettier",
-      "plugin:flowtype/recommended"
+      "plugin:flowtype/recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings"
     ],
     "rules": {
       "prettier/prettier": "error"
@@ -145,7 +171,7 @@
     "eslint-config-react-app": "^2.1.0",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
