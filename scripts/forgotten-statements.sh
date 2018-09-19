@@ -11,7 +11,7 @@ else
 	against=4b825dc642cb6eb9a060e54bf8d69288fbee4904
 fi
 
-STAGED_FILES=$(git diff --diff-filter=d --cached --name-only | grep -E '\.(js|jsx)$')
+STAGED_FILES=$(git diff --diff-filter=d --cached --name-only | grep -E '^src\/.+\.(js|jsx)$')
 
 if [[ "$STAGED_FILES" = "" ]]; then
   exit 0

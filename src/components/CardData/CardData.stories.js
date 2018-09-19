@@ -8,6 +8,8 @@ import Card from "@casumo/cmp-card";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import { PlayerIcon } from "@casumo/cmp-icons";
 
+import info from "../../../.storybook/storybookInfo";
+
 import CardData from "./";
 
 const stories = storiesOf("Card", module);
@@ -26,7 +28,7 @@ const renderPlayers = n => (
 
 stories.add(
   "Default",
-  withInfo("Card")(() => (
+  () => (
     <Card
       image={renderImage(
         "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg"
@@ -37,12 +39,13 @@ stories.add(
       providerLogoSrc="https://casimg.com/casinonaut/rw-big-logo-rooms/0/59c/a0c73f41c9.svg"
       footer={renderPlayers(352)}
     />
-  ))
+  ),
+  info({ text: "Default" })
 );
 
 stories.add(
   "CardData MoneyWheel",
-  withInfo("Card")(() => (
+  () => (
     <Card
       image={renderImage(
         "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg"
@@ -57,12 +60,13 @@ stories.add(
       providerLogoSrc="https://casimg.com/casinonaut/rw-big-logo-rooms/0/59c/a0c73f41c9.svg"
       footer={renderPlayers(352)}
     />
-  ))
+  ),
+  info({ text: "CardData MoneyWheel" })
 );
 
 stories.add(
   "CardData Roulette",
-  withInfo("Card")(() => (
+  () => (
     <Card
       image={renderImage(
         "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg"
@@ -77,12 +81,13 @@ stories.add(
       providerLogoSrc="https://casimg.com/casinonaut/rw-big-logo-rooms/0/59c/a0c73f41c9.svg"
       footer={renderPlayers(352)}
     />
-  ))
+  ),
+  info({ text: "CardData Roulette" })
 );
 
 stories.add(
   "CardData Blackjack",
-  withInfo("Card")(() => (
+  () => (
     <Card
       image={renderImage(
         "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg"
@@ -94,12 +99,13 @@ stories.add(
       providerLogoSrc="https://casimg.com/casinonaut/rw-big-logo-rooms/0/59c/a0c73f41c9.svg"
       footer={renderPlayers(4)}
     />
-  ))
+  ),
+  info({ text: "CardData Blackjack" })
 );
 
 stories.add(
   "CardData Blackjack full",
-  withInfo("Card")(() => (
+  () => (
     <Card
       image={renderImage(
         "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg"
@@ -111,5 +117,6 @@ stories.add(
       providerLogoSrc="https://casimg.com/casinonaut/rw-big-logo-rooms/0/59c/a0c73f41c9.svg"
       footer={renderPlayers(6)}
     />
-  ))
+  ),
+  info({ text: "CardData Blackjack full" })
 );
