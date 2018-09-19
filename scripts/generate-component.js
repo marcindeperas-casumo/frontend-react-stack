@@ -89,7 +89,7 @@ function createFile(filename, template) {
 
 function getComponentTemplate() {
   // eslint-disable-next-line
-return `import React from "react";
+  return `import React from "react";
 
 export default function {{ componentName }}() {
   return null;
@@ -97,9 +97,8 @@ export default function {{ componentName }}() {
 }
 
 function getComponentTestTemplate() {
-/* eslint-disable */
-return (
-`import React from "react";
+  /* eslint-disable */
+  return `import React from "react";
 import { shallow } from "enzyme";
 import {{ componentName }} from "./{{ componentName }}";
 
@@ -108,19 +107,27 @@ describe("{{ componentName }}", () => {
     expect(1).toBe(2);
   });
 });
-`);
+`;
 }
 /* eslint-enable */
 
 function getComponentStoryTemplate() {
   return `import React from "react";
 import { storiesOf } from "@storybook/react";
-import {{ componentName }} from "./{{ componentName }}";
 
-storiesOf("{{ componentName }}", module)
-  .add("Default", () => <{{ componentName }} />)
-  .add("With a twist! 👀", () => <{{ componentName }} />);
-`;
+import info from "../../../.storybook/storybookInfo";
+
+import {{ componentName }} from "./";
+
+const stories = storiesOf("{{ componentName }}", module);
+
+stories.add(
+  "Default",
+  () => (
+    <{{ componentName }} />
+  ),
+  info({ text: "Default" })
+);`;
 }
 
 function capitalize(string) {

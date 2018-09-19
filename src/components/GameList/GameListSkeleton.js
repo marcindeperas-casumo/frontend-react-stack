@@ -2,7 +2,7 @@
 import Skeleton from "@casumo/cmp-skeleton";
 import React from "react";
 
-import Matcher from "./Matcher";
+import Matcher from "../Matcher";
 
 type Props = {
   numberOfCards: number,
