@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import MigrationComponent from "./MigrationComponent";
 
 describe("MigrationComponent", () => {
-  test("render it's children", () => {
+  test("render its children", () => {
     const child = <div>foo</div>;
     const component = shallow(
       <MigrationComponent migrationKey="foo">{child}</MigrationComponent>
