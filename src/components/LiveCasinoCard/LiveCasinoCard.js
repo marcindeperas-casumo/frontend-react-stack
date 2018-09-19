@@ -8,7 +8,7 @@ import { emitLaunchGame } from "../GameList/GameList";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
-export default function GameListCards({
+export default function LiveCasinoCard({
   game,
   renderImage,
   renderCardData,

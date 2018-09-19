@@ -1,7 +1,7 @@
 import React from "react";
 import { PlayerIcon } from "@casumo/cmp-icons";
 
-export default function GameListPlayers({ number }) {
+export default function CardPlayers({ number }) {
   return (
     <div className="o-flex-align--center">
       <PlayerIcon className="u-margin-vert t-color-grey" size="sml" />
