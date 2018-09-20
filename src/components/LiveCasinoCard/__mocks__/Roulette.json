@@ -30,7 +30,8 @@
       "32"
     ],
     "betBehind": null,
-    "seats": null
+    "seats": null,
+    "provider": "casumo"
   },
   "jackpotInfo": null
 }

@@ -13,6 +13,7 @@
     "players": 2,
     "results": null,
     "betBehind": true,
-    "seats": 0
+    "seats": 0,
+    "provider": "casumo"
   }
 }

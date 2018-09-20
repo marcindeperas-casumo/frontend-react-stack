@@ -60,7 +60,8 @@
       "L"
     ],
     "betBehind": null,
-    "seats": null
+    "seats": null,
+    "provider": "evolution"
   },
   "jackpotInfo": null
 }
