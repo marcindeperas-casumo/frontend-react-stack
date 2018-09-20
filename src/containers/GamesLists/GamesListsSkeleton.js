@@ -13,8 +13,8 @@ const GameListsSkeleton = () => (
         preserveAspectRatio="xMinYMin"
         colorLow="#eff6f6"
         colorHi="#ffffff"
-        className="u-padding-top--normal u-padding-top--semi@tablet u-padding-top--semi@desktop
-        u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+        className="u-padding-top--lg u-padding-top--xlg@tablet u-padding-top--xlg@desktop
+        u-padding-left--md u-padding-left--2xlg@tablet u-padding-left--2xlg@desktop"
       />
     ))}
   </div>

@@ -46,7 +46,7 @@ const renderResults = ({ results, type }) => {
       </div>
       <Text
         size="xs"
-        className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
         {type === "TopCard"
           ? getText("recent_letters")
@@ -79,7 +79,7 @@ const renderSeats = ({ seats }) => (
     </Badge>
     <Text
       size="xs"
-      className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
     >
       {seats ? getText("open_seats") : getText("table_full")}
     </Text>
@@ -98,6 +98,7 @@ const DataType = props => (
   />
 );
 
+//$FlowFixMe
 const CardData = game => {
   let renderType = null;
   if (game.type === "Blackjack") renderType = "seats";

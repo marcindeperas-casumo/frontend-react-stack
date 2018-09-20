@@ -45,15 +45,15 @@ const CardsOrTiles = props => (
 );
 
 const paddingPerDevice = {
-  default: "small",
-  tablet: "xlarge",
-  desktop: "xlarge",
+  default: "md",
+  tablet: "2xlg",
+  desktop: "2xlg",
 };
 
 const renderList = ({ display, games }) => (
   <ScrollingContainer
     padding={paddingPerDevice}
-    itemSpacing={display === "cards" ? "small" : "default"}
+    itemSpacing={display === "cards" ? "md" : "default"}
   >
     <CardsOrTiles display={display} games={games} />
   </ScrollingContainer>
@@ -68,7 +68,7 @@ const renderSkeleton = ({ display }) => (
     preserveAspectRatio="xMinYMin"
     colorLow="#eff6f6"
     colorHi="#ffffff"
-    className="u-padding-left--small u-padding-left--xlarge@tablet u-padding-left--xlarge@desktop"
+    className="u-padding-left--md u-padding-left--2xlg@tablet u-padding-left--2xlg@desktop"
   />
 );
 
@@ -87,7 +87,7 @@ const GameList = props => {
   const { games, title, link } = props;
   const loading = games.length ? "list" : "loading";
   return (
-    <div className="u-padding-top--semi">
+    <div className="u-padding-top--xlg">
       <div className="u-display--flex">
         <GameListTitle title={title} link={link} />
       </div>
