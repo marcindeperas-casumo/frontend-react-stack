@@ -120,29 +120,6 @@
       "flow"
     ]
   },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "prettier",
-      "import",
-      "flowtype"
-    ],
-    "extends": [
-      "react-app",
-      "prettier",
-      "plugin:flowtype/recommended",
-      "plugin:import/errors",
-      "plugin:import/warnings"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    },
-    "settings": {
-      "flowtype": {
-        "onlyFilesWithFlowAnnotation": false
-      }
-    }
-  },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.10",
     "@storybook/addon-info": "4.0.0-alpha.10",
