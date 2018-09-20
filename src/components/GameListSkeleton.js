@@ -5,12 +5,13 @@ import React from "react";
 import Matcher from "./Matcher";
 
 type Props = {
-  numberOfCards: number,
+  items?: number,
   itemWidth: number,
-  itemHeight: number,
+  itemRatio?: number,
   itemGap?: number,
   cornerRadius?: number,
-  cornerRadius?: string,
+  itemHeight: number,
+  display: string,
   title?: boolean,
 };
 
@@ -25,9 +26,9 @@ const GameListSkeleton = ({
   ...props
 }: Props) => {
   const skeletonWidth = itemWidth * items;
-  const itemHeight = itemWidth * itemRatio;
+  const itemHeight: number = itemWidth * itemRatio;
   const displayCards = display === "cards";
-  const skeletonHeight = displayCards
+  const skeletonHeight: number = displayCards
     ? itemHeight
     : title
       ? itemHeight + 40
