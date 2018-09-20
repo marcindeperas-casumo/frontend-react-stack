@@ -10,5 +10,6 @@
 module.name_mapper='.+\.s?css' -> 'CSSModule'
 module.file_ext=.js
 module.file_ext=.scss
+module.file_ext=.json
 module.name_mapper='@storybook/addon-info' -> '<PROJECT_ROOT>/scripts/stubs/jsModuleStub.js'
 [strict]
