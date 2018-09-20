@@ -1,1 +1,1 @@
-export { default } from "./CardData.js";
+export { default } from "./Card";

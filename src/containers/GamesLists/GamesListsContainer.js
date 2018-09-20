@@ -25,7 +25,6 @@ export default class GamesListsContainer extends React.Component {
     this.state = {
       loading: false,
       data: [],
-      lobby: [],
     };
   }
 
@@ -96,8 +95,8 @@ export default class GamesListsContainer extends React.Component {
             <GameList
               key={gameList.title}
               display={
-                ifLiveCasinoId(gameList.id) && !this.state.lobbyError
-                  ? "cards"
+                ifLiveCasinoId(gameList.id)
+                  ? "liveCasinoCards"
                   : exclusiveGamesList(gameList.id)
                     ? "exclusiveTiles"
                     : "tiles"

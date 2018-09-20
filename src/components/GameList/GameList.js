@@ -1,20 +1,16 @@
 import React from "react";
-import GameListImage from "./GameListImage";
-import GameListPlayers from "../LiveCasinoCard/CardPlayers";
-import GameListCards from "../LiveCasinoCard/LiveCasinoCard";
+import Flex from "@casumo/cmp-flex";
+import ScrollingContainer from "@casumo/cmp-scrollable";
+
+import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
+import legacyBridge from "../../legacyBridge";
+
+import GameListSkeleton from "./GameListSkeleton";
 import GameListTiles from "./GameListTiles";
 import GameListTitle from "./GameListTitle";
 import GameListExclusiveTiles from "./GameListExclusiveTiles";
-import ScrollingContainer from "@casumo/cmp-scrollable";
-import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
-import legacyBridge from "../../legacyBridge";
+import LiveCasinoCard from "../LiveCasinoCard";
 import Matcher from "../Matcher";
-import CardData from "../LiveCasinoCard";
-import GameListSkeleton from "./GameListSkeleton";
-
-const renderImage = src => <GameListImage src={src} />;
-
-const renderPlayers = number => <GameListPlayers number={number} />;
 
 export const emitLaunchGame = slug => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
@@ -23,17 +19,11 @@ export const emitLaunchGame = slug => {
   });
 };
 
-const renderCardData = game => <CardData game={game} />;
-
-const renderCards = ({ games }) =>
+const renderLiveCasinoCards = ({ games }) =>
   games.map(game => (
-    <GameListCards
-      game={game}
-      key={game.slug}
-      renderImage={renderImage}
-      renderCardData={renderCardData}
-      renderPlayers={renderPlayers}
-    />
+    <Flex.Item className="o-flex__item-fixed-size o-flex" key={game.slug}>
+      <LiveCasinoCard {...game} launchGame={() => emitLaunchGame(game.slug)} />
+    </Flex.Item>
   ));
 
 const renderTiles = ({ games }) =>
@@ -46,8 +36,8 @@ const CardsOrTiles = props => (
   <Matcher
     getKey={({ display }) => display}
     matchers={{
-      cards: renderCards,
       tiles: renderTiles,
+      liveCasinoCards: renderLiveCasinoCards,
       exclusiveTiles: renderExclusiveTiles,
     }}
     {...props}
