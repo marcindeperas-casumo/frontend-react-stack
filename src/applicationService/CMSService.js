@@ -1,9 +1,9 @@
 import { compose, identity, ifElse, isNil, prop } from "ramda";
 
-import cmsClient from "../serviceClients/CMSClient";
+import cmsClient from "Clients/CMSClient";
 import { composePromises, fromCommonHandshake } from "../lib/utils";
-import commonService from "./CommonService";
-import sessionService from "./SessionService";
+import commonService from "Services/CommonService";
+import sessionService from "Services/SessionService";
 
 const pullWPInterface = fromCommonHandshake("wpInterface");
 const slugCache = {};
