@@ -1,4 +1,4 @@
-import cmsClientMock from "../serviceClients/CMSClient";
+import cmsClientMock from "Clients/CMSClient";
 import { CMSServiceFactory } from "./CMSService";
 import commonServiceMock from "./CommonService";
 import sessionServiceMock from "./SessionService";
