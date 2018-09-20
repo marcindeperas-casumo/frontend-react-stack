@@ -1,3 +1,21 @@
 @import "cudl-reset";
 @import "cudl-flex";
 @import "cudl-typography";
+
+// stylelint-disable xi/selector-pattern
+html {
+  font: #{$cudl-root-font-size} $cudl-font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+}
+
+@if type-of($cudl-line-height) == map {
+  html {
+    @include cudl-breakpoint-with($cudl-line-height, line-height);
+  }
+} @else {
+  html {
+    line-height: $cudl-line-height;
+  }
+  // stylelint-enable xi/selector-pattern
+}
