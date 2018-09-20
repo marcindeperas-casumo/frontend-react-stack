@@ -98,8 +98,8 @@ describe("getBadgeColor() for `TopCard`", () => {
   test("should return `red` colour for `L`", () =>
     expect(getBadgeColor(type, "L")).toBe("red"));
 
-  test("should return `grey-dark-2` colour for `T`", () =>
-    expect(getBadgeColor(type, "T")).toBe("grey-dark-2"));
+  test("should return `yellow` colour for `T`", () =>
+    expect(getBadgeColor(type, "T")).toBe("yellow"));
 
   test("should return `red` colour for `R`", () =>
     expect(getBadgeColor(type, "R")).toBe("blue-light-1"));

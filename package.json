@@ -16,6 +16,7 @@
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.6",
     "intersection-observer": "^0.5.0",
+    "invariant": "^2.2.4",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "qs": "^6.5.2",
