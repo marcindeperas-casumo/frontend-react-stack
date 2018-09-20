@@ -75,7 +75,30 @@
       "jsx",
       "node",
       "mjs"
-    ]
+    ],
+    "moduleNameMapper": {
+      "^Containers(.*)$": [
+        "<rootDir>/src/containers/$1"
+      ],
+      "^Components(.*)$": [
+        "<rootDir>/src/components/$1"
+      ],
+      "^Reducers(.*)$": [
+        "<rootDir>/src/reducers/$1"
+      ],
+      "^Sagas(.*)$": [
+        "<rootDir>/src/sagas/$1"
+      ],
+      "^Services(.*)$": [
+        "<rootDir>/src/applicationService/$1"
+      ],
+      "^Clients(.*)$": [
+        "<rootDir>/src/serviceClients/$1"
+      ],
+      "^Utils(.*)$": [
+        "<rootDir>/src/utils/$1"
+      ]
+    }
   },
   "lint-staged": {
     "*.js": [
@@ -96,26 +119,6 @@
       "react-app",
       "flow"
     ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "prettier",
-      "flowtype"
-    ],
-    "extends": [
-      "react-app",
-      "prettier",
-      "plugin:flowtype/recommended"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    },
-    "settings": {
-      "flowtype": {
-        "onlyFilesWithFlowAnnotation": false
-      }
-    }
   },
   "devDependencies": {
     "@storybook/addon-actions": "4.0.0-alpha.10",
@@ -143,9 +146,11 @@
     "eslint": "^4.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
+    "eslint-import-resolver-babel-module-alias": "^1.5.1",
+    "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",
