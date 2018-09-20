@@ -3,40 +3,40 @@ import { decodeString } from "../../lib/utils";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
+
+import LazyImage from "../LazyImage";
 import CMSField from "../CMSField";
-import { emitLaunchGame } from "../GameList/GameList";
+import CardPlayers from "./CardPlayers";
+import CardData from "./CardData";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
-export default function LiveCasinoCard({
-  game,
-  renderImage,
-  renderCardData,
-  renderPlayers,
-}) {
+export default function LiveCasinoCard({ lobby, name, slug, launchGame }) {
   return (
-    <Flex.Item className="o-flex__item-fixed-size o-flex" key={game.slug}>
+    <Flex.Item className="o-flex__item-fixed-size o-flex" key={slug}>
       <Card
-        image={renderImage(game.lobby.image)}
-        cardData={renderCardData(game.lobby)}
+        image={
+          <LazyImage style={{ width: "100%" }} src={lobby.image} dpr={3} />
+        }
+        cardData={<CardData {...lobby} />}
         heading={
           <Text tag="strong" className="t-color-grey-dark-2">
-            {decodeString(game.name)}
+            {decodeString(name)}
           </Text>
         }
-        footer={renderPlayers(game.lobby.players)}
+        footer={<CardPlayers {...lobby} />}
         cta={{
           text: (
-            <Text className="u-text-transform-capitalize u-font-weight-bold">
+            <Text tag="strong" className="u-text-transform-capitalize">
               <CMSField
                 slug="mobile.live-casino-cards-content"
                 field="play_now"
               />
             </Text>
           ),
-          onClick: () => emitLaunchGame(game.slug),
+          onClick: () => launchGame(slug),
         }}
-        text={renderBets(game.lobby.bets)}
+        text={renderBets(lobby.bets)}
       />
     </Flex.Item>
   );

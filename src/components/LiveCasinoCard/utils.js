@@ -74,7 +74,7 @@ const getMoneyWheelColor = n => {
 
 const topCardResults = {
   L: "red",
-  T: "grey-dark-2",
+  T: "yellow",
   R: "blue-light-1",
 };
 
