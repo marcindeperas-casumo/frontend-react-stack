@@ -103,7 +103,6 @@ const listIdToGamesList = {
   exclusiveGames: "exclusiveTiles",
   liveCasinoGames: "liveCasinoCards",
   liveCasino: "liveCasinoCards",
-  casumoJackpotGames: "jackpotTiles",
   default: "tiles",
 };
 
