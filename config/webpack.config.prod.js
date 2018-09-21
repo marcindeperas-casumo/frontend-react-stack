@@ -2,6 +2,7 @@ const autoprefixer = require("autoprefixer");
 const path = require("path");
 const webpack = require("webpack");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const ExtractTextPlugin = require("extract-text-webpack-plugin");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const InterpolateHtmlPlugin = require("react-dev-utils/InterpolateHtmlPlugin");
 const SWPrecacheWebpackPlugin = require("sw-precache-webpack-plugin");
@@ -15,6 +16,9 @@ const moduleAliases = require("./moduleAliases");
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
+// Some apps do not use client-side routing with pushState.
+// For these, "homepage" can be set to "." to enable relative asset paths.
+const shouldUseRelativeAssetPaths = publicPath === "./";
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
 // `publicUrl` is just like `publicPath`, but we will provide it to our app
@@ -30,10 +34,17 @@ if (env.stringified["process.env"].NODE_ENV !== '"production"') {
   throw new Error("Production builds must have NODE_ENV=production.");
 }
 
+// Note: defined here because it will be used more than once.
+const cssFilename = "react-stack/css/[name].[contenthash:8].css";
+
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
 // To have this structure working with relative paths, we have to use custom options.
+const extractTextPluginOptions = shouldUseRelativeAssetPaths
+  ? // Making sure that the publicPath goes back to to build folder.
+    { publicPath: Array(cssFilename.split("/").length).join("../") }
+  : {};
 
 // This is the production configuration.
 // It compiles slowly and is focused on producing a fast and minimal bundle.
@@ -150,6 +161,21 @@ module.exports = {
                 loader: "sass-loader",
                 options: {
                   includePaths: cudl,
+                },
+              },
+            ],
+          },
+          // SVG React loader - see https://github.com/boopathi/react-svg-loader/tree/master/packages/react-svg-loader
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: "babel-loader",
+              },
+              {
+                loader: "react-svg-loader",
+                options: {
+                  jsx: true, // true outputs JSX tags
                 },
               },
             ],
