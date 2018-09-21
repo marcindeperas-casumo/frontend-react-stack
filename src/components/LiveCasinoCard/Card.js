@@ -32,10 +32,13 @@ const CasinoHeader = ({ lobby }) => (
 const CasinoContent = ({ name, lobby, slug, launchGame }) => (
   <Flex>
     <Flex.Block>
-      <Text tag="strong" className="u-text-clamp t-color-grey-dark-2">
+      <Text
+        tag="h3"
+        className="u-margin-bottom--sm u-text-clamp t-color-grey-dark-2"
+      >
         {decodeString(name)}
       </Text>
-      <Text>{renderBets(lobby.bets)}</Text>
+      <Text tag="span">{renderBets(lobby.bets)}</Text>
     </Flex.Block>
     <Flex.Item>
       <Button onClick={launchGame} className="u-text-nowrap">
@@ -57,6 +60,7 @@ export default function LiveCasinoCard({ lobby, name, slug, launchGame }) {
   return (
     <Card
       className="u-width--1/1"
+      spacing="md"
       header={() => <CasinoHeader lobby={lobby} />}
       content={() => (
         <CasinoContent
