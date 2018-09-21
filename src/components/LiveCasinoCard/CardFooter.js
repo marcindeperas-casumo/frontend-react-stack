@@ -2,15 +2,16 @@ import React from "react";
 import { PlayerIcon } from "@casumo/cmp-icons";
 
 import Matcher from "../Matcher";
-import CasumoLogo from "./providerLogos/Casumo";
-import EvolutionLogo from "./providerLogos/Evolution";
+// import CasumoLogo from "./providerLogos/Casumo";
+import Casumo from "./providers/casumo.svg";
+import Evolution from "./providers/evolution.svg";
 
 const Provider = props => (
   <Matcher
     getKey={({ condition }) => condition}
     matchers={{
-      casumo: CasumoLogo,
-      evolution: EvolutionLogo,
+      casumo: Casumo,
+      evolution: Evolution,
     }}
     {...props}
   />
