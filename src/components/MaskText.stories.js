@@ -4,7 +4,7 @@ import React from "react";
 
 import isNotChromatic from "../../.storybook/isNotChromatic";
 
-import MaskText from "./MaskText";
+import MaskText from "Components/MaskText";
 
 const stories = storiesOf("MaskText", module);
 stories.addDecorator(withKnobs);

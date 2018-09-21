@@ -1,4 +1,4 @@
-import { CommonClientFactory, handshakeAPIUrl } from "./CommonClient";
+import { CommonClientFactory, handshakeAPIUrl } from "Clients/CommonClient";
 
 describe("CommonClient", () => {
   let client;

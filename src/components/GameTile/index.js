@@ -1,8 +1,8 @@
 import classNames from "classnames";
 import React from "react";
-import GameTileOverlay from "./GameTileOverlay";
-import GameTileImage from "./GameTileImage";
-import GameTileJackpot from "./GameTileJackpot";
+import GameTileOverlay from "Components/GameTile/GameTileOverlay";
+import GameTileImage from "Components/GameTile/GameTileImage";
+import GameTileJackpot from "Components/GameTile/GameTileJackpot";
 
 const GameTile = ({
   logoBackground,

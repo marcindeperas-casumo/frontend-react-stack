@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import CardData from "./CardData";
+import CardData from "Components/LiveCasinoCard/CardData";
 import { topCardLetters } from "./utils";
 
 import Roulette from "./__mocks__/Roulette.json";

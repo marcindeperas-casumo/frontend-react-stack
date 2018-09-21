@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import MigrationComponent from "./MigrationComponent";
+import MigrationComponent from "Components/MigrationComponent";
 
 describe("MigrationComponent", () => {
   test("render its children", () => {

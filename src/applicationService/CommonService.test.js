@@ -1,5 +1,5 @@
-import commonClientMock from "../serviceClients/CommonClient";
-import { CommonServiceFactory } from "./CommonService";
+import commonClientMock from "Clients/CommonClient";
+import { CommonServiceFactory } from "Services/CommonService";
 
 jest.mock("../serviceClients/CommonClient");
 
@@ -12,10 +12,6 @@ describe("Game Browser Service", () => {
     jest.resetAllMocks();
     commonClientMock.handshake.mockResolvedValue({});
   });
-
-  // afterEach(() => {
-  //   console.log(commonClientMock.handshake.mock.calls);
-  // });
 
   test("should call handshake on client", async () => {
     await service.handshake();

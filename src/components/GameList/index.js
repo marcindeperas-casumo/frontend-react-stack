@@ -1,1 +1,1 @@
-export { default } from "./GameList.js";
+export { default } from "Components/GameList/GameList";

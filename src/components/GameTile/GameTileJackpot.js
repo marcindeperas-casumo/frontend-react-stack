@@ -1,6 +1,6 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import JackpotTicker from "../../components/JackpotTicker";
+import JackpotTicker from "Components/JackpotTicker";
 
 export const jackpotTickerClass = "c-jackpot-ticker u-padding-vert";
 

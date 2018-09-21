@@ -1,5 +1,5 @@
 import React from "react";
-import GameListSkeleton from "../../components/GameList/GameListSkeleton";
+import GameListSkeleton from "Components/GameList/GameListSkeleton";
 
 const GameListsSkeleton = () => (
   <div>

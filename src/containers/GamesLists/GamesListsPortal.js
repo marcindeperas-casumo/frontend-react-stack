@@ -1,8 +1,8 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { getHostElement } from "../../lib/utils";
-import GamesListsContainer from "./GamesListsContainer";
-import GamesListsSkeleton from "./GamesListsSkeleton";
+import GamesListsContainer from "Containers/GamesLists/GamesListsContainer";
+import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
 const GAMES_LISTS_HOST_ID = "react-host-games-lists";
 

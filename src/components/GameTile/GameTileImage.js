@@ -1,5 +1,5 @@
 import React from "react";
-import LazyImage from "../LazyImage";
+import LazyImage from "Components/LazyImage";
 
 const GameTileImage = ({
   inMaintenanceMode,

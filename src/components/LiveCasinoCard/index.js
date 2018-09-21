@@ -1,1 +1,1 @@
-export { default } from "./Card";
+export { default } from "Components/LiveCasinoCard/Card";
