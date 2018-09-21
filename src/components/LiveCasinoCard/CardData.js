@@ -1,4 +1,3 @@
-/* @flow */
 import React from "react";
 import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
