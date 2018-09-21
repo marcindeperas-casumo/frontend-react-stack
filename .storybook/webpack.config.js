@@ -1,5 +1,7 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
+const moduleAliases = require("../config/moduleAliases");
+const { mergeDeepRight } = require("ramda");
 
 module.exports = (baseConfig, env, defaultConfig) => {
   // Extend defaultConfig as you need.
@@ -21,5 +23,9 @@ module.exports = (baseConfig, env, defaultConfig) => {
     include: path.resolve(__dirname, "../"),
   });
 
-  return defaultConfig;
+  return mergeDeepRight(defaultConfig, {
+    resolve: {
+      alias: moduleAliases,
+    },
+  });
 };
