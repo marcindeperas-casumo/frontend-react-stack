@@ -34,7 +34,7 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
     <Flex.Block>
       <Text
         tag="h3"
-        className="u-margin-bottom--sm u-text-clamp t-color-grey-dark-2"
+        className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-dark-2"
       >
         {decodeString(name)}
       </Text>
