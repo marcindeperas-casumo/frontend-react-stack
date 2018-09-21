@@ -11,7 +11,7 @@
     "@casumo/cmp-responsive-image": "^1.1.8",
     "@casumo/cmp-scrollable": "^2.0.1",
     "@casumo/cmp-skeleton": "^1.0.5",
-    "@casumo/cmp-text": "1.0.4",
+    "@casumo/cmp-text": "1.2.0",
     "@casumo/cudl": "4.0.0",
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.6",
