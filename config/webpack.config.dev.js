@@ -11,7 +11,6 @@ const getClientEnvironment = require("./env");
 const paths = require("./paths");
 const cudl = require("@casumo/cudl");
 const moduleAliases = require("./moduleAliases");
-const svgoConfig = require("./svgo");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
