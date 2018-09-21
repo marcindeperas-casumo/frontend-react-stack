@@ -1,7 +1,7 @@
-import jackpotsClientMock from "../serviceClients/JackpotsClient";
-import commonClientMock from "../serviceClients/CommonClient";
+import jackpotsClientMock from "Clients/JackpotsClient";
+import commonClientMock from "Clients/CommonClient";
 
-import { JackpotsServiceFactory } from "./JackpotsService";
+import { JackpotsServiceFactory } from "Services/JackpotsService";
 
 jest.mock("../serviceClients/JackpotsClient");
 jest.mock("../serviceClients/CommonClient");

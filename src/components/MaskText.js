@@ -1,6 +1,6 @@
 import React from "react";
 import { matchingGroups } from "../lib/utils";
-import Matcher from "./Matcher";
+import Matcher from "Components/Matcher";
 
 const MaskText = ({ text, search, matchRender, unmatchedRender }) => {
   return (

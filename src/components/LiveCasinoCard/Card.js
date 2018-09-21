@@ -4,10 +4,10 @@ import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 
-import LazyImage from "../LazyImage";
-import CMSField from "../CMSField";
-import CardFooter from "./CardFooter";
-import CardData from "./CardData";
+import LazyImage from "Components/LazyImage";
+import CMSField from "Components/CMSField";
+import CardPlayers from "Components/LiveCasinoCard/CardPlayers";
+import CardData from "Components/LiveCasinoCard/CardData";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 

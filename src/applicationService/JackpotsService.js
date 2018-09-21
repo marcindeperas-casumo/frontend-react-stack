@@ -1,6 +1,6 @@
 import { cacheFunction } from "../lib/utils";
-import jackpotsClient from "../serviceClients/JackpotsClient";
-import sessionService from "../applicationService/SessionService";
+import jackpotsClient from "Clients/JackpotsClient";
+import sessionService from "Services/SessionService";
 
 const cachedJackpots = cacheFunction({
   fn: async () => {

@@ -1,7 +1,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import GameTile from "../GameTile";
-import { emitLaunchGame } from "./GameList";
+import GameTile from "Components/GameTile";
+import { emitLaunchGame } from "Components/GameList/GameList";
 
 export default function GameListExclusiveTiles({ game }) {
   return (
