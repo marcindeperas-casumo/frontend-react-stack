@@ -11,6 +11,7 @@ const paths = require("./paths");
 const getClientEnvironment = require("./env");
 const cudl = require("@casumo/cudl");
 const moduleAliases = require("./moduleAliases");
+const svgoConfig = require("./svgo");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -158,51 +159,7 @@ module.exports = {
           {
             test: /\.svg$/,
             loader: "@svgr/webpack",
-            options: {
-              svgoConfig: {
-                multipass: true,
-                pretty: process.env.NODE_ENV === "development",
-                indent: 2,
-                plugins: [
-                  { cleanupIDs: true },
-                  { cleanupNumericValues: true },
-                  { cleanupAttrs: true },
-                  { cleanUpEnableBackground: true },
-                  { convertStyleToAttrs: true },
-                  { convertColors: { currentColor: false } },
-                  { convertPathData: true },
-                  { convertTransform: true },
-                  { convertShapeToPath: true },
-                  { collapseGroups: true },
-                  { mergePaths: true },
-                  { moveElemsAttrsToGroup: true },
-                  { moveGroupAttrsToElems: true },
-                  { removeDoctype: true },
-                  { removeXMLProcInst: true },
-                  { removeComments: true },
-                  { removeMetadata: true },
-                  { removeTitle: true },
-                  { removeDesc: true },
-                  { removeUselessDefs: true },
-                  { removeEditorsNSData: true },
-                  { removeEmptyAttrs: true },
-                  { removeHiddenElems: true },
-                  { removeEmptyText: true },
-                  { removeEmptyContainers: true },
-                  { removeViewBox: true },
-                  { removeUnknownsAndDefaults: true },
-                  { removeNonInheritableGroupAttrs: true },
-                  { removeUselessStrokeAndFill: true },
-                  { removeUnusedNS: true },
-                  { removeRasterImages: true },
-                  { removeDimensions: false },
-                  { removeAttrs: { attrs: "(stroke)" } },
-                  // { removeAttrs: { attrs: '(stroke|fill)' } },
-                  { sortAttrs: true },
-                  { transformsWithOnePath: true },
-                ],
-              },
-            },
+            options: svgoConfig,
           },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
