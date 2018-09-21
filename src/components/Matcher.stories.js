@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 
 import isNotChromatic from "../../.storybook/isNotChromatic";
 
-import Matcher from "./Matcher";
+import Matcher from "Components/Matcher";
 
 const stories = storiesOf("Matcher", module);
 stories.addDecorator(withKnobs);

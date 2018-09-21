@@ -1,4 +1,4 @@
-import { GameBrowserClientFactory } from "./GameBrowserClient";
+import { GameBrowserClientFactory } from "Clients/GameBrowserClient";
 
 describe("GameBrowserClientFactory", () => {
   let client;

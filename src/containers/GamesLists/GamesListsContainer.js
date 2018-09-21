@@ -3,11 +3,11 @@ import { compose, identity, not } from "ramda";
 
 import GameBrowserService, {
   gameInMaintenanceMode,
-} from "../../applicationService/GameBrowserService";
-import JackpotsService from "../../applicationService/JackpotsService";
-import GameList from "../../components/GameList";
+} from "Services/GameBrowserService";
+import JackpotsService from "Services/JackpotsService";
+import GameList from "Components/GameList";
 import { arrayToObject } from "../../lib/utils";
-import GamesListsSkeleton from "./GamesListsSkeleton";
+import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
 const ifLiveCasinoId = id => ["liveCasinoGames", "liveCasino"].includes(id);
 

@@ -1,8 +1,8 @@
 import { complement, compose, isNil, prop } from "ramda";
 
 import { composePromises } from "../lib/utils";
-import commonService from "./CommonService";
-import countryGuesserService from "./CountryGuesserService";
+import commonService from "Services/CommonService";
+import countryGuesserService from "Services/CountryGuesserService";
 
 const fromCommonHandshake = k => prop(`common/composition/${k}`);
 

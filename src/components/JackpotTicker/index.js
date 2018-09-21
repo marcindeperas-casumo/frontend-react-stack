@@ -1,1 +1,1 @@
-export { default } from "./JackpotTicker.js";
+export { default } from "Components/JackpotTicker/JackpotTicker";

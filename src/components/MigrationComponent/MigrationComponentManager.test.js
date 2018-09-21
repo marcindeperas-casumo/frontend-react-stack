@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import MigrationComponent from "./MigrationComponent";
-import MigrationComponentManager from "./MigrationComponentManager";
+import MigrationComponent from "Components/MigrationComponent/MigrationComponent";
+import MigrationComponentManager from "Components/MigrationComponent/MigrationComponentManager";
 
 describe("MigrationComponentManager", () => {
   test("displays only children that should be visible", () => {
