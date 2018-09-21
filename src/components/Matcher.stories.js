@@ -5,6 +5,7 @@ import { storiesOf } from "@storybook/react";
 import isNotChromatic from "../../.storybook/isNotChromatic";
 
 import Matcher from "Components/Matcher";
+import Evolution from "Components/LiveCasinoCard/providers/evolution.svg";
 
 const stories = storiesOf("Matcher", module);
 stories.addDecorator(withKnobs);
@@ -63,5 +64,8 @@ if (isNotChromatic) {
         />
       );
       return <EitherOrMatcher condition={condition} />;
+    })
+    .add("Test", () => {
+      return <Evolution />;
     });
 }

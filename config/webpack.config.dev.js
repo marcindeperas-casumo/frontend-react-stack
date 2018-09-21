@@ -184,11 +184,20 @@ module.exports = {
               },
             ],
           },
-          // svg optimize and transform into React components
+          // SVG React loader - see https://github.com/boopathi/react-svg-loader/tree/master/packages/react-svg-loader
           {
             test: /\.svg$/,
-            loader: "@svgr/webpack",
-            options: svgoConfig,
+            use: [
+              {
+                loader: "babel-loader",
+              },
+              {
+                loader: "react-svg-loader",
+                options: {
+                  jsx: true, // true outputs JSX tags
+                },
+              },
+            ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
           // When you `import` an asset, you get its (virtual) filename.

@@ -11,7 +11,6 @@ const paths = require("./paths");
 const getClientEnvironment = require("./env");
 const cudl = require("@casumo/cudl");
 const moduleAliases = require("./moduleAliases");
-const svgoConfig = require("./svgo");
 
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
@@ -154,12 +153,6 @@ module.exports = {
                 },
               },
             ],
-          },
-          // svg optimize and transform into React components
-          {
-            test: /\.svg$/,
-            loader: "@svgr/webpack",
-            options: svgoConfig,
           },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
