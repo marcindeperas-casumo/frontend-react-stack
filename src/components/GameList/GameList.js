@@ -21,7 +21,10 @@ export const emitLaunchGame = slug => {
 
 const renderLiveCasinoCards = ({ games }) =>
   games.map(game => (
-    <Flex.Item className="o-flex__item-fixed-size o-flex" key={game.slug}>
+    <Flex.Item
+      className="o-flex__item-fixed-size o-flex c-live-casino-card"
+      key={game.slug}
+    >
       <LiveCasinoCard {...game} launchGame={() => emitLaunchGame(game.slug)} />
     </Flex.Item>
   ));
