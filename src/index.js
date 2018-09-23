@@ -8,7 +8,7 @@ import {
 } from "./constants";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
-import store from "./configureStore";
+import configureStore from "./configureStore";
 
 window.bridge = legacyBridge;
 const root = document.getElementById("root");
@@ -18,8 +18,10 @@ legacyBridge.on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
   legacyBridge.emit(data.config.id);
 });
 
+const store = configureStore();
+
 ReactDOM.render(
-  <Provider store={store()}>
+  <Provider store={store}>
     <App />
   </Provider>,
   root
