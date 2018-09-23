@@ -18,6 +18,17 @@ const configureStore = preloadedState => {
 
   sagaMiddleware.run(rootSaga);
 
+  if (module.hot) {
+    module.hot.accept("./reducers", () => {
+      const nextRootReducer = require("./reducers/index").default;
+      store.replaceReducer(nextRootReducer);
+    });
+
+    module.hot.accept("./sagas", () =>
+      store.replaceReducer(require("./sagas").default)
+    );
+  }
+
   return store;
 };
 

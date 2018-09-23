@@ -26,3 +26,10 @@ const renderApp = Component =>
   );
 
 renderApp(App);
+
+if (module.hot) {
+  module.hot.accept("./components/App", () => {
+    const NextApp = require("./components/App").default;
+    renderApp(NextApp);
+  });
+}
