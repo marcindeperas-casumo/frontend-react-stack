@@ -1,6 +1,6 @@
 import { complement, compose, isNil, prop } from "ramda";
 
-import { composePromises } from "../lib/utils";
+import { composePromises } from "Utils/index";
 import commonService from "Services/CommonService";
 import countryGuesserService from "Services/CountryGuesserService";
 

@@ -6,9 +6,22 @@
 
 [lints]
 
-[options]
-module.name_mapper='.+\.s?css' -> 'CSSModule'
-module.file_ext=.js
-module.file_ext=.scss
-module.name_mapper='@storybook/addon-info' -> '<PROJECT_ROOT>/scripts/stubs/jsModuleStub.js'
 [strict]
+
+[options]
+suppress_comment= \\(.\\|\n\\)*\\$FlowIgnore
+
+module.file_ext=.js
+module.file_ext=.json
+module.file_ext=.scss
+
+module.name_mapper='.+\.s?css' -> 'CSSModule'
+module.name_mapper='@storybook/addon-info' -> '<PROJECT_ROOT>/scripts/stubs/jsModuleStub.js'
+
+module.name_mapper='^Containers' -> '<PROJECT_ROOT>/src/containers'
+module.name_mapper='^Components' -> '<PROJECT_ROOT>/src/components'
+module.name_mapper='^Reducers' -> '<PROJECT_ROOT>/src/reducers'
+module.name_mapper='^Sagas' -> '<PROJECT_ROOT>/src/sagas'
+module.name_mapper='^Services' -> '<PROJECT_ROOT>/src/applicationService'
+module.name_mapper='^Clients' -> '<PROJECT_ROOT>/src/serviceClients'
+module.name_mapper='^Utils' -> '<PROJECT_ROOT>/src/utils'

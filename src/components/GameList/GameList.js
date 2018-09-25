@@ -53,7 +53,7 @@ const paddingPerDevice = {
 const renderList = ({ display, games }) => (
   <ScrollingContainer
     padding={paddingPerDevice}
-    itemSpacing={display === "cards" ? "small" : "default"}
+    itemSpacing={display === "liveCasinoCards" ? "small" : "default"}
   >
     <CardsOrTiles display={display} games={games} />
   </ScrollingContainer>
@@ -61,9 +61,9 @@ const renderList = ({ display, games }) => (
 
 const renderSkeleton = ({ display }) => (
   <GameListSkeleton
-    itemWidth={display === "cards" ? 320 : 160}
-    itemRatio={display === "cards" ? 0.98 : 1.2}
-    itemGap={display === "cards" ? 16 : 8}
+    itemWidth={display === "liveCasinoCards" ? 320 : 160}
+    itemRatio={display === "liveCasinoCards" ? 0.98 : 1.2}
+    itemGap={display === "liveCasinoCards" ? 16 : 8}
     display={display}
     preserveAspectRatio="xMinYMin"
     colorLow="#eff6f6"

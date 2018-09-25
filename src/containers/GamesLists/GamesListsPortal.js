@@ -1,6 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { getHostElement } from "../../lib/utils";
+
+import { getHostElement } from "Utils/index";
 import GamesListsContainer from "Containers/GamesLists/GamesListsContainer";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 

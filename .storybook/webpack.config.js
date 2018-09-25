@@ -3,9 +3,9 @@ const cudl = require("@casumo/cudl");
 const moduleAliases = require("../config/moduleAliases");
 const { mergeDeepRight } = require("ramda");
 
-module.exports = (baseConfig, env, defaultConfig) => {
+module.exports = (baseConfig, env) => {
   // Extend defaultConfig as you need.
-  defaultConfig.module.rules.push({
+  baseConfig.module.rules.push({
     test: /\.scss$/,
 
     loaders: [
@@ -23,7 +23,24 @@ module.exports = (baseConfig, env, defaultConfig) => {
     include: path.resolve(__dirname, "../"),
   });
 
-  return mergeDeepRight(defaultConfig, {
+  baseConfig.module.rules.push({
+    test: /\.svg$/,
+
+    loaders: [
+      {
+        loader: "babel-loader",
+      },
+      {
+        loader: "react-svg-loader",
+        options: {
+          jsx: true, // true outputs JSX tags
+        },
+      },
+    ],
+    include: path.resolve(__dirname, "../"),
+  });
+
+  return mergeDeepRight(baseConfig, {
     resolve: {
       alias: moduleAliases,
     },

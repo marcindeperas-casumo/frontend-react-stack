@@ -1,5 +1,7 @@
 import { prop } from "ramda";
 
+const { log } = console;
+
 export const sleep = ms => data => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -19,7 +21,7 @@ export const bridgeFactory = () => {
       obj[ev].push(cb);
     },
     emit: (ev, data) => {
-      console.log("🌈 Emitting event", { ev, data });
+      log("🌈 Emitting event", { ev, data });
 
       if (obj[ev]) {
         obj[ev].forEach(listener => {
@@ -34,13 +36,13 @@ export const cacheLocallyForMs = ms => {
   let lastValue = {
     lastUpdated: 0,
   };
-  console.log(`🏝 Setting up local cache for ${ms}ms`);
+  log(`🏝 Setting up local cache for ${ms}ms`);
 
   return performCall => (...args) => {
     const now = new Date().getTime();
-    console.log(`🏝 Last updated: ${lastValue.lastUpdated}, now: ${now}`);
+    log(`🏝 Last updated: ${lastValue.lastUpdated}, now: ${now}`);
     if (now - lastValue.lastUpdated <= ms) {
-      console.log(
+      log(
         `🏝 Still ${ms -
           (now - lastValue.lastUpdated)}ms before the cache expires.`,
         lastValue
@@ -50,14 +52,14 @@ export const cacheLocallyForMs = ms => {
         : Promise.reject(lastValue.error);
     }
 
-    console.log(`🏝 Returning a promise to perform work`);
+    log(`🏝 Returning a promise to perform work`);
     return new Promise((resolve, reject) => {
-      console.log(`🏝 Performing work`);
+      log(`🏝 Performing work`);
       try {
         const result = performCall(...args);
         resolve(result);
       } catch (e) {
-        console.log("CACHE ERROR", e);
+        log("CACHE ERROR", e);
         reject(e);
       }
     })
@@ -67,7 +69,7 @@ export const cacheLocallyForMs = ms => {
           value,
           lastUpdated: new Date().getTime(),
         };
-        console.log(`🏝 Work performed updating internal values`, {
+        log(`🏝 Work performed updating internal values`, {
           lastValue,
         });
 
@@ -113,7 +115,7 @@ export const usingPOST = (url, options) =>
 export const usingGET = commonFetch;
 
 export const trace = x => {
-  console.log(x);
+  log(x);
   return x;
 };
 
