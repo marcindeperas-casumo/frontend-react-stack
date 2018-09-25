@@ -246,3 +246,19 @@ export const matchingGroups = (str, searchTerm) => {
 };
 
 export const fromCommonHandshake = k => prop(`common/composition/${k}`);
+
+export const makeProtocolAwareUrl = url => {
+  const { hostname, protocol } = window.location;
+  const startsWith = (string, keyword) =>
+    string.slice(0, keyword.length) === keyword;
+  const replaceInBeginning = (string, from, to) =>
+    `${to}${string.slice(from.length)}`;
+
+  if (startsWith(url, "//")) {
+    return replaceInBeginning(url, "//", `${protocol}//`);
+  } else if (startsWith(url, "/")) {
+    return replaceInBeginning(url, "/", `${protocol}//${hostname}/`);
+  } else {
+    return url;
+  }
+};
