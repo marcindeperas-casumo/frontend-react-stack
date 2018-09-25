@@ -3,8 +3,8 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
-import { decodeString } from "../../lib/utils";
 
+import { decodeString } from "Utils/index";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 

@@ -2,6 +2,9 @@
   "name": "mobile-react-stack-poc",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
     "@casumo/cmp-badge": "^1.0.7",
     "@casumo/cmp-button": "^1.1.4",
@@ -11,10 +14,11 @@
     "@casumo/cmp-responsive-image": "^1.1.8",
     "@casumo/cmp-scrollable": "^2.0.1",
     "@casumo/cmp-skeleton": "^1.0.5",
-    "@casumo/cmp-text": "1.0.4",
+    "@casumo/cmp-text": "1.2.0",
     "@casumo/cudl": "4.0.0",
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.6",
+    "cometd": "^3.1.4",
     "intersection-observer": "^0.5.0",
     "invariant": "^2.2.4",
     "object-assign": "4.1.1",
@@ -159,6 +163,7 @@
     "prettier": "^1.13.7",
     "prop-types": "^15.6.1",
     "raf": "3.4.0",
+    "react-svg-loader": "^2.1.0",
     "resolve": "1.6.0",
     "sass-loader": "^7.0.3",
     "storybook-chromatic": "^1.0.2",

@@ -6,7 +6,7 @@ import GameBrowserService, {
 } from "Services/GameBrowserService";
 import JackpotsService from "Services/JackpotsService";
 import GameList from "Components/GameList";
-import { arrayToObject } from "../../lib/utils";
+import { arrayToObject } from "Utils/index";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
 const ifLiveCasinoId = id => ["liveCasinoGames", "liveCasino"].includes(id);

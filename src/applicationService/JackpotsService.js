@@ -1,4 +1,4 @@
-import { cacheFunction } from "../lib/utils";
+import { cacheFunction } from "Utils/index";
 import jackpotsClient from "Clients/JackpotsClient";
 import sessionService from "Services/SessionService";
 
