@@ -97,7 +97,7 @@ const DataType = props => (
   />
 );
 
-const CardData = (game: any) => {
+const CardData = game => {
   let renderType = null;
   if (game.type === "Blackjack") renderType = "seats";
   if (["MoneyWheel", "Roulette", "TopCard"].includes(game.type))
