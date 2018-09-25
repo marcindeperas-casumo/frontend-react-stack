@@ -1,5 +1,5 @@
 import cometd from "../lib/cometd";
-import { makeProtocolAwareUrl } from "../lib/utils";
+import { makeProtocolAwareUrl } from "Utils/utils";
 
 const URL = makeProtocolAwareUrl("/cometd/");
 
