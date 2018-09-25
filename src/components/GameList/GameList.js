@@ -39,6 +39,7 @@ const CardsOrTiles = props => (
       tiles: renderTiles,
       liveCasinoCards: renderLiveCasinoCards,
       exclusiveTiles: renderExclusiveTiles,
+      default: renderTiles,
     }}
     {...props}
   />
@@ -78,6 +79,7 @@ const LoadingOrList = props => (
     matchers={{
       list: renderList,
       loading: renderSkeleton,
+      default: renderList,
     }}
     {...props}
   />
