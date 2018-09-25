@@ -10,7 +10,7 @@
   "lobby": {
     "tableId": "madlz3bzhyeabit4",
     "type": "Roulette",
-    "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_L.jpg",
+    "image": "http://www.bestcasinosites.net/images/live-blackjack-casumo-casino.jpg",
     "bets": {
       "symbol": "£",
       "min": 1,
@@ -30,7 +30,8 @@
       "32"
     ],
     "betBehind": null,
-    "seats": null
+    "seats": null,
+    "provider": "casumo"
   },
   "jackpotInfo": null
 }

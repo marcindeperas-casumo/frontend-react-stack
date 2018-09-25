@@ -135,6 +135,7 @@ export const GameBrowserServiceFactory = ({
             seats: table.seatsTaken
               ? table.seats - table.seatsTaken.length
               : null,
+            provider: table.provider,
           },
         })),
       };

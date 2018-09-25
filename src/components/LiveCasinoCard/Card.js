@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 
 import LazyImage from "../LazyImage";
 import CMSField from "Components/CMSField";
-import CardPlayers from "Components/LiveCasinoCard/CardPlayers";
+import CardFooter from "Components/LiveCasinoCard/CardFooter";
 import CardData from "Components/LiveCasinoCard/CardData";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
@@ -24,7 +24,7 @@ export default function LiveCasinoCard({ lobby, name, slug, launchGame }) {
             {decodeString(name)}
           </Text>
         }
-        footer={<CardPlayers {...lobby} />}
+        footer={<CardFooter {...lobby} />}
         cta={{
           text: (
             <Text tag="strong" className="u-text-transform-capitalize">
