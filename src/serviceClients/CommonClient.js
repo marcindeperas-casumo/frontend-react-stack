@@ -1,4 +1,4 @@
-import { usingGET } from "../lib/utils";
+import { usingGET } from "Utils/index";
 
 const httpService = {
   get: usingGET,

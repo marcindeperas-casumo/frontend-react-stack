@@ -6,11 +6,13 @@ import Matcher from "../Matcher";
 
 type Props = {
   numberOfCards: number,
-  itemWidth: number,
+  items: number,
   itemHeight: number,
+  itemWidth: number,
+  itemRatio?: number,
   itemGap?: number,
   cornerRadius?: number,
-  cornerRadius?: string,
+  display?: string,
   title?: boolean,
 };
 

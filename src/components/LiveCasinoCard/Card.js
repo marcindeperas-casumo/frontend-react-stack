@@ -1,9 +1,9 @@
 import React from "react";
-import { decodeString } from "../../lib/utils";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 
+import { decodeString } from "Utils/index";
 import LazyImage from "../LazyImage";
 import CMSField from "Components/CMSField";
 import CardPlayers from "Components/LiveCasinoCard/CardPlayers";
