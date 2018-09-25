@@ -20,6 +20,7 @@ source files is made, the target app will be reloaded.
 
 ### Development mode
 
+- Required Node version: **>=8.9.0**
 - Make sure you are running [casumo-proxy](https://github.com/Casumo/casumo-frontend-proxy) 2.5.0+
 - Add the following to your [.casumo-proxy-local](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/CustomEnv.md) for casumo-frontend:
 
@@ -35,6 +36,12 @@ source files is made, the target app will be reloaded.
 - Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
+
+### Forcing the react-stack to be used
+
+By default there is an A/B test used in mobile which randomly gives either the old-stack or the react-stack to a
+certain amount of users. In order to force the react-stack to be the one in use just set a feature flag in the URL:
+`https://mobile.dev?features=react-stack-enabled`
 
 ### Linking Dependencies
 
