@@ -2,6 +2,9 @@
   "name": "mobile-react-stack-poc",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=8.9.0"
+  },
   "dependencies": {
     "@casumo/cmp-badge": "^1.0.7",
     "@casumo/cmp-button": "^1.1.4",
