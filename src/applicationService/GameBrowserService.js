@@ -1,6 +1,6 @@
 import { complement, compose, prop, isNil } from "ramda";
 
-import { cacheFunction, ServiceConfig, SimpleCache } from "../lib/utils";
+import { cacheFunction, ServiceConfig, SimpleCache } from "Utils/index";
 import GameBrowserClient from "Clients/GameBrowserClient";
 import SessionService from "Services/SessionService";
 
