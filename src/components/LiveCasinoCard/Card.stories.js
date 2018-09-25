@@ -16,25 +16,25 @@ const stories = storiesOf("Card", module);
 
 stories.add(
   "Card MoneyWheel",
-  withInfo("Card")(() => <LiveCasinoCard {...gameMoneyWheel} />)
+  withInfo("Card")(() => <LiveCasinoCard game={gameMoneyWheel} />)
 );
 
 stories.add(
   "Card Roulette",
-  withInfo("Card")(() => <LiveCasinoCard {...gameRoulette} />)
+  withInfo("Card")(() => <LiveCasinoCard game={gameRoulette} />)
 );
 
 stories.add(
   "Card Blackjack Open Seats",
-  withInfo("Card")(() => <LiveCasinoCard {...gameBlackjack} />)
+  withInfo("Card")(() => <LiveCasinoCard game={gameBlackjack} />)
 );
 
 stories.add(
   "Card Blackjack Full",
-  withInfo("Card")(() => <LiveCasinoCard {...gameBlackjackFull} />)
+  withInfo("Card")(() => <LiveCasinoCard game={gameBlackjackFull} />)
 );
 
 stories.add(
   "Card TopCard (Football)",
-  withInfo("Card")(() => <LiveCasinoCard {...gameTopCard} />)
+  withInfo("Card")(() => <LiveCasinoCard game={gameTopCard} />)
 );
