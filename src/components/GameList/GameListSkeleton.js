@@ -112,6 +112,7 @@ const GameListSkeleton = ({
       matchers={{
         cards: renderCards,
         tiles: renderTiles,
+        default: renderTiles,
       }}
       {...props}
     />

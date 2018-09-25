@@ -12,6 +12,7 @@ const Provider = props => (
     matchers={{
       casumo: Casumo,
       evolution: Evolution,
+      default: Evolution,
     }}
     {...props}
   />
