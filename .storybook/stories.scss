@@ -1,6 +1,8 @@
 @import "cudl-reset";
-@import "cudl-flex";
+@import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-typography);
 @import "cudl-typography";
+@include cudl-reset-compile(cudl-sass-typography);
 
 $cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -22,5 +24,10 @@ html {
   html {
     line-height: $cudl-line-height;
   }
-  // stylelint-enable xi/selector-pattern
 }
+
+// remove cudl-reset heading margin bottom property.
+#{cudl-headings()} {
+  margin-bottom: 0;
+}
+// stylelint-enable xi/selector-pattern

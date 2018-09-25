@@ -295,21 +295,17 @@
     "@casumo/cudl-react-prop-types" "^2.0.0"
     "@casumo/cudl-react-utils" "^1.0.1"
 
-"@casumo/cmp-button@^1.3.0", "@casumo/cmp-button@^1.3.1":
+"@casumo/cmp-button@^1.3.1":
   version "1.3.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-1.3.1.tgz#71539fde5ed8de62bfd1cdad9ad059f9c229394b"
   dependencies:
     "@casumo/cudl-react-utils" "^1.0.1"
 
-"@casumo/cmp-card@^1.4.0":
-  version "1.4.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-1.4.0.tgz#1d357bb19bddbbb7825a56281e40f7c3acd3363a"
+"@casumo/cmp-card@^2.0.1":
+  version "2.0.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-card/-/cmp-card-2.0.1.tgz#d744b959bc0f058d9e1f5909f228037dacadc79b"
   dependencies:
-    "@casumo/cmp-button" "^1.3.0"
-    "@casumo/cmp-icons" "^1.3.0"
-    "@casumo/cmp-responsive-image" "^1.3.0"
-    "@casumo/cmp-text" "^1.2.0"
-    "@casumo/cudl-react-utils" "^1.0.0"
+    "@casumo/cmp-flex" "^2.2.2"
 
 "@casumo/cmp-flex@^2.2.2":
   version "2.2.2"
@@ -322,7 +318,7 @@
   version "1.3.0"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.3.0.tgz#a254acc459ca5af65656e9a2db06ecd4ce603e29"
 
-"@casumo/cmp-responsive-image@^1.3.0", "@casumo/cmp-responsive-image@^1.3.1":
+"@casumo/cmp-responsive-image@^1.3.1":
   version "1.3.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.3.1.tgz#96b4e03c8dd6582a408d5d648e5eb2e1d94f297f"
   dependencies:
@@ -340,7 +336,7 @@
   version "1.2.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-skeleton/-/cmp-skeleton-1.2.1.tgz#f325c2778fccf925bb35fd1ac1c6e8116a88497f"
 
-"@casumo/cmp-text@1.2.1", "@casumo/cmp-text@^1.2.0", "@casumo/cmp-text@^1.2.1":
+"@casumo/cmp-text@1.2.1", "@casumo/cmp-text@^1.2.1":
   version "1.2.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-1.2.1.tgz#12990a29d5214970e4b4ed4ca78313fc05f13088"
   dependencies:
@@ -463,7 +459,7 @@
   version "2.0.0"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.0.0.tgz#1dd8f8734c484b317d1f7d082afb9aad27148bfc"
 
-"@casumo/cudl-react-utils@^1.0.0", "@casumo/cudl-react-utils@^1.0.1":
+"@casumo/cudl-react-utils@^1.0.1":
   version "1.0.1"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-react-utils/-/cudl-react-utils-1.0.1.tgz#cde3c69cd1ace54079c2aa849e414b9f6d566c3d"
 
