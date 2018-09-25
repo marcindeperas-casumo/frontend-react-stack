@@ -1,7 +1,7 @@
-import cmsClientMock from "../serviceClients/CMSClient";
-import { CMSServiceFactory } from "./CMSService";
-import commonServiceMock from "./CommonService";
-import sessionServiceMock from "./SessionService";
+import cmsClientMock from "Clients/CMSClient";
+import { CMSServiceFactory } from "Services/CMSService";
+import commonServiceMock from "Services/CommonService";
+import sessionServiceMock from "Services/SessionService";
 import {
   authenticatedResponse,
   unauthenticatedResponse,

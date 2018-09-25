@@ -2,7 +2,7 @@ import React from "react";
 import sentenceCase from "sentence-case";
 import { identity } from "ramda";
 
-import { getCMSField } from "../applicationService/CMSService";
+import { getCMSField } from "Services/CMSService";
 
 export default class CMSField extends React.Component {
   constructor(props) {

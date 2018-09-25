@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { array, withKnobs } from "@storybook/addon-knobs";
-import MigrationComponent from "./MigrationComponent";
-import MigrationComponentManager from "./MigrationComponentManager";
+import MigrationComponent from "Components/MigrationComponent";
+import MigrationComponentManager from "Components/MigrationComponent/MigrationComponentManager";
 
 const stories = storiesOf("MigrationComponentManager", module);
 stories.addDecorator(withKnobs);

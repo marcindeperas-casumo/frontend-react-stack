@@ -1,4 +1,4 @@
-export { default } from "./MigrationComponent.js";
+export { default } from "Components/MigrationComponent/MigrationComponent";
 export {
   default as MigrationComponentManager,
-} from "./MigrationComponentManager.js";
+} from "Components/MigrationComponent/MigrationComponentManager";

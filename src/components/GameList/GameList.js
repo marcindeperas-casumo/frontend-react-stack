@@ -5,12 +5,12 @@ import ScrollingContainer from "@casumo/cmp-scrollable";
 import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
 import legacyBridge from "../../legacyBridge";
 
-import GameListSkeleton from "./GameListSkeleton";
-import GameListTiles from "./GameListTiles";
-import GameListTitle from "./GameListTitle";
-import GameListExclusiveTiles from "./GameListExclusiveTiles";
-import LiveCasinoCard from "../LiveCasinoCard";
-import Matcher from "../Matcher";
+import GameListSkeleton from "Components/GameList/GameListSkeleton";
+import GameListTiles from "Components/GameList/GameListTiles";
+import GameListTitle from "Components/GameList/GameListTitle";
+import GameListExclusiveTiles from "Components/GameList/GameListExclusiveTiles";
+import LiveCasinoCard from "Components/LiveCasinoCard";
+import Matcher from "Components/Matcher";
 
 export const emitLaunchGame = slug => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {

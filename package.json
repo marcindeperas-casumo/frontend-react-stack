@@ -95,25 +95,17 @@
     "presets": [
       "react-app",
       "flow"
-    ]
-  },
-  "eslintConfig": {
-    "parser": "babel-eslint",
-    "plugins": [
-      "prettier",
-      "flowtype"
     ],
-    "extends": [
-      "react-app",
-      "prettier",
-      "plugin:flowtype/recommended"
-    ],
-    "rules": {
-      "prettier/prettier": "error"
-    },
-    "settings": {
-      "flowtype": {
-        "onlyFilesWithFlowAnnotation": false
+    "env": {
+      "test": {
+        "plugins": [
+          [
+            "babel-plugin-webpack-alias",
+            {
+              "config": "./config/webpack.config.dev.js"
+            }
+          ]
+        ]
       }
     }
   },
@@ -130,6 +122,7 @@
     "babel-eslint": "^8.2.6",
     "babel-jest": "20.0.3",
     "babel-loader": "7.1.5",
+    "babel-plugin-webpack-alias": "^2.1.2",
     "babel-preset-flow": "^6.23.0",
     "babel-preset-react-app": "^3.1.1",
     "babel-runtime": "6.26.0",
@@ -143,9 +136,11 @@
     "eslint": "^4.1.1",
     "eslint-config-prettier": "^2.9.0",
     "eslint-config-react-app": "^2.1.0",
+    "eslint-import-resolver-babel-module-alias": "^1.5.1",
+    "eslint-import-resolver-webpack": "^0.10.1",
     "eslint-loader": "^2.0.0",
     "eslint-plugin-flowtype": "^2.50.0",
-    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-jsx-a11y": "^5.1.1",
     "eslint-plugin-prettier": "^2.6.2",
     "eslint-plugin-react": "^7.10.0",

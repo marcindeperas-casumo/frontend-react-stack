@@ -3,7 +3,7 @@ import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
-import GameTile from "./";
+import GameTile from "Components/GameTile";
 
 const stories = storiesOf("GameTile", module);
 stories.addDecorator(withKnobs);

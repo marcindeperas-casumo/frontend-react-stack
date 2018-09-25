@@ -1,5 +1,5 @@
-import gameBrowserClientMock from "../serviceClients/GameBrowserClient";
-import sessionServiceMock from "../applicationService/SessionService";
+import gameBrowserClientMock from "Clients/GameBrowserClient";
+import sessionServiceMock from "Services/SessionService";
 import {
   GameBrowserServiceFactory,
   gameInMaintenanceMode,
@@ -41,10 +41,6 @@ describe("Game Browser Service", () => {
 
     service.config.set({ country: "mt", device: "mobile" });
   });
-
-  // afterEach(() => {
-  //   console.log(gameBrowserClientMock.handshake.mock.calls);
-  // });
 
   test("should call handshake on client", async () => {
     await service.allTopLists();

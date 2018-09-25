@@ -1,8 +1,8 @@
 import { complement, compose, prop, isNil } from "ramda";
 
 import { cacheFunction, ServiceConfig, SimpleCache } from "../lib/utils";
-import GameBrowserClient from "../serviceClients/GameBrowserClient";
-import SessionService from "./SessionService";
+import GameBrowserClient from "Clients/GameBrowserClient";
+import SessionService from "Services/SessionService";
 
 const countryAndPlatform = ({ country, platform }) => ({ country, platform });
 export const gameInMaintenanceMode = game => Boolean(game.inMaintenanceMode);

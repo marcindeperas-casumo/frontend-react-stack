@@ -1,4 +1,4 @@
-import { JackpotsClientFactory, JackpotsAPIUrl } from "./JackpotsClient";
+import { JackpotsClientFactory, JackpotsAPIUrl } from "Clients/JackpotsClient";
 
 describe("JackpotsClient", () => {
   let client;

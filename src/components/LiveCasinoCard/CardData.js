@@ -3,8 +3,8 @@ import React from "react";
 import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import CMSField from "../CMSField";
-import Matcher from "../Matcher";
+import CMSField from "Components/CMSField";
+import Matcher from "Components/Matcher";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 

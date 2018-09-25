@@ -5,8 +5,8 @@ import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { decodeString } from "../../lib/utils";
 
-import PlayAction from "./PlayAction";
-import TemporaryUnavailable from "./TemporaryUnavailable";
+import PlayAction from "Components/GameTile/PlayAction";
+import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 
 const GameTileOverlay = ({ name, slug, inMaintenanceMode, launchGame }) => {
   return (

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import info from "../../../.storybook/storybookInfo";
 
-import LiveCasinoCard from "./Card";
+import LiveCasinoCard from "Components/LiveCasinoCard/Card";
 
 import gameRoulette from "./__mocks__/Roulette.json";
 import gameTopCard from "./__mocks__/TopCard.json";
