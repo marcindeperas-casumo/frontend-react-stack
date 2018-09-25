@@ -20,6 +20,7 @@ source files is made, the target app will be reloaded.
 
 ### Development mode
 
+- Required Node version: **>=8.9.0**
 - Make sure you are running [casumo-proxy](https://github.com/Casumo/casumo-frontend-proxy) 2.5.0+
 - Add the following to your [.casumo-proxy-local](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/CustomEnv.md) for casumo-frontend:
 
