@@ -18,10 +18,7 @@ stories.add(
   "Card MoneyWheel",
   () => (
     <div style={{ maxWidth: "320px" }}>
-      <LiveCasinoCard
-        {...gameMoneyWheel}
-        launchGame={action(gameMoneyWheel.slug)}
-      />
+      <LiveCasinoCard game={gameMoneyWheel} />
     </div>
   ),
   info({ text: "Card MoneyWheel" })
@@ -31,10 +28,7 @@ stories.add(
   "Card Roulette",
   () => (
     <div style={{ maxWidth: "320px" }}>
-      <LiveCasinoCard
-        {...gameRoulette}
-        launchGame={action(gameRoulette.slug)}
-      />
+      <LiveCasinoCard game={gameRoulette} />
     </div>
   ),
   info({ text: "Card Roulette" })
@@ -44,10 +38,7 @@ stories.add(
   "Card Blackjack Open Seats",
   () => (
     <div style={{ maxWidth: "320px" }}>
-      <LiveCasinoCard
-        {...gameBlackjack}
-        launchGame={action(gameBlackjack.slug)}
-      />
+      <LiveCasinoCard game={gameBlackjack} />
     </div>
   ),
   info({ text: "Card Blackjack Open Seats" })
@@ -57,10 +48,7 @@ stories.add(
   "Card Blackjack Full",
   () => (
     <div style={{ maxWidth: "320px" }}>
-      <LiveCasinoCard
-        {...gameBlackjackFull}
-        launchGame={action(gameBlackjackFull.slug)}
-      />
+      <LiveCasinoCard game={gameBlackjackFull} />
     </div>
   ),
   info({ text: "Card Blackjack Full" })
@@ -70,7 +58,7 @@ stories.add(
   "Card TopCard (Football)",
   () => (
     <div style={{ maxWidth: "320px" }}>
-      <LiveCasinoCard {...gameTopCard} launchGame={action(gameTopCard.slug)} />
+      <LiveCasinoCard game={gameTopCard} />
     </div>
   ),
   info({ text: "Card TopCard (Football)" })
