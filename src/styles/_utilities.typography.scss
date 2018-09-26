@@ -1,7 +1,3 @@
-.u-font-weight-bold {
-  font-weight: 700;
-}
-
 .u-text-transform-capitalize {
   text-transform: capitalize;
 }
@@ -17,4 +13,8 @@
   -webkit-line-clamp: 2;
   overflow: hidden;
   /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
+}
+
+.u-text-nowrap {
+  white-space: nowrap;
 }

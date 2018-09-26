@@ -9,7 +9,7 @@ const GameTileJackpot = ({ jackpotInfo }) => {
     <Flex
       justify="center"
       align="end"
-      className="o-ratio__content u-padding-bottom--normal u-padding-horiz"
+      className="o-ratio__content u-padding-bottom--lg u-padding-horiz"
     >
       <JackpotTicker {...jackpotInfo} className={jackpotTickerClass} />
     </Flex>

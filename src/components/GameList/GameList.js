@@ -10,7 +10,7 @@ import GameListTitle from "Components/GameList/GameListTitle";
 import GameListExclusiveTiles from "Components/GameList/GameListExclusiveTiles";
 import LiveCasinoCard from "Components/LiveCasinoCard";
 
-export const emitLaunchGame = slug => {
+export const emitLaunchGame = (slug: string) => {
   legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
     slug,
     playForFun: false,
@@ -34,9 +34,9 @@ const displayType = {
 };
 
 const paddingPerDevice = {
-  default: "small",
-  tablet: "xlarge",
-  desktop: "xlarge",
+  default: "md",
+  tablet: "2xlg",
+  desktop: "2xlg",
 };
 
 type Props = {|
@@ -50,13 +50,13 @@ export default class GameList extends PureComponent<Props> {
   render() {
     const { display = "tiles", title, link } = this.props;
     return (
-      <div className="u-padding-top--semi">
+      <div className="u-padding-top--xlg">
         <div className="u-display--flex">
           <GameListTitle title={title} link={link} />
         </div>
         <ScrollingContainer
           padding={paddingPerDevice}
-          itemSpacing={display === "liveCasinoCards" ? "small" : "default"}
+          itemSpacing={display === "liveCasinoCards" ? "md" : "default"}
         >
           {(displayType[display] || displayType.default)(this.props)}
         </ScrollingContainer>
