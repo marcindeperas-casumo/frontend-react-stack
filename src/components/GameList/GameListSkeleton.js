@@ -10,8 +10,7 @@ type Props = {
   itemRatio?: number,
   itemGap?: number,
   cornerRadius?: number,
-  itemHeight: number,
-  display: string,
+  display?: string,
   title?: boolean,
 };
 
@@ -113,6 +112,7 @@ const GameListSkeleton = ({
       matchers={{
         cards: renderCards,
         tiles: renderTiles,
+        default: renderTiles,
       }}
       {...props}
     />

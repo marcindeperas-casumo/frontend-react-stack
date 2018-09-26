@@ -1,4 +1,4 @@
-import { cacheFunction, SimpleCache } from "../lib/utils";
+import { cacheFunction, SimpleCache } from "Utils/index";
 import CommonClient from "Clients/CommonClient";
 
 export const CommonServiceFactory = ({ commonClient }) => {

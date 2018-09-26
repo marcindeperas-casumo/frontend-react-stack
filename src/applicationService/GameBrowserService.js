@@ -1,6 +1,6 @@
 import { complement, compose, prop, isNil } from "ramda";
 
-import { cacheFunction, ServiceConfig, SimpleCache } from "../lib/utils";
+import { cacheFunction, ServiceConfig, SimpleCache } from "Utils/index";
 import GameBrowserClient from "Clients/GameBrowserClient";
 import SessionService from "Services/SessionService";
 
@@ -135,6 +135,7 @@ export const GameBrowserServiceFactory = ({
             seats: table.seatsTaken
               ? table.seats - table.seatsTaken.length
               : null,
+            provider: table.provider,
           },
         })),
       };

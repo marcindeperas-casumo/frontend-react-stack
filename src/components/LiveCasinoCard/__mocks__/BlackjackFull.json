@@ -4,7 +4,7 @@
   "lobby": {
     "tableId": "l3gual5z3tuqf22i",
     "type": "Blackjack",
-    "image": "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_L.jpg",
+    "image": "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
     "bets": {
       "symbol":"£",
       "min":5,
@@ -13,6 +13,7 @@
     "players": 2,
     "results": null,
     "betBehind": true,
-    "seats": 0
+    "seats": 0,
+    "provider": "casumo"
   }
 }

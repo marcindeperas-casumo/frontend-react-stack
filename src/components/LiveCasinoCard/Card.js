@@ -1,20 +1,21 @@
 import React from "react";
-import { decodeString } from "../../lib/utils";
 import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 
+import { decodeString } from "Utils/index";
 import LazyImage from "../LazyImage";
 import CMSField from "Components/CMSField";
-import CardPlayers from "Components/LiveCasinoCard/CardPlayers";
+import CardFooter from "Components/LiveCasinoCard/CardFooter";
 import CardData from "Components/LiveCasinoCard/CardData";
+import { emitLaunchGame } from "Components/GameList/GameList";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
-const CasinoHeader = ({ lobby }) => (
+const CasinoHeader = ({ image, lobby }) => (
   <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
-    <LazyImage className="o-ratio__content" src={lobby.image} dpr={3} />
+    <LazyImage className="o-ratio__content" src={image} dpr={3} />
     <Flex
       direction="vertical"
       align="center"
@@ -50,27 +51,23 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
   </Flex>
 );
 
-const CasinoFooter = ({ number }) => (
-  <div className="t-border-top t-border--current-color t-color-grey-light-2">
-    <CardPlayers number={number} />
-  </div>
-);
-
-export default function LiveCasinoCard({ lobby, name, slug, launchGame }) {
+export default function LiveCasinoCard({ game }) {
   return (
-    <Card
-      className="u-width--1/1"
-      spacing="md"
-      header={() => <CasinoHeader lobby={lobby} />}
-      content={() => (
-        <CasinoContent
-          name={name}
-          lobby={lobby}
-          slug={slug}
-          launchGame={launchGame}
-        />
-      )}
-      footer={() => <CasinoFooter number={lobby.players} />}
-    />
+    <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
+      <Card
+        className="u-width--1/1"
+        spacing="md"
+        header={() => <CasinoHeader {...game.lobby} />}
+        content={() => (
+          <CasinoContent
+            name={game.name}
+            lobby={game.lobby}
+            slug={game.slug}
+            launchGame={() => emitLaunchGame(game.slug)}
+          />
+        )}
+        footer={() => <CardFooter {...game.lobby} />}
+      />
+    </Flex.Item>
   );
 }
