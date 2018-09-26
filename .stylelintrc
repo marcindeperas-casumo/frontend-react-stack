@@ -1,4 +1,5 @@
 {
+    ignoreFiles: ['**/*.js'],
     "extends": ["stylelint-config-sass-guidelines", "stylelint-prettier/recommended"],
     "plugins": [
         "stylelint-selector-pattern",

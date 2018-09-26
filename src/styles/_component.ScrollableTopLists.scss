@@ -27,3 +27,8 @@ $exclusive-game-tile-widths: (
   @include cudl-breakpoint-with($exclusive-game-tile-widths, width);
   max-width: 188px;
 }
+
+.c-live-casino-card {
+  max-width: 320px;
+  width: 86%;
+}

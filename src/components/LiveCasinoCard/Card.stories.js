@@ -1,7 +1,8 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { withInfo } from "@storybook/addon-info";
+import { action } from "@storybook/addon-actions";
+import info from "../../../.storybook/storybookInfo";
 
 import LiveCasinoCard from "Components/LiveCasinoCard/Card";
 
@@ -15,25 +16,50 @@ const stories = storiesOf("Card", module);
 
 stories.add(
   "Card MoneyWheel",
-  withInfo("Card")(() => <LiveCasinoCard {...gameMoneyWheel} />)
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <LiveCasinoCard game={gameMoneyWheel} />
+    </div>
+  ),
+  info({ text: "Card MoneyWheel" })
 );
 
 stories.add(
   "Card Roulette",
-  withInfo("Card")(() => <LiveCasinoCard {...gameRoulette} />)
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <LiveCasinoCard game={gameRoulette} />
+    </div>
+  ),
+  info({ text: "Card Roulette" })
 );
 
 stories.add(
   "Card Blackjack Open Seats",
-  withInfo("Card")(() => <LiveCasinoCard {...gameBlackjack} />)
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <LiveCasinoCard game={gameBlackjack} />
+    </div>
+  ),
+  info({ text: "Card Blackjack Open Seats" })
 );
 
 stories.add(
   "Card Blackjack Full",
-  withInfo("Card")(() => <LiveCasinoCard {...gameBlackjackFull} />)
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <LiveCasinoCard game={gameBlackjackFull} />
+    </div>
+  ),
+  info({ text: "Card Blackjack Full" })
 );
 
 stories.add(
   "Card TopCard (Football)",
-  withInfo("Card")(() => <LiveCasinoCard {...gameTopCard} />)
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <LiveCasinoCard game={gameTopCard} />
+    </div>
+  ),
+  info({ text: "Card TopCard (Football)" })
 );
