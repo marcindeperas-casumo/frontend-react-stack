@@ -18,13 +18,9 @@ type State = {
 export default class Curated extends Component<Props, State> {
   state = { data: null };
 
-  fetchCurated = async () => {
+  async componentDidMount() {
     const response = await cmsService.getPage({ slug: "curated-component" });
     this.setState({ data: response });
-  };
-
-  async componentDidMount() {
-    this.fetchCurated();
   }
 
   get curatedCard() {
