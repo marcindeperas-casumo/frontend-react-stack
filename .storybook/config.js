@@ -16,7 +16,7 @@ function loadStories() {
 addDecorator(withInfo);
 addDecorator(withKnobs);
 addDecorator(story => (
-  <div className="o-wrapper u-padding--xlarge">{story()}</div>
+  <div className="o-wrapper u-padding--2xlg">{story()}</div>
 ));
 
 configure(loadStories, module);

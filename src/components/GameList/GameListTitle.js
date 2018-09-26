@@ -6,12 +6,12 @@ export default function GameListTitle({ title, link }) {
   return (
     <Text
       className={classNames(
-        "u-padding-bottom--small",
-        "u-padding-bottom--normal@tablet",
-        "u-padding-bottom--normal@desktop",
-        "u-padding-left--small",
-        "u-padding-left--xlarge@tablet",
-        "u-padding-left--xlarge@desktop",
+        "u-padding-bottom--md",
+        "u-padding-bottom--lg@tablet",
+        "u-padding-bottom--lg@desktop",
+        "u-padding-left--md",
+        "u-padding-left--2xlg@tablet",
+        "u-padding-left--2xlg@desktop",
         "u-font-weight-bold",
         link && "flex-1"
       )}
