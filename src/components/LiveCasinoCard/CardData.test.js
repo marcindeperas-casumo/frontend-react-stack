@@ -13,10 +13,10 @@ import BlackjackFull from "./__mocks__/BlackjackFull.json";
 let component;
 
 describe("LiveCasinoCard CardData > Roulette", () => {
-  let game = Roulette.lobby;
+  let lobby = Roulette.lobby;
 
   beforeEach(() => {
-    component = mount(<CardData {...game} />);
+    component = mount(<CardData lobby={lobby} />);
   });
 
   it("should render results", () => {
@@ -26,7 +26,7 @@ describe("LiveCasinoCard CardData > Roulette", () => {
   it("should render 5 badge values", () => {
     expect(component.find("Badge")).toHaveLength(5);
 
-    const results = game.results.slice(0, 5);
+    const results = lobby.results.slice(0, 5);
     const rendered = [];
     component.find("Badge").forEach(node => {
       rendered.push(node.text());
@@ -42,10 +42,10 @@ describe("LiveCasinoCard CardData > Roulette", () => {
 });
 
 describe("LiveCasinoCard CardData > TopCard (Football Studio)", () => {
-  let game = TopCard.lobby;
+  let lobby = TopCard.lobby;
 
   beforeEach(() => {
-    component = mount(<CardData {...game} />);
+    component = mount(<CardData lobby={lobby} />);
   });
 
   it("should render results", () => {
@@ -55,7 +55,7 @@ describe("LiveCasinoCard CardData > TopCard (Football Studio)", () => {
   it("should render 5 badges values with Football letters", () => {
     expect(component.find("Badge")).toHaveLength(5);
 
-    const results = game.results.slice(0, 5).map(v => topCardLetters[v]);
+    const results = lobby.results.slice(0, 5).map(v => topCardLetters[v]);
     const rendered = [];
     component.find("Badge").forEach(node => {
       rendered.push(node.text());
@@ -71,10 +71,10 @@ describe("LiveCasinoCard CardData > TopCard (Football Studio)", () => {
 });
 
 describe("LiveCasinoCard CardData > MoneyWheel", () => {
-  let game = MoneyWheel.lobby;
+  let lobby = MoneyWheel.lobby;
 
   beforeEach(() => {
-    component = mount(<CardData {...game} />);
+    component = mount(<CardData lobby={lobby} />);
   });
 
   it("should render results", () => {
@@ -84,7 +84,7 @@ describe("LiveCasinoCard CardData > MoneyWheel", () => {
   it("should render the 5 badges values with no leading 0", () => {
     expect(component.find("Badge")).toHaveLength(5);
 
-    const results = game.results
+    const results = lobby.results
       .slice(0, 5)
       .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
     const rendered = [];
@@ -102,11 +102,11 @@ describe("LiveCasinoCard CardData > MoneyWheel", () => {
 });
 
 describe("LiveCasinoCard CardData > Blackjack", () => {
-  let game = Blackjack.lobby;
+  let lobby = Blackjack.lobby;
 
   describe("Open Seats", () => {
     beforeEach(() => {
-      component = mount(<CardData {...game} />);
+      component = mount(<CardData lobby={lobby} />);
     });
 
     it("should render results", () => {
@@ -126,8 +126,8 @@ describe("LiveCasinoCard CardData > Blackjack", () => {
 
   describe("No Seats", () => {
     beforeEach(() => {
-      game.seats = 0;
-      component = mount(<CardData {...game} />);
+      lobby.seats = 0;
+      component = mount(<CardData lobby={lobby} />);
     });
 
     it("should render 1 badge bet with behind text", () => {
