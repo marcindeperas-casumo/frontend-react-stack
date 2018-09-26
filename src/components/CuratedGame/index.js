@@ -2,10 +2,10 @@
 import React, { Component } from "react";
 
 import Flex from "@casumo/cmp-flex";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Skeleton from "@casumo/cmp-skeleton";
 
 import cmsService from "Services/CMSService";
-import ResponsiveImage from "@casumo/cmp-responsive-image";
 
 type Props = {
   className?: String,
