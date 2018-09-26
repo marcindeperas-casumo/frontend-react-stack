@@ -12,7 +12,7 @@ type Props = {
 };
 
 type State = {
-  response: {},
+  data: {},
 };
 
 export default class Curated extends Component<Props, State> {
