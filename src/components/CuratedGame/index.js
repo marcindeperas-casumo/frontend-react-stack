@@ -2,11 +2,9 @@
 import React, { Component } from "react";
 
 import Flex from "@casumo/cmp-flex";
-// import Text from "@casumo/cmp-text";
 import Skeleton from "@casumo/cmp-skeleton";
 
-// import CMSField from "Components/CMSField";
-import { getCMSField } from "Services/CMSService";
+import cmsService from "Services/CMSService";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 
 type Props = {
@@ -14,32 +12,27 @@ type Props = {
 };
 
 type State = {
-  background: string,
+  response: {},
 };
 
 export default class Curated extends Component<Props, State> {
-  state = {
-    background: null,
-  };
+  state = { data: null };
 
-  getBackground = async () => {
-    const src = await getCMSField({
-      slug: "curated-component",
-      field: "small_image",
-      fallbackTextFn: () => {},
-    });
-    this.setState({ background: src });
+  fetchCurated = async () => {
+    const response = await cmsService.getPage({ slug: "curated-component" });
+    this.setState({ data: response });
   };
 
   async componentDidMount() {
-    this.getBackground();
+    this.fetchCurated();
   }
 
-  get curatedContent() {
-    return <ResponsiveImage src={this.state.background} />;
+  get curatedCard() {
+    const { data } = this.state;
+    return <ResponsiveImage src={data.fields.small_image} />;
   }
 
-  get skeleton() {
+  get curatedSkeleton() {
     return (
       <Skeleton width="500" height="250">
         <rect x="0" y="0" rx="0" ry="0" width="500" height="250" />
@@ -49,11 +42,11 @@ export default class Curated extends Component<Props, State> {
 
   render() {
     const { className } = this.props;
-    const loading = this.state.background === null;
+    const { data } = this.state;
 
     return (
       <Flex className={className} direction="vertical" spacing="none">
-        {loading ? this.skeleton : this.curatedContent}
+        {data === null ? this.curatedSkeleton : this.curatedCard}
       </Flex>
     );
   }

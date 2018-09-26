@@ -6,6 +6,7 @@ import GameBrowserService, {
 } from "Services/GameBrowserService";
 import JackpotsService from "Services/JackpotsService";
 import GameList from "Components/GameList";
+import Curated from "Components/CuratedGame";
 import { arrayToObject } from "Utils/index";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
@@ -89,6 +90,7 @@ export default class GamesListsContainer extends React.Component {
 
     return (
       <React.Fragment>
+        <Curated />
         {loading && <GamesListsSkeleton />}
         {!loading &&
           filteredList.map(gameList => (
