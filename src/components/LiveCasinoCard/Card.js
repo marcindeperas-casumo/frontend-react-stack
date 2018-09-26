@@ -13,9 +13,9 @@ import { emitLaunchGame } from "Components/GameList/GameList";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
-const CasinoHeader = ({ image, lobby }) => (
+const CasinoHeader = ({ lobby }) => (
   <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
-    <LazyImage className="o-ratio__content" src={image} dpr={3} />
+    <LazyImage className="o-ratio__content" src={lobby.image} dpr={3} />
     <Flex
       direction="vertical"
       align="center"
@@ -25,7 +25,7 @@ const CasinoHeader = ({ image, lobby }) => (
         background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
       }}
     >
-      <CardData {...lobby} />
+      <CardData lobby={lobby} />
     </Flex>
   </div>
 );
@@ -57,7 +57,7 @@ export default function LiveCasinoCard({ game }) {
       <Card
         className="u-width--1/1"
         spacing="md"
-        header={() => <CasinoHeader {...game.lobby} />}
+        header={() => <CasinoHeader lobby={game.lobby} />}
         content={() => (
           <CasinoContent
             name={game.name}
