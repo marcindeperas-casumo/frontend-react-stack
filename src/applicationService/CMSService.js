@@ -1,7 +1,7 @@
 import { compose, identity, ifElse, isNil, prop } from "ramda";
 
 import cmsClient from "Clients/CMSClient";
-import { composePromises, fromCommonHandshake } from "../lib/utils";
+import { composePromises, fromCommonHandshake } from "Utils/index";
 import commonService from "Services/CommonService";
 import sessionService from "Services/SessionService";
 

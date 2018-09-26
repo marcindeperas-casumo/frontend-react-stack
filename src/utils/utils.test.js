@@ -3,6 +3,7 @@ import {
   SimpleCache,
   matchingGroups,
   arrayToObject,
+  makeProtocolAwareUrl,
 } from "./utils";
 
 describe("cacheFunction()", () => {
@@ -145,5 +146,21 @@ describe("arrayToObject()", () => {
         spiritAnimal: "🐧",
       },
     });
+  });
+});
+
+describe("makeProtocolAwareUrl()", () => {
+  test("should add protocol if starts with //", () => {
+    expect(makeProtocolAwareUrl("//foo.com/bar")).toBe("http://foo.com/bar");
+  });
+
+  test("should add protocol and hostname if starts with /", () => {
+    expect(makeProtocolAwareUrl("/bar")).toBe("http://localhost/bar");
+  });
+
+  test("should not touch it otherwise", () => {
+    expect(makeProtocolAwareUrl("http://casumo.com/cometd")).toBe(
+      "http://casumo.com/cometd"
+    );
   });
 });
