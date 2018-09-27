@@ -8,4 +8,5 @@ module.exports = {
   Services: path.resolve(__dirname, "..", "src", "applicationService"),
   Clients: path.resolve(__dirname, "..", "src", "serviceClients"),
   Utils: path.resolve(__dirname, "..", "src", "utils"),
+  Styles: path.resolve(__dirname, "..", "src", "styles"),
 };
