@@ -16,28 +16,28 @@ const CuratedGameFooter = ({ data }) => (
   <Flex align="center">
     <Flex.Item>
       <LazyImage
+        className="t-border-r--16"
         width="60"
         height="60"
-        src="https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
+        src={data.game.logoBackground}
+        mark={data.game.logo}
         imgixOpts={{ w: 60 }}
       />
     </Flex.Item>
     <Flex.Block>
       <Text tag="span" className="t-color-white">
-        {data.fields.game}
+        {data.game.name}
       </Text>
     </Flex.Block>
     <Flex.Item>
       <Flex justify="center">
-        <Button onClick={emitLaunchGame(data.fields.game)} variant="variant-1">
+        <Button onClick={emitLaunchGame(data.game.slug)} variant="variant-1">
           <PlayIcon size="med" />
-          <span className="u-margin-left--sm">
-            {data.fields.primaryActionText}
-          </span>
+          <span className="u-margin-left--sm">{data.primaryActionText}</span>
         </Button>
         <a
-          href={`/en/play/${data.fields.game}`}
-          className="u-display--none@mobile u-margin-left--md"
+          href={`/en/play/${data.game.slug}`}
+          className="u-display--none@mobile u-margin-left--lg"
         >
           <MoreIcon
             size="med"
@@ -59,13 +59,13 @@ export default class CuratedGameContent extends PureComponent<Props> {
           mobile: "end",
           default: "space-between",
         }}
-        spacing="2xlg"
+        spacing="lg"
         header={() => (
           <Text
             className="u-font-weight-bold t-color-white"
             size="2xlg"
             tag="span"
-            dangerouslySetInnerHTML={stringToHTML(data.fields.header)}
+            dangerouslySetInnerHTML={stringToHTML(data.header)}
           />
         )}
         footer={() => <CuratedGameFooter data={data} />}
