@@ -25,13 +25,17 @@ const CuratedGameFooter = ({ data }) => (
       />
     </Flex.Item>
     <Flex.Block>
-      <Text tag="span" className="t-color-white">
+      <Text tag="span" className="u-font-weight-bold t-color-white">
         {data.game.name}
       </Text>
     </Flex.Block>
     <Flex.Item>
       <Flex justify="center">
-        <Button onClick={emitLaunchGame(data.game.slug)} variant="variant-1">
+        <Button
+          onClick={emitLaunchGame(data.game.slug)}
+          variant="variant-1"
+          className="u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+        >
           <PlayIcon size="med" />
           <span className="u-margin-left--sm">{data.primaryActionText}</span>
         </Button>
@@ -59,7 +63,10 @@ export default class CuratedGameContent extends PureComponent<Props> {
           mobile: "end",
           default: "space-between",
         }}
-        spacing="lg"
+        spacing={{
+          mobile: "2xlg",
+          default: "lg",
+        }}
         header={() => (
           <Text
             className="u-font-weight-bold t-color-white"

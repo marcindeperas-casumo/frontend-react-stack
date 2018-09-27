@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
-import CuratedGame from "./CuratedCard";
+import CuratedCard from "./CuratedCard";
 
 import curatedGameMock from "./__mocks__/curatedGame.json";
 
@@ -15,7 +15,7 @@ stories.add(
         className="u-margin-left--auto u-margin-right--auto"
         style={{ maxWidth: "686px" }}
       >
-        <CuratedGame data={curatedGameMock} />{" "}
+        <CuratedCard data={curatedGameMock} />
       </div>
     );
   },
