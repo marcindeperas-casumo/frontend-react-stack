@@ -1,0 +1,19 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+
+//prettier-ignore
+$curated-card-ratios: (
+  mobile: (
+    352/343
+  ) * 100%,
+  phablet: (
+    264/496
+  ) * 100%,
+  tablet: (
+    264/686
+  ) * 100%,
+);
+
+.o-ratio--curated-card::before {
+  @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
+}
