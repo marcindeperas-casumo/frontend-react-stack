@@ -1,4 +1,4 @@
-import { commonFetch } from "../lib/utils";
+import { commonFetch } from "Utils/utils";
 
 export const fetchService = ({ method, url, data }) => {
   return commonFetch(url, {

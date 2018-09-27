@@ -1,7 +1,6 @@
 import { put, call } from "redux-saga/effects";
 import { actions } from "Reducers/fetch";
 import { fetchService } from "Services/FetchService";
-import { sleep } from "../../lib/utils";
 
 export function* fetchSaga(action) {
   const { name, method, url, data, postFetch } = action;
