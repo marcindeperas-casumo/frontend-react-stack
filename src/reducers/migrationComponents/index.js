@@ -1,5 +1,3 @@
-import { uniq } from "ramda";
-
 export const types = {
   ACTIVATE_COMPONENT: "MIGRATION_COMPONENTS/ACTIVATE_COMPONENT",
 };
@@ -13,7 +11,7 @@ export const reducer = (state = initialState, action) => {
     case types.ACTIVATE_COMPONENT:
       return {
         ...state,
-        activeComponents: uniq([...state.activeComponents, action.componentId]),
+        activeComponents: [action.componentId],
       };
     default:
       return state;
