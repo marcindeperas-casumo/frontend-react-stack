@@ -8,7 +8,7 @@ import Skeleton from "@casumo/cmp-skeleton";
 import cmsService from "Services/CMSService";
 
 type Props = {
-  className?: String,
+  className?: string,
 };
 
 type State = {
