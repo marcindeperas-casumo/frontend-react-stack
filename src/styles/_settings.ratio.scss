@@ -9,3 +9,15 @@ $cudl-ratios: (
     padding-bottom: 180/320,
   ),
 );
+//prettier-ignore
+$curated-ratios: (
+  mobile: (
+    352/343
+  ) * 100%,
+  phablet: (
+    264/496
+  ) * 100%,
+  tablet: (
+    264/686
+  ) * 100%,
+);

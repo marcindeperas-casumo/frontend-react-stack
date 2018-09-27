@@ -1,0 +1,5 @@
+@import "cudl-breakpoints";
+
+.o-ratio--curated::before {
+  @include cudl-breakpoint-with($curated-ratios, padding-bottom);
+}
