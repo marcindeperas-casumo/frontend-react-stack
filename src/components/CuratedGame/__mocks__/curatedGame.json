@@ -24,7 +24,8 @@
     "medium_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png",
     "large_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png",
     "game": ["starburst"],
-    "header": "Game<br/>of the<br/>day"
+    "header": "GAME<br>OF THE<br>DAY",
+    "primaryActionText": "Play"
   },
   "children": [],
   "childSlugs": []

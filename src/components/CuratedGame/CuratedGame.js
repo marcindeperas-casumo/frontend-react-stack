@@ -12,9 +12,12 @@ export default class CuratedGame extends PureComponent<Props> {
     const { data } = this.props;
 
     return (
-      <div className="c-curated o-ratio">
+      <div className="c-curated o-ratio o-ratio--curated t-border-r--8">
         <CuratedGameImage className="o-ratio__content" data={data} />
-        <CuratedGameContent className="o-ratio__content" data={data} />
+        <CuratedGameContent
+          className="o-ratio__content u-padding--md@mobile u-padding--lg"
+          data={data}
+        />
       </div>
     );
   }
