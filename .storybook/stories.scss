@@ -1,3 +1,33 @@
 @import "cudl-reset";
-@import "cudl-flex";
+@import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-typography);
 @import "cudl-typography";
+@include cudl-reset-compile(cudl-sass-typography);
+
+$cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  "Helvetica Neue", Arial, Helvetica, sans-serif;
+
+$cudl-line-height: 1.25;
+
+// stylelint-disable xi/selector-pattern
+html {
+  font: #{$cudl-root-font-size} $cudl-font-stack;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: greyscale;
+}
+
+@if type-of($cudl-line-height) == map {
+  html {
+    @include cudl-breakpoint-with($cudl-line-height, line-height);
+  }
+} @else {
+  html {
+    line-height: $cudl-line-height;
+  }
+}
+
+// remove cudl-reset heading margin bottom property.
+#{cudl-headings()} {
+  margin-bottom: 0;
+}
+// stylelint-enable xi/selector-pattern

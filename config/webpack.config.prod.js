@@ -165,6 +165,21 @@ module.exports = {
               },
             ],
           },
+          // SVG React loader - see https://github.com/boopathi/react-svg-loader/tree/master/packages/react-svg-loader
+          {
+            test: /\.svg$/,
+            use: [
+              {
+                loader: "babel-loader",
+              },
+              {
+                loader: "react-svg-loader",
+                options: {
+                  jsx: true, // true outputs JSX tags
+                },
+              },
+            ],
+          },
           // "url" loader works just like "file" loader but it also embeds
           // assets smaller than specified size as data URLs to avoid requests.
           {

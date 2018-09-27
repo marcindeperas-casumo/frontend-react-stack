@@ -45,7 +45,7 @@ const renderResults = ({ results, type }) => {
       </div>
       <Text
         size="xs"
-        className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
         {type === "TopCard"
           ? getText("recent_letters")
@@ -78,7 +78,7 @@ const renderSeats = ({ seats }) => (
     </Badge>
     <Text
       size="xs"
-      className="t-color-white u-margin-bottom--small u-font-weight-bold u-text-transform-uppercase"
+      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
     >
       {seats ? getText("open_seats") : getText("table_full")}
     </Text>
@@ -97,16 +97,16 @@ const DataType = props => (
   />
 );
 
-const CardData = game => {
+const CardData = ({ lobby }) => {
   let renderType = null;
-  if (game.type === "Blackjack") renderType = "seats";
-  if (["MoneyWheel", "Roulette", "TopCard"].includes(game.type))
+  if (lobby.type === "Blackjack") renderType = "seats";
+  if (["MoneyWheel", "Roulette", "TopCard"].includes(lobby.type))
     renderType = "results";
 
   return (
     renderType && (
       <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        <DataType condition={renderType} {...game} />
+        <DataType condition={renderType} {...lobby} />
       </div>
     )
   );
