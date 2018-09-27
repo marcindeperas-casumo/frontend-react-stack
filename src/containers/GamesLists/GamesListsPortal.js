@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component, PureComponent } from "react";
 import ReactDOM from "react-dom";
 
 import { getHostElement } from "Utils/index";
@@ -7,7 +7,7 @@ import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
 const GAMES_LISTS_HOST_ID = "react-host-games-lists";
 
-export default class GamesListsPortal extends React.Component {
+export class GamesListsPortal extends React.Component {
   constructor(props) {
     super(props);
     this.otherComponentRoot = getHostElement(GAMES_LISTS_HOST_ID);
@@ -38,3 +38,33 @@ export default class GamesListsPortal extends React.Component {
     );
   }
 }
+
+class GamesListsPortal2 extends PureComponent {
+  constructor(props) {
+    super(props);
+    this.otherComponentRoot = getHostElement(GAMES_LISTS_HOST_ID);
+    this.el = document.createElement("div");
+  }
+
+  componentDidMount() {
+    if (this.otherComponentRoot.tagName.toUpperCase() !== "BODY") {
+      while (this.otherComponentRoot.hasChildNodes()) {
+        this.otherComponentRoot.removeChild(this.otherComponentRoot.lastChild);
+      }
+    }
+
+    this.otherComponentRoot.appendChild(this.el);
+  }
+
+  componentWillUnmount() {
+    this.otherComponentRoot.removeChild(this.el);
+    this.otherComponentRoot = null;
+    this.el = null;
+  }
+
+  render() {
+    return ReactDOM.createPortal("DUDA", this.el);
+  }
+}
+
+export default GamesListsPortal2;
