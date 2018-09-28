@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "Containers/App";
+import App from "./containers/App";
 import legacyBridge from "./legacyBridge";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
@@ -27,8 +27,8 @@ const renderApp = Component =>
 renderApp(App);
 
 if (module.hot) {
-  module.hot.accept("./components/App", () => {
-    const NextApp = require("./components/App").default;
+  module.hot.accept("./containers/App", () => {
+    const NextApp = require("./containers/App").default;
     renderApp(NextApp);
   });
 }

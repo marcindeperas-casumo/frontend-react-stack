@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import { connect } from "react-redux";
 import { appStarted } from "Reducers/app";
-import { getAppData } from "./selectors/index";
+import { getAppData } from "Containers/App/selectors";
 import App from "Components/App";
 
 class AppContainer extends PureComponent {

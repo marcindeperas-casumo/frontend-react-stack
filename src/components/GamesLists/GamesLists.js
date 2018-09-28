@@ -1,4 +1,5 @@
 import React, { PureComponent } from "react";
+import { connect } from "react-redux";
 import GameListTitle from "Components/GameList/GameListTitle";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 import GameTile from "Components/GameTile";
@@ -10,61 +11,49 @@ const paddingPerDevice = {
   desktop: "2xlg",
 };
 
-const game = {
-  name: "Gonzo&#8217;s Quest",
-  slug: "gonzos-quest",
-  logoBackground:
-    "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
-  logo:
-    "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
-  hasPlayForFun: true,
-  inMaintenanceMode: false,
-  jackpotId: null,
-};
+const emitLaunchGame = x => console.debug("emitLaunchGame", x);
 
-class Game extends PureComponent {
+export class GameExclusive extends PureComponent {
   render() {
-    const { id } = this.props;
+    const { slug } = this.props;
     return (
-      <Flex.Item className="o-flex__item-fixed-size c-top-game">
-        {
-          <GameTile
-            {...{ ...game, name: game.name + id }}
-            launchGame={() => null}
-          />
-        }
+      <Flex.Item className="o-flex__item-fixed-size o-flex c-exclusive-game">
+        <GameTile
+          {...this.props}
+          ratio="game-tile-exclusive"
+          imgixOpts={{
+            w: 188,
+            h: 280,
+            fit: "crop",
+          }}
+          launchGame={() => emitLaunchGame(slug)}
+        />
       </Flex.Item>
     );
   }
 }
 
-class GameContainer extends PureComponent {
+export class Game extends PureComponent {
   render() {
-    const { id } = this.props;
-    return <Game id={`resolved ${id}`} />;
-  }
-}
-
-class Game2 extends PureComponent {
-  render() {
+    const { slug } = this.props;
     return (
-      <div className="u-padding-left--xlg" style={{ background: "red" }}>
-        {this.props.id}
-      </div>
+      <Flex.Item className="o-flex__item-fixed-size c-top-game">
+        {<GameTile {...this.props} launchGame={() => emitLaunchGame(slug)} />}
+      </Flex.Item>
     );
   }
 }
 
-class Game2Container extends PureComponent {
-  render() {
-    const { id } = this.props;
-    return <Game2 id={`resolved ${id}`} />;
-  }
-}
+const GameContainer = connect((state, props) => state.entities.games[props.id])(
+  Game
+);
+const ExclusiveGameContainer = connect(
+  (state, props) => state.entities.games[props.id]
+)(GameExclusive);
 
-class ListOfGames extends PureComponent {
+export class ListOfGames extends PureComponent {
   render() {
-    const { title, gameIds, gameComponent: Component } = this.props;
+    const { title, games, gameComponent: Component } = this.props;
     return (
       <div className="u-padding-top--xlg">
         <div className="u-display--flex">
@@ -72,7 +61,7 @@ class ListOfGames extends PureComponent {
         </div>
 
         <ScrollingContainer padding={paddingPerDevice}>
-          {gameIds.map(gameId => (
+          {games.map(gameId => (
             <Component key={gameId} id={gameId} />
           ))}
         </ScrollingContainer>
@@ -81,19 +70,15 @@ class ListOfGames extends PureComponent {
   }
 }
 
-class ListOfGamesContainer extends PureComponent {
-  render() {
-    const { listId } = this.props;
-    const gameIds = Array(30)
-      .fill(listId)
-      .map((x, i) => `${x} ${i}`);
+const a = { exclusiveGames: ExclusiveGameContainer, default: GameContainer };
+const ListOfGamesContainer = connect((state, props) => {
+  return {
+    ...state.entities.lists[props.listId],
+    gameComponent: a[props.listId] || a.default,
+  };
+})(ListOfGames);
 
-    const C = listId === "list-1" ? GameContainer : Game2Container;
-    return <ListOfGames gameComponent={C} title={listId} gameIds={gameIds} />;
-  }
-}
-
-class ListOfGamesLists extends PureComponent {
+export class ListOfGamesLists extends PureComponent {
   render() {
     const { listIds } = this.props;
     return listIds.map(listId => {

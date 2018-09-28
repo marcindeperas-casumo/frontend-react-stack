@@ -9,7 +9,12 @@ export function* fetchSaga(action) {
     yield put(actions.clearError(name));
     yield put(actions.sendRequest(name));
 
-    const response = yield call(fetchService, { method, url, data });
+    let response;
+    if (action.asyncCall) {
+      response = yield call(action.asyncCall);
+    } else {
+      response = yield call(fetchService, { method, url, data });
+    }
 
     if (action.postFetch) {
       yield put(actions.postFetch(postFetch, response));

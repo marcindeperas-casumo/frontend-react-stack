@@ -3,6 +3,7 @@ import ReactDOM from "react-dom";
 
 import { getHostElement } from "Utils/index";
 import GamesListsContainer from "Containers/GamesLists/GamesListsContainer";
+import GamesListsContainer2 from "Containers/GamesLists/GamesListsContainer2";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
 const GAMES_LISTS_HOST_ID = "react-host-games-lists";
@@ -63,7 +64,7 @@ class GamesListsPortal2 extends PureComponent {
   }
 
   render() {
-    return ReactDOM.createPortal("DUDA", this.el);
+    return ReactDOM.createPortal(<GamesListsContainer2 />, this.el);
   }
 }
 
