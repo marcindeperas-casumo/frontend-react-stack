@@ -10,15 +10,11 @@ import Curated from "Components/CuratedGame";
 import { arrayToObject } from "Utils/index";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
-const ifLiveCasinoId = id => ["liveCasinoGames", "liveCasino"].includes(id);
-
 const gamesNotInMaintenance = compose(
   not,
   gameInMaintenanceMode
 );
 const removeGamesInMaintenance = games => games.filter(gamesNotInMaintenance);
-
-const exclusiveGamesList = gameListId => gameListId === "exclusiveGames";
 
 export default class GamesListsContainer extends React.Component {
   constructor(props) {
@@ -96,13 +92,7 @@ export default class GamesListsContainer extends React.Component {
           filteredList.map(gameList => (
             <GameList
               key={gameList.title}
-              display={
-                ifLiveCasinoId(gameList.id)
-                  ? "liveCasinoCards"
-                  : exclusiveGamesList(gameList.id)
-                    ? "exclusiveTiles"
-                    : "tiles"
-              }
+              display={listTypeByListId(gameList.id)}
               {...gameList}
             />
           ))}
@@ -110,3 +100,14 @@ export default class GamesListsContainer extends React.Component {
     );
   }
 }
+
+const listIdToGamesList = {
+  exclusiveGames: "exclusiveTiles",
+  liveCasinoGames: "liveCasinoCards",
+  liveCasino: "liveCasinoCards",
+  default: "tiles",
+};
+
+const listTypeByListId = listId => {
+  return listIdToGamesList[listId] || listIdToGamesList.default;
+};
