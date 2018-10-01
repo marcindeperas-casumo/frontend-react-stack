@@ -1,6 +1,7 @@
 import React, { Component, PureComponent } from "react";
 import ReactDOM from "react-dom";
-
+import { connect } from "react-redux";
+import { fetchStatusFactory } from "Reducers/fetch/selectors";
 import { getHostElement } from "Utils/index";
 import GamesListsContainer from "Containers/GamesLists/GamesListsContainer";
 import GamesListsContainer2 from "Containers/GamesLists/GamesListsContainer2";
@@ -64,8 +65,12 @@ class GamesListsPortal2 extends PureComponent {
   }
 
   render() {
-    return ReactDOM.createPortal(<GamesListsContainer2 />, this.el);
+    const { isFetching } = this.props;
+    return ReactDOM.createPortal(
+      isFetching ? <GamesListsSkeleton /> : <GamesListsContainer2 />,
+      this.el
+    );
   }
 }
 
-export default GamesListsPortal2;
+export default connect(fetchStatusFactory("TOP_LISTS"))(GamesListsPortal2);
