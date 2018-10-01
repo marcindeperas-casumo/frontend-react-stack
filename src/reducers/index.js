@@ -5,6 +5,7 @@ import app from "Reducers/app";
 import fetch from "Reducers/fetch";
 import { handshake } from "Reducers/handshake";
 import entities from "Reducers/entities";
+import schema from "Reducers/schema";
 
 export default combineReducers({
   testredux,
@@ -13,4 +14,5 @@ export default combineReducers({
   fetch,
   handshake,
   entities,
+  schema,
 });
