@@ -1,18 +1,18 @@
 {
-  "small_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
-  "medium_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png",
-  "large_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png",
+  "small_image": "https://cms.casumo.com/wp-content/uploads/2018/10/cc-small-topwheel.png",
+  "medium_image": "https://cms.casumo.com/wp-content/uploads/2018/10/cc-medium-topwheel.png",
+  "large_image": "https://cms.casumo.com/wp-content/uploads/2018/10/cc-large-topwheel.png",
   "game": {
-    "name": "Starburst",
-    "slug": "starburst",
-    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2014/06/Starburst_Thumb.jpg",
-    "logo": "https://cms.casumo.com/wp-content/uploads/2014/02/Starburst_Logo.png",
-    "hasPlayForFun": true,
+    "name": "Topwheel Treasures",
+    "slug": "topwheel-treasures",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
+    "hasPlayForFun": false,
     "inMaintenanceMode": false,
     "jackpotId": null,
-    "tableId": null,
+    "tableId": "munbzmuueehqaavs",
     "jackpotInfo": null
   },
-  "header": "GAME<br>OF THE<br>DAY",
+  "header": "TRY OUR<br>NEW<br>GAME",
   "primaryActionText": "Play"
 }
