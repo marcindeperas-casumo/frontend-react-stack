@@ -9,7 +9,7 @@ class App extends PureComponent {
     const { activeComponents } = this.props;
     return (
       <MigrationComponentManager activeKeys={activeComponents}>
-        <MigrationComponent migrationKey="games-top">
+        <MigrationComponent migrationKey={["games-top", "games"]}>
           <GamesListsContainer />
         </MigrationComponent>
       </MigrationComponentManager>
