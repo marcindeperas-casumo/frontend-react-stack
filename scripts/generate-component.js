@@ -89,11 +89,15 @@ function createFile(filename, template) {
 
 function getComponentTemplate() {
   // eslint-disable-next-line
-  return `import React from "react";
+  return `import React, { PureComponent } from "react";
 
-export default function {{ componentName }}() {
-  return null;
-}\n`;
+export class {{ componentName }} extends PureComponent {
+  render() {
+    return <div>{"{{ componentName }}"}</div>;
+  }
+}
+
+export default {{ componentName }};\n`;
 }
 
 function getComponentTestTemplate() {
@@ -103,7 +107,7 @@ import { shallow } from "enzyme";
 import {{ componentName }} from "./{{ componentName }}";
 
 describe("{{ componentName }}", () => {
-  it("should do something", () => {
+  test("should do something", () => {
     expect(1).toBe(2);
   });
 });

@@ -1,87 +1,19 @@
-import React, { PureComponent } from "react";
-import { connect } from "react-redux";
-import GameListTitle from "Components/GameList/GameListTitle";
-import ScrollingContainer from "@casumo/cmp-scrollable";
-import GameTile from "Components/GameTile";
-import Flex from "@casumo/cmp-flex";
+// import GameTileContainer from "Containers/GameTileContainer";
+// import ExclusiveGameTileContainer from "Containers/ExclusiveGameTileContainer";
 
-const paddingPerDevice = {
-  default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
-};
+// import TopLists from "Components/TopLists";
+// import { connect } from "react-redux";
 
-const emitLaunchGame = x => console.debug("emitLaunchGame", x);
+// const componentMap = {
+//   exclusiveGames: ExclusiveGameTileContainer,
+//   default: GameTileContainer,
+// };
 
-export class GameExclusive extends PureComponent {
-  render() {
-    const { slug } = this.props;
-    return (
-      <Flex.Item className="o-flex__item-fixed-size o-flex c-exclusive-game">
-        <GameTile
-          {...this.props}
-          ratio="game-tile-exclusive"
-          imgixOpts={{
-            w: 188,
-            h: 280,
-            fit: "crop",
-          }}
-          launchGame={() => emitLaunchGame(slug)}
-        />
-      </Flex.Item>
-    );
-  }
-}
+// const ListOfGamesContainer = connect((state, props) => {
+//   return {
+//     ...state.schema.gameList[props.listId],
+//     gameComponent: componentMap[props.listId] || componentMap.default,
+//   };
+// })(ScrollableList);
 
-export class Game extends PureComponent {
-  render() {
-    const { slug } = this.props;
-    return (
-      <Flex.Item className="o-flex__item-fixed-size c-top-game">
-        {<GameTile {...this.props} launchGame={() => emitLaunchGame(slug)} />}
-      </Flex.Item>
-    );
-  }
-}
-
-const gameById = (state, props) => state.schema.game[props.id];
-const GameContainer = connect(gameById)(Game);
-const ExclusiveGameContainer = connect(gameById)(GameExclusive);
-
-export class ListOfGames extends PureComponent {
-  render() {
-    const { title, games, gameComponent: Component } = this.props;
-    return (
-      <div className="u-padding-top--xlg">
-        <div className="u-display--flex">
-          <GameListTitle title={title} />
-        </div>
-
-        <ScrollingContainer padding={paddingPerDevice}>
-          {games.map(gameId => (
-            <Component key={gameId} id={gameId} />
-          ))}
-        </ScrollingContainer>
-      </div>
-    );
-  }
-}
-
-const a = { exclusiveGames: ExclusiveGameContainer, default: GameContainer };
-const ListOfGamesContainer = connect((state, props) => {
-  return {
-    ...state.schema.gameList[props.listId],
-    gameComponent: a[props.listId] || a.default,
-  };
-})(ListOfGames);
-
-export class ListOfGamesLists extends PureComponent {
-  render() {
-    const { listIds } = this.props;
-    return listIds.map(listId => {
-      return <ListOfGamesContainer key={listId} listId={listId} />;
-    });
-  }
-}
-
-export default ListOfGamesLists;
+// export default TopLists;

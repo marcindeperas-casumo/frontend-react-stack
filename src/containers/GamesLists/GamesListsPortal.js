@@ -1,11 +1,11 @@
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import GamesListsContainer2 from "Containers/GamesLists/GamesListsContainer2";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 import { connect } from "react-redux";
 import { fetchStatusFactory } from "Reducers/fetch/selectors";
 import { types } from "Reducers/games";
 import { getHostElement } from "Utils/index";
+import TopListsContainer from "Containers/TopListsContainer";
 const GAMES_LISTS_HOST_ID = "react-host-games-lists";
 
 class GamesListsPortal extends PureComponent {
@@ -34,7 +34,7 @@ class GamesListsPortal extends PureComponent {
   render() {
     const { isFetching } = this.props;
     return ReactDOM.createPortal(
-      isFetching ? <GamesListsSkeleton /> : <GamesListsContainer2 />,
+      isFetching ? <GamesListsSkeleton /> : <TopListsContainer />,
       this.el
     );
   }
