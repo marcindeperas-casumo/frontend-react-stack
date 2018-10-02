@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { compose, identity, not } from "ramda";
 
 import GameBrowserService, {
@@ -6,7 +7,7 @@ import GameBrowserService, {
 } from "Services/GameBrowserService";
 import JackpotsService from "Services/JackpotsService";
 import GameList from "Components/GameList";
-import Curated from "Components/CuratedGame";
+import CuratedCard from "Components/CuratedCard";
 import { arrayToObject } from "Utils/index";
 import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
 
@@ -86,7 +87,16 @@ export default class GamesListsContainer extends React.Component {
 
     return (
       <React.Fragment>
-        <Curated />
+        <CuratedCard
+          className={classNames(
+            "u-margin-top--md",
+            "u-margin-top--lg@tablet",
+            "u-margin-top--lg@desktop",
+            "u-margin-horiz--md",
+            "u-margin-horiz--2xlg@tablet",
+            "u-margin-horiz--2xlg@desktop"
+          )}
+        />
         {loading && <GamesListsSkeleton />}
         {!loading &&
           filteredList.map(gameList => (

@@ -1,37 +1,55 @@
 // @flow
 import React, { Component } from "react";
+import { head } from "ramda";
 
 import Flex from "@casumo/cmp-flex";
-import ResponsiveImage from "@casumo/cmp-responsive-image";
 import Skeleton from "@casumo/cmp-skeleton";
 
 import cmsService from "Services/CMSService";
+import GameBrowserService from "Services/GameBrowserService";
+
+import CuratedCard from "Components/CuratedCard/CuratedCard";
 
 type Props = {
   className?: string,
 };
 
 type State = {
-  data: {},
+  data: ?{},
 };
 
-export default class Curated extends Component<Props, State> {
+export default class CuratedContainer extends Component<Props, State> {
   state = { data: null };
 
   async componentDidMount() {
-    const response = await cmsService.getPage({ slug: "curated-component" });
-    this.setState({ data: response });
+    try {
+      const curatedData = await cmsService.getPage({
+        slug: "curated-component",
+      });
+      const gameData = await GameBrowserService.gamesBySlugs({
+        slugs: curatedData.fields.game,
+      });
+
+      this.setState({
+        data: {
+          ...curatedData,
+          game: head(gameData.games),
+        },
+      });
+    } catch (error) {
+      // handle error
+    }
   }
 
-  get curatedCard() {
+  get renderCard() {
     const { data } = this.state;
-    return <ResponsiveImage src={data.fields.small_image} />;
+    return <CuratedCard data={data} />;
   }
 
-  get curatedSkeleton() {
+  get renderSkeleton() {
     return (
-      <Skeleton width="500" height="250">
-        <rect x="0" y="0" rx="0" ry="0" width="500" height="250" />
+      <Skeleton width="500" height="352">
+        <rect x="0" y="0" rx="0" ry="0" width="500" height="352" />
       </Skeleton>
     );
   }
@@ -42,7 +60,7 @@ export default class Curated extends Component<Props, State> {
 
     return (
       <Flex className={className} direction="vertical" spacing="none">
-        {data === null ? this.curatedSkeleton : this.curatedCard}
+        {!data ? this.renderSkeleton : this.renderCard}
       </Flex>
     );
   }
