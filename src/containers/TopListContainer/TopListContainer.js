@@ -1,9 +1,12 @@
-import React, { PureComponent } from "react";
+import ScrollableList from "Components/ScrollableList";
+import { connect } from "react-redux";
 
-export class TopListContainer extends PureComponent {
-  render() {
-    return <div>{"TopListContainer"}</div>;
-  }
-}
+const getData = (state, props) => {
+  return {
+    ...state.schema.gameList[props.listId],
+  };
+};
+
+const TopListContainer = connect(getData)(ScrollableList);
 
 export default TopListContainer;
