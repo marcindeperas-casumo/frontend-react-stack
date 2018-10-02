@@ -7,7 +7,6 @@ import Text from "@casumo/cmp-text";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import type { Images } from "Components/CuratedCard/CuratedCardBackground";
-import type { Game } from "Components/CuratedCard/CuratedCardFooter";
 
 import "./CuratedCard.scss";
 
@@ -46,7 +45,10 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   renderBackground = (images: Images) => (
-    <CuratedCardBackground className="o-ratio__content" images={images} />
+    <CuratedCardBackground
+      className="o-ratio__content u-object-fit-cover"
+      images={images}
+    />
   );
 
   render() {
