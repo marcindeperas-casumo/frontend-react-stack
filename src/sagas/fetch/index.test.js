@@ -57,16 +57,18 @@ describe("fetch saga", () => {
     const asyncCall = jest.fn();
     const postFetch = "postFetchActionName";
     const returnData = { foo: { bar: "baz" } };
+    const asyncCallData = { foo: "bar" };
 
     const generator = fetchSaga({
       name,
       asyncCall,
+      asyncCallData,
       postFetch,
     });
 
     expect(generator.next().value).toEqual(put(actions.clearError(name)));
     expect(generator.next().value).toEqual(put(actions.sendRequest(name)));
-    expect(generator.next().value).toEqual(call(asyncCall));
+    expect(generator.next().value).toEqual(call(asyncCall, asyncCallData));
     expect(generator.next(returnData).value).toEqual(
       put(actions.postFetch(postFetch, returnData))
     );

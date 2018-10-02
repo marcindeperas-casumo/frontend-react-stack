@@ -44,12 +44,9 @@ export class Game extends PureComponent {
   }
 }
 
-const GameContainer = connect((state, props) => state.entities.games[props.id])(
-  Game
-);
-const ExclusiveGameContainer = connect(
-  (state, props) => state.entities.games[props.id]
-)(GameExclusive);
+const gameById = (state, props) => state.schema.game[props.id];
+const GameContainer = connect(gameById)(Game);
+const ExclusiveGameContainer = connect(gameById)(GameExclusive);
 
 export class ListOfGames extends PureComponent {
   render() {
@@ -73,7 +70,7 @@ export class ListOfGames extends PureComponent {
 const a = { exclusiveGames: ExclusiveGameContainer, default: GameContainer };
 const ListOfGamesContainer = connect((state, props) => {
   return {
-    ...state.entities.lists[props.listId],
+    ...state.schema.gameList[props.listId],
     gameComponent: a[props.listId] || a.default,
   };
 })(ListOfGames);

@@ -3,15 +3,23 @@ import { actions } from "Reducers/fetch";
 import { fetchService } from "Services/FetchService";
 
 export function* fetchSaga(action) {
-  const { name, method, url, data, postFetch } = action;
+  const {
+    name,
+    method,
+    url,
+    data,
+    postFetch,
+    asyncCall,
+    asyncCallData,
+  } = action;
 
   try {
     yield put(actions.clearError(name));
     yield put(actions.sendRequest(name));
 
     let response;
-    if (action.asyncCall) {
-      response = yield call(action.asyncCall);
+    if (asyncCall) {
+      response = yield call(asyncCall, asyncCallData);
     } else {
       response = yield call(fetchService, { method, url, data });
     }

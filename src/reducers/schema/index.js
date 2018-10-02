@@ -1,5 +1,10 @@
 import { combineReducers } from "redux";
-import { GAME_ENTITY_KEY, LIVE_TABLE_ENTITY_KEY } from "./schema";
+import {
+  GAME_ENTITY_KEY,
+  LIVE_TABLE_ENTITY_KEY,
+  JACKPOT_ENTITY_KEY,
+  GAME_LIST_ENTITY_KEY,
+} from "./schema";
 
 export const types = {
   UPDATE_ENTITY: "SCHEMA/UPDATE_ENTITY",
@@ -25,8 +30,10 @@ const entityReducerFactory = entityKey => (state = {}, action) => {
 };
 
 export const reducer = combineReducers({
-  game: entityReducerFactory(GAME_ENTITY_KEY),
-  liveTable: entityReducerFactory(LIVE_TABLE_ENTITY_KEY),
+  [GAME_ENTITY_KEY]: entityReducerFactory(GAME_ENTITY_KEY),
+  [LIVE_TABLE_ENTITY_KEY]: entityReducerFactory(LIVE_TABLE_ENTITY_KEY),
+  [JACKPOT_ENTITY_KEY]: entityReducerFactory(JACKPOT_ENTITY_KEY),
+  [GAME_LIST_ENTITY_KEY]: entityReducerFactory(GAME_LIST_ENTITY_KEY),
 });
 
 export default reducer;

@@ -82,25 +82,10 @@ export const generalFetch = (name, { method, url, data }, postFetch) => ({
 
 export const postFetch = (type, response) => ({ type, response });
 
-// export const fetchHandshake = () =>
-//   generalFetch(
-//     types.FETCH_HANDSHAKE,
-//     apiEndpoints.APP_HANDSHAKE,
-//     types.CONSUME_HANDSHAKE
-//   );
-
-// export const consumeHandshake = response => ({
-//   type: types.CONSUME_HANDSHAKE,
-//   response,
-// });
-
 export const actions = {
   sendRequest,
   requestComplete,
   requestError,
   clearError,
   postFetch,
-
-  // fetchHandshake,
-  // consumeHandshake,
 };
