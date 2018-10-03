@@ -5,9 +5,10 @@ export const types = {
   FETCH_TOP_LISTS_COMPLETE: "GAMES/FETCH_TOP_LISTS_COMPLETE",
   NORMALIZE_RESPONSE: "GAMES/NORMALIZE_RESPONSE",
   // TODO: we might need an error case here
+  LAUNCH_GAME: "GAMES/LAUNCH_GAME",
 };
 
-const fetchTopLists = asyncCallData => ({
+export const fetchTopLists = asyncCallData => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_TOP_LISTS_START,
   asyncCallData,
@@ -15,6 +16,9 @@ const fetchTopLists = asyncCallData => ({
   postFetch: types.FETCH_TOP_LISTS_COMPLETE,
 });
 
+export const launchGame = slug => ({ type: types.LAUNCH_GAME, slug });
+
 export const actions = {
   fetchTopLists,
+  launchGame,
 };

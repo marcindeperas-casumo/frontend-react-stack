@@ -1,10 +1,11 @@
 import { connect } from "react-redux";
 import GameTile2 from "Components/GameTile2";
 import { gameSelector } from "Reducers/schema/selector";
+import { actions as gameActions } from "Reducers/games";
 
-const getGameData = (state, props) => state.schema.game[props.id]; //[]gameSelector(props.id)(state);
+const getGameData = (state, props) => gameSelector(props.id)(state);
 const getGameActions = (dispatch, props) => ({
-  onLaunchGame: () => dispatch({ type: "##MARKER", slug: props.id }),
+  onLaunchGame: () => dispatch(gameActions.launchGame(props.id)),
 });
 
 const GameTileContainer = connect(

@@ -11,6 +11,7 @@ import { actions as schemaActions } from "Reducers/schema";
 import { normalizeData } from "Reducers/schema/schema";
 import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Sagas/utils";
+import { launchGame } from "Services/LaunchGameService";
 
 export function* fetchGameListSaga() {
   const platform = "mobile";
@@ -45,4 +46,10 @@ export function* fetchGameListSaga() {
   const { response } = yield take(types.FETCH_TOP_LISTS_COMPLETE);
   const { entities } = yield call(normalizeData, response);
   yield put(schemaActions.updateEntity(entities));
+}
+
+export function* launchGameSaga(action) {
+  const { slug } = action;
+
+  yield call(launchGame, { slug });
 }

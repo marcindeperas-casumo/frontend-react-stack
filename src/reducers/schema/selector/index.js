@@ -40,6 +40,7 @@ export const gameSelector = id =>
       const game = gameEntities[id];
       const jackpot = jackpotEntities[game.jackpotId];
       const liveTable = liveTableEntities[game.tableId];
+
       return {
         ...game,
         jackpotInfo: jackpot,
