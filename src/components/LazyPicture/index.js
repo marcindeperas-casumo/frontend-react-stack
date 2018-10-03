@@ -21,7 +21,7 @@ type Props = {|
   isIntersecting: boolean,
 |};
 
-class StatefulPicture extends PureComponent<Props> {
+export class StatefulPicture extends PureComponent<Props> {
   render() {
     const {
       className,
@@ -64,7 +64,7 @@ type State = {
   isIntersecting: boolean,
 };
 
-export default class CuratedCardBackground extends React.Component<any, State> {
+export default class LazyPicture extends React.Component<any, State> {
   state = {
     intersectionRatio: 0,
     isIntersecting: false,

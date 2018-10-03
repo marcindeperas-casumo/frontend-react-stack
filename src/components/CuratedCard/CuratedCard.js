@@ -4,9 +4,9 @@ import React, { PureComponent } from "react";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 
-import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import LazyPicture from "Components/LazyPicture";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
-import type { Images } from "Components/CuratedCard/CuratedCardBackground";
+import type { Images } from "Components/LazyPicture";
 
 import "./CuratedCard.scss";
 
@@ -45,7 +45,7 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   renderBackground = (images: Images) => (
-    <CuratedCardBackground
+    <LazyPicture
       className="o-ratio__content u-object-fit-cover"
       images={images}
     />

@@ -1,19 +1,21 @@
 import React from "react";
 import { mount } from "enzyme";
 
-import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import { StatefulPicture } from "./index";
 
 import { getImgixUrl } from "@casumo/cudl-react-utils";
-import curatedGame from "./__mocks__/curatedGame.json";
+import curatedGame from "Components/CuratedCard/__mocks__/curatedGame.json";
 
 let component;
 
-describe("CuratedCardBackground", () => {
+describe("LazyPicture", () => {
   let images;
 
   beforeEach(() => {
     images = curatedGame.fields;
-    component = mount(<CuratedCardBackground images={images} />);
+    component = mount(
+      <StatefulPicture isIntersecting={true} images={images} />
+    );
   });
 
   it("should render the image", () => {
