@@ -63,15 +63,13 @@ export default class CuratedCardFooter extends PureComponent<Props> {
               <PlayIcon size="sml" />
               <span className="u-margin-left">{primaryActionText}</span>
             </Button>
-            <a
+            <Button
               href={`/en/play/${game.slug}`}
-              className="u-display--none@mobile u-margin-left--lg"
+              variant="outline"
+              className="u-display--none@mobile u-padding u-margin-left--lg"
             >
-              <MoreIcon
-                size="med"
-                className="t-color-white t-border t-border-r--circle u-padding"
-              />
-            </a>
+              <MoreIcon size="med" />
+            </Button>
           </Flex>
         </Flex.Item>
       </Flex>
