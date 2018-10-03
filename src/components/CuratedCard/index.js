@@ -3,23 +3,25 @@ import React, { Component } from "react";
 import { head } from "ramda";
 
 import Flex from "@casumo/cmp-flex";
-import Skeleton from "@casumo/cmp-skeleton";
 
 import cmsService from "Services/CMSService";
 import GameBrowserService from "Services/GameBrowserService";
 
 import CuratedCard from "Components/CuratedCard/CuratedCard";
+import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 
 type Props = {
   className?: string,
 };
 
 type State = {
-  data: ?{},
+  data: Object,
+  loading: boolean,
+  loading: boolean,
 };
 
 export default class CuratedContainer extends Component<Props, State> {
-  state = { data: null };
+  state = { data: {}, loading: true };
 
   async componentDidMount() {
     try {
@@ -35,32 +37,20 @@ export default class CuratedContainer extends Component<Props, State> {
           ...curatedData,
           game: head(gameData.games),
         },
+        loading: false,
       });
     } catch (error) {
       // handle error
     }
   }
 
-  get renderCard() {
-    const { data } = this.state;
-    return <CuratedCard data={data} />;
-  }
-
-  get renderSkeleton() {
-    return (
-      <Skeleton width="500" height="352">
-        <rect x="0" y="0" rx="0" ry="0" width="500" height="352" />
-      </Skeleton>
-    );
-  }
-
   render() {
     const { className } = this.props;
-    const { data } = this.state;
+    const { data, loading } = this.state;
 
     return (
       <Flex className={className} direction="vertical" spacing="none">
-        {!data ? this.renderSkeleton : this.renderCard}
+        {loading ? <CuratedCardSkeleton /> : <CuratedCard data={data} />}
       </Flex>
     );
   }
