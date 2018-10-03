@@ -1,13 +1,9 @@
-import { connect } from "react-redux";
 import LiveCasinoCard from "Components/LiveCasinoCard";
-import { trace } from "Utils/utils";
+import { connect } from "react-redux";
+import { gameSelector } from "Reducers/schema/selector";
 
-const LiveCasinoCardContainer = connect((state, props) => {
-  const game = state.schema.game[props.id];
-  const lobby = state.schema.liveTable[game.tableId];
+const getGameData = (state, props) => gameSelector(props.id)(state);
 
-  // TODO: remove these nested components things
-  return { game: { ...game, lobby } };
-})(LiveCasinoCard);
+const LiveCasinoCardContainer = connect(getGameData)(LiveCasinoCard);
 
 export default LiveCasinoCardContainer;

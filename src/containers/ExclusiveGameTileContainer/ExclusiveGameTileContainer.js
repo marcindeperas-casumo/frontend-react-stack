@@ -1,14 +1,15 @@
 import ExclusiveGameTile from "Components/ExclusiveGameTile";
 import { connect } from "react-redux";
+import { gameSelector } from "Reducers/schema/selector";
 
-const getData = (state, props) => state.schema.game[props.id];
-const getActions = (dispatch, props) => ({
+const getGameData = (state, props) => gameSelector(props.id)(state);
+const getGameActions = (dispatch, props) => ({
   onLaunchGame: () => dispatch({ type: "##MARKER", slug: props.id }),
 });
 
 const ExclusiveGameTileContainer = connect(
-  getData,
-  getActions
+  getGameData,
+  getGameActions
 )(ExclusiveGameTile);
 
 export default ExclusiveGameTileContainer;

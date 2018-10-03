@@ -1,11 +1,8 @@
 import ScrollableList from "Components/ScrollableList";
 import { connect } from "react-redux";
+import { gameListEntitiesSelector } from "Reducers/schema/selector";
 
-const getData = (state, props) => {
-  return {
-    ...state.schema.gameList[props.listId],
-  };
-};
+const getData = (state, props) => gameListEntitiesSelector(state)[props.listId];
 
 const TopListContainer = connect(getData)(ScrollableList);
 

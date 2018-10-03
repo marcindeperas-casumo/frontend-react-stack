@@ -1,10 +1,7 @@
 import { connect } from "react-redux";
 import TopLists from "Components/TopLists";
+import { topListIds } from "Reducers/schema/selector";
 
-const getData = state => ({
-  listIds: Object.keys(state.schema.gameList),
-});
-
-export const TopListsContainer = connect(getData)(TopLists);
+export const TopListsContainer = connect(topListIds)(TopLists);
 
 export default TopListsContainer;
