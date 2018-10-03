@@ -19,6 +19,14 @@ export const actions = {
 const entityReducerFactory = entityKey => (state = {}, action) => {
   switch (action.type) {
     case types.UPDATE_ENTITY: {
+      // If the entityKey is not present in the action payload we can bail out
+      // early and return the previous state. This will ensure that identity
+      // comparison for the downstream selectors will return true since the
+      // state remained the same.
+      if (!action.payload[entityKey]) {
+        return state;
+      }
+
       return {
         ...state,
         ...action.payload[entityKey],
