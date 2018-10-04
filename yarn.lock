@@ -241,11 +241,12 @@
     "@casumo/cudl-react-prop-types" "^2.0.0"
     "@casumo/cudl-react-utils" "^1.0.1"
 
-"@casumo/cmp-button@^2.0.1":
-  version "2.0.1"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.1.tgz#8c229c35a16a9bfaa4bd6b838a9bc6ee38769b0f"
-  integrity sha512-3smi9k1dCC6dWNv6LQRZx7nH4iRlgQYCSJVJe7nR9eS+vccAoNAhreUsT1Svtixs6TEJKPn9jsfu3qgh+1csrQ==
+"@casumo/cmp-button@^2.0.2":
+  version "2.0.2"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.2.tgz#bc74d427c71a3416d62034d3aa69aa7cc9bf92e1"
+  integrity sha512-UD91hSo/iM8Tpd0Y0ax0LDbHlehYsogznW66+ICxbA3fTXp4B87y+eJUPjGMkG5r8C6t+qNPcqFrv06Koxym1g==
   dependencies:
+    "@casumo/cudl-buttons" "2.0.3"
     "@casumo/cudl-react-utils" "^1.0.1"
 
 "@casumo/cmp-card@^2.0.2":
@@ -325,6 +326,17 @@
     "@casumo/cudl-props" "^2.0.0"
     "@casumo/cudl-types" "^1.0.4"
     "@casumo/cudl-units" "^1.0.5"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-buttons@2.0.3":
+  version "2.0.3"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-buttons/-/cudl-buttons-2.0.3.tgz#2292ff6e896f3e98318316e60f69c16ec2898623"
+  integrity sha512-wESV8fhf61kzOY+69Jr3tENzL6w0DuVTbxoSdKpeGnJKcjRY/WZt5dk1Ww41SZByDjvPkEb9jEo/cQLmOD/Opw==
+  dependencies:
+    "@casumo/cudl-colors" "^2.0.4"
+    "@casumo/cudl-compile" "^1.0.4"
+    "@casumo/cudl-mock" "^1.0.4"
+    "@casumo/cudl-props" "^2.0.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-buttons@^2.0.1":
