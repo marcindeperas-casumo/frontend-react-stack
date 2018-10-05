@@ -11,11 +11,6 @@ const store = configureStore();
 window.bridge = legacyBridge;
 bridgeToDispatchService(store, window.bridge);
 
-// legacyBridge.on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
-//   legacyBridge.emit(REACT_APP_EVENT_ALL_PORTALS_CLEAR);
-//   legacyBridge.emit(data.config.id);
-//   store.dispatch(actions.activateComponent(data.config.id));
-// });
 const renderApp = Component =>
   ReactDOM.render(
     <Provider store={store}>
