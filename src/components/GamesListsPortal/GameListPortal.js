@@ -1,12 +1,10 @@
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
-import { connect } from "react-redux";
-import { fetchStatusFactory } from "Reducers/fetch/selectors";
-import { types } from "Reducers/games";
 import { getHostElement } from "Utils/index";
+import GamesListsSkeleton from "Components/GameListsSkeleton";
 import TopListsContainer from "Containers/TopListsContainer";
-const GAMES_LISTS_HOST_ID = "react-host-games-lists";
+
+export const GAMES_LISTS_HOST_ID = "react-host-games-lists";
 
 class GamesListsPortal extends PureComponent {
   constructor(props) {
@@ -40,6 +38,4 @@ class GamesListsPortal extends PureComponent {
   }
 }
 
-export default connect(fetchStatusFactory(types.FETCH_TOP_LISTS_START))(
-  GamesListsPortal
-);
+export default GamesListsPortal;
