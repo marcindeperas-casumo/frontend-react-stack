@@ -9,9 +9,11 @@ const GamesListsPortalContainer = connect(gamesListsPortalFetchStatusSelector)(
   GamesListsPortal
 );
 
-export default () => (
+const WaitForGamesListsPortal = () => (
   <WaitForHostElement
     hostElementId={GAMES_LISTS_HOST_ID}
     component={GamesListsPortalContainer}
   />
 );
+
+export default WaitForGamesListsPortal;
