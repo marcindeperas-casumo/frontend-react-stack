@@ -7,7 +7,7 @@ export class GameTile2 extends PureComponent {
     const { onLaunchGame, ...rest } = this.props;
     return (
       <Flex.Item className="o-flex__item-fixed-size c-top-game">
-        <GameTile {...rest} launchGame={() => onLaunchGame()} />
+        <GameTile {...rest} launchGame={onLaunchGame} />
       </Flex.Item>
     );
   }

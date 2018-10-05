@@ -3,6 +3,12 @@ import Flex from "@casumo/cmp-flex";
 import GameTile from "Components/GameTile";
 
 export class ExclusiveGameTile extends PureComponent {
+  imgixOpts = {
+    w: 188,
+    h: 280,
+    fit: "crop",
+  };
+
   render() {
     const { onLaunchGame, ...rest } = this.props;
     return (
@@ -10,12 +16,8 @@ export class ExclusiveGameTile extends PureComponent {
         <GameTile
           {...rest}
           ratio="game-tile-exclusive"
-          imgixOpts={{
-            w: 188,
-            h: 280,
-            fit: "crop",
-          }}
-          launchGame={() => onLaunchGame()}
+          imgixOpts={this.imgixOpts}
+          launchGame={onLaunchGame}
         />
       </Flex.Item>
     );
