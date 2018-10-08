@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import GameTile2 from "Components/GameTile2";
+import GameTile from "Components/GameTile";
 import { gameSelector } from "Reducers/schema/selector";
 import { actions as gameActions } from "Reducers/games";
 
@@ -11,6 +11,6 @@ const mapDispatchToProps = (dispatch, props) => ({
 const GameTileContainer = connect(
   getGameData,
   mapDispatchToProps
-)(GameTile2);
+)(GameTile);
 
 export default GameTileContainer;

@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import GameTile from "Components/GameTile";
+import GameTile from "Components/GameTile/GameTile";
 
 export class ExclusiveGameTile extends PureComponent {
   imgixOpts = {
