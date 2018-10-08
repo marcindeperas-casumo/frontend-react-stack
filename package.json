@@ -19,7 +19,6 @@
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.6",
     "cometd": "^3.1.4",
-    "element-ready": "^3.0.0",
     "intersection-observer": "^0.5.0",
     "invariant": "^2.2.4",
     "normalizr": "^3.2.4",
@@ -39,7 +38,8 @@
     "redux-saga": "^0.16.0",
     "redux-thunk": "^2.3.0",
     "reselect": "^3.0.1",
-    "sentence-case": "^2.1.1"
+    "sentence-case": "^2.1.1",
+    "wait-for-element": "^1.0.2"
   },
   "scripts": {
     "flow": "flow",

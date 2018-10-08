@@ -4076,12 +4076,6 @@ elegant-spinner@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/elegant-spinner/-/elegant-spinner-1.0.1.tgz#db043521c95d7e303fd8f345bedc3349cfb0729e"
 
-element-ready@^3.0.0:
-  version "3.0.0"
-  resolved "https://registry.yarnpkg.com/element-ready/-/element-ready-3.0.0.tgz#7e7b5bc63759d1244c13a6112cbc14f102b4f474"
-  dependencies:
-    p-cancelable "^0.4.1"
-
 elliptic@^6.0.0:
   version "6.4.1"
   resolved "https://registry.yarnpkg.com/elliptic/-/elliptic-6.4.1.tgz#c2d0b7776911b86722c632c3c06c60f2f819939a"
@@ -8099,10 +8093,6 @@ output-file-sync@^1.1.2:
     mkdirp "^0.5.1"
     object-assign "^4.1.0"
 
-p-cancelable@^0.4.1:
-  version "0.4.1"
-  resolved "http://registry.npmjs.org/p-cancelable/-/p-cancelable-0.4.1.tgz#35f363d67d52081c8d9585e37bcceb7e0bbcb2a0"
-
 p-finally@^1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/p-finally/-/p-finally-1.0.0.tgz#3fbcfb15b899a44123b34b6dcc18b724336a2cae"
@@ -11519,6 +11509,10 @@ w3c-hr-time@^1.0.1:
   resolved "https://registry.yarnpkg.com/w3c-hr-time/-/w3c-hr-time-1.0.1.tgz#82ac2bff63d950ea9e3189a58a65625fedf19045"
   dependencies:
     browser-process-hrtime "^0.1.2"
+
+wait-for-element@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/wait-for-element/-/wait-for-element-1.0.2.tgz#cbe7e31f157981f56f3bc1080768ef1823792f3d"
 
 walker@~1.0.5:
   version "1.0.7"
