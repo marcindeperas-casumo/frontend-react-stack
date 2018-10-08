@@ -8,9 +8,8 @@ export class WaitForHostElement extends PureComponent {
 
   async componentDidMount() {
     const { hostElementId } = this.props;
-    // TODO: here we can add a race against a timeout promise and fail
-    // gracefully in case we do not find the host element.
     const el = await waitForElement(`#${hostElementId}`);
+
     this.setState({ el });
   }
 
