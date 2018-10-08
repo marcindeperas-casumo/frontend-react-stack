@@ -56,7 +56,7 @@ export const GameBrowserServiceFactory = ({
 
   const gamesBySlugs = async ({ variant = "default", slugs }) => {
     const { variants } = await gameListMetaDataById({ id: "allGames" });
-    return await gameBrowserClient.gamesBySlugs({
+    return gameBrowserClient.gamesBySlugs({
       ...countryAndPlatform(config.get()),
       hash: variants[variant].hash,
       variant,
