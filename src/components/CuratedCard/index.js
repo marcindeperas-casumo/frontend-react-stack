@@ -39,8 +39,8 @@ export default class CuratedContainer extends Component<Props, State> {
         },
         loading: false,
       });
-    } catch (error) {
-      // handle error
+    } catch (e) {
+      throw new Error("CuratedCard failed trying to fetch data", e);
     }
   }
 
