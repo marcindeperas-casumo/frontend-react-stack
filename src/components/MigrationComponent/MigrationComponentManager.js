@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import PropTypes from "prop-types";
-import { contains } from "ramda";
+import { contains, intersection } from "ramda";
 
 class MigrationComponentManager extends PureComponent {
   render() {
@@ -12,7 +12,16 @@ class MigrationComponentManager extends PureComponent {
           props: { migrationKey },
         } = child;
 
-        return contains(migrationKey, activeKeys) ? child : null;
+        let isActive;
+
+        if (Array.isArray(migrationKey)) {
+          const intersectionKeys = intersection(migrationKey, activeKeys);
+          isActive = intersectionKeys.length > 0;
+        } else {
+          isActive = contains(migrationKey, activeKeys);
+        }
+
+        return isActive ? child : null;
       });
   }
 }
