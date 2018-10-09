@@ -11,7 +11,7 @@ const GameTile = ({
   slug,
   className,
   inMaintenanceMode,
-  launchGame,
+  onLaunchGame,
   jackpotInfo,
   ratio = "game-tile",
   imgixOpts = {
@@ -39,7 +39,7 @@ const GameTile = ({
       name={name}
       slug={slug}
       inMaintenanceMode={inMaintenanceMode}
-      launchGame={launchGame}
+      onLaunchGame={onLaunchGame}
     />
   </div>
 );

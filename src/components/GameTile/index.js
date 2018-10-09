@@ -4,10 +4,9 @@ import GameTile from "Components/GameTile/GameTile";
 
 export class GenericGameTile extends PureComponent {
   render() {
-    const { onLaunchGame, ...rest } = this.props;
     return (
       <Flex.Item className="o-flex__item-fixed-size c-top-game">
-        <GameTile {...rest} launchGame={onLaunchGame} />
+        <GameTile {...this.props} />
       </Flex.Item>
     );
   }

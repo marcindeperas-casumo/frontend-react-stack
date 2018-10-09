@@ -10,14 +10,12 @@ export class ExclusiveGameTile extends PureComponent {
   };
 
   render() {
-    const { onLaunchGame, ...rest } = this.props;
     return (
       <Flex.Item className="o-flex__item-fixed-size o-flex c-exclusive-game">
         <GameTile
-          {...rest}
+          {...this.props}
           ratio="game-tile-exclusive"
           imgixOpts={this.imgixOpts}
-          launchGame={onLaunchGame}
         />
       </Flex.Item>
     );
