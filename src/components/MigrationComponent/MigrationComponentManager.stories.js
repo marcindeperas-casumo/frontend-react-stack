@@ -19,6 +19,9 @@ stories.add("Show/Hide", () => {
       <MigrationComponent migrationKey="bar">
         <h1>Bar</h1>
       </MigrationComponent>
+      <MigrationComponent migrationKey={["baz", "fiz"]}>
+        <h1>Baz or Fiz</h1>
+      </MigrationComponent>
     </MigrationComponentManager>
   );
 });
