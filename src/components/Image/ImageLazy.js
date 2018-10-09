@@ -24,7 +24,10 @@ export default class ImageLazy extends React.Component<Props, State> {
     isIntersecting: false,
   };
 
-  handleChange = ({ intersectionRatio, isIntersecting }, unobserve) => {
+  handleChange = (
+    { intersectionRatio, isIntersecting }: State,
+    unobserve: Function
+  ) => {
     if (isIntersecting) {
       unobserve();
     }
