@@ -1,1 +1,1 @@
-export { default } from "./GamesListsPortalContainer.js";
+export { default } from "./GamesListsPortalContainer";

@@ -1,1 +1,1 @@
-export { default } from "./WaitForHostElement.js";
+export { default } from "./WaitForHostElement";

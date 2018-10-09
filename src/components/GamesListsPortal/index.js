@@ -1,1 +1,1 @@
-export { default } from "./GameListPortal.js";
+export { default } from "./GameListPortal";

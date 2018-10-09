@@ -1,1 +1,1 @@
-export { default } from "./TopLists.js";
+export { default } from "./TopLists";

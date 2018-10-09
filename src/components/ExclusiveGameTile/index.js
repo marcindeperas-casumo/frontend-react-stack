@@ -1,1 +1,1 @@
-export { default } from "./ExclusiveGameTile.js";
+export { default } from "./ExclusiveGameTile";
