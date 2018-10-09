@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Picture from "@casumo/cmp-picture";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
+import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 
 export type Images = {|
   small_image: string,
@@ -44,11 +45,7 @@ export default class ImageAdaptive extends PureComponent<Props> {
       <ResponsiveImage
         className={className}
         src={images.small_image}
-        dpr={1}
-        imgixOpts={{
-          w: 5,
-          blur: 2000,
-        }}
+        {...LOW_RES_IMAGE_SETTINGS}
       />
     );
   }

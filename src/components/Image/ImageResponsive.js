@@ -1,6 +1,6 @@
 import React from "react";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
-
+import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 export default class ImageResponsive extends React.Component {
   render() {
     const { isIntersecting, ...rest } = this.props;
@@ -13,12 +13,7 @@ export default class ImageResponsive extends React.Component {
           // rest props should not override lowres props
           ...rest
         }
-        mark={null}
-        dpr={1}
-        imgixOpts={{
-          w: 5,
-          blur: 2000,
-        }}
+        {...LOW_RES_IMAGE_SETTINGS}
       />
     );
   }
