@@ -9,7 +9,7 @@ import bridgeToDispatchService from "Services/BridgeToDispatchService";
 
 const store = configureStore();
 window.bridge = legacyBridge;
-bridgeToDispatchService(store, window.bridge);
+bridgeToDispatchService(store);
 
 const renderApp = Component =>
   ReactDOM.render(

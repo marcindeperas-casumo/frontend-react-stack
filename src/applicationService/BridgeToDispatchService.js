@@ -1,7 +1,8 @@
-import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import { actions } from "Reducers/migrationComponents";
+import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
+import bridge from "../legacyBridge";
 
-export const connect = (store, bridge) => {
+export const connect = store => {
   const { dispatch } = store;
   const { on } = bridge;
 
