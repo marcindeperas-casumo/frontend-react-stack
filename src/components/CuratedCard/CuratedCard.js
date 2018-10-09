@@ -14,6 +14,16 @@ const stringToHTML = string => {
   return { __html: string };
 };
 
+const justify = {
+  mobile: "end",
+  default: "space-between",
+};
+
+const spacing = {
+  mobile: "2xlg",
+  default: "lg",
+};
+
 type Props = {|
   data: any,
 |};
@@ -53,14 +63,6 @@ export default class CuratedCard extends PureComponent<Props> {
 
   render() {
     const { data } = this.props;
-    const justify = {
-      mobile: "end",
-      default: "space-between",
-    };
-    const spacing = {
-      mobile: "2xlg",
-      default: "lg",
-    };
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
