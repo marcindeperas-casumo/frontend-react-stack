@@ -5,12 +5,12 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-import LazyImage from "Components/LazyImage";
+import ImageLazy from "Components/Image/ImageLazy";
 
 import { emitLaunchGame } from "Components/GameList/GameList";
 
 const GameThumb = ({ src, mark }) => (
-  <LazyImage
+  <ImageLazy
     className="u-display--block t-border-r--16"
     width="56"
     height="56"

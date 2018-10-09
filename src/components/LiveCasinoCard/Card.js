@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 
 import { decodeString } from "Utils/index";
-import LazyImage from "../LazyImage";
+import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
 import CardFooter from "Components/LiveCasinoCard/CardFooter";
 import CardData from "Components/LiveCasinoCard/CardData";
@@ -15,7 +15,7 @@ const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
 const CasinoHeader = ({ lobby }) => (
   <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
-    <LazyImage className="o-ratio__content" src={lobby.image} dpr={3} />
+    <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
     <Flex
       direction="vertical"
       align="center"
