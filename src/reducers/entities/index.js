@@ -1,4 +1,11 @@
 import { combineReducers } from "redux";
+import {
+  JACKPOT_ENTITY_KEY,
+  LIVE_TABLE_ENTITY_KEY,
+  GAME_ENTITY_KEY,
+  GAME_LIST_ENTITY_KEY,
+} from "Reducers/schema/schema";
+
 export const types = {
   ADD_ENTITIES: "ENTITIES/ADD_ENTITIES",
 };
@@ -22,8 +29,8 @@ const liveCasino = updateEntitiesReducerFactory("liveCasino");
 const jackpot = updateEntitiesReducerFactory("jackpot");
 
 export default combineReducers({
-  games,
-  lists,
-  liveCasino,
-  jackpot,
+  [`${GAME_ENTITY_KEY}s`]: games,
+  [`${GAME_LIST_ENTITY_KEY}s`]: lists,
+  [LIVE_TABLE_ENTITY_KEY]: liveCasino,
+  [JACKPOT_ENTITY_KEY]: jackpot,
 });
