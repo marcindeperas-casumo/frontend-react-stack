@@ -7,7 +7,7 @@ import curatedGame from "Components/CuratedCard/__mocks__/curatedGame.json";
 
 let component;
 
-describe("LazyPicture", () => {
+describe("ImageAdaptive", () => {
   let images;
 
   beforeEach(() => {
