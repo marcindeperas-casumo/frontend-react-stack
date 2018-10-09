@@ -41,9 +41,9 @@ export default class ImageLazy extends React.Component<Props, State> {
     return (
       <Observer onChange={this.handleChange}>
         {images ? (
-          <ImageAdaptive {...{ ...this.props, isIntersecting }} />
+          <ImageAdaptive {...this.props} isIntersecting={isIntersecting} />
         ) : (
-          <ImageResponsive {...{ ...this.props, isIntersecting }} />
+          <ImageResponsive {...this.props} isIntersecting={isIntersecting} />
         )}
       </Observer>
     );
