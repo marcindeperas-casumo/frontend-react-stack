@@ -23,7 +23,10 @@ class MigrationComponent extends PureComponent {
 }
 
 MigrationComponent.propTypes = {
-  migrationKey: PropTypes.string.isRequired,
+  migrationKey: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
 };
 
 export default MigrationComponent;
