@@ -1,0 +1,21 @@
+{
+  "fields": {
+    "critical_for_compliance": false,
+    "small_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
+    "medium_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png",
+    "large_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png",
+    "game": ["starburst"],
+    "header": "Game<br/>of the<br/>day",
+    "primary_action_text": "Play"
+  },
+  "game": {
+    "name": "Starburst",
+    "slug": "starburst",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2014/06/Starburst_Thumb.jpg",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2014/02/Starburst_Logo.png",
+    "hasPlayForFun": true,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "tableId": null
+  }
+}
