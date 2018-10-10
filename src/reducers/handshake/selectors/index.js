@@ -56,5 +56,5 @@ export const gamesHandshakeSelector = createSelector(
 
 export const isGamesHandshakeLoaded = createSelector(
   gamesHandshakeSelector,
-  x => complement(isEmpty)(x)
+  complement(isEmpty)
 );

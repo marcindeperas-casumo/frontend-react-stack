@@ -1,1 +1,1 @@
-export { default } from "./LiveCasinoCardContainer.js";
+export { default } from "./LiveCasinoCardContainer";

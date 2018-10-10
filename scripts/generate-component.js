@@ -24,7 +24,7 @@ const COMPONENT_PATH = process.argv[2] ? path.resolve(process.argv[2]) : cwd;
 const COMPONENT_NAME = process.argv[3] || "";
 const COMPONENT_DIR = path.join(COMPONENT_PATH, capitalize(COMPONENT_NAME));
 const FILE_TEMPLATES = {
-  "index.js": 'export { default } from "./{{ componentName }}.js";\n',
+  "index.js": 'export { default } from "./{{ componentName }}";\n',
   "{{ componentName }}.js": getComponentTemplate(),
   "{{ componentName }}.test.js": getComponentTestTemplate(),
   "{{ componentName }}.stories.js": getComponentStoryTemplate(),
