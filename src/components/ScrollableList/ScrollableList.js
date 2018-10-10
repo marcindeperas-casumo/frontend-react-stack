@@ -4,6 +4,7 @@ import GameListTitle from "Components/GameList/GameListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
 import ExclusiveGameTileContainer from "Containers/ExclusiveGameTileContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
+import { isEmpty } from "ramda";
 
 const paddingPerDevice = {
   default: "md",
@@ -26,6 +27,11 @@ const listIdToRenderDataMap = {
 export class ScrollableList extends PureComponent {
   render() {
     const { id, title, games } = this.props;
+
+    if (isEmpty(games)) {
+      return null;
+    }
+
     const { Component = GameTileContainer, spacing = "default" } =
       listIdToRenderDataMap[id] || {};
 
