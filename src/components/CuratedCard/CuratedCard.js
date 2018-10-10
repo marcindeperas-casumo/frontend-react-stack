@@ -7,12 +7,9 @@ import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import type { Images } from "Components/Image/ImageAdaptive";
+import { stringToHTML } from "Utils/index";
 
 import "./CuratedCard.scss";
-
-const stringToHTML = string => {
-  return { __html: string };
-};
 
 const justify = {
   mobile: "end",
@@ -33,7 +30,6 @@ export default class CuratedCard extends PureComponent<Props> {
     const { data } = this.props;
 
     return (
-      // $FlowFixMe
       <Text
         className="u-font-weight-bold u-text-transform-uppercase t-color-white"
         size="2xlg"

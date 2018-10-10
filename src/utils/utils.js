@@ -264,3 +264,7 @@ export const makeProtocolAwareUrl = url => {
     return url;
   }
 };
+
+export const stringToHTML = string => {
+  return { __html: string };
+};
