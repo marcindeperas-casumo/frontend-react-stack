@@ -5,10 +5,9 @@ import { getImgixUrl } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import curatedGame from "Components/CuratedCard/__mocks__/curatedGame.json";
 
-let component;
-
 describe("ImageAdaptive", () => {
   let images;
+  let component;
 
   beforeEach(() => {
     images = curatedGame.fields;
