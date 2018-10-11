@@ -30,7 +30,6 @@ export function* fetchGameListSaga() {
 
   const handshake = yield select(gamesHandshakeSelector);
 
-  // Dispatch an action that will start the fetch of the of the top lists
   yield put(
     gamesActions.fetchTopLists({
       handshake,
