@@ -43,6 +43,13 @@ export const GameBrowserClientFactory = ({ http }) => {
           { arrayFormat: "brackets" }
         )}`
       ),
+    gamesBySlugs: ({ platform, country, slugs, variant, hash }) =>
+      http.get(
+        `gamebrowser/games-by-slugs/${platform}/${country}?${stringify(
+          { hash, variant, slugs },
+          { arrayFormat: "brackets" }
+        )}`
+      ),
     liveCasinoTablesById: ({ ids, currency }) =>
       http.get(
         `gamebrowser/liveCasino/tablesById?${stringify(

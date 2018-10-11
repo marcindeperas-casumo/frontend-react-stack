@@ -54,6 +54,16 @@ export const GameBrowserServiceFactory = ({
     });
   };
 
+  const gamesBySlugs = async ({ variant = "default", slugs }) => {
+    const { variants } = await gameListMetaDataById({ id: "allGames" });
+    return gameBrowserClient.gamesBySlugs({
+      ...countryAndPlatform(config.get()),
+      hash: variants[variant].hash,
+      variant,
+      slugs,
+    });
+  };
+
   const gameListMetaDataById = async ({ id }) => {
     const handshake = await cachedHandshake();
     return handshake.gamesLists[id];
@@ -186,6 +196,7 @@ export const GameBrowserServiceFactory = ({
     config,
     allTopLists,
     latestPlayedGames,
+    gamesBySlugs,
   };
 };
 

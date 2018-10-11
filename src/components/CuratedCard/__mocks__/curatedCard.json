@@ -1,0 +1,56 @@
+{
+  "id": "85475",
+  "slug": "curated-component",
+  "title": "Curated Component",
+  "content": "",
+  "attachments": [
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-topwheel2.png",
+      "title": "cc-medium-topwheel2"
+    },
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-topwheel2.png",
+      "title": "cc-large-topwheel2"
+    },
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-topwheel2.png",
+      "title": "cc-small-topwheel2"
+    },
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
+      "title": "cc-small-starburst"
+    },
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png",
+      "title": "cc-medium-starburst"
+    },
+    {
+      "url": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png",
+      "title": "cc-large-starburst"
+    }
+  ],
+  "custom_fields": {},
+  "fields": {
+    "critical_for_compliance": false,
+    "small_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-topwheel2.png",
+    "medium_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-topwheel2.png",
+    "large_image": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-topwheel2.png",
+    "game": [
+      "topwheel-treasures"
+    ],
+    "header": "TRY OUR<br/> NEW<br/> GAME",
+    "primary_action_text": "Play"
+  },
+  "children": [],
+  "childSlugs": [],
+  "game": {
+    "name": "Topwheel Treasures",
+    "slug": "topwheel-treasures",
+    "logoBackground": "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
+    "logo": "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
+    "hasPlayForFun": false,
+    "inMaintenanceMode": false,
+    "jackpotId": null,
+    "tableId": "munbzmuueehqaavs"
+  }
+}

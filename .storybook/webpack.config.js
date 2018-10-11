@@ -42,6 +42,7 @@ module.exports = (baseConfig, env) => {
 
   return mergeDeepRight(baseConfig, {
     resolve: {
+      extensions: ['.wasm', '.mjs', '.js', '.json', '.scss'],
       alias: moduleAliases,
     },
   });
