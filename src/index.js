@@ -1,14 +1,14 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import AppContainer from "Containers/AppContainer";
-import legacyBridge from "./legacyBridge";
+import bridge from "./DurandalReactBridge";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 
 const store = configureStore();
-window.bridge = legacyBridge;
+window.bridge = bridge;
 bridgeToDispatchService(store);
 
 const renderApp = Component =>

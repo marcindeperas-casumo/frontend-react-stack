@@ -1,8 +1,8 @@
-import legacyBridge from "../legacyBridge";
+import bridge from "../DurandalReactBridge";
 import { KO_APP_EVENT_LAUNCH_GAME } from "../constants";
 
 export const launchGame = ({ slug }) =>
-  legacyBridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
+  bridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
     slug,
     playForFun: false,
   });
