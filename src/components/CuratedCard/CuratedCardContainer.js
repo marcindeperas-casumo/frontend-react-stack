@@ -17,10 +17,15 @@ type Props = {
 type State = {
   data: Object,
   loading: boolean,
+  error: boolean,
 };
 
 export default class CuratedCardContainer extends Component<Props, State> {
-  state = { data: {}, loading: true };
+  state = {
+    data: {},
+    loading: true,
+    error: false,
+  };
 
   async componentDidMount() {
     try {
@@ -39,13 +44,16 @@ export default class CuratedCardContainer extends Component<Props, State> {
         loading: false,
       });
     } catch (e) {
+      this.setState({ error: true });
       throw new Error(`CuratedCard failed trying to fetch data - ${e}`);
     }
   }
 
   render() {
     const { className } = this.props;
-    const { data, loading } = this.state;
+    const { data, loading, error } = this.state;
+
+    if (error) return null;
 
     return (
       <Flex className={className} direction="vertical" spacing="none">

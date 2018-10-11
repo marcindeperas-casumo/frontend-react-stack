@@ -20,4 +20,10 @@ describe("CuratedCardContainer", () => {
     component.setState({ data: curatedCardData, loading: false });
     expect(component.find("CuratedCard").exists()).toBe(true);
   });
+
+  test("should hide if here is an error", () => {
+    const component = mount(<CuratedCardContainer />);
+    component.setState({ error: true });
+    expect(component.html()).toBe(null);
+  });
 });
