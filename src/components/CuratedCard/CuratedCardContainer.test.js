@@ -21,7 +21,7 @@ describe("CuratedCardContainer", () => {
     expect(component.find("CuratedCard").exists()).toBe(true);
   });
 
-  test("should hide if here is an error", () => {
+  test("should hide if there is an error", () => {
     const component = mount(<CuratedCardContainer />);
     component.setState({ error: true });
     expect(component.html()).toBe(null);
