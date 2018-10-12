@@ -3,14 +3,23 @@ import { mount } from "enzyme";
 import WaitForHostElement from "Components/WaitForHostElement";
 
 jest.useFakeTimers();
-
+let originalConsoleError;
 describe("WaitForHostElement", () => {
   beforeEach(() => {
+    originalConsoleError = console.error;
+    // Since we do not have an injected logger we need to rely on the global
+    // console.error.
     console.error = jest.fn();
+
     const div = document.createElement("div");
     div.setAttribute("id", "foo-id");
     window.domNode = div;
     document.body.appendChild(div);
+  });
+
+  afterEach(() => {
+    console.error = originalConsoleError;
+    jest.clearAllTimers();
   });
 
   test("do not render anything if host element is not found", done => {
