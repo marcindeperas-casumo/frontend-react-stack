@@ -13,10 +13,23 @@ export const types = {
   UPDATE_HANDSHAKE: "HANDSHAKE/UPDATE_HANDSHAKE",
 };
 
+// This function definitions below (*HandshakeCall) are assigned to their own
+// constant so that we can pass them by reference to the actionCreator.
+// This will help in testing equality checks of actions creators.
+const fetchAppHandshakeCall = composePromises(
+  app => ({ app }),
+  CommonClient.handshake
+);
+
+const fetchGamesHandshakeCall = composePromises(
+  games => ({ games }),
+  GameBrowserClient.handshake
+);
+
 export const fetchAppHandshake = () => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_APP_HANDSHAKE,
-  asyncCall: composePromises(app => ({ app }), CommonClient.handshake),
+  asyncCall: fetchAppHandshakeCall,
   postFetch: types.UPDATE_HANDSHAKE,
 });
 
@@ -24,7 +37,7 @@ export const fetchGamesHandshake = ({ country }) => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_GAMES_HANDSHAKE,
   asyncCallData: { country, platform: "mobile" },
-  asyncCall: composePromises(games => ({ games }), GameBrowserClient.handshake),
+  asyncCall: fetchGamesHandshakeCall,
   postFetch: types.UPDATE_HANDSHAKE,
 });
 
