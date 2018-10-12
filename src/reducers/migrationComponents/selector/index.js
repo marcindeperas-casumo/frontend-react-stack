@@ -1,8 +1,12 @@
 import { createSelector } from "reselect";
+import { prop, defaultTo, compose } from "ramda";
 
-export const migrationComponentsSelector = state => state.migrationComponents;
+export const migrationComponentsSelector = prop("migrationComponents");
 
 export const activeComponents = createSelector(
   migrationComponentsSelector,
-  migrationComponents => migrationComponents.activeComponents
+  compose(
+    defaultTo([]),
+    prop("activeComponents")
+  )
 );
