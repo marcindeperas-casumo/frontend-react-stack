@@ -57,7 +57,8 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js",
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
+      "src/**/*.{js,jsx,mjs}",
+      "!src/**/*.stories.{js,jsx,mjs}"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
