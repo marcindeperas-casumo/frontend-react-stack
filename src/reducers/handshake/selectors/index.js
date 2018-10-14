@@ -8,6 +8,11 @@ export const applicationHandshakeSelector = createSelector(
   handshakeSelector,
   prop(APP_HANDSHAKE_KEY)
 );
+export const isApplicationHandshakeLoaded = createSelector(
+  applicationHandshakeSelector,
+  complement(anyPass([isNil, isEmpty]))
+);
+
 export const session = createSelector(
   applicationHandshakeSelector,
   prop("common/composition/session")

@@ -1,6 +1,7 @@
 import {
   handshakeSelector,
   applicationHandshakeSelector,
+  isApplicationHandshakeLoaded,
   session,
   players,
   isAuthenticated,
@@ -30,6 +31,38 @@ describe("Handshake selectors", () => {
     };
 
     expect(applicationHandshakeSelector(state)).toEqual({ foo: "app-bar" });
+  });
+
+  describe("isApplicationHandshakeLoaded", () => {
+    test("when app handshake is present", () => {
+      const state = {
+        handshake: {
+          app: {
+            foo: "app-bar",
+          },
+        },
+      };
+
+      expect(isApplicationHandshakeLoaded(state)).toBe(true);
+    });
+
+    test("when app handshake is not present", () => {
+      const state = {
+        handshake: {},
+      };
+
+      expect(isApplicationHandshakeLoaded(state)).toBe(false);
+    });
+
+    test("when app handshake is empty", () => {
+      const state = {
+        handshake: {
+          app: {},
+        },
+      };
+
+      expect(isApplicationHandshakeLoaded(state)).toBe(false);
+    });
   });
 
   test("session", () => {
