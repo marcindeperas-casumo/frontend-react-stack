@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ScrollableList from "Components/ScrollableList";
-import ExclusiveGameTileContainer from "Containers/ExclusiveGameTileContainer";
+import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
 import GameListTitle from "Components/GameList/GameListTitle";
 
@@ -20,12 +20,12 @@ describe("ScrollableList", () => {
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("render ExclusiveGameTileContainer for listId exclusiveGames ", () => {
+  test("render GameTileExclusiveContainer for listId exclusiveGames ", () => {
     const rendered = shallow(
       <ScrollableList id="exclusiveGames" games={[1]} title="hi" />
     );
 
-    expect(rendered.find(ExclusiveGameTileContainer).length).toBe(1);
+    expect(rendered.find(GameTileExclusiveContainer).length).toBe(1);
   });
 
   test("render LiveCasinoCardContainer for listId liveCasinoGames", () => {

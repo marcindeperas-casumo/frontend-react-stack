@@ -2,7 +2,7 @@ import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import GameListTitle from "Components/GameList/GameListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
-import ExclusiveGameTileContainer from "Containers/ExclusiveGameTileContainer";
+import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
 import { isEmpty } from "ramda";
 
@@ -19,7 +19,7 @@ const paddingPerDevice = {
 // (listIdBySpacingMap). The issue with this is that the keys of the map
 // (listIds) need to be maintained in two different places.
 const listIdToRenderDataMap = {
-  exclusiveGames: { Component: ExclusiveGameTileContainer },
+  exclusiveGames: { Component: GameTileExclusiveContainer },
   liveCasinoGames: { Component: LiveCasinoCardContainer, spacing: "md" },
   liveCasino: { Component: LiveCasinoCardContainer, spacing: "md" },
 };
