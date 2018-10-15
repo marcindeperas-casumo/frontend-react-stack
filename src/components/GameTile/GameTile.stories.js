@@ -4,35 +4,62 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
 import GameTile from "Components/GameTile";
+import GameTileExclusive from "Components/GameTileExclusive";
 
 const stories = storiesOf("GameTile", module);
 stories.addDecorator(withKnobs);
 
+const game = {
+  name: "Gonzo&#8217;s Quest",
+  slug: "gonzos-quest",
+  logoBackground:
+    "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+  logo:
+    "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
+  hasPlayForFun: true,
+  inMaintenanceMode: false,
+  jackpotId: null,
+  onLaunchGame: action("gonzos-quest"),
+};
+
+const jackpotInfo = {
+  games: [
+    {
+      name: "Mega Fortune",
+    },
+  ],
+  jackpotId: "netent-megajackpot1",
+  jackpotType: "Pooled",
+  iso4217CurrencyCode: "GBP",
+  jackpotAmount: 1837434.164833,
+  formattedJackpotAmount: "£1,837,434.16",
+  latestPayoutDate: 1536766014631,
+  payoutCount: 0,
+  totalJackpotAmountPaidOut: 0,
+  formattedTotalJackpotAmountPaidOut: "£0.00",
+};
+
+const exclusiveGame = {
+  name: "Jammin Jars",
+  slug: "jammin-jars",
+  logo:
+    "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjar-logo-480x580.png",
+  logoBackground:
+    "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
+  hasPlayForFun: true,
+  inMaintenanceMode: false,
+  jackpotId: null,
+  onLaunchGame: action("jammin-jars"),
+};
+
 stories.add(
   "Default Tile",
   () => {
-    const game = {
-      name: "Gonzo&#8217;s Quest",
-      slug: "gonzos-quest",
-      logoBackground:
-        "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
-      logo:
-        "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
-      hasPlayForFun: true,
-      inMaintenanceMode: boolean("In maintenance mode", false),
-      jackpotId: null,
-    };
-    return (
-      <GameTile
-        key={game.slug}
-        name={game.name}
-        slug={game.slug}
-        inMaintenanceMode={game.inMaintenanceMode}
-        launchGame={action(game.slug)}
-        logoBackground={game.logoBackground}
-        logo={game.logo}
-      />
+    const inMaintenanceMode = boolean(
+      "In maintenance mode",
+      game.inMaintenanceMode
     );
+    return <GameTile {...game} inMaintenanceMode={inMaintenanceMode} />;
   },
   info({ text: "Default Tile" })
 );
@@ -40,44 +67,14 @@ stories.add(
 stories.add(
   "With Jackpot",
   () => {
-    const game = {
-      name: "Mega Fortune",
-      slug: "mega-fortune",
-      logoBackground:
-        "https://cms.casumo.com/wp-content/uploads/2014/06/MegaFortune_Thumb.jpg",
-      logo:
-        "https://cms.casumo.com/wp-content/uploads/2014/02/MegaFortune_Logo.png",
-      hasPlayForFun: true,
-      inMaintenanceMode: boolean("In maintenance mode", false),
-      jackpotId: "netent-megajackpot1",
-      tableId: null,
-      jackpotInfo: {
-        games: [
-          {
-            name: "Mega Fortune",
-          },
-        ],
-        jackpotId: "netent-megajackpot1",
-        jackpotType: "Pooled",
-        iso4217CurrencyCode: "GBP",
-        jackpotAmount: 1837434.164833,
-        formattedJackpotAmount: "£1,837,434.16",
-        latestPayoutDate: 1536766014631,
-        payoutCount: 0,
-        totalJackpotAmountPaidOut: 0,
-        formattedTotalJackpotAmountPaidOut: "£0.00",
-      },
-    };
+    const inMaintenanceMode = boolean(
+      "In maintenance mode",
+      game.inMaintenanceMode
+    );
     return (
       <GameTile
-        key={game.slug}
-        name={game.name}
-        slug={game.slug}
-        inMaintenanceMode={game.inMaintenanceMode}
-        launchGame={action(game.slug)}
-        logoBackground={game.logoBackground}
-        logo={game.logo}
-        jackpotInfo={game.jackpotInfo}
+        {...{ ...game, jackpotInfo }}
+        inMaintenanceMode={inMaintenanceMode}
       />
     );
   },
@@ -87,33 +84,14 @@ stories.add(
 stories.add(
   "Tall Tile",
   () => {
-    const game = {
-      name: "Jammin Jars",
-      slug: "jammin-jars",
-      logo:
-        "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjar-logo-480x580.png",
-      logoBackground:
-        "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
-      hasPlayForFun: true,
-      inMaintenanceMode: boolean("In maintenance mode", false),
-      jackpotId: null,
-    };
-
+    const inMaintenanceMode = boolean(
+      "In maintenance mode",
+      exclusiveGame.inMaintenanceMode
+    );
     return (
-      <GameTile
-        ratio="game-tile-exclusive"
-        key={game.slug}
-        name={game.name}
-        slug={game.slug}
-        inMaintenanceMode={game.inMaintenanceMode}
-        launchGame={action(game.slug)}
-        logoBackground={game.logoBackground}
-        logo={game.logo}
-        imgixOpts={{
-          w: 188,
-          h: 280,
-          fit: "scale",
-        }}
+      <GameTileExclusive
+        {...exclusiveGame}
+        inMaintenanceMode={inMaintenanceMode}
       />
     );
   },
