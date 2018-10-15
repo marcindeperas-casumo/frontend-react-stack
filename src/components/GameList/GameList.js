@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import ScrollingContainer from "@casumo/cmp-scrollable";
 
 import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
-import brdige from "../../DurandalReactBridge";
+import bridge from "../../DurandalReactBridge";
 
 import GameListTiles from "Components/GameList/GameListTiles";
 import GameListTitle from "Components/GameList/GameListTitle";
@@ -11,7 +11,7 @@ import GameListExclusiveTiles from "Components/GameList/GameListExclusiveTiles";
 import LiveCasinoCard from "Components/LiveCasinoCard";
 
 export const emitLaunchGame = (slug: string) => {
-  brdige.emit(KO_APP_EVENT_LAUNCH_GAME, {
+  bridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
     slug,
     playForFun: false,
   });
