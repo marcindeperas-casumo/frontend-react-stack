@@ -23,17 +23,15 @@ stories.add(
       jackpotId: null,
     };
     return (
-      <div style={{ maxWidth: "170px" }}>
-        <GameTile
-          key={game.slug}
-          name={game.name}
-          slug={game.slug}
-          inMaintenanceMode={game.inMaintenanceMode}
-          launchGame={action(game.slug)}
-          logoBackground={game.logoBackground}
-          logo={game.logo}
-        />
-      </div>
+      <GameTile
+        key={game.slug}
+        name={game.name}
+        slug={game.slug}
+        inMaintenanceMode={game.inMaintenanceMode}
+        launchGame={action(game.slug)}
+        logoBackground={game.logoBackground}
+        logo={game.logo}
+      />
     );
   },
   info({ text: "Default Tile" })
@@ -71,18 +69,16 @@ stories.add(
       },
     };
     return (
-      <div style={{ maxWidth: "170px" }}>
-        <GameTile
-          key={game.slug}
-          name={game.name}
-          slug={game.slug}
-          inMaintenanceMode={game.inMaintenanceMode}
-          launchGame={action(game.slug)}
-          logoBackground={game.logoBackground}
-          logo={game.logo}
-          jackpotInfo={game.jackpotInfo}
-        />
-      </div>
+      <GameTile
+        key={game.slug}
+        name={game.name}
+        slug={game.slug}
+        inMaintenanceMode={game.inMaintenanceMode}
+        launchGame={action(game.slug)}
+        logoBackground={game.logoBackground}
+        logo={game.logo}
+        jackpotInfo={game.jackpotInfo}
+      />
     );
   },
   info({ text: "With Jackpot" })
@@ -104,23 +100,21 @@ stories.add(
     };
 
     return (
-      <div style={{ maxWidth: "188px" }}>
-        <GameTile
-          ratio="game-tile-exclusive"
-          key={game.slug}
-          name={game.name}
-          slug={game.slug}
-          inMaintenanceMode={game.inMaintenanceMode}
-          launchGame={action(game.slug)}
-          logoBackground={game.logoBackground}
-          logo={game.logo}
-          imgixOpts={{
-            w: 188,
-            h: 280,
-            fit: "scale",
-          }}
-        />
-      </div>
+      <GameTile
+        ratio="game-tile-exclusive"
+        key={game.slug}
+        name={game.name}
+        slug={game.slug}
+        inMaintenanceMode={game.inMaintenanceMode}
+        launchGame={action(game.slug)}
+        logoBackground={game.logoBackground}
+        logo={game.logo}
+        imgixOpts={{
+          w: 188,
+          h: 280,
+          fit: "scale",
+        }}
+      />
     );
   },
   info({ text: "Tall Tile" })
