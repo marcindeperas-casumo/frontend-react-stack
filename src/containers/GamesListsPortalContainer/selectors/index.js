@@ -21,7 +21,7 @@ export const gamesListsPortalFetchStatusSelector = createSelector(
     isFetching:
       !isApplicationHandshakeLoaded ||
       !isGamesHandshakeLoaded ||
-      (!!fetchTopListsStatus.isFetching &&
-        !!fetchGamesHandshakeStatus.isFetching),
+      fetchTopListsStatus.isFetching ||
+      fetchGamesHandshakeStatus.isFetching,
   })
 );
