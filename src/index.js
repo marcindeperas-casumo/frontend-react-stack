@@ -6,6 +6,7 @@ import "./styles/index.scss";
 import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
+import { isProduction } from "./utils";
 
 const store = configureStore();
 window.bridge = bridge;
@@ -26,4 +27,16 @@ if (module.hot) {
     const NextApp = require("./containers/AppContainer").default;
     renderApp(NextApp);
   });
+}
+
+if (isProduction()) {
+  // disable react-dev-tools for this project
+  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+    for (let [key, value] of Object.entries(
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__
+    )) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
+        typeof value === "function" ? () => {} : null;
+    }
+  }
 }
