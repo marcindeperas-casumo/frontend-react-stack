@@ -3,9 +3,13 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "./reducers";
 import rootSaga from "./sagas";
+import { isProduction } from "./utils";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const configureStore = preloadedState => {
+  const composeEnhancers = isProduction()
+    ? compose
+    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
   const sagaMiddleware = createSagaMiddleware();
 
   const middlewares = [thunk, sagaMiddleware];

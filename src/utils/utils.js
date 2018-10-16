@@ -2,6 +2,8 @@ import { prop } from "ramda";
 
 const { log } = console;
 
+export const isProduction = () => process.env.NODE_ENV === "production";
+
 export const sleep = ms => data => {
   return new Promise(resolve => {
     setTimeout(() => {
