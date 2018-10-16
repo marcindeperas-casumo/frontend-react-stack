@@ -33,4 +33,10 @@ describe("Game Browser Service", () => {
 
     expect(commonClientMock.handshake).toHaveBeenCalledTimes(2);
   });
+
+  test("should update the handshake with obsolete__updateHandshake", async () => {
+    service.obsolete__updateHandshake({ foo: "bar" });
+    const handshake = await service.handshake();
+    expect(handshake).toEqual({ foo: "bar" });
+  });
 });

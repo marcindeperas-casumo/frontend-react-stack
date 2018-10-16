@@ -51,7 +51,7 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
   </Flex>
 );
 
-export default function LiveCasinoCard({ game }) {
+export default function LiveCasinoCard(game) {
   return (
     <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
       <Card

@@ -1,13 +1,12 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-
 import { getHostElement } from "Utils/index";
-import GamesListsContainer from "Containers/GamesLists/GamesListsContainer";
-import GamesListsSkeleton from "Containers/GamesLists/GamesListsSkeleton";
+import GamesListsSkeleton from "Components/GameListsSkeleton";
+import TopListsContainer from "Containers/TopListsContainer";
 
-const GAMES_LISTS_HOST_ID = "react-host-games-lists";
+export const GAMES_LISTS_HOST_ID = "react-host-games-lists";
 
-export default class GamesListsPortal extends React.Component {
+class GamesListsPortal extends PureComponent {
   constructor(props) {
     super(props);
     this.otherComponentRoot = getHostElement(GAMES_LISTS_HOST_ID);
@@ -26,15 +25,17 @@ export default class GamesListsPortal extends React.Component {
 
   componentWillUnmount() {
     this.otherComponentRoot.removeChild(this.el);
+    this.otherComponentRoot = null;
+    this.el = null;
   }
 
   render() {
-    const { showSkeleton } = this.props;
+    const { isFetching } = this.props;
     return ReactDOM.createPortal(
-      <React.Fragment>
-        {showSkeleton ? <GamesListsSkeleton /> : <GamesListsContainer />}
-      </React.Fragment>,
+      isFetching ? <GamesListsSkeleton /> : <TopListsContainer />,
       this.el
     );
   }
 }
+
+export default GamesListsPortal;

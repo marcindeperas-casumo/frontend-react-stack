@@ -1,26 +1,42 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/App";
-import legacyBridge from "./legacyBridge";
-import {
-  REACT_APP_EVENT_ALL_PORTALS_CLEAR,
-  REACT_APP_EVENT_ROUTE_CHANGE,
-} from "./constants";
+import AppContainer from "Containers/AppContainer";
+import bridge from "./DurandalReactBridge";
 import "./styles/index.scss";
 import { Provider } from "react-redux";
-import store from "./configureStore";
+import configureStore from "./configureStore";
+import bridgeToDispatchService from "Services/BridgeToDispatchService";
+import { isProduction } from "./utils";
 
-window.bridge = legacyBridge;
-const root = document.getElementById("root");
+const store = configureStore();
+window.bridge = bridge;
+bridgeToDispatchService(store);
 
-legacyBridge.on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
-  legacyBridge.emit(REACT_APP_EVENT_ALL_PORTALS_CLEAR);
-  legacyBridge.emit(data.config.id);
-});
+const renderApp = Component =>
+  ReactDOM.render(
+    <Provider store={store}>
+      <Component />
+    </Provider>,
+    document.getElementById("root")
+  );
 
-ReactDOM.render(
-  <Provider store={store()}>
-    <App />
-  </Provider>,
-  root
-);
+renderApp(AppContainer);
+
+if (module.hot) {
+  module.hot.accept("./containers/AppContainer", () => {
+    const NextApp = require("./containers/AppContainer").default;
+    renderApp(NextApp);
+  });
+}
+
+if (isProduction()) {
+  // disable react-dev-tools for this project
+  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+    for (let [key, value] of Object.entries(
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__
+    )) {
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
+        typeof value === "function" ? () => {} : null;
+    }
+  }
+}

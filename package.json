@@ -22,6 +22,7 @@
     "cometd": "^3.1.4",
     "intersection-observer": "^0.5.0",
     "invariant": "^2.2.4",
+    "normalizr": "^3.2.4",
     "object-assign": "4.1.1",
     "promise": "8.0.1",
     "qs": "^6.5.2",
@@ -35,8 +36,11 @@
     "react-redux": "^5.0.7",
     "react-responsive-carousel": "^3.1.39",
     "redux": "^4.0.0",
+    "redux-saga": "^0.16.0",
     "redux-thunk": "^2.3.0",
-    "sentence-case": "^2.1.1"
+    "reselect": "^3.0.1",
+    "sentence-case": "^2.1.1",
+    "wait-for-element": "^1.0.2"
   },
   "scripts": {
     "flow": "flow",
@@ -53,7 +57,8 @@
   "jest": {
     "setupTestFrameworkScriptFile": "<rootDir>/config/jest/enzyme.js",
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
+      "src/**/*.{js,jsx,mjs}",
+      "!src/**/*.stories.{js,jsx,mjs}"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
