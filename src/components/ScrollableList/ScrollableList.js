@@ -1,9 +1,10 @@
 import React, { PureComponent } from "react";
-import ScrollingContainer from "@casumo/cmp-scrollable";
+import Scrollable from "@casumo/cmp-scrollable";
 import GameListTitle from "Components/GameList/GameListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
-import ExclusiveGameTileContainer from "Containers/ExclusiveGameTileContainer";
+import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
+import { isEmpty } from "ramda";
 
 const paddingPerDevice = {
   default: "md",
@@ -18,7 +19,7 @@ const paddingPerDevice = {
 // (listIdBySpacingMap). The issue with this is that the keys of the map
 // (listIds) need to be maintained in two different places.
 const listIdToRenderDataMap = {
-  exclusiveGames: { Component: ExclusiveGameTileContainer },
+  exclusiveGames: { Component: GameTileExclusiveContainer },
   liveCasinoGames: { Component: LiveCasinoCardContainer, spacing: "md" },
   liveCasino: { Component: LiveCasinoCardContainer, spacing: "md" },
 };
@@ -26,6 +27,11 @@ const listIdToRenderDataMap = {
 export class ScrollableList extends PureComponent {
   render() {
     const { id, title, games } = this.props;
+
+    if (isEmpty(games)) {
+      return null;
+    }
+
     const { Component = GameTileContainer, spacing = "default" } =
       listIdToRenderDataMap[id] || {};
 
@@ -35,11 +41,11 @@ export class ScrollableList extends PureComponent {
           <GameListTitle title={title} />
         </div>
 
-        <ScrollingContainer padding={paddingPerDevice} itemSpacing={spacing}>
+        <Scrollable padding={paddingPerDevice} itemSpacing={spacing}>
           {games.map(gameId => (
             <Component key={gameId} id={gameId} />
           ))}
-        </ScrollingContainer>
+        </Scrollable>
       </div>
     );
   }

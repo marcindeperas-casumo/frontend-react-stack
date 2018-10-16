@@ -1,4 +1,4 @@
-import ExclusiveGameTile from "Components/ExclusiveGameTile";
+import GameTileExclusive from "Components/GameTileExclusive";
 import { connect } from "react-redux";
 import { gameSelector } from "Reducers/schema/selector";
 import { actions as gameActions } from "Reducers/games";
@@ -11,6 +11,6 @@ const mapDispatchToProps = (dispatch, props) => ({
 const ExclusiveGameTileContainer = connect(
   getGameData,
   mapDispatchToProps
-)(ExclusiveGameTile);
+)(GameTileExclusive);
 
 export default ExclusiveGameTileContainer;

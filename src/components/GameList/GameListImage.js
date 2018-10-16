@@ -1,6 +1,6 @@
 import React from "react";
-import LazyImage from "../LazyImage";
+import ImageLazy from "Components/Image/ImageLazy";
 
 export default function GameListImage({ src }) {
-  return <LazyImage style={{ width: "100%" }} src={src} dpr={3} />;
+  return <ImageLazy style={{ width: "100%" }} src={src} dpr={3} />;
 }

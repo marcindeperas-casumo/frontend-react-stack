@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "paths": {
       "Containers/*": ["./src/containers/*"],
       "Components/*": ["./src/components/*"],

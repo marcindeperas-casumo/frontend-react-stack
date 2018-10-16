@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { compose, prop, isNil, isEmpty, complement } from "ramda";
+import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Reducers/handshake";
 
 export const handshakeSelector = state => state.handshake;
@@ -8,6 +8,11 @@ export const applicationHandshakeSelector = createSelector(
   handshakeSelector,
   prop(APP_HANDSHAKE_KEY)
 );
+export const isApplicationHandshakeLoaded = createSelector(
+  applicationHandshakeSelector,
+  complement(anyPass([isNil, isEmpty]))
+);
+
 export const session = createSelector(
   applicationHandshakeSelector,
   prop("common/composition/session")
@@ -19,7 +24,10 @@ export const players = createSelector(
     prop("common/composition/players")
   )
 );
-export const isAuthenticated = createSelector(session, complement(isNil));
+export const isAuthenticated = createSelector(
+  session,
+  complement(anyPass([isNil, isEmpty]))
+);
 export const playerId = createSelector(session, prop("id"));
 export const player = createSelector(
   players,
@@ -56,5 +64,5 @@ export const gamesHandshakeSelector = createSelector(
 
 export const isGamesHandshakeLoaded = createSelector(
   gamesHandshakeSelector,
-  complement(isEmpty)
+  complement(anyPass([isNil, isEmpty]))
 );

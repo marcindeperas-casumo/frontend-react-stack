@@ -5,10 +5,13 @@ import rollbarMiddleware from "rollbar-redux-middleware";
 import rootReducer from "./reducers";
 import rootSaga from "./sagas";
 import Rollbar from "./lib/rollbar";
-
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+import { isProduction } from "./utils";
 
 const configureStore = preloadedState => {
+  const composeEnhancers = isProduction()
+    ? compose
+    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
   const sagaMiddleware = createSagaMiddleware();
   const rollbarRedux = rollbarMiddleware(Rollbar, null, true);
 
@@ -28,9 +31,15 @@ const configureStore = preloadedState => {
       store.replaceReducer(nextRootReducer);
     });
 
-    module.hot.accept("./sagas", () => {
-      store.replaceReducer(require("./sagas").default);
-    });
+    // Why there isn't there any saga HMR?
+    //
+    // When this was implemented, every time a saga changed we where calling
+    // `store.replaceReducer(nextSaga);` which was causing the state
+    // (`store.getState()`) to become a generator function, something that is
+    // not right.
+    //
+    // Now if you are reading this and you have an idea how to improve it please
+    // go ahead and have a go.
   }
 
   return store;

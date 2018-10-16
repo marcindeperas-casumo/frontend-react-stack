@@ -1,6 +1,6 @@
 import { actions } from "Reducers/migrationComponents";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
-import bridge from "../legacyBridge";
+import bridge from "../DurandalReactBridge";
 
 export const connect = store => {
   const { dispatch } = store;

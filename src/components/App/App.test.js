@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import App from "Components/App";
 
 describe("App", () => {
-  test("onAppStart is called when the component is mounded", () => {
+  test("onAppStart is called when the component is mounted", () => {
     const fn = jest.fn();
     shallow(<App onAppStarted={fn} />);
     expect(fn).toHaveBeenCalledTimes(1);

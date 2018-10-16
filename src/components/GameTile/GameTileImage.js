@@ -1,5 +1,5 @@
 import React from "react";
-import LazyImage from "Components/LazyImage";
+import ImageLazy from "Components/Image/ImageLazy";
 
 const GameTileImage = ({
   inMaintenanceMode,
@@ -9,7 +9,7 @@ const GameTileImage = ({
   ...rest
 }) => {
   return (
-    <LazyImage
+    <ImageLazy
       className="o-ratio__content t-border-r--8"
       src={logoBackground}
       mark={logo}

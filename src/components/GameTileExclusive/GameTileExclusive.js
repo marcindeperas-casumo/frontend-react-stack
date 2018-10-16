@@ -11,7 +11,7 @@ export class ExclusiveGameTile extends PureComponent {
 
   render() {
     return (
-      <Flex.Item className="o-flex__item-fixed-size o-flex c-exclusive-game">
+      <Flex.Item className="o-flex__item-fixed-size c-exclusive-game">
         <GameTile
           {...this.props}
           ratio="game-tile-exclusive"
