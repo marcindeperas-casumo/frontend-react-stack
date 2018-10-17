@@ -1,0 +1,19 @@
+.c-jackpots {
+  max-width: 375px;
+  width: 100%;
+}
+
+.c-jackpots-tile {
+  width: 85%;
+}
+
+// 😱 Couldn't reach the same amount of padding with CUDL classes, Jack please help!
+.c-jackpots-tile-row {
+  padding: 8px 0;
+}
+
+$jackpot-image-size: 70px;
+.c-jackpots-tile-row-image {
+  height: $jackpot-image-size;
+  width: $jackpot-image-size;
+}
