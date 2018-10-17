@@ -24,10 +24,13 @@ const greaterThanZero = gte(0);
 
 const padTime = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 
-const diffTime = endTime =>
-  DateTime.fromMillis(endTime)
+const diffTime = endTime => {
+  const time = DateTime.fromMillis(endTime)
+    // diff over diffNow to guarantee we diff against UTC.
     .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
     .toObject();
+  return time;
+};
 
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
