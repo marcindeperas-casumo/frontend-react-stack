@@ -1,7 +1,10 @@
 import { compose, prop, defaultTo } from "ramda";
 import { createSelector } from "reselect";
+import { prop } from "ramda";
 
 export const schemaSelector = state => state.schema;
+
+// TODO: Add tests for selectors for null states
 
 export const gameListEntitiesSelector = createSelector(
   schemaSelector,
@@ -27,6 +30,8 @@ export const jackpotEntitiesSelector = createSelector(
   schemaSelector,
   state => state.jackpot
 );
+
+export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, state => ({
   listIds: Object.keys(state),
