@@ -31,7 +31,7 @@ describe("Sagas/CMS", () => {
       expect(fetchAction).toEqual(expectedAction);
     });
 
-    test("waites until the fetch is completed", () => {
+    test("waits until the fetch is completed", () => {
       const { pattern } = clonedGenerator.next().value.TAKE;
 
       expect(pattern).toBe(getFetchCompleteTypeBySlug(slug));
