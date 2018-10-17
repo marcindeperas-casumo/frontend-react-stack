@@ -6,6 +6,7 @@ const Rollbar = new rollbar({
   captureUnhandledRejections: true,
   payload: {
     environment: process.env.NODE_ENV,
+    context: "react-stack",
   },
 });
 
