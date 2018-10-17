@@ -32,16 +32,26 @@ describe("Timer", () => {
 
   test("should update timer every second", () => {
     const renderProp = jest.fn();
+    const spy = jest.spyOn(Timer.prototype, "updateTime");
     const rendered = shallow(
       <Timer endTime={endTime.getTime()} render={renderProp} onEnd={() => {}} />
     );
+    expect(spy).toHaveBeenCalledTimes(0);
+
     Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 1, 5));
     mockRaf.step({ time: 1000, count: 1 });
 
+    expect(spy).toHaveBeenCalledTimes(1);
     expect(rendered.state().days).toEqual("00");
     expect(rendered.state().hours).toEqual("00");
     expect(rendered.state().minutes).toEqual("00");
     expect(rendered.state().seconds).toEqual("05");
+
+    mockRaf.step({ time: 1000, count: 1 });
+    expect(spy).toHaveBeenCalledTimes(2);
+
+    mockRaf.step({ time: 1000, count: 1 });
+    expect(spy).toHaveBeenCalledTimes(3);
   });
 
   test("should render a timer", () => {
