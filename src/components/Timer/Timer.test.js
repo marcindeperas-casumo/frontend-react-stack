@@ -8,6 +8,7 @@ const mockRaf = createMockRaf();
 
 describe("Timer", () => {
   let endTime;
+
   beforeEach(() => {
     endTime = new Date(Date.UTC(2018, 1, 1, 1, 1, 10));
     Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 1, 0));
@@ -43,7 +44,16 @@ describe("Timer", () => {
     expect(rendered.state().seconds).toEqual("05");
   });
 
-  test("should call onEnd function when timer reaches zero", () => {
+  test("should render a timer", () => {
+    const renderProp = jest.fn(state => <div>{state.seconds}</div>);
+    const rendered = shallow(
+      <Timer endTime={endTime.getTime()} render={renderProp} onEnd={() => {}} />
+    );
+    expect(rendered.text()).toEqual("10");
+    expect(renderProp).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call onEnd prop when timer reaches zero", () => {
     const renderProp = jest.fn();
     const onEndProp = jest.fn();
     const rendered = shallow(
