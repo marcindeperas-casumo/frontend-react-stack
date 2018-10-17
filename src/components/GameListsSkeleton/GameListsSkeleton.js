@@ -1,7 +1,7 @@
 import React from "react";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 
-const GameListsSkeleton = () => (
+export const GameListsSkeleton = () => (
   <div>
     {Array.from(Array(4).keys()).map(i => (
       <GameListSkeleton

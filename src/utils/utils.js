@@ -2,6 +2,8 @@ import { prop } from "ramda";
 
 const { log } = console;
 
+export const isProduction = () => process.env.NODE_ENV === "production";
+
 export const sleep = ms => data => {
   return new Promise(resolve => {
     setTimeout(() => {
@@ -88,7 +90,7 @@ export const cacheLocallyForMs = ms => {
   };
 };
 
-const commonFetch = (url, options) => {
+export const commonFetch = (url, options) => {
   return fetch("/api/" + url, {
     credentials: "same-origin",
     headers: {
@@ -96,6 +98,12 @@ const commonFetch = (url, options) => {
     },
     ...options,
   })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(response.statusText);
+      }
+      return response;
+    })
     .then(response => response.text())
     .then(text => {
       if (text === "") {

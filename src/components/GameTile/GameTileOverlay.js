@@ -8,7 +8,7 @@ import { decodeString } from "Utils/index";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 
-const GameTileOverlay = ({ name, slug, inMaintenanceMode, launchGame }) => {
+const GameTileOverlay = ({ name, slug, inMaintenanceMode, onLaunchGame }) => {
   return (
     <Flex
       direction="vertical"
@@ -25,7 +25,7 @@ const GameTileOverlay = ({ name, slug, inMaintenanceMode, launchGame }) => {
       {inMaintenanceMode ? (
         <TemporaryUnavailable />
       ) : (
-        <PlayAction launchGame={launchGame} />
+        <PlayAction onLaunchGame={onLaunchGame} />
       )}
 
       <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
