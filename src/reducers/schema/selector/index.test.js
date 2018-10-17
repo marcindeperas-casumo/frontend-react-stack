@@ -7,6 +7,7 @@ import {
   jackpotEntitiesSelector,
   topListIds,
   topListSelectorById,
+  topListSelectorByQuery,
   gameSelector,
 } from "Reducers/schema/selector";
 describe("Schema selectors", () => {
@@ -66,12 +67,60 @@ describe("Schema selectors", () => {
     expect(topListIds(state)).toEqual({ listIds: ["l1"] });
   });
 
-  test("topListSelectorById", () => {
+  test("topListSelectorById()", () => {
+    const id = "l1";
     const state = {
-      schema: { gameList: { l1: { id: "l1" } } },
+      schema: {
+        gameList: {
+          [id]: {
+            id,
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+        },
+      },
     };
+    const selected = topListSelectorById(id)(state);
 
-    expect(topListSelectorById("l1")(state)).toEqual({ id: "l1" });
+    expect(selected.id).toEqual(id);
+    expect(selected.games).toEqual(state.schema.gameList[id].games);
+  });
+
+  test("topListSelectorByQuery() - can exclude maintenance games", () => {
+    const id = "l1";
+    const state = {
+      schema: {
+        gameList: {
+          [id]: {
+            id,
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+        },
+        game: {
+          "book-of-ra-deluxe": {
+            name: "Book of Ra deluxe",
+            slug: "book-of-ra-deluxe",
+            hasPlayForFun: false,
+            inMaintenanceMode: false,
+          },
+          "diamond-mine": {
+            name: "Diamond Mine",
+            slug: "diamond-mine",
+            hasPlayForFun: true,
+            inMaintenanceMode: false,
+          },
+          "raging-rhino": {
+            name: "Raging Rhino",
+            slug: "raging-rhino",
+            hasPlayForFun: true,
+            inMaintenanceMode: true,
+          },
+        },
+      },
+    };
+    const selected = topListSelectorByQuery(id, { maintenance: false })(state);
+
+    expect(selected.id).toEqual(id);
+    expect(selected.games).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
   });
 
   describe("gameSelector", () => {
