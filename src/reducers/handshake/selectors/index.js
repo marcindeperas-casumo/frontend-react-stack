@@ -1,6 +1,17 @@
 import { createSelector } from "reselect";
-import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
+import {
+  compose,
+  prop,
+  isNil,
+  isEmpty,
+  complement,
+  anyPass,
+  defaultTo,
+} from "ramda";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Reducers/handshake";
+
+// TODO: Make sure this is replaced by a proper guess based on the users browser
+export const DEFAULT_LANGUAGE = "en";
 
 export const handshakeSelector = state => state.handshake;
 
@@ -29,10 +40,8 @@ export const isAuthenticated = createSelector(
   complement(anyPass([isNil, isEmpty]))
 );
 export const playerId = createSelector(session, prop("id"));
-export const player = createSelector(
-  players,
-  playerId,
-  (players, playerId) => players[playerId]
+export const player = createSelector(players, playerId, (players, playerId) =>
+  prop(playerId)(players)
 );
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
@@ -65,4 +74,26 @@ export const gamesHandshakeSelector = createSelector(
 export const isGamesHandshakeLoaded = createSelector(
   gamesHandshakeSelector,
   complement(anyPass([isNil, isEmpty]))
+);
+
+export const getLanguage = createSelector(
+  player,
+  compose(
+    defaultTo(DEFAULT_LANGUAGE),
+    prop("language"),
+    prop("configuration")
+  )
+);
+
+export const getCmsHash = createSelector(
+  getLanguage,
+  compose(
+    prop("rootContentHashes"),
+    prop("common/composition/wpInterface"),
+    prop("app"),
+    handshakeSelector
+  ),
+  (lang, rootContentHashes) => {
+    return prop(lang)(rootContentHashes);
+  }
 );
