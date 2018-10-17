@@ -1,3 +1,4 @@
+import { compose, prop, defaultTo } from "ramda";
 import { createSelector } from "reselect";
 
 export const schemaSelector = state => state.schema;
@@ -39,7 +40,33 @@ export const topListIds = createSelector(gameListEntitiesSelector, state => ({
 // export const topListSelectorById = (state, { listId }) =>
 //   createSelector(gameListEntitiesSelector, state => state[listId])(state);
 export const topListSelectorById = listId =>
-  createSelector(gameListEntitiesSelector, state => state[listId]);
+  createSelector(
+    gameListEntitiesSelector,
+    compose(
+      defaultTo({}),
+      prop(listId)
+    )
+  );
+
+export const topListSelectorByQuery = (listId, queryOptions = {}) =>
+  createSelector(
+    topListSelectorById(listId),
+    gameEntitiesSelector,
+    (list, gameObjects) => {
+      // TODO: Rewrite this to be more generic
+      const isNotInMaintenance = id =>
+        gameObjects[id].inMaintenanceMode === false;
+      const games =
+        queryOptions.maintenance === false
+          ? list.games.filter(isNotInMaintenance)
+          : list.games;
+
+      return {
+        ...list,
+        games,
+      };
+    }
+  );
 
 export const gameSelector = id =>
   createSelector(
