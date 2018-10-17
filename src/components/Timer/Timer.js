@@ -1,7 +1,7 @@
 // @flow
 import { PureComponent } from "react";
 import { DateTime } from "luxon";
-import { all, gte, values, map } from "ramda";
+import { compose, all, gte, values, map } from "ramda";
 
 type Props = {
   /** The (UTC) time in milliseconds */
@@ -17,16 +17,17 @@ type State = {
   hours: string,
   minutes: string,
   seconds: string,
-  hasEnded: false,
+  hasEnded: boolean,
 };
 
 const greaterThanZero = gte(0);
-
-const padTime = map(time => `${Math.floor(time)}`.padStart(2, "0"));
+const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
+const UPDATE_INTERVAL = 1000;
 
 const diffTime = endTime => {
   const time = DateTime.fromMillis(endTime)
-    // diff over diffNow to guarantee we diff against UTC.
+    // The endTime timestamp should always be UTC. Rather than use diffNow we
+    // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
     .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
     .toObject();
   return time;
@@ -34,7 +35,7 @@ const diffTime = endTime => {
 
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
-  updateTime: Function;
+  updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
 
   constructor(props: Props) {
@@ -42,7 +43,7 @@ export default class Timer extends PureComponent<Props, State> {
     this.lastTime = 0;
     this.updateTime = this.updateTime.bind(this);
     this.state = {
-      ...padTime(diffTime(this.props.endTime)),
+      ...padTimes(diffTime(this.props.endTime)),
     };
   }
 
@@ -55,12 +56,15 @@ export default class Timer extends PureComponent<Props, State> {
   }
 
   updateTime(currentTime: number) {
-    if (currentTime >= this.lastTime + 1000) {
+    if (currentTime >= this.lastTime + UPDATE_INTERVAL) {
       const time = diffTime(this.props.endTime);
-      const hasEnded = all(greaterThanZero)(values(time));
+      const hasEnded = compose(
+        all(greaterThanZero),
+        values
+      )(time);
 
       this.setState({
-        ...padTime(time),
+        ...padTimes(time),
         hasEnded,
       });
 
