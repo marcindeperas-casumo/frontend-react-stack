@@ -44,7 +44,7 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
     <Flex.Item>
       <Button onClick={launchGame} className="u-text-nowrap">
         <Text tag="strong" className="u-text-transform-capitalize">
-          <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
+          <CMSField slug="live-casino-cards-content" field="play_now" />
         </Text>
       </Button>
     </Flex.Item>

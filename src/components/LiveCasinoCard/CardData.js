@@ -2,14 +2,15 @@ import React from "react";
 import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import CMSField from "Components/CMSField";
+// TODO: figure out why it cannot resolve index.js in the directory
+import CMSField from "Components/CMSField/index";
 import Matcher from "Components/Matcher";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
 const getText = field => (
   <CMSField
-    slug="mobile.live-casino-cards-content"
+    slug="live-casino-cards-content"
     field={field}
     view={text => (
       <Text size="xs" tag="span">
@@ -66,7 +67,7 @@ const renderSeats = ({ seats }) => (
     >
       {seats || (
         <CMSField
-          slug="mobile.live-casino-cards-content"
+          slug="live-casino-cards-content"
           field="bet_behind"
           view={text => (
             <Text size="xs" tag="span">
