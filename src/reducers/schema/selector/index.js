@@ -54,10 +54,11 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
     gameEntitiesSelector,
     (list, gameObjects) => {
       // TODO: Rewrite this to be more generic
-      const isInMaintenance = id => gameObjects[id].inMaintenanceMode === false;
+      const isNotInMaintenance = id =>
+        gameObjects[id].inMaintenanceMode === false;
       const games =
         queryOptions.maintenance === false
-          ? list.games.filter(isInMaintenance)
+          ? list.games.filter(isNotInMaintenance)
           : list.games;
 
       return {
