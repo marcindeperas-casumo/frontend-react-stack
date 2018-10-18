@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import waitForElement from "wait-for-element";
+import waitForElement from "wait-for-element/lib/wait-by-timer";
 
 // We need this component so we can wait for the host element to be available.
 // This could happen when the route is active, but the view is not bound yet.
