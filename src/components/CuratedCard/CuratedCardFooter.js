@@ -59,7 +59,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
               id="gtm-curated-play"
               onClick={() => emitLaunchGame(game.slug)}
               variant="variant-1"
-              className="u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+              className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
               <PlayIcon size="sml" />
               <span className="u-margin-left">{primaryActionText}</span>
@@ -68,7 +68,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
               id="gtm-curated-more"
               href={`/en/play/${game.slug}`}
               variant="outline"
-              className="u-display--none@mobile u-padding u-margin-left--lg"
+              className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
             >
               <MoreIcon size="med" />
             </Button>

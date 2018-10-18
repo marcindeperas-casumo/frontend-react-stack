@@ -28,6 +28,11 @@ export const jackpotEntitiesSelector = createSelector(
   state => state.jackpot
 );
 
+export const curatedEntitiesSelector = createSelector(
+  schemaSelector,
+  state => state.curated
+);
+
 export const topListIds = createSelector(gameListEntitiesSelector, state => ({
   listIds: Object.keys(state),
 }));

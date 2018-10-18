@@ -50,11 +50,15 @@ export default class CuratedCard extends PureComponent<Props> {
     );
   };
 
+  onClick = () => {};
+
   renderBackground = (images: Images) => (
-    <ImageLazy
-      className="o-ratio__content u-object-fit-cover"
-      images={images}
-    />
+    <a className="o-ratio__content" href="/" onClick={this.onClick}>
+      <ImageLazy
+        className="o-ratio__content u-object-fit-cover"
+        images={images}
+      />
+    </a>
   );
 
   render() {
@@ -64,7 +68,7 @@ export default class CuratedCard extends PureComponent<Props> {
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         {this.renderBackground(data.fields)}
         <Card
-          className="o-ratio__content u-padding--md@mobile u-padding--lg"
+          className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
           justify={justify}
           spacing={spacing}
           header={this.renderHeader}
