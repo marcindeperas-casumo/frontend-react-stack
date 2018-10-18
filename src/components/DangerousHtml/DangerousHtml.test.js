@@ -11,11 +11,11 @@ describe("<DangerousHtml />", () => {
     expect(rendered.text()).toMatch(expectedText);
   });
 
-  test("renders with a div by default", () => {
+  test("renders with a <span> by default", () => {
     const html = "Monkey&#8217;s Millions";
     const rendered = mount(<DangerousHtml html={html} />);
 
-    expect(rendered.html()).toMatch("div");
+    expect(rendered.html()).toMatch("span");
   });
 
   test("renders with the element passed in", () => {

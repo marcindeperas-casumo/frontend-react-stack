@@ -7,7 +7,7 @@ import React, { PureComponent } from "react";
 // comes from and that it is not editable by the user.
 export default class DangerousHtml extends PureComponent {
   render() {
-    const { html, element = "div" } = this.props;
+    const { html, element = "span" } = this.props;
     const Element = element;
 
     return <Element dangerouslySetInnerHTML={{ __html: html }} />;
