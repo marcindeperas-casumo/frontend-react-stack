@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
-import Html from "Components/Html";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   game: Object,
@@ -42,7 +42,7 @@ export default class JackpotsTileRow extends PureComponent<Props> {
               {formattedJackpotAmount}
             </Text>
             <Text tag="div" size="sm">
-              <Html html={name} />
+              <DangerousHtml html={name} />
             </Text>
           </Flex.Block>
 
