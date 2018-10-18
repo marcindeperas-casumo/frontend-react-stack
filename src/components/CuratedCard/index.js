@@ -1,1 +1,1 @@
-export { default } from "Components/CuratedCard/CuratedCardContainer";
+export { default } from "Components/CuratedCard/CuratedCard";

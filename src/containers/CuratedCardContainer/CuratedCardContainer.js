@@ -1,9 +1,9 @@
 import CuratedCard from "Components/CuratedCard";
 import { connect } from "react-redux";
-import { gameSelector } from "Reducers/schema/selector";
+import { curatedSelector } from "Reducers/schema/selector";
 
-const getGameData = (state, props) => gameSelector(props.id)(state);
+const curatedData = (state, props) => curatedSelector(props.slug)(state);
 
-const CuratedCardContainer = connect(getGameData)(CuratedCard);
+const CuratedCardContainer = connect(curatedData)(CuratedCard);
 
 export default CuratedCardContainer;

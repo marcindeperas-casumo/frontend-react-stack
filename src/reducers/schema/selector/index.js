@@ -90,3 +90,8 @@ export const gameSelector = id =>
       };
     }
   );
+
+export const curatedSelector = () =>
+  createSelector(curatedEntitiesSelector, curatedEntities => {
+    return curatedEntities;
+  });

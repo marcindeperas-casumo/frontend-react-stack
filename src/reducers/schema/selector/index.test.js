@@ -5,6 +5,7 @@ import {
   liveTableEntitiesSelector,
   liveCasinoEntitiesSelector,
   jackpotEntitiesSelector,
+  curatedEntitiesSelector,
   topListIds,
   topListSelectorById,
   topListSelectorByQuery,
@@ -57,6 +58,14 @@ describe("Schema selectors", () => {
     };
 
     expect(jackpotEntitiesSelector(state)).toEqual({ j1: 1 });
+  });
+
+  test("curatedEntitiesSelector", () => {
+    const state = {
+      schema: { curated: { c1: 1 } },
+    };
+
+    expect(curatedEntitiesSelector(state)).toEqual({ c1: 1 });
   });
 
   test("topListIds", () => {

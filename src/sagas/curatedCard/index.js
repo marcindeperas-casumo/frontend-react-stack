@@ -10,5 +10,6 @@ export function* fetchCuratedCardSaga() {
   // normalize and update the store
   const { response } = yield take(types.FETCH_CURATED_COMPLETE);
   const { entities } = yield call(normalizeData, response);
+
   yield put(schemaActions.updateEntity(entities));
 }
