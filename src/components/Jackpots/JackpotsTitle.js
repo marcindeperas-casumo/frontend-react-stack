@@ -7,7 +7,7 @@ export type Props = {
   title?: string,
 };
 
-// TODO: @leventebalogh move it out to a more generic place
+// TODO: move it out to a more generic place
 // (it can serve as the title component for top-list blocks)
 export default class JackpotsTitle extends PureComponent<Props> {
   render() {

@@ -6,7 +6,7 @@ type Props = {
   ids?: Array<string>,
 };
 
-// TODO: @leventebalogh Move this out to make it reusable
+// TODO: Move this out to make it reusable
 export default class JackpotsTile extends PureComponent<Props> {
   render() {
     const { ids = [] } = this.props;

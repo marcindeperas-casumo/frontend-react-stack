@@ -1,7 +1,7 @@
 import { usingGET as httpGet } from "Utils/index";
 import { transformRawJackpotObject } from "./jackpots.utils";
 
-// TODO: @leventebalogh Move this to the "clients" folder & rename the folder to "api"
+// TODO: Move this to the "clients" folder & rename the folder to "api"
 export const getJackpots = async ({
   market = "___en",
   currencyCode = "EUR",

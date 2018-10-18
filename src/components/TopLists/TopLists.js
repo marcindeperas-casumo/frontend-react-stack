@@ -8,7 +8,7 @@ export class TopLists extends PureComponent {
   render() {
     const { listIds } = this.props;
 
-    // TODO: @leventebalogh Define here explicitly which top-lists we need by
+    // TODO: Define here explicitly which top-lists we need by
     // having wrapper components for all of them.
     return (
       <Fragment>

@@ -7,7 +7,7 @@ import { message } from "Reducers/cometd/cometd.actions";
 // as actions to the redux store.
 // Docs: https://github.com/redux-saga/redux-saga/blob/master/docs/advanced/Channels.md
 const setupEmitter = channel => emitter => {
-  // TODO: @leventebalogh Add throttling to the emitter function
+  // TODO: Add throttling to the emitter function
   cometd.subscribe(channel, emitter);
 
   // We need to return with an unsubscribe function

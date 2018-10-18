@@ -5,7 +5,7 @@ import { actions as schemaActions } from "Reducers/schema";
 import { jackpotEntitySelector } from "./jackpots.selectors";
 import { transformRawJackpotObject } from "./jackpots.utils";
 
-// TODO: @leventebalogh Update the schema-reducer to support updating a single entity as well
+// TODO: Update the schema-reducer to support updating a single entity as well
 export default function* jackpotsUpdatesSaga(action) {
   const { data } = action;
   const currency = yield select(currencySelector);
