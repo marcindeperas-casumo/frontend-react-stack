@@ -10,7 +10,10 @@ export class WaitForHostElement extends PureComponent {
   async componentDidMount() {
     const { hostElementId } = this.props;
     try {
-      const el = await waitForElement(`#${hostElementId}`, this.waitTimeout);
+      const el = await waitForElement(
+        `#${hostElementId}`,
+        WaitForHostElement.waitTimeout
+      );
 
       this.setState({ el });
     } catch (e) {
