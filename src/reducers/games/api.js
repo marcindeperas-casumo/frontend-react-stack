@@ -2,11 +2,69 @@ import { complement, compose, isNil, prop } from "ramda";
 import GameBrowserClient from "Clients/GameBrowserClient";
 import JackpotsClient from "Clients/JackpotsClient";
 
+const playerLatestPlayedGames = ({ playerId }) =>
+  GameBrowserClient.latestPlayedGames({
+    playerId,
+    pageSize: 20,
+  });
+
+const gamesByProviderGameNames = ({
+  country,
+  platform,
+  variant,
+  providerGameNames,
+}) => {
+  return GameBrowserClient.gamesByProviderGameNames({
+    country,
+    platform,
+    variant,
+    providerGameNames,
+  });
+};
+
+const gameListMetaDataById = ({ handshake, id }) => {
+  return handshake.gamesLists[id];
+};
+
+const fetchLatestPlayedGames = async ({
+  variant = "default",
+  handshake,
+  country,
+  platform,
+  playerId,
+} = {}) => {
+  const latestPlayedProviderGameNames = await playerLatestPlayedGames({
+    playerId,
+  });
+
+  if (
+    !latestPlayedProviderGameNames ||
+    latestPlayedProviderGameNames.length === 0
+  ) {
+    return null;
+  }
+
+  const { id, title } = gameListMetaDataById({
+    handshake,
+    id: "latestPlayedGames",
+  });
+
+  const games = await gamesByProviderGameNames({
+    country,
+    platform,
+    variant,
+    providerGameNames: latestPlayedProviderGameNames.map(prop("gameName")),
+  });
+
+  return { games: games.games, id, title };
+};
+
 export const fetchGames = async ({
   platform,
   country,
   currency,
   market,
+  playerId,
   handshake,
 }) => {
   const gameFetcherById = {
@@ -114,9 +172,17 @@ export const fetchGames = async ({
       };
     });
 
-  const allListsResponses = (await Promise.all(gameListsRequests)).filter(
-    hasSomeGames
-  );
+  const latestPlayedGames = fetchLatestPlayedGames({
+    handshake,
+    country,
+    platform,
+    playerId,
+  });
+
+  const allListsResponses = (await Promise.all([
+    latestPlayedGames,
+    ...gameListsRequests,
+  ])).filter(hasSomeGames);
 
   return { gameLists: allListsResponses, jackpots: (await jackpots).jackpots };
 };
