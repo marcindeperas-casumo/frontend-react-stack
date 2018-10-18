@@ -13,6 +13,7 @@ describe("CMSField", () => {
     startFetch = jest.fn();
     rendered = shallow(<CMSField text="foo" startFetch={startFetch} />);
   });
+
   test("renders the text that we have passed in", () => {
     shouldContainText(rendered, "foo");
   });
@@ -30,13 +31,13 @@ describe("CMSField", () => {
     startFetch = jest.fn();
 
     shallow(<CMSField text="foo" startFetch={startFetch} isFetched={false} />);
-    expect(startFetch).toHaveBeenCalled();
+    expect(startFetch).toHaveBeenCalledTimes(1);
   });
 
   test("does not initiate a fetch if text is available", () => {
     startFetch = jest.fn();
 
     shallow(<CMSField text="foo" startFetch={startFetch} isFetched={true} />);
-    expect(startFetch).not.toHaveBeenCalled();
+    expect(startFetch).not.toHaveBeenCalledTimes(1);
   });
 });
