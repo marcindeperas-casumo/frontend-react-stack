@@ -24,15 +24,27 @@ describe("CMS Selectors", () => {
 
       expect(selector(state)).toEqual({});
     });
+
+    test("returns the correct page object even if the slug contains a base path", () => {
+      const pageObject = { slug: "foo" };
+      const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
+      const selector = slugSelectorFactory(`mobile.${pageObject.slug}`);
+
+      expect(selector(state)).toEqual(pageObject);
+    });
   });
 
-  describe("Is-Page-Loaded Selector", () => {
+  describe("isPageLoadedFactory()", () => {
     test("returns TRUE if the page is found in the store", () => {
       const pageObject = { slug: "foo" };
       const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
       const selector = isPageLoadedFactory(pageObject.slug);
+      const selectorWithBasepath = isPageLoadedFactory(
+        `mobile.${pageObject.slug}`
+      );
 
       expect(selector(state)).toBe(true);
+      expect(selectorWithBasepath(state)).toBe(true);
     });
 
     test("returns FALSE if the page is not fetched yet", () => {
@@ -44,13 +56,15 @@ describe("CMS Selectors", () => {
     });
   });
 
-  describe("Is-Page-Fetched Selector", () => {
+  describe("isPageFetchedFactory()", () => {
     test("returns TRUE if the page is started to be fetched", () => {
       const page = { slug: "foo" };
       const state = { fetch: { [getFetchTypeBySlug(page.slug)]: {} } };
       const selector = isPageFetchedFactory(page.slug);
+      const selectorWithBasepath = isPageFetchedFactory(`mobile.${page.slug}`);
 
       expect(selector(state)).toBe(true);
+      expect(selectorWithBasepath(state)).toBe(true);
     });
 
     test("returns FALSE if the page is not started to be fetched yet", () => {
@@ -62,13 +76,17 @@ describe("CMS Selectors", () => {
     });
   });
 
-  describe("Should-Fetch-Page Selector", () => {
+  describe("shouldFetchPageFactory()", () => {
     test("returns TRUE if the page is not fetched yet and is not in the state", () => {
       const page = { slug: "foo" };
       const state = { fetch: {}, schema: {} };
       const selector = shouldFetchPageFactory(page.slug);
+      const selectorWithBasepath = shouldFetchPageFactory(
+        `mobile.${page.slug}`
+      );
 
       expect(selector(state)).toBe(true);
+      expect(selectorWithBasepath(state)).toBe(true);
     });
 
     test("returns FALSE if the page is already being fetched", () => {
@@ -91,14 +109,19 @@ describe("CMS Selectors", () => {
     });
   });
 
-  describe("Field Selector", () => {
+  describe("fieldSelectorFactory()", () => {
     test("returns a field by the page-slug and the field-name", () => {
       const pageObject = { slug: "foo", fields: { foobar: "bar" } };
       const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
       const { slug } = pageObject;
       const selector = fieldSelectorFactory({ slug, field: "foobar" });
+      const selectorWithBasepath = fieldSelectorFactory({
+        slug: `mobile.${slug}`,
+        field: "foobar",
+      });
 
       expect(selector(state)).toEqual("bar");
+      expect(selectorWithBasepath(state)).toEqual("bar");
     });
 
     test("returns the field-name if the page or the field does not exist", () => {

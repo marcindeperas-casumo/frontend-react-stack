@@ -1,14 +1,14 @@
 import { createSelector } from "reselect";
 import { cmsEntitiesSelector } from "Reducers/schema/selector";
 import { prop, compose, defaultTo, isEmpty, not, identity } from "ramda";
-import { getFetchTypeBySlug } from "./cms.utils";
+import { getFetchTypeBySlug, omitSlugBasepath } from "./cms.utils";
 
 export const slugSelectorFactory = slug =>
   createSelector(
     cmsEntitiesSelector,
     compose(
       defaultTo({}),
-      prop(slug)
+      prop(omitSlugBasepath(slug))
     )
   );
 

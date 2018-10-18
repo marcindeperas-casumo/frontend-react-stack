@@ -1,5 +1,5 @@
 import { types as fetchTypes } from "Reducers/fetch";
-import { getPageBySlug } from "Reducers/cms/api";
+import { getPageBySlug } from "./cms.api";
 import { types } from "./cms.constants";
 import { getFetchTypeBySlug, getFetchCompleteTypeBySlug } from "./cms.utils";
 

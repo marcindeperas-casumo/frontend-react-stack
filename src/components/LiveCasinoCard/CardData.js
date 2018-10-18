@@ -10,7 +10,7 @@ import { getBadgeColor, topCardLetters } from "./utils";
 
 const getText = field => (
   <CMSField
-    slug="live-casino-cards-content"
+    slug="mobile.live-casino-cards-content"
     field={field}
     view={text => (
       <Text size="xs" tag="span">
@@ -67,7 +67,7 @@ const renderSeats = ({ seats }) => (
     >
       {seats || (
         <CMSField
-          slug="live-casino-cards-content"
+          slug="mobile.live-casino-cards-content"
           field="bet_behind"
           view={text => (
             <Text size="xs" tag="span">
