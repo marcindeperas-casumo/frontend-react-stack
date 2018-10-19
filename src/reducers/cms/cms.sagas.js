@@ -1,6 +1,6 @@
 import { delay } from "redux-saga";
 import { call, put, take, select } from "redux-saga/effects";
-import { normalizeData } from "Reducers/schema/schema";
+import { CMS_ENTITY_KEY, normalizeData } from "Reducers/schema/schema";
 import { actions as schemaActions } from "Reducers/schema";
 import { getCmsHash, getLanguage } from "Reducers/handshake/selectors";
 import { getFetchCompleteTypeBySlug } from "./cms.utils";
@@ -24,8 +24,21 @@ export function* fetchPageBySlugSaga(action) {
     yield put(initiateFetch({ slug, hash, lang }));
 
     const { response } = yield take(completedType);
-    const { entities } = normalizeData(response);
+    const { entities } = normalizeData(updateSlugInResponse(response, slug));
 
     yield put(schemaActions.updateEntity(entities));
   }
+}
+
+// We would like to extend the original slug with the "base path",
+// so we can avoid possible conflicts.
+// Example: "mobile.foo-bar" and "games.foo-bar" have the same slugs
+// in the CMS object, but we still would like to distinguish them.
+function updateSlugInResponse(response, slug) {
+  return {
+    [CMS_ENTITY_KEY]: {
+      ...response[CMS_ENTITY_KEY],
+      slug,
+    },
+  };
 }
