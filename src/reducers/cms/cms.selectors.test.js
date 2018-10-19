@@ -45,7 +45,7 @@ describe("CMS Selectors", () => {
   });
 
   describe("isPageFetchedFactory()", () => {
-    test("returns TRUE if the page is started to be fetched", () => {
+    test("returns TRUE if the page started to be fetched", () => {
       const page = { slug: "foo" };
       const state = { fetch: { [getFetchTypeBySlug(page.slug)]: {} } };
       const selector = isPageFetchedFactory(page.slug);
