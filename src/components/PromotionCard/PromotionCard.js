@@ -47,12 +47,18 @@ export default class PromotionCard extends PureComponent<Props> {
 
   renderCard = () => {
     return (
-      <Card
-        className="t-border-r--8 u-padding t-background-grey-light-2"
-        header={this.renderHeader}
-        content={this.renderContent}
-        footer={this.renderImage}
-      />
+      <a
+        href="#" // link to the right promotion page
+        className="c-promotion-card__link o-flex__item-fixed-size"
+        onMouseDown={e => e.preventDefault()}
+      >
+        <Card
+          className="t-border-r--8 u-padding t-background-grey-light-2 "
+          header={this.renderHeader}
+          content={this.renderContent}
+          footer={this.renderImage}
+        />
+      </a>
     );
   };
 
