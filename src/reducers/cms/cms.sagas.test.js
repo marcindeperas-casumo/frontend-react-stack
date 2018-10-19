@@ -17,10 +17,8 @@ describe("Sagas/CMS", () => {
     const generator = cloneableGenerator(fetchPageBySlugSaga)(action);
     const isGeneratorDone = (...args) => generator.next(...args).done;
 
+    generator.next(); // delay
     generator.next();
-    generator.next();
-    generator.next(hash);
-    generator.next(lang);
 
     // This is going to be used in the tests which are focusing
     // on the generator code inside the "if (shouldFetch) { ... }" branch.
@@ -29,7 +27,11 @@ describe("Sagas/CMS", () => {
     test("fetches CMS page by slug if not fetched yet", () => {
       const shouldFetch = true;
       const expectedAction = initiateFetch({ slug, hash, lang });
-      const fetchAction = clonedGenerator.next(shouldFetch).value.PUT.action;
+
+      clonedGenerator.next(shouldFetch);
+      clonedGenerator.next(hash);
+
+      const fetchAction = clonedGenerator.next(lang).value.PUT.action;
 
       expect(fetchAction).toEqual(expectedAction);
     });

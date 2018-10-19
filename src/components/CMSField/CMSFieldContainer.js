@@ -14,7 +14,7 @@ type PublicProps = {
   field: string,
 };
 
-const connector: Connector<PublicProps, Props> = connect(
+const CMSFieldContainer: Connector<PublicProps, Props> = connect(
   (state, { slug, field }) => ({
     text: fieldSelectorFactory({ slug, field })(state),
     isFetched: isPageLoadedFactory(slug)(state),
@@ -24,4 +24,4 @@ const connector: Connector<PublicProps, Props> = connect(
   })
 );
 
-export default connector(CMSField);
+export default CMSFieldContainer(CMSField);

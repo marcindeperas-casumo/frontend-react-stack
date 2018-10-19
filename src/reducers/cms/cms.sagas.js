@@ -22,14 +22,15 @@ export function* fetchPageBySlugSaga(action) {
   yield call(delay, 0);
 
   const { slug } = action;
-  const completedType = getFetchCompleteTypeBySlug(slug);
-  const hash = yield select(getCmsHash);
-  const lang = yield select(getLanguage);
   const shouldFetch = yield select(shouldFetchPageFactory(slug));
 
   // Instantiate a fetch only if the page is not in the store yet.
   // If it is already in the generator finishes - it has nothing to do.
   if (shouldFetch) {
+    const completedType = getFetchCompleteTypeBySlug(slug);
+    const hash = yield select(getCmsHash);
+    const lang = yield select(getLanguage);
+
     yield put(initiateFetch({ slug, hash, lang }));
 
     const { response } = yield take(completedType);

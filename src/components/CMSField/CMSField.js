@@ -2,6 +2,7 @@
 
 import React from "react";
 import type { Node } from "react";
+import { identity } from "ramda";
 
 export type Props = {
   isFetched: boolean,
@@ -21,12 +22,8 @@ export default class CMSField extends React.PureComponent<Props> {
   }
 
   render() {
-    const { text, view } = this.props;
+    const { text, view = identity } = this.props;
 
-    if (view) {
-      return view(text);
-    }
-
-    return text;
+    return view(text);
   }
 }
