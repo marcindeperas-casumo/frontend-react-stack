@@ -10,7 +10,7 @@ export type Props = {
   view?: string => Node,
 };
 
-// TODO: Add skeleton for not-loaded state if needed
+// TODO: Add skeleton for not-loaded state if needed d
 export default class CMSField extends React.PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;

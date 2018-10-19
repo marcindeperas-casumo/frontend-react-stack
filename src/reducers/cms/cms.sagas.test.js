@@ -1,9 +1,11 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { types as schemaTypes } from "Reducers/schema";
-import cmsApiMock from "./__mocks__/cms.api.mock";
-import { fetchPageBySlugSaga } from "./cms.sagas";
-import { getFetchCompleteTypeBySlug } from "./cms.utils";
-import { initiateFetch } from "./cms.actions";
+import cmsApiMock from "Reducers/cms/__mocks__/cms.api.mock";
+import {
+  initiateFetch,
+  fetchPageBySlugSaga,
+  getFetchCompleteTypeBySlug,
+} from "Reducers/cms";
 
 describe("Sagas/CMS", () => {
   describe("fetchPageBySlugSaga()", () => {

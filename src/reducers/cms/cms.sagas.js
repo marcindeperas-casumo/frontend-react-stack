@@ -3,9 +3,11 @@ import { call, put, take, select } from "redux-saga/effects";
 import { CMS_ENTITY_KEY, normalizeData } from "Reducers/schema/schema";
 import { actions as schemaActions } from "Reducers/schema";
 import { getCmsHash, getLanguage } from "Reducers/handshake/selectors";
-import { getFetchCompleteTypeBySlug } from "./cms.utils";
-import { initiateFetch } from "./cms.actions";
-import { shouldFetchPageFactory } from "./cms.selectors";
+import {
+  getFetchCompleteTypeBySlug,
+  initiateFetch,
+  shouldFetchPageFactory,
+} from "Reducers/cms";
 
 // TODO: Handle failed fetches and timed out fetches.
 export function* fetchPageBySlugSaga(action) {

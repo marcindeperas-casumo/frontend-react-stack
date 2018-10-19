@@ -1,13 +1,13 @@
 // @flow
 import { connect } from "react-redux";
 import type { Connector } from "react-redux";
+import CMSField from "Components/CMSField/CMSField";
+import type { Props } from "Components/CMSField/CMSField";
 import {
   fetchPageBySlug,
   fieldSelectorFactory,
   isPageLoadedFactory,
 } from "Reducers/cms";
-import CMSField from "./CMSField";
-import type { Props } from "./CMSField";
 
 type PublicProps = {
   slug: string,

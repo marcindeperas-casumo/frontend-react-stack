@@ -5,7 +5,7 @@ import {
   isPageFetchedFactory,
   shouldFetchPageFactory,
 } from "./cms.selectors";
-import { getFetchTypeBySlug } from "./cms.utils";
+import { getFetchTypeBySlug } from "Reducers/cms";
 
 describe("CMS Selectors", () => {
   describe("Slug Selector", () => {

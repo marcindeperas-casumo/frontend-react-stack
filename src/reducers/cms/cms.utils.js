@@ -1,4 +1,4 @@
-import { types } from "./cms.constants";
+import { types } from "Reducers/cms";
 
 export const getFetchTypeBySlug = slug => `${types.FETCH_PAGE_BY_SLUG}-${slug}`;
 

@@ -1,7 +1,10 @@
 import { types as fetchTypes } from "Reducers/fetch";
-import { getPageBySlug } from "./cms.api";
-import { types } from "./cms.constants";
-import { getFetchTypeBySlug, getFetchCompleteTypeBySlug } from "./cms.utils";
+import {
+  types,
+  getPageBySlug,
+  getFetchTypeBySlug,
+  getFetchCompleteTypeBySlug,
+} from "Reducers/cms";
 
 export const fetchPageBySlug = slug => ({
   type: types.FETCH_PAGE_BY_SLUG,

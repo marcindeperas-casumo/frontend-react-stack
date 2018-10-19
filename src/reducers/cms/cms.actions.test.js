@@ -1,6 +1,5 @@
 import { types as fetchTypes } from "Reducers/fetch";
-import { types } from "./cms.constants";
-import { initiateFetch, fetchPageBySlug } from "./cms.actions";
+import { types, initiateFetch, fetchPageBySlug } from "Reducers/cms";
 
 describe("Reducers/CMS/Actions", () => {
   describe("fetchPageBySlug()", () => {
