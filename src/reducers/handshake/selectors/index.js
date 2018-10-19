@@ -10,7 +10,6 @@ import {
 } from "ramda";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Reducers/handshake";
 
-// TODO: Make sure this is replaced by a proper guess based on the users browser
 export const DEFAULT_LANGUAGE = "en";
 
 export const handshakeSelector = state => state.handshake;

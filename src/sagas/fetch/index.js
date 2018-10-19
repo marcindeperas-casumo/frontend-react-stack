@@ -2,7 +2,6 @@ import { put, call } from "redux-saga/effects";
 import { actions } from "Reducers/fetch";
 import { fetchService } from "Services/FetchService";
 
-// TODO: Minor - think about renaming asyncCall and asyncCallData
 // TODO: How to check if a request fails
 export function* fetchSaga(action) {
   const {

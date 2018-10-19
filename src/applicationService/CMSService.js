@@ -1,4 +1,4 @@
-// TODO: Remove once the CuratedCardContainer stops depending on it
+// TODO: Remove this file once the CuratedCardContainer stops depending on it
 import { compose, identity, ifElse, isNil, prop } from "ramda";
 
 import cmsClient from "Clients/CMSClient";
