@@ -24,7 +24,7 @@ export default class Jackpots extends PureComponent<Props> {
   }
 
   render() {
-    const { ids, className = "" } = this.props;
+    const { ids, className } = this.props;
     const idsByColumns = generateColumns(ids);
 
     return (
