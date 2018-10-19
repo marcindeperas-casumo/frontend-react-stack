@@ -1,4 +1,8 @@
 import React, { PureComponent } from "react";
+// Using `wait-by-timer` implementation because of the following issue:
+//
+// *Change WaitForElement to use timer wait implementation* -
+// (https://github.com/Casumo/Home/issues/23708)
 import waitForElement from "wait-for-element/lib/wait-by-timer";
 
 // We need this component so we can wait for the host element to be available.
