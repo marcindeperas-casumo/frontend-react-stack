@@ -40,6 +40,7 @@ describe("<Jackpots />", () => {
   });
 
   test("unsubscribes when unmounted", () => {
+    expect(unsubscribeFromUpdates).toBeCalledTimes(0);
     rendered.unmount();
     expect(unsubscribeFromUpdates).toBeCalledTimes(1);
   });
