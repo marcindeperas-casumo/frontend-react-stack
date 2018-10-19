@@ -2,8 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-// TODO: figure out why it cannot resolve index.js in the directory
-import CMSField from "Components/CMSField/index";
+import CMSField from "Components/CMSField";
 import Matcher from "Components/Matcher";
 
 import { getBadgeColor, topCardLetters } from "./utils";
