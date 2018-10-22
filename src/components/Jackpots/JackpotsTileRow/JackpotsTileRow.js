@@ -19,7 +19,7 @@ export default class JackpotsTileRow extends PureComponent<Props> {
     const { formattedJackpotAmount } = jackpotInfo;
 
     return (
-      <div className="c-jackpots-tile-row t-border-bottom t-border--current-color t-color-grey-light-2">
+      <div className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2">
         <Flex align="center">
           {/* Image */}
           <Flex.Item>
@@ -29,18 +29,21 @@ export default class JackpotsTileRow extends PureComponent<Props> {
               mark={logo}
               alt={name}
               dpr={3}
+              width="70"
+              height="70"
+              imgixOpts={{
+                w: 70,
+                h: 70,
+                fit: "crop",
+                crop: "top,left",
+                markscale: 100,
+              }}
             />
           </Flex.Item>
 
           {/* Text */}
           <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
-            <Text
-              tag="div"
-              size="sm"
-              className="u-font-weight-bold t-color-red u-padding-bottom--sm"
-            >
-              {formattedJackpotAmount}
-            </Text>
+            <JackpotAmount amount={formattedJackpotAmount} />
             <Text tag="div" size="sm">
               <DangerousHtml html={name} />
             </Text>
@@ -58,4 +61,20 @@ export default class JackpotsTileRow extends PureComponent<Props> {
       </div>
     );
   }
+}
+
+function JackpotAmount({ amount }) {
+  if (amount) {
+    return (
+      <Text
+        tag="div"
+        size="sm"
+        className="u-font-weight-bold t-color-red u-padding-bottom--sm"
+      >
+        {amount}
+      </Text>
+    );
+  }
+
+  return null;
 }

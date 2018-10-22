@@ -4,16 +4,13 @@ import { types as gameTypes } from "Reducers/games";
 import { types as cmsTypes, fetchPageBySlugSaga } from "Reducers/cms";
 import {
   TYPES as cometdTypes,
-  CHANNELS as cometdChannels,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
-  takeChannel,
 } from "Reducers/cometd";
 import { fork, takeEvery } from "redux-saga/effects";
 import { appSaga } from "Sagas/app";
 import { fetchSaga } from "Sagas/fetch";
 import { launchGameSaga } from "Sagas/games/index";
-import { jackpotsUpdatesSaga } from "Reducers/jackpots";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -22,9 +19,18 @@ export default function* rootSaga(dispatch) {
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
-  yield fork(
-    takeEvery,
-    takeChannel(cometdChannels.JACKPOTS),
-    jackpotsUpdatesSaga
-  );
+
+  // TODO: enable this as soon as the "formattedJackpotAmount" is present in the CometD jackpot updates
+  //
+  // import { jackpotsUpdatesSaga } from "Reducers/jackpots";
+  // import {
+  //   CHANNELS as cometdChannels,
+  //   takeChannel,
+  // } from "Reducers/cometd";
+  //
+  // yield fork(
+  //   takeEvery,
+  //   takeChannel(cometdChannels.JACKPOTS),
+  //   jackpotsUpdatesSaga
+  // );
 }
