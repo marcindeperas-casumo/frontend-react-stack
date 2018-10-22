@@ -4,20 +4,30 @@ import PromotionCardContainer from "Components/PromotionCard";
 import Scrollable from "@casumo/cmp-scrollable";
 
 export type Props = {
-  promotions: Object,
+  promotionsSlugs: Array<string>,
+  isFetched: boolean,
+  startFetch: () => void,
 };
 
 export class PromotionCards extends PureComponent<Props> {
+  componentDidMount() {
+    const { isFetched, startFetch } = this.props;
+
+    if (!isFetched) {
+      startFetch();
+    }
+  }
+
   render() {
-    return (
+    const { promotionsSlugs } = this.props;
+
+    return promotionsSlugs && promotionsSlugs.length > 0 ? (
       <Scrollable gap="none" padding="lg">
-        <PromotionCardContainer slug="first-promotion" />
-        <PromotionCardContainer slug="second-promotion" />
-        <PromotionCardContainer slug="third-promotion" />
-        <PromotionCardContainer slug="fourth-promotion" />
-        <PromotionCardContainer slug="fifth-promotion" />
+        {promotionsSlugs.map(slug => (
+          <PromotionCardContainer slug={slug} key={slug} />
+        ))}
       </Scrollable>
-    );
+    ) : null;
   }
 }
 

@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
 import { cmsEntitiesSelector } from "Reducers/schema/selector";
-import { prop, compose, defaultTo, isEmpty, not, identity } from "ramda";
+import { map, prop, compose, defaultTo, isEmpty, not, identity } from "ramda";
 import { getFetchTypeBySlug } from "Reducers/cms";
 
 export const slugSelectorFactory = slug =>
@@ -9,6 +9,15 @@ export const slugSelectorFactory = slug =>
     compose(
       defaultTo({}),
       prop(slug)
+    )
+  );
+
+export const childrenSlugSelectorFactory = slug =>
+  createSelector(
+    slugSelectorFactory(slug),
+    compose(
+      defaultTo([]),
+      prop("childSlugs") // double check if using this or checking children's slugs
     )
   );
 

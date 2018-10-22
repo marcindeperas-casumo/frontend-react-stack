@@ -4,6 +4,7 @@ import {
   isPageLoadedFactory,
   isPageFetchedFactory,
   shouldFetchPageFactory,
+  childrenSlugSelectorFactory,
 } from "./cms.selectors";
 import { getFetchTypeBySlug } from "Reducers/cms";
 
@@ -118,6 +119,23 @@ describe("CMS Selectors", () => {
       const selector = fieldSelectorFactory({ slug, field, defaultValue });
 
       expect(selector(state)).toEqual(defaultValue);
+    });
+  });
+
+  describe("childrenSlugSelectorFactory()", () => {
+    test("returns an array of childSlugs given a page slug", () => {
+      const pageObject = { slug: "foo", childSlugs: ["page-uno", "page-due"] };
+      const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
+      const { slug } = pageObject;
+      const selector = childrenSlugSelectorFactory(slug);
+      expect(selector(state)).toEqual(["page-uno", "page-due"]);
+    });
+
+    test("returns an empty object if childSlugs does not exist", () => {
+      const state = {};
+      const slug = "foo";
+      const selector = childrenSlugSelectorFactory(slug);
+      expect(selector(state)).toEqual([]);
     });
   });
 });
