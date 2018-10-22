@@ -64,7 +64,7 @@ export default class PromotionCard extends PureComponent<Props> {
 
   render() {
     const { isFetched } = this.props;
-
+    // switch from true to isFetched 👇🏻
     return true ? this.renderCard() : <PromotionCardSkeleton />;
   }
 }
