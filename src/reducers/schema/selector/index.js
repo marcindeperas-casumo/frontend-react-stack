@@ -32,7 +32,7 @@ export const jackpotEntitiesSelector = createSelector(
 
 export const curatedEntitiesSelector = createSelector(
   schemaSelector,
-  state => state.curated
+  prop("curated")
 );
 
 export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
@@ -94,8 +94,3 @@ export const gameSelector = id =>
       };
     }
   );
-
-export const curatedSelector = () =>
-  createSelector(curatedEntitiesSelector, curatedEntities => {
-    return curatedEntities;
-  });

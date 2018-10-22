@@ -1,14 +1,14 @@
 import React, { PureComponent, Fragment } from "react";
 import classNames from "classnames";
 import TopListContainer from "Containers/TopListContainer";
-import CuratedCardContainer from "Containers/CuratedCardContainer";
+import CuratedCard from "Components/CuratedCard";
 
 export class TopLists extends PureComponent {
   render() {
     const { listIds } = this.props;
     return (
       <Fragment>
-        <CuratedCardContainer
+        <CuratedCard
           className={classNames(
             "u-margin-top--md",
             "u-margin-top--lg@tablet",

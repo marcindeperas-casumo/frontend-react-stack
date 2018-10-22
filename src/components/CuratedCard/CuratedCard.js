@@ -21,7 +21,7 @@ const spacing = {
   default: "lg",
 };
 
-type Props = {|
+export type Props = {|
   data: any,
 |};
 
