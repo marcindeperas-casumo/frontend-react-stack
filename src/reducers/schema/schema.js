@@ -5,6 +5,7 @@ export const LIVE_TABLE_ENTITY_KEY = "liveTable";
 export const GAME_ENTITY_KEY = "game";
 export const GAME_LIST_ENTITY_KEY = "gameList";
 export const CURATED_ENTITY_KEY = "curated";
+export const CMS_ENTITY_KEY = "cms";
 
 export const jackpot = new schema.Entity(
   JACKPOT_ENTITY_KEY,
@@ -34,6 +35,12 @@ export const curated = new schema.Entity(
   { idAttribute: "slug" }
 );
 
+export const cms = new schema.Entity(
+  CMS_ENTITY_KEY,
+  {},
+  { idAttribute: "slug" }
+);
+
 export const applicationSchema = {
   // Question: Not sure defining the keys like this is good DX. If you're
   // seeing this and think it should be done differently, create a PR with your
@@ -48,6 +55,7 @@ export const applicationSchema = {
   [`${JACKPOT_ENTITY_KEY}s`]: [jackpot],
   [CURATED_ENTITY_KEY]: curated,
   [`${CURATED_ENTITY_KEY}s`]: [curated],
+  [CMS_ENTITY_KEY]: cms,
 };
 
 export const normalizeData = data => normalize(data, applicationSchema);

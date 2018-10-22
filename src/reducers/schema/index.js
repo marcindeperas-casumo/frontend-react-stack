@@ -5,6 +5,7 @@ import {
   JACKPOT_ENTITY_KEY,
   GAME_LIST_ENTITY_KEY,
   CURATED_ENTITY_KEY,
+  CMS_ENTITY_KEY,
 } from "./schema";
 
 export const types = {
@@ -44,6 +45,7 @@ export const reducer = combineReducers({
   [JACKPOT_ENTITY_KEY]: entityReducerFactory(JACKPOT_ENTITY_KEY),
   [GAME_LIST_ENTITY_KEY]: entityReducerFactory(GAME_LIST_ENTITY_KEY),
   [CURATED_ENTITY_KEY]: entityReducerFactory(CURATED_ENTITY_KEY),
+  [CMS_ENTITY_KEY]: entityReducerFactory(CMS_ENTITY_KEY),
 });
 
 export default reducer;

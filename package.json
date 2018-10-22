@@ -114,7 +114,8 @@
           [
             "babel-plugin-webpack-alias",
             {
-              "config": "./config/webpack.config.dev.js"
+              "config": "./config/webpack.config.dev.js",
+              "noOutputExtension": true
             }
           ]
         ]
