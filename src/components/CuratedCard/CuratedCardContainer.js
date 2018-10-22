@@ -29,6 +29,7 @@ export default class CuratedCardContainer extends Component<Props, State> {
 
   async componentDidMount() {
     try {
+      // TODO: get these data from the store and stop fetching here directly
       const curatedData = await cmsService.getPage({
         slug: "curated-component",
       });

@@ -3,6 +3,7 @@ import { fetchGamesHandshake } from "Reducers/handshake";
 import {
   country as countrySelector,
   currency as currencySelector,
+  playerId as playerIdSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
   market as marketSelector,
@@ -18,6 +19,7 @@ export function* fetchGameListSaga() {
   const country = yield select(countrySelector);
   const currency = yield select(currencySelector);
   const market = yield select(marketSelector);
+  const playerId = yield select(playerIdSelector);
 
   // Start by fetch the games handshake, this will later be used to supply
   // parameters for subsequent games api requests. Dispatch an action that will
@@ -37,6 +39,7 @@ export function* fetchGameListSaga() {
       platform,
       currency,
       market,
+      playerId,
     })
   );
 

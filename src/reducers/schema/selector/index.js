@@ -3,6 +3,8 @@ import { createSelector } from "reselect";
 
 export const schemaSelector = state => state.schema;
 
+// TODO: Add tests for selectors for null states
+
 export const gameListEntitiesSelector = createSelector(
   schemaSelector,
   state => state.gameList
@@ -27,6 +29,8 @@ export const jackpotEntitiesSelector = createSelector(
   schemaSelector,
   state => state.jackpot
 );
+
+export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, state => ({
   listIds: Object.keys(state),

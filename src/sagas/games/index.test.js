@@ -30,13 +30,15 @@ describe("Fetch game list saga", () => {
     const country = "mt";
     const currency = "EUR";
     const market = "ROW";
+    const playerId = "playerId-1";
     const handshake = { foo: "bar" };
 
     generator.next();
     generator.next(country);
     generator.next(currency);
+    generator.next(market);
 
-    expect(generator.next(market).value).toEqual(
+    expect(generator.next(playerId).value).toEqual(
       put(fetchGamesHandshake({ country }))
     );
 
@@ -53,6 +55,7 @@ describe("Fetch game list saga", () => {
           platform,
           currency,
           market,
+          playerId,
         })
       )
     );
