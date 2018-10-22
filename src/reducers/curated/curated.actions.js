@@ -3,7 +3,7 @@ import { types } from "Reducers/curated";
 
 export const fetchPage = () => ({
   type: types.CURATED_FETCH_PAGE,
-  slug: "curated-component",
+  slug: types.CURATED_SLUG,
 });
 
 export const initFetch = () => {

@@ -8,7 +8,7 @@ export const curatedSelector = () =>
 
 export const isPageLoadedFactory = () =>
   createSelector(
-    curatedSelector,
+    curatedSelector(),
     compose(
       not,
       isEmpty

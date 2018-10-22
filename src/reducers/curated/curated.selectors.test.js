@@ -34,7 +34,8 @@ describe("Reducers/curated/selectors", () => {
 
     test("should return FALSE if page not fetched", () => {
       const state = {};
-      const selector = isPageLoadedFactory();
+      const pageObject = { slug: types.CURATED_SLUG };
+      const selector = isPageLoadedFactory(pageObject);
 
       expect(selector(state)).toBe(false);
     });
@@ -69,7 +70,7 @@ describe("Reducers/curated/selectors", () => {
 
     test("should return FALSE if page is being fetched", () => {
       const page = { slug: types.CURATED_SLUG };
-      const state = { fetch: page };
+      const state = { fetch: { [types.CURATED_FETCH_PAGE]: {} } };
       const selector = shouldFetchPageFactory();
 
       expect(selector(state)).toBe(false);
