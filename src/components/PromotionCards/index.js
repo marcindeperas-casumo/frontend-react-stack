@@ -1,1 +1,1 @@
-export { default } from "./PromotionCards";
+export { default } from "./PromotionCardsContainer";
