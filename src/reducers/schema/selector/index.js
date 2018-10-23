@@ -1,5 +1,5 @@
-import { createSelector } from "reselect";
 import { compose, prop, keys, defaultTo, filter } from "ramda";
+import { createSelector } from "reselect";
 import config from "../../../config";
 
 export const schemaSelector = state => state.schema;
