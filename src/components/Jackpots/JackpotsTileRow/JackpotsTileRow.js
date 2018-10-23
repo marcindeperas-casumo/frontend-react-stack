@@ -8,7 +8,7 @@ import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   game: Object,
-  launchGame: ({ slug: string }) => void,
+  launchGame: () => void,
 };
 
 export default class JackpotsTileRow extends PureComponent<Props> {
