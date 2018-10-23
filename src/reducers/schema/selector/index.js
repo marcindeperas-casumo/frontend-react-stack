@@ -1,5 +1,6 @@
-import { compose, prop, defaultTo } from "ramda";
+import { compose, prop, keys, defaultTo, filter } from "ramda";
 import { createSelector } from "reselect";
+import config from "../../../config";
 
 export const schemaSelector = state => state.schema;
 
@@ -32,9 +33,22 @@ export const jackpotEntitiesSelector = createSelector(
 
 export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
-export const topListIds = createSelector(gameListEntitiesSelector, state => ({
-  listIds: Object.keys(state),
-}));
+export const topListIds = createSelector(gameListEntitiesSelector, keys);
+
+const isGameListNotExcluded = id => !config.excludeFromTopLists.includes(id);
+export const visibleTopListIds = createSelector(
+  topListIds,
+  filter(isGameListNotExcluded)
+);
+
+export const jackpotIdsSelector = createSelector(
+  gameListEntitiesSelector,
+  compose(
+    defaultTo([]),
+    prop("games"),
+    prop("casumoJackpotGames")
+  )
+);
 
 // Question: This could be refactored to the following, there the signature
 // matches the parameters that are passed down from the mapStateToProps fn. This

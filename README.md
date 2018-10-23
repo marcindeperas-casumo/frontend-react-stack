@@ -1,5 +1,13 @@
 # Casumo Mobile - React Stack Proof of Concept
 
+## Table of Contents
+
+- [How it works](#how-it-works)
+- [Usage](#development-instructions)
+- [Resources](#resources)
+- Modules
+  - [CometD](./src/reducers/cometd/README.md)
+
 ## How it works
 
 `mobile-react-stack-poc` contains a couple of services that showcases the proof
@@ -72,7 +80,7 @@ deploy-service mobile-react-stack-poc master
 
 ---
 
-### Resources
+## Resources
 
 - [FAC Business Idea](https://docs.google.com/document/d/1VUJQ2RFFmRxU06dJRsL1vDy2QBPGjQUEJG8kr5qV3eQ/preview)
 - [Project Board](https://github.com/Casumo/Home/projects/91)
