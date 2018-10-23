@@ -14,14 +14,14 @@ type Props = {
 export default class JackpotsTileRow extends PureComponent<Props> {
   render() {
     const { game = {}, launchGame } = this.props;
-    const { slug, name, logo, logoBackground } = game;
+    const { name, logo, logoBackground } = game;
     const { jackpotInfo = {} } = game;
     const { formattedJackpotAmount } = jackpotInfo;
 
     return (
       <div
         className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2"
-        onClick={() => launchGame({ slug })}
+        onClick={launchGame}
       >
         <Flex align="center">
           {/* Image */}

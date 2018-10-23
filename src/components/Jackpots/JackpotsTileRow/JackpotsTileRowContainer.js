@@ -5,5 +5,5 @@ import JackpotsTileRow from "./JackpotsTileRow";
 
 export default connect((state, { id }) => ({
   game: gameSelector(id)(state),
-  launchGame,
+  launchGame: () => launchGame({ slug: id }),
 }))(JackpotsTileRow);

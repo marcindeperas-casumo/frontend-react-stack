@@ -44,6 +44,5 @@ describe("<JackpotsTileRow />", () => {
   test("clicking on the whole row launches the game", () => {
     rendered.simulate("click");
     expect(launchGame.mock.calls.length).toBe(1);
-    expect(launchGame).lastCalledWith({ slug: game.slug });
   });
 });
