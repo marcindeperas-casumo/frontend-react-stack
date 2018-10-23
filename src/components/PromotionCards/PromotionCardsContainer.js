@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import PromotionCards from "./PromotionCards";
 import {
-  childrenSlugSelectorFactory,
+  promotionsSlugSelectorFactory,
   isPageLoadedFactory,
   fetchPageBySlug,
 } from "Reducers/cms";
@@ -15,7 +15,7 @@ type PublicProps = {
 
 const connector: Connector<PublicProps, Props> = connect(
   (state, { slug }) => ({
-    promotionsSlugs: childrenSlugSelectorFactory(slug)(state),
+    promotionsSlugs: promotionsSlugSelectorFactory(slug)(state),
     isFetched: isPageLoadedFactory(slug)(state),
   }),
   (dispatch, { slug }) => ({

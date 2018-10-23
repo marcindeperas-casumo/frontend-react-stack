@@ -19,7 +19,8 @@ export class PromotionCards extends PureComponent<Props> {
   }
 
   render() {
-    const { promotionsSlugs } = this.props;
+    // const { promotionsSlugs } = this.props;
+    const promotionsSlugs = ["dai", "cazzo"]; // SWITCH THIS ONE WITH THE ABOVE ☝🏻
 
     return promotionsSlugs && promotionsSlugs.length > 0 ? (
       <Scrollable gap="none" padding="lg">

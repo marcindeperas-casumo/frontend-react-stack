@@ -7,6 +7,8 @@ import PromotionCardSkeleton from "./PromotionCardSkeleton";
 import ImageLazy from "Components/Image/ImageLazy";
 import "./PromotionCard.scss";
 
+const PROMOTIONS_URL = "/en/promotions";
+
 export type Props = {
   isFetched: boolean,
 };
@@ -46,9 +48,12 @@ export default class PromotionCard extends PureComponent<Props> {
   };
 
   renderCard = () => {
+    const { slug } = this.props;
+    const promotionCardURL = `${PROMOTIONS_URL}/${slug}`;
+
     return (
       <a
-        href="#" // link to the right promotion page
+        href={promotionCardURL}
         className="c-promotion-card__link o-flex__item-fixed-size"
         onMouseDown={e => e.preventDefault()}
       >

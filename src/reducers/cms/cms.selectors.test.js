@@ -4,7 +4,7 @@ import {
   isPageLoadedFactory,
   isPageFetchedFactory,
   shouldFetchPageFactory,
-  childrenSlugSelectorFactory,
+  promotionsSlugSelectorFactory,
 } from "./cms.selectors";
 import { getFetchTypeBySlug } from "Reducers/cms";
 
@@ -122,19 +122,32 @@ describe("CMS Selectors", () => {
     });
   });
 
-  describe("childrenSlugSelectorFactory()", () => {
+  describe("promotionsSlugSelectorFactory()", () => {
     test("returns an array of childSlugs given a page slug", () => {
-      const pageObject = { slug: "foo", childSlugs: ["page-uno", "page-due"] };
+      const pageObject = {
+        id: "4476",
+        slug: "promotions-page",
+        title: "Promotions page",
+        content: "test",
+        attachments: [],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          promotions: ["first-promotion", "second-promotion"],
+        },
+        children: [],
+        childSlugs: [],
+      };
       const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
       const { slug } = pageObject;
-      const selector = childrenSlugSelectorFactory(slug);
-      expect(selector(state)).toEqual(["page-uno", "page-due"]);
+      const selector = promotionsSlugSelectorFactory(slug);
+      expect(selector(state)).toEqual(["first-promotion", "second-promotion"]);
     });
 
     test("returns an empty object if childSlugs does not exist", () => {
       const state = {};
       const slug = "foo";
-      const selector = childrenSlugSelectorFactory(slug);
+      const selector = promotionsSlugSelectorFactory(slug);
       expect(selector(state)).toEqual([]);
     });
   });

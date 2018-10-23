@@ -12,12 +12,13 @@ export const slugSelectorFactory = slug =>
     )
   );
 
-export const childrenSlugSelectorFactory = slug =>
+export const promotionsSlugSelectorFactory = slug =>
   createSelector(
     slugSelectorFactory(slug),
     compose(
       defaultTo([]),
-      prop("childSlugs") // double check if using this or checking children's slugs
+      prop("promotions"),
+      prop("fields")
     )
   );
 
