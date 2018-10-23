@@ -1,6 +1,6 @@
 import { complement, compose, isNil, prop } from "ramda";
 import GameBrowserClient from "Clients/GameBrowserClient";
-import JackpotsClient from "Clients/JackpotsClient";
+import { getJackpots } from "Reducers/jackpots";
 
 const playerLatestPlayedGames = ({ playerId }) =>
   GameBrowserClient.latestPlayedGames({
@@ -146,8 +146,7 @@ export const fetchGames = async ({
   );
 
   const { topListIds, gamesLists } = handshake;
-
-  const jackpots = JackpotsClient.jackpots({
+  const jackpots = getJackpots({
     market,
     currencyCode: currency,
   });

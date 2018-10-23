@@ -1,7 +1,9 @@
 import { connect } from "react-redux";
 import TopLists from "Components/TopLists";
-import { topListIds } from "Reducers/schema/selector";
+import { visibleTopListIds } from "Reducers/schema/selector";
 
-export const TopListsContainer = connect(topListIds)(TopLists);
+export const TopListsContainer = connect(state => ({
+  listIds: visibleTopListIds(state),
+}))(TopLists);
 
 export default TopListsContainer;

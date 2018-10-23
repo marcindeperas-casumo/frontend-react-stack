@@ -21,9 +21,6 @@ module.exports = {
       webpack: {
         config: path.resolve("./config/webpack.config.dev.js"),
       },
-      "import/resolve": {
-        moduleDirectory: ["node_modules", "src"],
-      },
     },
   },
 };

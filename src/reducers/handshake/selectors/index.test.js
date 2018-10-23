@@ -1,3 +1,4 @@
+import stateMock from "Reducers/__mocks__/state.mock";
 import {
   handshakeSelector,
   applicationHandshakeSelector,
@@ -12,6 +13,8 @@ import {
   market,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
+  getLanguage,
+  getCmsHash,
 } from "Reducers/handshake/selectors";
 
 describe("Handshake selectors", () => {
@@ -245,6 +248,23 @@ describe("Handshake selectors", () => {
       };
 
       expect(isGamesHandshakeLoaded(state)).toBe(false);
+    });
+  });
+
+  describe("getLanguage()", () => {
+    test("returns the language of the player if there is a player logged in", () => {
+      expect(getLanguage(stateMock)).toBe("en");
+    });
+
+    test("returns the default language if the player is not logged in", () => {
+      expect(getLanguage({})).toBe("en");
+    });
+  });
+
+  describe("getCmsHash()", () => {
+    test("returns the CMS hash for the current player language", () => {
+      // The root-content-hash for "en"
+      expect(getCmsHash(stateMock)).toBe("c22973a240e540a28011ef401e5146bc");
     });
   });
 });

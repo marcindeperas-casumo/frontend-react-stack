@@ -7,6 +7,7 @@ import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isProduction } from "./utils";
+import Debugger from "Utils/Debugger";
 
 const store = configureStore();
 window.bridge = bridge;
@@ -39,4 +40,6 @@ if (isProduction()) {
         typeof value === "function" ? () => {} : null;
     }
   }
+} else {
+  window.Debugger = Debugger;
 }
