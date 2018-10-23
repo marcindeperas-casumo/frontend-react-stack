@@ -4,7 +4,6 @@ import Scrollable from "@casumo/cmp-scrollable";
 import { generateColumns } from "Utils/utils";
 import JackpotsTile from "./JackpotsTile";
 import JackpotsTitle from "./JackpotsTitle";
-import classNames from "classnames";
 import "./Jackpots.scss";
 
 export type Props = {
@@ -24,11 +23,11 @@ export default class Jackpots extends PureComponent<Props> {
   }
 
   render() {
-    const { ids, className } = this.props;
+    const { ids } = this.props;
     const idsByColumns = generateColumns(ids);
 
     return (
-      <div className={classNames("c-jackpots", className)}>
+      <div className="u-padding-top--xlg">
         <JackpotsTitle />
         <Scrollable>
           {idsByColumns.map((columnIds, i) => (
