@@ -22,9 +22,9 @@ export default class JackpotsTileRow extends PureComponent<Props> {
       <div className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2">
         <Flex align="center">
           {/* Image */}
-          <Flex.Item>
+          <Flex.Item className="o-flex__item-fixed-size">
             <ImageLazy
-              className="t-border-r--16 c-jackpots-tile-row-image"
+              className="t-border-r--16"
               src={logoBackground}
               mark={logo}
               alt={name}
