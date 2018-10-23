@@ -64,7 +64,7 @@ describe("Schema selectors", () => {
       schema: { gameList: { l1: 1 } },
     };
 
-    expect(topListIds(state)).toEqual({ listIds: ["l1"] });
+    expect(topListIds(state)).toEqual(["l1"]);
   });
 
   test("topListSelectorById()", () => {
