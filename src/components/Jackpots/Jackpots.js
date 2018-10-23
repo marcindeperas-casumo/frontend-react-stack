@@ -7,6 +7,12 @@ import JackpotsTitle from "./JackpotsTitle";
 import classNames from "classnames";
 import "./Jackpots.scss";
 
+const PADDING_PER_DEVICE = {
+  default: "md",
+  tablet: "2xlg",
+  desktop: "2xlg",
+};
+
 export type Props = {
   ids: Array<string>,
   className?: string,
@@ -30,7 +36,7 @@ export default class Jackpots extends PureComponent<Props> {
     return (
       <div className={classNames("c-jackpots", className)}>
         <JackpotsTitle />
-        <Scrollable>
+        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
           {idsByColumns.map((columnIds, i) => (
             <JackpotsTile ids={columnIds} key={`jackpots-tile-${i}`} />
           ))}
