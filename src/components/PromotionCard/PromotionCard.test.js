@@ -4,34 +4,34 @@ import PromotionCard from "./PromotionCard";
 
 describe("PromotionCard", () => {
   test("should render component", () => {
-    const component = mount(
+    const rendered = mount(
       <PromotionCard slug="I-am-a-slug" isFetched={true} />
     );
 
-    expect(component.find("PromotionCard").exists()).toBe(true);
-    expect(component.find("PromotionCardSkeleton").exists()).toBe(false);
+    expect(rendered.find("PromotionCard").exists()).toBe(true);
+    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(false);
   });
 
   test("should render ImageLazy img", () => {
-    const component = mount(
+    const rendered = mount(
       <PromotionCard slug="I-am-a-slug" isFetched={true} />
     );
 
-    expect(component.find("ImageLazy").exists()).toBe(true);
+    expect(rendered.find("ImageLazy").exists()).toBe(true);
   });
 
   test("should render Card", () => {
-    const component = mount(
+    const rendered = mount(
       <PromotionCard slug="I-am-a-slug" isFetched={true} />
     );
-    expect(component.find("Card").exists()).toBe(true);
+    expect(rendered.find("Card").exists()).toBe(true);
   });
 
   test("should render the skeleton if CMS is not fetched yet", () => {
-    const component = mount(
+    const rendered = mount(
       <PromotionCard slug="I-am-a-slug" isFetched={false} />
     );
 
-    expect(component.find("PromotionCardSkeleton").exists()).toBe(true);
+    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(true);
   });
 });
