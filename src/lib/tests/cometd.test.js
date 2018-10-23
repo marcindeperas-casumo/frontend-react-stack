@@ -72,8 +72,10 @@ describe("CometD", () => {
       };
 
       await cometd.subscribe("/channel", callback);
-      cometdMock.subscribe.mock.calls[0][1](payload);
+      const callbackParameter = cometdMock.subscribe.mock.calls[0][1];
+      callbackParameter(payload);
 
+      expect(callback).toBeCalledTimes(1);
       expect(callback.mock.calls[0][0]).toEqual(data);
     });
   });

@@ -39,7 +39,9 @@ export function CometDFactory(cometd) {
     return new Promise(resolve => {
       subscription = cometd.subscribe(
         channel,
-        parseMessage(callback),
+        parseMessage((...args) => {
+          callback(...args);
+        }),
         subscribeProps,
         resolve
       );
@@ -83,8 +85,8 @@ function parseMessage(callback) {
   return ({ data }) => {
     if (typeof data === "string") {
       callback(JSON.parse(data));
+    } else {
+      callback(data);
     }
-
-    callback(data);
   };
 }

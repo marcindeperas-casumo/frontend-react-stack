@@ -9,7 +9,7 @@ export const CMS_ENTITY_KEY = "cms";
 export const jackpot = new schema.Entity(
   JACKPOT_ENTITY_KEY,
   {},
-  { idAttribute: "jackpotId" }
+  { idAttribute: "gameId" }
 );
 
 export const liveTable = new schema.Entity(

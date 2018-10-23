@@ -276,3 +276,20 @@ export const makeProtocolAwareUrl = url => {
 export const stringToHTML = string => {
   return { __html: string };
 };
+
+export const generateColumns = (items, numberByColumns = 3) => {
+  const columns = [];
+  const totalNumberOfItems = items.length;
+  let fromIndex = 0;
+  let toIndex = Math.min(numberByColumns, totalNumberOfItems);
+  const getNextColumn = () => items.slice(fromIndex, toIndex);
+
+  while (getNextColumn().length) {
+    columns.push(getNextColumn());
+
+    fromIndex += numberByColumns;
+    toIndex = Math.min(toIndex + numberByColumns, totalNumberOfItems);
+  }
+
+  return columns;
+};
