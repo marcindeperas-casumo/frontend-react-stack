@@ -12,7 +12,7 @@ export default class JackpotsTile extends PureComponent<Props> {
     const { ids = [] } = this.props;
 
     return (
-      <div className="c-jackpots-tile o-flex__item-fixed-size u-margin-left--md u-padding-bottom--md">
+      <div className="c-jackpots-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
         {ids.map(id => (
           <JackpotsTileRow id={id} key={`jackpot-${id}`} />
         ))}
