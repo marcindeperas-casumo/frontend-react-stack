@@ -17,8 +17,6 @@ export default class JackpotsTitle extends PureComponent<Props> {
       <Text
         tag="h3"
         className={classNames(
-          "u-margin-top--md",
-          "u-padding-top--md",
           "u-padding-bottom--md",
           "u-padding-bottom--lg@tablet",
           "u-padding-bottom--lg@desktop",

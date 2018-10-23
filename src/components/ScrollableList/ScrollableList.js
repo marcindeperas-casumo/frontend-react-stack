@@ -37,10 +37,7 @@ export class ScrollableList extends PureComponent {
 
     return (
       <div className="u-padding-top--xlg">
-        <div className="u-display--flex">
-          <GameListTitle title={title} />
-        </div>
-
+        <GameListTitle title={title} />
         <Scrollable padding={paddingPerDevice} itemSpacing={spacing}>
           {games.map(gameId => (
             <Component key={gameId} id={gameId} />
