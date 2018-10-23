@@ -4,6 +4,7 @@ import {
   matchingGroups,
   arrayToObject,
   makeProtocolAwareUrl,
+  generateColumns,
 } from "./utils";
 
 describe("cacheFunction()", () => {
@@ -162,5 +163,27 @@ describe("makeProtocolAwareUrl()", () => {
     expect(makeProtocolAwareUrl("http://casumo.com/cometd")).toBe(
       "http://casumo.com/cometd"
     );
+  });
+});
+
+describe(".generateColumns()", () => {
+  test("should group items of an array into columns", async () => {
+    const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+    const numberByColumn = 3;
+
+    expect(generateColumns(list, numberByColumn).length).toBe(3);
+    expect(generateColumns(list, numberByColumn)[0]).toEqual([1, 2, 3]);
+    expect(generateColumns(list, numberByColumn)[1]).toEqual([4, 5, 6]);
+    expect(generateColumns(list, numberByColumn)[2]).toEqual([7, 8, 9]);
+  });
+
+  test("should group items even if number of items is not dividable by column number", async () => {
+    const list = [1, 2, 3, 4, 5, 6, 7, 8];
+    const numberByColumn = 3;
+
+    expect(generateColumns(list, numberByColumn).length).toBe(3);
+    expect(generateColumns(list, numberByColumn)[0]).toEqual([1, 2, 3]);
+    expect(generateColumns(list, numberByColumn)[1]).toEqual([4, 5, 6]);
+    expect(generateColumns(list, numberByColumn)[2]).toEqual([7, 8]);
   });
 });
