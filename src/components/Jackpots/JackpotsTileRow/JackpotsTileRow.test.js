@@ -41,10 +41,8 @@ describe("<JackpotsTileRow />", () => {
     expect(playIcon.length).toBe(1);
   });
 
-  test("clicking on the play icon launches the game", () => {
-    const playIcon = rendered.find("PlayIcon");
-
-    playIcon.simulate("click");
+  test("clicking on the whole row launches the game", () => {
+    rendered.simulate("click");
     expect(launchGame.mock.calls.length).toBe(1);
     expect(launchGame).lastCalledWith({ slug: game.slug });
   });
