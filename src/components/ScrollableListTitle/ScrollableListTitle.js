@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 
-export default function GameListTitle({ title }) {
+export default function ScrollableListTitle({ title }) {
   return (
     <Text
       className={classNames(
