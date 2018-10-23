@@ -11,6 +11,7 @@ const PROMOTIONS_URL = "/en/promotions";
 
 export type Props = {
   isFetched: boolean,
+  slug: string,
 };
 
 export default class PromotionCard extends PureComponent<Props> {
