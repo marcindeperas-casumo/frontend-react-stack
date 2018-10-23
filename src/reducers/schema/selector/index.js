@@ -35,9 +35,10 @@ export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, keys);
 
+const isGameListNotExcluded = id => !config.excludeFromTopLists.includes(id);
 export const visibleTopListIds = createSelector(
   topListIds,
-  filter(id => config.visibleTopLists.includes(id))
+  filter(isGameListNotExcluded)
 );
 
 export const jackpotIdsSelector = createSelector(

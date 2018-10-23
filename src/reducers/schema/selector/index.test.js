@@ -1,3 +1,5 @@
+import { GAME_LIST_IDS } from "Src/constants";
+import config from "Src/config";
 import {
   schemaSelector,
   gameListEntitiesSelector,
@@ -9,6 +11,7 @@ import {
   topListSelectorById,
   topListSelectorByQuery,
   gameSelector,
+  visibleTopListIds,
 } from "Reducers/schema/selector";
 describe("Schema selectors", () => {
   test("schemaSelector", () => {
@@ -65,6 +68,21 @@ describe("Schema selectors", () => {
     };
 
     expect(topListIds(state)).toEqual(["l1"]);
+  });
+
+  test("visibleTopListIds", () => {
+    const firstExcludedGameListId = config.excludeFromTopLists[0];
+    const state = {
+      schema: {
+        gameList: {
+          [GAME_LIST_IDS.EXCLUSIVE_GAMES]: {},
+          [GAME_LIST_IDS.CASUMO_JACKPOT_GAMES]: {},
+        },
+      },
+    };
+
+    expect(visibleTopListIds(state)).not.toContain(firstExcludedGameListId);
+    expect(visibleTopListIds(state).length).toEqual(1);
   });
 
   test("topListSelectorById()", () => {
