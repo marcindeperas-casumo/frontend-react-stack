@@ -3,13 +3,13 @@ import { shallow } from "enzyme";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
-import GameListTitle from "Components/GameList/GameListTitle";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
     const rendered = shallow(<ScrollableList id="id" games={[1]} title="hi" />);
 
-    expect(rendered.find("GameListTitle").props()).toMatchObject({
+    expect(rendered.find("ScrollableListTitle").props()).toMatchObject({
       title: "hi",
     });
   });
@@ -49,7 +49,7 @@ describe("ScrollableList", () => {
       <ScrollableList id="foo" games={[1]} title="hi" />
     );
 
-    expect(rendered.find(GameListTitle).length).toBe(1);
+    expect(rendered.find(ScrollableListTitle).length).toBe(1);
   });
 
   test("use itemSpacing='md' for Scrolling component when the listId is liveCasinoGames", () => {

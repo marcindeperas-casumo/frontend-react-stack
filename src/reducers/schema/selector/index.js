@@ -105,3 +105,6 @@ export const gameSelector = id =>
       };
     }
   );
+
+export const gameListTitleSelectorFactory = listId =>
+  createSelector(topListSelectorById(listId), prop("title"));
