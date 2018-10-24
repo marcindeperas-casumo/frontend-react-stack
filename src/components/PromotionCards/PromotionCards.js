@@ -21,14 +21,18 @@ export class PromotionCards extends PureComponent<Props> {
   render() {
     // const { promotionsSlugs } = this.props;
     const promotionsSlugs = ["dai", "cazzo"]; // SWITCH THIS ONE WITH THE ABOVE ☝🏻
+    const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
-    return promotionsSlugs && promotionsSlugs.length > 0 ? (
+    if (hasNoPromotionSlugs) {
+      return null;
+    }
+    return (
       <Scrollable gap="none" padding="lg">
         {promotionsSlugs.map(slug => (
           <PromotionCardContainer slug={slug} key={slug} />
         ))}
       </Scrollable>
-    ) : null;
+    );
   }
 }
 
