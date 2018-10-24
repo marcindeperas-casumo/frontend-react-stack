@@ -1,6 +1,6 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import GameListTitle from "Components/GameList/GameListTitle";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
 import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
@@ -37,10 +37,7 @@ export class ScrollableList extends PureComponent {
 
     return (
       <div className="u-padding-top--xlg">
-        <div className="u-display--flex">
-          <GameListTitle title={title} />
-        </div>
-
+        <ScrollableListTitle title={title} />
         <Scrollable padding={paddingPerDevice} itemSpacing={spacing}>
           {games.map(gameId => (
             <Component key={gameId} id={gameId} />

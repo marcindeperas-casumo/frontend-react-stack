@@ -6,7 +6,7 @@ import { KO_APP_EVENT_LAUNCH_GAME } from "../../constants";
 import bridge from "../../DurandalReactBridge";
 
 import GameListTiles from "Components/GameList/GameListTiles";
-import GameListTitle from "Components/GameList/GameListTitle";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameListExclusiveTiles from "Components/GameList/GameListExclusiveTiles";
 import LiveCasinoCard from "Components/LiveCasinoCard";
 
@@ -51,9 +51,7 @@ export default class GameList extends PureComponent<Props> {
     const { display = "tiles", title, link } = this.props;
     return (
       <div className="u-padding-top--xlg">
-        <div className="u-display--flex">
-          <GameListTitle title={title} link={link} />
-        </div>
+        <ScrollableListTitle title={title} />
         <ScrollingContainer
           padding={paddingPerDevice}
           itemSpacing={display === "liveCasinoCards" ? "md" : "default"}
