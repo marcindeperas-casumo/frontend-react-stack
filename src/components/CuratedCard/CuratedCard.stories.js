@@ -1,22 +1,23 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
-import CuratedCard from "./CuratedCard";
+import CuratedCardContainer from "Components/CuratedCard";
+import MockStore from "Components/MockStore";
 
-import curatedGameMock from "./__mocks__/curatedGame.json";
-
-const stories = storiesOf("CuratedGame", module);
+const stories = storiesOf("CuratedCard", module);
 
 stories.add(
   "Default",
   () => {
     return (
-      <div
-        className="u-margin-left--auto u-margin-right--auto"
-        style={{ maxWidth: "686px" }}
-      >
-        <CuratedCard data={curatedGameMock} />
-      </div>
+      <MockStore>
+        <div
+          className="u-margin-left--auto u-margin-right--auto"
+          style={{ maxWidth: "686px" }}
+        >
+          <CuratedCardContainer />
+        </div>
+      </MockStore>
     );
   },
   info({ text: "Default" })
