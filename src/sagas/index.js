@@ -1,8 +1,12 @@
 import { types as appTypes } from "Reducers/app";
 import { types as fetchTypes } from "Reducers/fetch";
 import { types as gameTypes } from "Reducers/games";
-import { types as cmsTypes, fetchPageBySlugSaga } from "Reducers/cms";
-import { types as curatedTypes, fetchPageSaga } from "Reducers/curated";
+import { types as curatedTypes, fetchCuratedSaga } from "Reducers/curated";
+import {
+  types as cmsTypes,
+  getFetchCompleteTypeBySlug,
+  fetchPageBySlugSaga,
+} from "Reducers/cms";
 import {
   TYPES as cometdTypes,
   cometdSubscribeSaga,
@@ -18,9 +22,13 @@ export default function* rootSaga(dispatch) {
   yield fork(takeEvery, fetchTypes.FETCH, fetchSaga);
   yield fork(takeEvery, gameTypes.LAUNCH_GAME, launchGameSaga);
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);
-  yield fork(takeEvery, curatedTypes.CURATED_FETCH_PAGE, fetchPageSaga);
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
+  yield fork(
+    takeEvery,
+    getFetchCompleteTypeBySlug(curatedTypes.CURATED_SLUG),
+    fetchCuratedSaga
+  );
 
   // TODO: enable this as soon as the "formattedJackpotAmount" is present in the CometD jackpot updates
   //

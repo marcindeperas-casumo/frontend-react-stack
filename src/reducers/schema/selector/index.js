@@ -31,11 +31,6 @@ export const jackpotEntitiesSelector = createSelector(
   state => state.jackpot
 );
 
-export const curatedEntitiesSelector = createSelector(
-  schemaSelector,
-  prop("curated")
-);
-
 export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, keys);
