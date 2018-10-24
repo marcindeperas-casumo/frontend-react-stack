@@ -31,114 +31,114 @@ export default {
         siteUrl: "https://www.casumotest.com/",
         restrictionType: "UNAVAILABLE",
         unavailableCountries: [
-          "ps",
-          "be",
-          "er",
-          "vu",
-          "ss",
-          "pw",
-          "cn",
-          "ug",
-          "gy",
-          "sd",
-          "pr",
-          "dz",
-          "af",
-          "kr",
-          "ci",
-          "nc",
-          "hu",
-          "al",
-          "sn",
-          "cy",
-          "sl",
-          "rs",
-          "mq",
-          "mo",
-          "tf",
-          "wf",
-          "sk",
           "vi",
-          "uz",
-          "ir",
-          "yt",
-          "jp",
-          "vg",
-          "id",
-          "us",
-          "fr",
-          "gr",
-          "cc",
-          "as",
-          "tw",
-          "um",
-          "md",
-          "tr",
-          "eh",
-          "ma",
-          "la",
-          "__",
-          "hk",
-          "pt",
-          "tn",
-          "cd",
-          "fo",
-          "mf",
-          "pk",
-          "tj",
-          "sy",
-          "bl",
-          "cm",
-          "ae",
-          "cz",
-          "mp",
-          "aq",
-          "zw",
-          "tm",
-          "qa",
-          "lt",
-          "me",
-          "ao",
-          "ne",
-          "iq",
-          "pf",
-          "lr",
-          "hm",
-          "cx",
-          "ly",
-          "at",
-          "ng",
-          "cf",
-          "pm",
-          "va",
-          "ro",
-          "si",
-          "gl",
-          "ph",
-          "au",
-          "nf",
-          "it",
-          "bv",
-          "ad",
-          "es",
-          "lk",
-          "gm",
-          "ye",
           "re",
-          "kp",
-          "ee",
-          "ag",
-          "mm",
-          "gh",
-          "mk",
-          "eg",
-          "gp",
-          "so",
+          "cy",
+          "sn",
+          "tm",
+          "af",
+          "ug",
           "bg",
-          "il",
-          "sg",
+          "tj",
+          "dz",
+          "kp",
+          "ad",
+          "qa",
+          "ng",
+          "so",
+          "er",
+          "bl",
+          "cf",
+          "as",
+          "lk",
+          "vu",
+          "tw",
+          "aq",
+          "pk",
+          "jp",
+          "tf",
+          "gm",
+          "zw",
+          "at",
+          "iq",
+          "gp",
+          "ma",
+          "it",
+          "me",
+          "pt",
+          "ne",
+          "mp",
+          "si",
+          "ly",
           "gu",
+          "eg",
+          "ss",
+          "cm",
+          "mk",
+          "um",
+          "al",
+          "hk",
+          "rs",
+          "mm",
+          "cz",
+          "gl",
+          "ae",
+          "mq",
+          "fo",
+          "kr",
+          "ag",
           "gf",
+          "tn",
+          "sd",
+          "tr",
+          "bv",
+          "uz",
+          "la",
+          "sy",
+          "gr",
+          "sl",
+          "id",
+          "__",
+          "ir",
+          "lt",
+          "fr",
+          "pf",
+          "hu",
+          "cc",
+          "us",
+          "nf",
+          "mo",
+          "cn",
+          "il",
+          "hm",
+          "pm",
+          "md",
+          "ro",
+          "ph",
+          "nc",
+          "eh",
+          "gy",
+          "cd",
+          "be",
+          "es",
+          "ci",
+          "cx",
+          "ee",
+          "yt",
+          "vg",
+          "ps",
+          "sk",
+          "lr",
+          "mf",
+          "au",
+          "wf",
+          "pw",
+          "ao",
+          "ye",
+          "gh",
+          "sg",
+          "va",
+          "pr",
         ],
         jurisdiction: "MGA",
         contextPath: "",
@@ -415,7 +415,7 @@ export default {
               tournaments: {
                 "0c450e40-d1b8-11e8-b475-0242ac110004": {
                   tournamentId: "0c450e40-d1b8-11e8-b475-0242ac110004",
-                  status: "Scheduled",
+                  status: "Started",
                   type: "Promoted",
                   campaignId: "casumo_promoted_bbw",
                   contentId: "default",
@@ -1170,6 +1170,386 @@ export default {
                   winner: null,
                   numberOfParticipants: 0,
                   promoted: true,
+                },
+                "0c57abe0-d1b8-11e8-b475-0242ac110004": {
+                  tournamentId: "0c57abe0-d1b8-11e8-b475-0242ac110004",
+                  status: "Scheduled",
+                  type: "Standard",
+                  campaignId: "casumo_high_activity_bookofdead",
+                  contentId: "default",
+                  startTime: 1540409400000,
+                  endTime: 1540410600000,
+                  minBetByCurrency: {
+                    EUR: 0.4,
+                    GBP: 0.4,
+                    CAD: 0.8,
+                    DKK: 4,
+                    SEK: 4,
+                  },
+                  prizes: [
+                    {
+                      badgeRuleName:
+                        "tournament_75_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":75.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_50_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":50.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_5_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":5.0000,"iso4217CurrencyCode":"GBP"}',
+                      },
+                    },
+                  ],
+                  gameConfiguration: {
+                    gamesAreInclusive: true,
+                    gameNames: [
+                      "playngo-bookofdead",
+                      "playngo-bookofdeadmobile",
+                    ],
+                  },
+                  leaderboard: {},
+                  spinLimit: 210,
+                  winner: null,
+                  numberOfParticipants: 0,
+                  promoted: false,
                 },
               },
               gamesAreInclusive: true,
@@ -2915,7 +3295,7 @@ export default {
           max: 2500,
         },
         players: 0,
-        results: ["40", "02", "01", "10", "01", "05", "10", "05", "05"],
+        results: ["20", "01", "02", "01", "05", "01", "20", "05", "02"],
         betBehind: null,
         seats: null,
         provider: "casumo",
@@ -2945,7 +3325,25 @@ export default {
           max: 15000,
         },
         players: 2,
-        results: ["R", "L", "R", "L", "L", "R", "L"],
+        results: [
+          "L",
+          "R",
+          "R",
+          "S",
+          "L",
+          "R",
+          "L",
+          "R",
+          "R",
+          "L",
+          "L",
+          "L",
+          "L",
+          "L",
+          "L",
+          "L",
+          "L",
+        ],
         betBehind: null,
         seats: null,
         provider: "evolution",
@@ -2960,7 +3358,7 @@ export default {
           max: 5000,
         },
         players: 9,
-        results: ["01", "02", "02", "20", "01", "01", "01", "02", "02"],
+        results: ["10", "01", "10", "02", "05", "40", "01", "01", "01"],
         betBehind: null,
         seats: null,
         provider: "evolution",
@@ -3250,7 +3648,6 @@ export default {
         title: "Jackpots",
       },
     },
-    curated: {},
     cms: {
       "curated-component": {
         id: "85475",
