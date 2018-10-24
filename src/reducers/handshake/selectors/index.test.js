@@ -264,7 +264,7 @@ describe("Handshake selectors", () => {
   describe("getCmsHash()", () => {
     test("returns the CMS hash for the current player language", () => {
       // The root-content-hash for "en"
-      expect(getCmsHash(stateMock)).toBe("c22973a240e540a28011ef401e5146bc");
+      expect(getCmsHash(stateMock)).toBe("12cc07af03e28d2a7648bb25f44cb6c8");
     });
   });
 });
