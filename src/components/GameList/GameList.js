@@ -51,7 +51,7 @@ export default class GameList extends PureComponent<Props> {
     const { display = "tiles", title, link } = this.props;
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitle title={title} link={link} />
+        <ScrollableListTitle title={title} />
         <ScrollingContainer
           padding={paddingPerDevice}
           itemSpacing={display === "liveCasinoCards" ? "md" : "default"}
