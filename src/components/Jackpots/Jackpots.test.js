@@ -21,8 +21,8 @@ describe("<Jackpots />", () => {
     );
   });
 
-  test("renders a <JackpotsTitle /> component", () => {
-    expect(rendered.find("JackpotsTitle").length).toBe(1);
+  test("renders a <ScrollableListTitle /> component", () => {
+    expect(rendered.find("ScrollableListTitle").length).toBe(1);
   });
 
   test("renders tiles for every 3 game", () => {
