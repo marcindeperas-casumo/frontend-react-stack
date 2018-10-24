@@ -8,18 +8,21 @@ import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   game: Object,
-  launchGame: ({ slug: string }) => void,
+  launchGame: () => void,
 };
 
 export default class JackpotsTileRow extends PureComponent<Props> {
   render() {
     const { game = {}, launchGame } = this.props;
-    const { slug, name, logo, logoBackground } = game;
+    const { name, logo, logoBackground } = game;
     const { jackpotInfo = {} } = game;
     const { formattedJackpotAmount } = jackpotInfo;
 
     return (
-      <div className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2">
+      <div
+        className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2"
+        onClick={launchGame}
+      >
         <Flex align="center">
           {/* Image */}
           <Flex.Item>
@@ -54,7 +57,6 @@ export default class JackpotsTileRow extends PureComponent<Props> {
             <PlayIcon
               size="med"
               className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md"
-              onClick={() => launchGame({ slug })}
             />
           </Flex.Item>
         </Flex>
