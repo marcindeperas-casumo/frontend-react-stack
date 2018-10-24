@@ -45,7 +45,7 @@ describe("PromotionCards", () => {
     expect(startFetch).not.toHaveBeenCalledTimes(1);
   });
 
-  test("should not render the component if promotionSlugs is empty", () => {
+  test("should not render the scrollable component if promotionSlugs is empty", () => {
     const startFetch = jest.fn();
 
     const rendered = shallow(
