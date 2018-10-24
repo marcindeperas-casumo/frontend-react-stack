@@ -12,6 +12,7 @@ import {
   topListSelectorByQuery,
   gameSelector,
   visibleTopListIds,
+  gameListTitleSelectorFactory,
 } from "Reducers/schema/selector";
 describe("Schema selectors", () => {
   test("schemaSelector", () => {
@@ -196,6 +197,32 @@ describe("Schema selectors", () => {
       expect(gameSelector("game1")(state)).toEqual({
         id: "game1",
       });
+    });
+  });
+
+  describe("gameListTitleSelectorFactory", () => {
+    test("returns the title of the list by id", () => {
+      const state = {
+        schema: {
+          gameList: {
+            latestPlayedGames: {
+              games: [
+                "bloodsuckers",
+                "easter-island",
+                "starburst",
+                "bakers-treat",
+                "rapunzels-tower",
+                "big-bad-wolf",
+              ],
+              id: "latestPlayedGames",
+              title: "Last Played",
+            },
+          },
+        },
+      };
+      const selector = gameListTitleSelectorFactory("latestPlayedGames");
+
+      expect(selector(state)).toBe("Last Played");
     });
   });
 });
