@@ -12,11 +12,11 @@ export const slugSelectorFactory = slug =>
     )
   );
 
-export const fieldSelectorFactory = ({ slug, field }) =>
+export const fieldSelectorFactory = ({ slug, field, defaultValue = null }) =>
   createSelector(
     slugSelectorFactory(slug),
     compose(
-      defaultTo(field),
+      defaultTo(defaultValue),
       prop(field),
       prop("fields")
     )
