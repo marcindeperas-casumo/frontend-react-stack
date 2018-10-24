@@ -12,7 +12,7 @@ export function* fetchCuratedSaga() {
   const { game } = response;
 
   if (game.length) {
-    const slug = game[0]; // taking only the first game in the array
+    const slug = game[0];
     const gameData = yield select(gameSelector(slug));
 
     if (!gameData) {

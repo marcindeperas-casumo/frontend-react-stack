@@ -5,8 +5,3 @@ export const fetchCurated = () => ({
   type: cmsTypes.FETCH_PAGE_BY_SLUG,
   slug: types.CURATED_SLUG,
 });
-
-export const fetchGame = () => ({
-  type: cmsTypes.FETCH_PAGE_BY_SLUG,
-  slug: types.CURATED_SLUG,
-});

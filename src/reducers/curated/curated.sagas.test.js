@@ -1,10 +1,38 @@
-import { cloneableGenerator } from "redux-saga/utils";
-import { types as schemaTypes } from "Reducers/schema";
+import { take, select, call, put } from "redux-saga/effects";
 import curatedMock from "Reducers/curated/__mocks__/curated.page.api.json";
-import { types, fetchCurated, fetchCuratedSaga } from "Reducers/curated";
+import gameMock from "Reducers/curated/__mocks__/curated.game.api.json";
+import { getFetchStoredTypeBySlug } from "Reducers/cms";
+import {
+  types,
+  fetchCurated,
+  fetchCuratedSaga,
+  curatedSelector,
+  getGamesBySlug,
+} from "Reducers/curated";
 
 describe("Reducers/curated/sagas", () => {
-  describe("fetchCuratedSaga()", () => {
-    // todo
+  describe("fetchCuratedSaga", () => {
+    test("success flow", () => {
+      const generator = fetchCuratedSaga();
+      expect(generator.next().value).toEqual(
+        take(getFetchStoredTypeBySlug(types.CURATED_SLUG))
+      );
+
+      generator.next();
+      const { game } = curatedMock.fields;
+      generator.next({ game });
+      generator.next();
+      generator.next();
+
+      const platform = "mobile";
+      const country = "gb";
+      const slugs = game;
+      const variant = "default";
+      const args = { platform, country, slugs, variant };
+
+      const received = JSON.stringify(generator.next(args).value);
+      const expected = JSON.stringify(call(getGamesBySlug, args));
+      expect(received).toEqual(expected);
+    });
   });
 });
