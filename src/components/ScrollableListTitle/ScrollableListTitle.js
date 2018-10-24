@@ -2,7 +2,7 @@ import React from "react";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 
-export default function GameListTitle({ title, link }) {
+export default function ScrollableListTitle({ title }) {
   return (
     <Text
       className={classNames(
@@ -12,8 +12,7 @@ export default function GameListTitle({ title, link }) {
         "u-padding-left--md",
         "u-padding-left--2xlg@tablet",
         "u-padding-left--2xlg@desktop",
-        "u-font-weight-bold",
-        link && "flex-1"
+        "u-font-weight-bold"
       )}
       tag="h3"
     >

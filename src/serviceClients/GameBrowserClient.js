@@ -10,18 +10,10 @@ export const GameBrowserClientFactory = ({ http }) => {
     handshake: ({ country, platform }) =>
       http.get(`gamebrowser/handshake/${platform}/${country}`),
 
-    gamesLists: ({
-      country,
-      platform,
-      id,
-      hash,
-      variant,
-      page = 0,
-      pageSize = 5,
-    }) =>
+    gamesLists: ({ country, platform, id, variant, page = 0, pageSize = 5 }) =>
       http.get(
         `gamebrowser/games-lists/${platform}/${country}/${id}?${stringify(
-          { hash, variant, page, pageSize },
+          { variant, page, pageSize },
           { skipNulls: true }
         )}`
       ),
@@ -35,18 +27,17 @@ export const GameBrowserClientFactory = ({ http }) => {
       country,
       providerGameNames,
       variant,
-      hash,
     }) =>
       http.get(
         `gamebrowser/games-by-provider-game-names/${platform}/${country}?${stringify(
-          { hash, variant, providerGameNames },
+          { variant, providerGameNames },
           { arrayFormat: "brackets" }
         )}`
       ),
-    gamesBySlugs: ({ platform, country, slugs, variant, hash }) =>
+    gamesBySlugs: ({ platform, country, slugs, variant }) =>
       http.get(
         `gamebrowser/games-by-slugs/${platform}/${country}?${stringify(
-          { hash, variant, slugs },
+          { variant, slugs },
           { arrayFormat: "brackets" }
         )}`
       ),

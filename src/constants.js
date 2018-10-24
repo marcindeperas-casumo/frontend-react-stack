@@ -30,3 +30,12 @@ export const LOW_RES_IMAGE_SETTINGS = {
     blur: 2000,
   },
 };
+
+export const GAME_LIST_IDS = {
+  POPULAR_GAMES: "popularGames",
+  LIVE_CASINO_GAMES: "liveCasinoGames",
+  NEW_GAMES: "newGames",
+  EXCLUSIVE_GAMES: "exclusiveGames",
+  CASUMO_FAVOURITE_GAMES: "casumoFavouriteGames",
+  CASUMO_JACKPOT_GAMES: "casumoJackpotGames",
+};
