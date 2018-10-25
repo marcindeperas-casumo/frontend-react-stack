@@ -26,7 +26,7 @@ const listIdToRenderDataMap = {
 
 export class ScrollableList extends PureComponent {
   render() {
-    const { id, title, games } = this.props;
+    const { id, title, games = [] } = this.props;
 
     if (isEmpty(games)) {
       return null;
