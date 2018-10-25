@@ -49,7 +49,7 @@ export default class CuratedCard extends PureComponent<Props> {
   renderFooter = () => {
     const { data } = this.props;
 
-    return data.gameData ? (
+    return data.game.length ? (
       <CuratedCardFooter
         game={data.gameData}
         primaryActionText={data.primary_action_text}

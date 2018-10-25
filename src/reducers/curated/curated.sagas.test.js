@@ -1,6 +1,5 @@
 import { take, select, call, put } from "redux-saga/effects";
-import curatedMock from "Reducers/curated/__mocks__/curated.page.api.json";
-import gameMock from "Reducers/curated/__mocks__/curated.game.api.json";
+import curatedMock from "Reducers/curated/__mocks__/curated.json";
 import { getFetchStoredTypeBySlug } from "Reducers/cms";
 import {
   types,
@@ -19,7 +18,7 @@ describe("Reducers/curated/sagas", () => {
       );
 
       generator.next();
-      const { game } = curatedMock.fields;
+      const { game } = curatedMock;
       generator.next({ game });
       generator.next();
       generator.next();

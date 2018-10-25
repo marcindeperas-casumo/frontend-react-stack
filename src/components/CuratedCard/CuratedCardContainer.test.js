@@ -4,7 +4,6 @@ import { Provider } from "react-redux";
 import configureStore from "Src/configureStore";
 import CuratedCard from "Components/CuratedCard";
 import MockStore from "Components/MockStore";
-import curatedCardData from "./__mocks__/curatedCard.json";
 
 describe("CuratedCardContainer", () => {
   const startFetch = jest.fn();
