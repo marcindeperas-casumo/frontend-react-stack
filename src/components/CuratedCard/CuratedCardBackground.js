@@ -11,11 +11,8 @@ type Props = {
 
 export default class CuratedCardBackground extends PureComponent<Props> {
   onClick = () => {
-    const { game } = this.props;
-    if (game.length) {
-      const slug = game[0];
-      launchGame({ slug });
-    }
+    const { slug } = this.props.gameData;
+    launchGame({ slug });
   };
 
   render() {
@@ -30,8 +27,8 @@ export default class CuratedCardBackground extends PureComponent<Props> {
     return (
       <a
         className="o-ratio__content u-cursor-pointer"
-        href={!game.length && active_promotions.length ? "/promotions" : null}
-        onClick={this.onClick}
+        href={!game.length ? "/promotions" : null}
+        onClick={game.length ? this.onClick : null}
       >
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"

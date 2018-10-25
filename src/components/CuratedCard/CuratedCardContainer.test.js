@@ -6,8 +6,6 @@ import CuratedCard from "Components/CuratedCard";
 import MockStore from "Components/MockStore";
 
 describe("CuratedCardContainer", () => {
-  const startFetch = jest.fn();
-
   test("should render component", () => {
     const component = mount(
       <Provider store={configureStore()}>
