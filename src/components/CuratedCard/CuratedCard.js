@@ -5,6 +5,7 @@ import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
 
 import "./CuratedCard.scss";
@@ -20,13 +21,16 @@ const spacing = {
 };
 
 export type Props = {|
-  data: any,
+  data: {},
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
   componentDidMount() {
-    const { fetchCurated } = this.props;
-    fetchCurated();
+    const { isFetched, fetchCurated } = this.props;
+
+    if (!isFetched) {
+      fetchCurated();
+    }
   }
 
   renderHeader = () => {
@@ -61,20 +65,24 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   render() {
-    const { data } = this.props;
+    const { data, isFetched } = this.props;
 
     return (
       <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-horiz--md u-margin-horiz--2xlg@tablet u-margin-horiz--2xlg@desktop">
-        <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
-          <CuratedCardBackground {...data} />
-          <Card
-            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
-            justify={justify}
-            spacing={spacing}
-            header={this.renderHeader}
-            footer={this.renderFooter}
-          />
-        </div>
+        {!isFetched ? (
+          <CuratedCardSkeleton />
+        ) : (
+          <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
+            <CuratedCardBackground {...data} />
+            <Card
+              className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+              justify={justify}
+              spacing={spacing}
+              header={this.renderHeader}
+              footer={this.renderFooter}
+            />
+          </div>
+        )}
       </div>
     );
   }

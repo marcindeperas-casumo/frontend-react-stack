@@ -6,8 +6,7 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
-
-import { emitLaunchGame } from "Components/GameList/GameList";
+import { launchGame } from "Services/LaunchGameService";
 
 const GameThumb = ({ src, mark }) => (
   <ImageLazy
@@ -57,7 +56,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
           <Flex justify="center">
             <Button
               id="gtm-curated-play"
-              onClick={() => emitLaunchGame(game.slug)}
+              onClick={() => launchGame(game.slug)}
               variant="variant-1"
               className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >

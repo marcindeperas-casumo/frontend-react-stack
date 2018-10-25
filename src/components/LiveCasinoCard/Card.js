@@ -9,7 +9,7 @@ import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
 import CardFooter from "Components/LiveCasinoCard/CardFooter";
 import CardData from "Components/LiveCasinoCard/CardData";
-import { emitLaunchGame } from "Components/GameList/GameList";
+import { launchGame } from "Services/LaunchGameService";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
@@ -63,7 +63,7 @@ export default function LiveCasinoCard(game) {
             name={game.name}
             lobby={game.lobby}
             slug={game.slug}
-            launchGame={() => emitLaunchGame(game.slug)}
+            launchGame={() => launchGame(game.slug)}
           />
         )}
         footer={() => <CardFooter {...game.lobby} />}

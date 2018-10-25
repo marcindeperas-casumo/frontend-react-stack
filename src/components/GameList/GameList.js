@@ -10,13 +10,6 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameListExclusiveTiles from "Components/GameList/GameListExclusiveTiles";
 import LiveCasinoCard from "Components/LiveCasinoCard";
 
-export const emitLaunchGame = (slug: string) => {
-  bridge.emit(KO_APP_EVENT_LAUNCH_GAME, {
-    slug,
-    playForFun: false,
-  });
-};
-
 const renderLiveCasinoCards = ({ games }) =>
   games.map(game => <LiveCasinoCard game={game} key={game.slug} />);
 
@@ -48,7 +41,7 @@ type Props = {|
 
 export default class GameList extends PureComponent<Props> {
   render() {
-    const { display = "tiles", title, link } = this.props;
+    const { display = "tiles", title } = this.props;
     return (
       <div className="u-padding-top--xlg">
         <ScrollableListTitle title={title} />

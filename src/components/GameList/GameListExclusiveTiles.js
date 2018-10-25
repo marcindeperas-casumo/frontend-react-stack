@@ -1,7 +1,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import GameTile from "Components/GameTile";
-import { emitLaunchGame } from "Components/GameList/GameList";
+import { launchGame } from "Services/LaunchGameService";
 
 export default function GameListExclusiveTiles({ game }) {
   return (
@@ -17,7 +17,7 @@ export default function GameListExclusiveTiles({ game }) {
           h: 280,
           fit: "crop",
         }}
-        launchGame={() => emitLaunchGame(game.slug)}
+        launchGame={() => launchGame(game.slug)}
       />
     </Flex.Item>
   );
