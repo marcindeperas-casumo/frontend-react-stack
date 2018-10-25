@@ -1,5 +1,5 @@
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Reducers/curated/__mocks__/curated.json";
 
@@ -78,7 +78,7 @@ describe("CuratedCard", () => {
   test("init fetch if not isFetched", () => {
     const fetchCurated = jest.fn();
 
-    const component = mount(
+    const component = shallow(
       <CuratedCard
         data={curatedData}
         fetchCurated={fetchCurated}
@@ -91,7 +91,7 @@ describe("CuratedCard", () => {
   test("not init fetch if isFetched", () => {
     const fetchCurated = jest.fn();
 
-    const component = mount(
+    const component = shallow(
       <CuratedCard
         data={curatedData}
         fetchCurated={fetchCurated}
