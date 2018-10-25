@@ -76,7 +76,7 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
         gameObjects[id].inMaintenanceMode === false;
       const games =
         queryOptions.maintenance === false
-          ? list.games.filter(isNotInMaintenance)
+          ? (list.games || []).filter(isNotInMaintenance)
           : list.games;
 
       return {
