@@ -17,6 +17,17 @@ Here are some high level recommendations on how to best contribute to the projec
             |-- MyComponentContainer.test.js
             |-- MyComponentInnerComponent.js
         |-- MyOtherComponent
+    |-- 🥔
+        |-- cms
+            |-- index.js
+            |-- cms.actions.js
+            |-- cms.actions.test.js
+            |-- cms.constants.js
+            |-- cms.sagas.js
+            |-- cms.sagas.test.js
+            |-- cms.selectors.js
+            |-- cms.selectors.test.js
+        |-- other-model-domain
 ```
 
 - Containers should live next to the component it wraps.
@@ -42,7 +53,9 @@ In this example, we need to make sure `MyComponent` renders `<ComponentA />` whe
 
 This can be done by writing [Stories](https://github.com/storybooks/storybook) or through [Enzyme](https://github.com/airbnb/enzyme)'s DOM inspection.
 
-Stories are better suited for Presentational components, especially as they are integrated with [Chromatic](https://www.chromaticqa.com/) to form a visual regression layer. Bonus points if they are reusable so other teams can see them in the storybook.
+Stories are better suited for Presentational components, especially as they are integrated with [Chromatic](https://www.chromaticqa.com/) to form a visual regression layer.
+
+_**All reusable components should have stories to facilitate component discovery in storybooks!**_
 
 Enzyme is great at testing logic heavy components as it can manipulate the component's state with ease.
 
@@ -54,7 +67,7 @@ The takeaway here is to think about the different paths your application can tak
 
 TDD is heavily encouraged!
 
-**NOTE:** If you are adding a new key user journey, make sure to also add tests to our [smoke test project](https://github.com/Casumo/smoke-tests)!!!
+_**Note: If you are adding a new key user journey, make sure to also add tests to our [smoke test project](https://github.com/Casumo/smoke-tests)!!**_
 
 ## Flow
 
