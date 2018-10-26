@@ -1,9 +1,8 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
-import info from "../../../.storybook/storybookInfo";
-import isNotChromatic from "../../../.storybook/isNotChromatic";
+import info from "Storybook/storybookInfo";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 import LiveCasinoCard from "Components/LiveCasinoCard/Card";
 
