@@ -14,7 +14,7 @@ type State = {
   value: number | string,
 };
 
-const REFRESH_RATE = 1000 / 30;
+export const REFRESH_RATE = 1000 / 30;
 
 const easeOutExpo = (t, b, c, d) =>
   parseFloat((c * (-(2 ** ((-10 * t) / d)) + 1) * 1024) / 1023 + b);
@@ -83,7 +83,7 @@ class Counter extends React.Component<Props, State> {
       result = this.easeFn(time, start, difference, duration).toFixed(decimals);
     } else {
       result = end.toFixed(decimals);
-      clearInterval(this.timer);
+      this.clearTimer();
     }
     this.setState({ value: result });
   }
