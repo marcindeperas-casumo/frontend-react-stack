@@ -7,7 +7,7 @@ import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
-import { isEmpty } from "ramda";
+import { isNil } from "ramda";
 import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
 
@@ -51,12 +51,15 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderCard = () => {
     const { data } = this.props;
-    const { slug } = data.game[0];
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={isEmpty(data.gameData) ? "/promotions" : null}
-          onClick={isEmpty(data.gameData) ? null : () => launchGame({ slug })}
+          link={isNil(data.gameData) ? "/promotions" : null}
+          onClick={
+            isNil(data.gameData)
+              ? null
+              : () => launchGame({ slug: data.gameData.slug })
+          }
           {...data}
         />
         <Card
@@ -83,7 +86,16 @@ export default class CuratedCard extends PureComponent<Props> {
     );
   };
 
-  renderFooter = () => <CuratedCardFooter {...this.props.data} />;
+  renderFooter = () => {
+    const { data } = this.props;
+    return (
+      <CuratedCardFooter
+        game={data.gameData}
+        actionText={data.primary_action_text}
+        legalText={data.promotions_legal_text}
+      />
+    );
+  };
 
   render() {
     const { isFetched } = this.props;

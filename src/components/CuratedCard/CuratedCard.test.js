@@ -1,5 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import { dissoc } from "ramda";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Reducers/curated/__mocks__/curated.json";
 
@@ -46,7 +47,7 @@ describe("CuratedCard", () => {
   });
 
   test("should render promotions_legal_text if no game", () => {
-    const data = { ...curatedData, game: [] };
+    const data = dissoc("gameData", { ...curatedData, game: [] });
     const component = mount(
       <CuratedCard data={data} fetchCurated={fetchCurated} isFetched={true} />
     );
