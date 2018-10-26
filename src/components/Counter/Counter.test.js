@@ -1,40 +1,38 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Counter from "./Counter";
+import Counter, { REFRESH_RATE } from "./Counter";
 
 jest.useFakeTimers();
 
 describe("Counter", () => {
+  beforeEach(() => {});
+
   afterEach(() => {
     jest.clearAllTimers();
   });
 
   test("should call renderProp", () => {
-    const renderProp = jest.fn(state => <div>{state.value}</div>);
-    const rendered = shallow(
-      <Counter start={0} end={100} render={renderProp} />
-    );
-    expect(rendered.text()).toEqual("0");
+    const renderProp = jest.fn();
+    expect(renderProp).toHaveBeenCalledTimes(0);
+    shallow(<Counter start={0} end={100} render={renderProp} />);
     expect(renderProp).toHaveBeenCalledTimes(1);
   });
 
-  test("should call countUp 30 times every second", () => {
+  test("should call countUp by REFRESH_RATE", () => {
     const spy = jest.spyOn(Counter.prototype, "countUp");
     const renderProp = jest.fn();
     shallow(<Counter start={0} end={100} render={renderProp} />);
-    jest.advanceTimersByTime(1001);
-    expect(spy).toHaveBeenCalledTimes(30);
+    expect(spy).toHaveBeenCalledTimes(0);
+    jest.advanceTimersByTime(REFRESH_RATE);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 
   test("should call clearTimer when duration is reached", () => {
     const spy = jest.spyOn(Counter.prototype, "clearTimer");
     const renderProp = jest.fn();
-    const duration = 1000;
-    shallow(
-      <Counter start={0} end={100} duration={duration} render={renderProp} />
-    );
-
-    jest.advanceTimersByTime(duration);
+    shallow(<Counter start={0} end={100} duration={3} render={renderProp} />);
+    expect(spy).toHaveBeenCalledTimes(0);
+    jest.runAllTimers();
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
@@ -46,7 +44,7 @@ describe("Counter", () => {
 
     shallow(<Counter start={0} end={100} easeFn={spy} render={renderProp} />);
 
-    jest.advanceTimersByTime(1001);
-    expect(spy).toHaveBeenCalledTimes(30);
+    jest.advanceTimersByTime(REFRESH_RATE);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
