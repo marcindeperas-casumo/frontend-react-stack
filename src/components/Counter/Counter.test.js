@@ -11,6 +11,24 @@ describe("Counter", () => {
     jest.clearAllTimers();
   });
 
+  test("should update state.value", () => {
+    const renderProp = jest.fn();
+    const rendered = shallow(
+      <Counter start={0} end={100} render={renderProp} />
+    );
+    expect(rendered.state("value")).toEqual("0");
+    jest.advanceTimersByTime(REFRESH_RATE);
+    expect(rendered.state("value")).toEqual("1");
+  });
+
+  test("should respect decimals", () => {
+    const renderProp = jest.fn();
+    const rendered = shallow(
+      <Counter start={0} end={100} decimals={2} render={renderProp} />
+    );
+    expect(rendered.state("value")).toEqual("0.00");
+  });
+
   test("should call renderProp", () => {
     const renderProp = jest.fn();
     expect(renderProp).toHaveBeenCalledTimes(0);
