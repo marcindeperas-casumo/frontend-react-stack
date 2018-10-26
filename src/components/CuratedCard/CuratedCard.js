@@ -54,7 +54,7 @@ export default class CuratedCard extends PureComponent<Props> {
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={isNil(data.gameData) ? "/promotions" : null}
+          link={isNil(data.gameData) ? "/en/promotions" : null}
           onClick={
             isNil(data.gameData)
               ? null
