@@ -37,11 +37,9 @@ export type Game = {|
 |};
 
 type Props = {
-  gameData: Game,
-  game: Array<string>,
-  header: string,
-  primary_action_text: string,
-  promotions_legal_text: string,
+  game: Game,
+  legalText: string,
+  actionText: string,
 };
 
 export default class CuratedCardFooter extends PureComponent<Props> {
