@@ -30,6 +30,7 @@ describe("Counter", () => {
   test("should call clearTimer when duration is reached", () => {
     const spy = jest.spyOn(Counter.prototype, "clearTimer");
     const renderProp = jest.fn();
+    // duration as a small value to prevent runAllTimers from causing a bottleneck.
     shallow(<Counter start={0} end={100} duration={3} render={renderProp} />);
     expect(spy).toHaveBeenCalledTimes(0);
     jest.runAllTimers();
