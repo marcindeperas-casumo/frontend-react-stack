@@ -123,7 +123,7 @@ describe("CMS Selectors", () => {
   });
 
   describe("promotionsSlugSelectorFactory()", () => {
-    test("returns an array of childSlugs given a page slug", () => {
+    test("returns an array of promotions given a page slug", () => {
       const pageObject = {
         id: "4476",
         slug: "promotions-page",
@@ -144,7 +144,7 @@ describe("CMS Selectors", () => {
       expect(selector(state)).toEqual(["first-promotion", "second-promotion"]);
     });
 
-    test("returns an empty object if childSlugs does not exist", () => {
+    test("returns an empty object if promotions does not exist", () => {
       const state = {};
       const slug = "foo";
       const selector = promotionsSlugSelectorFactory(slug);
