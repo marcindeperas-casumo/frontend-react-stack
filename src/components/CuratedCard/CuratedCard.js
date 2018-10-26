@@ -7,6 +7,9 @@ import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
+import { isEmpty } from "ramda";
+import { launchGame } from "Services/LaunchGameService";
+import EitherOr from "Components/EitherOr";
 
 import "./CuratedCard.scss";
 
@@ -20,18 +23,52 @@ const spacing = {
   default: "lg",
 };
 
+export type Data = {|
+  header: string,
+  game: Array<any>,
+  gameData: Object,
+  small_image: string,
+  medium_image: string,
+  large_image: string,
+  primary_action_text: string,
+  promotions_legal_text: string,
+|};
+
 export type Props = {|
-  data: {},
+  data: Data,
+  isFetched: boolean,
+  fetchCurated: Function,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, fetchCurated } = this.props;
 
-    if (!isFetched) {
-      fetchCurated();
-    }
+    if (!isFetched) fetchCurated();
   }
+
+  renderSkeleton = () => <CuratedCardSkeleton />;
+
+  renderCard = () => {
+    const { data } = this.props;
+    const { slug } = data.game[0];
+    return (
+      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
+        <CuratedCardBackground
+          link={isEmpty(data.gameData) ? "/promotions" : null}
+          onClick={isEmpty(data.gameData) ? null : () => launchGame({ slug })}
+          {...data}
+        />
+        <Card
+          className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+          justify={justify}
+          spacing={spacing}
+          header={this.renderHeader}
+          footer={this.renderFooter}
+        />
+      </div>
+    );
+  };
 
   renderHeader = () => {
     const { data } = this.props;
@@ -46,43 +83,18 @@ export default class CuratedCard extends PureComponent<Props> {
     );
   };
 
-  renderFooter = () => {
-    const { data } = this.props;
-
-    return data.game.length ? (
-      <CuratedCardFooter
-        game={data.gameData}
-        primaryActionText={data.primary_action_text}
-      />
-    ) : (
-      <Text
-        className="t-color-white"
-        size="sm"
-        tag="span"
-        dangerouslySetInnerHTML={stringToHTML(data.promotions_legal_text)}
-      />
-    );
-  };
+  renderFooter = () => <CuratedCardFooter {...this.props.data} />;
 
   render() {
-    const { data, isFetched } = this.props;
+    const { isFetched } = this.props;
 
     return (
       <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-horiz--md u-margin-horiz--2xlg@tablet u-margin-horiz--2xlg@desktop">
-        {!isFetched ? (
-          <CuratedCardSkeleton />
-        ) : (
-          <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
-            <CuratedCardBackground {...data} />
-            <Card
-              className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
-              justify={justify}
-              spacing={spacing}
-              header={this.renderHeader}
-              footer={this.renderFooter}
-            />
-          </div>
-        )}
+        <EitherOr
+          either={this.renderCard}
+          or={this.renderSkeleton}
+          condition={() => isFetched}
+        />
       </div>
     );
   }

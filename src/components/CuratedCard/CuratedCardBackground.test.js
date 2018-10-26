@@ -1,35 +1,27 @@
 import React from "react";
 import { shallow } from "enzyme";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import { isEmpty } from "ramda";
 import curatedData from "Reducers/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {
-  test("should link to promotions if no game", () => {
+  test("should link to promotions", () => {
     const data = { ...curatedData, game: [] };
-    const component = shallow(<CuratedCardBackground {...data} />);
+    const component = shallow(
+      <CuratedCardBackground link="/promotions" {...curatedData} />
+    );
+
     expect(component.find("a").prop("href")).toBe("/promotions");
   });
 
-  test("should have no link if game", () => {
-    const component = shallow(<CuratedCardBackground {...curatedData} />);
-    expect(component.find("a").prop("href")).toBe(null);
-  });
-
-  test("should trigger onClick if game", () => {
-    const component = shallow(<CuratedCardBackground {...curatedData} />);
-    const onClick = jest.spyOn(component.instance(), "onClick");
-    component.instance().forceUpdate();
-    component.find("a").simulate("click");
+  test("should trigger onClick", () => {
+    const onClick = jest.fn();
+    const component = shallow(
+      <CuratedCardBackground onClick={onClick} {...curatedData} />
+    );
+    const instance = component.instance();
+    component.find("a").prop("onClick")();
 
     expect(onClick).toHaveBeenCalled();
-  });
-
-  test("should not trigger onClick if no game", () => {
-    const d = { ...curatedData, game: [] };
-    const component = shallow(<CuratedCardBackground {...d} />);
-    const instance = component.instance();
-    const spy = jest.spyOn(instance, "onClick");
-    component.find("a").simulate("click");
-    expect(spy).toHaveBeenCalledTimes(0);
   });
 });
