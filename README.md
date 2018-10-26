@@ -78,6 +78,10 @@ ssh ops@live-release
 deploy-service mobile-react-stack-poc master
 ```
 
+## Contributing
+
+See the [contributing guidelines](CONTRIBUTING.md).
+
 ---
 
 ## Resources
