@@ -93,10 +93,8 @@ export const gameSelector = id =>
     liveTableEntitiesSelector,
     (gameEntities, jackpotEntities, liveTableEntities) => {
       const game = gameEntities[id];
-      const jackpot =
-        game && jackpotEntities && jackpotEntities[game.jackpotId];
-      const liveTable =
-        game && liveTableEntities && liveTableEntities[game.tableId];
+      const jackpot = jackpotEntities && jackpotEntities[game.jackpotId];
+      const liveTable = liveTableEntities && liveTableEntities[game.tableId];
 
       return {
         ...game,
