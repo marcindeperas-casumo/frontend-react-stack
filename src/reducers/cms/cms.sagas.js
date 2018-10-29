@@ -5,7 +5,6 @@ import { actions as schemaActions } from "Reducers/schema";
 import { getCmsHash, getLanguage } from "Reducers/handshake/selectors";
 import {
   getFetchCompleteTypeBySlug,
-  getFetchStoredTypeBySlug,
   initiateFetch,
   shouldFetchPageFactory,
 } from "Reducers/cms";
@@ -38,7 +37,6 @@ export function* fetchPageBySlugSaga(action) {
     const { entities } = normalizeData(updateSlugInResponse(response, slug));
 
     yield put(schemaActions.updateEntity(entities));
-    yield put({ type: getFetchStoredTypeBySlug(slug) });
   }
 }
 

@@ -1,6 +1,5 @@
 import { take, select, call, put } from "redux-saga/effects";
 import curatedMock from "Reducers/curated/__mocks__/curated.json";
-import { getFetchStoredTypeBySlug } from "Reducers/cms";
 import {
   CURATED_SLUG,
   fetchCurated,
@@ -13,9 +12,6 @@ describe("Reducers/curated/sagas", () => {
   describe("fetchCuratedSaga", () => {
     test("success flow", () => {
       const generator = fetchCuratedSaga();
-      expect(generator.next().value).toEqual(
-        take(getFetchStoredTypeBySlug(CURATED_SLUG))
-      );
 
       generator.next();
       const { game } = curatedMock;
