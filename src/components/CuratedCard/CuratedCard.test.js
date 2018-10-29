@@ -5,7 +5,48 @@ import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Reducers/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {
-  const fetchCurated = jest.fn();
+  let fetchCurated;
+
+  beforeEach(() => {
+    fetchCurated = jest.fn();
+  });
+
+  test("should render component", () => {
+    const component = mount(
+      <CuratedCard
+        data={curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
+    );
+
+    expect(component.find("CuratedCard").exists()).toBe(true);
+  });
+
+  test("should render CuratedCardSkeleton when isFetched is false", () => {
+    const component = mount(
+      <CuratedCard
+        data={curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={false}
+      />
+    );
+
+    expect(component.find("CuratedCardSkeleton").exists()).toBe(true);
+  });
+
+  test("should render CuratedCard when isFetched", () => {
+    const component = mount(
+      <CuratedCard
+        data={curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
+    );
+    expect(component.find("CuratedCardBackground").exists()).toBe(true);
+    expect(component.find("Card").exists()).toBe(true);
+  });
+
   test("should render component", () => {
     const component = mount(
       <CuratedCard data={{}} fetchCurated={fetchCurated} isFetched={false} />
@@ -77,8 +118,6 @@ describe("CuratedCard", () => {
   });
 
   test("init fetch if not isFetched", () => {
-    const fetchCurated = jest.fn();
-
     const component = shallow(
       <CuratedCard
         data={curatedData}
@@ -90,8 +129,6 @@ describe("CuratedCard", () => {
   });
 
   test("not init fetch if isFetched", () => {
-    const fetchCurated = jest.fn();
-
     const component = shallow(
       <CuratedCard
         data={curatedData}
