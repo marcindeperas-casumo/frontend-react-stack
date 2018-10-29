@@ -5,7 +5,7 @@ const LazyGamesListsPortalContainer = lazy(() =>
   import("Containers/GamesListsPortalContainer")
 );
 
-export default function() {
+export default function LazyGamesLists() {
   return (
     <Suspense fallback={<GamesListsSkeleton />}>
       <LazyGamesListsPortalContainer />
