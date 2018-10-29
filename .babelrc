@@ -1,0 +1,32 @@
+{
+  "presets": [
+    "@babel/preset-flow",
+    "@babel/preset-react",
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-regenerator",
+    [
+      "babel-plugin-webpack-alias",
+      {
+        "config": "./config/webpack.config.dev.js",
+        "noOutputExtension": true
+      }
+    ]
+  ],
+  "env": {
+    "test": {
+      "plugins": [
+        "babel-plugin-syntax-dynamic-import",
+        "babel-plugin-transform-dynamic-import"
+      ]
+    }
+  }
+}
