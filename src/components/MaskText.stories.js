@@ -2,7 +2,7 @@ import { text, withKnobs } from "@storybook/addon-knobs";
 import { storiesOf } from "@storybook/react";
 import React from "react";
 
-import isNotChromatic from "../../.storybook/isNotChromatic";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 import MaskText from "Components/MaskText";
 

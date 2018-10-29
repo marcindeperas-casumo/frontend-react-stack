@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import info from "../../../.storybook/storybookInfo";
+import info from "Storybook/storybookInfo";
 import CuratedCardSkeleton from "./CuratedCardSkeleton";
 
 const stories = storiesOf("CuratedCardSkeleton", module);
