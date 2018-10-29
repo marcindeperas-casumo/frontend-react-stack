@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { types } from "Reducers/curated";
+import { CURATED_SLUG } from "Reducers/curated";
 
 import {
   cmsEntitiesSelector,
@@ -11,7 +11,7 @@ export const curatedSelector = () =>
     cmsEntitiesSelector,
     gameEntitiesSelector,
     (cmsEntities, gameEntities) => {
-      const page = cmsEntities && cmsEntities[types.CURATED_SLUG];
+      const page = cmsEntities && cmsEntities[CURATED_SLUG];
       const gameData =
         page && gameEntities && gameEntities[page.fields.game[0]];
       const fields = (page && page.fields) || {};

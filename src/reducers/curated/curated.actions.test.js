@@ -1,5 +1,5 @@
 import { types as cmsTypes } from "Reducers/cms";
-import { types, fetchCurated } from "Reducers/curated";
+import { CURATED_SLUG, fetchCurated } from "Reducers/curated";
 
 describe("Reducers/curated/actions", () => {
   const slug = "foo";
@@ -10,7 +10,7 @@ describe("Reducers/curated/actions", () => {
     test("should init an API fetch", () => {
       expect(fetchCurated({ hash, lang, slug })).toMatchObject({
         type: cmsTypes.FETCH_PAGE_BY_SLUG,
-        slug: types.CURATED_SLUG,
+        slug: CURATED_SLUG,
       });
     });
   });

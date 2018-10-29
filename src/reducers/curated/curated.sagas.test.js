@@ -2,7 +2,7 @@ import { take, select, call, put } from "redux-saga/effects";
 import curatedMock from "Reducers/curated/__mocks__/curated.json";
 import { getFetchStoredTypeBySlug } from "Reducers/cms";
 import {
-  types,
+  CURATED_SLUG,
   fetchCurated,
   fetchCuratedSaga,
   curatedSelector,
@@ -14,7 +14,7 @@ describe("Reducers/curated/sagas", () => {
     test("success flow", () => {
       const generator = fetchCuratedSaga();
       expect(generator.next().value).toEqual(
-        take(getFetchStoredTypeBySlug(types.CURATED_SLUG))
+        take(getFetchStoredTypeBySlug(CURATED_SLUG))
       );
 
       generator.next();
