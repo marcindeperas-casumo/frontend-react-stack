@@ -2,7 +2,7 @@ import { action } from "@storybook/addon-actions";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import info from "../../../.storybook/storybookInfo";
+import info from "Storybook/storybookInfo";
 import GameTile from "Components/GameTile";
 import GameTileExclusive from "Components/GameTileExclusive";
 

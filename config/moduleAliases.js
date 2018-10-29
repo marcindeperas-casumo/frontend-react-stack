@@ -11,4 +11,5 @@ module.exports = {
   Styles: path.resolve(__dirname, "..", "src", "styles"),
   Lib: path.resolve(__dirname, "..", "src", "lib"),
   Src: path.resolve(__dirname, "..", "src"),
+  Storybook: path.resolve(__dirname, "..", ".storybook"),
 };
