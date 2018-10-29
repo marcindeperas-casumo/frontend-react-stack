@@ -20,11 +20,14 @@ const easeOutExpo = (t, b, c, d) =>
   parseFloat((c * (-(2 ** ((-10 * t) / d)) + 1) * 1024) / 1023 + b);
 
 class Counter extends React.Component<Props, State> {
+  // Commented flowtypes because of https://github.com/babel/babel/issues/8593
+  /*::
   setTimer: Function;
   timer: IntervalID | void;
   easeFn: Function;
   countUp: Function;
   startTime: number;
+  */
 
   constructor(props: Props) {
     super(props);
