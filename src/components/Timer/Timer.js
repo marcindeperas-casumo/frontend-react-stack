@@ -34,9 +34,12 @@ const diffTime = endTime => {
 };
 
 export default class Timer extends PureComponent<Props, State> {
+  // Commented flowtypes because of https://github.com/babel/babel/issues/8593
+  /*::
   lastTime: number;
   updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
+  */
 
   constructor(props: Props) {
     super(props);
