@@ -92,16 +92,14 @@ export const gameSelector = id =>
     jackpotEntitiesSelector,
     liveTableEntitiesSelector,
     (gameEntities, jackpotEntities, liveTableEntities) => {
-      const game = gameEntities[id];
-      const jackpot =
-        game && jackpotEntities && jackpotEntities[game.jackpotId];
-      const liveTable =
-        game && liveTableEntities && liveTableEntities[game.tableId];
+      const game = gameEntities[id] || {};
+      const jackpot = jackpotEntities && jackpotEntities[game.jackpotId];
+      const liveTable = liveTableEntities && liveTableEntities[game.tableId];
 
       return {
         ...game,
-        jackpotInfo: jackpot,
-        lobby: liveTable,
+        ...(jackpot ? { jackpotInfo: jackpot } : {}),
+        ...(liveTable ? { lobby: liveTable } : {}),
       };
     }
   );

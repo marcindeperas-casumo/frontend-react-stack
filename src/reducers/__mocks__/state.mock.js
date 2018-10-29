@@ -154,7 +154,7 @@ export default {
           fi: "6229881129e1bb6d193600a12ce9eb10",
           sv: "a8c4e37b517193679c3b0cf782dc97a4",
           dk: "c8c6bff6de25dd4593f16f8b887ccc77",
-          en: "12cc07af03e28d2a7648bb25f44cb6c8",
+          en: "c22973a240e540a28011ef401e5146bc",
           gb: "ef8ff5e7cd2f7b3d706242728ddcf8f0",
           ca: "1463b9819e2d0e7caaaa0e2b9f9d9f75",
         },
