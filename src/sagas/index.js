@@ -2,7 +2,7 @@ import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes } from "Reducers/app";
 import { types as fetchTypes } from "Reducers/fetch";
 import { types as gameTypes } from "Reducers/games";
-import { CURATED_SLUG, fetchCuratedSaga } from "Reducers/curated";
+import { CURATED_SLUG, fetchCuratedGameSaga } from "Reducers/curated";
 import {
   types as cmsTypes,
   getFetchCompleteTypeBySlug,
@@ -35,6 +35,6 @@ export default function* rootSaga(dispatch) {
   yield fork(
     takeEvery,
     getFetchCompleteTypeBySlug(CURATED_SLUG),
-    fetchCuratedSaga
+    fetchCuratedGameSaga
   );
 }

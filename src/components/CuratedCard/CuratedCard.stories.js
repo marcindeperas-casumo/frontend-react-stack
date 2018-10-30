@@ -1,6 +1,6 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import info from "../../../.storybook/storybookInfo";
+import info from "Storybook/storybookInfo";
 import CuratedCard from "Components/CuratedCard";
 import MockStore from "Components/MockStore";
 

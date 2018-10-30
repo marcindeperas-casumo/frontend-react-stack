@@ -3,31 +3,45 @@ import curatedMock from "Reducers/curated/__mocks__/curated.json";
 import {
   CURATED_SLUG,
   fetchCurated,
-  fetchCuratedSaga,
+  fetchCuratedGameSaga,
   curatedSelector,
   getGamesBySlug,
 } from "Reducers/curated";
+import { types as fetchTypes } from "Reducers/fetch"
+import GameBrowserService from "Services/GameBrowserService";
 
 describe("Reducers/curated/sagas", () => {
-  describe("fetchCuratedSaga", () => {
-    test("success flow", () => {
-      const generator = fetchCuratedSaga();
+  describe("fetchCuratedGameSaga", () => {
+    test("success flow game in store", () => {
+      const generator = fetchCuratedGameSaga();
+      const response = curatedMock;
+      const { gameData, game } = response;
+      generator.next({ response }).value;
+      generator.next({ gameData, game }).value;
 
-      generator.next();
-      const { game } = curatedMock;
-      generator.next({ game });
-      generator.next();
-      generator.next();
+      expect(generator.next().done).toBe(true);
+    });
 
-      const platform = "mobile";
-      const country = "gb";
-      const slugs = game;
-      const variant = "default";
-      const args = { platform, country, slugs, variant };
+    test("success flow fetch game not in store", () => {
+      const generator = fetchCuratedGameSaga();
+      const response = curatedMock;
+      const gameData = null;
+      const { game } = response;
+      generator.next({ response }).value;
+      generator.next({ gameData, game }).value;
 
-      const received = JSON.stringify(generator.next(args).value);
-      const expected = JSON.stringify(call(getGamesBySlug, args));
-      expect(received).toEqual(expected);
+      const args = {
+        platform: "mobile",
+        country: "gb",
+        slugs: [response.game],
+        variant: "default",
+      };
+      const { gamesBySlugs } = GameBrowserService;
+      const { action } = generator.next(args.country).value.PUT;
+
+      expect(action.type).toBe(fetchTypes.FETCH);
+      expect(action.asyncCall).toBe(gamesBySlugs);
+      expect(action.asyncCallData).toEqual(args);
     });
   });
 });

@@ -10,12 +10,16 @@ export const curatedSelector = () =>
     state => state,
     (page, state) => {
       const { fields = {} } = page;
-      const gameId = compose(
+      const game = compose(
         prop(0),
         prop("game")
       )(fields);
-      const gameData = gameSelector(gameId)(state);
+      const gameData = gameSelector(game)(state);
 
-      return isEmpty(gameData) ? { ...fields } : { ...fields, gameData };
+      return {
+        ...fields,
+        game,
+        ...{ ...((!isEmpty(gameData) && { gameData }) || null) },
+      };
     }
   );

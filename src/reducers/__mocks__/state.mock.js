@@ -3690,11 +3690,11 @@ export default {
         fields: {
           critical_for_compliance: false,
           small_image:
-            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-topwheel2.png",
+            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
           medium_image:
-            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-topwheel2.png",
+            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png",
           large_image:
-            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-topwheel2.png",
+            "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png",
           game: ["topwheel-treasures"],
           header: "TRY OUR<br/> NEW<br/> GAME",
           primary_action_text: "Play",
