@@ -1,3 +1,4 @@
+// @flow
 import classNames from "classnames";
 import React from "react";
 import Text from "@casumo/cmp-text";
@@ -8,7 +9,19 @@ import { decodeString } from "Utils/index";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 
-const GameTileOverlay = ({ name, slug, inMaintenanceMode, onLaunchGame }) => {
+type Props = {
+  name: string,
+  slug: string,
+  inMaintenanceMode: boolean,
+  onLaunchGame: Function,
+};
+
+const GameTileOverlay = ({
+  name,
+  slug,
+  inMaintenanceMode,
+  onLaunchGame,
+}: Props) => {
   return (
     <Flex
       direction="vertical"
