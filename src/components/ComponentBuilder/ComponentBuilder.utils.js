@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import DangerousHtml from "Components/DangerousHtml";
 import TopListContainer from "Containers/TopListContainer";
@@ -7,7 +8,14 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST: TopListContainer,
 };
 
-export const mapContentDefinitionToComponent = (contentDefinition, i) => {
+type ContentDefinition = {
+  acf_fc_layout: string,
+};
+
+export const mapContentDefinitionToComponent = (
+  contentDefinition: ContentDefinition,
+  i: number
+) => {
   const typeKey = "acf_fc_layout";
   const { [typeKey]: type, ...rest } = contentDefinition;
   const component = COMPONENT_MAPPING[type];
