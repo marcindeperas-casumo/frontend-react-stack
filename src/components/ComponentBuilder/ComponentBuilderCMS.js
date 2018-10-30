@@ -6,9 +6,9 @@ type Props = {
   /** The array of component definition objects. */
   componentDefinitions: Array<Object>,
   /** A boolean indicating if the "fetch" function should be called on componentDidMount(). */
-  shouldFetch?: boolean,
+  shouldFetch: boolean,
   /** A function to be called if fetching is needed. */
-  fetch?: Function,
+  fetch: Function,
 };
 
 export default class ComponentBuilderCMS extends PureComponent<Props> {
