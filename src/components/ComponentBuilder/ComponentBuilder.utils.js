@@ -21,7 +21,7 @@ export const mapContentDefinitionToComponent = (
   const component = COMPONENT_MAPPING[type];
 
   if (!component) {
-    // TODO: add error logging here (needs a Logging Service)
+    // TODO: add error logging here
     return null;
   }
 
