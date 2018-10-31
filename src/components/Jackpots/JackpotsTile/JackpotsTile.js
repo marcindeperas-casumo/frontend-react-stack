@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import JackpotsTileRow from "../JackpotsTileRow";
+import JackpotsTileRow from "Components/JackpotsTileRow";
 
 type Props = {
   ids?: Array<string>,

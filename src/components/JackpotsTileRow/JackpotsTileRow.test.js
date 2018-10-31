@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import JackpotsTileRow from "./JackpotsTileRow";
+import JackpotsTileRow from "Components/JackpotsTileRow";
 
 describe("<JackpotsTileRow />", () => {
   let rendered;

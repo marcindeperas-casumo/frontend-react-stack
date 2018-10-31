@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { gameSelector } from "Reducers/schema/selector";
 import { launchGame } from "Reducers/games";
-import JackpotsTileRow from "./JackpotsTileRow";
+import JackpotsTileRow from "Components/JackpotsTileRow/JackpotsTileRow";
 
 export default connect(
   (state, { id }) => ({
