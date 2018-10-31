@@ -7,10 +7,6 @@ jest.mock("react-dom");
 const createPortal = ReactDOM.createPortal;
 
 describe("MustDropJackpotsPortal", () => {
-  beforeEach(() => {
-    createPortal.mockClear();
-  });
-
   test("should create a Portal", () => {
     shallow(<MustDropJackpotsPortal isFetching="false" />);
 
