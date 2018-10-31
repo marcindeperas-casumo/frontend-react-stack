@@ -6,7 +6,10 @@ describe("Reducers/curated/selectors", () => {
       const state = { schema: { cms: "page", game: "game" } };
       const selector = curatedSelector(state);
 
-      expect(selector(state)).toEqual({});
+      expect(selector(state)).toEqual({
+        game: undefined,
+        gameData: {},
+      });
     });
   });
 });
