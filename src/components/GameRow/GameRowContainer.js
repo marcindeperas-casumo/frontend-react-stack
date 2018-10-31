@@ -1,7 +1,7 @@
 import { connect } from "react-redux";
 import { gameSelector } from "Reducers/schema/selector";
 import { launchGame } from "Reducers/games";
-import JackpotsTileRow from "Components/JackpotsTileRow/JackpotsTileRow";
+import GameRow from "Components/GameRow/GameRow";
 
 export default connect(
   (state, { id }) => ({
@@ -10,4 +10,4 @@ export default connect(
   (dispatch, { id }) => ({
     launchGame: () => dispatch(launchGame(id)),
   })
-)(JackpotsTileRow);
+)(GameRow);

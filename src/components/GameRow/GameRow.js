@@ -11,7 +11,7 @@ type Props = {
   launchGame: () => void,
 };
 
-export default class JackpotsTileRow extends PureComponent<Props> {
+export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, launchGame } = this.props;
     const { name, logo, logoBackground } = game;
