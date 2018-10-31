@@ -50,12 +50,13 @@ export default class CuratedCard extends PureComponent<Props> {
   renderCard = () => {
     const { data } = this.props;
     const { gameData } = data;
+    const isPromo = !Object.keys(gameData).length;
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={!gameData ? "/en/promotions" : null}
-          onClick={!gameData ? null : () => launchGame({ slug: data.game })}
+          link={isPromo ? "/en/games/promotions" : null}
+          onClick={isPromo ? null : () => launchGame({ slug: data.game })}
           {...data}
         />
         <Card
@@ -74,7 +75,7 @@ export default class CuratedCard extends PureComponent<Props> {
 
     return (
       <Text
-        className="u-font-weight-bold u-text-transform-uppercase t-color-white"
+        className="u-font-weight-bold t-color-white"
         size="2xlg"
         tag="span"
         dangerouslySetInnerHTML={stringToHTML(data.header)}

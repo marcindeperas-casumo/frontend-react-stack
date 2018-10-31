@@ -7,7 +7,6 @@ import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
 import { stringToHTML } from "Utils/index";
-import { isNil } from "ramda";
 import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
 
@@ -48,9 +47,9 @@ export default class CuratedCardFooter extends PureComponent<Props> {
 
     return (
       <Text
-        className="t-color-white"
+        className="t-color-white u-margin-bottom"
         size="sm"
-        tag="span"
+        tag="div"
         dangerouslySetInnerHTML={stringToHTML(legalText)}
       />
     );
@@ -101,7 +100,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
       <EitherOr
         either={this.renderLegal}
         or={this.renderGame}
-        condition={() => isNil(game)}
+        condition={() => !Object.keys(game).length}
       />
     );
   }
