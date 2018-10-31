@@ -20,7 +20,7 @@ describe("CuratedCard", () => {
       <CuratedCardBackground onClick={onClick} {...curatedData} />
     );
     const instance = component.instance();
-    component.find("a").prop("onClick")();
+    component.find("a").simulate("click");
 
     expect(onClick).toHaveBeenCalled();
   });
