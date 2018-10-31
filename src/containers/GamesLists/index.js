@@ -1,14 +1,8 @@
-import React, { lazy, Suspense } from "react";
+import React from "react";
+import Loadable from "react-loadable";
 import GamesListsSkeleton from "Components/GameListsSkeleton";
 
-const LazyGamesListsPortalContainer = lazy(() =>
-  import("Containers/GamesListsPortalContainer")
-);
-
-export default function GamesLists() {
-  return (
-    <Suspense fallback={<GamesListsSkeleton />}>
-      <LazyGamesListsPortalContainer />
-    </Suspense>
-  );
-}
+export default Loadable({
+  loader: () => import("Containers/GamesListsPortalContainer"),
+  loading: () => <GamesListsSkeleton />,
+});
