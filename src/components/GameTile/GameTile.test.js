@@ -8,11 +8,6 @@ import gameInfo from "./__mocks__/Game.json";
 import jackpotInfo from "./__mocks__/JackpotGameInfo.json";
 
 describe("GameTile", () => {
-  test("should render component", () => {
-    const rendered = shallow(<GameTile {...gameInfo} />);
-    expect(rendered.exists()).not.toBeNull();
-  });
-
   test("should render GameTimeImage", () => {
     const rendered = shallow(<GameTile {...gameInfo} />);
     const renderedGameTileImageProps = rendered.find("GameTileImage").props();
@@ -47,6 +42,13 @@ describe("GameTile", () => {
   test("should render GameTileJackpot if game.jackpotInfo exists", () => {
     const rendered = shallow(<GameTile {...{ ...gameInfo, jackpotInfo }} />);
     expect(rendered.find("GameTileJackpot").length).toBe(1);
+  });
+
+  test("should not set maintence class when inMaintenanceMode is false", () => {
+    const rendered = shallow(
+      <GameTile {...gameInfo} inMaintenanceMode={false} />
+    );
+    expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(false);
   });
 
   test("should set maintence class when inMaintenanceMode is true", () => {

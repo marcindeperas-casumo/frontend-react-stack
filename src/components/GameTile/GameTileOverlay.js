@@ -16,6 +16,8 @@ type Props = {
   onLaunchGame: Function,
 };
 
+export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
+
 const GameTileOverlay = ({
   name,
   slug,
@@ -27,7 +29,7 @@ const GameTileOverlay = ({
       direction="vertical"
       className={classNames(
         "o-ratio__content c-game-tile__overlay",
-        inMaintenanceMode && "c-game-tile__overlay--maintenance",
+        inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
         "u-padding-vert--lg u-padding-horiz--md t-border-r--8"
       )}
     >
