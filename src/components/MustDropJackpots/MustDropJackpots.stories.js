@@ -5,7 +5,6 @@ import MockStore from "Components/MockStore";
 import MustDropJackpots from "Components/MustDropJackpots/MustDropJackpots";
 
 const stories = storiesOf("MustDropJackpots", module);
-const state = {};
 
 const MustDropJackpotsStories = () => (
   <MockStore>
