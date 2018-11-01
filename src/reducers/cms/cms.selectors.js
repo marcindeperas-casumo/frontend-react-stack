@@ -12,16 +12,6 @@ export const slugSelectorFactory = slug =>
     )
   );
 
-export const promotionsSlugSelectorFactory = slug =>
-  createSelector(
-    slugSelectorFactory(slug),
-    compose(
-      defaultTo([]),
-      prop("promotions"),
-      prop("fields")
-    )
-  );
-
 export const fieldSelectorFactory = ({ slug, field, defaultValue = null }) =>
   createSelector(
     slugSelectorFactory(slug),

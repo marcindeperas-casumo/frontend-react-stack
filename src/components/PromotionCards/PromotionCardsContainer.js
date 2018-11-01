@@ -2,11 +2,8 @@
 import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import PromotionCards from "./PromotionCards";
-import {
-  promotionsSlugSelectorFactory,
-  isPageLoadedFactory,
-  fetchPageBySlug,
-} from "Reducers/cms";
+import { isPageLoadedFactory, fetchPageBySlug } from "Reducers/cms";
+import { promotionsSlugSelectorFactory } from "Components/PromotionCards/selectors";
 import type { Props } from "./PromotionCards";
 
 type PublicProps = {
