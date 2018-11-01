@@ -9,4 +9,11 @@ describe("<MustDropJackpots />", () => {
 
     expect(rendered.find("Connect(GameRow)").length).toBe(ids.length);
   });
+
+  test("should not render a <GameRow /> if ids is empty", () => {
+    const ids = [];
+    const rendered = shallow(<MustDropJackpots ids={ids} />);
+
+    expect(rendered.find("Connect(GameRow)").length).toBe(0);
+  });
 });
