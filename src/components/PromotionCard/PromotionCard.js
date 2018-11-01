@@ -41,7 +41,7 @@ const PromotionCardWrapper = ({ promotionCardURL, slug }) => {
   return (
     <a
       href={promotionCardURL}
-      className="c-promotion-card__link o-flex__item-fixed-size"
+      className="c-promotion-card__link o-ratio--promotion-card o-flex__item-fixed-size"
       onMouseDown={e => e.preventDefault()}
     >
       <Card
