@@ -45,7 +45,7 @@ class Counter extends React.Component<Props, State> {
   }
 
   componentWillUnmount() {
-    clearInterval(this.timer);
+    this.clearTimer();
   }
 
   shouldComponentUpdate(nextProps: Props, nextState: State) {

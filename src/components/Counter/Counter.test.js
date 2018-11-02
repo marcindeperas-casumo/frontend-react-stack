@@ -7,6 +7,7 @@ jest.useFakeTimers();
 describe("Counter", () => {
   afterEach(() => {
     jest.clearAllTimers();
+    jest.clearAllMocks();
   });
 
   test("should respect decimals", () => {
@@ -45,6 +46,18 @@ describe("Counter", () => {
     shallow(<Counter start={0} end={100} duration={3} render={renderProp} />);
     expect(spy).toHaveBeenCalledTimes(0);
     jest.runAllTimers();
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call clearTimer on componentWillUnmount", () => {
+    const spy = jest.spyOn(Counter.prototype, "clearTimer");
+    const renderProp = jest.fn();
+
+    const rendered = shallow(
+      <Counter start={0} end={100} duration={3} render={renderProp} />
+    );
+    expect(spy).toHaveBeenCalledTimes(0);
+    rendered.instance().componentWillUnmount();
     expect(spy).toHaveBeenCalledTimes(1);
   });
 
