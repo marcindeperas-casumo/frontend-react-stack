@@ -77,7 +77,7 @@ export default class Timer extends PureComponent<Props, State> {
     if (this.state.hasEnded) {
       cancelAnimationFrame(this.interval);
     } else {
-      requestAnimationFrame(this.updateTime);
+      this.interval = requestAnimationFrame(this.updateTime);
     }
   }
 

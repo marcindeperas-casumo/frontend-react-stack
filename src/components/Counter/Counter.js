@@ -44,6 +44,10 @@ class Counter extends React.Component<Props, State> {
     this.setTimer();
   }
 
+  componentWillUnmount() {
+    clearInterval(this.timer);
+  }
+
   shouldComponentUpdate(nextProps: Props, nextState: State) {
     if (this.props !== nextProps) {
       const { start = 0, decimals = 0 } = nextProps;
