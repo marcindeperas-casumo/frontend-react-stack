@@ -1,14 +1,17 @@
 import { types, CURATED_SLUG } from "Reducers/curated";
-import { types as cmsTypes } from "Reducers/cms";
+import { fetchPageBySlug } from "Reducers/cms";
 import { types as fetchTypes } from "Reducers/fetch";
 import GameBrowserService from "Services/GameBrowserService";
+import { market as marketSelector } from "Reducers/handshake/selectors";
 
 const { gamesBySlugs } = GameBrowserService;
 
-export const fetchCurated = () => ({
-  type: cmsTypes.FETCH_PAGE_BY_SLUG,
-  slug: CURATED_SLUG,
-});
+export function fetchCurated() {
+  return (dispatch, getState) => {
+    const slug = `${CURATED_SLUG}.${marketSelector(getState())}`;
+    dispatch(fetchPageBySlug(slug));
+  };
+}
 
 export const fetchCuratedGame = ({ platform, country, slugs, variant }) => {
   return {
