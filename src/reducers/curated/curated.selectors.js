@@ -1,12 +1,11 @@
 import { createSelector } from "reselect";
 import { prop, compose } from "ramda";
-import { CURATED_SLUG } from "Reducers/curated";
 import { slugSelectorFactory } from "Reducers/cms";
 import { gameSelector } from "Reducers/schema/selector";
 
-export const curatedSelector = () =>
+export const curatedSelector = slug =>
   createSelector(
-    slugSelectorFactory(CURATED_SLUG),
+    slugSelectorFactory(slug),
     state => state,
     (page, state) => {
       const { fields = {} } = page;
