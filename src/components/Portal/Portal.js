@@ -5,7 +5,7 @@ import type { Node } from "react";
 
 export type Props = {
   /** The id of the DOM element to render into */
-  elementId: string,
+  hostElementId: string,
   /** The children to render */
   children: Node,
   /** If true the DOM element will be cleared before rendering into it */
@@ -23,7 +23,7 @@ export default class Portal extends PureComponent<Props> {
   constructor(props: Props) {
     super((props: Props));
 
-    this.rootEl = document.getElementById(this.props.elementId);
+    this.rootEl = document.getElementById(this.props.hostElementId);
     this.el = document.createElement("div");
     this.clearElementIfNeeded();
   }

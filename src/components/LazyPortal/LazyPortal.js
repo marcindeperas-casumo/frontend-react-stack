@@ -35,7 +35,7 @@ export default class LazyPortal extends React.PureComponent<Props> {
       <WaitForHostElement hostElementId={hostElementId}>
         {/* Show a fallback until the content is ready. (I don't think this is needed tbh) */}
         <Portal
-          elementId={hostElementId}
+          hostElementId={hostElementId}
           showFallback={showFallback}
           fallback={fallback}
         >

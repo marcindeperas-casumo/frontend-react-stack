@@ -17,7 +17,7 @@ stories.add(
       <MockStore>
         {/* We need to wait until the host element appears in the DOM */}
         <WaitForHostElement hostElementId={hostElementId}>
-          <Portal elementId={hostElementId}>
+          <Portal hostElementId={hostElementId}>
             <GameList id="popularGames" />
           </Portal>
         </WaitForHostElement>
@@ -35,7 +35,7 @@ stories.add(
         {/* We need to wait until the host element appears in the DOM */}
         <WaitForHostElement hostElementId={hostElementId}>
           <Portal
-            elementId={hostElementId}
+            hostElementId={hostElementId}
             showFallback={true}
             fallback={<GameListSkeleton itemWidth={170} />}
           >

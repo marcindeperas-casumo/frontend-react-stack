@@ -16,7 +16,7 @@ describe("Portal", () => {
 
   test("renders the children to the target host element", done => {
     const rendered = mount(
-      <Portal elementId={hostElementId}>
+      <Portal hostElementId={hostElementId}>
         <SampleComponent />
       </Portal>
     );
@@ -33,7 +33,7 @@ describe("Portal", () => {
 
   test("removes the element after unmounting", done => {
     const rendered = mount(
-      <Portal elementId={hostElementId}>
+      <Portal hostElementId={hostElementId}>
         <SampleComponent />
       </Portal>
     );
@@ -49,7 +49,7 @@ describe("Portal", () => {
 
   test("clears the host element before by default", done => {
     mount(
-      <Portal elementId={hostElementId}>
+      <Portal hostElementId={hostElementId}>
         <SampleComponent />
       </Portal>
     );
@@ -64,7 +64,7 @@ describe("Portal", () => {
 
   test("does not clear the host element if specified", done => {
     mount(
-      <Portal clearElement={false} elementId={hostElementId}>
+      <Portal clearElement={false} hostElementId={hostElementId}>
         <SampleComponent />
       </Portal>
     );
@@ -81,7 +81,7 @@ describe("Portal", () => {
     const Fallback = () => <div>FALLBACK</div>;
     const rendered = mount(
       <Portal
-        elementId={hostElementId}
+        hostElementId={hostElementId}
         fallback={<Fallback />}
         showFallback={true}
       >
@@ -100,7 +100,7 @@ describe("Portal", () => {
     const Fallback = () => <div>FALLBACK</div>;
     const rendered = mount(
       <Portal
-        elementId={hostElementId}
+        hostElementId={hostElementId}
         fallback={<Fallback />}
         showFallback={false}
       >
