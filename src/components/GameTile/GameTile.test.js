@@ -39,6 +39,16 @@ describe("GameTile", () => {
     expect(renderedGameTileOverlayProps.onLaunchGame).toBe(onLaunchGame);
   });
 
+  test("should add default game-tile ratio class", () => {
+    const rendered = shallow(<GameTile {...gameInfo} />);
+    expect(rendered.hasClass("o-ratio--game-tile")).toBe(true);
+  });
+
+  test("should not render GameTileJackpot if game.jackpotInfo does not exist", () => {
+    const rendered = shallow(<GameTile {...gameInfo} />);
+    expect(rendered.find("GameTileJackpot").length).toBe(0);
+  });
+
   test("should render GameTileJackpot if game.jackpotInfo exists", () => {
     const rendered = shallow(<GameTile {...{ ...gameInfo, jackpotInfo }} />);
     expect(rendered.find("GameTileJackpot").length).toBe(1);
