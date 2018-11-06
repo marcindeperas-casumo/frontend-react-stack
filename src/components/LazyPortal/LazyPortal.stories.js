@@ -5,7 +5,6 @@ import LazyPortalContainer from "Components/LazyPortal";
 import LazyPortal from "Components/LazyPortal/LazyPortal";
 import MockStore from "Components/MockStore";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
-import { gameListSelector } from "Reducers/schema/selector";
 
 const stories = storiesOf("LazyPortal", module);
 const listId = "popularGames";
@@ -17,7 +16,6 @@ stories.add(
     <MockStore>
       <LazyPortalContainer
         hostElementId={hostElementId}
-        showFallback={state => !gameListSelector(listId)}
         fallback={<GameListSkeleton itemWidth={170} />}
         loader={() => import("Components/GameList")}
         props={{
