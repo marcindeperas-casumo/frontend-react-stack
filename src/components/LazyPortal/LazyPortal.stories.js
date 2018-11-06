@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import LazyPortal from "Components/LazyPortal";
-import LazyPortalPrivate from "Components/LazyPortal/LazyPortal";
+import LazyPortalContainer from "Components/LazyPortal";
+import LazyPortal from "Components/LazyPortal/LazyPortal";
 import MockStore from "Components/MockStore";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 import { gameListSelector } from "Reducers/schema/selector";
@@ -14,19 +14,17 @@ const hostElementId = "portal-host-element";
 stories.add(
   "LazyPortal (Connected)",
   () => (
-    <>
-      <MockStore>
-        <LazyPortal
-          hostElementId={hostElementId}
-          showFallback={state => !gameListSelector(listId)}
-          fallback={<GameListSkeleton itemWidth={170} />}
-          loader={() => import("Components/GameList")}
-          props={{
-            id: listId,
-          }}
-        />
-      </MockStore>
-    </>
+    <MockStore>
+      <LazyPortalContainer
+        hostElementId={hostElementId}
+        showFallback={state => !gameListSelector(listId)}
+        fallback={<GameListSkeleton itemWidth={170} />}
+        loader={() => import("Components/GameList")}
+        props={{
+          id: listId,
+        }}
+      />
+    </MockStore>
   ),
   info({
     text: `Renders a component into a DOM node lazily. Waits for the host-element to be available before
@@ -38,19 +36,17 @@ stories.add(
 stories.add(
   "LazyPortal (Private)",
   () => (
-    <>
-      <MockStore>
-        <LazyPortalPrivate
-          hostElementId={hostElementId}
-          showFallback={false}
-          fallback={<GameListSkeleton itemWidth={170} />}
-          loader={() => import("Components/GameList")}
-          props={{
-            id: listId,
-          }}
-        />
-      </MockStore>
-    </>
+    <MockStore>
+      <LazyPortal
+        hostElementId={hostElementId}
+        showFallback={false}
+        fallback={<GameListSkeleton itemWidth={170} />}
+        loader={() => import("Components/GameList")}
+        props={{
+          id: listId,
+        }}
+      />
+    </MockStore>
   ),
   info({
     text: `Renders a component into a DOM node lazily. Waits for the host-element to be available before
