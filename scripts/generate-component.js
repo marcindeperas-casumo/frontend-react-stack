@@ -119,7 +119,7 @@ function getComponentStoryTemplate() {
   return `import React from "react";
 import { storiesOf } from "@storybook/react";
 
-import info from "../../../.storybook/storybookInfo";
+import info from "Storybook/storybookInfo";
 
 import {{ componentName }} from "./";
 

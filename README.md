@@ -73,10 +73,14 @@ deploy-service mobile-react-stack-poc <branch-name>
 ### Deploy to production
 
 ```sh
-ssh ops@live-release
+ssh <assigned-ssh-username>@live-release
 
 deploy-service mobile-react-stack-poc master
 ```
+
+## Contributing
+
+See the [contributing guidelines](CONTRIBUTING.md).
 
 ---
 

@@ -10,7 +10,8 @@
       "Clients/*": ["./src/serviceClients/*"],
       "Utils/*": ["./src/utils/*"],
       "Lib/*": ["./src/lib/*"],
-      "Src/*": ["./src/*"]
+      "Src/*": ["./src/*"],
+      "Storybook/*": ["./.storybook/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

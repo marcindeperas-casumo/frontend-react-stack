@@ -101,13 +101,23 @@ describe("CMS Selectors", () => {
       expect(selector(state)).toEqual("bar");
     });
 
-    test("returns the field-name if the page or the field does not exist", () => {
+    test("returns NULL if the page or the field does not exist", () => {
       const state = {};
       const slug = "foo";
       const field = "foobar";
       const selector = fieldSelectorFactory({ slug, field });
 
-      expect(selector(state)).toEqual(field);
+      expect(selector(state)).toEqual(null);
+    });
+
+    test("returns the defaultValue if specified if field/page not found", () => {
+      const state = {};
+      const slug = "foo";
+      const field = "foobar";
+      const defaultValue = "Alaska";
+      const selector = fieldSelectorFactory({ slug, field, defaultValue });
+
+      expect(selector(state)).toEqual(defaultValue);
     });
   });
 });
