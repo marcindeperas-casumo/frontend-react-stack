@@ -1,13 +1,14 @@
+// @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const GameTileImage = ({
-  inMaintenanceMode,
-  logoBackground,
-  logo,
-  name,
-  ...rest
-}) => {
+type Props = {
+  logoBackground: string,
+  logo: string,
+  name: string,
+};
+
+const GameTileImage = ({ logoBackground, logo, name, ...rest }: Props) => {
   return (
     <ImageLazy
       className="o-ratio__content t-border-r--8"
