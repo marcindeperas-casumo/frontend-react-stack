@@ -107,10 +107,27 @@ describe("CuratedCard", () => {
         isFetched={true}
       />
     );
-    const html = component
+    const text = component
       .find("Card")
       .find("Text")
       .at(0)
+      .render()
+      .text();
+    expect(text).toBe("PROMOTIONS");
+  });
+
+  test("should render header html", () => {
+    const component = mount(
+      <CuratedCard
+        data={curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
+    );
+    const html = component
+      .find("Card")
+      .find("Text")
+      .at(1)
       .render()
       .html();
     expect(html).toBe("TRY OUR<br> NEW<br> GAME");
