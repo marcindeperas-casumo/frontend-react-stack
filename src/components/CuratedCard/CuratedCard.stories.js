@@ -10,23 +10,6 @@ import { compose, prop } from "ramda";
 const stories = storiesOf("CuratedCard", module);
 
 stories.add(
-  "Default",
-  () => {
-    return (
-      <MockStore>
-        <div
-          className="u-margin-left--auto u-margin-right--auto"
-          style={{ maxWidth: "686px" }}
-        >
-          <CuratedCard />
-        </div>
-      </MockStore>
-    );
-  },
-  info({ text: "Default" })
-);
-
-stories.add(
   "Promotion",
   () => {
     const state = {
@@ -42,6 +25,23 @@ stories.add(
 
     return (
       <MockStore state={state}>
+        <div
+          className="u-margin-left--auto u-margin-right--auto"
+          style={{ maxWidth: "686px" }}
+        >
+          <CuratedCard />
+        </div>
+      </MockStore>
+    );
+  },
+  info({ text: "Default" })
+);
+
+stories.add(
+  "Default",
+  () => {
+    return (
+      <MockStore>
         <div
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
