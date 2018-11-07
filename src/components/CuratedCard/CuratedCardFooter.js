@@ -47,7 +47,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
 
     return (
       <Text
-        className="t-color-white u-margin-bottom"
+        className="t-color-white u-margin-bottom u-opacity-75"
         size="sm"
         tag="div"
         dangerouslySetInnerHTML={stringToHTML(legalText)}

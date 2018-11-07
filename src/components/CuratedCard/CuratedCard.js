@@ -74,12 +74,19 @@ export default class CuratedCard extends PureComponent<Props> {
     const { data } = this.props;
 
     return (
-      <Text
-        className="u-font-weight-bold t-color-white"
-        size="2xlg"
-        tag="span"
-        dangerouslySetInnerHTML={stringToHTML(data.header)}
-      />
+      <React.Fragment>
+        <Text
+          className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
+          size="xs"
+        >
+          {data.subtitle}
+        </Text>
+        <Text
+          className="u-font-weight-bold t-color-white"
+          size="2xlg"
+          dangerouslySetInnerHTML={stringToHTML(data.header)}
+        />
+      </React.Fragment>
     );
   };
 
