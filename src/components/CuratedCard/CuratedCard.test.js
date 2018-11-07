@@ -99,7 +99,7 @@ describe("CuratedCard", () => {
     expect(text).toBe(data.promotions_legal_text);
   });
 
-  test("should render header html", () => {
+  test("should render subtitle html", () => {
     const component = mount(
       <CuratedCard
         data={curatedData}
