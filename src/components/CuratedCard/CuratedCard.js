@@ -9,6 +9,7 @@ import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
 import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
+import classNames from "classnames";
 
 import "./CuratedCard.scss";
 
@@ -88,7 +89,10 @@ export default class CuratedCard extends PureComponent<Props> {
           </Text>
         )}
         <Text
-          className="u-font-weight-bold t-color-white"
+          className={classNames(
+            !isPromo && "c-curated-card-title",
+            "u-font-weight-bold t-color-white"
+          )}
           size="2xlg"
           dangerouslySetInnerHTML={stringToHTML(data.header)}
         />
