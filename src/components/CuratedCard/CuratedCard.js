@@ -24,7 +24,9 @@ const spacing = {
 
 export type Data = {|
   header: string,
-  game: Object,
+  subtitle: string,
+  game: string,
+  gameData: Object,
   small_image: string,
   medium_image: string,
   large_image: string,
@@ -72,15 +74,19 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderHeader = () => {
     const { data } = this.props;
+    const { gameData } = data;
+    const isPromo = !Object.keys(gameData).length && data.subtitle;
 
     return (
       <React.Fragment>
-        <Text
-          className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
-          size="xs"
-        >
-          {data.subtitle}
-        </Text>
+        {isPromo && (
+          <Text
+            className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
+            size="xs"
+          >
+            {data.subtitle}
+          </Text>
+        )}
         <Text
           className="u-font-weight-bold t-color-white"
           size="2xlg"

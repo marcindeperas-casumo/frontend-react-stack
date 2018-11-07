@@ -100,12 +100,13 @@ describe("CuratedCard", () => {
   });
 
   test("should render subtitle html", () => {
+    const data = {
+      ...curatedData,
+      game: [],
+      gameData: {},
+    };
     const component = mount(
-      <CuratedCard
-        data={curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
+      <CuratedCard data={data} fetchCurated={fetchCurated} isFetched={true} />
     );
     const text = component
       .find("Card")
@@ -127,7 +128,7 @@ describe("CuratedCard", () => {
     const html = component
       .find("Card")
       .find("Text")
-      .at(1)
+      .at(0)
       .render()
       .html();
     expect(html).toBe("TRY OUR<br> NEW<br> GAME");
