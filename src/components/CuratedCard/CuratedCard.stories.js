@@ -10,7 +10,7 @@ import { compose, prop } from "ramda";
 const stories = storiesOf("CuratedCard", module);
 
 stories.add(
-  "Promotion",
+  "Default",
   () => {
     const state = {
       ...defaultState,
@@ -38,7 +38,7 @@ stories.add(
 );
 
 stories.add(
-  "Default",
+  "Promotion",
   () => {
     return (
       <MockStore>
