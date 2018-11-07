@@ -3934,9 +3934,9 @@ export default {
       },
     },
     cms: {
-      "curated.curated-se_sv": {
+      "curated.curated-gb_en": {
         id: "87759",
-        slug: "curated.curated-se_sv",
+        slug: "curated.curated-gb_en",
         title: "Curated Component &#8211; se_sv",
         content: "",
         attachments: [
