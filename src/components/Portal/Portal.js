@@ -39,6 +39,20 @@ export default class Portal extends PureComponent<Props> {
       return;
     }
 
+    // If we ever encounter performance issues with this line, we can always
+    // rewrite it as:
+    //
+    // while (this.rootEl.lastChild)
+    //   {this.rootEl.removeChild(this.rootEl.lastChild);
+    // }
+    //
+    // Source:
+    // https://stackoverflow.com/questions/3955229/remove-all-child-elements-of-a-dom-node-in-javascript
+    //
+    // As it seems that this is way faster than `innerHTML = ""` but this is
+    // also a micro optimization and we don't really have a case yet that we
+    // have to remove the child nodes that frequently that is causing
+    // performance issues.
     this.rootEl.innerHTML = "";
   }
 
