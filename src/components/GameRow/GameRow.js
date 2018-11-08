@@ -3,12 +3,12 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
-import ImageLazy from "Components/Image/ImageLazy";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
+import type { Game } from "Types/game";
 
 type Props = {
-  game: Object,
+  game: Game,
   onLaunchGame: () => void,
 };
 
@@ -25,13 +25,15 @@ export default class GameRow extends PureComponent<Props> {
         onClick={onLaunchGame}
       >
         {/* Image */}
-        <GameThumb
-          src={logoBackground}
-          alt={name}
-          mark={logo}
-          width="70"
-          height="70"
-        />
+        <Flex.Item>
+          <GameThumb
+            src={logoBackground}
+            alt={name}
+            mark={logo}
+            width="70"
+            height="70"
+          />
+        </Flex.Item>
 
         {/* Text */}
         <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">

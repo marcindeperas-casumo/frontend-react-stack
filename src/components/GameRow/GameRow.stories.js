@@ -40,5 +40,5 @@ stories.add(
       onLaunchGame={action("gonzos-quest")}
     />
   ),
-  info({ text: "Default" })
+  info({ text: "With Jackpot" })
 );
