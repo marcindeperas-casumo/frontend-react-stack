@@ -17,10 +17,7 @@ stories.add(
   "Default (Connected)",
   () => (
     <MockStore>
-      <GameRowContainer
-        id="hall-of-gods"
-        onLaunchGame={action("hall-of-gods")}
-      />
+      <GameRowContainer id="hall-of-gods" />
     </MockStore>
   ),
   info({ text: "Default" })
