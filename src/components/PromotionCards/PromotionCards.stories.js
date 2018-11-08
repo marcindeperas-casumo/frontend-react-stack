@@ -9,9 +9,8 @@ const stories = storiesOf("PromotionCards", module);
 const PromotionCardsStories = () => (
   <MockStore>
     <PromotionCards
-      promotionsSlugs={["one", "two", "three", "four"]}
-      isFetched={true}
-      title="This sexy campaign 👀🌶"
+      slug="promotions"
+      title="This Sexy AF campaign"
       titleColor="t-color-white"
       backgroundColor="t-background-blue"
     />
