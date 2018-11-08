@@ -1,8 +1,14 @@
-.c-promotion-card__link {
+.c-promotion-card {
+  max-width: 256px;
   text-decoration: none;
+  width: 100%;
 }
 
 .c-promotion-card__img {
   border-bottom-left-radius: 8px;
   border-bottom-right-radius: 8px;
+}
+
+.c-promotion-card__content {
+  line-height: 1.2;
 }
