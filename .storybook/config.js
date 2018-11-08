@@ -16,7 +16,10 @@ function loadStories() {
 addDecorator(withInfo);
 addDecorator(withKnobs);
 addDecorator(story => (
-  <div className="o-wrapper u-padding">{story()}</div>
+  <>
+    <div id="portal-host-element" />
+    <div className="o-wrapper u-padding">{story()}</div>
+  </>
 ));
 
 configure(loadStories, module);

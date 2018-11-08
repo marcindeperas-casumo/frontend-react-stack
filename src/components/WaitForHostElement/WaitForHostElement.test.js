@@ -2,6 +2,8 @@ import React from "react";
 import { mount } from "enzyme";
 import WaitForHostElement from "Components/WaitForHostElement";
 
+const HelloSampleComponent = () => "Hello";
+
 jest.useFakeTimers();
 let originalConsoleError;
 describe("WaitForHostElement", () => {
@@ -24,10 +26,9 @@ describe("WaitForHostElement", () => {
 
   test("do not render anything if host element is not found", done => {
     mount(
-      <WaitForHostElement
-        hostElementId="not-found-id"
-        component={() => "Hello"}
-      />,
+      <WaitForHostElement hostElementId="not-found-id">
+        <HelloSampleComponent />
+      </WaitForHostElement>,
       {
         attachTo: window.domNode,
       }
@@ -43,10 +44,9 @@ describe("WaitForHostElement", () => {
 
   test("set error if host element is not available", async done => {
     const rendered = mount(
-      <WaitForHostElement
-        hostElementId="not-found-id"
-        component={() => "Hello"}
-      />,
+      <WaitForHostElement hostElementId="not-found-id">
+        <HelloSampleComponent />
+      </WaitForHostElement>,
       {
         attachTo: window.domNode,
       }
@@ -62,7 +62,9 @@ describe("WaitForHostElement", () => {
 
   test("render component if host element is found", done => {
     mount(
-      <WaitForHostElement hostElementId="foo-id" component={() => "Hello"} />,
+      <WaitForHostElement hostElementId="foo-id">
+        <HelloSampleComponent />
+      </WaitForHostElement>,
       {
         attachTo: window.domNode,
       }
@@ -78,10 +80,9 @@ describe("WaitForHostElement", () => {
 
   test("show an error log when the host element is not found", done => {
     const rendered = mount(
-      <WaitForHostElement
-        hostElementId="not-found-id"
-        component={() => "Hello"}
-      />,
+      <WaitForHostElement hostElementId="not-found-id">
+        <HelloSampleComponent />
+      </WaitForHostElement>,
       {
         attachTo: window.domNode,
       }

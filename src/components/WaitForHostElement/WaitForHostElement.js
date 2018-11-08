@@ -27,8 +27,14 @@ export class WaitForHostElement extends PureComponent {
   }
 
   render() {
-    const { hostElementId, component: Component, ...rest } = this.props;
-    return this.state.el && <Component {...rest} />;
+    const { el } = this.state;
+    const { children } = this.props;
+
+    if (!el) {
+      return null;
+    }
+
+    return <>{children}</>;
   }
 }
 export default WaitForHostElement;
