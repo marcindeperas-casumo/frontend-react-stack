@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
+import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import GameTileConnected from "Components/GameTile";
@@ -33,7 +34,11 @@ stories.add(
     return (
       <div style={{ maxWidth: "170px" }}>
         <MockStore>
-          <GameTile {...game} inMaintenanceMode={inMaintenanceMode} />
+          <GameTile
+            game={game}
+            inMaintenanceMode={inMaintenanceMode}
+            onLaunchGame={action(game.name)}
+          />
         </MockStore>
       </div>
     );
@@ -52,8 +57,9 @@ stories.add(
       <div style={{ maxWidth: "170px" }}>
         <MockStore>
           <GameTile
-            {...{ ...game, jackpotInfo }}
+            game={{ ...game, jackpotInfo }}
             inMaintenanceMode={inMaintenanceMode}
+            onLaunchGame={action(game.name)}
           />
         </MockStore>
       </div>
