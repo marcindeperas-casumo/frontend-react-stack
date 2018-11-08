@@ -8,7 +8,7 @@ const mapStateToProps = (state, { id }) => ({
   game: gameSelector(id)(state),
 });
 const mapDispatchToProps = (dispatch, { id }) => ({
-  launchGame: () => dispatch(launchGame(id)),
+  onLaunchGame: () => dispatch(launchGame(id)),
 });
 
 const GameRowConnected = connect(
