@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameRow from "Components/GameRow";
+import GameRow from "Components/GameRow/GameRow";
 
 describe("<GameRow />", () => {
   let rendered;
@@ -18,12 +18,12 @@ describe("<GameRow />", () => {
         formattedJackpotAmount: "€ 1,000,000",
       },
     };
-    rendered = shallow(<GameRow game={game} launchGame={launchGame} />);
+    rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
   });
 
-  test("renders a thumbnail for the component", () => {
-    const thumbnail = rendered.find("ImageLazy");
-    const thumbnailProps = thumbnail.length ? thumbnail.first().props() : {};
+  test("renders a GameThumb for the component", () => {
+    const thumbnail = rendered.find("GameThumb");
+    const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
 
     expect(thumbnail.length).toBe(1);
     expect(thumbnailProps.src).toBe(game.logoBackground);
