@@ -23,4 +23,10 @@ describe("GameThumb", () => {
     expect(rendered.prop("src")).toBe(src);
     expect(rendered.prop("mark")).toBe(mark);
   });
+
+  test("passes alt down to ImageLazy", () => {
+    const rendered = shallow(<GameThumb alt="foo" src={src} mark={mark} />);
+
+    expect(rendered.prop("alt")).toBe("foo");
+  });
 });

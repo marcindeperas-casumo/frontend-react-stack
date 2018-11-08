@@ -13,6 +13,6 @@ const logo =
 
 stories.add(
   "Default",
-  () => <GameThumb src={logoBackground} mark={logo} />,
+  () => <GameThumb src={logoBackground} mark={logo} alt="Starburst" />,
   info({ text: "Default" })
 );

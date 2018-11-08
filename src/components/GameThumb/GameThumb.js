@@ -7,11 +7,12 @@ type Props = {
   mark: string,
   height?: number,
   width?: number,
+  alt?: string | void,
 };
 
 class GameThumb extends PureComponent<Props> {
   render() {
-    const { src, mark, width = 56, height = 56 } = this.props;
+    const { src, mark, width = 56, height = 56, alt = null } = this.props;
 
     return (
       <ImageLazy
@@ -20,6 +21,7 @@ class GameThumb extends PureComponent<Props> {
         height={height}
         src={src}
         mark={mark}
+        alt={alt}
         dpr={3}
         imgixOpts={{
           w: width,
