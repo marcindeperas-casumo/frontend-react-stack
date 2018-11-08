@@ -7,7 +7,6 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 
 export type Props = {
   promotionsSlugs: Array<string>,
-  parentSlug: string,
   isFetched: boolean,
   startFetch: () => void,
   title?: string,
@@ -57,8 +56,7 @@ export class PromotionCards extends PureComponent<Props> {
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
-              promotionSlug={promotionSlug}
-              parentSlug={slug}
+              promotionSlug={`${slug}.${promotionSlug}`}
               key={promotionSlug}
             />
           ))}

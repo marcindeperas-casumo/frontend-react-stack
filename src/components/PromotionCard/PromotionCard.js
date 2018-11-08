@@ -50,14 +50,10 @@ const PromotionCardImage = ({ promotionPage }) => (
   />
 );
 
-const PromotionCardWrapper = ({
-  promotionCardURL,
-  promotionCardSlug,
-  promotionPage,
-}) => {
+const PromotionCardWrapper = ({ promotionSlug, promotionPage }) => {
   return (
     <a
-      href={promotionCardURL}
+      href={promotionSlug}
       className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
       onMouseDown={e => e.preventDefault()}
     >
@@ -66,11 +62,11 @@ const PromotionCardWrapper = ({
         spacing="none"
         header={() => (
           <PromotionCardHeader
-            slug={promotionCardSlug}
+            slug={promotionSlug}
             promotionPage={promotionPage}
           />
         )}
-        content={() => <PromotionCardContent slug={promotionCardSlug} />}
+        content={() => <PromotionCardContent slug={promotionSlug} />}
         footer={() => <PromotionCardImage promotionPage={promotionPage} />}
       />
     </a>
@@ -87,14 +83,11 @@ export default class PromotionCard extends PureComponent<Props> {
   }
 
   render() {
-    const { isFetched, promotionSlug, parentSlug, promotionPage } = this.props;
-    const promotionCardURL = `${parentSlug}/${promotionSlug}`;
-    const promotionCardSlug = `${parentSlug}.${promotionSlug}`;
+    const { isFetched, promotionSlug, promotionPage } = this.props;
 
     return isFetched ? (
       <PromotionCardWrapper
-        promotionCardURL={promotionCardURL}
-        promotionCardSlug={promotionCardSlug}
+        promotionSlug={promotionSlug}
         promotionPage={promotionPage}
       />
     ) : (
