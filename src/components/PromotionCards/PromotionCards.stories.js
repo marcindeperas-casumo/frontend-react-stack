@@ -1,7 +1,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
-import PromotionCards from "Components/PromotionCards/PromotionCards";
+import PromotionCards from "Components/PromotionCards";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("PromotionCards", module);
