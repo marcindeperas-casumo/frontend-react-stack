@@ -1,4 +1,5 @@
 // @flow
+import type { JackpotInfo } from "./jackpotInfo";
 export type Game = {
   name: string,
   slug: string,
@@ -6,7 +7,7 @@ export type Game = {
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,
-  jackpotInfo: void | Object,
+  jackpotInfo: void | JackpotInfo,
   jackpotId: void | string,
   tableId: void | string,
 };
