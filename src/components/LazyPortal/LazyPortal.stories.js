@@ -7,7 +7,6 @@ import MockStore from "Components/MockStore";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 
 const stories = storiesOf("LazyPortal", module);
-const listId = "popularGames";
 const hostElementId = "portal-host-element";
 
 stories.add(
@@ -17,10 +16,8 @@ stories.add(
       <LazyPortalContainer
         hostElementId={hostElementId}
         fallback={<GameListSkeleton itemWidth={170} />}
-        loader={() => import("Components/GameList")}
-        props={{
-          id: listId,
-        }}
+        loader={() => import("Components/DangerousHtml")}
+        props={{ html: "<div>Sample lazy-loaded HTML. (Connected)</div>" }}
       />
     </MockStore>
   ),
@@ -32,19 +29,15 @@ stories.add(
 );
 
 stories.add(
-  "LazyPortal (Private)",
+  "LazyPortal (Presentational)",
   () => (
-    <MockStore>
-      <LazyPortal
-        hostElementId={hostElementId}
-        showFallback={false}
-        fallback={<GameListSkeleton itemWidth={170} />}
-        loader={() => import("Components/GameList")}
-        props={{
-          id: listId,
-        }}
-      />
-    </MockStore>
+    <LazyPortal
+      hostElementId={hostElementId}
+      showFallback={false}
+      fallback={<GameListSkeleton itemWidth={170} />}
+      loader={() => import("Components/DangerousHtml")}
+      props={{ html: "<div>Sample lazy-loaded HTML. (Presentational)</div>" }}
+    />
   ),
   info({
     text: `Renders a component into a DOM node lazily. Waits for the host-element to be available before

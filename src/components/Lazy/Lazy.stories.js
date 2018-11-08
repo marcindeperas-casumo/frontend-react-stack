@@ -2,7 +2,6 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import Lazy from "Components/Lazy";
-import MockStore from "Components/MockStore";
 
 const stories = storiesOf("Lazy", module);
 
@@ -10,12 +9,10 @@ stories.add(
   "Lazy",
   () => (
     <>
-      <MockStore>
-        <Lazy
-          loader={() => import("Components/GameList")}
-          props={{ id: "popularGames" }}
-        />
-      </MockStore>
+      <Lazy
+        loader={() => import("Components/DangerousHtml")}
+        props={{ html: "<div>Sample lazy-loaded html.</div>" }}
+      />
     </>
   ),
   info({

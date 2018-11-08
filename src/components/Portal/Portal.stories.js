@@ -3,12 +3,14 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import Portal from "Components/Portal";
 import WaitForHostElement from "Components/WaitForHostElement";
-import GameList from "Components/GameList";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("Portal", module);
 const hostElementId = "portal-host-element";
+const HelloSampleComponent = () => (
+  <div>Hello, this is a sample component.</div>
+);
 
 stories.add(
   "Portal",
@@ -18,7 +20,7 @@ stories.add(
         {/* We need to wait until the host element appears in the DOM */}
         <WaitForHostElement hostElementId={hostElementId}>
           <Portal hostElementId={hostElementId}>
-            <GameList id="popularGames" />
+            <HelloSampleComponent />
           </Portal>
         </WaitForHostElement>
       </MockStore>
@@ -39,7 +41,7 @@ stories.add(
             showFallback={true}
             fallback={<GameListSkeleton itemWidth={170} />}
           >
-            <GameList id="popularGames" />
+            <HelloSampleComponent />
           </Portal>
         </WaitForHostElement>
       </MockStore>
