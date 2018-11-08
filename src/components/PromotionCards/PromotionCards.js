@@ -7,6 +7,7 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 
 export type Props = {
   promotionsSlugs: Array<string>,
+  parentSlug: string,
   isFetched: boolean,
   startFetch: () => void,
   title?: string,
@@ -30,17 +31,13 @@ export class PromotionCards extends PureComponent<Props> {
   }
 
   render() {
-    // const { promotionsSlugs } = this.props;
-    const { title, titleColor, backgroundColor } = this.props;
-    const promotionsSlugs = [
-      "dai",
-      "cazzo",
-      "test",
-      "another test",
-      "make",
-      "it",
-      "scrollable",
-    ]; // SWITCH THIS ONE WITH THE ABOVE ☝🏻
+    const {
+      title,
+      titleColor,
+      backgroundColor,
+      promotionsSlugs,
+      slug,
+    } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
     if (hasNoPromotionSlugs) {
@@ -58,8 +55,12 @@ export class PromotionCards extends PureComponent<Props> {
         {/* find the right padding top */}
         <ScrollableListTitle title={title} />
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
-          {promotionsSlugs.map(slug => (
-            <PromotionCardContainer slug={slug} key={slug} />
+          {promotionsSlugs.map(promotionSlug => (
+            <PromotionCardContainer
+              promotionSlug={promotionSlug}
+              parentSlug={slug}
+              key={promotionSlug}
+            />
           ))}
         </Scrollable>
       </div>
