@@ -1,1 +1,1 @@
-export { default } from "Components/LazyPortal/LazyPortalContainer";
+export { default } from "Components/LazyPortal/LazyPortal";

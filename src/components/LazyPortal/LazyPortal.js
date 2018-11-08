@@ -12,9 +12,7 @@ type Props = {
   loader: Function,
   /** The id of the HTML element that we should load the portal to. */
   hostElementId: string,
-  /** If true the fallback will be rendered instead of the lazy-loaded component. */
-  showFallback?: boolean,
-  /** A react node that will be rendered as a fallback if "showFallback" returns true. */
+  /** A react node that will be rendered as a fallback until the bundle is loaded. */
   fallback?: Node,
   /** The props to pass down to the lazy-loaded component. */
   props?: Object,
@@ -23,7 +21,6 @@ type Props = {
 export default class LazyPortal extends React.PureComponent<Props> {
   render() {
     const {
-      showFallback = false,
       fallback = <DefaultFallback />,
       loader,
       hostElementId,
@@ -34,11 +31,7 @@ export default class LazyPortal extends React.PureComponent<Props> {
       // Wait until the host element is ready
       <WaitForHostElement hostElementId={hostElementId}>
         {/* Show a fallback until the content is ready. (I don't think this is needed tbh) */}
-        <Portal
-          hostElementId={hostElementId}
-          showFallback={showFallback}
-          fallback={fallback}
-        >
+        <Portal hostElementId={hostElementId}>
           {/* Show a fallback until the bundle is loaded, then load the bundle. */}
           <Lazy loader={loader} fallback={fallback} props={props} />
         </Portal>

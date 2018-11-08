@@ -34,28 +34,6 @@ describe("<LazyPortal />", () => {
       done();
     });
   });
-
-  test("shows a fallback if specified", done => {
-    mount(
-      <LazyPortal
-        showFallback={true}
-        fallback={<span>Loading...</span>}
-        hostElementId={hostElementId}
-        loader={() => import("Components/DangerousHtml")}
-        props={{
-          html,
-        }}
-      />
-    );
-
-    setImmediate(() => {
-      const domHtml = document.getElementById(hostElementId).innerHTML;
-
-      expect(domHtml).toMatch("<span>Loading...</span>");
-      expect(domHtml).not.toMatch(html);
-      done();
-    });
-  });
 });
 
 function addElement(id) {
