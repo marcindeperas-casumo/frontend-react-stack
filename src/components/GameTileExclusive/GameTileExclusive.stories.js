@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
+import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import GameTileExclusiveConnected from "Components/GameTileExclusive";
@@ -32,8 +33,9 @@ stories.add(
     return (
       <MockStore>
         <GameTileExclusive
-          {...exclusiveGame}
+          game={exclusiveGame}
           inMaintenanceMode={inMaintenanceMode}
+          onLaunchGame={action(exclusiveGame.name)}
         />
       </MockStore>
     );
