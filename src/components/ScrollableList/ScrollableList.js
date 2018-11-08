@@ -1,8 +1,8 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import GameTileContainer from "Containers/GameTileContainer";
-import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
+import GameTileContainer from "Components/GameTile";
+import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
 import { isEmpty } from "ramda";
 

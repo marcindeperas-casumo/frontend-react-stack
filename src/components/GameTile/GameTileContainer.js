@@ -1,5 +1,7 @@
+// @flow
+import React from "react";
 import { connect } from "react-redux";
-import GameTile from "Components/GameTile";
+import GameTile from "Components/GameTile/GameTileWrapper";
 import { gameSelector } from "Reducers/schema/selector";
 import { actions as gameActions } from "Reducers/games";
 
@@ -8,9 +10,16 @@ const mapDispatchToProps = (dispatch, props) => ({
   onLaunchGame: () => dispatch(gameActions.launchGame(props.id)),
 });
 
-const GameTileContainer = connect(
+const GameTileConnected = connect(
   getGameData,
   mapDispatchToProps
 )(GameTile);
+
+type Props = {
+  /** The slug of the game to render */
+  id: string,
+};
+
+const GameTileContainer = ({ id }: Props) => <GameTileConnected id={id} />;
 
 export default GameTileContainer;

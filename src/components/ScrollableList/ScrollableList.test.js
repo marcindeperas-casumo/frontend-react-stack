@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ScrollableList from "Components/ScrollableList";
-import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
+import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 

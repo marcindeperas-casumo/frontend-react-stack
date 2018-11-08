@@ -1,1 +1,1 @@
-export { default } from "./GameTileWrapper";
+export { default } from "./GameTileContainer";
