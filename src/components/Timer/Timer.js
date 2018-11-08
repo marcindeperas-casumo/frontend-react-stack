@@ -2,15 +2,7 @@
 import { PureComponent } from "react";
 import { DateTime } from "luxon";
 import { compose, all, gte, values, map } from "ramda";
-
-type Props = {
-  /** The (UTC) time in milliseconds */
-  endTime: Date,
-  /** Render prop to display the timer */
-  render: Function,
-  /** Render prop to display once the timer reaches 0 */
-  onEnd: Function,
-};
+import type { Node } from "react";
 
 type State = {
   days: string,
@@ -18,6 +10,15 @@ type State = {
   minutes: string,
   seconds: string,
   hasEnded: boolean,
+};
+
+type Props = {
+  /** The (UTC) time in milliseconds */
+  endTime: Date,
+  /** Render prop to display the timer */
+  render: (state: State) => Node,
+  /** Render prop to display once the timer reaches 0 */
+  onEnd: () => Node,
 };
 
 const greaterThanZero = gte(0);
