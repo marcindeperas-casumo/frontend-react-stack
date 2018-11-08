@@ -5,28 +5,10 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-import ImageLazy from "Components/Image/ImageLazy";
 import { stringToHTML } from "Utils/index";
 import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
-
-const GameThumb = ({ src, mark }) => (
-  <ImageLazy
-    className="u-display--block t-border-r--16"
-    width="56"
-    height="56"
-    src={src}
-    mark={mark}
-    dpr={3}
-    imgixOpts={{
-      w: 56,
-      h: 56,
-      fit: "crop",
-      crop: "top,left",
-      markscale: 100,
-    }}
-  />
-);
+import GameThumb from "Components/GameThumb";
 
 export type Game = {|
   logoBackground: string,
