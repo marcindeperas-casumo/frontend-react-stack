@@ -1,4 +1,4 @@
-import { PureComponent } from "react";
+import React, { PureComponent } from "react";
 // Using `wait-by-timer` implementation because of the following issue:
 //
 // *Change WaitForElement to use timer wait implementation* -
@@ -30,7 +30,11 @@ export class WaitForHostElement extends PureComponent {
     const { el } = this.state;
     const { children } = this.props;
 
-    return el && children;
+    if (!el) {
+      return null;
+    }
+
+    return <>{children}</>;
   }
 }
 export default WaitForHostElement;
