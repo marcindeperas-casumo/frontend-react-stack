@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-// import CMSField from "Components/CMSField";
+import CMSField from "Components/CMSField";
 import Text from "@casumo/cmp-text";
 import Card from "@casumo/cmp-card";
 import Flex from "@casumo/cmp-flex";
@@ -8,45 +8,53 @@ import PromotionCardSkeleton from "./PromotionCardSkeleton";
 import ImageLazy from "Components/Image/ImageLazy";
 import "./PromotionCard.scss";
 
-const PROMOTIONS_URL = "/en/promotions";
-
 export type Props = {
   isFetched: boolean,
-  slug: string,
+  promotionSlug: string,
+  parentSlug: string,
+  promotionPage: Array<Object>,
 };
 
-const PromotionCardHeader = slug => (
+const PromotionCardHeader = ({ slug, promotionPage }) => (
   <Flex className="u-padding-horiz--lg" justify="space-between" align="end">
     <Text tag="strong" className="t-color-red" size="xs">
-      30 NOV - 1 JAN
-      {/* <CMSField slug={slug} field="" /> */}
+      <CMSField slug={slug} field="dates" />
     </Text>
-    <div style={{ background: "red", width: "40px", height: "40px" }} />{" "}
-    {/* put a badge here, coming from the CMS */}
+    <ImageLazy
+      className="u-display--block"
+      width="40px"
+      height="40px"
+      src={promotionPage.fields.campaign_badge}
+      imgixOpts={{ w: 40, h: 40 }}
+      dpr={3}
+    />
   </Flex>
 );
 
-const PromotionCardContent = slug => (
+const PromotionCardContent = ({ slug }) => (
   <Text
     tag="div"
     className="c-promotion-card__content t-color-grey-dark-3 u-padding-horiz--lg u-padding-top u-padding-bottom--md u-font-weight-bold"
     size="lg"
   >
-    Must Drop <br /> Jackpots
-    {/* <CMSField slug={slug} field="" /> */}
+    <CMSField slug={slug} field="title" />
   </Text>
 );
 
-const PromotionCardImage = () => (
+const PromotionCardImage = ({ promotionPage }) => (
   <ImageLazy
     className="u-display--block c-promotion-card__img u-margin"
-    src="https://cms.casumo.com/wp-content/uploads/2018/10/testxmaspromo.png"
+    src={promotionPage.fields.image}
     imgixOpts={{ w: 240 }}
     dpr={3}
   />
 );
 
-const PromotionCardWrapper = ({ promotionCardURL, slug }) => {
+const PromotionCardWrapper = ({
+  promotionCardURL,
+  promotionCardSlug,
+  promotionPage,
+}) => {
   return (
     <a
       href={promotionCardURL}
@@ -56,22 +64,39 @@ const PromotionCardWrapper = ({ promotionCardURL, slug }) => {
       <Card
         className="o-ratio__content t-border-r--16 t-background-grey-light-2"
         spacing="none"
-        header={() => <PromotionCardHeader slug={slug} />}
-        content={() => <PromotionCardContent slug={slug} />}
-        footer={() => <PromotionCardImage />}
+        header={() => (
+          <PromotionCardHeader
+            slug={promotionCardSlug}
+            promotionPage={promotionPage}
+          />
+        )}
+        content={() => <PromotionCardContent slug={promotionCardSlug} />}
+        footer={() => <PromotionCardImage promotionPage={promotionPage} />}
       />
     </a>
   );
 };
 
 export default class PromotionCard extends PureComponent<Props> {
-  render() {
-    const { isFetched, slug } = this.props;
-    const promotionCardURL = `${PROMOTIONS_URL}/${slug}`;
+  componentDidMount() {
+    const { isFetched, startFetch } = this.props;
 
-    // switch from true to isFetched 👇🏻
-    return true ? (
-      <PromotionCardWrapper slug={slug} promotionCardURL={promotionCardURL} />
+    if (!isFetched) {
+      startFetch();
+    }
+  }
+
+  render() {
+    const { isFetched, promotionSlug, parentSlug, promotionPage } = this.props;
+    const promotionCardURL = `${parentSlug}/${promotionSlug}`;
+    const promotionCardSlug = `${parentSlug}.${promotionSlug}`;
+
+    return isFetched ? (
+      <PromotionCardWrapper
+        promotionCardURL={promotionCardURL}
+        promotionCardSlug={promotionCardSlug}
+        promotionPage={promotionPage}
+      />
     ) : (
       <PromotionCardSkeleton />
     );
