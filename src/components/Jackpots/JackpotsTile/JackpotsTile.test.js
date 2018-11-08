@@ -6,7 +6,6 @@ describe("<JackpotsTile />", () => {
   test("renders a <GameRow /> for each id", () => {
     const ids = ["one", "two", "three"];
     const rendered = shallow(<JackpotsTile ids={ids} />);
-
-    expect(rendered.find("Connect(GameRow)").length).toBe(ids.length);
+    expect(rendered.find("GameRowContainer").length).toBe(ids.length);
   });
 });
