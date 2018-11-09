@@ -2,7 +2,8 @@ import React, { PureComponent } from "react";
 import MigrationComponent, {
   MigrationComponentManager,
 } from "../MigrationComponent/index";
-import GamesListsContainer from "Containers/GamesLists";
+import { TopListsSkeleton } from "Components/TopLists";
+import LazyPortal from "Components/LazyPortal";
 
 class App extends PureComponent {
   componentDidMount() {
@@ -15,7 +16,11 @@ class App extends PureComponent {
     return isAuthenticated ? (
       <MigrationComponentManager activeKeys={activeComponents}>
         <MigrationComponent migrationKey={["games-top", "games"]}>
-          <GamesListsContainer />
+          <LazyPortal
+            hostElementId="react-host-games-lists"
+            loader={() => import("Components/TopLists")}
+            fallback={<TopListsSkeleton />}
+          />
         </MigrationComponent>
       </MigrationComponentManager>
     ) : null;
