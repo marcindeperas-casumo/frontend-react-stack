@@ -12,12 +12,12 @@
   overflow: hidden;
 }
 
-.c-game-tile__overlay {
-  align-items: center;
+// increase specificity to prevent flex component from
+// showing the overlay before focus.
+//stylelint-disable-next-line xi/selector-pattern
+.c-game-tile__overlay.c-game-tile__overlay {
   background-color: rgba(cudl-palette(teal), 0.9);
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
   text-align: center;
 }
 
