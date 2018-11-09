@@ -1,10 +1,19 @@
 /* @flow */
-import Skeleton from "@casumo/cmp-skeleton";
 import React from "react";
+import Skeleton from "@casumo/cmp-skeleton";
+import Matcher from "Components/Matcher";
 
-import Matcher from "../Matcher";
+const defaultClassNames = `
+  u-padding-top--lg
+  u-padding-top--xlg@tablet
+  u-padding-top--xlg@desktop
+  u-padding-left--md
+  u-padding-left--2xlg@tablet
+  u-padding-left--2xlg@desktop
+`;
 
 type Props = {
+  itemWidth?: number,
   items?: number,
   itemWidth: number,
   itemRatio?: number,
@@ -12,18 +21,20 @@ type Props = {
   cornerRadius?: number,
   display?: string,
   title?: boolean,
+  className?: string,
 };
 
-const GameListSkeleton = ({
+export default function GameListSkeleton({
+  itemWidth = 170,
   items = 8,
-  itemWidth,
   itemRatio = 120 / 100,
-  itemGap = 4,
+  itemGap = 8,
   cornerRadius = 8,
   display = "tiles",
   title = true,
+  className = defaultClassNames,
   ...props
-}: Props) => {
+}: Props) {
   const skeletonWidth = itemWidth * items;
   const itemHeight: number = itemWidth * itemRatio;
   const displayCards = display === "cards";
@@ -119,11 +130,17 @@ const GameListSkeleton = ({
   );
 
   return (
-    <Skeleton width={skeletonWidth} height={skeletonHeight} {...props}>
+    <Skeleton
+      width={skeletonWidth}
+      height={skeletonHeight}
+      preserveAspectRatio="xMinYMin"
+      colorLow="#eff6f6"
+      colorHi="#ffffff"
+      className={className}
+      {...props}
+    >
       {title && <rect x="0" y="0" rx="3" ry="3" width="80" height="18" />}
       <CardOrTile display={display} />
     </Skeleton>
   );
-};
-
-export default GameListSkeleton;
+}
