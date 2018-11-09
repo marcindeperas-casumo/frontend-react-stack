@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Reducers/schema/selector";
@@ -16,6 +17,11 @@ const GameRowConnected = connect(
   mapDispatchToProps
 )(GameRow);
 
-const GameRowContainer = ({ id }) => <GameRowConnected id={id} />;
+type Props = {
+  /** The slug of the game to render */
+  id: string,
+};
+
+const GameRowContainer = ({ id }: Props) => <GameRowConnected id={id} />;
 
 export default GameRowContainer;
