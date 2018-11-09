@@ -1,9 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-
 import info from "Storybook/storybookInfo";
-
-import GameThumb from "./";
+import GameThumb from "Components/GameThumb";
 
 const stories = storiesOf("GameThumb", module);
 const logoBackground =
