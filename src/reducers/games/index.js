@@ -22,3 +22,5 @@ export const actions = {
   fetchTopLists,
   launchGame,
 };
+
+export * from "Reducers/games/games.selectors";
