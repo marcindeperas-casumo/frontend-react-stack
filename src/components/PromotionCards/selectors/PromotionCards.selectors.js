@@ -7,7 +7,9 @@ export const promotionsSlugSelectorFactory = slug =>
     slugSelectorFactory(slug),
     compose(
       defaultTo([]),
-      prop("promotions"),
-      prop("fields")
+      // TODO: uncomment the following 2 lines. Remove the childslugs prop.
+      // prop("promotions"),
+      // prop("fields")
+      prop("childSlugs")
     )
   );
