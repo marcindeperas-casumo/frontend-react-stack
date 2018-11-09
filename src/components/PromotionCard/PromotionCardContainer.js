@@ -14,11 +14,11 @@ type PublicProps = {
 };
 
 const connector: Connector<PublicProps, Props> = connect(
-  (state, { promotionSlug, parentSlug }) => ({
+  (state, { promotionSlug }) => ({
     isFetched: isPageLoadedFactory(promotionSlug)(state),
     promotionPage: slugSelectorFactory(promotionSlug)(state),
   }),
-  (dispatch, { promotionSlug, parentSlug }) => ({
+  (dispatch, { promotionSlug }) => ({
     startFetch: () => dispatch(fetchPageBySlug(promotionSlug)),
   })
 );

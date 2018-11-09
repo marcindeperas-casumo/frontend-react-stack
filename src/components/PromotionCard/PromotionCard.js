@@ -1,54 +1,17 @@
 // @flow
 import React, { PureComponent } from "react";
-import CMSField from "Components/CMSField";
-import Text from "@casumo/cmp-text";
 import Card from "@casumo/cmp-card";
-import Flex from "@casumo/cmp-flex";
-import PromotionCardSkeleton from "./PromotionCardSkeleton";
-import ImageLazy from "Components/Image/ImageLazy";
+import PromotionCardHeader from "Components/PromotionCard/PromotionCardHeader";
+import PromotionCardContent from "Components/PromotionCard/PromotionCardContent";
+import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
+import PromotionCardSkeleton from "Components/PromotionCard/PromotionCardSkeleton";
 import "./PromotionCard.scss";
 
 export type Props = {
   isFetched: boolean,
   promotionSlug: string,
-  parentSlug: string,
   promotionPage: Array<Object>,
 };
-
-const PromotionCardHeader = ({ slug, promotionPage }) => (
-  <Flex className="u-padding-horiz--lg" justify="space-between" align="end">
-    <Text tag="strong" className="t-color-red" size="xs">
-      <CMSField slug={slug} field="dates" />
-    </Text>
-    <ImageLazy
-      className="u-display--block"
-      width="40px"
-      height="40px"
-      src={promotionPage.fields.campaign_badge}
-      imgixOpts={{ w: 40, h: 40 }}
-      dpr={3}
-    />
-  </Flex>
-);
-
-const PromotionCardContent = ({ slug }) => (
-  <Text
-    tag="div"
-    className="c-promotion-card__content t-color-grey-dark-3 u-padding-horiz--lg u-padding-top u-padding-bottom--md u-font-weight-bold"
-    size="lg"
-  >
-    <CMSField slug={slug} field="title" />
-  </Text>
-);
-
-const PromotionCardImage = ({ promotionPage }) => (
-  <ImageLazy
-    className="u-display--block c-promotion-card__img u-margin"
-    src={promotionPage.fields.image}
-    imgixOpts={{ w: 240 }}
-    dpr={3}
-  />
-);
 
 const PromotionCardWrapper = ({ promotionSlug, promotionPage }) => {
   return (
