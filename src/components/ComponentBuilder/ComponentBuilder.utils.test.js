@@ -1,7 +1,5 @@
-import {
-  mapContentDefinitionToComponent,
-  COMPONENT_MAPPING,
-} from "Components/ComponentBuilder/ComponentBuilder.utils";
+import { mapContentDefinitionToComponent } from "Components/ComponentBuilder/ComponentBuilder.utils";
+import { COMPONENT_MAPPING } from "Components/ComponentBuilder/ComponentBuilder.mapping";
 
 describe("ComponentBuilder Utils", () => {
   describe("mapContentDefinitionToComponent()", () => {

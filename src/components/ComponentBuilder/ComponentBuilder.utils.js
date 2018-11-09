@@ -1,12 +1,6 @@
 // @flow
 import React from "react";
-import DangerousHtml from "Components/DangerousHtml";
-import TopListContainer from "Containers/TopListContainer";
-
-export const COMPONENT_MAPPING = {
-  HTML_CONTENT: DangerousHtml,
-  GAMES_LIST: TopListContainer,
-};
+import { COMPONENT_MAPPING } from "Components/ComponentBuilder/ComponentBuilder.mapping";
 
 type ContentDefinition = {
   acf_fc_layout: string,
