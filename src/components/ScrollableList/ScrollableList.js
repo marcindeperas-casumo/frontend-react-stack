@@ -1,46 +1,48 @@
+// @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
-import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
-import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
 import { isEmpty } from "ramda";
+import type {
+  spacerSizes,
+  responsiveSpacerSizes,
+} from "@casumo/cudl-react-prop-types";
 
-const paddingPerDevice = {
+export const DEFUALT_SPACING = "default";
+export const DEFAULT_COMPONENT = GameTileContainer;
+export const PADDING_PER_DEVICE = {
   default: "md",
   tablet: "2xlg",
   desktop: "2xlg",
 };
 
-// Question: Should this map live in here or in the container component?
-//
-// Initially the `Component` property was defined in the container
-// (listIdByComponentMap), but then we had the spacing property defined in here
-// (listIdBySpacingMap). The issue with this is that the keys of the map
-// (listIds) need to be maintained in two different places.
-const listIdToRenderDataMap = {
-  exclusiveGames: { Component: GameTileExclusiveContainer },
-  liveCasinoGames: { Component: LiveCasinoCardContainer, spacing: "md" },
-  liveCasino: { Component: LiveCasinoCardContainer, spacing: "md" },
+type Props = {
+  title: string,
+  itemIds: Array<string>,
+  Component?: Function,
+  spacing?: spacerSizes | responsiveSpacerSizes,
 };
 
-export class ScrollableList extends PureComponent {
+export class ScrollableList extends PureComponent<Props> {
   render() {
-    const { id, title, games = [] } = this.props;
+    const {
+      title,
+      itemIds = [],
+      spacing = DEFUALT_SPACING,
+      Component = DEFAULT_COMPONENT,
+    } = this.props;
 
-    if (isEmpty(games)) {
+    if (isEmpty(itemIds)) {
       return null;
     }
-
-    const { Component = GameTileContainer, spacing = "default" } =
-      listIdToRenderDataMap[id] || {};
 
     return (
       <div className="u-padding-top--xlg">
         <ScrollableListTitle title={title} />
-        <Scrollable padding={paddingPerDevice} itemSpacing={spacing}>
-          {games.map(gameId => (
-            <Component key={gameId} id={gameId} />
+        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={spacing}>
+          {itemIds.map(itemId => (
+            <Component key={itemId} id={itemId} />
           ))}
         </Scrollable>
       </div>
