@@ -9,7 +9,7 @@ const stories = storiesOf("PromotionCard", module);
 
 const PromotionCardStories = () => (
   <MockStore>
-    <PromotionCard promotionSlug="boosted-reelraces" parentSlug="promotions" />
+    <PromotionCard promotionSlug="promotions.boosted-reelraces" />
   </MockStore>
 );
 
