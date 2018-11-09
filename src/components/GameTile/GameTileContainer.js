@@ -5,16 +5,13 @@ import GameTile from "Components/GameTile/GameTileWrapper";
 import { gameSelector } from "Reducers/schema/selector";
 import { actions as gameActions } from "Reducers/games";
 
-const mapStateToProps = (state, props) => ({
-  game: gameSelector(props.id)(state),
-});
-const mapDispatchToProps = (dispatch, props) => ({
-  onLaunchGame: () => dispatch(gameActions.launchGame(props.id)),
-});
-
 const GameTileConnected = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  (state, props) => ({
+    game: gameSelector(props.id)(state),
+  }),
+  (dispatch, props) => ({
+    onLaunchGame: () => dispatch(gameActions.launchGame(props.id)),
+  })
 )(GameTile);
 
 type Props = {

@@ -5,16 +5,13 @@ import { gameSelector } from "Reducers/schema/selector";
 import { launchGame } from "Reducers/games";
 import GameRow from "Components/GameRow/GameRow";
 
-const mapStateToProps = (state, { id }) => ({
-  game: gameSelector(id)(state),
-});
-const mapDispatchToProps = (dispatch, { id }) => ({
-  onLaunchGame: () => dispatch(launchGame(id)),
-});
-
 const GameRowConnected = connect(
-  mapStateToProps,
-  mapDispatchToProps
+  (state, { id }) => ({
+    game: gameSelector(id)(state),
+  }),
+  (dispatch, { id }) => ({
+    onLaunchGame: () => dispatch(launchGame(id)),
+  })
 )(GameRow);
 
 type Props = {
