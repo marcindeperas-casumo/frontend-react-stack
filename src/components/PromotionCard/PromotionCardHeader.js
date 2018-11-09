@@ -7,7 +7,11 @@ import ImageLazy from "Components/Image/ImageLazy";
 const PromotionCardHeader = ({ slug, promotionBadge }) => {
   return (
     <Flex className="u-padding-horiz--lg" justify="space-between" align="end">
-      <Text tag="strong" className="t-color-red" size="xs">
+      <Text
+        tag="strong"
+        className="t-color-red u-text-transform-uppercase"
+        size="xs"
+      >
         <CMSField slug={slug} field="dates" />
       </Text>
       <ImageLazy
