@@ -6,7 +6,7 @@ const PromotionCardImage = ({ promotionImage }) => {
     <ImageLazy
       className="u-display--block c-promotion-card__img u-margin"
       src={promotionImage}
-      imgixOpts={{ w: 240 }}
+      imgixOpts={{ w: 240, h: 140 }}
       dpr={3}
     />
   );
