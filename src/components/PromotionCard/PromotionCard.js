@@ -13,7 +13,11 @@ export type Props = {
   promotionPage: Array<Object>,
 };
 
-const PromotionCardWrapper = ({ promotionSlug, promotionPage }) => {
+const PromotionCardWrapper = ({
+  promotionSlug,
+  promotionImage,
+  promotionBadge,
+}) => {
   return (
     <a
       href={promotionSlug}
@@ -26,11 +30,11 @@ const PromotionCardWrapper = ({ promotionSlug, promotionPage }) => {
         header={() => (
           <PromotionCardHeader
             slug={promotionSlug}
-            promotionPage={promotionPage}
+            promotionBadge={promotionBadge}
           />
         )}
         content={() => <PromotionCardContent slug={promotionSlug} />}
-        footer={() => <PromotionCardImage promotionPage={promotionPage} />}
+        footer={() => <PromotionCardImage promotionImage={promotionImage} />}
       />
     </a>
   );
@@ -46,12 +50,18 @@ export default class PromotionCard extends PureComponent<Props> {
   }
 
   render() {
-    const { isFetched, promotionSlug, promotionPage } = this.props;
+    const {
+      isFetched,
+      promotionSlug,
+      promotionImage,
+      promotionBadge,
+    } = this.props;
 
     return isFetched ? (
       <PromotionCardWrapper
         promotionSlug={promotionSlug}
-        promotionPage={promotionPage}
+        promotionImage={promotionImage}
+        promotionBadge={promotionBadge}
       />
     ) : (
       <PromotionCardSkeleton />
