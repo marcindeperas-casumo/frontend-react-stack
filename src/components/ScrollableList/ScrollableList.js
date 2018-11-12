@@ -9,7 +9,7 @@ import type {
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
 
-export const DEFUALT_SPACING = "default";
+export const DEFAULT_SPACING = "default";
 export const DEFAULT_COMPONENT = GameTileContainer;
 export const PADDING_PER_DEVICE = {
   default: "md",
@@ -29,7 +29,7 @@ export class ScrollableList extends PureComponent<Props> {
     const {
       title,
       itemIds = [],
-      spacing = DEFUALT_SPACING,
+      spacing = DEFAULT_SPACING,
       Component = DEFAULT_COMPONENT,
     } = this.props;
 
