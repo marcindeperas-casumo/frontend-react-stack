@@ -7,9 +7,11 @@ type Props = {
 };
 export default class MustDropJackpots extends PureComponent<Props> {
   render() {
-    const { ids } = this.props;
+    const { ids, isLoaded } = this.props;
 
-    return (
+    return !isLoaded ? (
+      <div> SKELETON BAE </div>
+    ) : (
       <div className="u-padding--md">
         {ids.map(id => (
           <GameRow id={id} key={`jackpot-${id}`} />
