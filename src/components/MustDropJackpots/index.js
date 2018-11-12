@@ -1,1 +1,1 @@
-export { default } from "./MustDropJackpotsLazy";
+export { default } from "./MustDropJackpotsContainer";
