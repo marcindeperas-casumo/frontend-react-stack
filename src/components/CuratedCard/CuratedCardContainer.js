@@ -10,6 +10,7 @@ import {
 } from "Reducers/curated";
 import { isPageLoadedFactory } from "Reducers/cms";
 import { market as marketSelector } from "Reducers/handshake/selectors";
+import { actions as gameActions } from "Reducers/games";
 
 const connector: Connector<Props> = connect(
   state => {
@@ -21,6 +22,7 @@ const connector: Connector<Props> = connect(
   },
   dispatch => ({
     fetchCurated: () => dispatch(fetchCurated()),
+    onLaunchGame: slug => dispatch(gameActions.launchGame(slug)),
   })
 );
 

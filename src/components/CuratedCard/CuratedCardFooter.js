@@ -7,7 +7,6 @@ import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
 import { stringToHTML } from "Utils/index";
-import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
 
 const GameThumb = ({ src, mark }) => (
@@ -39,6 +38,7 @@ type Props = {
   game: Game,
   legalText: string,
   actionText: string,
+  onLaunchGame: Function,
 };
 
 export default class CuratedCardFooter extends PureComponent<Props> {
@@ -56,7 +56,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   };
 
   renderGame = () => {
-    const { game, actionText } = this.props;
+    const { game, actionText, onLaunchGame } = this.props;
 
     return (
       <Flex align="center">
@@ -72,7 +72,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
           <Flex justify="center">
             <Button
               id="gtm-curated-play"
-              onClick={() => launchGame(game.slug)}
+              onClick={() => onLaunchGame(game.slug)}
               variant="variant-1"
               className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
