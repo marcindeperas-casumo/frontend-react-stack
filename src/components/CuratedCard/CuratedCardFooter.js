@@ -6,8 +6,9 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
-
-import { emitLaunchGame } from "Components/GameList/GameList";
+import { stringToHTML } from "Utils/index";
+import { launchGame } from "Services/LaunchGameService";
+import EitherOr from "Components/EitherOr";
 
 const GameThumb = ({ src, mark }) => (
   <ImageLazy
@@ -34,14 +35,28 @@ export type Game = {|
   slug: string,
 |};
 
-type Props = {|
+type Props = {
   game: Game,
-  primaryActionText: string,
-|};
+  legalText: string,
+  actionText: string,
+};
 
 export default class CuratedCardFooter extends PureComponent<Props> {
-  render() {
-    const { game, primaryActionText } = this.props;
+  renderLegal = () => {
+    const { legalText } = this.props;
+
+    return (
+      <Text
+        className="t-color-white u-margin-bottom u-opacity-75"
+        size="sm"
+        tag="div"
+        dangerouslySetInnerHTML={stringToHTML(legalText)}
+      />
+    );
+  };
+
+  renderGame = () => {
+    const { game, actionText } = this.props;
 
     return (
       <Flex align="center">
@@ -57,24 +72,36 @@ export default class CuratedCardFooter extends PureComponent<Props> {
           <Flex justify="center">
             <Button
               id="gtm-curated-play"
-              onClick={() => emitLaunchGame(game.slug)}
+              onClick={() => launchGame(game.slug)}
               variant="variant-1"
-              className="u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+              className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
               <PlayIcon size="sml" />
-              <span className="u-margin-left">{primaryActionText}</span>
+              <span className="u-margin-left">{actionText}</span>
             </Button>
             <Button
               id="gtm-curated-more"
               href={`/en/play/${game.slug}`}
               variant="outline"
-              className="u-display--none@mobile u-padding u-margin-left--lg"
+              className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
             >
               <MoreIcon size="med" />
             </Button>
           </Flex>
         </Flex.Item>
       </Flex>
+    );
+  };
+
+  render() {
+    const { game } = this.props;
+
+    return (
+      <EitherOr
+        either={this.renderLegal}
+        or={this.renderGame}
+        condition={() => !Object.keys(game).length}
+      />
     );
   }
 }

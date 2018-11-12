@@ -1,65 +1,27 @@
 // @flow
-import React, { Component } from "react";
-import { head } from "ramda";
-
-import Flex from "@casumo/cmp-flex";
-
-import cmsService from "Services/CMSService";
-import GameBrowserService from "Services/GameBrowserService";
-
+import { connect } from "react-redux";
+import type { Connector } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
-import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
+import type { Props } from "Components/CuratedCard/CuratedCard";
+import {
+  getCuratedByMarketSlug,
+  curatedSelector,
+  fetchCurated,
+} from "Reducers/curated";
+import { isPageLoadedFactory } from "Reducers/cms";
+import { market as marketSelector } from "Reducers/handshake/selectors";
 
-type Props = {
-  className?: string,
-};
+const connector: Connector<Props> = connect(
+  state => {
+    const slug = getCuratedByMarketSlug(marketSelector(state));
+    return {
+      data: curatedSelector(slug)(state),
+      isFetched: isPageLoadedFactory(slug)(state),
+    };
+  },
+  dispatch => ({
+    fetchCurated: () => dispatch(fetchCurated()),
+  })
+);
 
-type State = {
-  data: Object,
-  loading: boolean,
-  error: boolean,
-};
-
-export default class CuratedCardContainer extends Component<Props, State> {
-  state = {
-    data: {},
-    loading: true,
-    error: false,
-  };
-
-  async componentDidMount() {
-    try {
-      // TODO: get these data from the store and stop fetching here directly
-      const curatedData = await cmsService.getPage({
-        slug: "curated-component",
-      });
-      const gameData = await GameBrowserService.gamesBySlugs({
-        slugs: curatedData.fields.game,
-      });
-
-      this.setState({
-        data: {
-          ...curatedData,
-          game: head(gameData.games),
-        },
-        loading: false,
-      });
-    } catch (e) {
-      this.setState({ error: true });
-      throw new Error(`CuratedCard failed trying to fetch data - ${e}`);
-    }
-  }
-
-  render() {
-    const { className } = this.props;
-    const { data, loading, error } = this.state;
-
-    if (error) return null;
-
-    return (
-      <Flex className={className} direction="vertical" spacing="none">
-        {loading ? <CuratedCardSkeleton /> : <CuratedCard data={data} />}
-      </Flex>
-    );
-  }
-}
+export default connector(CuratedCard);

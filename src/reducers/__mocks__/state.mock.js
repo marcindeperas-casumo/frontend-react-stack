@@ -15,6 +15,14 @@ export default {
       error: null,
       isFetching: false,
     },
+    "CMS/FETCH_PAGE_BY_SLUG-curated.curated-se_sv": {
+      error: null,
+      isFetching: false,
+    },
+    "CMS/FETCH_PAGE_BY_SLUG-mobile.live-casino-cards-content": {
+      error: null,
+      isFetching: false,
+    },
   },
   handshake: {
     app: {
@@ -23,114 +31,113 @@ export default {
         siteUrl: "https://www.casumotest.com/",
         restrictionType: "UNAVAILABLE",
         unavailableCountries: [
-          "ad",
-          "si",
-          "jp",
-          "ye",
-          "sd",
-          "il",
-          "bg",
-          "cf",
-          "hk",
-          "gf",
-          "be",
-          "lk",
-          "gr",
-          "ma",
-          "ph",
-          "eg",
-          "us",
-          "at",
-          "ug",
-          "es",
-          "cx",
-          "vu",
-          "vg",
           "tm",
-          "lr",
-          "pf",
-          "pw",
-          "nc",
-          "mk",
-          "cy",
-          "ps",
-          "as",
-          "wf",
-          "sy",
-          "rs",
-          "sk",
-          "gh",
-          "gm",
-          "kp",
-          "au",
-          "ae",
-          "bl",
-          "cd",
-          "hu",
-          "bv",
-          "la",
-          "qa",
-          "ee",
-          "mf",
-          "it",
-          "ci",
-          "id",
-          "mo",
-          "cc",
-          "aq",
-          "er",
-          "cm",
-          "ro",
-          "re",
-          "uz",
-          "tf",
-          "gp",
-          "so",
-          "ne",
-          "pt",
-          "fr",
-          "ly",
-          "um",
-          "ir",
-          "mm",
-          "lt",
-          "al",
-          "me",
-          "vi",
-          "pk",
-          "md",
-          "tn",
+          "kr",
+          "il",
+          "eg",
           "gu",
-          "mp",
-          "__",
+          "it",
+          "be",
+          "mm",
+          "ag",
+          "tw",
+          "la",
+          "gm",
+          "sn",
+          "ph",
+          "vi",
+          "vu",
           "mq",
+          "id",
+          "mk",
+          "hk",
+          "hm",
+          "cx",
+          "sg",
+          "ma",
+          "aq",
+          "cc",
+          "pf",
+          "mf",
           "gl",
           "pr",
-          "ao",
-          "ag",
-          "sn",
-          "af",
-          "cz",
-          "eh",
-          "kr",
-          "cn",
-          "sg",
-          "iq",
-          "tw",
-          "yt",
-          "tr",
+          "tf",
           "gy",
-          "dz",
-          "sl",
-          "tj",
-          "zw",
-          "pm",
+          "gh",
+          "uz",
+          "bl",
           "va",
-          "nf",
-          "ng",
-          "hm",
+          "tj",
           "ss",
+          "__",
+          "ug",
+          "gp",
+          "lr",
+          "kp",
+          "cm",
+          "bv",
+          "ps",
+          "ng",
+          "lt",
+          "ee",
+          "tr",
+          "as",
+          "sk",
+          "lk",
           "fo",
+          "me",
+          "so",
+          "ro",
+          "ad",
+          "pw",
+          "tn",
+          "es",
+          "si",
+          "iq",
+          "cy",
+          "zw",
+          "cd",
+          "al",
+          "ne",
+          "ao",
+          "gr",
+          "cf",
+          "ci",
+          "ly",
+          "nf",
+          "fr",
+          "au",
+          "sl",
+          "vg",
+          "yt",
+          "md",
+          "gf",
+          "us",
+          "re",
+          "sy",
+          "er",
+          "pt",
+          "eh",
+          "sd",
+          "rs",
+          "mp",
+          "wf",
+          "cn",
+          "um",
+          "pk",
+          "jp",
+          "dz",
+          "qa",
+          "cz",
+          "pm",
+          "ir",
+          "hu",
+          "mo",
+          "nc",
+          "af",
+          "ae",
+          "at",
+          "ye",
         ],
         jurisdiction: "MGA",
         contextPath: "",
@@ -141,50 +148,50 @@ export default {
       },
       "common/composition/wpInterface": {
         rootContentHashes: {
-          de: "9fc274f99e49926d044b9aa0ecffeb00",
-          no: "67f2e382094e7ba7df9af6a1e2e7be41",
-          fi: "b80db555f7038aa3df302112088a8a2d",
-          sv: "d6c649ff68c0e3b578ad32a7a360dafd",
-          dk: "852bd75e0ede3319f10ed97eca28bac9",
+          de: "98d294d12595e77657912b8a8ed6f955",
+          no: "237ad922ad31580881dbde30e1207d96",
+          fi: "f47fca2b6c8b2177ad81ba31be95a2ac",
+          sv: "3e1fa806fdd766dcf470b8b69cff98b1",
+          dk: "f26c8b8071540a1fc7ccd883952a95d1",
           en: "c22973a240e540a28011ef401e5146bc",
-          gb: "a80c569b2e6dec293002129149fbe049",
-          ca: "a457ecc2803a9278fa7bbe33ca415ce2",
+          gb: "5899f873666807d49078629b5c58ca81",
+          ca: "abc6754d9971ae59a735214fea87a163",
         },
         marketHashes: {
           fi_fi: {
-            fi: "07217b6738b061107705fffb2b0189d6",
+            fi: "c92d06936215d84169a91f601530783d",
           },
           se_sv: {
-            sv: "45ad30d4cfc21d91d3e2dc2a222446e7",
+            sv: "f61914cb4732bde680359b5b2896dc30",
           },
           gb_en: {
-            gb: "c49f2c04b099354033fd22b67d668c73",
+            gb: "8dec95ee3d970e306ebd62053e90ae7c",
           },
           dk_da: {
-            dk: "ba81fc9e6d2947fb0fbaeec83d22c7da",
+            dk: "398992187a982f426c117b369a54680e",
           },
           ca_en: {
-            ca: "75998016f8791b4757d4483867469bdf",
+            ca: "45edd335211995795b9034ebb35f954a",
           },
           no_no: {
-            no: "9e6914fb568b2e9fd391037a0cb1e1aa",
+            no: "86a80d66c51455b68baf8705e03684a8",
           },
           ___en: {
-            en: "0d1638a1bbaaae38cab411ac4219ca65",
+            en: "56426bd47578324028828dce71a2e2a6",
           },
           de_de: {
-            de: "610ac7c7a2972ef1894d0ceef10a17fa",
+            de: "760d0c7d22c9f212c5db63aaafac7dd3",
           },
         },
         contentOverrides: {},
       },
       "common/composition/session": {
         roles: ["player"],
-        id: "f5febfbb-60e6-48c6-a184-e3c5fb02a7b3",
-        sessionId: "fa1d51df-77b3-4523-bfec-a89a0b54b7a5",
+        id: "2bb42ab0-7937-11e8-b6b5-0242ac11000b",
+        sessionId: "1519125a-da05-4f6f-8485-de3983bf176d",
       },
       "common/ABTesting": {
-        testSubjectId: "46719f50-c910-11e6-8d61-0242ac110004",
+        testSubjectId: "79e686cc-8e51-41e4-991f-dc0da0b526ad",
         features: [
           {
             name: "mobile-deposit-type-amount-button",
@@ -200,11 +207,11 @@ export default {
           },
           {
             name: "mobile-welcome-offer-copy",
-            flavour: "default",
+            flavour: "variation-c",
           },
           {
             name: "iframe-registration",
-            flavour: "default",
+            flavour: "iframe",
           },
           {
             name: "desktop-start-page-banner-image",
@@ -212,14 +219,18 @@ export default {
           },
           {
             name: "mobile-stack-poc",
-            flavour: "react-stack",
-          },
-          {
-            name: "mobile-signup-contextual-help",
             flavour: "default",
           },
           {
+            name: "mobile-signup-contextual-help",
+            flavour: "new-version",
+          },
+          {
             name: "levi-test-2",
+            flavour: "default",
+          },
+          {
+            name: "is-react-stack-visible",
             flavour: "default",
           },
           {
@@ -244,7 +255,7 @@ export default {
           },
           {
             name: "mobile-start-page-banner-image",
-            flavour: "default",
+            flavour: "space",
           },
           {
             name: "iframe-registration-2",
@@ -256,7 +267,7 @@ export default {
           },
           {
             name: "mobile-deposit-cta",
-            flavour: "default",
+            flavour: "new-version",
           },
         ],
       },
@@ -323,38 +334,38 @@ export default {
       clientIp: "127.0.0.1",
       "common/composition/players": {
         players: {
-          "f5febfbb-60e6-48c6-a184-e3c5fb02a7b3": {
-            playerId: "f5febfbb-60e6-48c6-a184-e3c5fb02a7b3",
-            casumoName: "levikeuk",
-            jurisdiction: "UKGC",
+          "2bb42ab0-7937-11e8-b6b5-0242ac11000b": {
+            playerId: "2bb42ab0-7937-11e8-b6b5-0242ac11000b",
+            casumoName: "chosv",
+            jurisdiction: "MGA",
             wallet: {
-              id: "59867262-ece3-4eaa-98be-2add34b859ce",
+              id: "2d9dd240-7937-11e8-b6b5-0242ac11000b",
               balance: {
-                amount: 2669.1,
-                iso4217CurrencyCode: "GBP",
+                amount: 0,
+                iso4217CurrencyCode: "EUR",
               },
               depositsBlocked: false,
               withdrawalsBlocked: false,
             },
             contactInfo: {
               name: {
-                firstName: "adjwaij",
-                lastName: "awdojo",
+                firstName: "cho",
+                lastName: "garcia",
               },
-              email: "levente.balogh+uk@casumo.com",
+              email: "cho.garcia+sv@casumo.com",
               phoneNumber: {
-                prefix: "+44",
-                number: "",
+                prefix: "+46",
+                number: "78851946679",
               },
               socialSecurityNumber: "",
-              dateOfBirth: 622159200000,
+              dateOfBirth: 532738800000,
               gender: "MALE",
               primaryAddress: {
-                country: "gb",
+                country: "se",
                 addressLines: {
-                  zip: "awjdo",
-                  city: "awjdo",
-                  street: "adowadji",
+                  zip: "23740",
+                  city: "La Linea",
+                  street: "lacalle",
                 },
               },
               nationality: null,
@@ -374,94 +385,19 @@ export default {
               offerId: "no-offer-id",
               targetCampaignId: null,
               metadata: {
-                source: "https://m.casumotest.com/",
+                source: "https://site.dev/",
               },
               referrer: "SEO",
             },
-            registrationDate: 1483458948000,
-            firstDepositDate: 1483459395000,
-            bonus: {
-              id: "59867262-ece3-4eaa-98be-2add34b859ce",
-              balance: {
-                amount: 49.9713,
-                iso4217CurrencyCode: "GBP",
-              },
-              wageringRequirement: {
-                amount: 1873.8,
-                iso4217CurrencyCode: "GBP",
-              },
-              automaticConversionLimit: {
-                amount: 2.5,
-                iso4217CurrencyCode: "GBP",
-              },
-            },
+            registrationDate: 1530013853000,
+            firstDepositDate: null,
+            bonus: null,
             blocked: false,
             market: "gb_en",
             activeDepositBonus: null,
             notifications: [],
             mandatoryMessages: [],
-            paymentMethods: [
-              {
-                id: "225edfd0-d1ce-11e6-af0c-005056a9c7cf",
-                type: "VISA_CARD",
-                token: "b49b50f2-b00f-4fda-93bc-1e6e14edd127",
-                name: "Credit/Debit card",
-                identifier: "426397******1307",
-                lastUsageTime: 1530177975000,
-                deleted: false,
-                verificationState: null,
-              },
-              {
-                id: "31a956a0-f3cf-11e6-a6ce-005056a9c7cf",
-                type: "BOKU",
-                token: "9f433c45-c298-499a-927e-71e2d8ea199d",
-                name: "Boku",
-                identifier: "44232323",
-                lastUsageTime: 1530177020000,
-                deleted: false,
-                verificationState: null,
-              },
-              {
-                id: "1fa07c90-f3cf-11e6-a6ce-005056a9c7cf",
-                type: "MONEYBOOKERS",
-                token: "dac9fbee-05a6-435a-a167-7dd73898c705",
-                name: "Skrill",
-                identifier: "martin.rylander@devcode.se",
-                lastUsageTime: 1530176951000,
-                deleted: false,
-                verificationState: null,
-              },
-              {
-                id: "db4e82a0-3972-11e7-9f5c-005056a9c7cf",
-                type: "NETELLER",
-                token: "2db79d52-4e53-4036-8b4c-7a4268fe77bb",
-                name: "Neteller",
-                identifier: "netellertest_eur@neteller.com",
-                lastUsageTime: 1530176907000,
-                deleted: false,
-                verificationState: null,
-              },
-              {
-                id: "41d29b40-f3cf-11e6-a6ce-005056a9c7cf",
-                type: "PAYSAFECARD",
-                token: "",
-                name: "Paysafe card",
-                identifier: null,
-                lastUsageTime: 1496926633000,
-                deleted: false,
-                verificationState: null,
-              },
-              {
-                id: "72bc1aa0-f475-11e6-a6ce-005056a9c7cf",
-                type: "BOKU",
-                token: "65674018-a6a8-46b0-b891-e96e710234b9",
-                name: "Boku",
-                identifier: "442232323",
-                lastUsageTime: 1487265995000,
-                deleted: false,
-                verificationState: null,
-              },
-            ],
+            paymentMethods: [],
             changePasswordTicketId: null,
             welcomeOfferId: "welcome-1200-ladder-offer",
             suspiciousAccount: false,
@@ -470,405 +406,44 @@ export default {
             phoneNumberVerified: false,
             phoneNumberVerificationCodeRequestTimes: 0,
             playerTournamentCampaign: {
-              hasParticipatedInTournaments: true,
+              hasParticipatedInTournaments: false,
               tournaments: {},
             },
             tournamentCampaign: {
               campaignId: "notUsed",
               tournaments: {
-                "0fcd2d80-c84a-11e8-a46b-0242ac110004": {
-                  tournamentId: "0fcd2d80-c84a-11e8-a46b-0242ac110004",
-                  status: "Scheduled",
-                  type: "Promoted",
-                  campaignId: "casumo_promoted_bbw",
-                  contentId: "default",
-                  startTime: 1539367200000,
-                  endTime: 1539370200000,
-                  minBetByCurrency: {
-                    EUR: 0.5,
-                    GBP: 0.5,
-                    CAD: 1,
-                    DKK: 5,
-                    SEK: 5,
-                  },
-                  prizes: [
-                    {
-                      badgeRuleName:
-                        "tournament_1000_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":1000.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_250_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":250.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_100_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":100.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_50_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":50.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_50_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":50.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_25_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_25_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_25_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_25_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_25_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":25.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                    {
-                      badgeRuleName:
-                        "tournament_10_free-money|slug=free-money-template",
-                      serializedItemUsables: [
-                        {
-                          usableClassName: "FreeMoneyUsableUsedEvent",
-                          usableJSON: "{}",
-                        },
-                      ],
-                      templateParameterValues: {
-                        amountGiven:
-                          '{"amount":10.0000,"iso4217CurrencyCode":"GBP"}',
-                      },
-                    },
-                  ],
-                  gameConfiguration: {
-                    gamesAreInclusive: true,
-                    gameNames: ["relax-bbw"],
-                  },
-                  leaderboard: {},
-                  spinLimit: 400,
-                  winner: null,
-                  numberOfParticipants: 0,
-                  promoted: true,
-                },
-                "0ed2ef00-c84a-11e8-a46b-0242ac110004": {
-                  tournamentId: "0ed2ef00-c84a-11e8-a46b-0242ac110004",
-                  status: "Scheduled",
+                "bffa8ce0-dcc0-11e8-b475-0242ac110004": {
+                  tournamentId: "bffa8ce0-dcc0-11e8-b475-0242ac110004",
+                  status: "Started",
                   type: "Standard",
-                  campaignId: "blood_suckers_low_activity_mfd_fs",
+                  campaignId: "mfd_high_activity",
                   contentId: "default",
-                  startTime: 1539333000000,
-                  endTime: 1539334200000,
+                  startTime: 1541613600000,
+                  endTime: 1541614800000,
                   minBetByCurrency: {
-                    EUR: 0.5,
-                    GBP: 0.5,
-                    CAD: 1,
-                    DKK: 5,
-                    SEK: 5,
+                    EUR: 0.4,
+                    GBP: 0.4,
+                    CAD: 0.8,
+                    DKK: 4,
+                    SEK: 4,
                   },
                   prizes: [
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_150|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "150",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "150",
+                        freeSpinValue: "20",
+                      },
+                    },
                     {
                       badgeRuleName:
                         "tournament_mega_fortune_dreams_020_100|slug=free-spins-template",
@@ -887,6 +462,22 @@ export default {
                     },
                     {
                       badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_75|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "75",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "75",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
                         "tournament_mega_fortune_dreams_020_50|slug=free-spins-template",
                       serializedItemUsables: [
                         {
@@ -898,6 +489,86 @@ export default {
                         iconSuffix: "50",
                         gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
                         nrOfFreeSpins: "50",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_50|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "50",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "50",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "25",
                         freeSpinValue: "20",
                       },
                     },
@@ -949,12 +620,220 @@ export default {
                         freeSpinValue: "20",
                       },
                     },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_mega_fortune_dreams_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[netent-megafortunedreams_not_mobile_sw]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
                   ],
                   gameConfiguration: {
                     gamesAreInclusive: true,
                     gameNames: [
-                      "netent-bloodsuckers_not_mobile_sw",
-                      "netent-bloodsuckers_mobile_html_sw",
+                      "netent-megafortunedreams_mobile_html_sw",
+                      "netent-megafortunedreams_not_mobile_sw",
                     ],
                   },
                   leaderboard: {},
@@ -962,6 +841,832 @@ export default {
                   winner: null,
                   numberOfParticipants: 0,
                   promoted: false,
+                },
+                "c0053b40-dcc0-11e8-b475-0242ac110004": {
+                  tournamentId: "c0053b40-dcc0-11e8-b475-0242ac110004",
+                  status: "Scheduled",
+                  type: "Standard",
+                  campaignId: "book_of_dead_high_activity_superflip_fs",
+                  contentId: "default",
+                  startTime: 1541615400000,
+                  endTime: 1541616600000,
+                  minBetByCurrency: {
+                    EUR: 0.4,
+                    GBP: 0.4,
+                    CAD: 0.8,
+                    DKK: 4,
+                    SEK: 4,
+                  },
+                  prizes: [
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_150|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "150",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "150",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_100|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "100",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "100",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_75|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "75",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "75",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_50|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "50",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "50",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_50|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "50",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "50",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_25|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "25",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "25",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_10|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "10",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "10",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_super-flip_020_5|slug=free-spins-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeSpinsUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        iconSuffix: "5",
+                        gameName: "[[playngo-superflip]]",
+                        nrOfFreeSpins: "5",
+                        freeSpinValue: "20",
+                      },
+                    },
+                  ],
+                  gameConfiguration: {
+                    gamesAreInclusive: true,
+                    gameNames: [
+                      "playngo-bookofdead",
+                      "playngo-bookofdeadmobile",
+                    ],
+                  },
+                  leaderboard: {},
+                  spinLimit: 210,
+                  winner: null,
+                  numberOfParticipants: 0,
+                  promoted: false,
+                },
+                "c00e3bf0-dcc0-11e8-b475-0242ac110004": {
+                  tournamentId: "c00e3bf0-dcc0-11e8-b475-0242ac110004",
+                  status: "Scheduled",
+                  type: "Promoted",
+                  campaignId: "casumo_promoted_bookofdead",
+                  contentId: "default",
+                  startTime: 1541617200000,
+                  endTime: 1541620200000,
+                  minBetByCurrency: {
+                    EUR: 0.4,
+                    GBP: 0.4,
+                    CAD: 0.8,
+                    DKK: 4,
+                    SEK: 4,
+                  },
+                  prizes: [
+                    {
+                      badgeRuleName:
+                        "tournament_1000_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":1000.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_250_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":250.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_100_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":100.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_50_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":50.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_50_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":50.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_25_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":25.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                    {
+                      badgeRuleName:
+                        "tournament_10_free-money|slug=free-money-template",
+                      serializedItemUsables: [
+                        {
+                          usableClassName: "FreeMoneyUsableUsedEvent",
+                          usableJSON: "{}",
+                        },
+                      ],
+                      templateParameterValues: {
+                        amountGiven:
+                          '{"amount":10.0000,"iso4217CurrencyCode":"EUR"}',
+                      },
+                    },
+                  ],
+                  gameConfiguration: {
+                    gamesAreInclusive: true,
+                    gameNames: [
+                      "playngo-bookofdead",
+                      "playngo-bookofdeadmobile",
+                    ],
+                  },
+                  leaderboard: {
+                    "f2d7df50-4a21-11e8-8ca4-0242ac11000d": {
+                      playerId: "f2d7df50-4a21-11e8-8ca4-0242ac11000d",
+                      playerName: "CheezDoodles",
+                      position: 1,
+                      points: 0,
+                      remainingSpins: 525,
+                      mostPlayedGame: null,
+                      boosters: {
+                        winsInARow: 0,
+                        triples: 0,
+                        wins: 0,
+                        bigWins: 0,
+                        megaWins: 0,
+                      },
+                    },
+                  },
+                  spinLimit: 525,
+                  winner: null,
+                  numberOfParticipants: 1,
+                  promoted: true,
                 },
               },
               gamesAreInclusive: true,
@@ -1267,7 +1972,6 @@ export default {
                 "relax-journey",
                 "relax-jewelblast",
                 "relax-musketeers",
-                "relax-eden",
                 "relax-titans",
                 "relax-illuminous",
                 "microgaming-MGS_BridesMaids",
@@ -1610,68 +2314,62 @@ export default {
                 "/public/tournaments/618bcdc8-cb1c-3235-9f5d-7dff964e4e22",
                 "/public/tournaments/33229c5c-af9e-323a-b82b-18a6bb74303e",
                 "/public/tournaments/d536b2ca-7e4e-36e5-a551-f0c447488724",
+                "/public/tournaments/11ce1bcd-6457-3f01-a45d-c32485ab2246",
                 "/public",
               ],
             },
-            featureFlags: [
-              "AML_FLOW_17608",
-              "MOBILE_VERIFICATION",
-              "SPRING_CAMPAIGN_2018",
-            ],
+            featureFlags: ["AML_FLOW_17608", "MOBILE_VERIFICATION"],
             complianceState: {
               AML: {
                 category: "AML",
-                state: "PASSED",
+                state: "TAGGED",
                 playerBlockDate: null,
                 depositBlockDate: null,
                 withdrawalBlockDate: null,
               },
             },
             emailVerified: true,
-            extentOfGambling: {
-              from: null,
-              to: 50,
-            },
+            extentOfGambling: null,
             testPlayer: false,
           },
         },
       },
     },
     games: {
-      topListsTitle: "Top lists",
-      searchTitle: "Type & search",
+      topListsTitle: "Topplistor",
+      searchTitle: "Skriv & sök",
       topListIds: [
         "latestPlayedGames",
         "popularGames",
-        "liveCasinoGames",
         "newGames",
         "exclusiveGames",
         "casumoFavouriteGames",
+        "liveCasino",
         "casumoJackpotGames",
       ],
       gamesLists: {
         exclusiveGames: {
           id: "exclusiveGames",
-          title: "Only At Casumo",
+          title: "Bara på Casumo ",
           image: "",
           variants: {
             default: {
               totalGames: 6,
-              hash: "aede606e22888f0023e708d126a4000a",
+              hash: "f49ce68e1bcb48da58b6e32b975c4869",
             },
             guests: {
-              totalGames: 5,
-              hash: "31021b14d2564e432f72d5ce31051168",
+              totalGames: 6,
+              hash: "f49ce68e1bcb48da58b6e32b975c4869",
             },
             includeDisabled: {
-              totalGames: 10,
-              hash: "406ad84f5992e3d96dac99bc61a14677",
+              totalGames: 9,
+              hash: "86f677e654bfbe5535da8568627ebbf4",
             },
           },
         },
         latestPlayedGames: {
           id: "latestPlayedGames",
-          title: "Last Played",
+          title: "Senast spelade",
           image: "",
           variants: {
             default: {
@@ -1690,58 +2388,39 @@ export default {
         },
         allGames: {
           id: "allGames",
-          title: "All Games",
+          title: "Alla spel",
           image: "",
           variants: {
             default: {
-              totalGames: 958,
-              hash: "bde94f1cf05533cd37a0c5133b030fcf",
+              totalGames: 1127,
+              hash: "679d334baa5ad5918cbb359cc61f3905",
             },
             guests: {
-              totalGames: 861,
-              hash: "e4f598e95bb63883f9746e2e941a2cac",
+              totalGames: 1127,
+              hash: "679d334baa5ad5918cbb359cc61f3905",
             },
             includeDisabled: {
-              totalGames: 1219,
-              hash: "356165543e3653b50bf7dfcd30c9a272",
+              totalGames: 1385,
+              hash: "7b98d0153fdb9dcaa783c33be0d37d4c",
             },
           },
         },
         casumoFavouriteGames: {
           id: "casumoFavouriteGames",
-          title: "Casumo Loves",
+          title: "Casumo gillar",
           image: "",
           variants: {
             default: {
               totalGames: 28,
-              hash: "93f73ae88ad5f207ecae49e6059244ec",
+              hash: "4595a76fb71a97e2f74f6756b326a3ac",
             },
             guests: {
-              totalGames: 22,
-              hash: "a5966f99ba55a21a8b054ba84b8b8ecf",
+              totalGames: 28,
+              hash: "4595a76fb71a97e2f74f6756b326a3ac",
             },
             includeDisabled: {
               totalGames: 28,
-              hash: "93f73ae88ad5f207ecae49e6059244ec",
-            },
-          },
-        },
-        liveCasinoGames: {
-          id: "liveCasinoGames",
-          title: "Live Casino",
-          image: "",
-          variants: {
-            default: {
-              totalGames: 9,
-              hash: "417884b205beb4fda448aeca95c93339",
-            },
-            guests: {
-              totalGames: 9,
-              hash: "417884b205beb4fda448aeca95c93339",
-            },
-            includeDisabled: {
-              totalGames: 12,
-              hash: "82f61dc2cc35006bc4a335c7c1831c2c",
+              hash: "4595a76fb71a97e2f74f6756b326a3ac",
             },
           },
         },
@@ -1751,54 +2430,73 @@ export default {
           image: "",
           variants: {
             default: {
-              totalGames: 12,
-              hash: "2fc98aaba9b4d36139f38c25196ba014",
+              totalGames: 16,
+              hash: "a9a92a6705c7a6067ef944ab69d2a088",
             },
             guests: {
-              totalGames: 12,
-              hash: "2fc98aaba9b4d36139f38c25196ba014",
+              totalGames: 16,
+              hash: "a9a92a6705c7a6067ef944ab69d2a088",
             },
             includeDisabled: {
-              totalGames: 14,
-              hash: "c11d902cff6912c1d6d5293951bbe734",
+              totalGames: 18,
+              hash: "a159da7e5b0bde3da72359d46189e796",
             },
           },
         },
         newGames: {
           id: "newGames",
-          title: "New Games",
+          title: "Nya spel",
           image: "",
           variants: {
             default: {
-              totalGames: 61,
-              hash: "9aaa3ff32661e9c8cfacc2b3fe829554",
+              totalGames: 90,
+              hash: "14cbec8157f4178c10027d0b397e75ad",
             },
             guests: {
-              totalGames: 59,
-              hash: "a4edc0978dd24a300f8e4f4754519846",
+              totalGames: 90,
+              hash: "14cbec8157f4178c10027d0b397e75ad",
             },
             includeDisabled: {
-              totalGames: 78,
-              hash: "c07189ee3097a49e4d9a901bccd5d7d0",
+              totalGames: 101,
+              hash: "87a39387287061f180529039433d1a9f",
             },
           },
         },
         popularGames: {
           id: "popularGames",
-          title: "Popular",
+          title: "Populära",
           image: "",
           variants: {
             default: {
-              totalGames: 22,
-              hash: "168344b49f06c91252b5d298ca9e84e8",
+              totalGames: 21,
+              hash: "14381a811488ea66c03db01d2e442104",
             },
             guests: {
-              totalGames: 19,
-              hash: "d03379ffbc99ff68fe7960d4fb859d7b",
+              totalGames: 21,
+              hash: "14381a811488ea66c03db01d2e442104",
             },
             includeDisabled: {
               totalGames: 23,
-              hash: "74fe302bc5d8d43e1d0411f881d6ac67",
+              hash: "d903315e241ba5ba5dba08fb21ae3419",
+            },
+          },
+        },
+        liveCasino: {
+          id: "liveCasino",
+          title: "Live Casino",
+          image: "",
+          variants: {
+            default: {
+              totalGames: 8,
+              hash: "f32fc291d5a51c79465a9b47d627fad6",
+            },
+            guests: {
+              totalGames: 8,
+              hash: "f32fc291d5a51c79465a9b47d627fad6",
+            },
+            includeDisabled: {
+              totalGames: 11,
+              hash: "aeb93c227b1eaf34a02e065240ab0520",
             },
           },
         },
@@ -1807,14 +2505,14 @@ export default {
   },
   schema: {
     game: {
-      "book-of-ra-deluxe": {
-        name: "Book of Ra deluxe",
-        slug: "book-of-ra-deluxe",
+      "book-of-dead": {
+        name: "Book of Dead",
+        slug: "book-of-dead",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_gamethumb-plate.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_logo.png",
-        hasPlayForFun: false,
+          "https://cms.casumo.com/wp-content/uploads/2017/09/book_of_dead_logo.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
@@ -1826,18 +2524,6 @@ export default {
           "https://cms.casumo.com/wp-content/uploads/2018/04/diamond_mine_thumbnail.jpg",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2018/04/diamond-mine-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "raging-rhino": {
-        name: "Raging Rhino",
-        slug: "raging-rhino",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/03/RagingRhino-backplate.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/03/RagingRhino-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -1855,13 +2541,49 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "legacy-of-egypt": {
-        name: "Legacy of Egypt",
-        slug: "legacy-of-egypt",
+      "extra-chilli": {
+        name: "Extra Chilli",
+        slug: "extra-chilli",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/extra_chilli_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/extra-chilli-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "fat-rabbit": {
+        name: "Fat Rabbit",
+        slug: "fat-rabbit",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "book-of-ra-deluxe": {
+        name: "Book of Ra deluxe",
+        slug: "book-of-ra-deluxe",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_gamethumb-plate.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "gonzos-quest": {
+        name: "Gonzo&#8217;s Quest",
+        slug: "gonzos-quest",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -1879,18 +2601,6 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      starburst: {
-        name: "Starburst",
-        slug: "starburst",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/Starburst_Thumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/Starburst_Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
       gemix: {
         name: "Gemix",
         slug: "gemix",
@@ -1903,85 +2613,49 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "danger-high-voltage": {
-        name: "Danger High Voltage",
-        slug: "danger-high-voltage",
+      "vikings-go-berzerk": {
+        name: "Vikings Go Berzerk",
+        slug: "vikings-go-berzerk",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/danger_high_voltage_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_bg.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/danger_high_voltage_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "88-fortunes": {
-        name: "88 Fortunes",
-        slug: "88-fortunes",
+      starburst: {
+        name: "Starburst",
+        slug: "starburst",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/88_fortune_bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2014/06/Starburst_Thumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/88_fortune_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2014/02/Starburst_Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "fruit-warp": {
-        name: "Fruit Warp",
-        slug: "fruit-warp",
+      fruitshop: {
+        name: "Fruit Shop",
+        slug: "fruitshop",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/08/fruitwarp_background.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2012/05/FruitShop_Thumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/08/fuitwarplogo.png",
+          "https://cms.casumo.com/wp-content/uploads/2012/05/FruitShop_Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "gonzos-quest": {
-        name: "Gonzo&#8217;s Quest",
-        slug: "gonzos-quest",
+      bloodsuckers: {
+        name: "Blood Suckers",
+        slug: "bloodsuckers",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2014/06/BloodSuckers_Thumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "rainbow-riches-pick-n-mix": {
-        name: "Rainbow Riches Pick `n´ Mix",
-        slug: "rainbow-riches-pick-n-mix",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/03/rainbow_riches_pickmix_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/03/rainbow_riches_pickmix_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "white-rabbit": {
-        name: "White Rabbit",
-        slug: "white-rabbit",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/11/white_rabbit_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/11/white-rabbit.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "action-bank": {
-        name: "Action Bank",
-        slug: "action-bank",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/04/action-bank_game-backgroundplate.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/04/action-bank_game-logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2014/02/BloodSuckers_Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -1999,25 +2673,13 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "wish-upon-a-leprechaun": {
-        name: "Wish Upon a Leprechaun",
-        slug: "wish-upon-a-leprechaun",
+      "88-fortunes": {
+        name: "88 Fortunes",
+        slug: "88-fortunes",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/wish_upon_a_leprechaun_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2016/06/88_fortune_bg.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/wish_upon_a_leprechaun_logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      cleopatra: {
-        name: "Cleopatra",
-        slug: "cleopatra",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/05/CleopatraBg2.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/05/Cleopatralogo.png",
+          "https://cms.casumo.com/wp-content/uploads/2016/06/88_fortune_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2035,13 +2697,325 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "wild-times": {
-        name: "Wild Times",
-        slug: "wild-times",
+      "troll-hunters": {
+        name: "Troll Hunters",
+        slug: "troll-hunters",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/wild-things-game-bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2016/11/PlaynGo_TrollHunters_bg.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/wild-things-game-thumb-logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2016/11/PlaynGo_TrollHunters_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "reel-rush": {
+        name: "Reel Rush",
+        slug: "reel-rush",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/06/ReelRush_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/02/ReelRush_Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      razortooth: {
+        name: "Razortooth",
+        slug: "razortooth",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/11/razortooth_game-thumb-plate.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/11/razortooth-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "thunderstruck-ii": {
+        name: "Thunderstruck II",
+        slug: "thunderstruck-ii",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/09/Thunderstruck2_backplate-1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/09/Thunderstruck2_logo-1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "ancient-egypt-classic": {
+        name: "Ancient Egypt Classic",
+        slug: "ancient-egypt-classic",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "lucha-legends": {
+        name: "Lucha Legends",
+        slug: "lucha-legends",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/lucha_legends_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/lucha_legends_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "shields-of-the-wild": {
+        name: "Shields Of The Wild",
+        slug: "shields-of-the-wild",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/shields_of_the_wild_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/shields_of_the_wild_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "dinosaur-kingdom": {
+        name: "Dinosaur Kingdom",
+        slug: "dinosaur-kingdom",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dinosaur_kingdom_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dinosaur_kingdom_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wheel-of-fortune-hawaiian-getaway": {
+        name: "Wheel of Fortune &#8211; Hawaiian Getaway",
+        slug: "wheel-of-fortune-hawaiian-getaway",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/hawaiian_getaway_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/hawaiian_getaway_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wild-bazaar": {
+        name: "Wild Bazaar",
+        slug: "wild-bazaar",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_bazaar_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_bazaar_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "the-goonies": {
+        name: "The Goonies",
+        slug: "the-goonies",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/the_goonies_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/the_goonies_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "gunslinger-reloaded": {
+        name: "Gunslinger Reloaded",
+        slug: "gunslinger-reloaded",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: "playngo-113",
+        tableId: null,
+      },
+      "romanov-riches": {
+        name: "Romanov Riches",
+        slug: "romanov-riches",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/romanov_riches_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/romanov_riches_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "dark-vortex": {
+        name: "Dark Vortex",
+        slug: "dark-vortex",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dark_vortex_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dark_vortex_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "halloween-jack": {
+        name: "Halloween Jack",
+        slug: "halloween-jack",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/halloweenjack-bg-tb.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/halloweenjack-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "grizzly-gold": {
+        name: "Grizzly Gold",
+        slug: "grizzly-gold",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzly_gold_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzly_gold_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "zombie-circus": {
+        name: "Zombie Circus",
+        slug: "zombie-circus",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/zombie_circus_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/zombie_circus_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "mermaids-queen": {
+        name: "Mermaid Queen",
+        slug: "mermaids-queen",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/mermaid_queen_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/mermaid_queen_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "quick-hit-ultra-pays-sun-dragon": {
+        name: "Quick Hit Ultra Pays Sun Dragon",
+        slug: "quick-hit-ultra-pays-sun-dragon",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/sun_dragon_thumbnail1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/sun_dragon_logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "tiger-rush": {
+        name: "Tiger Rush",
+        slug: "tiger-rush",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/tiger_rush_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/tiger_rush_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "vegas-magic": {
+        name: "Vegas Magic",
+        slug: "vegas-magic",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_magic_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_magic_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "buffalo-rising-megaways": {
+        name: "Buffalo Rising Megaways",
+        slug: "buffalo-rising-megaways",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/buffalo_rising_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/buffalo-rising-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      polterheist: {
+        name: "Polterheist",
+        slug: "polterheist",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/polter_heist_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/polter_heist_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "tales-of-darkness-full-moon": {
+        name: "Tales of Darkness &#8211; Full Moon",
+        slug: "tales-of-darkness-full-moon",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/tod_full_moon-thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/tod_full_moon_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "topwheel-treasures": {
+        name: "Topwheel Treasures",
+        slug: "topwheel-treasures",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: "munbzmuueehqaavs",
+        lobby: "munbzmuueehqaavs",
+      },
+      "the-tales-of-dr-dolittle": {
+        name: "The Tales of Dr. Dolittle",
+        slug: "the-tales-of-dr-dolittle",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/drdolittle-bg-thumb.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/drdolittle-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "kingdom-of-fortune": {
+        name: "Kingdom Of Fortune",
+        slug: "kingdom-of-fortune",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/07/back-kingdomoffortune.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/07/logo-kingdomoffortune1.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2058,33 +3032,234 @@ export default {
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: "madlz3bzhyeabit4",
-        lobby: "madlz3bzhyeabit4",
       },
-      "evolution-lightning-roulette": {
-        name: "Lightning Roulette",
-        slug: "evolution-lightning-roulette",
+      "casumo-blackjack-evolution": {
+        name: "Blackjack 1",
+        slug: "casumo-blackjack-evolution",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/lightning-bg.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-blackjack.png",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/lightningroulette-logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-blackjack1.png",
         hasPlayForFun: false,
         inMaintenanceMode: false,
         jackpotId: null,
-        tableId: "LightningTable01",
-        lobby: "LightningTable01",
+        tableId: "lnte5m7j7jdaadpm",
       },
-      "baccarat-placeholder-for-evolution": {
-        name: "Baccarat A",
-        slug: "baccarat-placeholder-for-evolution",
+      donuts: {
+        name: "Donuts",
+        slug: "donuts",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/05/live-baccarat-bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/05/live-baccarat-logo.png",
-        hasPlayForFun: false,
+          "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_logo.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
-        tableId: "oytmvb9m1zysmc44",
-        lobby: "oytmvb9m1zysmc44",
+        tableId: null,
+      },
+      "fire-joker": {
+        name: "Fire Joker",
+        slug: "fire-joker",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "fruit-warp": {
+        name: "Fruit Warp",
+        slug: "fruit-warp",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/08/fruitwarp_background.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/08/fuitwarplogo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      reactoonz: {
+        name: "Reactoonz",
+        slug: "reactoonz",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "sticky-bandits": {
+        name: "Sticky Bandits",
+        slug: "sticky-bandits",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/sticky_bandits_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/sticky_bandits_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "dwarfs-gone-wild": {
+        name: "Dwarfs Gone Wild",
+        slug: "dwarfs-gone-wild",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "easter-island": {
+        name: "Easter Island",
+        slug: "easter-island",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      goldilocks: {
+        name: "Goldilocks",
+        slug: "goldilocks",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/06/goldilocks_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/06/goldilocks_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      bonanza: {
+        name: "Bonanza",
+        slug: "bonanza",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/bonanza_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/bonanza-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "legacy-of-egypt": {
+        name: "Legacy of Egypt",
+        slug: "legacy-of-egypt",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "pirates-charm": {
+        name: "Pirate&#8217;s Charm",
+        slug: "pirates-charm",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "vikings-go-to-hell": {
+        name: "Vikings Go To Hell",
+        slug: "vikings-go-to-hell",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/05/vikings_go_to_hell_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/05/vikings_go_to_hell_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "moon-princess": {
+        name: "Moon Princess",
+        slug: "moon-princess",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "crystal-queen": {
+        name: "Crystal Queen",
+        slug: "crystal-queen",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/09/Thumb_BG_CrystalQueen1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/09/3439ce2f-e93a-4bdd-b989-25eceeeedeee.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "foxin-wins": {
+        name: "Foxin&#8217; Wins",
+        slug: "foxin-wins",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2016/07/foxin_wins_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2016/07/foxin_wins_logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "break-da-bank-again": {
+        name: "Break da Bank Again",
+        slug: "break-da-bank-again",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/10/breakdabankagain_backplate-1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/10/breakdabankagain_logo-1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "viking-runecraft": {
+        name: "Viking Runecraft",
+        slug: "viking-runecraft",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/04/viking_runecraft_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/04/viking_runecraft_logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      jumanji: {
+        name: "Jumanji",
+        slug: "jumanji",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/jumanji_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/jumanji_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
       },
       "evolution-live-ultimate-texas-holdem": {
         name: "Ultimate Texas Hold&#8217;em",
@@ -2125,528 +3300,13 @@ export default {
         tableId: "MOWDream00000001",
         lobby: "MOWDream00000001",
       },
-      "cash-of-kingdoms": {
-        name: "Cash Of Kingdoms",
-        slug: "cash-of-kingdoms",
+      "joker-millions": {
+        name: "Joker Millions",
+        slug: "joker-millions",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/cash_of_kingodms_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2017/06/joker_millions_bg.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/cash_of_kingodms_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "tales-of-darkness-break-of-dawn": {
-        name: "Tales of Darkness &#8211; Break Of Dawn",
-        slug: "tales-of-darkness-break-of-dawn",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tod_break_of_dawn_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tod_break_of_dawn_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "monopoly-big-money-reel": {
-        name: "Monopoly Big Money Reel",
-        slug: "monopoly-big-money-reel",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/monopoly_big_money_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/monopoly_big_money_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "ark-of-mystery": {
-        name: "Ark of Mystery",
-        slug: "ark-of-mystery",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/ark-of-mystery-bgtm.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/ark-of-mystery-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "iron-girl": {
-        name: "Iron Girl",
-        slug: "iron-girl",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/iron_girl_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/iron_girl_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "tales-of-darkness-lunar-eclipse": {
-        name: "Tales of Darkness &#8211; Lunar Eclipse",
-        slug: "tales-of-darkness-lunar-eclipse",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tod_lunar_eclipse_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tod_lunar_eclipse_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "erik-the-red": {
-        name: "Erik The Red",
-        slug: "erik-the-red",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/erik_the_red_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/erik_the_red_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "master-chens-fortune": {
-        name: "Master Chen&#8217;s Fortune",
-        slug: "master-chens-fortune",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/master_chens_fortune_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/master_chens_fortune_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "ave-ceasar": {
-        name: "Ave Ceasar",
-        slug: "ave-ceasar",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/ave_caesar_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/ave_caesar_logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "the-wild-3": {
-        name: "The Wild 3",
-        slug: "the-wild-3",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/the_wild_3_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/the_wild_3_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "wicked-tales-dark-red": {
-        name: "Wicked Tales: Dark Red",
-        slug: "wicked-tales-dark-red",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wicked_tales_dark_red_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wicked_tales_dark_red_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "reel-riches-fortune-age": {
-        name: "Reel Riches Fortune Age",
-        slug: "reel-riches-fortune-age",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/reel_riches_fortune_age_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/reel_riches_fortune_age_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "wild-streets": {
-        name: "Wild Streets",
-        slug: "wild-streets",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wild_streets_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wild_streets_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "valkyrie-fire": {
-        name: "Valkyrie Fire",
-        slug: "valkyrie-fire",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/valkyrie_fire_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/valkyrie_fire_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "double-stacks": {
-        name: "Double Stacks",
-        slug: "double-stacks",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/double_stacks_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/double_stacks_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "wolf-hunters": {
-        name: "Wolf Hunters",
-        slug: "wolf-hunters",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wolf_hunters_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/wolf_hunters_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "buffalo-magic": {
-        name: "Buffalo Magic",
-        slug: "buffalo-magic",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/buffalo_magic_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/buffalo_magic_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "solar-disc": {
-        name: "Solar Disc",
-        slug: "solar-disc",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/solar_disc_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/solar_disc_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      subbuteo: {
-        name: "Subbuteo",
-        slug: "subbuteo",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/subbuteo_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/subbuteo_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "street-magic": {
-        name: "Street Magic",
-        slug: "street-magic",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/street_magic_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/street_magic_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "topwheel-treasures": {
-        name: "Topwheel Treasures",
-        slug: "topwheel-treasures",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
-        logo: "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: "munbzmuueehqaavs",
-      },
-      "the-tales-of-dr-dolittle": {
-        name: "The Tales of Dr. Dolittle",
-        slug: "the-tales-of-dr-dolittle",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/drdolittle-bg-thumb.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/drdolittle-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "ever-after": {
-        name: "Ever After",
-        slug: "ever-after",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/Everafter-bg2.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/EverAfter-Logo2.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "kingdom-of-fortune": {
-        name: "Kingdom Of Fortune",
-        slug: "kingdom-of-fortune",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/07/back-kingdomoffortune.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/07/logo-kingdomoffortune1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "casumo-blackjack-evolution": {
-        name: "Blackjack 1",
-        slug: "casumo-blackjack-evolution",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-blackjack.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-blackjack1.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: "lnte5m7j7jdaadpm",
-      },
-      "lucky-ladys-charm-deluxe": {
-        name: "Lucky Lady’s Charm deluxe",
-        slug: "lucky-ladys-charm-deluxe",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/Lucky-Ladys-Charm_gamethumb-background.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/Lyck-Ladys-Charm_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      donuts: {
-        name: "Donuts",
-        slug: "donuts",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "fat-rabbit": {
-        name: "Fat Rabbit",
-        slug: "fat-rabbit",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "vikings-go-berzerk": {
-        name: "Vikings Go Berzerk",
-        slug: "vikings-go-berzerk",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "reel-rush": {
-        name: "Reel Rush",
-        slug: "reel-rush",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/ReelRush_Thumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/ReelRush_Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "dwarfs-gone-wild": {
-        name: "Dwarfs Gone Wild",
-        slug: "dwarfs-gone-wild",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      reactoonz: {
-        name: "Reactoonz",
-        slug: "reactoonz",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/10/reactoonz_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "sticky-bandits": {
-        name: "Sticky Bandits",
-        slug: "sticky-bandits",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/sticky_bandits_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/sticky_bandits_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      montezuma: {
-        name: "Montezuma",
-        slug: "montezuma",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/01/Montezuma-backplate.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/01/Montezuma_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      goldilocks: {
-        name: "Goldilocks",
-        slug: "goldilocks",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/goldilocks_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/goldilocks_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      bonanza: {
-        name: "Bonanza",
-        slug: "bonanza",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/bonanza_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/bonanza-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "pirates-charm": {
-        name: "Pirate&#8217;s Charm",
-        slug: "pirates-charm",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "book-of-dead": {
-        name: "Book of Dead",
-        slug: "book-of-dead",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/book_of_dead_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "fire-joker": {
-        name: "Fire Joker",
-        slug: "fire-joker",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Thumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "moon-princess": {
-        name: "Moon Princess",
-        slug: "moon-princess",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "viking-runecraft": {
-        name: "Viking Runecraft",
-        slug: "viking-runecraft",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/04/viking_runecraft_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/04/viking_runecraft_logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "extra-chilli": {
-        name: "Extra Chilli",
-        slug: "extra-chilli",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/extra_chilli_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/extra-chilli-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "lady-of-fortune": {
-        name: "Lady of Fortune",
-        slug: "lady-of-fortune",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/Lady-of-Fortune-desktop-thumb1.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/Lady-of-Fortune-desktop-logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "rainbow-riches": {
-        name: "Rainbow Riches",
-        slug: "rainbow-riches",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/03/RainbowRiches_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/03/RainbowRiches_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/06/joker_millions_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2719,6 +3379,30 @@ export default {
           "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_bg.jpg",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "book-of-ra-deluxe-jackpot-edition": {
+        name: "Book of Ra deluxe &#8211; Jackpot Edition",
+        slug: "book-of-ra-deluxe-jackpot-edition",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/05/bok_of_ra_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/05/book_of_ra_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "holmes-and-the-stolen-stones": {
+        name: "Holmes and the Stolen Stones",
+        slug: "holmes-and-the-stolen-stones",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/06/holmes_and_the_stolen_stones_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/06/holmes_and_the_stolen_stones_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2798,83 +3482,31 @@ export default {
       },
     },
     liveTable: {
-      madlz3bzhyeabit4: {
-        tableId: "madlz3bzhyeabit4",
-        type: "Roulette",
-        image: "https://lobbyimages.egcdn.video/thumbnail/csor1_imrs_med_L.jpg",
+      munbzmuueehqaavs: {
+        tableId: "munbzmuueehqaavs",
+        type: "MoneyWheel",
+        image: "https://lobbyimages.egcdn.video/thumbnail/csor1_mw_med_L.jpg",
         bets: {
-          symbol: "£",
-          min: 1,
-          max: 10000,
+          symbol: "€",
+          min: 0.1,
+          max: 2500,
         },
-        players: 2,
-        results: ["5", "32", "12", "35", "22", "22", "15", "26", "26", "14"],
+        players: 0,
+        results: ["01", "01", "01", "01", "02", "01", "01", "01", "02"],
         betBehind: null,
         seats: null,
         provider: "casumo",
-      },
-      LightningTable01: {
-        tableId: "LightningTable01",
-        type: "Roulette",
-        image:
-          "https://lobbyimages.egcdn.video/thumbnail/lightr1_imrs_med_L.jpg",
-        bets: {
-          symbol: "£",
-          min: 0.2,
-          max: 10000,
-        },
-        players: 515,
-        results: ["23", "31", "14", "1", "10", "28", "5", "29", "11", "19"],
-        betBehind: null,
-        seats: null,
-        provider: "evolution",
-      },
-      oytmvb9m1zysmc44: {
-        tableId: "oytmvb9m1zysmc44",
-        type: "Baccarat",
-        image: "https://lobbyimages.egcdn.video/thumbnail/bac2_bs_med_L.jpg",
-        bets: {
-          symbol: "£",
-          min: 1,
-          max: 15000,
-        },
-        players: 256,
-        results: [
-          "B",
-          "B",
-          "B",
-          "T",
-          "B",
-          "B",
-          "B",
-          "B",
-          "P",
-          "P",
-          "B",
-          "B",
-          "P",
-          "P",
-          "P",
-          "B",
-          "P",
-          "P",
-          "B",
-          "T",
-        ],
-        betBehind: null,
-        seats: null,
-        provider: "evolution",
       },
       UTHTable00000001: {
         tableId: "UTHTable00000001",
         type: "UTH",
         image: "https://lobbyimages.egcdn.video/thumbnail/pk_uth1_med_L.jpg",
         bets: {
-          symbol: "£",
-          min: 0.5,
-          max: 500,
+          symbol: "€",
+          min: 5,
+          max: 600,
         },
-        players: 154,
+        players: 1,
         results: null,
         betBehind: null,
         seats: null,
@@ -2885,52 +3517,25 @@ export default {
         type: "TopCard",
         image: "https://lobbyimages.egcdn.video/thumbnail/topcr1_bs_med_L.jpg",
         bets: {
-          symbol: "£",
+          symbol: "€",
           min: 1,
-          max: 10000,
+          max: 15000,
         },
-        players: 62,
+        players: 2,
         results: [
-          "L",
           "R",
           "R",
           "L",
-          "L",
-          "L",
-          "L",
-          "R",
-          "R",
-          "R",
-          "R",
-          "R",
-          "R",
-          "S",
-          "L",
-          "L",
-          "L",
-          "L",
-          "L",
-          "L",
-          "R",
-          "L",
-          "L",
-          "L",
-          "R",
-          "R",
-          "L",
-          "L",
-          "R",
-          "L",
-          "L",
-          "R",
-          "L",
-          "L",
-          "R",
-          "L",
+          "T",
           "L",
           "R",
           "L",
           "R",
+          "L",
+          "L",
+          "L",
+          "L",
+          "L",
         ],
         betBehind: null,
         seats: null,
@@ -2941,290 +3546,382 @@ export default {
         type: "MoneyWheel",
         image: "https://lobbyimages.egcdn.video/thumbnail/dc1_mw_med_L.jpg",
         bets: {
-          symbol: "£",
+          symbol: "€",
           min: 0.1,
-          max: 2500,
+          max: 5000,
         },
-        players: 266,
-        results: ["10", "20", "05", "02", "20", "05", "01", "05", "01"],
+        players: 8,
+        results: ["10", "02", "01", "02", "01", "01", "02", "40", "01"],
         betBehind: null,
         seats: null,
         provider: "evolution",
       },
     },
     jackpot: {
+      "playngo-941": {
+        currencyCode: "EUR",
+        gameId: "playngo-941",
+        formattedJackpotAmount: "0,03 €",
+      },
+      "playngo-127": {
+        currencyCode: "EUR",
+        gameId: "playngo-127",
+        formattedJackpotAmount: "10.000,00 €",
+      },
       "netent-gof_mega": {
-        currencyCode: "GBP",
+        currencyCode: "EUR",
         gameId: "netent-gof_mega",
-        formattedJackpotAmount: "£9,763.83",
-      },
-      "netent-megafortunedreams_mega": {
-        currencyCode: "GBP",
-        gameId: "netent-megafortunedreams_mega",
-        formattedJackpotAmount: "£2,683,837.92",
-      },
-      "netent-cstud": {
-        currencyCode: "GBP",
-        gameId: "netent-cstud",
-        formattedJackpotAmount: "£8,835.04",
-      },
-      "netent-cf_major": {
-        currencyCode: "GBP",
-        gameId: "netent-cf_major",
-        formattedJackpotAmount: "£3,877.42",
-      },
-      "netent-frog1": {
-        currencyCode: "GBP",
-        gameId: "netent-frog1",
-        formattedJackpotAmount: "£112.50",
-      },
-      "netent-megajackpot2": {
-        currencyCode: "GBP",
-        gameId: "netent-megajackpot2",
-        formattedJackpotAmount: "£6,569.68",
-      },
-      "netent-megafortunedreams_major": {
-        currencyCode: "GBP",
-        gameId: "netent-megafortunedreams_major",
-        formattedJackpotAmount: "£6,165.04",
-      },
-      "netent-hrscratchticketjpb": {
-        currencyCode: "GBP",
-        gameId: "netent-hrscratchticketjpb",
-        formattedJackpotAmount: "£43,802.01",
-      },
-      "netent-horserace": {
-        currencyCode: "GBP",
-        gameId: "netent-horserace",
-        formattedJackpotAmount: "£876.04",
-      },
-      "netent-cf_minifix": {
-        currencyCode: "GBP",
-        gameId: "netent-cf_minifix",
-        formattedJackpotAmount: "£438.02",
-      },
-      "netent-megajoker": {
-        currencyCode: "GBP",
-        gameId: "netent-megajoker",
-        formattedJackpotAmount: "£1,864.49",
-      },
-      "netent-hog_small": {
-        currencyCode: "GBP",
-        gameId: "netent-hog_small",
-        formattedJackpotAmount: "£777.57",
-      },
-      "netent-megajackpot3": {
-        currencyCode: "GBP",
-        gameId: "netent-megajackpot3",
-        formattedJackpotAmount: "£1,390.82",
-      },
-      "netent-keno": {
-        currencyCode: "GBP",
-        gameId: "netent-keno",
-        formattedJackpotAmount: "£4,382.80",
-      },
-      "netent-frog3": {
-        currencyCode: "GBP",
-        gameId: "netent-frog3",
-        formattedJackpotAmount: "£4,496.53",
+        formattedJackpotAmount: "11.145,41 €",
       },
       "netent-wonder2": {
-        currencyCode: "GBP",
+        currencyCode: "EUR",
         gameId: "netent-wonder2",
-        formattedJackpotAmount: "£9,403.99",
+        formattedJackpotAmount: "10.734,66 €",
       },
-      "netent-megajackpot1": {
-        currencyCode: "GBP",
-        gameId: "netent-megajackpot1",
-        formattedJackpotAmount: "£1,808,000.57",
+      "playngo-183": {
+        currencyCode: "EUR",
+        gameId: "playngo-183",
+        formattedJackpotAmount: "66,84 €",
       },
-      "netent-megafortunedreams_rapid": {
-        currencyCode: "GBP",
-        gameId: "netent-megafortunedreams_rapid",
-        formattedJackpotAmount: "£805.01",
-      },
-      "netent-arabian": {
-        currencyCode: "GBP",
-        gameId: "netent-arabian",
-        formattedJackpotAmount: "£4,380.20",
-      },
-      "netent-fishyfortune": {
-        currencyCode: "GBP",
-        gameId: "netent-fishyfortune",
-        formattedJackpotAmount: "£87.60",
-      },
-      "netent-cf_mega": {
-        currencyCode: "GBP",
-        gameId: "netent-cf_mega",
-        formattedJackpotAmount: "£14,004.34",
-      },
-      "netent-cashbomb": {
-        currencyCode: "GBP",
-        gameId: "netent-cashbomb",
-        formattedJackpotAmount: "£3,153.75",
-      },
-      "netent-bingo": {
-        currencyCode: "GBP",
-        gameId: "netent-bingo",
-        formattedJackpotAmount: "£876.04",
-      },
-      "netent-hrscratchticketjp": {
-        currencyCode: "GBP",
-        gameId: "netent-hrscratchticketjp",
-        formattedJackpotAmount: "£26,281.21",
-      },
-      "netent-hog_large": {
-        currencyCode: "GBP",
-        gameId: "netent-hog_large",
-        formattedJackpotAmount: "£1,984,822.50",
-      },
-      "netent-frog2": {
-        currencyCode: "GBP",
-        gameId: "netent-frog2",
-        formattedJackpotAmount: "£484.55",
-      },
-      "netent-wonder1": {
-        currencyCode: "GBP",
-        gameId: "netent-wonder1",
-        formattedJackpotAmount: "£867.08",
-      },
-      "netent-goldrush": {
-        currencyCode: "GBP",
-        gameId: "netent-goldrush",
-        formattedJackpotAmount: "£1,261.50",
-      },
-      "netent-hog_medium": {
-        currencyCode: "GBP",
-        gameId: "netent-hog_medium",
-        formattedJackpotAmount: "£5,306.05",
-      },
-      "netent-cf_rapidfix": {
-        currencyCode: "GBP",
-        gameId: "netent-cf_rapidfix",
-        formattedJackpotAmount: "£87.60",
+      "playngo-131": {
+        currencyCode: "EUR",
+        gameId: "playngo-131",
+        formattedJackpotAmount: "25.000,00 €",
       },
       "netent-vault": {
-        currencyCode: "GBP",
+        currencyCode: "EUR",
         gameId: "netent-vault",
-        formattedJackpotAmount: "£6,307.49",
+        formattedJackpotAmount: "7.200,00 €",
+      },
+      "playngo-186": {
+        currencyCode: "EUR",
+        gameId: "playngo-186",
+        formattedJackpotAmount: "5.507,86 €",
+      },
+      "playngo-130": {
+        currencyCode: "EUR",
+        gameId: "playngo-130",
+        formattedJackpotAmount: "2.500,00 €",
+      },
+      "netent-frog1": {
+        currencyCode: "EUR",
+        gameId: "netent-frog1",
+        formattedJackpotAmount: "128,42 €",
+      },
+      "netent-megafortunedreams_rapid": {
+        currencyCode: "EUR",
+        gameId: "netent-megafortunedreams_rapid",
+        formattedJackpotAmount: "936,42 €",
+      },
+      "netent-hog_large": {
+        currencyCode: "EUR",
+        gameId: "netent-hog_large",
+        formattedJackpotAmount: "2.265.747,90 €",
+      },
+      "netent-cf_minifix": {
+        currencyCode: "EUR",
+        gameId: "netent-cf_minifix",
+        formattedJackpotAmount: "500,00 €",
+      },
+      "playngo-940": {
+        currencyCode: "EUR",
+        gameId: "playngo-940",
+        formattedJackpotAmount: "0,02 €",
+      },
+      "playngo-450": {
+        currencyCode: "EUR",
+        gameId: "playngo-450",
+        formattedJackpotAmount: "2.000,00 €",
+      },
+      "netent-fishyfortune": {
+        currencyCode: "EUR",
+        gameId: "netent-fishyfortune",
+        formattedJackpotAmount: "100,00 €",
+      },
+      "netent-megafortunedreams_major": {
+        currencyCode: "EUR",
+        gameId: "netent-megafortunedreams_major",
+        formattedJackpotAmount: "7.055,12 €",
+      },
+      "netent-megajackpot3": {
+        currencyCode: "EUR",
+        gameId: "netent-megajackpot3",
+        formattedJackpotAmount: "1.587,66 €",
+      },
+      "netent-megafortunedreams_mega": {
+        currencyCode: "EUR",
+        gameId: "netent-megafortunedreams_mega",
+        formattedJackpotAmount: "3.063.698,50 €",
+      },
+      "playngo-133": {
+        currencyCode: "EUR",
+        gameId: "playngo-133",
+        formattedJackpotAmount: "1.000,00 €",
+      },
+      "netent-hog_small": {
+        currencyCode: "EUR",
+        gameId: "netent-hog_small",
+        formattedJackpotAmount: "887,59 €",
+      },
+      "netent-cashbomb": {
+        currencyCode: "EUR",
+        gameId: "netent-cashbomb",
+        formattedJackpotAmount: "3.600,00 €",
+      },
+      "playngo-184": {
+        currencyCode: "EUR",
+        gameId: "playngo-184",
+        formattedJackpotAmount: "1.023,48 €",
+      },
+      "netent-keno": {
+        currencyCode: "EUR",
+        gameId: "netent-keno",
+        formattedJackpotAmount: "5.002,97 €",
+      },
+      "netent-hrscratchticketjp": {
+        currencyCode: "EUR",
+        gameId: "netent-hrscratchticketjp",
+        formattedJackpotAmount: "30.000,00 €",
+      },
+      "netent-goldrush": {
+        currencyCode: "EUR",
+        gameId: "netent-goldrush",
+        formattedJackpotAmount: "1.440,00 €",
+      },
+      "netent-hog_medium": {
+        currencyCode: "EUR",
+        gameId: "netent-hog_medium",
+        formattedJackpotAmount: "6.056,86 €",
+      },
+      "playngo-939": {
+        currencyCode: "EUR",
+        gameId: "playngo-939",
+        formattedJackpotAmount: "0,01 €",
+      },
+      "netent-wonder1": {
+        currencyCode: "EUR",
+        gameId: "netent-wonder1",
+        formattedJackpotAmount: "989,77 €",
+      },
+      "playngo-132": {
+        currencyCode: "EUR",
+        gameId: "playngo-132",
+        formattedJackpotAmount: "31.452,85 €",
+      },
+      "netent-cf_mega": {
+        currencyCode: "EUR",
+        gameId: "netent-cf_mega",
+        formattedJackpotAmount: "15.985,96 €",
+      },
+      "netent-frog3": {
+        currencyCode: "EUR",
+        gameId: "netent-frog3",
+        formattedJackpotAmount: "5.132,78 €",
+      },
+      "netent-arabian": {
+        currencyCode: "EUR",
+        gameId: "netent-arabian",
+        formattedJackpotAmount: "5.000,00 €",
+      },
+      "netent-cf_rapidfix": {
+        currencyCode: "EUR",
+        gameId: "netent-cf_rapidfix",
+        formattedJackpotAmount: "100,00 €",
+      },
+      "playngo-128": {
+        currencyCode: "EUR",
+        gameId: "playngo-128",
+        formattedJackpotAmount: "25,00 €",
+      },
+      "playngo-942": {
+        currencyCode: "EUR",
+        gameId: "playngo-942",
+        formattedJackpotAmount: "0,04 €",
+      },
+      "playngo-449": {
+        currencyCode: "EUR",
+        gameId: "playngo-449",
+        formattedJackpotAmount: "100,00 €",
+      },
+      "netent-megajackpot1": {
+        currencyCode: "EUR",
+        gameId: "netent-megajackpot1",
+        formattedJackpotAmount: "2.068.903,31 €",
       },
       "netent-cf_midi": {
-        currencyCode: "GBP",
+        currencyCode: "EUR",
         gameId: "netent-cf_midi",
-        formattedJackpotAmount: "£1,956.13",
+        formattedJackpotAmount: "2.232,92 €",
+      },
+      "netent-cstud": {
+        currencyCode: "EUR",
+        gameId: "netent-cstud",
+        formattedJackpotAmount: "10.085,20 €",
+      },
+      "netent-horserace": {
+        currencyCode: "EUR",
+        gameId: "netent-horserace",
+        formattedJackpotAmount: "1.000,00 €",
+      },
+      "netent-cf_major": {
+        currencyCode: "EUR",
+        gameId: "netent-cf_major",
+        formattedJackpotAmount: "4.426,07 €",
+      },
+      "playngo-129": {
+        currencyCode: "EUR",
+        gameId: "playngo-129",
+        formattedJackpotAmount: "250,00 €",
+      },
+      "netent-megajackpot2": {
+        currencyCode: "EUR",
+        gameId: "netent-megajackpot2",
+        formattedJackpotAmount: "7.499,33 €",
+      },
+      "playngo-185": {
+        currencyCode: "EUR",
+        gameId: "playngo-185",
+        formattedJackpotAmount: "2.289,09 €",
+      },
+      "netent-hrscratchticketjpb": {
+        currencyCode: "EUR",
+        gameId: "netent-hrscratchticketjpb",
+        formattedJackpotAmount: "50.000,00 €",
+      },
+      "netent-megajoker": {
+        currencyCode: "EUR",
+        gameId: "netent-megajoker",
+        formattedJackpotAmount: "2.128,31 €",
+      },
+      "playngo-126": {
+        currencyCode: "EUR",
+        gameId: "playngo-126",
+        formattedJackpotAmount: "5.000,00 €",
+      },
+      "netent-frog2": {
+        currencyCode: "EUR",
+        gameId: "netent-frog2",
+        formattedJackpotAmount: "553,11 €",
+      },
+      "netent-bingo": {
+        currencyCode: "EUR",
+        gameId: "netent-bingo",
+        formattedJackpotAmount: "1.000,00 €",
       },
     },
     gameList: {
       popularGames: {
         games: [
-          "book-of-ra-deluxe",
+          "book-of-dead",
           "diamond-mine",
-          "raging-rhino",
           "jammin-jars",
-          "legacy-of-egypt",
-          "big-bad-wolf",
-          "starburst",
-          "gemix",
-          "danger-high-voltage",
-          "88-fortunes",
-          "fruit-warp",
+          "extra-chilli",
+          "fat-rabbit",
+          "book-of-ra-deluxe",
           "gonzos-quest",
-          "rainbow-riches-pick-n-mix",
-          "white-rabbit",
-          "action-bank",
+          "big-bad-wolf",
+          "gemix",
+          "vikings-go-berzerk",
+          "starburst",
+          "fruitshop",
+          "bloodsuckers",
           "twin-spin",
-          "wish-upon-a-leprechaun",
-          "cleopatra",
+          "88-fortunes",
           "eastern-emeralds",
-          "wild-times",
+          "troll-hunters",
+          "reel-rush",
+          "razortooth",
+          "thunderstruck-ii",
         ],
         id: "popularGames",
-        title: "Popular",
-      },
-      liveCasinoGames: {
-        games: [
-          "casumo-roulette",
-          "evolution-lightning-roulette",
-          "baccarat-placeholder-for-evolution",
-          "evolution-live-ultimate-texas-holdem",
-          "evolution-live-football-studio",
-          "dream-catcher",
-        ],
-        id: "liveCasinoGames",
-        title: "Live Casino",
+        title: "Populära",
       },
       newGames: {
         games: [
-          "cash-of-kingdoms",
-          "tales-of-darkness-break-of-dawn",
-          "monopoly-big-money-reel",
-          "ark-of-mystery",
-          "iron-girl",
-          "tales-of-darkness-lunar-eclipse",
-          "erik-the-red",
-          "master-chens-fortune",
-          "ave-ceasar",
-          "the-wild-3",
-          "wicked-tales-dark-red",
-          "reel-riches-fortune-age",
-          "wild-streets",
-          "valkyrie-fire",
-          "double-stacks",
-          "wolf-hunters",
-          "buffalo-magic",
-          "solar-disc",
-          "subbuteo",
-          "street-magic",
+          "ancient-egypt-classic",
+          "lucha-legends",
+          "shields-of-the-wild",
+          "dinosaur-kingdom",
+          "wheel-of-fortune-hawaiian-getaway",
+          "wild-bazaar",
+          "the-goonies",
+          "gunslinger-reloaded",
+          "romanov-riches",
+          "dark-vortex",
+          "halloween-jack",
+          "grizzly-gold",
+          "zombie-circus",
+          "mermaids-queen",
+          "quick-hit-ultra-pays-sun-dragon",
+          "tiger-rush",
+          "vegas-magic",
+          "buffalo-rising-megaways",
+          "polterheist",
+          "tales-of-darkness-full-moon",
         ],
         id: "newGames",
-        title: "New Games",
+        title: "Nya spel",
       },
       exclusiveGames: {
         games: [
           "topwheel-treasures",
           "the-tales-of-dr-dolittle",
-          "ever-after",
+          "grizzly-gold",
           "kingdom-of-fortune",
           "casumo-roulette",
           "casumo-blackjack-evolution",
         ],
         id: "exclusiveGames",
-        title: "Only At Casumo",
+        title: "Bara på Casumo ",
       },
       casumoFavouriteGames: {
         games: [
           "eastern-emeralds",
-          "lucky-ladys-charm-deluxe",
           "donuts",
-          "fat-rabbit",
+          "fire-joker",
           "vikings-go-berzerk",
-          "reel-rush",
-          "dwarfs-gone-wild",
+          "fruit-warp",
           "reactoonz",
           "sticky-bandits",
-          "montezuma",
+          "dwarfs-gone-wild",
+          "easter-island",
           "goldilocks",
           "bonanza",
+          "legacy-of-egypt",
           "pirates-charm",
-          "book-of-dead",
-          "fire-joker",
+          "vikings-go-to-hell",
           "moon-princess",
+          "crystal-queen",
+          "foxin-wins",
+          "break-da-bank-again",
           "viking-runecraft",
-          "extra-chilli",
-          "lady-of-fortune",
-          "rainbow-riches",
+          "jumanji",
         ],
         id: "casumoFavouriteGames",
-        title: "Casumo Loves",
+        title: "Casumo gillar",
+      },
+      liveCasino: {
+        games: [
+          "topwheel-treasures",
+          "evolution-live-ultimate-texas-holdem",
+          "evolution-live-football-studio",
+          "dream-catcher",
+        ],
+        id: "liveCasino",
+        title: "Live Casino",
       },
       casumoJackpotGames: {
         games: [
+          "joker-millions",
           "mega-fortune-dreams",
           "mega-fortune",
           "hall-of-gods",
           "mega-moolah",
           "divine-fortune",
           "dancing-in-rio",
+          "book-of-ra-deluxe-jackpot-edition",
+          "holmes-and-the-stolen-stones",
+          "gunslinger-reloaded",
           "irish-riches",
           "top-cat",
           "power-force-heroes",
@@ -3234,6 +3931,79 @@ export default {
         ],
         id: "casumoJackpotGames",
         title: "Jackpots",
+      },
+    },
+    cms: {
+      "curated.curated-gb_en": {
+        id: "87759",
+        slug: "curated.curated-gb_en",
+        title: "Curated Component &#8211; se_sv",
+        content: "",
+        attachments: [
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-portrait.png",
+            title: "wintergames-tablet-portrait",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-landscape.png",
+            title: "wintergames-tablet-landscape",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-mobile.png",
+            title: "wintergames-mobile",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-portrait1.png",
+            title: "wintergames-tablet-portrait",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-landscape1.png",
+            title: "wintergames-tablet-landscape",
+          },
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          header: "5 Weeks of<br />Winter Games",
+          primary_action_text: "",
+          small_image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-mobile.png",
+          medium_image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-portrait1.png",
+          large_image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/wintergames-tablet-landscape1.png",
+          game: "",
+          promotions_legal_text:
+            "Lorem ipsum dolor sit amet, consectetur adipiscing elit, pellentesque sagittis tincidunt malesuada condimentum eleifend pretium.",
+          subtitle: "PROMOTIONS",
+        },
+        children: [],
+        childSlugs: [],
+      },
+      "mobile.live-casino-cards-content": {
+        id: "84717",
+        slug: "mobile.live-casino-cards-content",
+        title: "Live Casino Cards Content",
+        content: "",
+        attachments: [],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          recent_numbers: "Tidigare nummer",
+          open_seats: "Lediga platser",
+          table_full: "Fullt bord",
+          bet_behind: "Satsa bakom",
+          play_now: "Spela nu",
+          go_to_lobby: "Gå till lobby",
+          recent_letters: "Tidigare bokstäver",
+        },
+        children: [],
+        childSlugs: [],
       },
     },
   },

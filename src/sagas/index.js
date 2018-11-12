@@ -2,7 +2,12 @@ import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes } from "Reducers/app";
 import { types as fetchTypes } from "Reducers/fetch";
 import { types as gameTypes } from "Reducers/games";
-import { types as cmsTypes, fetchPageBySlugSaga } from "Reducers/cms";
+import { CURATED_SLUG, fetchCuratedGameSaga } from "Reducers/curated";
+import {
+  types as cmsTypes,
+  getFetchCompleteTypeBySlug,
+  fetchPageBySlugSaga,
+} from "Reducers/cms";
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
@@ -26,5 +31,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.JACKPOTS),
     jackpotsUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    getFetchCompleteTypeBySlug(CURATED_SLUG),
+    fetchCuratedGameSaga
   );
 }

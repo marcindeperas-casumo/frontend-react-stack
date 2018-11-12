@@ -12,13 +12,15 @@ $curated-card-ratios: (
 );
 
 .c-curated-card {
-  // TODO: check all this with the designers. We should be adhering to CUDL!
-  line-height: 1;
   max-height: 352px;
 
   @include cudl-breakpoint(phablet) {
     max-height: 264px;
   }
+}
+
+.c-curated-card-title {
+  line-height: 1;
 }
 
 .o-ratio--curated-card::before {
