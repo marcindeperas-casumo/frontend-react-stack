@@ -22,8 +22,16 @@ const connector: Connector<Props> = connect(
   },
   dispatch => ({
     fetchCurated: () => dispatch(fetchCurated()),
-    onLaunchGame: slug => dispatch(gameActions.launchGame(slug)),
-  })
+    launchGame: id => dispatch(gameActions.launchGame(id)),
+  }),
+  (stateProps, dispatchProps, ownProps) => {
+    const { data } = stateProps;
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      onLaunchGame: () => dispatchProps.launchGame(data.game),
+    };
+  }
 );
 
 export default connector(CuratedCard);

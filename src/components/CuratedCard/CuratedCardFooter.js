@@ -72,7 +72,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
           <Flex justify="center">
             <Button
               id="gtm-curated-play"
-              onClick={() => onLaunchGame(game.slug)}
+              onClick={onLaunchGame}
               variant="variant-1"
               className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
