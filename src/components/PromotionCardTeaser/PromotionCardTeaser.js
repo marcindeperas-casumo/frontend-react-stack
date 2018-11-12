@@ -1,27 +1,37 @@
+// @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import ImageLazy from "Components/Image/ImageLazy";
 import Text from "@casumo/cmp-text";
-export class PromotionCardTeaser extends PureComponent {
+import ImageLazy from "Components/Image/ImageLazy";
+import DangerousHtml from "Components/DangerousHtml";
+
+type Props = {
+  /** The date range the promotion will run for. */
+  date: String,
+  /** The title of the promotion. */
+  title: String,
+  /** The src of the image to show on the right. */
+  imageSrc: String,
+};
+
+export class PromotionCardTeaser extends PureComponent<Props> {
   render() {
+    const { date, title, imageSrc } = this.props;
     return (
       <Flex
         align="center"
-        className="t-background-white t-border-r--16 u-padding--lg"
-        style={{ lineHeight: 1 }}
+        className="t-background-white t-border-r--16 u-padding--lg u-line-height--1"
       >
         <Flex.Block>
           <Text size="xs" className="t-color-red u-margin-bottom">
-            30 Nov 2018 - 6 Jan 2019
+            {date}
           </Text>
           <Text className="u-font-weight-bold u-margin-bottom--none" size="xlg">
-            Boosted
-            <br /> Reel
-            <br /> Races
+            <DangerousHtml html={title} />
           </Text>
         </Flex.Block>
         <Flex.Item>
-          <ImageLazy src="https://cms.casumo.com/wp-content/uploads/2018/11/promotions-bonus-cards.svg" />
+          <ImageLazy src={imageSrc} />
         </Flex.Item>
       </Flex>
     );
