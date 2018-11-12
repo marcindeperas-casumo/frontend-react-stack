@@ -10,7 +10,7 @@ export default class MustDropJackpots extends PureComponent<Props> {
     const { ids } = this.props;
 
     return (
-      <div className="">
+      <div className="u-padding--md">
         {ids.map(id => (
           <GameRow id={id} key={`jackpot-${id}`} />
         ))}
