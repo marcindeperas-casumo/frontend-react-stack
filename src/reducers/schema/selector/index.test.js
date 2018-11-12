@@ -13,6 +13,7 @@ import {
   gameSelector,
   gameListTitleSelectorFactory,
   areGameListsLoaded,
+  mustDropJackpotsIdsSelector,
 } from "Reducers/schema/selector";
 
 describe("Schema selectors", () => {
@@ -299,6 +300,30 @@ describe("Schema selectors", () => {
       const selector = gameListTitleSelectorFactory("latestPlayedGames");
 
       expect(selector(state)).toBe("Last Played");
+    });
+  });
+
+  describe("mustDropJackpotsIdsSelector()", () => {
+    test("should return the Must Drop Jackpots game ids given a schema", () => {
+      const state = {
+        schema: {
+          gameList: {
+            mustDropJackpotGames: {
+              games: ["I am", "a sweet", "must drop", "jackpot game"],
+              id: "mustDropJackpotGames",
+              title: "Must Drop Jackpot Game",
+            },
+          },
+        },
+      };
+      const selector = mustDropJackpotsIdsSelector(state);
+
+      expect(selector).toEqual([
+        "I am",
+        "a sweet",
+        "must drop",
+        "jackpot game",
+      ]);
     });
   });
 

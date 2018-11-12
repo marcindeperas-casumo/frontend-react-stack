@@ -9,6 +9,7 @@ import {
   isEmpty,
 } from "ramda";
 import { createSelector } from "reselect";
+import { GAME_LIST_IDS } from "../../../../src/constants";
 import config from "../../../config";
 
 const { gameListsShowingMaintenanceGames } = config;
@@ -57,6 +58,15 @@ export const jackpotIdsSelector = createSelector(
     defaultTo([]),
     prop("games"),
     prop("casumoJackpotGames")
+  )
+);
+
+export const mustDropJackpotsIdsSelector = createSelector(
+  gameListEntitiesSelector,
+  compose(
+    defaultTo([]),
+    prop("games"),
+    prop(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)
   )
 );
 

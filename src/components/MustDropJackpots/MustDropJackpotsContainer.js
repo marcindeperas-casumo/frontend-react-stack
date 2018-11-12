@@ -5,11 +5,11 @@ import {
   isGamesHandshakeLoaded,
   isApplicationHandshakeLoaded,
 } from "Reducers/handshake/selectors";
-import { jackpotIdsSelector } from "Reducers/schema/selector";
+import { mustDropJackpotsIdsSelector } from "Reducers/schema/selector";
 
 const MustDropJackpotsConnected = connect(state => ({
   isFetching: !isGamesHandshakeLoaded && !isApplicationHandshakeLoaded,
-  ids: jackpotIdsSelector(state),
+  ids: mustDropJackpotsIdsSelector(state),
 }))(MustDropJackpots);
 
 const MustDropJackpotsContainer = props => {
