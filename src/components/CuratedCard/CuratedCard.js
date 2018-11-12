@@ -3,11 +3,13 @@ import React, { PureComponent } from "react";
 
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
-
-import ImageLazy from "Components/Image/ImageLazy";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
-import type { Images } from "Components/Image/ImageAdaptive";
+import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
+import { launchGame } from "Services/LaunchGameService";
+import EitherOr from "Components/EitherOr";
+import classNames from "classnames";
 
 import "./CuratedCard.scss";
 
@@ -21,21 +23,80 @@ const spacing = {
   default: "lg",
 };
 
-type Props = {|
-  data: any,
+export type Data = {|
+  header: string,
+  subtitle: string,
+  game: string,
+  gameData: Object,
+  small_image: string,
+  medium_image: string,
+  large_image: string,
+  primary_action_text: string,
+  promotions_legal_text: string,
+|};
+
+export type Props = {|
+  data: Data,
+  isFetched: boolean,
+  fetchCurated: Function,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
-  renderHeader = () => {
+  componentDidMount() {
+    const { isFetched, fetchCurated } = this.props;
+
+    if (!isFetched) fetchCurated();
+  }
+
+  renderSkeleton = () => <CuratedCardSkeleton />;
+
+  renderCard = () => {
     const { data } = this.props;
+    const { gameData } = data;
+    const isPromo = !Object.keys(gameData).length;
 
     return (
-      <Text
-        className="u-font-weight-bold u-text-transform-uppercase t-color-white"
-        size="2xlg"
-        tag="span"
-        dangerouslySetInnerHTML={stringToHTML(data.fields.header)}
-      />
+      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
+        <CuratedCardBackground
+          link={isPromo ? "/en/games/promotions" : null}
+          onClick={isPromo ? null : () => launchGame({ slug: data.game })}
+          {...data}
+        />
+        <Card
+          className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+          justify={justify}
+          spacing={spacing}
+          header={this.renderHeader}
+          footer={this.renderFooter}
+        />
+      </div>
+    );
+  };
+
+  renderHeader = () => {
+    const { data } = this.props;
+    const { gameData } = data;
+    const isPromo = !Object.keys(gameData).length && data.subtitle;
+
+    return (
+      <React.Fragment>
+        {isPromo && (
+          <Text
+            className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
+            size="xs"
+          >
+            {data.subtitle}
+          </Text>
+        )}
+        <Text
+          className={classNames(
+            !isPromo && "c-curated-card-title",
+            "u-font-weight-bold t-color-white"
+          )}
+          size="2xlg"
+          dangerouslySetInnerHTML={stringToHTML(data.header)}
+        />
+      </React.Fragment>
     );
   };
 
@@ -44,31 +105,22 @@ export default class CuratedCard extends PureComponent<Props> {
 
     return (
       <CuratedCardFooter
-        game={data.game}
-        primaryActionText={data.fields.primary_action_text}
+        game={data.gameData}
+        actionText={data.primary_action_text}
+        legalText={data.promotions_legal_text}
       />
     );
   };
 
-  renderBackground = (images: Images) => (
-    <ImageLazy
-      className="o-ratio__content u-object-fit-cover"
-      images={images}
-    />
-  );
-
   render() {
-    const { data } = this.props;
+    const { isFetched } = this.props;
 
     return (
-      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
-        {this.renderBackground(data.fields)}
-        <Card
-          className="o-ratio__content u-padding--md@mobile u-padding--lg"
-          justify={justify}
-          spacing={spacing}
-          header={this.renderHeader}
-          footer={this.renderFooter}
+      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-horiz--md u-margin-horiz--2xlg@tablet u-margin-horiz--2xlg@desktop">
+        <EitherOr
+          either={this.renderCard}
+          or={this.renderSkeleton}
+          condition={() => isFetched}
         />
       </div>
     );

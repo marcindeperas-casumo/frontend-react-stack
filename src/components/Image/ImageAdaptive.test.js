@@ -5,10 +5,10 @@ import { getImgixUrl } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 
-import curatedGame from "Components/CuratedCard/__mocks__/curatedGame.json";
+import curatedData from "Reducers/curated/__mocks__/curated.json";
 
 describe("ImageAdaptive", () => {
-  const images = curatedGame.fields;
+  const images = curatedData;
 
   describe("isIntersecting true", () => {
     test("should render Picture component", () => {
@@ -22,7 +22,7 @@ describe("ImageAdaptive", () => {
       const component = mount(
         <ImageAdaptive isIntersecting={true} images={images} />
       );
-      const img = getImgixUrl(curatedGame.fields.small_image, null, { w: 1.0 });
+      const img = getImgixUrl(curatedData.small_image, null, { w: 1.0 });
       const expected = component.find("img").prop("src");
       expect(img).toEqual(expected);
     });
@@ -80,7 +80,7 @@ describe("ImageAdaptive", () => {
         <ImageAdaptive isIntersecting={false} images={images} />
       );
       const { imgixOpts } = LOW_RES_IMAGE_SETTINGS;
-      const img = getImgixUrl(curatedGame.fields.small_image, null, imgixOpts);
+      const img = getImgixUrl(curatedData.small_image, null, imgixOpts);
       const expected = component.find("img").prop("src");
       expect(img).toEqual(expected);
     });
