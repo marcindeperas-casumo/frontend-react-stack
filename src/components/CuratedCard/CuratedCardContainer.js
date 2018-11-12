@@ -22,14 +22,14 @@ const connector: Connector<Props> = connect(
   },
   dispatch => ({
     fetchCurated: () => dispatch(fetchCurated()),
-    launchGame: id => dispatch(gameActions.launchGame(id)),
+    dispatchLaunchGame: id => dispatch(gameActions.launchGame(id)),
   }),
   (stateProps, dispatchProps, ownProps) => {
     const { data } = stateProps;
     return {
       ...stateProps,
       ...dispatchProps,
-      onLaunchGame: () => dispatchProps.launchGame(data.game),
+      onLaunchGame: () => dispatchProps.dispatchLaunchGame(data.game),
     };
   }
 );
