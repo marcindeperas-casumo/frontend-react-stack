@@ -155,4 +155,21 @@ describe("CuratedCard", () => {
     );
     expect(fetchCurated).toHaveBeenCalledTimes(0);
   });
+
+  test("should call onLaunchGame when clicked", () => {
+    const onLaunchGame = jest.fn();
+    const component = mount(
+      <CuratedCard
+        data={curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={onLaunchGame}
+      />
+    );
+    component
+      .find("a")
+      .at(0)
+      .simulate("click");
+    expect(onLaunchGame).toHaveBeenCalledTimes(1);
+  });
 });

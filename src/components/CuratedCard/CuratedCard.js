@@ -7,7 +7,6 @@ import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
-import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
 import classNames from "classnames";
 
@@ -39,6 +38,7 @@ export type Props = {|
   data: Data,
   isFetched: boolean,
   fetchCurated: Function,
+  onLaunchGame: Function,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
@@ -51,7 +51,7 @@ export default class CuratedCard extends PureComponent<Props> {
   renderSkeleton = () => <CuratedCardSkeleton />;
 
   renderCard = () => {
-    const { data } = this.props;
+    const { data, onLaunchGame } = this.props;
     const { gameData } = data;
     const isPromo = !Object.keys(gameData).length;
 
@@ -59,7 +59,7 @@ export default class CuratedCard extends PureComponent<Props> {
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
           link={isPromo ? "/en/games/promotions" : null}
-          onClick={isPromo ? null : () => launchGame({ slug: data.game })}
+          onLaunchGame={isPromo ? null : onLaunchGame}
           {...data}
         />
         <Card
