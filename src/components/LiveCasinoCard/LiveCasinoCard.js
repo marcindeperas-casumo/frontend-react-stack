@@ -42,10 +42,11 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
       <Text tag="span">{renderBets(lobby.bets)}</Text>
     </Flex.Block>
     <Flex.Item>
-      <Button onClick={launchGame} className="u-text-nowrap">
-        <Text tag="strong" className="u-text-transform-capitalize">
-          <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
-        </Text>
+      <Button
+        onClick={launchGame}
+        className="u-text-nowrap u-text-transform-capitalize"
+      >
+        <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
       </Button>
     </Flex.Item>
   </Flex>
