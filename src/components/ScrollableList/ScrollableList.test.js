@@ -1,84 +1,63 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ScrollableList from "Components/ScrollableList";
-import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
-import LiveCasinoCardContainer from "Components/LiveCasinoCard";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import ScrollableList, {
+  DEFAULT_SPACING,
+} from "Components/ScrollableList/ScrollableList";
 
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
-    const rendered = shallow(<ScrollableList id="id" games={[1]} title="hi" />);
+    const title = "hi";
+    const rendered = shallow(<ScrollableList itemIds={[1]} title={title} />);
+    const titleComponent = rendered.find("ScrollableListTitle");
 
-    expect(rendered.find("ScrollableListTitle").props()).toMatchObject({
-      title: "hi",
-    });
+    expect(titleComponent.length).toBe(1);
+    expect(titleComponent.props()).toMatchObject({ title });
   });
 
-  test("do not render anything if the games are empty", () => {
-    const rendered = shallow(<ScrollableList id="id" games={[]} title="hi" />);
+  test("do not render anything if the items are empty", () => {
+    const rendered = shallow(<ScrollableList itemIds={[]} title="hi" />);
 
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("render GameTileExclusiveContainer for listId exclusiveGames ", () => {
-    const rendered = shallow(
-      <ScrollableList id="exclusiveGames" games={[1]} title="hi" />
-    );
+  test("renders with the GameTileContainer by default", () => {
+    const rendered = shallow(<ScrollableList itemIds={[1, 2]} title="hi" />);
 
-    expect(rendered.find(GameTileExclusiveContainer).length).toBe(1);
+    // TODO: fix naming issues around GameTileWrapper
+    expect(rendered.find("Connect(GameTileWrapper)")).toHaveLength(2);
   });
 
-  test("render LiveCasinoCardContainer for listId liveCasinoGames", () => {
+  test("renders with the custom component if passed", () => {
+    const SampleComponent = ({ id }) => <span>{id}</span>;
     const rendered = shallow(
-      <ScrollableList id="liveCasinoGames" games={[1]} title="hi" />
+      <ScrollableList itemIds={[1, 2]} title="hi" Component={SampleComponent} />
     );
 
-    expect(rendered.find(LiveCasinoCardContainer).length).toBe(1);
-  });
-
-  test("render LiveCasinoCardContainer for listId liveCasino", () => {
-    const rendered = shallow(
-      <ScrollableList id="liveCasino" games={[1]} title="hi" />
-    );
-
-    expect(rendered.find(LiveCasinoCardContainer).length).toBe(1);
-  });
-
-  test("render GameListTitle for a listId that we don't know", () => {
-    const rendered = shallow(
-      <ScrollableList id="foo" games={[1]} title="hi" />
-    );
-
-    expect(rendered.find(ScrollableListTitle).length).toBe(1);
-  });
-
-  test("use itemSpacing='md' for Scrolling component when the listId is liveCasinoGames", () => {
-    const rendered = shallow(
-      <ScrollableList id="liveCasinoGames" games={[1]} title="hi" />
-    );
-
-    expect(rendered.find("Scrollable").props()).toMatchObject({
-      itemSpacing: "md",
+    expect(rendered.find("SampleComponent")).toHaveLength(2);
+    expect(
+      rendered
+        .find("SampleComponent")
+        .first()
+        .props()
+    ).toMatchObject({
+      id: 1,
     });
   });
 
-  test("use itemSpacing='md' for Scrolling component when the listId is liveCasino", () => {
-    const rendered = shallow(
-      <ScrollableList id="liveCasinoGames" games={[1]} title="hi" />
-    );
+  test("has default spacing", () => {
+    const rendered = shallow(<ScrollableList itemIds={[1]} title="hi" />);
+    const scrollable = rendered.find("Scrollable");
 
-    expect(rendered.find("Scrollable").props()).toMatchObject({
-      itemSpacing: "md",
-    });
+    expect(scrollable.props()).toMatchObject({ itemSpacing: DEFAULT_SPACING });
   });
 
-  test("use itemSpacing='default' for Scrolling component when we don't know the listId ", () => {
+  test("overrides the spacing if needed", () => {
+    const spacing = "md";
     const rendered = shallow(
-      <ScrollableList id="foo" games={[1]} title="hi" />
+      <ScrollableList itemIds={[1]} title="hi" spacing={spacing} />
     );
+    const scrollable = rendered.find("Scrollable");
 
-    expect(rendered.find("Scrollable").props()).toMatchObject({
-      itemSpacing: "default",
-    });
+    expect(scrollable.props()).toMatchObject({ itemSpacing: spacing });
   });
 });
