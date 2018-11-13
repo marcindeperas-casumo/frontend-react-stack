@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
-import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
+import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 
 describe("ScrollableList", () => {

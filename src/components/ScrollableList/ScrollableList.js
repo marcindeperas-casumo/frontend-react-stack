@@ -3,7 +3,7 @@ import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameTileContainer from "Containers/GameTileContainer";
 import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
-import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
+import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import { isEmpty } from "ramda";
 
 const paddingPerDevice = {
