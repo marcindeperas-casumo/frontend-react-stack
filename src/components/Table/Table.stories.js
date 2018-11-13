@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 
 import Table from "Components/Table";
-import rows from "Components/Table/__mocks__/tabledata.json";
+import prizeData from "Components/Table/__mocks__/prizeData.json";
 const stories = storiesOf("Table", module);
 
 const Image = src => <img src={src} alt="" />;
@@ -16,6 +16,30 @@ const CashAmount = amount => (
 
 stories.add(
   "Default",
-  () => <Table rows={rows} thumbnail={Image} prize={CashAmount} />,
+  () => (
+    <Table
+      rows={[
+        { name: "Cho", age: 32, spiritAnimal: "🐶" },
+        { name: "Michele", age: 30, spiritAnimal: "🐪" },
+        { name: "Jack", age: 37, spiritAnimal: "🐧" },
+        { name: "Levente", age: 29, spiritAnimal: "🦇" },
+        { name: "Luke", age: 28, spiritAnimal: "🦑" },
+        { name: "Chris", age: 22, spiritAnimal: "🐇" },
+      ]}
+    />
+  ),
+  info({ text: "Default" })
+);
+
+stories.add(
+  "Prize Table",
+  () => (
+    <Table
+      displayHeader={false}
+      rows={prizeData}
+      thumbnail={Image}
+      prize={CashAmount}
+    />
+  ),
   info({ text: "Default" })
 );
