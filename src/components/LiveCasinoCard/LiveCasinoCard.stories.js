@@ -3,6 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
+import isNotChromatic from "Storybook/isNotChromatic";
 import LiveCasinoCardConnected from "Components/LiveCasinoCard";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import MockStore from "Components/MockStore";
@@ -14,18 +15,19 @@ import gameBlackjackFull from "./__mocks__/BlackjackFull.json";
 
 const stories = storiesOf("LiveCasinoCard", module);
 
-stories.add(
-  "Card (connected)",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCardConnected id="topwheel-treasures" />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card (connected)" })
-);
-
+if (isNotChromatic) {
+  stories.add(
+    "Card (connected)",
+    () => (
+      <div style={{ maxWidth: "320px" }}>
+        <MockStore>
+          <LiveCasinoCardConnected id="topwheel-treasures" />
+        </MockStore>
+      </div>
+    ),
+    info({ text: "Card (connected)" })
+  );
+}
 stories.add(
   "Card MoneyWheel",
   () => (
