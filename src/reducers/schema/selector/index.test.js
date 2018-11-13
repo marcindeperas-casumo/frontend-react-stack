@@ -1,4 +1,3 @@
-import { GAME_LIST_IDS } from "Src/constants";
 import config from "Src/config";
 import {
   schemaSelector,
@@ -13,6 +12,7 @@ import {
   gameListSelector,
   gameSelector,
   gameListTitleSelectorFactory,
+  areGameListsLoaded,
 } from "Reducers/schema/selector";
 
 describe("Schema selectors", () => {
@@ -299,6 +299,41 @@ describe("Schema selectors", () => {
       const selector = gameListTitleSelectorFactory("latestPlayedGames");
 
       expect(selector(state)).toBe("Last Played");
+    });
+  });
+
+  describe("areGameListsLoaded()", () => {
+    test("returns TRUE if the gameLists are not empty", () => {
+      const state = {
+        schema: {
+          gameList: {
+            latestPlayedGames: {
+              games: [
+                "bloodsuckers",
+                "easter-island",
+                "starburst",
+                "bakers-treat",
+                "rapunzels-tower",
+                "big-bad-wolf",
+              ],
+              id: "latestPlayedGames",
+              title: "Last Played",
+            },
+          },
+        },
+      };
+
+      expect(areGameListsLoaded(state)).toBe(true);
+    });
+
+    test("returns FALSE if the gameLists are empty", () => {
+      const state = {
+        schema: {
+          gameList: {},
+        },
+      };
+
+      expect(areGameListsLoaded(state)).toBe(false);
     });
   });
 });
