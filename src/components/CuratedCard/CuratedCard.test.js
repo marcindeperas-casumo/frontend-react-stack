@@ -13,7 +13,7 @@ describe("CuratedCard", () => {
   test("should render component", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -25,7 +25,7 @@ describe("CuratedCard", () => {
   test("should render CuratedCardSkeleton when isFetched is false", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={false}
       />
@@ -37,7 +37,7 @@ describe("CuratedCard", () => {
   test("should render CuratedCard when isFetched", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -48,7 +48,11 @@ describe("CuratedCard", () => {
 
   test("should render component", () => {
     const component = mount(
-      <CuratedCard data={{}} fetchCurated={fetchCurated} isFetched={false} />
+      <CuratedCard
+        {...curatedData}
+        fetchCurated={fetchCurated}
+        isFetched={false}
+      />
     );
     expect(component.find("CuratedCard").exists()).toBe(true);
   });
@@ -56,7 +60,7 @@ describe("CuratedCard", () => {
   test("should render ImageLazy background", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -67,7 +71,7 @@ describe("CuratedCard", () => {
   test("should render Card", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -78,7 +82,7 @@ describe("CuratedCard", () => {
   test("should render CuratedCardFooter if there is a game", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -89,7 +93,7 @@ describe("CuratedCard", () => {
   test("should render promotions_legal_text if no game", () => {
     const data = { ...curatedData, gameData: {} };
     const component = mount(
-      <CuratedCard data={data} fetchCurated={fetchCurated} isFetched={true} />
+      <CuratedCard {...data} fetchCurated={fetchCurated} isFetched={true} />
     );
     const text = component
       .find("Card")
@@ -106,7 +110,7 @@ describe("CuratedCard", () => {
       gameData: {},
     };
     const component = mount(
-      <CuratedCard data={data} fetchCurated={fetchCurated} isFetched={true} />
+      <CuratedCard {...data} fetchCurated={fetchCurated} isFetched={true} />
     );
     const text = component
       .find("Card")
@@ -120,7 +124,7 @@ describe("CuratedCard", () => {
   test("should render header html", () => {
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -137,7 +141,7 @@ describe("CuratedCard", () => {
   test("init fetch if not isFetched", () => {
     const component = shallow(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={false}
       />
@@ -148,7 +152,7 @@ describe("CuratedCard", () => {
   test("not init fetch if isFetched", () => {
     const component = shallow(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -160,7 +164,7 @@ describe("CuratedCard", () => {
     const onLaunchGame = jest.fn();
     const component = mount(
       <CuratedCard
-        data={curatedData}
+        {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
         onLaunchGame={onLaunchGame}

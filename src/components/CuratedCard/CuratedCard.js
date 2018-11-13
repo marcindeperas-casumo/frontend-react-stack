@@ -22,7 +22,7 @@ const spacing = {
   default: "lg",
 };
 
-export type Data = {|
+export type Props = {|
   header: string,
   subtitle: string,
   game: string,
@@ -32,10 +32,6 @@ export type Data = {|
   large_image: string,
   primary_action_text: string,
   promotions_legal_text: string,
-|};
-
-export type Props = {|
-  data: Data,
   isFetched: boolean,
   fetchCurated: Function,
   onLaunchGame: Function,
