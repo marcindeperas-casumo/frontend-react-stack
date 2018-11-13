@@ -10,7 +10,7 @@ export default class MustDropJackpots extends PureComponent<Props> {
     const { ids, isLoaded } = this.props;
 
     return !isLoaded ? (
-      <div> SKELETON BAE </div>
+      <div> SKELETON BAE </div> // implement proper skeleton state
     ) : (
       <div className="u-padding--md">
         {ids.map(id => (

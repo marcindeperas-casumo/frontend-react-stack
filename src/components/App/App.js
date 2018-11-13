@@ -26,7 +26,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpots")}
-            fallback={<div>I'm a cute skeleton fallback</div>}
+            fallback={<div>I'm a cute skeleton fallback</div>} // implement proper skeleton state
           />
         </MigrationComponent>
       </MigrationComponentManager>
