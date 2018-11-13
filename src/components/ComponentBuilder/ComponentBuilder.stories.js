@@ -7,12 +7,12 @@ import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS
 import MockStore from "Components/MockStore";
 
 const componentDefinitions = [
-  { acf_fc_layout: "GAMES_LIST", listId: "popularGames" },
+  { acf_fc_layout: "GAMES_LIST", id: "popularGames" },
   {
     acf_fc_layout: "HTML_CONTENT",
     html: "<br /><br /><div>This is some custom HTML code.</div>",
   },
-  { acf_fc_layout: "GAMES_LIST", listId: "exclusiveGames" },
+  { acf_fc_layout: "GAMES_LIST", id: "exclusiveGames" },
   {
     acf_fc_layout: "HTML_CONTENT",
     html: "<br /><br /><div>HTML code again.</div><br /><br />",

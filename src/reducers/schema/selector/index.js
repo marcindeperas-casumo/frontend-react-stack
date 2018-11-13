@@ -1,8 +1,10 @@
-import { compose, prop, keys, defaultTo, filter } from "ramda";
+import { compose, prop, keys, defaultTo } from "ramda";
 import { createSelector } from "reselect";
 import config from "../../../config";
 
-export const schemaSelector = state => state.schema;
+const { gameListsShowingMaintenanceGames } = config;
+
+export const schemaSelector = state => state.schema || {};
 
 // TODO: Add tests for selectors for null states
 
@@ -34,12 +36,6 @@ export const jackpotEntitiesSelector = createSelector(
 export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, keys);
-
-const isGameListNotExcluded = id => !config.excludeFromTopLists.includes(id);
-export const visibleTopListIds = createSelector(
-  topListIds,
-  filter(isGameListNotExcluded)
-);
 
 export const jackpotIdsSelector = createSelector(
   gameListEntitiesSelector,
@@ -82,6 +78,36 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
       return {
         ...list,
         games,
+      };
+    }
+  );
+
+const filterMaintenanceGames = (list, games) => {
+  const gameIds = list.games || [];
+  const canShowMaintenance = gameListsShowingMaintenanceGames.includes(list.id);
+  const isNotInMaintenance = id => games[id].inMaintenanceMode === false;
+
+  if (canShowMaintenance) {
+    return gameIds;
+  }
+
+  return gameIds.filter(isNotInMaintenance);
+};
+
+export const gameListSelector = (listId, options = {}) =>
+  createSelector(
+    topListSelectorById(listId),
+    gameEntitiesSelector,
+    (list, allGames) => {
+      let gameIds = list.games || [];
+
+      if (options.maintenance === false) {
+        gameIds = filterMaintenanceGames(list, allGames);
+      }
+
+      return {
+        ...list,
+        games: gameIds,
       };
     }
   );
