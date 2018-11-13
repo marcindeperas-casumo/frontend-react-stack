@@ -1,5 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import { dissoc } from "ramda";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Reducers/curated/__mocks__/curated.json";
 
@@ -91,7 +92,7 @@ describe("CuratedCard", () => {
   });
 
   test("should render promotions_legal_text if no game", () => {
-    const data = { ...curatedData, gameData: {} };
+    const data = dissoc("gameData", curatedData);
     const component = mount(
       <CuratedCard {...data} fetchCurated={fetchCurated} isFetched={true} />
     );
@@ -104,13 +105,14 @@ describe("CuratedCard", () => {
   });
 
   test("should render subtitle html", () => {
-    const data = {
-      ...curatedData,
-      game: [],
-      gameData: {},
-    };
+    const data = dissoc("gameData", curatedData);
+    const promoData = dissoc("gameId", data);
     const component = mount(
-      <CuratedCard {...data} fetchCurated={fetchCurated} isFetched={true} />
+      <CuratedCard
+        {...promoData}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
     );
     const text = component
       .find("Card")

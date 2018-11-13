@@ -100,7 +100,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
       <EitherOr
         either={this.renderLegal}
         or={this.renderGame}
-        condition={() => !Object.keys(gameData).length}
+        condition={() => !gameData}
       />
     );
   }

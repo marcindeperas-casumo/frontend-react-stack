@@ -13,12 +13,13 @@ export const curatedSelector = slug =>
         prop(0),
         prop("game")
       )(fields);
+
       const gameData = gameSelector(gameId)(state);
+      const game = { gameId, gameData };
 
       return {
         ...fields,
-        gameId,
-        gameData,
+        ...(gameId && game),
       };
     }
   );

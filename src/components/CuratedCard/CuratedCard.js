@@ -8,7 +8,6 @@ import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground"
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
 import EitherOr from "Components/EitherOr";
-import classNames from "classnames";
 
 import "./CuratedCard.scss";
 
@@ -48,13 +47,12 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderCard = () => {
     const { gameData, onLaunchGame } = this.props;
-    const isPromo = !Object.keys(gameData).length;
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={isPromo ? "/en/games/promotions" : null}
-          onLaunchGame={isPromo ? null : onLaunchGame}
+          link={gameData ? null : "/en/games/promotions"}
+          onLaunchGame={gameData ? onLaunchGame : null}
           {...this.props}
         />
         <Card
@@ -70,11 +68,10 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderHeader = () => {
     const { gameData, subtitle, header } = this.props;
-    const isPromo = !Object.keys(gameData).length && subtitle;
 
     return (
       <React.Fragment>
-        {isPromo && (
+        {!gameData && (
           <Text
             className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
             size="xs"
@@ -83,10 +80,7 @@ export default class CuratedCard extends PureComponent<Props> {
           </Text>
         )}
         <Text
-          className={classNames(
-            !isPromo && "c-curated-card-title",
-            "u-font-weight-bold t-color-white"
-          )}
+          className="u-line-height--1 u-font-weight-bold t-color-white"
           size="2xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />
