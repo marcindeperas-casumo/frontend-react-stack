@@ -6,18 +6,19 @@ import type { Props } from "Components/CuratedCard/CuratedCard";
 import {
   getCuratedByMarketSlug,
   curatedSelector,
+  isCuratedLoadedFactory,
   fetchCurated,
 } from "Reducers/curated";
-import { isPageLoadedFactory } from "Reducers/cms";
 import { market as marketSelector } from "Reducers/handshake/selectors";
 import { actions as gameActions } from "Reducers/games";
 
 const connector: Connector<Props> = connect(
   state => {
     const slug = getCuratedByMarketSlug(marketSelector(state));
+
     return {
       ...curatedSelector(slug)(state),
-      isFetched: isPageLoadedFactory(slug)(state),
+      isFetched: isCuratedLoadedFactory(slug)(state),
     };
   },
   dispatch => ({
