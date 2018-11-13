@@ -15,13 +15,13 @@ describe("CuratedCard", () => {
   });
 
   test("should trigger onClick", () => {
-    const onClick = jest.fn();
+    const onLaunchGame = jest.fn();
     const component = shallow(
-      <CuratedCardBackground onClick={onClick} {...curatedData} />
+      <CuratedCardBackground onLaunchGame={onLaunchGame} {...curatedData} />
     );
     const instance = component.instance();
     component.find("a").simulate("click");
 
-    expect(onClick).toHaveBeenCalled();
+    expect(onLaunchGame).toHaveBeenCalled();
   });
 });
