@@ -16,7 +16,7 @@ const connector: Connector<Props> = connect(
   state => {
     const slug = getCuratedByMarketSlug(marketSelector(state));
     return {
-      data: curatedSelector(slug)(state),
+      ...curatedSelector(slug)(state),
       isFetched: isPageLoadedFactory(slug)(state),
     };
   },
@@ -25,11 +25,11 @@ const connector: Connector<Props> = connect(
     dispatchLaunchGame: id => dispatch(gameActions.launchGame(id)),
   }),
   (stateProps, dispatchProps, ownProps) => {
-    const { data } = stateProps;
+    const { game } = stateProps;
     return {
       ...stateProps,
       ...dispatchProps,
-      onLaunchGame: () => dispatchProps.dispatchLaunchGame(data.game),
+      onLaunchGame: () => dispatchProps.dispatchLaunchGame(game),
     };
   }
 );

@@ -51,8 +51,7 @@ export default class CuratedCard extends PureComponent<Props> {
   renderSkeleton = () => <CuratedCardSkeleton />;
 
   renderCard = () => {
-    const { data, onLaunchGame } = this.props;
-    const { gameData } = data;
+    const { gameData, onLaunchGame } = this.props;
     const isPromo = !Object.keys(gameData).length;
 
     return (
@@ -60,7 +59,7 @@ export default class CuratedCard extends PureComponent<Props> {
         <CuratedCardBackground
           link={isPromo ? "/en/games/promotions" : null}
           onLaunchGame={isPromo ? null : onLaunchGame}
-          {...data}
+          {...this.props}
         />
         <Card
           className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
@@ -74,9 +73,8 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   renderHeader = () => {
-    const { data } = this.props;
-    const { gameData } = data;
-    const isPromo = !Object.keys(gameData).length && data.subtitle;
+    const { gameData, subtitle, header } = this.props;
+    const isPromo = !Object.keys(gameData).length && subtitle;
 
     return (
       <React.Fragment>
@@ -85,7 +83,7 @@ export default class CuratedCard extends PureComponent<Props> {
             className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
             size="xs"
           >
-            {data.subtitle}
+            {subtitle}
           </Text>
         )}
         <Text
@@ -94,20 +92,25 @@ export default class CuratedCard extends PureComponent<Props> {
             "u-font-weight-bold t-color-white"
           )}
           size="2xlg"
-          dangerouslySetInnerHTML={stringToHTML(data.header)}
+          dangerouslySetInnerHTML={stringToHTML(header)}
         />
       </React.Fragment>
     );
   };
 
   renderFooter = () => {
-    const { data, onLaunchGame } = this.props;
+    const {
+      gameData,
+      primary_action_text,
+      promotions_legal_text,
+      onLaunchGame,
+    } = this.props;
 
     return (
       <CuratedCardFooter
-        game={data.gameData}
-        actionText={data.primary_action_text}
-        legalText={data.promotions_legal_text}
+        game={gameData}
+        actionText={primary_action_text}
+        legalText={promotions_legal_text}
         onLaunchGame={onLaunchGame}
       />
     );
