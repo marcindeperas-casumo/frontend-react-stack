@@ -23,6 +23,8 @@ const MustDropJackpotsStories = () => (
         "keystone-kops",
         "jackpot-diamonds",
       ]}
+      isLoaded={true}
+      title="🐯 I'm a pretty title bae 🦁"
     />
   </MockStore>
 );
