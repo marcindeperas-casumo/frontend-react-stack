@@ -1,10 +1,10 @@
-import { compose, prop, keys, defaultTo, filter } from "ramda";
+import { compose, prop, keys, defaultTo } from "ramda";
 import { createSelector } from "reselect";
 import config from "../../../config";
 
 const { gameListsShowingMaintenanceGames } = config;
 
-export const schemaSelector = state => state.schema;
+export const schemaSelector = state => state.schema || {};
 
 // TODO: Add tests for selectors for null states
 
@@ -98,11 +98,11 @@ export const gameListSelector = (listId, options = {}) =>
   createSelector(
     topListSelectorById(listId),
     gameEntitiesSelector,
-    (list, games) => {
+    (list, allGames) => {
       let gameIds = list.games || [];
 
       if (options.maintenance === false) {
-        gameIds = filterMaintenanceGames(list, games);
+        gameIds = filterMaintenanceGames(list, allGames);
       }
 
       return {

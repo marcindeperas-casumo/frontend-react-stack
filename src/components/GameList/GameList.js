@@ -34,13 +34,18 @@ export const ITEM_SPACING = {
 
 export default class GameList extends PureComponent<Props> {
   render() {
-    const { list } = this.props;
+    const { list, isLoading } = this.props;
     const { id, title, games: gameIds } = list;
     const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const Component = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
+    const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
 
-    if (isEmpty(gameIds) || isNil(gameIds)) {
+    if (isLoading) {
       return <GameListSkeleton key={`game-list-skeleton-${id}`} />;
+    }
+
+    if (hasNoGames) {
+      return null;
     }
 
     return (

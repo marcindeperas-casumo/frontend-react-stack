@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import GameList, {
   ITEM_SPACING,
   ITEM_RENDERERS,
@@ -12,7 +12,7 @@ describe("GameList", () => {
   let rendered;
 
   beforeEach(() => {
-    rendered = shallow(<GameList list={list} />);
+    rendered = shallow(<GameList list={list} isLoading={false} />);
   });
 
   test("renders a ScrollableList", () => {
@@ -61,10 +61,16 @@ describe("GameList", () => {
     });
   });
 
-  test("displays a skeleton if the game ids are empty", () => {
-    rendered = shallow(<GameList list={{}} />);
+  test("displays a skeleton if the game-list is still loading", () => {
+    rendered = shallow(<GameList list={list} isLoading={true} />);
 
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
     expect(rendered.find("ScrollableList")).toHaveLength(0);
+  });
+
+  test("does not render anything if it is loaded but has no games", () => {
+    rendered = shallow(<GameList list={{}} isLoading={false} />);
+
+    expect(rendered.html()).toBeNull();
   });
 });
