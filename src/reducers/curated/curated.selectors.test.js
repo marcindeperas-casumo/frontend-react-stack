@@ -1,4 +1,4 @@
-import { types, curatedSelector } from "Reducers/curated";
+import { curatedSelector } from "Reducers/curated";
 
 describe("Reducers/curated/selectors", () => {
   describe("curatedSelector()", () => {
@@ -6,10 +6,7 @@ describe("Reducers/curated/selectors", () => {
       const state = { schema: { cms: "page", game: "game" } };
       const selector = curatedSelector(state);
 
-      expect(selector(state)).toEqual({
-        game: undefined,
-        gameData: {},
-      });
+      expect(selector(state)).toEqual({});
     });
   });
 });

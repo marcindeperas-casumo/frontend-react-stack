@@ -10,18 +10,28 @@ import {
 } from "Reducers/curated";
 import { isPageLoadedFactory } from "Reducers/cms";
 import { market as marketSelector } from "Reducers/handshake/selectors";
+import { actions as gameActions } from "Reducers/games";
 
 const connector: Connector<Props> = connect(
   state => {
     const slug = getCuratedByMarketSlug(marketSelector(state));
     return {
-      data: curatedSelector(slug)(state),
+      ...curatedSelector(slug)(state),
       isFetched: isPageLoadedFactory(slug)(state),
     };
   },
   dispatch => ({
     fetchCurated: () => dispatch(fetchCurated()),
-  })
+    dispatchLaunchGame: gameId => dispatch(gameActions.launchGame(gameId)),
+  }),
+  (stateProps, dispatchProps, ownProps) => {
+    const { gameId } = stateProps;
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
+    };
+  }
 );
 
 export default connector(CuratedCard);

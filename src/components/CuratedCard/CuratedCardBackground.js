@@ -6,7 +6,7 @@ type Props = {
   small_image: string,
   medium_image: string,
   large_image: string,
-  onClick: ?Function,
+  onLaunchGame: ?Function,
   link: ?string,
 };
 
@@ -16,7 +16,7 @@ export default class CuratedCardBackground extends PureComponent<Props> {
       small_image,
       medium_image,
       large_image,
-      onClick,
+      onLaunchGame,
       link,
     } = this.props;
 
@@ -24,7 +24,7 @@ export default class CuratedCardBackground extends PureComponent<Props> {
       <a
         className="o-ratio__content u-cursor-pointer"
         href={link}
-        onClick={onClick}
+        onClick={onLaunchGame}
       >
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"

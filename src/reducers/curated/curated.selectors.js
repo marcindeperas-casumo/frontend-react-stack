@@ -9,16 +9,17 @@ export const curatedSelector = slug =>
     state => state,
     (page, state) => {
       const { fields = {} } = page;
-      const game = compose(
+      const gameId = compose(
         prop(0),
         prop("game")
       )(fields);
-      const gameData = gameSelector(game)(state);
+
+      const gameData = gameSelector(gameId)(state);
+      const game = { gameId, gameData };
 
       return {
         ...fields,
-        game,
-        gameData,
+        ...(gameId && game),
       };
     }
   );

@@ -11,7 +11,7 @@ export function* fetchCuratedGameSaga() {
   }
 
   const platform = "mobile";
-  const slugs = [game];
+  const slugs = game;
   const variant = "default";
   const country = yield select(getCountry);
   yield put(fetchCuratedGame({ platform, country, slugs, variant }));

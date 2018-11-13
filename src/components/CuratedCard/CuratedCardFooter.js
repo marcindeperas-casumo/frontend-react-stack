@@ -7,7 +7,6 @@ import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import ImageLazy from "Components/Image/ImageLazy";
 import { stringToHTML } from "Utils/index";
-import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
 
 const GameThumb = ({ src, mark }) => (
@@ -36,9 +35,10 @@ export type Game = {|
 |};
 
 type Props = {
-  game: Game,
+  gameData: Game,
   legalText: string,
   actionText: string,
+  onLaunchGame: Function,
 };
 
 export default class CuratedCardFooter extends PureComponent<Props> {
@@ -56,23 +56,23 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   };
 
   renderGame = () => {
-    const { game, actionText } = this.props;
+    const { gameData, actionText, onLaunchGame } = this.props;
 
     return (
       <Flex align="center">
         <Flex.Item className="o-flex__item-fixed-size">
-          <GameThumb src={game.logoBackground} mark={game.logo} />
+          <GameThumb src={gameData.logoBackground} mark={gameData.logo} />
         </Flex.Item>
         <Flex.Block>
           <Text tag="span" className="u-font-weight-bold t-color-white">
-            {game.name}
+            {gameData.name}
           </Text>
         </Flex.Block>
         <Flex.Item>
           <Flex justify="center">
             <Button
               id="gtm-curated-play"
-              onClick={() => launchGame(game.slug)}
+              onClick={onLaunchGame}
               variant="variant-1"
               className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
@@ -81,7 +81,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
             </Button>
             <Button
               id="gtm-curated-more"
-              href={`/en/play/${game.slug}`}
+              href={`/en/play/${gameData.slug}`}
               variant="outline"
               className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
             >
@@ -94,13 +94,13 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   };
 
   render() {
-    const { game } = this.props;
+    const { gameData } = this.props;
 
     return (
       <EitherOr
         either={this.renderLegal}
         or={this.renderGame}
-        condition={() => !Object.keys(game).length}
+        condition={() => !gameData}
       />
     );
   }
