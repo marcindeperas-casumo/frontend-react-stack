@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import LiveCasinoCardConnected from "Components/LiveCasinoCard";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
@@ -30,7 +31,10 @@ stories.add(
   () => (
     <div style={{ maxWidth: "320px" }}>
       <MockStore>
-        <LiveCasinoCard game={gameMoneyWheel} />
+        <LiveCasinoCard
+          game={gameMoneyWheel}
+          launchGame={action(gameMoneyWheel.slug)}
+        />
       </MockStore>
     </div>
   ),
@@ -42,7 +46,10 @@ stories.add(
   () => (
     <div style={{ maxWidth: "320px" }}>
       <MockStore>
-        <LiveCasinoCard game={gameRoulette} />
+        <LiveCasinoCard
+          game={gameRoulette}
+          launchGame={action(gameRoulette.slug)}
+        />
       </MockStore>
     </div>
   ),
@@ -54,7 +61,10 @@ stories.add(
   () => (
     <div style={{ maxWidth: "320px" }}>
       <MockStore>
-        <LiveCasinoCard game={gameBlackjack} />
+        <LiveCasinoCard
+          game={gameBlackjack}
+          launchGame={action(gameBlackjack.slug)}
+        />
       </MockStore>
     </div>
   ),
@@ -66,7 +76,10 @@ stories.add(
   () => (
     <div style={{ maxWidth: "320px" }}>
       <MockStore>
-        <LiveCasinoCard game={gameBlackjackFull} />
+        <LiveCasinoCard
+          game={gameBlackjackFull}
+          launchGame={action(gameBlackjackFull.slug)}
+        />
       </MockStore>
     </div>
   ),
@@ -78,7 +91,10 @@ stories.add(
   () => (
     <div style={{ maxWidth: "320px" }}>
       <MockStore>
-        <LiveCasinoCard game={gameTopCard} />
+        <LiveCasinoCard
+          game={gameTopCard}
+          launchGame={action(gameTopCard.slug)}
+        />
       </MockStore>
     </div>
   ),

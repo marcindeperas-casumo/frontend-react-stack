@@ -9,7 +9,6 @@ import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
-import { launchGame } from "Services/LaunchGameService";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
@@ -52,7 +51,7 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
   </Flex>
 );
 
-export default function LiveCasinoCard({ game }) {
+export default function LiveCasinoCard({ game, launchGame }) {
   return (
     <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
       <Card
@@ -64,7 +63,7 @@ export default function LiveCasinoCard({ game }) {
             name={game.name}
             lobby={game.lobby}
             slug={game.slug}
-            launchGame={() => launchGame(game.slug)}
+            launchGame={launchGame}
           />
         )}
         footer={() => <CardFooter {...game.lobby} />}
