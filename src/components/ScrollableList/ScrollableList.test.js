@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import ScrollableList, {
-  DEFUALT_SPACING,
+  DEFAULT_SPACING,
 } from "Components/ScrollableList/ScrollableList";
 
 describe("ScrollableList", () => {
@@ -48,7 +48,7 @@ describe("ScrollableList", () => {
     const rendered = shallow(<ScrollableList itemIds={[1]} title="hi" />);
     const scrollable = rendered.find("Scrollable");
 
-    expect(scrollable.props()).toMatchObject({ itemSpacing: DEFUALT_SPACING });
+    expect(scrollable.props()).toMatchObject({ itemSpacing: DEFAULT_SPACING });
   });
 
   test("overrides the spacing if needed", () => {
