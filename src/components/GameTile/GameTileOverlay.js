@@ -26,6 +26,8 @@ const GameTileOverlay = ({
 }: Props) => {
   return (
     <Flex
+      align="center"
+      justify="space-between"
       direction="vertical"
       className={classNames(
         "o-ratio__content c-game-tile__overlay",

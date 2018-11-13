@@ -1,24 +1,18 @@
-import React, { PureComponent, Fragment } from "react";
-import TopListContainer from "Containers/TopListContainer";
-import CuratedCard from "Components/CuratedCard";
-import Jackpots from "Components/Jackpots";
+// @flow
+import React, { PureComponent } from "react";
+import ComponentBuilder from "Components/ComponentBuilder";
 
-export class TopLists extends PureComponent {
+export const getSlug = (language = "en") => `built-pages.top-lists-${language}`;
+
+type Props = {
+  language: string,
+};
+
+export default class TopLists extends PureComponent<Props> {
   render() {
-    const { listIds } = this.props;
+    const { language } = this.props;
+    const slug = getSlug(language);
 
-    // TODO: Define here explicitly which top-lists we need by
-    // having wrapper components for all of them.
-    return (
-      <Fragment>
-        <CuratedCard />
-        {listIds.map(listId => {
-          return <TopListContainer key={listId} listId={listId} />;
-        })}
-        <Jackpots />
-      </Fragment>
-    );
+    return <ComponentBuilder slug={slug} />;
   }
 }
-
-export default TopLists;
