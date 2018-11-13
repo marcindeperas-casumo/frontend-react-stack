@@ -30,11 +30,7 @@ export class WaitForHostElement extends React.PureComponent {
     const { el } = this.state;
     const { children } = this.props;
 
-    if (!el) {
-      return null;
-    }
-
-    return <>{children}</>;
+    return el && children;
   }
 }
 export default WaitForHostElement;
