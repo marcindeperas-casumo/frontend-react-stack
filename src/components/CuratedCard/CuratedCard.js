@@ -104,7 +104,7 @@ export default class CuratedCard extends PureComponent<Props> {
 
     return (
       <CuratedCardFooter
-        game={gameData}
+        gameData={gameData}
         actionText={primary_action_text}
         legalText={promotions_legal_text}
         onLaunchGame={onLaunchGame}

@@ -35,7 +35,7 @@ export type Game = {|
 |};
 
 type Props = {
-  game: Game,
+  gameData: Game,
   legalText: string,
   actionText: string,
   onLaunchGame: Function,
@@ -56,16 +56,16 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   };
 
   renderGame = () => {
-    const { game, actionText, onLaunchGame } = this.props;
+    const { gameData, actionText, onLaunchGame } = this.props;
 
     return (
       <Flex align="center">
         <Flex.Item className="o-flex__item-fixed-size">
-          <GameThumb src={game.logoBackground} mark={game.logo} />
+          <GameThumb src={gameData.logoBackground} mark={gameData.logo} />
         </Flex.Item>
         <Flex.Block>
           <Text tag="span" className="u-font-weight-bold t-color-white">
-            {game.name}
+            {gameData.name}
           </Text>
         </Flex.Block>
         <Flex.Item>
@@ -81,7 +81,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
             </Button>
             <Button
               id="gtm-curated-more"
-              href={`/en/play/${game.slug}`}
+              href={`/en/play/${gameData.slug}`}
               variant="outline"
               className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
             >
@@ -94,13 +94,13 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   };
 
   render() {
-    const { game } = this.props;
+    const { gameData } = this.props;
 
     return (
       <EitherOr
         either={this.renderLegal}
         or={this.renderGame}
-        condition={() => !Object.keys(game).length}
+        condition={() => !Object.keys(gameData).length}
       />
     );
   }
