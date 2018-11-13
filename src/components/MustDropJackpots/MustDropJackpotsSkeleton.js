@@ -7,6 +7,9 @@ export default class MustDropJackpotsSkeleton extends PureComponent {
 
     return (
       <div className="u-padding--md">
+        <Skeleton width="375" height="60" className="u-display--block">
+          <rect x="100" y="10" rx="3" ry="3" width="150" height="20" />
+        </Skeleton>
         {Array.from(Array(items).keys()).map(item => (
           <Skeleton
             width="375"
