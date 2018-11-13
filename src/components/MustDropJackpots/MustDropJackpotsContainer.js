@@ -1,14 +1,16 @@
 import React from "react";
 import { connect } from "react-redux";
 import MustDropJackpots from "Components/MustDropJackpots/MustDropJackpots";
+import { GAME_LIST_IDS } from "Src/constants";
 import {
-  isGamesHandshakeLoaded,
-  isApplicationHandshakeLoaded,
-} from "Reducers/handshake/selectors";
-import { mustDropJackpotsIdsSelector } from "Reducers/schema/selector";
+  isGameListFetchedFactory,
+  mustDropJackpotsIdsSelector,
+} from "Reducers/schema/selector";
 
 const MustDropJackpotsConnected = connect(state => ({
-  isLoaded: isGamesHandshakeLoaded && isApplicationHandshakeLoaded,
+  isLoaded: isGameListFetchedFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
+    state
+  ),
   ids: mustDropJackpotsIdsSelector(state),
 }))(MustDropJackpots);
 

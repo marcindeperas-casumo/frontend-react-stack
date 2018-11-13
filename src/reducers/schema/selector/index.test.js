@@ -14,6 +14,7 @@ import {
   gameListTitleSelectorFactory,
   areGameListsLoaded,
   mustDropJackpotsIdsSelector,
+  isGameListFetchedFactory,
 } from "Reducers/schema/selector";
 
 describe("Schema selectors", () => {
@@ -324,6 +325,21 @@ describe("Schema selectors", () => {
         "must drop",
         "jackpot game",
       ]);
+    });
+  });
+
+  describe("isGameListFetchedFactory()", () => {
+    test("should return null if the game list doesn't exist on the state", () => {
+      const state = {
+        schema: {
+          gameList: {},
+        },
+      };
+      const selector = isGameListFetchedFactory("IAmATestListAndIDontExist 🍆")(
+        state
+      );
+
+      expect(selector).toBe(null);
     });
   });
 

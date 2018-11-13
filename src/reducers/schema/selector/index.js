@@ -70,6 +70,17 @@ export const mustDropJackpotsIdsSelector = createSelector(
   )
 );
 
+// If the game list does not exist in the state yet, we return null
+export const isGameListFetchedFactory = listId =>
+  createSelector(
+    gameListEntitiesSelector,
+    compose(
+      defaultTo(null),
+      prop("games"),
+      prop(listId)
+    )
+  );
+
 // Question: This could be refactored to the following, there the signature
 // matches the parameters that are passed down from the mapStateToProps fn. This
 // would make the call site cleaner as we one would just need to pass down the
