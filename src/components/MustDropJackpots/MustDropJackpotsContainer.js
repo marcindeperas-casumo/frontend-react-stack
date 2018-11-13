@@ -5,6 +5,7 @@ import { GAME_LIST_IDS } from "Src/constants";
 import {
   isGameListFetchedFactory,
   mustDropJackpotsIdsSelector,
+  gameListTitleSelectorFactory,
 } from "Reducers/schema/selector";
 
 const MustDropJackpotsConnected = connect(state => ({
@@ -12,6 +13,9 @@ const MustDropJackpotsConnected = connect(state => ({
     state
   ),
   ids: mustDropJackpotsIdsSelector(state),
+  title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
+    state
+  ),
 }))(MustDropJackpots);
 
 const MustDropJackpotsContainer = props => {
