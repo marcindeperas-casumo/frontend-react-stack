@@ -13,13 +13,17 @@ import gameBlackjackFull from "./__mocks__/BlackjackFull.json";
 
 const stories = storiesOf("LiveCasinoCard", module);
 
-stories.add("Card (connected)", () => (
-  <div style={{ maxWidth: "320px" }}>
-    <MockStore>
-      <LiveCasinoCardConnected id="topwheel-treasures" />
-    </MockStore>
-  </div>
-));
+stories.add(
+  "Card (connected)",
+  () => (
+    <div style={{ maxWidth: "320px" }}>
+      <MockStore>
+        <LiveCasinoCardConnected id="topwheel-treasures" />
+      </MockStore>
+    </div>
+  ),
+  info({ text: "Card (connected)" })
+);
 
 stories.add(
   "Card MoneyWheel",
