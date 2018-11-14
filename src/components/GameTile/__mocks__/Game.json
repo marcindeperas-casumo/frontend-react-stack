@@ -5,8 +5,5 @@
   "logo": "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
   "hasPlayForFun": true,
   "inMaintenanceMode": false,
-  "jackpotId": null,
-  "imgixOpts": {
-    "w": 170
-  }
+  "jackpotId": null
 }

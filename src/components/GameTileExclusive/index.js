@@ -1,1 +1,1 @@
-export { default } from "./GameTileExclusive";
+export { default } from "./GameTileExclusiveContainer";

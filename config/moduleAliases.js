@@ -12,4 +12,5 @@ module.exports = {
   Lib: path.resolve(__dirname, "..", "src", "lib"),
   Src: path.resolve(__dirname, "..", "src"),
   Storybook: path.resolve(__dirname, "..", ".storybook"),
+  Types: path.resolve(__dirname, "..", "src", "types"),
 };
