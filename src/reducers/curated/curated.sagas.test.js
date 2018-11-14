@@ -1,13 +1,6 @@
-import { take, select, call, put } from "redux-saga/effects";
 import curatedMock from "Reducers/curated/__mocks__/curated.json";
-import {
-  CURATED_SLUG,
-  fetchCurated,
-  fetchCuratedGameSaga,
-  curatedSelector,
-  getGamesBySlug,
-} from "Reducers/curated";
-import { types as fetchTypes } from "Reducers/fetch"
+import { fetchCuratedGameSaga } from "Reducers/curated";
+import { types as fetchTypes } from "Reducers/fetch";
 import GameBrowserService from "Services/GameBrowserService";
 
 describe("Reducers/curated/sagas", () => {
@@ -33,7 +26,7 @@ describe("Reducers/curated/sagas", () => {
       const args = {
         platform: "mobile",
         country: "gb",
-        slugs: [response.game],
+        slugs: response.game,
         variant: "default",
       };
       const { gamesBySlugs } = GameBrowserService;

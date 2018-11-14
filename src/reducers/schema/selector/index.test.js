@@ -1,4 +1,3 @@
-import { GAME_LIST_IDS } from "Src/constants";
 import config from "Src/config";
 import {
   schemaSelector,
@@ -10,10 +9,12 @@ import {
   topListIds,
   topListSelectorById,
   topListSelectorByQuery,
+  gameListSelector,
   gameSelector,
-  visibleTopListIds,
   gameListTitleSelectorFactory,
+  areGameListsLoaded,
 } from "Reducers/schema/selector";
+
 describe("Schema selectors", () => {
   test("schemaSelector", () => {
     const state = {
@@ -71,21 +72,6 @@ describe("Schema selectors", () => {
     expect(topListIds(state)).toEqual(["l1"]);
   });
 
-  test("visibleTopListIds", () => {
-    const firstExcludedGameListId = config.excludeFromTopLists[0];
-    const state = {
-      schema: {
-        gameList: {
-          [GAME_LIST_IDS.EXCLUSIVE_GAMES]: {},
-          [GAME_LIST_IDS.CASUMO_JACKPOT_GAMES]: {},
-        },
-      },
-    };
-
-    expect(visibleTopListIds(state)).not.toContain(firstExcludedGameListId);
-    expect(visibleTopListIds(state).length).toEqual(1);
-  });
-
   test("topListSelectorById()", () => {
     const id = "l1";
     const state = {
@@ -140,6 +126,96 @@ describe("Schema selectors", () => {
 
     expect(selected.id).toEqual(id);
     expect(selected.games).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
+  });
+
+  test("gameListSelectorByQuery() - can exclude games in maintenance mode", () => {
+    const id = "l1";
+    const state = {
+      schema: {
+        gameList: {
+          [id]: {
+            id,
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+        },
+        game: {
+          "book-of-ra-deluxe": {
+            name: "Book of Ra deluxe",
+            slug: "book-of-ra-deluxe",
+            hasPlayForFun: false,
+            inMaintenanceMode: false,
+          },
+          "diamond-mine": {
+            name: "Diamond Mine",
+            slug: "diamond-mine",
+            hasPlayForFun: true,
+            inMaintenanceMode: false,
+          },
+          "raging-rhino": {
+            name: "Raging Rhino",
+            slug: "raging-rhino",
+            hasPlayForFun: true,
+            inMaintenanceMode: true,
+          },
+        },
+      },
+    };
+    const selected = gameListSelector(id, { maintenance: false })(state);
+
+    expect(selected.id).toEqual(id);
+    expect(selected.games).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
+  });
+
+  test("gameListSelector() - should include maintenance games in specified lists ", () => {
+    const { gameListsShowingMaintenanceGames } = config;
+    const id1 = "game-list-2";
+    const [id2] = gameListsShowingMaintenanceGames;
+    const state = {
+      schema: {
+        gameList: {
+          [id1]: {
+            id: id1,
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+          [id2]: {
+            id: id2,
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+        },
+        game: {
+          "book-of-ra-deluxe": {
+            name: "Book of Ra deluxe",
+            slug: "book-of-ra-deluxe",
+            hasPlayForFun: false,
+            inMaintenanceMode: false,
+          },
+          "diamond-mine": {
+            name: "Diamond Mine",
+            slug: "diamond-mine",
+            hasPlayForFun: true,
+            inMaintenanceMode: false,
+          },
+          "raging-rhino": {
+            name: "Raging Rhino",
+            slug: "raging-rhino",
+            hasPlayForFun: true,
+            inMaintenanceMode: true,
+          },
+        },
+      },
+    };
+    const query = { maintenance: false };
+    const selected1 = gameListSelector(id1, query)(state);
+    const selected2 = gameListSelector(id2, query)(state);
+
+    expect(selected1.id).toEqual(id1);
+    expect(selected1.games).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
+    expect(selected2.id).toEqual(id2);
+    expect(selected2.games).toEqual([
+      "book-of-ra-deluxe",
+      "diamond-mine",
+      "raging-rhino",
+    ]);
   });
 
   describe("gameSelector", () => {
@@ -223,6 +299,41 @@ describe("Schema selectors", () => {
       const selector = gameListTitleSelectorFactory("latestPlayedGames");
 
       expect(selector(state)).toBe("Last Played");
+    });
+  });
+
+  describe("areGameListsLoaded()", () => {
+    test("returns TRUE if the gameLists are not empty", () => {
+      const state = {
+        schema: {
+          gameList: {
+            latestPlayedGames: {
+              games: [
+                "bloodsuckers",
+                "easter-island",
+                "starburst",
+                "bakers-treat",
+                "rapunzels-tower",
+                "big-bad-wolf",
+              ],
+              id: "latestPlayedGames",
+              title: "Last Played",
+            },
+          },
+        },
+      };
+
+      expect(areGameListsLoaded(state)).toBe(true);
+    });
+
+    test("returns FALSE if the gameLists are empty", () => {
+      const state = {
+        schema: {
+          gameList: {},
+        },
+      };
+
+      expect(areGameListsLoaded(state)).toBe(false);
     });
   });
 });

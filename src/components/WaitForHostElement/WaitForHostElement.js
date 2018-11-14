@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 // Using `wait-by-timer` implementation because of the following issue:
 //
 // *Change WaitForElement to use timer wait implementation* -
@@ -7,7 +7,7 @@ import waitForElement from "wait-for-element/lib/wait-by-timer";
 
 // We need this component so we can wait for the host element to be available.
 // This could happen when the route is active, but the view is not bound yet.
-export class WaitForHostElement extends PureComponent {
+export class WaitForHostElement extends React.PureComponent {
   static waitTimeout = 30000;
   state = { el: null, error: null };
 
@@ -30,11 +30,7 @@ export class WaitForHostElement extends PureComponent {
     const { el } = this.state;
     const { children } = this.props;
 
-    if (!el) {
-      return null;
-    }
-
-    return <>{children}</>;
+    return el && children;
   }
 }
 export default WaitForHostElement;

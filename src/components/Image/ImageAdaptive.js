@@ -39,14 +39,20 @@ export default class ImageAdaptive extends PureComponent<Props> {
       src: image,
     }));
 
-    return isIntersecting ? (
-      <Picture className={className} images={imgSrcs} dpr={3} />
-    ) : (
-      <ResponsiveImage
-        className={className}
-        src={images.small_image}
-        {...LOW_RES_IMAGE_SETTINGS}
-      />
+    // loading `<Picture>` on top when ready instead,
+    // not replacing when `isIntersecting` untill we find a better fix
+    // another solution could be delaying the replacement
+    return (
+      <React.Fragment>
+        <ResponsiveImage
+          className={className}
+          src={images.small_image}
+          {...LOW_RES_IMAGE_SETTINGS}
+        />
+        {isIntersecting && (
+          <Picture className={className} images={imgSrcs} dpr={3} />
+        )}
+      </React.Fragment>
     );
   }
 }

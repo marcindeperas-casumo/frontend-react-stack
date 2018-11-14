@@ -7,9 +7,7 @@ import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
-import { launchGame } from "Services/LaunchGameService";
 import EitherOr from "Components/EitherOr";
-import classNames from "classnames";
 
 import "./CuratedCard.scss";
 
@@ -23,7 +21,7 @@ const spacing = {
   default: "lg",
 };
 
-export type Data = {|
+export type Props = {|
   header: string,
   subtitle: string,
   game: string,
@@ -33,12 +31,9 @@ export type Data = {|
   large_image: string,
   primary_action_text: string,
   promotions_legal_text: string,
-|};
-
-export type Props = {|
-  data: Data,
   isFetched: boolean,
   fetchCurated: Function,
+  onLaunchGame: Function,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
@@ -51,16 +46,14 @@ export default class CuratedCard extends PureComponent<Props> {
   renderSkeleton = () => <CuratedCardSkeleton />;
 
   renderCard = () => {
-    const { data } = this.props;
-    const { gameData } = data;
-    const isPromo = !Object.keys(gameData).length;
+    const { gameData, onLaunchGame } = this.props;
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={isPromo ? "/en/games/promotions" : null}
-          onClick={isPromo ? null : () => launchGame({ slug: data.game })}
-          {...data}
+          link={gameData ? null : "/en/games/promotions"}
+          onLaunchGame={gameData ? onLaunchGame : null}
+          {...this.props}
         />
         <Card
           className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
@@ -74,43 +67,28 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   renderHeader = () => {
-    const { data } = this.props;
-    const { gameData } = data;
-    const isPromo = !Object.keys(gameData).length && data.subtitle;
+    const { gameData, subtitle, header } = this.props;
 
     return (
       <React.Fragment>
-        {isPromo && (
+        {!gameData && (
           <Text
             className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
             size="xs"
           >
-            {data.subtitle}
+            {subtitle}
           </Text>
         )}
         <Text
-          className={classNames(
-            !isPromo && "c-curated-card-title",
-            "u-font-weight-bold t-color-white"
-          )}
+          className="u-line-height--1 u-font-weight-bold t-color-white"
           size="2xlg"
-          dangerouslySetInnerHTML={stringToHTML(data.header)}
+          dangerouslySetInnerHTML={stringToHTML(header)}
         />
       </React.Fragment>
     );
   };
 
-  renderFooter = () => {
-    const { data } = this.props;
-
-    return (
-      <CuratedCardFooter
-        game={data.gameData}
-        actionText={data.primary_action_text}
-        legalText={data.promotions_legal_text}
-      />
-    );
-  };
+  renderFooter = () => <CuratedCardFooter {...this.props} />;
 
   render() {
     const { isFetched } = this.props;
