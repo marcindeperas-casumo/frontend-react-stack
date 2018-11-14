@@ -17,7 +17,7 @@ describe("PromotionCards", () => {
     expect(rendered.find("Scrollable").exists()).toBe(true);
   });
 
-  test("should initiates the fetching if page is not available", () => {
+  test("should initiate the fetching if page is not available", () => {
     const startFetch = jest.fn();
 
     shallow(
