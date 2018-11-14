@@ -9,7 +9,7 @@ import {
   isEmpty,
 } from "ramda";
 import { createSelector } from "reselect";
-import { GAME_LIST_IDS } from "../../../../src/constants";
+import { GAME_LIST_IDS } from "Src/constants";
 import config from "../../../config";
 
 const { gameListsShowingMaintenanceGames } = config;
