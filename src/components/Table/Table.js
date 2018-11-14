@@ -1,57 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import { createModifierClasses } from "@casumo/cudl-react-utils";
 import type { spacerSizes } from "@casumo/cudl-react-prop-types";
-
-const camelCaseToTitleCase = (string: string): string =>
-  string
-    .replace(/([A-Z])/g, match => ` ${match}`)
-    .replace(/^./, match => match.toUpperCase());
-
-type HeaderProps = {
-  columns: Array<string>,
-};
-
-const TableHeader = ({ columns }: HeaderProps) => (
-  <thead>
-    <tr className="t-border-bottom">
-      {columns.map((column: string) => (
-        <th key={column} className="u-padding">
-          {camelCaseToTitleCase(column)}
-        </th>
-      ))}
-    </tr>
-  </thead>
-);
-
-type RowProps = {
-  columns: Array<string>,
-  rows: Array<Object>,
-  cellPadding: string,
-};
-
-const TableRows = ({ columns, rows, cellPadding, ...rest }: RowProps) => {
-  const whatever = createModifierClasses("u-padding", cellPadding);
-  return rows.map((row: Object) => (
-    <tr className="t-border-bottom">
-      {columns.map((column: string) => {
-        if (rest[column]) {
-          return (
-            <td key={column} className={whatever}>
-              {rest[column](row[column])}
-            </td>
-          );
-        }
-        return (
-          <td key={column} className={whatever}>
-            {row[column]}
-          </td>
-        );
-      })}
-    </tr>
-  ));
-};
+import TableHeader from "Components/Table/TableHeader";
+import TableBody from "Components/Table/TableBody";
 
 type Props = {
   rows: Array<Object>,
@@ -78,7 +30,7 @@ class Table extends PureComponent<Props> {
         {displayHeader && (
           <TableHeader cellPadding={cellPadding} columns={columns} />
         )}
-        <TableRows
+        <TableBody
           columns={columns}
           cellPadding={cellPadding}
           rows={rows}
