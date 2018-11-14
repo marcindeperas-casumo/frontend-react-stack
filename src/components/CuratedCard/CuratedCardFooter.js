@@ -36,27 +36,27 @@ export type Game = {|
 
 type Props = {
   gameData: Game,
-  legalText: string,
-  actionText: string,
+  promotions_legal_text: string,
+  primary_action_text: string,
   onLaunchGame: Function,
 };
 
 export default class CuratedCardFooter extends PureComponent<Props> {
   renderLegal = () => {
-    const { legalText } = this.props;
+    const { promotions_legal_text } = this.props;
 
     return (
       <Text
         className="t-color-white u-margin-bottom u-opacity-75"
         size="sm"
         tag="div"
-        dangerouslySetInnerHTML={stringToHTML(legalText)}
+        dangerouslySetInnerHTML={stringToHTML(promotions_legal_text)}
       />
     );
   };
 
   renderGame = () => {
-    const { gameData, actionText, onLaunchGame } = this.props;
+    const { gameData, primary_action_text, onLaunchGame } = this.props;
 
     return (
       <Flex align="center">
@@ -77,7 +77,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
               className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
             >
               <PlayIcon size="sml" />
-              <span className="u-margin-left">{actionText}</span>
+              <span className="u-margin-left">{primary_action_text}</span>
             </Button>
             <Button
               id="gtm-curated-more"

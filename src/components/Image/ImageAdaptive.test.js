@@ -23,7 +23,10 @@ describe("ImageAdaptive", () => {
         <ImageAdaptive isIntersecting={true} images={images} />
       );
       const img = getImgixUrl(curatedData.small_image, null, { w: 1.0 });
-      const expected = component.find("img").prop("src");
+      const expected = component
+        .find("img")
+        .at(1)
+        .prop("src");
       expect(img).toEqual(expected);
     });
 
