@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
+import { isEmpty } from "ramda";
 import GameTileOverlay from "Components/GameTile/GameTileOverlay";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import GameTileJackpot from "Components/GameTile/GameTileJackpot";
@@ -53,7 +54,7 @@ export default class GameTile extends PureComponent<Props> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {jackpotInfo && <GameTileJackpot jackpotInfo={jackpotInfo} />}
+        {!isEmpty(jackpotInfo) && <GameTileJackpot jackpotInfo={jackpotInfo} />}
         <GameTileOverlay
           name={name}
           slug={slug}
