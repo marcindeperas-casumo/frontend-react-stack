@@ -17,6 +17,7 @@ export type GameListObject = {
 export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
+  isLoading: boolean,
 };
 
 export const ITEM_RENDERERS = {
