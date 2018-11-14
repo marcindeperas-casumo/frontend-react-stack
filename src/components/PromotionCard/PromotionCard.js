@@ -22,7 +22,6 @@ const PromotionCardWrapper = ({
     <a
       href={promotionSlug}
       className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
-      onMouseDown={e => e.preventDefault()}
     >
       <Card
         className="o-ratio__content t-border-r--16 t-background-grey-light-2"
