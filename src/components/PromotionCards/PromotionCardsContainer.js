@@ -2,17 +2,28 @@
 import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import PromotionCards from "./PromotionCards";
-import { isPageLoadedFactory, fetchPageBySlug } from "Reducers/cms";
-import { promotionsSlugSelectorFactory } from "Components/PromotionCards/selectors";
+import {
+  isPageLoadedFactory,
+  fetchPageBySlug,
+  fieldSelectorFactory,
+} from "Reducers/cms";
+
 import type { Props } from "./PromotionCards";
 
 type PublicProps = {
   slug: string,
 };
 
+const promotionsField = "promotions";
+const defaultValue = [];
+
 const connector: Connector<PublicProps, Props> = connect(
   (state, { slug }) => ({
-    promotionsSlugs: promotionsSlugSelectorFactory(slug)(state),
+    promotionsSlugs: fieldSelectorFactory({
+      slug,
+      field: promotionsField,
+      defaultValue,
+    })(state),
     isFetched: isPageLoadedFactory(slug)(state),
   }),
   (dispatch, { slug }) => ({

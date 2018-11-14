@@ -6,7 +6,13 @@
     "content": "",
     "attachments": [],
     "custom_fields": {},
-    "fields": { "critical_for_compliance": false },
+    "fields": { "critical_for_compliance": false, "promotions": [
+      "boosted-reelraces",
+      "must-drop-jackpots",
+      "big-giveaway",
+      "mystery-prizes",
+      "christmas-countdown"
+    ] },
     "children": [],
     "childSlugs": [
       "boosted-reelraces",
