@@ -7,9 +7,8 @@ import Button from "@casumo/cmp-button";
 import { decodeString } from "Utils/index";
 import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
-import CardFooter from "Components/LiveCasinoCard/CardFooter";
-import CardData from "Components/LiveCasinoCard/CardData";
-import { launchGame } from "Services/LaunchGameService";
+import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
+import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 
 const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
 
@@ -42,16 +41,17 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
       <Text tag="span">{renderBets(lobby.bets)}</Text>
     </Flex.Block>
     <Flex.Item>
-      <Button onClick={launchGame} className="u-text-nowrap">
-        <Text tag="strong" className="u-text-transform-capitalize">
-          <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
-        </Text>
+      <Button
+        onClick={launchGame}
+        className="u-text-nowrap u-text-transform-capitalize"
+      >
+        <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
       </Button>
     </Flex.Item>
   </Flex>
 );
 
-export default function LiveCasinoCard(game) {
+export default function LiveCasinoCard({ game, launchGame }) {
   if (!game.lobby) {
     console.warn(`No lobby present for ${game.name}`);
     return null;
@@ -68,7 +68,7 @@ export default function LiveCasinoCard(game) {
             name={game.name}
             lobby={game.lobby}
             slug={game.slug}
-            launchGame={() => launchGame(game.slug)}
+            launchGame={launchGame}
           />
         )}
         footer={() => <CardFooter {...game.lobby} />}

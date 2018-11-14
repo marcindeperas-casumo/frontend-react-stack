@@ -1,1 +1,1 @@
-export { default } from "Components/LiveCasinoCard/Card";
+export { default } from "Components/LiveCasinoCard/LiveCasinoCardContainer";

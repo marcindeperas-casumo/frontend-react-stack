@@ -4,7 +4,7 @@ import { isEmpty, isNil } from "ramda";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
-import LiveCasinoCardContainer from "Containers/LiveCasinoCardContainer";
+import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 
