@@ -1,11 +1,11 @@
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const PromotionCardImage = ({ promotionImage }) => {
+const PromotionCardImage = ({ image }) => {
   return (
     <ImageLazy
       className="u-display--block c-promotion-card__img u-margin"
-      src={promotionImage}
+      src={image}
       imgixOpts={{ w: 240, h: 140 }}
       dpr={3}
     />

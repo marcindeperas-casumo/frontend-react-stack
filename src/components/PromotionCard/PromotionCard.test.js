@@ -3,19 +3,19 @@ import { shallow } from "enzyme";
 import PromotionCard from "Components/PromotionCard/PromotionCard";
 
 const promotionsInfo = {
-  promotionSlug: "boosted-reelraces",
-  promotionImage: "i-am-an-image",
-  promotionBadge: "i-am-a-badge",
+  slug: "boosted-reelraces",
+  image: "i-am-an-image",
+  badge: "i-am-a-badge",
 };
 
 describe("PromotionCard", () => {
   test("should render the PromotionCardWrapper component", () => {
     const rendered = shallow(
       <PromotionCard
-        promotionSlug={promotionsInfo.promotionSlug}
+        slug={promotionsInfo.slug}
         isFetched={true}
-        promotionImage={promotionsInfo.promotionImage}
-        promotionBadge={promotionsInfo.promotionBadge}
+        image={promotionsInfo.image}
+        badge={promotionsInfo.badge}
       />
     );
 
@@ -26,26 +26,20 @@ describe("PromotionCard", () => {
       .find("PromotionCardWrapper")
       .props();
 
-    expect(renderedPromotionCardWrapperProps.promotionSlug).toBe(
-      promotionsInfo.promotionSlug
-    );
+    expect(renderedPromotionCardWrapperProps.slug).toBe(promotionsInfo.slug);
 
-    expect(renderedPromotionCardWrapperProps.promotionImage).toBe(
-      promotionsInfo.promotionImage
-    );
+    expect(renderedPromotionCardWrapperProps.image).toBe(promotionsInfo.image);
 
-    expect(renderedPromotionCardWrapperProps.promotionBadge).toBe(
-      promotionsInfo.promotionBadge
-    );
+    expect(renderedPromotionCardWrapperProps.badge).toBe(promotionsInfo.badge);
   });
 
   test("should render PromotionCardHeader component", () => {
     const rendered = shallow(
       <PromotionCard
-        promotionSlug={promotionsInfo.promotionSlug}
+        slug={promotionsInfo.slug}
         isFetched={true}
-        promotionImage={promotionsInfo.promotionImage}
-        promotionBadge={promotionsInfo.promotionBadge}
+        image={promotionsInfo.image}
+        badge={promotionsInfo.badge}
       />
     );
 
@@ -65,18 +59,16 @@ describe("PromotionCard", () => {
       .find("PromotionCardHeader")
       .props();
 
-    expect(renderedPromotionCardHeaderProps.promotionBadge).toBe(
-      promotionsInfo.promotionBadge
-    );
+    expect(renderedPromotionCardHeaderProps.badge).toBe(promotionsInfo.badge);
   });
 
   test("should render PromotionCardContent component", () => {
     const rendered = shallow(
       <PromotionCard
-        promotionSlug={promotionsInfo.promotionSlug}
+        slug={promotionsInfo.slug}
         isFetched={true}
-        promotionImage={promotionsInfo.promotionImage}
-        promotionBadge={promotionsInfo.promotionBadge}
+        image={promotionsInfo.image}
+        badge={promotionsInfo.badge}
       />
     );
 
@@ -93,10 +85,10 @@ describe("PromotionCard", () => {
   test("should render PromotionCardImage component", () => {
     const rendered = shallow(
       <PromotionCard
-        promotionSlug={promotionsInfo.promotionSlug}
+        slug={promotionsInfo.slug}
         isFetched={true}
-        promotionImage={promotionsInfo.promotionImage}
-        promotionBadge={promotionsInfo.promotionBadge}
+        image={promotionsInfo.image}
+        badge={promotionsInfo.badge}
       />
     );
 
@@ -116,17 +108,15 @@ describe("PromotionCard", () => {
       .find("PromotionCardImage")
       .props();
 
-    expect(renderedPromotionCardImageProps.promotionImage).toBe(
-      promotionsInfo.promotionImage
-    );
+    expect(renderedPromotionCardImageProps.image).toBe(promotionsInfo.image);
   });
 
   test("should render the skeleton if CMS is not fetched yet", () => {
     const rendered = shallow(
       <PromotionCard
-        promotionSlug={promotionsInfo.promotionSlug}
-        promotionImage={promotionsInfo.promotionImage}
-        promotionBadge={promotionsInfo.promotionBadge}
+        slug={promotionsInfo.slug}
+        image={promotionsInfo.image}
+        badge={promotionsInfo.badge}
         isFetched={false}
         startFetch={() => {}}
       />

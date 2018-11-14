@@ -9,31 +9,24 @@ import "./PromotionCard.scss";
 
 export type Props = {
   isFetched: boolean,
-  promotionSlug: string,
-  promotionPage: Array<Object>,
+  slug: string,
+  image: string,
+  badge: string,
+  startFetch: () => void,
 };
 
-const PromotionCardWrapper = ({
-  promotionSlug,
-  promotionImage,
-  promotionBadge,
-}) => {
+const PromotionCardWrapper = ({ slug, image, badge }) => {
   return (
     <a
-      href={promotionSlug}
+      href={slug}
       className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
     >
       <Card
         className="o-ratio__content t-border-r--16 t-background-grey-light-2"
         spacing="none"
-        header={() => (
-          <PromotionCardHeader
-            slug={promotionSlug}
-            promotionBadge={promotionBadge}
-          />
-        )}
-        content={() => <PromotionCardContent slug={promotionSlug} />}
-        footer={() => <PromotionCardImage promotionImage={promotionImage} />}
+        header={() => <PromotionCardHeader slug={slug} badge={badge} />}
+        content={() => <PromotionCardContent slug={slug} />}
+        footer={() => <PromotionCardImage image={image} />}
       />
     </a>
   );
@@ -49,19 +42,10 @@ export default class PromotionCard extends PureComponent<Props> {
   }
 
   render() {
-    const {
-      isFetched,
-      promotionSlug,
-      promotionImage,
-      promotionBadge,
-    } = this.props;
+    const { isFetched, slug, image, badge } = this.props;
 
     return isFetched ? (
-      <PromotionCardWrapper
-        promotionSlug={promotionSlug}
-        promotionImage={promotionImage}
-        promotionBadge={promotionBadge}
-      />
+      <PromotionCardWrapper slug={slug} image={image} badge={badge} />
     ) : (
       <PromotionCardSkeleton />
     );

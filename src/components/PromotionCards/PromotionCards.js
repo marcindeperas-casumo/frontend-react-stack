@@ -12,6 +12,7 @@ export type Props = {
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
+  slug: string,
 };
 
 const paddingPerDevice = {
@@ -55,7 +56,7 @@ export class PromotionCards extends PureComponent<Props> {
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
-              promotionSlug={`${slug}.${promotionSlug}`}
+              slug={`${slug}.${promotionSlug}`}
               key={promotionSlug}
             />
           ))}

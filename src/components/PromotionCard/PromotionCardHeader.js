@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const PromotionCardHeader = ({ slug, promotionBadge }) => {
+const PromotionCardHeader = ({ slug, badge }) => {
   return (
     <Flex className="u-padding-horiz--lg" justify="space-between" align="end">
       <Text
@@ -18,7 +18,7 @@ const PromotionCardHeader = ({ slug, promotionBadge }) => {
         className="u-display--block"
         width="40px"
         height="40px"
-        src={promotionBadge}
+        src={badge}
         imgixOpts={{ w: 40, h: 40 }}
         dpr={3}
       />
