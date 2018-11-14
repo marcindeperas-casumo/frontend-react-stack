@@ -51,7 +51,6 @@ export class PromotionCards extends PureComponent<Props> {
           "u-padding-top--lg u-padding-bottom--lg"
         )}
       >
-        {/* find the right padding top */}
         <ScrollableListTitle title={title} />
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
