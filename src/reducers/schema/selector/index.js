@@ -1,4 +1,13 @@
-import { compose, prop, keys, defaultTo } from "ramda";
+import {
+  compose,
+  prop,
+  keys,
+  defaultTo,
+  complement,
+  anyPass,
+  isNil,
+  isEmpty,
+} from "ramda";
 import { createSelector } from "reselect";
 import config from "../../../config";
 
@@ -36,6 +45,11 @@ export const jackpotEntitiesSelector = createSelector(
 export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
 export const topListIds = createSelector(gameListEntitiesSelector, keys);
+
+export const areGameListsLoaded = createSelector(
+  gameListEntitiesSelector,
+  complement(anyPass([isNil, isEmpty]))
+);
 
 export const jackpotIdsSelector = createSelector(
   gameListEntitiesSelector,
