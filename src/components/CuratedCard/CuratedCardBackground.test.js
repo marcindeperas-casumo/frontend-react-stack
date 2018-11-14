@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import { isEmpty } from "ramda";
-import curatedData from "Reducers/curated/__mocks__/curated.json";
+import curatedData from "Models/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {
   test("should link to promotions", () => {

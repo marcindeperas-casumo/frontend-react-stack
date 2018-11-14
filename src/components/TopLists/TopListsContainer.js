@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { getLanguage } from "Reducers/handshake/selectors";
+import { getLanguage } from "Models/handshake/selectors";
 import TopLists from "Components/TopLists/TopLists";
 
 type Props = {};

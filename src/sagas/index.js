@@ -1,21 +1,21 @@
 import { fork, takeEvery } from "redux-saga/effects";
-import { types as appTypes } from "Reducers/app";
-import { types as fetchTypes } from "Reducers/fetch";
-import { types as gameTypes } from "Reducers/games";
-import { CURATED_SLUG, fetchCuratedGameSaga } from "Reducers/curated";
+import { types as appTypes } from "Models/app";
+import { types as fetchTypes } from "Models/fetch";
+import { types as gameTypes } from "Models/games";
+import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import {
   types as cmsTypes,
   getFetchCompleteTypeBySlug,
   fetchPageBySlugSaga,
-} from "Reducers/cms";
+} from "Models/cms";
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
-} from "Reducers/cometd";
-import { jackpotsUpdatesSaga } from "Reducers/jackpots";
+} from "Models/cometd";
+import { jackpotsUpdatesSaga } from "Models/jackpots";
 import { appSaga } from "Sagas/app";
 import { fetchSaga } from "Sagas/fetch";
 import { launchGameSaga } from "Sagas/games/index";

@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { gameSelector } from "Reducers/schema/selector";
-import { launchGame } from "Reducers/games";
+import { gameSelector } from "Models/schema/selector";
+import { launchGame } from "Models/games";
 import GameRow from "Components/GameRow/GameRow";
 
 const GameRowConnected = connect(

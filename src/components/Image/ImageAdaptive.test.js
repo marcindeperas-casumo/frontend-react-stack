@@ -5,7 +5,7 @@ import { getImgixUrl } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 
-import curatedData from "Reducers/curated/__mocks__/curated.json";
+import curatedData from "Models/curated/__mocks__/curated.json";
 
 describe("ImageAdaptive", () => {
   const images = curatedData;

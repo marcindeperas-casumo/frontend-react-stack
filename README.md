@@ -6,7 +6,7 @@
 - [Usage](#development-instructions)
 - [Resources](#resources)
 - Modules
-  - [CometD](./src/reducers/cometd/README.md)
+  - [CometD](./src/models/cometd/README.md)
 
 ## How it works
 

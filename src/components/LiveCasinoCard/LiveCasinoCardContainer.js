@@ -2,8 +2,8 @@
 import React from "react";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { connect } from "react-redux";
-import { gameSelector } from "Reducers/schema/selector";
-import { launchGame } from "Reducers/games";
+import { gameSelector } from "Models/schema/selector";
+import { launchGame } from "Models/games";
 
 const LiveCasinoCardConnected = connect(
   (state, { id }) => ({ game: gameSelector(id)(state) }),

@@ -1,5 +1,5 @@
-import { actions as gamesActions, types } from "Reducers/games";
-import { fetchGamesHandshake } from "Reducers/handshake";
+import { actions as gamesActions, types } from "Models/games";
+import { fetchGamesHandshake } from "Models/handshake";
 import {
   country as countrySelector,
   currency as currencySelector,
@@ -7,9 +7,9 @@ import {
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
   market as marketSelector,
-} from "Reducers/handshake/selectors";
-import { actions as schemaActions } from "Reducers/schema";
-import { normalizeData } from "Reducers/schema/schema";
+} from "Models/handshake/selectors";
+import { actions as schemaActions } from "Models/schema";
+import { normalizeData } from "Models/schema/schema";
 import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Sagas/utils";
 import { launchGame } from "Services/LaunchGameService";
