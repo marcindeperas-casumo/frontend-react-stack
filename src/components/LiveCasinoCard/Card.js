@@ -53,7 +53,7 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
 
 export default function LiveCasinoCard(game) {
   if (!game.lobby) {
-    // TODO log when the lobby is not present!!!
+    console.warn(`No lobby present for ${game.name}`);
     return null;
   }
 

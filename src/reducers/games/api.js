@@ -151,6 +151,7 @@ export const fetchGames = async ({
     currencyCode: currency,
   });
 
+  // TODO: If the date is >= 28/11/2018 this function needs to be removed.
   const normaliseLiveCasinoId = id => {
     if (id === "liveCasino") {
       return "liveCasinoGames";
