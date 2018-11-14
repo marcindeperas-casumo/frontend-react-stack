@@ -2,12 +2,19 @@ import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "../../../.storybook/storybookInfo";
 import PromotionCards from "Components/PromotionCards";
+import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("PromotionCards", module);
 
+const state = {
+  schema: {
+    cms: promotions,
+  },
+};
+
 const PromotionCardsStories = () => (
-  <MockStore>
+  <MockStore state={state}>
     <PromotionCards
       slug="promotions"
       title="This Sexy AF campaign"

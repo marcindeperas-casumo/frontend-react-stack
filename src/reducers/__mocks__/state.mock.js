@@ -4006,25 +4006,6 @@ export default {
         childSlugs: [],
       },
       cms: {
-        promotions: {
-          id: "86853",
-          slug: "promotions",
-          title: "promotions",
-          content: "",
-          attachments: [],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-          },
-          children: [],
-          childSlugs: [
-            "boosted-reelraces",
-            "must-drop-jackpots",
-            "big-giveaway",
-            "mystery-prizes",
-            "christmas-countdown",
-          ],
-        },
         "mobile.live-casino-cards-content": {
           id: "84717",
           slug: "mobile.live-casino-cards-content",
