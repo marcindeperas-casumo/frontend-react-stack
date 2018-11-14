@@ -16,7 +16,7 @@ const state = {
 
 const PromotionCardStories = () => (
   <MockStore state={state}>
-    <PromotionCard promotionSlug="promotions.boosted-reelraces" />
+    <PromotionCard slug="promotions.boosted-reelraces" />
   </MockStore>
 );
 
