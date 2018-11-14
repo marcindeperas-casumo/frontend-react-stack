@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import JackpotsTileRow from "Components/JackpotsTileRow";
+import GameRow from "Components/GameRow";
 
 type Props = {
   ids: Array<string>,
@@ -12,7 +12,7 @@ export default class MustDropJackpots extends PureComponent<Props> {
     return (
       <div className="">
         {ids.map(id => (
-          <JackpotsTileRow id={id} key={`jackpot-${id}`} />
+          <GameRow id={id} key={`jackpot-${id}`} />
         ))}
       </div>
     );

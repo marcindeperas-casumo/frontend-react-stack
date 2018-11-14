@@ -1,24 +1,13 @@
-// @flow
-import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Reducers/schema/selector";
 import { launchGame } from "Reducers/games";
 import GameRow from "Components/GameRow/GameRow";
 
-const GameRowConnected = connect(
+export default connect(
   (state, { id }) => ({
     game: gameSelector(id)(state),
   }),
   (dispatch, { id }) => ({
-    onLaunchGame: () => dispatch(launchGame(id)),
+    launchGame: () => dispatch(launchGame(id)),
   })
 )(GameRow);
-
-type Props = {
-  /** The slug of the game to render */
-  id: string,
-};
-
-const GameRowContainer = ({ id }: Props) => <GameRowConnected id={id} />;
-
-export default GameRowContainer;
