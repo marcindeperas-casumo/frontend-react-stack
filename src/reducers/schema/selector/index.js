@@ -75,7 +75,7 @@ export const isGameListFetchedFactory = listId =>
   createSelector(
     gameListEntitiesSelector,
     compose(
-      defaultTo(null),
+      defaultTo(false),
       prop("games"),
       prop(listId)
     )
