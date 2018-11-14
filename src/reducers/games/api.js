@@ -151,6 +151,13 @@ export const fetchGames = async ({
     currencyCode: currency,
   });
 
+  const normaliseLiveCasinoId = id => {
+    if (id === "liveCasino") {
+      return "liveCasinoGames";
+    }
+    return id;
+  };
+
   const gameListsRequests = topListIds
     .map(id => prop(id, gamesLists))
     .filter(complement(isNil))
@@ -166,7 +173,7 @@ export const fetchGames = async ({
       });
       return {
         games: games.games,
-        id,
+        id: normaliseLiveCasinoId(id),
         title,
       };
     });
