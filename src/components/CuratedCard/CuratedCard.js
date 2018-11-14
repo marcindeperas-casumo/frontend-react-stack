@@ -49,7 +49,7 @@ export default class CuratedCard extends PureComponent<Props> {
     const { gameData, onLaunchGame } = this.props;
 
     return (
-      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8 t-background-grey-light-2">
+      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
           link={gameData ? null : "/en/games/promotions"}
           onLaunchGame={gameData ? onLaunchGame : null}
