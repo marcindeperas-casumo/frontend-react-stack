@@ -50,7 +50,7 @@ describe("GameTile", () => {
   });
 
   test("should not render GameTileJackpot if game.jackpotInfo does not exist", () => {
-    const noJackpotInfoGame = { ...gameInfo, jackpotInfo: null };
+    const noJackpotInfoGame = { ...gameInfo, jackpotInfo: {} };
     const rendered = shallow(<GameTile game={noJackpotInfoGame} />);
     expect(rendered.find("GameTileJackpot").length).toBe(0);
   });
