@@ -2,7 +2,8 @@
 import React, { PureComponent } from "react";
 import ComponentBuilder from "Components/ComponentBuilder";
 
-export const getSlug = (language = "en") => `built-pages.top-lists-${language}`;
+export const getSlug = (language: string = "en") =>
+  `built-pages.top-lists-${language}`;
 
 type Props = {
   language: string,

@@ -3,9 +3,9 @@ import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
-import GameTileExclusiveContainer from "Containers/GameTileExclusiveContainer";
+import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
-import GameTileContainer from "Containers/GameTileContainer";
+import GameTileContainer from "Components/GameTile";
 import GameListSkeleton from "Components/GameList/GameListSkeleton";
 
 export type GameListObject = {
@@ -17,6 +17,7 @@ export type GameListObject = {
 export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
+  isLoading: boolean,
 };
 
 export const ITEM_RENDERERS = {

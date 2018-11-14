@@ -23,8 +23,7 @@ describe("ScrollableList", () => {
   test("renders with the GameTileContainer by default", () => {
     const rendered = shallow(<ScrollableList itemIds={[1, 2]} title="hi" />);
 
-    // TODO: fix naming issues around GameTileWrapper
-    expect(rendered.find("Connect(GameTileWrapper)")).toHaveLength(2);
+    expect(rendered.find("GameTileContainer")).toHaveLength(2);
   });
 
   test("renders with the custom component if passed", () => {

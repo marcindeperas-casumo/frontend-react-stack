@@ -52,6 +52,11 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
 );
 
 export default function LiveCasinoCard({ game, launchGame }) {
+  if (!game.lobby) {
+    console.warn(`No lobby present for ${game.name}`);
+    return null;
+  }
+
   return (
     <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
       <Card

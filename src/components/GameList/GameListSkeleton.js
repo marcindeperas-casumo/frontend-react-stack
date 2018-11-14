@@ -15,7 +15,6 @@ const defaultClassNames = `
 type Props = {
   itemWidth?: number,
   items?: number,
-  itemWidth: number,
   itemRatio?: number,
   itemGap?: number,
   cornerRadius?: number,

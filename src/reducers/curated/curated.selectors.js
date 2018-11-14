@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { prop, compose } from "ramda";
+import { prop, compose, isEmpty } from "ramda";
 import { slugSelectorFactory } from "Reducers/cms";
 import { gameSelector } from "Reducers/schema/selector";
 
@@ -14,12 +14,31 @@ export const curatedSelector = slug =>
         prop("game")
       )(fields);
 
+      if (!gameId) return fields;
+
       const gameData = gameSelector(gameId)(state);
       const game = { gameId, gameData };
 
       return {
         ...fields,
-        ...(gameId && game),
+        ...(!isEmpty(gameData) && game),
       };
+    }
+  );
+
+export const isCuratedLoadedFactory = slug =>
+  createSelector(
+    slugSelectorFactory(slug),
+    state => state,
+    (page, state) => {
+      const { fields = {} } = page;
+      const gameId = compose(
+        prop(0),
+        prop("game")
+      )(fields);
+
+      return !isEmpty(fields) && !gameId
+        ? true
+        : !isEmpty(gameSelector(gameId)(state));
     }
   );
