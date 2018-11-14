@@ -329,7 +329,7 @@ describe("Schema selectors", () => {
   });
 
   describe("isGameListFetchedFactory()", () => {
-    test("should return null if the game list doesn't exist on the state", () => {
+    test("should return false if the game list doesn't exist on the state", () => {
       const state = {
         schema: {
           gameList: {},
@@ -339,7 +339,7 @@ describe("Schema selectors", () => {
         state
       );
 
-      expect(selector).toBe(null);
+      expect(selector).toBe(false);
     });
   });
 
