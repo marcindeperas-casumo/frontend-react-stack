@@ -44,10 +44,10 @@ export default class PromotionCard extends PureComponent<Props> {
   render() {
     const { isFetched, slug, image, badge } = this.props;
 
-    return isFetched ? (
-      <PromotionCardWrapper slug={slug} image={image} badge={badge} />
-    ) : (
-      <PromotionCardSkeleton />
-    );
+    if (!isFetched) {
+      return <PromotionCardSkeleton />;
+    }
+
+    return <PromotionCardWrapper slug={slug} image={image} badge={badge} />;
   }
 }
