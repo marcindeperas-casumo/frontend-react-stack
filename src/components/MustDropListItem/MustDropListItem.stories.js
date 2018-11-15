@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 
 import info from "Storybook/storybookInfo";
 import MustDropListItem from "Components/MustDropListItem";
-
+import ImageLazy from "Components/Image/ImageLazy";
 const stories = storiesOf("MustDropListItem", module);
 
 stories.add(
@@ -14,7 +14,7 @@ stories.add(
       subTitle="This jackpot could drop anytime between 0 and €1,000."
       renderImage={() => (
         <div className="t-background-grey-dark-3 t-border-r--16 u-padding">
-          <img
+          <ImageLazy
             className="u-display--block"
             width={48}
             height={48}
@@ -38,7 +38,7 @@ stories.add(
       subTitle="Pays before €1000"
       subTitleColor="grey"
       renderImage={() => (
-        <img
+        <ImageLazy
           className="u-display--block"
           width={48}
           height={48}
