@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { appStarted } from "Reducers/app";
-import { isAuthenticated } from "Reducers/handshake/selectors";
-import { activeComponents } from "Reducers/migrationComponents/selector";
+import { appStarted } from "Models/app";
+import { isAuthenticated } from "Models/handshake/selectors";
+import { activeComponents } from "Models/migrationComponents/selector";
 import App from "Components/App/App";
 
 const AppConnected = connect(

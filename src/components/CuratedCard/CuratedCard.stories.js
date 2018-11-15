@@ -3,8 +3,8 @@ import React from "react";
 import info from "Storybook/storybookInfo";
 import CuratedCard from "Components/CuratedCard";
 import MockStore from "Components/MockStore";
-import defaultState from "Reducers/__mocks__/state.mock";
-import curated from "Reducers/curated/__mocks__/curated.json";
+import defaultState from "Models/__mocks__/state.mock";
+import curated from "Models/curated/__mocks__/curated.json";
 import { compose, prop } from "ramda";
 
 const stories = storiesOf("CuratedCard", module);

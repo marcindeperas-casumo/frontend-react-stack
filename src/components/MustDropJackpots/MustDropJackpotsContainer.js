@@ -6,7 +6,7 @@ import {
   isGameListFetchedFactory,
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
-} from "Reducers/schema/selector";
+} from "Models/schema/selector";
 
 const MustDropJackpotsConnected = connect(state => ({
   isLoaded: isGameListFetchedFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(

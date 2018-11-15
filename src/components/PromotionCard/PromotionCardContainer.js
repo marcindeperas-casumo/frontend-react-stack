@@ -1,12 +1,12 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import PromotionCard from "./PromotionCard";
 import {
   isPageLoadedFactory,
   fetchPageBySlug,
   fieldSelectorFactory,
-} from "Reducers/cms";
+} from "Models/cms";
+import PromotionCard from "./PromotionCard";
 import type { Props } from "./PromotionCard";
 
 const promotionImageField = "image";

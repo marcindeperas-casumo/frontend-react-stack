@@ -2,8 +2,8 @@
 import React from "react";
 import { connect } from "react-redux";
 import GameTile from "Components/GameTile/GameTileWrapper";
-import { gameSelector } from "Reducers/schema/selector";
-import { actions as gameActions } from "Reducers/games";
+import { gameSelector } from "Models/schema/selector";
+import { actions as gameActions } from "Models/games";
 
 const GameTileConnected = connect(
   (state, props) => ({

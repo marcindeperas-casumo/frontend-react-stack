@@ -1,5 +1,5 @@
 import { put, call } from "redux-saga/effects";
-import { actions } from "Reducers/fetch";
+import { actions } from "Models/fetch";
 import { fetchService } from "Services/FetchService";
 
 export function* fetchSaga(action) {

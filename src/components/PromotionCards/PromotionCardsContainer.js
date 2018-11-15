@@ -6,7 +6,7 @@ import {
   isPageLoadedFactory,
   fetchPageBySlug,
   fieldSelectorFactory,
-} from "Reducers/cms";
+} from "Models/cms";
 import type { Props } from "./PromotionCards";
 
 const promotionsField = "promotions";
