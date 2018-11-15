@@ -48,7 +48,7 @@
   "scripts": {
     "flow": "flow",
     "precommit": "scripts/pre-commit.sh && scripts/forgotten-statements.sh",
-    "start": "webpack-dashboard -- node scripts/start.js",
+    "dev": "webpack-dashboard -- node scripts/dev.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom --verbose false",
     "test:ci": "CI=yes npm run test",
