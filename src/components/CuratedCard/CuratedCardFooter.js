@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-import { stringToHTML } from "Utils/index";
+import { stringToHTML, decodeString } from "Utils/index";
 import EitherOr from "Components/EitherOr";
 import GameThumb from "Components/GameThumb";
 
@@ -47,7 +47,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
         </Flex.Item>
         <Flex.Block>
           <Text tag="span" className="u-font-weight-bold t-color-white">
-            {gameData.name}
+            {decodeString(gameData.name)}
           </Text>
         </Flex.Block>
         <Flex.Item>
