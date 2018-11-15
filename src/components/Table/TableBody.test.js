@@ -5,9 +5,13 @@ import TableBody from "Components/Table/TableBody";
 
 describe("TableBody", () => {
   const columns = Object.keys(rowData[0]);
-  test("should render a table header", () => {
+  test("should render a table body", () => {
     const rendered = shallow(<TableBody rows={rowData} columns={columns} />);
     expect(rendered.find("tbody").length).toBe(1);
+  });
+
+  test("should render rows and columns", () => {
+    const rendered = shallow(<TableBody rows={rowData} columns={columns} />);
     expect(
       rendered
         .find("tr")
@@ -15,6 +19,9 @@ describe("TableBody", () => {
         .hasClass("t-border-bottom")
     ).toBe(true);
     expect(rendered.find("tr").length).toBe(3);
+    expect(rendered.find("TableCells").length).toBe(
+      rowData.length * columns.length
+    );
   });
 
   test("should change cellPadding", () => {
@@ -25,18 +32,24 @@ describe("TableBody", () => {
         cellPadding="large"
       />
     );
-    expect(
-      rendered
-        .find("td")
-        .first()
-        .hasClass("u-padding--large")
-    ).toBe(true);
+    const cell = rendered
+      .find("TableCells")
+      .first()
+      .dive();
+
+    expect(cell.hasClass("u-padding--large")).toBe(true);
   });
 
-  test("should use a renderProp if available", () => {
+  test("should call a renderProp if available", () => {
     const spy = jest.fn();
-    shallow(<TableBody rows={rowData} columns={columns} name={spy} />);
+    const rendered = shallow(
+      <TableBody rows={rowData} columns={columns} name={spy} />
+    );
+    rendered
+      .find("TableCells")
+      .first()
+      .dive();
 
-    expect(spy).toHaveBeenCalledTimes(3);
+    expect(spy).toHaveBeenCalledTimes(1);
   });
 });
