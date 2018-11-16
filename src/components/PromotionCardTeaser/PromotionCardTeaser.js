@@ -3,7 +3,6 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
-import DangerousHtml from "Components/DangerousHtml";
 import "./PromotionCardTeaser.scss";
 
 export type Props = {
