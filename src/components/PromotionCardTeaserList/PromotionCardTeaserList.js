@@ -1,8 +1,16 @@
+// @flow
 import React, { PureComponent } from "react";
 import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import "./PromotionCardTeaserList.scss";
 
-export class PromotionCardTeaserList extends PureComponent {
+export type Props = {
+  isFetched: boolean,
+  startFetch: () => void,
+  promotionsSlugs: Array<string>,
+  slug: string,
+};
+
+export class PromotionCardTeaserList extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 
