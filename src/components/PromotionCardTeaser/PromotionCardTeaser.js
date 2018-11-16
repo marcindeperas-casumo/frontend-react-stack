@@ -6,17 +6,11 @@ import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
 import "./PromotionCardTeaser.scss";
 
-type Props = {
-  isFetched: boolean,
-  startFetch: () => void,
-  /** The date range the promotion will run for. */
-  date: String,
-  /** The title of the promotion. */
+export type Props = {
+  slug: String,
+  badge: String,
+  dates: String,
   title: String,
-  /** The src of the image to show on the right. */
-  imageSrc: String,
-  /** The link where the card is leading to */
-  link: String,
 };
 
 export class PromotionCardTeaser extends PureComponent<Props> {
