@@ -7,6 +7,8 @@ import DangerousHtml from "Components/DangerousHtml";
 import "./PromotionCardTeaser.scss";
 
 type Props = {
+  isFetched: boolean,
+  startFetch: () => void,
   /** The date range the promotion will run for. */
   date: String,
   /** The title of the promotion. */
@@ -19,29 +21,27 @@ type Props = {
 
 export class PromotionCardTeaser extends PureComponent<Props> {
   render() {
-    const { date, title, imageSrc, link } = this.props;
+    const { slug, badge, dates, title } = this.props;
+
     return (
-      <a href={link} className="c-promotion-card-teaser t-color-grey-3">
-        <Flex
-          align="center"
-          className="t-background-white t-border-r--16 u-padding--lg u-line-height--1"
-        >
+      <a href={slug} className="c-promotion-card-teaser">
+        <Flex className="t-background-white t-border-r--16 u-padding--lg u-line-height--1">
           <Flex.Block>
             <Text
               size="xs"
               className="t-color-red u-margin-bottom u-text-transform-uppercase"
             >
-              {date}
+              {dates}
             </Text>
             <Text
-              className="u-font-weight-bold u-margin-bottom--none"
+              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3"
               size="xlg"
             >
-              <DangerousHtml html={title} />
+              {title}
             </Text>
           </Flex.Block>
           <Flex.Item>
-            <ImageLazy src={imageSrc} />
+            <ImageLazy src={badge} width="80" height="80" />
           </Flex.Item>
         </Flex>
       </a>
