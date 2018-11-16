@@ -16,6 +16,7 @@ export const rowData = [
     age: 13,
   },
 ];
+const columnHeadings = ["Name", "Age"];
 
 describe("Table", () => {
   test("should render a table", () => {
@@ -25,12 +26,17 @@ describe("Table", () => {
   });
 
   test("should render a header with columns", () => {
-    const rendered = shallow(<Table rows={rowData} />);
+    const rendered = shallow(
+      <Table rows={rowData} columnHeadings={columnHeadings} />
+    );
     expect(rendered.find("TableHeader").length).toBe(1);
     expect(rendered.find("TableHeader").prop("columns")).toEqual([
       "name",
       "age",
     ]);
+    expect(rendered.find("TableHeader").prop("columnHeadings")).toEqual(
+      columnHeadings
+    );
   });
 
   test("should not render a header if displayHeader is set to false", () => {
