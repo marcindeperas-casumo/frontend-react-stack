@@ -17,10 +17,8 @@ export default class ContentImage extends PureComponent<Props> {
   render() {
     const { src, alt = "", maxWidth = MAX_CONTENT_WIDTH } = this.props;
     const className = `
-      u-padding-left--xlg@tablet
-      u-padding-right--xlg@tablet
-      u-padding-left--xlg@desktop
-      u-padding-right--xlg@desktop
+      u-padding-horiz--xlg
+      u-padding-horiz--none@mobile
     `;
 
     return (
