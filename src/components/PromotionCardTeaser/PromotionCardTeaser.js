@@ -7,6 +7,8 @@ import DangerousHtml from "Components/DangerousHtml";
 import "./PromotionCardTeaser.scss";
 
 export type Props = {
+  startFetch: () => void,
+  isFetched: boolean,
   slug: String,
   badge: String,
   dates: String,
@@ -14,6 +16,14 @@ export type Props = {
 };
 
 export class PromotionCardTeaser extends PureComponent<Props> {
+  componentDidMount() {
+    const { isFetched, startFetch } = this.props;
+
+    if (!isFetched) {
+      startFetch();
+    }
+  }
+
   render() {
     const { slug, badge, dates, title } = this.props;
 
