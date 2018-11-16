@@ -7,7 +7,7 @@ import TableBody from "Components/Table/TableBody";
 
 type Props = {
   rows: Array<Object>,
-  columns?: Array<string>,
+  columnHeadings?: Array<string>,
   displayHeader?: boolean,
   className: string,
   cellPadding?: spacerSizes,
@@ -16,7 +16,7 @@ class Table extends PureComponent<Props> {
   render() {
     const {
       rows,
-      columns = Object.keys(rows[0]),
+      columnHeadings = [],
       displayHeader = true,
       className,
       cellPadding = "default",
@@ -24,11 +24,15 @@ class Table extends PureComponent<Props> {
     } = this.props;
 
     const componentClasses = classNames("u-width--1/1", className);
-
+    const columns = Object.keys(rows[0]);
     return (
       <table className={componentClasses}>
         {displayHeader && (
-          <TableHeader cellPadding={cellPadding} columns={columns} />
+          <TableHeader
+            cellPadding={cellPadding}
+            columns={columns}
+            columnHeadings={columnHeadings}
+          />
         )}
         <TableBody
           columns={columns}

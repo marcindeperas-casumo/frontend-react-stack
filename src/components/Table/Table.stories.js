@@ -18,6 +18,7 @@ stories.add(
   "Default",
   () => (
     <Table
+      columnHeadings={["Name", "Age", "Spirit animal"]}
       rows={[
         { name: "Cho", age: 32, spiritAnimal: "🐶" },
         { name: "Michele", age: 30, spiritAnimal: "🐪" },
