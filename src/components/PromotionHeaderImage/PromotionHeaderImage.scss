@@ -1,0 +1,21 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+
+//prettier-ignore
+$promotion-image-ratios: (
+  mobile: (
+    182/375
+  ) * 100%,
+  phablet: (
+    188/546
+  ) * 100%
+);
+
+.o-ratio--promotion-header-image::before {
+  @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
+}
+
+.c-promotion-header-badge {
+  height: 75%;
+  max-height: 135px;
+}
