@@ -21,7 +21,9 @@ export class Media extends PureComponent<Props> {
     const { renderImage, renderText, ...rest } = this.props;
     return (
       <Flex align="center" spacing="md" {...rest}>
-        <Flex.Item>{this.renderImage()}</Flex.Item>
+        <Flex.Item className="o-flex__item-fixed-size">
+          {this.renderImage()}
+        </Flex.Item>
         <Flex.Block>{this.renderText()}</Flex.Block>
       </Flex>
     );
