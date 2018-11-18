@@ -1,46 +1,38 @@
 // @flow
-import React, { PureComponent } from "react";
-import classNames from "classnames";
-import Flex from "@casumo/cmp-flex";
+import React from "react";
 import Text from "@casumo/cmp-text";
+import Media from "Components/Media";
 
 type Props = {
-  renderImage: Function,
-  title?: string,
-  titleColor: ?string,
-  subTitle?: string,
-  subTitleColor: ?string,
-  className?: string,
+  title: string,
+  subTitle: string,
+  imageSrc: string,
 };
 
-export class ListItem extends PureComponent<Props> {
-  render() {
-    const {
-      title,
-      titleColor,
-      subTitle,
-      subTitleColor,
-      renderImage,
-      className = "",
-    } = this.props;
-    const titleClassName = classNames(
-      "u-margin-bottom--sm u-font-weight-bold",
-      titleColor && `t-color-${titleColor}`
-    );
-    const subTitleClassName = classNames(
-      "u-margin-bottom--none",
-      subTitleColor && `t-color-${subTitleColor}`
-    );
-    return (
-      <Flex align="center" spacing="md" className={className}>
-        <Flex.Item>{renderImage()}</Flex.Item>
-        <Flex.Block>
-          {title && <Text className={titleClassName}>{title}</Text>}
-          {subTitle && <Text className={subTitleClassName}>{subTitle}</Text>}
-        </Flex.Block>
-      </Flex>
-    );
-  }
-}
+const MustDropListItem = ({ title, subTitle, imageSrc }: Props) => (
+  <Media
+    renderImage={() => (
+      <div className="t-background-grey-dark-3 t-border-r--16 u-padding">
+        <img
+          className="u-display--block"
+          width={48}
+          height={48}
+          alt=""
+          src={imageSrc}
+        />
+      </div>
+    )}
+    renderText={() => (
+      <>
+        <Text size="sm" className="u-margin-bottom--sm u-font-weight-bold">
+          {title}
+        </Text>
+        <Text size="sm" className="u-margin-bottom--none">
+          {subTitle}
+        </Text>
+      </>
+    )}
+  />
+);
 
-export default ListItem;
+export default MustDropListItem;
