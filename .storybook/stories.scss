@@ -31,6 +31,10 @@ html {
   }
 }
 
+img {
+  max-width: 100%;
+}
+
 // remove cudl-reset heading margin bottom property.
 #{cudl-headings()} {
   margin-bottom: 0;

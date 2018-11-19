@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import rollbarMiddleware from "rollbar-redux-middleware";
-import rootReducer from "./reducers";
+import rootReducer from "./models";
 import rootSaga from "./sagas";
 import Rollbar from "./lib/rollbar";
 import { isProduction } from "./utils";
@@ -26,8 +26,8 @@ const configureStore = preloadedState => {
   sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
-    module.hot.accept("./reducers", () => {
-      const nextRootReducer = require("./reducers").default;
+    module.hot.accept("./models", () => {
+      const nextRootReducer = require("./models").default;
       store.replaceReducer(nextRootReducer);
     });
 

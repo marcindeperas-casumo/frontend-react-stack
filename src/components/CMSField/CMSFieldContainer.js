@@ -7,7 +7,7 @@ import {
   fetchPageBySlug,
   fieldSelectorFactory,
   isPageLoadedFactory,
-} from "Reducers/cms";
+} from "Models/cms";
 
 type PublicProps = {
   slug: string,

@@ -1,4 +1,4 @@
-import { actions } from "Reducers/migrationComponents";
+import { actions } from "Models/migrationComponents";
 import { connect } from "./BridgeToDispatchService";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 

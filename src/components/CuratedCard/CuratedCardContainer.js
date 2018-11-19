@@ -8,9 +8,9 @@ import {
   curatedSelector,
   isCuratedLoadedFactory,
   fetchCurated,
-} from "Reducers/curated";
-import { market as marketSelector } from "Reducers/handshake/selectors";
-import { actions as gameActions } from "Reducers/games";
+} from "Models/curated";
+import { market as marketSelector } from "Models/handshake/selectors";
+import { actions as gameActions } from "Models/games";
 
 const connector: Connector<Props> = connect(
   state => {

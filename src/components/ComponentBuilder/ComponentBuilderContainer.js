@@ -6,7 +6,7 @@ import {
   fieldSelectorFactory,
   isPageFetchedFactory,
   fetchPageBySlug,
-} from "Reducers/cms";
+} from "Models/cms";
 
 // This is the field that holds the component definitions under a CMS page
 const field = "content_builder";

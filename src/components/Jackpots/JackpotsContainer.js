@@ -4,11 +4,11 @@ import type { Connector } from "react-redux";
 import {
   jackpotIdsSelector,
   gameListTitleSelectorFactory,
-} from "Reducers/schema/selector";
+} from "Models/schema/selector";
 import {
   subscribeJackpotUpdates,
   unsubscribeJackpotUpdates,
-} from "Reducers/cometd";
+} from "Models/cometd";
 import { GAME_LIST_IDS } from "Src/constants";
 import Jackpots from "./Jackpots";
 

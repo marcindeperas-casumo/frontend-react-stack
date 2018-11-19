@@ -41,4 +41,5 @@ export const GAME_LIST_IDS = {
   CASUMO_FAVOURITE_GAMES: "casumoFavouriteGames",
   CASUMO_JACKPOT_GAMES: "casumoJackpotGames",
   LATEST_PLAYED_GAMES: "latestPlayedGames",
+  MUST_DROP_JACKPOTS_GAMES: "mustDropJackpotGames",
 };
