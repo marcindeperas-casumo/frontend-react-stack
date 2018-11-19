@@ -18,9 +18,7 @@ stories.add(
   "Default",
   () => (
     <MockStore state={state}>
-      <div>
-        <PromotionCardTeaserList slug="promotions" />
-      </div>
+      <PromotionCardTeaserList slug="promotions" />
     </MockStore>
   ),
   {
