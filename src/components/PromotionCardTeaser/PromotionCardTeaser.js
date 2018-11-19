@@ -6,12 +6,18 @@ import ImageLazy from "Components/Image/ImageLazy";
 import "./PromotionCardTeaser.scss";
 
 type Props = {
-  startFetch: () => void,
+  /** The boolean that states if the promotion page has been fetched */
   isFetched: boolean,
-  slug: String,
-  badge: String,
-  dates: String,
-  title: String,
+  /** The function that fecthes the promotion page if not fecthed yet */
+  startFetch: () => void,
+  /** The slug of the page in the CMS which has the promotion info */
+  slug: string,
+  /** The badge image of the promotion */
+  badge: string,
+  /** The date range the promotion will run for. */
+  dates: string,
+  /** The title of the promotion. */
+  title: string,
 };
 
 export class PromotionCardTeaser extends PureComponent<Props> {
@@ -43,7 +49,7 @@ export class PromotionCardTeaser extends PureComponent<Props> {
               {title}
             </Text>
           </Flex.Block>
-          <Flex.Item>
+          <Flex.Item className="o-flex__item-fixed-size">
             <ImageLazy src={badge} width="80" height="80" />
           </Flex.Item>
         </Flex>
