@@ -7,7 +7,11 @@ import {
   fieldSelectorFactory,
 } from "Models/cms";
 import PromotionCardTeaser from "./PromotionCardTeaser";
-import type { Props } from "./PromotionCardTeaser";
+
+type Props = {
+  /** The slug of the page in the CMS which has the promotion info */
+  slug: string,
+};
 
 const promotionBadgeField = "badge";
 const promotionDatesField = "dates";

@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
 import "./PromotionCardTeaser.scss";
 
-export type Props = {
+type Props = {
   startFetch: () => void,
   isFetched: boolean,
   slug: String,
