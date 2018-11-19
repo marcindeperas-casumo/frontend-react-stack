@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import MustDropJackpots from "Components/MustDropJackpots/MustDropJackpots";
+import MustDropJackpotList from "Components/MustDropJackpotList/MustDropJackpotList";
 import { GAME_LIST_IDS } from "Src/constants";
 import {
   isGameListFetchedFactory,
@@ -8,7 +8,7 @@ import {
   gameListTitleSelectorFactory,
 } from "Models/schema/selector";
 
-const MustDropJackpotsConnected = connect(state => ({
+const MustDropJackpotListConnected = connect(state => ({
   isLoaded: isGameListFetchedFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
     state
   ),
@@ -16,10 +16,10 @@ const MustDropJackpotsConnected = connect(state => ({
   title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
     state
   ),
-}))(MustDropJackpots);
+}))(MustDropJackpotList);
 
-const MustDropJackpotsContainer = props => {
-  return <MustDropJackpotsConnected {...props} />;
+const MustDropJackpotListContainer = props => {
+  return <MustDropJackpotListConnected {...props} />;
 };
 
-export default MustDropJackpotsContainer;
+export default MustDropJackpotListContainer;
