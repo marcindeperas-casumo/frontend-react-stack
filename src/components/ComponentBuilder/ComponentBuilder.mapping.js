@@ -4,6 +4,7 @@ import CuratedCard from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
 import GameList from "Components/GameList";
 import ContentImage from "Components/ContentImage";
+import ContentSeparator from "Components/ContentSeparator";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: DangerousHtml,
@@ -11,4 +12,5 @@ export const COMPONENT_MAPPING = {
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
+  CONTENT_SEPARATOR: ContentSeparator,
 };
