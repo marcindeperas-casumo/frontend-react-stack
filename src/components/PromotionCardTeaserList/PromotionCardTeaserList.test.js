@@ -14,6 +14,7 @@ describe("PromotionCardTeaserList", () => {
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
+
     expect(startFetch).toHaveBeenCalledTimes(1);
   });
 
@@ -28,6 +29,7 @@ describe("PromotionCardTeaserList", () => {
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
+
     expect(startFetch).not.toHaveBeenCalledTimes(1);
   });
 
