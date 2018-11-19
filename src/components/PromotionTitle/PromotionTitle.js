@@ -18,8 +18,9 @@ export class PromotionTitle extends PureComponent<Props> {
         renderText={() => (
           <>
             <Text
+              tag="h1"
               size="lg"
-              className="u-margin-bottom--none u-font-weight-bold"
+              className="u-margin-bottom--sm u-font-weight-bold"
             >
               {title}
             </Text>
