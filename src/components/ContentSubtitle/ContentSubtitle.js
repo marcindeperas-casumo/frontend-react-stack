@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 
 type Props = {
+  /** The Subtitle text to render */
   subtitle: string,
 };
 
