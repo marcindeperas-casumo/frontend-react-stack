@@ -91,7 +91,7 @@ function getComponentTemplate() {
   // eslint-disable-next-line
   return `import React, { PureComponent } from "react";
 
-export class {{ componentName }} extends PureComponent {
+class {{ componentName }} extends PureComponent {
   render() {
     return <div>{"{{ componentName }}"}</div>;
   }
@@ -118,9 +118,7 @@ describe("{{ componentName }}", () => {
 function getComponentStoryTemplate() {
   return `import React from "react";
 import { storiesOf } from "@storybook/react";
-
 import info from "Storybook/storybookInfo";
-
 import {{ componentName }} from "./";
 
 const stories = storiesOf("{{ componentName }}", module);
