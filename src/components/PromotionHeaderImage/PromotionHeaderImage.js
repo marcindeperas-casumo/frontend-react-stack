@@ -11,20 +11,25 @@ type Props = {
   image: string,
 };
 
-export class PromotionHeaderImage extends PureComponent<Props> {
-  renderBadge() {
-    const { badge } = this.props;
-    const Component = badge.match(/\.svg$/) ? "img" : "ImageLazy";
-    return (
-      <Flex
-        className="o-ratio__content u-object-fit-cover"
-        align="center"
-        justify="center"
-      >
-        <Component className="c-promotion-header-badge" src={badge} />
-      </Flex>
-    );
-  }
+type BadgeProps = {
+  /** Promotion badge image url */
+  badge: string,
+};
+
+export const PromotionHeaderBadge = ({ badge }: BadgeProps) => {
+  const ImageComponent = badge.match(/\.svg$/) ? "img" : "ImageLazy";
+  return (
+    <Flex
+      className="o-ratio__content u-object-fit-cover"
+      align="center"
+      justify="center"
+    >
+      <ImageComponent className="c-promotion-header-badge" src={badge} />
+    </Flex>
+  );
+};
+
+class PromotionHeaderImage extends PureComponent<Props> {
   render() {
     const { image, badge = "" } = this.props;
     return (
@@ -35,7 +40,7 @@ export class PromotionHeaderImage extends PureComponent<Props> {
           imgixOpts={{ w: 546 }}
           dpr={3}
         />
-        {badge && this.renderBadge()}
+        {badge && <PromotionHeaderBadge badge={badge} />}
       </div>
     );
   }
