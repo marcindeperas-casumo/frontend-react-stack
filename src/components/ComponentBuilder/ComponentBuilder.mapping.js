@@ -8,6 +8,7 @@ import ContentSeparator from "Components/ContentSeparator";
 import ContentSubtitle from "Components/ContentSubtitle";
 import ContentButton from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
+import PromotionCards from "Components/PromotionCards";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: DangerousHtml,
@@ -18,5 +19,6 @@ export const COMPONENT_MAPPING = {
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
   CONTENT_BUTTON: ContentButton,
-  PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
+  PROMOTION_CARDS_HORIZONTAL: PromotionCards,
+  PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
 };
