@@ -30,7 +30,7 @@ describe("PromotionCardTeaserList", () => {
       />
     );
 
-    expect(startFetch).not.toHaveBeenCalledTimes(1);
+    expect(startFetch).not.toHaveBeenCalled();
   });
 
   test("should not render any PromotionCardTeaser component if promotionSlugs is empty", () => {
