@@ -3,7 +3,6 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
-import "./PromotionCardTeaser.scss";
 
 type Props = {
   /** The boolean that states if the promotion page has been fetched */
@@ -33,7 +32,7 @@ export class PromotionCardTeaser extends PureComponent<Props> {
     const { slug, badge, dates, title } = this.props;
 
     return (
-      <a href={slug} className="c-promotion-card-teaser">
+      <a href={slug}>
         <Flex className="t-background-white t-border-r--16 u-padding--lg u-line-height--1">
           <Flex.Block>
             <Text
