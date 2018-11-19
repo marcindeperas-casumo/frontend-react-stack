@@ -4,8 +4,11 @@ import Media from "Components/Media";
 import Text from "@casumo/cmp-text";
 
 type Props = {
+  /** Promotion name */
   title: string,
+  /** The Dates a promotion runs for */
   dates: string,
+  /** Url of badge image on the left. */
   badge: string,
 };
 
