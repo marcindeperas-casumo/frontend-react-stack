@@ -5,6 +5,7 @@ import Jackpots from "Components/Jackpots";
 import GameList from "Components/GameList";
 import ContentImage from "Components/ContentImage";
 import ContentSeparator from "Components/ContentSeparator";
+import ContentSubtitle from "Components/ContentSubtitle";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: DangerousHtml,
@@ -13,4 +14,5 @@ export const COMPONENT_MAPPING = {
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
+  CONTENT_SUBTITLE: ContentSubtitle,
 };
