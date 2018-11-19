@@ -21,7 +21,7 @@ const paddingPerDevice = {
   desktop: "2xlg",
 };
 
-export class PromotionCards extends PureComponent<Props> {
+export class PromotionCardList extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 
@@ -66,4 +66,4 @@ export class PromotionCards extends PureComponent<Props> {
   }
 }
 
-export default PromotionCards;
+export default PromotionCardList;

@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PromotionCards from "./PromotionCards";
+import PromotionCardList from "./PromotionCardList";
 
-describe("PromotionCards", () => {
+describe("PromotionCardList", () => {
   test("should render a scrollable component", () => {
     const startFetch = jest.fn();
     const rendered = shallow(
-      <PromotionCards
+      <PromotionCardList
         slug="foo"
         startFetch={startFetch}
         isFetched={true}
@@ -21,7 +21,7 @@ describe("PromotionCards", () => {
     const startFetch = jest.fn();
 
     shallow(
-      <PromotionCards
+      <PromotionCardList
         slug="foo"
         startFetch={startFetch}
         isFetched={false}
@@ -35,7 +35,7 @@ describe("PromotionCards", () => {
     const startFetch = jest.fn();
 
     shallow(
-      <PromotionCards
+      <PromotionCardList
         slug="foo"
         startFetch={startFetch}
         isFetched={true}
@@ -49,7 +49,7 @@ describe("PromotionCards", () => {
     const startFetch = jest.fn();
 
     const rendered = shallow(
-      <PromotionCards
+      <PromotionCardList
         slug="foo"
         startFetch={startFetch}
         isFetched={true}

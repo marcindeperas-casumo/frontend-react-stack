@@ -1,18 +1,18 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import PromotionCards from "./PromotionCards";
+import PromotionCardList from "./PromotionCardList";
 import {
   isPageLoadedFactory,
   fetchPageBySlug,
   fieldSelectorFactory,
 } from "Models/cms";
-import type { Props } from "./PromotionCards";
+import type { Props } from "./PromotionCardList";
 
 const promotionsField = "promotions";
 const defaultValue = [];
 
-const PromotionCardsConnected = connect(
+const PromotionCardListConnected = connect(
   (state, { slug }) => ({
     promotionsSlugs: fieldSelectorFactory({
       slug,
@@ -24,10 +24,10 @@ const PromotionCardsConnected = connect(
   (dispatch, { slug }) => ({
     startFetch: () => dispatch(fetchPageBySlug(slug)),
   })
-)(PromotionCards);
+)(PromotionCardList);
 
-const PromotionCardsContainer = (props: Props) => (
-  <PromotionCardsConnected {...props} />
+const PromotionCardListContainer = (props: Props) => (
+  <PromotionCardListConnected {...props} />
 );
 
-export default PromotionCardsContainer;
+export default PromotionCardListContainer;
