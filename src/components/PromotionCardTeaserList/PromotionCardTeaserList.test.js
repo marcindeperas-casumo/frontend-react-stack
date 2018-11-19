@@ -45,6 +45,6 @@ describe("PromotionCardTeaserList", () => {
       />
     );
 
-    expect(rendered.find("connect(PromotionCardTeaser)").exists()).toBe(false);
+    expect(rendered.find("PromotionCardTeaser").exists()).toBe(false);
   });
 });
