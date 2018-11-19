@@ -3,37 +3,56 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
-import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
+  /** The boolean that states if the promotion page has been fetched */
+  isFetched: boolean,
+  /** The function that fecthes the promotion page if not fecthed yet */
+  startFetch: () => void,
+  /** The slug of the page in the CMS which has the promotion info */
+  slug: string,
+  /** The badge image of the promotion */
+  badge: string,
   /** The date range the promotion will run for. */
-  date: String,
+  dates: string,
   /** The title of the promotion. */
-  title: String,
-  /** The src of the image to show on the right. */
-  imageSrc: String,
+  title: string,
 };
 
-export class PromotionCardTeaser extends PureComponent<Props> {
+class PromotionCardTeaser extends PureComponent<Props> {
+  componentDidMount() {
+    const { isFetched, startFetch } = this.props;
+
+    if (!isFetched) {
+      startFetch();
+    }
+  }
+
   render() {
-    const { date, title, imageSrc } = this.props;
+    const { slug, badge, dates, title } = this.props;
+
     return (
-      <Flex
-        align="center"
-        className="t-background-white t-border-r--16 u-padding--lg u-line-height--1"
-      >
-        <Flex.Block>
-          <Text size="xs" className="t-color-red u-margin-bottom">
-            {date}
-          </Text>
-          <Text className="u-font-weight-bold u-margin-bottom--none" size="xlg">
-            <DangerousHtml html={title} />
-          </Text>
-        </Flex.Block>
-        <Flex.Item>
-          <ImageLazy src={imageSrc} />
-        </Flex.Item>
-      </Flex>
+      <a href={slug}>
+        <Flex className="t-background-white t-border-r--16 u-padding--lg u-line-height--1">
+          <Flex.Block>
+            <Text
+              size="xs"
+              className="t-color-red u-margin-bottom u-text-transform-uppercase"
+            >
+              {dates}
+            </Text>
+            <Text
+              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3"
+              size="xlg"
+            >
+              {title}
+            </Text>
+          </Flex.Block>
+          <Flex.Item className="o-flex__item-fixed-size">
+            <ImageLazy src={badge} width="80" height="80" />
+          </Flex.Item>
+        </Flex>
+      </a>
     );
   }
 }
