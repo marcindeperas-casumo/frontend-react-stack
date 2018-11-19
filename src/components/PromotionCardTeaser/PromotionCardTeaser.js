@@ -19,7 +19,7 @@ type Props = {
   title: string,
 };
 
-export class PromotionCardTeaser extends PureComponent<Props> {
+class PromotionCardTeaser extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 

@@ -10,7 +10,7 @@ type Props = {
   slug: string,
 };
 
-export class PromotionCardTeaserList extends PureComponent<Props> {
+class PromotionCardTeaserList extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 
