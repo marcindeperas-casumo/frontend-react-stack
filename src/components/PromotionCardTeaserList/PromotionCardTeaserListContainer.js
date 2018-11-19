@@ -7,7 +7,11 @@ import {
   fetchPageBySlug,
   fieldSelectorFactory,
 } from "Models/cms";
-import type { Props } from "./PromotionCardTeaserList";
+
+type Props = {
+  /** The slug of the page in the CMS which has all the promotions available */
+  slug: string,
+};
 
 const promotionsField = "promotions";
 const defaultValue = [];

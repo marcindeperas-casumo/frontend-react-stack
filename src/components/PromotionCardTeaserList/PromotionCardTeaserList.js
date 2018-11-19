@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import "./PromotionCardTeaserList.scss";
 
-export type Props = {
+type Props = {
   isFetched: boolean,
   startFetch: () => void,
   promotionsSlugs: Array<string>,
