@@ -6,7 +6,7 @@ import info from "Storybook/storybookInfo";
 import PromotionHeaderImage from "./";
 
 const stories = storiesOf("PromotionHeaderImage", module);
-//
+
 stories.add(
   "Default",
   () => (
