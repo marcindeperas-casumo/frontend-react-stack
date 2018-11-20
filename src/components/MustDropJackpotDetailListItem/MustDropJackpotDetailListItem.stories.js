@@ -2,8 +2,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 
 import info from "Storybook/storybookInfo";
-import MustDropListItem from "Components/MustDropListItem";
-const stories = storiesOf("MustDropListItem", module);
+import MustDropListItem from "Components/MustDropJackpotDetailListItem";
+const stories = storiesOf("MustDropJackpotDetailListItem", module);
 
 stories.add(
   "Default",
