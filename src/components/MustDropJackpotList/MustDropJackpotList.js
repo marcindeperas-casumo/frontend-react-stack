@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import GameRow from "Components/GameRow";
-import MustDropJackpotsSkeleton from "Components/MustDropJackpots/MustDropJackpotsSkeleton";
+import MustDropJackpotsSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
 import Text from "@casumo/cmp-text";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   isLoaded: boolean,
   title: string,
 };
-export default class MustDropJackpots extends PureComponent<Props> {
+export default class MustDropJackpotList extends PureComponent<Props> {
   render() {
     const { ids, isLoaded, title } = this.props;
 

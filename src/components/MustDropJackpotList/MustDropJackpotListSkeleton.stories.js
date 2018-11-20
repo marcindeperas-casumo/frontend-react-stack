@@ -2,9 +2,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
-import MustDropJackpotsSkeleton from "Components/MustDropJackpots/MustDropJackpotsSkeleton";
+import MustDropJackpotsSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
 
-const stories = storiesOf("MustDropJackpots Skeleton", module);
+const stories = storiesOf("MustDropJackpotList Skeleton", module);
 
 const MustDropJackpotsSkeletonStories = () => (
   <MockStore>
@@ -13,7 +13,7 @@ const MustDropJackpotsSkeletonStories = () => (
 );
 
 stories.add(
-  "MustDropJackpotsSkeleton",
+  "MustDropJackpotListSkeleton",
   MustDropJackpotsSkeletonStories,
   info({ text: "Displays the must drop jackpots skeleton" })
 );

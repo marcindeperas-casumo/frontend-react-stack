@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-export default class MustDropJackpotsSkeleton extends PureComponent {
+export default class MustDropJackpotListSkeleton extends PureComponent {
   render() {
     const items = 8;
 
