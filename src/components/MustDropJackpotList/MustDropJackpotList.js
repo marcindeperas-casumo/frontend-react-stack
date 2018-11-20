@@ -1,7 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
 import GameRow from "Components/GameRow";
-import MustDropJackpotsSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
+import List from "Components/List";
+import MustDropJackpotListSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
 import Text from "@casumo/cmp-text";
 
 type Props = {
@@ -14,7 +15,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
     const { ids, isLoaded, title } = this.props;
 
     return !isLoaded ? (
-      <MustDropJackpotsSkeleton />
+      <MustDropJackpotListSkeleton />
     ) : (
       <div>
         <Text
@@ -25,9 +26,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
           {title}
         </Text>
         <div className="u-padding--md">
-          {ids.map(id => (
-            <GameRow id={id} key={`jackpot-${id}`} />
-          ))}
+          <List items={ids} render={id => <GameRow id={id} />} />
         </div>
       </div>
     );
