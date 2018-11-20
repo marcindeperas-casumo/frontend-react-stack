@@ -1,13 +1,13 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import MediaList from "Components/MediaList";
+import ContentMediaList from "Components/ContentMediaList";
 import mockData from "./__mocks__/jackpotDetails.json";
 
-const stories = storiesOf("MediaList", module);
+const stories = storiesOf("ContentMediaList", module);
 
 stories.add(
   "Default",
-  () => <MediaList items={mockData} />,
+  () => <ContentMediaList items={mockData} />,
   info({ text: "Default" })
 );

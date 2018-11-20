@@ -9,7 +9,7 @@ type Props = {
   items: Array<Object>,
 };
 
-const MediaListItem = ({ image, title, text }) => (
+const ContentMediaListItem = ({ image, title, text }) => (
   <Media
     renderImage={() => (
       <img
@@ -33,7 +33,7 @@ const MediaListItem = ({ image, title, text }) => (
   />
 );
 
-class MediaList extends PureComponent<Props> {
+class ContentMediaList extends PureComponent<Props> {
   render() {
     const { items } = this.props;
     return (
@@ -42,7 +42,7 @@ class MediaList extends PureComponent<Props> {
           itemSpacing="md"
           items={items}
           render={item => (
-            <MediaListItem
+            <ContentMediaListItem
               image={item.image}
               title={item.title}
               text={item.text}
@@ -54,4 +54,4 @@ class MediaList extends PureComponent<Props> {
   }
 }
 
-export default MediaList;
+export default ContentMediaList;
