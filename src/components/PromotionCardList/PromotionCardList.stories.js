@@ -1,11 +1,11 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "Storybook/storybookInfo";
-import PromotionCards from "Components/PromotionCards";
+import PromotionCardList from "Components/PromotionCardList";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 
-const stories = storiesOf("PromotionCards", module);
+const stories = storiesOf("PromotionCardList", module);
 
 const state = {
   schema: {
@@ -15,7 +15,7 @@ const state = {
 
 const PromotionCardsStories = () => (
   <MockStore state={state}>
-    <PromotionCards
+    <PromotionCardList
       slug="promotions"
       title="This Sexy AF campaign"
       titleColor="t-color-white"
@@ -25,7 +25,7 @@ const PromotionCardsStories = () => (
 );
 
 stories.add(
-  "PromotionCards",
+  "PromotionCardList",
   PromotionCardsStories,
   info({ text: "Displays the promotion cards" })
 );
