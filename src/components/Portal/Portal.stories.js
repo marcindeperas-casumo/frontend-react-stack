@@ -3,7 +3,7 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import Portal from "Components/Portal";
 import WaitForHostElement from "Components/WaitForHostElement";
-import GameListSkeleton from "Components/GameList/GameListSkeleton";
+import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 const stories = storiesOf("Portal", module);
 const hostElementId = "portal-host-element";
@@ -32,7 +32,7 @@ stories.add(
       <Portal
         hostElementId={hostElementId}
         showFallback={true}
-        fallback={<GameListSkeleton itemWidth={170} />}
+        fallback={<GameListHorizontalSkeleton itemWidth={170} />}
       >
         <HelloSampleComponent />
       </Portal>

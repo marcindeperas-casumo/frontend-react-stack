@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import LazyPortal from "Components/LazyPortal/LazyPortal";
-import GameListSkeleton from "Components/GameList/GameListSkeleton";
+import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 const stories = storiesOf("LazyPortal", module);
 const hostElementId = "portal-host-element";
@@ -12,7 +12,7 @@ stories.add(
   () => (
     <LazyPortal
       hostElementId={hostElementId}
-      fallback={<GameListSkeleton itemWidth={170} />}
+      fallback={<GameListHorizontalSkeleton itemWidth={170} />}
       loader={() => import("Components/DangerousHtml")}
       props={{ html: "<div>Sample lazy-loaded HTML.</div>" }}
     />

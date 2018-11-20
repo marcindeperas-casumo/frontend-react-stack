@@ -23,7 +23,7 @@ type Props = {
   className?: string,
 };
 
-export default function GameListSkeleton({
+export default function GameListHorizontalSkeleton({
   itemWidth = 170,
   items = 8,
   itemRatio = 120 / 100,

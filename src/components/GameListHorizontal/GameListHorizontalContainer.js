@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import GameList from "Components/GameList/GameList";
+import GameListHorizontal from "Components/GameListHorizontal/GameListHorizontal";
 import { gameListSelector } from "Models/schema/selector";
 import { isGameListLoaded } from "Models/games/games.selectors";
 
@@ -10,11 +10,13 @@ type Props = {
   id: string,
 };
 
-const GameListConnected = connect((state, { id }) => ({
+const GameListHorizontalConnected = connect((state, { id }) => ({
   isLoading: !isGameListLoaded(state),
   list: gameListSelector(id)(state),
-}))(GameList);
+}))(GameListHorizontal);
 
-const GameListContainer = (props: Props) => <GameListConnected {...props} />;
+const GameListHorizontalContainer = (props: Props) => (
+  <GameListHorizontalConnected {...props} />
+);
 
-export default GameListContainer;
+export default GameListHorizontalContainer;

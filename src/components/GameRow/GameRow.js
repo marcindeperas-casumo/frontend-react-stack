@@ -19,11 +19,7 @@ export default class GameRow extends PureComponent<Props> {
     const { formattedJackpotAmount } = jackpotInfo;
 
     return (
-      <Flex
-        align="center"
-        className="u-padding-vert t-border-bottom t-border--current-color t-color-grey-light-2"
-        onClick={onLaunchGame}
-      >
+      <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
         {/* Image */}
         <Flex.Item>
           <GameThumb
