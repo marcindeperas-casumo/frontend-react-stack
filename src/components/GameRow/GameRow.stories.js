@@ -5,16 +5,16 @@ import info from "Storybook/storybookInfo";
 import game from "Components/GameTile/__mocks__/Game.json";
 import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
 import MockStore from "Components/MockStore";
-import GameListRow from "Components/GameListRow/GameListRow";
-import GameListRowContainer from "Components/GameListRow";
+import GameRow from "Components/GameRow/GameRow";
+import GameRowContainer from "Components/GameRow";
 
-const stories = storiesOf("GameListRow", module);
+const stories = storiesOf("GameRow", module);
 
 stories.add(
   "Default (Connected)",
   () => (
     <MockStore>
-      <GameListRowContainer id="hall-of-gods" />
+      <GameRowContainer id="hall-of-gods" />
     </MockStore>
   ),
   info({ text: "Default" })
@@ -22,14 +22,14 @@ stories.add(
 
 stories.add(
   "Default",
-  () => <GameListRow game={game} onLaunchGame={action("gonzos-quest")} />,
+  () => <GameRow game={game} onLaunchGame={action("gonzos-quest")} />,
   info({ text: "Default" })
 );
 
 stories.add(
   "With Jackpot",
   () => (
-    <GameListRow
+    <GameRow
       game={{ ...game, jackpotInfo }}
       onLaunchGame={action("gonzos-quest")}
     />

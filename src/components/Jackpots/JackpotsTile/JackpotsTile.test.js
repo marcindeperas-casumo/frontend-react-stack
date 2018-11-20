@@ -3,9 +3,9 @@ import { shallow } from "enzyme";
 import JackpotsTile from "./JackpotsTile";
 
 describe("<JackpotsTile />", () => {
-  test("renders a <GameListRow /> for each id", () => {
+  test("renders a <GameRow /> for each id", () => {
     const ids = ["one", "two", "three"];
     const rendered = shallow(<JackpotsTile ids={ids} />);
-    expect(rendered.find("GameListRowContainer").length).toBe(ids.length);
+    expect(rendered.find("GameRowContainer").length).toBe(ids.length);
   });
 });

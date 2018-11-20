@@ -7,13 +7,13 @@ describe("<MustDropJackpotList />", () => {
     const ids = ["one", "two", "three"];
     const rendered = shallow(<MustDropJackpotList ids={ids} isLoaded={true} />);
 
-    expect(rendered.find("GameListRowContainer").length).toBe(ids.length);
+    expect(rendered.find("GameRowContainer").length).toBe(ids.length);
   });
 
-  test("should not render a <GameListRow /> if ids is empty", () => {
+  test("should not render a <GameRow /> if ids is empty", () => {
     const ids = [];
     const rendered = shallow(<MustDropJackpotList ids={ids} isLoaded={true} />);
 
-    expect(rendered.find("GameListRowContainer").length).toBe(0);
+    expect(rendered.find("GameRowContainer").length).toBe(0);
   });
 });

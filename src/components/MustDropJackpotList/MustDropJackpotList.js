@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import GameListRow from "Components/GameListRow";
+import GameRow from "Components/GameRow";
 import MustDropJackpotsSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
 import Text from "@casumo/cmp-text";
 
@@ -26,7 +26,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
         </Text>
         <div className="u-padding--md">
           {ids.map(id => (
-            <GameListRow id={id} key={`jackpot-${id}`} />
+            <GameRow id={id} key={`jackpot-${id}`} />
           ))}
         </div>
       </div>

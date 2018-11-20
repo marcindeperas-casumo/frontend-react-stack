@@ -9,10 +9,10 @@ describe("<GameListVertical />", () => {
     expect(rendered.find("List")).toHaveLength(1);
   });
 
-  test("should render a <GameListRow /> component for each game", () => {
+  test("should render a <GameRow /> component for each game", () => {
     const rendered = shallow(<GameListVertical ids={["one", "two"]} />);
     const list = rendered.find("List").dive();
 
-    expect(list.find("GameListRowContainer")).toHaveLength(2);
+    expect(list.find("GameRowContainer")).toHaveLength(2);
   });
 });

@@ -12,7 +12,7 @@ type Props = {
   onLaunchGame: () => void,
 };
 
-export default class GameListRow extends PureComponent<Props> {
+export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
     const { jackpotInfo = {}, name, logo, logoBackground } = game;

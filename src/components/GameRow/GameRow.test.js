@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameListRow from "Components/GameListRow/GameListRow";
+import GameRow from "Components/GameRow/GameRow";
 
-describe("<GameListRow />", () => {
+describe("<GameRow />", () => {
   let rendered;
   let launchGame;
   let game;
@@ -18,7 +18,7 @@ describe("<GameListRow />", () => {
         formattedJackpotAmount: "€ 1,000,000",
       },
     };
-    rendered = shallow(<GameListRow game={game} onLaunchGame={launchGame} />);
+    rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
   });
 
   test("renders a GameThumb for the component", () => {
