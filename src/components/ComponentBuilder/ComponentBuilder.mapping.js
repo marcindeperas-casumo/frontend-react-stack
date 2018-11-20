@@ -10,6 +10,7 @@ import ContentSubtitle from "Components/ContentSubtitle";
 import ContentButton from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
+import MediaList from "Components/MediaList";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: DangerousHtml,
@@ -24,4 +25,5 @@ export const COMPONENT_MAPPING = {
   CONTENT_BUTTON: ContentButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
+  THUMBNAIL_LIST: MediaList,
 };
