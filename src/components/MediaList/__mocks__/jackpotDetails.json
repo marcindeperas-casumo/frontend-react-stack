@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Daily Drop Jackpot",
+    "text": "The daily jackpot must drop before the end of the day.",
+    "image": "https://cms.casumo.com/wp-content/uploads/2018/11/daily-drop-dark-bg.svg"
+  },
+  {
+    "title": "Must Drop Jackpot",
+    "text": "This jackpot could drop anytime between 0 and €1,000.",
+    "image": "https://cms.casumo.com/wp-content/uploads/2018/11/must-drop-dark-bg.svg"
+  },
+  {
+    "title": "Mega Drop Jackpot",
+    "text": "The biggest pot in the game in a progressive jackpot",
+    "image": "https://cms.casumo.com/wp-content/uploads/2018/11/mega-drop-dark-bg.svg"
+  }
+]
