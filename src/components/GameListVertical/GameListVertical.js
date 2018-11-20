@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import List from "Components/List";
-import GameRow from "Components/GameRow";
+import GameListRow from "Components/GameListRow";
 
 type Props = {
   /** The list of game ids. */
@@ -12,7 +12,7 @@ export class GameListVertical extends PureComponent<Props> {
   render() {
     const { ids = [] } = this.props;
 
-    return <List items={ids} render={id => <GameRow id={id} />} />;
+    return <List items={ids} render={id => <GameListRow id={id} />} />;
   }
 }
 

@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import GameRow from "Components/GameRow";
+import GameListRow from "Components/GameListRow";
 
 type Props = {
   ids?: Array<string>,
@@ -14,7 +14,7 @@ export default class JackpotsTile extends PureComponent<Props> {
     return (
       <div className="c-jackpots-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
         {ids.map(id => (
-          <GameRow id={id} key={`jackpot-${id}`} />
+          <GameListRow id={id} key={`jackpot-${id}`} />
         ))}
       </div>
     );

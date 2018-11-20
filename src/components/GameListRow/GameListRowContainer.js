@@ -3,22 +3,24 @@ import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema/selector";
 import { launchGame } from "Models/games";
-import GameRow from "Components/GameRow/GameRow";
+import GameListRow from "Components/GameListRow/GameListRow";
 
-const GameRowConnected = connect(
+const GameListRowConnected = connect(
   (state, { id }) => ({
     game: gameSelector(id)(state),
   }),
   (dispatch, { id }) => ({
     onLaunchGame: () => dispatch(launchGame(id)),
   })
-)(GameRow);
+)(GameListRow);
 
 type Props = {
   /** The slug of the game to render */
   id: string,
 };
 
-const GameRowContainer = ({ id }: Props) => <GameRowConnected id={id} />;
+const GameListRowContainer = ({ id }: Props) => (
+  <GameListRowConnected id={id} />
+);
 
-export default GameRowContainer;
+export default GameListRowContainer;
