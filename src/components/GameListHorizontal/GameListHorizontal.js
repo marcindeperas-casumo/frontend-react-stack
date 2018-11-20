@@ -6,7 +6,7 @@ import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
-import GameListSkeleton from "Components/GameList/GameListSkeleton";
+import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 export type GameListObject = {
   id: string,
@@ -33,7 +33,7 @@ export const ITEM_SPACING = {
   default: "default",
 };
 
-export default class GameList extends PureComponent<Props> {
+export default class GameListHorizontal extends PureComponent<Props> {
   render() {
     const { list, isLoading } = this.props;
     const { id, title, games: gameIds } = list;
@@ -42,7 +42,7 @@ export default class GameList extends PureComponent<Props> {
     const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
 
     if (isLoading) {
-      return <GameListSkeleton key={`game-list-skeleton-${id}`} />;
+      return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
     }
 
     if (hasNoGames) {

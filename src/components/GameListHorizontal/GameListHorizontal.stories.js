@@ -1,12 +1,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GameList from "Components/GameList";
-import GameListPresentational from "Components/GameList/GameList";
+import GameListHorizontal from "Components/GameListHorizontal";
+import GameListHorizontalPresentational from "Components/GameListHorizontal/GameListHorizontal";
 import MockStore from "Components/MockStore";
 import { GAME_LIST_IDS } from "Src/constants";
 
-const stories = storiesOf("GameList", module);
+const stories = storiesOf("GameListHorizontal", module);
 const list = {
   games: [
     "book-of-ra-deluxe",
@@ -21,29 +21,29 @@ const list = {
   title: "Popular",
 };
 
-const GameListStory = () => (
+const GameListHorizontalStory = () => (
   <MockStore>
-    <GameList id={GAME_LIST_IDS.POPULAR_GAMES} />
+    <GameListHorizontal id={GAME_LIST_IDS.POPULAR_GAMES} />
   </MockStore>
 );
 
-const GameListPresentationalStory = () => (
+const GameListHorizontalPresentationalStory = () => (
   <MockStore>
-    <GameListPresentational list={list} />
+    <GameListHorizontalPresentational list={list} />
   </MockStore>
 );
 
 stories.add(
-  "GameList (Connected)",
-  GameListStory,
+  "GameListHorizontal (Connected)",
+  GameListHorizontalStory,
   info({
     text: `...`,
   })
 );
 
 stories.add(
-  "GameList (Presentational)",
-  GameListPresentationalStory,
+  "GameListHorizontal (Presentational)",
+  GameListHorizontalPresentationalStory,
   info({
     text: `...`,
   })
