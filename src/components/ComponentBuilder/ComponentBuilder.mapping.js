@@ -14,7 +14,7 @@ import PromotionCardList from "Components/PromotionCardList";
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: DangerousHtml,
   GAMES_LIST: GameListHorizontal,
-  GAMES_LIST_HORIZONTAL: GameListVertical,
+  GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
