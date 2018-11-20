@@ -27,8 +27,8 @@ const PromotionCardTeaserConnected = connect(
     dates: fieldSelectorFactory({ slug, field: promotionDatesField })(state),
     title: fieldSelectorFactory({ slug, field: promotionTitleBadge })(state),
   }),
-  (dispatch, { promotionSlug }) => ({
-    startFetch: () => dispatch(fetchPageBySlug(promotionSlug)),
+  (dispatch, { slug }) => ({
+    startFetch: () => dispatch(fetchPageBySlug(slug)),
   })
 )(PromotionCardTeaser);
 

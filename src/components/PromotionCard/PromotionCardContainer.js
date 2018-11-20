@@ -24,8 +24,8 @@ const PromotionCardConnected = connect(
       field: promotionBadgeField,
     })(state),
   }),
-  (dispatch, { promotionSlug }) => ({
-    startFetch: () => dispatch(fetchPageBySlug(promotionSlug)),
+  (dispatch, { slug }) => ({
+    startFetch: () => dispatch(fetchPageBySlug(slug)),
   })
 )(PromotionCard);
 
