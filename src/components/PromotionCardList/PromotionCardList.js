@@ -56,8 +56,7 @@ export class PromotionCardList extends PureComponent<Props> {
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
-              // slug={`${slug}.${promotionSlug}`}
-              slug={`promotions.${promotionSlug}`}
+              slug={`${slug}.${promotionSlug}`}
               key={promotionSlug}
             />
           ))}
