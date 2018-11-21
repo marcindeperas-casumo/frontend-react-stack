@@ -5,10 +5,24 @@ import List from "Components/List";
 import Media from "Components/Media";
 
 type Props = {
+  /** The items to render as a list */
   items: Array<Object>,
 };
 
-const ContentMediaListItem = ({ image, title, text }) => (
+type ContentMediaListItemProps = {
+  /** The image url */
+  image: string,
+  /** The title text */
+  title: string,
+  /** The description text underneath title text */
+  text: string,
+};
+
+const ContentMediaListItem = ({
+  image,
+  title,
+  text,
+}: ContentMediaListItemProps) => (
   <Media
     renderImage={() => (
       <img
@@ -40,12 +54,8 @@ class ContentMediaList extends PureComponent<Props> {
         <List
           itemSpacing="md"
           items={items}
-          render={item => (
-            <ContentMediaListItem
-              image={item.image}
-              title={item.title}
-              text={item.text}
-            />
+          render={({ image, title, text }) => (
+            <ContentMediaListItem image={image} title={title} text={text} />
           )}
         />
       </div>
