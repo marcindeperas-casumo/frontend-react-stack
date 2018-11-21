@@ -58,6 +58,7 @@ class PromotionCardList extends PureComponent<Props> {
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
               slug={`promotions.${promotionSlug}`}
+              link={`promotions/${promotionSlug}`}
               key={promotionSlug}
             />
           ))}

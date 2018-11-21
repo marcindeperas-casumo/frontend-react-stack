@@ -1,10 +1,9 @@
 import React from "react";
-import CMSField from "Components/CMSField";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const PromotionCardHeader = ({ slug, badge }) => {
+const PromotionCardHeader = ({ badge, dates }) => {
   return (
     <Flex className="u-padding-horiz--lg" justify="space-between" align="end">
       <Text
@@ -12,7 +11,7 @@ const PromotionCardHeader = ({ slug, badge }) => {
         className="t-color-red u-text-transform-uppercase"
         size="xs"
       >
-        <CMSField slug={slug} field="dates" />
+        {dates}
       </Text>
       <ImageLazy
         className="u-display--block"
