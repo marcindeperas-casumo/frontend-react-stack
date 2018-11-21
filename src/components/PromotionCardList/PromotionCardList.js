@@ -13,7 +13,6 @@ type Props = {
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
-  slug: string,
 };
 
 const paddingPerDevice = {
@@ -38,13 +37,7 @@ class PromotionCardList extends PureComponent<Props> {
   }
 
   render() {
-    const {
-      title,
-      titleColor,
-      backgroundColor,
-      promotionsSlugs,
-      slug,
-    } = this.props;
+    const { title, titleColor, backgroundColor, promotionsSlugs } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
     if (hasNoPromotionSlugs) {

@@ -7,7 +7,6 @@ type Props = {
   isFetched: boolean,
   startFetch: () => void,
   promotionsSlugs: Array<string>,
-  slug: string,
 };
 
 class PromotionCardTeaserList extends PureComponent<Props> {
@@ -20,7 +19,7 @@ class PromotionCardTeaserList extends PureComponent<Props> {
   }
 
   render() {
-    const { promotionsSlugs, slug } = this.props;
+    const { promotionsSlugs } = this.props;
 
     if (!promotionsSlugs.length) {
       return null;
