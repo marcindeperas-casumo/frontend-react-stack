@@ -18,7 +18,7 @@ stories.add(
   "Default",
   () => (
     <MockStore state={state}>
-      <PromotionCardTeaserList slug="campaigns.winter_games" />
+      <PromotionCardTeaserList slug="campaigns.winter_campaign" />
     </MockStore>
   ),
   {
