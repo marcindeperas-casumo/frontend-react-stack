@@ -35,6 +35,7 @@ class App extends PureComponent {
             fallback={<MustDropJackpotListSkeleton />}
           />
         </MigrationComponent>
+        {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
         <MigrationComponent migrationKey={["promotions-detail"]}>
           <LazyPortal
             hostElementId="react-host-promotion-detail"
