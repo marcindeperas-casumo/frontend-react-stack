@@ -13,7 +13,8 @@ class App extends PureComponent {
   }
 
   render() {
-    const { isAuthenticated, activeComponents } = this.props;
+    const { isAuthenticated, activeComponents, routeParams } = this.props;
+
     return isAuthenticated ? (
       <MigrationComponentManager activeKeys={activeComponents}>
         <MigrationComponent migrationKey={["games-top", "games"]}>
@@ -28,6 +29,13 @@ class App extends PureComponent {
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpotList")}
             fallback={<MustDropJackpotListSkeleton />}
+          />
+        </MigrationComponent>
+        <MigrationComponent migrationKey={["promotions-detail"]}>
+          <LazyPortal
+            hostElementId="react-host-promotion-detail"
+            loader={() => import("Components/ComponentBuilder")}
+            props={{ slug: routeParams[0] }}
           />
         </MigrationComponent>
       </MigrationComponentManager>
