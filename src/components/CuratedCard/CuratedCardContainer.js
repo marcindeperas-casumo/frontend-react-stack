@@ -15,7 +15,7 @@ export type PublicProps = {
 export const getSlug = (slug: Array<string>) => `curated.${head(slug)}`;
 
 const connector: Connector<PublicProps, Props> = connect(
-  (state, { card }) => {
+  (state, { card = [] }) => {
     const slug = getSlug(card);
 
     return {
