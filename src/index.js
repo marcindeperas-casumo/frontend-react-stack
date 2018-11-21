@@ -49,7 +49,7 @@ if (isProduction()) {
     store.dispatch(
       schemaActions.updateEntity({
         cms: {
-          "built-pages.top-lists-en": {
+          "campaigns.winter-games": {
             id: "87740",
             slug: "top-lists-en",
             title: "Top Lists En",
@@ -66,7 +66,7 @@ if (isProduction()) {
                 { acf_fc_layout: "GAMES_LIST", id: "newGames" },
                 {
                   acf_fc_layout: "PROMOTION_CARDS_HORIZONTAL",
-                  slug: "promotions-page",
+                  slug: "campaigns.winter_games",
                   title: "All Promotions",
                   titleColor: "t-color-white",
                   backgroundColor: "t-background-blue",
