@@ -49,7 +49,7 @@ export class PromotionCardList extends PureComponent<Props> {
         className={classNames(
           backgroundColor && `${backgroundColor}`,
           titleColor && `${titleColor}`,
-          "u-padding-top--lg u-padding-bottom--lg"
+          "u-padding-top--lg u-padding-bottom--lg u-margin-top--lg"
         )}
       >
         <ScrollableListTitle title={title} />
