@@ -9,14 +9,15 @@ import "./PromotionCard.scss";
 
 export type Props = {
   isFetched: boolean,
-  slug: string,
   image: string,
   badge: string,
   startFetch: () => void,
   link: string,
+  dates: string,
+  title: string,
 };
 
-const PromotionCardWrapper = ({ slug, link, image, badge }) => {
+const PromotionCardWrapper = ({ link, image, badge, dates, title }) => {
   return (
     <a
       href={link}
@@ -25,8 +26,8 @@ const PromotionCardWrapper = ({ slug, link, image, badge }) => {
       <Card
         className="o-ratio__content t-border-r--16 t-background-white"
         spacing="none"
-        header={() => <PromotionCardHeader slug={slug} badge={badge} />}
-        content={() => <PromotionCardContent slug={slug} />}
+        header={() => <PromotionCardHeader badge={badge} dates={dates} />}
+        content={() => <PromotionCardContent title={title} />}
         footer={() => <PromotionCardImage image={image} />}
       />
     </a>
@@ -43,7 +44,7 @@ export default class PromotionCard extends PureComponent<Props> {
   }
 
   render() {
-    const { isFetched, slug, image, badge, link } = this.props;
+    const { isFetched, image, badge, link, dates, title } = this.props;
 
     if (!isFetched) {
       return <PromotionCardSkeleton />;
@@ -51,10 +52,11 @@ export default class PromotionCard extends PureComponent<Props> {
 
     return (
       <PromotionCardWrapper
-        slug={slug}
         link={link}
         image={image}
         badge={badge}
+        dates={dates}
+        title={title}
       />
     );
   }

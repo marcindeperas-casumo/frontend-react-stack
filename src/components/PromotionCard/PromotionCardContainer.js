@@ -9,19 +9,24 @@ import {
 import PromotionCard from "./PromotionCard";
 import type { Props } from "./PromotionCard";
 
-const promotionImageField = "image";
-const promotionBadgeField = "campaign_badge";
-
 const PromotionCardConnected = connect(
   (state, { slug }) => ({
     isFetched: isPageLoadedFactory(slug)(state),
     image: fieldSelectorFactory({
       slug,
-      field: promotionImageField,
+      field: "image",
     })(state),
     badge: fieldSelectorFactory({
       slug,
-      field: promotionBadgeField,
+      field: "campaign_badge",
+    })(state),
+    dates: fieldSelectorFactory({
+      slug,
+      field: "dates",
+    })(state),
+    title: fieldSelectorFactory({
+      slug,
+      field: "title",
     })(state),
   }),
   (dispatch, { slug }) => ({
