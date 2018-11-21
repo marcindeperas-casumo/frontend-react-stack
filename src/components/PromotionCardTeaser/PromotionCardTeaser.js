@@ -9,7 +9,7 @@ type Props = {
   isFetched: boolean,
   /** The function that fecthes the promotion page if not fecthed yet */
   startFetch: () => void,
-  /** The slug of the page in the CMS which has the promotion info */
+  /** The link to the right promotion detailed view */
   link: string,
   /** The badge image of the promotion */
   badge: string,
