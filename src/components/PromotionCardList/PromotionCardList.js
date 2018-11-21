@@ -4,6 +4,7 @@ import classNames from "classnames";
 import PromotionCardContainer from "Components/PromotionCard";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
 
 export type Props = {
   promotionsSlugs: Array<string>,
@@ -19,6 +20,12 @@ const paddingPerDevice = {
   default: "md",
   tablet: "2xlg",
   desktop: "2xlg",
+};
+
+const marginPerDevice = {
+  default: "lg",
+  tablet: "xlg",
+  desktop: "xlg",
 };
 
 export class PromotionCardList extends PureComponent<Props> {
@@ -49,7 +56,8 @@ export class PromotionCardList extends PureComponent<Props> {
         className={classNames(
           backgroundColor && `${backgroundColor}`,
           titleColor && `${titleColor}`,
-          "u-padding-top--lg u-padding-bottom--lg u-margin-top--lg"
+          createModifierClasses("u-margin-top", marginPerDevice),
+          "u-padding-top--lg u-padding-bottom--lg"
         )}
       >
         <ScrollableListTitle title={title} />
