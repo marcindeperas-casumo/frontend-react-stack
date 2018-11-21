@@ -6,7 +6,7 @@ import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 
-export type Props = {
+type Props = {
   promotionsSlugs: Array<string>,
   isFetched: boolean,
   startFetch: () => void,
