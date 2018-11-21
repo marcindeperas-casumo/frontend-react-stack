@@ -3,7 +3,11 @@ import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import type { Props } from "Components/CuratedCard/CuratedCard";
-import { curatedSelector, isCuratedLoadedFactory } from "Models/curated";
+import {
+  CURATED_SLUG,
+  curatedSelector,
+  isCuratedLoadedFactory,
+} from "Models/curated";
 import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
 import { head } from "ramda";
@@ -12,7 +16,7 @@ export type PublicProps = {
   card: Array<string>,
 };
 
-export const getSlug = (slug: Array<string>) => `curated.${head(slug)}`;
+export const getSlug = (slug: Array<string>) => `${CURATED_SLUG}.${head(slug)}`;
 
 const connector: Connector<PublicProps, Props> = connect(
   (state, { card = [] }) => {

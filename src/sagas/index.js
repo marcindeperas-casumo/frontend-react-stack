@@ -2,11 +2,11 @@ import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes } from "Models/app";
 import { types as fetchTypes } from "Models/fetch";
 import { types as gameTypes } from "Models/games";
-import { fetchCuratedGameSaga } from "Models/curated";
+import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import {
   types as cmsTypes,
-  fetchPageBySlugSaga,
   getFetchCompleteTypeBySlug,
+  fetchPageBySlugSaga,
 } from "Models/cms";
 import {
   CHANNELS as cometdChannels,
@@ -34,7 +34,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    action => action.type.startsWith(getFetchCompleteTypeBySlug("curated")),
+    action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
     fetchCuratedGameSaga
   );
 }
