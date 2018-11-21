@@ -28,9 +28,12 @@ test("callback should call dispatch with the event data", () => {
   expect(eventName).toEqual(REACT_APP_EVENT_ROUTE_CHANGE);
 
   const callback = bridge.on.mock.calls[0][1];
+  const routeParams = { foo: "bar" };
 
-  callback({ config: { id: "foo" } });
+  callback({ config: { id: "foo" }, params: routeParams });
 
   expect(dispatch).toBeCalledTimes(1);
-  expect(dispatch).toHaveBeenCalledWith(actions.activateComponent("foo"));
+  expect(dispatch).toHaveBeenCalledWith(
+    actions.activateComponent({ componentId: "foo", routeParams })
+  );
 });

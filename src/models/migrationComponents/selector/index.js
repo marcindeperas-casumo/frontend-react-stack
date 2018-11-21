@@ -10,3 +10,11 @@ export const activeComponents = createSelector(
     prop("activeComponents")
   )
 );
+
+export const routeParamsSelector = createSelector(
+  migrationComponentsSelector,
+  compose(
+    defaultTo({}),
+    prop("routeParams")
+  )
+);
