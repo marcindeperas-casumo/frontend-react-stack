@@ -16,7 +16,7 @@ const state = {
 const PromotionCardsStories = () => (
   <MockStore state={state}>
     <PromotionCardList
-      slug="campaigns.winter_campaign"
+      slug="campaigns.winter_games"
       title="This Sexy AF campaign"
       titleColor="t-color-white"
       backgroundColor="t-background-blue"
