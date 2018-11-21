@@ -6,14 +6,13 @@ import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 
-export type Props = {
+type Props = {
   promotionsSlugs: Array<string>,
   isFetched: boolean,
   startFetch: () => void,
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
-  slug: string,
 };
 
 const paddingPerDevice = {
@@ -28,7 +27,7 @@ const marginPerDevice = {
   desktop: "xlg",
 };
 
-export class PromotionCardList extends PureComponent<Props> {
+class PromotionCardList extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 
@@ -38,13 +37,7 @@ export class PromotionCardList extends PureComponent<Props> {
   }
 
   render() {
-    const {
-      title,
-      titleColor,
-      backgroundColor,
-      promotionsSlugs,
-      slug,
-    } = this.props;
+    const { title, titleColor, backgroundColor, promotionsSlugs } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
     if (hasNoPromotionSlugs) {
@@ -64,7 +57,7 @@ export class PromotionCardList extends PureComponent<Props> {
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
-              slug={`${slug}.${promotionSlug}`}
+              slug={`promotions.${promotionSlug}`}
               key={promotionSlug}
             />
           ))}
