@@ -40,7 +40,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-promotion-detail"
             loader={() => import("Components/ComponentBuilder")}
-            props={{ slug: routeParams[0] }}
+            props={{ slug: `promotions.${routeParams[0]}` }}
           />
         </MigrationComponent>
       </MigrationComponentManager>
