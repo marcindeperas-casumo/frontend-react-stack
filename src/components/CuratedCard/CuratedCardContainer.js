@@ -8,9 +8,13 @@ import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
 import { head } from "ramda";
 
+export type PublicProps = {
+  card: Array<string>,
+};
+
 export const getSlug = (slug: Array<string>) => `curated.${head(slug)}`;
 
-const connector: Connector<Props> = connect(
+const connector: Connector<PublicProps, Props> = connect(
   (state, { card }) => {
     const slug = getSlug(card);
 
