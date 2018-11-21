@@ -24,20 +24,6 @@ const componentDefinition = [
 
 const state = {
   schema: {
-    game: {
-      "topwheel-treasures": {
-        name: "Topwheel Treasures",
-        slug: "topwheel-treasures",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/08/TopwheelTreasuresBack.png",
-        logo: "https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: "munbzmuueehqaavs",
-        lobby: "munbzmuueehqaavs",
-      },
-    },
     cms: {
       [slug]: {
         fields: {
