@@ -15,7 +15,11 @@ class App extends PureComponent {
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
 
-    return isAuthenticated ? (
+    if (!isAuthenticated) {
+      return null;
+    }
+
+    return (
       <MigrationComponentManager activeKeys={activeComponents}>
         <MigrationComponent migrationKey={["games-top", "games"]}>
           <LazyPortal
@@ -39,7 +43,7 @@ class App extends PureComponent {
           />
         </MigrationComponent>
       </MigrationComponentManager>
-    ) : null;
+    );
   }
 }
 
