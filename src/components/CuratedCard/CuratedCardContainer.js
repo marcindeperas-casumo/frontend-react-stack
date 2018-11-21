@@ -8,7 +8,7 @@ import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
 import { head } from "ramda";
 
-export const getSlug = (slug: array<string>) => `curated.${head(slug)}`;
+export const getSlug = (slug: Array<string>) => `curated.${head(slug)}`;
 
 const connector: Connector<Props> = connect(
   (state, { card }) => {
@@ -23,7 +23,7 @@ const connector: Connector<Props> = connect(
     const slug = getSlug(card);
 
     return {
-      startFetch: () => dispatch(fetchPageBySlug(slug)),
+      fetchCurated: () => dispatch(fetchPageBySlug(slug)),
       onLaunchGame: () => dispatch(gameActions.launchGame(slug)),
     };
   }
