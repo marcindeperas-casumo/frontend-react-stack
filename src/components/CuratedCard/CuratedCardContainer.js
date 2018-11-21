@@ -3,34 +3,28 @@ import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import type { Props } from "Components/CuratedCard/CuratedCard";
-import {
-  getCuratedByMarketSlug,
-  curatedSelector,
-  isCuratedLoadedFactory,
-  fetchCurated,
-} from "Models/curated";
-import { market as marketSelector } from "Models/handshake/selectors";
+import { curatedSelector, isCuratedLoadedFactory } from "Models/curated";
+import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
+import { head } from "ramda";
+
+export const getSlug = (slug: array<string>) => `curated.${head(slug)}`;
 
 const connector: Connector<Props> = connect(
-  state => {
-    const slug = getCuratedByMarketSlug(marketSelector(state));
+  (state, { card }) => {
+    const slug = getSlug(card);
 
     return {
       ...curatedSelector(slug)(state),
       isFetched: isCuratedLoadedFactory(slug)(state),
     };
   },
-  dispatch => ({
-    fetchCurated: () => dispatch(fetchCurated()),
-    dispatchLaunchGame: gameId => dispatch(gameActions.launchGame(gameId)),
-  }),
-  (stateProps, dispatchProps, ownProps) => {
-    const { gameId } = stateProps;
+  (dispatch, { card }) => {
+    const slug = getSlug(card);
+
     return {
-      ...stateProps,
-      ...dispatchProps,
-      onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
+      startFetch: () => dispatch(fetchPageBySlug(slug)),
+      onLaunchGame: () => dispatch(gameActions.launchGame(slug)),
     };
   }
 );

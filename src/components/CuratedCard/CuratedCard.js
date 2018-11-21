@@ -32,15 +32,15 @@ export type Props = {|
   primary_action_text: string,
   promotions_legal_text: string,
   isFetched: boolean,
-  fetchCurated: Function,
+  startFetch: Function,
   onLaunchGame: Function,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
   componentDidMount() {
-    const { isFetched, fetchCurated } = this.props;
+    const { isFetched, startFetch } = this.props;
 
-    if (!isFetched) fetchCurated();
+    if (!isFetched) startFetch();
   }
 
   renderSkeleton = () => <CuratedCardSkeleton />;
