@@ -9,8 +9,8 @@ type Props = {
   isFetched: boolean,
   /** The function that fecthes the promotion page if not fecthed yet */
   startFetch: () => void,
-  /** The slug of the page in the CMS which has the promotion info */
-  slug: string,
+  /** The link to the right promotion detailed view */
+  link: string,
   /** The badge image of the promotion */
   badge: string,
   /** The date range the promotion will run for. */
@@ -29,10 +29,10 @@ class PromotionCardTeaser extends PureComponent<Props> {
   }
 
   render() {
-    const { slug, badge, dates, title } = this.props;
+    const { badge, dates, title, link } = this.props;
 
     return (
-      <a href={slug}>
+      <a href={link}>
         <Flex className="t-background-white t-border-r--16 u-padding--lg u-line-height--1">
           <Flex.Block>
             <Text

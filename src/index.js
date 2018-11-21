@@ -7,6 +7,7 @@ import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isProduction } from "./utils";
 import Debugger from "Utils/Debugger";
+import { actions as schemaActions } from "Models/schema";
 import "./styles/index.scss";
 
 const store = configureStore();
@@ -40,6 +41,51 @@ if (isProduction()) {
         typeof value === "function" ? () => {} : null;
     }
   }
-} else {
+}
+
+const isCasumoTest = window.location.hostname === "m.casumotest.com";
+
+if (!isProduction() || isCasumoTest) {
   window.Debugger = Debugger;
+
+  /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
+  Debugger.showPromotions = () => {
+    store.dispatch(
+      schemaActions.updateEntity({
+        cms: {
+          "built-pages.top-lists-en": {
+            id: "87740",
+            slug: "top-lists-en",
+            title: "Top Lists En",
+            content: "",
+            attachments: [],
+            custom_fields: {},
+            fields: {
+              critical_for_compliance: false,
+              "": false,
+              content_builder: [
+                { acf_fc_layout: "CURATED_CARD" },
+                { acf_fc_layout: "GAMES_LIST", id: "latestPlayedGames" },
+                { acf_fc_layout: "GAMES_LIST", id: "popularGames" },
+                { acf_fc_layout: "GAMES_LIST", id: "newGames" },
+                {
+                  acf_fc_layout: "PROMOTION_CARDS_HORIZONTAL",
+                  slug: "campaigns.winter-games",
+                  title: "All Promotions",
+                  titleColor: "t-color-white",
+                  backgroundColor: "t-background-blue",
+                },
+                { acf_fc_layout: "GAMES_LIST", id: "exclusiveGames" },
+                { acf_fc_layout: "GAMES_LIST", id: "casumoFavouriteGames" },
+                { acf_fc_layout: "GAMES_LIST", id: "liveCasinoGames" },
+                { acf_fc_layout: "JACKPOTS" },
+              ],
+            },
+            children: [],
+            childSlugs: [],
+          },
+        },
+      })
+    );
+  };
 }
