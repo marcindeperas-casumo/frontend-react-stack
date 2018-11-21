@@ -13,12 +13,13 @@ export type Props = {
   image: string,
   badge: string,
   startFetch: () => void,
+  link: string,
 };
 
-const PromotionCardWrapper = ({ slug, image, badge }) => {
+const PromotionCardWrapper = ({ slug, link, image, badge }) => {
   return (
     <a
-      href={slug}
+      href={link}
       className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
     >
       <Card
@@ -42,12 +43,19 @@ export default class PromotionCard extends PureComponent<Props> {
   }
 
   render() {
-    const { isFetched, slug, image, badge } = this.props;
+    const { isFetched, slug, image, badge, link } = this.props;
 
     if (!isFetched) {
       return <PromotionCardSkeleton />;
     }
 
-    return <PromotionCardWrapper slug={slug} image={image} badge={badge} />;
+    return (
+      <PromotionCardWrapper
+        slug={slug}
+        link={link}
+        image={image}
+        badge={badge}
+      />
+    );
   }
 }
