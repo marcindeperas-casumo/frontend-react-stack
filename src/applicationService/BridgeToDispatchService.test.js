@@ -28,7 +28,7 @@ test("callback should call dispatch with the event data", () => {
   expect(eventName).toEqual(REACT_APP_EVENT_ROUTE_CHANGE);
 
   const callback = bridge.on.mock.calls[0][1];
-  const routeParams = { foo: "bar" };
+  const routeParams = ["foo"];
 
   callback({ config: { id: "foo" }, params: routeParams });
 

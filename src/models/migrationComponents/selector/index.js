@@ -14,7 +14,7 @@ export const activeComponents = createSelector(
 export const routeParamsSelector = createSelector(
   migrationComponentsSelector,
   compose(
-    defaultTo({}),
+    defaultTo([]),
     prop("routeParams")
   )
 );

@@ -42,12 +42,12 @@ describe("Migration component selector", () => {
       expect(routeParamsSelector(state)).toEqual(routeParams);
     });
 
-    test("returns with an empty {} if routeParams is not defined ", () => {
+    test("returns with an empty [] if routeParams is not defined ", () => {
       const state = {
         migrationComponents: {},
       };
 
-      expect(routeParamsSelector(state)).toEqual({});
+      expect(routeParamsSelector(state)).toEqual([]);
     });
   });
 });

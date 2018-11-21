@@ -28,9 +28,9 @@ describe("Reducer MigrationComponents", () => {
   test("sets the routeParams if they are specified", () => {
     const defaultState = {
       activeComponents: [],
-      routeParams: { foo: "bar" },
+      routeParams: ["foo"],
     };
-    const routeParams = { bar: "foo" };
+    const routeParams = ["bar", "foo"];
     const state = reducer(
       defaultState,
       actions.activateComponent({ componentId: "foo", routeParams })
@@ -42,13 +42,13 @@ describe("Reducer MigrationComponents", () => {
   test("clears the routeParams if they are not specified", () => {
     const defaultState = {
       activeComponents: [],
-      routeParams: { foo: "bar" },
+      routeParams: ["foo"],
     };
     const state = reducer(
       defaultState,
       actions.activateComponent({ componentId: "foo" })
     );
 
-    expect(state.routeParams).toEqual({});
+    expect(state.routeParams).toEqual([]);
   });
 });

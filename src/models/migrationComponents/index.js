@@ -4,7 +4,7 @@ export const types = {
 
 const initialState = {
   activeComponents: [],
-  routeParams: {},
+  routeParams: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -13,7 +13,7 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeComponents: [action.componentId],
-        routeParams: action.routeParams || {},
+        routeParams: action.routeParams || [],
       };
     default:
       return state;
