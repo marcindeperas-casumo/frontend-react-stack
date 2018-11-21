@@ -31,7 +31,7 @@ class PromotionCardTeaserList extends PureComponent<Props> {
         {promotionsSlugs.map(promotionSlug => (
           <div className="u-margin-bottom--md" key={promotionSlug}>
             <PromotionCardTeaser
-              slug={`${slug}.${promotionSlug}`}
+              slug={`promotions.${promotionSlug}`}
               key={promotionSlug}
             />
           </div>
