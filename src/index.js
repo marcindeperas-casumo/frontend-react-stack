@@ -41,10 +41,14 @@ if (isProduction()) {
         typeof value === "function" ? () => {} : null;
     }
   }
-} else {
-  /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
+}
+
+const isCasumoTest = window.location.hostname === "m.casumotest.com";
+
+if (!isProduction() || isCasumoTest) {
   window.Debugger = Debugger;
 
+  /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
   Debugger.showPromotions = () => {
     store.dispatch(
       schemaActions.updateEntity({
