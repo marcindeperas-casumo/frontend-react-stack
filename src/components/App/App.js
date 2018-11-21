@@ -43,6 +43,13 @@ class App extends PureComponent {
             props={{ slug: `promotions.${routeParams[0]}` }}
           />
         </MigrationComponent>
+        {/* TODO: Change the route to "campaign/:slug" instead of "promotions" */}
+        <MigrationComponent migrationKey={["promotions"]}>
+          <LazyPortal
+            hostElementId="react-host-promotions"
+            loader={() => import("Components/PageCampaign")}
+          />
+        </MigrationComponent>
       </MigrationComponentManager>
     );
   }
