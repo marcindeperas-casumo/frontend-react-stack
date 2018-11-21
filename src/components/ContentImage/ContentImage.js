@@ -8,7 +8,7 @@ type Props = {
   /** The alternate text for the image */
   alt?: string,
   /** The maximum width of the image used */
-  width?: number,
+  maxWidth?: number,
 };
 
 const MAX_CONTENT_WIDTH = 482;

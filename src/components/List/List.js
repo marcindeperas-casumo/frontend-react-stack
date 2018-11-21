@@ -5,8 +5,8 @@ import { createModifierClasses } from "@casumo/cudl-react-utils";
 import "Components/List/List.scss";
 
 type Props = {
-  items: Array<mixed>,
-  itemSpacing: Array<String> | string,
+  items: Array<any>,
+  itemSpacing?: Array<String> | string,
   render: Function,
 };
 
