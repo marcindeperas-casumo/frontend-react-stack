@@ -27,7 +27,7 @@ def runTests() {
     sh "yarn test:ci"
 }
 
-def runFLow() {
+def runFlow() {
     sh "yarn flow"
 }
 
