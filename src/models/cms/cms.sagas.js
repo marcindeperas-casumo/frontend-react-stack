@@ -34,7 +34,7 @@ export function* fetchPageBySlugSaga(action) {
     yield put(initiateFetch({ slug, hash, lang }));
 
     const { response } = yield take(completedType);
-    const { entities } = normalizeData(updateSlugInResponse(response, slug));
+    const { entities } = normalizeData(usePrependedSlug(response, slug));
 
     yield put(schemaActions.updateEntity(entities));
   }
@@ -44,7 +44,7 @@ export function* fetchPageBySlugSaga(action) {
 // so we can avoid possible conflicts.
 // Example: "mobile.foo-bar" and "games.foo-bar" have the same slugs
 // in the CMS object, but we still would like to distinguish them.
-function updateSlugInResponse(response, slug) {
+function usePrependedSlug(response, slug) {
   return {
     [CMS_ENTITY_KEY]: {
       ...response[CMS_ENTITY_KEY],
