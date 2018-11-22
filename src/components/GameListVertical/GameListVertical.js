@@ -10,7 +10,11 @@ type Props = {
 
 export class GameListVertical extends PureComponent<Props> {
   render() {
-    const { ids = [] } = this.props;
+    // TODO: Previously if the content builder passed in an empty
+    // string it broke. Figure out how we can properly handle
+    // these errors without having to do really defensive coding
+    // in all the components.
+    const ids = this.props.ids || [];
 
     return <List items={ids} render={id => <GameRow id={id} />} />;
   }
