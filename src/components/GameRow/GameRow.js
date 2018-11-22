@@ -6,6 +6,7 @@ import { PlayIcon } from "@casumo/cmp-icons";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import type { Game } from "Types/game";
+import { renderBets } from "Utils/utils";
 
 type Props = {
   game: Game,
@@ -15,8 +16,11 @@ type Props = {
 export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
-    const { jackpotInfo = {}, name, logo, logoBackground } = game;
+    const { name, logo, logoBackground } = game;
+    const jackpotInfo = game.jackpotInfo || {};
+    const lobby = game.lobby || {};
     const { formattedJackpotAmount } = jackpotInfo;
+    const { bets } = lobby;
 
     return (
       <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
@@ -37,6 +41,7 @@ export default class GameRow extends PureComponent<Props> {
           <Text tag="div" size="sm">
             <DangerousHtml html={name} />
           </Text>
+          <BetsLevels bets={renderBets(bets)} />
         </Flex.Block>
 
         {/* Play Icon */}
@@ -60,6 +65,22 @@ function JackpotAmount({ amount }) {
         className="u-font-weight-bold t-color-red u-padding-bottom--sm"
       >
         {amount}
+      </Text>
+    );
+  }
+
+  return null;
+}
+
+function BetsLevels({ bets }) {
+  if (bets) {
+    return (
+      <Text
+        tag="div"
+        size="sm"
+        className="t-color-grey-dark-3 u-padding-top--sm"
+      >
+        {bets}
       </Text>
     );
   }

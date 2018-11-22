@@ -293,3 +293,6 @@ export const generateColumns = (items, numberByColumns = 3) => {
 
   return columns;
 };
+
+export const renderBets = o =>
+  o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
