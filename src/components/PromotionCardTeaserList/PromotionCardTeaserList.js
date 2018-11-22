@@ -30,7 +30,7 @@ class PromotionCardTeaserList extends PureComponent<Props> {
     return (
       <div
         className={classNames(
-          backgroundColor && `${backgroundColor}`,
+          backgroundColor && `t-background-${backgroundColor}`,
           "c-promotion-card-teaser-list u-padding-top--xlg u-padding-bottom--md u-padding-horiz--md"
         )}
       >

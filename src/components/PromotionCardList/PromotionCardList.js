@@ -47,7 +47,7 @@ class PromotionCardList extends PureComponent<Props> {
     return (
       <div
         className={classNames(
-          backgroundColor && `${backgroundColor}`,
+          backgroundColor && `t-background-${backgroundColor}`,
           titleColor && `${titleColor}`,
           createModifierClasses("u-margin-top", marginPerDevice),
           "u-padding-top--lg u-padding-bottom--lg"
