@@ -5,6 +5,7 @@ import {
   arrayToObject,
   makeProtocolAwareUrl,
   generateColumns,
+  renderBets,
 } from "./utils";
 
 describe("cacheFunction()", () => {
@@ -185,5 +186,23 @@ describe(".generateColumns()", () => {
     expect(generateColumns(list, numberByColumn)[0]).toEqual([1, 2, 3]);
     expect(generateColumns(list, numberByColumn)[1]).toEqual([4, 5, 6]);
     expect(generateColumns(list, numberByColumn)[2]).toEqual([7, 8]);
+  });
+});
+
+describe("renderBets()", () => {
+  test("should not render anything if bets dont exist", async () => {
+    const bets = null;
+
+    expect(renderBets(bets)).toEqual("");
+  });
+
+  test("should render formatted bets", async () => {
+    const bets = {
+      symbol: "£",
+      min: 1,
+      max: 10000,
+    };
+
+    expect(renderBets(bets)).toEqual("£1 - £10000");
   });
 });

@@ -1,6 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
 import GameRow from "Components/GameRow/GameRow";
+import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
+import { renderBets } from "Utils/utils";
 
 describe("<GameRow />", () => {
   let rendered;
@@ -44,5 +46,14 @@ describe("<GameRow />", () => {
   test("clicking on the whole row launches the game", () => {
     rendered.simulate("click");
     expect(launchGame.mock.calls.length).toBe(1);
+  });
+
+  test("should render betsLevels if LiveCasino game", () => {
+    game = liveCasinoGame;
+    rendered = shallow(
+      <GameRow game={liveCasinoGame} onLaunchGame={launchGame} />
+    );
+
+    expect(rendered.html()).toMatch(renderBets(game.lobby.bets));
   });
 });

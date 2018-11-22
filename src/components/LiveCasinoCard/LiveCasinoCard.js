@@ -10,7 +10,7 @@ import CMSField from "Components/CMSField";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 
-const renderBets = o => (o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "");
+import { renderBets } from "Utils/utils";
 
 const CasinoHeader = ({ lobby }) => (
   <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
