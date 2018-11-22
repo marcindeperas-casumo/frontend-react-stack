@@ -44,13 +44,13 @@ class App extends PureComponent {
           />
         </MigrationComponent>
         {/* TODO: Change the route to "campaign/:slug" instead of "promotions" */}
+        {/*
+          Right now we are showing a campaign detail
+          page (Winter Games) for the collective promotions page.
+          It is going to change in the future, as the /promotions
+          page will have a separate content.
+        */}
         <MigrationComponent migrationKey={["promotions"]}>
-          {/*
-            TODO: Make the slug dynamic.
-            This is a temporary version which makes it possible for us
-            to start deploying the Winter Campaign related stuff, although
-            has to be fixed ASAP so we can link to any campaign page.
-          */}
           <LazyPortal
             hostElementId="react-host-promotions"
             loader={() => import("Components/ComponentBuilder")}
