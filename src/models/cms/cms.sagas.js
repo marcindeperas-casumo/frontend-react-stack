@@ -11,7 +11,7 @@ import {
 
 // TODO: Handle failed fetches and timed out fetches.
 export function* fetchPageBySlugSaga(action) {
-  // As every <CMSField /> component can initate a request to
+  // As every <CMSField /> component can initiate a request to
   // fetch a particular CMS page, there can be a lot of
   // requests for fetching the same page at the same time.
   // The reason is that they will start the fetching before the first
