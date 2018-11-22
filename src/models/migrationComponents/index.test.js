@@ -5,7 +5,10 @@ describe("Reducer MigrationComponents", () => {
     const state = {
       activeComponents: [],
     };
-    const result = reducer(state, actions.activateComponent("foo"));
+    const result = reducer(
+      state,
+      actions.activateComponent({ componentId: "foo" })
+    );
     expect(result.activeComponents).toEqual(["foo"]);
   });
 
@@ -15,10 +18,37 @@ describe("Reducer MigrationComponents", () => {
     };
 
     const result = reducer(
-      reducer(state, actions.activateComponent("foo")),
-      actions.activateComponent("foo")
+      reducer(state, actions.activateComponent({ componentId: "foo" })),
+      actions.activateComponent({ componentId: "foo" })
     );
 
     expect(result.activeComponents).toEqual(["foo"]);
+  });
+
+  test("sets the routeParams if they are specified", () => {
+    const defaultState = {
+      activeComponents: [],
+      routeParams: ["foo"],
+    };
+    const routeParams = ["bar", "foo"];
+    const state = reducer(
+      defaultState,
+      actions.activateComponent({ componentId: "foo", routeParams })
+    );
+
+    expect(state.routeParams).toEqual(routeParams);
+  });
+
+  test("clears the routeParams if they are not specified", () => {
+    const defaultState = {
+      activeComponents: [],
+      routeParams: ["foo"],
+    };
+    const state = reducer(
+      defaultState,
+      actions.activateComponent({ componentId: "foo" })
+    );
+
+    expect(state.routeParams).toEqual([]);
   });
 });

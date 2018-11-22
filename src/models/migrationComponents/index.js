@@ -4,6 +4,7 @@ export const types = {
 
 const initialState = {
   activeComponents: [],
+  routeParams: [],
 };
 
 export const reducer = (state = initialState, action) => {
@@ -12,15 +13,17 @@ export const reducer = (state = initialState, action) => {
       return {
         ...state,
         activeComponents: [action.componentId],
+        routeParams: action.routeParams || [],
       };
     default:
       return state;
   }
 };
 
-export const activateComponent = componentId => ({
+export const activateComponent = ({ componentId, routeParams }) => ({
   type: types.ACTIVATE_COMPONENT,
   componentId,
+  routeParams,
 });
 
 export const actions = {
