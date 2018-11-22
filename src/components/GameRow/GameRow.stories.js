@@ -4,6 +4,7 @@ import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import game from "Components/GameTile/__mocks__/Game.json";
 import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
+import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import MockStore from "Components/MockStore";
 import GameRow from "Components/GameRow/GameRow";
 import GameRowContainer from "Components/GameRow";
@@ -35,4 +36,12 @@ stories.add(
     />
   ),
   info({ text: "With Jackpot" })
+);
+
+stories.add(
+  "Live Casino",
+  () => (
+    <GameRow game={liveCasinoGame} onLaunchGame={action("casumo-roulette")} />
+  ),
+  info({ text: "Live Casino" })
 );

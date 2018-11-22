@@ -11,34 +11,29 @@ import CMSField from "Components/CMSField";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
-
-type Bets = {
-  symbol: string,
-  min: number,
-  max: number,
-};
-
-type Lobby = {
-  image: string,
-  bets: Bets,
-  players: number,
-  provider: string,
-};
-
-type GameLobby = Game & {
-  lobby: Lobby,
-};
+import { renderBets } from "Utils/utils";
 
 export type Props = {
-  game: GameLobby,
+  game: Game,
   launchGame: Function,
+  subscribeToUpdates: () => void,
+  unsubscribeFromUpdates: () => void,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
+  componentDidMount() {
+    this.props.subscribeToUpdates();
+  }
+
+  componentWillUnmount() {
+    this.props.unsubscribeFromUpdates();
+  }
+
   renderHeader = () => {
     const {
       game: { lobby },
     } = this.props;
+
     return (
       <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
@@ -59,8 +54,6 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
   renderContent = () => {
     const { game, launchGame } = this.props;
-    const renderBets = o =>
-      o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
 
     return (
       <Flex>
@@ -92,6 +85,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     const {
       game: { lobby },
     } = this.props;
+
     return <CardFooter players={lobby.players} provider={lobby.provider} />;
   };
 
