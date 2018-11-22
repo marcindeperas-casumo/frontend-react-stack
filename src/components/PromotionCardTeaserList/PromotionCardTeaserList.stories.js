@@ -14,15 +14,11 @@ const state = {
 
 const stories = storiesOf("PromotionCardTeaserList", module);
 
-stories.add(
-  "Default",
-  () => (
-    <MockStore state={state}>
-      <PromotionCardTeaserList slug="campaigns.winter_games" />
-    </MockStore>
-  ),
-  {
-    backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-    ...info({ text: "Default" }),
-  }
-);
+stories.add("Default", () => (
+  <MockStore state={state}>
+    <PromotionCardTeaserList
+      slug="campaigns.winter_games"
+      backgroundColor="t-background-blue"
+    />
+  </MockStore>
+));
