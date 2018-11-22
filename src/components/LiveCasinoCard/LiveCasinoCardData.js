@@ -3,7 +3,6 @@ import classNames from "classnames";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
-import Matcher from "Components/Matcher";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
@@ -21,6 +20,7 @@ const getText = field => (
 
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
+
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
@@ -85,28 +85,24 @@ const renderSeats = ({ seats }) => (
   </React.Fragment>
 );
 
-const DataType = props => (
-  <Matcher
-    getKey={({ condition }) => condition}
-    matchers={{
-      results: renderResults,
-      seats: renderSeats,
-      default: () => null,
-    }}
-    {...props}
-  />
-);
-
 const CardData = ({ lobby }) => {
-  let renderType = null;
-  if (lobby.type === "Blackjack") renderType = "seats";
-  if (["MoneyWheel", "Roulette", "TopCard"].includes(lobby.type))
-    renderType = "results";
+  const type =
+    lobby.type === "Blackjack"
+      ? "seats"
+      : ["MoneyWheel", "Roulette", "TopCard"].includes(lobby.type)
+        ? "results"
+        : null;
+
+  const renderType = {
+    results: renderResults,
+    seats: renderSeats,
+    default: () => null,
+  };
 
   return (
     renderType && (
       <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        <DataType condition={renderType} {...lobby} />
+        {(renderType[type] || renderType.default)(lobby)}
       </div>
     )
   );
