@@ -7,7 +7,12 @@ export const connect = store => {
   const { on } = bridge;
 
   on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
-    dispatch(actions.activateComponent(data.config.id));
+    dispatch(
+      actions.activateComponent({
+        componentId: data.config.id,
+        routeParams: data.params,
+      })
+    );
   });
 };
 

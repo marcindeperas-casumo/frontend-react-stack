@@ -23,6 +23,7 @@ describe("App", () => {
         onAppStarted={() => {}}
         isAuthenticated={true}
         activeComponents={["foo"]}
+        routeParams={[]}
       />
     );
 
