@@ -8,8 +8,8 @@ new PipelineBuilder(this)
         .checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
-        .customStep('Build', this.&npmBuild)
         .customStep('Flow', this.&runFlow)
+        .customStep('Build', this.&runBuild)
         .customStep('Visual Regression', this.&runChromatic)
         .gradleDockerPublish()
         .gradleRelease()
@@ -19,7 +19,7 @@ def installDependencies() {
     sh "yarn"
 }
 
-def npmBuild() {
+def runBuild() {
     sh "yarn build"
 }
 
