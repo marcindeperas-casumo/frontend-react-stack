@@ -75,11 +75,7 @@ function JackpotAmount({ amount }) {
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text
-        tag="div"
-        size="sm"
-        className="t-color-grey-dark-3 u-padding-top--sm"
-      >
+      <Text tag="div" size="sm" className="u-padding-top--sm">
         {bets}
       </Text>
     );
