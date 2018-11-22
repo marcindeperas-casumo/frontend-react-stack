@@ -54,7 +54,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-promotions"
             loader={() => import("Components/ComponentBuilder")}
-            props={{ slug: "campaigns.winter-campaign" }}
+            props={{ slug: "campaigns.winter-games" }}
           />
         </MigrationComponent>
       </MigrationComponentManager>
