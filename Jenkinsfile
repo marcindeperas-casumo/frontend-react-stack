@@ -9,6 +9,7 @@ new PipelineBuilder(this)
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .customStep('Build', this.&npmBuild)
+        .customStep('Flow', this.&runFlow)
         .customStep('Visual Regression', this.&runChromatic)
         .gradleDockerPublish()
         .gradleRelease()
@@ -24,6 +25,10 @@ def npmBuild() {
 
 def runTests() {
     sh "yarn test:ci"
+}
+
+def runFLow() {
+    sh "yarn flow"
 }
 
 def runChromatic () {
