@@ -97,10 +97,17 @@ export const fetchGames = async ({
         {}
       );
 
-      const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
-        ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
-        currency,
-      });
+      let liveCasinoTables;
+
+      try {
+        liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
+          ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
+          currency,
+        });
+      } catch (e) {
+        console.error("Live casino tables query is unavailable");
+        liveCasinoTables = [];
+      }
 
       const getImageForTable = compose(
         prop("L"),
