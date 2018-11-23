@@ -18,7 +18,7 @@ const PromotionCardsStories = () => (
     <PromotionCardList
       slug="campaigns.winter_games"
       title="This Sexy AF campaign"
-      titleColor="t-color-white"
+      titleColor="white"
       backgroundColor="blue"
     />
   </MockStore>
