@@ -25,7 +25,7 @@ export default class GameRow extends PureComponent<Props> {
     return (
       <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
         {/* Image */}
-        <Flex.Item>
+        <Flex.Item className="o-flex__item-fixed-size">
           <GameThumb
             src={logoBackground}
             alt={name}
