@@ -49,14 +49,14 @@ if (!isProduction() || isCasumoTest) {
   window.Debugger = Debugger;
 
   /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
-  Debugger.showPromotions = () => {
+  Debugger.showPromotions = (lang = "en") => {
     store.dispatch(
       schemaActions.updateEntity({
         cms: {
-          "built-pages.top-lists-en": {
+          [`built-pages.top-lists-${lang}`]: {
             id: "87740",
-            slug: "top-lists-en",
-            title: "Top Lists En",
+            slug: `top-lists-${lang}`,
+            title: `Top Lists ${lang}`,
             content: "",
             attachments: [],
             custom_fields: {},
