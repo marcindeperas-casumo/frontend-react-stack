@@ -17,7 +17,7 @@ export class PromotionTitle extends PureComponent<Props> {
     const { title, dates, badge } = this.props;
     return (
       <Media
-        className="u-margin-bottom--xlg"
+        className="u-padding-horiz--lg u-margin-bottom--lg"
         renderText={() => (
           <>
             <Text
