@@ -18,7 +18,7 @@ export type Props = {
   title: string,
 };
 
-export default class Jackpots extends PureComponent<Props> {
+export default class MustDropJackpotsList extends PureComponent<Props> {
   render() {
     const { ids, title } = this.props;
     const idsByColumns = generateColumns(ids);

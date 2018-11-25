@@ -1,18 +1,28 @@
 // @flow
+import React from "react";
 import { connect } from "react-redux";
 import type { Connector } from "react-redux";
 import {
-  jackpotIdsSelector,
+  mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
 } from "Models/schema/selector";
 import { GAME_LIST_IDS } from "Src/constants";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 
-const connector: Connector = connect(state => ({
-  ids: jackpotIdsSelector(state),
+type Props = {
+  id: string,
+  title: string,
+};
+
+const MustDropJackpotListConnected = connect(state => ({
+  ids: mustDropJackpotsIdsSelector(state),
   title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
     state
   ),
-}));
+}))(MustDropJackpotsList);
 
-export default connector(MustDropJackpotsList);
+const MustDropJackpotListContainer = ({ id, title }: Props) => {
+  return <MustDropJackpotListConnected id={id} title={title} />;
+};
+
+export default MustDropJackpotListContainer;

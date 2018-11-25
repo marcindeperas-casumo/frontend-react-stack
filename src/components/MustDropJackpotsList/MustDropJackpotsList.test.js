@@ -1,24 +1,14 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Jackpots from "Components/Jackpots/Jackpots";
+import MustDropJackpotsList from "Components/MustDropJackpotsList/MustDropJackpotsList";
 
-describe("<Jackpots />", () => {
-  let subscribeToUpdates;
-  let unsubscribeFromUpdates;
+describe("<MustDropJackpotsList />", () => {
   let rendered;
   let ids;
 
   beforeEach(() => {
-    subscribeToUpdates = jest.fn();
-    unsubscribeFromUpdates = jest.fn();
     ids = ["1", "2", "3", "4", "5", "6", "7"];
-    rendered = shallow(
-      <Jackpots
-        ids={ids}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
-    );
+    rendered = shallow(<MustDropJackpotsList ids={ids} />);
   });
 
   test("renders a <ScrollableListTitle /> component", () => {
@@ -26,22 +16,12 @@ describe("<Jackpots />", () => {
   });
 
   test("renders tiles for every 3 game", () => {
-    expect(rendered.find("JackpotsTile").length).toBe(3);
+    expect(rendered.find("MustDropJackpotsListTile").length).toBe(3);
   });
 
   test("passes down jackpot-ids to the tiles", () => {
-    const firstTile = rendered.find("JackpotsTile").first();
+    const firstTile = rendered.find("MustDropJackpotsListTile").first();
 
     expect(firstTile.props().ids).toEqual(["1", "2", "3"]);
-  });
-
-  test("subscribes to updates when mounted", () => {
-    expect(subscribeToUpdates).toBeCalledTimes(1);
-  });
-
-  test("unsubscribes when unmounted", () => {
-    expect(unsubscribeFromUpdates).toBeCalledTimes(0);
-    rendered.unmount();
-    expect(unsubscribeFromUpdates).toBeCalledTimes(1);
   });
 });

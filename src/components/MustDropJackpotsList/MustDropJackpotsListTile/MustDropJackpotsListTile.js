@@ -8,12 +8,12 @@ type Props = {
 };
 
 // TODO: Move this out to make it reusable
-export default class JackpotsTile extends PureComponent<Props> {
+export default class MustDropJackpotsListTile extends PureComponent<Props> {
   render() {
     const { ids = [] } = this.props;
 
     return (
-      <div className="c-jackpots-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
+      <div className="c-must-drop-jackpots-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
         <List items={ids} render={id => <GameRow id={id} />} />
       </div>
     );
