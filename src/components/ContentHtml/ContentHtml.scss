@@ -1,0 +1,30 @@
+// stylelint-disable xi/selector-pattern
+@import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-typography);
+@import "cudl-typography";
+@include cudl-reset-compile(cudl-sass-typography);
+
+.s-content-html {
+  font-size: cudl-font-size(default, $cudl-font-sizes);
+  line-height: 1.5;
+
+  p {
+    margin-bottom: 1rem;
+  }
+
+  ul {
+    list-style: disc;
+    list-style-position: inside;
+    margin-bottom: 1rem;
+    margin-left: 0;
+  }
+
+  li {
+    margin-bottom: 1rem;
+  }
+
+  li:last-child,
+  *:last-child {
+    margin-bottom: 0 !important;
+  }
+}
