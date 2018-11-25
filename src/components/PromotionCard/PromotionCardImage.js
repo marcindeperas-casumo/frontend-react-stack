@@ -5,12 +5,16 @@ const imgixOpts = { w: 240, h: 140, fit: "crop" };
 
 const PromotionCardImage = ({ image }) => {
   return (
-    <ImageLazy
-      className="u-display--block c-promotion-card__img u-margin"
-      src={image}
-      imgixOpts={imgixOpts}
-      dpr={3}
-    />
+    <div className="u-margin">
+      <div className="o-ratio o-ratio--promotion-card-image">
+        <ImageLazy
+          className="o-ratio__content c-promotion-card__img"
+          src={image}
+          imgixOpts={imgixOpts}
+          dpr={3}
+        />
+      </div>
+    </div>
   );
 };
 
