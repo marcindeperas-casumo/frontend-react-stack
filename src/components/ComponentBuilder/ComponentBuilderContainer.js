@@ -2,11 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS";
-import {
-  fieldSelectorFactory,
-  isPageFetchedFactory,
-  fetchPageBySlug,
-} from "Models/cms";
+import { getField, fetchPageBySlug } from "Models/cms";
 
 // This is the field that holds the component definitions under a CMS page
 const field = "content_builder";
@@ -18,8 +14,7 @@ type Props = {
 
 const ComponentBuilderConnected = connect(
   (state, { slug }) => ({
-    componentDefinitions: fieldSelectorFactory({ slug, field })(state),
-    shouldFetch: !isPageFetchedFactory(slug)(state),
+    componentDefinitions: getField({ slug, field })(state),
   }),
   (dispatch, { slug }) => ({
     fetch: () => dispatch(fetchPageBySlug(slug)),
