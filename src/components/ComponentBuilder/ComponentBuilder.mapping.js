@@ -2,6 +2,7 @@
 import ContentHtml from "Components/ContentHtml";
 import CuratedCard from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
+import MustDropJackpots from "Components/MustDropJackpotsList";
 import GameListHorizontal from "Components/GameListHorizontal";
 import GameListVertical from "Components/ContentGameList";
 import ContentImage from "Components/ContentImage";
@@ -22,6 +23,7 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST_VERTICAL: GameListVertical,
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
+  MUST_DROP_JACKPOTS: MustDropJackpots,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
