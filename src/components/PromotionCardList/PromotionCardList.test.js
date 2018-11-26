@@ -3,18 +3,18 @@ import { shallow } from "enzyme";
 import PromotionCardList from "./PromotionCardList";
 
 describe("PromotionCardList", () => {
-  let startFetch;
+  let fetch;
 
   beforeEach(() => {
-    startFetch = jest.fn();
+    fetch = jest.fn();
   });
 
   test("should render a scrollable component", () => {
+    const fetch = jest.fn();
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetch={fetch}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
@@ -22,44 +22,25 @@ describe("PromotionCardList", () => {
     expect(rendered.find("Scrollable").exists()).toBe(true);
   });
 
-  test("should initiate the fetching if page is not available", () => {
-    const startFetch = jest.fn();
+  test("should fetch the page on component mount", () => {
+    const fetch = jest.fn();
 
     shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={false}
+        fetch={fetch}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
-    expect(startFetch).toHaveBeenCalledTimes(1);
-  });
 
-  test("should not initiate a fetch if page is available", () => {
-    const startFetch = jest.fn();
-
-    shallow(
-      <PromotionCardList
-        slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
-        promotionsSlugs={["page-1", "page-2"]}
-      />
-    );
-    expect(startFetch).not.toHaveBeenCalledTimes(1);
+    expect(fetch).toHaveBeenCalledTimes(1);
   });
 
   test("should not render the scrollable component if promotionSlugs is empty", () => {
-    const startFetch = jest.fn();
+    const fetch = jest.fn();
 
     const rendered = shallow(
-      <PromotionCardList
-        slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
-        promotionsSlugs={[]}
-      />
+      <PromotionCardList slug="foo" fetch={fetch} promotionsSlugs={[]} />
     );
 
     expect(rendered.find("Scrollable").exists()).toBe(false);
@@ -69,8 +50,7 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetch={fetch}
         backgroundColor="blue"
         promotionsSlugs={["page-1", "page-2"]}
       />
@@ -83,8 +63,7 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetch={fetch}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
@@ -96,8 +75,7 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetch={fetch}
         titleColor="white"
         promotionsSlugs={["page-1", "page-2"]}
       />
@@ -110,8 +88,7 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetch={fetch}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );

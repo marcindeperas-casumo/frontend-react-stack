@@ -35,14 +35,6 @@ const PromotionCardWrapper = ({ link, image, badge, dates, title }) => {
 };
 
 export default class PromotionCard extends PureComponent<Props> {
-  componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
-  }
-
   render() {
     const { isFetched, image, badge, link, dates, title } = this.props;
 

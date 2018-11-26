@@ -8,8 +8,7 @@ import { createModifierClasses } from "@casumo/cudl-react-utils";
 
 type Props = {
   promotionsSlugs: Array<string>,
-  isFetched: boolean,
-  startFetch: () => void,
+  fetch: () => void,
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
@@ -29,11 +28,7 @@ const marginPerDevice = {
 
 class PromotionCardList extends PureComponent<Props> {
   componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
+    this.props.fetch();
   }
 
   render() {

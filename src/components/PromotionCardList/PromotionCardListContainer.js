@@ -2,31 +2,27 @@
 import React from "react";
 import { connect } from "react-redux";
 import PromotionCardList from "./PromotionCardList";
-import {
-  isPageLoadedFactory,
-  fetchPageBySlug,
-  fieldSelectorFactory,
-} from "Models/cms";
+import { fetchPageBySlug, getField } from "Models/cms";
 
 type Props = {
   /** The slug of the page in the CMS which has all the promotions available */
   slug: string,
 };
 
-const promotionsField = "promotions";
+const field = "promotions";
 const defaultValue = [];
+const getSlug = slug => `${slug}.*`;
 
 const PromotionCardListConnected = connect(
   (state, { slug }) => ({
-    promotionsSlugs: fieldSelectorFactory({
+    promotionsSlugs: getField({
       slug,
-      field: promotionsField,
+      field,
       defaultValue,
     })(state),
-    isFetched: isPageLoadedFactory(slug)(state),
   }),
   (dispatch, { slug }) => ({
-    startFetch: () => dispatch(fetchPageBySlug(slug)),
+    fetch: () => dispatch(fetchPageBySlug(getSlug(slug))),
   })
 )(PromotionCardList);
 

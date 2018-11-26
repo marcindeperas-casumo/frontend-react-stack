@@ -47,6 +47,7 @@ export const applicationSchema = {
   [JACKPOT_ENTITY_KEY]: jackpot,
   [`${JACKPOT_ENTITY_KEY}s`]: [jackpot],
   [CMS_ENTITY_KEY]: cms,
+  [`${CMS_ENTITY_KEY}s`]: [cms],
 };
 
 export const normalizeData = data => normalize(data, applicationSchema);
