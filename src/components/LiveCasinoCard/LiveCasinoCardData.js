@@ -100,7 +100,7 @@ const CardData = ({ lobby }) => {
   };
 
   return (
-    renderType && (
+    type && (
       <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
         {(renderType[type] || renderType.default)(lobby)}
       </div>

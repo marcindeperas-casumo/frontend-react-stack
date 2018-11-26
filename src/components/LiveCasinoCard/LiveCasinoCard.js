@@ -16,17 +16,19 @@ import { renderBets } from "Utils/utils";
 export type Props = {
   game: Game,
   launchGame: Function,
-  subscribeToUpdates: () => void,
-  unsubscribeFromUpdates: () => void,
+  subscribeToUpdates: string => void,
+  unsubscribeFromUpdates: string => void,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
   componentDidMount() {
-    this.props.subscribeToUpdates();
+    const { game, subscribeToUpdates } = this.props;
+    game.lobby && subscribeToUpdates(game.lobby.tableId);
   }
 
   componentWillUnmount() {
-    this.props.unsubscribeFromUpdates();
+    const { game, unsubscribeFromUpdates } = this.props;
+    game.lobby && unsubscribeFromUpdates(game.lobby.tableId);
   }
 
   renderHeader = () => {

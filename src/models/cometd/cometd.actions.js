@@ -20,10 +20,10 @@ export const unsubscribeJackpotUpdates = () => {
   return unsubscribe({ channel: CHANNELS.JACKPOTS });
 };
 
-export const subscribeLiveCasinoUpdates = () => {
-  return subscribe({ channel: CHANNELS.LIVE_CASINO_ALL });
+export const subscribeLiveCasinoUpdates = id => {
+  return subscribe({ channel: `${CHANNELS.LIVE_CASINO_TABLE}/${id}` });
 };
 
-export const unsubscribeLiveCasinoUpdates = () => {
-  return unsubscribe({ channel: CHANNELS.LIVE_CASINO_ALL });
+export const unsubscribeLiveCasinoUpdates = id => {
+  return unsubscribe({ channel: `${CHANNELS.LIVE_CASINO_TABLE}/${id}` });
 };

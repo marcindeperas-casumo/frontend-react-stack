@@ -6,6 +6,7 @@ type Bets = {
 };
 
 export type liveCasinoLobby = {
+  tableId: string,
   image: string,
   bets: Bets,
   players: number,
