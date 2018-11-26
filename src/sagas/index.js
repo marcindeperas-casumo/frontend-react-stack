@@ -34,7 +34,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    getFetchCompleteTypeBySlug(CURATED_SLUG),
+    action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
     fetchCuratedGameSaga
   );
 }

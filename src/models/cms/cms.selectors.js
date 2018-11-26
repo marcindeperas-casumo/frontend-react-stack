@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { prop, compose, defaultTo, not, isNil, anyPass } from "ramda";
+import { prop, compose, defaultTo, not, isNil } from "ramda";
 import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetched, isFetchingStarted } from "Models/fetch/selectors";
 

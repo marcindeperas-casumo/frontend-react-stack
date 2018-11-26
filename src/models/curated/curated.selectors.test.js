@@ -1,7 +1,6 @@
 import {
   curatedSelector,
   isCuratedLoadedFactory,
-  getCuratedByMarketSlug,
 } from "Models/curated";
 
 const mockState = {
@@ -55,7 +54,7 @@ describe("Models/curated/selectors", () => {
   describe("isCuratedLoadedFactory()", () => {
     test("should return false if Curated page not loaded", () => {
       const state = { schema: { cms: "page", game: "game" } };
-      const slug = getCuratedByMarketSlug("se_sv");
+      const slug = "se_sv";
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(false);
@@ -63,8 +62,8 @@ describe("Models/curated/selectors", () => {
 
     test("return true if Curated loaded and no game", () => {
       const state = { ...mockState };
-      state.schema.cms["curated.curated-gb_en"].fields.game = [];
-      const slug = getCuratedByMarketSlug("gb_en");
+      const slug = "curated.curated-gb_en";
+      state.schema.cms[slug].fields.game = [];
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(true);
@@ -73,7 +72,7 @@ describe("Models/curated/selectors", () => {
     test("return false if Curated page loaded with game but no gameData", () => {
       const state = { ...mockState };
       state.schema.cms["curated.curated-gb_en"].fields.game = ["topwheel"];
-      const slug = getCuratedByMarketSlug("se_sv");
+      const slug = "se_sv";
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(false);
@@ -81,10 +80,10 @@ describe("Models/curated/selectors", () => {
 
     test("return true if Curated loaded with game and gameData", () => {
       const state = { ...mockState };
-      state.schema.cms["curated.curated-gb_en"].fields.game = [
+      const slug = "curated.curated-gb_en";
+      state.schema.cms[slug].fields.game = [
         "topwheel-treasures",
       ];
-      const slug = getCuratedByMarketSlug("gb_en");
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(true);
