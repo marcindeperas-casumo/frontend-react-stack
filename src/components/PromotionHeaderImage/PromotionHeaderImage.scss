@@ -4,14 +4,15 @@
 //prettier-ignore
 $promotion-image-ratios: (
   mobile: (
-    182/375
+    179/377
   ) * 100%,
   phablet: (
     188/546
   ) * 100%
 );
 
-.o-ratio--promotion-header-image::before {
+// stylelint-disable-next-line
+.o-ratio--promotion-header-image.o-ratio--promotion-header-image::before {
   @include cudl-breakpoint-with($promotion-image-ratios, padding-bottom);
 }
 
