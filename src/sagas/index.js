@@ -9,6 +9,10 @@ import {
   fetchPageBySlugSaga,
 } from "Models/cms";
 import {
+  TYPES as jackpotsMustDropTypes,
+  fetchJackpotsMustDropSaga,
+} from "Models/jackpotsMustDrop";
+import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
   cometdSubscribeSaga,
@@ -27,6 +31,7 @@ export default function* rootSaga(dispatch) {
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
+  yield fork(takeEvery, jackpotsMustDropTypes.FETCH, fetchJackpotsMustDropSaga);
   yield fork(
     takeEvery,
     takeChannel(cometdChannels.JACKPOTS),
