@@ -3,18 +3,20 @@ import { shallow } from "enzyme";
 import PromotionCardList from "./PromotionCardList";
 
 describe("PromotionCardList", () => {
-  let fetch;
+  let fetchCampaign;
+  let fetchPromotions;
 
   beforeEach(() => {
-    fetch = jest.fn();
+    fetchCampaign = jest.fn();
+    fetchPromotions = jest.fn();
   });
 
   test("should render a scrollable component", () => {
-    const fetch = jest.fn();
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
@@ -23,24 +25,26 @@ describe("PromotionCardList", () => {
   });
 
   test("should fetch the page on component mount", () => {
-    const fetch = jest.fn();
-
     shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
 
-    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(fetchCampaign).toHaveBeenCalledTimes(1);
   });
 
   test("should not render the scrollable component if promotionSlugs is empty", () => {
-    const fetch = jest.fn();
-
     const rendered = shallow(
-      <PromotionCardList slug="foo" fetch={fetch} promotionsSlugs={[]} />
+      <PromotionCardList
+        slug="foo"
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
+        promotionsSlugs={[]}
+      />
     );
 
     expect(rendered.find("Scrollable").exists()).toBe(false);
@@ -50,7 +54,8 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         backgroundColor="blue"
         promotionsSlugs={["page-1", "page-2"]}
       />
@@ -63,7 +68,8 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
@@ -75,7 +81,8 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         titleColor="white"
         promotionsSlugs={["page-1", "page-2"]}
       />
@@ -88,7 +95,8 @@ describe("PromotionCardList", () => {
     const rendered = shallow(
       <PromotionCardList
         slug="foo"
-        fetch={fetch}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );

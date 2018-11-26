@@ -126,7 +126,6 @@ describe("PromotionCard", () => {
         title={promotionsInfo.title}
         dates={promotionsInfo.dates}
         isFetched={false}
-        startFetch={() => {}}
       />
     );
 
