@@ -1,33 +1,29 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import {
-  isPageLoadedFactory,
-  fetchPageBySlug,
-  fieldSelectorFactory,
-} from "Models/cms";
+import { isPageFetched, getField } from "Models/cms";
 import PromotionCard from "./PromotionCard";
 import type { Props } from "./PromotionCard";
 
-const promotionImageField = "image";
-const promotionBadgeField = "campaign_badge";
-
-const PromotionCardConnected = connect(
-  (state, { slug }) => ({
-    isFetched: isPageLoadedFactory(slug)(state),
-    image: fieldSelectorFactory({
-      slug,
-      field: promotionImageField,
-    })(state),
-    badge: fieldSelectorFactory({
-      slug,
-      field: promotionBadgeField,
-    })(state),
-  }),
-  (dispatch, { slug }) => ({
-    startFetch: () => dispatch(fetchPageBySlug(slug)),
-  })
-)(PromotionCard);
+const PromotionCardConnected = connect((state, { slug }) => ({
+  isFetched: isPageFetched(slug)(state),
+  image: getField({
+    slug,
+    field: "image",
+  })(state),
+  badge: getField({
+    slug,
+    field: "campaign_badge",
+  })(state),
+  dates: getField({
+    slug,
+    field: "dates",
+  })(state),
+  title: getField({
+    slug,
+    field: "title",
+  })(state),
+}))(PromotionCard);
 
 const PromotionCardContainer = (props: Props) => (
   <PromotionCardConnected {...props} />

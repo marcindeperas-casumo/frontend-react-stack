@@ -1,20 +1,26 @@
 import { createSelector } from "reselect";
-import { cmsEntitiesSelector } from "Models/schema/selector";
-import { prop, compose, defaultTo, isEmpty, not, identity } from "ramda";
+import { prop, compose, defaultTo, not, isNil, anyPass } from "ramda";
 import { getFetchTypeBySlug } from "Models/cms";
+import { isNotFetched, isFetchingStarted } from "Models/fetch/selectors";
 
-export const slugSelectorFactory = slug =>
+export const getCms = compose(
+  defaultTo({}),
+  prop("cms"),
+  prop("schema")
+);
+
+export const getPage = slug =>
   createSelector(
-    cmsEntitiesSelector,
+    getCms,
     compose(
       defaultTo({}),
       prop(slug)
     )
   );
 
-export const fieldSelectorFactory = ({ slug, field, defaultValue = null }) =>
+export const getField = ({ slug, field, defaultValue = null }) =>
   createSelector(
-    slugSelectorFactory(slug),
+    getPage(slug),
     compose(
       defaultTo(defaultValue),
       prop(field),
@@ -22,28 +28,27 @@ export const fieldSelectorFactory = ({ slug, field, defaultValue = null }) =>
     )
   );
 
-export const isPageLoadedFactory = slug =>
+export const isPageFetchingStarted = slug =>
+  isFetchingStarted(getFetchTypeBySlug(slug));
+
+// Checking if a page is fetched like this
+// because if we fetch a lot of children by their
+// parent (e.g. "/promotions.*") then the children's
+// fetch information won't be in the fetch status
+export const isPageFetched = slug =>
   createSelector(
-    slugSelectorFactory(slug),
+    getCms,
     compose(
       not,
-      isEmpty
+      isNil,
+      prop(slug)
     )
   );
 
-export const isPageFetchedFactory = slug =>
+// Only fetch a page if it was not fetched yet and if it is not in the store already.
+export const shouldFetchPage = slug =>
   createSelector(
-    identity,
-    compose(
-      Boolean,
-      prop(getFetchTypeBySlug(slug)),
-      prop("fetch")
-    )
-  );
-
-export const shouldFetchPageFactory = slug =>
-  createSelector(
-    isPageLoadedFactory(slug),
-    isPageFetchedFactory(slug),
-    (isLoaded, isFetched) => !isLoaded && !isFetched
+    isPageFetched(slug),
+    isNotFetched(getFetchTypeBySlug(slug)),
+    (isPageObjectInStore, isNotFetched) => !isPageObjectInStore && isNotFetched
   );

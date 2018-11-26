@@ -1,9 +1,9 @@
 // TODO: Make these components lazy-loaded
-import DangerousHtml from "Components/DangerousHtml";
+import ContentHtml from "Components/ContentHtml";
 import CuratedCard from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
 import GameListHorizontal from "Components/GameListHorizontal";
-import GameListVertical from "Components/GameListVertical";
+import GameListVertical from "Components/ContentGameList";
 import ContentImage from "Components/ContentImage";
 import ContentSeparator from "Components/ContentSeparator";
 import ContentSubtitle from "Components/ContentSubtitle";
@@ -15,7 +15,7 @@ import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 
 export const COMPONENT_MAPPING = {
-  HTML_CONTENT: DangerousHtml,
+  HTML_CONTENT: ContentHtml,
   GAMES_LIST: GameListHorizontal,
   GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,

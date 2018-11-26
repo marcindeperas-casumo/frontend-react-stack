@@ -5,19 +5,13 @@ import ComponentBuilderRenderer from "Components/ComponentBuilder/ComponentBuild
 type Props = {
   /** The array of component definition objects. */
   componentDefinitions: Array<Object>,
-  /** A boolean indicating if the "fetch" function should be called on componentDidMount(). */
-  shouldFetch: boolean,
-  /** A function to be called if fetching is needed. */
+  /** A function for fetching the CMS page */
   fetch: Function,
 };
 
 export default class ComponentBuilderCMS extends PureComponent<Props> {
   componentDidMount() {
-    const { shouldFetch, fetch } = this.props;
-
-    if (shouldFetch) {
-      fetch();
-    }
+    this.props.fetch();
   }
 
   render() {

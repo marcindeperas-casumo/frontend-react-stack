@@ -37,6 +37,7 @@ stories.add(
       <div style={{ maxWidth: 350 }}>
         <PromotionCardTeaserPresentational
           slug="promotions.boosted-reelraces"
+          link="promotions/boosted-reelraces"
           isFetched={true}
           startFetch={() => {}}
           badge={state.schema.cms["promotions.boosted-reelraces"].fields.badge}
