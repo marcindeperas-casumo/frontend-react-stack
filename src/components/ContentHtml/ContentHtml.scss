@@ -1,5 +1,8 @@
 // stylelint-disable xi/selector-pattern
 @import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-colors);
+@import "cudl-colors";
+@include cudl-reset-compile(cudl-sass-colors);
 @include cudl-prevent-compile(cudl-sass-typography);
 @import "cudl-typography";
 @include cudl-reset-compile(cudl-sass-typography);
@@ -11,20 +14,29 @@
   p {
     margin-bottom: 1rem;
   }
+}
 
-  ul {
-    list-style: disc;
-    list-style-position: inside;
-    margin-bottom: 1rem;
-    margin-left: 0;
-  }
+.s-content-html ul {
+  list-style: disc;
+  list-style-position: inside;
+  margin-bottom: 1rem;
+  margin-left: 0;
 
   li {
     margin-bottom: 1rem;
   }
 
+  p {
+    display: inline;
+  }
+
   li:last-child,
   *:last-child {
-    margin-bottom: 0 !important;
+    margin-bottom: 0;
   }
+}
+
+.s-content-html--terms {
+  color: cudl-palette(grey, dark-1);
+  font-size: cudl-font-size(sm, $cudl-font-sizes);
 }
