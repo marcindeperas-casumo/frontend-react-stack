@@ -16,11 +16,11 @@ describe("<MustDropJackpotsList />", () => {
   });
 
   test("renders tiles for every 3 game", () => {
-    expect(rendered.find("MustDropJackpotsListTile").length).toBe(3);
+    expect(rendered.find("JackpotsListTile").length).toBe(3);
   });
 
   test("passes down jackpot-ids to the tiles", () => {
-    const firstTile = rendered.find("MustDropJackpotsListTile").first();
+    const firstTile = rendered.find("JackpotsListTile").first();
 
     expect(firstTile.props().ids).toEqual(["1", "2", "3"]);
   });
