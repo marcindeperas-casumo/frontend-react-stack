@@ -7,7 +7,7 @@ import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget/MustDropJa
 import data from "Components/MustDropJackpotsWidget/__mocks__/jackpots.json";
 const stories = storiesOf("MustDropJackpotsWidget", module);
 
-const anon = () => ({});
+const noop = () => ({});
 
 stories.add(
   "Default (Connected)",
@@ -23,10 +23,12 @@ stories.add(
   "Default",
   () => (
     <MustDropJackpotsWidget
-      jackpots={data}
       isFetched={true}
-      subscribeToUpdates={anon}
-      unsubscribeFromUpdates={anon}
+      jackpots={data}
+      fetchJackpots={noop}
+      fetchCmsContent={noop}
+      subscribeToUpdates={noop}
+      unsubscribeFromUpdates={noop}
     />
   ),
   info({ text: "Default" })

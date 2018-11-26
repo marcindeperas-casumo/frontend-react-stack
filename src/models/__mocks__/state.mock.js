@@ -23,6 +23,10 @@ export default {
       error: null,
       isFetching: false,
     },
+    "JACKPOTS_MUST_DROP/FETCH": {
+      error: null,
+      isFetching: false,
+    },
   },
   handshake: {
     app: {
