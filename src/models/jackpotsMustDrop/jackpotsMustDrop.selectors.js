@@ -4,7 +4,7 @@ import { getField } from "Models/cms";
 import { isNotFetched, isFetched } from "Models/fetch/selectors";
 import { TYPES } from "./jackpotsMustDrop.constants";
 
-export const getJackpotsMustDrop = compose(
+export const getJackpotsMustDropSchema = compose(
   defaultTo({}),
   prop("jackpotMustDrop"),
   prop("schema")
@@ -16,7 +16,7 @@ export const isFetchedJackpotsMustDrop = isFetched(TYPES.FETCH);
 
 export const mergeJackpotsMustDropSelectorFactory = slug =>
   createSelector(
-    getJackpotsMustDrop,
+    getJackpotsMustDropSchema,
     getField({ slug, field: "jackpots", defaultValue: [] }),
     (jackpots, cmsField) => {
       if (!jackpots) {
