@@ -21,7 +21,7 @@ describe("Models/Jackpots/Selectors", () => {
   };
 
   describe(".jackpotEntitySelector()", () => {
-    test("selects the jackpots from the state", async () => {
+    test("selects the jackpots from the state", () => {
       expect(jackpotEntitySelector(state)).toEqual(state.schema.jackpot);
     });
 
