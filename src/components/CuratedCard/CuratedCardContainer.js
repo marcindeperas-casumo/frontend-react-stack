@@ -1,8 +1,7 @@
 // @flow
+import React from "react";
 import { connect } from "react-redux";
-import type { Connector } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
-import type { Props } from "Components/CuratedCard/CuratedCard";
 import {
   CURATED_SLUG,
   curatedSelector,
@@ -10,31 +9,27 @@ import {
 } from "Models/curated";
 import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
-import { head } from "ramda";
 
-export type PublicProps = {
-  card: Array<string>,
+type Props = {
+  card: string | Array<string>,
 };
 
-export const getSlug = (slug: Array<string>) => `${CURATED_SLUG}.${head(slug)}`;
+const CuratedConnected = connect(
+  (state, { slug }) => ({
+    ...curatedSelector(slug)(state),
+    isFetched: isCuratedLoadedFactory(slug)(state),
+  }),
+  (dispatch, { slug }) => ({
+    fetchCurated: () => dispatch(fetchPageBySlug(slug)),
+    onLaunchGame: () => dispatch(gameActions.launchGame(slug)),
+  })
+)(CuratedCard);
 
-const connector: Connector<PublicProps, Props> = connect(
-  (state, { card = [] }) => {
-    const slug = getSlug(card);
+// TODO: Move this logic out from this component
+const CuratedContainer = ({ card }: Props) => {
+  const slug = `${CURATED_SLUG}.${Array.isArray(card) ? card[0] : card}`;
 
-    return {
-      ...curatedSelector(slug)(state),
-      isFetched: isCuratedLoadedFactory(slug)(state),
-    };
-  },
-  (dispatch, { card }) => {
-    const slug = getSlug(card);
+  return <CuratedConnected slug={slug} />;
+};
 
-    return {
-      fetchCurated: () => dispatch(fetchPageBySlug(slug)),
-      onLaunchGame: () => dispatch(gameActions.launchGame(slug)),
-    };
-  }
-);
-
-export default connector(CuratedCard);
+export default CuratedContainer;
