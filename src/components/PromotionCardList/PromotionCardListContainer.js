@@ -22,7 +22,8 @@ const PromotionCardListConnected = connect(
     })(state),
   }),
   (dispatch, { slug }) => ({
-    fetch: () => dispatch(fetchPageBySlug(getSlug(slug))),
+    fetchCampaign: () => dispatch(fetchPageBySlug(getSlug(slug))),
+    fetchPromotions: () => dispatch(fetchPageBySlug("promotions.*")),
   })
 )(PromotionCardList);
 
