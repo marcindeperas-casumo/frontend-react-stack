@@ -19,7 +19,8 @@ class PromotionCardTeaserList extends PureComponent<Props> {
 
   render() {
     const { promotionsSlugs, backgroundColor } = this.props;
-
+    const backgroundImage =
+      "https://cms.casumo.com/wp-content/uploads/2018/11/squiggles.svg";
     if (!promotionsSlugs.length) {
       return null;
     }
@@ -28,18 +29,22 @@ class PromotionCardTeaserList extends PureComponent<Props> {
       <div
         className={classNames(
           backgroundColor && `t-background-${backgroundColor}`,
-          "c-promotion-card-teaser-list u-padding-top--xlg u-padding-bottom--md u-padding-horiz--md"
+          "u-margin-bottom--lg"
         )}
       >
-        {promotionsSlugs.map(promotionSlug => (
-          <div className="u-margin-bottom--md" key={promotionSlug}>
-            <PromotionCardTeaser
-              slug={`promotions.${promotionSlug}`}
-              link={`promotions/${promotionSlug}`}
-              key={promotionSlug}
-            />
-          </div>
-        ))}
+        <img src={`${backgroundImage}`} alt="" />
+        <div className="c-promotion-card-teaser-list">
+          {promotionsSlugs.map(promotionSlug => (
+            <div className="u-margin-bottom--md" key={promotionSlug}>
+              <PromotionCardTeaser
+                slug={`promotions.${promotionSlug}`}
+                link={`promotions/${promotionSlug}`}
+                key={promotionSlug}
+              />
+            </div>
+          ))}
+        </div>
+        <img src={`${backgroundImage}`} alt="" />
       </div>
     );
   }
