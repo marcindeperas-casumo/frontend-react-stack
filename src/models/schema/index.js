@@ -3,6 +3,7 @@ import {
   GAME_ENTITY_KEY,
   LIVE_TABLE_ENTITY_KEY,
   JACKPOT_ENTITY_KEY,
+  JACKPOT_MUST_DROP_ENTITY_KEY,
   GAME_LIST_ENTITY_KEY,
   CMS_ENTITY_KEY,
 } from "./schema";
@@ -41,9 +42,12 @@ const entityReducerFactory = entityKey => (state = {}, action) => {
 export const reducer = combineReducers({
   [GAME_ENTITY_KEY]: entityReducerFactory(GAME_ENTITY_KEY),
   [LIVE_TABLE_ENTITY_KEY]: entityReducerFactory(LIVE_TABLE_ENTITY_KEY),
-  [JACKPOT_ENTITY_KEY]: entityReducerFactory(JACKPOT_ENTITY_KEY),
   [GAME_LIST_ENTITY_KEY]: entityReducerFactory(GAME_LIST_ENTITY_KEY),
   [CMS_ENTITY_KEY]: entityReducerFactory(CMS_ENTITY_KEY),
+  [JACKPOT_ENTITY_KEY]: entityReducerFactory(JACKPOT_ENTITY_KEY),
+  [JACKPOT_MUST_DROP_ENTITY_KEY]: entityReducerFactory(
+    JACKPOT_MUST_DROP_ENTITY_KEY
+  ),
 });
 
 export default reducer;

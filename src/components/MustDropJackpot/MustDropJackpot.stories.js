@@ -5,14 +5,22 @@ import info from "Storybook/storybookInfo";
 import MustDropJackpot from "Components/MustDropJackpot";
 const stories = storiesOf("MustDropJackpot", module);
 
+const jackpot = {
+  label: "Pays before 1AM",
+  image: "https://cms.casumo.com/wp-content/uploads/2018/11/Daily-Drop.svg",
+  id: "31001",
+  name: "Daily Drop Jackpot",
+  type: "time",
+  amount: {
+    value: "887.50",
+    currency: "GBP",
+    formattedAmount: "£887",
+  },
+  target: "2018-11-22 22:00:00",
+};
+
 stories.add(
   "Default",
-  () => (
-    <MustDropJackpot
-      amount="€12,000,000,000"
-      description="Pays before 1AM"
-      imageSrc="https://cms.casumo.com/wp-content/uploads/2018/11/Full-round-black-container.svg"
-    />
-  ),
+  () => <MustDropJackpot jackpot={jackpot} />,
   info({ text: "Default" })
 );
