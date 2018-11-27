@@ -20,6 +20,7 @@ export default class ContentButton extends PureComponent<Props> {
   render() {
     const { text, type } = this.props;
     const url = ACTION_MAP[type];
+
     return url ? (
       <div className="u-margin-bottom--xlg u-margin-horiz--lg">
         <Button className="u-width--1/1" href={url}>

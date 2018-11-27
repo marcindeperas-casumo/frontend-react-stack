@@ -16,7 +16,7 @@ describe("ContentButton", () => {
 
   test("should render nothing if ACTION_MAP[key] doesn't exist", () => {
     const rendered = shallow(<ContentButton type={"sausage"} />);
-    console.log(rendered.debug());
+
     expect(rendered.html()).toBeNull();
   });
 });
