@@ -6,4 +6,5 @@ import { TYPES } from "./cometd.constants";
 // Usage:
 //    takeEvery(takeChannel('/foo/bar'), yourSaga)
 export const takeChannel = targetChannel => ({ type, channel }) =>
-  type === TYPES.COMETD_MESSAGE && channel === targetChannel;
+  type === TYPES.COMETD_MESSAGE &&
+  (channel === targetChannel || Boolean(channel.match(targetChannel)));
