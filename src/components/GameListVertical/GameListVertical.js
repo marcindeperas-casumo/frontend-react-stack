@@ -6,6 +6,7 @@ import GameRow from "Components/GameRow";
 type Props = {
   /** The list of game ids. */
   ids: Array<string>,
+  /** the function that fetches the games */
   fetch: () => void,
 };
 
