@@ -6,17 +6,26 @@ type Props = {
   /** text to render inside button */
   text: string,
   /** link for the button */
-  href: string,
+  type: string,
 };
 
+// TODO: Find a better way to scale this
+export const ACTION_MAP = {
+  "top-lists": "/games/top",
+  "all-games": "/games/all",
+  "all-red-tiger-games": "/games/must-drop-jackpots",
+  "reel-races": "/reel-races",
+};
 export default class ContentButton extends PureComponent<Props> {
   render() {
-    const { text, href } = this.props;
-
-    return (
-      <Button className="u-width--1/1 u-margin-bottom--xlg" href={href}>
-        {text}
-      </Button>
-    );
+    const { text, type } = this.props;
+    const url = ACTION_MAP[type];
+    return url ? (
+      <div className="u-margin-bottom--xlg u-margin-horiz--lg">
+        <Button className="u-width--1/1" href={url}>
+          {text}
+        </Button>
+      </div>
+    ) : null;
   }
 }
