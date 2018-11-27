@@ -2,6 +2,7 @@
 import ContentHtml from "Components/ContentHtml";
 import CuratedCard from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
+import MustDropJackpotsList from "Components/MustDropJackpotsList";
 import GameListHorizontal from "Components/GameListHorizontal";
 import GameListVertical from "Components/ContentGameList";
 import ContentImage from "Components/ContentImage";
@@ -32,5 +33,6 @@ export const COMPONENT_MAPPING = {
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
   PROMOTION_TITLE: PromotionTitle,
   PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
-  MUST_DROP_JACKPOTS_WIDGET: MustDropJackpotsWidget,
+  MUST_DROP_JACKPOTS: MustDropJackpotsWidget,
+  MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsList,
 };
