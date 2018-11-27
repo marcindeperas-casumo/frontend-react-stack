@@ -5,8 +5,8 @@ import GameListVertical from "Components/GameListVertical/GameListVertical";
 import { fetchPromotionGames } from "Models/promotion";
 
 type Props = {
-  /** The id of the game list. */
-  id: string,
+  /** The array of ids to show in a game list. */
+  ids: Array<string>,
 };
 
 const GameListVerticalConnected = connect(
