@@ -23,7 +23,6 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST_VERTICAL: GameListVertical,
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
-  MUST_DROP_JACKPOTS: MustDropJackpotsList,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
@@ -34,5 +33,6 @@ export const COMPONENT_MAPPING = {
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
   PROMOTION_TITLE: PromotionTitle,
   PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
-  MUST_DROP_JACKPOTS_WIDGET: MustDropJackpotsWidget,
+  MUST_DROP_JACKPOTS: MustDropJackpotsWidget,
+  MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsList,
 };
