@@ -26,7 +26,7 @@ export const COMPONENT_MAPPING = {
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
-  CONTENT_BUTTON: ContentButton,
+  CTA: ContentButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
   THUMBNAIL_LIST: ContentMediaList,
