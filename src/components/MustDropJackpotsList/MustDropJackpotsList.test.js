@@ -24,4 +24,10 @@ describe("<MustDropJackpotsList />", () => {
 
     expect(firstTile.props().ids).toEqual(["1", "2", "3"]);
   });
+
+  test("renders the MustDropJackpotsWidget", () => {
+    const widget = rendered.find("MustDropJackpotsWidgetContainer");
+
+    expect(widget.length).toBe(1);
+  });
 });
