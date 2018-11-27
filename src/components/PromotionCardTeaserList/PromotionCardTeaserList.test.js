@@ -3,44 +3,33 @@ import { shallow } from "enzyme";
 import PromotionCardTeaserList from "./PromotionCardTeaserList";
 
 describe("PromotionCardTeaserList", () => {
-  let startFetch;
+  let fetchCampaign;
+  let fetchPromotions;
 
   beforeEach(() => {
-    startFetch = jest.fn();
+    fetchCampaign = jest.fn();
+    fetchPromotions = jest.fn();
   });
 
   test("should initiate the fetching if page is not available", () => {
     shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={false}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
 
-    expect(startFetch).toHaveBeenCalledTimes(1);
-  });
-
-  test("should not initiate a fetch if page is available", () => {
-    shallow(
-      <PromotionCardTeaserList
-        slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
-        promotionsSlugs={["page-1", "page-2"]}
-      />
-    );
-
-    expect(startFetch).not.toHaveBeenCalled();
+    expect(fetchCampaign).toHaveBeenCalledTimes(1);
   });
 
   test("should not render any PromotionCardTeaser component if promotionSlugs is empty", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={[]}
       />
     );
@@ -52,8 +41,8 @@ describe("PromotionCardTeaserList", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         backgroundColor="blue"
         promotionsSlugs={["page-1", "page-2"]}
       />
@@ -66,8 +55,8 @@ describe("PromotionCardTeaserList", () => {
     const rendered = shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );

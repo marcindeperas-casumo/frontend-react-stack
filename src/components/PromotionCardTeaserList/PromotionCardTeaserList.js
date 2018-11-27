@@ -5,19 +5,16 @@ import classNames from "classnames";
 import "./PromotionCardTeaserList.scss";
 
 type Props = {
-  isFetched: boolean,
-  startFetch: () => void,
   promotionsSlugs: Array<string>,
   backgroundColor?: string,
+  fetchCampaign: () => void,
+  fetchPromotions: () => void,
 };
 
 class PromotionCardTeaserList extends PureComponent<Props> {
   componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
+    this.props.fetchCampaign();
+    this.props.fetchPromotions();
   }
 
   render() {

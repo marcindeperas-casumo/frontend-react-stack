@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import PromotionCardTeaserList from "./PromotionCardTeaserList";
-import { isPageFetched, fetchPageBySlug, getField } from "Models/cms";
+import { fetchPageBySlug, getField } from "Models/cms";
 
 type Props = {
   /** The slug of the page in the CMS which has all the promotions available */
@@ -11,6 +11,7 @@ type Props = {
 
 const promotionsField = "promotions";
 const defaultValue = [];
+const getSlug = slug => `${slug}.*`;
 
 const PromotionCardTeaserListConnected = connect(
   (state, { slug }) => ({
@@ -19,10 +20,10 @@ const PromotionCardTeaserListConnected = connect(
       field: promotionsField,
       defaultValue,
     })(state),
-    isFetched: isPageFetched(slug)(state),
   }),
   (dispatch, { slug }) => ({
-    startFetch: () => dispatch(fetchPageBySlug(slug)),
+    fetchCampaign: () => dispatch(fetchPageBySlug(getSlug(slug))),
+    fetchPromotions: () => dispatch(fetchPageBySlug("promotions.*")),
   })
 )(PromotionCardTeaserList);
 
