@@ -51,12 +51,11 @@ export const CometdFactory = ({ cometd, url }) => {
     }
   }
 
-  function emit(channel, message) {
-    const callback = subscriptionCallbacks[channel];
+  function emit(channel, data) {
+    const callbacks = getCallbacksForChannel(channel) || [];
+    const callCallback = callback => callback({ data, channel });
 
-    if (callback) {
-      callback(message);
-    }
+    callbacks.forEach(callCallback);
   }
 
   function incrementSubcriptionCounter(channel) {
@@ -72,6 +71,16 @@ export const CometdFactory = ({ cometd, url }) => {
 
   function isNoPendingSubscriptions(channel) {
     return !subscriptionCounter[channel];
+  }
+
+  function getCallbacksForChannel(channel) {
+    // We also wanna get wildcard subscriptions,
+    // e.g if the subscription was "/foo/*" and we
+    // send a message to "/foo/bar", we still would like to trigger
+    // the subscription.
+    return Object.keys(subscriptionCallbacks)
+      .filter(subscribedChannel => channel.match(subscribedChannel))
+      .map(channel => subscriptionCallbacks[channel]);
   }
 };
 
