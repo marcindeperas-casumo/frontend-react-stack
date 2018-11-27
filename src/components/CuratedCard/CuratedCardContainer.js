@@ -21,8 +21,17 @@ const CuratedConnected = connect(
   }),
   (dispatch, { slug }) => ({
     fetchCurated: () => dispatch(fetchPageBySlug(slug)),
-    onLaunchGame: () => dispatch(gameActions.launchGame(slug)),
-  })
+    dispatchLaunchGame: id => dispatch(gameActions.launchGame(id)),
+  }),
+  (stateProps, dispatchProps, ownProps) => {
+    const { gameId } = stateProps;
+
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
+    };
+  }
 )(CuratedCard);
 
 // TODO: Move this logic out from this component
