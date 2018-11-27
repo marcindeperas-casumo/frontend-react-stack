@@ -169,7 +169,7 @@ export const fetchGames = async ({
   const gameListsRequests = topListIds
     .map(id => prop(id, gamesLists))
     .filter(complement(isNil))
-    .map(async ({ title, id, variants, variant = "includeDisabled" }) => {
+    .map(async ({ title, id, variants, variant = "default" }) => {
       const games = await (gameFetcherById[id] || gameFetcherById.DEFAULT)({
         currency,
         id,
