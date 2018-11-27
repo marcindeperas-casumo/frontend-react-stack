@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import GameListVertical from "Components/GameListVertical/GameListVertical";
-import { fetchThemGames } from "Models/curated/curated.actions";
+import { fetchPromotionGames } from "Models/promotion";
 
 type Props = {
   /** The id of the game list. */
@@ -12,7 +12,7 @@ type Props = {
 const GameListVerticalConnected = connect(
   null,
   (dispatch, { ids }) => ({
-    fetch: () => dispatch(fetchThemGames(ids)),
+    fetch: () => dispatch(fetchPromotionGames(ids)),
   })
 )(GameListVertical);
 

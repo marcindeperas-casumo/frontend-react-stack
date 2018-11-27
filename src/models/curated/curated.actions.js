@@ -13,8 +13,3 @@ export const fetchCuratedGame = ({ platform, country, slugs, variant }) => {
     asyncCallData: { platform, country, slugs, variant },
   };
 };
-
-export const fetchThemGames = ids => ({
-  type: types.LAUNCH_THEM_GAMES,
-  slugs: ids,
-});
