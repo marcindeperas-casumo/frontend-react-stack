@@ -1,1 +1,1 @@
-export { default } from "./GameListVertical";
+export { default } from "./GameListVerticalContainer";
