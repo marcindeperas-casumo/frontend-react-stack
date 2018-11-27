@@ -1,15 +1,18 @@
+import { put, take, call } from "redux-saga/effects";
 import curatedMock from "Models/curated/__mocks__/curated.json";
-import { fetchCuratedGameSaga } from "Models/curated";
+import { types, fetchCuratedGameSaga } from "Models/curated";
 import { types as fetchTypes } from "Models/fetch";
+import { normalizeData } from "Models/schema/schema";
+import { actions as schemaActions } from "Models/schema";
 import GameBrowserService from "Services/GameBrowserService";
 
 describe("Models/curated/sagas", () => {
   describe("fetchCuratedGameSaga", () => {
     test("success flow game in store", () => {
       const generator = fetchCuratedGameSaga();
-      const response = curatedMock;
-      const { gameData, game } = response;
-      generator.next({ response }).value;
+      const curated = curatedMock;
+      const { gameData, game } = curated;
+      generator.next({ curated }).value;
       generator.next({ gameData, game }).value;
 
       expect(generator.next().done).toBe(true);
@@ -17,16 +20,16 @@ describe("Models/curated/sagas", () => {
 
     test("success flow fetch game not in store", () => {
       const generator = fetchCuratedGameSaga();
-      const response = curatedMock;
+      const curated = curatedMock;
       const gameData = null;
-      const { game } = response;
-      generator.next({ response }).value;
+      const { game } = curated;
+      generator.next({ curated }).value;
       generator.next({ gameData, game }).value;
 
       const args = {
         platform: "mobile",
         country: "gb",
-        slugs: response.game,
+        slugs: curated.game,
         variant: "default",
       };
       const { gamesBySlugs } = GameBrowserService;
@@ -35,6 +38,20 @@ describe("Models/curated/sagas", () => {
       expect(action.type).toBe(fetchTypes.FETCH);
       expect(action.asyncCall).toBe(gamesBySlugs);
       expect(action.asyncCallData).toEqual(args);
+
+      expect(generator.next().value).toEqual(
+        take(types.CURATED_FETCH_GAME_COMPLETE)
+      );
+
+      const response = { foo: "response" };
+      expect(generator.next({ response }).value).toEqual(
+        call(normalizeData, response)
+      );
+
+      const entities = { someEntity: { id: 1 } };
+      expect(generator.next({ entities }).value).toEqual(
+        put(schemaActions.updateEntity(entities))
+      );
     });
   });
 });
