@@ -2,7 +2,12 @@ import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes } from "Models/app";
 import { types as fetchTypes } from "Models/fetch";
 import { types as gameTypes } from "Models/games";
-import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
+import { types as themTypes } from "Models/curated/curated.constants";
+import {
+  CURATED_SLUG,
+  fetchCuratedGameSaga,
+  fetchGamesFromIdsSaga,
+} from "Models/curated";
 import {
   types as cmsTypes,
   getFetchCompleteTypeBySlug,
@@ -42,4 +47,5 @@ export default function* rootSaga(dispatch) {
     action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
     fetchCuratedGameSaga
   );
+  yield fork(takeEvery, themTypes.LAUNCH_THEM_GAMES, fetchGamesFromIdsSaga);
 }

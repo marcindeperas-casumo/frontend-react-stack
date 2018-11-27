@@ -23,3 +23,12 @@ export function* fetchCuratedGameSaga() {
   const { entities } = yield call(normalizeData, response);
   yield put(schemaActions.updateEntity(entities));
 }
+
+export function* fetchGamesFromIdsSaga(action) {
+  const { slugs } = action;
+
+  const platform = "mobile";
+  const variant = "default";
+  const country = yield select(getCountry);
+  yield put(fetchCuratedGame({ platform, country, slugs, variant }));
+}
