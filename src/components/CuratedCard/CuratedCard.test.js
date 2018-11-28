@@ -162,9 +162,9 @@ describe("CuratedCard", () => {
     expect(fetchCurated).toHaveBeenCalledTimes(0);
   });
 
-  test("should call onLaunchGame when clicked", () => {
+  test("should not link to anywhere if it is displaying a game", () => {
     const onLaunchGame = jest.fn();
-    const component = mount(
+    const rendered = mount(
       <CuratedCard
         {...curatedData}
         fetchCurated={fetchCurated}
@@ -172,10 +172,71 @@ describe("CuratedCard", () => {
         onLaunchGame={onLaunchGame}
       />
     );
-    component
+    const { href } = rendered
       .find("a")
-      .at(0)
-      .simulate("click");
-    expect(onLaunchGame).toHaveBeenCalledTimes(1);
+      .first()
+      .props();
+
+    expect(href).toBeNull();
+  });
+
+  test("should link to promotions if there are no promotions and game set", () => {
+    const onLaunchGame = jest.fn();
+    const rendered = mount(
+      <CuratedCard
+        {...curatedData}
+        gameData={null}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={onLaunchGame}
+      />
+    );
+    const { href } = rendered
+      .find("a")
+      .first()
+      .props();
+
+    expect(href).toBe("/en/promotions");
+  });
+
+  test("should link to a specific promotion if it is set", () => {
+    const promotion = "boosted-reel-races";
+    const onLaunchGame = jest.fn();
+    const rendered = mount(
+      <CuratedCard
+        {...curatedData}
+        gameData={null}
+        promotion={[promotion]}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={onLaunchGame}
+      />
+    );
+    const { href } = rendered
+      .find("a")
+      .first()
+      .props();
+
+    expect(href).toBe(`/en/promotions/${promotion}`);
+  });
+
+  test("should not break if the `promotion` prop is an empty string", () => {
+    const onLaunchGame = jest.fn();
+    const rendered = mount(
+      <CuratedCard
+        {...curatedData}
+        gameData={null}
+        promotion=""
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={onLaunchGame}
+      />
+    );
+    const { href } = rendered
+      .find("a")
+      .first()
+      .props();
+
+    expect(href).toBe(`/en/promotions`);
   });
 });
