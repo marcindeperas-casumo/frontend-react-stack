@@ -220,7 +220,7 @@ describe("CuratedCard", () => {
     expect(href).toBe(`/en/promotions/${promotion}`);
   });
 
-  test("should not break if the `promotion` prop is an emty string", () => {
+  test("should not break if the `promotion` prop is an empty string", () => {
     const onLaunchGame = jest.fn();
     const rendered = mount(
       <CuratedCard
