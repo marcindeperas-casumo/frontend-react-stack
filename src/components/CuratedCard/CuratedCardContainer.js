@@ -35,6 +35,8 @@ const CuratedConnected = connect(
 )(CuratedCard);
 
 // TODO: Move this logic out from this component
+// (The "card" prop can be an array right now, because
+// in the CMS the page-relationship selector returns an array)
 const CuratedContainer = ({ card }: Props) => {
   const slug = `${CURATED_SLUG}.${Array.isArray(card) ? card[0] : card}`;
 
