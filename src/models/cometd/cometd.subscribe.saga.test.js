@@ -6,7 +6,7 @@ import cometdSubscribeSaga, {
 
 describe("Models/CometD/Subscribe", () => {
   const channel = "/foo/*";
-  const emittedChannel = "/foo/bar"; // This is the actual channel that was emitted to
+  const emittedChannel = "/foo/bar";
   const action = { channel };
   const generator = cometdSubscribeSaga(action);
   const fakeMessageStream = "PATTERN";
