@@ -46,6 +46,7 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderSkeleton = () => <CuratedCardSkeleton />;
 
+  // TODO: Move URLs to a central configuration
   getLink() {
     const { gameData, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
