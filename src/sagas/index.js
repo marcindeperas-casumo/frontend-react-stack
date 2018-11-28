@@ -15,6 +15,7 @@ import {
 import {
   TYPES as jackpotsMustDropTypes,
   fetchJackpotsMustDropSaga,
+  jackpotsMustDropUpdateSaga,
 } from "Models/jackpotsMustDrop";
 import {
   CHANNELS as cometdChannels,
@@ -40,6 +41,11 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.JACKPOTS),
     jackpotsUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    takeChannel(cometdChannels.MUST_DROP_JACKPOTS),
+    jackpotsMustDropUpdateSaga
   );
   yield fork(
     takeEvery,

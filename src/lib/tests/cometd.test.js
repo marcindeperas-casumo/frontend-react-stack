@@ -76,7 +76,24 @@ describe("CometD", () => {
       callbackParameter(payload);
 
       expect(callback).toBeCalledTimes(1);
-      expect(callback.mock.calls[0][0]).toEqual(data);
+      expect(callback.mock.calls[0][0].data).toEqual(data);
+    });
+
+    test("should pass in the channel name as the second parameter to the callback", async () => {
+      const callback = jest.fn();
+      const channel = "/foo/bar";
+      const data = { foo: "bar" };
+      const payload = {
+        channel,
+        data: JSON.stringify(data),
+      };
+
+      await cometd.subscribe("/foo/*", callback);
+      const callbackParameter = cometdMock.subscribe.mock.calls[0][1];
+      callbackParameter(payload);
+
+      expect(callback).toBeCalledTimes(1);
+      expect(callback.mock.calls[0][0].channel).toEqual(channel);
     });
   });
 

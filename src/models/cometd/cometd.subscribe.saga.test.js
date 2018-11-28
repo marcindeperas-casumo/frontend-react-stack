@@ -5,7 +5,8 @@ import cometdSubscribeSaga, {
 } from "./cometd.subscribe.saga";
 
 describe("Models/CometD/Subscribe", () => {
-  const channel = "/foo/bar";
+  const channel = "/foo/*";
+  const emittedChannel = "/foo/bar";
   const action = { channel };
   const generator = cometdSubscribeSaga(action);
   const fakeMessageStream = "PATTERN";
@@ -26,13 +27,13 @@ describe("Models/CometD/Subscribe", () => {
 
   test("relays messages on the store", () => {
     const data = { foo: "bar" };
-    const expectedAction = message({ channel, data });
+    const expectedAction = message({ channel: emittedChannel, data });
 
     // We are "yielding" the take() and passing down the message stream
     generator.next(fakeMessageStream);
 
     // Push message (would come from the message stream) and get the result of put()
-    const effect = generator.next(data);
+    const effect = generator.next({ channel: emittedChannel, data });
     const PUT = compose(
       prop("PUT"),
       prop("value")

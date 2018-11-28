@@ -39,9 +39,7 @@ export function CometDFactory(cometd) {
     return new Promise(resolve => {
       subscription = cometd.subscribe(
         channel,
-        parseMessage((...args) => {
-          callback(...args);
-        }),
+        parseMessage(callback),
         subscribeProps,
         resolve
       );
@@ -82,11 +80,11 @@ export function CometDFactory(cometd) {
 }
 
 function parseMessage(callback) {
-  return ({ data }) => {
+  return ({ data, channel }) => {
     if (typeof data === "string") {
-      callback(JSON.parse(data));
+      callback({ data: JSON.parse(data), channel });
     } else {
-      callback(data);
+      callback({ data, channel });
     }
   };
 }
