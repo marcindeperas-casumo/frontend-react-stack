@@ -10,7 +10,7 @@ type Props = {
   fetch: () => void,
 };
 
-export class GameListVertical extends PureComponent<Props> {
+class GameListVertical extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetch();
   }
