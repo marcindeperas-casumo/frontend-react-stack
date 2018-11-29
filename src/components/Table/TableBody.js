@@ -16,13 +16,19 @@ type TableBodyProps = {
   cellPadding: spacerSizes,
 };
 
-const TableCells = ({ column, padding, row, rest }: TableCellsProps) => {
+const TableCell = ({ column, padding, row, rest }: TableCellsProps) => {
   const renderProp = rest[column];
   const value = row[column];
-  if (renderProp) {
-    return <td className={padding}>{renderProp(value)}</td>;
+
+  if (value) {
+    if (renderProp) {
+      return <td className={padding}>{renderProp(value)}</td>;
+    }
+
+    return <td className={padding}>{value}</td>;
   }
-  return <td className={padding}>{value}</td>;
+
+  return <td />;
 };
 
 const TableBody = ({
@@ -41,7 +47,7 @@ const TableBody = ({
       {rows.map((row: Object, i: number) => (
         <tr className="t-border-bottom" key={`${row[columns[0]]}-${i}`}>
           {columns.map((column: string) => (
-            <TableCells
+            <TableCell
               key={column}
               column={column}
               padding={padding}
