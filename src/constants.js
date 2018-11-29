@@ -45,23 +45,23 @@ export const GAME_LIST_IDS = {
 };
 
 export const MARKETS = {
-  DE: "de",
-  DK: "dk",
-  EN_CA: "ca_en",
-  EN_GB: "gb_en",
-  EN: "en",
-  FI: "fi",
-  NO: "no",
-  SV: "sv",
+  ___en: "___en",
+  ca_en: "ca_en",
+  de_de: "de_de",
+  dk_da: "dk_da",
+  fi_fi: "fi_fi",
+  gb_en: "gb_en",
+  no_no: "no_no",
+  se_sv: "se_sv",
 };
 
 export const LANGUAGES = {
-  [MARKETS.DE]: "de",
-  [MARKETS.DK]: "dk",
-  [MARKETS.EN_CA]: "ca",
-  [MARKETS.EN_GB]: "gb",
-  [MARKETS.EN]: "en",
-  [MARKETS.FI]: "fi",
-  [MARKETS.NO]: "no",
-  [MARKETS.SV]: "sv",
+  [MARKETS.___en]: "en",
+  [MARKETS.ca_en]: "ca",
+  [MARKETS.de_de]: "de",
+  [MARKETS.dk_da]: "dk",
+  [MARKETS.fi_fi]: "fi",
+  [MARKETS.gb_en]: "gb",
+  [MARKETS.no_no]: "no",
+  [MARKETS.se_sv]: "sv",
 };
