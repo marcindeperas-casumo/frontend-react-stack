@@ -43,3 +43,25 @@ export const GAME_LIST_IDS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   MUST_DROP_JACKPOTS_GAMES: "mustDropJackpotGames",
 };
+
+export const MARKETS = {
+  SV: "sv",
+  NO: "no",
+  FI: "fi",
+  DE: "de",
+  EN: "en",
+  DK: "dk",
+  EN_CA: "ca_en",
+  EN_GB: "gb_en",
+};
+
+export const LANGUAGES = {
+  [MARKETS.SV]: "sv",
+  [MARKETS.NO]: "no",
+  [MARKETS.FI]: "fi",
+  [MARKETS.DE]: "de",
+  [MARKETS.DK]: "dk",
+  [MARKETS.EN]: "en",
+  [MARKETS.EN_GB]: "gb",
+  [MARKETS.EN_CA]: "ca",
+};
