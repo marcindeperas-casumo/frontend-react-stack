@@ -14,6 +14,19 @@ class GameThumb extends PureComponent<Props> {
   render() {
     const { src, mark, width = 56, height = 56, alt = null } = this.props;
 
+    if (!src) {
+      return (
+        <img
+          alt=""
+          width="56"
+          height="56"
+          // passing down an empty gif awaiting the images to get fetched
+          // https://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/
+          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
+        />
+      );
+    }
+
     return (
       <ImageLazy
         className="u-display--block t-border-r--16"
