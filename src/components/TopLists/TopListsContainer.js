@@ -1,13 +1,13 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { getLanguage } from "Models/handshake/selectors";
+import { market as marketSelector } from "Models/handshake/selectors";
 import TopLists from "Components/TopLists/TopLists";
 
 type Props = {};
 
 const TopListsConnected = connect(state => ({
-  language: getLanguage(state),
+  market: marketSelector(state),
 }))(TopLists);
 
 const TopListsContainer = (props: Props) => {

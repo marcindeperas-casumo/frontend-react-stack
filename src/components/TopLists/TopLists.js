@@ -2,17 +2,17 @@
 import React, { PureComponent } from "react";
 import ComponentBuilder from "Components/ComponentBuilder";
 
-export const getSlug = (language: string = "en") =>
-  `built-pages.top-lists-${language}`;
+export const getSlug = (market: string = "___en") =>
+  `built-pages.top-lists-${market}`;
 
 type Props = {
-  language: string,
+  market: string,
 };
 
 export default class TopLists extends PureComponent<Props> {
   render() {
-    const { language } = this.props;
-    const slug = getSlug(language);
+    const { market } = this.props;
+    const slug = getSlug(market);
 
     return <ComponentBuilder slug={slug} />;
   }
