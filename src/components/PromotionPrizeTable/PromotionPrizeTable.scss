@@ -1,0 +1,16 @@
+// Unfortunately tables in the SPA make too many
+// assumptions of how they will look.
+
+// [1] - reset SPA styling.
+
+.c-prize-table {
+  backface-visibility: visible; // [1]
+  border-collapse: collapse; // [1]
+  table-layout: auto; // [1]
+}
+
+// stylelint-disable-next-line
+.c-prize-table.c-prize-table td {
+  background-color: transparent; // [1]
+  padding: 0; // [1]
+}
