@@ -14,6 +14,7 @@ import PromotionCardList from "Components/PromotionCardList";
 import ContentMediaList from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
+import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import ContentMustDropJackpotsWidget from "Components/ContentMustDropJackpotsWidget";
 
 export const COMPONENT_MAPPING = {
@@ -35,4 +36,5 @@ export const COMPONENT_MAPPING = {
   PROMOTION_CARD_TEASER_LIST: PromotionCardTeaserList,
   MUST_DROP_JACKPOTS: ContentMustDropJackpotsWidget,
   MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsList,
+  PRIZE_LIST: PromotionPrizeTable,
 };
