@@ -14,6 +14,10 @@ class GameThumb extends PureComponent<Props> {
   render() {
     const { src, mark, width = 56, height = 56, alt = null } = this.props;
 
+    if (!src) {
+      return null;
+    }
+
     return (
       <ImageLazy
         className="u-display--block t-border-r--16"
