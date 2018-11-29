@@ -253,7 +253,7 @@ describe("Handshake selectors", () => {
 
   describe("getLanguage()", () => {
     test("returns the language of the player if there is a player logged in", () => {
-      expect(getLanguage(stateMock)).toBe("en");
+      expect(getLanguage(stateMock)).toBe("gb");
     });
 
     test("returns the default language if the player is not logged in", () => {
@@ -264,7 +264,7 @@ describe("Handshake selectors", () => {
   describe("getCmsHash()", () => {
     test("returns the CMS hash for the current player language", () => {
       // The root-content-hash for "en"
-      expect(getCmsHash(stateMock)).toBe("c22973a240e540a28011ef401e5146bc");
+      expect(getCmsHash(stateMock)).toBe("5899f873666807d49078629b5c58ca81");
     });
   });
 });
