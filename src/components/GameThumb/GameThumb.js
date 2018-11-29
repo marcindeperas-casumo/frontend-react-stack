@@ -15,15 +15,7 @@ class GameThumb extends PureComponent<Props> {
     const { src, mark, width = 56, height = 56, alt = null } = this.props;
 
     if (!src) {
-      return (
-        <img
-          alt=""
-          width={width}
-          height={height}
-          // passing down an empty gif awaiting the images to get fetched
-          src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
-        />
-      );
+      return null;
     }
 
     return (
