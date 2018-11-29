@@ -6,8 +6,8 @@ import MockStore from "Components/MockStore";
 import curated from "Models/curated/__mocks__/curated.json";
 import { GAME_LIST_IDS } from "Src/constants";
 
-const language = "en";
-const slug = getSlug(language);
+const market = "gb_en";
+const slug = getSlug(market);
 const stories = storiesOf("TopLists", module);
 const componentDefinition = [
   {
@@ -39,7 +39,7 @@ const state = {
 
 const TopListsStories = () => (
   <MockStore state={state}>
-    <TopLists language={language} />
+    <TopLists market={market} />
   </MockStore>
 );
 
