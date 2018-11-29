@@ -1,4 +1,22 @@
+// SVGs appear to have bugs in webkit so we compensate
+// by increasing their size and shunting their position
+// slightly to prevent backgrounds appearing at edges
+// [1] - fix subpixel rounding
+// [2] - fix subpixel sizing
+
 .c-promotion-card-teaser-list {
+  background-position: 50% -0.2%; // [1]
+  background-repeat: no-repeat;
+  background-size: 105%; // [2]
+}
+
+.c-promotion-card-teaser-list__wrap {
+  background-position: 50% 100.2%; // [1]
+  background-repeat: no-repeat;
+  background-size: 105%; // [2]
+}
+
+.c-promotion-card-teaser-list__items {
   margin-left: auto;
   margin-right: auto;
   max-width: 375px;
