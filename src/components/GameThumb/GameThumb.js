@@ -21,7 +21,6 @@ class GameThumb extends PureComponent<Props> {
           width="56"
           height="56"
           // passing down an empty gif awaiting the images to get fetched
-          // https://css-tricks.com/snippets/html/base64-encode-of-1x1px-transparent-gif/
           src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7"
         />
       );
