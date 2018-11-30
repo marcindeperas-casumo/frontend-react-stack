@@ -1,13 +1,5 @@
 import { createSelector } from "reselect";
-import {
-  compose,
-  prop,
-  isNil,
-  isEmpty,
-  complement,
-  anyPass,
-  defaultTo,
-} from "ramda";
+import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Models/handshake";
 import { LANGUAGES, MARKETS } from "Src/constants";
 
