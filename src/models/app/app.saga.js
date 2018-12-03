@@ -5,7 +5,7 @@ import {
   isAuthenticated,
 } from "Models/handshake/selectors";
 import { call, put, select } from "redux-saga/effects";
-import { fetchGameListSaga } from "Sagas/games";
+import { fetchGameListSaga } from "Models/games";
 import CommonService from "Services/CommonService";
 import GameBrowserService from "Services/GameBrowserService";
 import { waitForSelector } from "Sagas/utils";

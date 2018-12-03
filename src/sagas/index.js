@@ -1,7 +1,7 @@
 import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
-import { types as gameTypes } from "Models/games";
+import { types as gameTypes, launchGameSaga } from "Models/games";
 import {
   fetchGamesFromIdsSaga,
   types as promotionTypes,
@@ -25,7 +25,6 @@ import {
   takeChannel,
 } from "Models/cometd";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
-import { launchGameSaga } from "Sagas/games/index";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);

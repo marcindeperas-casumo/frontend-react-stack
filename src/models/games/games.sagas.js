@@ -1,4 +1,3 @@
-import { actions as gamesActions, types } from "Models/games";
 import { fetchGamesHandshake } from "Models/handshake";
 import {
   country as countrySelector,
@@ -13,6 +12,8 @@ import { normalizeData } from "Models/schema/schema";
 import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Sagas/utils";
 import { launchGame } from "Services/LaunchGameService";
+import { fetchTopLists } from "./games.actions";
+import { types } from "./games.constants";
 
 export function* fetchGameListSaga() {
   const platform = "mobile";
@@ -33,7 +34,7 @@ export function* fetchGameListSaga() {
   const handshake = yield select(gamesHandshakeSelector);
 
   yield put(
-    gamesActions.fetchTopLists({
+    fetchTopLists({
       handshake,
       country,
       platform,

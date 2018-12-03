@@ -1,4 +1,3 @@
-import { actions as gamesActions, types } from "Models/games";
 import { fetchGamesHandshake } from "Models/handshake";
 import {
   gamesHandshakeSelector,
@@ -7,9 +6,11 @@ import {
 import { actions as schemaActions } from "Models/schema";
 import { normalizeData } from "Models/schema/schema";
 import { call, put, select, take } from "redux-saga/effects";
-import { fetchGameListSaga, launchGameSaga } from "Sagas/games";
 import { waitForSelector } from "Sagas/utils";
 import { launchGame } from "Services/LaunchGameService";
+import { fetchGameListSaga, launchGameSaga } from "./games.sagas";
+import { fetchTopLists } from "./games.actions";
+import { types } from "./games.constants";
 
 describe("Launch game saga", () => {
   test("calling launchGame service", () => {
@@ -49,7 +50,7 @@ describe("Fetch game list saga", () => {
     expect(generator.next().value).toEqual(select(gamesHandshakeSelector));
     expect(generator.next(handshake).value).toEqual(
       put(
-        gamesActions.fetchTopLists({
+        fetchTopLists({
           handshake,
           country,
           platform,
