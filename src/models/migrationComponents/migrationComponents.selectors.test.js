@@ -2,8 +2,9 @@ import {
   migrationComponentsSelector,
   activeComponents,
   routeParamsSelector,
-} from "Models/migrationComponents/selector";
-describe("Migration component selector", () => {
+} from "./migrationComponents.selectors";
+
+describe("Models/MigrationComponents/Selectors", () => {
   test("migrationComponentsSelector", () => {
     const state = {
       migrationComponents: { foo: "bar " },

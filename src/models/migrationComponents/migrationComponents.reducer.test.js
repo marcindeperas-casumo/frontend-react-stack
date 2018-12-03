@@ -1,14 +1,12 @@
-import { reducer, actions } from "Models/migrationComponents";
+import reducer from "./migrationComponents.reducer";
+import { activateComponent } from "./migrationComponents.actions";
 
-describe("Reducer MigrationComponents", () => {
+describe("Models/MigrationComponents/Reducer", () => {
   test("activate a component", () => {
     const state = {
       activeComponents: [],
     };
-    const result = reducer(
-      state,
-      actions.activateComponent({ componentId: "foo" })
-    );
+    const result = reducer(state, activateComponent({ componentId: "foo" }));
     expect(result.activeComponents).toEqual(["foo"]);
   });
 
@@ -18,8 +16,8 @@ describe("Reducer MigrationComponents", () => {
     };
 
     const result = reducer(
-      reducer(state, actions.activateComponent({ componentId: "foo" })),
-      actions.activateComponent({ componentId: "foo" })
+      reducer(state, activateComponent({ componentId: "foo" })),
+      activateComponent({ componentId: "foo" })
     );
 
     expect(result.activeComponents).toEqual(["foo"]);
@@ -33,7 +31,7 @@ describe("Reducer MigrationComponents", () => {
     const routeParams = ["bar", "foo"];
     const state = reducer(
       defaultState,
-      actions.activateComponent({ componentId: "foo", routeParams })
+      activateComponent({ componentId: "foo", routeParams })
     );
 
     expect(state.routeParams).toEqual(routeParams);
@@ -46,7 +44,7 @@ describe("Reducer MigrationComponents", () => {
     };
     const state = reducer(
       defaultState,
-      actions.activateComponent({ componentId: "foo" })
+      activateComponent({ componentId: "foo" })
     );
 
     expect(state.routeParams).toEqual([]);

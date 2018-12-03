@@ -6,7 +6,7 @@ import { isAuthenticated } from "Models/handshake";
 import {
   activeComponents,
   routeParamsSelector,
-} from "Models/migrationComponents/selector";
+} from "Models/migrationComponents";
 import App from "Components/App/App";
 
 const AppConnected = connect(
