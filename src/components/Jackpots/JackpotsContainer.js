@@ -4,7 +4,7 @@ import type { Connector } from "react-redux";
 import {
   jackpotIdsSelector,
   gameListTitleSelectorFactory,
-} from "Models/schema/selector";
+} from "Models/schema";
 import {
   subscribeJackpotUpdates,
   unsubscribeJackpotUpdates,

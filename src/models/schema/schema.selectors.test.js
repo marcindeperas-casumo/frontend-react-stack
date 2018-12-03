@@ -15,7 +15,7 @@ import {
   areGameListsLoaded,
   mustDropJackpotsIdsSelector,
   isGameListFetchedFactory,
-} from "Models/schema/selector";
+} from "./schema.selectors";
 
 describe("Schema selectors", () => {
   test("schemaSelector", () => {

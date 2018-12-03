@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import GameListHorizontal from "Components/GameListHorizontal/GameListHorizontal";
-import { gameListSelector } from "Models/schema/selector";
+import { gameListSelector } from "Models/schema";
 import { isGameListLoaded } from "Models/games";
 
 type Props = {

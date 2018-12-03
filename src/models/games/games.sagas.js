@@ -7,8 +7,7 @@ import {
   isGamesHandshakeLoaded,
   market as marketSelector,
 } from "Models/handshake";
-import { actions as schemaActions } from "Models/schema";
-import { normalizeData } from "Models/schema/schema";
+import { normalizeData, updateEntity } from "Models/schema";
 import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Sagas/utils";
 import { launchGame } from "Services/LaunchGameService";
@@ -48,7 +47,7 @@ export function* fetchGameListSaga() {
   // normalize and update the store
   const { response } = yield take(types.FETCH_TOP_LISTS_COMPLETE);
   const { entities } = yield call(normalizeData, response);
-  yield put(schemaActions.updateEntity(entities));
+  yield put(updateEntity(entities));
 }
 
 export function* launchGameSaga(action) {

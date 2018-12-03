@@ -1,4 +1,4 @@
-import { normalizeData } from "Models/schema/schema";
+import { normalizeData } from "./schema.entities";
 
 describe("CMS Schema", () => {
   test("should normalize a CMS object", () => {

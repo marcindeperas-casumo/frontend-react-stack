@@ -7,7 +7,7 @@ import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isProduction } from "./utils";
 import Debugger from "Utils/Debugger";
-import { actions as schemaActions } from "Models/schema";
+import { updateEntity } from "Models/schema";
 import "./styles/index.scss";
 
 const store = configureStore();
@@ -51,7 +51,7 @@ if (!isProduction() || isCasumoTest) {
   /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
   Debugger.showPromotions = (lang = "en") => {
     store.dispatch(
-      schemaActions.updateEntity({
+      updateEntity({
         cms: {
           [`built-pages.top-lists-${lang}`]: {
             id: "87740",

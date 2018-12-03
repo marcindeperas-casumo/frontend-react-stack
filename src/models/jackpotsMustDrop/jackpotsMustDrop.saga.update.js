@@ -1,6 +1,6 @@
 import { put, select } from "redux-saga/effects";
 import { currency as currencySelector } from "Models/handshake";
-import { actions as schemaActions } from "Models/schema";
+import { updateEntity } from "Models/schema";
 
 export function* jackpotsMustDropUpdateSaga(action) {
   const { channel, data } = action;
@@ -9,6 +9,6 @@ export function* jackpotsMustDropUpdateSaga(action) {
   const isCurrentMarket = currency === channelCurrency;
 
   if (isCurrentMarket) {
-    yield put(schemaActions.updateEntity({ jackpotMustDrop: data }));
+    yield put(updateEntity({ jackpotMustDrop: data }));
   }
 }

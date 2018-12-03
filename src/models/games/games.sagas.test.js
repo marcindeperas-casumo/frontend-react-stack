@@ -3,8 +3,7 @@ import {
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
 } from "Models/handshake";
-import { actions as schemaActions } from "Models/schema";
-import { normalizeData } from "Models/schema/schema";
+import { normalizeData, updateEntity } from "Models/schema";
 import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Sagas/utils";
 import { launchGame } from "Services/LaunchGameService";
@@ -72,7 +71,7 @@ describe("Fetch game list saga", () => {
 
     const entities = { someEntity: { id: 1 } };
     expect(generator.next({ entities }).value).toEqual(
-      put(schemaActions.updateEntity(entities))
+      put(updateEntity(entities))
     );
   });
 });

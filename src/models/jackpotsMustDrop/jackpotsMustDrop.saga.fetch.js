@@ -1,5 +1,5 @@
 import { put, take, select } from "redux-saga/effects";
-import { actions as schemaActions } from "Models/schema";
+import { updateEntity } from "Models/schema";
 import { currency as currencySelector } from "Models/handshake";
 import {
   shouldFetchJackpotsMustDrop,
@@ -18,6 +18,6 @@ export function* fetchJackpotsMustDropSaga() {
     const { response } = yield take(TYPES.FETCH_COMPLETE);
 
     // We don't normalize data here because the service does it for us.
-    yield put(schemaActions.updateEntity({ jackpotMustDrop: response }));
+    yield put(updateEntity({ jackpotMustDrop: response }));
   }
 }

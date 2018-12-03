@@ -2,7 +2,7 @@
 import React from "react";
 import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
 import { connect } from "react-redux";
-import { gameSelector } from "Models/schema/selector";
+import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 
 const mapStateToProps = (state, props) => ({

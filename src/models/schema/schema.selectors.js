@@ -10,13 +10,13 @@ import {
 } from "ramda";
 import { createSelector } from "reselect";
 import { GAME_LIST_IDS } from "Src/constants";
-import config from "../../../config";
+import config from "Src/config";
 
 const { gameListsShowingMaintenanceGames } = config;
 
-export const schemaSelector = state => state.schema || {};
-
 // TODO: Add tests for selectors for null states
+
+export const schemaSelector = state => state.schema || {};
 
 export const gameListEntitiesSelector = createSelector(
   schemaSelector,

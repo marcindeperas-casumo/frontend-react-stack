@@ -1,21 +1,12 @@
-import { reducer, actions, types } from "Models/schema";
+import { types } from "./schema.constants";
+import reducer from "./schema.reducer";
+import { updateEntity } from "./schema.actions";
 
-describe("Schema Reducer", () => {
-  describe("Actions:", () => {
-    test("updateEntity: should return an action", () => {
-      const action = actions.updateEntity({ game: { slug: "foo-bar" } });
-
-      expect(action).toEqual({
-        type: types.UPDATE_ENTITY,
-        payload: { game: { slug: "foo-bar" } },
-      });
-    });
-  });
-
+describe("Models/Schema/Reducer", () => {
   test("should update an entity ", () => {
     const state = reducer(
       {},
-      actions.updateEntity({
+      updateEntity({
         game: {
           "game-slug": { slug: "game-slug", foo: "bar" },
         },
@@ -34,10 +25,9 @@ describe("Schema Reducer", () => {
 
   test("should merge entities", () => {
     const initialState = { game: { foo: { slug: "foo", bar: 1 } } };
-
     const state = reducer(
       initialState,
-      actions.updateEntity({ game: { foo: { slug: "foo", bar: 2 } } })
+      updateEntity({ game: { foo: { slug: "foo", bar: 2 } } })
     );
 
     expect(state).toMatchObject({ game: { foo: { slug: "foo", bar: 2 } } });
@@ -54,7 +44,7 @@ describe("Schema Reducer", () => {
 
     const state = reducer(
       initialState,
-      actions.updateEntity({
+      updateEntity({
         game: { foo: { slug: "foo", bar: 2 } },
         liveTable: { barId: { tableId: "barId", foo: "bar2" } },
       })
