@@ -4,6 +4,8 @@ export default class ContentSeparator extends PureComponent {
   render() {
     const className = `
       t-border-bottom
+      t-border--current-color
+      t-color-grey-light-2
       u-margin-vert--xlg
       u-margin-horiz--lg
     `;
