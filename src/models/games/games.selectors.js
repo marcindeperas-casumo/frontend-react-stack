@@ -4,7 +4,7 @@ import { areGameListsLoaded } from "Models/schema/selector";
 import {
   isGamesHandshakeLoaded,
   isApplicationHandshakeLoaded,
-} from "Models/handshake/selectors";
+} from "Models/handshake";
 
 export const isGameListLoaded = createSelector(
   isGamesHandshakeLoaded,

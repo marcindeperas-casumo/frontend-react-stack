@@ -1,6 +1,6 @@
 import { select, put, take, call } from "redux-saga/effects";
 import { types, curatedSelector, fetchCuratedGame } from "Models/curated";
-import { country as getCountry } from "Models/handshake/selectors";
+import { country as getCountry } from "Models/handshake";
 import { normalizeData } from "Models/schema/schema";
 import { actions as schemaActions } from "Models/schema";
 

@@ -15,7 +15,7 @@ import {
   isGamesHandshakeLoaded,
   getLanguage,
   getCmsHash,
-} from "Models/handshake/selectors";
+} from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
   test("handshakeSelector", () => {

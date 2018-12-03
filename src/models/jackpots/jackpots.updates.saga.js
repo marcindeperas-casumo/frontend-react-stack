@@ -1,6 +1,6 @@
 import { put, select } from "redux-saga/effects";
 import { compose, prop, map, defaultTo } from "ramda";
-import { currency as currencySelector } from "Models/handshake/selectors";
+import { currency as currencySelector } from "Models/handshake";
 import { actions as schemaActions } from "Models/schema";
 import { jackpotEntitySelector } from "./jackpots.selectors";
 import { transformRawJackpotObject } from "./jackpots.utils";

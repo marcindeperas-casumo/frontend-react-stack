@@ -1,4 +1,5 @@
-import reducer, { actions } from "Models/handshake";
+import * as actions from "./handshake.actions";
+import reducer from "./handshake.reducer";
 
 test("initial state", () => {
   const state = reducer(undefined, {});

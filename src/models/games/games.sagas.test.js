@@ -1,8 +1,8 @@
-import { fetchGamesHandshake } from "Models/handshake";
 import {
+  fetchGamesHandshake,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-} from "Models/handshake/selectors";
+} from "Models/handshake";
 import { actions as schemaActions } from "Models/schema";
 import { normalizeData } from "Models/schema/schema";
 import { call, put, select, take } from "redux-saga/effects";

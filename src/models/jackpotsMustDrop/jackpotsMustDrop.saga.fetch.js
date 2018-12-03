@@ -1,6 +1,6 @@
 import { put, take, select } from "redux-saga/effects";
 import { actions as schemaActions } from "Models/schema";
-import { currency as currencySelector } from "Models/handshake/selectors";
+import { currency as currencySelector } from "Models/handshake";
 import {
   shouldFetchJackpotsMustDrop,
   initiateFetchJackpotsMustDrop,

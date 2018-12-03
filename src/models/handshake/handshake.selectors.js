@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
-import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Models/handshake";
 import { LANGUAGES, MARKETS } from "Src/constants";
+import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 

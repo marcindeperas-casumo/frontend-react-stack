@@ -1,9 +1,9 @@
-import { fetchAppHandshake } from "Models/handshake";
 import {
+  fetchAppHandshake,
   applicationHandshakeSelector,
   country as countrySelector,
   isAuthenticated,
-} from "Models/handshake/selectors";
+} from "Models/handshake";
 import { call, put, select } from "redux-saga/effects";
 import { fetchGameListSaga } from "Models/games";
 import CommonService from "Services/CommonService";

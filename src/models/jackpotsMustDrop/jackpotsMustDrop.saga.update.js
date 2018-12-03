@@ -1,5 +1,5 @@
 import { put, select } from "redux-saga/effects";
-import { currency as currencySelector } from "Models/handshake/selectors";
+import { currency as currencySelector } from "Models/handshake";
 import { actions as schemaActions } from "Models/schema";
 
 export function* jackpotsMustDropUpdateSaga(action) {

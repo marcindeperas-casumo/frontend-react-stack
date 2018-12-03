@@ -2,7 +2,7 @@ import { delay } from "redux-saga";
 import { call, put, take, select } from "redux-saga/effects";
 import { CMS_ENTITY_KEY, normalizeData } from "Models/schema/schema";
 import { actions as schemaActions } from "Models/schema";
-import { getCmsHash, getLanguage } from "Models/handshake/selectors";
+import { getCmsHash, getLanguage } from "Models/handshake";
 import { getChildrenAndParent, setSlug } from "./cms.utils";
 import {
   getFetchCompleteTypeBySlug,
