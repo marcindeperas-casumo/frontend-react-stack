@@ -1,6 +1,6 @@
 import { put, call } from "redux-saga/effects";
-import { actions } from "Models/fetch";
 import { fetchService } from "Services/FetchService";
+import * as actions from "./fetch.actions";
 
 export function* fetchSaga(action) {
   const {
@@ -34,5 +34,3 @@ export function* fetchSaga(action) {
     yield put(actions.requestComplete(name));
   }
 }
-
-export default fetchSaga;

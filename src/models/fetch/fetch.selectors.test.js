@@ -3,7 +3,7 @@ import {
   getFetch,
   isFetchingStarted,
   isNotFetched,
-} from "Models/fetch/selectors";
+} from "./fetch.selectors";
 
 describe("Fetch selectors", () => {
   describe("getFetch()", () => {

@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo } from "ramda";
 import { getField } from "Models/cms";
-import { isNotFetched, isFetched } from "Models/fetch/selectors";
+import { isNotFetched, isFetched } from "Models/fetch";
 import { TYPES } from "./jackpotsMustDrop.constants";
 
 export const getJackpotsMustDropSchema = compose(
