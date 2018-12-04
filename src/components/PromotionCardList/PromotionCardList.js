@@ -8,8 +8,8 @@ import { createModifierClasses } from "@casumo/cudl-react-utils";
 
 type Props = {
   promotionsSlugs: Array<string>,
-  isFetched: boolean,
-  startFetch: () => void,
+  fetchCampaign: () => void,
+  fetchPromotions: () => void,
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
@@ -29,11 +29,8 @@ const marginPerDevice = {
 
 class PromotionCardList extends PureComponent<Props> {
   componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
+    this.props.fetchCampaign();
+    this.props.fetchPromotions();
   }
 
   render() {
@@ -47,8 +44,8 @@ class PromotionCardList extends PureComponent<Props> {
     return (
       <div
         className={classNames(
-          backgroundColor && `${backgroundColor}`,
-          titleColor && `${titleColor}`,
+          backgroundColor && `t-background-${backgroundColor}`,
+          titleColor && `t-color-${titleColor}`,
           createModifierClasses("u-margin-top", marginPerDevice),
           "u-padding-top--lg u-padding-bottom--lg"
         )}

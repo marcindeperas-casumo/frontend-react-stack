@@ -2,9 +2,8 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import { generateColumns } from "Utils/utils";
-import JackpotsTile from "./JackpotsTile";
+import JackpotsListTile from "Components/JackpotsListTile";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import "./Jackpots.scss";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -38,7 +37,7 @@ export default class Jackpots extends PureComponent<Props> {
         <ScrollableListTitle title={title} />
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
           {idsByColumns.map((columnIds, i) => (
-            <JackpotsTile ids={columnIds} key={`jackpots-tile-${i}`} />
+            <JackpotsListTile ids={columnIds} key={`jackpots-tile-${i}`} />
           ))}
         </Scrollable>
       </div>

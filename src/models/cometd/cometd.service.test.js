@@ -69,12 +69,24 @@ describe("Models/Cometd/Service", () => {
 
   test("exposes a method to send message to a channel", async () => {
     const channel = "/foo";
-    const message = { foo: "bar" };
+    const data = { foo: "bar" };
     const callback = jest.fn();
 
     await cometdService.subscribe(channel, callback);
 
-    cometdService.emit(channel, message);
-    expect(callback).toBeCalledWith(message);
+    cometdService.emit(channel, data);
+    expect(callback).toBeCalledWith({ data, channel });
+  });
+
+  test(".emit() handles wildcard subscriptions", async () => {
+    const subscriptionChannel = "/foo/*";
+    const emittedChannel = "/foo/bar";
+    const data = { foo: "bar" };
+    const callback = jest.fn();
+
+    await cometdService.subscribe(subscriptionChannel, callback);
+
+    cometdService.emit(emittedChannel, data);
+    expect(callback).toBeCalledWith({ channel: emittedChannel, data });
   });
 });

@@ -14,7 +14,7 @@ describe("ComponentBuilderRenderer", () => {
     );
 
     expect(rendered.find("GameListHorizontalContainer")).toHaveLength(1);
-    expect(rendered.find("DangerousHtml")).toHaveLength(1);
+    expect(rendered.find("ContentHtml")).toHaveLength(1);
   });
 
   test("renders nothing if the component definitions is empty", () => {

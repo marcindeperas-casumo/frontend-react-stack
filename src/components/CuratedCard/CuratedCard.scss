@@ -12,13 +12,12 @@ $curated-card-ratios: (
 );
 
 .c-curated-card {
-  max-height: 352px;
-
   @include cudl-breakpoint(phablet) {
     max-height: 264px;
   }
 }
 
-.o-ratio--curated-card::before {
+// stylelint-disable-next-line
+.o-ratio--curated-card.o-ratio--curated-card::before {
   @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
 }

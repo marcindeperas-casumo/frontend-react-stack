@@ -14,10 +14,11 @@ const TableHeader = ({
   columnHeadings,
   cellPadding = "default",
 }: HeaderProps) => {
-  const padding: string | Array<string> = createModifierClasses(
-    "u-padding",
-    cellPadding
-  );
+  // TODO: make createModifierClasses to support horz and vert
+  const padding: string | Array<string> =
+    cellPadding.startsWith("vert") || cellPadding.startsWith("horiz")
+      ? `u-padding-${cellPadding}`
+      : createModifierClasses("u-padding", cellPadding);
 
   return (
     <thead>

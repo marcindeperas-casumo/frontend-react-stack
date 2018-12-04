@@ -1,11 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import {
-  isPageLoadedFactory,
-  fetchPageBySlug,
-  fieldSelectorFactory,
-} from "Models/cms";
+import { isPageFetched, fetchPageBySlug, getField } from "Models/cms";
 import PromotionCardTeaser from "./PromotionCardTeaser";
 
 type Props = {
@@ -19,13 +15,13 @@ const promotionTitleBadge = "title";
 
 const PromotionCardTeaserConnected = connect(
   (state, { slug }) => ({
-    isFetched: isPageLoadedFactory(slug)(state),
-    badge: fieldSelectorFactory({
+    isFetched: isPageFetched(slug)(state),
+    badge: getField({
       slug,
       field: promotionBadgeField,
     })(state),
-    dates: fieldSelectorFactory({ slug, field: promotionDatesField })(state),
-    title: fieldSelectorFactory({ slug, field: promotionTitleBadge })(state),
+    dates: getField({ slug, field: promotionDatesField })(state),
+    title: getField({ slug, field: promotionTitleBadge })(state),
   }),
   (dispatch, { slug }) => ({
     startFetch: () => dispatch(fetchPageBySlug(slug)),

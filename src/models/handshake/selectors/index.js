@@ -1,16 +1,9 @@
 import { createSelector } from "reselect";
-import {
-  compose,
-  prop,
-  isNil,
-  isEmpty,
-  complement,
-  anyPass,
-  defaultTo,
-} from "ramda";
+import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "Models/handshake";
+import { LANGUAGES, MARKETS } from "Src/constants";
 
-export const DEFAULT_LANGUAGE = "en";
+export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 
 export const handshakeSelector = state => state.handshake;
 
@@ -76,12 +69,8 @@ export const isGamesHandshakeLoaded = createSelector(
 );
 
 export const getLanguage = createSelector(
-  player,
-  compose(
-    defaultTo(DEFAULT_LANGUAGE),
-    prop("language"),
-    prop("configuration")
-  )
+  market,
+  market => LANGUAGES[market] || DEFAULT_LANGUAGE
 );
 
 export const getCmsHash = createSelector(

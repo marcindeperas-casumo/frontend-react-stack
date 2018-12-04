@@ -5,6 +5,7 @@ import MigrationComponent, {
 import { TopListsSkeleton } from "Components/TopLists";
 import LazyPortal from "Components/LazyPortal";
 import MustDropJackpotListSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
+import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 
 class App extends PureComponent {
   componentDidMount() {
@@ -40,6 +41,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-promotion-detail"
             loader={() => import("Components/ComponentBuilder")}
+            fallback={<PromotionPageSkeleton />}
             props={{ slug: `promotions.${routeParams[0]}` }}
           />
         </MigrationComponent>
@@ -54,7 +56,8 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-promotions"
             loader={() => import("Components/ComponentBuilder")}
-            props={{ slug: "campaigns.winter-campaign" }}
+            fallback={<PromotionPageSkeleton />}
+            props={{ slug: "campaigns.winter-games" }}
           />
         </MigrationComponent>
       </MigrationComponentManager>

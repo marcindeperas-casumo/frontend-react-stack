@@ -1,38 +1,46 @@
 // @flow
+import React from "react";
 import { connect } from "react-redux";
-import type { Connector } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
-import type { Props } from "Components/CuratedCard/CuratedCard";
 import {
-  getCuratedByMarketSlug,
+  CURATED_SLUG,
   curatedSelector,
   isCuratedLoadedFactory,
-  fetchCurated,
 } from "Models/curated";
-import { market as marketSelector } from "Models/handshake/selectors";
+import { fetchPageBySlug } from "Models/cms";
 import { actions as gameActions } from "Models/games";
 
-const connector: Connector<Props> = connect(
-  state => {
-    const slug = getCuratedByMarketSlug(marketSelector(state));
+type Props = {
+  card: string | Array<string>,
+};
 
-    return {
-      ...curatedSelector(slug)(state),
-      isFetched: isCuratedLoadedFactory(slug)(state),
-    };
-  },
-  dispatch => ({
-    fetchCurated: () => dispatch(fetchCurated()),
-    dispatchLaunchGame: gameId => dispatch(gameActions.launchGame(gameId)),
+const CuratedConnected = connect(
+  (state, { slug }) => ({
+    ...curatedSelector(slug)(state),
+    isFetched: isCuratedLoadedFactory(slug)(state),
+  }),
+  (dispatch, { slug }) => ({
+    fetchCurated: () => dispatch(fetchPageBySlug(slug)),
+    dispatchLaunchGame: id => dispatch(gameActions.launchGame(id)),
   }),
   (stateProps, dispatchProps, ownProps) => {
     const { gameId } = stateProps;
+
     return {
       ...stateProps,
       ...dispatchProps,
       onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
     };
   }
-);
+)(CuratedCard);
 
-export default connector(CuratedCard);
+// TODO: Move this logic out from this component
+// (The "card" prop can be an array right now, because
+// in the CMS the page-relationship selector returns an array)
+const CuratedContainer = ({ card }: Props) => {
+  const slug = `${CURATED_SLUG}.${Array.isArray(card) ? card[0] : card}`;
+
+  return <CuratedConnected slug={slug} />;
+};
+
+export default CuratedContainer;

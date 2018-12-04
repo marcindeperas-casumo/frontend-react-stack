@@ -1,41 +1,62 @@
 // @flow
 import React, { PureComponent } from "react";
 import PromotionCardTeaser from "Components/PromotionCardTeaser";
+import classNames from "classnames";
 import "./PromotionCardTeaserList.scss";
 
 type Props = {
-  isFetched: boolean,
-  startFetch: () => void,
   promotionsSlugs: Array<string>,
+  backgroundColor: string,
+  maskImageBottom?: string,
+  maskImageTop?: string,
+  fetchCampaign: () => void,
+  fetchPromotions: () => void,
 };
 
 class PromotionCardTeaserList extends PureComponent<Props> {
   componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
+    this.props.fetchCampaign();
+    this.props.fetchPromotions();
   }
 
   render() {
-    const { promotionsSlugs } = this.props;
+    const {
+      promotionsSlugs,
+      backgroundColor,
+      maskImageBottom = "",
+      maskImageTop = "",
+    } = this.props;
 
     if (!promotionsSlugs.length) {
       return null;
     }
 
     return (
-      <div className="c-promotion-card-teaser-list u-padding-top--xlg u-padding-horiz--md">
-        {promotionsSlugs.map(promotionSlug => (
-          <div className="u-margin-bottom--md" key={promotionSlug}>
-            <PromotionCardTeaser
-              slug={`promotions.${promotionSlug}`}
-              link={`promotions/${promotionSlug}`}
-              key={promotionSlug}
-            />
+      <div
+        className={classNames(
+          backgroundColor && `t-background-${backgroundColor}`,
+          "u-margin-bottom--lg",
+          "u-padding-top--xlg",
+          "c-promotion-card-teaser-list"
+        )}
+        style={{ backgroundImage: `url(${maskImageTop})` }}
+      >
+        <div
+          className="u-padding-bottom--xlg c-promotion-card-teaser-list__wrap"
+          style={{ backgroundImage: `url(${maskImageBottom})` }}
+        >
+          <div className="c-promotion-card-teaser-list__items u-padding-horiz--lg">
+            {promotionsSlugs.map(promotionSlug => (
+              <div className="u-margin-bottom--md" key={promotionSlug}>
+                <PromotionCardTeaser
+                  slug={`promotions.${promotionSlug}`}
+                  link={`promotions/${promotionSlug}`}
+                  key={promotionSlug}
+                />
+              </div>
+            ))}
           </div>
-        ))}
+        </div>
       </div>
     );
   }

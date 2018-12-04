@@ -1,11 +1,11 @@
 import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
-import { slugSelectorFactory } from "Models/cms";
+import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema/selector";
 
 export const curatedSelector = slug =>
   createSelector(
-    slugSelectorFactory(slug),
+    getPage(slug),
     state => state,
     (page, state) => {
       const { fields = {} } = page;
@@ -28,7 +28,7 @@ export const curatedSelector = slug =>
 
 export const isCuratedLoadedFactory = slug =>
   createSelector(
-    slugSelectorFactory(slug),
+    getPage(slug),
     state => state,
     (page, state) => {
       const { fields = {} } = page;

@@ -1,18 +1,8 @@
-import { types, getCuratedByMarketSlug } from "Models/curated";
-import { fetchPageBySlug } from "Models/cms";
+import { types } from "Models/curated";
 import { types as fetchTypes } from "Models/fetch";
 import GameBrowserService from "Services/GameBrowserService";
-import { market as marketSelector } from "Models/handshake/selectors";
 
 const { gamesBySlugs } = GameBrowserService;
-
-export function fetchCurated() {
-  return (dispatch, getState) => {
-    const market = marketSelector(getState());
-    const slug = getCuratedByMarketSlug(market);
-    dispatch(fetchPageBySlug(slug));
-  };
-}
 
 export const fetchCuratedGame = ({ platform, country, slugs, variant }) => {
   return {

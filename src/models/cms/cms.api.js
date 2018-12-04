@@ -7,5 +7,5 @@ export const getPageBySlug = async ({ slug, hash, lang }) => {
   const url = `cmsquery/v2/root/${lang}/${slug}?${queryString}`;
   const response = await httpGet(url);
 
-  return { cms: response };
+  return response;
 };

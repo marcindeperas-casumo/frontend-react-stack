@@ -21,11 +21,14 @@ export const getCometdMessagesStream = channel => {
 };
 
 export default function* cometdSubscribeSaga(action) {
-  const { channel } = action;
-  const cometdMessagesStream = yield call(getCometdMessagesStream, channel);
+  const { channel: subscribedChannel } = action;
+  const cometdMessagesStream = yield call(
+    getCometdMessagesStream,
+    subscribedChannel
+  );
 
   while (true) {
-    const data = yield take(cometdMessagesStream);
+    const { channel, data } = yield take(cometdMessagesStream);
 
     yield put(message({ channel, data }));
   }

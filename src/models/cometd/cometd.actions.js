@@ -27,3 +27,11 @@ export const subscribeLiveCasinoUpdates = id => {
 export const unsubscribeLiveCasinoUpdates = id => {
   return unsubscribe({ channel: `${CHANNELS.LIVE_CASINO_TABLE}/${id}` });
 };
+
+export const subscribeMustDropJackpotUpdates = () => {
+  return subscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
+};
+
+export const unsubscribeMustDropJackpotUpdates = () => {
+  return unsubscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
+};

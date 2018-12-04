@@ -3,48 +3,64 @@ import { shallow } from "enzyme";
 import PromotionCardTeaserList from "./PromotionCardTeaserList";
 
 describe("PromotionCardTeaserList", () => {
-  test("should initiate the fetching if page is not available", () => {
-    const startFetch = jest.fn();
+  let fetchCampaign;
+  let fetchPromotions;
 
-    shallow(
-      <PromotionCardTeaserList
-        slug="foo"
-        startFetch={startFetch}
-        isFetched={false}
-        promotionsSlugs={["page-1", "page-2"]}
-      />
-    );
-
-    expect(startFetch).toHaveBeenCalledTimes(1);
+  beforeEach(() => {
+    fetchCampaign = jest.fn();
+    fetchPromotions = jest.fn();
   });
 
-  test("should not initiate a fetch if page is available", () => {
-    const startFetch = jest.fn();
-
+  test("should initiate the fetching if page is not available", () => {
     shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={["page-1", "page-2"]}
       />
     );
 
-    expect(startFetch).not.toHaveBeenCalled();
+    expect(fetchCampaign).toHaveBeenCalledTimes(1);
   });
 
   test("should not render any PromotionCardTeaser component if promotionSlugs is empty", () => {
-    const startFetch = jest.fn();
-
     const rendered = shallow(
       <PromotionCardTeaserList
         slug="foo"
-        startFetch={startFetch}
-        isFetched={true}
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
         promotionsSlugs={[]}
       />
     );
 
     expect(rendered.find("PromotionCardTeaser").exists()).toBe(false);
+  });
+
+  test("should set a background color if backgroundColor is coming down as a prop", () => {
+    const rendered = shallow(
+      <PromotionCardTeaserList
+        slug="foo"
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
+        backgroundColor="blue"
+        promotionsSlugs={["page-1", "page-2"]}
+      />
+    );
+
+    expect(rendered.first().hasClass("t-background-blue")).toBe(true);
+  });
+
+  test("should not set a background color if backgroundColor is not coming down as a prop", () => {
+    const rendered = shallow(
+      <PromotionCardTeaserList
+        slug="foo"
+        fetchCampaign={fetchCampaign}
+        fetchPromotions={fetchPromotions}
+        promotionsSlugs={["page-1", "page-2"]}
+      />
+    );
+
+    expect(rendered.first().props().className).not.toMatch("t-background-");
   });
 });

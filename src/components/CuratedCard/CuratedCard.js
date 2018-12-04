@@ -31,6 +31,7 @@ export type Props = {|
   large_image: string,
   primary_action_text: string,
   promotions_legal_text: string,
+  promotion: Array<string>,
   isFetched: boolean,
   fetchCurated: Function,
   onLaunchGame: Function,
@@ -45,13 +46,31 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderSkeleton = () => <CuratedCardSkeleton />;
 
+  // TODO: Move URLs to a central configuration
+  getLink() {
+    const { gameData, promotion = [] } = this.props;
+    const [promotionSlug = ""] = promotion;
+
+    // If there is a game selected, we don't link to anything,
+    // we just use the onLaunchGame() prop.
+    if (gameData) {
+      return null;
+    }
+
+    if (promotionSlug) {
+      return `/en/promotions/${promotionSlug}`;
+    }
+
+    return "/en/promotions";
+  }
+
   renderCard = () => {
     const { gameData, onLaunchGame } = this.props;
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <CuratedCardBackground
-          link={gameData ? null : "/en/promotions"}
+          link={this.getLink()}
           onLaunchGame={gameData ? onLaunchGame : null}
           {...this.props}
         />

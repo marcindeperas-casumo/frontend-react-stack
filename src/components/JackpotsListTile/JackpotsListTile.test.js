@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import JackpotsTile from "./JackpotsTile";
+import JackpotsTile from "./JackpotsListTile";
 
-describe("<JackpotsTile />", () => {
+describe("<JackpotsListTile />", () => {
   test("renders a <List /> component", () => {
     const ids = ["one", "two", "three"];
     const rendered = shallow(<JackpotsTile ids={ids} />);

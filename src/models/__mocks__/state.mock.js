@@ -23,6 +23,10 @@ export default {
       error: null,
       isFetching: false,
     },
+    "JACKPOTS_MUST_DROP/FETCH": {
+      error: null,
+      isFetching: false,
+    },
   },
   handshake: {
     app: {
@@ -2505,121 +2509,25 @@ export default {
   },
   schema: {
     game: {
-      "book-of-dead": {
-        name: "Book of Dead",
-        slug: "book-of-dead",
+      bloodsuckers: {
+        name: "Blood Suckers",
+        slug: "bloodsuckers",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2014/06/BloodSuckers_Thumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/book_of_dead_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2014/02/BloodSuckers_Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "diamond-mine": {
-        name: "Diamond Mine",
-        slug: "diamond-mine",
+      "easter-island": {
+        name: "Easter Island",
+        slug: "easter-island",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/diamond_mine_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/diamond-mine-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "jammin-jars": {
-        name: "Jammin Jars",
-        slug: "jammin-jars",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjar-logo-480x580.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "extra-chilli": {
-        name: "Extra Chilli",
-        slug: "extra-chilli",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/extra_chilli_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/extra-chilli-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "fat-rabbit": {
-        name: "Fat Rabbit",
-        slug: "fat-rabbit",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "book-of-ra-deluxe": {
-        name: "Book of Ra deluxe",
-        slug: "book-of-ra-deluxe",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_gamethumb-plate.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "gonzos-quest": {
-        name: "Gonzo&#8217;s Quest",
-        slug: "gonzos-quest",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "big-bad-wolf": {
-        name: "Big Bad Wolf",
-        slug: "big-bad-wolf",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolfbgthumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolf_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      gemix: {
-        name: "Gemix",
-        slug: "gemix",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/Gemix-desktop-thumb1.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/06/Gemix-desktop-logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "vikings-go-berzerk": {
-        name: "Vikings Go Berzerk",
-        slug: "vikings-go-berzerk",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2637,37 +2545,121 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      fruitshop: {
-        name: "Fruit Shop",
-        slug: "fruitshop",
+      "bakers-treat": {
+        name: "Baker&#8217;s Treat",
+        slug: "bakers-treat",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2012/05/FruitShop_Thumb.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/bakers_treat_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2012/05/FruitShop_Logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/bakers_treat_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      bloodsuckers: {
-        name: "Blood Suckers",
-        slug: "bloodsuckers",
+      "rapunzels-tower": {
+        name: "Rapunzel&#8217;s Tower",
+        slug: "rapunzels-tower",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/BloodSuckers_Thumb.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/rapunzels_tower_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/BloodSuckers_Logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/rapunzels_tower_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "twin-spin": {
-        name: "Twin Spin",
-        slug: "twin-spin",
+      "big-bad-wolf": {
+        name: "Big Bad Wolf",
+        slug: "big-bad-wolf",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/TwinSpin_Thumb.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolfbgthumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/TwinSpin_Logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2015/08/bigbadwolf_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "book-of-ra-deluxe": {
+        name: "Book of Ra deluxe",
+        slug: "book-of-ra-deluxe",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_gamethumb-plate.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/11/book-of-ra-deluxe_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "diamond-mine": {
+        name: "Diamond Mine",
+        slug: "diamond-mine",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/diamond_mine_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/diamond-mine-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "raging-rhino": {
+        name: "Raging Rhino",
+        slug: "raging-rhino",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/03/RagingRhino-backplate.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/03/RagingRhino-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "jammin-jars": {
+        name: "Jammin Jars",
+        slug: "jammin-jars",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjars-bg-480-580.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/09/jamminjar-logo-480x580.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "legacy-of-egypt": {
+        name: "Legacy of Egypt",
+        slug: "legacy-of-egypt",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      gemix: {
+        name: "Gemix",
+        slug: "gemix",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/06/Gemix-desktop-thumb1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/06/Gemix-desktop-logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "danger-high-voltage": {
+        name: "Danger High Voltage",
+        slug: "danger-high-voltage",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/danger_high_voltage_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/danger_high_voltage_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -2685,6 +2677,114 @@ export default {
         jackpotId: null,
         tableId: null,
       },
+      "fruit-warp": {
+        name: "Fruit Warp",
+        slug: "fruit-warp",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/08/fruitwarp_background.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/08/fuitwarplogo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "gonzos-quest": {
+        name: "Gonzo&#8217;s Quest",
+        slug: "gonzos-quest",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "rainbow-riches-pick-n-mix": {
+        name: "Rainbow Riches Pick `n´ Mix",
+        slug: "rainbow-riches-pick-n-mix",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2016/03/rainbow_riches_pickmix_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2016/03/rainbow_riches_pickmix_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "white-rabbit": {
+        name: "White Rabbit",
+        slug: "white-rabbit",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/11/white_rabbit_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/11/white-rabbit.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "action-bank": {
+        name: "Action Bank",
+        slug: "action-bank",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/04/action-bank_game-backgroundplate.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/04/action-bank_game-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wild-toro": {
+        name: "Wild Toro",
+        slug: "wild-toro",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/wild_toro_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/wild_toro_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "twin-spin": {
+        name: "Twin Spin",
+        slug: "twin-spin",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/06/TwinSpin_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/02/TwinSpin_Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wish-upon-a-leprechaun": {
+        name: "Wish Upon a Leprechaun",
+        slug: "wish-upon-a-leprechaun",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/wish_upon_a_leprechaun_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/wish_upon_a_leprechaun_logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      cleopatra: {
+        name: "Cleopatra",
+        slug: "cleopatra",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2015/05/CleopatraBg2.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2015/05/Cleopatralogo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
       "eastern-emeralds": {
         name: "Eastern Emeralds",
         slug: "eastern-emeralds",
@@ -2697,290 +2797,242 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "troll-hunters": {
-        name: "Troll Hunters",
-        slug: "troll-hunters",
+      vikings: {
+        name: "Vikings",
+        slug: "vikings",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/11/PlaynGo_TrollHunters_bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/vikings-thumbnail-bg.png",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/11/PlaynGo_TrollHunters_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/vikings-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "reel-rush": {
-        name: "Reel Rush",
-        slug: "reel-rush",
+      "rocket-fellas": {
+        name: "Rocket Fellas Inc",
+        slug: "rocket-fellas",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/06/ReelRush_Thumb.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/rocket_fellas_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/02/ReelRush_Logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/rocket_fellas_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      razortooth: {
-        name: "Razortooth",
-        slug: "razortooth",
+      "monopoly-250k": {
+        name: "Monopoly 250k",
+        slug: "monopoly-250k",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/11/razortooth_game-thumb-plate.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/monopoly_millionare_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/11/razortooth-logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/monopoly-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "thunderstruck-ii": {
-        name: "Thunderstruck II",
-        slug: "thunderstruck-ii",
+      "its-magic": {
+        name: "It&#8217;s Magic",
+        slug: "its-magic",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/09/Thunderstruck2_backplate-1.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/its_magic_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/09/Thunderstruck2_logo-1.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/its_magic_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "ancient-egypt-classic": {
-        name: "Ancient Egypt Classic",
-        slug: "ancient-egypt-classic",
+      "baron-samedi": {
+        name: "Baron Samedi",
+        slug: "baron-samedi",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/baron_samedi_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/baron_samedi_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "lucha-legends": {
-        name: "Lucha Legends",
-        slug: "lucha-legends",
+      "primal-megaways": {
+        name: "Primal Megaways",
+        slug: "primal-megaways",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/lucha_legends_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/primal_megaways-thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/lucha_legends_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/primal-megaways-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "shields-of-the-wild": {
-        name: "Shields Of The Wild",
-        slug: "shields-of-the-wild",
+      "crystal-rift": {
+        name: "Crystal Rift",
+        slug: "crystal-rift",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/shields_of_the_wild_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/crystal_rift_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/shields_of_the_wild_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/crystal_rift_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "dinosaur-kingdom": {
-        name: "Dinosaur Kingdom",
-        slug: "dinosaur-kingdom",
+      "astro-legends-lyra-and-erion": {
+        name: "Astro Legends Lyra and Erion",
+        slug: "astro-legends-lyra-and-erion",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/dinosaur_kingdom_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/astro_legends_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/dinosaur_kingdom_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/astro_legends_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "wheel-of-fortune-hawaiian-getaway": {
-        name: "Wheel of Fortune &#8211; Hawaiian Getaway",
-        slug: "wheel-of-fortune-hawaiian-getaway",
+      "quick-hit-super-wheel-wild-red": {
+        name: "Quick Hit Super Wheel Wild Red",
+        slug: "quick-hit-super-wheel-wild-red",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/hawaiian_getaway_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/quick_hit_super_wheel_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/hawaiian_getaway_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/quick_hit_super_wheel_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "wild-bazaar": {
-        name: "Wild Bazaar",
-        slug: "wild-bazaar",
+      "stellar-jackpots-silver-lion": {
+        name: "Stellar Jackpots Silver Lion",
+        slug: "stellar-jackpots-silver-lion",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_bazaar_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/stellar_silver_lion_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_bazaar_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/stellar_silver_lion_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "the-goonies": {
-        name: "The Goonies",
-        slug: "the-goonies",
+      "asian-fortunes": {
+        name: "Asian Fortunes",
+        slug: "asian-fortunes",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/the_goonies_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/asian_fortunes_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/the_goonies_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "gunslinger-reloaded": {
-        name: "Gunslinger Reloaded",
-        slug: "gunslinger-reloaded",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: "playngo-113",
-        tableId: null,
-      },
-      "romanov-riches": {
-        name: "Romanov Riches",
-        slug: "romanov-riches",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/romanov_riches_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/romanov_riches_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "dark-vortex": {
-        name: "Dark Vortex",
-        slug: "dark-vortex",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/dark_vortex_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/dark_vortex_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "halloween-jack": {
-        name: "Halloween Jack",
-        slug: "halloween-jack",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/halloweenjack-bg-tb.png",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/halloweenjack-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "grizzly-gold": {
-        name: "Grizzly Gold",
-        slug: "grizzly-gold",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzly_gold_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzly_gold_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "zombie-circus": {
-        name: "Zombie Circus",
-        slug: "zombie-circus",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/zombie_circus_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/zombie_circus_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "mermaids-queen": {
-        name: "Mermaid Queen",
-        slug: "mermaids-queen",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/mermaid_queen_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/mermaid_queen_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "quick-hit-ultra-pays-sun-dragon": {
-        name: "Quick Hit Ultra Pays Sun Dragon",
-        slug: "quick-hit-ultra-pays-sun-dragon",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/sun_dragon_thumbnail1.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/sun_dragon_logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "tiger-rush": {
-        name: "Tiger Rush",
-        slug: "tiger-rush",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tiger_rush_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/09/tiger_rush_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "vegas-magic": {
-        name: "Vegas Magic",
-        slug: "vegas-magic",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_magic_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_magic_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "buffalo-rising-megaways": {
-        name: "Buffalo Rising Megaways",
-        slug: "buffalo-rising-megaways",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/buffalo_rising_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/buffalo-rising-logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      polterheist: {
-        name: "Polterheist",
-        slug: "polterheist",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/polter_heist_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/polter_heist_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "tales-of-darkness-full-moon": {
-        name: "Tales of Darkness &#8211; Full Moon",
-        slug: "tales-of-darkness-full-moon",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/tod_full_moon-thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/10/tod_full_moon_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/11/asian_fortunes_logo.png",
         hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "triple-dragons": {
+        name: "Triple Dragons",
+        slug: "triple-dragons",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/triple_dragons_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/triple_dragons_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "nitro-circus": {
+        name: "Nitro Circus",
+        slug: "nitro-circus",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/nitro_circus_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/nitro_circus_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "dragon-maiden": {
+        name: "Dragon Maiden",
+        slug: "dragon-maiden",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/dragons_maiden-thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/dragon_maiden_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "monkey-god": {
+        name: "Monkey God",
+        slug: "monkey-god",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/monkey_god_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/monkey_god_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wild-country": {
+        name: "Wild Country",
+        slug: "wild-country",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/wild_country_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/wild_country_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "tigers-glory": {
+        name: "Tiger&#8217;s Glory",
+        slug: "tigers-glory",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/tigers_glory-thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/tigers_glory_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "reel-talent": {
+        name: "Reel Talent",
+        slug: "reel-talent",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/reel_talent_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/reel_talent_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "almighty-reels-garden-of-persephone": {
+        name: "Almighty Reels &#8211; Garden of Persephone",
+        slug: "almighty-reels-garden-of-persephone",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/garden-of-persephone_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/garden-of-persephone_logo.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "vegas-diamonds": {
+        name: "Vegas Diamonds",
+        slug: "vegas-diamonds",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_diamonds_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/vegas_diamonds_logo.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
@@ -2995,7 +3047,6 @@ export default {
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: "munbzmuueehqaavs",
-        lobby: "munbzmuueehqaavs",
       },
       "the-tales-of-dr-dolittle": {
         name: "The Tales of Dr. Dolittle",
@@ -3009,13 +3060,13 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "kingdom-of-fortune": {
-        name: "Kingdom Of Fortune",
-        slug: "kingdom-of-fortune",
+      "grizzly-gold": {
+        name: "Grizzly Gold",
+        slug: "grizzly-gold",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/07/back-kingdomoffortune.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzlygold-tb-bg.png",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/07/logo-kingdomoffortune1.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/grizzlygold-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3045,6 +3096,126 @@ export default {
         jackpotId: null,
         tableId: "lnte5m7j7jdaadpm",
       },
+      "casumo-blackjack-2-evolution": {
+        name: "Blackjack 2",
+        slug: "casumo-blackjack-2-evolution",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-blackjack.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-blackjack2.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "casumo-blackjack-club-room-evolution": {
+        name: "Blackjack Club Room",
+        slug: "casumo-blackjack-club-room-evolution",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-blackjack.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/10/blackjack-clubroom.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "casumo-blackjack-3-evolution": {
+        name: "Blackjack 3",
+        slug: "casumo-blackjack-3-evolution",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-blackjack.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-blackjack3.png",
+        hasPlayForFun: false,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      bonanza: {
+        name: "Bonanza",
+        slug: "bonanza",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/08/bonanza_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/09/bonanza-logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "ancient-egypt-classic": {
+        name: "Ancient Egypt Classic",
+        slug: "ancient-egypt-classic",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "fat-rabbit": {
+        name: "Fat Rabbit",
+        slug: "fat-rabbit",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/03/fat_rabbit_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "vikings-go-berzerk": {
+        name: "Vikings Go Berzerk",
+        slug: "vikings-go-berzerk",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/06/vikings_go_berzerk_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "reel-rush": {
+        name: "Reel Rush",
+        slug: "reel-rush",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2014/06/ReelRush_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2014/02/ReelRush_Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wolf-gold": {
+        name: "Wolf Gold",
+        slug: "wolf-gold",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/08/wolf_gold_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/08/wolf_gold_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "dwarfs-gone-wild": {
+        name: "Dwarfs Gone Wild",
+        slug: "dwarfs-gone-wild",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
       donuts: {
         name: "Donuts",
         slug: "donuts",
@@ -3052,30 +3223,6 @@ export default {
           "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_thumbnail.jpg",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2018/06/donuts_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "fire-joker": {
-        name: "Fire Joker",
-        slug: "fire-joker",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Thumb.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "fruit-warp": {
-        name: "Fruit Warp",
-        slug: "fruit-warp",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2014/08/fruitwarp_background.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2014/08/fuitwarplogo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3105,25 +3252,13 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "dwarfs-gone-wild": {
-        name: "Dwarfs Gone Wild",
-        slug: "dwarfs-gone-wild",
+      montezuma: {
+        name: "Montezuma",
+        slug: "montezuma",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2015/01/Montezuma-backplate.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/dwarfs_gone_wild_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "easter-island": {
-        name: "Easter Island",
-        slug: "easter-island",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2015/01/Montezuma_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3141,50 +3276,38 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      bonanza: {
-        name: "Bonanza",
-        slug: "bonanza",
+      "book-of-dead": {
+        name: "Book of Dead",
+        slug: "book-of-dead",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/08/bonanza_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/bonanza-logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/book_of_dead_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "legacy-of-egypt": {
-        name: "Legacy of Egypt",
-        slug: "legacy-of-egypt",
+      "fire-joker": {
+        name: "Fire Joker",
+        slug: "fire-joker",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Thumb.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/04/legacy_of_egypt_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2016/06/PlayNGo-FireJoker-Logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "pirates-charm": {
-        name: "Pirate&#8217;s Charm",
-        slug: "pirates-charm",
+      "lucky-ladys-charm-deluxe": {
+        name: "Lucky Lady’s Charm deluxe",
+        slug: "lucky-ladys-charm-deluxe",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2014/11/Lucky-Ladys-Charm_gamethumb-background.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/pirates_charm_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "vikings-go-to-hell": {
-        name: "Vikings Go To Hell",
-        slug: "vikings-go-to-hell",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/vikings_go_to_hell_thumbnail.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/05/vikings_go_to_hell_logo.png",
-        hasPlayForFun: true,
+          "https://cms.casumo.com/wp-content/uploads/2014/11/Lyck-Ladys-Charm_logo.png",
+        hasPlayForFun: false,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
@@ -3196,42 +3319,6 @@ export default {
           "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_bg.jpg",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2017/07/moon_princess_logo.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "crystal-queen": {
-        name: "Crystal Queen",
-        slug: "crystal-queen",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/09/Thumb_BG_CrystalQueen1.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/09/3439ce2f-e93a-4bdd-b989-25eceeeedeee.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "foxin-wins": {
-        name: "Foxin&#8217; Wins",
-        slug: "foxin-wins",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/07/foxin_wins_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/07/foxin_wins_logo1.png",
-        hasPlayForFun: true,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "break-da-bank-again": {
-        name: "Break da Bank Again",
-        slug: "break-da-bank-again",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2015/10/breakdabankagain_backplate-1.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2015/10/breakdabankagain_logo-1.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3249,64 +3336,265 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      jumanji: {
-        name: "Jumanji",
-        slug: "jumanji",
+      "extra-chilli": {
+        name: "Extra Chilli",
+        slug: "extra-chilli",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/jumanji_thumbnail.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/extra_chilli_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/jumanji_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/04/extra-chilli-logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
         tableId: null,
       },
-      "evolution-live-ultimate-texas-holdem": {
-        name: "Ultimate Texas Hold&#8217;em",
-        slug: "evolution-live-ultimate-texas-holdem",
+      "lady-of-fortune": {
+        name: "Lady of Fortune",
+        slug: "lady-of-fortune",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2016/12/Ultimate-bp.png",
+          "https://cms.casumo.com/wp-content/uploads/2015/06/Lady-of-Fortune-desktop-thumb1.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2016/12/Ultimate-logo.png",
-        hasPlayForFun: false,
+          "https://cms.casumo.com/wp-content/uploads/2015/06/Lady-of-Fortune-desktop-logo1.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
-        tableId: "UTHTable00000001",
-        lobby: "UTHTable00000001",
+        tableId: null,
       },
-      "evolution-live-football-studio": {
-        name: "Football Studio",
-        slug: "evolution-live-football-studio",
+      "dragons-luck": {
+        name: "Dragon&#8217;s Luck",
+        slug: "dragons-luck",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/FootballStudio.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dragons_luck_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2018/06/FootballLogo.png",
-        hasPlayForFun: false,
+          "https://cms.casumo.com/wp-content/uploads/2018/10/dragons_luck_logo.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
-        tableId: "TopCard000000001",
-        lobby: "TopCard000000001",
+        tableId: null,
       },
-      "dream-catcher": {
-        name: "Dream Catcher",
-        slug: "dream-catcher",
+      "rainbow-jackpots": {
+        name: "Rainbow Jackpots",
+        slug: "rainbow-jackpots",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/09/dream_catcher_bg-copy.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/rainbow_jackpots_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/05/dream_catcher_logo.png",
-        hasPlayForFun: false,
+          "https://cms.casumo.com/wp-content/uploads/2018/10/rainbow_jackpots_logo.png",
+        hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
-        tableId: "MOWDream00000001",
-        lobby: "MOWDream00000001",
+        tableId: null,
       },
-      "joker-millions": {
-        name: "Joker Millions",
-        slug: "joker-millions",
+      "tiki-fruits": {
+        name: "Tiki Fruits",
+        slug: "tiki-fruits",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/joker_millions_bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/tiki_fruits_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/joker_millions_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2018/10/tiki_fruits_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "flaming-fox": {
+        name: "Flaming Fox",
+        slug: "flaming-fox",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/flaming_fox_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/flaming_fox_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "treasure-mine": {
+        name: "Treasure Mine",
+        slug: "treasure-mine",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/treasure_mine_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/treasure_mine_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "arcade-bomb": {
+        name: "Arcade Bomb",
+        slug: "arcade-bomb",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/arcade_bomb_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/arcade_bomb_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "piggy-pirates": {
+        name: "Piggy Pirates",
+        slug: "piggy-pirates",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/piggy_pirates_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/piggy_pirates_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "jack-in-a-pot": {
+        name: "Jack In A Pot",
+        slug: "jack-in-a-pot",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/jack_in_a_pot_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/11/jack_in_a_pot_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "gems-gone-wild": {
+        name: "Gems Gone Wild",
+        slug: "gems-gone-wild",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/gems_gone_wild_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/gems_gone_wild_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "lucky-wizard": {
+        name: "Lucky Wizard",
+        slug: "lucky-wizard",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/lucky_wizard_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/lucky_wizard_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "totem-lightning": {
+        name: "Totem Lightning",
+        slug: "totem-lightning",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/totem_lightning_thumbnail1.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/totem_lightning_logo1.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "fortune-charm": {
+        name: "Fortune Charm",
+        slug: "fortune-charm",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/fortune_charm_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/fortune_charm_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "reel-heist": {
+        name: "Reel Heist",
+        slug: "reel-heist",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/reel_heist_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/reel_heist_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wild-wild-chest": {
+        name: "Wild Wild Chest",
+        slug: "wild-wild-chest",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_wild_chest_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_wild_chest_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "esqueleto-mariachi": {
+        name: "Esqueleto Mariachi",
+        slug: "esqueleto-mariachi",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/esqueleto_mariachi_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/esqueleto_mariachi_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "ras-legend": {
+        name: "Ra&#8217;s Legend",
+        slug: "ras-legend",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ras_legend_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/ras_legend_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "golden-offer": {
+        name: "Golden Offer",
+        slug: "golden-offer",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/golden_offer_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/golden_offer_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "persian-fortune": {
+        name: "Persian Fortune",
+        slug: "persian-fortune",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/persian_fortune_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/persian_fortune_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "wild-circus": {
+        name: "Wild Circus",
+        slug: "wild-circus",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_circus_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/wild_circus_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "golden-temple": {
+        name: "Golden Temple",
+        slug: "golden-temple",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/golden_temple_thumbnail.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2018/10/golden_temple_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3372,6 +3660,18 @@ export default {
         jackpotId: "netent-gof_mega",
         tableId: null,
       },
+      "arabian-nights": {
+        name: "Arabian Nights",
+        slug: "arabian-nights",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2012/04/ArabianNights_Thumb.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2012/04/ArabianNights_Logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: "netent-arabian",
+        tableId: null,
+      },
       "dancing-in-rio": {
         name: "Dancing in Rio",
         slug: "dancing-in-rio",
@@ -3384,28 +3684,16 @@ export default {
         jackpotId: null,
         tableId: null,
       },
-      "book-of-ra-deluxe-jackpot-edition": {
-        name: "Book of Ra deluxe &#8211; Jackpot Edition",
-        slug: "book-of-ra-deluxe-jackpot-edition",
+      "gunslinger-reloaded": {
+        name: "Gunslinger Reloaded",
+        slug: "gunslinger-reloaded",
         logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/05/bok_of_ra_bg.jpg",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_thumbnail.jpg",
         logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/05/book_of_ra_logo.png",
-        hasPlayForFun: false,
-        inMaintenanceMode: false,
-        jackpotId: null,
-        tableId: null,
-      },
-      "holmes-and-the-stolen-stones": {
-        name: "Holmes and the Stolen Stones",
-        slug: "holmes-and-the-stolen-stones",
-        logoBackground:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/holmes_and_the_stolen_stones_bg.jpg",
-        logo:
-          "https://cms.casumo.com/wp-content/uploads/2017/06/holmes_and_the_stolen_stones_logo.png",
+          "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
-        jackpotId: null,
+        jackpotId: "playngo-113",
         tableId: null,
       },
       "irish-riches": {
@@ -3439,6 +3727,18 @@ export default {
           "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_bg.jpg",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_logo.png",
+        hasPlayForFun: true,
+        inMaintenanceMode: false,
+        jackpotId: null,
+        tableId: null,
+      },
+      "power-force-villains": {
+        name: "Power Force Villains",
+        slug: "power-force-villains",
+        logoBackground:
+          "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_villains_bg.jpg",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_villains_logo.png",
         hasPlayForFun: true,
         inMaintenanceMode: false,
         jackpotId: null,
@@ -3809,6 +4109,34 @@ export default {
         formattedJackpotAmount: "1.000,00 €",
       },
     },
+    jackpotMustDrop: {
+      "31001": {
+        name: "Daily Drop Jackpot",
+        type: "time",
+        amount: { value: "887.50", currency: "GBP", formattedAmount: "£887" },
+        target: "2018-11-22 22:00:00",
+      },
+      "31002": {
+        name: "Must Drop Jackpot",
+        type: "ceiling",
+        amount: { value: "91.39", currency: "GBP", formattedAmount: "£91" },
+        target: {
+          value: "900.00",
+          currency: "GBP",
+          formattedAmount: "£900.00",
+        },
+      },
+      "31003": {
+        name: "Mega Drop Jackpot",
+        type: "progressive",
+        amount: {
+          value: "17780.98",
+          currency: "GBP",
+          formattedAmount: "£17,780",
+        },
+        target: null,
+      },
+    },
     gameList: {
       popularGames: {
         games: [
@@ -3932,6 +4260,32 @@ export default {
         id: "casumoJackpotGames",
         title: "Jackpots",
       },
+      mustDropJackpotGames: {
+        games: [
+          "dragons-luck",
+          "rainbow-jackpots",
+          "tiki-fruits",
+          "flaming-fox",
+          "treasure-mine",
+          "arcade-bomb",
+          "piggy-pirates",
+          "jack-in-a-pot",
+          "gems-gone-wild",
+          "lucky-wizard",
+          "totem-lightning",
+          "fortune-charm",
+          "reel-heist",
+          "wild-wild-chest",
+          "esqueleto-mariachi",
+          "ras-legend",
+          "golden-offer",
+          "persian-fortune",
+          "wild-circus",
+          "golden-temple",
+        ],
+        id: "mustDropJackpotGames",
+        title: "Must Drop Jackpots",
+      },
     },
     cms: {
       "curated.curated-gb_en": {
@@ -4005,278 +4359,306 @@ export default {
         children: [],
         childSlugs: [],
       },
-      cms: {
-        "mobile.live-casino-cards-content": {
-          id: "84717",
-          slug: "mobile.live-casino-cards-content",
-          title: "Live Casino Cards Content",
-          content: "",
-          attachments: [],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            recent_numbers: "Recent numbers",
-            open_seats: "Open seats",
-            table_full: "Table full",
-            bet_behind: "Bet behind",
-            play_now: "Play now",
-            go_to_lobby: "Go to lobby",
-            recent_letters: "Recent letters",
-          },
-          children: [],
-          childSlugs: [],
-        },
-        "promotions.boosted-reelraces": {
-          id: "87088",
-          slug: "promotions.boosted-reelraces",
-          title: "Boosted Reel Races",
-          content: "",
-          attachments: [
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png",
-              title: "promotion-boostedreelraces",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/promobadge-boostedreelraces.png",
-              title: "promobadge-boostedreelraces",
-            },
-          ],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            dates: "30 Nov 2018 - 6 Jan 2019",
-            "": false,
-            title: "Boosted Reel Races",
-            image:
+      "promotions.boosted-reelraces": {
+        id: "87088",
+        slug: "promotions.boosted-reelraces",
+        title: "Boosted Reel Races",
+        content: "",
+        attachments: [
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png",
-            teaser_text:
-              "Compete against other players for the top spot in our fast-paced tournaments.",
-            content_builder: false,
-            badge:
+            title: "promotion-boostedreelraces",
+          },
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/10/promobadge-boostedreelraces.png",
-            campaign_badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
-            cta_text: "Tell me more",
-            terms_and_conditions: "",
+            title: "promobadge-boostedreelraces",
           },
-          children: [],
-          childSlugs: [],
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          dates: "30 Nov 2018 - 6 Jan 2019",
+          "": false,
+          title: "Boosted Reel Races",
+          image:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png",
+          teaser_text:
+            "Compete against other players for the top spot in our fast-paced tournaments.",
+          content_builder: false,
+          badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/promobadge-boostedreelraces.png",
+          campaign_badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+          cta_text: "Tell me more",
+          terms_and_conditions: "",
         },
-        "promotions.must-drop-jackpots": {
-          id: "86858",
-          slug: "promotions.must-drop-jackpots",
-          title: "Must Drop Jackpots",
-          content: "",
-          attachments: [
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
-              title: "badge-wintergames",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-mustdropjackpots.png",
-              title: "promotion-mustdropjackpots",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/flowers.jpeg",
-              title: "flowers",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/Group-1.png",
-              title: "Group (1)",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/Group-2.png",
-              title: "Group (2)",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/Group-3.png",
-              title: "Group (3)",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/10/Group-4.png",
-              title: "Group (4)",
-            },
-          ],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            dates: "30 Nov 2018 - 6 Jan 2019",
-            "": false,
-            title: "Must Drop Jackpots",
-            image:
+        children: [],
+        childSlugs: [],
+      },
+      "promotions.must-drop-jackpots": {
+        id: "86858",
+        slug: "promotions.must-drop-jackpots",
+        title: "Must Drop Jackpots",
+        content: "",
+        attachments: [
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+            title: "badge-wintergames",
+          },
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-mustdropjackpots.png",
-            teaser_text:
-              "Play Red Tiger slot games for a chance to win juicy jackpots that drop randomly according to amount or time triggers.",
-            content_builder: [
-              {
-                acf_fc_layout: "text_block",
-                text:
-                  "&lt;p&gt;From the 30 Nov to 6 Jan you&#039;re in for a treat with our exclusive Must Drop Jackpots. Play for real money from a selection of popular slot games for a chance to win a jackpot every hour (up to €1000), a jackpot every day or a Mega Jackpot bringing you thousands of euros. Simply log in to your account, select Must Drop Jackpots, find a slot you like and . . . spin!&lt;/p&gt;",
-              },
-              {
-                acf_fc_layout: "thumbnail_list",
-                items: [
-                  {
-                    thumbnail:
-                      "https://cms.casumo.com/wp-content/uploads/2018/10/Group-1.png",
-                    title: "Daily Drop Jackpot",
-                    text:
-                      "The daily jackpot must drop before the end of the day.",
-                  },
-                  {
-                    thumbnail:
-                      "https://cms.casumo.com/wp-content/uploads/2018/10/Group-3.png",
-                    title: "Must Drop Jackpot",
-                    text:
-                      "This jackpot could drop anytime between 0 and €1,000.",
-                  },
-                  {
-                    thumbnail:
-                      "https://cms.casumo.com/wp-content/uploads/2018/10/Group-2.png",
-                    title: "Mega Drop Jackpot",
-                    text:
-                      "The biggest pot in the game is a progressive jackpot.",
-                  },
-                ],
-              },
-              {
-                acf_fc_layout: "text_block",
-                text:
-                  "The actual value at which these jackpots will drop is completely random and cannot be predicted.",
-              },
-              {
-                acf_fc_layout: "must_drop_jackpots",
-              },
-              {
-                acf_fc_layout: "text_block",
-                text:
-                  "Play any of the games shown below, to participate in each of the jackpot drops.",
-              },
-              {
-                acf_fc_layout: "game_list",
-                games: ["break-away", "fruit-o-matic", "kiss-of-luck"],
-              },
-            ],
-            cta_text: "Tell me more",
-            badge:
+            title: "promotion-mustdropjackpots",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/10/flowers.jpeg",
+            title: "flowers",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/10/Group-1.png",
+            title: "Group (1)",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/10/Group-2.png",
+            title: "Group (2)",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/10/Group-3.png",
+            title: "Group (3)",
+          },
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/10/Group-4.png",
-            terms_and_conditions:
-              "<p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>\r\n<ul>\r\n<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>\r\n<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem ipsum dolor sit.</li>\r\n<li>Any prizes will be credited to winning players’ accounts within 48 hours.</li>\r\n<li>By entering this Promotion, all participants will be deemed to have accepted these terms and conditions. </li>\r\n<li>All Casumo General Terms and Conditions apply in conjunction with these Terms and Conditions.</li>\r\n</ul>\r\n<p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
-            campaign_badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+            title: "Group (4)",
           },
-          children: [],
-          childSlugs: [],
-        },
-        "promotions.big-giveaway": {
-          id: "88163",
-          slug: "promotions.big-giveaway",
-          title: "The Big Giveaway",
-          content: "",
-          attachments: [
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          dates: "30 Nov 2018 - 6 Jan 2019",
+          "": false,
+          title: "Must Drop Jackpots",
+          image:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-mustdropjackpots.png",
+          teaser_text:
+            "Play Red Tiger slot games for a chance to win juicy jackpots that drop randomly according to amount or time triggers.",
+          content_builder: [
             {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-thebiggiveaway.jpg",
-              title: "promotion-thebiggiveaway",
+              acf_fc_layout: "text_block",
+              text:
+                "&lt;p&gt;From the 30 Nov to 6 Jan you&#039;re in for a treat with our exclusive Must Drop Jackpots. Play for real money from a selection of popular slot games for a chance to win a jackpot every hour (up to €1000), a jackpot every day or a Mega Jackpot bringing you thousands of euros. Simply log in to your account, select Must Drop Jackpots, find a slot you like and . . . spin!&lt;/p&gt;",
+            },
+            {
+              acf_fc_layout: "thumbnail_list",
+              items: [
+                {
+                  thumbnail:
+                    "https://cms.casumo.com/wp-content/uploads/2018/10/Group-1.png",
+                  title: "Daily Drop Jackpot",
+                  text:
+                    "The daily jackpot must drop before the end of the day.",
+                },
+                {
+                  thumbnail:
+                    "https://cms.casumo.com/wp-content/uploads/2018/10/Group-3.png",
+                  title: "Must Drop Jackpot",
+                  text: "This jackpot could drop anytime between 0 and €1,000.",
+                },
+                {
+                  thumbnail:
+                    "https://cms.casumo.com/wp-content/uploads/2018/10/Group-2.png",
+                  title: "Mega Drop Jackpot",
+                  text: "The biggest pot in the game is a progressive jackpot.",
+                },
+              ],
+            },
+            {
+              acf_fc_layout: "text_block",
+              text:
+                "The actual value at which these jackpots will drop is completely random and cannot be predicted.",
+            },
+            {
+              acf_fc_layout: "must_drop_jackpots",
+            },
+            {
+              acf_fc_layout: "text_block",
+              text:
+                "Play any of the games shown below, to participate in each of the jackpot drops.",
+            },
+            {
+              acf_fc_layout: "game_list",
+              games: ["break-away", "fruit-o-matic", "kiss-of-luck"],
             },
           ],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            dates: "1 Dec - 23 Dec 2018",
-            badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
-            campaign_badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
-            title: "The Big Giveaway",
-            image:
+          cta_text: "Tell me more",
+          badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/Group-4.png",
+          terms_and_conditions:
+            "<p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>\r\n<ul>\r\n<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. </li>\r\n<li>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat lorem ipsum dolor sit.</li>\r\n<li>Any prizes will be credited to winning players’ accounts within 48 hours.</li>\r\n<li>By entering this Promotion, all participants will be deemed to have accepted these terms and conditions. </li>\r\n<li>All Casumo General Terms and Conditions apply in conjunction with these Terms and Conditions.</li>\r\n</ul>\r\n<p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>",
+          campaign_badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+        },
+        children: [],
+        childSlugs: [],
+      },
+      "promotions.big-giveaway": {
+        id: "88163",
+        slug: "promotions.big-giveaway",
+        title: "The Big Giveaway",
+        content: "",
+        attachments: [
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-thebiggiveaway.jpg",
-            teaser_text:
-              "€200,000 worth of cash is up for grabs in 3 weekly raffles.",
-            cta_text: "Tell me more",
-            terms_and_conditions: "",
-            content_builder: false,
+            title: "promotion-thebiggiveaway",
           },
-          children: [],
-          childSlugs: [],
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          dates: "1 Dec - 23 Dec 2018",
+          badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
+          campaign_badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+          title: "The Big Giveaway",
+          image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-thebiggiveaway.jpg",
+          teaser_text:
+            "€200,000 worth of cash is up for grabs in 3 weekly raffles.",
+          cta_text: "Tell me more",
+          terms_and_conditions: "",
+          content_builder: false,
         },
-        "promotions.mystery-prizes": {
-          id: "88194",
-          slug: "promotions.mystery-prizes",
-          title: "Mystery Prizes",
-          content: "",
-          attachments: [
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
-              title: "promotionbadge-mysteryprizes",
-            },
-            {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/11/promobadge-mysteryprizes.png",
-              title: "promobadge-mysteryprizes",
-            },
-          ],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            dates: "3 Dec  - 9 Dec 2018",
-            badge:
+        children: [],
+        childSlugs: [],
+      },
+      "promotions.mystery-prizes": {
+        id: "88194",
+        slug: "promotions.mystery-prizes",
+        title: "Mystery Prizes",
+        content: "",
+        attachments: [
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
-            campaign_badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
-            title: "Mystery Prizes",
-            image:
+            title: "promotionbadge-mysteryprizes",
+          },
+          {
+            url:
               "https://cms.casumo.com/wp-content/uploads/2018/11/promobadge-mysteryprizes.png",
-            teaser_text: "",
-            cta_text: "Tell me more",
-            terms_and_conditions: "",
-            content_builder: false,
+            title: "promobadge-mysteryprizes",
           },
-          children: [],
-          childSlugs: [],
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          dates: "3 Dec  - 9 Dec 2018",
+          badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
+          campaign_badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
+          title: "Mystery Prizes",
+          image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promobadge-mysteryprizes.png",
+          teaser_text: "",
+          cta_text: "Tell me more",
+          terms_and_conditions: "",
+          content_builder: false,
         },
-        "promotions.christmas-countdown": {
-          id: "88210",
-          slug: "promotions.christmas-countdown",
+        children: [],
+        childSlugs: [],
+      },
+      "promotions.christmas-countdown": {
+        id: "88210",
+        slug: "promotions.christmas-countdown",
+        title: "Christmas Countdown",
+        content: "",
+        attachments: [
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-christmascountdown.png",
+            title: "promotion-christmascountdown",
+          },
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          dates: "17 Dec  - 30 Dec 2018",
+          badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
+          campaign_badge:
+            "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
           title: "Christmas Countdown",
-          content: "",
-          attachments: [
+          image:
+            "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-christmascountdown.png",
+          teaser_text:
+            "Play a selection of online slots and double your chances of winning. There&#039;s a total cash pool of €230,000 up for grabs, with 5000+ prizes dropping randomly.",
+          cta_text: "Tell me more",
+          terms_and_conditions: "",
+          content_builder: false,
+        },
+        children: [],
+        childSlugs: [],
+      },
+      "must-drop-jackpots": {
+        id: "88498",
+        slug: "must-drop-jackpots",
+        title: "Must Drop Jackpots",
+        content: "",
+        attachments: [
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/Daily-Drop.svg",
+            title: "Daily Drop",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/Must-Drop.svg",
+            title: "Must Drop",
+          },
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2018/11/Full-round-black-container.svg",
+            title: "Full round black container",
+          },
+        ],
+        custom_fields: {},
+        fields: {
+          critical_for_compliance: false,
+          title: "Must drop jackpots",
+          "": false,
+          all_games_cta_text: "See games",
+          jackpots: [
             {
-              url:
-                "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-christmascountdown.png",
-              title: "promotion-christmascountdown",
+              label: "Pays before 1AM",
+              image:
+                "https://cms.casumo.com/wp-content/uploads/2018/11/Daily-Drop.svg",
+              id: "31001",
+            },
+            {
+              label: "Pays before €1000",
+              image:
+                "https://cms.casumo.com/wp-content/uploads/2018/11/Must-Drop.svg",
+              id: "31002",
+            },
+            {
+              label: "Progressive Jackpot",
+              image:
+                "https://cms.casumo.com/wp-content/uploads/2018/11/Full-round-black-container.svg",
+              id: "31003",
             },
           ],
-          custom_fields: {},
-          fields: {
-            critical_for_compliance: false,
-            dates: "17 Dec  - 30 Dec 2018",
-            badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
-            campaign_badge:
-              "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
-            title: "Christmas Countdown",
-            image:
-              "https://cms.casumo.com/wp-content/uploads/2018/11/promotion-christmascountdown.png",
-            teaser_text:
-              "Play a selection of online slots and double your chances of winning. There&#039;s a total cash pool of €230,000 up for grabs, with 5000+ prizes dropping randomly.",
-            cta_text: "Tell me more",
-            terms_and_conditions: "",
-            content_builder: false,
-          },
-          children: [],
-          childSlugs: [],
         },
+        children: [],
+        childSlugs: [],
       },
     },
   },

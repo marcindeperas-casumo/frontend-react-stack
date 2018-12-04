@@ -43,3 +43,25 @@ export const GAME_LIST_IDS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   MUST_DROP_JACKPOTS_GAMES: "mustDropJackpotGames",
 };
+
+export const MARKETS = {
+  ___en: "___en",
+  ca_en: "ca_en",
+  de_de: "de_de",
+  dk_da: "dk_da",
+  fi_fi: "fi_fi",
+  gb_en: "gb_en",
+  no_no: "no_no",
+  se_sv: "se_sv",
+};
+
+export const LANGUAGES = {
+  [MARKETS.___en]: "en",
+  [MARKETS.ca_en]: "ca",
+  [MARKETS.de_de]: "de",
+  [MARKETS.dk_da]: "dk",
+  [MARKETS.fi_fi]: "fi",
+  [MARKETS.gb_en]: "gb",
+  [MARKETS.no_no]: "no",
+  [MARKETS.se_sv]: "sv",
+};

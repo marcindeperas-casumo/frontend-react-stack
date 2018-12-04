@@ -48,7 +48,6 @@ const ComponentBuilderRendererStory = () => (
 const ComponentBuilderCMSStory = () => (
   <MockStore state={state}>
     <ComponentBuilderCMS
-      shouldFetch={false}
       fetch={() => {}}
       componentDefinitions={componentDefinitions}
     />
@@ -78,6 +77,6 @@ stories.add(
   ComponentBuilderCMSStory,
   info({
     text: `The component is rendering out the components defined by a data structure,
-      and also calls the 'fetch' prop if the 'shouldFetch' prop is false.`,
+      and also calls the 'fetch' prop on component mount.`,
   })
 );

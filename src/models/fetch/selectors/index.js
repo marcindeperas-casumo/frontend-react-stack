@@ -1,9 +1,46 @@
 import { createSelector } from "reselect";
 
-export const fetchSelector = state => state.fetch;
-
-export const fetchStatusFactory = name =>
+export const getFetch = name =>
   createSelector(
-    fetchSelector,
-    fetchState => fetchState[name] || { isFetching: false, error: null }
+    state => state.fetch || {},
+    fetchState => fetchState[name] || null
   );
+
+export const isFetched = name =>
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
+      return false;
+    }
+
+    if (fetch.error) {
+      return false;
+    }
+
+    if (fetch.isFetching) {
+      return false;
+    }
+
+    return true;
+  });
+
+export const isFetchingStarted = name =>
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
+      return false;
+    }
+
+    if (fetch.error) {
+      return false;
+    }
+
+    return true;
+  });
+
+export const isNotFetched = name =>
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
+      return true;
+    }
+
+    return false;
+  });
