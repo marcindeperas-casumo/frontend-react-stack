@@ -8,7 +8,7 @@ import {
 import { GAME_LIST_IDS } from "Src/constants";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 import { getField } from "Models/cms";
-import { market as marketSelector } from "Models/handshake/selectors";
+import { market as marketSelector } from "Models/handshake";
 
 type Props = {
   id: string,
