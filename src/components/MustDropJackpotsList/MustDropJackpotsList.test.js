@@ -15,6 +15,13 @@ describe("<MustDropJackpotsList />", () => {
     expect(rendered.find("ScrollableListTitle").length).toBe(1);
   });
 
+  test("renders a see more link", () => {
+    rendered = shallow(<MustDropJackpotsList ids={ids} seeMore="👀" />);
+
+    expect(rendered.find("a").prop("href")).toBe("/games/must-drop-jackpots");
+    expect(rendered.find("a").html()).toContain("👀");
+  });
+
   test("renders tiles for every 3 game", () => {
     expect(rendered.find("JackpotsListTile").length).toBe(3);
   });
