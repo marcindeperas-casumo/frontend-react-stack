@@ -9,7 +9,7 @@ const stories = storiesOf("PromotionCardList", module);
 
 const state = {
   schema: {
-    cms: promotions,
+    cms: { ...promotions },
   },
 };
 
