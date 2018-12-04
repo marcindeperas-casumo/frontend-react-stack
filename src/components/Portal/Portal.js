@@ -1,7 +1,10 @@
 // @flow
+import React from "react";
 import ReactDOM from "react-dom";
 import { PureComponent } from "react";
 import type { Node } from "react";
+
+const DefaultFallback = () => null;
 
 export type Props = {
   /** The id of the DOM element to render into */
@@ -73,7 +76,11 @@ export default class Portal extends PureComponent<Props> {
   }
 
   render() {
-    const { children, fallback, showFallback = false } = this.props;
+    const {
+      children,
+      fallback = <DefaultFallback />,
+      showFallback = false,
+    } = this.props;
     const shouldShowFallback = showFallback && fallback;
     const Component = shouldShowFallback ? fallback : children;
 

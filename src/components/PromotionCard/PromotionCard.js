@@ -7,17 +7,25 @@ import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
 import PromotionCardSkeleton from "Components/PromotionCard/PromotionCardSkeleton";
 import "./PromotionCard.scss";
 
-export type Props = {
-  isFetched: boolean,
+type WrapperProps = {
   image: string,
   badge: string,
-  startFetch: () => void,
   link: string,
   dates: string,
   title: string,
 };
 
-const PromotionCardWrapper = ({ link, image, badge, dates, title }) => {
+export type Props = WrapperProps & {
+  isFetched: boolean,
+};
+
+const PromotionCardWrapper = ({
+  link,
+  image,
+  badge,
+  dates,
+  title,
+}: WrapperProps) => {
   return (
     <a
       href={link}
