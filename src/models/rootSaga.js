@@ -1,12 +1,13 @@
 import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
+import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
+import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
 } from "Models/games";
-import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import {
   types as cmsTypes,
   getFetchCompleteTypeBySlug,
@@ -24,7 +25,6 @@ import {
   cometdUnsubscribeSaga,
   takeChannel,
 } from "Models/cometd";
-import { jackpotsUpdatesSaga } from "Models/jackpots";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);

@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import rollbarMiddleware from "rollbar-redux-middleware";
 import rootReducer from "./models";
-import rootSaga from "./sagas";
+import rootSaga from "Models/rootSaga";
 import Rollbar from "./lib/rollbar";
 import { isProduction } from "./utils";
 
