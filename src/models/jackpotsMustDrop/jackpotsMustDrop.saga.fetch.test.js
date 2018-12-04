@@ -1,7 +1,7 @@
 import { prop, compose, defaultTo } from "ramda";
 import { cloneableGenerator } from "redux-saga/utils";
 import { fetchJackpotsMustDropSaga } from "./jackpotsMustDrop.saga.fetch";
-import cometdResponseMock from "./__mocks__/jackpots.cometd.response.mock";
+import cometdResponseMock from "./__mocks__/jackpotsMustDrop.cometd.response.mock";
 
 describe("Models/JackpotsMustDrop/FetchSaga", () => {
   const generator = cloneableGenerator(fetchJackpotsMustDropSaga)();
