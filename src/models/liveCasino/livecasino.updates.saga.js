@@ -1,11 +1,10 @@
 import { put, select } from "redux-saga/effects";
-import { liveTableEntitiesSelector, updateEntity } from "Models/schema";
+import { updateEntity } from "Models/schema";
+import { liveTableSelector } from "Models/liveCasino";
 
-export default function* liveCasinoUpdatesSaga(action) {
+export function* liveCasinoUpdatesSaga(action) {
   const { data } = action;
-  const liveTableById = yield select(liveTableEntitiesSelector);
-
-  const table = liveTableById[data.tableId];
+  const table = yield select(liveTableSelector(data.tableId));
 
   if (table) {
     const liveTable = {
