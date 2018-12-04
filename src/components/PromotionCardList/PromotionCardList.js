@@ -5,6 +5,8 @@ import PromotionCardContainer from "Components/PromotionCard";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 
 type Props = {
   promotionsSlugs: Array<string>,
@@ -13,6 +15,7 @@ type Props = {
   title?: string,
   titleColor?: string,
   backgroundColor?: string,
+  seeMore: string,
 };
 
 const paddingPerDevice = {
@@ -34,7 +37,13 @@ class PromotionCardList extends PureComponent<Props> {
   }
 
   render() {
-    const { title, titleColor, backgroundColor, promotionsSlugs } = this.props;
+    const {
+      title,
+      titleColor,
+      backgroundColor,
+      promotionsSlugs,
+      seeMore,
+    } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
 
     if (hasNoPromotionSlugs) {
@@ -50,7 +59,21 @@ class PromotionCardList extends PureComponent<Props> {
           "u-padding-top--lg u-padding-bottom--lg"
         )}
       >
-        <ScrollableListTitle title={title} />
+        <Flex justify="space-between">
+          <Flex.Item>
+            <ScrollableListTitle title={title} />
+          </Flex.Item>
+          <Flex.Item align="right" className="u-padding-right--md">
+            <a href="/promotions">
+              <Text
+                tag="h3"
+                className={classNames(titleColor && `t-color-${titleColor}`)}
+              >
+                {seeMore}
+              </Text>
+            </a>
+          </Flex.Item>
+        </Flex>
         <Scrollable padding={paddingPerDevice} itemSpacing="md">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
