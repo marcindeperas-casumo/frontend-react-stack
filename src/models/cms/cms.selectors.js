@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo, not, isNil } from "ramda";
 import { getFetchTypeBySlug } from "Models/cms";
-import { isNotFetched, isFetchingStarted } from "Models/fetch/selectors";
+import { isNotFetched, isFetchingStarted } from "Models/fetch";
 
 export const getCms = compose(
   defaultTo({}),

@@ -1,4 +1,4 @@
-import { actions } from "Models/migrationComponents";
+import { activateComponent } from "Models/migrationComponents";
 import { connect } from "./BridgeToDispatchService";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 
@@ -34,6 +34,6 @@ test("callback should call dispatch with the event data", () => {
 
   expect(dispatch).toBeCalledTimes(1);
   expect(dispatch).toHaveBeenCalledWith(
-    actions.activateComponent({ componentId: "foo", routeParams })
+    activateComponent({ componentId: "foo", routeParams })
   );
 });

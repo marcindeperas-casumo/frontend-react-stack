@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import {
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
-} from "Models/schema/selector";
+} from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 

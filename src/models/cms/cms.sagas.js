@@ -1,8 +1,7 @@
 import { delay } from "redux-saga";
 import { call, put, take, select } from "redux-saga/effects";
-import { CMS_ENTITY_KEY, normalizeData } from "Models/schema/schema";
-import { actions as schemaActions } from "Models/schema";
-import { getCmsHash, getLanguage } from "Models/handshake/selectors";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
+import { getCmsHash, getLanguage } from "Models/handshake";
 import { getChildrenAndParent, setSlug } from "./cms.utils";
 import {
   getFetchCompleteTypeBySlug,
@@ -43,12 +42,12 @@ export function* fetchPageBySlugSaga(action) {
     const page = setSlug(response, slug);
 
     const hasChildren = response.children && response.children.length > 0;
-    const entityKey = hasChildren ? `${CMS_ENTITY_KEY}s` : CMS_ENTITY_KEY;
+    const entityKey = hasChildren ? `${ENTITY_KEYS.CMS}s` : ENTITY_KEYS.CMS;
     const entity = hasChildren
       ? { [entityKey]: getChildrenAndParent(page) }
       : { [entityKey]: page };
     const { entities } = normalizeData(entity);
 
-    yield put(schemaActions.updateEntity(entities));
+    yield put(updateEntity(entities));
   }
 }

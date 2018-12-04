@@ -1,7 +1,7 @@
 import { put, select } from "redux-saga/effects";
 import { compose, prop, map, defaultTo } from "ramda";
-import { currency as currencySelector } from "Models/handshake/selectors";
-import { actions as schemaActions } from "Models/schema";
+import { currency as currencySelector } from "Models/handshake";
+import { updateEntity } from "Models/schema";
 import { jackpotEntitySelector } from "./jackpots.selectors";
 import { transformRawJackpotObject } from "./jackpots.utils";
 
@@ -17,7 +17,7 @@ export default function* jackpotsUpdatesSaga(action) {
     ...updatedJackpotsById,
   };
 
-  yield put(schemaActions.updateEntity({ jackpot: updatedJackpotsEntity }));
+  yield put(updateEntity({ jackpot: updatedJackpotsEntity }));
 }
 
 function getJackpotsFromMessageData(data, currency) {

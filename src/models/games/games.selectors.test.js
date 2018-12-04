@@ -1,4 +1,4 @@
-import { isGameListLoaded } from "Models/games/games.selectors";
+import { isGameListLoaded } from "Models/games";
 
 const appHandshake = { foo: "bar" };
 const gamesHandshake = { foo: "bar" };

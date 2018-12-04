@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
-import { gameSelector } from "Models/schema/selector";
+import { gameSelector } from "Models/schema";
 
 export const curatedSelector = slug =>
   createSelector(

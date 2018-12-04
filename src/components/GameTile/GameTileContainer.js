@@ -2,15 +2,15 @@
 import React from "react";
 import { connect } from "react-redux";
 import GameTile from "Components/GameTile/GameTileWrapper";
-import { gameSelector } from "Models/schema/selector";
-import { actions as gameActions } from "Models/games";
+import { gameSelector } from "Models/schema";
+import { launchGame } from "Models/games";
 
 const GameTileConnected = connect(
   (state, props) => ({
     game: gameSelector(props.id)(state),
   }),
   (dispatch, props) => ({
-    onLaunchGame: () => dispatch(gameActions.launchGame(props.id)),
+    onLaunchGame: () => dispatch(launchGame(props.id)),
   })
 )(GameTile);
 
