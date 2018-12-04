@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import PromotionCardList from "./PromotionCardList";
 import { fetchPageBySlug, getField } from "Models/cms";
+import { market as marketSelector } from "Models/handshake";
 
 type Props = {
   /** The slug of the page in the CMS which has all the promotions available */
@@ -19,6 +20,10 @@ const PromotionCardListConnected = connect(
       slug,
       field,
       defaultValue,
+    })(state),
+    seeMore: getField({
+      slug: `built-pages.top-lists-${marketSelector(state)}`,
+      field: "more_link",
     })(state),
   }),
   (dispatch, { slug }) => ({
