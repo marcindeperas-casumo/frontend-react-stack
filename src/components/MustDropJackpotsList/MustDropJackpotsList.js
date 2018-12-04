@@ -5,6 +5,8 @@ import { generateColumns } from "Utils/utils";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import JackpotsListTile from "Components/JackpotsListTile";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -16,16 +18,28 @@ export type Props = {
   ids: Array<string>,
   className?: string,
   title: string,
+  seeMore: string,
 };
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
   render() {
-    const { ids, title } = this.props;
+    const { ids, title, seeMore } = this.props;
     const idsByColumns = generateColumns(ids);
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitle title={title} />
+        <Flex justify="space-between">
+          <Flex.Item>
+            <ScrollableListTitle title={title} />
+          </Flex.Item>
+          <Flex.Item className="u-padding-right--md">
+            <a href="/games/must-drop-jackpots">
+              <Text tag="h3" className="t-color-blue">
+                {seeMore}
+              </Text>
+            </a>
+          </Flex.Item>
+        </Flex>
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
           <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
             <MustDropJackpotsWidget />
