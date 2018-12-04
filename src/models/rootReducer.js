@@ -4,9 +4,11 @@ import { reducer as fetch } from "Models/fetch";
 import { reducer as handshake } from "Models/handshake";
 import { reducer as schema } from "Models/schema";
 
-export default combineReducers({
+const rootReducer = combineReducers({
   migrationComponents,
   fetch,
   handshake,
   schema,
 });
+
+export default rootReducer;
