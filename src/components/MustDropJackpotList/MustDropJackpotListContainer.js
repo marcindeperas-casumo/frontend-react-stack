@@ -6,7 +6,7 @@ import {
   isGameListFetchedFactory,
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
-} from "Models/schema/selector";
+} from "Models/schema";
 
 const MustDropJackpotListConnected = connect(state => ({
   isLoaded: isGameListFetchedFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(

@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 import { all, identity } from "ramda";
-import { areGameListsLoaded } from "Models/schema/selector";
+import { areGameListsLoaded } from "Models/schema";
 import {
   isGamesHandshakeLoaded,
   isApplicationHandshakeLoaded,
-} from "Models/handshake/selectors";
+} from "Models/handshake";
 
 export const isGameListLoaded = createSelector(
   isGamesHandshakeLoaded,

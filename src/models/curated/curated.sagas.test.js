@@ -2,8 +2,7 @@ import { put, take, call } from "redux-saga/effects";
 import curatedMock from "Models/curated/__mocks__/curated.json";
 import { types, fetchCuratedGameSaga } from "Models/curated";
 import { types as fetchTypes } from "Models/fetch";
-import { normalizeData } from "Models/schema/schema";
-import { actions as schemaActions } from "Models/schema";
+import { normalizeData, updateEntity } from "Models/schema";
 import GameBrowserService from "Services/GameBrowserService";
 
 describe("Models/curated/sagas", () => {
@@ -12,8 +11,9 @@ describe("Models/curated/sagas", () => {
       const generator = fetchCuratedGameSaga();
       const curated = curatedMock;
       const { gameData, game } = curated;
-      generator.next({ curated }).value;
-      generator.next({ gameData, game }).value;
+
+      generator.next({ curated });
+      generator.next({ gameData, game });
 
       expect(generator.next().done).toBe(true);
     });
@@ -23,8 +23,9 @@ describe("Models/curated/sagas", () => {
       const curated = curatedMock;
       const gameData = null;
       const { game } = curated;
-      generator.next({ curated }).value;
-      generator.next({ gameData, game }).value;
+
+      generator.next({ curated });
+      generator.next({ gameData, game });
 
       const args = {
         platform: "mobile",
@@ -50,7 +51,7 @@ describe("Models/curated/sagas", () => {
 
       const entities = { someEntity: { id: 1 } };
       expect(generator.next({ entities }).value).toEqual(
-        put(schemaActions.updateEntity(entities))
+        put(updateEntity(entities))
       );
     });
   });

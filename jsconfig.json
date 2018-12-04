@@ -5,7 +5,6 @@
       "Containers/*": ["./src/containers/*"],
       "Components/*": ["./src/components/*"],
       "Models/*": ["./src/models/*"],
-      "Sagas/*": ["./src/sagas/*"],
       "Services/*": ["./src/applicationService/*"],
       "Clients/*": ["./src/serviceClients/*"],
       "Utils/*": ["./src/utils/*"],

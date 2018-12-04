@@ -1,4 +1,4 @@
-import { actions } from "Models/migrationComponents";
+import { activateComponent } from "Models/migrationComponents";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
 
@@ -8,7 +8,7 @@ export const connect = store => {
 
   on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
     dispatch(
-      actions.activateComponent({
+      activateComponent({
         componentId: data.config.id,
         routeParams: data.params,
       })

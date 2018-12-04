@@ -8,7 +8,7 @@ import {
   isCuratedLoadedFactory,
 } from "Models/curated";
 import { fetchPageBySlug } from "Models/cms";
-import { actions as gameActions } from "Models/games";
+import { launchGame } from "Models/games";
 
 type Props = {
   card: string | Array<string>,
@@ -21,7 +21,7 @@ const CuratedConnected = connect(
   }),
   (dispatch, { slug }) => ({
     fetchCurated: () => dispatch(fetchPageBySlug(slug)),
-    dispatchLaunchGame: id => dispatch(gameActions.launchGame(id)),
+    dispatchLaunchGame: id => dispatch(launchGame(id)),
   }),
   (stateProps, dispatchProps, ownProps) => {
     const { gameId } = stateProps;
