@@ -7,7 +7,7 @@ import { prop, defaultTo, compose } from "ramda";
 import { normalizeData, updateEntity } from "Models/schema";
 import { cloneableGenerator } from "redux-saga/utils";
 import { call, put, select, take } from "redux-saga/effects";
-import { waitForSelector } from "Sagas/utils";
+import { waitForSelector } from "Utils/saga.utils";
 import { launchGame } from "Services/LaunchGameService";
 import {
   fetchGameListSaga,

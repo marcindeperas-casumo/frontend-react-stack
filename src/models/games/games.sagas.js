@@ -10,7 +10,7 @@ import {
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
 import { call, put, select, take } from "redux-saga/effects";
-import { waitForSelector } from "Sagas/utils";
+import { waitForSelector } from "Utils/saga.utils";
 import { launchGame } from "Services/LaunchGameService";
 import { fetchTopLists, initiateFetchGamesBySlugs } from "./games.actions";
 import { types } from "./games.constants";

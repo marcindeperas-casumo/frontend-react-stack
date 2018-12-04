@@ -8,7 +8,7 @@ import { call, put, select } from "redux-saga/effects";
 import { fetchGameListSaga } from "Models/games";
 import CommonService from "Services/CommonService";
 import GameBrowserService from "Services/GameBrowserService";
-import { waitForSelector } from "Sagas/utils";
+import { waitForSelector } from "Utils/saga.utils";
 
 function* obsolete__updateLocalServicesConfigs() {
   const handshake = yield select(applicationHandshakeSelector);
