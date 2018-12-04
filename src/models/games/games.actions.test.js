@@ -1,28 +1,29 @@
 import { types as fetchTypes } from "Models/fetch";
-import { types, fetchGamesById, fetchPromotionGames } from "Models/promotion";
+import { types } from "./games.constants";
+import { fetchGamesBySlugs, initiateFetchGamesBySlugs } from "./games.actions";
 
-describe("Models/promotion/actions", () => {
-  describe("fetchGamesById()", () => {
+describe("Models/Games/Actions", () => {
+  describe("initiateFetchGamesBySlugs()", () => {
     test("initiates an API fetch", () => {
       const slugs = ["foo", "bar"];
 
-      expect(fetchGamesById(slugs)).toMatchObject({
+      expect(initiateFetchGamesBySlugs(slugs)).toMatchObject({
         type: fetchTypes.FETCH,
-        name: types.PROMOTION_FETCH_GAMES,
+        name: types.FETCH_GAMES_BY_SLUGS,
       });
     });
 
     test("fires a completed action when fetch finished", () => {
       const slugs = ["foo", "bar"];
 
-      expect(fetchGamesById(slugs)).toMatchObject({
-        postFetch: types.PROMOTION_FETCH_GAMES_COMPLETE,
+      expect(initiateFetchGamesBySlugs(slugs)).toMatchObject({
+        postFetch: types.FETCH_GAMES_BY_SLUGS_COMPLETE,
       });
     });
 
     test("passes the fetcher function to the action", () => {
       const slugs = ["foo", "bar"];
-      const action = fetchGamesById(slugs);
+      const action = initiateFetchGamesBySlugs(slugs);
 
       expect(typeof action.asyncCall).toBe("function");
     });
@@ -32,7 +33,12 @@ describe("Models/promotion/actions", () => {
       const country = "gb";
       const slugs = ["foo", "bar"];
       const variant = "default";
-      const action = fetchGamesById({ platform, country, slugs, variant });
+      const action = initiateFetchGamesBySlugs({
+        platform,
+        country,
+        slugs,
+        variant,
+      });
 
       expect(action.asyncCallData).toEqual({
         platform,
@@ -41,13 +47,15 @@ describe("Models/promotion/actions", () => {
         variant,
       });
     });
+  });
 
-    test("fetchPromotionGames: should return an action", () => {
+  describe("fetchGamesBySlugs()", () => {
+    test("returns an action with the correct type", () => {
       const ids = ["foo", "bar"];
-      const action = fetchPromotionGames(ids);
+      const action = fetchGamesBySlugs(ids);
 
       expect(action).toEqual({
-        type: types.PROMOTION_SHOULD_FETCH_GAMES,
+        type: types.FETCH_GAMES_BY_SLUGS_START,
         slugs: ["foo", "bar"],
       });
     });

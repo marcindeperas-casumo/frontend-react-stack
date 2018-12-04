@@ -1,11 +1,11 @@
 import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
-import { types as gameTypes, launchGameSaga } from "Models/games";
 import {
-  fetchGamesFromIdsSaga,
-  types as promotionTypes,
-} from "Models/promotion";
+  types as gameTypes,
+  launchGameSaga,
+  fetchGamesBySlugsSaga,
+} from "Models/games";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import {
   types as cmsTypes,
@@ -51,7 +51,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    promotionTypes.PROMOTION_SHOULD_FETCH_GAMES,
-    fetchGamesFromIdsSaga
+    gameTypes.FETCH_GAMES_BY_SLUGS_START,
+    fetchGamesBySlugsSaga
   );
 }
