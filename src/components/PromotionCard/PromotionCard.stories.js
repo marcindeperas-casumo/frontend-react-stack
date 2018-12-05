@@ -36,8 +36,7 @@ stories.add(
   () => (
     <PromotionCard
       badge={promotionProps.campaign_badge}
-      // dates={promotionProps.dates}
-      dates={"this is a really long string of text"}
+      dates={promotionProps.dates}
       image={promotionProps.image}
       link={promotionProps.link}
       title={promotionProps.title}
