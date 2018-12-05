@@ -15,13 +15,13 @@ describe("PromotionTitle", () => {
 
   test("render a Media component if there is a badge", () => {
     const rendered = shallow(<PromotionTitle {...mockPromotionWithBadge} />);
-    expect(rendered.find("Media").length).toBe(1);
-    expect(rendered.find("div").length).toBe(0);
+    expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(1);
+    expect(rendered.find("PromotionTitleText").length).toBe(0);
   });
 
   test("render a div if there isn't a badge", () => {
     const rendered = shallow(<PromotionTitle {...mockPromotion} />);
-    expect(rendered.find("Media").length).toBe(0);
-    expect(rendered.find("div").length).toBe(1);
+    expect(rendered.find("PromotionTitleTextWithBadge").length).toBe(0);
+    expect(rendered.find("PromotionTitleText").length).toBe(1);
   });
 });
