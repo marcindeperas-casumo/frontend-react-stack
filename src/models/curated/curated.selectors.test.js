@@ -1,7 +1,4 @@
-import {
-  curatedSelector,
-  isCuratedLoadedFactory,
-} from "Models/curated";
+import { curatedSelector, isCuratedLoadedFactory } from "Models/curated";
 
 const mockState = {
   schema: {
@@ -81,9 +78,7 @@ describe("Models/curated/selectors", () => {
     test("return true if Curated loaded with game and gameData", () => {
       const state = { ...mockState };
       const slug = "curated.curated-gb_en";
-      state.schema.cms[slug].fields.game = [
-        "topwheel-treasures",
-      ];
+      state.schema.cms[slug].fields.game = ["topwheel-treasures"];
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(true);

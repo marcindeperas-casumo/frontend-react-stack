@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-let, fp/no-mutation */
 import cometdLib from "cometd";
 
 const CometD = new cometdLib.CometD();
@@ -6,6 +7,7 @@ export default CometDFactory(CometD);
 
 export function CometDFactory(cometd) {
   let handshakePromise;
+
   const context = {
     init,
     subscribe,
@@ -61,7 +63,7 @@ export function CometDFactory(cometd) {
   }
 
   function isInitialised() {
-    return !!handshakePromise;
+    return Boolean(handshakePromise);
   }
 
   function getHandshakePromise() {

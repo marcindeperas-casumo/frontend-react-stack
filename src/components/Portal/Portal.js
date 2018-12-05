@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation */
 // @flow
 import ReactDOM from "react-dom";
 import { PureComponent } from "react";
@@ -31,11 +32,7 @@ export default class Portal extends PureComponent<Props> {
   clearElementIfNeeded() {
     const { clearElement = true } = this.props;
 
-    if (!clearElement) {
-      return;
-    }
-
-    if (!this.rootEl) {
+    if (!clearElement || !this.rootEl) {
       return;
     }
 

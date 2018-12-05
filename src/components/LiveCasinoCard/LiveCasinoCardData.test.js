@@ -8,14 +8,13 @@ import Roulette from "./__mocks__/Roulette.json";
 import TopCard from "./__mocks__/TopCard.json";
 import MoneyWheel from "./__mocks__/MoneyWheel.json";
 import Blackjack from "./__mocks__/Blackjack.json";
-import BlackjackFull from "./__mocks__/BlackjackFull.json";
 
 let component;
 
 // TODO: rewrite the tests so they use shallow testing
 describe.skip("CardData", () => {
   describe("LiveCasinoCard CardData > Roulette", () => {
-    let lobby = Roulette.lobby;
+    const lobby = Roulette.lobby;
 
     beforeEach(() => {
       component = mount(<CardData lobby={lobby} />);
@@ -29,10 +28,8 @@ describe.skip("CardData", () => {
       expect(component.find("Badge")).toHaveLength(5);
 
       const results = lobby.results.slice(0, 5);
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.text());
-      });
+      const rendered = component.find("Badge").map(node => node.text());
+
       expect(rendered).toEqual(results);
     });
 
@@ -44,7 +41,7 @@ describe.skip("CardData", () => {
   });
 
   describe("LiveCasinoCard CardData > TopCard (Football Studio)", () => {
-    let lobby = TopCard.lobby;
+    const lobby = TopCard.lobby;
 
     beforeEach(() => {
       component = mount(<CardData lobby={lobby} />);
@@ -58,10 +55,8 @@ describe.skip("CardData", () => {
       expect(component.find("Badge")).toHaveLength(5);
 
       const results = lobby.results.slice(0, 5).map(v => topCardLetters[v]);
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.text());
-      });
+      const rendered = component.find("Badge").map(node => node.text());
+
       expect(rendered).toEqual(results);
     });
 
@@ -73,7 +68,7 @@ describe.skip("CardData", () => {
   });
 
   describe("LiveCasinoCard CardData > MoneyWheel", () => {
-    let lobby = MoneyWheel.lobby;
+    const lobby = MoneyWheel.lobby;
 
     beforeEach(() => {
       component = mount(<CardData lobby={lobby} />);
@@ -89,10 +84,9 @@ describe.skip("CardData", () => {
       const results = lobby.results
         .slice(0, 5)
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.text());
-      });
+
+      const rendered = component.find("Badge").map(node => node.text());
+
       expect(rendered).toEqual(results);
     });
 
@@ -104,7 +98,7 @@ describe.skip("CardData", () => {
   });
 
   describe("LiveCasinoCard CardData > Blackjack", () => {
-    let lobby = Blackjack.lobby;
+    const lobby = Blackjack.lobby;
 
     describe("Open Seats", () => {
       beforeEach(() => {

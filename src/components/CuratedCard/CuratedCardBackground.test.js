@@ -1,12 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
-import { isEmpty } from "ramda";
 import curatedData from "Models/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {
   test("should link to promotions", () => {
-    const data = { ...curatedData, game: [] };
     const component = shallow(
       <CuratedCardBackground link="/promotions" {...curatedData} />
     );
@@ -19,7 +17,7 @@ describe("CuratedCard", () => {
     const component = shallow(
       <CuratedCardBackground onLaunchGame={onLaunchGame} {...curatedData} />
     );
-    const instance = component.instance();
+
     component.find("a").simulate("click");
 
     expect(onLaunchGame).toHaveBeenCalled();

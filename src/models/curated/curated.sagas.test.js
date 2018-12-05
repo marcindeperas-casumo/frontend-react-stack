@@ -1,4 +1,6 @@
+/* eslint-disable no-unused-expressions */
 import { put, take, call } from "redux-saga/effects";
+
 import curatedMock from "Models/curated/__mocks__/curated.json";
 import { types, fetchCuratedGameSaga } from "Models/curated";
 import { types as fetchTypes } from "Models/fetch";

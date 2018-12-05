@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation */
 // @flow
 import React from "react";
 
@@ -31,6 +32,7 @@ class Counter extends React.Component<Props, State> {
 
   constructor(props: Props) {
     super(props);
+
     const { start = 0, decimals = 0 } = this.props;
     this.easeFn = this.props.easeFn || easeOutExpo;
     this.startTime = new Date().getTime();
@@ -85,7 +87,9 @@ class Counter extends React.Component<Props, State> {
     const time = new Date().getTime() - this.startTime;
     const difference = end - start;
 
+    // eslint-disable-next-line fp/no-let
     let result;
+
     if (time < duration) {
       result = this.easeFn(time, start, difference, duration).toFixed(decimals);
     } else {
@@ -95,13 +99,8 @@ class Counter extends React.Component<Props, State> {
     this.setState({ value: result });
   }
 
-  renderComponent() {
-    const { render } = this.props;
-    return render(this.state);
-  }
-
   render() {
-    return this.renderComponent();
+    return this.props.render(this.state);
   }
 }
 

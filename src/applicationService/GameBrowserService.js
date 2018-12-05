@@ -1,4 +1,4 @@
-import { complement, compose, prop, isNil } from "ramda";
+import { assoc, complement, compose, isNil, prop } from "ramda";
 
 import { cacheFunction, ServiceConfig, SimpleCache } from "Utils/index";
 import GameBrowserClient from "Clients/GameBrowserClient";
@@ -112,10 +112,7 @@ export const GameBrowserServiceFactory = ({
       });
 
       const liveCasinoGamesById = liveCasinoGamesList.games.reduce(
-        (accumulator, game) => {
-          accumulator[game.tableId] = game;
-          return accumulator;
-        },
+        (accumulator, game) => assoc(game.id, game, accumulator),
         {}
       );
 
@@ -132,22 +129,24 @@ export const GameBrowserServiceFactory = ({
 
       return {
         ...liveCasinoGamesList,
-        games: liveCasinoTables.filter(({ open }) => !!open).map(table => ({
-          ...liveCasinoGamesById[table.tableId],
-          lobby: {
-            tableId: table.tableId,
-            type: table.gameType,
-            image: getImageForTable(table),
-            bets: table.betLimits[currency],
-            players: table.players,
-            results: table.results || table.history || null,
-            betBehind: table.betBehind || null,
-            seats: table.seatsTaken
-              ? table.seats - table.seatsTaken.length
-              : null,
-            provider: table.provider,
-          },
-        })),
+        games: liveCasinoTables
+          .filter(({ open }) => Boolean(open))
+          .map(table => ({
+            ...liveCasinoGamesById[table.tableId],
+            lobby: {
+              tableId: table.tableId,
+              type: table.gameType,
+              image: getImageForTable(table),
+              bets: table.betLimits[currency],
+              players: table.players,
+              results: table.results || table.history || null,
+              betBehind: table.betBehind || null,
+              seats: table.seatsTaken
+                ? table.seats - table.seatsTaken.length
+                : null,
+              provider: table.provider,
+            },
+          })),
       };
     },
     DEFAULT: ({ id, variants, title, variant }) => {

@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation */
 // @flow
 import { PureComponent } from "react";
 import { DateTime } from "luxon";

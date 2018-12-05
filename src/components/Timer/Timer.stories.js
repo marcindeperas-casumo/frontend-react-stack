@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-let, fp/no-mutation */
 import React from "react";
 import { storiesOf } from "@storybook/react";
 

@@ -20,7 +20,9 @@ module.exports = {
     "fp/no-mutating-assign": "error",
     "fp/no-mutating-methods": "error",
     "fp/no-nil": "off",
+    "fp/no-rest-parameters": "off",
     "fp/no-this": "off",
+    "fp/no-unused-expression": "off",
     "fp/no-valueof-field": "error",
     "prettier/prettier": "error",
     "no-implicit-coercion": "error",
@@ -30,7 +32,7 @@ module.exports = {
       files: ["*.test.js"],
       rules: {
         "fp/no-let": "off",
-        "fp/no-unused-expression": "off",
+        "fp/no-mutation": "off",
       },
     },
   ],

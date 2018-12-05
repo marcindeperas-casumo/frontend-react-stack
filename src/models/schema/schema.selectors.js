@@ -1,14 +1,19 @@
-import {
-  compose,
-  prop,
-  keys,
-  defaultTo,
-  complement,
-  anyPass,
-  isNil,
-  isEmpty,
-} from "ramda";
 import { createSelector } from "reselect";
+import {
+  anyPass,
+  complement,
+  compose,
+  defaultTo,
+  filter,
+  ifElse,
+  isEmpty,
+  isNil,
+  keys,
+  prop,
+  propOr,
+  unless,
+} from "ramda";
+
 import { GAME_LIST_IDS } from "Src/constants";
 import config from "Src/config";
 
@@ -105,10 +110,11 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
       // TODO: Rewrite this to be more generic
       const isNotInMaintenance = id =>
         gameObjects[id].inMaintenanceMode === false;
-      const games =
-        queryOptions.maintenance === false
-          ? (list.games || []).filter(isNotInMaintenance)
-          : list.games;
+
+      const games = compose(
+        unless(() => !queryOptions.maintenance, filter(isNotInMaintenance)),
+        propOr([], "games")
+      )(list);
 
       return {
         ...list,
@@ -134,11 +140,17 @@ export const gameListSelector = (listId, options = {}) =>
     topListSelectorById(listId),
     gameEntitiesSelector,
     (list, allGames) => {
-      let gameIds = list.games || [];
+      const gameIds = ifElse(
+        options.maintenance,
+        () => defaultTo([], list.games),
+        () => filterMaintenanceGames(list, allGames)
+      );
 
-      if (options.maintenance === false) {
-        gameIds = filterMaintenanceGames(list, allGames);
-      }
+      // let gameIds = list.games || [];
+
+      // if (options.maintenance === false) {
+      // gameIds = filterMaintenanceGames(list, allGames);
+      // }
 
       return {
         ...list,
