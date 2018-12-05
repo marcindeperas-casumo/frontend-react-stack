@@ -10,6 +10,7 @@ import {
   isNil,
   keys,
   prop,
+  propEq,
   propOr,
   unless,
 } from "ramda";
@@ -112,7 +113,7 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
         gameObjects[id].inMaintenanceMode === false;
 
       const games = compose(
-        unless(() => !queryOptions.maintenance, filter(isNotInMaintenance)),
+        unless(() => queryOptions.maintenance, filter(isNotInMaintenance)),
         propOr([], "games")
       )(list);
 
@@ -141,16 +142,10 @@ export const gameListSelector = (listId, options = {}) =>
     gameEntitiesSelector,
     (list, allGames) => {
       const gameIds = ifElse(
-        options.maintenance,
+        propEq("maintenance", true),
         () => defaultTo([], list.games),
         () => filterMaintenanceGames(list, allGames)
-      );
-
-      // let gameIds = list.games || [];
-
-      // if (options.maintenance === false) {
-      // gameIds = filterMaintenanceGames(list, allGames);
-      // }
+      )(options);
 
       return {
         ...list,
