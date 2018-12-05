@@ -1,20 +1,14 @@
-import { createSelector } from "reselect";
 import {
-  anyPass,
-  complement,
   compose,
-  defaultTo,
-  filter,
-  ifElse,
-  isEmpty,
-  isNil,
-  keys,
   prop,
-  propEq,
-  propOr,
-  unless,
+  keys,
+  defaultTo,
+  complement,
+  anyPass,
+  isNil,
+  isEmpty,
 } from "ramda";
-
+import { createSelector } from "reselect";
 import { GAME_LIST_IDS } from "Src/constants";
 import config from "Src/config";
 
@@ -111,11 +105,10 @@ export const topListSelectorByQuery = (listId, queryOptions = {}) =>
       // TODO: Rewrite this to be more generic
       const isNotInMaintenance = id =>
         gameObjects[id].inMaintenanceMode === false;
-
-      const games = compose(
-        unless(() => queryOptions.maintenance, filter(isNotInMaintenance)),
-        propOr([], "games")
-      )(list);
+      const games =
+        queryOptions.maintenance === false
+          ? (list.games || []).filter(isNotInMaintenance)
+          : list.games;
 
       return {
         ...list,
@@ -141,15 +134,14 @@ export const gameListSelector = (listId, options = {}) =>
     topListSelectorById(listId),
     gameEntitiesSelector,
     (list, allGames) => {
-      const gameIds = ifElse(
-        propEq("maintenance", true),
-        () => defaultTo([], list.games),
-        () => filterMaintenanceGames(list, allGames)
-      )(options);
+      const gameIds = list.games || [];
 
       return {
         ...list,
-        games: gameIds,
+        games:
+          options.maintenance === false
+            ? filterMaintenanceGames(list, allGames)
+            : gameIds,
       };
     }
   );
