@@ -3,24 +3,45 @@ import { assoc, complement, compose, isNil, prop } from "ramda";
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
 
-const playerLatestPlayedGames = ({ playerId }) =>
-  GameBrowserClient.latestPlayedGames({
-    playerId,
-    pageSize: 20,
-  });
+const playerLatestPlayedGames = async ({ playerId }) => {
+  let latestPlayedGames;
 
-const gamesByProviderGameNames = ({
+  try {
+    latestPlayedGames = await GameBrowserClient.latestPlayedGames({
+      playerId,
+      pageSize: 20,
+    });
+  } catch (e) {
+    console.error("Latest played games query is unavailable");
+    latestPlayedGames = [];
+  }
+
+  return latestPlayedGames;
+};
+
+const gamesByProviderGameNames = async ({
   country,
   platform,
   variant,
   providerGameNames,
 }) => {
-  return GameBrowserClient.gamesByProviderGameNames({
-    country,
-    platform,
-    variant,
-    providerGameNames,
-  });
+  let gamesByProviderGameNames;
+
+  try {
+    gamesByProviderGameNames = await GameBrowserClient.gamesByProviderGameNames(
+      {
+        country,
+        platform,
+        variant,
+        providerGameNames,
+      }
+    );
+  } catch (e) {
+    console.error("Games by provider name query is unavailable");
+    gamesByProviderGameNames = [];
+  }
+
+  return gamesByProviderGameNames;
 };
 
 const gameListMetaDataById = ({ handshake, id }) => {
@@ -138,14 +159,23 @@ export const fetchGames = async ({
           })),
       };
     },
-    DEFAULT: ({ id, variants, title, variant, platform, country }) => {
-      return GameBrowserClient.gamesLists({
-        platform,
-        country,
-        id: id,
-        variant,
-        pageSize: 20,
-      });
+    DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
+      let gamesLists;
+
+      try {
+        gamesLists = await GameBrowserClient.gamesLists({
+          platform,
+          country,
+          id: id,
+          variant,
+          pageSize: 20,
+        });
+      } catch (e) {
+        console.error("Games lists query is unavailable");
+        gamesLists = [];
+      }
+
+      return gamesLists;
     },
   };
 
