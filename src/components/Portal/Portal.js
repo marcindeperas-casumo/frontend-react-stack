@@ -1,7 +1,6 @@
 // @flow
-import React from "react";
+import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import { PureComponent } from "react";
 import type { Node } from "react";
 
 const DefaultFallback = () => null;
@@ -13,7 +12,7 @@ export type Props = {
   children: Node,
   /** If true the DOM element will be cleared before rendering into it */
   clearElement?: boolean,
-  /** The fallback component, e.g. <Foo /> */
+  /** The fallback component, e.g. <Foo />. Defaults to null. */
   fallback?: Node,
   /** Whether to render the fallback component or not */
   showFallback?: boolean,
