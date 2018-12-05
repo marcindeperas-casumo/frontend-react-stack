@@ -14,18 +14,12 @@ module.exports = {
     "plugin:ramda/recommended",
   ],
   rules: {
-    "fp/no-arguments": "error",
     "fp/no-class": "off",
-    "fp/no-loops": "error",
-    "fp/no-mutating-assign": "error",
-    "fp/no-mutating-methods": "error",
     "fp/no-nil": "off",
     "fp/no-rest-parameters": "off",
     "fp/no-this": "off",
     "fp/no-unused-expression": "off",
-    "fp/no-valueof-field": "error",
     "prettier/prettier": "error",
-    "no-implicit-coercion": "error",
   },
   overrides: [
     {

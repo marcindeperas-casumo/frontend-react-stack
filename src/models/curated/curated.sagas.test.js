@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-expressions */
 import { put, take, call } from "redux-saga/effects";
 
 import curatedMock from "Models/curated/__mocks__/curated.json";
