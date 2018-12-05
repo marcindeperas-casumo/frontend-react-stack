@@ -1,7 +1,10 @@
+// @flow
 import { storiesOf } from "@storybook/react";
 import React from "react";
+import { pick } from "ramda";
 import info from "../../../.storybook/storybookInfo";
-import PromotionCard from "Components/PromotionCard";
+import PromotionCardConnected from "Components/PromotionCard";
+import PromotionCard from "Components/PromotionCard/PromotionCard";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 
@@ -13,14 +16,33 @@ const state = {
   },
 };
 
-const PromotionCardStories = () => (
-  <MockStore state={state}>
-    <PromotionCard slug="promotions.boosted-reelraces" />
-  </MockStore>
+const promotionProps = pick(
+  ["image", "campaign_badge", "link", "dates", "title"],
+  promotions["promotions.boosted-reelraces"].fields
 );
 
 stories.add(
-  "PromotionCard",
-  PromotionCardStories,
+  "Default (Connected)",
+  () => (
+    <MockStore state={state}>
+      <PromotionCardConnected slug="promotions.boosted-reelraces" />
+    </MockStore>
+  ),
+  info({ text: "Displays the promotion card" })
+);
+
+stories.add(
+  "Default (Presentational)",
+  () => (
+    <PromotionCard
+      badge={promotionProps.campaign_badge}
+      // dates={promotionProps.dates}
+      dates={"this is a really long string of text"}
+      image={promotionProps.image}
+      link={promotionProps.link}
+      title={promotionProps.title}
+      isFetched={true}
+    />
+  ),
   info({ text: "Displays the promotion card" })
 );
