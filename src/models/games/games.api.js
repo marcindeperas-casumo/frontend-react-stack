@@ -12,7 +12,7 @@ const playerLatestPlayedGames = async ({ playerId }) => {
       pageSize: 20,
     });
   } catch (e) {
-    console.error("Latest played games query is unavailable");
+    console.error("Latest played games query is unavailable", e);
     latestPlayedGames = [];
   }
 
@@ -37,7 +37,7 @@ const gamesByProviderGameNames = async ({
       }
     );
   } catch (e) {
-    console.error("Games by provider name query is unavailable");
+    console.error("Games by provider name query is unavailable", e);
     gamesByProviderGameNames = [];
   }
 
@@ -126,8 +126,7 @@ export const fetchGames = async ({
           currency,
         });
       } catch (e) {
-        console.error("Live casino tables query is unavailable");
-        // eslint-disable-next-line fp/no-mutation
+        console.error("Live casino tables query is unavailable", e);
         liveCasinoTables = [];
       }
 
@@ -171,7 +170,7 @@ export const fetchGames = async ({
           pageSize: 20,
         });
       } catch (e) {
-        console.error("Games lists query is unavailable");
+        console.error("Games lists query is unavailable", e);
         gamesLists = [];
       }
 
