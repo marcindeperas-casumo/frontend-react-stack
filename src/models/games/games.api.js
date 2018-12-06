@@ -111,10 +111,16 @@ export const fetchGames = async ({
         variant,
       });
 
-      const liveCasinoGamesById = liveCasinoGamesList.games.reduce(
-        (accumulator, game) => assoc(game.tableId, game, accumulator),
-        {}
-      );
+      const liveCasinoGamesById = () => {
+        try {
+          return liveCasinoGamesList.games.reduce(
+            (accumulator, game) => assoc(game.tableId, game, accumulator),
+            {}
+          );
+        } catch (e) {
+          return {};
+        }
+      };
 
       // eslint-disable-next-line fp/no-let
       let liveCasinoTables;
@@ -141,7 +147,7 @@ export const fetchGames = async ({
         games: liveCasinoTables
           .filter(({ open }) => Boolean(open))
           .map(table => ({
-            ...liveCasinoGamesById[table.tableId],
+            ...liveCasinoGamesById()[table.tableId],
             lobby: {
               tableId: table.tableId,
               type: table.gameType,
@@ -170,7 +176,7 @@ export const fetchGames = async ({
           pageSize: 20,
         });
       } catch (e) {
-        console.error("Games lists query is unavailable", e);
+        console.error("Games lists query is unavailable 🤷‍♀️", e);
         gamesLists = [];
       }
 
