@@ -41,7 +41,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           </Flex.Item>
         </Flex>
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
-          <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
+          <div className="c-jackpots-list-tile o-flex o-flex__item o-flex__item-fixed-size">
             <MustDropJackpotsWidget />
           </div>
           {idsByColumns.map((columnIds, i) => (
