@@ -7,7 +7,6 @@ module.exports = {
     "react-app",
     "prettier",
     "plugin:flowtype/recommended",
-    "plugin:flowtype/recommended",
     "plugin:import/errors",
     "plugin:import/warnings",
     "plugin:fp/recommended",

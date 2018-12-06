@@ -112,7 +112,7 @@ export const GameBrowserServiceFactory = ({
       });
 
       const liveCasinoGamesById = liveCasinoGamesList.games.reduce(
-        (accumulator, game) => assoc(game.id, game, accumulator),
+        (accumulator, game) => assoc(game.tableId, game, accumulator),
         {}
       );
 
