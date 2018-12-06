@@ -123,6 +123,7 @@ export const fetchGames = async ({
         });
       } catch (e) {
         console.error("Live casino tables query is unavailable 🤷‍♀️", e);
+        // eslint-disable-next-line fp/no-mutation
         liveCasinoTables = [];
       }
 
@@ -134,7 +135,6 @@ export const fetchGames = async ({
 
       return {
         ...liveCasinoGamesList,
-<<<<<<< HEAD
         games: liveCasinoTables
           .filter(({ open }) => Boolean(open))
           .map(table => ({
@@ -153,24 +153,6 @@ export const fetchGames = async ({
               provider: table.provider,
             },
           })),
-=======
-        games: liveCasinoTables.filter(({ open }) => !!open).map(table => ({
-          ...liveCasinoGamesById()[table.tableId],
-          lobby: {
-            tableId: table.tableId,
-            type: table.gameType,
-            image: getImageForTable(table),
-            bets: table.betLimits[currency],
-            players: table.players,
-            results: table.results || table.history || null,
-            betBehind: table.betBehind || null,
-            seats: table.seatsTaken
-              ? table.seats - table.seatsTaken.length
-              : null,
-            provider: table.provider,
-          },
-        })),
->>>>>>> 2b0634b0... games.api: refactor liveCasinoGamesById as per PR review
       };
     },
     DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
