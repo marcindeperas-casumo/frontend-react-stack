@@ -1,8 +1,10 @@
 /* eslint-disable fp/no-mutation */
 // @flow
+import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";
-import { PureComponent } from "react";
 import type { Node } from "react";
+
+const DefaultFallback = () => null;
 
 export type Props = {
   /** The id of the DOM element to render into */
@@ -11,7 +13,7 @@ export type Props = {
   children: Node,
   /** If true the DOM element will be cleared before rendering into it */
   clearElement?: boolean,
-  /** The fallback component, e.g. <Foo /> */
+  /** The fallback component, e.g. <Foo />. Defaults to null. */
   fallback?: Node,
   /** Whether to render the fallback component or not */
   showFallback?: boolean,
@@ -70,7 +72,11 @@ export default class Portal extends PureComponent<Props> {
   }
 
   render() {
-    const { children, fallback, showFallback = false } = this.props;
+    const {
+      children,
+      fallback = <DefaultFallback />,
+      showFallback = false,
+    } = this.props;
     const shouldShowFallback = showFallback && fallback;
     const Component = shouldShowFallback ? fallback : children;
 
