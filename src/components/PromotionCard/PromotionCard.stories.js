@@ -16,7 +16,7 @@ const state = {
   },
 };
 
-const promotionProps = pick(
+const promotionFields = pick(
   ["image", "campaign_badge", "link", "dates", "title"],
   promotions["promotions.boosted-reelraces"].fields
 );
@@ -35,11 +35,11 @@ stories.add(
   "Default (Presentational)",
   () => (
     <PromotionCard
-      badge={promotionProps.campaign_badge}
-      dates={promotionProps.dates}
-      image={promotionProps.image}
-      link={promotionProps.link}
-      title={promotionProps.title}
+      badge={promotionFields.campaign_badge}
+      dates={promotionFields.dates}
+      image={promotionFields.image}
+      link={promotionFields.link}
+      title={promotionFields.title}
       isFetched={true}
     />
   ),
