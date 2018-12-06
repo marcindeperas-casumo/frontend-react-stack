@@ -1,5 +1,7 @@
 import React from "react";
 import classNames from "classnames";
+import { cond, contains, equals, flip, T } from "ramda";
+
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
@@ -62,7 +64,7 @@ const renderSeats = ({ seats }) => (
       tag="div"
       bgColor="green"
       txtColor="white"
-      circle={!!seats}
+      circle={Boolean(seats)}
     >
       {seats || (
         <CMSField
@@ -97,11 +99,19 @@ const DataType = props => (
   />
 );
 
+const RENDER_TYPE = {
+  SEATS: "seats",
+  RESULTS: "results",
+};
+
+const isIn = flip(contains);
+
 const CardData = ({ lobby }) => {
-  let renderType = null;
-  if (lobby.type === "Blackjack") renderType = "seats";
-  if (["MoneyWheel", "Roulette", "TopCard"].includes(lobby.type))
-    renderType = "results";
+  const renderType = cond([
+    [equals("Blackjack"), () => RENDER_TYPE.SEATS],
+    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => RENDER_TYPE.RESULTS],
+    [T, () => null],
+  ])(lobby.type);
 
   return (
     renderType && (

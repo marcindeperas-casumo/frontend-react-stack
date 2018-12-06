@@ -1,4 +1,4 @@
-import { prop } from "ramda";
+import { prop, splitEvery } from "ramda";
 
 const { log } = console;
 
@@ -17,9 +17,11 @@ export const bridgeFactory = () => {
   return {
     on: (ev, cb) => {
       if (!obj[ev]) {
+        // eslint-disable-next-line fp/no-mutation
         obj[ev] = [];
       }
 
+      // eslint-disable-next-line fp/no-mutating-methods
       obj[ev].push(cb);
     },
     emit: (ev, data) => {
@@ -35,9 +37,11 @@ export const bridgeFactory = () => {
 };
 
 export const cacheLocallyForMs = ms => {
+  // eslint-disable-next-line fp/no-let
   let lastValue = {
     lastUpdated: 0,
   };
+
   log(`🏝 Setting up local cache for ${ms}ms`);
 
   return performCall => (...args) => {
@@ -66,6 +70,7 @@ export const cacheLocallyForMs = ms => {
       }
     })
       .then(value => {
+        // eslint-disable-next-line fp/no-mutation
         lastValue = {
           success: true,
           value,
@@ -79,6 +84,8 @@ export const cacheLocallyForMs = ms => {
       })
       .catch(e => {
         console.error("performCall Error", e);
+
+        // eslint-disable-next-line fp/no-mutation
         lastValue = {
           success: false,
           error: e,
@@ -100,6 +107,7 @@ export const commonFetch = (url, options) => {
   })
     .then(response => {
       if (!response.ok) {
+        // eslint-disable-next-line fp/no-throw
         throw new Error(response.statusText);
       }
       return response;
@@ -145,33 +153,37 @@ export const composePromises = (...fns) => iv =>
 
 export const arrayToObject = (array, key) => {
   return array.reduce((obj, item) => {
+    // eslint-disable-next-line fp/no-mutation
     obj[item[key]] = item;
     return obj;
   }, {});
 };
 
 export const SimpleCache = () => {
+  /* eslint-disable fp/no-let */
   let internalValue = null;
   let valueSet = false;
+  /* eslint-enable fp/no-let */
 
   const isEmpty = () => {
     return !valueSet;
-  };
-
-  const set = newValue => {
-    internalValue = newValue;
-    valueSet = true;
-    return;
   };
 
   const get = () => {
     return internalValue;
   };
 
+  /* eslint-disable fp/no-mutation */
+  const set = newValue => {
+    internalValue = newValue;
+    valueSet = true;
+  };
+
   const invalidate = () => {
     internalValue = null;
     valueSet = false;
   };
+  /* eslint-enable fp/no-mutation */
 
   return {
     isEmpty,
@@ -240,6 +252,7 @@ export const matchingGroups = (str, searchTerm) => {
 
   const matchers = [];
 
+  /* eslint-disable fp/no-mutating-methods */
   if (searchIdx !== 0) {
     matchers.push(unmatched(str.substr(0, searchIdx)));
   }
@@ -251,6 +264,7 @@ export const matchingGroups = (str, searchTerm) => {
       unmatched(str.substr(searchIdx + searchTerm.length, str.length - 1))
     );
   }
+  /* eslint-enable fp/no-mutating-methods */
 
   return matchers;
 };
@@ -259,40 +273,28 @@ export const fromCommonHandshake = k => prop(`common/composition/${k}`);
 
 export const makeProtocolAwareUrl = url => {
   const { hostname, protocol } = window.location;
+
   const startsWith = (string, keyword) =>
     string.slice(0, keyword.length) === keyword;
+
   const replaceInBeginning = (string, from, to) =>
     `${to}${string.slice(from.length)}`;
 
-  if (startsWith(url, "//")) {
+  if (startsWith(url, "//"))
     return replaceInBeginning(url, "//", `${protocol}//`);
-  } else if (startsWith(url, "/")) {
+
+  if (startsWith(url, "/"))
     return replaceInBeginning(url, "/", `${protocol}//${hostname}/`);
-  } else {
-    return url;
-  }
+
+  return url;
 };
 
 export const stringToHTML = string => {
   return { __html: string };
 };
 
-export const generateColumns = (items, numberByColumns = 3) => {
-  const columns = [];
-  const totalNumberOfItems = items.length;
-  let fromIndex = 0;
-  let toIndex = Math.min(numberByColumns, totalNumberOfItems);
-  const getNextColumn = () => items.slice(fromIndex, toIndex);
-
-  while (getNextColumn().length) {
-    columns.push(getNextColumn());
-
-    fromIndex += numberByColumns;
-    toIndex = Math.min(toIndex + numberByColumns, totalNumberOfItems);
-  }
-
-  return columns;
-};
+export const generateColumns = (items, numberByColumns = 3) =>
+  splitEvery(numberByColumns, items);
 
 export const renderBets = o =>
   o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";

@@ -43,6 +43,7 @@ describe("CuratedCard", () => {
         isFetched={true}
       />
     );
+
     expect(component.find("CuratedCardBackground").exists()).toBe(true);
     expect(component.find("Card").exists()).toBe(true);
   });
@@ -55,6 +56,7 @@ describe("CuratedCard", () => {
         isFetched={false}
       />
     );
+
     expect(component.find("CuratedCard").exists()).toBe(true);
   });
 
@@ -66,6 +68,7 @@ describe("CuratedCard", () => {
         isFetched={true}
       />
     );
+
     expect(component.find("ImageLazy").exists()).toBe(true);
   });
 
@@ -77,6 +80,7 @@ describe("CuratedCard", () => {
         isFetched={true}
       />
     );
+
     expect(component.find("Card").exists()).toBe(true);
   });
 
@@ -88,6 +92,7 @@ describe("CuratedCard", () => {
         isFetched={true}
       />
     );
+
     expect(component.find("CuratedCardFooter").exists()).toBe(true);
   });
 
@@ -101,6 +106,7 @@ describe("CuratedCard", () => {
       .find("Text")
       .last()
       .text();
+
     expect(text).toBe(data.promotions_legal_text);
   });
 
@@ -120,6 +126,7 @@ describe("CuratedCard", () => {
       .at(0)
       .render()
       .text();
+
     expect(text).toBe("PROMOTIONS");
   });
 
@@ -137,28 +144,31 @@ describe("CuratedCard", () => {
       .at(0)
       .render()
       .html();
+
     expect(html).toBe("TRY OUR<br> NEW<br> GAME");
   });
 
   test("init fetch if not isFetched", () => {
-    const component = shallow(
+    shallow(
       <CuratedCard
         {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={false}
       />
     );
+
     expect(fetchCurated).toHaveBeenCalledTimes(1);
   });
 
   test("not init fetch if isFetched", () => {
-    const component = shallow(
+    shallow(
       <CuratedCard
         {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
     );
+
     expect(fetchCurated).toHaveBeenCalledTimes(0);
   });
 

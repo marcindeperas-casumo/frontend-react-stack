@@ -1,7 +1,19 @@
-export const topCardLetters = { L: "H", T: "D", R: "A" };
+import { cond, flip, isNil, pipe, prop, T, when } from "ramda";
+
+const COLORS = {
+  BLACK: "grey-dark-2",
+  RED: "red",
+  GREEN: "green-light-1",
+  YELLOW: "yellow",
+  BLUE: "blue-light-1",
+  PURPLE: "purple",
+  ORANGE: "orange",
+};
+
+/* Roulette */
 
 export const rouletteResults = {
-  red: [
+  [COLORS.RED]: [
     "1",
     "3",
     "5",
@@ -21,7 +33,7 @@ export const rouletteResults = {
     "34",
     "36",
   ],
-  "grey-dark-2": [
+  [COLORS.BLACK]: [
     "2",
     "4",
     "6",
@@ -41,36 +53,37 @@ export const rouletteResults = {
     "33",
     "35",
   ],
-  "green-light-1": ["0", "00"],
+  [COLORS.GREEN]: ["0", "00"],
 };
 
-const getRouletteColor = n => {
-  let color;
-  Object.entries(rouletteResults).some(([k, v]) => {
-    let exists = v.includes(n);
-    color = exists ? k : "green-light-1";
-    return exists;
-  });
-  return color;
-};
+const isRed = n => rouletteResults[COLORS.RED].includes(n.toString());
+const isBlack = n => rouletteResults[COLORS.BLACK].includes(n.toString());
+
+const getRouletteColor = cond([
+  [isBlack, () => COLORS.BLACK],
+  [isRed, () => COLORS.RED],
+  [T, () => COLORS.GREEN],
+]);
+
+/* Money Wheel */
 
 const moneyWheelResults = {
-  "01": "yellow",
-  "02": "blue-light-1",
-  "05": "purple",
-  "10": "green-light-1",
-  "20": "orange",
-  "40": "red",
+  "01": COLORS.YELLOW,
+  "02": COLORS.BLUE,
+  "05": COLORS.PURPLE,
+  "10": COLORS.GREEN,
+  "20": COLORS.ORANGE,
+  "40": COLORS.RED,
 };
 
-const getMoneyWheelColor = n => {
-  let color;
-  Object.entries(moneyWheelResults).some(([k, v]) => {
-    color = n === k ? v : "grey-dark-2";
-    return n === k;
-  });
-  return color;
-};
+const getMoneyWheelColor = pipe(
+  flip(prop)(moneyWheelResults),
+  when(isNil, () => COLORS.BLACK)
+);
+
+/* Top Card */
+
+export const topCardLetters = { L: "H", T: "D", R: "A" };
 
 const topCardResults = {
   L: "red",
@@ -78,14 +91,10 @@ const topCardResults = {
   R: "blue-light-1",
 };
 
-const getTopCardColor = n => {
-  let color;
-  Object.entries(topCardResults).some(([k, v]) => {
-    color = n === k ? v : "grey-dark-2";
-    return n === k;
-  });
-  return color;
-};
+const getTopCardColor = pipe(
+  flip(prop)(topCardResults),
+  when(isNil, () => COLORS.BLACK)
+);
 
 export const getBadgeColor = (type, n) => {
   if (type === "MoneyWheel") return getMoneyWheelColor(n);

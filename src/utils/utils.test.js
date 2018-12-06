@@ -1,12 +1,22 @@
 import {
-  cacheFunction,
-  SimpleCache,
-  matchingGroups,
   arrayToObject,
-  makeProtocolAwareUrl,
+  bridgeFactory,
+  cacheFunction,
   generateColumns,
+  makeProtocolAwareUrl,
+  matchingGroups,
   renderBets,
+  SimpleCache,
 } from "./utils";
+
+describe("bridgeFactory()", () => {
+  test("should return a bridge instance", () => {
+    const bridge = bridgeFactory();
+
+    expect(bridge.on).toBeInstanceOf(Function);
+    expect(bridge.emit).toBeInstanceOf(Function);
+  });
+});
 
 describe("cacheFunction()", () => {
   const subjectFn = jest.fn();
@@ -167,7 +177,7 @@ describe("makeProtocolAwareUrl()", () => {
   });
 });
 
-describe(".generateColumns()", () => {
+describe("generateColumns()", () => {
   test("should group items of an array into columns", async () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const numberByColumn = 3;

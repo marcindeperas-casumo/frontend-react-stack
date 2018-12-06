@@ -125,6 +125,6 @@ function addElement(id) {
 }
 
 function removeElement(id) {
-  var element = document.getElementById(id);
+  let element = document.getElementById(id);
   element.parentNode.removeChild(element);
 }

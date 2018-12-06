@@ -134,15 +134,14 @@ export const gameListSelector = (listId, options = {}) =>
     topListSelectorById(listId),
     gameEntitiesSelector,
     (list, allGames) => {
-      let gameIds = list.games || [];
-
-      if (options.maintenance === false) {
-        gameIds = filterMaintenanceGames(list, allGames);
-      }
+      const gameIds = list.games || [];
 
       return {
         ...list,
-        games: gameIds,
+        games:
+          options.maintenance === false
+            ? filterMaintenanceGames(list, allGames)
+            : gameIds,
       };
     }
   );

@@ -19,11 +19,7 @@ export const getChildrenAndParent = page => {
   return [parent, ...children];
 };
 
-export const setSlug = (page, slug) => {
-  slug = slug.replace(".*", "");
-
-  return {
-    ...page,
-    slug,
-  };
-};
+export const setSlug = (page, slug) => ({
+  ...page,
+  slug: slug.replace(".*", ""),
+});

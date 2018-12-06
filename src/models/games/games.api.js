@@ -1,4 +1,5 @@
-import { complement, compose, isNil, prop } from "ramda";
+import { assoc, complement, compose, isNil, prop } from "ramda";
+
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
 
@@ -90,22 +91,22 @@ export const fetchGames = async ({
       });
 
       const liveCasinoGamesById = liveCasinoGamesList.games.reduce(
-        (accumulator, game) => {
-          accumulator[game.tableId] = game;
-          return accumulator;
-        },
+        (accumulator, game) => assoc(game.tableId, game, accumulator),
         {}
       );
 
+      // eslint-disable-next-line fp/no-let
       let liveCasinoTables;
 
       try {
+        // eslint-disable-next-line fp/no-mutation
         liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
           ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
           currency,
         });
       } catch (e) {
         console.error("Live casino tables query is unavailable");
+        // eslint-disable-next-line fp/no-mutation
         liveCasinoTables = [];
       }
 
@@ -117,22 +118,24 @@ export const fetchGames = async ({
 
       return {
         ...liveCasinoGamesList,
-        games: liveCasinoTables.filter(({ open }) => !!open).map(table => ({
-          ...liveCasinoGamesById[table.tableId],
-          lobby: {
-            tableId: table.tableId,
-            type: table.gameType,
-            image: getImageForTable(table),
-            bets: table.betLimits[currency],
-            players: table.players,
-            results: table.results || table.history || null,
-            betBehind: table.betBehind || null,
-            seats: table.seatsTaken
-              ? table.seats - table.seatsTaken.length
-              : null,
-            provider: table.provider,
-          },
-        })),
+        games: liveCasinoTables
+          .filter(({ open }) => Boolean(open))
+          .map(table => ({
+            ...liveCasinoGamesById[table.tableId],
+            lobby: {
+              tableId: table.tableId,
+              type: table.gameType,
+              image: getImageForTable(table),
+              bets: table.betLimits[currency],
+              players: table.players,
+              results: table.results || table.history || null,
+              betBehind: table.betBehind || null,
+              seats: table.seatsTaken
+                ? table.seats - table.seatsTaken.length
+                : null,
+              provider: table.provider,
+            },
+          })),
       };
     },
     DEFAULT: ({ id, variants, title, variant, platform, country }) => {

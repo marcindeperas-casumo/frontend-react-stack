@@ -1,10 +1,16 @@
+// @flow
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
 import invariant from "invariant";
 
-class MigrationComponent extends PureComponent {
+type Props = {
+  children: any,
+  migrationKey: String | String[],
+};
+
+class MigrationComponent extends PureComponent<Props> {
   componentDidMount() {
     const { migrationKey, children } = this.props;
+
     invariant(
       migrationKey,
       "A <MigrationComponent> should have a migrationKey prop value"
@@ -17,16 +23,8 @@ class MigrationComponent extends PureComponent {
   }
 
   render() {
-    const { children } = this.props;
-    return children;
+    return this.props.children;
   }
 }
-
-MigrationComponent.propTypes = {
-  migrationKey: PropTypes.oneOfType([
-    PropTypes.string,
-    PropTypes.arrayOf(PropTypes.string),
-  ]).isRequired,
-};
 
 export default MigrationComponent;
