@@ -4,19 +4,15 @@ import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
 
 const playerLatestPlayedGames = async ({ playerId }) => {
-  let latestPlayedGames;
-
   try {
-    latestPlayedGames = await GameBrowserClient.latestPlayedGames({
+    return await GameBrowserClient.latestPlayedGames({
       playerId,
       pageSize: 20,
     });
   } catch (e) {
-    console.error("Latest played games query is unavailable", e);
-    latestPlayedGames = [];
+    console.error("Latest played games query is unavailable 🤷‍♀️", e);
+    return [];
   }
-
-  return latestPlayedGames;
 };
 
 const gamesByProviderGameNames = async ({
@@ -25,23 +21,17 @@ const gamesByProviderGameNames = async ({
   variant,
   providerGameNames,
 }) => {
-  let gamesByProviderGameNames;
-
   try {
-    gamesByProviderGameNames = await GameBrowserClient.gamesByProviderGameNames(
-      {
-        country,
-        platform,
-        variant,
-        providerGameNames,
-      }
-    );
+    return await GameBrowserClient.gamesByProviderGameNames({
+      country,
+      platform,
+      variant,
+      providerGameNames,
+    });
   } catch (e) {
-    console.error("Games by provider name query is unavailable", e);
-    gamesByProviderGameNames = [];
+    console.error("Games by provider name query is unavailable 🤷‍♀️", e);
+    return [];
   }
-
-  return gamesByProviderGameNames;
 };
 
 const gameListMetaDataById = ({ handshake, id }) => {
@@ -132,7 +122,7 @@ export const fetchGames = async ({
           currency,
         });
       } catch (e) {
-        console.error("Live casino tables query is unavailable", e);
+        console.error("Live casino tables query is unavailable 🤷‍♀️", e);
         liveCasinoTables = [];
       }
 
@@ -165,10 +155,8 @@ export const fetchGames = async ({
       };
     },
     DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
-      let gamesLists;
-
       try {
-        gamesLists = await GameBrowserClient.gamesLists({
+        return await GameBrowserClient.gamesLists({
           platform,
           country,
           id: id,
@@ -177,10 +165,8 @@ export const fetchGames = async ({
         });
       } catch (e) {
         console.error("Games lists query is unavailable 🤷‍♀️", e);
-        gamesLists = [];
+        return [];
       }
-
-      return gamesLists;
     },
   };
 
