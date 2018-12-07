@@ -1,8 +1,13 @@
+// @flow
 import React, { PureComponent } from "react";
-import PropTypes from "prop-types";
 import { contains, intersection } from "ramda";
 
-class MigrationComponentManager extends PureComponent {
+type Props = {
+  activeKeys: String[],
+  children: any,
+};
+
+class MigrationComponentManager extends PureComponent<Props> {
   render() {
     return React.Children.toArray(this.props.children)
       .filter(React.isValidElement)
@@ -12,22 +17,14 @@ class MigrationComponentManager extends PureComponent {
           props: { migrationKey },
         } = child;
 
-        let isActive;
-
         if (Array.isArray(migrationKey)) {
           const intersectionKeys = intersection(migrationKey, activeKeys);
-          isActive = intersectionKeys.length > 0;
-        } else {
-          isActive = contains(migrationKey, activeKeys);
+          return intersectionKeys.length > 0 ? child : null;
         }
 
-        return isActive ? child : null;
+        return contains(migrationKey, activeKeys) ? child : null;
       });
   }
 }
-
-MigrationComponentManager.propTypes = {
-  activeKeys: PropTypes.arrayOf(PropTypes.string).isRequired,
-};
 
 export default MigrationComponentManager;

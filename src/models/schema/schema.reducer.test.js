@@ -1,10 +1,9 @@
-import { types } from "./schema.constants";
-import reducer from "./schema.reducer";
+import schemaReducer from "./schema.reducer";
 import { updateEntity } from "./schema.actions";
 
-describe("Models/Schema/Reducer", () => {
+describe("Models/Schema/schemaReducer", () => {
   test("should update an entity ", () => {
-    const state = reducer(
+    const state = schemaReducer(
       {},
       updateEntity({
         game: {
@@ -25,7 +24,7 @@ describe("Models/Schema/Reducer", () => {
 
   test("should merge entities", () => {
     const initialState = { game: { foo: { slug: "foo", bar: 1 } } };
-    const state = reducer(
+    const state = schemaReducer(
       initialState,
       updateEntity({ game: { foo: { slug: "foo", bar: 2 } } })
     );
@@ -42,7 +41,7 @@ describe("Models/Schema/Reducer", () => {
       },
     };
 
-    const state = reducer(
+    const state = schemaReducer(
       initialState,
       updateEntity({
         game: { foo: { slug: "foo", bar: 2 } },

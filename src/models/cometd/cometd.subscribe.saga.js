@@ -27,6 +27,7 @@ export default function* cometdSubscribeSaga(action) {
     subscribedChannel
   );
 
+  // eslint-disable-next-line fp/no-loops
   while (true) {
     const { channel, data } = yield take(cometdMessagesStream);
 

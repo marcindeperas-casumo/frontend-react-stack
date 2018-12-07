@@ -17,7 +17,7 @@ const justify = {
 };
 
 const spacing = {
-  mobile: "2xlg",
+  mobile: "xlg",
   default: "lg",
 };
 
@@ -92,7 +92,7 @@ export default class CuratedCard extends PureComponent<Props> {
       <React.Fragment>
         {!gameData && (
           <Text
-            className="u-font-weight-bold t-color-white u-margin-bottom u-opacity-75"
+            className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
             size="xs"
           >
             {subtitle}

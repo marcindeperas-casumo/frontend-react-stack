@@ -1,8 +1,10 @@
+/* eslint-disable fp/no-let, fp/no-mutation */
 import React from "react";
 import ReactDOM from "react-dom";
+import { Provider } from "react-redux";
+
 import App from "Components/App";
 import bridge from "./DurandalReactBridge";
-import { Provider } from "react-redux";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isProduction } from "./utils";
@@ -34,6 +36,7 @@ if (module.hot) {
 if (isProduction()) {
   // disable react-dev-tools for this project
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+    // eslint-disable-next-line fp/no-loops
     for (let [key, value] of Object.entries(
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__
     )) {

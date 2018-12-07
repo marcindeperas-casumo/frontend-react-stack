@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation, fp/no-delete */
 import cometd from "Lib/cometd";
 import { makeProtocolAwareUrl } from "Utils/utils";
 import Debugger from "Utils/Debugger";

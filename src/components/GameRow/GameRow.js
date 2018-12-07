@@ -30,8 +30,8 @@ export default class GameRow extends PureComponent<Props> {
             src={logoBackground}
             alt={name}
             mark={logo}
-            width="70"
-            height="70"
+            width="64"
+            height="64"
           />
         </Flex.Item>
 

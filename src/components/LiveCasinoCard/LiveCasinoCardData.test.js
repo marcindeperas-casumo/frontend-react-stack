@@ -14,19 +14,18 @@ describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
     test("renders 5 badges with correct values", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
-      expect(component.find("Badge")).toHaveLength(5);
-
       const results = roulette.lobby.results.slice(0, 5);
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.props().children.toString());
-      });
+      const rendered = component.find("Badge").map(node =>
+        node.props().children.toString());
+
       expect(rendered).toEqual(results);
+      expect(component.find("Badge")).toHaveLength(5);
     });
 
     test("renders recent numbers text", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
       const cmsField = component.find("Connect(CMSField)").props().field;
+
       expect(cmsField).toEqual("recent_numbers");
     });
   });
@@ -34,21 +33,20 @@ describe("LiveCasinoCardData", () => {
   describe("TopCard (Football Studio)", () => {
     test("renders 5 badges with Football letter results", () => {
       const component = shallow(<CardData lobby={topCard.lobby} />);
-      expect(component.find("Badge")).toHaveLength(5);
-
       const results = topCard.lobby.results
         .slice(0, 5)
         .map(v => topCardLetters[v]);
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.props().children.toString());
-      });
+      const rendered = component.find("Badge").map(node =>
+        node.props().children.toString());
+
       expect(rendered).toEqual(results);
+      expect(component.find("Badge")).toHaveLength(5);
     });
 
     test("should render recent letters text", () => {
       const component = shallow(<CardData lobby={topCard.lobby} />);
       const cmsField = component.find("Connect(CMSField)").props().field;
+
       expect(cmsField).toEqual("recent_letters");
     });
   });
@@ -56,16 +54,14 @@ describe("LiveCasinoCardData", () => {
   describe("MoneyWheel", () => {
     test("renders the 5 badges values with no leading 0", () => {
       const component = shallow(<CardData lobby={moneyWheel.lobby} />);
-      expect(component.find("Badge")).toHaveLength(5);
-
       const results = moneyWheel.lobby.results
         .slice(0, 5)
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
-      const rendered = [];
-      component.find("Badge").forEach(node => {
-        rendered.push(node.props().children.toString());
-      });
+      const rendered = component.find("Badge").map(node =>
+        node.props().children.toString());
+
       expect(rendered).toEqual(results);
+      expect(component.find("Badge")).toHaveLength(5);
     });
 
     test("should render recent letters text", () => {

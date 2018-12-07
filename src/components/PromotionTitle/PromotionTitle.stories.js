@@ -18,3 +18,11 @@ stories.add(
   ),
   info({ text: "Default" })
 );
+
+stories.add(
+  "Without Badge",
+  () => (
+    <PromotionTitle title="Christmas Countdown" dates="17 Dec  - 30 Dec 2018" />
+  ),
+  info({ text: "Without Badge" })
+);

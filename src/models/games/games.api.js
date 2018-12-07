@@ -1,25 +1,37 @@
-import { complement, compose, isNil, prop } from "ramda";
+import { assoc, complement, compose, isNil, prop } from "ramda";
+
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
 
-const playerLatestPlayedGames = ({ playerId }) =>
-  GameBrowserClient.latestPlayedGames({
-    playerId,
-    pageSize: 20,
-  });
+const playerLatestPlayedGames = async ({ playerId }) => {
+  try {
+    return await GameBrowserClient.latestPlayedGames({
+      playerId,
+      pageSize: 20,
+    });
+  } catch (e) {
+    console.error("Latest played games query is unavailable 🤷‍♀️", e);
+    return [];
+  }
+};
 
-const gamesByProviderGameNames = ({
+const gamesByProviderGameNames = async ({
   country,
   platform,
   variant,
   providerGameNames,
 }) => {
-  return GameBrowserClient.gamesByProviderGameNames({
-    country,
-    platform,
-    variant,
-    providerGameNames,
-  });
+  try {
+    return await GameBrowserClient.gamesByProviderGameNames({
+      country,
+      platform,
+      variant,
+      providerGameNames,
+    });
+  } catch (e) {
+    console.error("Games by provider name query is unavailable 🤷‍♀️", e);
+    return [];
+  }
 };
 
 const gameListMetaDataById = ({ handshake, id }) => {
@@ -89,23 +101,29 @@ export const fetchGames = async ({
         variant,
       });
 
-      const liveCasinoGamesById = liveCasinoGamesList.games.reduce(
-        (accumulator, game) => {
-          accumulator[game.tableId] = game;
-          return accumulator;
-        },
-        {}
-      );
+      const liveCasinoGamesById = () => {
+        try {
+          return liveCasinoGamesList.games.reduce(
+            (accumulator, game) => assoc(game.tableId, game, accumulator),
+            {}
+          );
+        } catch (e) {
+          return {};
+        }
+      };
 
+      // eslint-disable-next-line fp/no-let
       let liveCasinoTables;
 
       try {
+        // eslint-disable-next-line fp/no-mutation
         liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
           ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
           currency,
         });
       } catch (e) {
-        console.error("Live casino tables query is unavailable");
+        console.error("Live casino tables query is unavailable 🤷‍♀️", e);
+        // eslint-disable-next-line fp/no-mutation
         liveCasinoTables = [];
       }
 
@@ -117,32 +135,39 @@ export const fetchGames = async ({
 
       return {
         ...liveCasinoGamesList,
-        games: liveCasinoTables.filter(({ open }) => !!open).map(table => ({
-          ...liveCasinoGamesById[table.tableId],
-          lobby: {
-            tableId: table.tableId,
-            type: table.gameType,
-            image: getImageForTable(table),
-            bets: table.betLimits[currency],
-            players: table.players,
-            results: table.results || table.history || null,
-            betBehind: table.betBehind || null,
-            seats: table.seatsTaken
-              ? table.seats - table.seatsTaken.length
-              : null,
-            provider: table.provider,
-          },
-        })),
+        games: liveCasinoTables
+          .filter(({ open }) => Boolean(open))
+          .map(table => ({
+            ...liveCasinoGamesById()[table.tableId],
+            lobby: {
+              tableId: table.tableId,
+              type: table.gameType,
+              image: getImageForTable(table),
+              bets: table.betLimits[currency],
+              players: table.players,
+              results: table.results || table.history || null,
+              betBehind: table.betBehind || null,
+              seats: table.seatsTaken
+                ? table.seats - table.seatsTaken.length
+                : null,
+              provider: table.provider,
+            },
+          })),
       };
     },
-    DEFAULT: ({ id, variants, title, variant, platform, country }) => {
-      return GameBrowserClient.gamesLists({
-        platform,
-        country,
-        id: id,
-        variant,
-        pageSize: 20,
-      });
+    DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
+      try {
+        return await GameBrowserClient.gamesLists({
+          platform,
+          country,
+          id: id,
+          variant,
+          pageSize: 20,
+        });
+      } catch (e) {
+        console.error("Games lists query is unavailable 🤷‍♀️", e);
+        return [];
+      }
     },
   };
 

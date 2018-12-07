@@ -13,7 +13,7 @@ export default class JackpotsListTile extends PureComponent<Props> {
     const { ids = [] } = this.props;
 
     return (
-      <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size u-padding-bottom--md">
+      <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size">
         <List items={ids} render={id => <GameRow id={id} />} />
       </div>
     );

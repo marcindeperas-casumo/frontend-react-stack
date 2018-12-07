@@ -3,17 +3,15 @@ import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
 
 export const connect = store => {
-  const { dispatch } = store;
-  const { on } = bridge;
-
-  on(REACT_APP_EVENT_ROUTE_CHANGE, data => {
-    dispatch(
+  const dispatch = ({ config, params }) =>
+    store.dispatch(
       activateComponent({
-        componentId: data.config.id,
-        routeParams: data.params,
+        componentId: config.id,
+        routeParams: params,
       })
     );
-  });
+
+  bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, dispatch);
 };
 
 export default connect;

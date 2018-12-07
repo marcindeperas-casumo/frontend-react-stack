@@ -1,22 +1,17 @@
 import React from "react";
 import classNames from "classnames";
+import { cond, contains, equals, flip, T } from "ramda";
+
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
-const getText = field => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field={field}
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
+const RENDER_TYPE = {
+  SEATS: "seats",
+  RESULTS: "results",
+};
 
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
@@ -62,7 +57,7 @@ const renderSeats = ({ seats }) => (
       tag="div"
       bgColor="green"
       txtColor="white"
-      circle={!!seats}
+      circle={Boolean(seats)}
     >
       {seats || (
         <CMSField
@@ -85,24 +80,36 @@ const renderSeats = ({ seats }) => (
   </React.Fragment>
 );
 
-const CardData = ({ lobby }) => {
-  const type =
-    lobby.type === "Blackjack"
-      ? "seats"
-      : ["MoneyWheel", "Roulette", "TopCard"].includes(lobby.type)
-        ? "results"
-        : null;
+const getText = field => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field={field}
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
+  />
+);
 
-  const renderType = {
-    results: renderResults,
-    seats: renderSeats,
-    default: () => null,
-  };
+const renderType = {
+  results: renderResults,
+  seats: renderSeats,
+};
+
+const isIn = flip(contains);
+
+const CardData = ({ lobby }) => {
+  const type = cond([
+    [equals("Blackjack"), () => RENDER_TYPE.SEATS],
+    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => RENDER_TYPE.RESULTS],
+    [T, () => null],
+  ])(lobby.type);
 
   return (
     type && (
       <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        {(renderType[type] || renderType.default)(lobby)}
+        {renderType[type](lobby)}
       </div>
     )
   );
