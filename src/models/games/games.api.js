@@ -155,12 +155,12 @@ export const fetchGames = async ({
           })),
       };
     },
-    DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
+    DEFAULT: async ({ id, variant, platform, country }) => {
       try {
         return await GameBrowserClient.gamesLists({
           platform,
           country,
-          id: id,
+          id,
           variant,
           pageSize: 20,
         });
@@ -183,14 +183,6 @@ export const fetchGames = async ({
     currencyCode: currency,
   });
 
-  // TODO: If the date is >= 28/11/2018 this function needs to be removed.
-  const normaliseLiveCasinoId = id => {
-    if (id === "liveCasino") {
-      return "liveCasinoGames";
-    }
-    return id;
-  };
-
   const gameListsRequests = topListIds
     .map(id => prop(id, gamesLists))
     .filter(complement(isNil))
@@ -206,7 +198,7 @@ export const fetchGames = async ({
       });
       return {
         games: games.games,
-        id: normaliseLiveCasinoId(id),
+        id,
         title,
       };
     });
