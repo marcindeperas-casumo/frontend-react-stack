@@ -26,21 +26,25 @@ source files is made, the target app will be reloaded.
 
 ## Development instructions
 
-### Development mode
+### Setup
 
 - Required Node version: **>=8.9.0**
-- Make sure you are running [casumo-proxy](https://github.com/Casumo/casumo-frontend-proxy) 2.5.0+ and [certificate](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/HTTPS.md) is installed.
-- Add the following to your [.casumo-proxy-local](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/CustomEnv.md) for casumo-frontend:
+- Install [casumo-frontend-proxy](https://github.com/Casumo/casumo-frontend-proxy#install) (2.5.0+) along with [certificate](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/HTTPS.md).
+- Clone [casumo-frontend](https://github.com/Casumo/casumo-frontend) repo and create file `.casumo-proxy-local` under `/web` with this snippet:
 
 ```json
-"reactStackService": {
+{
+  "reactStackService": {
     "local": "host.docker.internal:3000"
+  }
 }
 ```
 
-**Note:** If you don't have a `.casumo-proxy-local` file, create one under `/web` and make sure to add this snippet wrapped in an object.
+- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to local
 
-- Run `casumo-proxy use local` in order to proxy to local
+### Daily development
+
+- Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
 - Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
