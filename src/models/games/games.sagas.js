@@ -1,3 +1,4 @@
+import { call, put, select, take } from "redux-saga/effects";
 import {
   country as countrySelector,
   currency as currencySelector,
@@ -9,8 +10,7 @@ import {
   country as getCountry,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
-import { call, put, select, take } from "redux-saga/effects";
-import { waitForSelector } from "Utils/saga.utils";
+import { waitForSelector } from "Utils";
 import { launchGame } from "Services/LaunchGameService";
 import { fetchTopLists, initiateFetchGamesBySlugs } from "./games.actions";
 import { types } from "./games.constants";
