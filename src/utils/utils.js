@@ -1,4 +1,4 @@
-import { prop, splitEvery } from "ramda";
+import { prop, splitEvery, lensPath, set } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -310,3 +310,9 @@ export const generateColumns = (items, numberByColumns = 3) =>
 
 export const renderBets = o =>
   o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
+
+export const sanitizeObject = (obj, keysToSanitize = []) => {
+  return keysToSanitize
+    .map(key => key.split("."))
+    .reduce((acc, key) => set(lensPath(key), "******", acc), obj);
+};
