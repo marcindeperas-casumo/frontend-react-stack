@@ -3,7 +3,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ImageLazy from "Components/Image/ImageLazy";
 
-const PromotionCardHeader = ({ badge, dates }) => {
+const PromotionGalleryCardHeader = ({ badge, dates }) => {
   return (
     <Flex
       className="u-padding-horiz@mobile
@@ -36,4 +36,4 @@ const PromotionCardHeader = ({ badge, dates }) => {
   );
 };
 
-export default PromotionCardHeader;
+export default PromotionGalleryCardHeader;

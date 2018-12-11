@@ -1,11 +1,11 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
 
-const PromotionCardContent = ({ title }) => {
+const PromotionGalleryCardContent = ({ title }) => {
   return (
     <Text
       tag="div"
-      className="c-promotion-card__content
+      className="c-promotion-gallery-card__content
         t-color-grey-dark-3
         u-padding-horiz@mobile
         u-padding-horiz@phablet
@@ -19,4 +19,4 @@ const PromotionCardContent = ({ title }) => {
   );
 };
 
-export default PromotionCardContent;
+export default PromotionGalleryCardContent;
