@@ -11,10 +11,7 @@ type State = {
 };
 
 export default class ErrorBoundary extends React.PureComponent<Props, State> {
-  constructor(props) {
-    super(props);
-    this.state = { hasError: false };
-  }
+  state = { hasError: false };
 
   static getDerivedStateFromError(error) {
     return { hasError: true };
