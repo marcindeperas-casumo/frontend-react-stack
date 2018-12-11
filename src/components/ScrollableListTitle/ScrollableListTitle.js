@@ -14,7 +14,7 @@ export default function ScrollableListTitle({ title }) {
         "u-padding-left--2xlg@desktop",
         "u-font-weight-bold"
       )}
-      data-test="list-title"
+      data-test="scrollable-list-title"
       tag="h3"
     >
       {title}
