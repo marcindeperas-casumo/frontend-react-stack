@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import ErrorBoundary from "Components/ErrorBoundary";
 import invariant from "invariant";
 
 type Props = {
@@ -23,7 +24,7 @@ class MigrationComponent extends PureComponent<Props> {
   }
 
   render() {
-    return this.props.children;
+    return <ErrorBoundary>{this.props.children}</ErrorBoundary>;
   }
 }
 
