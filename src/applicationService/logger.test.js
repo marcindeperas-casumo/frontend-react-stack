@@ -8,12 +8,12 @@ describe("Services/Logger", () => {
     [ENVS.DEVELOPMENT]: "logger-development",
   };
 
-  test("selects the correct logger by env", async () => {
+  test("selects the correct logger by env", () => {
     expect(getLogger("a", loggers)).toEqual("a");
     expect(getLogger("b", loggers)).toEqual("b");
   });
 
-  test("returns the development logger if env is unknown", async () => {
+  test("returns the development logger if env is unknown", () => {
     expect(getLogger("unknown", loggers)).toEqual("logger-development");
   });
 });
