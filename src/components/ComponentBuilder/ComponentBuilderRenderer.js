@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import ErrorBoundary from "Components/ErrorBoundary";
 import { mapContentDefinitionToComponent } from "Components/ComponentBuilder/ComponentBuilder.utils";
 
 type Props = {
@@ -19,7 +20,11 @@ export default class ComponentBuilder extends PureComponent<Props> {
 
     return (
       <React.Fragment>
-        {componentDefinitions.map(mapContentDefinitionToComponent)}
+        {componentDefinitions.map((definition, i) => (
+          <ErrorBoundary key={i}>
+            {mapContentDefinitionToComponent(definition)}
+          </ErrorBoundary>
+        ))}
       </React.Fragment>
     );
   }
