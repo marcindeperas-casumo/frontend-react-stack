@@ -3,32 +3,17 @@ import { getLogger } from "./logger";
 
 describe("Services/Logger", () => {
   const loggers = {
-    [ENVS.PRODUCTION]: "logger-production",
+    a: "a",
+    b: "b",
     [ENVS.DEVELOPMENT]: "logger-development",
-    [ENVS.TEST]: "logger-test",
   };
 
-  test("returns the production logger in production mode", async () => {
-    const logger = getLogger(ENVS.PRODUCTION, loggers);
-
-    expect(logger).toEqual("logger-production");
-  });
-
-  test("returns the development logger in dev mode", async () => {
-    const logger = getLogger(ENVS.DEVELOPMENT, loggers);
-
-    expect(logger).toEqual("logger-development");
-  });
-
-  test("returns the test logger in test mode", async () => {
-    const logger = getLogger(ENVS.TEST, loggers);
-
-    expect(logger).toEqual("logger-test");
+  test("selects the correct logger by env", async () => {
+    expect(getLogger("a", loggers)).toEqual("a");
+    expect(getLogger("b", loggers)).toEqual("b");
   });
 
   test("returns the development logger if env is unknown", async () => {
-    const logger = getLogger("UNKNOWN-ENV", loggers);
-
-    expect(logger).toEqual("logger-development");
+    expect(getLogger("unknown", loggers)).toEqual("logger-development");
   });
 });
