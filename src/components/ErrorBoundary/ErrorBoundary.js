@@ -1,9 +1,11 @@
 // @flow
 
 import React from "react";
+import type { Node } from "react";
 
 type Props = {
-  logError: (message: String, error: Object, rest: ?Object) => void,
+  logError: (message: string, error: Object, rest: ?Object) => void,
+  children: Node,
 };
 
 type State = {
@@ -13,11 +15,11 @@ type State = {
 export default class ErrorBoundary extends React.PureComponent<Props, State> {
   state = { hasError: false };
 
-  static getDerivedStateFromError(error) {
+  static getDerivedStateFromError() {
     return { hasError: true };
   }
 
-  componentDidCatch(error, info) {
+  componentDidCatch(error: Object, info: ?Object) {
     const { logError } = this.props;
     const message = error.message || "Error while rendering";
 
