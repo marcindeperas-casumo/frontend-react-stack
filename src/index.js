@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "Components/App";
+import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "./DurandalReactBridge";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
@@ -16,10 +17,12 @@ const store = configureStore();
 window.bridge = bridge;
 bridgeToDispatchService(store);
 
-const renderApp = Component =>
+const renderApp = App =>
   ReactDOM.render(
     <Provider store={store}>
-      <Component />
+      <ErrorBoundary>
+        <App />
+      </ErrorBoundary>
     </Provider>,
     document.getElementById("root")
   );
