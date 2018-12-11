@@ -56,7 +56,7 @@ describe("GameBrowserClientFactory", () => {
 
       expect(httpService.get).toHaveBeenCalledTimes(1);
       expect(httpService.get).toHaveBeenCalledWith(
-        // Q: should the client have a default page value? The backend already have one
+        // Q: should the client have a default page value? The backend already has one
         "gamebrowser/games-lists/foo/mt/abc?page=0&pageSize=5"
       );
     });
@@ -68,7 +68,6 @@ describe("GameBrowserClientFactory", () => {
 
       expect(httpService.get).toHaveBeenCalledTimes(1);
       expect(httpService.get).toBeCalledWith(
-        // Q: should the client have a default page value? The backend already have one
         "gamebrowser/latestPlayedGames/player/123?numberOfGames=2"
       );
     });
@@ -78,6 +77,7 @@ describe("GameBrowserClientFactory", () => {
 
       expect(httpService.get).toHaveBeenCalledTimes(1);
       expect(httpService.get).toBeCalledWith(
+        // Q: should the client have a default page value? The backend already has one
         "gamebrowser/latestPlayedGames/player/uuid?numberOfGames=5"
       );
     });
