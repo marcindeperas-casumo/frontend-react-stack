@@ -27,20 +27,22 @@ const PromotionGalleryCardWrapper = ({
   title,
 }: WrapperProps) => {
   return (
-    <a
-      href={link}
-      className="c-promotion-gallery-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
-    >
-      <Card
-        className="o-ratio__content t-border-r--16 t-background-white u-line-height--1"
-        spacing="none"
-        header={() => (
-          <PromotionGalleryCardHeader badge={badge} dates={dates} />
-        )}
-        content={() => <PromotionGalleryCardContent title={title} />}
-        footer={() => <PromotionGalleryCardImage image={image} />}
-      />
-    </a>
+    <div className="c-promotion-gallery-card u-width--1/2 u-padding--sm@mobile u-padding">
+      <a
+        href={link}
+        className="o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
+      >
+        <Card
+          className="o-ratio__content t-border-r--16 t-background-white u-line-height--1"
+          spacing="none"
+          header={() => (
+            <PromotionGalleryCardHeader badge={badge} dates={dates} />
+          )}
+          content={() => <PromotionGalleryCardContent title={title} />}
+          footer={() => <PromotionGalleryCardImage image={image} />}
+        />
+      </a>
+    </div>
   );
 };
 

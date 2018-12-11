@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import PromotionCardContainer from "Components/PromotionGalleryCard";
+import PromotionGalleryCardContainer from "Components/PromotionGalleryCard";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -14,12 +14,6 @@ type Props = {
   titleColor?: string,
   backgroundColor?: string,
   seeMore: string,
-};
-
-const paddingPerDevice = {
-  default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
 };
 
 const marginPerDevice = {
@@ -76,15 +70,16 @@ class PromotionCardGallery extends PureComponent<Props> {
             </a>
           </Flex.Item>
         </Flex>
-        <div className="o-flex u-padding@tablet" style={{ flexWrap: "wrap" }}>
+        <div
+          className="o-flex o-flex-justify--center u-padding@tablet"
+          style={{ flexWrap: "wrap" }}
+        >
           {promotionsSlugs.map(promotionSlug => (
-            <div className="u-width--1/2@mobile u-width--1/3@phablet u-width--1/4 u-padding--sm@mobile u-padding">
-              <PromotionCardContainer
-                slug={`promotions.${promotionSlug}`}
-                link={`promotions/${promotionSlug}`}
-                key={promotionSlug}
-              />
-            </div>
+            <PromotionGalleryCardContainer
+              slug={`promotions.${promotionSlug}`}
+              link={`promotions/${promotionSlug}`}
+              key={promotionSlug}
+            />
           ))}
         </div>
       </div>
