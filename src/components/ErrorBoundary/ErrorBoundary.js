@@ -1,6 +1,16 @@
+// @flow
+
 import React from "react";
 
-export default class ErrorBoundary extends React.Component {
+type Props = {
+  logError: (message: String, error: Object, rest: ?Object) => void,
+};
+
+type State = {
+  hasError: boolean,
+};
+
+export default class ErrorBoundary extends React.PureComponent<Props, State> {
   constructor(props) {
     super(props);
     this.state = { hasError: false };

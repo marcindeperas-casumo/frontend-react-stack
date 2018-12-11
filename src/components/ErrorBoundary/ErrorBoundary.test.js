@@ -32,6 +32,7 @@ describe("<ErrorBoundary />", () => {
   test("does not render out anything if any of the children throws an error", () => {
     const logError = jest.fn();
     const Component = () => {
+      // eslint-disable-next-line fp/no-throw
       throw new Error("Test");
     };
     const rendered = mount(
@@ -48,6 +49,7 @@ describe("<ErrorBoundary />", () => {
     const message = "Random Error";
     const error = new Error(message);
     const Component = () => {
+      // eslint-disable-next-line fp/no-throw
       throw error;
     };
 
