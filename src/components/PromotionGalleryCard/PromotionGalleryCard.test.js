@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PromotionCard from "Components/PromotionCard/PromotionCard";
+import PromotionGalleryCard from "Components/PromotionGalleryCard/PromotionGalleryCard";
 
 const promotionsInfo = {
   image: "i-am-an-image",
@@ -9,10 +9,10 @@ const promotionsInfo = {
   dates: "i-am-dates",
 };
 
-describe("PromotionCard", () => {
-  test("should render the PromotionCardWrapper component", () => {
+describe("PromotionGalleryCard", () => {
+  test("should render the PromotionGalleryCardWrapper component", () => {
     const rendered = shallow(
-      <PromotionCard
+      <PromotionGalleryCard
         isFetched={true}
         image={promotionsInfo.image}
         badge={promotionsInfo.badge}
@@ -21,25 +21,33 @@ describe("PromotionCard", () => {
       />
     );
 
-    expect(rendered.find("PromotionCardWrapper").exists()).toBe(true);
-    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(false);
+    expect(rendered.find("PromotionGalleryCardWrapper").exists()).toBe(true);
+    expect(rendered.find("PromotionGalleryCardSkeleton").exists()).toBe(false);
 
-    const renderedPromotionCardWrapperProps = rendered
-      .find("PromotionCardWrapper")
+    const renderedPromotionGalleryCardWrapperProps = rendered
+      .find("PromotionGalleryCardWrapper")
       .props();
 
-    expect(renderedPromotionCardWrapperProps.image).toBe(promotionsInfo.image);
+    expect(renderedPromotionGalleryCardWrapperProps.image).toBe(
+      promotionsInfo.image
+    );
 
-    expect(renderedPromotionCardWrapperProps.badge).toBe(promotionsInfo.badge);
+    expect(renderedPromotionGalleryCardWrapperProps.badge).toBe(
+      promotionsInfo.badge
+    );
 
-    expect(renderedPromotionCardWrapperProps.title).toBe(promotionsInfo.title);
+    expect(renderedPromotionGalleryCardWrapperProps.title).toBe(
+      promotionsInfo.title
+    );
 
-    expect(renderedPromotionCardWrapperProps.dates).toBe(promotionsInfo.dates);
+    expect(renderedPromotionGalleryCardWrapperProps.dates).toBe(
+      promotionsInfo.dates
+    );
   });
 
-  test("should render PromotionCardHeader component", () => {
+  test("should render PromotionGalleryCardHeader component", () => {
     const rendered = shallow(
-      <PromotionCard
+      <PromotionGalleryCard
         isFetched={true}
         image={promotionsInfo.image}
         badge={promotionsInfo.badge}
@@ -53,23 +61,25 @@ describe("PromotionCard", () => {
         .dive()
         .find("Card")
         .dive()
-        .find("PromotionCardHeader")
+        .find("PromotionGalleryCardHeader")
         .exists()
     ).toBe(true);
 
-    const renderedPromotionCardHeaderProps = rendered
+    const renderedPromotionGalleryCardHeaderProps = rendered
       .dive()
       .find("Card")
       .dive()
-      .find("PromotionCardHeader")
+      .find("PromotionGalleryCardHeader")
       .props();
 
-    expect(renderedPromotionCardHeaderProps.badge).toBe(promotionsInfo.badge);
+    expect(renderedPromotionGalleryCardHeaderProps.badge).toBe(
+      promotionsInfo.badge
+    );
   });
 
-  test("should render PromotionCardContent component", () => {
+  test("should render PromotionGalleryCardContent component", () => {
     const rendered = shallow(
-      <PromotionCard
+      <PromotionGalleryCard
         isFetched={true}
         image={promotionsInfo.image}
         badge={promotionsInfo.badge}
@@ -83,14 +93,14 @@ describe("PromotionCard", () => {
         .dive()
         .find("Card")
         .dive()
-        .find("PromotionCardContent")
+        .find("PromotionGalleryCardContent")
         .exists()
     ).toBe(true);
   });
 
-  test("should render PromotionCardImage component", () => {
+  test("should render PromotionGalleryCardImage component", () => {
     const rendered = shallow(
-      <PromotionCard
+      <PromotionGalleryCard
         isFetched={true}
         image={promotionsInfo.image}
         badge={promotionsInfo.badge}
@@ -104,23 +114,25 @@ describe("PromotionCard", () => {
         .dive()
         .find("Card")
         .dive()
-        .find("PromotionCardImage")
+        .find("PromotionGalleryCardImage")
         .exists()
     ).toBe(true);
 
-    const renderedPromotionCardImageProps = rendered
+    const renderedPromotionGalleryCardImageProps = rendered
       .dive()
       .find("Card")
       .dive()
-      .find("PromotionCardImage")
+      .find("PromotionGalleryCardImage")
       .props();
 
-    expect(renderedPromotionCardImageProps.image).toBe(promotionsInfo.image);
+    expect(renderedPromotionGalleryCardImageProps.image).toBe(
+      promotionsInfo.image
+    );
   });
 
   test("should render the skeleton if CMS is not fetched yet", () => {
     const rendered = shallow(
-      <PromotionCard
+      <PromotionGalleryCard
         image={promotionsInfo.image}
         badge={promotionsInfo.badge}
         title={promotionsInfo.title}
@@ -129,6 +141,6 @@ describe("PromotionCard", () => {
       />
     );
 
-    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(true);
+    expect(rendered.find("PromotionGalleryCardSkeleton").exists()).toBe(true);
   });
 });
