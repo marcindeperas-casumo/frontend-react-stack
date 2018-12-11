@@ -16,7 +16,7 @@ Right now we have the following adapters:
 ### Rollbar
 
 Rollbar is a 3rd party log-collector service that we use in production.<br>
-**Logs:** [Check out the error logs for this repo]()<br>
+**Logs:** [Check out the error logs for this repo](https://rollbar.com/casumo/react-stack/items)<br>
 **Credentials:** We all have personal accounts, ask for an invite in #frontend
 
 ### How to log an error
