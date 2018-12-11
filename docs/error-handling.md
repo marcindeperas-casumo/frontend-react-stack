@@ -6,7 +6,7 @@ the unit tests we silence all log levels.
 
 ### Adapters
 
-Adapters are used to send the log output to different places.<br>
+Adapters are used to send the log output to different places.
 Right now we have the following adapters:
 
 - `Console Adapter` (logs to the console)
@@ -15,8 +15,8 @@ Right now we have the following adapters:
 
 ### Rollbar
 
-Rollbar is a 3rd party log-collector service that we use in production.<br>
-**Logs:** [Check out the error logs for this repo](https://rollbar.com/casumo/react-stack/items)<br>
+Rollbar is a 3rd party log-collector service that we use in production.
+**Logs:** [Check out the error logs for this repo](https://rollbar.com/casumo/react-stack/items)
 **Credentials:** We all have personal accounts, ask for an invite in #frontend
 
 ### How to log an error
@@ -24,7 +24,7 @@ Rollbar is a 3rd party log-collector service that we use in production.<br>
 #### When the store is available
 
 In most of the cases (logging from a component, action creator or saga) we have
-access to the store. In these cases we should always use the `logError()` action creator.<br>
+access to the store. In these cases we should always use the `logError()` action creator.
 The benefit of this is that **like this the actual state is going to be visible in
 Rollbar as well**, which gives us context and makes debugging easier.
 
