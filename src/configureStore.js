@@ -5,10 +5,10 @@ import rollbarMiddleware from "rollbar-redux-middleware";
 import rootReducer from "Models/rootReducer";
 import rootSaga from "Models/rootSaga";
 import Rollbar from "Lib/rollbar";
-import { isProduction } from "Utils";
+import { isEnvProduction } from "Utils";
 
 const configureStore = preloadedState => {
-  const composeEnhancers = isProduction()
+  const composeEnhancers = isEnvProduction()
     ? compose
     : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 

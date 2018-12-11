@@ -7,7 +7,7 @@ import App from "Components/App";
 import bridge from "./DurandalReactBridge";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isProduction } from "./utils";
+import { isEnvProduction } from "./utils";
 import Debugger from "Utils/Debugger";
 import { updateEntity } from "Models/schema";
 import "./styles/index.scss";
@@ -33,7 +33,7 @@ if (module.hot) {
   });
 }
 
-if (isProduction()) {
+if (isEnvProduction()) {
   // disable react-dev-tools for this project
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
     // eslint-disable-next-line fp/no-loops
@@ -48,7 +48,7 @@ if (isProduction()) {
 
 const isCasumoTest = window.location.hostname === "m.casumotest.com";
 
-if (!isProduction() || isCasumoTest) {
+if (!isEnvProduction() || isCasumoTest) {
   window.Debugger = Debugger;
 
   /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */

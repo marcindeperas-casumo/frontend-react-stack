@@ -1,8 +1,20 @@
 import { prop, splitEvery } from "ramda";
+import { ENVS } from "Src/constants";
 
 const { log } = console;
 
-export const isProduction = () => process.env.NODE_ENV === "production";
+export const getEnv = () => {
+  const env = process.env.NODE_ENV || "";
+  const selectedEnv = ENVS[env.toUpperCase()];
+
+  return selectedEnv || ENVS.DEVELOPMENT;
+};
+
+export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
+
+export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
+
+export const isEnvTest = () => getEnv() === ENVS.TEST;
 
 export const sleep = ms => data => {
   return new Promise(resolve => {
