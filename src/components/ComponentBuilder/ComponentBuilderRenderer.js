@@ -18,14 +18,10 @@ export default class ComponentBuilder extends PureComponent<Props> {
       return null;
     }
 
-    return (
-      <React.Fragment>
-        {componentDefinitions.map((definition, i) => (
-          <ErrorBoundary key={i} withoutUserFeedback>
-            {mapContentDefinitionToComponent(definition)}
-          </ErrorBoundary>
-        ))}
-      </React.Fragment>
-    );
+    return componentDefinitions.map((definition, i) => (
+      <ErrorBoundary key={i} withoutUserFeedback>
+        {mapContentDefinitionToComponent(definition)}
+      </ErrorBoundary>
+    ));
   }
 }
