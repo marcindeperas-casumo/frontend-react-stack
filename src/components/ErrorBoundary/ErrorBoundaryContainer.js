@@ -12,9 +12,7 @@ type Props = {
 
 const ErrorBoundaryConnected = connect(
   () => ({}),
-  dispatch => ({
-    logError: (...args) => dispatch(logError(...args)),
-  })
+  { logError }
 )(ErrorBoundary);
 
 const ErrorBoundaryContainer = (props: Props) => {

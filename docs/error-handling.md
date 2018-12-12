@@ -34,9 +34,7 @@ import { logError } from "Models/errors";
 
 const Container = connect(
     () => ({}),
-    dispatch => ({
-        logError => (...args) => dispatch(logError(...args))
-    })
+    { logError }
 );
 
 // Usage in SAGAs
