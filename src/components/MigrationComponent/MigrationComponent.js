@@ -24,7 +24,9 @@ class MigrationComponent extends PureComponent<Props> {
   }
 
   render() {
-    return <ErrorBoundary>{this.props.children}</ErrorBoundary>;
+    return (
+      <ErrorBoundary withoutUserFeedback>{this.props.children}</ErrorBoundary>
+    );
   }
 }
 

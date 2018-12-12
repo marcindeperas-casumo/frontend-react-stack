@@ -7,6 +7,7 @@ import { logError } from "Models/errors";
 
 type Props = {
   children: Node,
+  withoutUserFeedback?: boolean,
 };
 
 const ErrorBoundaryConnected = connect(

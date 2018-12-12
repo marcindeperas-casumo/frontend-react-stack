@@ -2,10 +2,12 @@
 
 import React from "react";
 import type { Node } from "react";
+import ErrorBoundaryUserFeedback from "./ErrorBoundaryUserFeedback";
 
 type Props = {
-  logError: (message: string, error: Object, rest: ?Object) => void,
   children: Node,
+  withoutUserFeedback?: boolean,
+  logError: (message: string, error: Object, rest: ?Object) => void,
 };
 
 type State = {
@@ -27,10 +29,17 @@ export default class ErrorBoundary extends React.PureComponent<Props, State> {
   }
 
   render() {
-    if (this.state.hasError) {
+    const { hasError } = this.state;
+    const { withoutUserFeedback, children } = this.props;
+
+    if (hasError && withoutUserFeedback) {
       return null;
     }
 
-    return this.props.children;
+    if (hasError) {
+      return <ErrorBoundaryUserFeedback />;
+    }
+
+    return children;
   }
 }

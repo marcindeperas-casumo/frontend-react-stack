@@ -21,7 +21,7 @@ export default class ComponentBuilder extends PureComponent<Props> {
     return (
       <React.Fragment>
         {componentDefinitions.map((definition, i) => (
-          <ErrorBoundary key={i}>
+          <ErrorBoundary key={i} withoutUserFeedback>
             {mapContentDefinitionToComponent(definition)}
           </ErrorBoundary>
         ))}

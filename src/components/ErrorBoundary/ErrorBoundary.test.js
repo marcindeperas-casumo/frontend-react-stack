@@ -29,7 +29,23 @@ describe("<ErrorBoundary />", () => {
     expect(rendered.html()).toMatch("Foo Bar.");
   });
 
-  test("does not render out anything if any of the children throws an error", () => {
+  test("does not render out anything in case of an error and if withoutUserFeedback is set", () => {
+    const logError = jest.fn();
+    const Component = () => {
+      // eslint-disable-next-line fp/no-throw
+      throw new Error("Test");
+    };
+    const rendered = mount(
+      <ErrorBoundary logError={logError} withoutUserFeedback>
+        <Component />
+      </ErrorBoundary>
+    );
+
+    expect(rendered.find("ErrorBoundaryUserFeedback")).toHaveLength(0);
+    expect(rendered.html()).toBeNull();
+  });
+
+  test("renders a user feedback by default in case of an error", () => {
     const logError = jest.fn();
     const Component = () => {
       // eslint-disable-next-line fp/no-throw
@@ -41,7 +57,7 @@ describe("<ErrorBoundary />", () => {
       </ErrorBoundary>
     );
 
-    expect(rendered.html()).toBeNull();
+    expect(rendered.find("ErrorBoundaryUserFeedback")).toHaveLength(1);
   });
 
   test("calls the logError() function if there was an error thrown in the children", () => {
