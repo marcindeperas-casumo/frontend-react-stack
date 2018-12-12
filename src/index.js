@@ -8,7 +8,7 @@ import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "./DurandalReactBridge";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, disableReactDevTools } from "Utils";
+import { isEnvProduction, isEnvDevelopment, disableReactDevTools } from "Utils";
 import Debugger from "Utils/Debugger";
 import "./styles/index.scss";
 
@@ -39,8 +39,6 @@ if (isEnvProduction()) {
   disableReactDevTools();
 }
 
-const isCasumoTest = window.location.hostname === "m.casumotest.com";
-
-if (!isEnvProduction() || isCasumoTest) {
+if (isEnvDevelopment()) {
   window.Debugger = Debugger;
 }
