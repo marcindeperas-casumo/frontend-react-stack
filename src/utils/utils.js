@@ -316,3 +316,18 @@ export const sanitizeObject = (obj, keysToSanitize = []) => {
     .map(key => key.split("."))
     .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
+
+// TODO: Figure out why we need this, if not needed remove,
+// if needed explain it in a comment
+export const disableReactDevTools = () => {
+  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
+    // eslint-disable-next-line fp/no-loops, fp/no-let
+    for (let [key, value] of Object.entries(
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__
+    )) {
+      // eslint-disable-next-line fp/no-mutation
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
+        typeof value === "function" ? () => {} : null;
+    }
+  }
+};

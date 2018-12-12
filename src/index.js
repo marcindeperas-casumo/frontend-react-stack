@@ -8,7 +8,7 @@ import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "./DurandalReactBridge";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction } from "./utils";
+import { isEnvProduction, disableReactDevTools } from "Utils";
 import Debugger from "Utils/Debugger";
 import "./styles/index.scss";
 
@@ -36,16 +36,7 @@ if (module.hot) {
 }
 
 if (isEnvProduction()) {
-  // disable react-dev-tools for this project
-  if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
-    // eslint-disable-next-line fp/no-loops
-    for (let [key, value] of Object.entries(
-      window.__REACT_DEVTOOLS_GLOBAL_HOOK__
-    )) {
-      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
-        typeof value === "function" ? () => {} : null;
-    }
-  }
+  disableReactDevTools();
 }
 
 const isCasumoTest = window.location.hostname === "m.casumotest.com";
