@@ -275,7 +275,7 @@ describe("Game Browser Service", () => {
           country: "de",
           platform: "desktop",
           hash: "top-list-hash-default-variant",
-          slugs: undefined, //Q: is this ok?
+          slugs: undefined,
           variant: "default",
         });
       });
