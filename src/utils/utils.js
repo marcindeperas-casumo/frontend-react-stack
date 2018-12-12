@@ -1,4 +1,4 @@
-import { prop, splitEvery, lensPath, set } from "ramda";
+import { prop, splitEvery, assocPath } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -314,5 +314,5 @@ export const renderBets = o =>
 export const sanitizeObject = (obj, keysToSanitize = []) => {
   return keysToSanitize
     .map(key => key.split("."))
-    .reduce((acc, key) => set(lensPath(key), "******", acc), obj);
+    .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
