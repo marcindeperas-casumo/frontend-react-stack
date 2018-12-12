@@ -1,8 +1,13 @@
 // @flow
 import React from "react";
+import type { Node } from "react";
 import { connect } from "react-redux";
 import ErrorBoundary from "./ErrorBoundary";
 import { logError } from "Models/errors";
+
+type Props = {
+  children: Node,
+};
 
 const ErrorBoundaryConnected = connect(
   () => ({}),
@@ -11,8 +16,8 @@ const ErrorBoundaryConnected = connect(
   })
 )(ErrorBoundary);
 
-const ErrorBoundaryContainer = () => {
-  return <ErrorBoundaryConnected />;
+const ErrorBoundaryContainer = (props: Props) => {
+  return <ErrorBoundaryConnected {...props} />;
 };
 
 export default ErrorBoundaryContainer;
