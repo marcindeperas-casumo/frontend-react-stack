@@ -22,6 +22,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
           align="center"
           size="md"
           className="u-padding--lg t-background-grey-light-2"
+          data-test="must-drop-jackpot-title"
         >
           {title}
         </Text>

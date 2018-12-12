@@ -10,7 +10,7 @@ stories.add(
   "Default",
   () => (
     <div style={{ maxWidth: 546 }}>
-      <PromotionHeaderImage image="https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png" />
+      <PromotionHeaderImage image="https://cms.casumo.com/wp-content/uploads/2018/11/boosted-reel-races.png" />
     </div>
   ),
   info({ text: "Default" })

@@ -65,3 +65,9 @@ export const LANGUAGES = {
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
 };
+
+export const ENVS = {
+  DEVELOPMENT: "DEVELOPMENT",
+  PRODUCTION: "PRODUCTION",
+  TEST: "TEST",
+};
