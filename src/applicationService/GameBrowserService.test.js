@@ -9,13 +9,18 @@ jest.mock("../applicationService/SessionService");
 
 describe("Game Browser Service", () => {
   describe("GameBrowserServiceFactory", () => {
+    let service;
+    beforeEach(() => {
+      service = GameBrowserServiceFactory({
+        gameBrowserClient: gameBrowserClientMock,
+        sessionService: sessionServiceMock,
+      });
+
+      jest.resetAllMocks();
+    });
+
     describe("config()", () => {
       test("should set the default config to platform = mobile", async () => {
-        const service = GameBrowserServiceFactory({
-          gameBrowserClient: gameBrowserClientMock,
-          sessionService: sessionServiceMock,
-        });
-
         service.config.set({});
 
         expect(service.config.get()).toEqual({
@@ -25,16 +30,7 @@ describe("Game Browser Service", () => {
     });
 
     describe("allTopLists()", () => {
-      let service;
-
       beforeEach(() => {
-        service = GameBrowserServiceFactory({
-          gameBrowserClient: gameBrowserClientMock,
-          sessionService: sessionServiceMock,
-        });
-
-        jest.resetAllMocks();
-
         gameBrowserClientMock.handshake.mockResolvedValue({
           gamesLists: {
             "top-list-1": {
@@ -147,14 +143,7 @@ describe("Game Browser Service", () => {
     });
 
     describe("latestPlayedGames()", () => {
-      let service;
-
       beforeEach(() => {
-        jest.resetAllMocks();
-        service = GameBrowserServiceFactory({
-          gameBrowserClient: gameBrowserClientMock,
-          sessionService: sessionServiceMock,
-        });
         gameBrowserClientMock.handshake.mockResolvedValue({
           gamesLists: {
             "top-list-1": {
@@ -242,11 +231,6 @@ describe("Game Browser Service", () => {
     });
 
     describe("gamesBySlugs()", () => {
-      const service = GameBrowserServiceFactory({
-        gameBrowserClient: gameBrowserClientMock,
-        sessionService: sessionServiceMock,
-      });
-
       beforeEach(() => {
         gameBrowserClientMock.handshake.mockResolvedValue({
           gamesLists: {
