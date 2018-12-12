@@ -1,4 +1,4 @@
-import { assoc, complement, compose, isNil, prop } from "ramda";
+import { complement, compose, isNil, prop } from "ramda";
 
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
@@ -71,6 +71,66 @@ const fetchLatestPlayedGames = async ({
   return { games: games.games, id, title };
 };
 
+const getLiveCasinoTables = async ({ currency, ids }) => {
+  try {
+    return await GameBrowserClient.liveCasinoTablesById({ ids, currency });
+  } catch (e) {
+    console.error("Live casino tables query is unavailable 🤷‍♀️", e);
+    return [];
+  }
+};
+
+const gameListFetcher = async ({ id, variant, platform, country }) => {
+  try {
+    return await GameBrowserClient.gamesLists({
+      platform,
+      country,
+      id,
+      variant,
+      pageSize: 20,
+    }).then(x => x.games);
+  } catch (e) {
+    console.error("Games lists query is unavailable 🤷‍♀️", e);
+    return [];
+  }
+};
+
+const handleLiveCasino = async ({ currency, liveCasinoGamesList }) => {
+  const liveCasinoGamesById = liveCasinoGamesList.reduce(
+    (acc, game) => ({
+      ...acc,
+      [game.tableId]: game,
+    }),
+    {}
+  );
+
+  const liveCasinoTables = await getLiveCasinoTables({
+    currency,
+    ids: liveCasinoGamesList.map(({ tableId }) => tableId),
+  });
+
+  const getImageForTable = compose(
+    prop("L"),
+    prop("thumbnails"),
+    prop("videoSnapshot")
+  );
+
+  return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({
+    ...liveCasinoGamesById[table.tableId],
+    lobby: {
+      tableId: table.tableId,
+      type: table.gameType,
+      image: getImageForTable(table),
+      bets: table.betLimits[currency],
+      players: table.players,
+      results: table.results || table.history || null,
+      betBehind: table.betBehind || null,
+      seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
+      provider: table.provider,
+    },
+  }));
+};
+
 export const fetchGames = async ({
   platform,
   country,
@@ -79,143 +139,68 @@ export const fetchGames = async ({
   playerId,
   handshake,
 }) => {
-  const gameFetcherById = {
-    // Having multiple listIds for the same type is a bit risky. Let's
-    // streamline this.
-    liveCasino: (...args) => gameFetcherById.liveCasinoGames(...args),
-    liveCasinoGames: async ({
-      id,
-      variants,
-      title,
-      variant,
-      currency,
-      country,
-      platform,
-    }) => {
-      const liveCasinoGamesList = await gameFetcherById.DEFAULT({
-        country,
-        platform,
-        id,
-        variants,
-        title,
-        variant,
-      });
-
-      const liveCasinoGamesById = () => {
-        try {
-          return liveCasinoGamesList.games.reduce(
-            (accumulator, game) => assoc(game.tableId, game, accumulator),
-            {}
-          );
-        } catch (e) {
-          return {};
-        }
-      };
-
-      // eslint-disable-next-line fp/no-let
-      let liveCasinoTables;
-
-      try {
-        // eslint-disable-next-line fp/no-mutation
-        liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
-          ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
-          currency,
-        });
-      } catch (e) {
-        console.error("Live casino tables query is unavailable 🤷‍♀️", e);
-        // eslint-disable-next-line fp/no-mutation
-        liveCasinoTables = [];
-      }
-
-      const getImageForTable = compose(
-        prop("L"),
-        prop("thumbnails"),
-        prop("videoSnapshot")
-      );
-
-      return {
-        ...liveCasinoGamesList,
-        games: liveCasinoTables
-          .filter(({ open }) => Boolean(open))
-          .map(table => ({
-            ...liveCasinoGamesById()[table.tableId],
-            lobby: {
-              tableId: table.tableId,
-              type: table.gameType,
-              image: getImageForTable(table),
-              bets: table.betLimits[currency],
-              players: table.players,
-              results: table.results || table.history || null,
-              betBehind: table.betBehind || null,
-              seats: table.seatsTaken
-                ? table.seats - table.seatsTaken.length
-                : null,
-              provider: table.provider,
-            },
-          })),
-      };
-    },
-    DEFAULT: async ({ id, variant, platform, country }) => {
-      try {
-        return await GameBrowserClient.gamesLists({
-          platform,
-          country,
-          id,
-          variant,
-          pageSize: 20,
-        });
-      } catch (e) {
-        console.error("Games lists query is unavailable 🤷‍♀️", e);
-        return [];
-      }
-    },
-  };
-
-  const hasSomeGames = compose(
-    i => i > 0,
-    prop("length"),
-    prop("games")
-  );
-
-  const { topListIds, gamesLists } = handshake;
-  const jackpots = getJackpots({
-    market,
-    currencyCode: currency,
-  });
-
-  const gameListsRequests = topListIds
-    .map(id => prop(id, gamesLists))
+  const gameListsRequests = handshake.topListIds
+    .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
-      const games = await (gameFetcherById[id] || gameFetcherById.DEFAULT)({
-        currency,
+      const gamesLists = await gameListFetcher({
         id,
-        variants,
-        title,
         variant,
-        country,
         platform,
+        country,
       });
+
+      if (id === "liveCasinoGames") {
+        try {
+          const liveCasinoGames = await handleLiveCasino({
+            currency,
+            liveCasinoGamesList: gamesLists,
+          });
+
+          return {
+            games: liveCasinoGames,
+            id,
+            title,
+          };
+        } catch (e) {
+          console.error(
+            "Something went wrong while handling live casino games",
+            e
+          );
+          return {};
+        }
+      }
+
       return {
-        games: games.games,
+        games: gamesLists,
         id,
         title,
       };
     });
-
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
     platform,
     playerId,
   });
-
+  const hasSomeGames = compose(
+    i => i > 0,
+    prop("length"),
+    prop("games")
+  );
   const allListsResponses = (await Promise.all([
     latestPlayedGames,
     ...gameListsRequests,
   ])).filter(hasSomeGames);
+  const jackpots = getJackpots({
+    market,
+    currencyCode: currency,
+  });
 
-  return { gameLists: allListsResponses, jackpots: (await jackpots).jackpots };
+  return {
+    gameLists: allListsResponses,
+    jackpots: (await jackpots).jackpots,
+  };
 };
 
 export default fetchGames;
