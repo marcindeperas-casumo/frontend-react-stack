@@ -1,21 +1,27 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
-import rollbarMiddleware from "rollbar-redux-middleware";
 import rootReducer from "Models/rootReducer";
 import rootSaga from "Models/rootSaga";
-import Rollbar from "Lib/rollbar";
-import { isProduction } from "Utils";
+import logger from "Services/logger";
+import createErrorLoggerMiddleware from "Lib/logger.middleware";
+import config from "Src/config";
+import { isEnvProduction } from "Utils";
+
+const { sanitizedStateKeys } = config;
 
 const configureStore = preloadedState => {
-  const composeEnhancers = isProduction()
+  const composeEnhancers = isEnvProduction()
     ? compose
     : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
   const sagaMiddleware = createSagaMiddleware();
-  const rollbarRedux = rollbarMiddleware(Rollbar, null, true);
+  const errorLoggerMiddleware = createErrorLoggerMiddleware(
+    logger.error,
+    sanitizedStateKeys
+  );
 
-  const middlewares = [thunk, rollbarRedux, sagaMiddleware];
+  const middlewares = [thunk, sagaMiddleware, errorLoggerMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
   const enhancers = [middlewareEnhancer];

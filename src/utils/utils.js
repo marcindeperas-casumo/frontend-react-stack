@@ -1,8 +1,20 @@
-import { prop, splitEvery } from "ramda";
+import { prop, splitEvery, assocPath } from "ramda";
+import { ENVS } from "Src/constants";
 
 const { log } = console;
 
-export const isProduction = () => process.env.NODE_ENV === "production";
+export const getEnv = () => {
+  const env = process.env.NODE_ENV || "";
+  const selectedEnv = ENVS[env.toUpperCase()];
+
+  return selectedEnv || ENVS.DEVELOPMENT;
+};
+
+export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
+
+export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
+
+export const isEnvTest = () => getEnv() === ENVS.TEST;
 
 export const sleep = ms => data => {
   return new Promise(resolve => {
@@ -298,3 +310,9 @@ export const generateColumns = (items, numberByColumns = 3) =>
 
 export const renderBets = o =>
   o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
+
+export const sanitizeObject = (obj, keysToSanitize = []) => {
+  return keysToSanitize
+    .map(key => key.split("."))
+    .reduce((acc, key) => assocPath(key, "******", acc), obj);
+};

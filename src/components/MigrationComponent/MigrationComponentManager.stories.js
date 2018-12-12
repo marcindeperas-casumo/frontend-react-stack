@@ -1,6 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { array, withKnobs } from "@storybook/addon-knobs";
+import MockStore from "Components/MockStore";
 import MigrationComponent from "Components/MigrationComponent";
 import MigrationComponentManager from "Components/MigrationComponent/MigrationComponentManager";
 
@@ -12,16 +13,18 @@ stories.add("Show/Hide", () => {
   const value = array(label, ["foo"]);
 
   return (
-    <MigrationComponentManager activeKeys={value}>
-      <MigrationComponent migrationKey="foo">
-        <h1>Foo</h1>
-      </MigrationComponent>
-      <MigrationComponent migrationKey="bar">
-        <h1>Bar</h1>
-      </MigrationComponent>
-      <MigrationComponent migrationKey={["baz", "fiz"]}>
-        <h1>Baz or Fiz</h1>
-      </MigrationComponent>
-    </MigrationComponentManager>
+    <MockStore>
+      <MigrationComponentManager activeKeys={value}>
+        <MigrationComponent migrationKey="foo">
+          <h1>Foo</h1>
+        </MigrationComponent>
+        <MigrationComponent migrationKey="bar">
+          <h1>Bar</h1>
+        </MigrationComponent>
+        <MigrationComponent migrationKey={["baz", "fiz"]}>
+          <h1>Baz or Fiz</h1>
+        </MigrationComponent>
+      </MigrationComponentManager>
+    </MockStore>
   );
 });

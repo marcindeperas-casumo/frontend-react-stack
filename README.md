@@ -5,6 +5,7 @@
 - [How it works](#how-it-works)
 - [Usage](#development-instructions)
 - [Resources](#resources)
+- [Error Handling](./docs/error-handling.md)
 - Modules
   - [CometD](./src/models/cometd/README.md)
 
