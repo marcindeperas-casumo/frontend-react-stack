@@ -317,8 +317,10 @@ export const sanitizeObject = (obj, keysToSanitize = []) => {
     .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
 
-// TODO: Figure out why we need this, if not needed remove,
-// if needed explain it in a comment
+// Call this to disable react DevTools integration, meaning that this will
+// prevent the react DevTools extension to scan the elements and show anything
+// react related in the extension tab. Ideally this is only called in production
+// environments.
 export const disableReactDevTools = () => {
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
     // eslint-disable-next-line fp/no-loops, fp/no-let
