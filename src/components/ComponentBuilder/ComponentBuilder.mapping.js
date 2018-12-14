@@ -11,6 +11,7 @@ import ContentSubtitle from "Components/ContentSubtitle";
 import ContentButton from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
+import PromotionGallery from "Components/PromotionGallery";
 import ContentMediaList from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
@@ -30,6 +31,7 @@ export const COMPONENT_MAPPING = {
   CTA: ContentButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
+  PROMOTION_CARDS_GALLERY: PromotionGallery,
   THUMBNAIL_LIST: ContentMediaList,
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
   PROMOTION_TITLE: PromotionTitle,
