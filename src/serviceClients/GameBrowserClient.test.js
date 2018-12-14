@@ -146,15 +146,5 @@ describe("GameBrowserClientFactory", () => {
         "gamebrowser/liveCasino/tablesById?id%5B%5D=foo&id%5B%5D=bar&currency=EUR"
       );
     });
-
-    //Q: Should this fail? I reckon not passing an Id is a valid case.
-    test.skip("should call http service without query params by default on liveCasinoTablesById", async () => {
-      await client.liveCasinoTablesById();
-
-      expect(httpService.get).toHaveBeenCalledTimes(1);
-      expect(httpService.get).toBeCalledWith(
-        "gamebrowser/liveCasino/tablesById?"
-      );
-    });
   });
 });
