@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
 
 import info from "Storybook/storybookInfo";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 
 const stories = storiesOf("List", module);
 

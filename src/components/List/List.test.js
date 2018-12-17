@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 
 describe("List", () => {
   test("should render a list item for every item in items array", () => {

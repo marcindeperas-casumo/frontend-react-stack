@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Media from "Components/Media";
+import Media from "@casumo/cmp-media";
 
 describe("Media", () => {
   test("should call renderImage and renderText props", () => {
