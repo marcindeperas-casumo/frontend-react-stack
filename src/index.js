@@ -8,9 +8,8 @@ import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "./DurandalReactBridge";
 import configureStore from "./configureStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction } from "./utils";
+import { isEnvProduction, isEnvDevelopment } from "Utils";
 import Debugger from "Utils/Debugger";
-import { updateEntity } from "Models/schema";
 import "./styles/index.scss";
 
 const store = configureStore();
@@ -37,61 +36,27 @@ if (module.hot) {
 }
 
 if (isEnvProduction()) {
-  // disable react-dev-tools for this project
+  disableReactDevTools();
+}
+
+if (isEnvDevelopment()) {
+  window.Debugger = Debugger;
+}
+
+// Call this to disable react DevTools integration, meaning that this will
+// prevent the react DevTools extension to scan the elements and show anything
+// react related in the extension tab.
+// We need it to prevent people to look into our React tree with the extension
+// in production.
+function disableReactDevTools() {
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
-    // eslint-disable-next-line fp/no-loops
+    // eslint-disable-next-line fp/no-loops, fp/no-let
     for (let [key, value] of Object.entries(
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__
     )) {
+      // eslint-disable-next-line fp/no-mutation
       window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
         typeof value === "function" ? () => {} : null;
     }
   }
-}
-
-const isCasumoTest = window.location.hostname === "m.casumotest.com";
-
-if (!isEnvProduction() || isCasumoTest) {
-  window.Debugger = Debugger;
-
-  /* This is only for showing xmas campaign components whilst we are not live, will be removed after that */
-  Debugger.showPromotions = (lang = "en") => {
-    store.dispatch(
-      updateEntity({
-        cms: {
-          [`built-pages.top-lists-${lang}`]: {
-            id: "87740",
-            slug: `top-lists-${lang}`,
-            title: `Top Lists ${lang}`,
-            content: "",
-            attachments: [],
-            custom_fields: {},
-            fields: {
-              critical_for_compliance: false,
-              "": false,
-              content_builder: [
-                { acf_fc_layout: "CURATED_CARD" },
-                { acf_fc_layout: "GAMES_LIST", id: "latestPlayedGames" },
-                { acf_fc_layout: "GAMES_LIST", id: "popularGames" },
-                { acf_fc_layout: "GAMES_LIST", id: "newGames" },
-                {
-                  acf_fc_layout: "PROMOTION_CARDS_HORIZONTAL",
-                  slug: "campaigns.winter-games",
-                  title: "All Promotions",
-                  titleColor: "white",
-                  backgroundColor: "blue",
-                },
-                { acf_fc_layout: "GAMES_LIST", id: "exclusiveGames" },
-                { acf_fc_layout: "GAMES_LIST", id: "casumoFavouriteGames" },
-                { acf_fc_layout: "GAMES_LIST", id: "liveCasinoGames" },
-                { acf_fc_layout: "JACKPOTS" },
-              ],
-            },
-            children: [],
-            childSlugs: [],
-          },
-        },
-      })
-    );
-  };
 }
