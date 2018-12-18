@@ -319,8 +319,9 @@ export const sanitizeObject = (obj, keysToSanitize = []) => {
 
 // Call this to disable react DevTools integration, meaning that this will
 // prevent the react DevTools extension to scan the elements and show anything
-// react related in the extension tab. Ideally this is only called in production
-// environments.
+// react related in the extension tab.
+// We need it to prevent people to look into our React tree with the extension
+// in production.
 export const disableReactDevTools = () => {
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
     // eslint-disable-next-line fp/no-loops, fp/no-let
