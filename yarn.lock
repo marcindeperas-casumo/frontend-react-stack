@@ -797,7 +797,7 @@
   resolved "http://npm.casumotest.local/@casumo%2fcmp-skeleton/-/cmp-skeleton-1.2.4.tgz#caaf1992453d078a825e224ea77cd45cd0916bc8"
   integrity sha512-iWVsye5aPsaVhnA0iU3WfPO8ShNDbBth/yhceSnrTlwvIXesHELksb1VOiD+eZyspJHOm5x2cL10zPStQnSXZQ==
 
-"@casumo/cmp-table@^1.0.0":
+"@casumo/cmp-table@^1.0.1":
   version "1.0.1"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-table/-/cmp-table-1.0.1.tgz#5a3332773905a647573c343bc1de8ced8ee79c42"
   integrity sha512-rTPKBH4rbeJALXjEwA498Eoan1T0sVAG0GGZdHXfaprh4kdN2eiwzfGP1Nki8ckM1NHGFbYlSroj14QQhGFU8Q==
@@ -10436,10 +10436,10 @@ preserve@^0.2.0:
   resolved "https://registry.yarnpkg.com/preserve/-/preserve-0.2.0.tgz#815ed1f6ebc65926f865b310c0713bcb3315ce4b"
   integrity sha1-gV7R9uvGWSb4ZbMQwHE7yzMVzks=
 
-prettier@^1.13.7:
-  version "1.15.3"
-  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.15.3.tgz#1feaac5bdd181237b54dbe65d874e02a1472786a"
-  integrity sha512-gAU9AGAPMaKb3NNSUUuhhFAS7SCO4ALTN4nRIn6PJ075Qd28Yn2Ig2ahEJWdJwJmlEBTUfC7mMUSFy8MwsOCfg==
+prettier@1.13.7:
+  version "1.13.7"
+  resolved "https://registry.yarnpkg.com/prettier/-/prettier-1.13.7.tgz#850f3b8af784a49a6ea2d2eaa7ed1428a34b7281"
+  integrity sha512-KIU72UmYPGk4MujZGYMFwinB7lOf2LsDNGSOC8ufevsrPLISrZbNJlWstRi3m0AMuszbH+EFSQ/r6w56RSPK6w==
 
 pretty-bytes@^4.0.2:
   version "4.0.2"
