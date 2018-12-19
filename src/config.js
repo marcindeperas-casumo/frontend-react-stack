@@ -11,4 +11,6 @@ export default {
   // NOTE! This is not perfect yet, as it will remove the entire player object,
   // while it would be nice to only mask the certain player fields we want to exclude.
   sanitizedStateKeys: ["handshake.app.common/composition/players.players"],
+  mixpanelToken: "3fbce91260206fe6086705fc27f4b4ca",
+  mixpanelProjectName: "react-stack",
 };
