@@ -13,8 +13,10 @@ const LiveCasinoCardConnected = connect(
   (state, { id }) => ({ game: gameSelector(id)(state) }),
   (dispatch, { id }) => ({
     launchGame: () => dispatch(launchGame(id)),
-    subscribeToUpdates: id => dispatch(subscribeLiveCasinoUpdates(id)),
-    unsubscribeFromUpdates: id => dispatch(unsubscribeLiveCasinoUpdates(id)),
+    subscribeToUpdates: tableId =>
+      dispatch(subscribeLiveCasinoUpdates(tableId)),
+    unsubscribeFromUpdates: tableId =>
+      dispatch(unsubscribeLiveCasinoUpdates(tableId)),
   })
 )(LiveCasinoCard);
 

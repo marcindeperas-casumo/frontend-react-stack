@@ -12,6 +12,7 @@ import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 import { renderBets } from "Utils/utils";
+import { compose, defaultTo, prop } from "ramda";
 
 export type Props = {
   game: Game,
@@ -20,21 +21,35 @@ export type Props = {
   unsubscribeFromUpdates: string => void,
 };
 
+export const getTableId = compose(
+  prop("tableId"),
+  prop("lobby")
+);
+
 export default class LiveCasinoCard extends PureComponent<Props> {
   componentDidMount() {
     const { game, subscribeToUpdates } = this.props;
-    game.lobby && subscribeToUpdates(game.lobby.tableId);
+    const tableId = getTableId(game);
+    tableId && subscribeToUpdates(tableId);
   }
 
   componentWillUnmount() {
     const { game, unsubscribeFromUpdates } = this.props;
-    game.lobby && unsubscribeFromUpdates(game.lobby.tableId);
+    const tableId = getTableId(game);
+    tableId && unsubscribeFromUpdates(tableId);
+  }
+
+  get lobby() {
+    const getLobby = compose(
+      defaultTo({}),
+      prop("lobby")
+    );
+
+    return getLobby(this.props.game);
   }
 
   renderHeader = () => {
-    const {
-      game: { lobby },
-    } = this.props;
+    const { lobby } = this;
 
     return (
       <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
@@ -84,29 +99,28 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderFooter = () => {
-    const {
-      game: { lobby },
-    } = this.props;
+    const { lobby } = this;
 
     return <CardFooter players={lobby.players} provider={lobby.provider} />;
   };
 
   render() {
-    const { game } = this.props;
+    const { lobby } = this;
+
+    if (!lobby) {
+      return null;
+    }
 
     return (
-      (game.lobby && (
-        <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
-          <Card
-            className="u-width--1/1"
-            spacing="md"
-            header={this.renderHeader}
-            content={this.renderContent}
-            footer={this.renderFooter}
-          />
-        </Flex.Item>
-      )) ||
-      null
+      <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
+        <Card
+          className="u-width--1/1"
+          spacing="md"
+          header={this.renderHeader}
+          content={this.renderContent}
+          footer={this.renderFooter}
+        />
+      </Flex.Item>
     );
   }
 }

@@ -14,11 +14,14 @@ describe("Models/LiveCasino/UpdateSaga", () => {
   const generator = liveCasinoUpdatesSaga(action);
   generator.next();
 
-  test("finishes after updating", () => {
+  test("updates table and finishes after updating", () => {
     const table = tableMock;
-    const expected = generator.next(table).value.PUT.action.payload.liveTable;
+    const dispatchedAction = generator.next(table).value.PUT.action;
+    const dispatchedTableId = action.data.tableId;
+    const dispatchedPlayers =
+      dispatchedAction.payload.liveTable[dispatchedTableId].players;
 
-    expect(expected[action.data.tableId].players).toEqual(action.data.players);
+    expect(dispatchedPlayers).toEqual(action.data.players);
     expect(generator.next().done).toBe(true);
   });
 });

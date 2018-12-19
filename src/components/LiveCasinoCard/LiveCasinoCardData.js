@@ -8,11 +8,6 @@ import CMSField from "Components/CMSField";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
-const RENDER_TYPE = {
-  SEATS: "seats",
-  RESULTS: "results",
-};
-
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
 
@@ -92,26 +87,21 @@ const getText = field => (
   />
 );
 
-const renderType = {
-  results: renderResults,
-  seats: renderSeats,
+const isIn = flip(contains);
+const LobbyType = ({ lobby }) => {
+  const { type } = lobby;
+  return cond([
+    [equals("Blackjack"), () => renderSeats(lobby)],
+    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => renderResults(lobby)],
+    [T, () => null],
+  ])(type);
 };
 
-const isIn = flip(contains);
-
 const CardData = ({ lobby }) => {
-  const type = cond([
-    [equals("Blackjack"), () => RENDER_TYPE.SEATS],
-    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => RENDER_TYPE.RESULTS],
-    [T, () => null],
-  ])(lobby.type);
-
   return (
-    type && (
-      <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        {renderType[type](lobby)}
-      </div>
-    )
+    <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+      <LobbyType lobby={lobby} />
+    </div>
   );
 };
 
