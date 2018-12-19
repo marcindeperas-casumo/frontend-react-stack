@@ -6,6 +6,7 @@
 - [Usage](#development-instructions)
 - [Resources](#resources)
 - [Error Handling](./docs/error-handling.md)
+- [Tracking](./docs/tracking.md)
 - Modules
   - [CometD](./src/models/cometd/README.md)
 
