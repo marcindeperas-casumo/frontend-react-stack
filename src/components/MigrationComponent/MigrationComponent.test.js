@@ -12,6 +12,15 @@ describe("MigrationComponent", () => {
     expect(component.contains(child)).toBe(true);
   });
 
+  test("has an error boundary", () => {
+    const child = <div>foo</div>;
+    const component = shallow(
+      <MigrationComponent migrationKey="foo">{child}</MigrationComponent>
+    );
+
+    expect(component.find("ErrorBoundaryContainer")).toHaveLength(1);
+  });
+
   test("should have a migrationKey prop value", () => {
     expect(() => {
       shallow(

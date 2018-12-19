@@ -25,9 +25,9 @@ export class List extends PureComponent<Props> {
     );
 
     return (
-      <ul className="o-list-bare u-margin-bottom--none">
+      <ul className="o-list-bare u-margin-bottom--none" data-test="list">
         {items.map((item, i) => (
-          <li key={i} className={listItemClasses}>
+          <li key={i} className={listItemClasses} data-test="list-item">
             <div className="t-color-grey-dark-3">{this.renderItem(item)}</div>
           </li>
         ))}

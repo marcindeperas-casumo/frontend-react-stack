@@ -1,23 +1,26 @@
 // @flow
 import React from "react";
 import { COMPONENT_MAPPING } from "Components/ComponentBuilder/ComponentBuilder.mapping";
+import logger from "Services/logger";
 
 type ContentDefinition = {
   acf_fc_layout: string,
 };
 
 export const mapContentDefinitionToComponent = (
-  contentDefinition: ContentDefinition,
-  i: number
+  contentDefinition: ContentDefinition
 ) => {
   const typeKey = "acf_fc_layout";
   const { [typeKey]: type, ...rest } = contentDefinition;
-  const component = COMPONENT_MAPPING[type];
+  const Component = COMPONENT_MAPPING[type];
 
-  if (!component) {
-    // TODO: add error logging here
+  if (!Component) {
+    logger.error("ComponentBuilder: component not found", {
+      contentDefinition,
+    });
+
     return null;
   }
 
-  return React.createElement(component, { ...rest, key: i });
+  return <Component {...rest} />;
 };

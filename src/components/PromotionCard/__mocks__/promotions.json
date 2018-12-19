@@ -49,7 +49,7 @@
     "content": "",
     "attachments": [
       {
-        "url": "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png",
+        "url": "https://cms.casumo.com/wp-content/uploads/2018/11/boosted-reel-races.png",
         "title": "promotion-boostedreelraces"
       },
       {
@@ -60,10 +60,10 @@
     "custom_fields": {},
     "fields": {
       "critical_for_compliance": false,
-      "dates": "30 Nov 2018 - 6 Jan 2019",
+      "dates": "30 Nov - 6 Jan",
       "": false,
       "title": "Boosted Reel Races",
-      "image": "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-boostedreelraces.png",
+      "image": "https://cms.casumo.com/wp-content/uploads/2018/11/boosted-reel-races.png",
       "teaser_text": "Compete against other players for the top spot in our fast-paced tournaments.",
       "content_builder": false,
       "badge": "https://cms.casumo.com/wp-content/uploads/2018/10/promobadge-boostedreelraces.png",
@@ -112,7 +112,7 @@
     "custom_fields": {},
     "fields": {
       "critical_for_compliance": false,
-      "dates": "30 Nov 2018 - 6 Jan 2019",
+      "dates": "30 Nov - 6 Jan",
       "": false,
       "title": "Must Drop Jackpots",
       "image": "https://cms.casumo.com/wp-content/uploads/2018/10/promotion-mustdropjackpots.png",
@@ -178,7 +178,7 @@
     "custom_fields": {},
     "fields": {
       "critical_for_compliance": false,
-      "dates": "1 Dec - 23 Dec 2018",
+      "dates": "1 Dec - 23 Dec",
       "badge": "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
       "campaign_badge": "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
       "title": "The Big Giveaway",
@@ -209,7 +209,7 @@
     "custom_fields": {},
     "fields": {
       "critical_for_compliance": false,
-      "dates": "3 Dec  - 9 Dec 2018",
+      "dates": "3 Dec - 9 Dec",
       "badge": "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
       "campaign_badge": "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
       "title": "Mystery Prizes",
@@ -236,7 +236,7 @@
     "custom_fields": {},
     "fields": {
       "critical_for_compliance": false,
-      "dates": "17 Dec  - 30 Dec 2018",
+      "dates": "17 Dec - 30 Dec",
       "badge": "https://cms.casumo.com/wp-content/uploads/2018/11/promotionbadge-mysteryprizes.png",
       "campaign_badge": "https://cms.casumo.com/wp-content/uploads/2018/10/badge-wintergames.png",
       "title": "Christmas Countdown",
