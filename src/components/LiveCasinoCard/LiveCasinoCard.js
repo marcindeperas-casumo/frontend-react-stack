@@ -12,7 +12,7 @@ import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 import { renderBets } from "Utils/utils";
-import { compose, defaultTo, prop } from "ramda";
+import { compose, prop } from "ramda";
 
 export type Props = {
   game: Game,
@@ -40,10 +40,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   }
 
   get lobby() {
-    const getLobby = compose(
-      defaultTo({}),
-      prop("lobby")
-    );
+    const getLobby = prop("lobby");
 
     return getLobby(this.props.game);
   }
