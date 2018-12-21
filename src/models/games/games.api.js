@@ -3,41 +3,6 @@ import { complement, compose, isNil, prop } from "ramda";
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
 
-const playerLatestPlayedGames = async ({ playerId }) => {
-  try {
-    return await GameBrowserClient.latestPlayedGames({
-      playerId,
-      pageSize: 20,
-    });
-  } catch (e) {
-    console.error("Latest played games query is unavailable 🤷‍♀️", e);
-    return [];
-  }
-};
-
-const gamesByProviderGameNames = async ({
-  country,
-  platform,
-  variant,
-  providerGameNames,
-}) => {
-  try {
-    return await GameBrowserClient.gamesByProviderGameNames({
-      country,
-      platform,
-      variant,
-      providerGameNames,
-    });
-  } catch (e) {
-    console.error("Games by provider name query is unavailable 🤷‍♀️", e);
-    return [];
-  }
-};
-
-const gameListMetaDataById = ({ handshake, id }) => {
-  return handshake.gamesLists[id];
-};
-
 const fetchLatestPlayedGames = async ({
   variant = "default",
   handshake,
@@ -45,9 +10,12 @@ const fetchLatestPlayedGames = async ({
   platform,
   playerId,
 } = {}) => {
-  const latestPlayedProviderGameNames = await playerLatestPlayedGames({
-    playerId,
-  });
+  const latestPlayedProviderGameNames = await GameBrowserClient.latestPlayedGames(
+    {
+      playerId,
+      pageSize: 20,
+    }
+  );
 
   if (
     !latestPlayedProviderGameNames ||
@@ -56,43 +24,15 @@ const fetchLatestPlayedGames = async ({
     return null;
   }
 
-  const { id, title } = gameListMetaDataById({
-    handshake,
-    id: "latestPlayedGames",
-  });
-
-  const games = await gamesByProviderGameNames({
+  const { id, title } = handshake.gamesLists.latestPlayedGames;
+  const games = await GameBrowserClient.gamesByProviderGameNames({
     country,
     platform,
     variant,
     providerGameNames: latestPlayedProviderGameNames.map(prop("gameName")),
-  });
+  }).then(x => x.games);
 
-  return { games: games.games, id, title };
-};
-
-const getLiveCasinoTables = async ({ currency, ids }) => {
-  try {
-    return await GameBrowserClient.liveCasinoTablesById({ ids, currency });
-  } catch (e) {
-    console.error("Live casino tables query is unavailable 🤷‍♀️", e);
-    return [];
-  }
-};
-
-const gameListFetcher = async ({ id, variant, platform, country }) => {
-  try {
-    return await GameBrowserClient.gamesLists({
-      platform,
-      country,
-      id,
-      variant,
-      pageSize: 20,
-    }).then(x => x.games);
-  } catch (e) {
-    console.error("Games lists query is unavailable 🤷‍♀️", e);
-    return [];
-  }
+  return { games, id, title };
 };
 
 const handleLiveCasino = async ({ currency, liveCasinoGamesList }) => {
@@ -104,7 +44,7 @@ const handleLiveCasino = async ({ currency, liveCasinoGamesList }) => {
     {}
   );
 
-  const liveCasinoTables = await getLiveCasinoTables({
+  const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
     currency,
     ids: liveCasinoGamesList.map(({ tableId }) => tableId),
   });
@@ -143,12 +83,13 @@ export const fetchGames = async ({
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
-      const gamesLists = await gameListFetcher({
+      const gamesLists = await GameBrowserClient.gamesLists({
         id,
         variant,
         platform,
         country,
-      });
+        pageSize: 20,
+      }).then(x => x.games);
 
       if (id === "liveCasinoGames") {
         try {
@@ -202,5 +143,3 @@ export const fetchGames = async ({
     jackpots: (await jackpots).jackpots,
   };
 };
-
-export default fetchGames;
