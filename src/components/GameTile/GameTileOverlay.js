@@ -8,6 +8,7 @@ import { MoreIcon } from "@casumo/cmp-icons";
 import { decodeString } from "Utils/index";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
+import TrackClick from "Components/TrackClick";
 
 type Props = {
   name: string,
@@ -42,7 +43,9 @@ const GameTileOverlay = ({
       {inMaintenanceMode ? (
         <TemporaryUnavailable />
       ) : (
-        <PlayAction onLaunchGame={onLaunchGame} />
+        <TrackClick eventName="Game Launch" data={{ slug }}>
+          <PlayAction onLaunchGame={onLaunchGame} />
+        </TrackClick>
       )}
 
       <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
