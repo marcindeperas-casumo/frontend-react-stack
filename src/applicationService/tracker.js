@@ -3,7 +3,7 @@ import config from "Src/config";
 import { ENVS } from "Src/constants";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
-import craeteAdapterNull from "Lib/tracker.adapter.null";
+import createAdapterLog from "Lib/tracker.adapter.log";
 import logger from "Services/logger";
 
 const tracker = createTracker(getAdapters());
@@ -17,18 +17,18 @@ export const setState = tracker.setState;
 function getAdapters() {
   const env = getEnv();
   const adapterGetterByEnv = {
-    [ENVS.TEST]: getAdaptersNull,
-    [ENVS.DEVELOPMENT]: getAdaptersNull,
+    [ENVS.TEST]: getAdaptersDev,
+    [ENVS.DEVELOPMENT]: getAdaptersDev,
     [ENVS.PRODUCTION]: getAdaptersProd,
   };
 
   return adapterGetterByEnv[env]();
 }
 
-function getAdaptersNull() {
-  const adapterNull = craeteAdapterNull(logger);
+function getAdaptersDev() {
+  const adapterLog = createAdapterLog(logger);
 
-  return [adapterNull];
+  return [adapterLog];
 }
 
 function getAdaptersProd() {
