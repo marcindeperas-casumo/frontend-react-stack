@@ -24,7 +24,7 @@ type Props = {};
 
 const MustDropJackpotListContainer = (props: Props) => {
   return (
-    <TrackProvider data={{ gameCategory: "Must Drop Jackpots" }}>
+    <TrackProvider data={{ gameCategory: "Must Drop Jackpots - Page" }}>
       <MustDropJackpotListConnected {...props} />
     </TrackProvider>
   );
