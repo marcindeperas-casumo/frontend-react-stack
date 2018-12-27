@@ -5,8 +5,10 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 
 import { decodeString } from "Utils/index";
+import { EVENTS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
+import TrackClick from "Components/TrackClick";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 
@@ -41,12 +43,14 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
       <Text tag="span">{renderBets(lobby.bets)}</Text>
     </Flex.Block>
     <Flex.Item>
-      <Button
-        onClick={launchGame}
-        className="u-text-nowrap u-text-transform-capitalize"
-      >
-        <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
-      </Button>
+      <TrackClick eventName={EVENTS.GAME_LAUNCH} data={{ name }}>
+        <Button
+          onClick={launchGame}
+          className="u-text-nowrap u-text-transform-capitalize"
+        >
+          <CMSField slug="mobile.live-casino-cards-content" field="play_now" />
+        </Button>
+      </TrackClick>
     </Flex.Item>
   </Flex>
 );
