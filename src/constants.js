@@ -73,6 +73,6 @@ export const ENVS = {
 };
 
 export const EVENTS = {
-  GAME_LAUNCH: "Game Launch",
-  GAME_DETAILS: "Game Details",
+  GAME_LAUNCH: "Game Started",
+  GAME_DETAILS: "Game Information",
 };
