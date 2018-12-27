@@ -1,9 +1,10 @@
-import config from "Src/config";
 import { getEnv } from "Utils";
+import config from "Src/config";
 import { ENVS } from "Src/constants";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
 import craeteAdapterNull from "Lib/tracker.adapter.null";
+import logger from "Services/logger";
 
 const tracker = createTracker(getAdapters());
 
@@ -25,7 +26,7 @@ function getAdapters() {
 }
 
 function getAdaptersNull() {
-  const adapterNull = craeteAdapterNull();
+  const adapterNull = craeteAdapterNull(logger);
 
   return [adapterNull];
 }
