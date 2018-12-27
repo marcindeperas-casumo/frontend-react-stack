@@ -3,11 +3,12 @@
 const noop = () => {};
 
 type Logger = {
-  info: any => void,
+  info: (...args: Array<any>) => void,
 };
 
 const createAdapter = (logger: Logger) => ({
-  track: (eventName, data) => logger.info(`[TRACKING] - ${eventName}`, data),
+  track: (eventName: string, data: Object) =>
+    logger.info(`[TRACKING] - ${eventName}`, data),
   setState: noop,
 });
 
