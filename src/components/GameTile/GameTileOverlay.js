@@ -49,12 +49,14 @@ const GameTileOverlay = ({
         </TrackClick>
       )}
 
-      <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-        <MoreIcon
-          size="med"
-          className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm"
-        />
-      </a>
+      <TrackClick eventName={EVENTS.GAME_DETAILS} data={{ name }}>
+        <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
+          <MoreIcon
+            size="med"
+            className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm"
+          />
+        </a>
+      </TrackClick>
     </Flex>
   );
 };
