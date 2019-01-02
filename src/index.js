@@ -71,9 +71,9 @@ window.addEventListener("error", e => {
   const state = store.getState();
   const sanitizedState = sanitizeObject(state, config.sanitizedStateKeys);
   const stringifiedState = JSON.stringify(sanitizedState);
-  const isErrorComingFromOutside = filename.match("/react-stack/") === null;
+  const isErrorProjectRelated = filename.match("/react-stack/") !== null;
 
-  if (isErrorComingFromOutside) {
+  if (!isErrorProjectRelated) {
     return;
   }
 
