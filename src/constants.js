@@ -79,4 +79,5 @@ export const EVENTS = {
 
 export const EVENT_PROPS = {
   LOCATION: "location",
+  GAME_NAME: "name",
 };

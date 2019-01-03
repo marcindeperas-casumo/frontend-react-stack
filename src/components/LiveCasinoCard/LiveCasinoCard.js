@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 
 import { decodeString } from "Utils/index";
-import { EVENTS } from "Src/constants";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
@@ -43,7 +43,10 @@ const CasinoContent = ({ name, lobby, slug, launchGame }) => (
       <Text tag="span">{renderBets(lobby.bets)}</Text>
     </Flex.Block>
     <Flex.Item>
-      <TrackClick eventName={EVENTS.GAME_LAUNCH} data={{ name }}>
+      <TrackClick
+        eventName={EVENTS.GAME_LAUNCH}
+        data={{ [EVENT_PROPS.GAME_NAME]: name }}
+      >
         <Button
           onClick={launchGame}
           className="u-text-nowrap u-text-transform-capitalize"
