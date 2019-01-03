@@ -14,7 +14,9 @@ class ContentGameList extends PureComponent<Props> {
     const ids = this.props.ids || [];
     return (
       <div className="u-padding-horiz--lg u-margin-bottom--lg">
-        <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "Content Game List" }}>
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: "Promotions - Detail Page" }}
+        >
           <GameListVertical ids={ids} />
         </TrackProvider>
       </div>
