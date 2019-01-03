@@ -1,6 +1,8 @@
+// @flow
 import React from "react";
 import { connect } from "react-redux";
 import MustDropJackpotList from "Components/MustDropJackpotList/MustDropJackpotList";
+import TrackProvider from "Components/TrackProvider";
 import { GAME_LIST_IDS } from "Src/constants";
 import {
   isGameListFetchedFactory,
@@ -18,8 +20,14 @@ const MustDropJackpotListConnected = connect(state => ({
   ),
 }))(MustDropJackpotList);
 
-const MustDropJackpotListContainer = props => {
-  return <MustDropJackpotListConnected {...props} />;
+type Props = {};
+
+const MustDropJackpotListContainer = (props: Props) => {
+  return (
+    <TrackProvider data={{ gameCategory: "Must Drop Jackpots - Page" }}>
+      <MustDropJackpotListConnected {...props} />
+    </TrackProvider>
+  );
 };
 
 export default MustDropJackpotListContainer;

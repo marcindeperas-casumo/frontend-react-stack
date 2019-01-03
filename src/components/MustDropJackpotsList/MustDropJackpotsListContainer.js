@@ -5,10 +5,11 @@ import {
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
 } from "Models/schema";
-import { GAME_LIST_IDS } from "Src/constants";
-import MustDropJackpotsList from "./MustDropJackpotsList";
-import { getField } from "Models/cms";
 import { market as marketSelector } from "Models/handshake";
+import { getField } from "Models/cms";
+import { GAME_LIST_IDS } from "Src/constants";
+import TrackProvider from "Components/TrackProvider";
+import MustDropJackpotsList from "./MustDropJackpotsList";
 
 type Props = {
   id: string,
@@ -27,7 +28,11 @@ const MustDropJackpotListConnected = connect(state => ({
 }))(MustDropJackpotsList);
 
 const MustDropJackpotListContainer = ({ id, title }: Props) => {
-  return <MustDropJackpotListConnected id={id} title={title} />;
+  return (
+    <TrackProvider data={{ gameCategory: "Must Drop Jackpots - Top Lists" }}>
+      <MustDropJackpotListConnected id={id} title={title} />
+    </TrackProvider>
+  );
 };
 
 export default MustDropJackpotListContainer;

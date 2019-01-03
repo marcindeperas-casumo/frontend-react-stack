@@ -44,7 +44,11 @@ describe("<GameRow />", () => {
   });
 
   test("clicking on the whole row launches the game", () => {
-    rendered.simulate("click");
+    rendered
+      .find("Flex")
+      .first()
+      .simulate("click");
+
     expect(launchGame.mock.calls.length).toBe(1);
   });
 

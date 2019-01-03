@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import GameListVertical from "Components/GameListVertical";
+import TrackProvider from "Components/TrackProvider";
 
 type Props = {
   /** The list of game ids. */
@@ -12,7 +13,9 @@ class ContentGameList extends PureComponent<Props> {
     const ids = this.props.ids || [];
     return (
       <div className="u-padding-horiz--lg u-margin-bottom--lg">
-        <GameListVertical ids={ids} />
+        <TrackProvider data={{ gameCategory: "Content Game List" }}>
+          <GameListVertical ids={ids} />
+        </TrackProvider>
       </div>
     );
   }

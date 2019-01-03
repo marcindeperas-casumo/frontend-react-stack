@@ -71,3 +71,8 @@ export const ENVS = {
   PRODUCTION: "PRODUCTION",
   TEST: "TEST",
 };
+
+export const EVENTS = {
+  GAME_LAUNCH: "Game Started",
+  GAME_DETAILS: "Game Information",
+};
