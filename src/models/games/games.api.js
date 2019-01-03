@@ -1,4 +1,4 @@
-import { complement, compose, isNil, prop } from "ramda";
+import { complement, compose, isNil, prop, path, pluck } from "ramda";
 
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
@@ -29,14 +29,14 @@ const fetchLatestPlayedGames = async ({
     country,
     platform,
     variant,
-    providerGameNames: latestPlayedProviderGameNames.map(prop("gameName")),
-  }).then(x => x.games);
+    providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
+  }).then(prop("games"));
 
   return { games, id, title };
 };
 
-const handleLiveCasino = async ({ currency, liveCasinoGamesList }) => {
-  const liveCasinoGamesById = liveCasinoGamesList.reduce(
+const getLiveGames = async ({ currency, allLiveGamesList }) => {
+  const allLiveGamesById = allLiveGamesList.reduce(
     (acc, game) => ({
       ...acc,
       [game.tableId]: game,
@@ -46,17 +46,13 @@ const handleLiveCasino = async ({ currency, liveCasinoGamesList }) => {
 
   const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
     currency,
-    ids: liveCasinoGamesList.map(({ tableId }) => tableId),
+    ids: pluck("tableId", allLiveGamesList),
   });
 
-  const getImageForTable = compose(
-    prop("L"),
-    prop("thumbnails"),
-    prop("videoSnapshot")
-  );
+  const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 
   return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({
-    ...liveCasinoGamesById[table.tableId],
+    ...allLiveGamesById[table.tableId],
     lobby: {
       tableId: table.tableId,
       type: table.gameType,
@@ -89,17 +85,22 @@ export const fetchGames = async ({
         platform,
         country,
         pageSize: 20,
-      }).then(x => x.games);
+      }).then(prop("games"));
 
       if (id === "liveCasinoGames") {
         try {
-          const liveCasinoGames = await handleLiveCasino({
+          /**
+           * It might be confusing, here gamesList contains all available live
+           * games and additional logic is required to filter out games that are
+           * currently live and get additional data (ie. thumbnails).
+           */
+          const liveGames = await getLiveGames({
             currency,
-            liveCasinoGamesList: gamesLists,
+            allLiveGamesList: gamesLists,
           });
 
           return {
-            games: liveCasinoGames,
+            games: liveGames,
             id,
             title,
           };
@@ -126,8 +127,7 @@ export const fetchGames = async ({
   });
   const hasSomeGames = compose(
     i => i > 0,
-    prop("length"),
-    prop("games")
+    path(["games", "length"])
   );
   const allListsResponses = (await Promise.all([
     latestPlayedGames,
