@@ -76,3 +76,7 @@ export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",
 };
+
+export const EVENT_PROPS = {
+  LOCATION: "location",
+};
