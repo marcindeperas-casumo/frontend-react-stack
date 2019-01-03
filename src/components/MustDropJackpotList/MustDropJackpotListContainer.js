@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import MustDropJackpotList from "Components/MustDropJackpotList/MustDropJackpotList";
 import TrackProvider from "Components/TrackProvider";
-import { GAME_LIST_IDS } from "Src/constants";
+import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import {
   isGameListFetchedFactory,
   mustDropJackpotsIdsSelector,
@@ -24,7 +24,9 @@ type Props = {};
 
 const MustDropJackpotListContainer = (props: Props) => {
   return (
-    <TrackProvider data={{ gameCategory: "Must Drop Jackpots - Page" }}>
+    <TrackProvider
+      data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Page" }}
+    >
       <MustDropJackpotListConnected {...props} />
     </TrackProvider>
   );
