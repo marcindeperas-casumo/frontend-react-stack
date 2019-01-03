@@ -6,23 +6,26 @@ import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
 import createAdapterLog from "Lib/tracker.adapter.log";
 import logger from "Services/logger";
 
-const tracker = createTracker(getAdapters());
+const ADAPTER_GETTERS = {
+  [ENVS.TEST]: getAdaptersDev,
+  [ENVS.DEVELOPMENT]: getAdaptersDev,
+  [ENVS.PRODUCTION]: getAdaptersProd,
+};
 
-export default tracker;
+const tracker = getTracker();
 
 export const track = tracker.track;
 
 export const setState = tracker.setState;
 
-function getAdapters() {
-  const env = getEnv();
-  const adapterGetterByEnv = {
-    [ENVS.TEST]: getAdaptersDev,
-    [ENVS.DEVELOPMENT]: getAdaptersDev,
-    [ENVS.PRODUCTION]: getAdaptersProd,
-  };
+export default tracker;
 
-  return adapterGetterByEnv[env]();
+export function getTracker(env = getEnv(), adapterGetters = ADAPTER_GETTERS) {
+  const adapterGetter = adapterGetters[env];
+  const emptyAdapters = [];
+  const adapters = adapterGetter ? adapterGetter() : emptyAdapters;
+
+  return createTracker(adapters);
 }
 
 function getAdaptersDev() {
