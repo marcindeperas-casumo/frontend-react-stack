@@ -9,6 +9,7 @@ import logger from "Services/logger";
 const ADAPTER_GETTERS = {
   [ENVS.TEST]: getAdaptersDev,
   [ENVS.DEVELOPMENT]: getAdaptersDev,
+  [ENVS.AUTOMATED_TESTS]: getAdaptersDev,
   [ENVS.PRODUCTION]: getAdaptersProd,
 };
 
