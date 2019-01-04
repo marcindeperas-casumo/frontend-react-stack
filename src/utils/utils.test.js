@@ -251,51 +251,51 @@ describe("renderBets()", () => {
 
   describe("getEnv()", () => {
     test("returns the development environment if env is not set", () => {
-      const process = { env: { NODE_ENV: "" } };
-      const env = getEnv(process);
+      const nodeEnv = "";
+      const env = getEnv(nodeEnv);
 
       expect(env).toBe(ENVS.DEVELOPMENT);
     });
 
     test("returns the development environment if env is unknown", () => {
-      const process = { env: { NODE_ENV: "foobar" } };
-      const env = getEnv(process);
+      const nodeEnv = "foobar";
+      const env = getEnv(nodeEnv);
 
       expect(env).toBe(ENVS.DEVELOPMENT);
     });
 
     test("returns the environment if it is a known environment", () => {
-      const process = { env: { NODE_ENV: ENVS.AUTOMATED_TESTS } };
-      const env = getEnv(process);
+      const nodeEnv = ENVS.AUTOMATED_TESTS;
+      const env = getEnv(nodeEnv);
 
       expect(env).toBe(ENVS.AUTOMATED_TESTS);
     });
 
     test("finds the environment even if it is lowercase", () => {
-      const process = { env: { NODE_ENV: "automated_tests" } };
-      const env = getEnv(process);
+      const nodeEnv = "automated_tests";
+      const env = getEnv(nodeEnv);
 
       expect(env).toBe(ENVS.AUTOMATED_TESTS);
     });
 
     test("only returns the production env=production and it is casumo.com", () => {
-      const process = { env: { NODE_ENV: ENVS.PRODUCTION } };
+      const nodeEnv = ENVS.PRODUCTION;
       const windowProd = { location: { hostname: "www.casumo.com" } };
       const windowTest = { location: { hostname: "www.casumotest.com" } };
       const windowStage = { location: { hostname: "www.casumostage.com" } };
 
-      expect(getEnv(process, windowProd)).toBe(ENVS.PRODUCTION);
-      expect(getEnv(process, windowTest)).not.toBe(ENVS.PRODUCTION);
-      expect(getEnv(process, windowStage)).not.toBe(ENVS.PRODUCTION);
+      expect(getEnv(nodeEnv, windowProd)).toBe(ENVS.PRODUCTION);
+      expect(getEnv(nodeEnv, windowTest)).not.toBe(ENVS.PRODUCTION);
+      expect(getEnv(nodeEnv, windowStage)).not.toBe(ENVS.PRODUCTION);
     });
 
     test("returns the test env if env=production and it is casumotest.com", () => {
-      const process = { env: { NODE_ENV: ENVS.PRODUCTION } };
+      const nodeEnv = ENVS.PRODUCTION;
       const windowTest = { location: { hostname: "www.casumotest.com" } };
       const windowStage = { location: { hostname: "www.casumostage.com" } };
 
-      expect(getEnv(process, windowTest)).toBe(ENVS.TEST);
-      expect(getEnv(process, windowStage)).toBe(ENVS.TEST);
+      expect(getEnv(nodeEnv, windowTest)).toBe(ENVS.TEST);
+      expect(getEnv(nodeEnv, windowStage)).toBe(ENVS.TEST);
     });
   });
 });
