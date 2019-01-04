@@ -10,7 +10,7 @@ import {
   unsubscribeJackpotUpdates,
 } from "Models/cometd";
 import TrackProvider from "Components/TrackProvider";
-import { GAME_LIST_IDS } from "Src/constants";
+import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import Jackpots from "./Jackpots";
 
 const JackpotsConnected = connect(
@@ -30,7 +30,7 @@ type Props = {};
 
 const JackpotsContainer = (props: Props) => {
   return (
-    <TrackProvider data={{ gameCategory: "Jackpots" }}>
+    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "Jackpots" }}>
       <JackpotsConnected {...props} />
     </TrackProvider>
   );

@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
-import { EVENTS } from "Src/constants";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { Game } from "Types/game";
 import { renderBets } from "Utils/utils";
 import GameThumb from "Components/GameThumb";
@@ -25,7 +25,10 @@ export default class GameRow extends PureComponent<Props> {
     const { bets } = lobby;
 
     return (
-      <TrackClick eventName={EVENTS.GAME_LAUNCH} data={{ name }}>
+      <TrackClick
+        eventName={EVENTS.GAME_LAUNCH}
+        data={{ [EVENT_PROPS.GAME_NAME]: name }}
+      >
         <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
           {/* Image */}
           <Flex.Item className="o-flex__item-fixed-size">

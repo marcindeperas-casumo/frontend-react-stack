@@ -7,7 +7,7 @@ import {
 } from "Models/schema";
 import { market as marketSelector } from "Models/handshake";
 import { getField } from "Models/cms";
-import { GAME_LIST_IDS } from "Src/constants";
+import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 
@@ -29,7 +29,9 @@ const MustDropJackpotListConnected = connect(state => ({
 
 const MustDropJackpotListContainer = ({ id, title }: Props) => {
   return (
-    <TrackProvider data={{ gameCategory: "Must Drop Jackpots - Top Lists" }}>
+    <TrackProvider
+      data={{ [EVENT_PROPS.LOCATION]: "Must Drop Jackpots - Top Lists" }}
+    >
       <MustDropJackpotListConnected id={id} title={title} />
     </TrackProvider>
   );
