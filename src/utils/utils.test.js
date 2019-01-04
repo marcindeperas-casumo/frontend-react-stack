@@ -278,7 +278,7 @@ describe("renderBets()", () => {
       expect(env).toBe(ENVS.AUTOMATED_TESTS);
     });
 
-    test("only returns the production env if it is set and it is casumo.com", () => {
+    test("only returns the production env=production and it is casumo.com", () => {
       const process = { env: { NODE_ENV: ENVS.PRODUCTION } };
       const windowProd = { location: { hostname: "www.casumo.com" } };
       const windowTest = { location: { hostname: "www.casumotest.com" } };
@@ -287,6 +287,15 @@ describe("renderBets()", () => {
       expect(getEnv(process, windowProd)).toBe(ENVS.PRODUCTION);
       expect(getEnv(process, windowTest)).not.toBe(ENVS.PRODUCTION);
       expect(getEnv(process, windowStage)).not.toBe(ENVS.PRODUCTION);
+    });
+
+    test("returns the test env if env=production and it is casumotest.com", () => {
+      const process = { env: { NODE_ENV: ENVS.PRODUCTION } };
+      const windowTest = { location: { hostname: "www.casumotest.com" } };
+      const windowStage = { location: { hostname: "www.casumostage.com" } };
+
+      expect(getEnv(process, windowTest)).toBe(ENVS.TEST);
+      expect(getEnv(process, windowStage)).toBe(ENVS.TEST);
     });
   });
 });
