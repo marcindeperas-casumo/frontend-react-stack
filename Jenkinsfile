@@ -13,7 +13,7 @@ new PipelineBuilder(this)
         .customStep('Visual Regression', this.&runChromatic)
         .gradleDockerPublish()
         .gradleRelease()
-        .build()
+        .build('js-builder') // https://github.com/Casumo/jenkins-js-builder/blob/master/Dockerfile
 
 def installDependencies() {
     sh "yarn"

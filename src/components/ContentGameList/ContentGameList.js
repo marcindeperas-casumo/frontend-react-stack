@@ -1,6 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
+import { EVENT_PROPS } from "Src/constants";
 import GameListVertical from "Components/GameListVertical";
+import TrackProvider from "Components/TrackProvider";
 
 type Props = {
   /** The list of game ids. */
@@ -12,7 +14,11 @@ class ContentGameList extends PureComponent<Props> {
     const ids = this.props.ids || [];
     return (
       <div className="u-padding-horiz--lg u-margin-bottom--lg">
-        <GameListVertical ids={ids} />
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: "Promotions - Detail Page" }}
+        >
+          <GameListVertical ids={ids} />
+        </TrackProvider>
       </div>
     );
   }

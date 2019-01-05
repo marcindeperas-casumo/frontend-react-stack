@@ -19,9 +19,9 @@ Rollbar is a 3rd party log-collector service that we use in production.
 **Logs:** [Check out the error logs for this repo](https://rollbar.com/casumo/react-stack/items)
 **Credentials:** We all have personal accounts, ask for an invite in #frontend
 
-### How to log an error
+### Logging an error
 
-#### When the store is available
+#### Log an error when the store is available
 
 In most of the cases (logging from a component, action creator or saga) we have
 access to the store. In these cases we should always use the `logError()` action creator.
@@ -29,7 +29,6 @@ The benefit of this is that **like this the actual state is going to be visible 
 Rollbar as well**, which gives us context and makes debugging easier.
 
 ```javascript
-// Usage in Components
 import { logError } from "Models/errors";
 
 const Container = connect(
@@ -46,14 +45,13 @@ import { logError } from "Models/errors";
 yield put(logError("Something really bad happened!", err));
 ```
 
-#### When the store is NOT available
+#### Log an error when the store is NOT available
 
 There can be times when the store is not available you would like to log
 a `warning`, `info` or `debug` message. Make sure you always reference the logger
 service in these cases, as it will always use the right logger adapter for the environment.
 
 ```javascript
-// Usage in components
 import logger from "Services/logger";
 
 // ...
@@ -64,7 +62,7 @@ logger.info("Bla, bla, bla.");
 logger.debug("Even more bla, bla, bla.");
 ```
 
-### How to add error boundaries
+### Adding Error Boundaries
 
 Error boundaries are catching and logging errors coming from child components.
 The benefit in this is that the error propagation stops and only the effected

@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import GameTileContainer from "Components/GameTile";
+import GameTile from "Components/GameTile";
 import { isEmpty } from "ramda";
 import type {
   spacerSizes,
@@ -10,7 +10,7 @@ import type {
 } from "@casumo/cudl-react-prop-types";
 
 export const DEFAULT_SPACING = "default";
-export const DEFAULT_COMPONENT = GameTileContainer;
+export const DEFAULT_COMPONENT = GameTile;
 export const PADDING_PER_DEVICE = {
   default: "md",
   tablet: "2xlg",

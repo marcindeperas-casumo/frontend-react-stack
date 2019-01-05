@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "engines": {
+    "yarn": ">=1.12.3",
     "node": ">=8.9.0"
   },
   "dependencies": {
@@ -54,8 +55,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom --verbose false",
     "test:ci": "CI=yes npm run test",
+    "lint": "npm run format",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
-    "storybook": "start-storybook -p 6006",
+    "storybook": "start-storybook -s ./.storybook/static -p 6006",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --script-name storybook --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components"
   },

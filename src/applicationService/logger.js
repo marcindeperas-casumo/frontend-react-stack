@@ -11,5 +11,6 @@ export function getLogger(env, loggers) {
 export default getLogger(getEnv(), {
   [ENVS.DEVELOPMENT]: loggerConsole,
   [ENVS.PRODUCTION]: loggerRollbar,
-  [ENVS.TEST]: loggerNull,
+  [ENVS.AUTOMATED_TESTS]: loggerNull,
+  [ENVS.TEST]: loggerConsole,
 });
