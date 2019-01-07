@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation */
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
@@ -17,9 +18,55 @@ export type Props = {
   ratio?: string,
 };
 
+type State = {
+  clicked: boolean,
+};
+
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 
-export default class GameTile extends PureComponent<Props> {
+export default class GameTile extends PureComponent<Props, State> {
+  // Commented flowtypes because of https://github.com/babel/babel/issues/8593
+  /*::
+  setWrapperRef: Function;
+  handleOnClick: Function;
+  handleOutsideClick: Function;
+  wrapperRef: Node
+  */
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      clicked: false,
+    };
+    this.setWrapperRef = this.setWrapperRef.bind(this);
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleOutsideClick);
+  }
+
+  handleOnClick() {
+    this.setState({
+      clicked: !this.state.clicked,
+    });
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  handleOutsideClick(ev: Object) {
+    if (this.wrapperRef && !this.wrapperRef.contains(ev.target)) {
+      this.setState({
+        clicked: false,
+      });
+    }
+    document.removeEventListener("click", this.handleOutsideClick);
+  }
+
+  setWrapperRef(node: Node) {
+    this.wrapperRef = node;
+  }
+
   render() {
     const {
       className,
@@ -38,6 +85,9 @@ export default class GameTile extends PureComponent<Props> {
       name,
       slug,
     } = game;
+    const { clicked } = this.state;
+    const showJackpot = !isEmpty(jackpotInfo) && !clicked;
+
     return (
       <div
         className={classNames(
@@ -46,7 +96,8 @@ export default class GameTile extends PureComponent<Props> {
           "c-game-tile o-ratio t-border-r--8 t-color-white",
           className
         )}
-        tabIndex={0}
+        onClick={this.handleOnClick}
+        ref={this.setWrapperRef}
       >
         <GameTileImage
           logoBackground={logoBackground}
@@ -54,8 +105,11 @@ export default class GameTile extends PureComponent<Props> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {!isEmpty(jackpotInfo) && <GameTileJackpot jackpotInfo={jackpotInfo} />}
+        {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
         <GameTileOverlay
+          className={classNames(
+            clicked ? "u-display--flex" : "u-display--none"
+          )}
           name={name}
           slug={slug}
           inMaintenanceMode={inMaintenanceMode}
