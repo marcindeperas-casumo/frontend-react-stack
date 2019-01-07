@@ -7,12 +7,10 @@ import {
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
   market as marketSelector,
-  country as getCountry,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
 import { waitForSelector } from "Utils";
-import { launchGame } from "Services/LaunchGameService";
-import { fetchTopLists, initiateFetchGamesBySlugs } from "./games.actions";
+import { fetchTopLists } from "./games.actions";
 import { types } from "./games.constants";
 
 export function* fetchGameListSaga() {
@@ -47,22 +45,6 @@ export function* fetchGameListSaga() {
   // Pause execution until the fetch top lists request is completed, then
   // normalize and update the store
   const { response } = yield take(types.FETCH_TOP_LISTS_COMPLETE);
-  const { entities } = yield call(normalizeData, response);
-  yield put(updateEntity(entities));
-}
-
-export function* launchGameSaga({ slug }) {
-  yield call(launchGame, { slug });
-}
-
-export function* fetchGamesBySlugsSaga({ slugs }) {
-  const platform = "mobile";
-  const variant = "default";
-  const country = yield select(getCountry);
-  yield put(initiateFetchGamesBySlugs({ platform, country, slugs, variant }));
-
-  // pause execution until request is completed, normalize and update the store
-  const { response } = yield take(types.FETCH_GAMES_BY_SLUGS_COMPLETE);
   const { entities } = yield call(normalizeData, response);
   yield put(updateEntity(entities));
 }

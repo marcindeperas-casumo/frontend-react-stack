@@ -1,6 +1,6 @@
 // @flow
+import React from "react";
 import { connect } from "react-redux";
-import type { Connector } from "react-redux";
 import {
   jackpotIdsSelector,
   gameListTitleSelectorFactory,
@@ -9,10 +9,11 @@ import {
   subscribeJackpotUpdates,
   unsubscribeJackpotUpdates,
 } from "Models/cometd";
-import { GAME_LIST_IDS } from "Src/constants";
+import TrackProvider from "Components/TrackProvider";
+import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import Jackpots from "./Jackpots";
 
-const connector: Connector = connect(
+const JackpotsConnected = connect(
   state => ({
     ids: jackpotIdsSelector(state),
     title: gameListTitleSelectorFactory(GAME_LIST_IDS.CASUMO_JACKPOT_GAMES)(
@@ -23,6 +24,16 @@ const connector: Connector = connect(
     subscribeToUpdates: () => dispatch(subscribeJackpotUpdates()),
     unsubscribeFromUpdates: () => dispatch(unsubscribeJackpotUpdates()),
   })
-);
+)(Jackpots);
 
-export default connector(Jackpots);
+type Props = {};
+
+const JackpotsContainer = (props: Props) => {
+  return (
+    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "Jackpots" }}>
+      <JackpotsConnected {...props} />
+    </TrackProvider>
+  );
+};
+
+export default JackpotsContainer;

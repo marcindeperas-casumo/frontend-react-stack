@@ -2,12 +2,23 @@ import { prop, splitEvery, assocPath } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
+const NODE_ENV = process.env.NODE_ENV || "";
 
-export const getEnv = () => {
-  const env = process.env.NODE_ENV || "";
-  const selectedEnv = ENVS[env.toUpperCase()];
+export const getEnv = (nodeEnv = NODE_ENV, windowObject = window) => {
+  const hostname = windowObject.location.hostname;
+  const env = ENVS[nodeEnv.toUpperCase()] || ENVS.DEVELOPMENT;
+  const isLiveSite = hostname.match("casumo.com") !== null;
+  const isProductionEnv = env === ENVS.PRODUCTION;
 
-  return selectedEnv || ENVS.DEVELOPMENT;
+  if (isProductionEnv && isLiveSite) {
+    return ENVS.PRODUCTION;
+  }
+
+  if (isProductionEnv && !isLiveSite) {
+    return ENVS.TEST;
+  }
+
+  return env;
 };
 
 export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
