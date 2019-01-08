@@ -19,7 +19,7 @@ export type Props = {
 };
 
 type State = {
-  clicked: boolean,
+  isActive: boolean,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
@@ -36,9 +36,8 @@ export default class GameTile extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     this.state = {
-      clicked: false,
+      isActive: false,
     };
-    this.setWrapperRef = this.setWrapperRef.bind(this);
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
   }
@@ -47,24 +46,23 @@ export default class GameTile extends PureComponent<Props, State> {
     document.removeEventListener("click", this.handleOutsideClick);
   }
 
+  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction by
+  // abusing how dom and react events work together. Listening on document receives events
+  // after all React handlers fire causing handleOutsideClick to always trigger
+  // on a second click after clicking a GameTile.
+
   handleOnClick() {
     this.setState({
-      clicked: !this.state.clicked,
+      isActive: !this.state.isActive,
     });
     document.addEventListener("click", this.handleOutsideClick);
   }
 
-  handleOutsideClick(ev: Object) {
-    if (this.wrapperRef && !this.wrapperRef.contains(ev.target)) {
-      this.setState({
-        clicked: false,
-      });
-    }
+  handleOutsideClick() {
+    this.setState({
+      isActive: false,
+    });
     document.removeEventListener("click", this.handleOutsideClick);
-  }
-
-  setWrapperRef(node: Node) {
-    this.wrapperRef = node;
   }
 
   render() {
@@ -85,8 +83,8 @@ export default class GameTile extends PureComponent<Props, State> {
       name,
       slug,
     } = game;
-    const { clicked } = this.state;
-    const showJackpot = !isEmpty(jackpotInfo) && !clicked;
+    const { isActive } = this.state;
+    const showJackpot = !isEmpty(jackpotInfo) && !isActive;
 
     return (
       <div
@@ -97,7 +95,6 @@ export default class GameTile extends PureComponent<Props, State> {
           className
         )}
         onClick={this.handleOnClick}
-        ref={this.setWrapperRef}
       >
         <GameTileImage
           logoBackground={logoBackground}
@@ -108,7 +105,7 @@ export default class GameTile extends PureComponent<Props, State> {
         {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
         <GameTileOverlay
           className={classNames(
-            clicked ? "u-display--flex" : "u-display--none"
+            isActive ? "u-display--flex" : "u-display--none"
           )}
           name={name}
           slug={slug}
