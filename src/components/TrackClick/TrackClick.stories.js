@@ -5,10 +5,4 @@ import TrackClick from "./";
 
 const stories = storiesOf("TrackClick", module);
 
-stories.add(
-  "Default",
-  () => (
-    <TrackClick />
-  ),
-  info({ text: "Default" })
-);
+stories.add("Default", () => <TrackClick />, info({ text: "Default" }));

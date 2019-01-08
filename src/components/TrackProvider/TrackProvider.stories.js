@@ -5,10 +5,4 @@ import TrackProvider from "./";
 
 const stories = storiesOf("TrackProvider", module);
 
-stories.add(
-  "Default",
-  () => (
-    <TrackProvider />
-  ),
-  info({ text: "Default" })
-);
+stories.add("Default", () => <TrackProvider />, info({ text: "Default" }));
