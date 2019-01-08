@@ -4,12 +4,12 @@ import GameBrowserService from "Services/GameBrowserService";
 
 const { gamesBySlugs } = GameBrowserService;
 
-export const fetchCuratedGame = ({ platform, country, slugs, variant }) => {
+export const fetchCuratedGame = ({ variant = "default", slugs }) => {
   return {
     type: fetchTypes.FETCH,
     name: types.CURATED_FETCH_GAME,
     postFetch: types.CURATED_FETCH_GAME_COMPLETE,
     asyncCall: gamesBySlugs,
-    asyncCallData: { platform, country, slugs, variant },
+    asyncCallData: { variant, slugs },
   };
 };

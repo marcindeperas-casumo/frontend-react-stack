@@ -79,6 +79,7 @@ window.addEventListener("error", e => {
 
   logger.error(message, error, {
     state: stringifiedState,
+    filename,
     lineno,
     colno,
   });

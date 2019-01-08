@@ -28,17 +28,12 @@ describe("Models/curated/actions", () => {
     });
 
     test("passes the right parameters to the fetcher function", () => {
-      const platform = "mobile";
-      const country = "gb";
       const slugs = ["foo"];
-      const variant = "default";
-      const action = fetchCuratedGame({ platform, country, slugs, variant });
+      const action = fetchCuratedGame({ slugs });
 
       expect(action.asyncCallData).toEqual({
-        platform,
-        country,
         slugs,
-        variant,
+        variant: "default",
       });
     });
   });
