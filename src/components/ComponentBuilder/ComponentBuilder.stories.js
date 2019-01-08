@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
@@ -5,6 +6,7 @@ import ComponentBuilder from "Components/ComponentBuilder";
 import ComponentBuilderRenderer from "Components/ComponentBuilder/ComponentBuilderRenderer";
 import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS";
 import MockStore from "Components/MockStore";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const componentDefinitions = [
   { acf_fc_layout: "GAMES_LIST", id: "popularGames" },
@@ -54,14 +56,16 @@ const ComponentBuilderCMSStory = () => (
   </MockStore>
 );
 
-stories.add(
-  "ComponentBuilder (Connected)",
-  ComponentBuilderStory,
-  info({
-    text: `This component is rendering out components defined in a CMS page (indentified by its slug).
+if (isNotChromatic) {
+  stories.add(
+    "ComponentBuilder (Connected)",
+    ComponentBuilderStory,
+    info({
+      text: `This component is rendering out components defined in a CMS page (indentified by its slug).
       If the page is not fetched yet it will start fetching it.`,
-  })
-);
+    })
+  );
+}
 
 stories.add(
   "ComponentBuilderRenderer",
