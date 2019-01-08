@@ -9,7 +9,7 @@ type Props = {
 };
 
 export default class ComponentBuilder extends PureComponent<Props> {
-  render(): ?Array<any> {
+  render() {
     const { componentDefinitions = [] } = this.props;
     const hasNoDefinitions =
       !componentDefinitions || !componentDefinitions.length;
@@ -18,7 +18,7 @@ export default class ComponentBuilder extends PureComponent<Props> {
       return null;
     }
 
-    return componentDefinitions.map((definition, i) => (
+    return componentDefinitions.map<Object>((definition, i) => (
       <ErrorBoundary key={i} withoutUserFeedback>
         {mapContentDefinitionToComponent(definition)}
       </ErrorBoundary>
