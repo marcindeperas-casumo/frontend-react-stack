@@ -19,7 +19,13 @@ module.exports = {
     "fp/no-this": "off",
     "fp/no-unused-expression": "off",
     "prettier/prettier": "error",
-    "import/no-named-as-default-member": "off"
+    'import/no-unresolved': [
+        'error',
+        {
+            commonjs: true,
+            caseSensitive: true,
+        },
+    ],
   },
   overrides: [
     {
@@ -34,10 +40,11 @@ module.exports = {
     flowtype: {
       onlyFilesWithFlowAnnotation: false,
     },
-    "import/resolver": {
-      webpack: {
-        config: path.resolve("./config/webpack.config.dev.js"),
-      },
+    react: {
+      version: "detect"
     },
-  },
+    "import/resolver": {
+      "babel-module": {}
+    }
+  }
 };
