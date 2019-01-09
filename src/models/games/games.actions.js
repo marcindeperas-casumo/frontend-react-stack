@@ -1,6 +1,6 @@
 import { types as fetchTypes } from "Models/fetch";
+import { fetchGames } from "Api/api.games";
 import { types } from "./games.constants";
-import { fetchGames } from "./games.api";
 import { getGamesBySlugs } from "Api/api.gamebrowser";
 
 export const initiateFetchGamesBySlugs = ({
