@@ -6,6 +6,7 @@ import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import PromotionCardTeaserPresentational from "Components/PromotionCardTeaser/PromotionCardTeaser";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const state = {
   schema: {
@@ -15,20 +16,22 @@ const state = {
 
 const stories = storiesOf("PromotionCardTeaser", module);
 
-stories.add(
-  "PromotionCardTeaser (Connected)",
-  () => (
-    <MockStore state={state}>
-      <div style={{ maxWidth: 350 }}>
-        <PromotionCardTeaser slug="promotions.boosted-reelraces" />
-      </div>
-    </MockStore>
-  ),
-  {
-    backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-    ...info({ text: "Default" }),
-  }
-);
+if (isNotChromatic) {
+  stories.add(
+    "PromotionCardTeaser (Connected)",
+    () => (
+      <MockStore state={state}>
+        <div style={{ maxWidth: 350 }}>
+          <PromotionCardTeaser slug="promotions.boosted-reelraces" />
+        </div>
+      </MockStore>
+    ),
+    {
+      backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
+      ...info({ text: "Default" }),
+    }
+  );
+}
 
 stories.add(
   "PromotionCardTeaser (Presentational)",

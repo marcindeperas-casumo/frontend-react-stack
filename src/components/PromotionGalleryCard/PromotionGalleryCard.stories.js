@@ -7,6 +7,7 @@ import PromotionGalleryCardConnected from "Components/PromotionGalleryCard";
 import PromotionGalleryCard from "Components/PromotionGalleryCard/PromotionGalleryCard";
 import promotions from "Components/PromotionGalleryCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("PromotionGalleryCard", module);
 
@@ -21,15 +22,17 @@ const promotionFields = pick(
   promotions["promotions.boosted-reelraces"].fields
 );
 
-stories.add(
-  "Default (Connected)",
-  () => (
-    <MockStore state={state}>
-      <PromotionGalleryCardConnected slug="promotions.boosted-reelraces" />
-    </MockStore>
-  ),
-  info({ text: "Displays the promotion card" })
-);
+if (isNotChromatic) {
+  stories.add(
+    "Default (Connected)",
+    () => (
+      <MockStore state={state}>
+        <PromotionGalleryCardConnected slug="promotions.boosted-reelraces" />
+      </MockStore>
+    ),
+    info({ text: "Displays the promotion card" })
+  );
+}
 
 stories.add(
   "Default (Presentational)",

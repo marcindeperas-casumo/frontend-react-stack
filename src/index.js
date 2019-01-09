@@ -5,10 +5,12 @@ import { Provider } from "react-redux";
 
 import App from "Components/App";
 import ErrorBoundary from "Components/ErrorBoundary";
-import bridge from "./DurandalReactBridge";
-import configureStore from "./configureStore";
+import bridge from "Src/DurandalReactBridge";
+import configureStore from "Src/configureStore";
+import config from "Src/config";
+import logger from "Services/logger";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, isEnvDevelopment } from "Utils";
+import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
 import Debugger from "Utils/Debugger";
 import "./styles/index.scss";
 
@@ -60,3 +62,25 @@ function disableReactDevTools() {
     }
   }
 }
+
+// Log Async Errors
+// Only logging errors that are coming from
+// this project by checking the filename in the error stack.
+window.addEventListener("error", e => {
+  const { message, filename, lineno, colno, error } = e;
+  const state = store.getState();
+  const sanitizedState = sanitizeObject(state, config.sanitizedStateKeys);
+  const stringifiedState = JSON.stringify(sanitizedState);
+  const isErrorProjectRelated = filename.match("/react-stack/") !== null;
+
+  if (!isErrorProjectRelated) {
+    return;
+  }
+
+  logger.error(message, error, {
+    state: stringifiedState,
+    filename,
+    lineno,
+    colno,
+  });
+});

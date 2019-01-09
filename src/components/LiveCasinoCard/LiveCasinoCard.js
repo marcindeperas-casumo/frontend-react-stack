@@ -6,8 +6,10 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 
 import { decodeString } from "Utils/index";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
+import TrackClick from "Components/TrackClick";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
@@ -81,15 +83,20 @@ export default class LiveCasinoCard extends PureComponent<Props> {
           <Text tag="span">{renderBets(game.lobby.bets)}</Text>
         </Flex.Block>
         <Flex.Item>
-          <Button
-            onClick={launchGame}
-            className="u-text-nowrap u-text-transform-capitalize"
+          <TrackClick
+            eventName={EVENTS.GAME_LAUNCH}
+            data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <CMSField
-              slug="mobile.live-casino-cards-content"
-              field="play_now"
-            />
-          </Button>
+            <Button
+              onClick={launchGame}
+              className="u-text-nowrap u-text-transform-capitalize"
+            >
+              <CMSField
+                slug="mobile.live-casino-cards-content"
+                field="play_now"
+              />
+            </Button>
+          </TrackClick>
         </Flex.Item>
       </Flex>
     );

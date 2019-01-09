@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
@@ -8,18 +9,21 @@ import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import MockStore from "Components/MockStore";
 import GameRow from "Components/GameRow/GameRow";
 import GameRowContainer from "Components/GameRow";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameRow", module);
 
-stories.add(
-  "Default (Connected)",
-  () => (
-    <MockStore>
-      <GameRowContainer id="hall-of-gods" />
-    </MockStore>
-  ),
-  info({ text: "Default" })
-);
+if (isNotChromatic) {
+  stories.add(
+    "Default (Connected)",
+    () => (
+      <MockStore>
+        <GameRowContainer id="hall-of-gods" />
+      </MockStore>
+    ),
+    info({ text: "Default" })
+  );
+}
 
 stories.add(
   "Default",

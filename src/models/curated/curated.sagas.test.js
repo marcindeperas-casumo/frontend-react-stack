@@ -9,7 +9,9 @@ import GameBrowserService from "Services/GameBrowserService";
 describe("Models/curated/sagas", () => {
   describe("fetchCuratedGameSaga", () => {
     test("success flow game in store", () => {
-      const generator = fetchCuratedGameSaga();
+      const generator = fetchCuratedGameSaga({
+        type: "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune",
+      });
       const curated = curatedMock;
       const { gameData, game } = curated;
 
@@ -20,7 +22,9 @@ describe("Models/curated/sagas", () => {
     });
 
     test("success flow fetch game not in store", () => {
-      const generator = fetchCuratedGameSaga();
+      const generator = fetchCuratedGameSaga({
+        type: "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune",
+      });
       const curated = curatedMock;
       const gameData = null;
       const { game } = curated;
@@ -29,17 +33,9 @@ describe("Models/curated/sagas", () => {
       generator.next({ gameData, game });
 
       const args = {
-        platform: "mobile",
-        country: "gb",
         slugs: curated.game,
-        variant: "default",
       };
       const { gamesBySlugs } = GameBrowserService;
-      const { action } = generator.next(args.country).value.PUT;
-
-      expect(action.type).toBe(fetchTypes.FETCH);
-      expect(action.asyncCall).toBe(gamesBySlugs);
-      expect(action.asyncCallData).toEqual(args);
 
       expect(generator.next().value).toEqual(
         take(types.CURATED_FETCH_GAME_COMPLETE)

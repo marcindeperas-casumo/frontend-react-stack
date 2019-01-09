@@ -9,6 +9,13 @@ $cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
 
 $cudl-line-height: 1.25;
 
+@include cudl-font-face("Circular Pro", "/fonts/lineto-circular-pro-book");
+@include cudl-font-face(
+  "Circular Pro",
+  "/fonts/lineto-circular-pro-bold",
+  $weight: 700
+);
+
 // stylelint-disable xi/selector-pattern
 html {
   font: #{$cudl-root-font-size} $cudl-font-stack;
