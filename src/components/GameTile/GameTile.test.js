@@ -26,11 +26,21 @@ describe("GameTile", () => {
     expect(renderedGameTileImageProps.imgixOpts).toEqual(imgixOpts);
   });
 
-  test("should render GameTileOverlay", () => {
+  test("should render GameTileOverlay if not isActive", () => {
     const onLaunchGame = jest.fn();
     const rendered = shallow(
       <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
     );
+    expect(rendered.find("GameTileOverlay").length).toBe(0);
+  });
+
+  test("should render GameTileOverlay if isActive", () => {
+    const onLaunchGame = jest.fn();
+    const rendered = shallow(
+      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
+    );
+    rendered.setState({ isActive: true });
+
     const renderedGameTileOverlayProps = rendered
       .find("GameTileOverlay")
       .props();
