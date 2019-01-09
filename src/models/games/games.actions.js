@@ -1,9 +1,7 @@
 import { types as fetchTypes } from "Models/fetch";
 import { types } from "./games.constants";
 import { fetchGames } from "./games.api";
-import GameBrowserService from "Services/GameBrowserService";
-
-const { gamesBySlugs } = GameBrowserService;
+import { getGamesBySlugs } from "Api/api.gamebrowser";
 
 export const initiateFetchGamesBySlugs = ({
   slugs,
@@ -15,7 +13,7 @@ export const initiateFetchGamesBySlugs = ({
     type: fetchTypes.FETCH,
     name: types.FETCH_GAMES_BY_SLUGS,
     postFetch: types.FETCH_GAMES_BY_SLUGS_COMPLETE,
-    asyncCall: gamesBySlugs,
+    asyncCall: getGamesBySlugs,
     asyncCallData: { platform, country, slugs, variant },
   };
 };

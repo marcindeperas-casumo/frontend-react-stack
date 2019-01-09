@@ -1,7 +1,6 @@
 import { complement, compose, isNil, prop, path, pluck } from "ramda";
-
-import GameBrowserClient from "Clients/GameBrowserClient";
-import { getJackpots } from "Models/jackpots";
+import * as gamesApi from "Api/api.gamebrowser";
+import { getJackpots } from "Api/api.jackpots";
 
 const fetchLatestPlayedGames = async ({
   variant = "default",
@@ -10,12 +9,10 @@ const fetchLatestPlayedGames = async ({
   platform,
   playerId,
 } = {}) => {
-  const latestPlayedProviderGameNames = await GameBrowserClient.latestPlayedGames(
-    {
-      playerId,
-      pageSize: 20,
-    }
-  );
+  const latestPlayedProviderGameNames = await gamesApi.getLatestPlayedGames({
+    playerId,
+    pageSize: 20,
+  });
 
   if (
     !latestPlayedProviderGameNames ||
@@ -25,12 +22,14 @@ const fetchLatestPlayedGames = async ({
   }
 
   const { id, title } = handshake.gamesLists.latestPlayedGames;
-  const games = await GameBrowserClient.gamesByProviderGameNames({
-    country,
-    platform,
-    variant,
-    providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
-  }).then(prop("games"));
+  const games = await gamesApi
+    .getGamesByProviderGameNames({
+      country,
+      platform,
+      variant,
+      providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
+    })
+    .then(prop("games"));
 
   return { games, id, title };
 };
@@ -53,7 +52,7 @@ const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 const getLiveGames = async ({ currency, allLiveGamesList }) => {
   const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
 
-  const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
+  const liveCasinoTables = await gamesApi.getLiveCasinoTableById({
     currency,
     ids: pluck("tableId", allLiveGamesList),
   });
@@ -86,13 +85,15 @@ export const fetchGames = async ({
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
-      const gamesLists = await GameBrowserClient.gamesLists({
-        id,
-        variant,
-        platform,
-        country,
-        pageSize: 20,
-      }).then(prop("games"));
+      const gamesLists = await gamesApi
+        .getGameLists({
+          id,
+          variant,
+          platform,
+          country,
+          pageSize: 20,
+        })
+        .then(prop("games"));
 
       if (id === "liveCasinoGames") {
         try {
