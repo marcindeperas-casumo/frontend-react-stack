@@ -46,10 +46,7 @@ export default class GameTile extends PureComponent<Props, State> {
     document.removeEventListener("click", this.handleOutsideClick);
   }
 
-  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction by
-  // abusing how dom and react events work together. Listening on document receives events
-  // after all React handlers fire causing handleOutsideClick to always trigger
-  // on a second click after clicking a GameTile.
+  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction
 
   handleOnClick() {
     this.setState({
