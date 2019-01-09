@@ -1,6 +1,6 @@
 import { types as fetchTypes } from "Models/fetch";
+import { getJackpotsMustDrop } from "Api/api.jackpotsMustDrop";
 import { TYPES } from "./jackpotsMustDrop.constants";
-import { getJackpotsMustDrop } from "./jackpotsMustDrop.api";
 
 export const fetchJackpotsMustDrop = () => ({
   type: TYPES.FETCH,
