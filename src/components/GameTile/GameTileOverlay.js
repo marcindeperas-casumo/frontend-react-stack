@@ -16,7 +16,6 @@ type Props = {
   slug: string,
   inMaintenanceMode: boolean,
   onLaunchGame: Function,
-  className: string,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
@@ -26,7 +25,6 @@ const GameTileOverlay = ({
   slug,
   inMaintenanceMode,
   onLaunchGame,
-  className,
 }: Props) => {
   return (
     <Flex
@@ -36,8 +34,7 @@ const GameTileOverlay = ({
       className={classNames(
         "o-ratio__content c-game-tile__overlay",
         inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
-        "u-padding-vert--lg u-padding-horiz--md t-border-r--8",
-        className
+        "u-padding-vert--lg u-padding-horiz--md t-border-r--8"
       )}
     >
       <Text size="sm" className="t-color-white u-text-clamp u-font-weight-bold">
