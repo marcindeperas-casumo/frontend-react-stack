@@ -1,42 +1,7 @@
-import { assoc, complement, compose, isNil, prop } from "ramda";
+import { complement, compose, isNil, prop, path, pluck } from "ramda";
 
 import GameBrowserClient from "Clients/GameBrowserClient";
 import { getJackpots } from "Models/jackpots";
-
-const playerLatestPlayedGames = async ({ playerId }) => {
-  try {
-    return await GameBrowserClient.latestPlayedGames({
-      playerId,
-      pageSize: 20,
-    });
-  } catch (e) {
-    console.error("Latest played games query is unavailable 🤷‍♀️", e);
-    return [];
-  }
-};
-
-const gamesByProviderGameNames = async ({
-  country,
-  platform,
-  variant,
-  providerGameNames,
-}) => {
-  try {
-    return await GameBrowserClient.gamesByProviderGameNames({
-      country,
-      platform,
-      variant,
-      providerGameNames,
-    });
-  } catch (e) {
-    console.error("Games by provider name query is unavailable 🤷‍♀️", e);
-    return [];
-  }
-};
-
-const gameListMetaDataById = ({ handshake, id }) => {
-  return handshake.gamesLists[id];
-};
 
 const fetchLatestPlayedGames = async ({
   variant = "default",
@@ -45,9 +10,12 @@ const fetchLatestPlayedGames = async ({
   platform,
   playerId,
 } = {}) => {
-  const latestPlayedProviderGameNames = await playerLatestPlayedGames({
-    playerId,
-  });
+  const latestPlayedProviderGameNames = await GameBrowserClient.latestPlayedGames(
+    {
+      playerId,
+      pageSize: 20,
+    }
+  );
 
   if (
     !latestPlayedProviderGameNames ||
@@ -56,19 +24,54 @@ const fetchLatestPlayedGames = async ({
     return null;
   }
 
-  const { id, title } = gameListMetaDataById({
-    handshake,
-    id: "latestPlayedGames",
-  });
-
-  const games = await gamesByProviderGameNames({
+  const { id, title } = handshake.gamesLists.latestPlayedGames;
+  const games = await GameBrowserClient.gamesByProviderGameNames({
     country,
     platform,
     variant,
-    providerGameNames: latestPlayedProviderGameNames.map(prop("gameName")),
+    providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
+  }).then(prop("games"));
+
+  return { games, id, title };
+};
+
+const createAllLiveGamesMap = allLiveGamesList =>
+  allLiveGamesList.reduce(
+    (acc, game) => ({
+      ...acc,
+      [game.tableId]: game,
+    }),
+    {}
+  );
+
+/**
+ * TODO(mm): i think we should fallback to some default/other size if this
+ * thumbnail isn't available
+ */
+const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
+
+const getLiveGames = async ({ currency, allLiveGamesList }) => {
+  const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
+
+  const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
+    currency,
+    ids: pluck("tableId", allLiveGamesList),
   });
 
-  return { games: games.games, id, title };
+  return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({
+    ...allLiveGamesById[table.tableId],
+    lobby: {
+      tableId: table.tableId,
+      type: table.gameType,
+      image: getImageForTable(table),
+      bets: table.betLimits[currency],
+      players: table.players,
+      results: table.results || table.history || null,
+      betBehind: table.betBehind || null,
+      seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
+      provider: table.provider,
+    },
+  }));
 };
 
 export const fetchGames = async ({
@@ -79,151 +82,71 @@ export const fetchGames = async ({
   playerId,
   handshake,
 }) => {
-  const gameFetcherById = {
-    // Having multiple listIds for the same type is a bit risky. Let's
-    // streamline this.
-    liveCasino: (...args) => gameFetcherById.liveCasinoGames(...args),
-    liveCasinoGames: async ({
-      id,
-      variants,
-      title,
-      variant,
-      currency,
-      country,
-      platform,
-    }) => {
-      const liveCasinoGamesList = await gameFetcherById.DEFAULT({
-        country,
-        platform,
-        id,
-        variants,
-        title,
-        variant,
-      });
-
-      const liveCasinoGamesById = () => {
-        try {
-          return liveCasinoGamesList.games.reduce(
-            (accumulator, game) => assoc(game.tableId, game, accumulator),
-            {}
-          );
-        } catch (e) {
-          return {};
-        }
-      };
-
-      // eslint-disable-next-line fp/no-let
-      let liveCasinoTables;
-
-      try {
-        // eslint-disable-next-line fp/no-mutation
-        liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
-          ids: liveCasinoGamesList.games.map(({ tableId }) => tableId),
-          currency,
-        });
-      } catch (e) {
-        console.error("Live casino tables query is unavailable 🤷‍♀️", e);
-        // eslint-disable-next-line fp/no-mutation
-        liveCasinoTables = [];
-      }
-
-      const getImageForTable = compose(
-        prop("L"),
-        prop("thumbnails"),
-        prop("videoSnapshot")
-      );
-
-      return {
-        ...liveCasinoGamesList,
-        games: liveCasinoTables
-          .filter(({ open }) => Boolean(open))
-          .map(table => ({
-            ...liveCasinoGamesById()[table.tableId],
-            lobby: {
-              tableId: table.tableId,
-              type: table.gameType,
-              image: getImageForTable(table),
-              bets: table.betLimits[currency],
-              players: table.players,
-              results: table.results || table.history || null,
-              betBehind: table.betBehind || null,
-              seats: table.seatsTaken
-                ? table.seats - table.seatsTaken.length
-                : null,
-              provider: table.provider,
-            },
-          })),
-      };
-    },
-    DEFAULT: async ({ id, variants, title, variant, platform, country }) => {
-      try {
-        return await GameBrowserClient.gamesLists({
-          platform,
-          country,
-          id: id,
-          variant,
-          pageSize: 20,
-        });
-      } catch (e) {
-        console.error("Games lists query is unavailable 🤷‍♀️", e);
-        return [];
-      }
-    },
-  };
-
-  const hasSomeGames = compose(
-    i => i > 0,
-    prop("length"),
-    prop("games")
-  );
-
-  const { topListIds, gamesLists } = handshake;
-  const jackpots = getJackpots({
-    market,
-    currencyCode: currency,
-  });
-
-  // TODO: If the date is >= 28/11/2018 this function needs to be removed.
-  const normaliseLiveCasinoId = id => {
-    if (id === "liveCasino") {
-      return "liveCasinoGames";
-    }
-    return id;
-  };
-
-  const gameListsRequests = topListIds
-    .map(id => prop(id, gamesLists))
+  const gameListsRequests = handshake.topListIds
+    .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
-      const games = await (gameFetcherById[id] || gameFetcherById.DEFAULT)({
-        currency,
+      const gamesLists = await GameBrowserClient.gamesLists({
         id,
-        variants,
-        title,
         variant,
-        country,
         platform,
-      });
+        country,
+        pageSize: 20,
+      }).then(prop("games"));
+
+      if (id === "liveCasinoGames") {
+        try {
+          /**
+           * It might be confusing, here gamesList contains all available live
+           * games and additional logic is required to filter out games that are
+           * currently live and get additional data (ie. thumbnails).
+           */
+          const liveGames = await getLiveGames({
+            currency,
+            allLiveGamesList: gamesLists,
+          });
+
+          return {
+            games: liveGames,
+            id,
+            title,
+          };
+        } catch (e) {
+          console.error(
+            "Something went wrong while handling live casino games",
+            e
+          );
+          return {};
+        }
+      }
+
       return {
-        games: games.games,
-        id: normaliseLiveCasinoId(id),
+        games: gamesLists,
+        id,
         title,
       };
     });
-
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
     platform,
     playerId,
   });
-
+  const hasSomeGames = compose(
+    i => i > 0,
+    path(["games", "length"])
+  );
   const allListsResponses = (await Promise.all([
     latestPlayedGames,
     ...gameListsRequests,
   ])).filter(hasSomeGames);
+  const jackpots = getJackpots({
+    market,
+    currencyCode: currency,
+  });
 
-  return { gameLists: allListsResponses, jackpots: (await jackpots).jackpots };
+  return {
+    gameLists: allListsResponses,
+    jackpots: (await jackpots).jackpots,
+  };
 };
-
-export default fetchGames;
