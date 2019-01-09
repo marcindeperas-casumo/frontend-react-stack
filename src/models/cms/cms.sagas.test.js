@@ -1,6 +1,6 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { types as schemaTypes } from "Models/schema";
-import cmsApiMock from "Models/cms/__mocks__/cms.api.mock";
+import cmsApiMock from "Api/__mocks__/api.cms.mock";
 import {
   initiateFetch,
   fetchPageBySlugSaga,
