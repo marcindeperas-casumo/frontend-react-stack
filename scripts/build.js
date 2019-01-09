@@ -37,7 +37,7 @@ const WARN_AFTER_CHUNK_GZIP_SIZE = 1024 * 1024;
 const isInteractive = process.stdout.isTTY;
 
 // Warn and crash if required files are missing
-if (!checkRequiredFiles([paths.appHtml, paths.appIndexJs])) {
+if (!checkRequiredFiles([paths.appIndexJs])) {
   process.exit(1);
 }
 
@@ -61,8 +61,6 @@ checkBrowsers(paths.appPath, isInteractive)
     // Remove all content but keep the directory so that
     // if you're in it, you don't end up in Trash
     fs.emptyDirSync(paths.appBuild);
-    // Merge with the public folder
-    copyPublicFolder();
     // Start the webpack build
     return build(previousFileSizes);
   })
@@ -179,12 +177,5 @@ function build(previousFileSizes) {
 
       return resolve(resolveArgs);
     });
-  });
-}
-
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
   });
 }
