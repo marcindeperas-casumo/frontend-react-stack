@@ -120,39 +120,6 @@ export const cacheLocallyForMs = ms => {
   };
 };
 
-export const commonFetch = (url, options) => {
-  return fetch("/api/" + url, {
-    credentials: "same-origin",
-    headers: {
-      "content-type": "application/json",
-    },
-    ...options,
-  })
-    .then(response => {
-      if (!response.ok) {
-        // eslint-disable-next-line fp/no-throw
-        throw new Error(response.statusText);
-      }
-      return response;
-    })
-    .then(response => response.text())
-    .then(text => {
-      if (text === "") {
-        return {};
-      }
-
-      return JSON.parse(text);
-    });
-};
-
-export const usingPOST = (url, options) =>
-  commonFetch(url, {
-    method: "POST",
-    ...options,
-  });
-
-export const usingGET = commonFetch;
-
 export const trace = x => {
   log(x);
   return x;
