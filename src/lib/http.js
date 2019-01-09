@@ -21,7 +21,7 @@ const defaultFetch = (url: string, options: ?Object) => {
 
 const get = defaultFetch;
 
-const post = (url, options) =>
+const post = (url: string, options: ?Object) =>
   defaultFetch(url, {
     method: "POST",
     ...options,
