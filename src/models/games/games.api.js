@@ -35,8 +35,8 @@ const fetchLatestPlayedGames = async ({
   return { games, id, title };
 };
 
-const getLiveGames = async ({ currency, allLiveGamesList }) => {
-  const allLiveGamesById = allLiveGamesList.reduce(
+const createAllLiveGamesMap = allLiveGamesList =>
+  allLiveGamesList.reduce(
     (acc, game) => ({
       ...acc,
       [game.tableId]: game,
@@ -44,12 +44,19 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
     {}
   );
 
+/**
+ * TODO(mm): i think we should fallback to some default/other size if this
+ * thumbnail isn't available
+ */
+const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
+
+const getLiveGames = async ({ currency, allLiveGamesList }) => {
+  const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
+
   const liveCasinoTables = await GameBrowserClient.liveCasinoTablesById({
     currency,
     ids: pluck("tableId", allLiveGamesList),
   });
-
-  const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 
   return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({
     ...allLiveGamesById[table.tableId],
