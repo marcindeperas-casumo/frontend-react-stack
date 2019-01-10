@@ -1,6 +1,12 @@
 // @flow
 import { stringify } from "qs";
 
+export type FetchType = (
+  url: string,
+  data: ?Object,
+  options: ?Object
+) => Promise<any>;
+
 export const DEFAULT_FETCH_OPTIONS = {
   credentials: "same-origin",
   headers: {
@@ -25,7 +31,7 @@ const errorHandler = response => {
   return response;
 };
 
-const get = (url: string, data: ?Object, options: ?Object) =>
+const get: FetchType = (url, data, options) =>
   fetch(createGetUrl(url, data), {
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
@@ -33,7 +39,7 @@ const get = (url: string, data: ?Object, options: ?Object) =>
     .then(errorHandler)
     .then(response => response.json());
 
-const post = (url: string, data: ?Object, options: ?Object) =>
+const post: FetchType = (url, data, options) =>
   fetch(url, {
     method: "POST",
     body: data ? JSON.stringify(data) : undefined,
@@ -43,9 +49,7 @@ const post = (url: string, data: ?Object, options: ?Object) =>
     .then(errorHandler)
     .then(response => response.json());
 
-const http = {
+export default {
   get,
   post,
 };
-
-export default http;
