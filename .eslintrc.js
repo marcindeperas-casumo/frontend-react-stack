@@ -1,5 +1,3 @@
-const path = require("path");
-
 module.exports = {
   parser: "babel-eslint",
   plugins: ["prettier", "import", "flowtype", "fp", "ramda"],
@@ -18,13 +16,19 @@ module.exports = {
     "fp/no-rest-parameters": "off",
     "fp/no-this": "off",
     "fp/no-unused-expression": "off",
+    "fp/no-mutation": [
+      "error",
+      {
+        commonjs: true,
+      },
+    ],
     "prettier/prettier": "error",
-    'import/no-unresolved': [
-        'error',
-        {
-            commonjs: true,
-            caseSensitive: true,
-        },
+    "import/no-unresolved": [
+      "error",
+      {
+        commonjs: true,
+        caseSensitive: true,
+      },
     ],
   },
   overrides: [
@@ -41,10 +45,10 @@ module.exports = {
       onlyFilesWithFlowAnnotation: false,
     },
     react: {
-      version: "detect"
+      version: "detect",
     },
     "import/resolver": {
-      "babel-module": {}
-    }
-  }
+      "babel-module": {},
+    },
+  },
 };

@@ -1,8 +1,8 @@
 const path = require("path");
 const cudl = require("@casumo/cudl");
-const moduleAliases = require("../config/moduleAliases");
 const { mergeDeepRight } = require("ramda");
 
+/* eslint-disable fp/no-mutating-methods */
 module.exports = (baseConfig, env) => {
   // Extend defaultConfig as you need.
   baseConfig.module.rules.push({
@@ -28,13 +28,7 @@ module.exports = (baseConfig, env) => {
 
     loaders: [
       {
-        loader: "babel-loader",
-      },
-      {
-        loader: "react-svg-loader",
-        options: {
-          jsx: true, // true outputs JSX tags
-        },
+        loader: "@svgr/webpack",
       },
     ],
     include: path.resolve(__dirname, "../"),
@@ -42,8 +36,10 @@ module.exports = (baseConfig, env) => {
 
   return mergeDeepRight(baseConfig, {
     resolve: {
-      extensions: ['.wasm', '.mjs', '.js', '.json', '.scss'],
-      alias: moduleAliases,
+      extensions: [".wasm", ".mjs", ".js", ".json", ".scss"],
+      alias: {
+        Styles: path.resolve(__dirname, "../src/styles"),
+      },
     },
   });
 };
