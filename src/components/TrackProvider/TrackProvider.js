@@ -6,7 +6,7 @@ import type { Node } from "react";
 // for the tracking functions inside the children
 export const DEFAULT_CONTEXT = {};
 
-export const TrackContext = React.createContext(DEFAULT_CONTEXT);
+export const TrackContext = React.createContext<Object>(DEFAULT_CONTEXT);
 
 type Props = {
   children: Node,

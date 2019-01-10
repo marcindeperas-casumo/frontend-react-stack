@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import type { Node } from "react";
 import { contains, intersection } from "ramda";
 
 type Props = {
@@ -11,7 +12,7 @@ class MigrationComponentManager extends PureComponent<Props> {
   render() {
     return React.Children.toArray(this.props.children)
       .filter(React.isValidElement)
-      .map(child => {
+      .map<Node>(child => {
         const { activeKeys } = this.props;
         const {
           props: { migrationKey },
