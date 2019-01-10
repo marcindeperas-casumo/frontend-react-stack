@@ -19,24 +19,21 @@ export type Props = {
 };
 
 type State = {
-  isActive: boolean,
+  isOverlayActive: boolean,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 
 export default class GameTile extends PureComponent<Props, State> {
-  // Commented flowtypes because of https://github.com/babel/babel/issues/8593
-  /*::
   setWrapperRef: Function;
   handleOnClick: Function;
   handleOutsideClick: Function;
-  wrapperRef: Node
-  */
+  wrapperRef: Node;
 
   constructor(props: Props) {
     super(props);
     this.state = {
-      isActive: false,
+      isOverlayActive: false,
     };
     this.handleOnClick = this.handleOnClick.bind(this);
     this.handleOutsideClick = this.handleOutsideClick.bind(this);
@@ -50,14 +47,14 @@ export default class GameTile extends PureComponent<Props, State> {
 
   handleOnClick() {
     this.setState({
-      isActive: !this.state.isActive,
+      isOverlayActive: !this.state.isOverlayActive,
     });
     document.addEventListener("click", this.handleOutsideClick);
   }
 
   handleOutsideClick() {
     this.setState({
-      isActive: false,
+      isOverlayActive: false,
     });
     document.removeEventListener("click", this.handleOutsideClick);
   }
@@ -80,8 +77,8 @@ export default class GameTile extends PureComponent<Props, State> {
       name,
       slug,
     } = game;
-    const { isActive } = this.state;
-    const showJackpot = !isEmpty(jackpotInfo) && !isActive;
+    const { isOverlayActive } = this.state;
+    const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
 
     return (
       <div
@@ -100,7 +97,7 @@ export default class GameTile extends PureComponent<Props, State> {
           imgixOpts={imgixOpts}
         />
         {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        {isActive && (
+        {isOverlayActive && (
           <GameTileOverlay
             name={name}
             slug={slug}
