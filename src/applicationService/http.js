@@ -8,6 +8,9 @@ import logger from "Services/logger";
 
 const errorHandler = url => error => {
   logger.error(error.message, error, { url });
+
+  // eslint-disable-next-line fp/no-throw
+  throw error;
 };
 
 const fetch: FetchType = (url, options) =>

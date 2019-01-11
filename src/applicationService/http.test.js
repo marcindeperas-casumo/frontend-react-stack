@@ -16,32 +16,54 @@ describe("Services/http", () => {
 
   test("logs an error if a GET request fails", async () => {
     httpLib.get.mockRejectedValue(error);
-    await http.get(url);
 
-    expect(logger.error).toBeCalledTimes(1);
-    expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
-    expect(logger.error.mock.calls[0][1]).toEqual(error);
-    expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    try {
+      await http.get(url);
+    } catch (err) {
+      expect(logger.error).toBeCalledTimes(1);
+      expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
+      expect(logger.error.mock.calls[0][1]).toEqual(error);
+      expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    }
   });
 
   test("logs an error if a POST request fails", async () => {
     httpLib.post.mockRejectedValue(error);
-    await http.post(url);
 
-    expect(logger.error).toBeCalledTimes(1);
-    expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
-    expect(logger.error.mock.calls[0][1]).toEqual(error);
-    expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    try {
+      await http.post(url);
+    } catch (err) {
+      expect(logger.error).toBeCalledTimes(1);
+      expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
+      expect(logger.error.mock.calls[0][1]).toEqual(error);
+      expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    }
   });
 
   test("logs an error if a general FETCH request fails", async () => {
     httpLib.fetch.mockRejectedValue(error);
-    await http.fetch(url);
 
-    expect(logger.error).toBeCalledTimes(1);
-    expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
-    expect(logger.error.mock.calls[0][1]).toEqual(error);
-    expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    try {
+      await http.fetch(url);
+    } catch (err) {
+      expect(logger.error).toBeCalledTimes(1);
+      expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
+      expect(logger.error.mock.calls[0][1]).toEqual(error);
+      expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
+    }
+  });
+
+  test("re-throws the error so it is not swallowed", async () => {
+    httpLib.get.mockRejectedValue(error);
+
+    try {
+      await http.get(url);
+    } catch (err) {
+      return;
+    }
+
+    // eslint-disable-next-line fp/no-throw
+    throw new Error("HTTP: errorHandler should re-throw the errors");
   });
 
   test("does NOT log an error a request doesn't fail", async () => {
