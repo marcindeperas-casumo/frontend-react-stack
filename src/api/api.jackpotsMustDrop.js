@@ -1,4 +1,4 @@
-import http from "Lib/http";
+import http from "Services/http";
 
 export const getJackpotsMustDrop = async ({ currency = "EUR" }) => {
   const apiUrl = "/api/jackpots/redtiger/jackpots/casumo";

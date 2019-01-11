@@ -1,4 +1,4 @@
-import defaultHttp from "Lib/http";
+import defaultHttp from "Services/http";
 
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",

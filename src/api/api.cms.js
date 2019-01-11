@@ -1,5 +1,5 @@
 import { stringify } from "qs";
-import http from "Lib/http";
+import http from "Services/http";
 
 export const getPageBySlug = async ({ slug, hash, lang }) => {
   const queryParams = { hash };
