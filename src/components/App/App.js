@@ -3,6 +3,7 @@ import MigrationComponent, {
   MigrationComponentManager,
 } from "../MigrationComponent/index";
 import { TopListsSkeleton } from "Components/TopLists";
+import SearchSkeleton from "Components/Search/SearchSkeleton";
 import LazyPortal from "Components/LazyPortal";
 import MustDropJackpotListSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
@@ -58,6 +59,13 @@ class App extends PureComponent {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: "campaigns.winter-games" }}
+          />
+        </MigrationComponent>
+        <MigrationComponent migrationKey={["games-search"]}>
+          <LazyPortal
+            hostElementId="react-host-games-search"
+            loader={() => import("Components/Search")}
+            fallback={<SearchSkeleton />}
           />
         </MigrationComponent>
       </MigrationComponentManager>
