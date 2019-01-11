@@ -12,12 +12,9 @@
   overflow: hidden;
 }
 
-// increase specificity to prevent flex component from
-// showing the overlay before focus.
 //stylelint-disable-next-line xi/selector-pattern
-.c-game-tile__overlay.c-game-tile__overlay {
+.c-game-tile__overlay {
   background-color: rgba(cudl-palette(teal), 0.9);
-  display: none;
   text-align: center;
 }
 
@@ -25,17 +22,7 @@
   background-color: rgba(cudl-palette(grey, "dark-1"), 0.9);
 }
 
-//stylelint-disable-next-line xi/selector-pattern
-.c-game-tile:focus .c-game-tile__overlay {
-  display: flex;
-}
-
-//stylelint-disable-next-line xi/selector-pattern
-.c-game-tile:focus .c-jackpot-ticker {
-  display: none;
-}
-
-.c-jackpot-ticker {
+.c-game-tile__jackpot-ticker {
   white-space: nowrap;
   width: 100%;
 }

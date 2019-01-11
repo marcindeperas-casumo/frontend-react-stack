@@ -1,3 +1,4 @@
+/* eslint-disable fp/no-mutation */
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
@@ -17,9 +18,47 @@ export type Props = {
   ratio?: string,
 };
 
+type State = {
+  isOverlayActive: boolean,
+};
+
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 
-export default class GameTile extends PureComponent<Props> {
+export default class GameTile extends PureComponent<Props, State> {
+  setWrapperRef: Function;
+  handleOnClick: Function;
+  handleOutsideClick: Function;
+  wrapperRef: Node;
+
+  constructor(props: Props) {
+    super(props);
+    this.state = {
+      isOverlayActive: false,
+    };
+    this.handleOnClick = this.handleOnClick.bind(this);
+    this.handleOutsideClick = this.handleOutsideClick.bind(this);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener("click", this.handleOutsideClick);
+  }
+
+  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction
+
+  handleOnClick() {
+    this.setState({
+      isOverlayActive: !this.state.isOverlayActive,
+    });
+    document.addEventListener("click", this.handleOutsideClick);
+  }
+
+  handleOutsideClick() {
+    this.setState({
+      isOverlayActive: false,
+    });
+    document.removeEventListener("click", this.handleOutsideClick);
+  }
+
   render() {
     const {
       className,
@@ -38,6 +77,9 @@ export default class GameTile extends PureComponent<Props> {
       name,
       slug,
     } = game;
+    const { isOverlayActive } = this.state;
+    const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
+
     return (
       <div
         className={classNames(
@@ -46,7 +88,7 @@ export default class GameTile extends PureComponent<Props> {
           "c-game-tile o-ratio t-border-r--8 t-color-white",
           className
         )}
-        tabIndex={0}
+        onClick={this.handleOnClick}
       >
         <GameTileImage
           logoBackground={logoBackground}
@@ -54,13 +96,15 @@ export default class GameTile extends PureComponent<Props> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {!isEmpty(jackpotInfo) && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        <GameTileOverlay
-          name={name}
-          slug={slug}
-          inMaintenanceMode={inMaintenanceMode}
-          onLaunchGame={onLaunchGame}
-        />
+        {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
+        {isOverlayActive && (
+          <GameTileOverlay
+            name={name}
+            slug={slug}
+            inMaintenanceMode={inMaintenanceMode}
+            onLaunchGame={onLaunchGame}
+          />
+        )}
       </div>
     );
   }
