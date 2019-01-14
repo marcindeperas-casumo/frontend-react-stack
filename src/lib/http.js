@@ -1,4 +1,12 @@
 // @flow
+
+const DEFAULT_FETCH_OPTIONS = {
+  credentials: "same-origin",
+  headers: {
+    "content-type": "application/json",
+  },
+};
+
 const errorHandler = response => {
   if (!response.ok) {
     // eslint-disable-next-line fp/no-throw
@@ -8,29 +16,26 @@ const errorHandler = response => {
   return response;
 };
 
-const defaultFetch = (url: string, options: ?Object) => {
-  return fetch(url, {
-    credentials: "same-origin",
-    headers: {
-      "content-type": "application/json",
-    },
+const get = (url: string, options: ?Object) =>
+  fetch(url, {
+    ...DEFAULT_FETCH_OPTIONS,
+    ...options,
   })
     .then(errorHandler)
     .then(response => response.json());
-};
-
-const get = defaultFetch;
 
 const post = (url: string, options: ?Object) =>
-  defaultFetch(url, {
+  fetch(url, {
     method: "POST",
+    ...DEFAULT_FETCH_OPTIONS,
     ...options,
-  });
+  })
+    .then(errorHandler)
+    .then(response => response.json());
 
 const http = {
   get,
   post,
-  fetch: defaultFetch,
 };
 
 export default http;
