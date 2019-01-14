@@ -8,7 +8,7 @@ else
     # source: https://github.com/okonet/lint-staged/issues/62#issuecomment-411964870
     # precommit.sh
     message="precommit_on_$(git log -1 --format=%H)"
-    git stash -k -m $message
+    git stash save --keep-index $message
 
     # because git stash always succeeds
     # we need to check if we have stashed successfully
