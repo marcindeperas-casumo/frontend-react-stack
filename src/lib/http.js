@@ -8,6 +8,8 @@ const DEFAULT_FETCH_OPTIONS = {
 };
 
 const errorHandler = response => {
+  // Heads up! This is erroring out on 30x requests
+  // as well - e.g. on 304 not modified.
   if (!response.ok) {
     // eslint-disable-next-line fp/no-throw
     throw new Error(response.statusText);
