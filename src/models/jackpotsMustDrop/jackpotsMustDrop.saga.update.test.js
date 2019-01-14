@@ -1,7 +1,7 @@
 import { prop, compose, defaultTo } from "ramda";
 import { cloneableGenerator } from "redux-saga/utils";
 import { jackpotsMustDropUpdateSaga } from "./jackpotsMustDrop.saga.update";
-import cometdResponseMock from "./__mocks__/jackpots.cometd.response.mock";
+import cometdResponseMock from "./__mocks__/jackpotsMustDrop.cometd.response.mock";
 
 describe("Models/JackpotsMustDrop/UpdateSaga", () => {
   const currency = "GBP";

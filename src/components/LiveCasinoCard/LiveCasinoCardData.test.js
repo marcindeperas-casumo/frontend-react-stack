@@ -1,148 +1,125 @@
 import React from "react";
-import { mount } from "enzyme";
+import { shallow } from "enzyme";
 
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import { topCardLetters } from "./utils";
 
-import Roulette from "./__mocks__/Roulette.json";
-import TopCard from "./__mocks__/TopCard.json";
-import MoneyWheel from "./__mocks__/MoneyWheel.json";
-import Blackjack from "./__mocks__/Blackjack.json";
+import roulette from "./__mocks__/Roulette.json";
+import topCard from "./__mocks__/TopCard.json";
+import moneyWheel from "./__mocks__/MoneyWheel.json";
+import blackjack from "./__mocks__/Blackjack.json";
+import blackjackFull from "./__mocks__/BlackjackFull.json";
 
-let component;
-
-// TODO: rewrite the tests so they use shallow testing
-describe.skip("CardData", () => {
-  describe("LiveCasinoCard CardData > Roulette", () => {
-    const lobby = Roulette.lobby;
-
-    beforeEach(() => {
-      component = mount(<CardData lobby={lobby} />);
-    });
-
-    it("should render results", () => {
-      expect(component.find("Matcher").prop("condition")).toEqual("results");
-    });
-
-    it("should render 5 badge values", () => {
-      expect(component.find("Badge")).toHaveLength(5);
-
-      const results = lobby.results.slice(0, 5);
-      const rendered = component.find("Badge").map(node => node.text());
+describe("LiveCasinoCardData", () => {
+  describe("Roulette", () => {
+    test("renders 5 badges with correct values", () => {
+      const component = shallow(<CardData lobby={roulette.lobby} />);
+      const results = roulette.lobby.results.slice(0, 5);
+      const badges = component
+        .find("LobbyType")
+        .shallow()
+        .find("Badge");
+      const rendered = badges.map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);
+      expect(badges).toHaveLength(5);
     });
 
-    it("should render recent numbers text", () => {
-      expect(component.find("CMSField").text()).toEqual("Recent numbers");
-    });
+    test("renders recent numbers text", () => {
+      const component = shallow(<CardData lobby={roulette.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data.find("Connect(CMSField)").props().field;
 
-    afterEach(() => component.unmount());
+      expect(cmsField).toEqual("recent_numbers");
+    });
   });
 
-  describe("LiveCasinoCard CardData > TopCard (Football Studio)", () => {
-    const lobby = TopCard.lobby;
-
-    beforeEach(() => {
-      component = mount(<CardData lobby={lobby} />);
-    });
-
-    it("should render results", () => {
-      expect(component.find("Matcher").prop("condition")).toEqual("results");
-    });
-
-    it("should render 5 badges values with Football letters", () => {
-      expect(component.find("Badge")).toHaveLength(5);
-
-      const results = lobby.results.slice(0, 5).map(v => topCardLetters[v]);
-      const rendered = component.find("Badge").map(node => node.text());
+  describe("TopCard (Football Studio)", () => {
+    test("renders 5 badges with Football letter results", () => {
+      const component = shallow(<CardData lobby={topCard.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const results = topCard.lobby.results
+        .slice(0, 5)
+        .map(v => topCardLetters[v]);
+      const rendered = data
+        .find("Badge")
+        .map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);
+      expect(data.find("Badge")).toHaveLength(5);
     });
 
-    it("should render recent letters text", () => {
-      expect(component.find("CMSField").text()).toEqual("Recent letters");
-    });
+    test("should render recent letters text", () => {
+      const component = shallow(<CardData lobby={topCard.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data.find("Connect(CMSField)").props().field;
 
-    afterEach(() => component.unmount());
+      expect(cmsField).toEqual("recent_letters");
+    });
   });
 
-  describe("LiveCasinoCard CardData > MoneyWheel", () => {
-    const lobby = MoneyWheel.lobby;
-
-    beforeEach(() => {
-      component = mount(<CardData lobby={lobby} />);
-    });
-
-    it("should render results", () => {
-      expect(component.find("Matcher").prop("condition")).toEqual("results");
-    });
-
-    it("should render the 5 badges values with no leading 0", () => {
-      expect(component.find("Badge")).toHaveLength(5);
-
-      const results = lobby.results
+  describe("MoneyWheel", () => {
+    test("renders the 5 badges values with no leading 0", () => {
+      const component = shallow(<CardData lobby={moneyWheel.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const results = moneyWheel.lobby.results
         .slice(0, 5)
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
-
-      const rendered = component.find("Badge").map(node => node.text());
+      const rendered = data
+        .find("Badge")
+        .map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);
+      expect(data.find("Badge")).toHaveLength(5);
     });
 
-    it("should render recent numbers text", () => {
-      expect(component.find("CMSField").text()).toEqual("Recent numbers");
-    });
+    test("should render recent letters text", () => {
+      const component = shallow(<CardData lobby={moneyWheel.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data.find("Connect(CMSField)").props().field;
 
-    afterEach(() => component.unmount());
+      expect(cmsField).toEqual("recent_numbers");
+    });
   });
 
-  describe("LiveCasinoCard CardData > Blackjack", () => {
-    const lobby = Blackjack.lobby;
+  describe("Blackjack (Open Seats)", () => {
+    test("renders 1 badge", () => {
+      const component = shallow(<CardData lobby={blackjack.lobby} />);
+      const data = component.find("LobbyType").shallow();
 
-    describe("Open Seats", () => {
-      beforeEach(() => {
-        component = mount(<CardData lobby={lobby} />);
-      });
-
-      it("should render results", () => {
-        expect(component.find("Matcher").prop("condition")).toEqual("seats");
-      });
-
-      it("should render 1 badge", () => {
-        expect(component.find("Badge").text()).toEqual("7");
-      });
-
-      it("should render open seats text", () => {
-        expect(component.find("CMSField").text()).toEqual("Open seats");
-      });
-
-      afterEach(() => component.unmount());
+      expect(data.find("Badge").props().children).toEqual(7);
     });
 
-    describe("No Seats", () => {
-      beforeEach(() => {
-        lobby.seats = 0;
-        component = mount(<CardData lobby={lobby} />);
-      });
+    test("should render open seats text", () => {
+      const component = shallow(<CardData lobby={blackjack.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data.find("Connect(CMSField)").props().field;
 
-      it("should render 1 badge bet with behind text", () => {
-        expect(
-          component
-            .find("Badge")
-            .first()
-            .text()
-        ).toEqual("Bet behind");
-      });
+      expect(cmsField).toEqual("open_seats");
+    });
+  });
 
-      it("should render bet behind text", () => {
-        expect(
-          component
-            .find("CMSField")
-            .last()
-            .text()
-        ).toEqual("Table full");
-      });
+  describe("Blackjack No Seats", () => {
+    test("renders 1 badge bet with behind text", () => {
+      const component = shallow(<CardData lobby={blackjackFull.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data
+        .find("Badge")
+        .children()
+        .props().field;
+
+      expect(cmsField).toEqual("bet_behind");
+    });
+
+    test("renders bet behind text", () => {
+      const component = shallow(<CardData lobby={blackjackFull.lobby} />);
+      const data = component.find("LobbyType").shallow();
+      const cmsField = data
+        .find("Text")
+        .find("Connect(CMSField)")
+        .props().field;
+
+      expect(cmsField).toEqual("table_full");
     });
   });
 });

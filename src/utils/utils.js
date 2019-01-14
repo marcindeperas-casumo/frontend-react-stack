@@ -319,6 +319,7 @@ export const stringToHTML = string => {
 export const generateColumns = (items, numberByColumns = 3) =>
   splitEvery(numberByColumns, items);
 
+// TODO: make this a component
 export const renderBets = o =>
   o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
 

@@ -1,4 +1,4 @@
-import jackpotsMock from "Models/jackpotsMustDrop/__mocks__/jackpots.state.mock";
+import jackpotsMock from "Models/jackpotsMustDrop/__mocks__/jackpotsMustDrop.state.mock";
 import jackpotsCmsMock from "Models/jackpotsMustDrop/__mocks__/jackpots.cms.state.mock";
 import jackpotsMergedMock from "Models/jackpotsMustDrop/__mocks__/jackpots.merged.mock";
 import {

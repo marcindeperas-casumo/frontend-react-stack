@@ -8,6 +8,6 @@ export const TYPES = {
 // names here so we keep them in one place.
 export const CHANNELS = {
   JACKPOTS: "/public/jackpotsUpdated",
-  LIVE_CASINO_ALL: "/public/tables/*",
+  LIVE_CASINO_TABLE: "/public/liveCasino/table",
   MUST_DROP_JACKPOTS: "/public/redtiger-jackpots/*",
 };

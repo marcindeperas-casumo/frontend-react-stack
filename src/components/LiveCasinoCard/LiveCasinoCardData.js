@@ -5,24 +5,12 @@ import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
-import Matcher from "Components/Matcher";
 
 import { getBadgeColor, topCardLetters } from "./utils";
 
-const getText = field => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field={field}
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
-);
-
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
+
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
@@ -87,38 +75,33 @@ const renderSeats = ({ seats }) => (
   </React.Fragment>
 );
 
-const DataType = props => (
-  <Matcher
-    getKey={({ condition }) => condition}
-    matchers={{
-      results: renderResults,
-      seats: renderSeats,
-      default: () => null,
-    }}
-    {...props}
+const getText = field => (
+  <CMSField
+    slug="mobile.live-casino-cards-content"
+    field={field}
+    view={text => (
+      <Text size="xs" tag="span">
+        {text}
+      </Text>
+    )}
   />
 );
 
-const RENDER_TYPE = {
-  SEATS: "seats",
-  RESULTS: "results",
+const isIn = flip(contains);
+const LobbyType = ({ lobby }) => {
+  const { type } = lobby;
+  return cond([
+    [equals("Blackjack"), () => renderSeats(lobby)],
+    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => renderResults(lobby)],
+    [T, () => null],
+  ])(type);
 };
 
-const isIn = flip(contains);
-
 const CardData = ({ lobby }) => {
-  const renderType = cond([
-    [equals("Blackjack"), () => RENDER_TYPE.SEATS],
-    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => RENDER_TYPE.RESULTS],
-    [T, () => null],
-  ])(lobby.type);
-
   return (
-    renderType && (
-      <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-        <DataType condition={renderType} {...lobby} />
-      </div>
-    )
+    <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+      <LobbyType lobby={lobby} />
+    </div>
   );
 };
 
