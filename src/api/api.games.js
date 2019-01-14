@@ -1,5 +1,5 @@
 import { complement, compose, isNil, prop, path, pluck } from "ramda";
-import * as gamesApi from "Api/api.gamebrowser";
+import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
 
 const fetchLatestPlayedGames = async ({
@@ -9,10 +9,12 @@ const fetchLatestPlayedGames = async ({
   platform,
   playerId,
 } = {}) => {
-  const latestPlayedProviderGameNames = await gamesApi.getLatestPlayedGames({
-    playerId,
-    pageSize: 20,
-  });
+  const latestPlayedProviderGameNames = await gamebrowserApi.getLatestPlayedGames(
+    {
+      playerId,
+      pageSize: 20,
+    }
+  );
 
   if (
     !latestPlayedProviderGameNames ||
@@ -22,7 +24,7 @@ const fetchLatestPlayedGames = async ({
   }
 
   const { id, title } = handshake.gamesLists.latestPlayedGames;
-  const games = await gamesApi
+  const games = await gamebrowserApi
     .getGamesByProviderGameNames({
       country,
       platform,
@@ -52,7 +54,7 @@ const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 const getLiveGames = async ({ currency, allLiveGamesList }) => {
   const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
 
-  const liveCasinoTables = await gamesApi.getLiveCasinoTable({
+  const liveCasinoTables = await gamebrowserApi.getLiveCasinoTable({
     ids: pluck("tableId", allLiveGamesList),
     currency,
   });
@@ -85,7 +87,7 @@ export const fetchGames = async ({
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
-      const gamesLists = await gamesApi
+      const gamesLists = await gamebrowserApi
         .getGameLists({
           id,
           variant,
