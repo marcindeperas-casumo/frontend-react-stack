@@ -4,5 +4,5 @@ export const URLS = {
   HANDSHAKE: "/api/common/handshake",
 };
 
-export const getHandshake = (httpService = http) =>
+export const getCommonHandshake = (httpService = http) =>
   httpService.get(URLS.HANDSHAKE);
