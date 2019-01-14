@@ -1,5 +1,5 @@
-import { stringify } from "qs";
 import defaultHttp from "Lib/http";
+import { getQueryParams } from "Utils";
 
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",
@@ -9,10 +9,6 @@ export const URL = {
   GAMES_BY_SLUGS: "/api/gamebrowser/games-by-slugs",
   LIVE_CASINO: "/api/gamebrowser/liveCasino/tablesById",
 };
-
-// Move this out to the utils
-const stringifyOptions = { skipNulls: true, arrayFormat: "brackets" };
-const getQueryParams = params => `?${stringify(params, stringifyOptions)}`;
 
 export const getGameBrowserHandshake = (
   { platform, country },

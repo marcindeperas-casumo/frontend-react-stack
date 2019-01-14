@@ -10,6 +10,7 @@ import {
   SimpleCache,
   sanitizeObject,
   getEnv,
+  getQueryParams,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -296,6 +297,15 @@ describe("renderBets()", () => {
 
       expect(getEnv(nodeEnv, windowTest)).toBe(ENVS.TEST);
       expect(getEnv(nodeEnv, windowStage)).toBe(ENVS.TEST);
+    });
+  });
+
+  describe("getQueryParams()", () => {
+    test("converts object to a URL query string", () => {
+      const params = { a: "foo", b: "bar" };
+      const queryParams = getQueryParams(params);
+
+      expect(queryParams).toBe("?a=foo&b=bar");
     });
   });
 });

@@ -1,4 +1,5 @@
 import { prop, splitEvery, assocPath } from "ramda";
+import { stringify } from "qs";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -295,3 +296,6 @@ export const sanitizeObject = (obj, keysToSanitize = []) => {
     .map(key => key.split("."))
     .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
+
+export const getQueryParams = params =>
+  `?${stringify(params, { skipNulls: true, arrayFormat: "brackets" })}`;
