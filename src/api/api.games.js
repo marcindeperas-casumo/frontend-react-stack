@@ -52,9 +52,9 @@ const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 const getLiveGames = async ({ currency, allLiveGamesList }) => {
   const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
 
-  const liveCasinoTables = await gamesApi.getLiveCasinoTableById({
-    currency,
+  const liveCasinoTables = await gamesApi.getLiveCasinoTable({
     ids: pluck("tableId", allLiveGamesList),
+    currency,
   });
 
   return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({

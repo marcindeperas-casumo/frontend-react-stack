@@ -64,11 +64,11 @@ export const getGamesBySlugs = (
   return http.get(`${URL.GAMES_BY_SLUGS}/${platform}/${country}${queryParams}`);
 };
 
-export const getLiveCasinoTableById = (
-  { ids, currency },
-  http = defaultHttp
-) => {
+export const getLiveCasinoTable = ({ ids, currency }, http = defaultHttp) => {
   const queryParams = getQueryParams({
+    // Even if it is an array we need to use "id"
+    // as a key here, as this is how it will be transformed:
+    // ?id[]=123&id[]=456&id[]=789
     id: ids,
     currency,
   });

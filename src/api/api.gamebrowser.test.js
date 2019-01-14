@@ -4,7 +4,7 @@ import {
   getLatestPlayedGames,
   getGamesByProviderGameNames,
   getGamesBySlugs,
-  getLiveCasinoTableById,
+  getLiveCasinoTable,
 } from "./api.gamebrowser";
 
 describe("API/GameBrowser", () => {
@@ -95,11 +95,11 @@ describe("API/GameBrowser", () => {
     });
   });
 
-  describe("getLiveCasinoTableById()", () => {
+  describe("getLiveCasinoTable()", () => {
     test("requests the URL with the necessary params", () => {
-      getLiveCasinoTableById(
+      getLiveCasinoTable(
         {
-          ids: "12345",
+          ids: ["123", "456"],
           currency: "EUR",
         },
         http
@@ -107,7 +107,9 @@ describe("API/GameBrowser", () => {
 
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(getRequestedUrl()).toMatch(`${URL.LIVE_CASINO}`);
-      expect(getRequestedUrl()).toMatch(`?id=12345&currency=EUR`);
+      expect(getRequestedUrl()).toMatch(
+        `?id%5B%5D=123&id%5B%5D=456&currency=EUR`
+      );
     });
   });
 });
