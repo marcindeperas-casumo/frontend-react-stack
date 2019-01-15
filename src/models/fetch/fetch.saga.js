@@ -1,6 +1,6 @@
 import { put, call } from "redux-saga/effects";
 
-import { fetchService } from "Services/FetchService";
+import http from "Services/http";
 import * as actions from "./fetch.actions";
 
 export function* fetchSaga(action) {
@@ -18,9 +18,11 @@ export function* fetchSaga(action) {
     yield put(actions.clearError(name));
     yield put(actions.sendRequest(name));
 
+    const isPost = method === "POST";
+    const httpMethod = isPost ? http.post : http.get;
     const response = asyncCall
       ? yield call(asyncCall, asyncCallData)
-      : yield call(fetchService, { method, url, data });
+      : yield call(httpMethod, url, data);
 
     if (action.postFetch) {
       yield put(actions.postFetch(postFetch, response));

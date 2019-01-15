@@ -2,16 +2,13 @@ import { put, take, call } from "redux-saga/effects";
 
 import curatedMock from "Models/curated/__mocks__/curated.json";
 import { types, fetchCuratedGameSaga } from "Models/curated";
-import { types as fetchTypes } from "Models/fetch";
 import { normalizeData, updateEntity } from "Models/schema";
-import GameBrowserService from "Services/GameBrowserService";
 
 describe("Models/curated/sagas", () => {
   describe("fetchCuratedGameSaga", () => {
     test("success flow game in store", () => {
-      const generator = fetchCuratedGameSaga({
-        type: "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune",
-      });
+      const type = "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune";
+      const generator = fetchCuratedGameSaga({ type });
       const curated = curatedMock;
       const { gameData, game } = curated;
 
@@ -22,20 +19,16 @@ describe("Models/curated/sagas", () => {
     });
 
     test("success flow fetch game not in store", () => {
-      const generator = fetchCuratedGameSaga({
-        type: "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune",
-      });
+      const type = "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune";
+      const generator = fetchCuratedGameSaga({ type });
       const curated = curatedMock;
       const gameData = null;
       const { game } = curated;
+      const country = "gb";
 
       generator.next({ curated });
       generator.next({ gameData, game });
-
-      const args = {
-        slugs: curated.game,
-      };
-      const { gamesBySlugs } = GameBrowserService;
+      generator.next(country);
 
       expect(generator.next().value).toEqual(
         take(types.CURATED_FETCH_GAME_COMPLETE)

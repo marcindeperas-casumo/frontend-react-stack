@@ -15,6 +15,9 @@ import gameBlackjackFull from "./__mocks__/BlackjackFull.json";
 
 const stories = storiesOf("LiveCasinoCard", module);
 
+const subscribeToUpdates = () => {};
+const unsubscribeFromUpdates = () => {};
+
 if (isNotChromatic) {
   stories.add(
     "Card (connected)",
@@ -36,6 +39,8 @@ stories.add(
         <LiveCasinoCard
           game={gameMoneyWheel}
           launchGame={action(gameMoneyWheel.slug)}
+          subscribeToUpdates={subscribeToUpdates}
+          unsubscribeFromUpdates={unsubscribeFromUpdates}
         />
       </MockStore>
     </div>
@@ -51,6 +56,8 @@ stories.add(
         <LiveCasinoCard
           game={gameRoulette}
           launchGame={action(gameRoulette.slug)}
+          subscribeToUpdates={subscribeToUpdates}
+          unsubscribeFromUpdates={unsubscribeFromUpdates}
         />
       </MockStore>
     </div>
@@ -66,6 +73,8 @@ stories.add(
         <LiveCasinoCard
           game={gameBlackjack}
           launchGame={action(gameBlackjack.slug)}
+          subscribeToUpdates={subscribeToUpdates}
+          unsubscribeFromUpdates={unsubscribeFromUpdates}
         />
       </MockStore>
     </div>
@@ -81,6 +90,8 @@ stories.add(
         <LiveCasinoCard
           game={gameBlackjackFull}
           launchGame={action(gameBlackjackFull.slug)}
+          subscribeToUpdates={subscribeToUpdates}
+          unsubscribeFromUpdates={unsubscribeFromUpdates}
         />
       </MockStore>
     </div>
@@ -96,6 +107,8 @@ stories.add(
         <LiveCasinoCard
           game={gameTopCard}
           launchGame={action(gameTopCard.slug)}
+          subscribeToUpdates={subscribeToUpdates}
+          unsubscribeFromUpdates={unsubscribeFromUpdates}
         />
       </MockStore>
     </div>

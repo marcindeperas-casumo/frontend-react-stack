@@ -4,7 +4,6 @@ import {
   gameListEntitiesSelector,
   gameEntitiesSelector,
   liveTableEntitiesSelector,
-  liveCasinoEntitiesSelector,
   jackpotEntitiesSelector,
   topListIds,
   topListSelectorById,
@@ -48,14 +47,6 @@ describe("Schema selectors", () => {
     };
 
     expect(liveTableEntitiesSelector(state)).toEqual({ lt1: 1 });
-  });
-
-  test("liveCasinoEntitiesSelector", () => {
-    const state = {
-      schema: { liveCasino: { lc1: 1 } },
-    };
-
-    expect(liveCasinoEntitiesSelector(state)).toEqual({ lc1: 1 });
   });
 
   test("jackpotEntitiesSelector", () => {

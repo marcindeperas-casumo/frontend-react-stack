@@ -33,11 +33,6 @@ export const liveTableEntitiesSelector = createSelector(
   state => state.liveTable
 );
 
-export const liveCasinoEntitiesSelector = createSelector(
-  schemaSelector,
-  state => state.liveCasino
-);
-
 export const jackpotEntitiesSelector = createSelector(
   schemaSelector,
   state => state.jackpot

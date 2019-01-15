@@ -4,11 +4,19 @@ import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
+import {
+  subscribeLiveCasinoUpdates,
+  unsubscribeLiveCasinoUpdates,
+} from "Models/cometd";
 
 const LiveCasinoCardConnected = connect(
   (state, { id }) => ({ game: gameSelector(id)(state) }),
   (dispatch, { id }) => ({
     launchGame: () => dispatch(launchGame(id)),
+    subscribeToUpdates: tableId =>
+      dispatch(subscribeLiveCasinoUpdates(tableId)),
+    unsubscribeFromUpdates: tableId =>
+      dispatch(unsubscribeLiveCasinoUpdates(tableId)),
   })
 )(LiveCasinoCard);
 

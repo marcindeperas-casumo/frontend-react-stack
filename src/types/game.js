@@ -11,5 +11,5 @@ export type Game = {
   jackpotInfo: void | JackpotInfo,
   jackpotId: void | string,
   tableId: void | string,
-  lobby: void | liveCasinoLobby,
+  lobby: liveCasinoLobby,
 };
