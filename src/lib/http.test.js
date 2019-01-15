@@ -63,6 +63,20 @@ describe("Lib/http", () => {
 
       expect(getFetchCallOptionsArg()).toMatchObject({ method: "POST" });
     });
+
+    test("sends data in the body as a JSON", async () => {
+      const data = { foo: "bar" };
+
+      await http.post("/foo/bar", data);
+
+      expect(getFetchCallOptionsArg()).toMatchObject({ body: '{"foo":"bar"}' });
+    });
+
+    test("does not set the body if there is no data", async () => {
+      await http.post("/foo/bar");
+
+      expect(getFetchCallOptionsArg().body).toBeUndefined();
+    });
   });
 
   describe(".get()", () => {

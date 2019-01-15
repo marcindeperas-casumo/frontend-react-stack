@@ -29,6 +29,7 @@ const get = (url: string, data: ?Object, options: ?Object) =>
 const post = (url: string, data: ?Object, options: ?Object) =>
   fetch(url, {
     method: "POST",
+    body: data ? JSON.stringify(data) : undefined,
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
   })
