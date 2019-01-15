@@ -25,6 +25,10 @@ import {
   cometdUnsubscribeSaga,
   takeChannel,
 } from "Models/cometd";
+import {
+  types as gameSearchTypes,
+  fetchGameSearchListSaga,
+} from "Models/gameSearch";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -53,5 +57,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameTypes.FETCH_GAMES_BY_SLUGS_START,
     fetchGamesBySlugsSaga
+  );
+  yield fork(
+    takeEvery,
+    gameSearchTypes.GAME_SEARCH_FETCH_ALL_GAMES,
+    fetchGameSearchListSaga
   );
 }
