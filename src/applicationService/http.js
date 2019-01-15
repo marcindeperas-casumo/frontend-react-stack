@@ -13,17 +13,13 @@ const errorHandler = url => error => {
   throw error;
 };
 
-const fetch: FetchType = (url, options) =>
-  http.fetch(url, options).catch(errorHandler(url));
+const post: FetchType = (url, data, options) =>
+  http.post(url, data, options).catch(errorHandler(url));
 
-const post: FetchType = (url, options) =>
-  http.post(url, options).catch(errorHandler(url));
-
-const get: FetchType = (url, options) =>
-  http.get(url, options).catch(errorHandler(url));
+const get: FetchType = (url, data, options) =>
+  http.get(url, data, options).catch(errorHandler(url));
 
 export default {
-  fetch,
   post,
   get,
 };

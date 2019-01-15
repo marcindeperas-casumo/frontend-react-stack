@@ -40,19 +40,6 @@ describe("Services/http", () => {
     }
   });
 
-  test("logs an error if a general FETCH request fails", async () => {
-    httpLib.fetch.mockRejectedValue(error);
-
-    try {
-      await http.fetch(url);
-    } catch (err) {
-      expect(logger.error).toBeCalledTimes(1);
-      expect(logger.error.mock.calls[0][0]).toEqual(errorMessage);
-      expect(logger.error.mock.calls[0][1]).toEqual(error);
-      expect(logger.error.mock.calls[0][2]).toMatchObject({ url });
-    }
-  });
-
   test("re-throws the error so it is not swallowed", async () => {
     httpLib.get.mockRejectedValue(error);
 
@@ -69,10 +56,8 @@ describe("Services/http", () => {
   test("does NOT log an error a request doesn't fail", async () => {
     httpLib.get.mockResolvedValue({});
     httpLib.post.mockResolvedValue({});
-    httpLib.fetch.mockResolvedValue({});
     await http.get(url);
     await http.post(url);
-    await http.fetch(url);
 
     expect(logger.error).not.toBeCalled();
   });
