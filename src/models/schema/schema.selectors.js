@@ -38,15 +38,9 @@ export const jackpotEntitiesSelector = createSelector(
   state => state.jackpot
 );
 
-export const cmsEntitiesSelector = createSelector(
-  schemaSelector,
-  prop("cms")
-);
+export const cmsEntitiesSelector = createSelector(schemaSelector, prop("cms"));
 
-export const topListIds = createSelector(
-  gameListEntitiesSelector,
-  keys
-);
+export const topListIds = createSelector(gameListEntitiesSelector, keys);
 
 export const areGameListsLoaded = createSelector(
   gameListEntitiesSelector,
@@ -166,7 +160,4 @@ export const gameSelector = id =>
   );
 
 export const gameListTitleSelectorFactory = listId =>
-  createSelector(
-    topListSelectorById(listId),
-    prop("title")
-  );
+  createSelector(topListSelectorById(listId), prop("title"));
