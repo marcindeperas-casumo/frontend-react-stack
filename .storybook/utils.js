@@ -1,4 +1,4 @@
-export default function workaround() {
+export default function polyfillWindowForChromatic() {
   if (!window.URL.createObjectURL) {
     Object.defineProperty(window.URL, "createObjectURL", { value: () => {} });
   }

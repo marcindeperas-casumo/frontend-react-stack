@@ -13,8 +13,8 @@ const req = require.context("../src", true, /.stories.js$/);
 // Prevent random errors with chromatic
 // TypeError: window.URL.createObjectURL is not a function
 // Chromatic will (eventually) solve this at there end.
-import workaround from "Storybook/workaround";
-workaround();
+import polyfillWindowForChromatic from "Storybook/utils";
+polyfillWindowForChromatic();
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
