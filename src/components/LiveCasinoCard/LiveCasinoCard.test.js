@@ -9,7 +9,7 @@ describe("LiveCasinoCard", () => {
 
   test("subscribes to updates when mounted", () => {
     const game = { lobby: { tableId: "table" } };
-    const rendered = shallow(
+    shallow(
       <LiveCasinoCard
         game={game}
         launchGame={launchGame}
