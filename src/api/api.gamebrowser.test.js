@@ -9,7 +9,8 @@ import {
 
 describe("API/GameBrowser", () => {
   let http;
-  const getRequestedUrl = () => http.get.mock.calls[0][0];
+  const getRequestUrl = () => http.get.mock.calls[0][0];
+  const getRequestData = () => http.get.mock.calls[0][1];
 
   beforeEach(() => {
     http = {
@@ -32,8 +33,12 @@ describe("API/GameBrowser", () => {
       );
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestedUrl()).toMatch(`${URL.GAME_LISTS}/desktop/en-gb/123`);
-      expect(getRequestedUrl()).toMatch(`?variant=default&page=2&pageSize=10`);
+      expect(getRequestUrl()).toMatch(`${URL.GAME_LISTS}/desktop/en-gb/123`);
+      expect(getRequestData()).toMatchObject({
+        variant: "default",
+        page: 2,
+        pageSize: 10,
+      });
     });
   });
 
@@ -48,8 +53,8 @@ describe("API/GameBrowser", () => {
       );
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestedUrl()).toMatch(`${URL.GAMES_LATEST_PLAYED}/123`);
-      expect(getRequestedUrl()).toMatch(`?numberOfGames=10`);
+      expect(getRequestUrl()).toMatch(`${URL.GAMES_LATEST_PLAYED}/123`);
+      expect(getRequestUrl()).toMatch(`?numberOfGames=10`);
     });
   });
 
@@ -66,12 +71,11 @@ describe("API/GameBrowser", () => {
       );
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestedUrl()).toMatch(
-        `${URL.GAMES_BY_PROVIDER}/desktop/en-gb`
-      );
-      expect(getRequestedUrl()).toMatch(
-        `?variant=default&providerGameNames=foo`
-      );
+      expect(getRequestUrl()).toMatch(`${URL.GAMES_BY_PROVIDER}/desktop/en-gb`);
+      expect(getRequestData()).toMatchObject({
+        variant: "default",
+        providerGameNames: "foo",
+      });
     });
   });
 
@@ -88,10 +92,11 @@ describe("API/GameBrowser", () => {
       );
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestedUrl()).toMatch(`${URL.GAMES_BY_SLUGS}/desktop/en-gb`);
-      expect(getRequestedUrl()).toMatch(
-        `?variant=default&slugs%5B%5D=game1&slugs%5B%5D=game2`
-      );
+      expect(getRequestUrl()).toMatch(`${URL.GAMES_BY_SLUGS}/desktop/en-gb`);
+      expect(getRequestData()).toMatchObject({
+        variant: "default",
+        slugs: ["game1", "game2"],
+      });
     });
   });
 
@@ -106,10 +111,11 @@ describe("API/GameBrowser", () => {
       );
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestedUrl()).toMatch(`${URL.LIVE_CASINO}`);
-      expect(getRequestedUrl()).toMatch(
-        `?id%5B%5D=123&id%5B%5D=456&currency=EUR`
-      );
+      expect(getRequestUrl()).toMatch(`${URL.LIVE_CASINO}`);
+      expect(getRequestData()).toMatchObject({
+        id: ["123", "456"],
+        currency: "EUR",
+      });
     });
   });
 });

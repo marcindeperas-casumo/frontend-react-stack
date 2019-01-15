@@ -1,5 +1,4 @@
 import defaultHttp from "Lib/http";
-import { getQueryParams } from "Utils";
 
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",
@@ -20,17 +19,12 @@ export const getGameBrowserHandshake = (
 export const getGameLists = (
   { platform, country, id, variant, page = 0, pageSize = 5 },
   http = defaultHttp
-) => {
-  const queryParams = getQueryParams({
+) =>
+  http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, {
     variant,
     page,
     pageSize,
   });
-
-  return http.get(
-    `${URL.GAME_LISTS}/${platform}/${country}/${id}${queryParams}`
-  );
-};
 
 export const getLatestPlayedGames = (
   { playerId, pageSize = 20 },
@@ -41,37 +35,26 @@ export const getLatestPlayedGames = (
 export const getGamesByProviderGameNames = (
   { platform, country, variant, providerGameNames },
   http = defaultHttp
-) => {
-  const queryParams = getQueryParams({
+) =>
+  http.get(`${URL.GAMES_BY_PROVIDER}/${platform}/${country}`, {
     variant,
     providerGameNames,
   });
 
-  return http.get(
-    `${URL.GAMES_BY_PROVIDER}/${platform}/${country}${queryParams}`
-  );
-};
-
 export const getGamesBySlugs = (
   { platform, country, variant, slugs },
   http = defaultHttp
-) => {
-  const queryParams = getQueryParams({
+) =>
+  http.get(`${URL.GAMES_BY_SLUGS}/${platform}/${country}`, {
     variant,
     slugs,
   });
 
-  return http.get(`${URL.GAMES_BY_SLUGS}/${platform}/${country}${queryParams}`);
-};
-
-export const getLiveCasinoTable = ({ ids, currency }, http = defaultHttp) => {
-  const queryParams = getQueryParams({
+export const getLiveCasinoTable = ({ ids, currency }, http = defaultHttp) =>
+  http.get(`${URL.LIVE_CASINO}`, {
     // Even if it is an array we need to use "id"
-    // as a key here, as this is how it will be transformed:
+    // as a key here, as this is how it should be transformed in the URL in the end:
     // ?id[]=123&id[]=456&id[]=789
     id: ids,
     currency,
   });
-
-  return http.get(`${URL.LIVE_CASINO}${queryParams}`);
-};

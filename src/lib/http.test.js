@@ -124,7 +124,7 @@ describe("Lib/http", () => {
       expect(getFetchCallUrlArg()).toBe("/foo/bar?foo=bar&bar=foo");
     });
 
-    test("ignores null properties", async () => {
+    test("ignores null properties in the data", async () => {
       const data = { foo: "bar", bar: "foo", ignored: null };
 
       await http.get("/foo/bar", data);
@@ -135,6 +135,16 @@ describe("Lib/http", () => {
     test("does not send query params if the data is empty", async () => {
       await http.get("/foo/bar");
       expect(getFetchCallUrlArg()).toBe("/foo/bar");
+    });
+
+    test("transforms array properties in the data using brackets", async () => {
+      const data = { id: ["123", "345"], bar: "foo" };
+
+      await http.get("/foo/bar", data);
+
+      expect(getFetchCallUrlArg()).toBe(
+        "/foo/bar?id%5B%5D=123&id%5B%5D=345&bar=foo"
+      );
     });
   });
 });
