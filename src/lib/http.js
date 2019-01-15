@@ -1,4 +1,5 @@
 // @flow
+import { stringify } from "qs";
 
 export const DEFAULT_FETCH_OPTIONS = {
   credentials: "same-origin",
@@ -6,6 +7,12 @@ export const DEFAULT_FETCH_OPTIONS = {
     "content-type": "application/json",
   },
 };
+
+export const createGetUrl = (url: string, data: ?Object) =>
+  data ? `${url}?${getQueryParams(data)}` : url;
+
+export const getQueryParams = (params: ?Object) =>
+  stringify(params, { skipNulls: true, arrayFormat: "brackets" });
 
 const errorHandler = response => {
   // Heads up! This is erroring out on 30x requests
@@ -19,7 +26,7 @@ const errorHandler = response => {
 };
 
 const get = (url: string, data: ?Object, options: ?Object) =>
-  fetch(url, {
+  fetch(createGetUrl(url, data), {
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
   })

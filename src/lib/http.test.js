@@ -115,5 +115,26 @@ describe("Lib/http", () => {
 
       expect(getFetchCallOptionsArg()).toMatchObject(optionsOverride);
     });
+
+    test("sends the data in the URL as a query string if set", async () => {
+      const data = { foo: "bar", bar: "foo" };
+
+      await http.get("/foo/bar", data);
+
+      expect(getFetchCallUrlArg()).toBe("/foo/bar?foo=bar&bar=foo");
+    });
+
+    test("ignores null properties", async () => {
+      const data = { foo: "bar", bar: "foo", ignored: null };
+
+      await http.get("/foo/bar", data);
+
+      expect(getFetchCallUrlArg()).toBe("/foo/bar?foo=bar&bar=foo");
+    });
+
+    test("does not send query params if the data is empty", async () => {
+      await http.get("/foo/bar");
+      expect(getFetchCallUrlArg()).toBe("/foo/bar");
+    });
   });
 });
