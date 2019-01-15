@@ -32,7 +32,7 @@ describe("Lib/http", () => {
     test("rejects the promise if the request fails", async () => {
       mockFetch({ ok: false, statusText: "Some error." });
 
-      expect(http.post("/foo/bar")).rejects.toMatchObject({
+      await expect(http.post("/foo/bar")).rejects.toMatchObject({
         message: "Some error.",
       });
     });
@@ -76,7 +76,7 @@ describe("Lib/http", () => {
     test("rejects the promise if the request fails", async () => {
       mockFetch({ ok: false, statusText: "Some error." });
 
-      expect(http.get("/foo/bar")).rejects.toMatchObject({
+      await expect(http.get("/foo/bar")).rejects.toMatchObject({
         message: "Some error.",
       });
     });
