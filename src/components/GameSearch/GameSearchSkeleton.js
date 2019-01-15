@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-export default class SearchSkeleton extends PureComponent {
+export default class GameSearchSkeleton extends PureComponent {
   render() {
     const items = 8;
 
