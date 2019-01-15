@@ -1,5 +1,4 @@
 import { prop, splitEvery, assocPath } from "ramda";
-import { stringify } from "qs";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
