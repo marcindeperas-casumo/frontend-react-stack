@@ -44,6 +44,7 @@
     "rollbar": "^2.4.7",
     "rollbar-redux-middleware": "^0.2.0",
     "sentence-case": "^2.1.1",
+    "store": "^2.0.12",
     "wait-for-element": "^1.0.2"
   },
   "scripts": {
