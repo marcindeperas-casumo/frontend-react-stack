@@ -10,10 +10,6 @@ const eslintFormatter = require("react-dev-utils/eslintFormatter");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer")
   .BundleAnalyzerPlugin;
-// webpack-dashboard is disabled for the time being due to a
-// nested dependency (io-ts) preventing start script from working
-//  https://github.com/gcanti/io-ts/issues/259
-// const DashboardPlugin = require("webpack-dashboard/plugin");
 const getClientEnvironment = require("./env");
 const paths = require("./paths");
 const cudl = require("@casumo/cudl");
@@ -269,7 +265,6 @@ module.exports = {
     // You can remove this if you don't use Moment.js:
     new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
     new BundleAnalyzerPlugin({ openAnalyzer: false, analyzerPort: 8765 }),
-    // new DashboardPlugin(),
   ],
   // Some libraries import Node modules but don't use them in the browser.
   // Tell Webpack to provide empty mocks for them so importing them works.
