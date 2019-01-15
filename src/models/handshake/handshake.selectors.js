@@ -11,6 +11,7 @@ export const applicationHandshakeSelector = createSelector(
   handshakeSelector,
   prop(APP_HANDSHAKE_KEY)
 );
+
 export const isApplicationHandshakeLoaded = createSelector(
   applicationHandshakeSelector,
   complement(anyPass([isNil, isEmpty]))
@@ -20,6 +21,7 @@ export const session = createSelector(
   applicationHandshakeSelector,
   prop("common/composition/session")
 );
+
 export const players = createSelector(
   applicationHandshakeSelector,
   compose(
@@ -27,19 +29,17 @@ export const players = createSelector(
     prop("common/composition/players")
   )
 );
+
 export const isAuthenticated = createSelector(
   session,
   complement(anyPass([isNil, isEmpty]))
 );
-export const playerId = createSelector(
-  session,
-  prop("id")
+export const playerId = createSelector(session, prop("id"));
+
+export const player = createSelector(players, playerId, (players, playerId) =>
+  prop(playerId)(players)
 );
-export const player = createSelector(
-  players,
-  playerId,
-  (players, playerId) => prop(playerId)(players)
-);
+
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
@@ -61,10 +61,7 @@ export const currency = createSelector(
   )
 );
 
-export const market = createSelector(
-  player,
-  prop("market")
-);
+export const market = createSelector(player, prop("market"));
 
 export const gamesHandshakeSelector = createSelector(
   handshakeSelector,

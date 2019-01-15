@@ -1,7 +1,7 @@
+import { getPageBySlug } from "Api/api.cms";
 import { types as fetchTypes } from "Models/fetch";
 import {
   types,
-  getPageBySlug,
   getFetchTypeBySlug,
   getFetchCompleteTypeBySlug,
 } from "Models/cms";
