@@ -1,4 +1,4 @@
-import http from "Lib/http";
+import http from "Services/http";
 import { transformRawJackpotObject } from "Models/jackpots";
 
 export const getJackpots = async ({

@@ -1,4 +1,4 @@
-import http from "Lib/http";
+import http from "Services/http";
 
 export const URLS = {
   HANDSHAKE: "/api/common/handshake",
