@@ -1,5 +1,5 @@
-import CommonClient from "Clients/CommonClient";
-import GameBrowserClient from "Clients/GameBrowserClient";
+import { getCommonHandshake } from "Api/api.common";
+import { getGameBrowserHandshake } from "Api/api.gamebrowser";
 import { types as fetchTypes } from "Models/fetch";
 import { composePromises } from "Utils/utils";
 import { types } from "./handshake.constants";
@@ -9,12 +9,12 @@ import { types } from "./handshake.constants";
 // This will help in testing equality checks of actions creators.
 const fetchAppHandshakeCall = composePromises(
   app => ({ app }),
-  CommonClient.handshake
+  getCommonHandshake
 );
 
 const fetchGamesHandshakeCall = composePromises(
   games => ({ games }),
-  GameBrowserClient.handshake
+  getGameBrowserHandshake
 );
 
 export const fetchAppHandshake = () => ({
@@ -27,7 +27,7 @@ export const fetchAppHandshake = () => ({
 export const fetchGamesHandshake = ({ country }) => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_GAMES_HANDSHAKE,
-  asyncCallData: { country, platform: "mobile" },
+  asyncCallData: { platform: "mobile", country },
   asyncCall: fetchGamesHandshakeCall,
   postFetch: types.UPDATE_HANDSHAKE,
 });

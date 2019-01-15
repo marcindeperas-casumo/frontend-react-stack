@@ -11,7 +11,8 @@
       "Lib/*": ["./src/lib/*"],
       "Src/*": ["./src/*"],
       "Storybook/*": ["./.storybook/*"],
-      "Types/*": ["./src/types/*"]
+      "Types/*": ["./src/types/*"],
+      "Api/*": ["./src/api/*"]
     }
   },
   "exclude": ["node_modules", "dist"]

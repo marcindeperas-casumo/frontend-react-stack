@@ -1,5 +1,5 @@
 import { put, call } from "redux-saga/effects";
-import { fetchService } from "Services/FetchService";
+import http from "Lib/http";
 import * as actions from "./fetch.actions";
 import { fetchSaga } from "./fetch.saga";
 
@@ -19,15 +19,13 @@ describe("fetch saga", () => {
 
     expect(generator.next().value).toEqual(put(actions.clearError(name)));
     expect(generator.next().value).toEqual(put(actions.sendRequest(name)));
-    expect(generator.next().value).toEqual(
-      call(fetchService, { method, url, data })
-    );
+    expect(generator.next().value).toEqual(call(http.get, url, data));
     expect(generator.next().value).toEqual(put(actions.requestComplete(name)));
   });
 
   test("success flow with callback action", () => {
     const name = "actionName";
-    const method = "GET";
+    const method = "POST";
     const url = "/some/url";
     const data = { foo: "bar" };
     const postFetch = "postFetchActionName";
@@ -43,9 +41,7 @@ describe("fetch saga", () => {
 
     expect(generator.next().value).toEqual(put(actions.clearError(name)));
     expect(generator.next().value).toEqual(put(actions.sendRequest(name)));
-    expect(generator.next().value).toEqual(
-      call(fetchService, { method, url, data })
-    );
+    expect(generator.next().value).toEqual(call(http.post, url, data));
     expect(generator.next(returnData).value).toEqual(
       put(actions.postFetch(postFetch, returnData))
     );
