@@ -1,6 +1,6 @@
 // @flow
 
-const DEFAULT_FETCH_OPTIONS = {
+export const DEFAULT_FETCH_OPTIONS = {
   credentials: "same-origin",
   headers: {
     "content-type": "application/json",
@@ -18,7 +18,7 @@ const errorHandler = response => {
   return response;
 };
 
-const get = (url: string, options: ?Object) =>
+const get = (url: string, data: ?Object, options: ?Object) =>
   fetch(url, {
     ...DEFAULT_FETCH_OPTIONS,
     ...options,
@@ -26,7 +26,7 @@ const get = (url: string, options: ?Object) =>
     .then(errorHandler)
     .then(response => response.json());
 
-const post = (url: string, options: ?Object) =>
+const post = (url: string, data: ?Object, options: ?Object) =>
   fetch(url, {
     method: "POST",
     ...DEFAULT_FETCH_OPTIONS,
