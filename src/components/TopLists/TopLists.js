@@ -8,14 +8,15 @@ export const getSlug = (market: string = "___en") =>
 type Props = {
   market: string,
   fetchTopLists: Function,
+  isGameListLoaded: boolean,
 };
 
 export default class TopLists extends PureComponent<Props> {
   render() {
-    const { market, fetchTopLists } = this.props;
+    const { market, isGameListLoaded, fetchTopLists } = this.props;
     const slug = getSlug(market);
 
-    fetchTopLists();
+    if (!isGameListLoaded) fetchTopLists();
 
     return <ComponentBuilder slug={slug} />;
   }
