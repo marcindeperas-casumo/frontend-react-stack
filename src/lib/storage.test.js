@@ -42,4 +42,40 @@ describe("Lib/storage", () => {
     expect(get("third", "default")).toBe("default");
     expect(get("fourth")).toBeUndefined();
   });
+
+  test("supports namespaces for .get() and .set()", () => {
+    set("key-1", "value-1");
+    set("key-2", "value-2", "namespace-1");
+    set("key-3", "value-3", "namespace-1");
+    set("key-4", "value-4", "namespace-2");
+
+    // In the "global" namespace
+    expect(get("key-1")).toBe("value-1");
+    expect(get("key-2")).toBeUndefined();
+
+    expect(get("key-3")).toBeUndefined();
+    expect(get("key-4")).toBeUndefined();
+
+    expect(get("key-2", null, "namespace-1")).toBe("value-2");
+    expect(get("key-3", null, "namespace-1")).toBe("value-3");
+    expect(get("key-4", null, "namespace-1")).toBeNull();
+
+    expect(get("key-4", null, "namespace-2")).toBe("value-4");
+  });
+
+  test("supports namespaces for .remove()", () => {
+    set("key-1", "value-1");
+    set("key-2", "value-2");
+    set("key-1", "value-1", "namespace-1");
+    set("key-2", "value-2", "namespace-1");
+
+    remove("key-1");
+    remove("key-2", "namespace-1");
+
+    expect(get("key-1")).toBeUndefined();
+    expect(get("key-1", null, "namespace-1")).toBe("value-1");
+
+    expect(get("key-2")).toBe("value-2");
+    expect(get("key-2", null, "namespace-1")).toBeNull();
+  });
 });

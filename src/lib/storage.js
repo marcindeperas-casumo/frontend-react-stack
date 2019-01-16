@@ -1,15 +1,31 @@
 // @flow
 import store from "store";
 
-export const get = (key: string, defaultValue: any) =>
-  store.get.call(store, key) || defaultValue;
+const getStoreInstance = (namespace: ?string) =>
+  namespace ? store.namespace(namespace) : store;
 
-export const set = (key: string, value: any) =>
-  store.set.call(store, key, value);
+const callStore = (namespace: ?string) => (
+  method: string,
+  ...args: Array<any>
+) => {
+  const storeInstance = getStoreInstance(namespace);
 
-export const remove = (key: string) => store.remove.call(store, key);
+  return storeInstance[method].call(storeInstance, ...args);
+};
 
-export const clearAll = () => store.clearAll(store);
+export const get = (key: string, defaultValue: ?any, namespace: ?string) => {
+  return callStore(namespace)("get", key) || defaultValue;
+};
+
+export const set = (key: string, value: any, namespace: ?string) => {
+  return callStore(namespace)("set", key, value);
+};
+
+export const remove = (key: string, namespace: ?string) =>
+  callStore(namespace)("remove", key);
+
+export const clearAll = (namespace: ?string) =>
+  callStore(namespace)("clearAll");
 
 export default {
   get,
