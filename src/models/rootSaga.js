@@ -8,6 +8,7 @@ import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
+  fetchGameListSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -33,6 +34,7 @@ import {
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
+  yield fork(takeEvery, gameTypes.INIT_FETCH_GAME_LISTS, fetchGameListSaga);
   yield fork(takeEvery, fetchTypes.FETCH, fetchSaga);
   yield fork(takeEvery, gameTypes.LAUNCH_GAME, launchGameSaga);
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);

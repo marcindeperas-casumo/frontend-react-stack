@@ -40,7 +40,7 @@ const state = {
 
 const TopListsStories = () => (
   <MockStore state={state}>
-    <TopLists market={market} />
+    <TopLists market={market} fetchTopLists={() => {}} />
   </MockStore>
 );
 
