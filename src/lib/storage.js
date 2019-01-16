@@ -24,12 +24,8 @@ export const set = (key: string, value: any, namespace: ?string) => {
 export const remove = (key: string, namespace: ?string) =>
   callStore(namespace)("remove", key);
 
-export const clearAll = (namespace: ?string) =>
-  callStore(namespace)("clearAll");
-
 export default {
   get,
   set,
   remove,
-  clearAll,
 };

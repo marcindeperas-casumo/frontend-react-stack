@@ -11,11 +11,8 @@ export const set = (key: string, value: any) =>
 
 export const remove = (key: string) => storage.remove(key, NAMESPACE);
 
-export const clearAll = () => storage.clearAll(NAMESPACE);
-
 export default {
   get,
   set,
   remove,
-  clearAll,
 };
