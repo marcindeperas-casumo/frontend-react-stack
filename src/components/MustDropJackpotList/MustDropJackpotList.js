@@ -26,7 +26,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
         >
           {title}
         </Text>
-        <div className="u-padding--md">
+        <div className="u-padding-horiz--md u-padding-bottom--md">
           <List items={ids} render={id => <GameRow id={id} />} />
         </div>
       </div>

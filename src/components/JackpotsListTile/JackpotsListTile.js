@@ -6,15 +6,20 @@ import "./JackpotsListTile.scss";
 
 type Props = {
   ids?: Array<string>,
+  itemSpacing?: Array<string> | string,
 };
 
 export default class JackpotsListTile extends PureComponent<Props> {
   render() {
-    const { ids = [] } = this.props;
+    const { ids = [], itemSpacing = "default" } = this.props;
 
     return (
       <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size">
-        <List items={ids} render={id => <GameRow id={id} />} />
+        <List
+          itemSpacing={itemSpacing}
+          items={ids}
+          render={id => <GameRow id={id} />}
+        />
       </div>
     );
   }
