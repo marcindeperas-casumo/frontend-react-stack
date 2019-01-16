@@ -7,49 +7,40 @@ export const getFetch = name =>
   );
 
 export const isFetched = name =>
-  createSelector(
-    getFetch(name),
-    fetch => {
-      if (!fetch) {
-        return false;
-      }
-
-      if (fetch.error) {
-        return false;
-      }
-
-      if (fetch.isFetching) {
-        return false;
-      }
-
-      return true;
-    }
-  );
-
-export const isFetchingStarted = name =>
-  createSelector(
-    getFetch(name),
-    fetch => {
-      if (!fetch) {
-        return false;
-      }
-
-      if (fetch.error) {
-        return false;
-      }
-
-      return true;
-    }
-  );
-
-export const isNotFetched = name =>
-  createSelector(
-    getFetch(name),
-    fetch => {
-      if (!fetch) {
-        return true;
-      }
-
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
       return false;
     }
-  );
+
+    if (fetch.error) {
+      return false;
+    }
+
+    if (fetch.isFetching) {
+      return false;
+    }
+
+    return true;
+  });
+
+export const isFetchingStarted = name =>
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
+      return false;
+    }
+
+    if (fetch.error) {
+      return false;
+    }
+
+    return true;
+  });
+
+export const isNotFetched = name =>
+  createSelector(getFetch(name), fetch => {
+    if (!fetch) {
+      return true;
+    }
+
+    return false;
+  });
