@@ -1,7 +1,4 @@
-import { select, put } from "redux-saga/effects";
 import { liveCasinoUpdatesSaga } from "./liveCasino.updates.saga";
-import { liveTableSelector } from "Models/liveCasino";
-import { updateEntity } from "Models/schema";
 import tableMock from "./__mocks__/liveCasino.state.mock";
 
 describe("Models/LiveCasino/UpdateSaga", () => {
