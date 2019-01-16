@@ -1,3 +1,9 @@
+// preset-react app requires you to have one of those set
+/* eslint-disable fp/no-mutation */
+process.env.BABEL_ENV = "test";
+process.env.NODE_ENV = "test";
+/* eslint-enable fp/no-mutation */
+
 module.exports = {
   parser: "babel-eslint",
   plugins: ["prettier", "import", "flowtype", "fp", "ramda"],
