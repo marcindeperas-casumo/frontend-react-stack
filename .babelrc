@@ -1,5 +1,8 @@
 {
   "presets": [
+    ["@babel/preset-env", {
+      "useBuiltIns": "entry"
+    }],
     "react-app"
   ],
   "plugins": [
@@ -17,7 +20,6 @@
         "Types": "./src/types",
         "Utils": "./src/utils"
       }
-    }],
-    "@babel/plugin-transform-regenerator"
+    }]
   ]
 }

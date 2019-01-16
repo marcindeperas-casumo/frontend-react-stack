@@ -11,7 +11,6 @@ const safePostCssParser = require("postcss-safe-parser");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
-const getCSSModuleLocalIdent = require("react-dev-utils/getCSSModuleLocalIdent");
 const paths = require("./paths");
 const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
@@ -21,12 +20,6 @@ const cudl = require("@casumo/cudl");
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
 
 const staticFolderName = "react-stack";
-
-// style files regexes
-const cssRegex = /\.css$/;
-const cssModuleRegex = /\.module\.css$/;
-const sassRegex = /\.(scss|sass)$/;
-const sassModuleRegex = /\.module\.(scss|sass)$/;
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
@@ -53,62 +46,53 @@ module.exports = function(webpackEnv) {
   // Get environment variables to inject into our app.
   const env = getClientEnvironment(publicUrl);
 
-  // common function to get style loaders
-  const getStyleLoaders = (
-    cssOptions,
-    preProcessor,
-    preProcessorOptions = {}
-  ) => {
-    const loaders = [
-      isEnvDevelopment && require.resolve("style-loader"),
-      isEnvProduction && {
-        loader: MiniCssExtractPlugin.loader,
-        options: Object.assign(
-          {
-            includePaths: cudl,
-          },
-          shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
-        ),
-      },
-      {
-        loader: require.resolve("css-loader"),
-        options: cssOptions,
-      },
-      {
-        // Options for PostCSS as we reference these options twice
-        // Adds vendor prefixing based on your specified browser support in
-        // package.json
-        loader: require.resolve("postcss-loader"),
-        options: {
-          // Necessary for external CSS imports to work
-          // https://github.com/facebook/create-react-app/issues/2677
-          ident: "postcss",
-          plugins: () => [
-            require("postcss-flexbugs-fixes"),
-            require("postcss-preset-env")({
-              autoprefixer: {
-                flexbox: "no-2009",
-              },
-              stage: 3,
-            }),
-          ],
-          sourceMap: isEnvProduction && shouldUseSourceMap,
+  const styleLoaders = [
+    isEnvDevelopment && require.resolve("style-loader"),
+    isEnvProduction && {
+      loader: MiniCssExtractPlugin.loader,
+      options: Object.assign(
+        {
+          includePaths: cudl,
         },
+        shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
+      ),
+    },
+    {
+      loader: require.resolve("css-loader"),
+      options: {
+        importLoaders: 2,
+        sourceMap: isEnvProduction && shouldUseSourceMap,
       },
-    ].filter(Boolean);
-    if (preProcessor) {
-      loaders.push({
-        loader: require.resolve(preProcessor),
-        options: Object.assign(
-          {
-            sourceMap: isEnvProduction && shouldUseSourceMap,
-          },
-          preProcessorOptions
-        ),
-      });
-    }
-    return loaders;
-  };
+    },
+    {
+      // Options for PostCSS as we reference these options twice
+      // Adds vendor prefixing based on your specified browser support in
+      // package.json
+      loader: require.resolve("postcss-loader"),
+      options: {
+        // Necessary for external CSS imports to work
+        // https://github.com/facebook/create-react-app/issues/2677
+        ident: "postcss",
+        plugins: () => [
+          require("postcss-flexbugs-fixes"),
+          require("postcss-preset-env")({
+            autoprefixer: {
+              flexbox: "no-2009",
+            },
+            stage: 3,
+          }),
+        ],
+        sourceMap: isEnvProduction && shouldUseSourceMap,
+      },
+    },
+    {
+      loader: require.resolve("sass-loader"),
+      options: {
+        includePaths: cudl,
+        sourceMap: isEnvProduction && shouldUseSourceMap,
+      },
+    },
+  ].filter(Boolean);
 
   return {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
@@ -149,7 +133,7 @@ module.exports = function(webpackEnv) {
       // In development, it does not produce real files.
       filename: isEnvProduction
         ? `${staticFolderName}/js/[name].[chunkhash:8].js`
-        : isEnvDevelopment && `${staticFolderName}/js/bundle.js`,
+        : isEnvDevelopment && `${staticFolderName}/js/[name].js`,
       // There are also additional JS chunk files if you use code splitting.
       chunkFilename: isEnvProduction
         ? `${staticFolderName}/js/[name].[chunkhash:8].chunk.js`
@@ -360,75 +344,25 @@ module.exports = function(webpackEnv) {
                 sourceMaps: false,
               },
             },
+            // "sass" loader transpiles sass/scss files to css
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
             // In production, we use MiniCSSExtractPlugin to extract that CSS
             // to a file, but in development "style" loader enables hot editing
             // of CSS.
-            // By default we support CSS Modules with the extension .module.css
             {
-              test: cssRegex,
-              exclude: cssModuleRegex,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap,
-              }),
+              test: /\.(scss|sass)$/,
+              use: styleLoaders,
               // Don't consider CSS imports dead code even if the
               // containing package claims to have no side effects.
               // Remove this when webpack adds a warning or an error for this.
               // See https://github.com/webpack/webpack/issues/6571
               sideEffects: true,
             },
-            // Adds support for CSS Modules (https://github.com/css-modules/css-modules)
-            // using the extension .module.css
             {
-              test: cssModuleRegex,
-              use: getStyleLoaders({
-                importLoaders: 1,
-                sourceMap: isEnvProduction && shouldUseSourceMap,
-                modules: true,
-                getLocalIdent: getCSSModuleLocalIdent,
-              }),
-            },
-            // Opt-in support for SASS (using .scss or .sass extensions).
-            // By default we support SASS Modules with the
-            // extensions .module.scss or .module.sass
-            {
-              test: sassRegex,
-              exclude: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                },
-                "sass-loader",
-                {
-                  includePaths: cudl,
-                }
-              ),
-              // Don't consider CSS imports dead code even if the
-              // containing package claims to have no side effects.
-              // Remove this when webpack adds a warning or an error for this.
-              // See https://github.com/webpack/webpack/issues/6571
-              sideEffects: true,
-            },
-            // Adds support for CSS Modules, but using SASS
-            // using the extension .module.scss or .module.sass
-            {
-              test: sassModuleRegex,
-              use: getStyleLoaders(
-                {
-                  importLoaders: 2,
-                  sourceMap: isEnvProduction && shouldUseSourceMap,
-                  modules: true,
-                  getLocalIdent: getCSSModuleLocalIdent,
-                },
-                "sass-loader",
-                {
-                  includePaths: cudl,
-                }
-              ),
+              test: /\.svg$/,
+              loader: require.resolve("@svgr/webpack"),
             },
             // "file" loader makes sure those assets get served by WebpackDevServer.
             // When you `import` an asset, you get its (virtual) filename.
