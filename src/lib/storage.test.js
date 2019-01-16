@@ -34,4 +34,12 @@ describe("Lib/storage", () => {
 
     expect(JSON.parse(window.localStorage.getItem("foo"))).toBe("123");
   });
+
+  test("accepts a default value for get()", () => {
+    set("first", "bar");
+    expect(get("first")).toBe("bar");
+    expect(get("second", 0)).toBe(0);
+    expect(get("third", "default")).toBe("default");
+    expect(get("fourth")).toBeUndefined();
+  });
 });
