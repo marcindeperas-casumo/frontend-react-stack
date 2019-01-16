@@ -8,7 +8,9 @@ import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import configureStore from "Src/configureStore";
 import config from "Src/config";
+import storage from "Lib/storage";
 import logger from "Services/logger";
+import tracker from "Services/tracker";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
 import Debugger from "Utils/Debugger";
@@ -44,6 +46,8 @@ if (isEnvProduction()) {
 if (isEnvDevelopment()) {
   window.Debugger = Debugger;
 }
+
+initNumberOfVisits();
 
 // Call this to disable react DevTools integration, meaning that this will
 // prevent the react DevTools extension to scan the elements and show anything
@@ -84,3 +88,10 @@ window.addEventListener("error", e => {
     colno,
   });
 });
+
+function initNumberOfVisits() {
+  const numberOfVisits = storage.get("numberOfVisits", 0) + 1;
+
+  tracker.setState({ numberOfVisits });
+  storage.set("numberOfVisits", numberOfVisits);
+}
