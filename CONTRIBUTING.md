@@ -2,6 +2,28 @@
 
 Here are some high level recommendations on how to best contribute to the project.
 
+## PRs
+
+- Require 2 reviews.
+- Will be rejected without any [tests](Test strategy).
+- Visual Regression tests should be checked [here](https://www.chromaticqa.com/builds?appId=5b9fa923b6b01b00248452c7).(Oauth with github if need be.)
+- Should be kept as small as possible. E.g create PRs for single components rather than one large feature branch.
+
+## Components
+
+Before you create a component please consider the following steps:
+
+- Check [CUDL React](http://cudl-react.at.casumotest.local:8080) in case there is a component you can reuse.
+- Creating a new component should be done with `yarn generate-component <component_name>` to give a [good starting point](#folder-structure)
+- Refer to the relevant design file and/or liase with a designer to give the component a descriptive name.
+- Avoid writing custom styling in favour of using CUDL utility classes (Colors, Typography, Spacings etc). If in doubt talk to a designer to understand the components' specification.
+- If component styling is required Sass files should live inside the component's folder.
+- Be mindful when using state within a component. Stateless components FTW!
+- Consider keeping component API's to a minimum. If your component API is large it's a good indication that it is trying to do too much and/or should be separated out.
+- Containers should live in the same folder as the component it wraps.
+- Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
+- Test files (tests or stories) should live alongside the components it tests.
+
 ## Folder structure
 
 ```bash
@@ -29,11 +51,6 @@ Here are some high level recommendations on how to best contribute to the projec
             |-- cms.selectors.test.js
         |-- other-model-domain
 ```
-
-- Containers should live next to the component it wraps.
-- Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
-- Test files (tests or stories) should live alongside the components it tests.
-- Sass files should also live inside the component's folder.
 
 ## Test strategy
 
