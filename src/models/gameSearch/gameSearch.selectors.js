@@ -1,13 +1,10 @@
 import { createSelector } from "reselect";
 import { compose, defaultTo, prop, not, isEmpty } from "ramda";
-import { gameListSelector } from "Models/schema";
+import { gameListSelector, gameEntitiesSelector } from "Models/schema";
 
 export const gameSearchSelector = createSelector(
-  gameListSelector("allGames"),
-  compose(
-    defaultTo([]),
-    prop("games")
-  )
+  gameEntitiesSelector,
+  defaultTo([])
 );
 
 export const isGameSearchLoadedFactory = createSelector(
