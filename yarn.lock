@@ -752,10 +752,10 @@
   resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.3.3.tgz#16adf75b52ad747ce97939b23c0c2d043e1aa8ce"
   integrity sha512-IoXaNRKG8M+ogEFLhVjvSWajNYjmlGjxd+keBgStAXoGZlC3+2+p4hoOSege24W/ythrc1qN4uYjBwbKKImJPw==
 
-"@casumo/cmp-list@^1.0.3":
-  version "1.0.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-list/-/cmp-list-1.0.3.tgz#8d589103a5d9770ba5d31397030c966442d67596"
-  integrity sha512-tuG9XxGH1eByJSgafjzYpzEaIdYtxoS4WdQdOb8USZEoBnovWXcc1eWl9xnL5n7vhHsrbclxfRcaTE796AEZOA==
+"@casumo/cmp-list@^1.0.4":
+  version "1.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-list/-/cmp-list-1.0.4.tgz#25c7454f19e34d244066f3983e659a44a0952d30"
+  integrity sha512-zQRGQD6oWJ3CQvWFAWAL+zguB1kBs8V9xg1KLgxE0xhg9yIg27sq/3L4gQxW5GtS5ekrW9SCseaHtOjRIyCK9A==
   dependencies:
     "@casumo/cudl-react-utils" "^1.0.4"
     ramda "^0.26.1"
