@@ -23,7 +23,7 @@ const staticFolderName = "react-stack";
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
-module.exports = function(webpackEnv) {
+module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";
 
@@ -275,6 +275,10 @@ module.exports = function(webpackEnv) {
           // match the requirements. When no loader matches it will fall
           // back to the "file" loader at the end of the loader list.
           oneOf: [
+            isStorybook && {
+              test: /\.md$/,
+              loader: require.resolve("raw-loader"), // storybook dependency, shouldn't be added to package.json!
+            },
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
@@ -290,7 +294,11 @@ module.exports = function(webpackEnv) {
             // The preset includes JSX, Flow, TypeScript, and some ESnext features.
             {
               test: /\.(js|mjs|jsx)$/,
-              include: paths.appSrc,
+              include: [
+                paths.appSrc,
+                isStorybook && path.resolve(__dirname, "../.storybook"),
+              ].filter(Boolean),
+              exclude: [isStorybook && /node_modules/].filter(Boolean),
               loader: require.resolve("babel-loader"),
               options: {
                 customize: require.resolve(
@@ -309,11 +317,21 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-                ],
+                  isStorybook && [
+                    require.resolve("babel-plugin-react-docgen"), // storybook dependency, shouldn't be added to package.json!
+                    {
+                      DOC_GEN_COLLECTION_NAME: "STORYBOOK_REACT_CLASSES",
+                    },
+                  ],
+                ].filter(Boolean),
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
-                // It enables caching results in ./node_modules/.cache/babel-loader/
-                // directory for faster rebuilds.
-                cacheDirectory: true,
+                // It enables caching results for faster rebuilds.
+                cacheDirectory: path.resolve(
+                  __dirname,
+                  `../node_modules/.cache/${
+                    isStorybook ? "storybook" : "babel-loader"
+                  }`
+                ),
                 cacheCompression: isEnvProduction,
                 compact: isEnvProduction,
               },
@@ -375,14 +393,14 @@ module.exports = function(webpackEnv) {
               // its runtime that would otherwise be processed through "file" loader.
               // Also exclude `html` and `json` extensions so they get processed
               // by webpacks internal loaders.
-              exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/],
+              exclude: [/\.(js|mjs|jsx)$/, /\.html$/, /\.json$/, /\.ejs$/],
               options: {
                 name: `${staticFolderName}/media/[name].[hash:8].[ext]`,
               },
             },
             // ** STOP ** Are you adding a new loader?
             // Make sure to add the new loader(s) before the "file" loader.
-          ],
+          ].filter(Boolean),
         },
       ],
     },

@@ -1,45 +1,21 @@
-const path = require("path");
-const cudl = require("@casumo/cudl");
-const { mergeDeepRight } = require("ramda");
+const ourConfig = require("../config/webpack.config");
 
-/* eslint-disable fp/no-mutating-methods */
-module.exports = (baseConfig, env) => {
-  // Extend defaultConfig as you need.
-  baseConfig.module.rules.push({
-    test: /\.scss$/,
-
-    loaders: [
-      "style-loader",
-      {
-        loader: "css-loader",
-      },
-      {
-        loader: "sass-loader",
-        options: {
-          includePaths: cudl,
-        },
-      },
-    ],
-    include: path.resolve(__dirname, "../"),
-  });
-
-  baseConfig.module.rules.push({
-    test: /\.svg$/,
-
-    loaders: [
-      {
-        loader: "@svgr/webpack",
-      },
-    ],
-    include: path.resolve(__dirname, "../"),
-  });
-
-  return mergeDeepRight(baseConfig, {
+module.exports = (baseConfig, env, defaultConfig) => {
+  const ourDefaultConfig = ourConfig("development", { isStorybook: true });
+  return {
+    ...defaultConfig,
     resolve: {
-      extensions: [".wasm", ".mjs", ".js", ".json", ".scss"],
+      ...defaultConfig.resolve,
       alias: {
-        Styles: path.resolve(__dirname, "../src/styles"),
+        ...defaultConfig.resolve.alias,
+        ...ourDefaultConfig.resolve.alias,
       },
+      extensions: ourDefaultConfig.resolve.extensions,
     },
-  });
+    /**
+     * when i created this baseConfig had 2 loaders (.md &.js) if something
+     * broke after update check what's inside `baseConfig.module.rules`
+     */
+    module: ourDefaultConfig.module,
+  };
 };
