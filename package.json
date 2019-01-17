@@ -61,7 +61,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "scripts/pre-commit.sh && scripts/forgotten-statements.sh && flow"
+      "pre-commit": "scripts/forgotten-statements.sh && flow"
     }
   },
   "jest": {
