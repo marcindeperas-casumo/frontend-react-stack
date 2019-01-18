@@ -5,7 +5,7 @@ Here are some high level recommendations on how to best contribute to the projec
 ## PRs
 
 - Require 2 reviews.
-- Will be rejected without any [tests](Test strategy).
+- Will be rejected without any [tests](#test-strategy).
 - Visual Regression tests should be checked [here](https://www.chromaticqa.com/builds?appId=5b9fa923b6b01b00248452c7).(Oauth with github if need be.)
 - Should be kept as small as possible. E.g create PRs for single components rather than one large feature branch.
 
