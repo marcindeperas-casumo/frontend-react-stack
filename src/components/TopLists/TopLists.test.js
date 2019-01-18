@@ -4,10 +4,7 @@ import TopLists from "Components/TopLists/TopLists";
 
 describe("TopLists", () => {
   test("renders a ComponentBuilder under the hood", () => {
-    const rendered = shallow(
-      <TopLists language="en" fetchTopLists={() => {}} />
-    );
-
+    const rendered = shallow(<TopLists market="en" fetchTopLists={() => {}} />);
     const componentBuilder = rendered.find("ComponentBuilderContainer");
 
     expect(componentBuilder).toHaveLength(1);
