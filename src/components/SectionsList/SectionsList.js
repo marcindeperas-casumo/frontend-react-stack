@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import List from "Components/List";
 import GameRow from "Components/GameRow";
 import { sort } from "ramda";
+import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 
 type Props = {
   /** The list of game ids. */
@@ -19,7 +20,7 @@ export default class SectionsList extends PureComponent<Props> {
 
     // add a skeleton, change conditional
     if (!sectionsList.length) {
-      return <div className="u-padding-vert--md">Loading games ...</div>;
+      return <ListSkeleton titleYOffset="20" />;
     }
 
     return (
