@@ -51,21 +51,17 @@ source files is made, the target app will be reloaded.
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
 
-### Forcing the react-stack to be used
+### Viewing the react-stack
 
-By default there is an A/B test used in mobile which randomly gives either the old-stack or the react-stack to a
-certain amount of users. In order to force the react-stack to be the one in use just set a feature flag in the URL:
-`https://mobile.dev?features=react-stack-enabled`
-
-**Note:** You have to be logged in!
+You have to be logged in!
 
 ### Linking Dependencies
 
-Whilst developing CUDL components should generally be done within the storybook environment it can be useful to
-see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
+Whilst developing CUDL components should generally be done within the storybook environment it can be useful to see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
 
-- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components` then run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
-- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack
+- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components`
+- Run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
+- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack.
 - In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
 - You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
 - Any changes you make to the component will now flow through to the PoC
