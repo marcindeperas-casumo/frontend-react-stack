@@ -2,9 +2,14 @@
 
 Here are some high level recommendations on how to best contribute to the project.
 
+## Commits
+
+- It is highly encouraged to install [commitizen and the casumo-conventional-changelog](https://gist.github.com/camilleriluke/68c1d250761317066b621b8a66ee6fb1#file-cz-conventional-changelog-casumo-install-sh) so commit messages follow a format and contain issue numbers.
+
 ## PRs
 
 - Require 2 reviews.
+- Should adhere to the PR template (issue number, assignment, labels, etc).
 - Will be rejected without any [tests](#test-strategy).
 - Visual Regression tests should be checked [here](https://www.chromaticqa.com/builds?appId=5b9fa923b6b01b00248452c7).(Oauth with github if need be.)
 - Should be kept as small as possible. E.g create PRs for single components rather than one large feature branch.
