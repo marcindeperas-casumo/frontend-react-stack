@@ -1,6 +1,7 @@
 [ignore]
-; Ignore VSCode history files
+; Ignore VSCode files
 .*/.history/.*
+.*/.vscode/.*
 
 [include]
 
