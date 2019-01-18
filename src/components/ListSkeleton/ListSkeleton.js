@@ -1,14 +1,34 @@
+// @flow
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-export default class MustDropJackpotListSkeleton extends PureComponent {
+type Props = {
+  className?: string,
+  items?: number,
+  titleXOffset?: string,
+  titleYOffset?: string,
+};
+
+export default class ListSkeleton extends PureComponent<Props> {
   render() {
-    const items = 8;
+    const {
+      className = "",
+      items = 8,
+      titleXOffset = "0",
+      titleYOffset = "0",
+    } = this.props;
 
     return (
-      <div className="u-padding--md">
+      <div className={className}>
         <Skeleton width="375" height="60" className="u-display--block">
-          <rect x="100" y="10" rx="3" ry="3" width="150" height="20" />
+          <rect
+            x={titleXOffset}
+            y={titleYOffset}
+            rx="3"
+            ry="3"
+            width="150"
+            height="20"
+          />
         </Skeleton>
         {Array.from(Array(items).keys()).map(item => (
           <Skeleton
