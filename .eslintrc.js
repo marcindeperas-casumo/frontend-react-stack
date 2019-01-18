@@ -19,6 +19,7 @@ module.exports = {
     "fp/no-this": "off",
     "fp/no-unused-expression": "off",
     "prettier/prettier": "error",
+    "import/no-named-as-default-member": "off"
   },
   overrides: [
     {
