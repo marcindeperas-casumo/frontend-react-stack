@@ -1,5 +1,3 @@
-"use strict";
-
 const errorOverlayMiddleware = require("react-dev-utils/errorOverlayMiddleware");
 const noopServiceWorkerMiddleware = require("react-dev-utils/noopServiceWorkerMiddleware");
 const ignoredFiles = require("react-dev-utils/ignoredFiles");
@@ -9,6 +7,7 @@ const paths = require("./paths");
 const protocol = process.env.HTTPS === "true" ? "https" : "http";
 const host = process.env.HOST || "0.0.0.0";
 
+// eslint-disable-next-line fp/no-mutation
 module.exports = function(proxy, allowedHost) {
   const a = {
     // WebpackDevServer 2.4.3 introduced a security fix that prevents remote
@@ -91,6 +90,6 @@ module.exports = function(proxy, allowedHost) {
       app.use(noopServiceWorkerMiddleware());
     },
   };
-  console.log("a", a);
+
   return a;
 };

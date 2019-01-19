@@ -5,6 +5,7 @@ export type Game = {
   name: string,
   slug: string,
   logoBackground: string,
+  backgroundImage: string,
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,

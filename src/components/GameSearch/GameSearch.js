@@ -23,9 +23,9 @@ export default class GameSearch extends PureComponent<Props> {
     return (
       <Flex direction="vertical" spacing="none">
         <Flex.Block>
-          <Flex className="" align="stretch">
+          <Flex align="stretch">
             <Flex.Block>
-              <div className="t-background-grey-light-2 u-padding--md">
+              <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
                 <SearchInput
                   autoFocus={true}
                   placeholder="Eg. game title, provider"
