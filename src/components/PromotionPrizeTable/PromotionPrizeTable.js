@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import Table from "Components/Table";
+import Table from "@casumo/cmp-table";
 import "./PromotionPrizeTable.scss";
 
 type Props = {
@@ -27,6 +27,7 @@ class PromotionPrizeTable extends PureComponent<Props> {
           rows={prizes}
           thumbnail={Image}
           prize={CashAmount}
+          // $FlowFixMe
           cellPadding="vert--md"
         />
       </div>
