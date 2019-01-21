@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
 import SectionsList from "Components/SectionsList";
 import GameRowSearch from "Components/GameRowSearch";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 import debounce from "debounce";
 
 type Props = {

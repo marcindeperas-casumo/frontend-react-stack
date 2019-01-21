@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
-import Media from "Components/Media";
+import Media from "@casumo/cmp-media";
 
 type Props = {
   jackpot: Object,

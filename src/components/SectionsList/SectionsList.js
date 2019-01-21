@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 import GameRowSearch from "Components/GameRowSearch";
 import { sort } from "ramda";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
