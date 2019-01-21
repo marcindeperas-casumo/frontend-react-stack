@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import Media from "Components/Media";
+import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 
 type Props = {

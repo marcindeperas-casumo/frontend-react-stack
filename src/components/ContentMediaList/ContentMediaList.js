@@ -1,8 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
-import List from "Components/List";
-import Media from "Components/Media";
+import List from "@casumo/cmp-list";
+import Media from "@casumo/cmp-media";
 
 type Props = {
   /** The items to render as a list */
