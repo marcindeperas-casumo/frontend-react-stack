@@ -18,25 +18,25 @@ type Props = {
 export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
-    const { title, logo, backgroundImage } = game;
+    const { title, name, logo, backgroundImage, logoBackground } = game;
     const jackpotInfo = game.jackpotInfo || {};
     const lobby = game.lobby || {};
     const { formattedJackpotAmount } = jackpotInfo;
     const { bets } = lobby;
-    const logoBackground = backgroundImage;
-    const name = title;
+    const bg = logoBackground || backgroundImage;
+    const gameName = title || name;
 
     return (
       <TrackClick
         eventName={EVENTS.GAME_LAUNCH}
-        data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        data={{ [EVENT_PROPS.GAME_NAME]: gameName }}
       >
         <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
           {/* Image */}
           <Flex.Item className="o-flex__item-fixed-size">
             <GameThumb
-              src={logoBackground}
-              alt={name}
+              src={bg}
+              alt={gameName}
               mark={logo}
               width="64"
               height="64"
@@ -47,7 +47,7 @@ export default class GameRow extends PureComponent<Props> {
           <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
             <JackpotAmount amount={formattedJackpotAmount} />
             <Text tag="div" size="sm">
-              <DangerousHtml html={name} />
+              <DangerousHtml html={gameName} />
             </Text>
             <BetsLevels bets={renderBets(bets)} />
           </Flex.Block>

@@ -15,7 +15,7 @@ export function* fetchGameSearchListSaga() {
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_ALL_GAMES_COMPLETE);
 
-  const gameList = { id: "allGames", games: response };
+  const gameList = { id: "allGames", games: response.games };
   const { entities } = yield call(normalizeData, { gameList });
 
   yield put(updateEntity(entities));

@@ -21,30 +21,6 @@ describe("Models/GameSearch/Actions", () => {
       const action = fetchGameListAllGames();
       expect(typeof action.asyncCall).toBe("function");
     });
-
-    test("passes the right parameters to the fetcher function", () => {
-      const platform = "mobile";
-      const country = "gb";
-      const id = "allGames";
-      const page = null;
-      const pageSize = null;
-
-      const action = fetchGameListAllGames({
-        platform,
-        country,
-        id,
-        page,
-        pageSize,
-      });
-
-      expect(action.asyncCallData).toEqual({
-        platform,
-        country,
-        id,
-        page,
-        pageSize,
-      });
-    });
   });
 
   describe("fetchAllGames()", () => {
