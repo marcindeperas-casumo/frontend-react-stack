@@ -18,3 +18,11 @@ export const isGameSearchLoadedFactory = createSelector(
     prop("games")
   )
 );
+
+export const gameSearchResultsSelector = createSelector(
+  gameListSelector("gameSearchResults"),
+  compose(
+    defaultTo([]),
+    prop("games")
+  )
+);

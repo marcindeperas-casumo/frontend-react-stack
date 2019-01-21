@@ -30,6 +30,7 @@ import {
 import {
   types as gameSearchTypes,
   fetchGameSearchListSaga,
+  fetchGameSearchQuerySaga,
 } from "Models/gameSearch";
 
 export default function* rootSaga(dispatch) {
@@ -70,5 +71,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameSearchTypes.GAME_SEARCH_FETCH_ALL_GAMES,
     fetchGameSearchListSaga
+  );
+  yield fork(
+    takeEvery,
+    gameSearchTypes.GAME_SEARCH_FETCH,
+    fetchGameSearchQuerySaga
   );
 }

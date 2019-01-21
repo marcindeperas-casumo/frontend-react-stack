@@ -19,8 +19,6 @@ type Props = {
 type State = {
   hasFocus: boolean,
 };
-// eslint-disable-next-line fp/no-let
-let counter = 0;
 
 class SearchInput extends React.Component<Props, State> {
   _id: ?string;
@@ -32,16 +30,11 @@ class SearchInput extends React.Component<Props, State> {
     this.textInput = React.createRef();
     // eslint-disable-next-line fp/no-mutation
     this.state = { hasFocus: false };
-
-    if (!this.props.id) {
-      // eslint-disable-next-line fp/no-mutation
-      this._id = `searchInput${counter++}`;
-    }
   }
 
   get currentTextInput() {
     return pathOr(
-      { id: null, focus: () => {} },
+      { id: null, focus: () => {}, blur: () => {} },
       ["textInput", "current"],
       this
     );
@@ -49,11 +42,20 @@ class SearchInput extends React.Component<Props, State> {
 
   handleClear = () => {
     this.currentTextInput.focus();
-
     this.props.onClear();
   };
 
-  setFocusState = (hasFocus: boolean) => () => this.setState({ hasFocus });
+  // captures when a user touches an invisible div and
+  // blurs the input to hide the mobile keyboard
+  handleScroll = () => {
+    this.setState({ hasFocus: false });
+    this.currentTextInput.blur();
+  };
+
+  onFocus = () => {
+    this.props.onFocus();
+    this.setState({ hasFocus: true });
+  };
 
   render() {
     const { id = this._id, value } = this.props;
@@ -91,14 +93,20 @@ class SearchInput extends React.Component<Props, State> {
           id={id}
           className={inputClassName}
           type="text"
-          onBlur={this.setFocusState(false)}
-          onFocus={this.setFocusState(true)}
-          {...omit(["onClear"], this.props)}
+          onBlur={() => this.setState({ hasFocus: false })}
+          onFocus={this.onFocus}
+          {...omit(["onClear", "onFocus"], this.props)}
         />
         {isSearchTermNonEmpty && (
           <div className={searchButtonClassName}>
             <CrossIcon onClick={this.handleClear} />
           </div>
+        )}
+        {this.state.hasFocus && (
+          <div
+            className="c-search-input__scroll-capture"
+            onTouchStart={this.handleScroll}
+          />
         )}
       </Flex>
     );

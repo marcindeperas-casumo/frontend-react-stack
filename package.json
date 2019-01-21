@@ -21,6 +21,7 @@
     "@researchgate/react-intersection-observer": "^0.7.3",
     "classnames": "^2.2.6",
     "cometd": "^3.1.4",
+    "debounce": "^1.2.0",
     "intersection-observer": "^0.5.0",
     "invariant": "^2.2.4",
     "luxon": "^1.4.3",
