@@ -35,13 +35,10 @@ stories.add(
       exclusiveGame.inMaintenanceMode
     );
     return (
-      <MockStore>
-        <GameTileExclusive
-          game={exclusiveGame}
-          inMaintenanceMode={inMaintenanceMode}
-          onLaunchGame={action(exclusiveGame.name)}
-        />
-      </MockStore>
+      <GameTileExclusive
+        game={{ ...exclusiveGame, inMaintenanceMode }}
+        onLaunchGame={action(exclusiveGame.name)}
+      />
     );
   },
   info({ text: "Tall Tile" })
