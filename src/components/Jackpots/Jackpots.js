@@ -37,11 +37,7 @@ export default class Jackpots extends PureComponent<Props> {
         <ScrollableListTitle title={title} />
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
           {idsByColumns.map((columnIds, i) => (
-            <JackpotsListTile
-              itemSpacing="none"
-              ids={columnIds}
-              key={`jackpots-tile-${i}`}
-            />
+            <JackpotsListTile ids={columnIds} key={`jackpots-tile-${i}`} />
           ))}
         </Scrollable>
       </div>
