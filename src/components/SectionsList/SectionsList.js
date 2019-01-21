@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import List from "Components/List";
-import GameRow from "Components/GameRow";
+import GameRowSearch from "Components/GameRowSearch";
 import { sort } from "ramda";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 
@@ -34,7 +34,7 @@ export default class SectionsList extends PureComponent<Props> {
               items={sectionList.games}
               itemSpacing={itemSpacing}
               // create new GameRow
-              render={id => <GameRow id={id} />}
+              render={id => <GameRowSearch id={id} />}
             />
           </div>
         ))}
