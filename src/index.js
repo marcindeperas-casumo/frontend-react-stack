@@ -15,7 +15,7 @@ import tracker from "Services/tracker";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
 import Debugger from "Utils/Debugger";
-import "Src/styles/index.scss";
+import "./styles/index.scss";
 
 const store = configureStore();
 window.bridge = bridge;
