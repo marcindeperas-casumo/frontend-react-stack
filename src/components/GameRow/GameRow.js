@@ -18,11 +18,13 @@ type Props = {
 export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
-    const { name, logo, logoBackground } = game;
+    const { title, logo, backgroundImage } = game;
     const jackpotInfo = game.jackpotInfo || {};
     const lobby = game.lobby || {};
     const { formattedJackpotAmount } = jackpotInfo;
     const { bets } = lobby;
+    const logoBackground = backgroundImage;
+    const name = title;
 
     return (
       <TrackClick

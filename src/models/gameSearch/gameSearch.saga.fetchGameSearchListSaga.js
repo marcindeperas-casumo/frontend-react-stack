@@ -14,9 +14,8 @@ export function* fetchGameSearchListSaga() {
   yield put(fetchGameListAllGames({ platform, country, id, page, pageSize }));
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_ALL_GAMES_COMPLETE);
-  const { games } = response;
 
-  const gameList = { id: "allGames", games };
+  const gameList = { id: "allGames", games: response };
   const { entities } = yield call(normalizeData, { gameList });
 
   yield put(updateEntity(entities));

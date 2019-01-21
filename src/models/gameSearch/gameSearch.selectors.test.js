@@ -6,10 +6,16 @@ import {
 describe("CMS Selectors", () => {
   describe("gameSearchSelector()", () => {
     test("returns gameList allGames", () => {
-      const game = [{ foo: {} }];
-      const state = { schema: { game } };
+      const games = ["foo"];
+      const gameList = {
+        allGames: {
+          id: "allGames",
+          games,
+        },
+      };
+      const state = { schema: { gameList } };
 
-      expect(gameSearchSelector(state)).toEqual(game);
+      expect(gameSearchSelector(state)).toEqual(games);
     });
 
     test("returns empty array if not in state", () => {
