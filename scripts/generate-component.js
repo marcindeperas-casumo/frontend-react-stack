@@ -38,7 +38,7 @@ log("Component generated successfully.");
 
 function checkUsage() {
   if (!COMPONENT_NAME) {
-    log("WRONG_USAGE\n");
+    log("MISSING COMPONENT-NAME\n");
     log("Usage: $ generate-component <component-name> <path>");
     process.exit(1);
   }
@@ -93,7 +93,7 @@ function getComponentTemplate() {
 import React, { PureComponent } from "react";
 
 type Props = {
-  /** Some descriptive text for storybook-info props table */
+  /** A descriptive comment about the 'msg' prop. Note that this will appear in storybook info addon props table. */
   msg: string,
 };
 
