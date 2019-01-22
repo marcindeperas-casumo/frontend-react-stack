@@ -47,8 +47,7 @@ source files is made, the target app will be reloaded.
 
 ### Daily development
 
-Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is
-advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
+Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
 
 #### Contributing
 
