@@ -4,8 +4,6 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import game from "Components/GameTile/__mocks__/Game.json";
-import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
-import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import MockStore from "Components/MockStore";
 import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
 import GameRowSearchContainer from "Components/GameRowSearch";

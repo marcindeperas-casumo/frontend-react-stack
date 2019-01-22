@@ -27,7 +27,7 @@ export const getGameLists = (
     pageSize,
   });
 
-export const getGameSearch = (
+export const getQuerySearch = (
   { platform, country, id, variant, page = 0, pageSize = 5, q },
   http = defaultHttp
 ) =>
