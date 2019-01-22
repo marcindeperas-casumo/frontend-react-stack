@@ -91,8 +91,6 @@ The same principles apply to Services, Reducers, Sagas and so on although, as th
 
 The takeaway here is to think about the different paths your application can take and the various cases they form, then write tests to cover them all!
 
-TDD is heavily encouraged!
-
 _**Note: If you are adding a new key user journey, make sure to also add tests to our [smoke test project](https://github.com/Casumo/smoke-tests)!!**_
 
 ## Flow

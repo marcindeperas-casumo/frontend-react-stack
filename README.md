@@ -50,6 +50,10 @@ source files is made, the target app will be reloaded.
 Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is
 advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
 
+#### Contributing
+
+Please read the [contributing guidelines](CONTRIBUTING.md).
+
 #### Developing within the SPA
 
 - Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
@@ -62,6 +66,11 @@ advised to start with [Storybook](#developing-with-storybook) then move to devel
 
 - Within the `mobile-react-stack-poc` respository run `yarn storybook`
 - Go to [https://localhost:6006](https://localhost:6006)
+
+#### Testing
+
+- Within the `mobile-react-stack-poc` respository run `yarn test`
+- TDD is heavily encouraged!
 
 ### Linking CUDL Components
 
@@ -89,10 +98,6 @@ ssh <assigned-ssh-username>@live-release
 
 deploy-service mobile-react-stack-poc master
 ```
-
-## Contributing
-
-See the [contributing guidelines](CONTRIBUTING.md).
 
 ---
 
