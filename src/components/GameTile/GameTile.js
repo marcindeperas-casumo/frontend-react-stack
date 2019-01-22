@@ -79,7 +79,6 @@ export default class GameTile extends PureComponent<Props, State> {
     } = game;
     const { isOverlayActive } = this.state;
     const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
-
     return (
       <div
         className={classNames(
