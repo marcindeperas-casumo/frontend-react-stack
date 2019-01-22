@@ -80,7 +80,7 @@ describe("<GameRowSearch />", () => {
     expect(launchGame).toHaveBeenCalledTimes(2);
   });
 
-  test("clicking on the game logo / game title launches the game, clicking the icon on the right navigates you to the details page if not a Jackpot game", () => {
+  test("clicking on the game logo / game title launches the game if not a Jackpot game", () => {
     rendered = shallow(
       <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
     );
@@ -91,6 +91,12 @@ describe("<GameRowSearch />", () => {
       .simulate("click");
 
     expect(launchGame).toHaveBeenCalledTimes(1);
+  });
+
+  test("clicking the icon on the right navigates you to the details page if not a Jackpot game", () => {
+    rendered = shallow(
+      <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
+    );
 
     expect(
       rendered
