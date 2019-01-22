@@ -1,34 +1,34 @@
 import { types as fetchTypes } from "Models/fetch";
 import { types } from "./gameSearch.constants";
-import { fetchGameListAllGames, fetchAllGames } from "./gameSearch.actions";
+import { fetchPlayerGames, initFetchPlayerGames } from "./gameSearch.actions";
 
 describe("Models/GameSearch/Actions", () => {
-  describe("fetchGameListAllGames()", () => {
+  describe("fetchPlayerGames()", () => {
     test("initiates api fetch", () => {
-      expect(fetchGameListAllGames()).toMatchObject({
+      expect(fetchPlayerGames()).toMatchObject({
         type: fetchTypes.FETCH,
-        name: types.GAME_SEARCH_FETCH_ALL_GAMES_START,
+        name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
       });
     });
 
     test("fires completed action when fetch finished", () => {
-      expect(fetchGameListAllGames()).toMatchObject({
-        postFetch: types.GAME_SEARCH_FETCH_ALL_GAMES_COMPLETE,
+      expect(fetchPlayerGames()).toMatchObject({
+        postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
       });
     });
 
     test("passes the fetcher function to the action", () => {
-      const action = fetchGameListAllGames();
+      const action = fetchPlayerGames();
       expect(typeof action.asyncCall).toBe("function");
     });
   });
 
-  describe("fetchAllGames()", () => {
+  describe("initFetchPlayerGames()", () => {
     test("returns an action with the correct type", () => {
-      const action = fetchAllGames();
+      const action = initFetchPlayerGames();
 
       expect(action).toEqual({
-        type: types.GAME_SEARCH_FETCH_ALL_GAMES,
+        type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
       });
     });
   });

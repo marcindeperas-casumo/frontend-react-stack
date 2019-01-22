@@ -1,36 +1,36 @@
 import {
-  gameSearchSelector,
+  playerGamesAllSelector,
   isGameSearchLoadedFactory,
 } from "Models/gameSearch";
 
-describe("CMS Selectors", () => {
-  describe("gameSearchSelector()", () => {
-    test("returns gameList allGames", () => {
+describe("Models/GameSearch/Selectors", () => {
+  describe("playerGamesAllSelector()", () => {
+    test("returns gameList playerGamesAll", () => {
       const games = ["foo"];
       const gameList = {
-        allGames: {
-          id: "allGames",
+        playerGamesAll: {
+          id: "playerGamesAll",
           games,
         },
       };
       const state = { schema: { gameList } };
 
-      expect(gameSearchSelector(state)).toEqual(games);
+      expect(playerGamesAllSelector(state)).toEqual(games);
     });
 
     test("returns empty array if not in state", () => {
       const state = {};
 
-      expect(gameSearchSelector(state)).toEqual([]);
+      expect(playerGamesAllSelector(state)).toEqual([]);
     });
   });
 
   describe("isGameSearchLoadedFactory()", () => {
-    test("returns true if allGames gameList is in state", () => {
+    test("returns true if playerGamesAll gameList is in state", () => {
       const games = ["foo"];
       const gameList = {
-        allGames: {
-          id: "allGames",
+        playerGamesAll: {
+          id: "playerGamesAll",
           games,
         },
       };
@@ -39,7 +39,7 @@ describe("CMS Selectors", () => {
       expect(isGameSearchLoadedFactory(state)).toBe(true);
     });
 
-    test("returns false if allGames gameList is not in state", () => {
+    test("returns false if playerGamesAll gameList is not in state", () => {
       const state = { schema: { gameList: {} } };
 
       expect(isGameSearchLoadedFactory(state)).toBe(false);

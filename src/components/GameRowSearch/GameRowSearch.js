@@ -18,14 +18,17 @@ type Props = {
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame, id } = this.props;
-    const { name, logo, logoBackground } = game;
+    const { name, logo, logoBackground, backgroundImage, title } = game;
     const iconStyle =
       "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
+
+    const bg = logoBackground || backgroundImage;
+    const gameName = title || name;
 
     const RenderPlayIcon = () => (
       <TrackClick
         eventName={EVENTS.GAME_LAUNCH}
-        data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        data={{ [EVENT_PROPS.GAME_NAME]: gameName }}
       >
         <Flex.Item onClick={onLaunchGame}>
           {/* Play Icon */}
@@ -38,7 +41,7 @@ export default class GameRowSearch extends PureComponent<Props> {
       <Flex.Item>
         <TrackClick
           eventName={EVENTS.GAME_DETAILS}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
+          data={{ [EVENT_PROPS.GAME_NAME]: gameName }}
         >
           {/* More Icon */}
           <a href={`/en/play/${id}`}>
@@ -53,14 +56,14 @@ export default class GameRowSearch extends PureComponent<Props> {
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick
             eventName={EVENTS.GAME_LAUNCH}
-            data={{ [EVENT_PROPS.GAME_NAME]: name }}
+            data={{ [EVENT_PROPS.GAME_NAME]: gameName }}
           >
             <Flex align="center">
               {/* Image */}
               <Flex.Item className="o-flex__item-fixed-size">
                 <GameThumb
-                  src={logoBackground}
-                  alt={name}
+                  src={bg}
+                  alt={gameName}
                   mark={logo}
                   width="64"
                   height="64"
@@ -70,7 +73,7 @@ export default class GameRowSearch extends PureComponent<Props> {
               {/* Text */}
               <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
                 <Text tag="div" size="sm">
-                  <DangerousHtml html={name} />
+                  <DangerousHtml html={gameName} />
                 </Text>
               </Flex.Block>
             </Flex>

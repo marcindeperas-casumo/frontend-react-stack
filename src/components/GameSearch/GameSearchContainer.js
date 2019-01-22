@@ -3,23 +3,25 @@ import React from "react";
 import { connect } from "react-redux";
 import GameSearch from "Components/GameSearch/GameSearch";
 import {
-  gameSearchSelector,
+  playerGamesAllSelector,
   gameSearchResultsSelector,
   isGameSearchLoadedFactory,
-  fetchAllGames,
-  fetchSearch,
+  initFetchPlayerGames,
+  initFetchQuerySearch,
 } from "Models/gameSearch";
+import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 
 const GameSearchConnected = connect(
   state => ({
-    games: gameSearchSelector(state),
+    games: playerGamesAllSelector(state),
     searchResults: gameSearchResultsSelector(state),
+    latestPlayedGames: gameListSelector("latestPlayedGames")(state).games,
     isLoaded: isGameSearchLoadedFactory(state),
   }),
   dispatch => ({
-    fetchAllGames: () => dispatch(fetchAllGames()),
-    fetchSearch: q => dispatch(fetchSearch(q)),
+    initFetchPlayerGames: () => dispatch(initFetchPlayerGames()),
+    fetchSearch: q => dispatch(initFetchQuerySearch(q)),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
   })
 )(GameSearch);

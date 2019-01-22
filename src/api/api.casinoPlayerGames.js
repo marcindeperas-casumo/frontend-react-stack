@@ -1,8 +1,8 @@
 import http from "Services/http";
 
-export const getCasinoGames = async () => {
+export const getCasinoPlayerGames = async () => {
   const apiUrl = "/api/casino-games/games";
-  // const url = `${apiUrl}?currency=${currency}`;
+  // get playerId and pass it in the header
   const casinoGames = (await http.get(apiUrl)) || {};
 
   return casinoGames;

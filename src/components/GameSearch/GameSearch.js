@@ -10,11 +10,12 @@ import { debounce } from "lodash";
 
 type Props = {
   isLoaded: boolean,
-  fetchAllGames: Function,
+  initFetchPlayerGames: Function,
   fetchSearch: Function,
   dispatchLaunchGame: Function,
   games: Array<string>,
   searchResults: Array<string>,
+  latestPlayedGames: Array<string>,
 };
 
 type State = {
@@ -33,8 +34,8 @@ export default class GameSearch extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const { isLoaded, fetchAllGames } = this.props;
-    if (!isLoaded) fetchAllGames();
+    const { isLoaded, initFetchPlayerGames } = this.props;
+    if (!isLoaded) initFetchPlayerGames();
   }
 
   fetchSearchResults = () => {
@@ -63,7 +64,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   handleFocusSearchInput = () => {};
 
   render() {
-    const { games, searchResults } = this.props;
+    const { games, searchResults, latestPlayedGames } = this.props;
 
     return (
       <Flex direction="vertical" spacing="none">
@@ -81,15 +82,27 @@ export default class GameSearch extends PureComponent<Props, State> {
                 />
               </div>
               <div className="u-padding-horiz--md">
-                {searchResults.length === 0 ? (
-                  <SectionsList items={games} />
-                ) : (
+                {!searchResults.length && <SectionsList items={games} />}
+                {searchResults.length && (
                   <List
                     items={searchResults}
                     itemSpacing="default"
                     render={id => <GameRowSearch id={id} />}
                   />
                 )}
+                {searchResults.length === 1 &&
+                  latestPlayedGames.length && (
+                    <>
+                      <p className="u-font-weight-bold u-font-md u-padding-vert--md">
+                        Continue Playing
+                      </p>
+                      <List
+                        items={latestPlayedGames}
+                        itemSpacing="default"
+                        render={id => <GameRowSearch id={id} />}
+                      />
+                    </>
+                  )}
               </div>
             </Flex.Block>
           </Flex>
