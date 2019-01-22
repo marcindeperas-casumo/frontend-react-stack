@@ -24,7 +24,7 @@ const COMPONENT_PATH = process.argv[2] ? path.resolve(process.argv[2]) : cwd;
 const COMPONENT_NAME = process.argv[3] || "";
 const COMPONENT_DIR = path.join(COMPONENT_PATH, capitalize(COMPONENT_NAME));
 const FILE_TEMPLATES = {
-  "index.js": 'export { default } from "./{{ componentName }}";\n',
+  "index.js": '// @flow\nexport { default } from "./{{ componentName }}";\n',
   "{{ componentName }}.js": getComponentTemplate(),
   "{{ componentName }}.test.js": getComponentTestTemplate(),
   "{{ componentName }}.stories.js": getComponentStoryTemplate(),
@@ -38,7 +38,7 @@ log("Component generated successfully.");
 
 function checkUsage() {
   if (!COMPONENT_NAME) {
-    log("WRONG_USAGE\n");
+    log("MISSING COMPONENT-NAME\n");
     log("Usage: $ generate-component <component-name> <path>");
     process.exit(1);
   }
@@ -74,7 +74,7 @@ function createFile(filename, template) {
     capitalize(COMPONENT_NAME)
   );
   const filePath = path.join(COMPONENT_DIR, compiledFilename);
-
+  /* eslint-disable fp/no-mutation */
   template = template.replace(
     /{{ componentName }}/gim,
     capitalize(COMPONENT_NAME)
@@ -83,17 +83,24 @@ function createFile(filename, template) {
     /{{ smallCapsComponentName }}/gim,
     COMPONENT_NAME.toLowerCase()
   );
-
+  /* eslint-enable fp/no-mutation */
   fs.writeFileSync(filePath, template, "utf8");
 }
 
 function getComponentTemplate() {
   // eslint-disable-next-line
-  return `import React, { PureComponent } from "react";
+  return `// @flow
+import React, { PureComponent } from "react";
 
-class {{ componentName }} extends PureComponent {
+type Props = {
+  /** A descriptive comment about the 'msg' prop. Note that this will appear in storybook info addon props table. */
+  msg: string,
+};
+
+class {{ componentName }} extends PureComponent<Props> {
   render() {
-    return <div>{"{{ componentName }}"}</div>;
+    const { msg } = this.props;
+    return <div>{"{{ componentName }} says: " + msg}</div>;
   }
 }
 
@@ -108,15 +115,18 @@ import {{ componentName }} from "Components/{{ componentName }}";
 
 describe("{{ componentName }}", () => {
   test("should do something", () => {
+    const rendered = shallow(<{{ componentName }} msg="hi" />);
+    expect(rendered.find("div").length).toBe(1);
+    expect(rendered.text()).toBe("{{ componentName }} says: hi");
     expect(1).toBe(2);
   });
-});
-`;
+});\n`;
 }
 /* eslint-enable */
 
 function getComponentStoryTemplate() {
-  return `import React from "react";
+  return `// @flow
+import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import {{ componentName }} from "./";
@@ -126,10 +136,10 @@ const stories = storiesOf("{{ componentName }}", module);
 stories.add(
   "Default",
   () => (
-    <{{ componentName }} />
+    <{{ componentName }} msg="howdy! 🤠" />
   ),
   info({ text: "Default" })
-);`;
+);\n`;
 }
 
 function capitalize(string) {
