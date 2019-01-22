@@ -18,6 +18,10 @@ export const initiateFetchGamesBySlugs = ({
   };
 };
 
+export const initFetchTopLists = () => ({
+  type: types.INIT_FETCH_GAME_LISTS,
+});
+
 export const fetchTopLists = asyncCallData => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_TOP_LISTS_START,
