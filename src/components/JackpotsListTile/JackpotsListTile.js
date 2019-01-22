@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import GameRow from "Components/GameRow";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 import "./JackpotsListTile.scss";
 
 type Props = {
