@@ -6,7 +6,7 @@ import SearchInput from "Components/SearchInput";
 import SectionsList from "Components/SectionsList";
 import GameRowSearch from "Components/GameRowSearch";
 import List from "@casumo/cmp-list";
-import debounce from "debounce";
+import { debounce } from "lodash";
 
 type Props = {
   isLoaded: boolean,
