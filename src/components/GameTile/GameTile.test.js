@@ -80,4 +80,34 @@ describe("GameTile", () => {
     const rendered = shallow(<GameTile game={inMaintenanceModeGame} />);
     expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
   });
+
+  test("should not render gameOverlay if isOverlayEnabled is false", () => {
+    const rendered = shallow(
+      <GameTile game={gameInfo} isOverlayEnabled={false} />
+    );
+    expect(rendered.find("GameTileOverlay").length).toBe(0);
+  });
+
+  test("should render gameOverlay by defualt", () => {
+    const rendered = shallow(<GameTile game={gameInfo} />);
+
+    rendered.simulate("click");
+
+    expect(rendered.find("GameTileOverlay").length).toBe(1);
+  });
+
+  test("should directly launch game on click of tile when isOverlayEnabled is false", () => {
+    const onLaunchGame = jest.fn();
+    const rendered = shallow(
+      <GameTile
+        game={gameInfo}
+        isOverlayEnabled={false}
+        onLaunchGame={onLaunchGame}
+      />
+    );
+
+    rendered.simulate("click");
+
+    expect(onLaunchGame).toHaveBeenCalledTimes(1);
+  });
 });

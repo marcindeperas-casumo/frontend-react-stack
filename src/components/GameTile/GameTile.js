@@ -16,6 +16,7 @@ export type Props = {
   imgixOpts?: Object,
   onLaunchGame: Function,
   ratio?: string,
+  isOverlayEnabled?: boolean,
 };
 
 type State = {
@@ -68,6 +69,7 @@ export default class GameTile extends PureComponent<Props, State> {
         w: 170,
       },
       ratio = "game-tile",
+      isOverlayEnabled = true,
     } = this.props;
     const {
       inMaintenanceMode,
@@ -79,6 +81,9 @@ export default class GameTile extends PureComponent<Props, State> {
     } = game;
     const { isOverlayActive } = this.state;
     const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
+    const onGameTileClick = isOverlayEnabled
+      ? this.handleOnClick
+      : onLaunchGame;
 
     return (
       <div
@@ -88,7 +93,7 @@ export default class GameTile extends PureComponent<Props, State> {
           "c-game-tile o-ratio t-border-r--8 t-color-white",
           className
         )}
-        onClick={this.handleOnClick}
+        onClick={onGameTileClick}
       >
         <GameTileImage
           logoBackground={logoBackground}
