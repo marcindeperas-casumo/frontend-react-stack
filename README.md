@@ -47,16 +47,31 @@ source files is made, the target app will be reloaded.
 
 ### Daily development
 
+Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
+
+#### Contributing
+
+Please read the [contributing guidelines](CONTRIBUTING.md).
+
+#### Developing within the SPA
+
 - Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
 - Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
+- Make sure to login. The react-stack is only avail
 
-### Viewing the react-stack
+#### Developing with Storybook
 
-You have to be logged in!
+- Within the `mobile-react-stack-poc` respository run `yarn storybook`
+- Go to [https://localhost:6006](https://localhost:6006)
 
-### Linking Dependencies
+#### Testing
+
+- Within the `mobile-react-stack-poc` respository run `yarn test`
+- TDD is heavily encouraged!
+
+### Linking CUDL Components
 
 Whilst developing CUDL components should generally be done within the storybook environment it can be useful to see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
 
@@ -82,10 +97,6 @@ ssh <assigned-ssh-username>@live-release
 
 deploy-service mobile-react-stack-poc master
 ```
-
-## Contributing
-
-See the [contributing guidelines](CONTRIBUTING.md).
 
 ---
 

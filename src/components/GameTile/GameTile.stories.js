@@ -39,8 +39,7 @@ stories.add(
       <div style={{ maxWidth: "170px" }}>
         <MockStore>
           <GameTile
-            game={game}
-            inMaintenanceMode={inMaintenanceMode}
+            game={{ ...game, inMaintenanceMode }}
             onLaunchGame={action(game.name)}
           />
         </MockStore>
@@ -61,8 +60,7 @@ stories.add(
       <div style={{ maxWidth: "170px" }}>
         <MockStore>
           <GameTile
-            game={{ ...game, jackpotInfo }}
-            inMaintenanceMode={inMaintenanceMode}
+            game={{ ...game, jackpotInfo, inMaintenanceMode }}
             onLaunchGame={action(game.name)}
           />
         </MockStore>
