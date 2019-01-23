@@ -63,9 +63,39 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   handleFocusSearchInput = () => {};
 
-  render() {
+  renderResults = () => {
     const { games, searchResults, latestPlayedGames } = this.props;
 
+    if (!searchResults.length) {
+      return <SectionsList items={games} />;
+    }
+
+    const showLatest = searchResults.length === 1 && latestPlayedGames.length;
+
+    return (
+      <React.Fragment>
+        <List
+          items={searchResults}
+          itemSpacing="default"
+          render={id => <GameRowSearch id={id} />}
+        />
+        {showLatest && (
+          <React.Fragment>
+            <p className="u-font-weight-bold u-font-md u-padding-vert--md">
+              Continue Playing
+            </p>
+            <List
+              items={latestPlayedGames}
+              itemSpacing="default"
+              render={id => <GameRowSearch id={id} />}
+            />
+          </React.Fragment>
+        )}
+      </React.Fragment>
+    );
+  };
+
+  render() {
     return (
       <Flex direction="vertical" spacing="none">
         <Flex.Block>
@@ -81,29 +111,7 @@ export default class GameSearch extends PureComponent<Props, State> {
                   placeholder="Eg. game title, provider"
                 />
               </div>
-              <div className="u-padding-horiz--md">
-                {!searchResults.length && <SectionsList items={games} />}
-                {searchResults.length && (
-                  <List
-                    items={searchResults}
-                    itemSpacing="default"
-                    render={id => <GameRowSearch id={id} />}
-                  />
-                )}
-                {searchResults.length === 1 &&
-                  latestPlayedGames.length && (
-                    <>
-                      <p className="u-font-weight-bold u-font-md u-padding-vert--md">
-                        Continue Playing
-                      </p>
-                      <List
-                        items={latestPlayedGames}
-                        itemSpacing="default"
-                        render={id => <GameRowSearch id={id} />}
-                      />
-                    </>
-                  )}
-              </div>
+              <div className="u-padding-horiz--md">{this.renderResults()}</div>
             </Flex.Block>
           </Flex>
         </Flex.Block>
