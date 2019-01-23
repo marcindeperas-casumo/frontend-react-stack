@@ -57,7 +57,7 @@
     "dev": "npm run start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom --verbose false",
-    "test:ci": "CI=yes npm run test",
+    "test:ci": "CI=yes node scripts/test.js --env=jsdom --coverage",
     "lint": "npm run format",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
     "storybook": "start-storybook -s ./.storybook/static -p 6006",
@@ -69,6 +69,12 @@
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}",
       "!src/**/*.stories.{js,jsx,mjs}"
+    ],
+    "coverageDirectory": "./coverage/",
+    "coverageReporters": [
+      "lcov",
+      "html",
+      "text"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js"
