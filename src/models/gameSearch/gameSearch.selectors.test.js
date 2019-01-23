@@ -1,15 +1,18 @@
 import {
   playerGamesAllSelector,
   isGameSearchLoadedFactory,
+  PLAYER_ALL_GAMES_LIST_ID,
 } from "Models/gameSearch";
 
 describe("Models/GameSearch/Selectors", () => {
+  const id = PLAYER_ALL_GAMES_LIST_ID;
+
   describe("playerGamesAllSelector()", () => {
-    test("returns gameList playerGamesAll", () => {
+    test("returns gameList", () => {
       const games = ["foo"];
       const gameList = {
-        playerGamesAll: {
-          id: "playerGamesAll",
+        [id]: {
+          id,
           games,
         },
       };
@@ -26,11 +29,11 @@ describe("Models/GameSearch/Selectors", () => {
   });
 
   describe("isGameSearchLoadedFactory()", () => {
-    test("returns true if playerGamesAll gameList is in state", () => {
+    test("returns true if gameList is in state", () => {
       const games = ["foo"];
       const gameList = {
-        playerGamesAll: {
-          id: "playerGamesAll",
+        [id]: {
+          id,
           games,
         },
       };
@@ -39,7 +42,7 @@ describe("Models/GameSearch/Selectors", () => {
       expect(isGameSearchLoadedFactory(state)).toBe(true);
     });
 
-    test("returns false if playerGamesAll gameList is not in state", () => {
+    test("returns false if gameList is not in state", () => {
       const state = { schema: { gameList: {} } };
 
       expect(isGameSearchLoadedFactory(state)).toBe(false);

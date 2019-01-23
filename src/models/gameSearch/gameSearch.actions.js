@@ -11,11 +11,12 @@ export const initFetchPlayerGames = () => ({
   type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
 });
 
-export const fetchPlayerGames = () => ({
+export const fetchPlayerGames = asyncCallData => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
   postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
   asyncCall: getCasinoPlayerGames,
+  asyncCallData,
 });
 
 export const initFetchQuerySearch = q => ({

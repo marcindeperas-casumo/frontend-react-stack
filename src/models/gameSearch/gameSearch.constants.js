@@ -18,3 +18,5 @@ export const types = {
   GAME_SEARCH_FETCH_GAMES_PROVIDER_COMPLETE:
     "GAME_SEARCH/FETCH_GAMES_PROVIDER_COMPLETE",
 };
+
+export const PLAYER_ALL_GAMES_LIST_ID = "playerGamesAll";
