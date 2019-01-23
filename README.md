@@ -59,7 +59,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 - Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`
 - Go to [https://mobile.dev](https://mobile.dev)
-- Make sure to login. The react-stack is only avail
+- Make sure to login. The react-stack is only available when logged in.
 
 #### Developing with Storybook
 
