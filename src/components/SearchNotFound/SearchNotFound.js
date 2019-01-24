@@ -5,8 +5,6 @@ import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
 
 export type Props = {
-  /** If the CMS page is fetched */
-  isFetched: boolean,
   /** The not found image to render */
   image: string,
   /** The not found text title to render */
@@ -25,11 +23,7 @@ class SearchNotFound extends PureComponent<Props> {
   }
 
   render() {
-    const { image, title, content, isFetched } = this.props;
-
-    if (!isFetched) {
-      return null;
-    }
+    const { image, title, content } = this.props;
 
     return (
       <Media

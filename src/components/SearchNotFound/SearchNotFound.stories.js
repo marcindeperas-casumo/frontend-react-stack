@@ -37,7 +37,6 @@ stories.add(
   "Default",
   () => (
     <SearchNotFound
-      isFetched={true}
       image={
         "https://cms.casumo.com/wp-content/uploads/2019/01/search_no_results.svg"
       }
