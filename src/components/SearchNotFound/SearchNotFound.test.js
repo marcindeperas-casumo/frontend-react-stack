@@ -17,7 +17,7 @@ describe("SearchNotFound", () => {
   });
 
   test("should fetch the CMS page once", () => {
-    const rendered = shallow(
+    shallow(
       <SearchNotFound
         image={notFoundCMS.image}
         title={notFoundCMS.title}
