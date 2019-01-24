@@ -14,6 +14,7 @@ Here are some high level recommendations on how to best contribute to the projec
 - Visual Regression tests should be checked [here](https://www.chromaticqa.com/builds?appId=5b9fa923b6b01b00248452c7). (Oauth with github if need be.)
 - Should be kept as small as possible. E.g create PRs for single components rather than one large feature branch.
 - Feedback commits should be descriptive rather than "PR fixes" or "PR feedback".
+- Should have all issues detected by SonarQube resolved before being merged.
 
 ## Components
 
@@ -105,6 +106,14 @@ If the _how_ is hard to understand, that is probably because the code isn't writ
 
 Writing tests is an even better way of documenting your code!
 
-## Submitting Pull Requests
+## SonarQube
 
-Please abide by the Pull Request template!
+[SonarQube](https://www.sonarqube.org/) is a Continuous Inspection tool capable of showing the current health of an application and highlighting newly introduced issues.
+
+The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=mobile-react-stack-poc).
+
+It is advised that all issues raised by Sonar be solved prior to any code merge!
+
+For more information on how to configure, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project. 
+
+Remember that, if necessary, rules can be changed to better suit the team! 
