@@ -25,7 +25,7 @@ describe("SearchNotFound", () => {
       />
     );
 
-    expect(rendered.find("Media").exists()).toBe(true);
+    expect(rendered.find("Media").length).toBe(1);
   });
 
   test("should not render a Media component if isFetched is false", () => {
@@ -38,7 +38,7 @@ describe("SearchNotFound", () => {
       />
     );
 
-    expect(rendered.find("Media").exists()).toBe(false);
+    expect(rendered.find("Media").length).toBe(0);
   });
 
   test("should render an image with the source passed as a prop", () => {
@@ -54,7 +54,7 @@ describe("SearchNotFound", () => {
     expect(rendered.find("img").prop("src")).toBe(notFoundCMS.image);
   });
 
-  test("should render a title with the string passed as a prop", () => {
+  test("should render the title with the string passed as a prop", () => {
     const rendered = mount(
       <SearchNotFound
         isFetched={true}
@@ -73,7 +73,7 @@ describe("SearchNotFound", () => {
     ).toBe(notFoundCMS.title);
   });
 
-  test("should render a content with the string passed as a prop", () => {
+  test("should render the content with the string passed as a prop", () => {
     const rendered = mount(
       <SearchNotFound
         isFetched={true}
