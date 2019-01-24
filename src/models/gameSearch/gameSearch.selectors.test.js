@@ -3,6 +3,7 @@ import {
   isGameSearchLoadedFactory,
   PLAYER_ALL_GAMES_LIST_ID,
 } from "Models/gameSearch";
+import { ENTITY_KEYS } from "Models/schema";
 
 describe("Models/GameSearch/Selectors", () => {
   const id = PLAYER_ALL_GAMES_LIST_ID;
@@ -16,7 +17,7 @@ describe("Models/GameSearch/Selectors", () => {
           games,
         },
       };
-      const state = { schema: { gameList } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(playerGamesAllSelector(state)).toEqual(games);
     });
@@ -37,13 +38,13 @@ describe("Models/GameSearch/Selectors", () => {
           games,
         },
       };
-      const state = { schema: { gameList } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(isGameSearchLoadedFactory(state)).toBe(true);
     });
 
     test("returns false if gameList is not in state", () => {
-      const state = { schema: { gameList: {} } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: {} } };
 
       expect(isGameSearchLoadedFactory(state)).toBe(false);
     });

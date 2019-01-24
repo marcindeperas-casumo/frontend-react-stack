@@ -1,5 +1,5 @@
 import { call, put, take } from "redux-saga/effects";
-import { normalizeData, updateEntity } from "Models/schema";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { fetchPlayerGames } from "./gameSearch.actions";
 import { types, PLAYER_ALL_GAMES_LIST_ID } from "./gameSearch.constants";
 // import { sessionId as sessionIdSelector } from "Models/handshake";
@@ -14,7 +14,9 @@ export function* fetchPlayerGamesSaga() {
   );
 
   const gameList = { id: PLAYER_ALL_GAMES_LIST_ID, games: response };
-  const { entities } = yield call(normalizeData, { gameList });
+  const { entities } = yield call(normalizeData, {
+    [ENTITY_KEYS.GAME_LIST]: gameList,
+  });
 
   yield put(updateEntity(entities));
 }

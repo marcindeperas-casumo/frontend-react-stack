@@ -11,6 +11,11 @@ export const playerGamesAllSelector = createSelector(
   )
 );
 
+export const isGameSearchLoading = createSelector(
+  gameListSelector("gameSearch"),
+  prop("loading")
+);
+
 export const isGameSearchLoadedFactory = createSelector(
   gameListSelector(PLAYER_ALL_GAMES_LIST_ID),
   compose(
@@ -21,7 +26,7 @@ export const isGameSearchLoadedFactory = createSelector(
 );
 
 export const gameSearchResultsSelector = createSelector(
-  gameListSelector("gameSearchResults"),
+  gameListSelector("gameSearch"),
   compose(
     defaultTo([]),
     prop("games")

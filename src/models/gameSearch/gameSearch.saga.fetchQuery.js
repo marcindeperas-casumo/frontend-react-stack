@@ -4,7 +4,7 @@ import {
   country as countrySelector,
   playerId as playerIdSelector,
 } from "Models/handshake";
-import { normalizeData, updateEntity } from "Models/schema";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   fetchQuerySearch,
   fetchLatestPlayedGames,
@@ -12,40 +12,45 @@ import {
 } from "./gameSearch.actions";
 import { types } from "./gameSearch.constants";
 
+const entitySearch = ({ loading = false, games }) => ({
+  [ENTITY_KEYS.GAME_LIST]: {
+    id: "gameSearch",
+    loading,
+    games,
+  },
+});
+
 export function* fetchQuerySaga(action) {
   const platform = "mobile";
-  const id = "gameSearchResults";
   const variant = "default";
   const country = yield select(countrySelector);
   const { q } = action;
 
-  if (!q) {
-    const { entities } = yield call(normalizeData, {
-      gameList: { id, games: [] },
-    });
+  const loading = yield call(normalizeData, entitySearch({ loading: true }));
+  yield put(updateEntity(loading.entities));
 
-    return yield put(updateEntity(entities));
+  if (!q) {
+    const notLoading = yield call(normalizeData, entitySearch({ games: [] }));
+
+    return yield put(updateEntity(notLoading.entities));
   }
 
   yield put(fetchQuerySearch({ platform, country, q }));
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
   const { games } = response;
-
   // no results!
   if (!games.length) {
     return;
   }
 
-  const { entities } = yield call(normalizeData, {
-    gameList: { id, games },
-  });
-
+  const { entities } = yield call(normalizeData, entitySearch({ games }));
   yield put(updateEntity(entities));
 
   // direct hit
   if (games.length === 1) {
     const playerId = yield select(playerIdSelector);
+
     yield put(fetchLatestPlayedGames({ playerId }));
 
     const { response } = yield take(
@@ -78,7 +83,7 @@ export function* fetchQuerySaga(action) {
 
     // save the gameList with correct game slugs
     const { entities } = yield call(normalizeData, {
-      gameList: {
+      [ENTITY_KEYS.GAME_LIST]: {
         id: "latestPlayedGames",
         games: gamesBySlugsNormalized.result.games,
       },

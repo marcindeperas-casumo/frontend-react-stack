@@ -1,4 +1,4 @@
-import { normalizeData, updateEntity } from "Models/schema";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
 import { fetchPlayerGamesSaga } from "./gameSearch.saga.fetchPlayerGames";
 import { fetchPlayerGames } from "./gameSearch.actions";
@@ -18,7 +18,7 @@ describe("Models/GameSearch/Saga", () => {
     const gameList = { id: PLAYER_ALL_GAMES_LIST_ID, games: response };
 
     expect(generator.next({ response }).value).toEqual(
-      call(normalizeData, { gameList })
+      call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })
     );
 
     const entities = { someEntity: { id: 1 } };

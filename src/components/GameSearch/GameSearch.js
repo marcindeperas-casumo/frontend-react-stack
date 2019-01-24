@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
 import SectionsList from "Components/SectionsList";
 import GameRowSearch from "Components/GameRowSearch";
+import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
 
@@ -16,6 +17,7 @@ type Props = {
   games: Array<string>,
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
+  loading: boolean,
 };
 
 type State = {
@@ -63,14 +65,39 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   handleFocusSearchInput = () => {};
 
+  renderListSkeleton = () => <ListSkeleton titleYOffset="20" />;
+
+  renderLatestPlayed = () => {
+    const { latestPlayedGames } = this.props;
+
+    if (!latestPlayedGames.length) {
+      return this.renderListSkeleton();
+    }
+
+    return (
+      <React.Fragment>
+        <p className="u-font-weight-bold u-font-md u-padding-vert--md">
+          Continue Playing
+        </p>
+        <List
+          items={latestPlayedGames}
+          itemSpacing="default"
+          render={id => <GameRowSearch id={id} />}
+        />
+      </React.Fragment>
+    );
+  };
+
   renderResults = () => {
-    const { games, searchResults, latestPlayedGames } = this.props;
+    const { games, loading, searchResults } = this.props;
+
+    if (loading) {
+      return this.renderListSkeleton();
+    }
 
     if (!searchResults.length) {
       return <SectionsList items={games} />;
     }
-
-    const showLatest = searchResults.length === 1 && latestPlayedGames.length;
 
     return (
       <React.Fragment>
@@ -79,18 +106,7 @@ export default class GameSearch extends PureComponent<Props, State> {
           itemSpacing="default"
           render={id => <GameRowSearch id={id} />}
         />
-        {showLatest && (
-          <React.Fragment>
-            <p className="u-font-weight-bold u-font-md u-padding-vert--md">
-              Continue Playing
-            </p>
-            <List
-              items={latestPlayedGames}
-              itemSpacing="default"
-              render={id => <GameRowSearch id={id} />}
-            />
-          </React.Fragment>
-        )}
+        {searchResults.length === 1 && this.renderLatestPlayed()}
       </React.Fragment>
     );
   };
