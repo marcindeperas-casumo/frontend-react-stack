@@ -4,9 +4,10 @@ import SearchNotFound from "Components/SearchNotFound/SearchNotFound";
 
 describe("SearchNotFound", () => {
   let notFoundCMS;
-  let isFetched;
+  let startFetch;
 
   beforeEach(() => {
+    startFetch = jest.fn();
     notFoundCMS = {
       image:
         "https://cms.casumo.com/wp-content/uploads/2019/01/search_not_found.png",
@@ -15,39 +16,39 @@ describe("SearchNotFound", () => {
     };
   });
 
-  test("should render a Media component", () => {
+  test("should fetch the CMS page once", () => {
     const rendered = shallow(
       <SearchNotFound
-        isFetched={true}
         image={notFoundCMS.image}
         title={notFoundCMS.title}
         content={notFoundCMS.content}
+        startFetch={startFetch}
+      />
+    );
+
+    expect(startFetch).toHaveBeenCalledTimes(1);
+  });
+
+  test("should render a Media component", () => {
+    const rendered = shallow(
+      <SearchNotFound
+        image={notFoundCMS.image}
+        title={notFoundCMS.title}
+        content={notFoundCMS.content}
+        startFetch={startFetch}
       />
     );
 
     expect(rendered.find("Media").length).toBe(1);
   });
 
-  test("should not render a Media component if isFetched is false", () => {
-    const rendered = shallow(
-      <SearchNotFound
-        isFetched={false}
-        image={notFoundCMS.image}
-        title={notFoundCMS.title}
-        content={notFoundCMS.content}
-      />
-    );
-
-    expect(rendered.find("Media").length).toBe(0);
-  });
-
   test("should render an image with the source passed as a prop", () => {
     const rendered = mount(
       <SearchNotFound
-        isFetched={true}
         image={notFoundCMS.image}
         title={notFoundCMS.title}
         content={notFoundCMS.content}
+        startFetch={startFetch}
       />
     );
 
@@ -57,10 +58,10 @@ describe("SearchNotFound", () => {
   test("should render the title with the string passed as a prop", () => {
     const rendered = mount(
       <SearchNotFound
-        isFetched={true}
         image={notFoundCMS.image}
         title={notFoundCMS.title}
         content={notFoundCMS.content}
+        startFetch={startFetch}
       />
     );
 
@@ -76,10 +77,10 @@ describe("SearchNotFound", () => {
   test("should render the content with the string passed as a prop", () => {
     const rendered = mount(
       <SearchNotFound
-        isFetched={true}
         image={notFoundCMS.image}
         title={notFoundCMS.title}
         content={notFoundCMS.content}
+        startFetch={startFetch}
       />
     );
 
