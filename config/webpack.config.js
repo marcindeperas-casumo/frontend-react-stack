@@ -5,7 +5,6 @@ const webpack = require("webpack");
 const PnpWebpackPlugin = require("pnp-webpack-plugin");
 const CaseSensitivePathsPlugin = require("case-sensitive-paths-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const safePostCssParser = require("postcss-safe-parser");
 const ManifestPlugin = require("webpack-manifest-plugin");
@@ -47,16 +46,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const env = getClientEnvironment(publicUrl);
 
   const styleLoaders = [
-    isEnvDevelopment && require.resolve("style-loader"),
-    isEnvProduction && {
-      loader: MiniCssExtractPlugin.loader,
-      options: Object.assign(
-        {
-          includePaths: cudl,
-        },
-        shouldUseRelativeAssetPaths ? { publicPath: "../../" } : undefined
-      ),
-    },
+    require.resolve("style-loader"),
     {
       loader: require.resolve("css-loader"),
       options: {
@@ -129,17 +119,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       path: isEnvProduction ? paths.appBuild : undefined,
       // Add /* filename */ comments to generated require()s in the output.
       pathinfo: isEnvDevelopment,
-      // There will be one main bundle, and one file per asynchronous chunk.
-      // In development, it does not produce real files.
-      filename: isEnvProduction
-        ? `${staticFolderName}/js/[name].[chunkhash:8].js`
-        : isEnvDevelopment && `${staticFolderName}/js/[name].js`,
-      // There are also additional JS chunk files if you use code splitting.
-      chunkFilename: isEnvProduction
-        ? `${staticFolderName}/js/[name].[chunkhash:8].chunk.js`
-        : isEnvDevelopment && `${staticFolderName}/js/[name].chunk.js`,
-      // We inferred the "public path" (such as / or /my-project) from homepage.
-      // We use "/" in development.
+      filename: `${staticFolderName}/js/bundle.js`,
       publicPath: publicPath,
       // Point sourcemap entries to original disk location (format as URL on Windows)
       devtoolModuleFilenameTemplate: isEnvProduction
@@ -213,16 +193,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
           },
         }),
       ],
-      // Automatically split vendor and commons
-      // https://twitter.com/wSokra/status/969633336732905474
-      // https://medium.com/webpack/webpack-4-code-splitting-chunk-graph-and-the-splitchunks-optimization-be739a861366
-      splitChunks: {
-        chunks: "all",
-        name: false,
-      },
-      // Keep the runtime chunk seperated to enable long term caching
-      // https://twitter.com/wSokra/status/969679223278505985
-      runtimeChunk: true,
     },
     resolve: {
       // This allows you to set a fallback for where Webpack should look for modules.
@@ -366,9 +336,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
             // "style" loader turns CSS into JS modules that inject <style> tags.
-            // In production, we use MiniCSSExtractPlugin to extract that CSS
-            // to a file, but in development "style" loader enables hot editing
-            // of CSS.
             {
               test: /\.(scss|sass)$/,
               use: styleLoaders,
@@ -426,13 +393,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       // See https://github.com/facebook/create-react-app/issues/186
       isEnvDevelopment &&
         new WatchMissingNodeModulesPlugin(paths.appNodeModules),
-      isEnvProduction &&
-        new MiniCssExtractPlugin({
-          // Options similar to the same options in webpackOptions.output
-          // both options are optional
-          filename: `${staticFolderName}/css/[name].[contenthash:8].css`,
-          chunkFilename: `${staticFolderName}/css/[name].[contenthash:8].chunk.css`,
-        }),
       // Generate a manifest file which contains a mapping of all asset filenames
       // to their corresponding output file so that tools can pick it up without
       // having to parse `index.html`.
