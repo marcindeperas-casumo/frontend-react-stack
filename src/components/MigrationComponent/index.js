@@ -1,4 +1,6 @@
-export { default } from "Components/MigrationComponent/MigrationComponent";
-export {
-  default as MigrationComponentManager,
-} from "Components/MigrationComponent/MigrationComponentManager";
+// @flow
+import { MigrationComponentManager } from "./MigrationComponentManager";
+
+export type * from "./MigrationComponent"; // eslint-disable-line import/export
+export { default } from "./MigrationComponent";
+export { MigrationComponentManager };

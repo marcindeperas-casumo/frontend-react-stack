@@ -1,8 +1,15 @@
+// @flow
 import React from "react";
 import { matchingGroups } from "Utils/index";
 import Matcher from "Components/Matcher";
 
-const MaskText = ({ text, search, matchRender, unmatchedRender }) => {
+type Props = {
+  text: string,
+  search: string,
+  matchRender: Function,
+  unmatchedRender: Function,
+};
+const MaskText = ({ text, search, matchRender, unmatchedRender }: Props) => {
   return (
     <React.Fragment>
       {matchingGroups(text, search).map(group => (
