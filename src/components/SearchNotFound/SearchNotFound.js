@@ -13,9 +13,17 @@ export type Props = {
   title: string,
   /** The not found text content to render */
   content: string,
+  /** The function that fecthes search page on the CMS */
+  startFetch: () => void,
 };
 
 class SearchNotFound extends PureComponent<Props> {
+  componentDidMount() {
+    const { startFetch } = this.props;
+
+    startFetch();
+  }
+
   render() {
     const { image, title, content, isFetched } = this.props;
 
@@ -37,7 +45,12 @@ class SearchNotFound extends PureComponent<Props> {
           </div>
         )}
         renderImage={() => (
-          <img className="u-display--block" alt={title} src={image} />
+          <img
+            className="u-display--block"
+            width={64}
+            alt={title}
+            src={image}
+          />
         )}
       />
     );
