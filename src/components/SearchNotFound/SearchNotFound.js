@@ -37,11 +37,7 @@ class SearchNotFound extends PureComponent<Props> {
           </div>
         )}
         renderImage={() => (
-          <img
-            className="u-display--block"
-            alt="Search not found"
-            src={image}
-          />
+          <img className="u-display--block" alt={title} src={image} />
         )}
       />
     );
