@@ -16,38 +16,38 @@ type Props = {
   onLaunchGame: () => void,
 };
 
+const RenderPlayIcon = (name, onLaunchGame, iconStyle) => (
+  <TrackClick
+    eventName={EVENTS.GAME_LAUNCH}
+    data={{ [EVENT_PROPS.GAME_NAME]: name }}
+  >
+    <Flex.Item onClick={onLaunchGame}>
+      {/* Play Icon */}
+      <PlayIcon size="med" className={iconStyle} />
+    </Flex.Item>
+  </TrackClick>
+);
+
+const RenderMoreIcon = (name, slug, iconStyle) => (
+  <Flex.Item>
+    <TrackClick
+      eventName={EVENTS.GAME_DETAILS}
+      data={{ [EVENT_PROPS.GAME_NAME]: name }}
+    >
+      {/* More Icon */}
+      <a href={`/en/play/${slug}`}>
+        <MoreIcon size="med" className={iconStyle} />
+      </a>
+    </TrackClick>
+  </Flex.Item>
+);
+
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
     const { name, logo, logoBackground, slug } = game;
     const iconStyle =
       "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
-
-    const RenderPlayIcon = () => (
-      <TrackClick
-        eventName={EVENTS.GAME_LAUNCH}
-        data={{ [EVENT_PROPS.GAME_NAME]: name }}
-      >
-        <Flex.Item onClick={onLaunchGame}>
-          {/* Play Icon */}
-          <PlayIcon size="med" className={iconStyle} />
-        </Flex.Item>
-      </TrackClick>
-    );
-
-    const RenderMoreIcon = () => (
-      <Flex.Item>
-        <TrackClick
-          eventName={EVENTS.GAME_DETAILS}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
-        >
-          {/* More Icon */}
-          <a href={`/en/play/${slug}`}>
-            <MoreIcon size="med" className={iconStyle} />
-          </a>
-        </TrackClick>
-      </Flex.Item>
-    );
 
     return (
       <Flex align="center" className="u-padding-vert">
@@ -77,7 +77,9 @@ export default class GameRowSearch extends PureComponent<Props> {
             </Flex>
           </TrackClick>
         </Flex.Block>
-        {game.lobby ? <RenderPlayIcon /> : <RenderMoreIcon />}
+        {game.lobby
+          ? RenderPlayIcon(name, onLaunchGame, iconStyle)
+          : RenderMoreIcon(name, slug, iconStyle)}
       </Flex>
     );
   }
