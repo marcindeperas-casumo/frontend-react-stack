@@ -75,7 +75,7 @@ export default class GameRowSearch extends PureComponent<Props> {
             </Flex>
           </TrackClick>
         </Flex.Block>
-        {!game.lobby ? <RenderMoreIcon /> : <RenderPlayIcon />}
+        {game.lobby ? <RenderPlayIcon /> : <RenderMoreIcon />}
       </Flex>
     );
   }
