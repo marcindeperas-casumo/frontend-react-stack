@@ -50,7 +50,7 @@
     "dev": "npm run start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
-    "test:ci": "CI=yes npm run test",
+    "test:ci": "CI=yes npm run test --coverage",
     "lint": "eslint './src/**/*.js' && stylelint './src/**/*.scss'",
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
     "storybook": "start-storybook -s ./.storybook/static -p 6006",

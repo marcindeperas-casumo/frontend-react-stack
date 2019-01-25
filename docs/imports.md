@@ -36,7 +36,7 @@ Inside `module-resolver` configuration under `alias` add new key-value pair wher
 
 ### .flowconfig
 
-Find sections with values that begin with `module.name_mapper` and add new line with you alias. Syntax looks like this: `module.name_mapper='^NAME\(.*\)$' -> '<PROJECT_ROOT>/PATH\1'` where `NAME` is the desired name of your alias (ie. `Models` and `PATH` is relative path to this file (ie. ./src/models`).
+Find sections with values that begin with `module.name_mapper` and add new line with you alias. Syntax looks like this: `module.name_mapper='^NAME\(.*\)$' -> '<PROJECT_ROOT>/PATH\1'` where `NAME` is the desired name of your alias (ie. `Models` and `PATH` is relative path to this file (ie. `./src/models`).
 
 ```
 module.name_mapper='^Models\(.*\)$' -> '<PROJECT_ROOT>/src/models\1'
