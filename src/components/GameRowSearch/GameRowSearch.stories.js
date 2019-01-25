@@ -28,3 +28,15 @@ stories.add(
   () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
   info({ text: "Default" })
 );
+
+stories.add(
+  "Jackpot Game",
+  () => (
+    <GameRowSearch
+      game={{ ...game, lobby: "test" }}
+      onLaunchGame={action("gonzos-quest")}
+      id="gonzos-quest"
+    />
+  ),
+  info({ text: "Jackpot Game" })
+);
