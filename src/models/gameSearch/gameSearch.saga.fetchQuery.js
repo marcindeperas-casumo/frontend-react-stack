@@ -12,10 +12,11 @@ import {
 } from "./gameSearch.actions";
 import { types } from "./gameSearch.constants";
 
-const entitySearch = ({ loading = false, games }) => ({
+const entitySearch = ({ loading = false, noMatch = false, games }) => ({
   [ENTITY_KEYS.GAME_LIST]: {
     id: "gameSearch",
     loading,
+    noMatch,
     games,
   },
 });
@@ -42,7 +43,11 @@ export function* fetchQuerySaga(action) {
 
   // no results!
   if (!games.length) {
-    return;
+    const noMatchEntity = yield call(
+      normalizeData,
+      entitySearch({ noMatch: true })
+    );
+    return yield put(updateEntity(noMatchEntity.entities));
   }
 
   const { entities } = yield call(normalizeData, entitySearch({ games }));

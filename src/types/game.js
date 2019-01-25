@@ -2,11 +2,11 @@
 import type { JackpotInfo } from "./jackpotInfo";
 import type { liveCasinoLobby } from "./liveCasinoLobby";
 export type Game = {
-  name: string,
-  title: string, // new api, can be renamed?
+  name: string, // deprecated
+  title: string, // new api
   slug: string,
-  logoBackground: string,
-  backgroundImage: string, // new api, can be renamed?
+  logoBackground: string, // deprecated
+  backgroundImage: string, // new api
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,

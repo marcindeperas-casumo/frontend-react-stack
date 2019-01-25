@@ -3,7 +3,6 @@ import MigrationComponent, {
   MigrationComponentManager,
 } from "../MigrationComponent/index";
 import { TopListsSkeleton } from "Components/TopLists";
-import GameSearchSkeleton from "Components/GameSearch/GameSearchSkeleton";
 import LazyPortal from "Components/LazyPortal";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
@@ -65,7 +64,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-games-search"
             loader={() => import("Components/GameSearch")}
-            fallback={<GameSearchSkeleton />}
+            fallback={<ListSkeleton />}
           />
         </MigrationComponent>
       </MigrationComponentManager>

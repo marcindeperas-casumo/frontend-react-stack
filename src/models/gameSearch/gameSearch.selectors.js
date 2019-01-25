@@ -16,6 +16,11 @@ export const isGameSearchLoading = createSelector(
   prop("loading")
 );
 
+export const isGameSearchNoMatch = createSelector(
+  gameListSelector("gameSearch"),
+  prop("noMatch")
+);
+
 export const isGameSearchLoadedFactory = createSelector(
   gameListSelector(PLAYER_ALL_GAMES_LIST_ID),
   compose(

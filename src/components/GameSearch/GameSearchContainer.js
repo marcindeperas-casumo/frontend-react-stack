@@ -9,6 +9,7 @@ import {
   initFetchPlayerGames,
   initFetchQuerySearch,
   isGameSearchLoading,
+  isGameSearchNoMatch,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
@@ -20,6 +21,7 @@ const GameSearchConnected = connect(
     latestPlayedGames: gameListSelector("latestPlayedGames")(state).games,
     isLoaded: isGameSearchLoadedFactory(state),
     loading: isGameSearchLoading(state),
+    noMatch: isGameSearchNoMatch(state),
   }),
   dispatch => ({
     initFetchPlayerGames: () => dispatch(initFetchPlayerGames()),

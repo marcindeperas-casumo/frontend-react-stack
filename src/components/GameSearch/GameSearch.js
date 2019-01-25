@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
+import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
@@ -22,6 +23,7 @@ type Props = {
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
   loading: boolean,
+  noMatch: boolean,
 };
 
 type State = {
@@ -88,14 +90,29 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderSectionHeader = (title: string) => (
-    <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
+    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--sm">
+      {title}
+    </p>
+  );
+
+  renderNoMatch = () => (
+    <React.Fragment>
+      <SearchNotFound contentField="no_results_continue_playing" />
+      <div className="u-padding-horiz--md">{this.renderLatestPlayed()}</div>
+    </React.Fragment>
   );
 
   renderResults = () => {
-    const { games, loading, searchResults } = this.props;
+    const { games, loading, noMatch, searchResults } = this.props;
 
     if (loading) {
-      return this.renderListSkeleton();
+      return (
+        <div className="u-padding-horiz--md">{this.renderListSkeleton()}</div>
+      );
+    }
+
+    if (noMatch) {
+      return this.renderNoMatch();
     }
 
     if (!searchResults.length) {
@@ -103,23 +120,25 @@ export default class GameSearch extends PureComponent<Props, State> {
       const sections = createAlphabeticalSectionsList(sortedGames);
 
       return (
-        <SectionList
-          sections={sections}
-          renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch id={id} />}
-        />
+        <div className="u-padding-horiz--md">
+          <SectionList
+            sections={sections}
+            renderSectionHeader={this.renderSectionHeader}
+            renderItem={id => <GameRowSearch id={id} />}
+          />
+        </div>
       );
     }
 
     return (
-      <React.Fragment>
+      <div className="u-padding-horiz--md">
         <List
           items={searchResults}
           itemSpacing="default"
           render={id => <GameRowSearch id={id} />}
         />
         {searchResults.length === 1 && this.renderLatestPlayed()}
-      </React.Fragment>
+      </div>
     );
   };
 
@@ -139,7 +158,7 @@ export default class GameSearch extends PureComponent<Props, State> {
                   placeholder="Eg. game title, provider"
                 />
               </div>
-              <div className="u-padding-horiz--md">{this.renderResults()}</div>
+              {this.renderResults()}
             </Flex.Block>
           </Flex>
         </Flex.Block>
