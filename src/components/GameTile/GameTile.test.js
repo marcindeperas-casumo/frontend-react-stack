@@ -108,6 +108,7 @@ describe("GameTile", () => {
 
     rendered.simulate("click");
 
+    expect(rendered.find(".active-overlay")).toHaveLength(1);
     expect(onLaunchGame).toHaveBeenCalledTimes(1);
   });
 });
