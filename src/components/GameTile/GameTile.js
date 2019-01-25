@@ -111,7 +111,7 @@ export default class GameTile extends PureComponent<Props, State> {
           />
         )}
         {!isOverlayEnabled && (
-          <div className="o-ratio__content active-overlay"> </div>
+          <div className="o-ratio__content c-game-tile__overlay--active" />
         )}
       </div>
     );

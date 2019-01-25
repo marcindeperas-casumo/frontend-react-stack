@@ -88,7 +88,7 @@ describe("GameTile", () => {
     expect(rendered.find("GameTileOverlay").length).toBe(0);
   });
 
-  test("should render gameOverlay by defualt", () => {
+  test("should render gameOverlay by default", () => {
     const rendered = shallow(<GameTile game={gameInfo} />);
 
     rendered.simulate("click");
@@ -108,7 +108,7 @@ describe("GameTile", () => {
 
     rendered.simulate("click");
 
-    expect(rendered.find(".active-overlay")).toHaveLength(1);
+    expect(rendered.find(".c-game-tile__overlay--active")).toHaveLength(1);
     expect(onLaunchGame).toHaveBeenCalledTimes(1);
   });
 });

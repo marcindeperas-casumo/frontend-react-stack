@@ -18,8 +18,8 @@ type Props = {
   id: string,
 };
 
-const GameTileContainer = ({ id }: Props) => {
+const GameTileWithoutOverlayContainer = ({ id }: Props) => {
   return <GameTileWithoutOverlayConnected id={id} />;
 };
 
-export default GameTileContainer;
+export default GameTileWithoutOverlayContainer;
