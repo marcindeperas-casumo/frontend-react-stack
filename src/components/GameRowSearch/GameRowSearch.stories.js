@@ -27,12 +27,6 @@ if (isNotChromatic) {
 
 stories.add(
   "Default",
-  () => (
-    <GameRowSearch
-      game={game}
-      onLaunchGame={action("gonzos-quest")}
-      id="gonzos-quest"
-    />
-  ),
+  () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
   info({ text: "Default" })
 );

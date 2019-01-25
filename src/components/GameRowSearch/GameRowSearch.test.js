@@ -60,7 +60,6 @@ describe("<GameRowSearch />", () => {
       <GameRowSearch
         game={{ ...game, lobby: "whatever" }}
         onLaunchGame={launchGame}
-        id={game.slug}
       />
     );
 

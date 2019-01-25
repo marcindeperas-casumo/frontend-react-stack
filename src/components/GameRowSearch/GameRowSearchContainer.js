@@ -8,7 +8,6 @@ import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
 const GameRowSearchConnected = connect(
   (state, { id }) => ({
     game: gameSelector(id)(state),
-    id,
   }),
   (dispatch, { id }) => ({
     onLaunchGame: () => dispatch(launchGame(id)),

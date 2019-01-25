@@ -12,12 +12,11 @@ import TrackClick from "Components/TrackClick";
 type Props = {
   game: Game,
   onLaunchGame: () => void,
-  id: string,
 };
 
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
-    const { game = {}, onLaunchGame, id } = this.props;
+    const { game = {}, onLaunchGame } = this.props;
     const { name, logo, logoBackground } = game;
     const iconStyle =
       "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
@@ -41,7 +40,7 @@ export default class GameRowSearch extends PureComponent<Props> {
           data={{ [EVENT_PROPS.GAME_NAME]: name }}
         >
           {/* More Icon */}
-          <a href={`/en/play/${id}`}>
+          <a href={`/en/play/${game.slug}`}>
             <MoreIcon size="med" className={iconStyle} />
           </a>
         </TrackClick>
