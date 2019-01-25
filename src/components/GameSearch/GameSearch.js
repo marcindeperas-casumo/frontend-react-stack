@@ -3,11 +3,15 @@ import React, { PureComponent } from "react";
 
 import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
-import SectionsList from "Components/SectionsList";
+import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
+import {
+  sortGamesByName,
+  createAlphabeticalSectionsList,
+} from "Components/SectionList/utils";
 
 type Props = {
   isLoaded: boolean,
@@ -75,18 +79,17 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     return (
-      <React.Fragment>
-        <p className="u-font-weight-bold u-font-md u-padding-vert--md">
-          Continue Playing
-        </p>
-        <List
-          items={latestPlayedGames}
-          itemSpacing="default"
-          render={id => <GameRowSearch id={id} />}
-        />
-      </React.Fragment>
+      <SectionList
+        sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
+        renderSectionHeader={this.renderSectionHeader}
+        renderItem={id => <GameRowSearch id={id} />}
+      />
     );
   };
+
+  renderSectionHeader = (title: string) => (
+    <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
+  );
 
   renderResults = () => {
     const { games, loading, searchResults } = this.props;
@@ -96,7 +99,16 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     if (!searchResults.length) {
-      return <SectionsList items={games} />;
+      const sortedGames = sortGamesByName(games);
+      const sections = createAlphabeticalSectionsList(sortedGames);
+
+      return (
+        <SectionList
+          sections={sections}
+          renderSectionHeader={this.renderSectionHeader}
+          renderItem={id => <GameRowSearch id={id} />}
+        />
+      );
     }
 
     return (

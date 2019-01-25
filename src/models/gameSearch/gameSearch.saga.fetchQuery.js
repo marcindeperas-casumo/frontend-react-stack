@@ -39,6 +39,7 @@ export function* fetchQuerySaga(action) {
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
   const { games } = response;
+
   // no results!
   if (!games.length) {
     return;
