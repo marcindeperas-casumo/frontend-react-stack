@@ -13,6 +13,11 @@
 }
 
 //stylelint-disable-next-line xi/selector-pattern
+.active-overlay:active {
+  background-color: cudl-palette(grey, "dark-1");
+  opacity: 0.3;
+}
+
 .c-game-tile__overlay {
   background-color: rgba(cudl-palette(teal), 0.9);
   text-align: center;
