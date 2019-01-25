@@ -102,7 +102,7 @@ export default class GameTile extends PureComponent<Props, State> {
           imgixOpts={imgixOpts}
         />
         {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        {isOverlayActive && (
+        {isOverlayEnabled && isOverlayActive && (
           <GameTileOverlay
             name={name}
             slug={slug}
