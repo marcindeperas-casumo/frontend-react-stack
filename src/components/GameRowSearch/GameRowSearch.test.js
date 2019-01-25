@@ -42,17 +42,15 @@ describe("<GameRowSearch />", () => {
       />
     );
 
-    const playIcon = rendered.find("RenderPlayIcon");
-
-    expect(playIcon.length).toBe(1);
+    expect(rendered.find("RenderPlayIcon").length).toBe(1);
+    expect(rendered.find("RenderMoreIcon").length).toBe(0);
   });
 
   test("renders a More info icon if not a jackpot game", () => {
     rendered = shallow(<GameRowSearch game={game} onLaunchGame={launchGame} />);
 
-    const moreIcon = rendered.find("RenderMoreIcon");
-
-    expect(moreIcon.length).toBe(1);
+    expect(rendered.find("RenderMoreIcon").length).toBe(1);
+    expect(rendered.find("RenderPlayIcon").length).toBe(0);
   });
 
   test("clicking on the whole row launches the game if Jackpot game", () => {
