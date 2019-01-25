@@ -10,14 +10,16 @@ import DangerousHtml from "Components/DangerousHtml";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
+  /** The Game object containing name, logo, logoBackhround and slug of the game to be rendered */
   game: Game,
+  /** The function in charge of launching the game */
   onLaunchGame: () => void,
 };
 
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
-    const { name, logo, logoBackground } = game;
+    const { name, logo, logoBackground, slug } = game;
     const iconStyle =
       "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
 
@@ -40,7 +42,7 @@ export default class GameRowSearch extends PureComponent<Props> {
           data={{ [EVENT_PROPS.GAME_NAME]: name }}
         >
           {/* More Icon */}
-          <a href={`/en/play/${game.slug}`}>
+          <a href={`/en/play/${slug}`}>
             <MoreIcon size="med" className={iconStyle} />
           </a>
         </TrackClick>
