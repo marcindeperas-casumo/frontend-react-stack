@@ -16,7 +16,7 @@ if (isNotChromatic) {
     "Default (Connected)",
     () => (
       <MockStore>
-        <GameRowSearchContainer id="hall-of-gods" />
+        <GameRowSearchContainer slug="hall-of-gods" />
       </MockStore>
     ),
     info({ text: "Default" })
