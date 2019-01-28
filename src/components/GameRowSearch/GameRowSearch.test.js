@@ -26,7 +26,7 @@ describe("<GameRowSearch />", () => {
     );
 
     const thumbnail = rendered.find("GameThumb");
-    const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
+    const thumbnailProps = thumbnail.props();
 
     expect(thumbnail.length).toBe(1);
     expect(thumbnailProps.src).toBe(game.logoBackground);
