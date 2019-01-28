@@ -5,7 +5,7 @@ import rootReducer from "Models/rootReducer";
 import rootSaga from "Models/rootSaga";
 import logger from "Services/logger";
 import createErrorLoggerMiddleware from "Lib/logger.middleware";
-import config from "Src/config";
+import config from "./config";
 import { isEnvProduction } from "Utils";
 
 const { sanitizedStateKeys } = config;
@@ -32,8 +32,9 @@ const configureStore = preloadedState => {
   sagaMiddleware.run(rootSaga);
 
   if (module.hot) {
-    module.hot.accept("Models/rootReducer", () => {
-      const nextRootReducer = require("Models/rootReducer").default;
+    // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
+    module.hot.accept("./models/rootReducer", () => {
+      const nextRootReducer = require("./models/rootReducer").default;
       store.replaceReducer(nextRootReducer);
     });
 

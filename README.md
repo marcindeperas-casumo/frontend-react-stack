@@ -30,7 +30,7 @@ source files is made, the target app will be reloaded.
 
 ### Setup
 
-- Required Node version: **>=8.9.0**
+- Required Node version: **>=10.14.2**
 - Required Docker version: **>=18.03**
 - Install [casumo-frontend-proxy](https://github.com/Casumo/casumo-frontend-proxy#install) (2.5.0+) along with [certificate](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/HTTPS.md).
 - Clone [casumo-frontend](https://github.com/Casumo/casumo-frontend) repo and create file `.casumo-proxy-local` under `/web` with this snippet:
