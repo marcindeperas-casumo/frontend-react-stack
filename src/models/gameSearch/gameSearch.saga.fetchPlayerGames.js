@@ -1,12 +1,12 @@
 import { call, put, take } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { fetchPlayerGames } from "./gameSearch.actions";
-import { types, PLAYER_ALL_GAMES_LIST_ID } from "./gameSearch.constants";
-// import { sessionId as sessionIdSelector } from "Models/handshake";
+import {
+  types,
+  PLAYER_ALL_GAMES_LIST_ID,
+  fetchPlayerGames,
+} from "Models/gameSearch";
 
 export function* fetchPlayerGamesSaga() {
-  // const sessionId = yield select(sessionIdSelector);
-  // yield put(fetchPlayerGames({ sessionId }));
   yield put(fetchPlayerGames());
 
   const { response } = yield take(

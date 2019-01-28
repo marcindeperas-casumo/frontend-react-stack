@@ -1,18 +1,12 @@
 import { call, put, select, take } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
-import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { fetchQuerySearch } from "./gameSearch.actions";
-import { fetchLatestPlayedSaga } from "./gameSearch.saga.latestPlayed";
-import { types } from "./gameSearch.constants";
-
-const entitySearch = ({ loading = false, noMatch = false, games }) => ({
-  [ENTITY_KEYS.GAME_LIST]: {
-    id: "gameSearch",
-    loading,
-    noMatch,
-    games,
-  },
-});
+import { normalizeData, updateEntity } from "Models/schema";
+import {
+  types,
+  fetchLatestPlayedSaga,
+  fetchQuerySearch,
+  gameSearchEntities,
+} from "Models/gameSearch";
 
 export function* fetchQuerySaga(action) {
   const platform = "mobile";
@@ -20,22 +14,12 @@ export function* fetchQuerySaga(action) {
   const { q } = action;
 
   // set loading state
-  const { entities: loadingTrue } = yield call(
+  const { entities: loadingTrueEntities } = yield call(
     normalizeData,
-    entitySearch({ loading: true })
+    gameSearchEntities({ loading: true })
   );
 
-  yield put(updateEntity(loadingTrue));
-
-  // if there is no query, clear results list
-  if (!q) {
-    const { entities: clearResults } = yield call(
-      normalizeData,
-      entitySearch({ games: [] })
-    );
-
-    return yield put(updateEntity(clearResults));
-  }
+  yield put(updateEntity(loadingTrueEntities));
 
   // fetch query search
   yield put(fetchQuerySearch({ platform, country, q }));
@@ -45,23 +29,23 @@ export function* fetchQuerySaga(action) {
 
   // if no match fetch latest played games
   if (!games.length) {
-    const { entities: noMatch } = yield call(
+    const { entities: noMatchEntities } = yield call(
       normalizeData,
-      entitySearch({ noMatch: true })
+      gameSearchEntities({ noMatch: true })
     );
 
-    yield put(updateEntity(noMatch));
+    yield put(updateEntity(noMatchEntities));
 
     return yield call(fetchLatestPlayedSaga);
   }
 
   // save search results
-  const { entities } = yield call(normalizeData, entitySearch({ games }));
+  const { entities } = yield call(normalizeData, gameSearchEntities({ games }));
 
   yield put(updateEntity(entities));
 
   // if direct hit fetch latest played games
   if (games.length === 1) {
-    yield call(fetchLatestPlayedSaga);
+    return yield call(fetchLatestPlayedSaga);
   }
 }

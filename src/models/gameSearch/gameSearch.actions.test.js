@@ -1,6 +1,9 @@
 import { types as fetchTypes } from "Models/fetch";
-import { types } from "./gameSearch.constants";
-import { fetchPlayerGames, initFetchPlayerGames } from "./gameSearch.actions";
+import {
+  fetchPlayerGames,
+  preloadFetchPlayerGames,
+  types,
+} from "Models/gameSearch";
 
 describe("Models/GameSearch/Actions", () => {
   describe("fetchPlayerGames()", () => {
@@ -23,9 +26,9 @@ describe("Models/GameSearch/Actions", () => {
     });
   });
 
-  describe("initFetchPlayerGames()", () => {
+  describe("preloadFetchPlayerGames()", () => {
     test("returns an action with the correct type", () => {
-      const action = initFetchPlayerGames();
+      const action = preloadFetchPlayerGames();
 
       expect(action).toEqual({
         type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,

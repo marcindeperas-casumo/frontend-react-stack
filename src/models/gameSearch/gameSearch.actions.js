@@ -1,4 +1,4 @@
-import { types } from "./gameSearch.constants";
+import { types } from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
 import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
 import {
@@ -7,7 +7,7 @@ import {
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
 
-export const initFetchPlayerGames = () => ({
+export const preloadFetchPlayerGames = () => ({
   type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
 });
 
@@ -23,6 +23,8 @@ export const initFetchQuerySearch = q => ({
   type: types.GAME_SEARCH_FETCH,
   q,
 });
+
+export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
 export const fetchQuerySearch = asyncCallData => ({
   type: fetchTypes.FETCH,

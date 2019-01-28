@@ -6,10 +6,11 @@ import {
   playerGamesAllSelector,
   gameSearchResultsSelector,
   isGameSearchLoadedFactory,
-  initFetchPlayerGames,
+  preloadFetchPlayerGames,
   initFetchQuerySearch,
   isGameSearchLoading,
   isGameSearchNoMatch,
+  clearSearch,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
@@ -24,8 +25,9 @@ const GameSearchConnected = connect(
     noMatch: isGameSearchNoMatch(state),
   }),
   dispatch => ({
-    initFetchPlayerGames: () => dispatch(initFetchPlayerGames()),
+    preloadFetchPlayerGames: () => dispatch(preloadFetchPlayerGames()),
     fetchSearch: q => dispatch(initFetchQuerySearch(q)),
+    clearSearch: q => dispatch(clearSearch()),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
   })
 )(GameSearch);

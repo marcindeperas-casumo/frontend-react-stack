@@ -13,8 +13,9 @@ import { getAlphabeticalSections } from "Components/SectionList/utils";
 
 type Props = {
   isLoaded: boolean,
-  initFetchPlayerGames: Function,
+  preloadFetchPlayerGames: Function,
   fetchSearch: Function,
+  clearSearch: Function,
   dispatchLaunchGame: Function,
   games: Array<string>,
   searchResults: Array<string>,
@@ -39,8 +40,8 @@ export default class GameSearch extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const { isLoaded, initFetchPlayerGames } = this.props;
-    if (!isLoaded) initFetchPlayerGames();
+    const { isLoaded, preloadFetchPlayerGames } = this.props;
+    if (!isLoaded) preloadFetchPlayerGames();
   }
 
   fetchSearchResults = () => {
@@ -62,8 +63,10 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   handleClearSearchInput = () => {
+    const { clearSearch } = this.props;
+
     this.setState({ query: "" });
-    this.fetchSearchResults();
+    clearSearch();
   };
 
   handleFocusSearchInput = () => {};

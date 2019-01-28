@@ -6,10 +6,10 @@ import {
 } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
+  types,
   fetchLatestPlayedGames,
   fetchGamesByProviderGameNames,
-} from "./gameSearch.actions";
-import { types } from "./gameSearch.constants";
+} from "Models/gameSearch";
 
 export function* fetchLatestPlayedSaga(action) {
   const platform = "mobile";
@@ -51,12 +51,12 @@ export function* fetchLatestPlayedSaga(action) {
   yield put(updateEntity(entities));
 
   // save the gameList
-  const { entities: gameList } = yield call(normalizeData, {
+  const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
       id: "latestPlayedGames",
       games,
     },
   });
 
-  yield put(updateEntity(gameList));
+  yield put(updateEntity(gameListEntities));
 }

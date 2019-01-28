@@ -1,8 +1,11 @@
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
-import { fetchPlayerGamesSaga } from "./gameSearch.saga.fetchPlayerGames";
-import { fetchPlayerGames } from "./gameSearch.actions";
-import { types, PLAYER_ALL_GAMES_LIST_ID } from "./gameSearch.constants";
+import {
+  types,
+  PLAYER_ALL_GAMES_LIST_ID,
+  fetchPlayerGames,
+  fetchPlayerGamesSaga,
+} from "Mpdels/gameSearch";
 
 describe("Models/GameSearch/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
