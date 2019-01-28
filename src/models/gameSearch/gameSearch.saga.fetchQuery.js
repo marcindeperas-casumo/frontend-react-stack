@@ -43,7 +43,7 @@ export function* fetchQuerySaga(action) {
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
   const { games } = response;
 
-  // no match
+  // if no match fetch latest played games
   if (!games.length) {
     const { entities: noMatch } = yield call(
       normalizeData,
