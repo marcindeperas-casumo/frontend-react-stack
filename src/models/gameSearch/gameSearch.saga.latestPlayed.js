@@ -23,7 +23,7 @@ export function* fetchLatestPlayedSaga(action) {
     types.GAME_SEARCH_FETCH_LATEST_PLAYED_COMPLETE
   );
 
-  const latestPlayedGames = pluck("gameName", response);
+  const providerGameNames = pluck("gameName", response);
 
   // fetch the games by provider game slugs
   yield put(
@@ -31,29 +31,27 @@ export function* fetchLatestPlayedSaga(action) {
       platform,
       country,
       variant,
-      providerGameNames: latestPlayedGames,
+      providerGameNames,
     })
   );
 
-  const gamesBySlugs = yield take(
+  const { response: gamesBySlugRes } = yield take(
     types.GAME_SEARCH_FETCH_GAMES_PROVIDER_COMPLETE
   );
 
-  const gamesBySlugsNormalized = yield call(
-    normalizeData,
-    gamesBySlugs.response
-  );
+  const { entities, result } = yield call(normalizeData, gamesBySlugRes);
+  const { games } = result;
 
   // save the games
-  yield put(updateEntity(gamesBySlugsNormalized.entities));
+  yield put(updateEntity(entities));
 
   // save the gameList with correct game slugs
-  const { entities } = yield call(normalizeData, {
+  const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
       id: "latestPlayedGames",
-      games: gamesBySlugsNormalized.result.games,
+      games,
     },
   });
 
-  yield put(updateEntity(entities));
+  yield put(updateEntity(gameListEntities));
 }

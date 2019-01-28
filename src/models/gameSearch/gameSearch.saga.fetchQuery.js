@@ -19,34 +19,48 @@ export function* fetchQuerySaga(action) {
   const country = yield select(countrySelector);
   const { q } = action;
 
-  const loading = yield call(normalizeData, entitySearch({ loading: true }));
-  yield put(updateEntity(loading.entities));
+  // set loading state
+  const { entities: loadingTrue } = yield call(
+    normalizeData,
+    entitySearch({ loading: true })
+  );
 
+  yield put(updateEntity(loadingTrue));
+
+  // if there is no query, clear results list
   if (!q) {
-    const notLoading = yield call(normalizeData, entitySearch({ games: [] }));
+    const { entities: clearResults } = yield call(
+      normalizeData,
+      entitySearch({ games: [] })
+    );
 
-    return yield put(updateEntity(notLoading.entities));
+    return yield put(updateEntity(clearResults));
   }
 
+  // fetch query search
   yield put(fetchQuerySearch({ platform, country, q }));
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
   const { games } = response;
 
-  // no results!
+  // no match
   if (!games.length) {
-    const noMatchEntity = yield call(
+    const { entities: noMatch } = yield call(
       normalizeData,
       entitySearch({ noMatch: true })
     );
-    yield put(updateEntity(noMatchEntity.entities));
+
+    yield put(updateEntity(noMatch));
+
     return yield call(fetchLatestPlayedSaga);
   }
 
+  // save search results
   const { entities } = yield call(normalizeData, entitySearch({ games }));
+
   yield put(updateEntity(entities));
 
-  // direct hit
+  // if direct hit fetch latest played games
   if (games.length === 1) {
     yield call(fetchLatestPlayedSaga);
   }
