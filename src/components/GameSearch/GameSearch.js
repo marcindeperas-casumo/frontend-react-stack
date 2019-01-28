@@ -9,10 +9,7 @@ import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
-import {
-  sortGamesByName,
-  createAlphabeticalSectionsList,
-} from "Components/SectionList/utils";
+import { getAlphabeticalSections } from "Components/SectionList/utils";
 
 type Props = {
   isLoaded: boolean,
@@ -116,8 +113,7 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     if (!searchResults.length) {
-      const sortedGames = sortGamesByName(games);
-      const sections = createAlphabeticalSectionsList(sortedGames);
+      const sections = getAlphabeticalSections(games);
 
       return (
         <div className="u-padding-horiz--md">
