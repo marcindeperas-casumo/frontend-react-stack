@@ -5,7 +5,7 @@ import {
   PLAYER_ALL_GAMES_LIST_ID,
   fetchPlayerGames,
   fetchPlayerGamesSaga,
-} from "Mpdels/gameSearch";
+} from "Models/gameSearch";
 
 describe("Models/GameSearch/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
