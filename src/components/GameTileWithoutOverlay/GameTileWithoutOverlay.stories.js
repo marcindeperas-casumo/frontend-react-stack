@@ -33,5 +33,5 @@ stories.add(
       </MockStore>
     );
   },
-  info({ text: "Default gmae tile without overlay" })
+  info({ text: "Default game tile without overlay" })
 );

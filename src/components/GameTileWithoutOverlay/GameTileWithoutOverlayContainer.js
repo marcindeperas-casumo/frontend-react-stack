@@ -1,4 +1,3 @@
-/* eslint-disable flowtype/no-types-missing-file-annotation */
 import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
@@ -14,12 +13,13 @@ const GameTileWithoutOverlayConnected = connect(
   })
 )(GameTileWithoutOverlay);
 
+// @flow
 type Props = {
   id: string,
 };
 
-const GameTileWithoutOverlayContainer = ({ id }: Props) => {
-  return <GameTileWithoutOverlayConnected id={id} />;
-};
+const GameTileWithoutOverlayContainer = ({ id }: Props) => (
+  <GameTileWithoutOverlayConnected id={id} />
+);
 
 export default GameTileWithoutOverlayContainer;
