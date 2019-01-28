@@ -2,7 +2,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import SectionList from "./";
-import { sortGamesByName, createAlphabeticalSectionsList } from "./utils";
+import { sortGamesByName, getAlphabeticalSections } from "./utils";
 import GameRowSearch from "Components/GameRowSearch";
 import MockStore from "Components/MockStore";
 
@@ -23,7 +23,7 @@ const sortedGames = sortGamesByName([
   "jackpot-diamonds",
 ]);
 
-const sections = createAlphabeticalSectionsList(sortedGames);
+const sections = getAlphabeticalSections(sortedGames);
 
 const renderSectionHeader = title => (
   <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
