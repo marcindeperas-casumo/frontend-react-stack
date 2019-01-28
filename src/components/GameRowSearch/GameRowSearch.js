@@ -22,7 +22,6 @@ const RenderPlayIcon = (name, onLaunchGame, iconStyle) => (
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item onClick={onLaunchGame}>
-      {/* Play Icon */}
       <PlayIcon size="med" className={iconStyle} />
     </Flex.Item>
   </TrackClick>
@@ -34,7 +33,6 @@ const RenderMoreIcon = (name, slug, iconStyle) => (
       eventName={EVENTS.GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
-      {/* More Icon */}
       <a href={`/en/play/${slug}`}>
         <MoreIcon size="med" className={iconStyle} />
       </a>
@@ -57,7 +55,6 @@ export default class GameRowSearch extends PureComponent<Props> {
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
             <Flex align="center">
-              {/* Image */}
               <Flex.Item className="o-flex__item-fixed-size">
                 <GameThumb
                   src={logoBackground}
@@ -68,7 +65,6 @@ export default class GameRowSearch extends PureComponent<Props> {
                 />
               </Flex.Item>
 
-              {/* Text */}
               <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
                 <Text tag="div" size="sm">
                   <DangerousHtml html={name} />
