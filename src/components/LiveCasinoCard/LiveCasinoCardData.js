@@ -27,8 +27,8 @@ const renderResults = ({ results, type }) => {
               {type === "TopCard"
                 ? topCardLetters[n]
                 : isNaN(parseInt(n, 10))
-                  ? n
-                  : parseInt(n, 10)}
+                ? n
+                : parseInt(n, 10)}
             </Badge>
           );
         })}
