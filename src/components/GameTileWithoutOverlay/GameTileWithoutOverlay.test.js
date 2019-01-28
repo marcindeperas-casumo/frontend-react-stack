@@ -7,6 +7,6 @@ describe("GameTileWithoutOverlay", () => {
     const rendered = shallow(<GameTileWithoutOverlay />);
 
     expect(rendered.find("GameTile").length).toBe(1);
-    expect(rendered.find("GameTile").prop("isOverlayEnabled")).toBeFalsy();
+    expect(rendered.find("GameTile").prop("isOverlayEnabled")).toBe(false);
   });
 });
