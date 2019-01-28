@@ -2,7 +2,7 @@ import React from "react";
 import {
   getSectionForGame,
   sortGamesByName,
-  createAlphabeticalSectionsList,
+  getAlphabeticalSections,
 } from "Components/SectionList/utils";
 
 describe("sortGamesByName", () => {
@@ -13,11 +13,11 @@ describe("sortGamesByName", () => {
   });
 });
 
-describe("createAlphabeticalSectionsList", () => {
+describe("getAlphabeticalSections", () => {
   test("should create a SectionsList array from an array of strings", () => {
     const items = ["a", "b", "c"];
 
-    expect(createAlphabeticalSectionsList(items)).toEqual([
+    expect(getAlphabeticalSections(items)).toEqual([
       { title: "A", data: ["a"] },
       { title: "B", data: ["b"] },
       { title: "C", data: ["c"] },

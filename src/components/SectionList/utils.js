@@ -4,9 +4,7 @@ import { sort } from "ramda";
 export const sortGamesByName = (items: Array<string>) =>
   sort((a, b) => a.localeCompare(b), items);
 
-export const createAlphabeticalSectionsList = (
-  list: Array<string>
-): Array<Object> => {
+export const getAlphabeticalSections = (list: Array<string>): Array<Object> => {
   const sectionsListObject = list.reduce((acc, current) => {
     const key = getSectionForGame(current);
     if (key) {
