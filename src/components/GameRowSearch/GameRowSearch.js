@@ -42,7 +42,7 @@ const TrackMoreIcon = ({ name, slug, iconStyle }) => (
 
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
-    const { game = {}, onLaunchGame } = this.props;
+    const { game, onLaunchGame } = this.props;
     const { name, logo, logoBackground, slug } = game;
     const iconStyle =
       "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
