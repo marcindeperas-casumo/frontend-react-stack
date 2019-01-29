@@ -1,7 +1,10 @@
+// @flow
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-class GameRowSkeleton extends PureComponent {
+type Props = {};
+
+class GameRowSkeleton extends PureComponent<Props> {
   render() {
     return (
       <Skeleton
