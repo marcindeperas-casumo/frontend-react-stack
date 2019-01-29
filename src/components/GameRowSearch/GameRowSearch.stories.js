@@ -24,18 +24,25 @@ if (isNotChromatic) {
 }
 
 stories.add(
-  "Default",
-  () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
+  "Default (with search match)",
+  () => (
+    <GameRowSearch
+      game={game}
+      onLaunchGame={action("gonzos-quest")}
+      query="gon"
+    />
+  ),
   info({ text: "Default" })
 );
 
 stories.add(
-  "Jackpot Game",
+  "Jackpot Game (with search match)",
   () => (
     <GameRowSearch
       game={{ ...game, lobby: "test" }}
       onLaunchGame={action("gonzos-quest")}
       slug="gonzos-quest"
+      query="quest"
     />
   ),
   info({ text: "Jackpot Game" })

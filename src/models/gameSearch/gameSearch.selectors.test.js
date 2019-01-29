@@ -6,6 +6,7 @@ import {
   gameSearchResultsSelector,
   PLAYER_ALL_GAMES_LIST_ID,
   gameSearchEntities,
+  gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 
@@ -40,9 +41,9 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               loading: true,
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(isGameSearchLoading(state)).toBe(true);
@@ -54,9 +55,9 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               loading: false,
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(isGameSearchLoading(state)).toBe(false);
@@ -70,9 +71,9 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               noMatch: true,
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(isGameSearchNoMatch(state)).toBe(true);
@@ -84,9 +85,9 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               noMatch: false,
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(isGameSearchNoMatch(state)).toBe(false);
@@ -121,9 +122,9 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               games: ["foo"],
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(gameSearchResultsSelector(state)).toEqual(["foo"]);
@@ -135,12 +136,40 @@ describe("Models/GameSearch/Selectors", () => {
           [ENTITY_KEYS.GAME_LIST]: {
             gameSearch: {
               games: [],
-            }
-          }
-        }
+            },
+          },
+        },
       };
 
       expect(gameSearchResultsSelector(state)).toEqual([]);
+    });
+  });
+
+  describe("gameSearchQuerySelector()", () => {
+    test("returns search query", () => {
+      const state = {
+        schema: {
+          [ENTITY_KEYS.GAME_LIST]: {
+            gameSearch: {
+              query: "foo",
+            },
+          },
+        },
+      };
+
+      expect(gameSearchQuerySelector(state)).toEqual("foo");
+    });
+
+    test("returns empty string if search query is missing", () => {
+      const state = {
+        schema: {
+          [ENTITY_KEYS.GAME_LIST]: {
+            gameSearch: {},
+          },
+        },
+      };
+
+      expect(gameSearchQuerySelector(state)).toEqual("");
     });
   });
 });

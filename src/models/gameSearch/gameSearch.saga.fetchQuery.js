@@ -16,7 +16,7 @@ export function* fetchQuerySaga(action) {
   // set loading state
   const { entities: loadingTrueEntities } = yield call(
     normalizeData,
-    gameSearchEntities({ loading: true })
+    gameSearchEntities({ loading: true, query: q })
   );
 
   yield put(updateEntity(loadingTrueEntities));
@@ -40,7 +40,10 @@ export function* fetchQuerySaga(action) {
   }
 
   // save search results
-  const { entities } = yield call(normalizeData, gameSearchEntities({ games }));
+  const { entities } = yield call(
+    normalizeData,
+    gameSearchEntities({ games, query: q })
+  );
 
   yield put(updateEntity(entities));
 

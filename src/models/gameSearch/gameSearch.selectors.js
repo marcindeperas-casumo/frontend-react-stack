@@ -37,3 +37,11 @@ export const gameSearchResultsSelector = createSelector(
     prop("games")
   )
 );
+
+export const gameSearchQuerySelector = createSelector(
+  gameListSelector("gameSearch"),
+  compose(
+    defaultTo(""),
+    prop("query")
+  )
+);
