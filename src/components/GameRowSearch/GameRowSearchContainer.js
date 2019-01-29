@@ -6,22 +6,21 @@ import { launchGame } from "Models/games";
 import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
 
 const GameRowSearchConnected = connect(
-  (state, { id }) => ({
-    game: gameSelector(id)(state),
-    id,
+  (state, { slug }) => ({
+    game: gameSelector(slug)(state),
   }),
-  (dispatch, { id }) => ({
-    onLaunchGame: () => dispatch(launchGame(id)),
+  (dispatch, { slug }) => ({
+    onLaunchGame: () => dispatch(launchGame(slug)),
   })
 )(GameRowSearch);
 
 type Props = {
   /** The slug of the game to render */
-  id: string,
+  slug: string,
 };
 
-const GameRowSearchContainer = ({ id }: Props) => (
-  <GameRowSearchConnected id={id} />
+const GameRowSearchContainer = ({ slug }: Props) => (
+  <GameRowSearchConnected slug={slug} />
 );
 
 export default GameRowSearchContainer;

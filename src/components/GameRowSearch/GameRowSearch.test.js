@@ -26,7 +26,7 @@ describe("<GameRowSearch />", () => {
     );
 
     const thumbnail = rendered.find("GameThumb");
-    const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
+    const thumbnailProps = thumbnail.props();
 
     expect(thumbnail.length).toBe(1);
     expect(thumbnailProps.src).toBe(game.logoBackground);
@@ -42,17 +42,15 @@ describe("<GameRowSearch />", () => {
       />
     );
 
-    const playIcon = rendered.find("RenderPlayIcon");
-
-    expect(playIcon.length).toBe(1);
+    expect(rendered.find("TrackPlayIcon").length).toBe(1);
+    expect(rendered.find("TrackMoreIcon").length).toBe(0);
   });
 
   test("renders a More info icon if not a jackpot game", () => {
     rendered = shallow(<GameRowSearch game={game} onLaunchGame={launchGame} />);
 
-    const moreIcon = rendered.find("RenderMoreIcon");
-
-    expect(moreIcon.length).toBe(1);
+    expect(rendered.find("TrackMoreIcon").length).toBe(1);
+    expect(rendered.find("TrackPlayIcon").length).toBe(0);
   });
 
   test("clicking on the whole row launches the game if Jackpot game", () => {
@@ -60,7 +58,6 @@ describe("<GameRowSearch />", () => {
       <GameRowSearch
         game={{ ...game, lobby: "whatever" }}
         onLaunchGame={launchGame}
-        id={game.slug}
       />
     );
 
@@ -70,40 +67,5 @@ describe("<GameRowSearch />", () => {
       .simulate("click");
 
     expect(launchGame).toHaveBeenCalledTimes(1);
-
-    rendered
-      .find("RenderPlayIcon")
-      .dive()
-      .find("FlexItem")
-      .simulate("click");
-
-    expect(launchGame).toHaveBeenCalledTimes(2);
-  });
-
-  test("clicking on the game logo / game title launches the game if not a Jackpot game", () => {
-    rendered = shallow(
-      <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
-    );
-
-    rendered
-      .find("FlexBlock")
-      .first()
-      .simulate("click");
-
-    expect(launchGame).toHaveBeenCalledTimes(1);
-  });
-
-  test("clicking the icon on the right navigates you to the details page if not a Jackpot game", () => {
-    rendered = shallow(
-      <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
-    );
-
-    expect(
-      rendered
-        .find("RenderMoreIcon")
-        .dive()
-        .find("a")
-        .prop("href")
-    ).toBe("/en/play/foo-bar");
   });
 });

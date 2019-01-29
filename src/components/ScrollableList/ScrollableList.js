@@ -41,7 +41,9 @@ export class ScrollableList extends PureComponent<Props> {
       <div className="u-padding-top--xlg">
         <ScrollableListTitle title={title} />
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={spacing}>
-          {itemIds.map(itemId => <Component key={itemId} id={itemId} />)}
+          {itemIds.map(itemId => (
+            <Component key={itemId} id={itemId} />
+          ))}
         </Scrollable>
       </div>
     );

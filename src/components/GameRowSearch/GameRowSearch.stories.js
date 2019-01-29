@@ -16,7 +16,7 @@ if (isNotChromatic) {
     "Default (Connected)",
     () => (
       <MockStore>
-        <GameRowSearchContainer id="hall-of-gods" />
+        <GameRowSearchContainer slug="hall-of-gods" />
       </MockStore>
     ),
     info({ text: "Default" })
@@ -25,13 +25,7 @@ if (isNotChromatic) {
 
 stories.add(
   "Default",
-  () => (
-    <GameRowSearch
-      game={game}
-      onLaunchGame={action("gonzos-quest")}
-      id="gonzos-quest"
-    />
-  ),
+  () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
   info({ text: "Default" })
 );
 
@@ -41,7 +35,7 @@ stories.add(
     <GameRowSearch
       game={{ ...game, lobby: "test" }}
       onLaunchGame={action("gonzos-quest")}
-      id="gonzos-quest"
+      slug="gonzos-quest"
     />
   ),
   info({ text: "Jackpot Game" })
