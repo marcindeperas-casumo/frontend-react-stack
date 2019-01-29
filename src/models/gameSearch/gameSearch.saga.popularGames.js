@@ -4,7 +4,6 @@ import { country as countrySelector } from "Models/handshake";
 import {
   types,
   listTypes,
-  fetchPlayerGames,
   fetchMostPopularGames,
 } from "Models/gameSearch";
 
