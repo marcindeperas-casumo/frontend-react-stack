@@ -40,12 +40,17 @@ export function* fetchQuerySaga(action) {
   }
 
   // save search results
-  const { entities } = yield call(normalizeData, gameSearchEntities({ games }));
-
-  yield put(updateEntity(entities));
+  const { entities } = yield call(
+    normalizeData,
+    gameSearchEntities({ games, query: q })
+  );
 
   // if direct hit fetch latest played games
   if (games.length === 1) {
+    yield put(updateEntity(entities));
+
     return yield call(fetchLatestPlayedSaga);
   }
+
+  return yield put(updateEntity(entities));
 }

@@ -2,7 +2,7 @@ import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
 import {
   types,
-  PLAYER_ALL_GAMES_LIST_ID,
+  listTypes,
   fetchPlayerGames,
   fetchPlayerGamesSaga,
 } from "Models/gameSearch";
@@ -18,7 +18,7 @@ describe("Models/GameSearch/Saga", () => {
     );
 
     const response = ["foo"];
-    const gameList = { id: PLAYER_ALL_GAMES_LIST_ID, games: response };
+    const gameList = { id: listTypes.PLAYER_GAMES_ID, games: response };
 
     expect(generator.next({ response }).value).toEqual(
       call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })
@@ -29,5 +29,7 @@ describe("Models/GameSearch/Saga", () => {
     expect(generator.next({ entities }).value).toEqual(
       put(updateEntity(entities))
     );
+
+    expect(generator.next().done).toBe(true);
   });
 });
