@@ -13,6 +13,7 @@ import {
   fetchPopularGamesSaga,
   gameSearchEntities,
   gameSearchResults,
+  isGameSearchNoMatch,
 } from "Models/gameSearch";
 
 export function* fetchLatestPlayedSaga(action) {
@@ -33,10 +34,11 @@ export function* fetchLatestPlayedSaga(action) {
   // no latest played games, grab most popular list instead
   if (!providerGameNames.length) {
     const games = yield select(gameSearchResults);
+    const noMatch = yield select(isGameSearchNoMatch);
 
     const { entities: noLatestPlayedEntities } = yield call(
       normalizeData,
-      gameSearchEntities({ hasNoLatestPlayed: true, games })
+      gameSearchEntities({ hasNoLatestPlayed: true, games, noMatch })
     );
 
     yield put(updateEntity(noLatestPlayedEntities));
