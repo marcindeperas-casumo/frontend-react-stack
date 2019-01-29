@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { Game } from "Types/game";
