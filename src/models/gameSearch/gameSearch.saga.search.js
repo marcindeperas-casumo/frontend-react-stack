@@ -4,6 +4,7 @@ import { normalizeData, updateEntity } from "Models/schema";
 import {
   types,
   fetchLatestPlayedSaga,
+  clearSearchSaga,
   fetchQuerySearch,
   gameSearchEntities,
 } from "Models/gameSearch";
@@ -20,6 +21,11 @@ export function* fetchQuerySaga(action) {
   );
 
   yield put(updateEntity(loadingTrueEntities));
+
+  // if there is no query, stops here
+  if (!q) {
+    return yield call(clearSearchSaga);
+  }
 
   // fetch query search
   yield put(fetchQuerySearch({ platform, country, q }));
