@@ -43,7 +43,7 @@ export const gameSearchResults = createSelector(
   )
 );
 
-export const gameSearchQuerySelector = createSelector(
+export const gameSearchQuery = createSelector(
   gameListSelector("gameSearch"),
   compose(
     defaultTo(""),

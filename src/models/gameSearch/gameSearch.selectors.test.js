@@ -6,7 +6,7 @@ import {
   gameSearchResults,
   hasNoLatestPlayed,
   listTypes,
-  gameSearchQuerySelector,
+  gameSearchQuery,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 
@@ -114,19 +114,19 @@ describe("Models/GameSearch/Selectors", () => {
     });
   });
 
-  describe("gameSearchQuerySelector()", () => {
+  describe("gameSearchQuery()", () => {
     test("returns search query", () => {
       const gameList = { [listTypes.GAME_SEARCH_ID]: { query: "foo" } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(gameSearchQuerySelector(state)).toEqual(["foo"]);
+      expect(gameSearchQuery(state)).toEqual("foo");
     });
 
     test("returns empty gameList is not in state", () => {
       const gameList = { [listTypes.GAME_SEARCH_ID]: {} };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(gameSearchQuerySelector(state)).toEqual("");
+      expect(gameSearchQuery(state)).toEqual("");
     });
   });
 });
