@@ -2,7 +2,7 @@ import { call, put, take } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   types,
-  PLAYER_ALL_GAMES_LIST_ID,
+  listTypes,
   fetchPlayerGames,
 } from "Models/gameSearch";
 
@@ -13,7 +13,7 @@ export function* fetchPlayerGamesSaga() {
     types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE
   );
 
-  const gameList = { id: PLAYER_ALL_GAMES_LIST_ID, games: response };
+  const gameList = { id: listTypes.PLAYER_GAMES_ID, games: response };
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
   });

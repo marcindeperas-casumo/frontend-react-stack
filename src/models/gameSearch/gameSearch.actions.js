@@ -2,6 +2,7 @@ import { types } from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
 import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
 import {
+  getGameLists,
   getQuerySearch,
   getLatestPlayedGames,
   getGamesByProviderGameNames,
@@ -11,12 +12,11 @@ export const preloadFetchPlayerGames = () => ({
   type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
 });
 
-export const fetchPlayerGames = asyncCallData => ({
+export const fetchPlayerGames = () => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
   postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
   asyncCall: getCasinoPlayerGames,
-  asyncCallData,
 });
 
 export const initFetchQuerySearch = q => ({
@@ -26,26 +26,46 @@ export const initFetchQuerySearch = q => ({
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
-export const fetchQuerySearch = asyncCallData => ({
+export const fetchQuerySearch = ({ platform, country, q }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,
   postFetch: types.GAME_SEARCH_FETCH_COMPLETE,
   asyncCall: getQuerySearch,
-  asyncCallData,
+  asyncCallData: { platform, country, q },
 });
 
-export const fetchLatestPlayedGames = asyncCallData => ({
+export const fetchLatestPlayedGames = ({ playerId }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_LATEST_PLAYED_START,
   postFetch: types.GAME_SEARCH_FETCH_LATEST_PLAYED_COMPLETE,
   asyncCall: getLatestPlayedGames,
-  asyncCallData,
+  asyncCallData: { playerId },
 });
 
-export const fetchGamesByProviderGameNames = asyncCallData => ({
+export const fetchGamesByProviderGameNames = ({
+  platform,
+  country,
+  variant,
+  providerGameNames,
+}) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_GAMES_PROVIDER_START,
   postFetch: types.GAME_SEARCH_FETCH_GAMES_PROVIDER_COMPLETE,
   asyncCall: getGamesByProviderGameNames,
-  asyncCallData,
+  asyncCallData: { platform, country, variant, providerGameNames },
+});
+
+export const fetchMostPopularGames = ({
+  platform,
+  country,
+  id,
+  variant = "default",
+  page = 0,
+  pageSize = 5,
+}) => ({
+  type: fetchTypes.FETCH,
+  name: types.GAME_SEARCH_FETCH_MOSTPOPULAR_START,
+  postFetch: types.GAME_SEARCH_FETCH_MOSTPOPULAR_COMPLETE,
+  asyncCall: getGameLists,
+  asyncCallData: { platform, country, id, variant, page, pageSize },
 });

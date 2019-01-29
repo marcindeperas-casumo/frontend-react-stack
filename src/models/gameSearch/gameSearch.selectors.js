@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 import { compose, defaultTo, prop, not, isEmpty } from "ramda";
 import { gameListSelector } from "Models/schema";
-import { PLAYER_ALL_GAMES_LIST_ID } from "Models/gameSearch";
+import { listTypes } from "Models/gameSearch";
 
-export const playerGamesAllSelector = createSelector(
-  gameListSelector(PLAYER_ALL_GAMES_LIST_ID),
+export const playerGamesAll = createSelector(
+  gameListSelector(listTypes.PLAYER_GAMES_ID),
   compose(
     defaultTo([]),
     prop("games")
@@ -12,17 +12,22 @@ export const playerGamesAllSelector = createSelector(
 );
 
 export const isGameSearchLoading = createSelector(
-  gameListSelector("gameSearch"),
+  gameListSelector(listTypes.GAME_SEARCH_ID),
   prop("loading")
 );
 
 export const isGameSearchNoMatch = createSelector(
-  gameListSelector("gameSearch"),
+  gameListSelector(listTypes.GAME_SEARCH_ID),
   prop("noMatch")
 );
 
-export const isGameSearchLoadedFactory = createSelector(
-  gameListSelector(PLAYER_ALL_GAMES_LIST_ID),
+export const hasNoLatestPlayed = createSelector(
+  gameListSelector(listTypes.GAME_SEARCH_ID),
+  prop("hasNoLatestPlayed")
+);
+
+export const isGameSearchLoaded = createSelector(
+  gameListSelector(listTypes.GAME_SEARCH_ID),
   compose(
     not,
     isEmpty,
@@ -30,8 +35,8 @@ export const isGameSearchLoadedFactory = createSelector(
   )
 );
 
-export const gameSearchResultsSelector = createSelector(
-  gameListSelector("gameSearch"),
+export const gameSearchResults = createSelector(
+  gameListSelector(listTypes.GAME_SEARCH_ID),
   compose(
     defaultTo([]),
     prop("games")

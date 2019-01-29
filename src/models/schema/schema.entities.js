@@ -16,7 +16,16 @@ export const liveTable = new schema.Entity(
 export const game = new schema.Entity(
   ENTITY_KEYS.GAME,
   { lobby: liveTable },
-  { idAttribute: "slug" }
+  {
+    idAttribute: "slug",
+    // rename props from new api to match current
+    // once old api is all deprecated we can remove and update game types
+    processStrategy: (value, parent, key) => ({
+      ...value,
+      name: value.title || value.name,
+      logoBackground: value.backgroundImage || value.logoBackground,
+    }),
+  }
 );
 
 export const gameList = new schema.Entity(ENTITY_KEYS.GAME_LIST, {

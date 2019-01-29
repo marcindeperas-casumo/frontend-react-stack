@@ -20,6 +20,8 @@ type Props = {
   games: Array<string>,
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
+  popularGames: Array<string>,
+  hasNoLatestPlayed: boolean,
   loading: boolean,
   noMatch: boolean,
 };
@@ -73,20 +75,44 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderListSkeleton = () => <ListSkeleton titleYOffset="20" />;
 
+  renderPopularGames = () => {
+    const { popularGames } = this.props;
+
+    if (!popularGames.length) {
+      return this.renderListSkeleton();
+    } else {
+      return (
+        <SectionList
+          sections={[{ title: "Popular Games", data: popularGames }]}
+          renderSectionHeader={this.renderSectionHeader}
+          renderItem={id => <GameRowSearch slug={id} />}
+        />
+      );
+    }
+  };
+
   renderLatestPlayed = () => {
     const { latestPlayedGames } = this.props;
 
     if (!latestPlayedGames.length) {
       return this.renderListSkeleton();
+    } else {
+      return (
+        <SectionList
+          sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
+          renderSectionHeader={this.renderSectionHeader}
+          renderItem={id => <GameRowSearch slug={id} />}
+        />
+      );
     }
+  };
 
-    return (
-      <SectionList
-        sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
-        renderSectionHeader={this.renderSectionHeader}
-        renderItem={id => <GameRowSearch slug={id} />}
-      />
-    );
+  renderSuggestions = () => {
+    const { hasNoLatestPlayed } = this.props;
+
+    return hasNoLatestPlayed
+      ? this.renderPopularGames()
+      : this.renderLatestPlayed();
   };
 
   renderSectionHeader = (title: string) => (
@@ -98,7 +124,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   renderNoMatch = () => (
     <React.Fragment>
       <SearchNotFound contentField="no_results_continue_playing" />
-      <div className="u-padding-horiz--md">{this.renderLatestPlayed()}</div>
+      <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
     </React.Fragment>
   );
 
@@ -136,7 +162,7 @@ export default class GameSearch extends PureComponent<Props, State> {
           itemSpacing="default"
           render={id => <GameRowSearch slug={id} />}
         />
-        {searchResults.length === 1 && this.renderLatestPlayed()}
+        {searchResults.length === 1 && this.renderSuggestions()}
       </div>
     );
   };

@@ -10,6 +10,7 @@ import Flex from "@casumo/cmp-flex";
 import "Styles/_component.SearchInput.scss";
 
 type Props = {
+  id: string,
   value: string,
   [key: string]: any,
   onClear: () => void,
@@ -21,7 +22,6 @@ type State = {
 };
 
 class SearchInput extends React.Component<Props, State> {
-  _id: ?string;
   textInput: { current: null | HTMLInputElement };
 
   constructor(props: Props) {
@@ -58,7 +58,7 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { id = this._id, value } = this.props;
+    const { id, value } = this.props;
     const { hasFocus } = this.state;
 
     const isSearchTermNonEmpty = Boolean(value);
