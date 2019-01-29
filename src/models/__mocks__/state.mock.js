@@ -4339,6 +4339,35 @@ export default {
         children: [],
         childSlugs: [],
       },
+      "mobile.game-details": {
+        id: "28065",
+        slug: "game-details",
+        title: "Game details",
+        content: "",
+        attachments: [
+          {
+            url:
+              "https://cms.casumo.com/wp-content/uploads/2015/04/unnamed.png",
+            title: "unnamed",
+          },
+        ],
+        custom_fields: {},
+        fields: {
+          play_button_text: "Play",
+          practice_button_text: "Play for fun",
+          sign_up_button_text: "Sign up",
+          trophies_heading: "Trophies",
+          game_in_maintenance_text: "Game in maintenance",
+          game_only_on_desktop_text: "Game playable on desktop only",
+          all_games_text: "All games",
+          critical_for_compliance: false,
+          "": false,
+          game_reviews_heading_text: "Casino Twitchers Says:",
+          temporarily_unavailable: "Temporarily unavailable",
+        },
+        children: [],
+        childSlugs: [],
+      },
       "mobile.live-casino-cards-content": {
         id: "84717",
         slug: "mobile.live-casino-cards-content",

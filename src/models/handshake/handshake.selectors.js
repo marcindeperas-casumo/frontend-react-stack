@@ -38,7 +38,6 @@ export const playerId = createSelector(
   session,
   prop("id")
 );
-
 export const player = createSelector(
   players,
   playerId,

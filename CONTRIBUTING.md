@@ -2,6 +2,38 @@
 
 Here are some high level recommendations on how to best contribute to the project.
 
+## Commits
+
+- It is highly encouraged to install [commitizen and the casumo-conventional-changelog](https://gist.github.com/camilleriluke/68c1d250761317066b621b8a66ee6fb1#file-cz-conventional-changelog-casumo-install-sh) so commit messages follow a format and contain issue numbers.
+
+## PRs
+
+- Require 2 reviews.
+- Should adhere to the PR template (issue number, assignment, labels, etc).
+- Will be rejected without any [tests](#test-strategy).
+- Visual Regression tests should be checked [here](https://www.chromaticqa.com/builds?appId=5b9fa923b6b01b00248452c7). (Oauth with github if need be.)
+- Should be kept as small as possible. E.g create PRs for single components rather than one large feature branch.
+- Feedback commits should be descriptive rather than "PR fixes" or "PR feedback".
+- Should have all issues detected by SonarQube resolved before being merged.
+
+## Components
+
+Before you create a component please consider the following steps:
+
+- Check [CUDL React](http://cudl-react.at.casumotest.local:8080) in case there is a component you can reuse.
+- Check Storybook in this repo in case there is a component you can reuse.
+- Creating a new component should be done with `yarn generate-component <component_name>` to give a [good starting point](#folder-structure).
+- Use [Storybook](https://storybook.js.org) when developing components. This component "playground" helps to consider the role of the component without thinking about where it lives in the app.
+- Refer to the relevant design file and/or liase with a designer to give the component a descriptive name.
+- Avoid writing custom styling in favour of using CUDL utility classes (Colors, Typography, Spacings etc). If in doubt talk to a designer to understand the components' specification.
+- If component styling is required Sass files should live inside the component's folder.
+- Be mindful when using state within a component. Stateless components FTW!
+- Consider keeping component APIs to a minimum. If your component API is large it's a good indication that it is trying to do too much and should be separated out.
+- Containers should live in the same folder as the component it wraps.
+- When making changes to a component or introducing a new prop make sure there is a story that caters for it.
+- Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
+- Test files (tests or stories) should live alongside the components it tests.
+
 ## Folder structure
 
 ```bash
@@ -29,11 +61,6 @@ Here are some high level recommendations on how to best contribute to the projec
             |-- cms.selectors.test.js
         |-- other-model-domain
 ```
-
-- Containers should live next to the component it wraps.
-- Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
-- Test files (tests or stories) should live alongside the components it tests.
-- Sass files should also live inside the component's folder.
 
 ## Test strategy
 
@@ -65,8 +92,6 @@ The same principles apply to Services, Reducers, Sagas and so on although, as th
 
 The takeaway here is to think about the different paths your application can take and the various cases they form, then write tests to cover them all!
 
-TDD is heavily encouraged!
-
 _**Note: If you are adding a new key user journey, make sure to also add tests to our [smoke test project](https://github.com/Casumo/smoke-tests)!!**_
 
 ## Flow
@@ -81,6 +106,14 @@ If the _how_ is hard to understand, that is probably because the code isn't writ
 
 Writing tests is an even better way of documenting your code!
 
-## Submitting Pull Requests
+## SonarQube
 
-Please abide by the Pull Request template!
+[SonarQube](https://www.sonarqube.org/) is a Continuous Inspection tool capable of showing the current health of an application and highlighting newly introduced issues.
+
+The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=mobile-react-stack-poc).
+
+It is advised that all issues raised by Sonar be solved prior to any code merge!
+
+For more information on how to configure, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project. 
+
+Remember that, if necessary, rules can be changed to better suit the team! 

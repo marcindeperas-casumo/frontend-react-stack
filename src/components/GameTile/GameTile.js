@@ -84,7 +84,7 @@ export default class GameTile extends PureComponent<Props, State> {
     const onGameTileClick = isOverlayEnabled
       ? this.handleOnClick
       : onLaunchGame;
-
+   
     return (
       <div
         className={classNames(

@@ -5,6 +5,7 @@ node_modules
 
 # testing
 /coverage
+/.scannerwork
 
 # production
 /build
@@ -23,3 +24,4 @@ yarn-error.log*
 .vscode
 .project
 .cache
+.history
