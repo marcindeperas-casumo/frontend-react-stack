@@ -135,12 +135,18 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
+  const recommendedGames = fetchRecommendedGames({
+    handshake,
+    platform,
+    country,
+  });
   const hasSomeGames = compose(
     i => i > 0,
     path(["games", "length"])
   );
   const allListsResponses = (await Promise.all([
     latestPlayedGames,
+    recommendedGames,
     ...gameListsRequests,
   ])).filter(hasSomeGames);
   const jackpots = getJackpots({
@@ -152,4 +158,25 @@ export const fetchGames = async ({
     gameLists: allListsResponses,
     jackpots: (await jackpots).jackpots,
   };
+};
+
+export const fetchRecommendedGames = async ({
+  handshake,
+  platform,
+  country,
+  variant = "default",
+}) => {
+  const { id, title } = handshake.gamesLists.recommendedGames;
+  const slugs = await Promise.resolve(["big-bad-wolf", "danger-high-voltage"]);
+
+  const games = await gamebrowserApi
+    .getGamesBySlugs({
+      platform,
+      country,
+      variant,
+      slugs,
+    })
+    .then(prop("games"));
+
+  return { games, id, title };
 };

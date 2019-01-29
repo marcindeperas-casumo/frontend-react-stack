@@ -14,7 +14,11 @@ type Props = {
 
 const ComponentBuilderConnected = connect(
   (state, { slug }) => ({
-    componentDefinitions: getField({ slug, field })(state),
+    componentDefinitions: [
+      // TODO remove
+      { acf_fc_layout: "GAMES_LIST", id: "recommendedGames" },
+      ...(getField({ slug, field })(state) || []),
+    ],
   }),
   (dispatch, { slug }) => ({
     fetch: () => dispatch(fetchPageBySlug(slug)),
