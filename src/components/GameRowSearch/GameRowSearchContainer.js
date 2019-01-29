@@ -3,13 +3,13 @@ import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
-import { gameSearchQuerySelector } from "Models/gameSearch";
+import { gameSearchQuery } from "Models/gameSearch";
 import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
 
 const GameRowSearchConnected = connect(
   (state, { slug }) => ({
     game: gameSelector(slug)(state),
-    query: gameSearchQuerySelector(state),
+    query: gameSearchQuery(state),
   }),
   (dispatch, { slug }) => ({
     onLaunchGame: () => dispatch(launchGame(slug)),
