@@ -75,34 +75,44 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderListSkeleton = () => <ListSkeleton titleYOffset="20" />;
 
-  renderSuggestions = () => {
-    const { hasNoLatestPlayed, latestPlayedGames, popularGames } = this.props;
+  renderPopularGames = () => {
+    const { popularGames } = this.props;
 
-    if (hasNoLatestPlayed) {
-      if (!popularGames.length) {
-        return this.renderListSkeleton();
-      } else {
-        return (
-          <SectionList
-            sections={[{ title: "Popular Games", data: popularGames }]}
-            renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch slug={id} />}
-          />
-        );
-      }
+    if (!popularGames.length) {
+      return this.renderListSkeleton();
     } else {
-      if (!latestPlayedGames.length) {
-        return this.renderListSkeleton();
-      } else {
-        return (
-          <SectionList
-            sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
-            renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch slug={id} />}
-          />
-        );        
-      }
+      return (
+        <SectionList
+          sections={[{ title: "Popular Games", data: popularGames }]}
+          renderSectionHeader={this.renderSectionHeader}
+          renderItem={id => <GameRowSearch slug={id} />}
+        />
+      );
     }
+  };
+
+  renderLatestPlayed = () => {
+    const { latestPlayedGames } = this.props;
+
+    if (!latestPlayedGames.length) {
+      return this.renderListSkeleton();
+    } else {
+      return (
+        <SectionList
+          sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
+          renderSectionHeader={this.renderSectionHeader}
+          renderItem={id => <GameRowSearch slug={id} />}
+        />
+      );
+    }
+  };
+
+  renderSuggestions = () => {
+    const { hasNoLatestPlayed } = this.props;
+
+    return hasNoLatestPlayed
+      ? this.renderPopularGames()
+      : this.renderLatestPlayed();
   };
 
   renderSectionHeader = (title: string) => (
