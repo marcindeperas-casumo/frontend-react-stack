@@ -1,33 +1,25 @@
 {
   "presets": [
-    "@babel/preset-flow",
-    "@babel/preset-react",
-    [
-      "@babel/preset-env",
-      {
-        "useBuiltIns": "usage"
-      }
-    ]
+    ["@babel/preset-env", {
+      "useBuiltIns": "entry"
+    }],
+    "react-app"
   ],
   "plugins": [
-    "@babel/plugin-syntax-dynamic-import",
-    "@babel/plugin-transform-flow-strip-types",
-    "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-transform-regenerator",
-    [
-      "babel-plugin-webpack-alias",
-      {
-        "config": "./config/webpack.config.dev.js",
-        "noOutputExtension": true
+    ["module-resolver", {
+      "alias": {
+        "Api": "./src/api",
+        "Clients": "./src/serviceClients",
+        "Components": "./src/components",
+        "Containers": "./src/containers",
+        "Lib": "./src/lib",
+        "Models": "./src/models",
+        "Services": "./src/applicationService",
+        "Src": "./src",
+        "Storybook": "./.storybook",
+        "Types": "./src/types",
+        "Utils": "./src/utils"
       }
-    ]
-  ],
-  "env": {
-    "test": {
-      "plugins": [
-        "babel-plugin-syntax-dynamic-import",
-        "babel-plugin-transform-dynamic-import"
-      ]
-    }
-  }
+    }]
+  ]
 }

@@ -1,0 +1,4 @@
+# don't ignore storybook folder
+!.storybook
+# or it's own config
+!.eslintrc.js

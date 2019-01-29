@@ -84,7 +84,7 @@ export default class GameSearch extends PureComponent<Props, State> {
       <SectionList
         sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
         renderSectionHeader={this.renderSectionHeader}
-        renderItem={id => <GameRowSearch id={id} />}
+        renderItem={id => <GameRowSearch slug={id} />}
       />
     );
   };
@@ -123,7 +123,7 @@ export default class GameSearch extends PureComponent<Props, State> {
           <SectionList
             sections={sections}
             renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch id={id} />}
+            renderItem={id => <GameRowSearch slug={id} />}
           />
         </div>
       );
@@ -134,7 +134,7 @@ export default class GameSearch extends PureComponent<Props, State> {
         <List
           items={searchResults}
           itemSpacing="default"
-          render={id => <GameRowSearch id={id} />}
+          render={id => <GameRowSearch slug={id} />}
         />
         {searchResults.length === 1 && this.renderLatestPlayed()}
       </div>
