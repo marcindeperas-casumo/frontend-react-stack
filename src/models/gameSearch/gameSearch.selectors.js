@@ -44,7 +44,7 @@ export const gameSearchResults = createSelector(
 );
 
 export const gameSearchQuery = createSelector(
-  gameListSelector("gameSearch"),
+  gameListSelector(listTypes.GAME_SEARCH_ID),
   compose(
     defaultTo(""),
     prop("query")
