@@ -78,7 +78,6 @@ export default class GameRowSearch extends PureComponent<Props> {
               <Flex.Block className="u-padding-left--sm">
                 <GameRowSearchTitle
                   highlightSearchQuery={highlightSearchQuery}
-                  key={name}
                   name={name}
                   query={query}
                 />

@@ -5,8 +5,9 @@ import Matcher from "Components/Matcher";
 const MaskText = ({ text, search, matchRender, unmatchedRender }) => {
   return (
     <React.Fragment>
-      {matchingGroups(text, search).map(group => (
+      {matchingGroups(text, search).map((group, i) => (
         <Matcher
+          key={i}
           getKey={({ type }) => type}
           matchers={{
             matched: ({ value }) => matchRender(value),
