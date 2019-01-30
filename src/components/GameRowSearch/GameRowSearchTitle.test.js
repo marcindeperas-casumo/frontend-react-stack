@@ -17,11 +17,7 @@ describe("<GameRowSearchTitle />", () => {
   test("should pass the title to a MaskText component if a query is passed down and highlightSearchQuery se to true", () => {
     query = "game";
     const rendered = shallow(
-      <GameRowSearchTitle
-        query={query}
-        name={name}
-        highlightSearchQuery={true}
-      />
+      <GameRowSearchTitle query={query} name={name} highlightSearchQuery />
     );
 
     expect(rendered.find("TextMaskColored").prop("text")).toBe(name);
