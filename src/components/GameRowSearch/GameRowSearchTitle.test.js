@@ -20,4 +20,12 @@ describe("<GameRowSearchTitle />", () => {
 
     expect(rendered.find("TextMaskColored").prop("text")).toBe(name);
   });
+
+  test("should pass the title to a MaskText component if an empty query is passed down", () => {
+    query = "";
+    name = "I'm a game title";
+    const rendered = shallow(<GameRowSearchTitle query={query} name={name} />);
+
+    expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
+  });
 });
