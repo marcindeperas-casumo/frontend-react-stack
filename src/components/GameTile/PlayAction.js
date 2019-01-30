@@ -7,11 +7,9 @@ type Props = {
 };
 
 const PlayAction = ({ onLaunchGame }: Props) => (
-  <PlayIcon
-    size="med"
-    className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--md"
-    onClick={() => onLaunchGame()}
-  />
+  <div className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--md">
+    <PlayIcon size="med" onClick={() => onLaunchGame()} />
+  </div>
 );
 
 export default PlayAction;
