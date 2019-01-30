@@ -10,19 +10,42 @@ describe("<GameRowSearchTitle />", () => {
     const rendered = shallow(<GameRowSearchTitle name={name} />);
 
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
+    expect(rendered.find("DangerousHtml").length).toBe(1);
+    expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 
-  test("should pass the title to a MaskText component if a query is passed down", () => {
+  test("should pass the title to a MaskText component if a query is passed down and highlightSearchQuery se to true", () => {
     query = "game";
-    const rendered = shallow(<GameRowSearchTitle query={query} name={name} />);
+    const rendered = shallow(
+      <GameRowSearchTitle
+        query={query}
+        name={name}
+        highlightSearchQuery={true}
+      />
+    );
 
     expect(rendered.find("TextMaskColored").prop("text")).toBe(name);
+    expect(rendered.find("DangerousHtml").length).toBe(0);
+    expect(rendered.find("TextMaskColored").length).toBe(1);
   });
 
-  test("should pass the title to a MaskText component if an empty query is passed down", () => {
+  test("should pass the title to a DangerousHtml component if a query is passed down and highlightSearchQuery se to false", () => {
+    query = "game";
+    const rendered = shallow(
+      <GameRowSearchTitle name={name} highlightSearchQuery={false} />
+    );
+
+    expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
+    expect(rendered.find("DangerousHtml").length).toBe(1);
+    expect(rendered.find("TextMaskColored").length).toBe(0);
+  });
+
+  test("should pass the title to a DangerousHtml component if an empty query is passed down", () => {
     query = "";
     const rendered = shallow(<GameRowSearchTitle query={query} name={name} />);
 
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
+    expect(rendered.find("DangerousHtml").length).toBe(1);
+    expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 });
