@@ -11,19 +11,19 @@ type Props = {
   name: string,
 };
 
-const TextColor = value => (
+const TextMatch = value => (
   <span className="t-color-grey-dark-2">
     <DangerousHtml html={value} />
   </span>
 );
-const TextGrey = value => (
+const TextNotMatch = value => (
   <span className="t-color-grey">
     <DangerousHtml html={value} />
   </span>
 );
 
 const TextMaskColored = props => (
-  <MaskText matchRender={TextColor} unmatchedRender={TextGrey} {...props} />
+  <MaskText matchRender={TextMatch} unmatchedRender={TextNotMatch} {...props} />
 );
 
 export default class GameRowSearchTitle extends PureComponent<Props> {
