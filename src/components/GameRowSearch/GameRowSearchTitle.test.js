@@ -14,7 +14,7 @@ describe("<GameRowSearchTitle />", () => {
     expect(rendered.find("TextMaskColored").length).toBe(0);
   });
 
-  test("should pass the title to a MaskText component if a query is passed down and highlightSearchQuery se to true", () => {
+  test("should pass the title to a MaskText component if a query is passed down and highlightSearchQuery set to true", () => {
     query = "game";
     const rendered = shallow(
       <GameRowSearchTitle query={query} name={name} highlightSearchQuery />
@@ -25,7 +25,7 @@ describe("<GameRowSearchTitle />", () => {
     expect(rendered.find("TextMaskColored").length).toBe(1);
   });
 
-  test("should pass the title to a DangerousHtml component if a query is passed down and highlightSearchQuery se to false", () => {
+  test("should pass the title to a DangerousHtml component if a query is passed down and highlightSearchQuery set to false", () => {
     query = "game";
     const rendered = shallow(
       <GameRowSearchTitle name={name} highlightSearchQuery={false} />
