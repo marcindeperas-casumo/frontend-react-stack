@@ -10,6 +10,7 @@ import GameRowSearchContainer from "Components/GameRowSearch";
 import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameRowSearch", module);
+const gonzosQuest = "gonzos-quest";
 
 if (isNotChromatic) {
   stories.add(
@@ -28,7 +29,7 @@ stories.add(
   () => (
     <GameRowSearch
       game={game}
-      onLaunchGame={action("gonzos-quest")}
+      onLaunchGame={action(gonzosQuest)}
       query="gon"
       highlightSearchQuery={true}
     />
@@ -38,7 +39,7 @@ stories.add(
 
 stories.add(
   "Default (without search match)",
-  () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
+  () => <GameRowSearch game={game} onLaunchGame={action(gonzosQuest)} />,
   info({ text: "Default" })
 );
 
