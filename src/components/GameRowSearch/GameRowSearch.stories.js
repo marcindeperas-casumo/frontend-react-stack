@@ -31,7 +31,7 @@ stories.add(
       game={game}
       onLaunchGame={action(gonzosQuest)}
       query="gon"
-      highlightSearchQuery={true}
+      highlightSearchQuery
     />
   ),
   info({ text: "Default" })
