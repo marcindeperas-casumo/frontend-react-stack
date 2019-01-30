@@ -30,13 +30,20 @@ stories.add(
       game={game}
       onLaunchGame={action("gonzos-quest")}
       query="gon"
+      highlightSearchQuery={true}
     />
   ),
   info({ text: "Default" })
 );
 
 stories.add(
-  "Jackpot Game (with search match)",
+  "Default (without search match)",
+  () => <GameRowSearch game={game} onLaunchGame={action("gonzos-quest")} />,
+  info({ text: "Default" })
+);
+
+stories.add(
+  "Jackpot Game (without search match)",
   () => (
     <GameRowSearch
       game={{ ...game, lobby: "test" }}

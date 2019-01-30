@@ -19,6 +19,8 @@ type Props = {
   onLaunchGame: () => void,
   /** The search query */
   query?: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
 };
 
 const TrackPlayIcon = ({ name, onLaunchGame }) => (
@@ -47,7 +49,12 @@ const TrackMoreIcon = ({ name, slug }) => (
 
 export default class GameRowSearch extends PureComponent<Props> {
   render() {
-    const { game, onLaunchGame, query = "" } = this.props;
+    const {
+      game,
+      onLaunchGame,
+      query = "",
+      highlightSearchQuery = false,
+    } = this.props;
     const { name, logo, logoBackground, slug } = game;
 
     return (
@@ -69,7 +76,12 @@ export default class GameRowSearch extends PureComponent<Props> {
               </Flex.Item>
 
               <Flex.Block className="u-padding-left--sm">
-                <GameRowSearchTitle name={name} query={query} />
+                <GameRowSearchTitle
+                  highlightSearchQuery={highlightSearchQuery}
+                  key={name}
+                  name={name}
+                  query={query}
+                />
               </Flex.Block>
             </Flex>
           </TrackClick>

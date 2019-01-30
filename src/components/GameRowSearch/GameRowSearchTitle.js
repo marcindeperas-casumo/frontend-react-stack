@@ -9,6 +9,8 @@ type Props = {
   query: string,
   /** The text to render */
   name: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
 };
 
 const TextMatch = value => (
@@ -28,11 +30,11 @@ const TextMaskColored = props => (
 
 export default class GameRowSearchTitle extends PureComponent<Props> {
   render() {
-    const { query, name } = this.props;
+    const { query, name, highlightSearchQuery } = this.props;
 
     return (
       <Text className="u-font-weight-bold u-font" tag="div" size="sm">
-        {query && query.length ? (
+        {highlightSearchQuery && query.length ? (
           <TextMaskColored text={name} search={query} />
         ) : (
           <DangerousHtml className="t-color-grey-dark-2" html={name} />
