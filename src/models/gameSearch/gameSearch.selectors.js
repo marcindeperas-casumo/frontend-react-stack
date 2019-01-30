@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { compose, defaultTo, prop, not, isEmpty } from "ramda";
+import { compose, defaultTo, prop, not, isEmpty, propOr } from "ramda";
 import { gameListSelector } from "Models/schema";
 import { listTypes } from "Models/gameSearch";
 
@@ -45,8 +45,5 @@ export const gameSearchResults = createSelector(
 
 export const gameSearchQuery = createSelector(
   gameListSelector(listTypes.GAME_SEARCH_ID),
-  compose(
-    defaultTo(""),
-    prop("query")
-  )
+  propOr("", "query")
 );
