@@ -120,7 +120,12 @@ describe("Models/GameSearch/Actions", () => {
     const country = "gb";
     const variant = "default";
     const providerGameNames = ["game"];
-    const action = fetchGamesByProviderGameNames({ platform, country, variant, providerGameNames });
+    const action = fetchGamesByProviderGameNames({
+      platform,
+      country,
+      variant,
+      providerGameNames,
+    });
 
     test("starts api fetch", () => {
       expect(action).toMatchObject({
@@ -163,7 +168,7 @@ describe("Models/GameSearch/Actions", () => {
       page,
       pageSize,
       platform,
-      variant
+      variant,
     });
 
     test("starts api fetch for mostPopular", () => {
@@ -185,13 +190,13 @@ describe("Models/GameSearch/Actions", () => {
 
     test("passes all parameters for the fetch function", () => {
       expect(action.asyncCallData).toEqual({
-      country,
-      id,
-      page,
-      pageSize,
-      platform,
-      variant
-    });
+        country,
+        id,
+        page,
+        pageSize,
+        platform,
+        variant,
+      });
     });
   });
 });

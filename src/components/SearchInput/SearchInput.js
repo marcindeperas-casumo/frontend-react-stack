@@ -7,8 +7,6 @@ import { omit, pathOr } from "ramda";
 import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 
-import "Styles/_component.SearchInput.scss";
-
 type Props = {
   id: string,
   value: string,
