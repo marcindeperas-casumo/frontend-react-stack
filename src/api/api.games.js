@@ -59,20 +59,22 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
     currency,
   });
 
-  return liveCasinoTables.filter(({ open }) => Boolean(open)).map(table => ({
-    ...allLiveGamesById[table.tableId],
-    lobby: {
-      tableId: table.tableId,
-      type: table.gameType,
-      image: getImageForTable(table),
-      bets: table.betLimits[currency],
-      players: table.players,
-      results: table.results || table.history || null,
-      betBehind: table.betBehind || null,
-      seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
-      provider: table.provider,
-    },
-  }));
+  return liveCasinoTables
+    .filter(({ open }) => Boolean(open))
+    .map(table => ({
+      ...allLiveGamesById[table.tableId],
+      lobby: {
+        tableId: table.tableId,
+        type: table.gameType,
+        image: getImageForTable(table),
+        bets: table.betLimits[currency],
+        players: table.players,
+        results: table.results || table.history || null,
+        betBehind: table.betBehind || null,
+        seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
+        provider: table.provider,
+      },
+    }));
 };
 
 export const fetchGames = async ({

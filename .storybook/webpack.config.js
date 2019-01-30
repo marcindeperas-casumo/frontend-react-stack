@@ -1,49 +1,21 @@
-const path = require("path");
-const cudl = require("@casumo/cudl");
-const moduleAliases = require("../config/moduleAliases");
-const { mergeDeepRight } = require("ramda");
+const ourConfig = require("../config/webpack.config");
 
-module.exports = (baseConfig, env) => {
-  // Extend defaultConfig as you need.
-  baseConfig.module.rules.push({
-    test: /\.scss$/,
-
-    loaders: [
-      "style-loader",
-      {
-        loader: "css-loader",
-      },
-      {
-        loader: "sass-loader",
-        options: {
-          includePaths: cudl,
-        },
-      },
-    ],
-    include: path.resolve(__dirname, "../"),
-  });
-
-  baseConfig.module.rules.push({
-    test: /\.svg$/,
-
-    loaders: [
-      {
-        loader: "babel-loader",
-      },
-      {
-        loader: "react-svg-loader",
-        options: {
-          jsx: true, // true outputs JSX tags
-        },
-      },
-    ],
-    include: path.resolve(__dirname, "../"),
-  });
-
-  return mergeDeepRight(baseConfig, {
+module.exports = (baseConfig, env, defaultConfig) => {
+  const ourDefaultConfig = ourConfig("development", { isStorybook: true });
+  return {
+    ...defaultConfig,
     resolve: {
-      extensions: ['.wasm', '.mjs', '.js', '.json', '.scss'],
-      alias: moduleAliases,
+      ...defaultConfig.resolve,
+      alias: {
+        ...defaultConfig.resolve.alias,
+        ...ourDefaultConfig.resolve.alias,
+      },
+      extensions: ourDefaultConfig.resolve.extensions,
     },
-  });
+    /**
+     * when i created this baseConfig had 2 loaders (.md &.js) if something
+     * broke after update check what's inside `baseConfig.module.rules`
+     */
+    module: ourDefaultConfig.module,
+  };
 };

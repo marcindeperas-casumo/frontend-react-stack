@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 
 import App from "Components/App";
+
 import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import configureStore from "Src/configureStore";
@@ -33,8 +34,9 @@ const renderApp = App =>
 renderApp(App);
 
 if (module.hot) {
-  module.hot.accept("Components/App", () => {
-    const NextApp = require("Components/App").default;
+  // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
+  module.hot.accept("./components/App", () => {
+    const NextApp = require("./components/App").default;
     renderApp(NextApp);
   });
 }

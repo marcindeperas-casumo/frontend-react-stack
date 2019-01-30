@@ -1,4 +1,8 @@
 # Casumo Mobile - React Stack Proof of Concept
+[![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
+---
 
 ## Table of Contents
 
@@ -30,7 +34,7 @@ source files is made, the target app will be reloaded.
 
 ### Setup
 
-- Required Node version: **>=8.9.0**
+- Required Node version: **>=10.14.2**
 - Required Docker version: **>=18.03**
 - Install [casumo-frontend-proxy](https://github.com/Casumo/casumo-frontend-proxy#install) (2.5.0+) along with [certificate](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/HTTPS.md).
 - Clone [casumo-frontend](https://github.com/Casumo/casumo-frontend) repo and create file `.casumo-proxy-local` under `/web` with this snippet:
