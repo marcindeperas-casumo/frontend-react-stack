@@ -19,10 +19,12 @@ import { launchGame } from "Models/games";
 
 const GameSearchConnected = connect(
   state => {
-    const { games: latestPlayedGames } =
-      gameListSelector(listTypes.LATEST_PLAYED_ID)(state);
-    const { games: popularGames } =
-      gameListSelector(listTypes.POPULAR_GAMES_ID)(state);
+    const { games: latestPlayedGames } = gameListSelector(
+      listTypes.LATEST_PLAYED_ID
+    )(state);
+    const { games: popularGames } = gameListSelector(
+      listTypes.POPULAR_GAMES_ID
+    )(state);
 
     return {
       games: playerGamesAll(state),
@@ -33,7 +35,7 @@ const GameSearchConnected = connect(
       hasNoLatestPlayed: hasNoLatestPlayed(state),
       latestPlayedGames,
       popularGames,
-    }
+    };
   },
   dispatch => ({
     preloadFetchPlayerGames: () => dispatch(preloadFetchPlayerGames()),

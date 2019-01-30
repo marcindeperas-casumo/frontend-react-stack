@@ -1,11 +1,7 @@
 import { select, put, take, call } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { country as countrySelector } from "Models/handshake";
-import {
-  types,
-  listTypes,
-  fetchMostPopularGames,
-} from "Models/gameSearch";
+import { types, listTypes, fetchMostPopularGames } from "Models/gameSearch";
 
 export function* fetchPopularGamesSaga() {
   const platform = "mobile";
@@ -23,9 +19,7 @@ export function* fetchPopularGamesSaga() {
     })
   );
 
-  const { response } = yield take(
-    types.GAME_SEARCH_FETCH_MOSTPOPULAR_COMPLETE
-  );
+  const { response } = yield take(types.GAME_SEARCH_FETCH_MOSTPOPULAR_COMPLETE);
   const gameList = { id, games: response.games };
 
   const { entities } = yield call(normalizeData, {

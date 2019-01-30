@@ -1,14 +1,11 @@
 import { normalizeData, updateEntity } from "Models/schema";
 import { call, put } from "redux-saga/effects";
-import {
-  gameSearchEntities,
-  clearSearchSaga,
-} from "Models/gameSearch";
+import { gameSearchEntities, clearSearchSaga } from "Models/gameSearch";
 
 describe("Models/GameSearch/Saga", () => {
   test("clearSearchSaga()", () => {
     const expected = gameSearchEntities({ games: [] });
-    const generator = clearSearchSaga({ entities });
+    const generator = clearSearchSaga();
 
     expect(generator.next().value).toEqual(call(normalizeData, expected));
 

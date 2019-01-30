@@ -28,18 +28,22 @@ describe("Models/GameSearch/Selectors", () => {
 
   describe("hasNoLatestPlayed()", () => {
     test("returns false if hasNoLatestPlayed is set to false", () => {
-      const gameList = {[listTypes.GAME_SEARCH_ID]: {
-        hasNoLatestPlayed: false
-      }};
+      const gameList = {
+        [listTypes.GAME_SEARCH_ID]: {
+          hasNoLatestPlayed: false,
+        },
+      };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(hasNoLatestPlayed(state)).toEqual(false);
     });
 
     test("returns true if hasNoLatestPlayed", () => {
-      const gameList = {[listTypes.GAME_SEARCH_ID]: {
-        hasNoLatestPlayed: true
-      }};
+      const gameList = {
+        [listTypes.GAME_SEARCH_ID]: {
+          hasNoLatestPlayed: true,
+        },
+      };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(hasNoLatestPlayed(state)).toEqual(true);

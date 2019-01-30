@@ -1,10 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
 import SectionsList from "Components/SectionList";
-import {
-  getSectionForGame,
-  createAlphabeticalSectionsList,
-} from "Components/SectionList/utils";
 
 describe("SectionsList", () => {
   test("should render a List component", () => {

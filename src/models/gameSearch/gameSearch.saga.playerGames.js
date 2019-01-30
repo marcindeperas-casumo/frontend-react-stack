@@ -1,10 +1,6 @@
 import { call, put, take } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import {
-  types,
-  listTypes,
-  fetchPlayerGames,
-} from "Models/gameSearch";
+import { types, listTypes, fetchPlayerGames } from "Models/gameSearch";
 
 export function* fetchPlayerGamesSaga() {
   yield put(fetchPlayerGames());
