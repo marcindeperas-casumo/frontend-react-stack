@@ -6,7 +6,7 @@ import { types, listTypes, fetchMostPopularGames } from "Models/gameSearch";
 export function* fetchPopularGamesSaga() {
   const platform = "mobile";
   const country = yield select(countrySelector);
-  const id = listTypes.POPULAR_GAMES_ID;
+  const id = listTypes.POPULAR_GAMES;
   const pageSize = 50;
 
   // fetch the games by provider game slugs

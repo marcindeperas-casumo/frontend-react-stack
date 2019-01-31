@@ -23,11 +23,13 @@ export const types = {
     "GAME_SEARCH/FETCH_MOSTPOPULAR_COMPLETE",
 
   GAME_SEARCH_CLEAR: "GAME_SEARCH/CLEAR",
+  GAME_SEARCH_NO_RESULTS: "GAME_SEARCH/NO_RESULTS",
+  GAME_SEARCH_NO_LATEST_PLAYED: "GAME_SEARCH/NO_LATEST_PLAYED",
 };
 
 export const listTypes = {
-  PLAYER_GAMES_ID: "playerGamesAll",
-  POPULAR_GAMES_ID: "popularGames",
-  GAME_SEARCH_ID: "gameSearch",
-  LATEST_PLAYED_ID: "latestPlayedGames",
+  PLAYER_GAMES: "playerGames",
+  POPULAR_GAMES: "popularGames",
+  GAME_SEARCH: "gameSearch",
+  LATEST_PLAYED: "latestPlayedGames",
 };

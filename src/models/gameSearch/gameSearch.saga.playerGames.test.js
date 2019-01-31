@@ -18,7 +18,7 @@ describe("Models/GameSearch/Saga", () => {
     );
 
     const response = ["foo"];
-    const gameList = { id: listTypes.PLAYER_GAMES_ID, games: response };
+    const gameList = { id: listTypes.PLAYER_GAMES, games: response };
 
     expect(generator.next({ response }).value).toEqual(
       call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })

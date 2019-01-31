@@ -1,44 +1,38 @@
 import { cloneableGenerator } from "redux-saga/utils";
-import { normalizeData, updateEntity } from "Models/schema";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { select, put, take, call } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import {
   types,
-  gameSearchEntities,
+  listTypes,
   fetchQuerySearch,
-  fetchQuerySaga,
+  gameSearchSaga,
   clearSearchSaga,
   fetchLatestPlayedSaga,
+  noResultsAction,
 } from "Models/gameSearch";
 
 describe("Models/GameSearch/Saga", () => {
   const country = "gb";
   const platform = "mobile";
 
-  test("fetchQuerySaga no query", () => {
+  test("gameSearchSaga no query", () => {
     const action = { q: "" };
-    const gen = fetchQuerySaga(action);
-
-    const entities = gameSearchEntities({ loading: true });
+    const gen = gameSearchSaga(action);
 
     expect(gen.next().value).toEqual(select(countrySelector));
-    expect(gen.next(country).value).toEqual(call(normalizeData, entities));
-    expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
+
     expect(gen.next().value).toEqual(call(clearSearchSaga));
     expect(gen.next().done).toBe(true);
   });
 
-  test("fetchQuerySaga", () => {
+  test("gameSearchSaga", () => {
     const action = { q: "startburst" };
-    const gen = cloneableGenerator(fetchQuerySaga)(action);
-
-    const entities = gameSearchEntities({ loading: true });
+    const gen = cloneableGenerator(gameSearchSaga)(action);
 
     expect(gen.next().value).toEqual(select(countrySelector));
-    expect(gen.next(country).value).toEqual(call(normalizeData, entities));
-    expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
 
-    expect(gen.next({ entities }).value).toEqual(
+    expect(gen.next(country).value).toEqual(
       put(
         fetchQuerySearch({
           platform,
@@ -52,44 +46,34 @@ describe("Models/GameSearch/Saga", () => {
 
     // clone generator for noMatch scenario
     const noMatchGen = gen.clone();
-    const entitiesNoMatch = gameSearchEntities({ noMatch: true });
+    const response = { games: [] };
 
-    expect(noMatchGen.next({ response: { games: [] } }).value).toEqual(
-      call(normalizeData, entitiesNoMatch)
-    );
-    expect(noMatchGen.next({ entities: entitiesNoMatch }).value).toEqual(
-      put(updateEntity(entitiesNoMatch))
-    );
+    expect(noMatchGen.next({ response }).value).toEqual(put(noResultsAction()));
+
     expect(noMatchGen.next().value).toEqual(call(fetchLatestPlayedSaga));
     expect(noMatchGen.next().done).toBe(true);
 
     // clone genrator for direct hit scenario
     const directHitGen = gen.clone();
-    const games = ["fooo"];
-    const entityResults = gameSearchEntities({ games, query: action.q });
 
-    expect(directHitGen.next({ response: { games } }).value).toEqual(
-      call(normalizeData, entityResults)
+    const responseHit = { games: ["foo"] };
+    const gameListEntity = {
+      [ENTITY_KEYS.GAME_LIST]: {
+        id: listTypes.GAME_SEARCH,
+        games: responseHit.games,
+      },
+    };
+
+    expect(directHitGen.next({ response: responseHit }).value).toEqual(
+      call(normalizeData, gameListEntity)
     );
 
-    expect(directHitGen.next({ entities: entityResults }).value).toEqual(
-      put(updateEntity(entityResults))
+    expect(directHitGen.next({ entities: gameListEntity }).value).toEqual(
+      put(updateEntity(gameListEntity))
     );
+
     expect(directHitGen.next().value).toEqual(call(fetchLatestPlayedSaga));
+
     expect(directHitGen.next().done).toBe(true);
-
-    // otherwise finish saga
-    const entitiesResults = gameSearchEntities({
-      games: ["foo", "bar"],
-      query: action.q,
-    });
-
-    expect(gen.next({ response: { games: ["foo", "bar"] } }).value).toEqual(
-      call(normalizeData, entitiesResults)
-    );
-    expect(gen.next({ entities: entitiesResults }).value).toEqual(
-      put(updateEntity(entitiesResults))
-    );
-    expect(noMatchGen.next().done).toBe(true);
   });
 });

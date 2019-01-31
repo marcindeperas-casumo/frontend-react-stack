@@ -12,7 +12,7 @@ import {
   isGameSearchNoMatch,
   fetchLatestPlayedGames,
   fetchLatestPlayedSaga,
-  gameSearchEntities,
+  noLatestPlayedAction,
   fetchPopularGamesSaga,
   fetchGamesByProviderGameNames,
 } from "Models/gameSearch";
@@ -40,28 +40,7 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
     const noLatestPlayedGen = gen.clone();
 
     expect(noLatestPlayedGen.next({ response: [] }).value).toEqual(
-      select(gameSearchResults)
-    );
-
-    const games = ["foo"];
-    const noMatch = false;
-
-    expect(noLatestPlayedGen.next(games).value).toEqual(
-      select(isGameSearchNoMatch)
-    );
-
-    const entities = gameSearchEntities({
-      hasNoLatestPlayed: true,
-      games,
-      noMatch,
-    });
-
-    expect(noLatestPlayedGen.next(noMatch).value).toEqual(
-      call(normalizeData, entities)
-    );
-
-    expect(noLatestPlayedGen.next({ entities }).value).toEqual(
-      put(updateEntity(entities))
+      put(noLatestPlayedAction())
     );
 
     expect(noLatestPlayedGen.next().value).toEqual(call(fetchPopularGamesSaga));
@@ -102,7 +81,7 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
 
     const gameListEntity = {
       [ENTITY_KEYS.GAME_LIST]: {
-        id: listTypes.LATEST_PLAYED_ID,
+        id: listTypes.LATEST_PLAYED,
         games: result.games,
       },
     };

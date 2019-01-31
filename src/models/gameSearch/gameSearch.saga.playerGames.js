@@ -9,7 +9,7 @@ export function* fetchPlayerGamesSaga() {
     types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE
   );
 
-  const gameList = { id: listTypes.PLAYER_GAMES_ID, games: response };
+  const gameList = { id: listTypes.PLAYER_GAMES, games: response };
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
   });
