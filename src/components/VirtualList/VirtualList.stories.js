@@ -17,9 +17,6 @@ class MyComponent extends PureComponent {
     this.ROW_HEIGHT = 80;
     this.PAGE_SIZE = 50;
     this.REMOTE_ROWS_COUNT = 1290;
-    this.renderRow = this.renderRow.bind(this);
-    this.loadMoreRows = this.loadMoreRows.bind(this);
-    this.isRowLoaded = this.isRowLoaded.bind(this);
 
     this.state = {
       list: [],
@@ -27,9 +24,9 @@ class MyComponent extends PureComponent {
     };
   }
 
-  isRowLoaded({ index }) {
+  isRowLoaded = ({ index }) => {
     return Boolean(this.state.list[index]);
-  }
+  };
 
   loadMoreRows = ({ startIndex, stopIndex }) => {
     if (
@@ -39,7 +36,6 @@ class MyComponent extends PureComponent {
       this.setState({
         pagesLoaded: [...this.state.pagesLoaded, startIndex],
       });
-
       return new Promise(resolve => {
         setTimeout(() => {
           resolve(games);
@@ -54,7 +50,7 @@ class MyComponent extends PureComponent {
     return Promise.resolve(this.state.list);
   };
 
-  renderRow({ key, index, style }) {
+  renderRow = ({ key, index, style }) => {
     if (this.isRowLoaded({ index })) {
       return (
         <div key={key} index={index} style={style} className="t-border-bottom">
@@ -76,7 +72,7 @@ class MyComponent extends PureComponent {
         loading...
       </Flex>
     );
-  }
+  };
 
   render() {
     return (
