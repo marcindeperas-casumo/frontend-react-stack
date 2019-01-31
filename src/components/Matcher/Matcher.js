@@ -1,6 +1,12 @@
+// @flow
+type Props = {
+  getKey: Function,
+  matchers: Object,
+};
+
 const renderNothing = () => null;
 
-const Matcher = ({ getKey, matchers, ...rest }) => {
+const Matcher = ({ getKey, matchers, ...rest }: Props) => {
   const key = getKey(rest);
   const matchingMode = matchers[key];
 
