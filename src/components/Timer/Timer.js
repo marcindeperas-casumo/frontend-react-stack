@@ -1,9 +1,8 @@
 /* eslint-disable fp/no-mutation */
 // @flow
-import { PureComponent } from "react";
+import { PureComponent, type Node } from "react";
 import { DateTime } from "luxon";
 import { compose, all, gte, values, map } from "ramda";
-import type { Node } from "react";
 
 type State = {
   days: string,
@@ -15,7 +14,7 @@ type State = {
 
 type Props = {
   /** The (UTC) time in milliseconds */
-  endTime: Date,
+  endTime: Date | number,
   /** Render prop to display the timer */
   render: (state: State) => Node,
   /** Render prop to display once the timer reaches 0 */
@@ -36,12 +35,9 @@ const diffTime = endTime => {
 };
 
 export default class Timer extends PureComponent<Props, State> {
-  // Commented flowtypes because of https://github.com/babel/babel/issues/8593
-  /*::
   lastTime: number;
   updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
-  */
 
   constructor(props: Props) {
     super(props);

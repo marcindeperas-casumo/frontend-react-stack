@@ -1,9 +1,13 @@
-import React, { PureComponent } from "react";
+// @flow
+import React, { PureComponent, type ElementProps } from "react";
 import { Provider } from "react-redux";
 import configureStore from "Src/configureStore";
 import { mergeDeepRight } from "ramda";
 import defaultState from "Models/__mocks__/state.mock";
 
+type Props = {
+  state?: Object,
+} & ElementProps<any>;
 // ⚠️ This is a utility component that can be used to
 // write stories for connected components that depend
 // on the redux state.
@@ -14,7 +18,7 @@ import defaultState from "Models/__mocks__/state.mock";
 //    <MockStore>
 //        <YourConnectedComponent />
 //    </MockStore>
-export default class MockStore extends PureComponent {
+export default class MockStore extends PureComponent<Props> {
   render() {
     const { children, state = {} } = this.props;
     const store = configureStore(mergeDeepRight(defaultState, state));
