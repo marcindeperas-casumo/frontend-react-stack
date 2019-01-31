@@ -20,8 +20,8 @@ type Props = {
     isScrolling: boolean,
     isVisible: boolean,
     key: string,
-    parent: Node,
-    style: string,
+    parent: Object,
+    style: Object,
   }) => Node,
   /** number of items per page */
   pageSize: number,
