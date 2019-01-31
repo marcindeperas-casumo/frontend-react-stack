@@ -168,6 +168,8 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   render() {
+    const { noMatch } = this.props;
+
     return (
       <Flex direction="vertical" spacing="none">
         <Flex.Block>
@@ -179,6 +181,7 @@ export default class GameSearch extends PureComponent<Props, State> {
                   value={this.state.query}
                   onChange={this.handleSearchInput}
                   onClear={this.handleClearSearchInput}
+                  hasNoResults={noMatch}
                   onFocus={this.handleFocusSearchInput}
                   placeholder="Eg. game title, provider"
                 />
