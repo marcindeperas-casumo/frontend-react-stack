@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import VirtualList from "Components/VirtualList";
 import { always } from "ramda";
 

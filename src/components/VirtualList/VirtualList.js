@@ -41,20 +41,18 @@ class VirtualList extends PureComponent<Props> {
       >
         {({ onRowsRendered, registerChild }) => (
           <AutoSizer>
-            {({ width, height }) => {
-              return (
-                <List
-                  className="c-virtual-list"
-                  ref={registerChild}
-                  onRowsRendered={onRowsRendered}
-                  rowCount={totalNumberOfRows}
-                  width={width}
-                  height={height}
-                  rowHeight={rowHeight}
-                  rowRenderer={rowRenderer}
-                />
-              );
-            }}
+            {({ width, height }) => (
+              <List
+                className="c-virtual-list"
+                ref={registerChild}
+                onRowsRendered={onRowsRendered}
+                rowCount={totalNumberOfRows}
+                width={width}
+                height={height}
+                rowHeight={rowHeight}
+                rowRenderer={rowRenderer}
+              />
+            )}
           </AutoSizer>
         )}
       </InfiniteLoader>

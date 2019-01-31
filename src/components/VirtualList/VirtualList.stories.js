@@ -28,27 +28,28 @@ class MyComponent extends PureComponent {
   }
 
   isRowLoaded({ index }) {
-    return !!this.state.list[index];
+    return Boolean(this.state.list[index]);
   }
 
   loadMoreRows = ({ startIndex, stopIndex }) => {
-    if (!this.isRowLoaded(startIndex)) {
-      if (!this.state.pagesLoaded.includes(startIndex)) {
-        this.setState({
-          pagesLoaded: [...this.state.pagesLoaded, startIndex],
-        });
+    if (
+      !this.isRowLoaded(startIndex) &&
+      !this.state.pagesLoaded.includes(startIndex)
+    ) {
+      this.setState({
+        pagesLoaded: [...this.state.pagesLoaded, startIndex],
+      });
 
-        return new Promise(resolve => {
-          setTimeout(() => {
-            resolve(games);
-          }, 1000 + Math.round(Math.random() * 1000 + 2000));
-        }).then(games => {
-          this.setState({
-            list: [...this.state.list, ...games],
-          });
-          return this.state.list;
+      return new Promise(resolve => {
+        setTimeout(() => {
+          resolve(games);
+        }, 1000 + Math.round(Math.random() * 1000 + 2000));
+      }).then(games => {
+        this.setState({
+          list: [...this.state.list, ...games],
         });
-      }
+        return this.state.list;
+      });
     }
     return Promise.resolve(this.state.list);
   };
