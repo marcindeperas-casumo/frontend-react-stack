@@ -1,1 +1,3 @@
-export { default } from "Components/EitherOr/EitherOr";
+// @flow
+export type * from "./EitherOr"; // eslint-disable-line import/export
+export { default } from "./EitherOr";
