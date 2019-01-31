@@ -1,6 +1,6 @@
 // TODO: Make these components lazy-loaded
 import ContentHtml from "Components/ContentHtml";
-import CuratedCard from "Components/CuratedCard";
+import CuratedCardLoader from "Components/CuratedCardLoader";
 import Jackpots from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
 import GameListHorizontal from "Components/GameListHorizontal";

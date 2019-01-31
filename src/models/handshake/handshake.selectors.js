@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
+import { compose, prop, isNil, isEmpty, complement, anyPass, not } from "ramda";
 import { LANGUAGES, MARKETS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
@@ -75,6 +75,15 @@ export const currency = createSelector(
 export const market = createSelector(
   player,
   prop("market")
+);
+
+export const hasMadeFirstDeposit = createSelector(
+  player,
+  compose(
+    not,
+    isNil,
+    prop("firstDepositDate")
+  )
 );
 
 export const gamesHandshakeSelector = createSelector(
