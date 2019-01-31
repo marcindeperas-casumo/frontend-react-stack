@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
+import { hasMadeFirstDepositSelector } from "Models/handshake";
 
 export const curatedSelector = slug =>
   createSelector(
