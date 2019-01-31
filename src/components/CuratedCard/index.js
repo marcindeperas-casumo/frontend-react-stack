@@ -1,1 +1,3 @@
-export { default } from "Components/CuratedCard/CuratedCardContainer";
+// @flow
+export type * from "./CuratedCardContainer"; // eslint-disable-line import/export
+export { default } from "./CuratedCardContainer";
