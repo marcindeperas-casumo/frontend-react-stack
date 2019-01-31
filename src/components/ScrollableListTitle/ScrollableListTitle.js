@@ -1,8 +1,12 @@
+// @flow
 import React from "react";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 
-export default function ScrollableListTitle({ title }) {
+type Props = {
+  title: string,
+};
+export default function ScrollableListTitle({ title }: Props) {
   return (
     <Text
       className={classNames(

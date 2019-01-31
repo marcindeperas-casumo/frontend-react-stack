@@ -61,7 +61,7 @@ class PromotionCardList extends PureComponent<Props> {
       >
         <Flex justify="space-between">
           <Flex.Item>
-            <ScrollableListTitle title={title} />
+            {title ? <ScrollableListTitle title={title} /> : null}
           </Flex.Item>
           <Flex.Item align="right" className="u-padding-right--md">
             <a href="/promotions">
