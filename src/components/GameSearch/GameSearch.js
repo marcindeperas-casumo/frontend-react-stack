@@ -121,12 +121,19 @@ export default class GameSearch extends PureComponent<Props, State> {
     </p>
   );
 
-  renderNoMatch = () => (
-    <React.Fragment>
-      <SearchNotFound contentField="no_results_continue_playing" />
-      <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
-    </React.Fragment>
-  );
+  renderNoMatch = () => {
+    const { hasNoLatestPlayed } = this.props;
+    const field = hasNoLatestPlayed
+      ? "no_results_popular"
+      : "no_results_continue_playing";
+
+    return (
+      <React.Fragment>
+        <SearchNotFound contentField={field} />
+        <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
+      </React.Fragment>
+    );
+  };
 
   renderResults = () => {
     const { games, loading, noMatch, searchResults } = this.props;
