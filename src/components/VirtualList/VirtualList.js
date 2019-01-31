@@ -15,7 +15,14 @@ type Props = {
   /** Function to check if a row is loaded */
   isRowLoaded: Function => boolean,
   /** Render Prop to render a row. */
-  rowRenderer: Function => Node,
+  rowRenderer: ({
+    index: number,
+    isScrolling: boolean,
+    isVisible: boolean,
+    key: string,
+    parent: Node,
+    style: string,
+  }) => Node,
   /** number of items per page */
   pageSize: number,
 };
