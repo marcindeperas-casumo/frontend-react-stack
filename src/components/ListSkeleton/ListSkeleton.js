@@ -4,6 +4,7 @@ import Skeleton from "@casumo/cmp-skeleton";
 
 type Props = {
   className?: string,
+  title?: boolean,
   items?: number,
   titleXOffset?: string,
   titleYOffset?: string,
@@ -13,6 +14,7 @@ export default class ListSkeleton extends PureComponent<Props> {
   render() {
     const {
       className = "",
+      title = true,
       items = 8,
       titleXOffset = "0",
       titleYOffset = "0",
@@ -20,16 +22,18 @@ export default class ListSkeleton extends PureComponent<Props> {
 
     return (
       <div className={className}>
-        <Skeleton width="375" height="60" className="u-display--block">
-          <rect
-            x={titleXOffset}
-            y={titleYOffset}
-            rx="3"
-            ry="3"
-            width="150"
-            height="20"
-          />
-        </Skeleton>
+        {title && (
+          <Skeleton width="320" height="60" className="u-display--block">
+            <rect
+              x={titleXOffset}
+              y={titleYOffset}
+              rx="3"
+              ry="3"
+              width="150"
+              height="20"
+            />
+          </Skeleton>
+        )}
         {Array.from(Array(items).keys()).map(item => (
           <Skeleton
             width="375"
