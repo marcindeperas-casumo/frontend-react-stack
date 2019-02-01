@@ -2,6 +2,35 @@ import { complement, compose, isNil, prop, path, pluck } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
 
+export const fetchRecommendedGames = async ({
+  handshake,
+  platform,
+  country,
+  latestPlayedGames,
+  variant = "default",
+}) => {
+  const { id, title } = handshake.gamesLists.recommendedGames;
+  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+  const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
+
+  if (!latestPlayedGame) {
+    return { games: [] };
+  }
+
+  const slugs = await Promise.resolve(["big-bad-wolf", "danger-high-voltage"]);
+
+  const games = await gamebrowserApi
+    .getGamesBySlugs({
+      platform,
+      country,
+      variant,
+      slugs,
+    })
+    .then(prop("games"));
+
+  return { games, id, title: title.replace("${GAME_NAME}", latestPlayedGame.name) };
+};
+
 const fetchLatestPlayedGames = async ({
   variant = "default",
   handshake,
@@ -161,33 +190,4 @@ export const fetchGames = async ({
     gameLists: allListsResponses,
     jackpots: (await jackpots).jackpots,
   };
-};
-
-export const fetchRecommendedGames = async ({
-  handshake,
-  platform,
-  country,
-  latestPlayedGames,
-  variant = "default",
-}) => {
-  const { id, title } = handshake.gamesLists.recommendedGames;
-  const latestPlayedGamesResolved = (await latestPlayedGames).games;
-  const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
-
-  if (!latestPlayedGame) {
-    return { games: [] };
-  }
-
-  const slugs = await Promise.resolve(["big-bad-wolf", "danger-high-voltage"]);
-
-  const games = await gamebrowserApi
-    .getGamesBySlugs({
-      platform,
-      country,
-      variant,
-      slugs,
-    })
-    .then(prop("games"));
-
-  return { games, id, title: title.replace("%GAME_NAME%", latestPlayedGame.name) };
 };
