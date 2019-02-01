@@ -7,7 +7,7 @@ import {
   listTypes,
   fetchQuerySearch,
   gameSearchSaga,
-  clearSearchSaga,
+  clearSearch,
   fetchLatestPlayedSaga,
   noResultsAction,
 } from "Models/gameSearch";
@@ -22,7 +22,7 @@ describe("Models/GameSearch/Saga", () => {
 
     expect(gen.next().value).toEqual(select(countrySelector));
 
-    expect(gen.next().value).toEqual(call(clearSearchSaga));
+    expect(gen.next().value).toEqual(put(clearSearch()));
     expect(gen.next().done).toBe(true);
   });
 

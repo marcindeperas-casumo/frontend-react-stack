@@ -4,6 +4,13 @@ import { sort } from "ramda";
 export const sortGamesByName = (items: Array<string>) =>
   sort((a, b) => a.localeCompare(b), items);
 
+export const getSectionForGame = (gameTitle: string) => {
+  const firstCharacter = gameTitle.charAt(0).toUpperCase();
+  const isNumberRegex = /^\d/;
+
+  return firstCharacter.match(isNumberRegex) ? "#0-9" : firstCharacter;
+};
+
 export const getAlphabeticalSections = (list: Array<string>): Array<Object> => {
   const sectionsListObject = list.reduce((acc, current) => {
     const key = getSectionForGame(current);
@@ -20,11 +27,4 @@ export const getAlphabeticalSections = (list: Array<string>): Array<Object> => {
     title: key,
     data: sectionsListObject[key],
   }));
-};
-
-export const getSectionForGame = (gameTitle: string) => {
-  const firstCharacter = gameTitle.charAt(0).toUpperCase();
-  const isNumberRegex = /^\d/;
-
-  return firstCharacter.match(isNumberRegex) ? "#0-9" : firstCharacter;
 };

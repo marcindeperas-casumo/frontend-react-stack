@@ -8,6 +8,7 @@ import {
   clearSearchSaga,
   fetchQuerySearch,
   noResultsAction,
+  clearSearch,
 } from "Models/gameSearch";
 
 export function* gameSearchSaga(action) {
@@ -16,8 +17,8 @@ export function* gameSearchSaga(action) {
   const { q } = action;
 
   // if there is no query, stops here
-  if (!q) {
-    return yield call(clearSearchSaga);
+  if (Boolean(!q)) {
+    return yield put(clearSearch());
   }
 
   // fetch query search

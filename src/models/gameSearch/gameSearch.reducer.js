@@ -1,12 +1,21 @@
 import { types } from "./gameSearch.constants";
 
-export const gameSearchReducer = (state = {}, action) => {
+export const gameSearchReducer = (state, action) => {
+  if (typeof state === "undefined") {
+    return {
+      loading: false,
+      hasNoResults: false,
+      hasNoLatestPlayed: false,
+    };
+  }
+
   switch (action.type) {
     case types.GAME_SEARCH_FETCH_PLAYER_GAMES:
     case types.GAME_SEARCH_FETCH: {
       return {
         ...state,
         loading: true,
+        hasNoResults: false,
       };
     }
 
@@ -37,7 +46,6 @@ export const gameSearchReducer = (state = {}, action) => {
         ...state,
         loading: false,
         hasNoResults: false,
-        hasNoLatestPlayed: false,
       };
     }
 
