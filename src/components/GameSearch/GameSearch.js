@@ -73,7 +73,9 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   handleFocusSearchInput = () => {};
 
-  renderListSkeleton = () => <ListSkeleton titleYOffset="20" />;
+  renderListSkeleton = (title: boolean = true) => (
+    <ListSkeleton title={title} titleYOffset="20" />
+  );
 
   renderPopularGames = () => {
     const { popularGames } = this.props;
@@ -141,7 +143,9 @@ export default class GameSearch extends PureComponent<Props, State> {
 
     if (loading) {
       return (
-        <div className="u-padding-horiz--md">{this.renderListSkeleton()}</div>
+        <div className="u-padding-horiz--md u-padding-top--md">
+          {this.renderListSkeleton(false)}
+        </div>
       );
     }
 
