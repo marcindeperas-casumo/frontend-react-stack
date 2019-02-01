@@ -9,7 +9,7 @@ import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
-import { getAlphabeticalSections } from "Components/SectionList/utils";
+import AllGamesList from "Components/AllGamesList";
 
 type Props = {
   playerGames: Array<string>,
@@ -150,15 +150,9 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     if (!searchResults.length) {
-      const sections = getAlphabeticalSections(playerGames);
-
       return (
         <div className="u-padding-horiz--md">
-          <SectionList
-            sections={sections}
-            renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch slug={id} />}
-          />
+          <AllGamesList games={playerGames} fetchNextPage={() => {}} />
         </div>
       );
     }
