@@ -77,7 +77,6 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderPopularGames = () => {
     const { popularGames } = this.props;
-    const { query } = this.state;
 
     if (!popularGames.length) {
       return this.renderListSkeleton();
@@ -86,7 +85,7 @@ export default class GameSearch extends PureComponent<Props, State> {
         <SectionList
           sections={[{ title: "Popular Games", data: popularGames }]}
           renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch query={query} slug={id} />}
+          renderItem={id => <GameRowSearch slug={id} />}
         />
       );
     }
@@ -94,7 +93,6 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderLatestPlayed = () => {
     const { latestPlayedGames } = this.props;
-    const { query } = this.state;
 
     if (!latestPlayedGames.length) {
       return this.renderListSkeleton();
@@ -103,7 +101,7 @@ export default class GameSearch extends PureComponent<Props, State> {
         <SectionList
           sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
           renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch query={query} slug={id} />}
+          renderItem={id => <GameRowSearch slug={id} />}
         />
       );
     }
@@ -159,7 +157,7 @@ export default class GameSearch extends PureComponent<Props, State> {
           <SectionList
             sections={sections}
             renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch query={query} slug={id} />}
+            renderItem={id => <GameRowSearch slug={id} />}
           />
         </div>
       );

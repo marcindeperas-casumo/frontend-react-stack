@@ -18,7 +18,7 @@ type Props = {
   /** The slug of the game to render */
   slug: string,
   /** The search query */
-  query: string,
+  query?: string,
   /** Whether highlight the search query on the game title or not  */
   highlightSearchQuery?: boolean,
 };
