@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 
 type Props = {
   /** The search query */
-  query: string,
+  query?: string,
   /** The text to render */
   name: string,
   /** Whether highlight the search query on the game title or not  */
@@ -34,7 +34,7 @@ export default class GameRowSearchTitle extends PureComponent<Props> {
 
     return (
       <Text className="u-font-weight-bold u-font" tag="div" size="sm">
-        {highlightSearchQuery && query.length ? (
+        {highlightSearchQuery && query ? (
           <TextMaskColored text={name} search={query} />
         ) : (
           <DangerousHtml className="t-color-grey-dark-2" html={name} />

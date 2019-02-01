@@ -18,7 +18,7 @@ type Props = {
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
   /** The search query */
-  query: string,
+  query?: string,
   /** Whether highlight the search query on the game title or not  */
   highlightSearchQuery?: boolean,
 };
