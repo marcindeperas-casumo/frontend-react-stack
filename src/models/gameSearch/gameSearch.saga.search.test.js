@@ -26,6 +26,16 @@ describe("Models/GameSearch/Saga", () => {
     expect(gen.next().done).toBe(true);
   });
 
+  test("gameSearchSaga query just spaces", () => {
+    const action = { q: "    " };
+    const gen = gameSearchSaga(action);
+
+    expect(gen.next().value).toEqual(select(countrySelector));
+
+    expect(gen.next().value).toEqual(put(clearSearch()));
+    expect(gen.next().done).toBe(true);
+  });
+
   test("gameSearchSaga", () => {
     const action = { q: "startburst" };
     const gen = cloneableGenerator(gameSearchSaga)(action);
