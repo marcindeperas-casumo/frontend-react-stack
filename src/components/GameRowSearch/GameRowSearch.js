@@ -56,7 +56,7 @@ export default class GameRowSearch extends PureComponent<Props> {
     const {
       game,
       onLaunchGame,
-      query = "",
+      query,
       highlightSearchQuery = false,
     } = this.props;
     const { name, logo, logoBackground, slug } = game;
