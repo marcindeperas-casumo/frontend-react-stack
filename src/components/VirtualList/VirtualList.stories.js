@@ -39,7 +39,7 @@ class MyComponent extends PureComponent {
       return new Promise(resolve => {
         setTimeout(() => {
           resolve(games);
-        }, 1000 + Math.round(Math.random() * 1000 + 2000));
+        }, 3000 + Math.round(Math.random() * 1000));
       }).then(games => {
         this.setState({
           list: [...this.state.list, ...games],
