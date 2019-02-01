@@ -141,6 +141,7 @@ export const fetchGames = async ({
     handshake,
     platform,
     country,
+    latestPlayedGames,
   });
   const hasSomeGames = compose(
     i => i > 0,
@@ -166,9 +167,17 @@ export const fetchRecommendedGames = async ({
   handshake,
   platform,
   country,
+  latestPlayedGames,
   variant = "default",
 }) => {
   const { id, title } = handshake.gamesLists.recommendedGames;
+  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+  const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
+
+  if (!latestPlayedGame) {
+    return { games: [] };
+  }
+
   const slugs = await Promise.resolve(["big-bad-wolf", "danger-high-voltage"]);
 
   const games = await gamebrowserApi
@@ -180,5 +189,5 @@ export const fetchRecommendedGames = async ({
     })
     .then(prop("games"));
 
-  return { games, id, title };
+  return { games, id, title: title.replace("%GAME_NAME%", latestPlayedGame.name) };
 };
