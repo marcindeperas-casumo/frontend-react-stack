@@ -9,6 +9,10 @@ type Props = {
 };
 
 class CuratedCardLoader extends PureComponent<Props> {
+  componentDidMount() {
+    this.props.subscribeDepositUpdates();
+  }
+
   render() {
     const { hasMadeFirstDeposit, defaultCard } = this.props;
     const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : defaultCard;
