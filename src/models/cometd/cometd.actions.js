@@ -35,3 +35,11 @@ export const subscribeMustDropJackpotUpdates = () => {
 export const unsubscribeMustDropJackpotUpdates = () => {
   return unsubscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
 };
+
+export const subscribeDepositUpdates = () => {
+  return subscribe({ channel: CHANNELS.DEPOSITS });
+};
+
+export const unsubscribeDepositUpdates = () => {
+  return unsubscribe({ channel: CHANNELS.DEPOSITS });
+};

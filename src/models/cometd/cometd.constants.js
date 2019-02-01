@@ -10,4 +10,5 @@ export const CHANNELS = {
   JACKPOTS: "/public/jackpotsUpdated",
   LIVE_CASINO_TABLE: "/public/liveCasino/table",
   MUST_DROP_JACKPOTS: "/public/redtiger-jackpots/*",
+  DEPOSITS: "/public/deposit-confirmed",
 };
