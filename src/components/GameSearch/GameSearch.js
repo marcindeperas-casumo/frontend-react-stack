@@ -77,6 +77,7 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderPopularGames = () => {
     const { popularGames } = this.props;
+    const { query } = this.state;
 
     if (!popularGames.length) {
       return this.renderListSkeleton();
@@ -85,7 +86,7 @@ export default class GameSearch extends PureComponent<Props, State> {
         <SectionList
           sections={[{ title: "Popular Games", data: popularGames }]}
           renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch slug={id} />}
+          renderItem={id => <GameRowSearch query={query} slug={id} />}
         />
       );
     }
@@ -93,6 +94,7 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderLatestPlayed = () => {
     const { latestPlayedGames } = this.props;
+    const { query } = this.state;
 
     if (!latestPlayedGames.length) {
       return this.renderListSkeleton();
@@ -101,7 +103,7 @@ export default class GameSearch extends PureComponent<Props, State> {
         <SectionList
           sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
           renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch slug={id} />}
+          renderItem={id => <GameRowSearch query={query} slug={id} />}
         />
       );
     }
@@ -137,6 +139,7 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderResults = () => {
     const { playerGames, loading, hasNoResults, searchResults } = this.props;
+    const { query } = this.state;
 
     if (loading) {
       return (
@@ -156,7 +159,7 @@ export default class GameSearch extends PureComponent<Props, State> {
           <SectionList
             sections={sections}
             renderSectionHeader={this.renderSectionHeader}
-            renderItem={id => <GameRowSearch slug={id} />}
+            renderItem={id => <GameRowSearch query={query} slug={id} />}
           />
         </div>
       );
@@ -167,7 +170,9 @@ export default class GameSearch extends PureComponent<Props, State> {
         <List
           items={searchResults}
           itemSpacing="default"
-          render={id => <GameRowSearch highlightSearchQuery slug={id} />}
+          render={id => (
+            <GameRowSearch query={query} highlightSearchQuery slug={id} />
+          )}
         />
         {searchResults.length === 1 && this.renderSuggestions()}
       </div>
