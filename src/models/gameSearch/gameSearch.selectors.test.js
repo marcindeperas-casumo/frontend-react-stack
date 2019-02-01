@@ -1,113 +1,96 @@
 import {
-  playerGamesAll,
-  isGameSearchLoading,
-  isGameSearchNoMatch,
-  isGameSearchLoaded,
+  gameSearch,
+  playerGamesSelector,
+  isLoadingSelector,
+  hasNoResultsSelector,
+  isPlayerGamesLoaded,
   gameSearchResults,
-  hasNoLatestPlayed,
+  hasNoLatestPlayedSelector,
   listTypes,
   gameSearchQuery,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 
 describe("Models/GameSearch/Selectors", () => {
-  describe("playerGamesAll()", () => {
+  test("gameSearch", () => {
+    const state = {
+      gameSearch: { foo: "bar" },
+    };
+
+    expect(gameSearch(state)).toEqual({ foo: "bar" });
+  });
+
+  test("isLoadingSelector", () => {
+    const state = {
+      gameSearch: {
+        loading: true,
+      },
+    };
+
+    expect(isLoadingSelector(state)).toBe(true);
+  });
+
+  test("hasNoResultsSelector", () => {
+    const state = {
+      gameSearch: {
+        hasNoResults: true,
+      },
+    };
+
+    expect(hasNoResultsSelector(state)).toBe(true);
+  });
+
+  test("hasNoLatestPlayedSelector", () => {
+    const state = {
+      gameSearch: {
+        hasNoLatestPlayed: true,
+      },
+    };
+
+    expect(hasNoLatestPlayedSelector(state)).toBe(true);
+  });
+
+  describe("playerGamesSelector()", () => {
     test("returns gameList", () => {
       const games = ["foo"];
-      const gameList = { [listTypes.PLAYER_GAMES_ID]: { games } };
+      const gameList = { [listTypes.PLAYER_GAMES]: { games } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(playerGamesAll(state)).toEqual(games);
+      expect(playerGamesSelector(state)).toEqual(games);
     });
 
     test("returns empty array if not in state", () => {
       const state = {};
 
-      expect(playerGamesAll(state)).toEqual([]);
+      expect(playerGamesSelector(state)).toEqual([]);
     });
   });
 
-  describe("hasNoLatestPlayed()", () => {
-    test("returns false if hasNoLatestPlayed is set to false", () => {
-      const gameList = {
-        [listTypes.GAME_SEARCH_ID]: {
-          hasNoLatestPlayed: false,
-        },
-      };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(hasNoLatestPlayed(state)).toEqual(false);
-    });
-
-    test("returns true if hasNoLatestPlayed", () => {
-      const gameList = {
-        [listTypes.GAME_SEARCH_ID]: {
-          hasNoLatestPlayed: true,
-        },
-      };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(hasNoLatestPlayed(state)).toEqual(true);
-    });
-  });
-
-  describe("isGameSearchLoading()", () => {
-    test("returns true if in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { loading: true } };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(isGameSearchLoading(state)).toBe(true);
-    });
-
-    test("returns false if gameList not in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { loading: false } };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(isGameSearchLoading(state)).toBe(false);
-    });
-  });
-
-  describe("isGameSearchNoMatch()", () => {
-    test("returns true if the list is in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { noMatch: true } };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(isGameSearchNoMatch(state)).toBe(true);
-    });
-
-    test("returns false if list is not in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { noMatch: false } };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(isGameSearchNoMatch(state)).toBe(false);
-    });
-  });
-
-  describe("isGameSearchLoaded()", () => {
+  describe("isPlayerGamesLoaded()", () => {
     test("returns true if list is in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { games: ["foo"] } };
+      const gameList = { [listTypes.PLAYER_GAMES]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(isGameSearchLoaded(state)).toBe(true);
+      expect(isPlayerGamesLoaded(state)).toBe(true);
     });
 
     test("returns false if list not in state", () => {
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: {} } };
 
-      expect(isGameSearchLoaded(state)).toBe(false);
+      expect(isPlayerGamesLoaded(state)).toBe(false);
     });
   });
 
   describe("gameSearchResults()", () => {
     test("returns gameList", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { games: ["foo"] } };
+      const gameList = { [listTypes.GAME_SEARCH]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(gameSearchResults(state)).toEqual(["foo"]);
     });
 
     test("returns empty gameList is not in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { games: [] } };
+      const gameList = { [listTypes.GAME_SEARCH]: { games: [] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(gameSearchResults(state)).toEqual([]);

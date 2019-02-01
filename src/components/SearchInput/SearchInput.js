@@ -13,6 +13,7 @@ type Props = {
   [key: string]: any,
   onClear: () => void,
   children?: empty,
+  hasNoResults: boolean,
 };
 
 type State = {
@@ -56,11 +57,10 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { id, value } = this.props;
+    const { id, value, hasNoResults } = this.props;
     const { hasFocus } = this.state;
 
     const isSearchTermNonEmpty = Boolean(value);
-    const hasNoResults = false; // @CPO: how do I do this without polluting everything with state?
 
     const inputClassName = classNames(
       "c-search-input o-flex--1 u-padding-left",
@@ -70,7 +70,7 @@ class SearchInput extends React.Component<Props, State> {
         : "u-font-weight-normal"
     );
 
-    const searchButtonClassName = classNames(
+    const clearButtonClassName = classNames(
       "c-search-input__clear-button",
       hasNoResults ? "t-background-grey-dark-3" : "t-background-grey"
     );
@@ -93,10 +93,10 @@ class SearchInput extends React.Component<Props, State> {
           type="text"
           onBlur={() => this.setState({ hasFocus: false })}
           onFocus={this.onFocus}
-          {...omit(["onClear", "onFocus"], this.props)}
+          {...omit(["onClear", "onFocus", "hasNoResults"], this.props)}
         />
         {isSearchTermNonEmpty && (
-          <div className={searchButtonClassName}>
+          <div className={clearButtonClassName}>
             <CrossIcon onClick={this.handleClear} />
           </div>
         )}

@@ -3,14 +3,14 @@ import React from "react";
 import { connect } from "react-redux";
 import GameSearch from "Components/GameSearch/GameSearch";
 import {
-  playerGamesAll,
+  playerGamesSelector,
   gameSearchResults,
-  isGameSearchLoaded,
+  isPlayerGamesLoaded,
   preloadFetchPlayerGames,
   initFetchQuerySearch,
-  isGameSearchLoading,
-  isGameSearchNoMatch,
-  hasNoLatestPlayed,
+  isLoadingSelector,
+  hasNoResultsSelector,
+  hasNoLatestPlayedSelector,
   clearSearch,
   listTypes,
 } from "Models/gameSearch";
@@ -20,19 +20,19 @@ import { launchGame } from "Models/games";
 const GameSearchConnected = connect(
   state => {
     const { games: latestPlayedGames } = gameListSelector(
-      listTypes.LATEST_PLAYED_ID
+      listTypes.LATEST_PLAYED
     )(state);
-    const { games: popularGames } = gameListSelector(
-      listTypes.POPULAR_GAMES_ID
-    )(state);
+    const { games: popularGames } = gameListSelector(listTypes.POPULAR_GAMES)(
+      state
+    );
 
     return {
-      games: playerGamesAll(state),
+      playerGames: playerGamesSelector(state),
+      isPlayerGamesLoaded: isPlayerGamesLoaded(state),
       searchResults: gameSearchResults(state),
-      isLoaded: isGameSearchLoaded(state),
-      loading: isGameSearchLoading(state),
-      noMatch: isGameSearchNoMatch(state),
-      hasNoLatestPlayed: hasNoLatestPlayed(state),
+      loading: isLoadingSelector(state),
+      hasNoResults: hasNoResultsSelector(state),
+      hasNoLatestPlayed: hasNoLatestPlayedSelector(state),
       latestPlayedGames,
       popularGames,
     };

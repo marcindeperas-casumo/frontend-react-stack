@@ -12,18 +12,18 @@ import { debounce } from "lodash";
 import { getAlphabeticalSections } from "Components/SectionList/utils";
 
 type Props = {
-  isLoaded: boolean,
+  playerGames: Array<string>,
+  isPlayerGamesLoaded: boolean,
   preloadFetchPlayerGames: Function,
   fetchSearch: Function,
   clearSearch: Function,
   dispatchLaunchGame: Function,
-  games: Array<string>,
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
   popularGames: Array<string>,
   hasNoLatestPlayed: boolean,
   loading: boolean,
-  noMatch: boolean,
+  hasNoResults: boolean,
 };
 
 type State = {
@@ -42,8 +42,8 @@ export default class GameSearch extends PureComponent<Props, State> {
   }
 
   componentDidMount() {
-    const { isLoaded, preloadFetchPlayerGames } = this.props;
-    if (!isLoaded) preloadFetchPlayerGames();
+    const { isPlayerGamesLoaded, preloadFetchPlayerGames } = this.props;
+    if (!isPlayerGamesLoaded) preloadFetchPlayerGames();
   }
 
   fetchSearchResults = () => {
@@ -121,15 +121,22 @@ export default class GameSearch extends PureComponent<Props, State> {
     </p>
   );
 
-  renderNoMatch = () => (
-    <React.Fragment>
-      <SearchNotFound contentField="no_results_continue_playing" />
-      <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
-    </React.Fragment>
-  );
+  renderNoMatch = () => {
+    const { hasNoLatestPlayed } = this.props;
+    const field = hasNoLatestPlayed
+      ? "no_results_popular"
+      : "no_results_continue_playing";
+
+    return (
+      <React.Fragment>
+        <SearchNotFound contentField={field} />
+        <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
+      </React.Fragment>
+    );
+  };
 
   renderResults = () => {
-    const { games, loading, noMatch, searchResults } = this.props;
+    const { playerGames, loading, hasNoResults, searchResults } = this.props;
 
     if (loading) {
       return (
@@ -137,12 +144,12 @@ export default class GameSearch extends PureComponent<Props, State> {
       );
     }
 
-    if (noMatch) {
+    if (hasNoResults) {
       return this.renderNoMatch();
     }
 
     if (!searchResults.length) {
-      const sections = getAlphabeticalSections(games);
+      const sections = getAlphabeticalSections(playerGames);
 
       return (
         <div className="u-padding-horiz--md">
@@ -168,6 +175,8 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   render() {
+    const { hasNoResults } = this.props;
+
     return (
       <Flex direction="vertical" spacing="none">
         <Flex.Block>
@@ -179,6 +188,7 @@ export default class GameSearch extends PureComponent<Props, State> {
                   value={this.state.query}
                   onChange={this.handleSearchInput}
                   onClear={this.handleClearSearchInput}
+                  hasNoResults={hasNoResults}
                   onFocus={this.handleFocusSearchInput}
                   placeholder="Eg. game title, provider"
                 />

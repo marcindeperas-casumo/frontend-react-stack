@@ -1,7 +1,7 @@
 export * from "./gameSearch.constants";
 export * from "./gameSearch.actions";
 export * from "./gameSearch.selectors";
-export * from "./gameSearch.entities";
+export { default as reducer } from "./gameSearch.reducer";
 export * from "./gameSearch.saga.playerGames";
 export * from "./gameSearch.saga.latestPlayed";
 export * from "./gameSearch.saga.popularGames";

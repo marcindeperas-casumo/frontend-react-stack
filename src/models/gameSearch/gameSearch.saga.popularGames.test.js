@@ -14,7 +14,7 @@ describe("Models/GameSearch/Saga", () => {
 
     const platform = "mobile";
     const country = "gb";
-    const id = listTypes.POPULAR_GAMES_ID;
+    const id = listTypes.POPULAR_GAMES;
     const pageSize = 50;
 
     expect(gen.next().value).toEqual(select(countrySelector));

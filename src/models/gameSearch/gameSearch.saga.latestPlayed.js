@@ -11,9 +11,7 @@ import {
   fetchLatestPlayedGames,
   fetchGamesByProviderGameNames,
   fetchPopularGamesSaga,
-  gameSearchEntities,
-  gameSearchResults,
-  isGameSearchNoMatch,
+  noLatestPlayedAction,
 } from "Models/gameSearch";
 
 export function* fetchLatestPlayedSaga(action) {
@@ -33,15 +31,7 @@ export function* fetchLatestPlayedSaga(action) {
 
   // no latest played games, grab most popular list instead
   if (!providerGameNames.length) {
-    const games = yield select(gameSearchResults);
-    const noMatch = yield select(isGameSearchNoMatch);
-
-    const { entities: noLatestPlayedEntities } = yield call(
-      normalizeData,
-      gameSearchEntities({ hasNoLatestPlayed: true, games, noMatch })
-    );
-
-    yield put(updateEntity(noLatestPlayedEntities));
+    yield put(noLatestPlayedAction());
 
     return yield call(fetchPopularGamesSaga);
   }
@@ -69,7 +59,7 @@ export function* fetchLatestPlayedSaga(action) {
   // save the gameList
   const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
-      id: listTypes.LATEST_PLAYED_ID,
+      id: listTypes.LATEST_PLAYED,
       games,
     },
   });
