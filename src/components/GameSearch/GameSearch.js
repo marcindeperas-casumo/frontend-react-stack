@@ -137,6 +137,7 @@ export default class GameSearch extends PureComponent<Props, State> {
 
   renderResults = () => {
     const { playerGames, loading, hasNoResults, searchResults } = this.props;
+    const { query } = this.state;
 
     if (loading) {
       return (
@@ -167,7 +168,9 @@ export default class GameSearch extends PureComponent<Props, State> {
         <List
           items={searchResults}
           itemSpacing="default"
-          render={id => <GameRowSearch slug={id} />}
+          render={id => (
+            <GameRowSearch query={query} highlightSearchQuery slug={id} />
+          )}
         />
         {searchResults.length === 1 && this.renderSuggestions()}
       </div>

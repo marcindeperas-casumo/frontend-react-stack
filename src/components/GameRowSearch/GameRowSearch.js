@@ -1,12 +1,11 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { Game } from "Types/game";
 import GameThumb from "Components/GameThumb";
-import DangerousHtml from "Components/DangerousHtml";
+import GameRowSearchTitle from "Components/GameRowSearch/GameRowSearchTitle";
 import TrackClick from "Components/TrackClick";
 // The following style classes are coupled to GameRowSearch. If you're thinking of moving out TrackPlayIcon
 // and TrackMoreIcon, style might not be applicable for their usage
@@ -18,6 +17,10 @@ type Props = {
   game: Game,
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
+  /** The search query */
+  query?: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
 };
 
 const TrackPlayIcon = ({ name, onLaunchGame }) => (
@@ -45,8 +48,17 @@ const TrackMoreIcon = ({ name, slug }) => (
 );
 
 export default class GameRowSearch extends PureComponent<Props> {
+  static defaultProps = {
+    query: "",
+  };
+
   render() {
-    const { game, onLaunchGame } = this.props;
+    const {
+      game,
+      onLaunchGame,
+      query,
+      highlightSearchQuery = false,
+    } = this.props;
     const { name, logo, logoBackground, slug } = game;
 
     return (
@@ -67,10 +79,12 @@ export default class GameRowSearch extends PureComponent<Props> {
                 />
               </Flex.Item>
 
-              <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
-                <Text tag="div" size="sm">
-                  <DangerousHtml html={name} />
-                </Text>
+              <Flex.Block className="u-padding-left--sm">
+                <GameRowSearchTitle
+                  highlightSearchQuery={highlightSearchQuery}
+                  name={name}
+                  query={query}
+                />
               </Flex.Block>
             </Flex>
           </TrackClick>
