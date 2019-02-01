@@ -6,14 +6,20 @@ describe("Models/Fetch/Reducer", () => {
     const action = actions.preloadFetchPlayerGames();
     const state = {};
 
-    expect(reducer(state, action)).toEqual({ loading: true });
+    expect(reducer(state, action)).toEqual({
+      hasNoResults: false,
+      loading: true,
+    });
   });
 
   test("GAME_SEARCH_FETCH", () => {
     const action = actions.initFetchQuerySearch();
     const state = {};
 
-    expect(reducer(state, action)).toEqual({ loading: true });
+    expect(reducer(state, action)).toEqual({
+      hasNoResults: false,
+      loading: true,
+    });
   });
 
   test("GAME_SEARCH_NO_RESULTS", () => {
@@ -37,7 +43,6 @@ describe("Models/Fetch/Reducer", () => {
     expect(reducer(state, action)).toEqual({
       loading: false,
       hasNoResults: false,
-      hasNoLatestPlayed: false,
     });
   });
 });

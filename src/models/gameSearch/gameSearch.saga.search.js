@@ -5,9 +5,9 @@ import {
   types,
   listTypes,
   fetchLatestPlayedSaga,
-  clearSearchSaga,
   fetchQuerySearch,
   noResultsAction,
+  clearSearch,
 } from "Models/gameSearch";
 
 export function* gameSearchSaga(action) {
@@ -15,9 +15,9 @@ export function* gameSearchSaga(action) {
   const country = yield select(countrySelector);
   const { q } = action;
 
-  // if there is no query, stops here
-  if (!q) {
-    return yield call(clearSearchSaga);
+  // if there is no query or just spaces, stop here
+  if (Boolean(!q) || !q.replace(/\s/g, "").length) {
+    return yield put(clearSearch());
   }
 
   // fetch query search

@@ -8,8 +8,6 @@ import {
 import {
   types,
   listTypes,
-  gameSearchResults,
-  isGameSearchNoMatch,
   fetchLatestPlayedGames,
   fetchLatestPlayedSaga,
   noLatestPlayedAction,

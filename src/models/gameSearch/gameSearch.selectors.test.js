@@ -96,20 +96,4 @@ describe("Models/GameSearch/Selectors", () => {
       expect(gameSearchResults(state)).toEqual([]);
     });
   });
-
-  describe("gameSearchQuery()", () => {
-    test("returns search query", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: { query: "foo" } };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(gameSearchQuery(state)).toEqual("foo");
-    });
-
-    test("returns empty gameList is not in state", () => {
-      const gameList = { [listTypes.GAME_SEARCH_ID]: {} };
-      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
-
-      expect(gameSearchQuery(state)).toEqual("");
-    });
-  });
 });
