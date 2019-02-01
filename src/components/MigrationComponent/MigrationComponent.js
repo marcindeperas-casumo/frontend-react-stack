@@ -5,7 +5,7 @@ import invariant from "invariant";
 
 type Props = {
   children: any,
-  migrationKey: String | String[],
+  migrationKey: string | string[],
 };
 
 class MigrationComponent extends PureComponent<Props> {
