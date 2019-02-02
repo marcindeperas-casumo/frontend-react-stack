@@ -1,5 +1,10 @@
 import rollbar from "rollbar";
+import { getEnv } from "Utils";
+import { ENVS } from "Src/constants";
 
+// When enabled Rollbars Telemetry takes over all console messages
+// making it difficult to trace messages to their source.
+const enableTelemetryInProduction = getEnv() === ENVS.PRODUCTION;
 const Rollbar = getRollbar();
 
 export default {
@@ -15,7 +20,7 @@ function getRollbar() {
     accessToken: "2a7d7f810245499e9250ee718205429a",
     captureUncaught: false,
     captureUnhandledRejections: false,
-    autoInstrument: { log: true },
+    autoInstrument: { log: enableTelemetryInProduction },
     payload: {
       environment: "production",
       context: "react-stack",
