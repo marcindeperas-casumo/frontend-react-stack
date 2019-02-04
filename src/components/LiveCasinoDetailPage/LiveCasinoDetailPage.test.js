@@ -9,7 +9,6 @@ import roulette from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import moneyWheel from "Components/LiveCasinoCard/__mocks__/MoneyWheel.json";
 
 const data = [
-  //
   { id: "roulette", title: "Roulette", gamesInSection: [roulette, roulette] },
   { id: "mw", title: "Money Wheel", gamesInSection: [moneyWheel] },
 ];

@@ -11,7 +11,6 @@ export default function SectionTitle({ title }) {
         "u-font-weight-bold"
       )}
       size="md"
-      data-test="game-row-section-list-title"
       tag="h3"
     >
       {title}
