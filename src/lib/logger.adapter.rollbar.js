@@ -1,10 +1,9 @@
 import rollbar from "rollbar";
-import { getEnv } from "Utils";
-import { ENVS } from "Src/constants";
+import { isEnvProduction } from "Utils";
 
 // When enabled Rollbars Telemetry takes over all console messages
 // making it difficult to trace messages to their source.
-const enableTelemetryInProduction = getEnv() === ENVS.PRODUCTION;
+const enableTelemetryInProduction = isEnvProduction();
 const Rollbar = getRollbar();
 
 export default {
