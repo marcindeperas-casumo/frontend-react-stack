@@ -10,9 +10,17 @@ type Props = {
   launchGame: GameId => void,
   /** comes from redux */
   gamesList: GroupedGamesList,
+  /** comes from redux */
+  isFetched: boolean,
+  /** comes from redux */
+  fetchPageBySlug: Function,
 };
 
 export default class LiveCasinoDetailPage extends PureComponent<Props> {
+  componentDidMount() {
+    if (!this.props.isFetched) this.props.fetchPageBySlug();
+  }
+
   render() {
     return (
       <div className="u-padding-horiz--md u-padding-bottom--md">

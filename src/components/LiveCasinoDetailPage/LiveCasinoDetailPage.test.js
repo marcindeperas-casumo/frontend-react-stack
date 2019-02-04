@@ -15,7 +15,14 @@ const data = [
 
 describe("<LiveCasinoDetailPage />", () => {
   test("renders correctly", () => {
-    const rendered = shallow(<LiveCasinoDetailPage gamesList={data} />);
+    const rendered = shallow(
+      <LiveCasinoDetailPage
+        gamesList={data}
+        isFetched
+        fetchPageBySlug={() => {}}
+        launchGame={() => {}}
+      />
+    );
     // Two titles...
     expect(rendered.find(SectionTitle).length).toBe(2);
     // ...each with lists...

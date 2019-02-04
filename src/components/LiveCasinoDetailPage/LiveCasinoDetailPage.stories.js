@@ -30,6 +30,13 @@ if (isNotChromatic) {
 
 stories.add(
   "Default",
-  () => <LiveCasinoDetailPage gamesList={data} launchGame={() => {}} />,
+  () => (
+    <LiveCasinoDetailPage
+      gamesList={data}
+      isFetched
+      launchGame={() => {}}
+      fetchPageBySlug={() => {}}
+    />
+  ),
   info({ text: "Default" })
 );
