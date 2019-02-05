@@ -1,6 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
+import { debounce } from "lodash";
 import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
+
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
@@ -20,6 +22,26 @@ type Props = {
 };
 
 class GamesVirtualList extends PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
+    // eslint-disable-next-line fp/no-mutation
+    this.fetchNext = debounce(this.fetchNext, 1000);
+  }
+
+  fetchNext = ({
+    startIndex,
+    stopIndex,
+    pageSize: PAGE_SIZE,
+  }: {
+    startIndex: number,
+    stopIndex: number,
+    pageSize: number,
+  }) => {
+    const { fetchNextPage } = this.props;
+
+    return fetchNextPage({ startIndex, stopIndex, pageSize: PAGE_SIZE });
+  };
+
   isRowLoaded = ({ index }: { index: number }) => {
     const { games } = this.props;
 
@@ -33,8 +55,7 @@ class GamesVirtualList extends PureComponent<Props> {
     startIndex: number,
     stopIndex: number,
   }) => {
-    const { fetchNextPage } = this.props;
-    return fetchNextPage({ startIndex, stopIndex, pageSize: PAGE_SIZE });
+    return this.fetchNext({ startIndex, stopIndex, pageSize: PAGE_SIZE });
   };
 
   renderRow = ({

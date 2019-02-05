@@ -1,12 +1,10 @@
-import { call, put, take, delay } from "redux-saga/effects";
+import { call, put, take } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { types, listTypes, fetchPlayerGames } from "Models/gameSearch";
 
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
   const page = Math.ceil(startIndex / pageSize);
-
-  yield delay(500);
 
   yield put(fetchPlayerGames({ page }));
 
