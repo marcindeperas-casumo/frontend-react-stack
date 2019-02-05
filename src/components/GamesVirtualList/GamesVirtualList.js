@@ -51,13 +51,10 @@ class GamesVirtualList extends PureComponent<Props> {
   }) => {
     const { games, renderItem } = this.props;
 
-    console.log(renderItem);
-
     if (this.isRowLoaded({ index })) {
       return (
         <div key={key} index={index} style={style} className="t-border-bottom">
           {renderItem(games[index])}
-          {/* <GameRowSearch slug={games[index]} /> */}
         </div>
       );
     }
