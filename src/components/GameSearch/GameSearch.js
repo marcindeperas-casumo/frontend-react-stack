@@ -9,7 +9,7 @@ import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
-import AllGamesList from "Components/AllGamesList";
+import GamesVirtualList from "Components/GamesVirtualList";
 
 type Props = {
   playerGames: Array<string>,
@@ -154,11 +154,7 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     if (!searchResults.length) {
-      return (
-        <div className="u-padding-horiz--md">
-          <AllGamesList games={playerGames} fetchNextPage={() => {}} />
-        </div>
-      );
+      return <GamesVirtualList games={playerGames} />;
     }
 
     return (
@@ -180,24 +176,28 @@ export default class GameSearch extends PureComponent<Props, State> {
 
     return (
       <Flex direction="vertical" spacing="none">
-        <Flex.Block>
-          <Flex align="stretch">
-            <Flex.Block>
-              <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
-                <SearchInput
-                  autoFocus={true}
-                  value={this.state.query}
-                  onChange={this.handleSearchInput}
-                  onClear={this.handleClearSearchInput}
-                  hasNoResults={hasNoResults}
-                  onFocus={this.handleFocusSearchInput}
-                  placeholder="Eg. game title, provider"
-                />
-              </div>
-              {this.renderResults()}
-            </Flex.Block>
-          </Flex>
-        </Flex.Block>
+        <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
+          <SearchInput
+            autoFocus={true}
+            value={this.state.query}
+            onChange={this.handleSearchInput}
+            onClear={this.handleClearSearchInput}
+            hasNoResults={hasNoResults}
+            onFocus={this.handleFocusSearchInput}
+            placeholder="Eg. game title, provider"
+          />
+        </div>
+        <div
+          style={{
+            position: "absolute",
+            top: "72px",
+            left: 0,
+            right: 0,
+            bottom: 0,
+          }}
+        >
+          {this.renderResults()}
+        </div>
       </Flex>
     );
   }

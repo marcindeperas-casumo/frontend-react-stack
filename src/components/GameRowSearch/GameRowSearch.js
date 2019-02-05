@@ -62,7 +62,10 @@ export default class GameRowSearch extends PureComponent<Props> {
     const { name, logo, logoBackground, slug } = game;
 
     return (
-      <Flex align="center" className="u-padding-vert">
+      <Flex
+        align="center"
+        className="u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-horiz--md"
+      >
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick
             eventName={EVENTS.GAME_LAUNCH}
@@ -79,7 +82,7 @@ export default class GameRowSearch extends PureComponent<Props> {
                 />
               </Flex.Item>
 
-              <Flex.Block className="u-padding-left--sm">
+              <Flex.Block className="u-padding-left--sm t-color-black">
                 <GameRowSearchTitle
                   highlightSearchQuery={highlightSearchQuery}
                   name={name}
