@@ -31,7 +31,11 @@ const GameListHorizontalStory = () => (
 
 const GameListHorizontalPresentationalStory = () => (
   <MockStore>
-    <GameListHorizontalPresentational list={list} isLoading={false} />
+    <GameListHorizontalPresentational
+      list={list}
+      isLoading={false}
+      seeMoreText="SEE MORE"
+    />
   </MockStore>
 );
 
