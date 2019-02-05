@@ -8,16 +8,26 @@ import {
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
 
-export const preloadFetchPlayerGames = () => ({
+export const preloadFetchPlayerGames = ({
+  startIndex,
+  stopIndex,
+  pageSize,
+}) => ({
   type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
+  startIndex,
+  stopIndex,
+  pageSize,
 });
 
-export const fetchPlayerGames = () => ({
-  type: fetchTypes.FETCH,
-  name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
-  postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
-  asyncCall: getCasinoPlayerGames,
-});
+export const fetchPlayerGames = ({ page, pageSize }) => {
+  return {
+    type: fetchTypes.FETCH,
+    name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
+    postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
+    asyncCall: getCasinoPlayerGames,
+    asyncCallData: { page, pageSize },
+  };
+};
 
 export const initFetchQuerySearch = q => ({
   type: types.GAME_SEARCH_FETCH,

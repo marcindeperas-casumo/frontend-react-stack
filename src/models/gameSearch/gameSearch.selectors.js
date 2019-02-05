@@ -22,10 +22,7 @@ export const hasNoLatestPlayedSelector = createSelector(
 
 export const playerGamesSelector = createSelector(
   gameListSelector(listTypes.PLAYER_GAMES),
-  compose(
-    defaultTo([]),
-    prop("games")
-  )
+  propOr([], "games")
 );
 
 export const isPlayerGamesLoaded = createSelector(
@@ -39,8 +36,5 @@ export const isPlayerGamesLoaded = createSelector(
 
 export const gameSearchResults = createSelector(
   gameListSelector(listTypes.GAME_SEARCH),
-  compose(
-    defaultTo([]),
-    prop("games")
-  )
+  propOr([], "games")
 );

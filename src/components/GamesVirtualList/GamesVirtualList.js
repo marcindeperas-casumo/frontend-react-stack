@@ -2,31 +2,39 @@
 import React, { PureComponent } from "react";
 import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
-import GameRowSearch from "Components/GameRowSearch";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
-type Props = {
-  games: Array<string>,
-};
-
 const ROW_HEIGHT = 80;
-const PAGE_SIZE = 50;
-const REMOTE_ROWS_COUNT = 1290;
+const PAGE_SIZE = 100;
 const THRESHOLD = 20;
+
+type Props = {
+  /** The array of games slugs to render within the AllGamesList */
+  games: Array<string>,
+  /** The function that triggers the action that fetches the next batch of games */
+  fetchNextPage: Function,
+  /** The total number of rows */
+  remoteRowsCount: number,
+  /** The element to render as a row  */
+  renderItem: Function,
+};
 
 class GamesVirtualList extends PureComponent<Props> {
   isRowLoaded = ({ index }: { index: number }) => {
-    return Boolean(this.props.games[index]);
+    const { games } = this.props;
+
+    return Boolean(games[index]);
   };
 
-  loadMoreRows = ({
+  loadMoreRows = async ({
     startIndex,
     stopIndex,
   }: {
     startIndex: number,
     stopIndex: number,
   }) => {
-    return Promise.resolve(this.props.games);
+    const { fetchNextPage } = this.props;
+    return fetchNextPage({ startIndex, stopIndex, pageSize: PAGE_SIZE });
   };
 
   renderRow = ({
@@ -34,27 +42,41 @@ class GamesVirtualList extends PureComponent<Props> {
     index,
     style,
   }: {
-    key: string,
+    key: number,
     index: number,
     style: Object,
   }) => {
+    const { games, renderItem } = this.props;
+
+    if (this.isRowLoaded({ index })) {
+      return (
+        <div key={key} index={index} style={style}>
+          {renderItem(games[index])}
+        </div>
+      );
+    }
+
     return (
-      <Flex direction="vertical" key={key} index={index} style={style}>
-        {!this.isRowLoaded({ index }) ? (
-          <GameRowSkeleton />
-        ) : (
-          <GameRowSearch slug={this.props.games[index]} />
-        )}
+      <Flex
+        className="u-padding-horiz--md"
+        align="center"
+        key={key}
+        index={index}
+        style={style}
+      >
+        <GameRowSkeleton />
       </Flex>
     );
   };
 
   render() {
+    const { remoteRowsCount } = this.props;
+
     return (
       <InfiniteLoader
         isRowLoaded={this.isRowLoaded}
         loadMoreRows={this.loadMoreRows}
-        rowCount={REMOTE_ROWS_COUNT}
+        rowCount={remoteRowsCount}
         minimumBatchSize={PAGE_SIZE}
         threshold={THRESHOLD}
       >
@@ -64,7 +86,7 @@ class GamesVirtualList extends PureComponent<Props> {
               <List
                 ref={registerChild}
                 onRowsRendered={onRowsRendered}
-                rowCount={REMOTE_ROWS_COUNT}
+                rowCount={remoteRowsCount}
                 width={width}
                 height={height}
                 rowHeight={ROW_HEIGHT}

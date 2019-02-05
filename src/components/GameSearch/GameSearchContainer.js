@@ -5,7 +5,6 @@ import GameSearch from "Components/GameSearch/GameSearch";
 import {
   playerGamesSelector,
   gameSearchResults,
-  isPlayerGamesLoaded,
   preloadFetchPlayerGames,
   initFetchQuerySearch,
   isLoadingSelector,
@@ -28,7 +27,6 @@ const GameSearchConnected = connect(
 
     return {
       playerGames: playerGamesSelector(state),
-      isPlayerGamesLoaded: isPlayerGamesLoaded(state),
       searchResults: gameSearchResults(state),
       loading: isLoadingSelector(state),
       hasNoResults: hasNoResultsSelector(state),
@@ -38,10 +36,10 @@ const GameSearchConnected = connect(
     };
   },
   dispatch => ({
-    preloadFetchPlayerGames: () => dispatch(preloadFetchPlayerGames()),
     fetchSearch: q => dispatch(initFetchQuerySearch(q)),
     clearSearch: q => dispatch(clearSearch()),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
+    preloadFetchPlayerGames: index => dispatch(preloadFetchPlayerGames(index)),
   })
 )(GameSearch);
 

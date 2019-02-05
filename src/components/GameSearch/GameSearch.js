@@ -13,6 +13,7 @@ import GamesVirtualList from "Components/GamesVirtualList";
 
 type Props = {
   playerGames: Array<string>,
+  fetchPlayerGamesPage: Function,
   isPlayerGamesLoaded: boolean,
   preloadFetchPlayerGames: Function,
   fetchSearch: Function,
@@ -39,11 +40,6 @@ export default class GameSearch extends PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 1000);
-  }
-
-  componentDidMount() {
-    const { isPlayerGamesLoaded, preloadFetchPlayerGames } = this.props;
-    if (!isPlayerGamesLoaded) preloadFetchPlayerGames();
   }
 
   fetchSearchResults = () => {
@@ -138,7 +134,13 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderResults = () => {
-    const { playerGames, loading, hasNoResults, searchResults } = this.props;
+    const {
+      playerGames,
+      preloadFetchPlayerGames,
+      loading,
+      hasNoResults,
+      searchResults,
+    } = this.props;
     const { query } = this.state;
 
     if (loading) {
@@ -154,11 +156,19 @@ export default class GameSearch extends PureComponent<Props, State> {
     }
 
     if (!searchResults.length) {
-      return <GamesVirtualList games={playerGames} />;
+      return (
+        <GamesVirtualList
+          games={playerGames}
+          remoteRowsCount={1200}
+          renderItem={id => <GameRowSearch slug={id} />}
+          fetchNextPage={preloadFetchPlayerGames}
+        />
+      );
     }
 
     return (
       <div className="u-padding-horiz--md">
+        {/* <GamesVirtualList /> */}
         <List
           items={searchResults}
           itemSpacing="default"
