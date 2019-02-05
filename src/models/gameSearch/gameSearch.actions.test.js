@@ -13,7 +13,9 @@ import {
 
 describe("Models/GameSearch/Actions", () => {
   describe("fetchPlayerGames()", () => {
-    const action = fetchPlayerGames();
+    const page = 0;
+    const pageSize = 100;
+    const action = fetchPlayerGames({ page, pageSize });
 
     test("init fetch", () => {
       expect(action).toMatchObject({
@@ -34,7 +36,10 @@ describe("Models/GameSearch/Actions", () => {
   });
 
   describe("preloadFetchPlayerGames()", () => {
-    const action = preloadFetchPlayerGames();
+    const startIndex = 0;
+    const stopIndex = 99;
+    const pageSize = 100;
+    const action = preloadFetchPlayerGames({ startIndex, stopIndex, pageSize });
 
     test("returns an action with the correct type", () => {
       expect(action).toEqual({

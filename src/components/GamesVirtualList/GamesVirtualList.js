@@ -12,7 +12,7 @@ const THRESHOLD = 20;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: Array<string>,
+  games: string[],
   /** The function that triggers the action that fetches the next batch of games */
   fetchNextPage: Function,
   /** The total number of rows */
@@ -21,11 +21,30 @@ type Props = {
   renderItem: Function,
 };
 
-class GamesVirtualList extends PureComponent<Props> {
+type State = {
+  list: string[],
+};
+
+class GamesVirtualList extends PureComponent<Props, State> {
+  state = {
+    list: [""],
+  };
+
   constructor(props: Props) {
     super(props);
     // eslint-disable-next-line fp/no-mutation
     this.fetchNext = debounce(this.fetchNext, 1000);
+  }
+
+  static getDerivedStateFromProps(props: Props, state: State) {
+    const { games } = props;
+    const { list } = state;
+
+    if (games === list) {
+      return null;
+    }
+
+    return { list: games };
   }
 
   fetchNext = ({
@@ -43,9 +62,9 @@ class GamesVirtualList extends PureComponent<Props> {
   };
 
   isRowLoaded = ({ index }: { index: number }) => {
-    const { games } = this.props;
+    const { list } = this.state;
 
-    return Boolean(games[index]);
+    return Boolean(list[index]);
   };
 
   loadMoreRows = async ({
@@ -67,12 +86,13 @@ class GamesVirtualList extends PureComponent<Props> {
     index: number,
     style: Object,
   }) => {
-    const { games, renderItem } = this.props;
+    const { renderItem } = this.props;
+    const { list } = this.state;
 
     if (this.isRowLoaded({ index })) {
       return (
         <div key={key} index={index} style={style}>
-          {renderItem(games[index])}
+          {renderItem(list[index])}
         </div>
       );
     }
