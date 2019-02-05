@@ -1,60 +1,67 @@
 /* eslint-disable fp/no-mutation */
+// @flow
 import React, { PureComponent } from "react";
 import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
 import GameRowSearch from "Components/GameRowSearch";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
-class AllGamesList extends PureComponent {
-  constructor() {
-    super();
-    this.ROW_HEIGHT = 80; // check game row height
-    this.PAGE_SIZE = 50; // check how many elements are coming from the API
-    this.REMOTE_ROWS_COUNT = 1290; // wire up something that tells us this number
+const ROW_HEIGHT = 80;
+const PAGE_SIZE = 50;
 
-    this.state = {
-      list: [],
-      pagesLoaded: [],
-    };
-  }
+type Props = {
+  /** The array of games slugs to render within the AllGamesList */
+  games: Array<string>,
+  /** The function that triggers the action that fetches the next batch of games */
+  fetchPage: void,
+  /** The total number of rows */
+  remoteRowsCount: number,
+  /** The element to render as a row  */
+  renderItem: Function,
+};
 
-  componentWillReceiveProps;
-
-  isRowLoaded = ({ index }) => {
-    return Boolean(this.state.list[index]);
-  };
-
-  loadMoreRows = ({ startIndex, stopIndex }) => {
+class GamesVirtualList extends PureComponent<Props> {
+  isRowLoaded = ({ index }: { index: number }) => {
     const { games } = this.props;
 
-    if (
-      !this.isRowLoaded(startIndex) &&
-      !this.state.pagesLoaded.includes(startIndex)
-    ) {
-      this.setState({
-        pagesLoaded: [...this.state.pagesLoaded, startIndex],
-      });
-      return new Promise(resolve => {
-        // fetch next page
-        resolve(games);
-      }).then(games => {
-        this.setState({
-          list: [...this.state.list, ...games],
-        });
-        return this.state.list;
-      });
-    }
-    return Promise.resolve(this.state.list);
+    return Boolean(games[index]);
   };
 
-  renderRow = ({ key, index, style }) => {
+  loadMoreRows = async ({
+    startIndex,
+    stopIndex,
+  }: {
+    startIndex: number,
+    stopIndex: number,
+  }) => {
+    const { games } = this.props;
+
+    // fetch page action startIndex / page size
+    return await games;
+  };
+
+  renderRow = ({
+    key,
+    index,
+    style,
+  }: {
+    key: number,
+    index: number,
+    style: Object,
+  }) => {
+    const { games, renderItem } = this.props;
+
+    console.log(renderItem);
+
     if (this.isRowLoaded({ index })) {
       return (
         <div key={key} index={index} style={style} className="t-border-bottom">
-          <GameRowSearch slug={this.state.list[index]} />
+          {renderItem(games[index])}
+          {/* <GameRowSearch slug={games[index]} /> */}
         </div>
       );
     }
+
     return (
       <Flex
         align="center"
@@ -69,14 +76,15 @@ class AllGamesList extends PureComponent {
   };
 
   render() {
+    const { remoteRowsCount } = this.props;
     return (
       <div style={{ height: "100vh" }}>
         <InfiniteLoader
           isRowLoaded={this.isRowLoaded}
           loadMoreRows={this.loadMoreRows}
-          rowCount={this.REMOTE_ROWS_COUNT}
-          minimumBatchSize={this.PAGE_SIZE}
-          threshold={this.PAGE_SIZE / 2}
+          rowCount={remoteRowsCount}
+          minimumBatchSize={PAGE_SIZE}
+          threshold={PAGE_SIZE / 2}
         >
           {({ onRowsRendered, registerChild }) => (
             <AutoSizer>
@@ -85,10 +93,10 @@ class AllGamesList extends PureComponent {
                   className="c-virtual-list"
                   ref={registerChild}
                   onRowsRendered={onRowsRendered}
-                  rowCount={this.REMOTE_ROWS_COUNT}
+                  rowCount={remoteRowsCount}
                   width={width}
                   height={height}
-                  rowHeight={this.ROW_HEIGHT}
+                  rowHeight={ROW_HEIGHT}
                   rowRenderer={this.renderRow}
                 />
               )}
@@ -100,4 +108,4 @@ class AllGamesList extends PureComponent {
   }
 }
 
-export default AllGamesList;
+export default GamesVirtualList;

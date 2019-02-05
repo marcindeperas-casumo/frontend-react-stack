@@ -9,7 +9,7 @@ import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
 import { debounce } from "lodash";
-import AllGamesList from "Components/AllGamesList";
+import GamesVirtualList from "Components/GamesVirtualList";
 
 type Props = {
   playerGames: Array<string>,
@@ -156,13 +156,17 @@ export default class GameSearch extends PureComponent<Props, State> {
     if (!searchResults.length) {
       return (
         <div className="u-padding-horiz--md">
-          <AllGamesList games={playerGames} fetchNextPage={() => {}} />
+          <GamesVirtualList
+            games={playerGames}
+            renderItem={id => <GameRowSearch slug={id} />}
+          />
         </div>
       );
     }
 
     return (
       <div className="u-padding-horiz--md">
+        {/* <GamesVirtualList /> */}
         <List
           items={searchResults}
           itemSpacing="default"
