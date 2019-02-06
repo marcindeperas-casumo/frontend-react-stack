@@ -15,6 +15,8 @@ import {
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
+import { getField, fetchPageBySlug } from "Models/cms";
+const searchCMSPageSlug = "mobile.games-search";
 
 const GameSearchConnected = connect(
   state => {
@@ -33,12 +35,26 @@ const GameSearchConnected = connect(
       latestPlayedGames,
       popularGames,
       startIndexCursor: startIndexSelector(state),
+      latestPlayedGamesTitle: getField({
+        slug: searchCMSPageSlug,
+        field: "continue_playing",
+      })(state),
+      popularGamesTitle: getField({
+        slug: searchCMSPageSlug,
+        field: "no_results_title",
+      })(state),
+      inputPromptPlaceholder: getField({
+        slug: searchCMSPageSlug,
+        field: "input_prompt",
+      })(state),
     };
   },
   dispatch => ({
     fetchSearch: q => dispatch(initFetchQuerySearch(q)),
     clearSearch: q => dispatch(clearSearch()),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
+    preloadFetchPlayerGames: index => dispatch(preloadFetchPlayerGames(index)),
+    startFetchCmsPage: () => dispatch(fetchPageBySlug(searchCMSPageSlug)),
   })
 )(GameSearch);
 

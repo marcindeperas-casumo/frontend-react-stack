@@ -22,6 +22,10 @@ type Props = {
   loading: boolean,
   hasNoResults: boolean,
   startIndexCursor: number,
+  startFetchCmsPage: () => void,
+  popularGamesTitle: string,
+  latestPlayedGamesTitle: string,
+  inputPromptPlaceholder: string,
 };
 
 type State = {
@@ -38,14 +42,14 @@ export default class GameSearch extends PureComponent<Props, State> {
   );
 
   renderPopularGames = () => {
-    const { popularGames } = this.props;
+    const { popularGames, popularGamesTitle } = this.props;
 
     if (!popularGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
-          sections={[{ title: "Popular Games", data: popularGames }]}
+          sections={[{ title: popularGamesTitle, data: popularGames }]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
         />
@@ -54,14 +58,16 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderLatestPlayed = () => {
-    const { latestPlayedGames } = this.props;
+    const { latestPlayedGames, latestPlayedGamesTitle } = this.props;
 
     if (!latestPlayedGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
-          sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
+          sections={[
+            { title: latestPlayedGamesTitle, data: latestPlayedGames },
+          ]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
         />
@@ -135,7 +141,12 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   render() {
-    const { hasNoResults, fetchSearch, clearSearch } = this.props;
+    const {
+      hasNoResults,
+      fetchSearch,
+      clearSearch,
+      inputPromptPlaceholder,
+    } = this.props;
 
     return (
       <Flex direction="vertical" spacing="none">
@@ -144,6 +155,7 @@ export default class GameSearch extends PureComponent<Props, State> {
             fetchSearch={fetchSearch}
             clearSearch={clearSearch}
             hasNoResults={hasNoResults}
+            placeholder={inputPromptPlaceholder}
           />
         </div>
         <div

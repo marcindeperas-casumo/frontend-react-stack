@@ -8,6 +8,7 @@ type Props = {
   fetchSearch: Function,
   clearSearch: Function,
   hasNoResults: boolean,
+  placeholder: string,
 };
 
 type State = {
