@@ -25,6 +25,10 @@ type Props = {
   hasNoLatestPlayed: boolean,
   loading: boolean,
   hasNoResults: boolean,
+  startFetchCmsPage: () => void,
+  popularGamesTitle: string,
+  latestPlayedGamesTitle: string,
+  inputPromptPlaceholder: string,
 };
 
 type State = {
@@ -40,6 +44,12 @@ export default class GameSearch extends PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 1000);
+  }
+
+  componentDidMount() {
+    const { startFetchCmsPage } = this.props;
+
+    startFetchCmsPage();
   }
 
   fetchSearchResults = () => {
@@ -74,14 +84,14 @@ export default class GameSearch extends PureComponent<Props, State> {
   );
 
   renderPopularGames = () => {
-    const { popularGames } = this.props;
+    const { popularGames, popularGamesTitle } = this.props;
 
     if (!popularGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
-          sections={[{ title: "Popular Games", data: popularGames }]}
+          sections={[{ title: popularGamesTitle, data: popularGames }]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
         />
@@ -90,14 +100,16 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderLatestPlayed = () => {
-    const { latestPlayedGames } = this.props;
+    const { latestPlayedGames, latestPlayedGamesTitle } = this.props;
 
     if (!latestPlayedGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
-          sections={[{ title: "Continue Playing", data: latestPlayedGames }]}
+          sections={[
+            { title: latestPlayedGamesTitle, data: latestPlayedGames },
+          ]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
         />
@@ -182,7 +194,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   render() {
-    const { hasNoResults } = this.props;
+    const { hasNoResults, inputPromptPlaceholder } = this.props;
 
     return (
       <Flex direction="vertical" spacing="none">
@@ -194,7 +206,7 @@ export default class GameSearch extends PureComponent<Props, State> {
             onClear={this.handleClearSearchInput}
             hasNoResults={hasNoResults}
             onFocus={this.handleFocusSearchInput}
-            placeholder="Eg. game title, provider"
+            placeholder={inputPromptPlaceholder}
           />
         </div>
         <div
