@@ -29,6 +29,11 @@ export const fetchPlayerGames = ({ page, pageSize }) => {
   };
 };
 
+export const updateStartIndex = startIndex => ({
+  type: types.GAME_SEARCH_UPDATE_START_INDEX,
+  startIndex,
+});
+
 export const initFetchQuerySearch = q => ({
   type: types.GAME_SEARCH_FETCH,
   q,

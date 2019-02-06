@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import { debounce } from "lodash";
 import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
 
 import Flex from "@casumo/cmp-flex";
@@ -19,62 +18,27 @@ type Props = {
   remoteRowsCount: number,
   /** The element to render as a row  */
   renderItem: Function,
+
+  startIndexCursor: number,
 };
 
-type State = {
-  list: string[],
-};
-
-class GamesVirtualList extends PureComponent<Props, State> {
-  state = {
-    list: [""],
-  };
-
-  constructor(props: Props) {
-    super(props);
-    // eslint-disable-next-line fp/no-mutation
-    this.fetchNext = debounce(this.fetchNext, 1000);
-  }
-
-  static getDerivedStateFromProps(props: Props, state: State) {
-    const { games } = props;
-    const { list } = state;
-
-    if (games === list) {
-      return null;
-    }
-
-    return { list: games };
-  }
-
-  fetchNext = ({
-    startIndex,
-    stopIndex,
-    pageSize: PAGE_SIZE,
-  }: {
-    startIndex: number,
-    stopIndex: number,
-    pageSize: number,
-  }) => {
-    const { fetchNextPage } = this.props;
-
-    return fetchNextPage({ startIndex, stopIndex, pageSize: PAGE_SIZE });
-  };
-
+class GamesVirtualList extends PureComponent<Props> {
   isRowLoaded = ({ index }: { index: number }) => {
-    const { list } = this.state;
+    const { games } = this.props;
 
-    return Boolean(list[index]);
+    return Boolean(games[index]);
   };
 
-  loadMoreRows = async ({
+  loadMoreRows = ({
     startIndex,
     stopIndex,
   }: {
     startIndex: number,
     stopIndex: number,
   }) => {
-    return this.fetchNext({ startIndex, stopIndex, pageSize: PAGE_SIZE });
+    const { fetchNextPage, remoteRowsCount } = this.props;
+
+    fetchNextPage({ startIndex, remoteRowsCount, pageSize: PAGE_SIZE });
   };
 
   renderRow = ({
@@ -86,13 +50,12 @@ class GamesVirtualList extends PureComponent<Props, State> {
     index: number,
     style: Object,
   }) => {
-    const { renderItem } = this.props;
-    const { list } = this.state;
+    const { renderItem, games } = this.props;
 
     if (this.isRowLoaded({ index })) {
       return (
         <div key={key} index={index} style={style}>
-          {renderItem(list[index])}
+          {renderItem(games[index])}
         </div>
       );
     }

@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { compose, defaultTo, prop, not, isEmpty, propOr } from "ramda";
+import { compose, prop, not, isEmpty, propOr } from "ramda";
 import { gameListSelector } from "Models/schema";
 import { listTypes } from "Models/gameSearch";
 
@@ -8,6 +8,11 @@ export const gameSearch = state => state.gameSearch;
 export const isLoadingSelector = createSelector(
   gameSearch,
   prop("loading")
+);
+
+export const startIndexSelector = createSelector(
+  gameSearch,
+  prop("startIndex")
 );
 
 export const hasNoResultsSelector = createSelector(

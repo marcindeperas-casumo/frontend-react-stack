@@ -3,7 +3,6 @@ import React from "react";
 import { connect } from "react-redux";
 import GameSearch from "Components/GameSearch/GameSearch";
 import {
-  playerGamesSelector,
   gameSearchResults,
   preloadFetchPlayerGames,
   initFetchQuerySearch,
@@ -12,6 +11,7 @@ import {
   hasNoLatestPlayedSelector,
   clearSearch,
   listTypes,
+  startIndexSelector,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
@@ -26,20 +26,19 @@ const GameSearchConnected = connect(
     );
 
     return {
-      playerGames: playerGamesSelector(state),
       searchResults: gameSearchResults(state),
       loading: isLoadingSelector(state),
       hasNoResults: hasNoResultsSelector(state),
       hasNoLatestPlayed: hasNoLatestPlayedSelector(state),
       latestPlayedGames,
       popularGames,
+      startIndexCursor: startIndexSelector(state),
     };
   },
   dispatch => ({
     fetchSearch: q => dispatch(initFetchQuerySearch(q)),
     clearSearch: q => dispatch(clearSearch()),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
-    preloadFetchPlayerGames: index => dispatch(preloadFetchPlayerGames(index)),
   })
 )(GameSearch);
 

@@ -1,6 +1,12 @@
-import { call, put, take } from "redux-saga/effects";
+import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { types, listTypes, fetchPlayerGames } from "Models/gameSearch";
+import {
+  types,
+  listTypes,
+  fetchPlayerGames,
+  updateStartIndex,
+  playerGamesSelector,
+} from "Models/gameSearch";
 
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
@@ -12,10 +18,18 @@ export function* fetchPlayerGamesSaga(action) {
     types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE
   );
 
-  const gameList = { id: listTypes.PLAYER_GAMES, games: response };
+  const loadedGames = yield select(playerGamesSelector);
+
+  const gameList = {
+    id: listTypes.PLAYER_GAMES,
+    games: [...loadedGames, ...response],
+  };
+
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
   });
 
   yield put(updateEntity(entities));
+
+  yield put(updateStartIndex(startIndex));
 }

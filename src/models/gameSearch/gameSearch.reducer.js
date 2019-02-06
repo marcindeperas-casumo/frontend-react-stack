@@ -3,7 +3,7 @@ import { types } from "./gameSearch.constants";
 export const gameSearchReducer = (state, action) => {
   if (typeof state === "undefined") {
     return {
-      loading: false,
+      loading: true,
       hasNoResults: false,
       hasNoLatestPlayed: false,
     };
@@ -38,6 +38,7 @@ export const gameSearchReducer = (state, action) => {
       return {
         ...state,
         loading: false,
+        startIndex: action.startIndex,
       };
     }
 
@@ -46,6 +47,13 @@ export const gameSearchReducer = (state, action) => {
         ...state,
         loading: false,
         hasNoResults: false,
+      };
+    }
+
+    case types.GAME_SEARCH_UPDATE_START_INDEX: {
+      return {
+        ...state,
+        startIndex: action.startIndex,
       };
     }
 

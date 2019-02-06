@@ -2,19 +2,15 @@
 import React, { PureComponent } from "react";
 
 import Flex from "@casumo/cmp-flex";
-import SearchInput from "Components/SearchInput";
+import GameSearchInput from "./GameSearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
 import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
 import List from "@casumo/cmp-list";
-import { debounce } from "lodash";
 import GamesVirtualList from "Components/GamesVirtualList";
 
 type Props = {
-  playerGames: Array<string>,
-  fetchPlayerGamesPage: Function,
-  isPlayerGamesLoaded: boolean,
   preloadFetchPlayerGames: Function,
   fetchSearch: Function,
   clearSearch: Function,
@@ -25,6 +21,7 @@ type Props = {
   hasNoLatestPlayed: boolean,
   loading: boolean,
   hasNoResults: boolean,
+  startIndexCursor: number,
 };
 
 type State = {
@@ -35,39 +32,6 @@ export default class GameSearch extends PureComponent<Props, State> {
   state = {
     query: "",
   };
-
-  constructor(props: Props) {
-    super(props);
-    // eslint-disable-next-line fp/no-mutation
-    this.fetchSearchResults = debounce(this.fetchSearchResults, 1000);
-  }
-
-  fetchSearchResults = () => {
-    const { fetchSearch } = this.props;
-    const { query } = this.state;
-
-    return fetchSearch(query);
-  };
-
-  handleSearchInput = (event: Event) => {
-    if (event.currentTarget instanceof HTMLInputElement) {
-      this.setState(
-        {
-          query: event.currentTarget.value,
-        },
-        e => this.fetchSearchResults()
-      );
-    }
-  };
-
-  handleClearSearchInput = () => {
-    const { clearSearch } = this.props;
-
-    this.setState({ query: "" });
-    clearSearch();
-  };
-
-  handleFocusSearchInput = () => {};
 
   renderListSkeleton = (title: boolean = true) => (
     <ListSkeleton title={title} titleYOffset="20" />
@@ -134,14 +98,14 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderResults = () => {
-    const {
-      playerGames,
-      preloadFetchPlayerGames,
-      loading,
-      hasNoResults,
-      searchResults,
-    } = this.props;
+    const { loading, hasNoResults, searchResults } = this.props;
     const { query } = this.state;
+
+    if (!searchResults.length) {
+      return (
+        <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+      );
+    }
 
     if (loading) {
       return (
@@ -155,20 +119,9 @@ export default class GameSearch extends PureComponent<Props, State> {
       return this.renderNoMatch();
     }
 
-    if (!searchResults.length) {
-      return (
-        <GamesVirtualList
-          games={playerGames}
-          remoteRowsCount={1200}
-          renderItem={id => <GameRowSearch slug={id} />}
-          fetchNextPage={preloadFetchPlayerGames}
-        />
-      );
-    }
-
     return (
       <div className="u-padding-horiz--md">
-        {/* <GamesVirtualList /> */}
+        {/* <VirtualList /> */}
         <List
           items={searchResults}
           itemSpacing="default"
@@ -182,19 +135,15 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   render() {
-    const { hasNoResults } = this.props;
+    const { hasNoResults, fetchSearch, clearSearch } = this.props;
 
     return (
       <Flex direction="vertical" spacing="none">
         <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
-          <SearchInput
-            autoFocus={true}
-            value={this.state.query}
-            onChange={this.handleSearchInput}
-            onClear={this.handleClearSearchInput}
+          <GameSearchInput
+            fetchSearch={fetchSearch}
+            clearSearch={clearSearch}
             hasNoResults={hasNoResults}
-            onFocus={this.handleFocusSearchInput}
-            placeholder="Eg. game title, provider"
           />
         </div>
         <div
