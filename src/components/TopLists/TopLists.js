@@ -12,11 +12,13 @@ type Props = {
 };
 
 export default class TopLists extends PureComponent<Props> {
-  render() {
-    const { market, isGameListLoaded, fetchTopLists } = this.props;
-    const slug = getSlug(market);
+  componentDidMount() {
+    if (!this.props.isGameListLoaded) this.props.fetchTopLists();
+  }
 
-    if (!isGameListLoaded) fetchTopLists();
+  render() {
+    const { market } = this.props;
+    const slug = getSlug(market);
 
     return <ComponentBuilder slug={slug} />;
   }
