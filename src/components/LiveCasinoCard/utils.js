@@ -97,7 +97,13 @@ const getTopCardColor = pipe(
 );
 
 export const getBadgeColor = (type, n) => {
-  if (type === "MoneyWheel") return getMoneyWheelColor(n);
-  if (type === "Roulette") return getRouletteColor(n);
-  if (type === "TopCard") return getTopCardColor(n);
+  if (type === "MoneyWheel") {
+    return getMoneyWheelColor(n);
+  }
+  if (type === "Roulette") {
+    return getRouletteColor(n);
+  }
+  if (type === "TopCard") {
+    return getTopCardColor(n);
+  }
 };

@@ -41,7 +41,9 @@ export default class CuratedCard extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, fetchCurated } = this.props;
 
-    if (!isFetched) fetchCurated();
+    if (!isFetched) {
+      fetchCurated();
+    }
   }
 
   renderSkeleton = () => <CuratedCardSkeleton />;

@@ -270,11 +270,13 @@ export const makeProtocolAwareUrl = url => {
   const replaceInBeginning = (string, from, to) =>
     `${to}${string.slice(from.length)}`;
 
-  if (startsWith(url, "//"))
+  if (startsWith(url, "//")) {
     return replaceInBeginning(url, "//", `${protocol}//`);
+  }
 
-  if (startsWith(url, "/"))
+  if (startsWith(url, "/")) {
     return replaceInBeginning(url, "/", `${protocol}//${hostname}/`);
+  }
 
   return url;
 };
