@@ -70,7 +70,7 @@ describe("GameSearch", () => {
     expect(rendered.find("List")).toHaveLength(1); // this will become expect(rendered.find("GamesVirtualListContainer")).toHaveLength(1);
   });
 
-  test("should render 1 search result and popular games if direct hit and player has no game played games history", () => {
+  test("should render 1 search result and popular games if direct hit and player has no latest played games history", () => {
     const popularGames = ["whatever"];
     const popularGamesTitle = "I'm popular games";
 
@@ -93,7 +93,7 @@ describe("GameSearch", () => {
     ]);
   });
 
-  test("should render 1 search result and latest played games if direct hit and player has game played games history", () => {
+  test("should render 1 search result and latest played games if direct hit and player has latest played games history", () => {
     const latestPlayedGames = ["I'm a latest played game"];
     const latestPlayedGamesTitle = "I'm latest playes games games";
 
