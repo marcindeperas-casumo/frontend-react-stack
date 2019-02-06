@@ -36,6 +36,7 @@ module.exports = {
         caseSensitive: true,
       },
     ],
+    curly: ["error", "all"],
   },
   overrides: [
     {

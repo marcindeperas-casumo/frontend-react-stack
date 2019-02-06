@@ -13,7 +13,9 @@ type Props = {
 
 export default class TopLists extends PureComponent<Props> {
   componentDidMount() {
-    if (!this.props.isGameListLoaded) this.props.fetchTopLists();
+    if (!this.props.isGameListLoaded) {
+      this.props.fetchTopLists();
+    }
   }
 
   render() {
