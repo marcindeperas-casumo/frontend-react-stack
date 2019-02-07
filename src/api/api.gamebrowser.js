@@ -21,9 +21,9 @@ export const getGameBrowserHandshake = (
         ...resp,
         gamesLists: {
           ...resp.gamesLists,
-          recommendedGames: { id: "recommendedGames", title: "Because you played ${GAME_NAME}" },
+          suggestedGames: { id: "suggestedGames", title: "Because you played ${GAME_NAME}" },
         },
-        topListIds: ["recommendedGames", ...resp.topListIds],
+        topListIds: ["suggestedGames", ...resp.topListIds],
       }))
   );
 };

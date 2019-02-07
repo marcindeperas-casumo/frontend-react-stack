@@ -16,7 +16,7 @@ const ComponentBuilderConnected = connect(
   (state, { slug }) => ({
     componentDefinitions: [
       // TODO remove
-      { acf_fc_layout: "GAMES_LIST", id: "recommendedGames" },
+      { acf_fc_layout: "GAMES_LIST", id: "suggestedGames" },
       ...(getField({ slug, field })(state) || []),
     ],
   }),

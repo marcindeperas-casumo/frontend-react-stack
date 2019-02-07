@@ -1,25 +1,27 @@
 import { complement, compose, isNil, prop, path, pluck } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
+import { getSuggestedGames } from "Api/api.gameSuggest";
 
-export const fetchRecommendedGames = async ({
+export const fetchSuggestedGames = async ({
   handshake,
   platform,
   country,
   latestPlayedGames,
   variant = "default",
 }) => {
-  const { id, title } = handshake.gamesLists.recommendedGames;
+  const { id, title } = handshake.gamesLists.suggestedGames;
   const latestPlayedGamesResolved = (await latestPlayedGames).games;
   const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
 
   if (!latestPlayedGame) {
-    return { games: [] };
+    return { games: [], id, title };
   }
 
-  const slugs = await Promise.resolve(["big-bad-wolf", "danger-high-voltage"]);
+  // const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
+  const slugs = await getSuggestedGames({ gameSlug: "108_heroes" });
 
-  const games = await gamebrowserApi
+  const unorderedGames = await gamebrowserApi
     .getGamesBySlugs({
       platform,
       country,
@@ -27,6 +29,12 @@ export const fetchRecommendedGames = async ({
       slugs,
     })
     .then(prop("games"));
+
+  // resort to ensure we've got proper order
+  const games = unorderedGames
+    .sort((game1, game2) => {
+      return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
+    });
 
   return { games, id, title: title.replace("${GAME_NAME}", latestPlayedGame.name) };
 };
@@ -166,7 +174,7 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
-  const recommendedGames = fetchRecommendedGames({
+  const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
     country,
@@ -178,7 +186,7 @@ export const fetchGames = async ({
   );
   const allListsResponses = (await Promise.all([
     latestPlayedGames,
-    recommendedGames,
+    suggestedGames,
     ...gameListsRequests,
   ])).filter(hasSomeGames);
   const jackpots = getJackpots({
