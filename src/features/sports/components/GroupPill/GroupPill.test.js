@@ -31,7 +31,7 @@ describe("<GroupPill />", () => {
     expect(rendered.find(Pill).props().onClick).toEqual(onClick);
   });
 
-  test("passes down onClick to Pill", () => {
+  test("passes down isActive to Pill", () => {
     const activeRendered = shallow(
       <GroupPill isActive={true} group={testGroup} />
     );
