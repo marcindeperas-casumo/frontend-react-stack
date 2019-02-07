@@ -18,8 +18,7 @@ export const fetchSuggestedGames = async ({
     return { games: [], id, title };
   }
 
-  // const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
-  const slugs = await getSuggestedGames({ gameSlug: "108_heroes" });
+  const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
 
   const unorderedGames = await gamebrowserApi
     .getGamesBySlugs({
