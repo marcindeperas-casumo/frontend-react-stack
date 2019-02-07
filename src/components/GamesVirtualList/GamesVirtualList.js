@@ -6,7 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
 const ROW_HEIGHT = 80;
-const PAGE_SIZE = 101; // 0 - 99, startIndex should be 100 for second
+const PAGE_SIZE = 100;
 const THRESHOLD = 20;
 
 type Props = {
@@ -18,8 +18,6 @@ type Props = {
   remoteRowsCount: number,
   /** The element to render as a row  */
   renderItem: Function,
-
-  startIndexCursor: number,
 };
 
 type State = {
@@ -27,14 +25,41 @@ type State = {
 };
 
 class GamesVirtualList extends PureComponent<Props, State> {
+  promises = [];
   state = {
     loadedRowsMap: {},
   };
+
+  componentDidUpdate() {
+    const { games } = this.props;
+    const isPromiseLoaded = ({ startIndex, stopIndex }) =>
+      games[startIndex] && games[stopIndex];
+    const loadedPromises = this.promises.filter(isPromiseLoaded);
+    const notLoadedPromises = this.promises.filter(o => !isPromiseLoaded(o));
+
+    loadedPromises.forEach(({ resolve }) => resolve());
+
+    // eslint-disable-next-line
+    this.promises = notLoadedPromises;
+  }
 
   isRowLoaded = ({ index }: { index: number }) => {
     const { loadedRowsMap } = this.state;
 
     return Boolean(loadedRowsMap[index]);
+  };
+
+  setRowsAsLoaded = ({ startIndex, stopIndex }) => {
+    range(startIndex, stopIndex).forEach(i => {
+      this.setState(prevState => {
+        return {
+          loadedRowsMap: {
+            ...prevState.loadedRowsMap,
+            ...assoc(i, 1, this.state.loadedRowsMap),
+          },
+        };
+      });
+    });
   };
 
   loadMoreRows = ({
@@ -44,38 +69,25 @@ class GamesVirtualList extends PureComponent<Props, State> {
     startIndex: number,
     stopIndex: number,
   }) => {
-    const { fetchNextPage, remoteRowsCount } = this.props;
-
-    range(startIndex, stopIndex).forEach(i => {
-      this.setState(prevState => {
-        return {
-          loadedRowsMap: {
-            ...prevState.loadedRowsMap,
-            ...assoc(i, 0, this.state.loadedRowsMap),
-          },
-        };
-      });
-    });
+    const { fetchNextPage } = this.props;
 
     fetchNextPage({
       startIndex,
       stopIndex,
-      pageSize: PAGE_SIZE,
     });
 
-    // this fixes last row not loading because last stopIndex is minus 1 out of remoteRowsCount?
-    const stop =
-      remoteRowsCount - stopIndex === 1 ? remoteRowsCount : stopIndex;
+    this.setRowsAsLoaded({ startIndex, stopIndex });
 
-    range(startIndex, stop).forEach(i => {
-      this.setState(prevState => {
-        return {
-          loadedRowsMap: {
-            ...prevState.loadedRowsMap,
-            ...assoc(i, 1, this.state.loadedRowsMap),
-          },
-        };
-      });
+    return new Promise(resolve => {
+      // eslint-disable-next-line
+      const promise = {
+        startIndex,
+        stopIndex,
+        resolve,
+      };
+
+      // eslint-disable-next-line
+      this.promises.push(promise);
     });
   };
 
@@ -112,7 +124,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   render() {
-    const { remoteRowsCount } = this.props;
+    const { remoteRowsCount, games } = this.props;
 
     return (
       <InfiniteLoader

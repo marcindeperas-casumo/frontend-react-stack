@@ -10,11 +10,11 @@ import {
 import { insertAll } from "ramda";
 
 export function* fetchPlayerGamesSaga(action) {
-  const { startIndex, pageSize } = action;
-
+  const { startIndex, stopIndex } = action;
+  const pageSize = stopIndex - startIndex + 1;
   const page = Math.ceil(startIndex / pageSize);
 
-  yield put(fetchPlayerGames({ page }));
+  yield put(fetchPlayerGames({ page, pageSize }));
 
   const { response } = yield take(
     types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE
