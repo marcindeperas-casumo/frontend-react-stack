@@ -70,29 +70,4 @@ describe("<Pill />", () => {
     expect(rendered.hasClass(activeClassName)).toBe(false);
     expect(rendered.hasClass(inactiveClassName)).toBe(true);
   });
-
-  //   test("passes down onRemove to Pill", () => {
-  //     const onRemove = jest.fn();
-  //     const rendered = shallow(
-  //       <GroupPill onRemove={onRemove} group={testGroup} />
-  //     );
-
-  //     expect(rendered.find(Pill).props().onRemove).toEqual(onRemove);
-  //   });
-
-  //   test("passes down onClick to Pill", () => {
-  //     const onClick = jest.fn();
-  //     const rendered = shallow(<GroupPill onClick={onClick} group={testGroup} />);
-
-  //     expect(rendered.find(Pill).props().onClick).toEqual(onClick);
-  //   });
-
-  //   test("passes down onClick to Pill", () => {
-  //     const isActive = true;
-  //     const rendered = shallow(
-  //       <GroupPill isActive={isActive} group={testGroup} />
-  //     );
-
-  //     expect(rendered.find(Pill).props().isActive).toEqual(isActive);
-  //   });
 });
