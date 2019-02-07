@@ -10,6 +10,7 @@ import {
 
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
+
   const page = Math.ceil(startIndex / pageSize);
 
   yield put(fetchPlayerGames({ page }));

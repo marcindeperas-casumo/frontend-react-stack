@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
-
+import { range, assoc } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
@@ -22,11 +22,19 @@ type Props = {
   startIndexCursor: number,
 };
 
-class GamesVirtualList extends PureComponent<Props> {
-  isRowLoaded = ({ index }: { index: number }) => {
-    const { games } = this.props;
+type State = {
+  loadedRowsMap: {},
+};
 
-    return Boolean(games[index]);
+class GamesVirtualList extends PureComponent<Props, State> {
+  state = {
+    loadedRowsMap: {},
+  };
+
+  isRowLoaded = ({ index }: { index: number }) => {
+    const { loadedRowsMap } = this.state;
+
+    return Boolean(loadedRowsMap[index]);
   };
 
   loadMoreRows = ({
@@ -38,7 +46,29 @@ class GamesVirtualList extends PureComponent<Props> {
   }) => {
     const { fetchNextPage, remoteRowsCount } = this.props;
 
+    range(startIndex, stopIndex).forEach(i => {
+      this.setState(prevState => {
+        return {
+          loadedRowsMap: {
+            ...prevState.loadedRowsMap,
+            ...assoc(i, 0, this.state.loadedRowsMap),
+          },
+        };
+      });
+    });
+
     fetchNextPage({ startIndex, remoteRowsCount, pageSize: PAGE_SIZE });
+
+    range(startIndex, stopIndex).forEach(i => {
+      this.setState(prevState => {
+        return {
+          loadedRowsMap: {
+            ...prevState.loadedRowsMap,
+            ...assoc(i, 1, this.state.loadedRowsMap),
+          },
+        };
+      });
+    });
   };
 
   renderRow = ({
