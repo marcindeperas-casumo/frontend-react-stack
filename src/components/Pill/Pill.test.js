@@ -22,8 +22,10 @@ describe("<Pill />", () => {
 
   test("shows remove icon if onRemove is passed as prop", () => {
     const rendered = shallow(<Pill onRemove={() => {}}>test</Pill>);
+    const renderedNoOnRemove = shallow(<Pill>test</Pill>);
 
     expect(rendered.find("CrossIcon")).toHaveLength(1);
+    expect(renderedNoOnRemove.exists("CrossIcon")).toBe(false);
   });
 
   test("calls onRemove when the remove icon is clicked and stops event propagation", () => {
