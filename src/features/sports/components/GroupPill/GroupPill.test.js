@@ -32,11 +32,14 @@ describe("<GroupPill />", () => {
   });
 
   test("passes down onClick to Pill", () => {
-    const isActive = true;
-    const rendered = shallow(
-      <GroupPill isActive={isActive} group={testGroup} />
+    const activeRendered = shallow(
+      <GroupPill isActive={true} group={testGroup} />
+    );
+    const inactiveRendered = shallow(
+      <GroupPill isActive={false} group={testGroup} />
     );
 
-    expect(rendered.find(Pill).props().isActive).toEqual(isActive);
+    expect(activeRendered.find(Pill).props().isActive).toEqual(true);
+    expect(inactiveRendered.find(Pill).props().isActive).toEqual(false);
   });
 });
