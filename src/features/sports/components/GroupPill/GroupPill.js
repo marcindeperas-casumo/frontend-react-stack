@@ -5,9 +5,13 @@ import gql from "graphql-tag";
 import { Pill } from "Components/Pill";
 
 type Props = {
+  /** Optional onClick handler that is passed to the underlying Pill component */
   onClick?: () => void,
+  /** Optional onRemove handler that is passed to the underlying Pill component */
   onRemove?: () => void,
+  /** Optional isActive flag that is passed to the underlying Pill component */
   isActive?: boolean,
+  /** The group object to be displayed, type is generated from GroupPill.fragments.group */
   group: GroupPill_Group,
 };
 

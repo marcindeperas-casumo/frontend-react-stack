@@ -7,7 +7,7 @@ import { Pill } from "Components/Pill";
 
 const stories = storiesOf("Pill", module);
 
-const buttons = [
+const pills = [
   {
     title: "Default Pill",
     cmp: () => (
@@ -54,4 +54,4 @@ const buttons = [
   },
 ];
 
-buttons.map(({ title, cmp }) => stories.add(title, cmp, info({ text: title })));
+pills.map(({ title, cmp }) => stories.add(title, cmp, info({ text: title })));
