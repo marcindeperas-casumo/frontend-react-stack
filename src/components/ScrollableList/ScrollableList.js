@@ -25,7 +25,7 @@ type Props = {
   itemIds: Array<string>,
   Component: Function,
   spacing: spacerSizes | responsiveSpacerSizes,
-  /** from redux */
+  /** "see more" link translation */
   seeMoreText: string,
 };
 

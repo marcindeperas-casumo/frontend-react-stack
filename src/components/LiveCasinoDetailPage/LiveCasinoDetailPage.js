@@ -6,13 +6,12 @@ import SectionTitle from "./SectionTitle";
 import type { GameId, GroupedGamesList } from "./types";
 
 type Props = {
-  /** comes from redux */
-  launchGame: GameId => void,
-  /** comes from redux */
+  /** grouped list of games to render */
   gamesList: GroupedGamesList,
-  /** comes from redux */
+  launchGame: GameId => void,
+  /** used to decide if data needs to be fetched */
   isFetched: boolean,
-  /** comes from redux */
+  /** used to fetch page if isFetched === false */
   fetchPageBySlug: Function,
 };
 

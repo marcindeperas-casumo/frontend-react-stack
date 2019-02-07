@@ -19,7 +19,7 @@ export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
   isLoading: boolean,
-  /** from redux */
+  /** "see more" link translation */
   seeMoreText: string,
 };
 
