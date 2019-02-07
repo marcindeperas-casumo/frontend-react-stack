@@ -6,7 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
 const ROW_HEIGHT = 80;
-const PAGE_SIZE = 100;
+const PAGE_SIZE = 101; // 0 - 99, startIndex should be 100 for second
 const THRESHOLD = 20;
 
 type Props = {
@@ -57,9 +57,17 @@ class GamesVirtualList extends PureComponent<Props, State> {
       });
     });
 
-    fetchNextPage({ startIndex, remoteRowsCount, pageSize: PAGE_SIZE });
+    fetchNextPage({
+      startIndex,
+      stopIndex,
+      pageSize: PAGE_SIZE,
+    });
 
-    range(startIndex, stopIndex).forEach(i => {
+    // this fixes last row not loading because last stopIndex is minus 1 out of remoteRowsCount?
+    const stop =
+      remoteRowsCount - stopIndex === 1 ? remoteRowsCount : stopIndex;
+
+    range(startIndex, stop).forEach(i => {
       this.setState(prevState => {
         return {
           loadedRowsMap: {
@@ -82,24 +90,24 @@ class GamesVirtualList extends PureComponent<Props, State> {
   }) => {
     const { renderItem, games } = this.props;
 
-    if (this.isRowLoaded({ index })) {
+    if (!this.isRowLoaded({ index })) {
       return (
-        <div key={key} index={index} style={style}>
-          {renderItem(games[index])}
-        </div>
+        <Flex
+          className="u-padding-horiz--md"
+          align="center"
+          key={key}
+          index={index}
+          style={style}
+        >
+          <GameRowSkeleton />
+        </Flex>
       );
     }
 
     return (
-      <Flex
-        className="u-padding-horiz--md"
-        align="center"
-        key={key}
-        index={index}
-        style={style}
-      >
-        <GameRowSkeleton />
-      </Flex>
+      <div key={key} index={index} style={style}>
+        {renderItem(games[index])}
+      </div>
     );
   };
 

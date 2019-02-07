@@ -7,6 +7,7 @@ import {
   updateStartIndex,
   playerGamesSelector,
 } from "Models/gameSearch";
+import { insertAll } from "ramda";
 
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
@@ -23,7 +24,7 @@ export function* fetchPlayerGamesSaga(action) {
 
   const gameList = {
     id: listTypes.PLAYER_GAMES,
-    games: [...loadedGames, ...response],
+    games: insertAll(startIndex, response, loadedGames),
   };
 
   const { entities } = yield call(normalizeData, {
