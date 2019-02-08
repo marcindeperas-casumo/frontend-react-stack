@@ -17,7 +17,7 @@ describe("<CompetitionPillsList />", () => {
     expect(renderedEmpty.find("GroupPill")).toHaveLength(0);
   });
 
-  test("renders add button when onAdd only when onAdd callback is provided", () => {
+  test("renders add button only when onAdd callback is provided", () => {
     const rendered = shallow(
       <CompetitionPillsList competitions={competitions} onAdd={() => {}} />
     );
