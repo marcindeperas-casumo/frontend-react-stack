@@ -10,7 +10,7 @@ import TrackClick from "Components/TrackClick";
 // The following style classes are coupled to GameRowSearch. If you're thinking of moving out TrackPlayIcon
 // and TrackMoreIcon, style might not be applicable for their usage
 const iconStyle =
-  "t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md";
+  "t-background-white t-color-grey-light-1 t-border-r--circle u-padding-vert--md";
 
 type Props = {
   /** The Game object containing name, logo, logoBackhround and slug of the game to be rendered */
