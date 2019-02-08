@@ -43,7 +43,10 @@ describe("Models/GameSearch/Actions", () => {
 
     test("returns an action with the correct type", () => {
       expect(action).toEqual({
-        type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
+        pageSize: 100,
+        startIndex: 0,
+        stopIndex: 99,
+        type: "GAME_SEARCH/FETCH_PLAYER_GAMES",
       });
     });
   });
