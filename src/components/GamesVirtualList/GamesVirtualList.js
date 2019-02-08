@@ -15,7 +15,7 @@ type Props = {
   /** The function that triggers the action that fetches the next batch of games */
   fetchNextPage: Function,
   /** The total number of rows */
-  remoteRowsCount: number,
+  rowCount: number,
   /** The element to render as a row  */
   renderItem: Function,
 };
@@ -50,7 +50,10 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   setRowsAsLoaded = ({ startIndex, stopIndex }) => {
-    range(startIndex, stopIndex).forEach(i => {
+    const { rowCount } = this.props;
+    const isLast = stopIndex + 1 === rowCount;
+    const stop = isLast ? stopIndex + 1 : stopIndex;
+    range(startIndex, stop).forEach(i => {
       this.setState(prevState => {
         return {
           loadedRowsMap: {
@@ -74,6 +77,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
     fetchNextPage({
       startIndex,
       stopIndex,
+      pageSize: PAGE_SIZE,
     });
 
     this.setRowsAsLoaded({ startIndex, stopIndex });
@@ -124,13 +128,13 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   render() {
-    const { remoteRowsCount, games } = this.props;
+    const { rowCount } = this.props;
 
     return (
       <InfiniteLoader
         isRowLoaded={this.isRowLoaded}
         loadMoreRows={this.loadMoreRows}
-        rowCount={remoteRowsCount}
+        rowCount={rowCount}
         minimumBatchSize={PAGE_SIZE}
         threshold={THRESHOLD}
       >
@@ -140,7 +144,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
               <List
                 ref={registerChild}
                 onRowsRendered={onRowsRendered}
-                rowCount={remoteRowsCount}
+                rowCount={rowCount}
                 width={width}
                 height={height}
                 rowHeight={ROW_HEIGHT}

@@ -1,4 +1,4 @@
-import { call, put, take, select } from "redux-saga/effects";
+import { call, put, take, select, all } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   types,
@@ -10,8 +10,8 @@ import {
 import { insertAll } from "ramda";
 
 export function* fetchPlayerGamesSaga(action) {
-  const { startIndex, stopIndex } = action;
-  const pageSize = stopIndex - startIndex + 1;
+  const { startIndex, pageSize } = action;
+
   const page = Math.ceil(startIndex / pageSize);
 
   yield put(fetchPlayerGames({ page, pageSize }));
@@ -22,10 +22,9 @@ export function* fetchPlayerGamesSaga(action) {
 
   const loadedGames = yield select(playerGamesSelector);
 
-  const gameList = {
-    id: listTypes.PLAYER_GAMES,
-    games: insertAll(startIndex, response, loadedGames),
-  };
+  const games = yield all(insertAll(page * 100, response, loadedGames));
+
+  const gameList = { id: listTypes.PLAYER_GAMES, games };
 
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
