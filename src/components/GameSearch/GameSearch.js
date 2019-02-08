@@ -82,7 +82,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderSectionHeader = (title: string) => (
-    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--sm">
+    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
       {title}
     </p>
   );
