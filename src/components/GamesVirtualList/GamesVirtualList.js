@@ -124,7 +124,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   render() {
-    const { remoteRowsCount, games } = this.props;
+    const { remoteRowsCount } = this.props;
 
     return (
       <InfiniteLoader
