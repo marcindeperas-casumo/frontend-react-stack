@@ -118,7 +118,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
     return (
       <div
-        className="u-padding-horiz--md"
+        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}
