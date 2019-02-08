@@ -64,7 +64,7 @@ export default class GameRowSearch extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className="u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-horiz--md"
+        className="u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
       >
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick

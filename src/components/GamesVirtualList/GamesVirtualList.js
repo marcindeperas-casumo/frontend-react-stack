@@ -117,7 +117,12 @@ class GamesVirtualList extends PureComponent<Props, State> {
     }
 
     return (
-      <div key={key} index={index} style={style}>
+      <div
+        className="u-padding-horiz--md"
+        key={key}
+        index={index}
+        style={style}
+      >
         {renderItem(games[index])}
       </div>
     );
