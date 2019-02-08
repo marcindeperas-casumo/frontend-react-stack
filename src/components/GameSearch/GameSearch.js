@@ -26,9 +26,10 @@ type Props = {
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
+  query: string,
 };
 
-export default class GameSearch extends PureComponent<Props, State> {
+export default class GameSearch extends PureComponent<Props> {
   componentDidMount() {
     const { startFetchCmsPage } = this.props;
 
