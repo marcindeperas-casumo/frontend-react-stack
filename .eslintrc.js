@@ -26,6 +26,7 @@ module.exports = {
       "error",
       {
         commonjs: true,
+        exceptions: [{ property: "fragments" }],
       },
     ],
     "prettier/prettier": "error",
