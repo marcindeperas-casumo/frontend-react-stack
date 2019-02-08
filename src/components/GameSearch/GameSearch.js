@@ -28,14 +28,7 @@ type Props = {
   inputPromptPlaceholder: string,
 };
 
-type State = {
-  query: string,
-};
-
 export default class GameSearch extends PureComponent<Props, State> {
-  state = {
-    query: "",
-  };
   componentDidMount() {
     const { startFetchCmsPage } = this.props;
 
@@ -109,8 +102,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderResults = () => {
-    const { loading, hasNoResults, searchResults } = this.props;
-    const { query } = this.state;
+    const { loading, hasNoResults, searchResults, query } = this.props;
 
     if (!searchResults.length) {
       return (

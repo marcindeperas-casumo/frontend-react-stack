@@ -12,6 +12,7 @@ import {
   clearSearch,
   listTypes,
   startIndexSelector,
+  gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
@@ -47,6 +48,7 @@ const GameSearchConnected = connect(
         slug: searchCMSPageSlug,
         field: "input_prompt",
       })(state),
+      query: gameSearchQuerySelector(state),
     };
   },
   dispatch => ({

@@ -43,3 +43,8 @@ export const gameSearchResults = createSelector(
   gameListSelector(listTypes.GAME_SEARCH),
   propOr([], "games")
 );
+
+export const gameSearchQuerySelector = createSelector(
+  gameSearch,
+  prop("query")
+);

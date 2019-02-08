@@ -9,6 +9,7 @@ describe("Models/Fetch/Reducer", () => {
     expect(reducer(state, action)).toEqual({
       hasNoResults: false,
       loading: true,
+      query: action.p,
     });
   });
 
