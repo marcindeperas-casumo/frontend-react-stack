@@ -41,7 +41,7 @@ const GameSearchConnected = connect(
       })(state),
       popularGamesTitle: getField({
         slug: searchCMSPageSlug,
-        field: "no_results_title",
+        field: "popular_games",
       })(state),
       inputPromptPlaceholder: getField({
         slug: searchCMSPageSlug,

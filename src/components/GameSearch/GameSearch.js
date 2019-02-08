@@ -36,6 +36,11 @@ export default class GameSearch extends PureComponent<Props, State> {
   state = {
     query: "",
   };
+  componentDidMount() {
+    const { startFetchCmsPage } = this.props;
+
+    startFetchCmsPage();
+  }
 
   renderListSkeleton = (title: boolean = true) => (
     <ListSkeleton title={title} titleYOffset="20" />
