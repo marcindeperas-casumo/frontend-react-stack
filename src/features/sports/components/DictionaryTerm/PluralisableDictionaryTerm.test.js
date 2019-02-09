@@ -77,7 +77,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
+    await wait(10);
     renderedSingular.update();
     renderedPlural.update();
 

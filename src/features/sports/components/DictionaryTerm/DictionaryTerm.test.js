@@ -45,7 +45,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
+    await wait(10);
     rendered.update();
 
     expect(rendered.text()).toBe(NOT_FOUND_STRING);
