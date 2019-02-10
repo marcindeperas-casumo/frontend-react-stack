@@ -21,12 +21,20 @@ type Props = {
   renderItem: Function,
 };
 
+type Indexes = {
+  startIndex: number,
+  stopIndex: number,
+};
+
 type State = {
   loadedRowsMap: {},
 };
 
 class GamesVirtualList extends PureComponent<Props, State> {
-  promises = [];
+  promises = {
+    list: [],
+  };
+
   state = {
     loadedRowsMap: {},
   };
@@ -36,13 +44,15 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
     const isPromiseLoaded = ({ startIndex, stopIndex }) =>
       games[startIndex] && games[stopIndex];
-    const loadedPromises = this.promises.filter(isPromiseLoaded);
-    const notLoadedPromises = this.promises.filter(o => !isPromiseLoaded(o));
+    const loadedPromises = this.promises.list.filter(isPromiseLoaded);
+    const notLoadedPromises = this.promises.list.filter(
+      o => !isPromiseLoaded(o)
+    );
 
     loadedPromises.forEach(({ resolve }) => resolve());
 
     // eslint-disable-next-line
-    this.promises = notLoadedPromises;
+    this.promises.list = notLoadedPromises;
   }
 
   isRowLoaded = ({ index }: { index: number }) => {
@@ -51,7 +61,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
     return Boolean(loadedRowsMap[index]);
   };
 
-  setRowsAsLoaded = ({ startIndex, stopIndex }) => {
+  setRowsAsLoaded = ({ startIndex, stopIndex }: Indexes) => {
     const { rowCount } = this.props;
     const isLast = stopIndex + 1 === rowCount;
     const stop = isLast ? stopIndex + 1 : stopIndex;
@@ -67,20 +77,14 @@ class GamesVirtualList extends PureComponent<Props, State> {
     });
   };
 
-  dispatchNextPage = ({ startIndex, stopIndex }) =>
+  dispatchNextPage = ({ startIndex, stopIndex }: Indexes) =>
     this.props.fetchNextPage({
       startIndex,
       stopIndex,
       pageSize: PAGE_SIZE,
     });
 
-  loadMoreRows = ({
-    startIndex,
-    stopIndex,
-  }: {
-    startIndex: number,
-    stopIndex: number,
-  }) => {
+  loadMoreRows = ({ startIndex, stopIndex }: Indexes) => {
     this.dispatchNextPage({
       startIndex,
       stopIndex,
@@ -89,7 +93,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
     this.setRowsAsLoaded({ startIndex, stopIndex });
 
-    return new Promise(resolve => {
+    return new Promise<any>(resolve => {
       // eslint-disable-next-line
       const promise = {
         startIndex,
@@ -98,7 +102,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
       };
 
       // eslint-disable-next-line
-      this.promises.push(promise);
+      this.promises.list.push(promise);
     });
   };
 

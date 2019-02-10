@@ -36,7 +36,7 @@ stories.add(
         games={gamesArray}
         renderItem={id => <GameRowSearch slug={id} />}
         fetchNextPage={() => {}}
-        remoteRowsCount={300}
+        rowCount={300}
         startIndexCursor={0}
       />
     </MockStore>

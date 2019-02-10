@@ -13,6 +13,7 @@ describe("Models/GameSearch/Saga", () => {
     const pageSize = 0;
     const generator = fetchPlayerGamesSaga({ startIndex: 0, pageSize });
 
+    // eslint-disable-next-line
     generator.next().value;
 
     expect(generator.next(page).value).toEqual(
