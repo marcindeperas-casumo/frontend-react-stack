@@ -2,17 +2,6 @@ import * as actions from "./gameSearch.actions";
 import reducer from "./gameSearch.reducer";
 
 describe("Models/Fetch/Reducer", () => {
-  test("GAME_SEARCH_FETCH_PLAYER_GAMES", () => {
-    const action = actions.preloadFetchPlayerGames();
-    const state = {};
-
-    expect(reducer(state, action)).toEqual({
-      hasNoResults: false,
-      loading: true,
-      query: action.p,
-    });
-  });
-
   test("GAME_SEARCH_FETCH", () => {
     const action = actions.initFetchQuerySearch();
     const state = {};

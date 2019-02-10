@@ -9,16 +9,25 @@ import {
 
 describe("Models/GameSearch/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
-    const generator = fetchPlayerGamesSaga();
+    const page = 0;
+    const pageSize = 0;
+    const generator = fetchPlayerGamesSaga({ startIndex: 0, pageSize });
 
-    expect(generator.next().value).toEqual(put(fetchPlayerGames()));
+    generator.next().value;
+
+    expect(generator.next(page).value).toEqual(
+      put(fetchPlayerGames({ page, pageSize }))
+    );
 
     expect(generator.next().value).toEqual(
-      take(types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE)
+      take(`${types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE}_PAGE0`)
     );
 
     const response = ["foo"];
-    const gameList = { id: listTypes.PLAYER_GAMES, games: response };
+    const gameList = {
+      id: `${listTypes.PLAYER_GAMES}Page${page}`,
+      games: response,
+    };
 
     expect(generator.next({ response }).value).toEqual(
       call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })

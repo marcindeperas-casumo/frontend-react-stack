@@ -60,7 +60,8 @@ describe("Models/GameSearch/Selectors", () => {
     });
 
     test("returns empty array if not in state", () => {
-      const state = {};
+      const gameList = {};
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(playerGamesSelector(state)).toEqual([]);
     });

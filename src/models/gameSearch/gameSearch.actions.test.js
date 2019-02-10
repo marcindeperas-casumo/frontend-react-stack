@@ -26,7 +26,7 @@ describe("Models/GameSearch/Actions", () => {
 
     test("fires completed action when finished", () => {
       expect(action).toMatchObject({
-        postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
+        postFetch: `${types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE}_PAGE0`,
       });
     });
 
@@ -37,15 +37,13 @@ describe("Models/GameSearch/Actions", () => {
 
   describe("preloadFetchPlayerGames()", () => {
     const startIndex = 0;
-    const stopIndex = 99;
     const pageSize = 100;
-    const action = preloadFetchPlayerGames({ startIndex, stopIndex, pageSize });
+    const action = preloadFetchPlayerGames({ startIndex, pageSize });
 
     test("returns an action with the correct type", () => {
       expect(action).toEqual({
-        pageSize: 100,
         startIndex: 0,
-        stopIndex: 99,
+        pageSize: 100,
         type: "GAME_SEARCH/FETCH_PLAYER_GAMES",
       });
     });

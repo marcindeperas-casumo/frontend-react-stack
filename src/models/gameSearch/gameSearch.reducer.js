@@ -3,14 +3,14 @@ import { types } from "./gameSearch.constants";
 export const gameSearchReducer = (state, action) => {
   if (typeof state === "undefined") {
     return {
-      loading: true,
+      loading: false,
       hasNoResults: false,
       hasNoLatestPlayed: false,
     };
   }
+  const { type } = action;
 
-  switch (action.type) {
-    case types.GAME_SEARCH_FETCH_PLAYER_GAMES:
+  switch (type) {
     case types.GAME_SEARCH_FETCH: {
       return {
         ...state,
@@ -34,12 +34,10 @@ export const gameSearchReducer = (state, action) => {
       };
     }
 
-    case types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE:
     case types.GAME_SEARCH_FETCH_COMPLETE: {
       return {
         ...state,
         loading: false,
-        startIndex: action.startIndex,
       };
     }
 
@@ -51,14 +49,13 @@ export const gameSearchReducer = (state, action) => {
       };
     }
 
-    case types.GAME_SEARCH_UPDATE_START_INDEX: {
-      return {
-        ...state,
-        startIndex: action.startIndex,
-      };
-    }
-
     default:
+      if (type.startsWith(types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE)) {
+        return {
+          ...state,
+          loading: false,
+        };
+      }
       return state;
   }
 };

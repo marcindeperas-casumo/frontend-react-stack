@@ -17,7 +17,7 @@ describe("GamesVirtualList", () => {
     const rendered = mount(
       <GamesVirtualList
         games={gamesArray}
-        remoteRowsCount={50}
+        rowCount={50}
         fetchPage={fetchPage}
         renderItem={renderItem}
       />
@@ -30,7 +30,7 @@ describe("GamesVirtualList", () => {
     const rendered = mount(
       <GamesVirtualList
         games={gamesArray}
-        remoteRowsCount={50}
+        rowCount={50}
         fetchPage={fetchPage}
         renderItem={renderItem}
       />
@@ -43,7 +43,7 @@ describe("GamesVirtualList", () => {
     const rendered = mount(
       <GamesVirtualList
         games={gamesArray}
-        remoteRowsCount={50}
+        rowCount={50}
         fetchPage={fetchPage}
         renderItem={renderItem}
       />
@@ -56,7 +56,7 @@ describe("GamesVirtualList", () => {
     const rendered = mount(
       <GamesVirtualList
         games={gamesArray}
-        remoteRowsCount={50}
+        rowCount={50}
         fetchPage={fetchPage}
         renderItem={renderItem}
       />

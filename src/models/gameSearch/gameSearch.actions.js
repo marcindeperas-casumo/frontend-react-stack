@@ -8,14 +8,9 @@ import {
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
 
-export const preloadFetchPlayerGames = ({
-  startIndex,
-  stopIndex,
-  pageSize,
-}) => ({
+export const preloadFetchPlayerGames = ({ startIndex, pageSize }) => ({
   type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
   startIndex,
-  stopIndex,
   pageSize,
 });
 

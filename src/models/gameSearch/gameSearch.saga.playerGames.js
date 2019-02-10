@@ -10,7 +10,7 @@ import {
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
 
-  const page = Math.ceil(startIndex / pageSize);
+  const page = yield Math.ceil(startIndex / pageSize);
 
   yield put(fetchPlayerGames({ page, pageSize }));
 
@@ -26,8 +26,6 @@ export function* fetchPlayerGamesSaga(action) {
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
   });
-
-  yield put(updateStartIndex(startIndex));
 
   yield put(updateEntity(entities));
 }
