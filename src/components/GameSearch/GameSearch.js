@@ -26,16 +26,15 @@ type Props = {
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
-};
-
-type State = {
   query: string,
 };
 
-export default class GameSearch extends PureComponent<Props, State> {
-  state = {
-    query: "",
-  };
+export default class GameSearch extends PureComponent<Props> {
+  componentDidMount() {
+    const { startFetchCmsPage } = this.props;
+
+    startFetchCmsPage();
+  }
 
   renderListSkeleton = (title: boolean = true) => (
     <ListSkeleton title={title} titleYOffset="20" />
@@ -84,7 +83,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderSectionHeader = (title: string) => (
-    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--sm">
+    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
       {title}
     </p>
   );
@@ -104,8 +103,7 @@ export default class GameSearch extends PureComponent<Props, State> {
   };
 
   renderResults = () => {
-    const { loading, hasNoResults, searchResults } = this.props;
-    const { query } = this.state;
+    const { loading, hasNoResults, searchResults, query } = this.props;
 
     if (!searchResults.length) {
       return (

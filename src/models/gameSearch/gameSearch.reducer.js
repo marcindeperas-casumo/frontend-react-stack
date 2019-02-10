@@ -16,6 +16,7 @@ export const gameSearchReducer = (state, action) => {
         ...state,
         loading: true,
         hasNoResults: false,
+        query: action.q,
       };
     }
 

@@ -1,9 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
-import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
-import { range, assoc } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
+
+import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
+import { range, assoc } from "ramda";
 
 const ROW_HEIGHT = 80;
 const PAGE_SIZE = 100;
@@ -32,6 +33,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
   componentDidUpdate() {
     const { games } = this.props;
+
     const isPromiseLoaded = ({ startIndex, stopIndex }) =>
       games[startIndex] && games[stopIndex];
     const loadedPromises = this.promises.filter(isPromiseLoaded);
@@ -65,6 +67,13 @@ class GamesVirtualList extends PureComponent<Props, State> {
     });
   };
 
+  dispatchNextPage = ({ startIndex, stopIndex }) =>
+    this.props.fetchNextPage({
+      startIndex,
+      stopIndex,
+      pageSize: PAGE_SIZE,
+    });
+
   loadMoreRows = ({
     startIndex,
     stopIndex,
@@ -72,9 +81,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
     startIndex: number,
     stopIndex: number,
   }) => {
-    const { fetchNextPage } = this.props;
-
-    fetchNextPage({
+    this.dispatchNextPage({
       startIndex,
       stopIndex,
       pageSize: PAGE_SIZE,
@@ -121,7 +128,12 @@ class GamesVirtualList extends PureComponent<Props, State> {
     }
 
     return (
-      <div key={key} index={index} style={style}>
+      <div
+        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+        key={key}
+        index={index}
+        style={style}
+      >
         {renderItem(games[index])}
       </div>
     );

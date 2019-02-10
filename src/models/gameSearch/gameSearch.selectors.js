@@ -1,6 +1,16 @@
 import { createSelector } from "reselect";
-import { compose, prop, not, isEmpty, propOr } from "ramda";
-import { gameListSelector } from "Models/schema";
+import {
+  compose,
+  prop,
+  not,
+  isEmpty,
+  propOr,
+  pickBy,
+  pluck,
+  values,
+  flatten,
+} from "ramda";
+import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
 import { listTypes } from "Models/gameSearch";
 
 export const gameSearch = state => state.gameSearch;
@@ -25,9 +35,16 @@ export const hasNoLatestPlayedSelector = createSelector(
   prop("hasNoLatestPlayed")
 );
 
+const isPlayerGames = (val, key) => key.startsWith(listTypes.PLAYER_GAMES);
+
 export const playerGamesSelector = createSelector(
-  gameListSelector(listTypes.PLAYER_GAMES),
-  propOr([], "games")
+  gameListEntitiesSelector,
+  pickBy(isPlayerGames),
+  compose(
+    flatten,
+    values,
+    pluck("games")
+  )
 );
 
 export const isPlayerGamesLoaded = createSelector(
@@ -42,4 +59,9 @@ export const isPlayerGamesLoaded = createSelector(
 export const gameSearchResults = createSelector(
   gameListSelector(listTypes.GAME_SEARCH),
   propOr([], "games")
+);
+
+export const gameSearchQuerySelector = createSelector(
+  gameSearch,
+  prop("query")
 );

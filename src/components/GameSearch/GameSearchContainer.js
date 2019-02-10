@@ -12,6 +12,7 @@ import {
   clearSearch,
   listTypes,
   startIndexSelector,
+  gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
@@ -41,12 +42,13 @@ const GameSearchConnected = connect(
       })(state),
       popularGamesTitle: getField({
         slug: searchCMSPageSlug,
-        field: "no_results_title",
+        field: "popular_games",
       })(state),
       inputPromptPlaceholder: getField({
         slug: searchCMSPageSlug,
         field: "input_prompt",
       })(state),
+      query: gameSearchQuerySelector(state),
     };
   },
   dispatch => ({

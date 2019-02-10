@@ -7,7 +7,7 @@ import {
   gameSearchResults,
   hasNoLatestPlayedSelector,
   listTypes,
-  gameSearchQuery,
+  gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 
@@ -94,6 +94,18 @@ describe("Models/GameSearch/Selectors", () => {
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(gameSearchResults(state)).toEqual([]);
+    });
+  });
+
+  describe("gameSearchQuerySelector()", () => {
+    test("returns search query", () => {
+      const state = {
+        gameSearch: {
+          query: "whatever",
+        },
+      };
+
+      expect(gameSearchQuerySelector(state)).toBe("whatever");
     });
   });
 });

@@ -23,7 +23,7 @@ export const fetchPlayerGames = ({ page, pageSize }) => {
   return {
     type: fetchTypes.FETCH,
     name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
-    postFetch: types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE,
+    postFetch: `${types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE}_PAGE${page}`,
     asyncCall: getCasinoPlayerGames,
     asyncCallData: { page, pageSize },
   };
