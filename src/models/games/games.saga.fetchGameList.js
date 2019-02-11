@@ -7,8 +7,10 @@ import {
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
   market as marketSelector,
+  types as handshakeTypes,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
+import { isFetchingStarted } from "Models/fetch";
 import { waitForSelector } from "Utils";
 import { fetchTopLists } from "./games.actions";
 import { types } from "./games.constants";
@@ -19,6 +21,13 @@ export function* fetchGameListSaga() {
   const currency = yield select(currencySelector);
   const market = yield select(marketSelector);
   const playerId = yield select(playerIdSelector);
+  const areGamesFetched = yield select(
+    isFetchingStarted(handshakeTypes.FETCH_GAMES_HANDSHAKE)
+  );
+
+  if (areGamesFetched) {
+    return;
+  }
 
   // Start by fetch the games handshake, this will later be used to supply
   // parameters for subsequent games api requests. Dispatch an action that will
