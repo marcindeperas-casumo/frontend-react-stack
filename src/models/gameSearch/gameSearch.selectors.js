@@ -20,11 +20,6 @@ export const isLoadingSelector = createSelector(
   prop("loading")
 );
 
-export const startIndexSelector = createSelector(
-  gameSearch,
-  prop("startIndex")
-);
-
 export const hasNoResultsSelector = createSelector(
   gameSearch,
   prop("hasNoResults")

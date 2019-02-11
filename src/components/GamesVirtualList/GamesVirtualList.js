@@ -63,8 +63,10 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
   setRowsAsLoaded = ({ startIndex, stopIndex }: Indexes) => {
     const { rowCount } = this.props;
+    // fix last row not loading
     const isLast = stopIndex + 1 === rowCount;
     const stop = isLast ? stopIndex + 1 : stopIndex;
+
     range(startIndex, stop).forEach(i => {
       this.setState(prevState => {
         return {
@@ -93,8 +95,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
     this.setRowsAsLoaded({ startIndex, stopIndex });
 
-    return new Promise<any>(resolve => {
-      // eslint-disable-next-line
+    return new Promise<Object>(resolve => {
       const promise = {
         startIndex,
         stopIndex,

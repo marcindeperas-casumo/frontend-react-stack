@@ -11,7 +11,6 @@ import {
   hasNoLatestPlayedSelector,
   clearSearch,
   listTypes,
-  startIndexSelector,
   gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { gameListSelector } from "Models/schema";
@@ -29,13 +28,12 @@ const GameSearchConnected = connect(
     );
 
     return {
+      latestPlayedGames,
+      popularGames,
       searchResults: gameSearchResults(state),
       loading: isLoadingSelector(state),
       hasNoResults: hasNoResultsSelector(state),
       hasNoLatestPlayed: hasNoLatestPlayedSelector(state),
-      latestPlayedGames,
-      popularGames,
-      startIndexCursor: startIndexSelector(state),
       latestPlayedGamesTitle: getField({
         slug: searchCMSPageSlug,
         field: "continue_playing",

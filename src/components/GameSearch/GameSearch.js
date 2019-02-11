@@ -21,7 +21,6 @@ type Props = {
   hasNoLatestPlayed: boolean,
   loading: boolean,
   hasNoResults: boolean,
-  startIndexCursor: number,
   startFetchCmsPage: () => void,
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
