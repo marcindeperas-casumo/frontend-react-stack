@@ -4,7 +4,7 @@ import MigrationComponent, {
 } from "Components/MigrationComponent";
 import { TopListsSkeleton } from "Components/TopLists";
 import LazyPortal from "Components/LazyPortal";
-import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 
 class App extends PureComponent {
@@ -33,7 +33,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpotList")}
-            fallback={<ListSkeleton />}
+            fallback={<GameListSkeleton />}
           />
         </MigrationComponent>
         {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
@@ -64,7 +64,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-games-search"
             loader={() => import("Components/GameSearch")}
-            fallback={<ListSkeleton />}
+            fallback={<GameListSkeleton />}
           />
         </MigrationComponent>
       </MigrationComponentManager>

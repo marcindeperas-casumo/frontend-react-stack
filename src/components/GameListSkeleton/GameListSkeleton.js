@@ -10,7 +10,7 @@ type Props = {
   titleYOffset?: string,
 };
 
-export default class ListSkeleton extends PureComponent<Props> {
+export default class GameListSkeleton extends PureComponent<Props> {
   render() {
     const {
       className = "",
@@ -34,8 +34,9 @@ export default class ListSkeleton extends PureComponent<Props> {
             />
           </Skeleton>
         )}
-        {Array.from(Array(items).keys()).map(item => (
+        {Array.from(Array(items).keys()).map(i => (
           <Skeleton
+            key={`gamelist-skeleton-${i}`}
             width="100%"
             height={75}
             preserveAspectRatio="none"
