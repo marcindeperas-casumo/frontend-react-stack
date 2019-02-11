@@ -14,7 +14,7 @@ type State = {
   query: string,
 };
 
-export default class GameSearch extends PureComponent<Props, State> {
+export default class GameSearchInput extends PureComponent<Props, State> {
   state = {
     query: "",
   };
