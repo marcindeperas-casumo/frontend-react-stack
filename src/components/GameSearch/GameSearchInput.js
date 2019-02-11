@@ -23,7 +23,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
     // eslint-disable-next-line fp/no-mutation
-    this.fetchSearchResults = debounce(this.fetchSearchResults, 1000);
+    this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
   }
 
   fetchSearchResults = () => {

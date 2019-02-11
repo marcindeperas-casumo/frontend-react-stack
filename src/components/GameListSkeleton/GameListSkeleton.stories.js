@@ -3,18 +3,18 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
-import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 
-const stories = storiesOf("ListSkeleton", module);
+const stories = storiesOf("GameListSkeleton", module);
 
 const ListSkeletonStories = () => (
   <MockStore>
-    <ListSkeleton />
+    <GameListSkeleton />
   </MockStore>
 );
 
 stories.add(
-  "ListSkeleton",
+  "GameListSkeleton",
   ListSkeletonStories,
   info({ text: "Displays the must drop jackpots skeleton" })
 );

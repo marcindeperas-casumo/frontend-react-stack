@@ -6,7 +6,7 @@ import GameSearchInput from "./GameSearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
-import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import List from "@casumo/cmp-list";
 import GamesVirtualList from "Components/GamesVirtualList";
 
@@ -36,7 +36,7 @@ export default class GameSearch extends PureComponent<Props> {
   }
 
   renderListSkeleton = (title: boolean = true) => (
-    <ListSkeleton title={title} titleYOffset="20" />
+    <GameListSkeleton title={title} titleYOffset="20" />
   );
 
   renderPopularGames = () => {
@@ -112,7 +112,7 @@ export default class GameSearch extends PureComponent<Props> {
 
     if (loading) {
       return (
-        <div className="u-padding-horiz--md u-padding-top--md">
+        <div className="u-padding-horiz--md">
           {this.renderListSkeleton(false)}
         </div>
       );
