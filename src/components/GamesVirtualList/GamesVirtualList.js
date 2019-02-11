@@ -41,7 +41,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
   componentDidUpdate() {
     const { games } = this.props;
-
     const isPromiseLoaded = ({ startIndex, stopIndex }) =>
       games[startIndex] && games[stopIndex];
     const loadedPromises = this.promises.list.filter(isPromiseLoaded);

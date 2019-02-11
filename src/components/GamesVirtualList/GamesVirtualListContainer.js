@@ -9,7 +9,7 @@ import {
 
 const GamesVirtualListConnected = connect(
   state => ({
-    rowCount: 1088, // selector
+    rowCount: 1089, // selector
     games: playerGamesSelector(state),
   }),
   dispatch => ({

@@ -34,11 +34,11 @@ const isPlayerGames = (val, key) => key.startsWith(listTypes.PLAYER_GAMES);
 
 export const playerGamesSelector = createSelector(
   gameListEntitiesSelector,
-  pickBy(isPlayerGames),
   compose(
     flatten,
     values,
-    pluck("games")
+    pluck("games"),
+    pickBy(isPlayerGames)
   )
 );
 
