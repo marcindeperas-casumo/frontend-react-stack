@@ -4,11 +4,11 @@ import type { Node } from "react";
 import { contains, intersection } from "ramda";
 
 type Props = {
-  activeKeys: String[],
+  activeKeys: string[],
   children: any,
 };
 
-class MigrationComponentManager extends PureComponent<Props> {
+export class MigrationComponentManager extends PureComponent<Props> {
   render() {
     return React.Children.toArray(this.props.children)
       .filter(React.isValidElement)
@@ -27,5 +27,3 @@ class MigrationComponentManager extends PureComponent<Props> {
       });
   }
 }
-
-export default MigrationComponentManager;

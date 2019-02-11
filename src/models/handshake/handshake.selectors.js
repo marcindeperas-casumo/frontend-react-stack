@@ -34,10 +34,14 @@ export const isAuthenticated = createSelector(
   session,
   complement(anyPass([isNil, isEmpty]))
 );
-export const playerId = createSelector(session, prop("id"));
-
-export const player = createSelector(players, playerId, (players, playerId) =>
-  prop(playerId)(players)
+export const playerId = createSelector(
+  session,
+  prop("id")
+);
+export const player = createSelector(
+  players,
+  playerId,
+  (players, playerId) => prop(playerId)(players)
 );
 
 // TODO: check if we need to fallback on the country guesser. Another option
@@ -61,7 +65,10 @@ export const currency = createSelector(
   )
 );
 
-export const market = createSelector(player, prop("market"));
+export const market = createSelector(
+  player,
+  prop("market")
+);
 
 export const gamesHandshakeSelector = createSelector(
   handshakeSelector,

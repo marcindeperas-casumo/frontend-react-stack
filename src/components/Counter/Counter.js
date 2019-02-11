@@ -17,21 +17,33 @@ type State = {
 
 export const REFRESH_RATE = 1000 / 30;
 
-const easeOutExpo = (t, b, c, d) =>
+/**
+ * From: http://www.gizma.com/easing/#expo2
+ * t: currentTime
+ * b: startValue
+ * c: changeInValue
+ * d: duration
+ */
+const easeOutExpo = (t: number, b: number, c: number, d: number) =>
   parseFloat((c * (-(2 ** ((-10 * t) / d)) + 1) * 1024) / 1023 + b);
 
 class Counter extends React.Component<Props, State> {
   setTimer: Function;
   timer: IntervalID | void;
-  easeFn: Function;
   countUp: Function;
   startTime: number;
+
+  static defaultProps = {
+    decimals: 0,
+    duration: 2500,
+    easeFn: easeOutExpo,
+    start: 0,
+  };
 
   constructor(props: Props) {
     super(props);
 
-    const { start = 0, decimals = 0 } = this.props;
-    this.easeFn = this.props.easeFn || easeOutExpo;
+    const { start, decimals } = this.props;
     this.startTime = new Date().getTime();
     this.state = {
       value: start.toFixed(decimals),
@@ -79,7 +91,7 @@ class Counter extends React.Component<Props, State> {
   }
 
   countUp() {
-    const { start = 0, end, duration = 2500, decimals = 0 } = this.props;
+    const { start, end, duration, decimals } = this.props;
 
     const time = new Date().getTime() - this.startTime;
     const difference = end - start;
@@ -88,7 +100,9 @@ class Counter extends React.Component<Props, State> {
     let result;
 
     if (time < duration) {
-      result = this.easeFn(time, start, difference, duration).toFixed(decimals);
+      result = this.props
+        .easeFn(time, start, difference, duration)
+        .toFixed(decimals);
     } else {
       result = end.toFixed(decimals);
       this.clearTimer();

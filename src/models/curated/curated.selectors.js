@@ -14,7 +14,9 @@ export const curatedSelector = slug =>
         prop("game")
       )(fields);
 
-      if (!gameId) return fields;
+      if (!gameId) {
+        return fields;
+      }
 
       const gameData = gameSelector(gameId)(state);
       const game = { gameId, gameData };

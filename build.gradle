@@ -15,8 +15,7 @@ apply plugin: 'casumo-release'
 
 tasks.sonarqube.doFirst {
     def version = "${project.version.endsWith("SNAPSHOT") ? project.version.replace("-SNAPSHOT", "") : "master"}"
-    def testFiles = "**/*.stories.js, **/__mocks__/*.js, **/*.test.js"
-
+    def testFiles = "**/*.stories.js, **/*.test.js"
     sonarqube {
         properties {
             property "sonar.host.url", "http://sonar.casumo.cloud/"
@@ -24,6 +23,7 @@ tasks.sonarqube.doFirst {
             property "sonar.projectName", "${project.name}"
             property "sonar.sources", "src"
             property "sonar.javascript.lcov.reportPaths", "coverage/lcov.info"
+            property "sonar.javascript.exclusions", "**/__mocks__/*.js"
             property "sonar.coverage.exclusions", testFiles
             property "sonar.cpd.exclusions", testFiles
 

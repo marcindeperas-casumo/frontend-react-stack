@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import MigrationComponent, {
   MigrationComponentManager,
-} from "../MigrationComponent/index";
+} from "Components/MigrationComponent";
 import { TopListsSkeleton } from "Components/TopLists";
 import LazyPortal from "Components/LazyPortal";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";

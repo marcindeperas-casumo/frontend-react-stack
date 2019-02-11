@@ -112,8 +112,34 @@ Writing tests is an even better way of documenting your code!
 
 The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=mobile-react-stack-poc).
 
-It is advised that all issues raised by Sonar be solved prior to any code merge!
+It is advised that all issues raised by Sonar be solved prior to any code merge. To help with that, using [SonarLint's VSCode extension](https://www.sonarlint.org/vscode/) is recommended. Instructions on setting up the extension can be found on the [Configuring SonarLint](#configuring-sonarlint-with-vscode) session below.
 
-For more information on how to configure, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project. 
+For more information on how to configure Sonar itself, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project. 
 
-Remember that, if necessary, rules can be changed to better suit the team! 
+### Configuring SonarLint with VSCode
+
+1. Install the SonarLint extension from the [Marketplace](https://marketplace.visualstudio.com/items?itemName=SonarSource.sonarlint-vscode).
+
+2. Configure your User and Workspace settings, as detailed below.
+
+#### User Settings
+
+```
+    "sonarlint.connectedMode.servers": [
+        {
+           "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
+           "serverUrl": "http://sonar.casumo.cloud", //http://sonar.casumo.cloud/account -> Security -> Generate token
+           "token": "<myToken>" //http://sonar.casumo.cloud/account -> Security -> Generate token. Make sure to have your own user set up first!
+        }
+    ],
+```
+
+#### Workspace Settings
+
+```
+    "sonarlint.connectedMode.project": {
+        "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
+        "projectKey": "mobile-react-stack-poc"
+      }
+```
+

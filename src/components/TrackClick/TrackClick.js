@@ -6,9 +6,9 @@ import { TrackContext } from "Components/TrackProvider";
 
 type Props = {
   children: Node,
-  eventName: string,
-  data: Object,
-  trackHandler: (eventName: string, data: ?Object) => void,
+  eventName?: string,
+  data?: Object,
+  trackHandler?: (eventName: string, data: ?Object) => void,
 };
 
 export default class TrackClick extends React.PureComponent<Props> {

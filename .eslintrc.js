@@ -1,4 +1,8 @@
-const path = require("path");
+// preset-react app requires you to have one of those set
+/* eslint-disable fp/no-mutation */
+process.env.BABEL_ENV = "test";
+process.env.NODE_ENV = "test";
+/* eslint-enable fp/no-mutation */
 
 module.exports = {
   parser: "babel-eslint",
@@ -18,8 +22,22 @@ module.exports = {
     "fp/no-rest-parameters": "off",
     "fp/no-this": "off",
     "fp/no-unused-expression": "off",
+    "fp/no-mutation": [
+      "error",
+      {
+        commonjs: true,
+        exceptions: [{ property: "fragments" }],
+      },
+    ],
     "prettier/prettier": "error",
-    "import/no-named-as-default-member": "off"
+    "import/no-unresolved": [
+      "error",
+      {
+        commonjs: true,
+        caseSensitive: true,
+      },
+    ],
+    curly: ["error", "all"],
   },
   overrides: [
     {
@@ -34,10 +52,11 @@ module.exports = {
     flowtype: {
       onlyFilesWithFlowAnnotation: false,
     },
+    react: {
+      version: "detect",
+    },
     "import/resolver": {
-      webpack: {
-        config: path.resolve("./config/webpack.config.dev.js"),
-      },
+      "babel-module": {},
     },
   },
 };
