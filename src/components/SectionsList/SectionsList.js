@@ -1,9 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
-import List from "Components/List";
+import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
 import { sort } from "ramda";
-import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 
 type Props = {
   /** The list of game ids. */
@@ -20,7 +20,7 @@ export default class SectionsList extends PureComponent<Props> {
 
     // add a skeleton, change conditional
     if (!sectionsList.length) {
-      return <ListSkeleton titleYOffset="20" />;
+      return <GameListSkeleton titleYOffset="20" />;
     }
 
     return (

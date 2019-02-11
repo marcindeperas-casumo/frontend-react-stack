@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import GameRow from "Components/GameRow";
 import List from "@casumo/cmp-list";
-import ListSkeleton from "Components/ListSkeleton/ListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import Text from "@casumo/cmp-text";
 
 type Props = {
@@ -15,7 +15,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
     const { ids, isLoaded, title } = this.props;
 
     return !isLoaded ? (
-      <ListSkeleton
+      <GameListSkeleton
         className="u-padding--md"
         titleXOffset="100"
         titleYOffset="10"
