@@ -104,7 +104,7 @@ export default class GameSearch extends PureComponent<Props> {
   renderResults = () => {
     const { loading, hasNoResults, searchResults, query } = this.props;
 
-    if (!searchResults.length && !loading) {
+    if (!searchResults.length && !loading && !hasNoResults) {
       return (
         <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
       );
