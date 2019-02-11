@@ -1,0 +1,38 @@
+@import "cudl-colors";
+@import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-spacers);
+@import "cudl-spacers";
+@include cudl-reset-compile(cudl-sass-spacers);
+
+.c-modal {
+  bottom: 0;
+  left: 0;
+  overflow: hidden;
+  position: fixed;
+  right: 0;
+  top: 0;
+  z-index: 100;
+}
+
+.c-modal--absolute {
+  position: absolute;
+}
+
+.c-modal__content {
+  overflow-y: scroll;
+}
+
+.c-modal__close {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.c-modal__top-bar {
+  background: cudl-palette(grey, "dark-3");
+  color: #fff;
+}
+
+.t-background-noel-grey {
+  background: #1e2121;
+}
