@@ -36,14 +36,21 @@ export default class ListSkeleton extends PureComponent<Props> {
         )}
         {Array.from(Array(items).keys()).map(item => (
           <Skeleton
-            width="375"
-            height="80"
-            key={`must-drop-skeleton-${item}`}
-            className="u-display--block"
+            width="100%"
+            height={75}
+            preserveAspectRatio="none"
+            viewBox={null}
           >
-            <rect x="0" y="0" rx="0" ry="0" width="70" height="70" />
-            <rect x="100" y="15" rx="3" ry="3" width="200" height="15" />
-            <rect x="100" y="40" rx="3" ry="3" width="150" height="15" />
+            <rect x="0" y="8" rx="16" ry="16" width="64" height="64" />
+            <rect x="80" y="32" rx="3" ry="3" width="150" height="16" />
+            <rect
+              x="calc(100% - 40)"
+              y="28"
+              rx="3"
+              ry="3"
+              width="24"
+              height="24"
+            />
           </Skeleton>
         ))}
       </div>
