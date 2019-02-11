@@ -12,7 +12,7 @@ describe("GameSearch", () => {
       />
     );
 
-    expect(rendered.find("GameSearch")).toHaveLength(1);
+    expect(rendered.find("GameSearchInput")).toHaveLength(1);
   });
 
   test("should render a skeleton if loading is equal to true", () => {
