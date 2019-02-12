@@ -1,5 +1,5 @@
 import schemaReducer from "./schema.reducer";
-import { updateEntity } from "./schema.actions";
+import { updateEntity, mergeEntity } from "./schema.actions";
 
 describe("Models/Schema/schemaReducer", () => {
   test("should update an entity ", () => {
@@ -22,31 +22,17 @@ describe("Models/Schema/schemaReducer", () => {
     });
   });
 
-  test("should merge entities and keep original state key", () => {
-    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
+  test("should update entities", () => {
+    const initialState = { game: { foo: { slug: "foo", bar: 1 } } };
     const state = schemaReducer(
       initialState,
       updateEntity({ game: { foo: { slug: "foo", bar: 2 } } })
     );
 
-    expect(state).toMatchObject({
-      game: { foo: { slug: "foo", bar: 2, baz: 3 } },
-    });
+    expect(state).toMatchObject({ game: { foo: { slug: "foo", bar: 2 } } });
   });
 
-  test("should merge entities and remove original state key", () => {
-    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
-    const state = schemaReducer(
-      initialState,
-      updateEntity({ game: { foo: { slug: "foo", bar: 2, baz: null } } })
-    );
-
-    expect(state).toMatchObject({
-      game: { foo: { slug: "foo", bar: 2 } },
-    });
-  });
-
-  test("should merge multiple entities", () => {
+  test("should update multiple entities", () => {
     const initialState = {
       game: { foo: { slug: "foo", bar: 1 } },
       liveTable: {
@@ -69,6 +55,30 @@ describe("Models/Schema/schemaReducer", () => {
         fooId: { tableId: "fooId", foo: "bar" },
         barId: { tableId: "barId", foo: "bar2" },
       },
+    });
+  });
+
+  test("should merge entities and keep original key", () => {
+    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
+    const state = schemaReducer(
+      initialState,
+      mergeEntity({ game: { foo: { slug: "foo", bar: 2 } } })
+    );
+
+    expect(state).toMatchObject({
+      game: { foo: { slug: "foo", bar: 2, baz: 3 } },
+    });
+  });
+
+  test("should merge entities and remove original key", () => {
+    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
+    const state = schemaReducer(
+      initialState,
+      mergeEntity({ game: { foo: { slug: "foo", bar: 2, baz: null } } })
+    );
+
+    expect(state).toMatchObject({
+      game: { foo: { slug: "foo", bar: 2 } },
     });
   });
 });

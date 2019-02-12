@@ -12,6 +12,16 @@ const entityReducerFactory = entityKey => (state = {}, action) => {
       if (!action.payload[entityKey]) {
         return state;
       }
+
+      return {
+        ...state,
+        ...action.payload[entityKey],
+      };
+    }
+    case types.MERGE_ENTITY: {
+      if (!action.payload[entityKey]) {
+        return state;
+      }
       return mergeDeepRight(state, action.payload[entityKey]);
     }
     default:
