@@ -29,10 +29,13 @@ import {
 } from "Models/cometd";
 import {
   types as gameSearchTypes,
-  fetchPlayerGamesSaga,
   gameSearchSaga,
   clearSearchSaga,
 } from "Models/gameSearch";
+import {
+  types as playerGamesTypes,
+  fetchPlayerGamesSaga,
+} from "Models/playerGames";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -70,7 +73,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    gameSearchTypes.GAME_SEARCH_FETCH_PLAYER_GAMES,
+    playerGamesTypes.PLAYER_GAMES_FETCH,
     fetchPlayerGamesSaga
   );
   yield fork(takeEvery, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga);

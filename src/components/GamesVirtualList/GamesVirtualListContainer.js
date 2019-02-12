@@ -5,7 +5,7 @@ import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import {
   playerGamesSelector,
   preloadFetchPlayerGames,
-} from "Models/gameSearch";
+} from "Models/playerGames";
 
 const GamesVirtualListConnected = connect(
   state => ({

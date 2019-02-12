@@ -7,13 +7,13 @@ import {
 } from "Models/handshake";
 import {
   types,
-  listTypes,
   fetchLatestPlayedGames,
   fetchLatestPlayedSaga,
   noLatestPlayedAction,
   fetchPopularGamesSaga,
   fetchGamesByProviderGameNames,
 } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
   const gen = cloneableGenerator(fetchLatestPlayedSaga)();
@@ -79,7 +79,7 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
 
     const gameListEntity = {
       [ENTITY_KEYS.GAME_LIST]: {
-        id: listTypes.LATEST_PLAYED,
+        id: GAME_LIST_IDS.LATEST_PLAYED,
         games: result.games,
       },
     };

@@ -1,11 +1,11 @@
 import { call, put } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { listTypes } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 export function* clearSearchSaga() {
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
-      id: listTypes.GAME_SEARCH,
+      id: GAME_LIST_IDS.GAME_SEARCH,
       games: [],
     },
   });

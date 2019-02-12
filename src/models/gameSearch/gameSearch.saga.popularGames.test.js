@@ -3,10 +3,10 @@ import { select, put, take, call } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import {
   types,
-  listTypes,
   fetchMostPopularGames,
   fetchPopularGamesSaga,
 } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/GameSearch/Saga", () => {
   test("fetchPopularGamesSaga", () => {
@@ -14,7 +14,7 @@ describe("Models/GameSearch/Saga", () => {
 
     const platform = "mobile";
     const country = "gb";
-    const id = listTypes.POPULAR_GAMES;
+    const id = GAME_LIST_IDS.POPULAR_GAMES;
     const pageSize = 50;
 
     expect(gen.next().value).toEqual(select(countrySelector));

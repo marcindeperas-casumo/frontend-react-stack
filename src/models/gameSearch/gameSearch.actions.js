@@ -1,33 +1,11 @@
 import { types } from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
-import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
 import {
   getGameLists,
   getQuerySearch,
   getLatestPlayedGames,
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
-
-export const preloadFetchPlayerGames = ({ startIndex, pageSize }) => ({
-  type: types.GAME_SEARCH_FETCH_PLAYER_GAMES,
-  startIndex,
-  pageSize,
-});
-
-export const fetchPlayerGames = ({ page, pageSize }) => {
-  return {
-    type: fetchTypes.FETCH,
-    name: types.GAME_SEARCH_FETCH_PLAYER_GAMES_START,
-    postFetch: `${types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE}_PAGE${page}`,
-    asyncCall: getCasinoPlayerGames,
-    asyncCallData: { page, pageSize },
-  };
-};
-
-export const updateStartIndex = startIndex => ({
-  type: types.GAME_SEARCH_UPDATE_START_INDEX,
-  startIndex,
-});
 
 export const initFetchQuerySearch = q => ({
   type: types.GAME_SEARCH_FETCH,

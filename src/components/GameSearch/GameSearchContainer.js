@@ -4,28 +4,29 @@ import { connect } from "react-redux";
 import GameSearch from "Components/GameSearch/GameSearch";
 import {
   gameSearchResults,
-  preloadFetchPlayerGames,
   initFetchQuerySearch,
   isLoadingSelector,
   hasNoResultsSelector,
   hasNoLatestPlayedSelector,
   clearSearch,
-  listTypes,
   gameSearchQuerySelector,
 } from "Models/gameSearch";
+import { preloadFetchPlayerGames } from "Models/playerGames";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 import { getField, fetchPageBySlug } from "Models/cms";
+import { GAME_LIST_IDS } from "Src/constants";
+
 const searchCMSPageSlug = "mobile.games-search";
 
 const GameSearchConnected = connect(
   state => {
     const { games: latestPlayedGames } = gameListSelector(
-      listTypes.LATEST_PLAYED
+      GAME_LIST_IDS.LATEST_PLAYED
     )(state);
-    const { games: popularGames } = gameListSelector(listTypes.POPULAR_GAMES)(
-      state
-    );
+    const { games: popularGames } = gameListSelector(
+      GAME_LIST_IDS.POPULAR_GAMES
+    )(state);
 
     return {
       latestPlayedGames,

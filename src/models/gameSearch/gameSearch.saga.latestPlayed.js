@@ -7,12 +7,12 @@ import {
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   types,
-  listTypes,
   fetchLatestPlayedGames,
   fetchGamesByProviderGameNames,
   fetchPopularGamesSaga,
   noLatestPlayedAction,
 } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 export function* fetchLatestPlayedSaga(action) {
   const platform = "mobile";
@@ -59,7 +59,7 @@ export function* fetchLatestPlayedSaga(action) {
   // save the gameList
   const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
-      id: listTypes.LATEST_PLAYED,
+      id: GAME_LIST_IDS.LATEST_PLAYED,
       games,
     },
   });

@@ -3,12 +3,12 @@ import { country as countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   types,
-  listTypes,
   fetchLatestPlayedSaga,
   fetchQuerySearch,
   noResultsAction,
   clearSearch,
 } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 export function* gameSearchSaga(action) {
   const platform = "mobile";
@@ -36,7 +36,7 @@ export function* gameSearchSaga(action) {
   // save search results
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
-      id: listTypes.GAME_SEARCH,
+      id: GAME_LIST_IDS.GAME_SEARCH,
       games,
     },
   });

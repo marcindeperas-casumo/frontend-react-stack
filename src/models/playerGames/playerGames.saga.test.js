@@ -2,12 +2,12 @@ import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
 import {
   types,
-  listTypes,
   fetchPlayerGames,
   fetchPlayerGamesSaga,
-} from "Models/gameSearch";
+} from "Models/playerGames";
+import { GAME_LIST_IDS } from "Src/constants";
 
-describe("Models/GameSearch/Saga", () => {
+describe("Models/PlayerGames/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
     const page = 0;
     const pageSize = 0;
@@ -21,12 +21,12 @@ describe("Models/GameSearch/Saga", () => {
     );
 
     expect(generator.next().value).toEqual(
-      take(`${types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE}_PAGE0`)
+      take(`${types.PLAYER_GAMES_FETCH_COMPLETE}_PAGE0`)
     );
 
     const response = ["foo"];
     const gameList = {
-      id: `${listTypes.PLAYER_GAMES}Page${page}`,
+      id: `${GAME_LIST_IDS.PLAYER_GAMES}Page${page}`,
       games: response,
     };
 

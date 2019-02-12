@@ -4,13 +4,13 @@ import { select, put, take, call } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import {
   types,
-  listTypes,
   fetchQuerySearch,
   gameSearchSaga,
   clearSearch,
   fetchLatestPlayedSaga,
   noResultsAction,
 } from "Models/gameSearch";
+import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/GameSearch/Saga", () => {
   const country = "gb";
@@ -69,7 +69,7 @@ describe("Models/GameSearch/Saga", () => {
     const responseHit = { games: ["foo"] };
     const gameListEntity = {
       [ENTITY_KEYS.GAME_LIST]: {
-        id: listTypes.GAME_SEARCH,
+        id: GAME_LIST_IDS.GAME_SEARCH,
         games: responseHit.games,
       },
     };
