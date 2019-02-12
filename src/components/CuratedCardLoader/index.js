@@ -1,3 +1,3 @@
 export {
   default,
-} from "Components/CuratedCardLoader/CreatedCardLoaderContainer";
+} from "Components/CuratedCardLoader/CuratedCardLoaderContainer";

@@ -1,3 +1,5 @@
+/* eslint-disable fp/no-mutation */
+// @flow
 import React, { PureComponent } from "react";
 import MigrationComponent, {
   MigrationComponentManager,
@@ -10,10 +12,44 @@ import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 import DataProvider from "Components/DataProvider";
 
+type props = {
+  onAppStarted: () => void,
+  subscribeToPlayerUpdates: string => void,
+  unsubscribeToPlayerUpdates: string => void,
+};
+
 class App extends PureComponent {
+  constructor() {
+    super();
+    this.subscribe = this.subscribe.bind(this);
+  }
   componentDidMount() {
     const { onAppStarted } = this.props;
+
     onAppStarted();
+    this.subscribe();
+  }
+
+  componentWillUnmount() {
+    const { playerId, unsubscribeToPlayerUpdates } = this.props;
+
+    unsubscribeToPlayerUpdates(playerId);
+  }
+
+  componentDidUpdate({ playerId: oldPlayerId }) {
+    const wasPlayerIdEmpty = !oldPlayerId;
+
+    if (wasPlayerIdEmpty) {
+      this.subscribe();
+    }
+  }
+
+  subscribe() {
+    const { playerId, subscribeToPlayerUpdates } = this.props;
+
+    if (playerId) {
+      subscribeToPlayerUpdates(playerId);
+    }
   }
 
   render() {

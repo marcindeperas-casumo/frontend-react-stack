@@ -1,5 +1,5 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
-import { types as appTypes, appSaga } from "Models/app";
+import { types as appTypes, appSaga, handshakeUpdateSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import {
@@ -69,6 +69,11 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.LIVE_CASINO_TABLE),
     liveCasinoUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    takeChannel(cometdChannels.PLAYER),
+    handshakeUpdateSaga
   );
   yield fork(
     takeEvery,
