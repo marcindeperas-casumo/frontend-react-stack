@@ -21,13 +21,15 @@ describe("Models/Games/Sagas", () => {
       const market = "ROW";
       const playerId = "playerId-1";
       const handshake = { foo: "bar" };
+      const areGamesFetched = false;
 
       generator.next();
       generator.next(country);
       generator.next(currency);
       generator.next(market);
+      generator.next(playerId);
 
-      expect(generator.next(playerId).value).toEqual(
+      expect(generator.next(areGamesFetched).value).toEqual(
         put(fetchGamesHandshake({ country }))
       );
 
@@ -62,6 +64,25 @@ describe("Models/Games/Sagas", () => {
       expect(generator.next({ entities }).value).toEqual(
         put(updateEntity(entities))
       );
+    });
+
+    test("does not fetch anything if game list is already being fetched", () => {
+      const generator = fetchGameListSaga();
+      const country = "mt";
+      const currency = "EUR";
+      const market = "ROW";
+      const playerId = "playerId-1";
+      const areGamesFetched = true;
+
+      generator.next();
+      generator.next(country);
+      generator.next(currency);
+      generator.next(market);
+      generator.next(playerId);
+
+      const lastYieldedValue = generator.next(areGamesFetched);
+
+      expect(lastYieldedValue.done).toBe(true);
     });
   });
 });
