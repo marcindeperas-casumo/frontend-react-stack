@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
+import GameRowSkeleton from "Components/GameRowSkeleton";
 
 type Props = {
   className?: string,
@@ -8,6 +9,7 @@ type Props = {
   items?: number,
   titleXOffset?: string,
   titleYOffset?: string,
+  gameRowHeight?: string,
 };
 
 export default class GameListSkeleton extends PureComponent<Props> {
@@ -18,6 +20,7 @@ export default class GameListSkeleton extends PureComponent<Props> {
       items = 8,
       titleXOffset = "0",
       titleYOffset = "0",
+      gameRowHeight = "75px",
     } = this.props;
 
     return (
@@ -35,24 +38,13 @@ export default class GameListSkeleton extends PureComponent<Props> {
           </Skeleton>
         )}
         {Array.from(Array(items).keys()).map(i => (
-          <Skeleton
+          <div
             key={`gamelist-skeleton-${i}`}
-            width="100%"
-            height={75}
-            preserveAspectRatio="none"
-            viewBox={null}
+            className="u-margin-vert"
+            style={{ height: gameRowHeight }}
           >
-            <rect x="0" y="8" rx="16" ry="16" width="64" height="64" />
-            <rect x="80" y="32" rx="3" ry="3" width="150" height="16" />
-            <rect
-              x="calc(100% - 40)"
-              y="28"
-              rx="3"
-              ry="3"
-              width="24"
-              height="24"
-            />
-          </Skeleton>
+            <GameRowSkeleton />
+          </div>
         ))}
       </div>
     );
