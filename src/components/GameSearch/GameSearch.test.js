@@ -24,7 +24,7 @@ describe("GameSearch", () => {
       />
     );
 
-    expect(rendered.find("ListSkeleton")).toHaveLength(1);
+    expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
 
   test("should render a not found component and lastPlayedGames if hasNoResults is equal true", () => {
