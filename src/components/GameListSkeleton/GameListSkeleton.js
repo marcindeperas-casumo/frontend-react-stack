@@ -4,11 +4,17 @@ import Skeleton from "@casumo/cmp-skeleton";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
 type Props = {
+  /* Additional css classes to add to the component **/
   className?: string,
+  /* Whether the list has a title or not **/
   title?: boolean,
+  /* The number of <GameRowSkeleton /> components to show **/
   items?: number,
+  /* X axis offset **/
   titleXOffset?: string,
+  /* Y axis offset **/
   titleYOffset?: string,
+  /* The height of every <GameRowSkeleton /> **/
   gameRowHeight?: string,
 };
 
