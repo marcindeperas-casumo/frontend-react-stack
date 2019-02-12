@@ -5,8 +5,10 @@
 // remove compile block incase needed later
 @include cudl-reset-compile(cudl-sass-colors);
 
-.c-search-input {
+.c-search-input,
+.c-search-input:focus {
   border: 0;
+  outline: none;
 }
 
 .c-search-input::placeholder {
@@ -15,8 +17,6 @@
 
 .c-search-input__clear-button {
   align-items: center;
-  border-radius: 50%;
-  color: #fff;
   display: flex;
   height: 16px;
   padding: 2px;
