@@ -7,12 +7,10 @@ import Modal from "./Modal";
 
 const stories = storiesOf("Modal", module);
 
-const customHeader = (
-  <h1
-    style={{ fontFamily: "Comic Sans MS", color: "red", background: "yellow" }}
-  >
-    UGLY AF
-  </h1>
+const customContent = (
+  <div className="t-background-green t-color-white u-text-align-center u-padding">
+    <h4>Custom AF</h4>
+  </div>
 );
 
 const defaultProps = {
@@ -48,7 +46,8 @@ const renderModal = (props = {}) => () => (
   </div>
 );
 
-stories.add("Default", renderModal({ dismissType: "none" }));
+stories.add("Default", renderModal());
 stories.add("With Back Button", renderModal({ dismissType: "back" }));
-stories.add("With Close Button", renderModal());
-stories.add("With Custom Header", renderModal({ header: customHeader }));
+stories.add("With No Button", renderModal({ dismissType: "none" }));
+stories.add("With Custom Header", renderModal({ header: customContent }));
+stories.add("With Custom Footer", renderModal({ footer: customContent }));

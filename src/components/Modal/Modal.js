@@ -3,7 +3,6 @@ import * as React from "react";
 import classNames from "classnames";
 
 import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
-import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 
 import "./Modal.scss";
@@ -19,9 +18,25 @@ type Props = {
   dismissType?: DismissType,
 };
 
-const visibleWhen = condition => ({
-  style: { visibility: condition ? "visible" : "hidden" },
-});
+type DismissButtonProps = {
+  children: any,
+  onClick: () => void,
+  isVisible: boolean,
+};
+
+export const DismissButton = ({
+  children,
+  onClick,
+  isVisible,
+}: DismissButtonProps) => (
+  <div
+    className="t-color-white t-background-grey-dark-4 t-border-r--circle u-padding--md"
+    onClick={onClick}
+    style={{ visibility: isVisible ? "visible" : "hidden" }}
+  >
+    {children}
+  </div>
+);
 
 export default class Modal extends React.Component<Props> {
   static defaultProps = {
@@ -35,24 +50,24 @@ export default class Modal extends React.Component<Props> {
     return (
       <Flex.Item className="c-modal__top-bar o-flex--1 u-padding">
         <Flex className="u-padding--sm" align="center">
-          <Flex.Item {...visibleWhen(this.props.dismissType === "back")}>
-            <Button
-              className="u-padding--md t-background-noel-grey"
+          <Flex.Item>
+            <DismissButton
               onClick={this.props.onClose}
+              isVisible={this.props.dismissType === "back"}
             >
               <ArrowLeftIcon />
-            </Button>
+            </DismissButton>
           </Flex.Item>
-          <Flex.Block className="o-flex-justify--center u-font-weight-bold">
+          <Flex.Block className="c-modal__header o-flex-justify--center u-font-weight-bold">
             {this.props.header || null}
           </Flex.Block>
-          <Flex.Item {...visibleWhen(this.props.dismissType === "close")}>
-            <Button
-              className="u-padding--md t-background-noel-grey"
+          <Flex.Item>
+            <DismissButton
               onClick={this.props.onClose}
+              isVisible={this.props.dismissType === "close"}
             >
               <CrossIcon />
-            </Button>
+            </DismissButton>
           </Flex.Item>
         </Flex>
       </Flex.Item>
@@ -92,7 +107,9 @@ export default class Modal extends React.Component<Props> {
         <Flex.Block className="c-modal__content">
           {this.props.children}
         </Flex.Block>
-        <Flex.Block>{this.props.footer || null}</Flex.Block>
+        <Flex.Block className="c-modal__footer">
+          {this.props.footer || null}
+        </Flex.Block>
       </Flex>
     );
   }
