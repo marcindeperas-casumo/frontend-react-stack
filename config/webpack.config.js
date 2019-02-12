@@ -332,6 +332,12 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
                 sourceMaps: false,
               },
             },
+            // "graphql-tag" loader loaded graphql schema files as executable schemas
+            {
+              test: /\.(graphql|gql)$/,
+              loader: require.resolve("graphql-tag/loader"),
+              include: path.resolve(__dirname, "../"),
+            },
             // "sass" loader transpiles sass/scss files to css
             // "postcss" loader applies autoprefixer to our CSS.
             // "css" loader resolves paths in CSS and adds assets as dependencies.
