@@ -1,3 +1,4 @@
+import { mergeDeepRight } from "ramda";
 import { combineReducers } from "redux";
 import { types, ENTITY_KEYS } from "./schema.constants";
 
@@ -11,11 +12,7 @@ const entityReducerFactory = entityKey => (state = {}, action) => {
       if (!action.payload[entityKey]) {
         return state;
       }
-
-      return {
-        ...state,
-        ...action.payload[entityKey],
-      };
+      return mergeDeepRight(state, action.payload[entityKey]);
     }
     default:
       return state;

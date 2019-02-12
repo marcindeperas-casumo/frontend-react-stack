@@ -22,14 +22,28 @@ describe("Models/Schema/schemaReducer", () => {
     });
   });
 
-  test("should merge entities", () => {
-    const initialState = { game: { foo: { slug: "foo", bar: 1 } } };
+  test("should merge entities and keep original state key", () => {
+    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
     const state = schemaReducer(
       initialState,
       updateEntity({ game: { foo: { slug: "foo", bar: 2 } } })
     );
 
-    expect(state).toMatchObject({ game: { foo: { slug: "foo", bar: 2 } } });
+    expect(state).toMatchObject({
+      game: { foo: { slug: "foo", bar: 2, baz: 3 } },
+    });
+  });
+
+  test("should merge entities and remove original state key", () => {
+    const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
+    const state = schemaReducer(
+      initialState,
+      updateEntity({ game: { foo: { slug: "foo", bar: 2, baz: null } } })
+    );
+
+    expect(state).toMatchObject({
+      game: { foo: { slug: "foo", bar: 2 } },
+    });
   });
 
   test("should merge multiple entities", () => {
