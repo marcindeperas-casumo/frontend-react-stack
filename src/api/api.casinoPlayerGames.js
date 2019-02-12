@@ -6,3 +6,7 @@ export const getCasinoPlayerGames = ({ page = 1, pageSize = 100 }) => {
     pageSize,
   });
 };
+
+export const getCasinoPlayerGamesCount = () => {
+  return http.get("/api/casino-games/games/count");
+};

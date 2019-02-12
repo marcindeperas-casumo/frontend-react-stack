@@ -15,6 +15,13 @@ import { GAME_LIST_IDS } from "Src/constants";
 
 const isPlayerGames = (val, key) => key.startsWith(GAME_LIST_IDS.PLAYER_GAMES);
 
+const playerGames = state => state.playerGames;
+
+export const playerGamesCountSelector = createSelector(
+  playerGames,
+  prop("count")
+);
+
 export const playerGamesSelector = createSelector(
   gameListEntitiesSelector,
   compose(
