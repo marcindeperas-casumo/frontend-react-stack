@@ -1,8 +1,3 @@
-@import "cudl-compile";
-@include cudl-prevent-compile(cudl-sass-spacers);
-@import "cudl-spacers";
-@include cudl-reset-compile(cudl-sass-spacers);
-
 @import "~Styles/_settings.zindex";
 
 .c-modal {
