@@ -16,7 +16,7 @@ export const gameSearchReducer = (state, action) => {
         ...state,
         loading: true,
         hasNoResults: false,
-        query: action.q,
+        query: action.query,
       };
     }
 
@@ -49,7 +49,7 @@ export const gameSearchReducer = (state, action) => {
       };
     }
 
-    default:
+    default: {
       if (type.startsWith(types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE)) {
         return {
           ...state,
@@ -57,6 +57,7 @@ export const gameSearchReducer = (state, action) => {
         };
       }
       return state;
+    }
   }
 };
 

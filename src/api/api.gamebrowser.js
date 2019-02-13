@@ -28,14 +28,14 @@ export const getGameLists = (
   });
 
 export const getQuerySearch = (
-  { platform, country, id, variant, page = 0, pageSize = 5, q },
+  { platform, country, id, variant, page = 0, pageSize = 5, query },
   http = defaultHttp
 ) =>
   http.get(`${URL.GAME_SEARCH}/${platform}/${country}`, {
     variant,
     page,
     pageSize,
-    q,
+    q: query,
   });
 
 export const getLatestPlayedGames = (

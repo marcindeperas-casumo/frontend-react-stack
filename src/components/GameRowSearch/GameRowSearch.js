@@ -18,7 +18,7 @@ type Props = {
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
   /** The search query */
-  query?: string,
+  query: string,
   /** Whether highlight the search query on the game title or not  */
   highlightSearchQuery?: boolean,
 };
@@ -50,15 +50,11 @@ const TrackMoreIcon = ({ name, slug }) => (
 export default class GameRowSearch extends PureComponent<Props> {
   static defaultProps = {
     query: "",
+    highlightSearchQuery: false,
   };
 
   render() {
-    const {
-      game,
-      onLaunchGame,
-      query,
-      highlightSearchQuery = false,
-    } = this.props;
+    const { game, onLaunchGame, query, highlightSearchQuery } = this.props;
     const { name, logo, logoBackground, slug } = game;
 
     return (

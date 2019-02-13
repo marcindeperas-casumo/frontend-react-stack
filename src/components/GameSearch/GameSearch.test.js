@@ -7,7 +7,7 @@ describe("GameSearch", () => {
     const rendered = shallow(
       <GameSearch
         searchResults={[]}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={true}
       />
     );
@@ -19,7 +19,7 @@ describe("GameSearch", () => {
     const rendered = shallow(
       <GameSearch
         searchResults={[]}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={true}
       />
     );
@@ -32,7 +32,7 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={[""]}
         latestPlayedGames={["starburst"]}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={false}
         hasNoResults={true}
       />
@@ -47,7 +47,7 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={[]}
         latestPlayedGames={["starburst"]}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={false}
         hasNoResults={false}
       />
@@ -61,13 +61,13 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={["I", "am", "search", "results"]}
         latestPlayedGames={["starburst"]}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={false}
         hasNoResults={false}
       />
     );
 
-    expect(rendered.find("List")).toHaveLength(1); // this will become expect(rendered.find("GamesVirtualListContainer")).toHaveLength(1);
+    expect(rendered.find("List")).toHaveLength(1);
   });
 
   test("should render 1 search result and popular games if direct hit and player has no latest played games history", () => {
@@ -78,7 +78,7 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={["I"]}
         popularGames={popularGames}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={false}
         hasNoResults={false}
         hasNoLatestPlayed={true}
@@ -86,7 +86,7 @@ describe("GameSearch", () => {
       />
     );
 
-    expect(rendered.find("List")).toHaveLength(1); // this will become expect(rendered.find("GamesVirtualListContainer")).toHaveLength(1);
+    expect(rendered.find("List")).toHaveLength(1);
     expect(rendered.find("SectionList")).toHaveLength(1);
     expect(rendered.find("SectionList").prop("sections")).toEqual([
       { data: popularGames, title: popularGamesTitle },
@@ -101,7 +101,7 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={["I"]}
         latestPlayedGames={latestPlayedGames}
-        startFetchCmsPage={() => {}}
+        fetchPageBySlug={() => {}}
         loading={false}
         hasNoResults={false}
         hasNoLatestPlayed={false}
@@ -109,7 +109,7 @@ describe("GameSearch", () => {
       />
     );
 
-    expect(rendered.find("List")).toHaveLength(1); // this will become expect(rendered.find("GamesVirtualListContainer")).toHaveLength(1);
+    expect(rendered.find("List")).toHaveLength(1);
     expect(rendered.find("SectionList")).toHaveLength(1);
     expect(rendered.find("SectionList").prop("sections")).toEqual([
       { data: latestPlayedGames, title: latestPlayedGamesTitle },

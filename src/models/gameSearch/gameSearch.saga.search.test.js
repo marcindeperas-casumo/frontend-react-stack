@@ -17,7 +17,7 @@ describe("Models/GameSearch/Saga", () => {
   const platform = "mobile";
 
   test("gameSearchSaga no query", () => {
-    const action = { q: "" };
+    const action = { query: "" };
     const gen = gameSearchSaga(action);
 
     expect(gen.next().value).toEqual(select(countrySelector));
@@ -27,7 +27,7 @@ describe("Models/GameSearch/Saga", () => {
   });
 
   test("gameSearchSaga query just spaces", () => {
-    const action = { q: "    " };
+    const action = { query: "    " };
     const gen = gameSearchSaga(action);
 
     expect(gen.next().value).toEqual(select(countrySelector));
@@ -37,7 +37,7 @@ describe("Models/GameSearch/Saga", () => {
   });
 
   test("gameSearchSaga", () => {
-    const action = { q: "startburst" };
+    const action = { query: "startburst" };
     const gen = cloneableGenerator(gameSearchSaga)(action);
 
     expect(gen.next().value).toEqual(select(countrySelector));
@@ -47,7 +47,7 @@ describe("Models/GameSearch/Saga", () => {
         fetchQuerySearch({
           platform,
           country,
-          q: action.q,
+          query: action.query,
         })
       )
     );

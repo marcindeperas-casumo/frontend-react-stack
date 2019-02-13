@@ -16,7 +16,7 @@ describe("Models/GameSearch/Actions", () => {
     test("returns an action with the correct type and query", () => {
       expect(action).toEqual({
         type: types.GAME_SEARCH_FETCH,
-        q: "hi",
+        query: "hi",
       });
     });
   });
@@ -32,8 +32,8 @@ describe("Models/GameSearch/Actions", () => {
   describe("fetchQuerySearch()", () => {
     const platform = "mobile";
     const country = "gb";
-    const q = "query";
-    const action = fetchQuerySearch({ platform, country, q });
+    const query = "query";
+    const action = fetchQuerySearch({ platform, country, query });
 
     test("init api fetch", () => {
       expect(action).toMatchObject({
@@ -53,7 +53,7 @@ describe("Models/GameSearch/Actions", () => {
     });
 
     test("passes params to the fetcher function", () => {
-      expect(action.asyncCallData).toEqual({ platform, country, q });
+      expect(action.asyncCallData).toEqual({ platform, country, query });
     });
   });
 

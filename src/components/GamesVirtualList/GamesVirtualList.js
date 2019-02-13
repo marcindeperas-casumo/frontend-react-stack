@@ -14,12 +14,12 @@ type Props = {
   /** The array of games slugs to render within the AllGamesList */
   games: string[],
   /** The function that triggers the action that fetches the next batch of games */
-  fetchNextPage: Function,
+  preloadFetchPlayerGames: Function,
+  preloadFetchPlayerGamesCount: Function,
   /** The total number of rows */
   rowCount: number,
   /** The element to render as a row  */
   renderItem: Function,
-  preloadPlayerGamesCount: Function,
 };
 
 type Indexes = {
@@ -33,9 +33,9 @@ type State = {
 
 class GamesVirtualList extends PureComponent<Props, State> {
   componentDidMount() {
-    const { preloadPlayerGamesCount } = this.props;
+    const { preloadFetchPlayerGamesCount } = this.props;
 
-    preloadPlayerGamesCount && preloadPlayerGamesCount();
+    preloadFetchPlayerGamesCount && preloadFetchPlayerGamesCount();
   }
 
   promises = {
@@ -85,15 +85,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
     });
   };
 
-  dispatchNextPage = ({ startIndex, stopIndex }: Indexes) =>
-    this.props.fetchNextPage({
-      startIndex,
-      stopIndex,
-      pageSize: PAGE_SIZE,
-    });
-
   loadMoreRows = ({ startIndex, stopIndex }: Indexes) => {
-    this.dispatchNextPage({
+    this.props.preloadFetchPlayerGames({
       startIndex,
       stopIndex,
       pageSize: PAGE_SIZE,

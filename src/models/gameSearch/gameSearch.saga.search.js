@@ -13,15 +13,15 @@ import { GAME_LIST_IDS } from "Src/constants";
 export function* gameSearchSaga(action) {
   const platform = "mobile";
   const country = yield select(countrySelector);
-  const { q } = action;
+  const { query } = action;
 
   // if there is no query or just spaces, stop here
-  if (Boolean(!q) || !q.replace(/\s/g, "").length) {
+  if (Boolean(!query) || !query.replace(/\s/g, "").length) {
     return yield put(clearSearch());
   }
 
   // fetch query search
-  yield put(fetchQuerySearch({ platform, country, q }));
+  yield put(fetchQuerySearch({ platform, country, query }));
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
   const { games } = response;
