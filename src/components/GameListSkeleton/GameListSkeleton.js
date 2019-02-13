@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import { times, identity } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 
@@ -52,7 +53,7 @@ export default class GameListSkeleton extends PureComponent<Props> {
             />
           </Skeleton>
         )}
-        {Array.from(Array(numberOfItems).keys()).map(i => (
+        {times(identity, numberOfItems).map(i => (
           <div
             key={`gamelist-skeleton-${i}`}
             className="u-margin-vert"
