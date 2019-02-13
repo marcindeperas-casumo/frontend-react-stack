@@ -2,13 +2,13 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import SectionList from "./";
-import { sortGamesByName, getAlphabeticalSections } from "./utils";
+import { sortAlphabetically, getAlphabeticalSections } from "./utils";
 import GameRowSearch from "Components/GameRowSearch";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("SectionList", module);
 
-const sortedGames = sortGamesByName([
+const sortedGames = sortAlphabetically([
   "mega-fortune-dreams",
   "mega-fortune",
   "hall-of-gods",

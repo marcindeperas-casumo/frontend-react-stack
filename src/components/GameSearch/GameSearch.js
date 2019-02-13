@@ -12,16 +12,15 @@ import GamesVirtualList from "Components/GamesVirtualList";
 
 type Props = {
   preloadFetchPlayerGames: Function,
-  fetchSearch: Function,
+  initFetchQuerySearch: Function,
   clearSearch: Function,
-  dispatchLaunchGame: Function,
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
   popularGames: Array<string>,
   hasNoLatestPlayed: boolean,
   loading: boolean,
   hasNoResults: boolean,
-  startFetchCmsPage: () => void,
+  fetchPageBySlug: () => void,
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
@@ -30,9 +29,7 @@ type Props = {
 
 export default class GameSearch extends PureComponent<Props> {
   componentDidMount() {
-    const { startFetchCmsPage } = this.props;
-
-    startFetchCmsPage();
+    this.props.fetchPageBySlug();
   }
 
   renderListSkeleton = (title: boolean = true) => (
@@ -73,13 +70,10 @@ export default class GameSearch extends PureComponent<Props> {
     }
   };
 
-  renderSuggestions = () => {
-    const { hasNoLatestPlayed } = this.props;
-
-    return hasNoLatestPlayed
+  renderSuggestions = () =>
+    this.props.hasNoLatestPlayed
       ? this.renderPopularGames()
       : this.renderLatestPlayed();
-  };
 
   renderSectionHeader = (title: string) => (
     <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
@@ -140,7 +134,7 @@ export default class GameSearch extends PureComponent<Props> {
   render() {
     const {
       hasNoResults,
-      fetchSearch,
+      initFetchQuerySearch,
       clearSearch,
       inputPromptPlaceholder,
     } = this.props;
@@ -149,7 +143,7 @@ export default class GameSearch extends PureComponent<Props> {
       <Flex direction="vertical" spacing="none">
         <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
           <GameSearchInput
-            fetchSearch={fetchSearch}
+            initFetchQuerySearch={initFetchQuerySearch}
             clearSearch={clearSearch}
             hasNoResults={hasNoResults}
             placeholder={inputPromptPlaceholder}

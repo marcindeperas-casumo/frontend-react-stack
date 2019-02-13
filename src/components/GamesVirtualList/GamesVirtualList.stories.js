@@ -20,8 +20,8 @@ if (isNotChromatic) {
         <GamesVirtualListContainer
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
-          fetchNextPage={() => {}}
-          preloadPlayerGamesCount={() => {}}
+          preloadFetchPlayerGames={() => {}}
+          preloadFetchPlayerGamesCount={() => {}}
           rowCount={124}
         />
       </MockStore>
@@ -37,8 +37,8 @@ stories.add(
       <GamesVirtualList
         games={gamesArray}
         renderItem={id => <GameRowSearch slug={id} />}
-        fetchNextPage={() => {}}
-        preloadPlayerGamesCount={() => {}}
+        preloadFetchPlayerGames={() => {}}
+        preloadFetchPlayerGamesCount={() => {}}
         rowCount={300}
       />
     </MockStore>

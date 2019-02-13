@@ -10,7 +10,7 @@ import Flex from "@casumo/cmp-flex";
 type Props = {
   id: string,
   value: string,
-  [key: string]: any,
+  onFocus: () => void,
   onClear: () => void,
   children?: empty,
   hasNoResults: boolean,

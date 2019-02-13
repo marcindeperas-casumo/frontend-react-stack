@@ -7,9 +7,9 @@ import {
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
 
-export const initFetchQuerySearch = q => ({
+export const initFetchQuerySearch = query => ({
   type: types.GAME_SEARCH_FETCH,
-  q,
+  query,
 });
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
@@ -20,12 +20,12 @@ export const noLatestPlayedAction = () => ({
   type: types.GAME_SEARCH_NO_LATEST_PLAYED,
 });
 
-export const fetchQuerySearch = ({ platform, country, q }) => ({
+export const fetchQuerySearch = ({ platform, country, query }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,
   postFetch: types.GAME_SEARCH_FETCH_COMPLETE,
   asyncCall: getQuerySearch,
-  asyncCallData: { platform, country, q },
+  asyncCallData: { platform, country, query },
 });
 
 export const fetchLatestPlayedGames = ({ playerId }) => ({

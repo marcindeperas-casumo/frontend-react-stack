@@ -5,8 +5,8 @@ import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import {
   playerGamesSelector,
   preloadFetchPlayerGames,
+  preloadFetchPlayerGamesCount,
   playerGamesCountSelector,
-  preloadPlayerGamesCount,
 } from "Models/playerGames";
 
 const GamesVirtualListConnected = connect(
@@ -16,10 +16,10 @@ const GamesVirtualListConnected = connect(
       rowCount: playerGamesCountSelector(state),
     };
   },
-  dispatch => ({
-    preloadPlayerGamesCount: index => dispatch(preloadPlayerGamesCount()),
-    fetchNextPage: index => dispatch(preloadFetchPlayerGames(index)),
-  })
+  {
+    preloadFetchPlayerGames,
+    preloadFetchPlayerGamesCount,
+  }
 )(GamesVirtualList);
 
 type Props = {

@@ -13,7 +13,6 @@ import {
 } from "Models/gameSearch";
 import { preloadFetchPlayerGames } from "Models/playerGames";
 import { gameListSelector } from "Models/schema";
-import { launchGame } from "Models/games";
 import { getField, fetchPageBySlug } from "Models/cms";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -50,13 +49,12 @@ const GameSearchConnected = connect(
       query: gameSearchQuerySelector(state),
     };
   },
-  dispatch => ({
-    fetchSearch: q => dispatch(initFetchQuerySearch(q)),
-    clearSearch: q => dispatch(clearSearch()),
-    dispatchLaunchGame: id => dispatch(launchGame(id)),
-    preloadFetchPlayerGames: index => dispatch(preloadFetchPlayerGames(index)),
-    startFetchCmsPage: () => dispatch(fetchPageBySlug(searchCMSPageSlug)),
-  })
+  {
+    initFetchQuerySearch,
+    clearSearch,
+    preloadFetchPlayerGames,
+    fetchPageBySlug: () => fetchPageBySlug(searchCMSPageSlug),
+  }
 )(GameSearch);
 
 type Props = {};
