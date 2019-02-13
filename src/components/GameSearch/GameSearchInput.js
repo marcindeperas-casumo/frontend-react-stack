@@ -5,7 +5,7 @@ import SearchInput from "Components/SearchInput";
 import { debounce } from "lodash";
 
 type Props = {
-  fetchSearch: Function,
+  initFetchQuerySearch: Function,
   clearSearch: Function,
   hasNoResults: boolean,
 };
@@ -25,21 +25,24 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
   }
 
+  componentDidUpdate(prevProps: Props, prevState: State) {
+    if (prevState.query !== this.state.query) {
+      this.fetchSearchResults();
+    }
+  }
+
   fetchSearchResults = () => {
-    const { fetchSearch } = this.props;
+    const { initFetchQuerySearch } = this.props;
     const { query } = this.state;
 
-    return fetchSearch(query);
+    return initFetchQuerySearch(query);
   };
 
   handleSearchInput = (event: Event) => {
     if (event.currentTarget instanceof HTMLInputElement) {
-      this.setState(
-        {
-          query: event.currentTarget.value,
-        },
-        e => this.fetchSearchResults()
-      );
+      this.setState({
+        query: event.currentTarget.value,
+      });
     }
   };
 
