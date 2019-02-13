@@ -70,7 +70,7 @@ describe("Models/Schema/schemaReducer", () => {
     });
   });
 
-  test("should merge entities and remove original key", () => {
+  test("should merge entities and remove original key if value is null", () => {
     const initialState = { game: { foo: { slug: "foo", bar: 1, baz: 3 } } };
     const state = schemaReducer(
       initialState,
