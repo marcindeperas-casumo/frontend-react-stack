@@ -1,6 +1,7 @@
 import {
   playerGamesSelector,
   isPlayerGamesPageLoaded,
+  playerGamesCountSelector,
 } from "Models/playerGames";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -35,6 +36,18 @@ describe("Models/PlayerGames/Selectors", () => {
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: {} } };
 
       expect(isPlayerGamesPageLoaded()(state)).toBe(false);
+    });
+  });
+
+  describe("playerGamesCountSelector()", () => {
+    test("should return games count", () => {
+      const state = {
+        playerGames: {
+          count: 123,
+        },
+      };
+
+      expect(playerGamesCountSelector(state)).toBe(123);
     });
   });
 });
