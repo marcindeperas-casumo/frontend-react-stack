@@ -3,6 +3,7 @@ import {
   preloadFetchPlayerGames,
   fetchPlayerGames,
   types,
+  fetchPlayerGamesCount,
 } from "Models/playerGames";
 
 describe("Models/PlayerGames/Actions", () => {
@@ -21,6 +22,27 @@ describe("Models/PlayerGames/Actions", () => {
     test("fires completed action when finished", () => {
       expect(action).toMatchObject({
         postFetch: `${types.PLAYER_GAMES_FETCH_COMPLETE}_PAGE0`,
+      });
+    });
+
+    test("passes the fetch function to the action", () => {
+      expect(typeof action.asyncCall).toBe("function");
+    });
+  });
+
+  describe("fetchPlayerGamesCount()", () => {
+    const action = fetchPlayerGamesCount();
+
+    test("init fetch", () => {
+      expect(action).toMatchObject({
+        type: fetchTypes.FETCH,
+        name: types.PLAYER_GAMES_FETCH_COUNT_START,
+      });
+    });
+
+    test("fires completed action when finished", () => {
+      expect(action).toMatchObject({
+        postFetch: types.PLAYER_GAMES_FETCH_COUNT_COMPLETE,
       });
     });
 
