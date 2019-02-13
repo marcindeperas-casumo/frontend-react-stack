@@ -6,17 +6,17 @@ import GameRowSkeleton from "Components/GameRowSkeleton";
 
 type Props = {
   /* Additional css classes to add to the component **/
-  className?: string,
+  className: string,
   /* Whether the list has a title or not **/
-  hasTitle?: boolean,
+  hasTitle: boolean,
   /* The number of <GameRowSkeleton /> components to show **/
-  numberOfItems?: number,
+  numberOfItems: number,
   /* X axis title offset **/
-  titleXOffset?: number,
+  titleXOffset: number,
   /* Y axis title offset **/
-  titleYOffset?: number,
+  titleYOffset: number,
   /* The height of every <GameRowSkeleton /> **/
-  gameRowHeight?: number,
+  gameRowHeight: number,
 };
 
 export default class GameListSkeleton extends PureComponent<Props> {
