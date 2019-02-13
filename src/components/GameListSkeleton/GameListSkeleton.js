@@ -19,14 +19,23 @@ type Props = {
 };
 
 export default class GameListSkeleton extends PureComponent<Props> {
+  static defaultProps = {
+    className: "",
+    hasTitle: true,
+    numberOfItems: 8,
+    titleXOffset: 0,
+    titleYOffset: 0,
+    gameRowHeight: 75,
+  };
+
   render() {
     const {
-      className = "",
-      hasTitle = true,
-      numberOfItems = 8,
-      titleXOffset = 0,
-      titleYOffset = 0,
-      gameRowHeight = 75,
+      className,
+      hasTitle,
+      numberOfItems,
+      titleXOffset,
+      titleYOffset,
+      gameRowHeight,
     } = this.props;
 
     return (
