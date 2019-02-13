@@ -2,20 +2,32 @@
 import React, { PureComponent } from "react";
 import GameRow from "Components/GameRow";
 import List from "@casumo/cmp-list";
-import MustDropJackpotListSkeleton from "Components/MustDropJackpotList/MustDropJackpotListSkeleton";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import Text from "@casumo/cmp-text";
 
 type Props = {
   ids: Array<string>,
-  isLoaded: boolean,
+  areGamesLoaded: boolean,
   title: string,
+  initFetchTopLists: () => void,
 };
 export default class MustDropJackpotList extends PureComponent<Props> {
-  render() {
-    const { ids, isLoaded, title } = this.props;
+  componentDidMount() {
+    const { areGamesLoaded, initFetchTopLists } = this.props;
+    if (!areGamesLoaded) {
+      initFetchTopLists();
+    }
+  }
 
-    return !isLoaded ? (
-      <MustDropJackpotListSkeleton />
+  render() {
+    const { ids, areGamesLoaded, title } = this.props;
+
+    return !areGamesLoaded ? (
+      <GameListSkeleton
+        className="u-padding--md"
+        titleXOffset={100}
+        titleYOffset={10}
+      />
     ) : (
       <div>
         <Text
