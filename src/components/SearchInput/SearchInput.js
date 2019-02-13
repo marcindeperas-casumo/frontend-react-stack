@@ -10,19 +10,19 @@ import "./SearchInput.scss";
 
 // relevant props from input field we wish to expose
 type InputProps = {
+  value: string,
   autofocus?: boolean,
   name?: string,
-  value: string,
   placeholder?: string,
+  onChange?: () => void,
+  onFocus?: () => void,
 };
 
 type SearchInputProps = {
-  children?: empty,
-  id?: string,
   [key: string]: any,
   onClear: () => void,
-  onChange: () => void,
-  onFocus: () => void,
+  children?: empty,
+  id?: string,
 };
 
 type Props = InputProps & SearchInputProps;
@@ -36,7 +36,10 @@ class SearchInput extends React.Component<Props, State> {
   textInput: { current: ?HTMLInputElement } = React.createRef();
 
   get inputProps() {
-    return pick(["autofocus", "name", "value"], this.props);
+    return pick(
+      ["autofocus", "name", "onChange", "onFocus", "placeholder", "value"],
+      this.props
+    );
   }
 
   focus = () => {
@@ -85,11 +88,12 @@ class SearchInput extends React.Component<Props, State> {
         align="center"
         className="t-background-white u-padding-vert u-padding-horiz--md t-border-r--pill"
       >
-        <label htmlFor={id} />
-        <SearchIcon
-          size="med"
-          className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
-        />
+        <label htmlFor={id}>
+          <SearchIcon
+            size="med"
+            className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
+          />
+        </label>
         <input
           id={id}
           ref={this.textInput}
