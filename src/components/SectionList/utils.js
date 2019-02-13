@@ -1,8 +1,7 @@
 // @flow
 import { sort } from "ramda";
 
-export const sortGamesByName = (items: Array<string>) =>
-  sort((a, b) => a.localeCompare(b), items);
+export const sortAlphabetically = sort((a, b) => a.localeCompare(b));
 
 export const getSectionForGame = (gameTitle: string) => {
   const firstCharacter = gameTitle.charAt(0).toUpperCase();

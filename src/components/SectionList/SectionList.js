@@ -1,6 +1,5 @@
 /* @flow */
-import React, { PureComponent } from "react";
-import type { Node } from "react";
+import React, { PureComponent, type Node } from "react";
 
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
@@ -10,9 +9,9 @@ export type Section = {
   title?: string,
 };
 
-type Props = {|
+type Props<T> = {|
   sections: Section[],
-  renderItem: (item: any, index: number) => Node,
+  renderItem: T => Node,
   renderSectionHeader: (title: string) => Node,
   keyExtractor?: (item: any) => string,
   direction?: "vertical" | "horizontal",
@@ -21,13 +20,18 @@ type Props = {|
   itemSpacing: string,
 |};
 
-export default class SectionList extends PureComponent<Props> {
+export default class SectionList extends PureComponent<Props<*>> {
+  static defaultProps = {
+    direction: "vertical",
+    className: "",
+  };
+
   renderSection = (section: Section, index: number) => {
     const {
       renderItem,
       renderSectionHeader,
       keyExtractor = (item: {}) => index,
-      direction = "vertical",
+      direction,
       itemSpacing,
     } = this.props;
 
@@ -51,7 +55,7 @@ export default class SectionList extends PureComponent<Props> {
   };
 
   render() {
-    const { sections, direction = "vertical", className = "" } = this.props;
+    const { sections, direction, className } = this.props;
 
     const style = { overflow: "hidden", ...this.props.style };
 

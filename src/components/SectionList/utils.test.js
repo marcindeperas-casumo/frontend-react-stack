@@ -1,14 +1,14 @@
 import {
   getSectionForGame,
-  sortGamesByName,
+  sortAlphabetically,
   getAlphabeticalSections,
 } from "Components/SectionList/utils";
 
-describe("sortGamesByName", () => {
+describe("sortAlphabetically", () => {
   test("should sort a list of strings alphabetically", () => {
     const notOrderedList = ["a", "c", "b"];
 
-    expect(sortGamesByName(notOrderedList)).toEqual(["a", "b", "c"]);
+    expect(sortAlphabetically(notOrderedList)).toEqual(["a", "b", "c"]);
   });
 });
 
