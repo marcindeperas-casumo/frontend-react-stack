@@ -7,31 +7,31 @@ type Props = {
   /* Additional css classes to add to the component **/
   className?: string,
   /* Whether the list has a title or not **/
-  title?: boolean,
+  hasTitle?: boolean,
   /* The number of <GameRowSkeleton /> components to show **/
   items?: number,
   /* X axis offset **/
-  titleXOffset?: string,
+  titleXOffset?: number,
   /* Y axis offset **/
-  titleYOffset?: string,
+  titleYOffset?: number,
   /* The height of every <GameRowSkeleton /> **/
-  gameRowHeight?: string,
+  gameRowHeight?: number,
 };
 
 export default class GameListSkeleton extends PureComponent<Props> {
   render() {
     const {
       className = "",
-      title = true,
+      hasTitle = true,
       items = 8,
-      titleXOffset = "0",
-      titleYOffset = "0",
-      gameRowHeight = "75px",
+      titleXOffset = 0,
+      titleYOffset = 0,
+      gameRowHeight = 75,
     } = this.props;
 
     return (
       <div className={className}>
-        {title && (
+        {hasTitle && (
           <Skeleton width="320" height="60" className="u-display--block">
             <rect
               x={titleXOffset}

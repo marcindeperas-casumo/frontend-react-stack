@@ -25,8 +25,8 @@ export default class MustDropJackpotList extends PureComponent<Props> {
     return !areGamesLoaded ? (
       <GameListSkeleton
         className="u-padding--md"
-        titleXOffset="100"
-        titleYOffset="10"
+        titleXOffset={100}
+        titleYOffset={10}
       />
     ) : (
       <div>
