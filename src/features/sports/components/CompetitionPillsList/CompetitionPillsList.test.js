@@ -7,7 +7,7 @@ import CompetitionPillsList from "./CompetitionPillsList";
 import competitions from "./__mocks__/competitions";
 
 describe("<CompetitionPillsList />", () => {
-  test("renders correct number of competition pills", () => {
+  test("renders the competitions passed in as GroupPill", () => {
     const rendered = shallow(
       <CompetitionPillsList competitions={competitions} />
     );
