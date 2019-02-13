@@ -21,6 +21,10 @@ export const fetchPlayerGames = ({ page, pageSize }) => {
   };
 };
 
+export const preloadPlayerGamesCount = () => ({
+  type: types.PLAYER_GAMES_FETCH_COUNT,
+});
+
 export const fetchPlayerGamesCount = () => {
   return {
     type: fetchTypes.FETCH,

@@ -19,6 +19,7 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: Function,
+  preloadPlayerGamesCount: Function,
 };
 
 type Indexes = {
@@ -31,6 +32,12 @@ type State = {
 };
 
 class GamesVirtualList extends PureComponent<Props, State> {
+  componentDidMount() {
+    const { preloadPlayerGamesCount } = this.props;
+
+    preloadPlayerGamesCount && preloadPlayerGamesCount();
+  }
+
   promises = {
     list: [],
   };

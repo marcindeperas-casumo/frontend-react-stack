@@ -21,6 +21,7 @@ if (isNotChromatic) {
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
           fetchNextPage={() => {}}
+          preloadPlayerGamesCount={() => {}}
           rowCount={124}
         />
       </MockStore>
@@ -37,6 +38,7 @@ stories.add(
         games={gamesArray}
         renderItem={id => <GameRowSearch slug={id} />}
         fetchNextPage={() => {}}
+        preloadPlayerGamesCount={() => {}}
         rowCount={300}
       />
     </MockStore>

@@ -1,22 +1,10 @@
-import { call, put, take, select } from "redux-saga/effects";
+import { call, put, take } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import {
-  types,
-  fetchPlayerGames,
-  fetchPlayerGamesCount,
-  playerGamesCountSelector,
-} from "Models/playerGames";
+import { types, fetchPlayerGames } from "Models/playerGames";
 import { GAME_LIST_IDS } from "Src/constants";
 
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
-  const count = yield select(playerGamesCountSelector);
-
-  if (count === 0) {
-    yield put(fetchPlayerGamesCount());
-
-    yield take(types.PLAYER_GAMES_FETCH_COUNT_COMPLETE);
-  }
 
   const page = yield Math.ceil(startIndex / pageSize);
 
