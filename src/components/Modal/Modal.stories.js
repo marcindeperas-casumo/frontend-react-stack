@@ -29,21 +29,12 @@ const defaultProps = {
       </p>
     </div>
   ),
-  className: "c-modal--absolute",
   header: "Modal Header",
   onClose: action("dismiss modal"),
 };
 
 const renderModal = (props = {}) => () => (
-  <div
-    style={{
-      position: "absolute",
-      height: 640,
-      width: 320,
-    }}
-  >
-    <Modal {...defaultProps} {...props} />
-  </div>
+  <Modal {...defaultProps} {...props} />
 );
 
 stories.add("Default", renderModal());

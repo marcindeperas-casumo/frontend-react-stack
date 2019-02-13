@@ -13,7 +13,7 @@ type Props = {
   onClose: () => void,
   children: React.Node,
   className?: string,
-  header?: string | React.Node,
+  header?: React.Node,
   footer?: React.Node,
   dismissType?: DismissType,
 };
@@ -38,6 +38,12 @@ export const DismissButton = ({
   </div>
 );
 
+// this workaround is to prevent double-scrollbars as they are already set from the durandal stack
+const durandalScrollWorkaround = (overflowY: ?string) =>
+  window.document
+    .querySelectorAll("html, .scroll-y")
+    .forEach(el => (el.style.overflowY = overflowY)); // eslint-disable-line fp/no-mutation
+
 export default class Modal extends React.Component<Props> {
   static defaultProps = {
     className: "",
@@ -48,7 +54,7 @@ export default class Modal extends React.Component<Props> {
 
   get header() {
     return (
-      <Flex.Item className="c-modal__top-bar o-flex--1 u-padding">
+      <Flex.Item className="c-modal__top-bar o-flex--1 u-padding t-background-grey-dark-3 t-color-white">
         <Flex className="u-padding--sm" align="center">
           <Flex.Item>
             <DismissButton
@@ -59,7 +65,7 @@ export default class Modal extends React.Component<Props> {
             </DismissButton>
           </Flex.Item>
           <Flex.Block className="c-modal__header o-flex-justify--center u-font-weight-bold">
-            {this.props.header || null}
+            {this.props.header}
           </Flex.Block>
           <Flex.Item>
             <DismissButton
@@ -74,19 +80,13 @@ export default class Modal extends React.Component<Props> {
     );
   }
 
-  /* eslint-disable fp/no-mutation */
   componentDidMount() {
-    window.document
-      .querySelectorAll("html, .scroll-y")
-      .forEach(el => (el.style.overflowY = "hidden"));
+    durandalScrollWorkaround("hidden");
   }
 
   componentWillUnmount() {
-    window.document
-      .querySelectorAll("html, .scroll-y")
-      .forEach(el => (el.style.overflowY = null));
+    durandalScrollWorkaround(null);
   }
-  /* eslint-enable fp/no-mutation */
 
   render() {
     return (
@@ -107,9 +107,7 @@ export default class Modal extends React.Component<Props> {
         <Flex.Block className="c-modal__content">
           {this.props.children}
         </Flex.Block>
-        <Flex.Block className="c-modal__footer">
-          {this.props.footer || null}
-        </Flex.Block>
+        <Flex.Block className="c-modal__footer">{this.props.footer}</Flex.Block>
       </Flex>
     );
   }

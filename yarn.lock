@@ -1101,9 +1101,9 @@
     "@casumo/cmp-flex" "^2.2.6"
 
 "@casumo/cmp-flex@^2.2.6":
-  version "2.2.6"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-flex/-/cmp-flex-2.2.6.tgz#5009d07bb41bb4e03ffbd0082e0af89f580a27b1"
-  integrity sha512-nVplP17LaYdYhNkiONg9HuqYViYGTmrFXbS82xkq7Q/5O3zKXDHSH6pm9GFKx7VCP/gPpwdOIZaqV9cqZ+4Huw==
+  version "2.2.7"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-flex/-/cmp-flex-2.2.7.tgz#fe8d4f62edf1f060ab2e5cb67fc033616d5eb03b"
+  integrity sha512-/iceA8/a/KXarC/dOKEuUHPVVuGBrprFzDv8m691gg1V0XW/cDmGxsAGQ9vEB9YlnXK7ZKNX5RIFrSeqFzTv3g==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.0.3"
     "@casumo/cudl-react-utils" "^1.0.4"
