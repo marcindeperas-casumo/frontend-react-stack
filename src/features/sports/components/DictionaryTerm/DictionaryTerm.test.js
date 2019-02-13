@@ -77,7 +77,7 @@ describe("<DictionaryTerm />", () => {
     expect(rendered2.text()).toBe("Manchester have scored 0 goal");
   });
 
-  test("defaults any undefined/null replacements as the replacement key", async () => {
+  test("leaves undefined/null replacements untouched", async () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <DictionaryTerm

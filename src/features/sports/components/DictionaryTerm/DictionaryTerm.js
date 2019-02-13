@@ -27,6 +27,22 @@ export const DICTIONARY_TERM_QUERY = gql`
   }
 `;
 
+const getDictionaryTerm = (
+  data?: DictionaryTermQuery,
+  loading: boolean,
+  replacements?: Replacements
+): string => {
+  if (loading) {
+    return LOADING_STRING;
+  }
+
+  if (data && typeof data.dictionaryTerm === "string") {
+    return compile(data.dictionaryTerm, replacements);
+  }
+
+  return NOT_FOUND_STRING;
+};
+
 const DictionaryTerm = ({
   termKey,
   replacements,
@@ -36,19 +52,8 @@ const DictionaryTerm = ({
     query={DICTIONARY_TERM_QUERY}
     variables={{ key: termKey }}
   >
-    {({ data, loading, error }) => {
-      /* eslint-disable fp/no-let, fp/no-mutation */
-      let dictionaryTerm = NOT_FOUND_STRING;
-
-      if (loading) {
-        dictionaryTerm = LOADING_STRING;
-      }
-
-      if (data && typeof data.dictionaryTerm === "string") {
-        dictionaryTerm = compile(data.dictionaryTerm, replacements);
-      }
-      /* eslint-enable fp/no-let, fp/no-mutation */
-
+    {({ data, loading }) => {
+      const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
       return children ? children(dictionaryTerm) : dictionaryTerm;
     }}
   </DictionaryTermTypedQuery>

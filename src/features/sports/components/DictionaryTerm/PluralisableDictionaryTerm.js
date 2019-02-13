@@ -36,6 +36,30 @@ export const PLURALISABLE_DICTIONARY_TERM_QUERY = gql`
 export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
+const getPluralisableDictionaryTerm = (
+  data?: PluralisableDictionaryTermQuery,
+  loading: boolean,
+  replacements?: Replacements,
+  isPlural: boolean
+): string => {
+  if (loading) {
+    return LOADING_STRING;
+  }
+
+  if (
+    data &&
+    typeof data.singularTerm === "string" &&
+    typeof data.pluralTerm === "string"
+  ) {
+    return compile(
+      isPlural ? data.pluralTerm : data.singularTerm,
+      replacements
+    );
+  }
+
+  return NOT_FOUND_STRING;
+};
+
 const PluralisableDictionaryTerm = ({
   termKey,
   replacements,
@@ -50,25 +74,12 @@ const PluralisableDictionaryTerm = ({
     }}
   >
     {({ data, loading }) => {
-      /* eslint-disable fp/no-let, fp/no-mutation */
-      let dictionaryTerm = NOT_FOUND_STRING;
-
-      if (loading) {
-        dictionaryTerm = LOADING_STRING;
-      }
-
-      if (
-        data &&
-        typeof data.singularTerm === "string" &&
-        typeof data.pluralTerm === "string"
-      ) {
-        dictionaryTerm = compile(
-          isPlural ? data.pluralTerm : data.singularTerm,
-          replacements
-        );
-      }
-      /* eslint-enable fp/no-let, fp/no-mutation */
-
+      const dictionaryTerm = getPluralisableDictionaryTerm(
+        data,
+        loading,
+        replacements,
+        isPlural
+      );
       // if children provided this is a render prop component, if not return the translation
       return children ? children(dictionaryTerm) : dictionaryTerm;
     }}
