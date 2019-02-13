@@ -9,10 +9,10 @@ type Props = {
   /* Whether the list has a title or not **/
   hasTitle?: boolean,
   /* The number of <GameRowSkeleton /> components to show **/
-  items?: number,
-  /* X axis offset **/
+  numberOfItems?: number,
+  /* X axis title offset **/
   titleXOffset?: number,
-  /* Y axis offset **/
+  /* Y axis title offset **/
   titleYOffset?: number,
   /* The height of every <GameRowSkeleton /> **/
   gameRowHeight?: number,
@@ -23,7 +23,7 @@ export default class GameListSkeleton extends PureComponent<Props> {
     const {
       className = "",
       hasTitle = true,
-      items = 8,
+      numberOfItems = 8,
       titleXOffset = 0,
       titleYOffset = 0,
       gameRowHeight = 75,
@@ -43,7 +43,7 @@ export default class GameListSkeleton extends PureComponent<Props> {
             />
           </Skeleton>
         )}
-        {Array.from(Array(items).keys()).map(i => (
+        {Array.from(Array(numberOfItems).keys()).map(i => (
           <div
             key={`gamelist-skeleton-${i}`}
             className="u-margin-vert"
