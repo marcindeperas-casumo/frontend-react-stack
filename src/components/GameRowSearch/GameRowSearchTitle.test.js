@@ -4,7 +4,6 @@ import GameRowSearchTitle from "Components/GameRowSearch/GameRowSearchTitle";
 
 describe("<GameRowSearchTitle />", () => {
   const name = "I'm a game title";
-  let query;
 
   test("Should pass the title to a DangerousHtml component if query is not passed down", () => {
     const rendered = shallow(<GameRowSearchTitle name={name} />);
@@ -15,7 +14,7 @@ describe("<GameRowSearchTitle />", () => {
   });
 
   test("should pass the title to a MaskText component if a query is passed down and highlightSearchQuery set to true", () => {
-    query = "game";
+    const query = "game";
     const rendered = shallow(
       <GameRowSearchTitle query={query} name={name} highlightSearchQuery />
     );
@@ -26,7 +25,6 @@ describe("<GameRowSearchTitle />", () => {
   });
 
   test("should pass the title to a DangerousHtml component if a query is passed down and highlightSearchQuery set to false", () => {
-    query = "game";
     const rendered = shallow(
       <GameRowSearchTitle name={name} highlightSearchQuery={false} />
     );
@@ -37,7 +35,7 @@ describe("<GameRowSearchTitle />", () => {
   });
 
   test("should pass the title to a DangerousHtml component if an empty query is passed down", () => {
-    query = "";
+    const query = "";
     const rendered = shallow(<GameRowSearchTitle query={query} name={name} />);
 
     expect(rendered.find("DangerousHtml").prop("html")).toBe(name);
