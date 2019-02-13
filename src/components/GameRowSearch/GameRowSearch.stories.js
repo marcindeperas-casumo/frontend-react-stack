@@ -31,6 +31,7 @@ stories.add(
       game={game}
       onLaunchGame={action(gonzosQuest)}
       query="gon"
+      rowCount={124}
       highlightSearchQuery
     />
   ),
@@ -50,6 +51,7 @@ stories.add(
       game={{ ...game, lobby: "test" }}
       onLaunchGame={action(gonzosQuest)}
       slug="gonzos-quest"
+      rowCount={124}
     />
   ),
   info({ text: "Jackpot Game" })

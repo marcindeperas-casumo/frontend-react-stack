@@ -26,6 +26,7 @@ type Props = {
   latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
   query: string,
+  rowCount: number,
 };
 
 export default class GameSearch extends PureComponent<Props> {
@@ -102,11 +103,20 @@ export default class GameSearch extends PureComponent<Props> {
   };
 
   renderResults = () => {
-    const { loading, hasNoResults, searchResults, query } = this.props;
+    const {
+      loading,
+      hasNoResults,
+      searchResults,
+      query,
+      rowCount,
+    } = this.props;
 
     if (!searchResults.length && !loading && !hasNoResults) {
       return (
-        <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+        <GamesVirtualList
+          rowCount={rowCount}
+          renderItem={id => <GameRowSearch slug={id} />}
+        />
       );
     }
 

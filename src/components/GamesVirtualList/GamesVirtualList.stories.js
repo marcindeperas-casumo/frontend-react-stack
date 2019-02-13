@@ -21,6 +21,7 @@ if (isNotChromatic) {
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
           fetchNextPage={() => {}}
+          rowCount={124}
         />
       </MockStore>
     ),

@@ -11,7 +11,10 @@ import {
   clearSearch,
   gameSearchQuerySelector,
 } from "Models/gameSearch";
-import { preloadFetchPlayerGames } from "Models/playerGames";
+import {
+  preloadFetchPlayerGames,
+  playerGamesCountSelector,
+} from "Models/playerGames";
 import { gameListSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 import { getField, fetchPageBySlug } from "Models/cms";
@@ -48,6 +51,7 @@ const GameSearchConnected = connect(
         field: "input_prompt",
       })(state),
       query: gameSearchQuerySelector(state),
+      rowCount: playerGamesCountSelector(state),
     };
   },
   dispatch => ({

@@ -5,12 +5,10 @@ import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import {
   playerGamesSelector,
   preloadFetchPlayerGames,
-  playerGamesCountSelector,
 } from "Models/playerGames";
 
 const GamesVirtualListConnected = connect(
   state => ({
-    rowCount: playerGamesCountSelector(state),
     games: playerGamesSelector(state),
   }),
   dispatch => ({
@@ -20,6 +18,7 @@ const GamesVirtualListConnected = connect(
 
 type Props = {
   renderItem: Function,
+  rowCount: number,
 };
 
 const GamesVirtualListContainer = (props: Props) => (
