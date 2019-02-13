@@ -12,17 +12,24 @@ import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 import DataProvider from "Components/DataProvider";
 
-type props = {
+type Props = {
   onAppStarted: () => void,
   subscribeToPlayerUpdates: string => void,
   unsubscribeToPlayerUpdates: string => void,
+  playerId: string,
+  isAuthenticated: boolean,
+  activeComponents: Array<string>,
+  routeParams: Array<Object>,
 };
 
-class App extends PureComponent {
+class App extends PureComponent<Props> {
+  subscribe: Function;
+
   constructor() {
     super();
     this.subscribe = this.subscribe.bind(this);
   }
+
   componentDidMount() {
     const { onAppStarted } = this.props;
 
@@ -36,10 +43,11 @@ class App extends PureComponent {
     unsubscribeToPlayerUpdates(playerId);
   }
 
-  componentDidUpdate({ playerId: oldPlayerId }) {
-    const wasPlayerIdEmpty = !oldPlayerId;
+  componentDidUpdate(props: Props) {
+    const { playerId: oldPlayerId } = props;
+    const initialLoad = !oldPlayerId;
 
-    if (wasPlayerIdEmpty) {
+    if (initialLoad) {
       this.subscribe();
     }
   }
@@ -50,7 +58,7 @@ class App extends PureComponent {
     if (playerId) {
       subscribeToPlayerUpdates(playerId);
     }
-  }
+  };
 
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
