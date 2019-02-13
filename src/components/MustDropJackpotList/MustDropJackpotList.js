@@ -7,14 +7,22 @@ import Text from "@casumo/cmp-text";
 
 type Props = {
   ids: Array<string>,
-  isLoaded: boolean,
+  areGamesLoaded: boolean,
   title: string,
+  initFetchTopLists: () => void,
 };
 export default class MustDropJackpotList extends PureComponent<Props> {
-  render() {
-    const { ids, isLoaded, title } = this.props;
+  componentDidMount() {
+    const { areGamesLoaded, initFetchTopLists } = this.props;
+    if (!areGamesLoaded) {
+      initFetchTopLists();
+    }
+  }
 
-    return !isLoaded ? (
+  render() {
+    const { ids, areGamesLoaded, title } = this.props;
+
+    return !areGamesLoaded ? (
       <MustDropJackpotListSkeleton
         className="u-padding--md"
         titleXOffset="100"
