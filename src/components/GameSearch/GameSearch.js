@@ -33,7 +33,7 @@ export default class GameSearch extends PureComponent<Props> {
   }
 
   renderListSkeleton = (title: boolean = true) => (
-    <GameListSkeleton title={title} titleYOffset="20" />
+    <GameListSkeleton title={title} titleYOffset={20} />
   );
 
   renderPopularGames = () => {

@@ -1,28 +1,47 @@
 // @flow
 import React, { PureComponent } from "react";
+import { times, identity } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
+import GameRowSkeleton from "Components/GameRowSkeleton";
 
 type Props = {
+  /* Additional css classes to add to the component **/
   className?: string,
-  title?: boolean,
-  items?: number,
-  titleXOffset?: string,
-  titleYOffset?: string,
+  /* Whether the list has a title or not **/
+  hasTitle?: boolean,
+  /* The number of <GameRowSkeleton /> components to show **/
+  numberOfItems?: number,
+  /* X axis title offset **/
+  titleXOffset?: number,
+  /* Y axis title offset **/
+  titleYOffset?: number,
+  /* The height of every <GameRowSkeleton /> **/
+  gameRowHeight?: number,
 };
 
 export default class GameListSkeleton extends PureComponent<Props> {
+  static defaultProps = {
+    className: "",
+    hasTitle: true,
+    numberOfItems: 8,
+    titleXOffset: 0,
+    titleYOffset: 0,
+    gameRowHeight: 75,
+  };
+
   render() {
     const {
-      className = "",
-      title = true,
-      items = 8,
-      titleXOffset = "0",
-      titleYOffset = "0",
+      className,
+      hasTitle,
+      numberOfItems,
+      titleXOffset,
+      titleYOffset,
+      gameRowHeight,
     } = this.props;
 
     return (
       <div className={className}>
-        {title && (
+        {hasTitle && (
           <Skeleton width="320" height="60" className="u-display--block">
             <rect
               x={titleXOffset}
@@ -34,25 +53,14 @@ export default class GameListSkeleton extends PureComponent<Props> {
             />
           </Skeleton>
         )}
-        {Array.from(Array(items).keys()).map(i => (
-          <Skeleton
+        {times(identity, numberOfItems).map(i => (
+          <div
             key={`gamelist-skeleton-${i}`}
-            width="100%"
-            height={75}
-            preserveAspectRatio="none"
-            viewBox={null}
+            className="u-margin-vert"
+            style={{ height: gameRowHeight }}
           >
-            <rect x="0" y="8" rx="16" ry="16" width="64" height="64" />
-            <rect x="80" y="32" rx="3" ry="3" width="150" height="16" />
-            <rect
-              x="calc(100% - 40)"
-              y="28"
-              rx="3"
-              ry="3"
-              width="24"
-              height="24"
-            />
-          </Skeleton>
+            <GameRowSkeleton />
+          </div>
         ))}
       </div>
     );
