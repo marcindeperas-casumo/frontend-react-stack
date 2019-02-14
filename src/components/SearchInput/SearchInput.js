@@ -38,16 +38,13 @@ class SearchInput extends React.Component<Props, State> {
 
   get inputProps() {
     return pick(
-      ["autofocus", "name", "onChange", "onFocus", "placeholder", "value"],
+      ["autofocus", "name", "onChange", "placeholder", "value"],
       this.props
     );
   }
 
-  focus = () => invokePath(["current", "focus"], this.textInput);
-  blur = () => invokePath(["current", "blur"], this.textInput);
-
   handleClear = () => {
-    this.focus();
+    invokePath(["current", "focus"], this.textInput);
     this.props.onClear();
   };
 
@@ -55,11 +52,11 @@ class SearchInput extends React.Component<Props, State> {
   // blurs the input to hide the mobile keyboard
   handleScroll = () => {
     this.setState({ hasFocus: false });
-    this.blur();
+    invokePath(["current", "blur"], this.textInput);
   };
 
   onFocus = () => {
-    this.props.onFocus();
+    invokePath(["onFocus"], this.props);
     this.setState({ hasFocus: true });
   };
 
