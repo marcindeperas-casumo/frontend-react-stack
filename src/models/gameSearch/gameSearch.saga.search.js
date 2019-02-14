@@ -16,7 +16,7 @@ export function* gameSearchSaga(action) {
   const { query } = action;
 
   // if there is no query or just spaces, stop here
-  if (Boolean(!query) || !query.replace(/\s/g, "").length) {
+  if (!query || !query.replace(/\s/g, "").length) {
     return yield put(clearSearch());
   }
 

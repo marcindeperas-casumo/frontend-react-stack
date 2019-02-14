@@ -1,4 +1,5 @@
 import * as actions from "./gameSearch.actions";
+import { postFetch } from "Models/fetch";
 import reducer from "./gameSearch.reducer";
 
 describe("Models/Fetch/Reducer", () => {
@@ -34,5 +35,16 @@ describe("Models/Fetch/Reducer", () => {
       loading: false,
       hasNoResults: false,
     });
+  });
+
+  test("GAME_SEARCH_FETCH_COMPLETE", () => {
+    const state = {};
+    const platform = "mobile";
+    const country = "gb";
+    const query = "hola";
+    const action = actions.fetchQuerySearch({ platform, country, query });
+    const postFetchAction = postFetch(action.postFetch, {});
+
+    expect(reducer(state, postFetchAction)).toEqual({ loading: false });
   });
 });

@@ -32,8 +32,8 @@ export default class GameSearch extends PureComponent<Props> {
     this.props.fetchPageBySlug();
   }
 
-  renderListSkeleton = (title: boolean = true) => (
-    <GameListSkeleton title={title} titleYOffset={20} />
+  renderListSkeleton = (hasTitle: boolean = true) => (
+    <GameListSkeleton hasTitle={hasTitle} titleYOffset={20} />
   );
 
   renderPopularGames = () => {

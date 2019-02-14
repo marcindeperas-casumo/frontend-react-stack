@@ -8,15 +8,22 @@ export const gameSearchReducer = (state, action) => {
       hasNoLatestPlayed: false,
     };
   }
-  const { type } = action;
 
-  switch (type) {
+  switch (action.type) {
     case types.GAME_SEARCH_FETCH: {
       return {
         ...state,
         loading: true,
         hasNoResults: false,
         query: action.query,
+      };
+    }
+
+    case types.GAME_SEARCH_CLEAR: {
+      return {
+        ...state,
+        loading: false,
+        hasNoResults: false,
       };
     }
 
@@ -41,21 +48,7 @@ export const gameSearchReducer = (state, action) => {
       };
     }
 
-    case types.GAME_SEARCH_CLEAR: {
-      return {
-        ...state,
-        loading: false,
-        hasNoResults: false,
-      };
-    }
-
     default: {
-      if (type.startsWith(types.GAME_SEARCH_FETCH_PLAYER_GAMES_COMPLETE)) {
-        return {
-          ...state,
-          loading: false,
-        };
-      }
       return state;
     }
   }

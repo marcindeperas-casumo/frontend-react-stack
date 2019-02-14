@@ -7,19 +7,14 @@ export const playerGames = (state, action) => {
     };
   }
 
-  const { type } = action;
-
-  switch (type) {
-    case types.PLAYER_GAMES_FETCH_COUNT_COMPLETE: {
-      return {
-        ...state,
-        count: action.response,
-      };
-    }
-
-    default:
-      return state;
+  if (action.type === types.PLAYER_GAMES_FETCH_COUNT_COMPLETE) {
+    return {
+      ...state,
+      count: action.response,
+    };
   }
+
+  return state;
 };
 
 export default playerGames;
