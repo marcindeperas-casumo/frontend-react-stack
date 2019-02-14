@@ -12,6 +12,8 @@ type Props = {
   children: State => Node,
 };
 
+export const SEARCH_QUERY_UPDATED_EVENT = "search-query-updated";
+
 export default class SportsHashWatcher extends React.Component<Props, State> {
   state = { currentHash: window.location.hash };
 
@@ -21,7 +23,7 @@ export default class SportsHashWatcher extends React.Component<Props, State> {
     window.addEventListener("hashchange", this.updateHashState);
 
     // manual event that can be fired to notify that the search query has updated
-    bridge.on("search-query-updated", this.updateHashState);
+    bridge.on(SEARCH_QUERY_UPDATED_EVENT, this.updateHashState);
   }
 
   render() {
