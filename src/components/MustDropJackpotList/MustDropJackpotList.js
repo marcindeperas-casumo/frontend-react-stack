@@ -39,7 +39,11 @@ export default class MustDropJackpotList extends PureComponent<Props> {
           {title}
         </Text>
         <div className="u-padding-horiz--md u-padding-bottom--md">
-          <List items={ids} render={id => <GameRow id={id} />} />
+          <List
+            items={ids}
+            data-test="must-drop-jackpots-list"
+            render={id => <GameRow id={id} />}
+          />
         </div>
       </div>
     );

@@ -15290,6 +15290,11 @@ wait-for-element@^1.0.2:
   resolved "https://registry.yarnpkg.com/wait-for-element/-/wait-for-element-1.0.2.tgz#cbe7e31f157981f56f3bc1080768ef1823792f3d"
   integrity sha1-y+fjHxV5gfVvO8EIB2jvGCN5Lz0=
 
+wait-for-expect@^1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/wait-for-expect/-/wait-for-expect-1.1.0.tgz#6607375c3f79d32add35cd2c87ce13f351a3d453"
+  integrity sha512-vQDokqxyMyknfX3luCDn16bSaRcOyH6gGuUXMIbxBLeTo6nWuEWYqMTT9a+44FmW8c2m6TRWBdNvBBjA1hwEKg==
+
 walker@~1.0.5:
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/walker/-/walker-1.0.7.tgz#2f7f9b8fd10d677262b18a884e28d19618e028fb"

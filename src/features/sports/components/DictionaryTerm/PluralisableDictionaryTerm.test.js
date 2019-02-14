@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
+import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "react-apollo/test-utils";
 
 import PluralisableDictionaryTerm from "./PluralisableDictionaryTerm";
@@ -77,12 +78,13 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(10);
     renderedSingular.update();
     renderedPlural.update();
 
-    expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
-    expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
+    await waitForExpect(() => {
+      expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
+      expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
+    });
   });
 
   test("replaces any replacement keys in the translation before rendering", async () => {

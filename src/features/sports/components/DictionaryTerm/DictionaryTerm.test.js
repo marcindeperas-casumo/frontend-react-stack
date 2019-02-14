@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
+import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "react-apollo/test-utils";
 
 import DictionaryTerm from "./DictionaryTerm";
@@ -45,10 +46,10 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(10);
     rendered.update();
-
-    expect(rendered.text()).toBe(NOT_FOUND_STRING);
+    await waitForExpect(() => {
+      expect(rendered.text()).toBe(NOT_FOUND_STRING);
+    });
   });
 
   test("replaces any replacement keys in the translation before rendering", async () => {

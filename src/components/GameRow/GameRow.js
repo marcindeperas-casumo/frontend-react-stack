@@ -29,7 +29,12 @@ export default class GameRow extends PureComponent<Props> {
         eventName={EVENTS.GAME_LAUNCH}
         data={{ [EVENT_PROPS.GAME_NAME]: name }}
       >
-        <Flex align="center" className="u-padding-vert" onClick={onLaunchGame}>
+        <Flex
+          align="center"
+          data-test="game-row"
+          className="u-padding-vert"
+          onClick={onLaunchGame}
+        >
           {/* Image */}
           <Flex.Item className="o-flex__item-fixed-size">
             <GameThumb
