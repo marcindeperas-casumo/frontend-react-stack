@@ -3,6 +3,7 @@
 @import "./settings.spacers";
 @import "./settings.breakpoints";
 @import "./settings.borders";
+@import "./settings.zindex";
 
 // ---- Elements ----------------------------------------------------------- //
 @import "./elements.links";
@@ -23,6 +24,7 @@
 // ---- Theme -------------------------------------------------------------- //
 @import "cudl-colors";
 @import "cudl-borders";
+@import "./theme.colors";
 @import "./theme.greyscale";
 
 // ---- Utilities ---------------------------------------------------------- //
