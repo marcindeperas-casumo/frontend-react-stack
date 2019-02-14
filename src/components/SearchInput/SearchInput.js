@@ -1,46 +1,55 @@
-/* @flow */
-
+// @flow
 import * as React from "react";
 import classNames from "classnames";
-import { omit, pathOr } from "ramda";
+import { pick } from "ramda";
 
-import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 
-type Props = {
-  id: string,
+import "./SearchInput.scss";
+
+// relevant props from input field we wish to expose
+type InputProps = {
   value: string,
+  autofocus?: boolean,
+  name?: string,
+  placeholder?: string,
+  onChange: () => void,
   onFocus: () => void,
+};
+
+type SearchInputProps = {
+  [key: string]: any,
   onClear: () => void,
   children?: empty,
-  hasNoResults: boolean,
+  id?: string,
 };
+
+type Props = InputProps & SearchInputProps;
 
 type State = {
   hasFocus: boolean,
 };
 
+const noop = () => {};
+
 class SearchInput extends React.Component<Props, State> {
-  textInput: { current: null | HTMLInputElement };
+  state = { hasFocus: false };
+  textInput: { current: ?HTMLInputElement } = React.createRef();
 
-  constructor(props: Props) {
-    super(props);
-    // eslint-disable-next-line fp/no-mutation
-    this.textInput = React.createRef();
-    // eslint-disable-next-line fp/no-mutation
-    this.state = { hasFocus: false };
-  }
-
-  get currentTextInput() {
-    return pathOr(
-      { id: null, focus: () => {}, blur: () => {} },
-      ["textInput", "current"],
-      this
+  get inputProps() {
+    return pick(
+      ["autofocus", "name", "onChange", "placeholder", "value"],
+      this.props
     );
   }
 
+  get input() {
+    return this.textInput.current || { focus: noop, blur: noop };
+  }
+
   handleClear = () => {
-    this.currentTextInput.focus();
+    this.input.focus();
     this.props.onClear();
   };
 
@@ -48,7 +57,7 @@ class SearchInput extends React.Component<Props, State> {
   // blurs the input to hide the mobile keyboard
   handleScroll = () => {
     this.setState({ hasFocus: false });
-    this.currentTextInput.blur();
+    this.input.blur();
   };
 
   onFocus = () => {
@@ -57,22 +66,15 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { id, value, hasNoResults } = this.props;
+    const { id = "c-search-input", value } = this.props;
     const { hasFocus } = this.state;
 
-    const isSearchTermNonEmpty = Boolean(value);
+    const hasSearchTerm = Boolean(value);
 
     const inputClassName = classNames(
       "c-search-input o-flex--1 u-padding-left",
       hasFocus ? "t-color-grey-dark-3" : "t-color-grey",
-      isSearchTermNonEmpty
-        ? "u-font-weight-bold u-font"
-        : "u-font-weight-normal"
-    );
-
-    const clearButtonClassName = classNames(
-      "c-search-input__clear-button",
-      hasNoResults ? "t-background-grey-dark-3" : "t-background-grey"
+      hasSearchTerm ? "u-font-weight-bold u-font" : "u-font-weight-normal"
     );
 
     return (
@@ -87,20 +89,23 @@ class SearchInput extends React.Component<Props, State> {
           />
         </label>
         <input
-          ref={this.textInput}
           id={id}
+          ref={this.textInput}
           className={inputClassName}
           type="text"
           onBlur={() => this.setState({ hasFocus: false })}
           onFocus={this.onFocus}
-          {...omit(["onClear", "onFocus", "hasNoResults"], this.props)}
+          {...this.inputProps}
         />
-        {isSearchTermNonEmpty && (
-          <div className={clearButtonClassName}>
-            <CrossIcon onClick={this.handleClear} />
+        {hasSearchTerm && (
+          <div
+            className="c-search-input__clear-button t-background-grey t-color-white t-border-r--circle"
+            onClick={this.handleClear}
+          >
+            <CrossIcon />
           </div>
         )}
-        {this.state.hasFocus && (
+        {hasFocus && (
           <div
             className="c-search-input__scroll-capture"
             onTouchStart={this.handleScroll}
