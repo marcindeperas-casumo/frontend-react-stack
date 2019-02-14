@@ -7,7 +7,7 @@ import { debounce } from "lodash";
 type Props = {
   initFetchQuerySearch: Function,
   clearSearch: Function,
-  hasNoResults: boolean,
+  noResults: boolean,
   placeholder: string,
 };
 
@@ -56,7 +56,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
         value={this.state.query}
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
-        hasNoResults={this.props.hasNoResults}
+        noResults={this.props.noResults}
         onFocus={this.handleFocusSearchInput}
         placeholder="Eg. game title, provider"
       />

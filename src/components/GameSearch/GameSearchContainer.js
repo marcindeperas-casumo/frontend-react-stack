@@ -32,7 +32,7 @@ const GameSearchConnected = connect(
       popularGames,
       searchResults: gameSearchResults(state),
       loading: isLoadingSelector(state),
-      hasNoResults: hasNoResultsSelector(state),
+      noResults: hasNoResultsSelector(state),
       hasNoLatestPlayed: hasNoLatestPlayedSelector(state),
       latestPlayedGamesTitle: getField({
         slug: searchCMSPageSlug,

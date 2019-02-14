@@ -19,7 +19,7 @@ type Props = {
   popularGames: Array<string>,
   hasNoLatestPlayed: boolean,
   loading: boolean,
-  hasNoResults: boolean,
+  noResults: boolean,
   fetchPageBySlug: () => void,
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
@@ -99,9 +99,9 @@ export default class GameSearch extends PureComponent<Props> {
   };
 
   renderResults = () => {
-    const { loading, hasNoResults, searchResults, query } = this.props;
+    const { loading, noResults, searchResults, query } = this.props;
 
-    if (!searchResults.length && !loading && !hasNoResults) {
+    if (!searchResults.length && !loading && !noResults) {
       return (
         <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
       );
@@ -115,7 +115,7 @@ export default class GameSearch extends PureComponent<Props> {
       );
     }
 
-    if (hasNoResults) {
+    if (noResults) {
       return this.renderNoMatch();
     }
     // replace for <VirtualList /> when new api is ready
@@ -140,7 +140,7 @@ export default class GameSearch extends PureComponent<Props> {
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
             clearSearch={this.props.clearSearch}
-            hasNoResults={this.props.hasNoResults}
+            noResults={this.props.noResults}
             placeholder={this.props.inputPromptPlaceholder}
           />
         </div>
