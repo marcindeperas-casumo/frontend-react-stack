@@ -4,6 +4,7 @@ import {
   fetchPlayerGames,
   types,
   fetchPlayerGamesCount,
+  getFetchCompleteTypeByPage,
 } from "Models/playerGames";
 
 describe("Models/PlayerGames/Actions", () => {
@@ -21,7 +22,7 @@ describe("Models/PlayerGames/Actions", () => {
 
     test("fires completed action when finished", () => {
       expect(action).toMatchObject({
-        postFetch: `${types.PLAYER_GAMES_FETCH_COMPLETE}_PAGE0`,
+        postFetch: getFetchCompleteTypeByPage(0),
       });
     });
 

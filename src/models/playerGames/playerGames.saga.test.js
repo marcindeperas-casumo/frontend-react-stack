@@ -1,11 +1,11 @@
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
 import {
-  types,
   fetchPlayerGames,
   fetchPlayerGamesSaga,
+  getFetchCompleteTypeByPage,
+  getPlayerGamesListIdByPage,
 } from "Models/playerGames";
-import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/PlayerGames/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
@@ -20,13 +20,11 @@ describe("Models/PlayerGames/Saga", () => {
       put(fetchPlayerGames({ page, pageSize }))
     );
 
-    expect(generator.next().value).toEqual(
-      take(`${types.PLAYER_GAMES_FETCH_COMPLETE}_PAGE0`)
-    );
+    expect(generator.next().value).toEqual(take(getFetchCompleteTypeByPage(0)));
 
     const response = ["foo"];
     const gameList = {
-      id: `${GAME_LIST_IDS.PLAYER_GAMES}Page${page}`,
+      id: getPlayerGamesListIdByPage(0),
       games: response,
     };
 

@@ -1,4 +1,4 @@
-import { types } from "Models/playerGames";
+import { types, getFetchCompleteTypeByPage } from "Models/playerGames";
 import { types as fetchTypes } from "Models/fetch";
 import {
   getCasinoPlayerGames,
@@ -15,7 +15,7 @@ export const fetchPlayerGames = ({ page, pageSize }) => {
   return {
     type: fetchTypes.FETCH,
     name: types.PLAYER_GAMES_FETCH_START,
-    postFetch: `${types.PLAYER_GAMES_FETCH_COMPLETE}_PAGE${page}`,
+    postFetch: getFetchCompleteTypeByPage(page),
     asyncCall: getCasinoPlayerGames,
     asyncCallData: { page, pageSize },
   };
