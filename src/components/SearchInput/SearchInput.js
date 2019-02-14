@@ -22,6 +22,8 @@ type SearchInputProps = {
   [key: string]: any,
   onClear: () => void,
   children?: empty,
+  noResults?: boolean,
+  // NOTE: in the edge-case where there are multiple instances of this in the DOM, please provide a unique ID
   id?: string,
 };
 
@@ -66,7 +68,7 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { id = "c-search-input", value } = this.props;
+    const { id = "c-search-input", value, noResults } = this.props;
     const { hasFocus } = this.state;
 
     const hasSearchTerm = Boolean(value);
@@ -75,6 +77,11 @@ class SearchInput extends React.Component<Props, State> {
       "c-search-input o-flex--1 u-padding-left",
       hasFocus ? "t-color-grey-dark-3" : "t-color-grey",
       hasSearchTerm ? "u-font-weight-bold u-font" : "u-font-weight-normal"
+    );
+
+    const clearButtonClassName = classNames(
+      "c-search-input__clear-button t-color-white t-border-r--circle",
+      noResults ? "t-background-black" : "t-background-grey"
     );
 
     return (
@@ -99,7 +106,8 @@ class SearchInput extends React.Component<Props, State> {
         />
         {hasSearchTerm && (
           <div
-            className="c-search-input__clear-button t-background-grey t-color-white t-border-r--circle"
+            data-test="search-input-clear-button"
+            className={clearButtonClassName}
             onClick={this.handleClear}
           >
             <CrossIcon />

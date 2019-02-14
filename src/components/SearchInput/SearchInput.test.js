@@ -5,7 +5,7 @@ import { SearchIcon } from "@casumo/cmp-icons";
 
 import SearchInput from "Components/SearchInput";
 
-const clearButtonSelector = ".c-search-input__clear-button";
+const clearButtonSelector = "div[data-test='search-input-clear-button']";
 
 const value = "some search text";
 const placeholder = "some placeholder text";
