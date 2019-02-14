@@ -13,10 +13,10 @@ export function* fetchPlayerGamesSaga(action) {
 
   yield put(fetchPlayerGames({ page, pageSize }));
 
-  const { response } = yield take(getFetchCompleteTypeByPage(0));
+  const { response } = yield take(getFetchCompleteTypeByPage(page));
 
   const gameList = {
-    id: getPlayerGamesListIdByPage(0),
+    id: getPlayerGamesListIdByPage(page),
     games: response,
   };
 

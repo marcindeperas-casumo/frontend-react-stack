@@ -1,14 +1,13 @@
 // @flow
 import React, { PureComponent } from "react";
+import { range, assoc } from "ramda";
+
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
-
-import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
-import { range, assoc } from "ramda";
+import VirtualList from "Components/VirtualList";
 
 const ROW_HEIGHT = 80;
 const PAGE_SIZE = 100;
-const THRESHOLD = 20;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
@@ -111,7 +110,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
     index,
     style,
   }: {
-    key: number,
+    key: string,
     index: number,
     style: Object,
   }) => {
@@ -147,29 +146,14 @@ class GamesVirtualList extends PureComponent<Props, State> {
     const { rowCount } = this.props;
 
     return (
-      <InfiniteLoader
-        isRowLoaded={this.isRowLoaded}
+      <VirtualList
+        totalNumberOfRows={rowCount}
+        rowHeight={ROW_HEIGHT}
         loadMoreRows={this.loadMoreRows}
-        rowCount={rowCount}
-        minimumBatchSize={PAGE_SIZE}
-        threshold={THRESHOLD}
-      >
-        {({ onRowsRendered, registerChild }) => (
-          <AutoSizer>
-            {({ width, height }) => (
-              <List
-                ref={registerChild}
-                onRowsRendered={onRowsRendered}
-                rowCount={rowCount}
-                width={width}
-                height={height}
-                rowHeight={ROW_HEIGHT}
-                rowRenderer={this.renderRow}
-              />
-            )}
-          </AutoSizer>
-        )}
-      </InfiniteLoader>
+        isRowLoaded={this.isRowLoaded}
+        rowRenderer={this.renderRow}
+        pageSize={PAGE_SIZE}
+      />
     );
   }
 }

@@ -32,12 +32,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     }
   }
 
-  fetchSearchResults = () => {
-    const { initFetchQuerySearch } = this.props;
-    const { query } = this.state;
-
-    return initFetchQuerySearch(query);
-  };
+  fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
   handleSearchInput = (event: Event) => {
     if (event.currentTarget instanceof HTMLInputElement) {
@@ -48,24 +43,20 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   };
 
   handleClearSearchInput = () => {
-    const { clearSearch } = this.props;
-
     this.setState({ query: "" });
-    clearSearch();
+    this.props.clearSearch();
   };
 
   handleFocusSearchInput = () => {};
 
   render() {
-    const { hasNoResults } = this.props;
-
     return (
       <SearchInput
         autoFocus={true}
         value={this.state.query}
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
-        hasNoResults={hasNoResults}
+        hasNoResults={this.props.hasNoResults}
         onFocus={this.handleFocusSearchInput}
         placeholder="Eg. game title, provider"
       />

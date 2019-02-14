@@ -37,14 +37,17 @@ export default class GameSearch extends PureComponent<Props> {
   );
 
   renderPopularGames = () => {
-    const { popularGames, popularGamesTitle } = this.props;
-
-    if (!popularGames.length) {
+    if (!this.props.popularGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
-          sections={[{ title: popularGamesTitle, data: popularGames }]}
+          sections={[
+            {
+              title: this.props.popularGamesTitle,
+              data: this.props.popularGames,
+            },
+          ]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
         />
@@ -53,15 +56,16 @@ export default class GameSearch extends PureComponent<Props> {
   };
 
   renderLatestPlayed = () => {
-    const { latestPlayedGames, latestPlayedGamesTitle } = this.props;
-
-    if (!latestPlayedGames.length) {
+    if (!this.props.latestPlayedGames.length) {
       return this.renderListSkeleton();
     } else {
       return (
         <SectionList
           sections={[
-            { title: latestPlayedGamesTitle, data: latestPlayedGames },
+            {
+              title: this.props.latestPlayedGamesTitle,
+              data: this.props.latestPlayedGames,
+            },
           ]}
           renderSectionHeader={this.renderSectionHeader}
           renderItem={id => <GameRowSearch slug={id} />}
@@ -82,8 +86,7 @@ export default class GameSearch extends PureComponent<Props> {
   );
 
   renderNoMatch = () => {
-    const { hasNoLatestPlayed } = this.props;
-    const field = hasNoLatestPlayed
+    const field = this.props.hasNoLatestPlayed
       ? "no_results_popular"
       : "no_results_continue_playing";
 
@@ -115,10 +118,9 @@ export default class GameSearch extends PureComponent<Props> {
     if (hasNoResults) {
       return this.renderNoMatch();
     }
-
+    // replace for <VirtualList /> when new api is ready
     return (
       <div className="u-padding-horiz--md">
-        {/* <VirtualList /> */}
         <List
           items={searchResults}
           itemSpacing="default"
@@ -132,21 +134,14 @@ export default class GameSearch extends PureComponent<Props> {
   };
 
   render() {
-    const {
-      hasNoResults,
-      initFetchQuerySearch,
-      clearSearch,
-      inputPromptPlaceholder,
-    } = this.props;
-
     return (
       <Flex direction="vertical" spacing="none">
         <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
           <GameSearchInput
-            initFetchQuerySearch={initFetchQuerySearch}
-            clearSearch={clearSearch}
-            hasNoResults={hasNoResults}
-            placeholder={inputPromptPlaceholder}
+            initFetchQuerySearch={this.props.initFetchQuerySearch}
+            clearSearch={this.props.clearSearch}
+            hasNoResults={this.props.hasNoResults}
+            placeholder={this.props.inputPromptPlaceholder}
           />
         </div>
         <div
