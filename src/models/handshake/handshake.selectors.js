@@ -34,14 +34,21 @@ export const isAuthenticated = createSelector(
   session,
   complement(anyPass([isNil, isEmpty]))
 );
+
 export const playerId = createSelector(
   session,
   prop("id")
 );
+
 export const player = createSelector(
   players,
   playerId,
   (players, playerId) => prop(playerId)(players)
+);
+
+export const sessionId = createSelector(
+  session,
+  prop("sessionId")
 );
 
 // TODO: check if we need to fallback on the country guesser. Another option

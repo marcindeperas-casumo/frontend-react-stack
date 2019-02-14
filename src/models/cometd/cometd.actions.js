@@ -1,7 +1,7 @@
 import { TYPES, CHANNELS } from "Models/cometd/cometd.constants";
 
-export const subscribe = ({ channel }) => {
-  return { type: TYPES.COMETD_SUBSCRIBE, channel };
+export const subscribe = ({ channel, sessionId }) => {
+  return { type: TYPES.COMETD_SUBSCRIBE, channel, sessionId };
 };
 
 export const unsubscribe = ({ channel }) => {
@@ -36,14 +36,16 @@ export const unsubscribeMustDropJackpotUpdates = () => {
   return unsubscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
 };
 
-export const subscribeToPlayerUpdates = playerId => {
+export const subscribeToPlayerUpdates = (playerId, sessionId) => {
   return subscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
+    sessionId,
   });
 };
 
-export const unsubscribeToPlayerUpdates = playerId => {
+export const unsubscribeToPlayerUpdates = (playerId, sessionId) => {
   return unsubscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
+    sessionId,
   });
 };
