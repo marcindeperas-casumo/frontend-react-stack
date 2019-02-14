@@ -1,0 +1,36 @@
+// @flow
+import React from "react";
+import type { Node } from "react";
+
+import bridge from "Src/DurandalReactBridge";
+
+type State = {
+  currentHash: string,
+};
+
+type Props = {
+  children: State => Node,
+};
+
+export default class SportsHashWatcher extends React.Component<Props, State> {
+  state = { currentHash: window.location.hash };
+
+  updateHashState = () => this.setState({ currentHash: window.location.hash });
+
+  componentDidMount() {
+    window.addEventListener("hashchange", this.updateHashState);
+
+    // manual event that can be fired to notify that the search query has updated
+    bridge.on("search-query-updated", this.updateHashState);
+  }
+
+  render() {
+    const { currentHash } = this.state;
+
+    return this.props.children({ currentHash });
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.updateHashState);
+  }
+}
