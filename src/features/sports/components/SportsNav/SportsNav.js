@@ -131,7 +131,7 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <SportsNavSkeleton />;
           }
 
-          if (!error && data && data.userNavigation) {
+          if (data && data.userNavigation) {
             const navItems: Array<SportsNavItemType> = data.userNavigation.map(
               this.mapGroupToNavItem
             );
