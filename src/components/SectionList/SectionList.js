@@ -27,26 +27,17 @@ export default class SectionList extends PureComponent<Props<*>> {
   };
 
   renderSection = (section: Section, index: number) => {
-    const {
-      renderItem,
-      renderSectionHeader,
-      keyExtractor = (item: {}) => index,
-      direction,
-      itemSpacing,
-    } = this.props;
-
-    const key = keyExtractor(section);
-    const { title, data } = section;
+    const { keyExtractor = (item: {}) => index } = this.props;
 
     return (
-      <Flex.Item key={key}>
-        <Flex direction={direction} spacing="none">
-          {title && renderSectionHeader(title)}
-          {data.length && (
+      <Flex.Item key={keyExtractor(section)}>
+        <Flex direction={this.props.direction} spacing="none">
+          {section.title && this.props.renderSectionHeader(section.title)}
+          {section.data.length && (
             <List
               items={section.data}
-              itemSpacing={itemSpacing}
-              render={renderItem}
+              itemSpacing={this.props.itemSpacing}
+              render={this.props.renderItem}
             />
           )}
         </Flex>
@@ -55,18 +46,14 @@ export default class SectionList extends PureComponent<Props<*>> {
   };
 
   render() {
-    const { sections, direction, className } = this.props;
-
-    const style = { overflow: "hidden", ...this.props.style };
-
     return (
       <Flex
-        direction={direction}
-        style={style}
-        className={className}
+        style={{ overflow: "hidden", ...this.props.style }}
+        direction={this.props.direction}
+        className={this.props.className}
         spacing="none"
       >
-        {sections.map(this.renderSection)}
+        {this.props.sections.map(this.renderSection)}
       </Flex>
     );
   }
