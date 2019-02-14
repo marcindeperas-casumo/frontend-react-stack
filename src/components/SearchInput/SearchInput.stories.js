@@ -45,6 +45,13 @@ stories.add("With Input (focused)", () => (
   </Wrapper>
 ));
 
+stories.add("With Input (no search results)", () => (
+  <Wrapper>
+    <SearchInput {...props} value="Charlie's dignity" noResults />
+    <FocusHelper />
+  </Wrapper>
+));
+
 stories.add("Without Input", () => (
   <Wrapper>
     <SearchInput {...props} value={null} />
