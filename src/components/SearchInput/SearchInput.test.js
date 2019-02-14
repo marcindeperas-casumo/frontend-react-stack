@@ -5,6 +5,8 @@ import { SearchIcon } from "@casumo/cmp-icons";
 
 import SearchInput from "Components/SearchInput";
 
+const clearButtonSelector = ".c-search-input__clear-button";
+
 const value = "some search text";
 const placeholder = "some placeholder text";
 
@@ -33,7 +35,7 @@ describe("<SearchInput />", () => {
     test("renders a clear button", () => {
       const component = shallow(<SearchInput {...props} />);
 
-      expect(component.find(".c-search-input__clear-button").length).toBe(1);
+      expect(component.find(clearButtonSelector).length).toBe(1);
     });
   });
 
@@ -57,7 +59,7 @@ describe("<SearchInput />", () => {
     test("renders without a clear button", () => {
       const component = shallow(<SearchInput {...props} />);
 
-      expect(component.find(".c-search-input__clear-button").length).toBe(0);
+      expect(component.find(clearButtonSelector).length).toBe(0);
     });
   });
 
@@ -76,7 +78,7 @@ describe("<SearchInput />", () => {
     test("the `onClear` callback is fired", () => {
       const onClear = jest.fn();
       const component = shallow(<SearchInput {...{ ...props, onClear }} />);
-      const clearButton = component.find(".c-search-input__clear-button");
+      const clearButton = component.find(clearButtonSelector);
 
       clearButton.simulate("click");
       expect(onClear).toHaveBeenCalledTimes(1);

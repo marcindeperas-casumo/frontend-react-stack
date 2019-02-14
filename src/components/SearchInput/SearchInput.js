@@ -3,6 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
 
+import { invokePath } from "Utils";
 import Flex from "@casumo/cmp-flex";
 import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 
@@ -42,17 +43,8 @@ class SearchInput extends React.Component<Props, State> {
     );
   }
 
-  focus = () => {
-    if (this.textInput.current) {
-      this.textInput.current.focus();
-    }
-  };
-
-  blur = () => {
-    if (this.textInput.current) {
-      this.textInput.current.focus();
-    }
-  };
+  focus = () => invokePath(["current", "focus"], this.textInput);
+  blur = () => invokePath(["current", "blur"], this.textInput);
 
   handleClear = () => {
     this.focus();
