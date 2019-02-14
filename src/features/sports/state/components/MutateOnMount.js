@@ -26,7 +26,7 @@ class DoMutation extends React.Component<DoMutationProps> {
   }
 }
 
-class MutationOnMount<D: * = {}, V: * = {}> extends React.Component<
+class MutateOnMount<D: * = {}, V: * = {}> extends React.Component<
   MutationProps<D, V>
 > {
   render() {
@@ -47,4 +47,4 @@ class MutationOnMount<D: * = {}, V: * = {}> extends React.Component<
   }
 }
 
-export default MutationOnMount;
+export default MutateOnMount;

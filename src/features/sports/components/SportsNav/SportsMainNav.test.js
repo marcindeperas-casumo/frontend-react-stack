@@ -10,7 +10,7 @@ import SportsSingleNavTab from "./SportsSingleNavTab";
 import navItems from "./__mocks__/navItems";
 
 describe("<SportsMainNav />", () => {
-  test("renders the correct number of tabs in list is more than 1", () => {
+  test("renders the correct number of tabs in list if list is more than 1 long", () => {
     const rendered = shallow(
       <SportsMainNav navItems={navItems} isSelected={F} />
     );

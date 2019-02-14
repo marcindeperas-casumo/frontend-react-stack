@@ -29,6 +29,7 @@ export const USER_NAVIGATION_QUERY = gql`
       termKey
       flagEmoji
       icon
+      canSelectSubgroups
 
       groups {
         name
@@ -96,6 +97,7 @@ class SportsNav extends React.Component<SportsNavProps> {
         alt={group.name}
       />
     ),
+    canEdit: group.canSelectSubgroups,
     subNav: (group.groups || []).map(subgroup => ({
       text: (
         <>
@@ -106,10 +108,13 @@ class SportsNav extends React.Component<SportsNavProps> {
       path: subgroup.clientPath,
       parentPath: group.clientPath,
       key: group.termKey,
+      canEdit: false,
     })),
   });
 
   render() {
+    // Decision was made that our nav doesn't add any benefit on the following kambi routes
+    // and take too much focus away from what is happening
     if (/#event|#bethistory/.test(this.props.currentHash)) {
       return null;
     }
@@ -160,7 +165,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       navItems={selectedNavItem.subNav || []}
                       onSelected={this.onNavItemSelected}
                       isSelected={this.isNavItemSelected}
-                      canEdit={selectedNavItem.key === "football"}
+                      canEdit={selectedNavItem.canEdit}
                       onEdit={openChooseFavouriteLeaguesModal}
                     />
                   )}

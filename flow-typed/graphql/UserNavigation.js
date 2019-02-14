@@ -57,6 +57,10 @@ export type UserNavigation_userNavigation = {
    */
   icon: ?string,
   /**
+   * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
+   */
+  canSelectSubgroups: boolean,
+  /**
    * Array of subgroups in this event group
    */
   groups: ?Array<UserNavigation_userNavigation_groups>,

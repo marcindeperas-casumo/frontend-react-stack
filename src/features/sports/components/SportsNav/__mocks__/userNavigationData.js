@@ -6,6 +6,7 @@ export default [
     termKey: "football",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/handball.svg",
+    canSelectSubgroups: true,
     groups: [
       {
         name: "Champions League",
@@ -51,6 +52,7 @@ export default [
     termKey: "tennis",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "ATP",
@@ -96,6 +98,7 @@ export default [
     termKey: "golf",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/golf.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "PGA Tour",
@@ -141,6 +144,7 @@ export default [
     termKey: "baseball",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/baseball.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "MLB",
@@ -158,6 +162,7 @@ export default [
     termKey: "basketball",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/basketball.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "BBL",
@@ -203,6 +208,7 @@ export default [
     termKey: "boxing",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/boxing.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "Upcoming Fights",
@@ -227,6 +233,7 @@ export default [
     termKey: "chess",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/chess.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "International Tournaments",
@@ -265,6 +272,7 @@ export default [
     termKey: "cricket",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "Pakistan Super League",
@@ -310,6 +318,7 @@ export default [
     termKey: "darts",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/darts.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "Unibet Premier League of Darts",
@@ -334,6 +343,7 @@ export default [
     termKey: "esports",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/e-sports.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "LCK",
@@ -379,6 +389,7 @@ export default [
     termKey: "floorball",
     flagEmoji: null,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/floorball.svg",
+    canSelectSubgroups: false,
     groups: [
       {
         name: "Superligan",

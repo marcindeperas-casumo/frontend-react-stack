@@ -8,4 +8,5 @@ export type SportsNavItemType = {
   parentPath?: string,
   subNav?: Array<SportsNavItemType>,
   key: string,
+  canEdit: boolean,
 };

@@ -1,6 +1,6 @@
 import React from "react";
 
-const NavTabSkeleton = () => (
+const SportsNavTabSkeleton = () => (
   <div style={{ marginLeft: 32 }}>
     <div
       style={{
@@ -22,4 +22,4 @@ const NavTabSkeleton = () => (
   </div>
 );
 
-export default NavTabSkeleton;
+export default SportsNavTabSkeleton;
