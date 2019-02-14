@@ -1,12 +1,4 @@
-import {
-  apply,
-  assocPath,
-  is,
-  path,
-  pathSatisfies,
-  prop,
-  splitEvery,
-} from "ramda";
+import { assocPath, prop, splitEvery } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -34,14 +26,6 @@ export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
 export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
 
 export const isEnvTest = () => getEnv() === ENVS.TEST;
-
-const pathIsFn = pathSatisfies(is(Function));
-
-export const invokePath = (pathArr, obj, args = []) => {
-  if (pathIsFn(pathArr, obj)) {
-    apply(path(pathArr, obj), args);
-  }
-};
 
 export const sleep = ms => data => {
   return new Promise(resolve => {

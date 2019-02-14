@@ -3,7 +3,6 @@ import * as React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
 
-import { invokePath } from "Utils";
 import Flex from "@casumo/cmp-flex";
 import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 
@@ -15,8 +14,8 @@ type InputProps = {
   autofocus?: boolean,
   name?: string,
   placeholder?: string,
-  onChange?: () => void,
-  onFocus?: () => void,
+  onChange: () => void,
+  onFocus: () => void,
 };
 
 type SearchInputProps = {
@@ -32,6 +31,8 @@ type State = {
   hasFocus: boolean,
 };
 
+const noop = () => {};
+
 class SearchInput extends React.Component<Props, State> {
   state = { hasFocus: false };
   textInput: { current: ?HTMLInputElement } = React.createRef();
@@ -43,8 +44,12 @@ class SearchInput extends React.Component<Props, State> {
     );
   }
 
+  get input() {
+    return this.textInput.current || { focus: noop, blur: noop };
+  }
+
   handleClear = () => {
-    invokePath(["current", "focus"], this.textInput);
+    this.input.focus();
     this.props.onClear();
   };
 
@@ -52,11 +57,11 @@ class SearchInput extends React.Component<Props, State> {
   // blurs the input to hide the mobile keyboard
   handleScroll = () => {
     this.setState({ hasFocus: false });
-    invokePath(["current", "blur"], this.textInput);
+    this.input.blur();
   };
 
   onFocus = () => {
-    invokePath(["onFocus"], this.props);
+    this.props.onFocus();
     this.setState({ hasFocus: true });
   };
 

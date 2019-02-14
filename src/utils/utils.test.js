@@ -5,51 +5,12 @@ import {
   cacheFunction,
   generateColumns,
   getEnv,
-  invokePath,
   makeProtocolAwareUrl,
   matchingGroups,
   renderBets,
   sanitizeObject,
   SimpleCache,
 } from "./utils";
-
-describe("invokePath()", () => {
-  describe("when the path provided is a function on the object provided", () => {
-    test("should invoke with an empty array of arguments by default", () => {
-      const mockFn = jest.fn();
-      const obj = { someProp: { someFn: (...args) => mockFn(args) } };
-      const path = ["someProp", "someFn"];
-
-      invokePath(path, obj);
-
-      expect(mockFn).toHaveBeenCalledTimes(1);
-      expect(mockFn).toHaveBeenCalledWith([]);
-    });
-
-    test("should invoke with arguments if provided", () => {
-      const mockFn = jest.fn();
-      const obj = { someProp: { someFn: (...args) => mockFn(args) } };
-      const path = ["someProp", "someFn"];
-      const args = [42, "answer", true];
-
-      invokePath(path, obj, args);
-
-      expect(mockFn).toHaveBeenCalledTimes(1);
-      expect(mockFn).toHaveBeenCalledWith(args);
-    });
-  });
-
-  describe("when the path provided is not a function on the object provided", () => {
-    test("should not error", () => {
-      const obj = { someProp: { someNonFn: 42 } };
-      const path = ["someProp", "someNonFn"];
-      const args = [42, "answer", true];
-
-      // no expect required, ensure no exception was thrown
-      invokePath(path, obj, args);
-    });
-  });
-});
 
 describe("bridgeFactory()", () => {
   test("should return a bridge instance", () => {
