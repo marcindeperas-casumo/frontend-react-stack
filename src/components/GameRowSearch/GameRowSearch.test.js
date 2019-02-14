@@ -67,40 +67,5 @@ describe("<GameRowSearch />", () => {
       .simulate("click");
 
     expect(launchGame).toHaveBeenCalledTimes(1);
-
-    rendered
-      .find("RenderPlayIcon")
-      .dive()
-      .find("FlexItem")
-      .simulate("click");
-
-    expect(launchGame).toHaveBeenCalledTimes(2);
-  });
-
-  test("clicking on the game logo / game title launches the game if not a Jackpot game", () => {
-    rendered = shallow(
-      <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
-    );
-
-    rendered
-      .find("FlexBlock")
-      .first()
-      .simulate("click");
-
-    expect(launchGame).toHaveBeenCalledTimes(1);
-  });
-
-  test("clicking the icon on the right navigates you to the details page if not a Jackpot game", () => {
-    rendered = shallow(
-      <GameRowSearch game={game} onLaunchGame={launchGame} id={game.slug} />
-    );
-
-    expect(
-      rendered
-        .find("RenderMoreIcon")
-        .dive()
-        .find("a")
-        .prop("href")
-    ).toBe("/en/play/foo-bar");
   });
 });
