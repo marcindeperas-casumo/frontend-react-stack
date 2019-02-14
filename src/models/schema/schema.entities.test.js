@@ -1,3 +1,4 @@
+import { omit } from "ramda";
 import { normalizeData } from "./schema.entities";
 
 describe("CMS Schema", () => {
@@ -24,5 +25,34 @@ describe("CMS Schema", () => {
     const normalized = normalizeData({ cms: sample });
 
     expect(normalized.entities.cms[sample.slug]).toEqual(sample);
+  });
+
+  test("should normalize Game object", () => {
+    const game = {
+      id: "1b7e",
+      providerId: "0c90",
+      slug: "300-shields",
+      title: "300 Shields",
+      description: "",
+      jackpotId: null,
+      liveCasinoId: null,
+      logo:
+        "https://cms.casumo.com/wp-content/uploads/2016/12/300Shields-BellyLogo.png",
+      backgroundImage:
+        "https://cms.casumo.com/wp-content/uploads/2016/12/300-shields_bg.jpg",
+      hasPlayForFun: true,
+      inMaintenance: false,
+      categories: ["SLOT_MACHINE"],
+      media: [],
+    };
+    const normalized = normalizeData({ game });
+
+    expect(
+      omit(["name", "logoBackground"], normalized.entities.game[game.slug])
+    ).toEqual(game);
+    expect(normalized.entities.game[game.slug].name).toEqual(game.title);
+    expect(normalized.entities.game[game.slug].logoBackground).toEqual(
+      game.backgroundImage
+    );
   });
 });
