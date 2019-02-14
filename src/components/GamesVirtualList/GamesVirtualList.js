@@ -32,9 +32,8 @@ type State = {
 
 class GamesVirtualList extends PureComponent<Props, State> {
   componentDidMount() {
-    const { preloadFetchPlayerGamesCount } = this.props;
-
-    preloadFetchPlayerGamesCount && preloadFetchPlayerGamesCount();
+    this.props.preloadFetchPlayerGamesCount &&
+      this.props.preloadFetchPlayerGamesCount();
   }
 
   promises = {

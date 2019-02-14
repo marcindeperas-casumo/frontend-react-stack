@@ -24,10 +24,9 @@ export function* gameSearchSaga(action) {
   yield put(fetchQuerySearch({ platform, country, query }));
 
   const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
-  const { games } = response;
 
   // if no match fetch latest played games
-  if (!games.length) {
+  if (!response.games.length) {
     yield put(noResultsAction());
 
     return yield call(fetchLatestPlayedSaga);
@@ -37,14 +36,14 @@ export function* gameSearchSaga(action) {
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
       id: GAME_LIST_IDS.GAME_SEARCH,
-      games,
+      games: response.games,
     },
   });
 
   yield put(updateEntity(entities));
 
   // if direct hit fetch latest played games
-  if (games.length === 1) {
+  if (response.games.length === 1) {
     return yield call(fetchLatestPlayedSaga);
   }
 
