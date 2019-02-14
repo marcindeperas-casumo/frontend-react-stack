@@ -5,13 +5,8 @@ import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 const gamesArray = ["easter-island", "starburst"];
 
 describe("GamesVirtualList", () => {
-  let fetchPage;
-  let renderItem;
-
-  beforeAll(() => {
-    fetchPage = jest.fn();
-    renderItem = id => <div />;
-  });
+  const fetchPage = jest.fn();
+  const renderItem = <div />;
 
   test("should render a VirtualList given the required params", () => {
     const rendered = mount(

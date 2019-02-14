@@ -46,9 +46,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   componentDidUpdate() {
-    const { games } = this.props;
     const isPromiseLoaded = ({ startIndex, stopIndex }) =>
-      games[startIndex] && games[stopIndex];
+      this.props.games[startIndex] && this.props.games[stopIndex];
     const loadedPromises = this.promises.list.filter(isPromiseLoaded);
     const notLoadedPromises = this.promises.list.filter(
       o => !isPromiseLoaded(o)
@@ -60,16 +59,12 @@ class GamesVirtualList extends PureComponent<Props, State> {
     this.promises.list = notLoadedPromises;
   }
 
-  isRowLoaded = ({ index }: { index: number }) => {
-    const { loadedRowsMap } = this.state;
-
-    return Boolean(loadedRowsMap[index]);
-  };
+  isRowLoaded = ({ index }: { index: number }) =>
+    Boolean(this.state.loadedRowsMap[index]);
 
   setRowsAsLoaded = ({ startIndex, stopIndex }: Indexes) => {
-    const { rowCount } = this.props;
-    // fix last row not loading
-    const isLast = stopIndex + 1 === rowCount;
+    // adjust for last row not loading
+    const isLast = stopIndex + 1 === this.props.rowCount;
     const stop = isLast ? stopIndex + 1 : stopIndex;
 
     range(startIndex, stop).forEach(i => {
@@ -114,8 +109,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
     index: number,
     style: Object,
   }) => {
-    const { renderItem, games } = this.props;
-
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
@@ -137,17 +130,15 @@ class GamesVirtualList extends PureComponent<Props, State> {
         index={index}
         style={style}
       >
-        {renderItem(games[index])}
+        {this.props.renderItem(this.props.games[index])}
       </div>
     );
   };
 
   render() {
-    const { rowCount } = this.props;
-
     return (
       <VirtualList
-        totalNumberOfRows={rowCount}
+        totalNumberOfRows={this.props.rowCount}
         rowHeight={ROW_HEIGHT}
         loadMoreRows={this.loadMoreRows}
         isRowLoaded={this.isRowLoaded}
