@@ -4,12 +4,12 @@ import {
   bridgeFactory,
   cacheFunction,
   generateColumns,
+  getEnv,
   makeProtocolAwareUrl,
   matchingGroups,
   renderBets,
-  SimpleCache,
   sanitizeObject,
-  getEnv,
+  SimpleCache,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
