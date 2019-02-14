@@ -40,15 +40,15 @@ export const playerId = createSelector(
   prop("id")
 );
 
-export const sessionId = createSelector(
-  session,
-  prop("sessionId")
-);
-
 export const player = createSelector(
   players,
   playerId,
   (players, playerId) => prop(playerId)(players)
+);
+
+export const sessionId = createSelector(
+  session,
+  prop("sessionId")
 );
 
 // TODO: check if we need to fallback on the country guesser. Another option

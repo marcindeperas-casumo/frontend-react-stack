@@ -14,9 +14,10 @@ import DataProvider from "Components/DataProvider";
 
 type Props = {
   onAppStarted: () => void,
-  subscribeToPlayerUpdates: string => void,
-  unsubscribeToPlayerUpdates: string => void,
+  subscribeToPlayerUpdates: Function,
+  unsubscribeToPlayerUpdates: Function,
   playerId: string,
+  sessionId: string,
   isAuthenticated: boolean,
   activeComponents: Array<string>,
   routeParams: Array<Object>,
@@ -38,9 +39,9 @@ class App extends PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    const { playerId, unsubscribeToPlayerUpdates } = this.props;
+    const { playerId, sessionId, unsubscribeToPlayerUpdates } = this.props;
 
-    unsubscribeToPlayerUpdates(playerId);
+    unsubscribeToPlayerUpdates(playerId, sessionId);
   }
 
   componentDidUpdate(props: Props) {
@@ -53,12 +54,12 @@ class App extends PureComponent<Props> {
   }
 
   subscribe() {
-    const { playerId, subscribeToPlayerUpdates } = this.props;
+    const { playerId, sessionId, subscribeToPlayerUpdates } = this.props;
 
     if (playerId) {
-      subscribeToPlayerUpdates(playerId);
+      subscribeToPlayerUpdates(playerId, sessionId);
     }
-  };
+  }
 
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
