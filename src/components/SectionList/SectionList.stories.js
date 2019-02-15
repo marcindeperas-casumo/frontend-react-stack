@@ -29,18 +29,40 @@ const renderSectionHeader = title => (
   <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
 );
 
-const SectionListStories = () => (
-  <MockStore>
-    <SectionList
-      sections={sections}
-      renderSectionHeader={renderSectionHeader}
-      renderItem={id => <GameRowSearch id={id} />}
-    />
-  </MockStore>
+stories.add(
+  "Alphabetical",
+  () => (
+    <MockStore>
+      <SectionList
+        sections={sections}
+        renderSectionHeader={renderSectionHeader}
+        renderItem={id => <GameRowSearch slug={id} />}
+      />
+    </MockStore>
+  ),
+  info({ text: "alphabetical" })
 );
 
 stories.add(
-  "Alphabetical",
-  () => <SectionListStories />,
-  info({ text: "alphabetical" })
+  "Section with no games",
+  () => (
+    <MockStore>
+      <SectionList
+        sections={[
+          {
+            title: "I'm a section with results",
+            data: ["mega-fortune-dreams", "mega-fortune"],
+          },
+          { title: "I'm an empty section" },
+          {
+            title: "I'm a section with other results",
+            data: ["hall-of-gods", "divine-fortune"],
+          },
+        ]}
+        renderSectionHeader={renderSectionHeader}
+        renderItem={id => <GameRowSearch slug={id} />}
+      />
+    </MockStore>
+  ),
+  info({ text: "Section with no games" })
 );
