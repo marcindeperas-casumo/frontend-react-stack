@@ -14,7 +14,7 @@ type Props = {
 
 export const SEARCH_QUERY_UPDATED_EVENT = "search-query-updated";
 
-export default class SportsHashWatcher extends React.Component<Props, State> {
+export default class HashWatcher extends React.Component<Props, State> {
   state = { currentHash: window.location.hash };
 
   updateHashState = () => this.setState({ currentHash: window.location.hash });
