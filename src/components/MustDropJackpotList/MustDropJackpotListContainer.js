@@ -9,16 +9,20 @@ import {
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
 } from "Models/schema";
+import { initFetchTopLists } from "Models/games";
 
-const MustDropJackpotListConnected = connect(state => ({
-  isLoaded: isGameListFetchedFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
-    state
-  ),
-  ids: mustDropJackpotsIdsSelector(state),
-  title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
-    state
-  ),
-}))(MustDropJackpotList);
+const MustDropJackpotListConnected = connect(
+  state => ({
+    areGamesLoaded: isGameListFetchedFactory(
+      GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES
+    )(state),
+    ids: mustDropJackpotsIdsSelector(state),
+    title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
+      state
+    ),
+  }),
+  { initFetchTopLists }
+)(MustDropJackpotList);
 
 type Props = {};
 

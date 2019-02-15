@@ -22,8 +22,12 @@
     "@casumo/cmp-text": "^1.2.6",
     "@casumo/cudl": "^5.1.3",
     "@researchgate/react-intersection-observer": "^0.7.4",
+    "apollo-cache-inmemory": "^1.4.2",
+    "apollo-client": "^2.4.12",
     "classnames": "^2.2.6",
     "cometd": "^3.1.7",
+    "graphql": "^14.1.1",
+    "graphql-tag": "^2.10.1",
     "intersection-observer": "^0.5.1",
     "invariant": "^2.2.4",
     "luxon": "^1.10.0",
@@ -31,6 +35,7 @@
     "qs": "^6.6.0",
     "ramda": "^0.26.1",
     "react": "^16.7.0",
+    "react-apollo": "^2.4.1",
     "react-dev-utils": "^7.0.1",
     "react-dom": "^16.7.0",
     "react-icon-base": "^2.1.2",
@@ -56,7 +61,8 @@
     "format": "eslint --fix './src/**/*.js' && stylelint --fix './src/**/*.scss'",
     "storybook": "start-storybook -s ./.storybook/static -p 6006",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --script-name storybook --exit-zero-on-changes",
-    "generate-component": "./scripts/generate-component.js ./src/components"
+    "generate-component": "./scripts/generate-component.js ./src/components",
+    "graphql-generate-types": "apollo codegen:generate flow-typed/graphql  --target=flow --endpoint=http://localhost:4000 --includes=\"src/**/*{js,graphql}\" --outputFlat --no-addTypename"
   },
   "husky": {
     "hooks": {
@@ -130,6 +136,7 @@
     "@storybook/core": "^4.1.11",
     "@storybook/react": "^4.1.11",
     "@svgr/webpack": "^4.1.0",
+    "apollo": "^2.4.4",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
@@ -185,8 +192,13 @@
     "stylelint-selector-pattern": "^0.0.2",
     "terser-webpack-plugin": "^1.2.1",
     "url-loader": "^1.1.2",
+    "waait": "^1.0.4",
+    "wait-for-expect": "^1.1.0",
     "webpack": "^4.29.0",
     "webpack-dev-server": "^3.1.14",
     "webpack-manifest-plugin": "^2.0.4"
+  },
+  "resolutions": {
+    "graphql": "14.1.1"
   }
 }
