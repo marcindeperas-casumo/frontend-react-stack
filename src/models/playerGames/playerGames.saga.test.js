@@ -1,3 +1,4 @@
+import { cloneableGenerator } from "redux-saga/utils";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { call, put, take } from "redux-saga/effects";
 import {
@@ -10,17 +11,23 @@ import {
 describe("Models/PlayerGames/Saga", () => {
   test("fetchPlayerGamesSaga()", () => {
     const page = 0;
-    const pageSize = 0;
-    const generator = fetchPlayerGamesSaga({ startIndex: 0, pageSize });
+    const pageSize = 100;
+    const pageLoaded = true;
+    const gen = cloneableGenerator(fetchPlayerGamesSaga)({
+      startIndex: 0,
+      pageSize,
+    });
 
-    // eslint-disable-next-line
-    generator.next().value;
+    const pageLoadedGen = gen.clone();
 
-    expect(generator.next(page).value).toEqual(
-      put(fetchPlayerGames({ page, pageSize }))
-    );
+    pageLoadedGen.next();
+    expect(pageLoadedGen.next(pageLoaded).done).toBe(true);
 
-    expect(generator.next().value).toEqual(take(getFetchCompleteTypeByPage(0)));
+    gen.next();
+
+    expect(gen.next().value).toEqual(put(fetchPlayerGames({ page, pageSize })));
+
+    expect(gen.next().value).toEqual(take(getFetchCompleteTypeByPage(0)));
 
     const response = ["foo"];
     const gameList = {
@@ -28,16 +35,14 @@ describe("Models/PlayerGames/Saga", () => {
       games: response,
     };
 
-    expect(generator.next({ response }).value).toEqual(
+    expect(gen.next({ response }).value).toEqual(
       call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })
     );
 
     const entities = { someEntity: { id: 1 } };
 
-    expect(generator.next({ entities }).value).toEqual(
-      put(updateEntity(entities))
-    );
+    expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
 
-    expect(generator.next().done).toBe(true);
+    expect(gen.next().done).toBe(true);
   });
 });

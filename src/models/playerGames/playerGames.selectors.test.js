@@ -2,6 +2,7 @@ import {
   playerGamesSelector,
   isPlayerGamesPageLoaded,
   playerGamesCountSelector,
+  getPlayerGamesListIdByPage,
 } from "Models/playerGames";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -26,7 +27,7 @@ describe("Models/PlayerGames/Selectors", () => {
 
   describe("isPlayerGamesPageLoaded()", () => {
     test("returns true if list is in state", () => {
-      const gameList = { [GAME_LIST_IDS.PLAYER_GAMES]: { games: ["foo"] } };
+      const gameList = { [getPlayerGamesListIdByPage(0)]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(isPlayerGamesPageLoaded(0)(state)).toBe(true);

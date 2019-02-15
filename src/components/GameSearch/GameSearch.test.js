@@ -33,8 +33,7 @@ describe("GameSearch", () => {
         searchResults={[""]}
         latestPlayedGames={["starburst"]}
         fetchPageBySlug={() => {}}
-        loading={false}
-        hasNoResults={true}
+        noResults={true}
       />
     );
 
@@ -48,8 +47,6 @@ describe("GameSearch", () => {
         searchResults={[]}
         latestPlayedGames={["starburst"]}
         fetchPageBySlug={() => {}}
-        loading={false}
-        hasNoResults={false}
       />
     );
 
@@ -62,8 +59,6 @@ describe("GameSearch", () => {
         searchResults={["I", "am", "search", "results"]}
         latestPlayedGames={["starburst"]}
         fetchPageBySlug={() => {}}
-        loading={false}
-        hasNoResults={false}
       />
     );
 
@@ -79,8 +74,6 @@ describe("GameSearch", () => {
         searchResults={["I"]}
         popularGames={popularGames}
         fetchPageBySlug={() => {}}
-        loading={false}
-        hasNoResults={false}
         hasNoLatestPlayed={true}
         popularGamesTitle={popularGamesTitle}
       />
@@ -102,9 +95,6 @@ describe("GameSearch", () => {
         searchResults={["I"]}
         latestPlayedGames={latestPlayedGames}
         fetchPageBySlug={() => {}}
-        loading={false}
-        hasNoResults={false}
-        hasNoLatestPlayed={false}
         latestPlayedGamesTitle={latestPlayedGamesTitle}
       />
     );

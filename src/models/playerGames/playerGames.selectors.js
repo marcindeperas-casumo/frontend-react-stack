@@ -11,6 +11,7 @@ import {
   flatten,
 } from "ramda";
 import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
+import { getPlayerGamesListIdByPage } from "Models/playerGames";
 import { GAME_LIST_IDS } from "Src/constants";
 
 const isPlayerGames = (val, key) => key.startsWith(GAME_LIST_IDS.PLAYER_GAMES);
@@ -34,7 +35,7 @@ export const playerGamesSelector = createSelector(
 
 export const isPlayerGamesPageLoaded = page =>
   createSelector(
-    gameListSelector(GAME_LIST_IDS.PLAYER_GAMES),
+    gameListSelector(getPlayerGamesListIdByPage(page)),
     compose(
       not,
       isEmpty,

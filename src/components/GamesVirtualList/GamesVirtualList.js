@@ -28,6 +28,7 @@ type Indexes = {
 
 type State = {
   loadedRowsMap: {},
+  pagesMap: {},
 };
 
 class GamesVirtualList extends PureComponent<Props, State> {
@@ -42,6 +43,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
   state = {
     loadedRowsMap: {},
+    pagesMap: {},
   };
 
   componentDidUpdate() {
@@ -52,7 +54,10 @@ class GamesVirtualList extends PureComponent<Props, State> {
       o => !isPromiseLoaded(o)
     );
 
-    loadedPromises.forEach(({ resolve }) => resolve());
+    loadedPromises.forEach(({ startIndex, stopIndex, resolve }) => {
+      this.setRowsAsLoaded({ startIndex, stopIndex });
+      return resolve();
+    });
 
     // eslint-disable-next-line
     this.promises.list = notLoadedPromises;
@@ -60,6 +65,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
 
   isRowLoaded = ({ index }: { index: number }) =>
     Boolean(this.state.loadedRowsMap[index]);
+
+  isPageRequested = (page: number) => Boolean(this.state.pagesMap[page]);
 
   setRowsAsLoaded = ({ startIndex, stopIndex }: Indexes) => {
     // adjust for last row not loading
@@ -79,13 +86,21 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   loadMoreRows = ({ startIndex, stopIndex }: Indexes) => {
-    this.props.preloadFetchPlayerGames({
-      startIndex,
-      stopIndex,
-      pageSize: PAGE_SIZE,
-    });
+    const page = Math.ceil(startIndex / PAGE_SIZE);
 
-    this.setRowsAsLoaded({ startIndex, stopIndex });
+    if (!this.isPageRequested(page)) {
+      this.props.preloadFetchPlayerGames({
+        startIndex,
+        stopIndex,
+        pageSize: PAGE_SIZE,
+      });
+      this.setState(prevState => ({
+        pagesMap: {
+          ...prevState.pagesMap,
+          ...assoc(page, 1, this.state.pagesMap),
+        },
+      }));
+    }
 
     return new Promise<Object>(resolve => {
       const promise = {

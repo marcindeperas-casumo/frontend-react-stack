@@ -1,7 +1,8 @@
-import { call, put, take } from "redux-saga/effects";
+import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   fetchPlayerGames,
+  isPlayerGamesPageLoaded,
   getFetchCompleteTypeByPage,
   getPlayerGamesListIdByPage,
 } from "Models/playerGames";
@@ -9,7 +10,12 @@ import {
 export function* fetchPlayerGamesSaga(action) {
   const { startIndex, pageSize } = action;
 
-  const page = yield Math.ceil(startIndex / pageSize);
+  const page = Math.ceil(startIndex / pageSize);
+  const pageLoaded = yield select(isPlayerGamesPageLoaded(page));
+
+  if (pageLoaded) {
+    return;
+  }
 
   yield put(fetchPlayerGames({ page, pageSize }));
 
