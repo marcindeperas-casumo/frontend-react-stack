@@ -14,9 +14,9 @@ type Props<T> = {|
   renderItem: T => Node,
   renderSectionHeader: (title: string) => Node,
   keyExtractor?: T => string,
-  direction?: "vertical" | "horizontal",
+  direction: "vertical" | "horizontal",
   style?: { [string]: mixed },
-  className?: string,
+  className: string,
   itemSpacing: string,
 |};
 
