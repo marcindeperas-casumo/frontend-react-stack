@@ -13,19 +13,7 @@ export const getGameBrowserHandshake = (
   { platform, country },
   http = defaultHttp
 ) => {
-  return (
-    http
-      .get(`${URL.HANDSHAKE}/${platform}/${country}`)
-      // TODO remove
-      .then(resp => ({
-        ...resp,
-        gamesLists: {
-          ...resp.gamesLists,
-          suggestedGames: { id: "suggestedGames", title: "Because you played ${GAME_NAME}" },
-        },
-        topListIds: ["suggestedGames", ...resp.topListIds],
-      }))
-  );
+  return http.get(`${URL.HANDSHAKE}/${platform}/${country}`);
 };
 
 export const getGameLists = (

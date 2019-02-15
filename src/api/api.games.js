@@ -10,12 +10,12 @@ export const fetchSuggestedGames = async ({
   latestPlayedGames,
   variant = "default",
 }) => {
-  const { id, title } = handshake.gamesLists.suggestedGames;
+  const { id, title } = (handshake.gamesLists.suggestedGames || {});
   const latestPlayedGamesResolved = (await latestPlayedGames).games;
   const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
 
-  if (!latestPlayedGame) {
-    return { games: [], id, title };
+  if (!latestPlayedGame || !id) {
+    return {};
   }
 
   const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
@@ -114,7 +114,7 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
 };
 
 const handleListsFetchErrors = promises => {
-  return promises.map(p => 
+  return promises.map(p =>
     p.catch(e => {
       console.error("Caught error: ", e);
 
