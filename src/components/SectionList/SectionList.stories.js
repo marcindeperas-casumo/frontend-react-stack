@@ -2,28 +2,29 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import SectionList from "./";
-import { sortAlphabetically, getAlphabeticalSections } from "./utils";
 import GameRowSearch from "Components/GameRowSearch";
 import MockStore from "Components/MockStore";
 
 const stories = storiesOf("SectionList", module);
 
-const sortedGames = sortAlphabetically([
-  "mega-fortune-dreams",
-  "mega-fortune",
-  "hall-of-gods",
-  "mega-moolah",
-  "divine-fortune",
-  "dancing-in-rio",
-  "irish-riches",
-  "top-cat",
-  "power-force-heroes",
-  "monkeys-millions",
-  "keystone-kops",
-  "jackpot-diamonds",
-]);
-
-const sections = getAlphabeticalSections(sortedGames);
+const sections = [
+  { title: "D", data: ["dancing-in-rio", "divine-fortune"] },
+  { title: "H", data: ["hall-of-gods"] },
+  { title: "I", data: ["irish-riches"] },
+  { title: "J", data: ["jackpot-diamonds"] },
+  { title: "K", data: ["keystone-kops"] },
+  {
+    title: "M",
+    data: [
+      "mega-fortune",
+      "mega-fortune-dreams",
+      "mega-moolah",
+      "monkeys-millions",
+    ],
+  },
+  { title: "P", data: ["power-force-heroes"] },
+  { title: "T", data: ["top-cat"] },
+];
 
 const renderSectionHeader = title => (
   <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
