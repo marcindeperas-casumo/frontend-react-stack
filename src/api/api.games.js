@@ -113,6 +113,17 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
     }));
 };
 
+const handleListsFetchErrors = promises => {
+  return promises.map(p => 
+    p.catch(e => {
+      console.error("Caught error: ", e);
+
+      // fallback to no data which leads to not showing a list
+      return {};
+    })
+  );
+};
+
 export const fetchGames = async ({
   platform,
   country,
@@ -183,11 +194,13 @@ export const fetchGames = async ({
     i => i > 0,
     path(["games", "length"])
   );
-  const allListsResponses = (await Promise.all([
-    latestPlayedGames,
-    suggestedGames,
-    ...gameListsRequests,
-  ])).filter(hasSomeGames);
+  const allListsResponses = (await Promise.all(
+    handleListsFetchErrors([
+      latestPlayedGames,
+      suggestedGames,
+      ...gameListsRequests,
+    ])
+  )).filter(hasSomeGames);
   const jackpots = getJackpots({
     market,
     currencyCode: currency,
