@@ -34,10 +34,17 @@ export const isAuthenticated = createSelector(
   session,
   complement(anyPass([isNil, isEmpty]))
 );
+
 export const playerId = createSelector(
   session,
   prop("id")
 );
+
+export const sessionId = createSelector(
+  session,
+  prop("sessionId")
+);
+
 export const player = createSelector(
   players,
   playerId,
