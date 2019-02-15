@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 
-import HashWatcher, { SEARCH_QUERY_UPDATED_EVENT } from "./HashWatcher";
-import bridge from "Src/DurandalReactBridge";
+import HashWatcher from "./HashWatcher";
 
 let mockRenderProp;
 
