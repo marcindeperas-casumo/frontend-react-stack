@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import SectionsList from "Components/SectionList";
 
 describe("SectionsList", () => {
-  test("should render a List component", () => {
+  test("should render a List component with no title", () => {
     const sections = [
       {
         data: ["mega-fortune-dreams", "mega-fortune", "hall-of-gods"],
@@ -12,6 +12,7 @@ describe("SectionsList", () => {
     const rendered = shallow(<SectionsList sections={sections} />);
 
     expect(rendered.find("List").length).toBe(1);
+    expect(rendered.find("p").length).toBe(0);
   });
 
   test("should not render any List component if no data", () => {
@@ -19,9 +20,10 @@ describe("SectionsList", () => {
     const rendered = shallow(<SectionsList sections={sections} />);
 
     expect(rendered.find("List").length).toBe(0);
+    expect(rendered.find("p").length).toBe(0);
   });
 
-  test("should render section title", () => {
+  test("should render a List component with title", () => {
     const sections = [{ title: "hi!", data: ["mega-fortune"] }];
     const renderSectionHeader = title => <p>{title}</p>;
     const rendered = shallow(
