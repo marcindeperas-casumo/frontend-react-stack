@@ -13,7 +13,7 @@ type Props<T> = {|
   sections: Section[],
   renderItem: T => Node,
   renderSectionHeader: (title: string) => Node,
-  keyExtractor?: (item: any) => string,
+  keyExtractor?: T => string,
   direction?: "vertical" | "horizontal",
   style?: { [string]: mixed },
   className?: string,
