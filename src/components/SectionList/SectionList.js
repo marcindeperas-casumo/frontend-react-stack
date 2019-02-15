@@ -28,9 +28,10 @@ export default class SectionList extends PureComponent<Props<*>> {
 
   renderSection = (section: Section, index: number) => {
     const { keyExtractor = (item: {}) => index } = this.props;
+    const key = keyExtractor(section) || index;
 
     return (
-      <Flex.Item key={keyExtractor(section)}>
+      <Flex.Item key={key}>
         <Flex direction={this.props.direction} spacing="none">
           {section.title && this.props.renderSectionHeader(section.title)}
           {section.data && section.data.length && (
