@@ -5,10 +5,10 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: FavouriteCompetitionsSelectorQuery
+// GraphQL fragment: FavouriteSportsSelectorListItem_Group
 // ====================================================
 
-export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
+export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -25,51 +25,33 @@ export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
    * Emoji flag representing the country this event takes place in, if available
    */
   flagEmoji: ?string,
-  /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
 };
 
-export type FavouriteCompetitionsSelectorQuery_group_groups = {
+export type FavouriteSportsSelectorListItem_Group = {
   /**
    * Unique identifier of the event group
    */
   id: number,
   /**
-   * Popular defines whether we consider the EventGroup to be popular
-   */
-  popular: boolean,
-  /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
   /**
-   * Array of subgroups in this event group
+   * The sport of the event group
    */
-  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,
-};
-
-export type FavouriteCompetitionsSelectorQuery_group = {
+  sport: string,
   /**
-   * Name of the event group, localized according to the lang parameter
+   * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
    */
-  name: string,
+  canSelectSubgroups: boolean,
   /**
-   * Array of subgroups in this event group
+   * The icon for the sport group
    */
-  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups>,
-};
-
-export type FavouriteCompetitionsSelectorQuery = {
+  icon: ?string,
   /**
-   * Get list of sub-groups from a given group
+   * The favourited competitions for this EventGroup
    */
-  group: FavouriteCompetitionsSelectorQuery_group
-};
-
-export type FavouriteCompetitionsSelectorQueryVariables = {
-  groupId: number
+  favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
 };
 
 /* @flow */
