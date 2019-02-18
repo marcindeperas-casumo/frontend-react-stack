@@ -1,5 +1,4 @@
 import React from "react";
-import wait from "waait";
 import { shallow, mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
 
