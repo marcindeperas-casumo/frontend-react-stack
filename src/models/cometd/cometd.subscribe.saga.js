@@ -1,5 +1,4 @@
 import { call, put, take } from "redux-saga/effects";
-import { prop } from "ramda";
 import { eventChannel, buffers } from "redux-saga";
 import cometd from "Models/cometd/cometd.service";
 import { message } from "Models/cometd/cometd.actions";

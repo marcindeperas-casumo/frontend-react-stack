@@ -26,6 +26,7 @@ import {
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
+  takeMessageFromChannel,
 } from "Models/cometd";
 
 export default function* rootSaga(dispatch) {
@@ -54,7 +55,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    takeChannel(cometdChannels.PLAYER),
+    takeMessageFromChannel(cometdChannels.PLAYER, "depositConfirmed"),
     handshakeUpdateSaga
   );
   yield fork(

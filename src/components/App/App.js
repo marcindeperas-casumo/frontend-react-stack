@@ -43,6 +43,7 @@ class App extends PureComponent<Props> {
 
   componentDidUpdate(props: Props) {
     const { playerId: oldPlayerId } = props;
+    // rename? - initialPageLoad
     const initialLoad = !oldPlayerId;
 
     if (initialLoad) {
