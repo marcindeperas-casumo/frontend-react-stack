@@ -34,6 +34,7 @@ import {
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
+  takeMessageFromChannel,
 } from "Models/cometd";
 import {
   types as gameSearchTypes,
@@ -72,7 +73,7 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    takeChannel(cometdChannels.PLAYER),
+    takeMessageFromChannel(cometdChannels.PLAYER, "depositConfirmed"),
     handshakeUpdateSaga
   );
   yield fork(

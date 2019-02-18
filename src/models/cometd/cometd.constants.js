@@ -12,3 +12,7 @@ export const CHANNELS = {
   MUST_DROP_JACKPOTS: "/public/redtiger-jackpots/*",
   PLAYER: "/player",
 };
+
+export const MESSAGES = {
+  DEPOSIT_CONFIRMED: "depositConfirmed",
+};
