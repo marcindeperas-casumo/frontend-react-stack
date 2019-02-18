@@ -18,12 +18,14 @@ type Props<T> = {|
   style?: { [string]: mixed },
   className: string,
   itemSpacing: string,
+  sectionSpacing: string,
 |};
 
 export default class SectionList extends PureComponent<Props<*>> {
   static defaultProps = {
     direction: "vertical",
     className: "",
+    sectionSpacing: "default",
   };
 
   renderSection = (section: Section, index: number) => {
@@ -52,7 +54,7 @@ export default class SectionList extends PureComponent<Props<*>> {
         style={{ overflow: "hidden", ...this.props.style }}
         direction={this.props.direction}
         className={this.props.className}
-        spacing="none"
+        spacing="default"
       >
         {this.props.sections.map(this.renderSection)}
       </Flex>
