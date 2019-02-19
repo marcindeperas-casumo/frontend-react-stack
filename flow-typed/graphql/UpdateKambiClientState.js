@@ -5,18 +5,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GroupPill_Group
+// GraphQL mutation operation: UpdateKambiClientState
 // ====================================================
 
-export type GroupPill_Group = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Emoji flag representing the country this event takes place in, if available
-   */
-  flagEmoji: ?string,
+export type UpdateKambiClientState = {
+  updateKambiClientState: ?boolean
+};
+
+export type UpdateKambiClientStateVariables = {
+  isVisible: boolean
 };
 
 /* @flow */
