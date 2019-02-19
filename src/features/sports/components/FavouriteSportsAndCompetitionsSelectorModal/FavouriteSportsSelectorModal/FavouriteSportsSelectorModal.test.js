@@ -2,6 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
+import waitForExpect from "wait-for-expect";
 
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
@@ -41,13 +42,15 @@ describe("<FavouriteSportsSelectorModal />", () => {
       </MockedProviderWithContext>
     );
 
-    await wait(0);
+    await wait(20);
 
     rendered.update();
     renderedNoFavourites.update();
 
-    expect(rendered.find("ModalButtonFooter").length).toBe(1);
-    expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
+    waitForExpect(() => {
+      expect(rendered.find("ModalButtonFooter").length).toBe(1);
+      expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
+    });
   });
 
   test("should not show close button if user has no favourites'", async () => {
@@ -76,13 +79,17 @@ describe("<FavouriteSportsSelectorModal />", () => {
       </MockedProviderWithContext>
     );
 
-    await wait(0);
+    await wait(20);
 
     rendered.update();
     renderedNoFavourites.update();
 
-    expect(rendered.find("Modal").props().dismissType).toBe("back");
-    expect(renderedNoFavourites.find("Modal").props().dismissType).toBe("none");
+    waitForExpect(() => {
+      expect(rendered.find("Modal").props().dismissType).toBe("back");
+      expect(renderedNoFavourites.find("Modal").props().dismissType).toBe(
+        "none"
+      );
+    });
   });
 
   test("should call mutation to save new favourites when clicking the save button", () => {
