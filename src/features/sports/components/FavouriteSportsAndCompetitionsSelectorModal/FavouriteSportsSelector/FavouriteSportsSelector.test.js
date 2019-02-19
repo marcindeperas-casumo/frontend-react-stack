@@ -35,7 +35,7 @@ describe("<FavouriteSportsSelector />", () => {
       </MockedProviderWithContext>
     );
 
-    await wait(100);
+    await wait(200);
 
     rendered.update();
 
