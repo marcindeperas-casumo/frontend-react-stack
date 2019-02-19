@@ -49,10 +49,6 @@ export type FavouriteSportsSelectorContext_groups = {
    */
   popular: boolean,
   /**
-   * The sport of the event group
-   */
-  sport: string,
-  /**
    * The icon for the sport group
    */
   icon: ?string,

@@ -37,17 +37,13 @@ export type FavouriteSportsSelectorListItem_Group = {
    */
   name: string,
   /**
-   * The sport of the event group
+   * The icon for the sport group
    */
-  sport: string,
+  icon: ?string,
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
    */
   canSelectSubgroups: boolean,
-  /**
-   * The icon for the sport group
-   */
-  icon: ?string,
   /**
    * The favourited competitions for this EventGroup
    */
