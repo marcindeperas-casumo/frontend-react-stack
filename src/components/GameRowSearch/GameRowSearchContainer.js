@@ -17,10 +17,22 @@ const GameRowSearchConnected = connect(
 type Props = {
   /** The slug of the game to render */
   slug: string,
+  /** The search query */
+  query?: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
 };
 
-const GameRowSearchContainer = ({ slug }: Props) => (
-  <GameRowSearchConnected slug={slug} />
+const GameRowSearchContainer = ({
+  slug,
+  query,
+  highlightSearchQuery,
+}: Props) => (
+  <GameRowSearchConnected
+    slug={slug}
+    query={query}
+    highlightSearchQuery={highlightSearchQuery}
+  />
 );
 
 export default GameRowSearchContainer;
