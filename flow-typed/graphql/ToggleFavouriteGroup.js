@@ -5,18 +5,26 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GroupPill_Group
+// GraphQL mutation operation: ToggleFavouriteGroup
 // ====================================================
 
-export type GroupPill_Group = {
+export type ToggleFavouriteGroup_toggleFavouriteGroup = {
   /**
-   * Name of the event group, localized according to the lang parameter
+   * Unique identifier of the event group
    */
-  name: string,
+  id: number,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * Whether this is one of the users, selected favourites
    */
-  flagEmoji: ?string,
+  userFavourite: boolean,
+};
+
+export type ToggleFavouriteGroup = {
+  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup
+};
+
+export type ToggleFavouriteGroupVariables = {
+  id: number
 };
 
 /* @flow */

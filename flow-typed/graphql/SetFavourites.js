@@ -5,18 +5,26 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GroupPill_Group
+// GraphQL mutation operation: SetFavourites
 // ====================================================
 
-export type GroupPill_Group = {
+export type SetFavourites_setFavouriteGroups = {
   /**
-   * Name of the event group, localized according to the lang parameter
+   * Unique identifier of the event group
    */
-  name: string,
+  id: number,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * Whether this is one of the users, selected favourites
    */
-  flagEmoji: ?string,
+  userFavourite: boolean,
+};
+
+export type SetFavourites = {
+  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>
+};
+
+export type SetFavouritesVariables = {
+  ids: Array<number>
 };
 
 /* @flow */
