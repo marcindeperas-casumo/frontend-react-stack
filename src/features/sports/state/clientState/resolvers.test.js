@@ -94,7 +94,7 @@ describe("Client state resolvers", () => {
   });
 
   describe("Mutation.closeModal", () => {
-    test("appends the modal to the list of active modals", async () => {
+    test("removes the modal from the list of active modals", async () => {
       const modal1: Modal = "CHOOSE_FAVOURITES";
       const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
       const client = createClientWithState({
