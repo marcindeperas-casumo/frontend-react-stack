@@ -64,9 +64,7 @@ class App extends PureComponent {
         <MigrationComponent migrationKey={["sports"]}>
           <LazyPortal
             hostElementId="react-host-sports-shell"
-            loader={() =>
-              import("Features/sports/components/SportsShell/SportsShellContainer")
-            }
+            loader={() => import("Features/sports/components/SportsShell")}
             fallback={<SportsShellSkeleton />}
           />
         </MigrationComponent>

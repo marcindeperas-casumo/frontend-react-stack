@@ -1,8 +1,3 @@
-import React from "react";
-import Loadable from "react-loadable";
-import SportsShellSkeleton from "./SportsShellSkeleton";
+// @flow
 
-export default Loadable({
-  loader: () => import("./SportsShellPortal"),
-  loading: () => <SportsShellSkeleton />,
-});
+export { default } from "./SportsShellContainer";
