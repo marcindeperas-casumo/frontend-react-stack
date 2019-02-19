@@ -298,7 +298,9 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResults = () => {
-    if (this.props.hideSearchResults) return null;
+    if (this.props.hideSearchResults) {
+      return null;
+    }
 
     return (
       <SearchTypedQuery
@@ -306,15 +308,17 @@ class KambiSearchResults extends React.Component<Props, State> {
         variables={{ query: this.props.query }}
       >
         {res => {
-          if (res.error) return null;
-          if (res.loading) return null;
-          if (!res.data || !res.data.search) return null;
+          if (res.error || res.loading || !res.data || !res.data.search) {
+            return null;
+          }
 
           const groupedResults: {
             [string]: SearchQuery_search[],
           } = groupByResultType(res.data.search);
 
-          if (isEmpty(groupedResults)) return this.renderNoResultsFound();
+          if (isEmpty(groupedResults)) {
+            return this.renderNoResultsFound();
+          }
 
           return (
             <Flex.Item className="u-margin-horiz--md t-background-grey-light-2">
