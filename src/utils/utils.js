@@ -1,4 +1,4 @@
-import { prop, splitEvery, assocPath } from "ramda";
+import { assocPath, prop, splitEvery } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -297,3 +297,16 @@ export const sanitizeObject = (obj, keysToSanitize = []) => {
     .map(key => key.split("."))
     .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
+
+export const injectScript = url =>
+  new Promise((resolve, reject) => {
+    const script = document.createElement("script");
+    /* eslint-disable fp/no-mutation */
+    script.onload = () => resolve();
+    script.onerror = () => reject(`Script url, failed to load`);
+
+    script.src = url;
+    /* eslint-enable fp/no-mutation */
+
+    document.head.appendChild(script);
+  });

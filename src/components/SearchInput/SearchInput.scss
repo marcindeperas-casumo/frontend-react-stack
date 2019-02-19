@@ -1,0 +1,32 @@
+@import "cudl-compile";
+// prevent colors package from compiling
+@include cudl-prevent-compile(cudl-sass-colors);
+@import "cudl-colors";
+// remove compile block incase needed later
+@include cudl-reset-compile(cudl-sass-colors);
+
+.c-search-input,
+.c-search-input:focus {
+  border: 0;
+  outline: none;
+}
+
+.c-search-input::placeholder {
+  color: cudl-palette(grey);
+}
+
+.c-search-input__clear-button {
+  align-items: center;
+  display: flex;
+  height: 16px;
+  padding: 2px;
+  width: 16px;
+}
+
+.c-search-input__scroll-capture {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
