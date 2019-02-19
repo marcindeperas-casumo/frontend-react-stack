@@ -5,13 +5,15 @@ import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
 
 type Props = {
   hasMadeFirstDeposit: boolean,
-  defaultCard: string,
+  defaultCardSlug: string,
 };
 
 class CuratedCardLoader extends PureComponent<Props> {
   render() {
-    const { hasMadeFirstDeposit, defaultCard } = this.props;
-    const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : defaultCard;
+    const { hasMadeFirstDeposit, defaultCardSlug } = this.props;
+    const cardToShow = !hasMadeFirstDeposit
+      ? WELCOME_OFFER_CARD
+      : defaultCardSlug;
     const slug = `${CURATED_SLUG}.${cardToShow}`;
 
     return <CuratedCard slug={slug} />;
