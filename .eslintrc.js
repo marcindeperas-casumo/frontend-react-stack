@@ -26,6 +26,7 @@ module.exports = {
       "error",
       {
         commonjs: true,
+        allowThis: true,
         exceptions: [{ property: "fragments" }],
       },
     ],
