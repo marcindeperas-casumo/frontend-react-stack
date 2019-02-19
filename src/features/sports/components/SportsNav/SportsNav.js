@@ -120,7 +120,10 @@ class SportsNav extends React.Component<SportsNavProps> {
     }
 
     return (
-      <UserNavigationTypedQuery query={USER_NAVIGATION_QUERY}>
+      <UserNavigationTypedQuery
+        query={USER_NAVIGATION_QUERY}
+        fetchPolicy="network-only"
+      >
         {({ loading, error, data }) => {
           // show skeleton if loading or refetching after updating favourites
           if (loading) {

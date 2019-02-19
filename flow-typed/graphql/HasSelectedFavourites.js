@@ -5,15 +5,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: CloseModal
+// GraphQL query operation: HasSelectedFavourites
 // ====================================================
 
-export type CloseModal = {
-  closeModal: ?boolean
-};
-
-export type CloseModalVariables = {
-  modal: Modal
+export type HasSelectedFavourites = {
+  hasSelectedFavourites: boolean
 };
 
 /* @flow */

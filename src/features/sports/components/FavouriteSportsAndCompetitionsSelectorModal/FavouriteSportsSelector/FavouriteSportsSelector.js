@@ -51,7 +51,8 @@ const FavouriteSportsSelector = (props: Props) => (
             {allSportsGroupTitle => {
               const allSportsGroup: FavouriteSportsSelectorListItem_Group = {
                 id: -1,
-                icon: "",
+                icon:
+                  "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
                 name: allSportsGroupTitle,
                 sport: "all",
                 canSelectSubgroups: false,
