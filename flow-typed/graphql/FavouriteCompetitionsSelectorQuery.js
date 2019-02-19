@@ -80,6 +80,7 @@ export type FavouriteCompetitionsSelectorQueryVariables = {
 // START Enums and Input Objects
 //==============================================================
 
+
 /**
  * 
  */
