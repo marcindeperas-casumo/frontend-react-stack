@@ -12,25 +12,25 @@ type Props = {
   groupId: number,
 };
 
-const CHOOSE_FAVOURITE_COMPETITIONS_QUERY = gql`
-  query ChooseFavouriteCompetitions($groupId: Int!) {
+const EDIT_FAVOURITE_COMPETITIONS_QUERY = gql`
+  query EditFavouriteCompetitions($groupId: Int!) {
     favouriteCompetitions(groupId: $groupId) {
       id
     }
   }
 `;
 
-class ChooseFavouriteCompetitionsTypedQuery extends Query<
-  ChooseFavouriteCompetitions,
-  ChooseFavouriteCompetitionsVariables
+class EditFavouriteCompetitionsTypedQuery extends Query<
+  EditFavouriteCompetitions,
+  EditFavouriteCompetitionsVariables
 > {}
 
-const ChooseFavouriteCompetitionsModal = ({
+const EditFavouriteCompetitionsModal = ({
   onClose,
   groupId = 1000093190,
 }: Props) => (
-  <ChooseFavouriteCompetitionsTypedQuery
-    query={CHOOSE_FAVOURITE_COMPETITIONS_QUERY}
+  <EditFavouriteCompetitionsTypedQuery
+    query={EDIT_FAVOURITE_COMPETITIONS_QUERY}
     variables={{ groupId }}
     fetchPolicy="network-only"
   >
@@ -60,7 +60,7 @@ const ChooseFavouriteCompetitionsModal = ({
         </SetFavouriteCompetitions>
       );
     }}
-  </ChooseFavouriteCompetitionsTypedQuery>
+  </EditFavouriteCompetitionsTypedQuery>
 );
 
-export default ChooseFavouriteCompetitionsModal;
+export default EditFavouriteCompetitionsModal;
