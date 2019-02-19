@@ -46,6 +46,10 @@ export type FavouriteCompetitionsSelectorRegion_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 
 /**
  * 

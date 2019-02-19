@@ -65,6 +65,11 @@ export type FavouriteSportsSelector_Group = {
 /**
  * 
  */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+
+/**
+ * 
+ */
 export type Modal = "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 //==============================================================

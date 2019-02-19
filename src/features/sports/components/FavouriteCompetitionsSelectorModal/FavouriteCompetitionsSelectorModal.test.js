@@ -35,7 +35,6 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
       </MockedProvider>
     );
 
-
     await wait(20);
     rendered.update();
     renderedSelected.update();

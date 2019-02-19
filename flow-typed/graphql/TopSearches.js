@@ -5,18 +5,44 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GroupPill_Group
+// GraphQL query operation: TopSearches
 // ====================================================
 
-export type GroupPill_Group = {
+export type TopSearches_topSearches_parentGroups = {
+  /**
+   * Name of the event group, localized according to the lang parameter
+   */
+  name: string
+};
+
+export type TopSearches_topSearches = {
+  /**
+   * Normalized name of the group
+   */
+  termKey: string,
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The full path in the kambi client to navigate to this group
    */
-  flagEmoji: ?string,
+  clientPath: string,
+  /**
+   * Array of parents of this group in order, be careful with nesting!
+   */
+  parentGroups: Array<TopSearches_topSearches_parentGroups>,
+};
+
+export type TopSearches = {
+  /**
+   * Top searches returns the event groups for the groupIds marked as popular
+   */
+  topSearches: Array<TopSearches_topSearches>
+};
+
+export type TopSearchesVariables = {
+  count: number
 };
 
 /* @flow */

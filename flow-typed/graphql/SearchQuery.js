@@ -5,15 +5,33 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: CloseModal
+// GraphQL query operation: SearchQuery
 // ====================================================
 
-export type CloseModal = {
-  closeModal: ?boolean
+export type SearchQuery_search = {
+  /**
+   * The type of search result, N.B Not overly reliable
+   */
+  type: SearchResultType,
+  /**
+   * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)
+   */
+  id: string,
+  /**
+   * Translated name of the search result
+   */
+  localizedName: string,
 };
 
-export type CloseModalVariables = {
-  modal: Modal
+export type SearchQuery = {
+  /**
+   * Search for events matching a given query, non english lang will search english results too
+   */
+  search: Array<SearchQuery_search>
+};
+
+export type SearchQueryVariables = {
+  query: string
 };
 
 /* @flow */

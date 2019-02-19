@@ -1,4 +1,3 @@
 // @flow
-export { default as SportsNav } from "./SportsMainNav";
-export { default as SportsSunNav } from "./SportsSubNav";
+export { default as SportsNav } from "./SportsNav";
 export type * from "./types";
