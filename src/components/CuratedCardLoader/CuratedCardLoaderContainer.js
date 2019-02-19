@@ -4,14 +4,14 @@ import { hasMadeFirstDeposit as hasMadeFirstDepositSelector } from "Models/hands
 import CuratedCardLoader from "Components/CuratedCardLoader/CuratedCardLoader";
 
 type props = {
-  defaultCard: string | Array<string>,
+  defaultCardSlug: string | Array<string>,
 };
 
 // (The "card" prop can be an array right now, because
 // in the CMS the page-relationship selector returns an array)
 const CuratedCardLoaderContainer = connect((state, { card }) => ({
   hasMadeFirstDeposit: hasMadeFirstDepositSelector(state),
-  defaultCard: Array.isArray(card) ? card[0] : card,
+  defaultCardSlug: Array.isArray(card) ? card[0] : card,
 }))(CuratedCardLoader);
 
 export default CuratedCardLoaderContainer;
