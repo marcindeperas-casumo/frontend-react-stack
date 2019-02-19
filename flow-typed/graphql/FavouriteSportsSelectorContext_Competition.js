@@ -5,14 +5,22 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
+// GraphQL fragment: FavouriteSportsSelectorContext_Competition
 // ====================================================
 
-export type FavouriteCompetitionsSelectorModal_Group = {
+export type FavouriteSportsSelectorContext_Competition = {
   /**
    * Unique identifier of the event group
    */
-  id: number
+  id: number,
+  /**
+   * Emoji flag representing the country this event takes place in, if available
+   */
+  flagEmoji: ?string,
+  /**
+   * Name of the event group, localized according to the lang parameter
+   */
+  name: string,
 };
 
 /* @flow */

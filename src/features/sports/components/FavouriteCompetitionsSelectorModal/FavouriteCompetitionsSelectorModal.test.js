@@ -1,6 +1,7 @@
 import React from "react";
 import wait from "waait";
 import { shallow, mount } from "enzyme";
+import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "react-apollo/test-utils";
 
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
@@ -34,8 +35,15 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
       </MockedProvider>
     );
 
-    expect(rendered.find("ModalButtonFooter").length).toBe(0);
-    expect(renderedSelected.find("ModalButtonFooter").length).toBe(1);
+
+    await wait(20);
+    rendered.update();
+    renderedSelected.update();
+
+    waitForExpect(() => {
+      expect(rendered.find("ModalButtonFooter").length).toBe(0);
+      expect(renderedSelected.find("ModalButtonFooter").length).toBe(1);
+    });
   });
 
   test("should call onCancel when modal is closed", () => {

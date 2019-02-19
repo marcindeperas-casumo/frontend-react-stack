@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
-import { F } from "ramda";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
@@ -14,12 +13,6 @@ import favouriteCompetitionsSelectorMocks from "./FavouriteCompetitionsSelector/
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
 
 const stories = storiesOf("Sports/FavouriteCompetitionsSelectorModal", module);
-
-const preselectedCompetitions = [
-  { id: 1000094985 },
-  { id: 1000094981 },
-  { id: 1000093381 },
-];
 
 stories.add(
   "No selections made",

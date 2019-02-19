@@ -5,14 +5,22 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
+// GraphQL query operation: ChooseFavouriteCompetitions
 // ====================================================
 
-export type FavouriteCompetitionsSelectorModal_Group = {
+export type ChooseFavouriteCompetitions_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
   id: number
+};
+
+export type ChooseFavouriteCompetitions = {
+  favouriteCompetitions: Array<ChooseFavouriteCompetitions_favouriteCompetitions>
+};
+
+export type ChooseFavouriteCompetitionsVariables = {
+  groupId: number
 };
 
 /* @flow */

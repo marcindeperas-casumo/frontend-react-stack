@@ -1,9 +1,6 @@
 import { DICTIONARY_TERM_QUERY } from "../DictionaryTerm";
-import {
-  PLURALISABLE_DICTIONARY_TERM_QUERY,
-  createSingularKey,
-  createPluralKey,
-} from "../PluralisableDictionaryTerm";
+import { PLURALISABLE_DICTIONARY_TERM_QUERY } from "../PluralisableDictionaryTerm";
+
 
 const dictionary = [
   {
