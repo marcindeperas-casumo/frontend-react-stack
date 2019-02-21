@@ -1,4 +1,15 @@
-import { complement, compose, isNil, prop, path, pluck } from "ramda";
+import {
+  complement,
+  compose,
+  isNil,
+  prop,
+  path,
+  pluck,
+  head,
+  pipe,
+  partial,
+  sort,
+} from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
@@ -10,9 +21,9 @@ export const fetchSuggestedGames = async ({
   latestPlayedGames,
   variant = "default",
 }) => {
-  const { id, title } = (handshake.gamesLists.suggestedGames || {});
+  const { id, title } = handshake.gamesLists.suggestedGames || {};
   const latestPlayedGamesResolved = (await latestPlayedGames).games;
-  const latestPlayedGame = latestPlayedGamesResolved.length && latestPlayedGamesResolved[0];
+  const latestPlayedGame = head(latestPlayedGamesResolved);
 
   if (!latestPlayedGame || !id) {
     return {};
@@ -20,22 +31,30 @@ export const fetchSuggestedGames = async ({
 
   const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
 
-  const unorderedGames = await gamebrowserApi
+  const games = await gamebrowserApi
     .getGamesBySlugs({
       platform,
       country,
       variant,
       slugs,
     })
-    .then(prop("games"));
+    .then(
+      pipe(
+        prop("games"),
+        // resort to ensure we've got proper order
+        partial(sort, [
+          (game1, game2) => {
+            return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
+          },
+        ])
+      )
+    );
 
-  // resort to ensure we've got proper order
-  const games = unorderedGames
-    .sort((game1, game2) => {
-      return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
-    });
-
-  return { games, id, title: title.replace("${GAME_NAME}", latestPlayedGame.name) };
+  return {
+    games,
+    id,
+    title: title.replace("${GAME_NAME}", latestPlayedGame.name),
+  };
 };
 
 const fetchLatestPlayedGames = async ({
