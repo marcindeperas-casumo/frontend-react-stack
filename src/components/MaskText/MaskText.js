@@ -12,8 +12,9 @@ type Props = {
 const MaskText = ({ text, search, matchRender, unmatchedRender }: Props) => {
   return (
     <React.Fragment>
-      {matchingGroups(text, search).map(group => (
+      {matchingGroups(text, search).map((group, i) => (
         <Matcher
+          key={i}
           getKey={({ type }) => type}
           matchers={{
             matched: ({ value }) => matchRender(value),
