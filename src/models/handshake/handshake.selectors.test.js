@@ -7,6 +7,7 @@ import {
   players,
   isAuthenticated,
   playerId,
+  sessionId,
   player,
   country,
   currency,
@@ -130,6 +131,16 @@ describe("Handshake selectors", () => {
     };
 
     expect(playerId(state)).toEqual("id-123");
+  });
+
+  test("sessionId", () => {
+    const state = {
+      handshake: {
+        app: { "common/composition/session": { sessionId: "id-123" } },
+      },
+    };
+
+    expect(sessionId(state)).toEqual("id-123");
   });
 
   test("player", () => {
