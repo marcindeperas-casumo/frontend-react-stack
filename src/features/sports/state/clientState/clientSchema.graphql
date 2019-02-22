@@ -2,6 +2,7 @@ extend type Query {
   activeModals: [Modal!]!
   betslipVisible: Boolean!
   kambiClientVisible: Boolean!
+  searchVisible: Boolean!
 }
 
 enum Modal {
@@ -19,4 +20,6 @@ extend type Mutation {
   minimizeBetslip: Boolean
   openModal(modal: Modal): Boolean
   closeModal(modal: Modal): Boolean
+  showSearch: Boolean
+  hideSearch: Boolean
 }

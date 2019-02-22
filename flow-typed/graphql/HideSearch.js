@@ -5,11 +5,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: MinimizeBetslip
+// GraphQL mutation operation: HideSearch
 // ====================================================
 
-export type MinimizeBetslip = {
-  minimizeBetslip: ?boolean
+export type HideSearch = {
+  hideSearch: ?boolean
 };
 
 /* @flow */
@@ -19,6 +19,11 @@ export type MinimizeBetslip = {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 
 /**
  * 

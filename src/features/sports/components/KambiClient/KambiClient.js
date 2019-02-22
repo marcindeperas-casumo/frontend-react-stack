@@ -20,12 +20,14 @@ type KambiClientProps = {
   onBetslipVisibilityChange: boolean => any,
   homeRoute?: string,
   isHidden?: boolean,
+  searchMode: boolean,
 };
 
 export default class KambiClient extends React.Component<KambiClientProps> {
   static defaultProps = {
     onNavigate: () => {},
     onBetslipVisibilityChange: () => {},
+    searchMode: false,
   };
 
   componentDidMount() {
@@ -64,13 +66,13 @@ export default class KambiClient extends React.Component<KambiClientProps> {
   }
 
   componentWillUnmount() {
-    window._kbc.dispose();
+    window._kbc && window._kbc.dispose();
     window.removeEventListener("hashchange", this.handleHashChange);
   }
 
   redirectToUserHomeRoute = (prevHomeRoute: ?string) => {
     // allows kambi client to be hidden if search doesn't have a #filter (i.e. initial search view)
-    if (isSearching()) {
+    if (this.props.searchMode) {
       return;
     }
 
@@ -93,7 +95,9 @@ export default class KambiClient extends React.Component<KambiClientProps> {
     return (
       <div
         id="KambiBC"
-        className={classNames(this.props.isHidden && "c-kambi-client--hidden")}
+        className={classNames({
+          "c-kambi-client--hidden": this.props.isHidden,
+        })}
       />
     );
   }

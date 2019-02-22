@@ -5,18 +5,20 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 
 import { sessionId, country, getLanguage } from "Models/handshake";
+import bridge from "Src/DurandalReactBridge";
 
 import KambiClient, { Betslip } from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
-import { isSearching } from "Features/sports/utils";
 
 import {
   SportsStateProvider,
   ClientContext,
   OPEN_MODAL_MUTATION,
+  SHOW_SEARCH,
+  HIDE_SEARCH,
 } from "Features/sports/state";
 
 // hook up SportsStateClient to redux data until we can do a proper graphql solution
@@ -26,9 +28,10 @@ const ConnectedSportsStateProvider = connect(state => ({
   sessionId: sessionId(state),
 }))(SportsStateProvider);
 
-const HAS_SELECTED_FAVOURITES_QUERY = gql`
-  query HasSelectedFavourites {
+const SPORTS_SHELL_QUERY = gql`
+  query SportsShellQuery {
     hasSelectedFavourites
+    searchVisible @client
   }
 `;
 
@@ -38,7 +41,7 @@ export class SportsShellContainer extends React.Component<{}> {
   componentDidMount() {
     // on mount open the choose favourites modal if the user is yet to choose favourites
     this.context.client
-      .query({ query: HAS_SELECTED_FAVOURITES_QUERY })
+      .query({ query: SPORTS_SHELL_QUERY })
       .then(({ data }) => {
         if (!data.hasSelectedFavourites) {
           this.context.client.mutate({
@@ -47,26 +50,39 @@ export class SportsShellContainer extends React.Component<{}> {
           });
         }
       });
+
+    bridge.on("sports-show-search", showSearch => {
+      const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
+
+      this.context.client.mutate({ mutation });
+    });
   }
 
   render() {
     return (
-      <>
-        <SportsHashWatcher>
-          {({ currentHash }) =>
-            isSearching() ? (
-              <SportsSearch />
-            ) : (
-              <SportsNav currentHash={currentHash} />
-            )
+      <Query query={SPORTS_SHELL_QUERY}>
+        {({ loading, data, error }) => {
+          if (loading || error) {
+            return null;
           }
-        </SportsHashWatcher>
-        <Betslip />
-        <Query query={HAS_SELECTED_FAVOURITES_QUERY}>
-          {({ loading }) => (loading ? null : <KambiClient />)}
-        </Query>
-        <Modals />
-      </>
+          return (
+            <>
+              <SportsHashWatcher>
+                {({ currentHash }) =>
+                  data.searchVisible ? (
+                    <SportsSearch />
+                  ) : (
+                    <SportsNav currentHash={currentHash} />
+                  )
+                }
+              </SportsHashWatcher>
+              <Betslip />
+              {data.hasSelectedFavourites ? <KambiClient /> : null}
+              <Modals />
+            </>
+          );
+        }}
+      </Query>
     );
   }
 }

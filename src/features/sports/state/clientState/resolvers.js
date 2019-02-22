@@ -97,6 +97,28 @@ const resolvers = {
       cache.writeData({ data: { kambiClientVisible: isVisible } });
       return null;
     },
+
+    showSearch: (_: null, __: null, { cache }: Context) => {
+      cache.writeData({
+        data: {
+          kambiClientVisible: false,
+          searchVisible: true,
+        },
+      });
+
+      return null;
+    },
+
+    hideSearch: (_: null, __: null, { cache }: Context) => {
+      cache.writeData({
+        data: {
+          kambiClientVisible: true,
+          searchVisible: false,
+        },
+      });
+
+      return null;
+    },
   },
 };
 
