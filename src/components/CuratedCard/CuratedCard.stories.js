@@ -29,7 +29,7 @@ stories.add(
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
         >
-          <CuratedCard card={["curated-gb_en"]} />
+          <CuratedCard slug={"curated.curated-gb_en"} />
         </div>
       </MockStore>
     );
@@ -46,7 +46,7 @@ stories.add(
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
         >
-          <CuratedCard card={["curated-gb_en"]} />
+          <CuratedCard slug={"curated.curated-gb_en"} />
         </div>
       </MockStore>
     );
