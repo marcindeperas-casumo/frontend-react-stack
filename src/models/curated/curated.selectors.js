@@ -37,6 +37,7 @@ export const isCuratedLoadedFactory = slug =>
         prop("game")
       )(fields);
 
+      //TODO: check why checking the gameId
       return !isEmpty(fields) && !gameId
         ? true
         : !isEmpty(gameSelector(gameId)(state));
