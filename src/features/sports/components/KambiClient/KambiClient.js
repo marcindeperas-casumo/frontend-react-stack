@@ -5,7 +5,6 @@ import { pick } from "ramda";
 
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
-import { isSearching } from "Features/sports/utils";
 
 import "./KambiClient.scss";
 
