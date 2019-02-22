@@ -5,11 +5,12 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: OpenBetslip
+// GraphQL query operation: SportsShellQuery
 // ====================================================
 
-export type OpenBetslip = {
-  openBetslip: ?boolean
+export type SportsShellQuery = {
+  hasSelectedFavourites: boolean,
+  searchVisible: boolean,
 };
 
 /* @flow */
@@ -19,6 +20,11 @@ export type OpenBetslip = {
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 
 /**
  * 

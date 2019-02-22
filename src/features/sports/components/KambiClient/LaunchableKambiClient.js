@@ -24,9 +24,10 @@ const LAUNCH_KAMBI_MUTATION = gql`
   }
 `;
 
-const USER_HOMEPAGE_QUERY = gql`
-  query UserHomepage {
+const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
+  query LaunchableKambiClient {
     userHomepage
+    kambiClientVisible @client
   }
 `;
 
@@ -36,7 +37,7 @@ type LaunchableKambiClientProps = {
   locale?: string,
 };
 
-class UserHomepageTypedQuery extends Query<UserHomepage, null> {}
+class LaunchableKambiClientQuery extends Query<LaunchableKambiClient, null> {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
@@ -79,8 +80,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
           } = data.launchKambi;
 
           return (
-            // add query to get hidden status
-            <UserHomepageTypedQuery query={USER_HOMEPAGE_QUERY}>
+            <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
               {({ data }) => {
                 return (
                   <KambiClient
@@ -93,10 +93,11 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
                     homeRoute={propOr("", "userHomepage", data)}
                     onBetslipVisibleChange={this.onBetslipVisibleChange}
                     onNavigate={this.onNavigate}
+                    isHidden={!data.kambiClientVisible}
                   />
                 );
               }}
-            </UserHomepageTypedQuery>
+            </LaunchableKambiClientQuery>
           );
         }}
       </LaunchKambiMutationOnMount>

@@ -18,12 +18,13 @@ const resolvers = {
       { modal }: { modal: Modal },
       { cache }: Context
     ) => {
-      const currentModals = cache.readQuery({ query: ACTIVE_MODALS_QUERY })
-        .activeModals;
+      const currentModals = await cache.readQuery({
+        query: ACTIVE_MODALS_QUERY,
+      }).activeModals;
 
       await cache.writeData({ data: { betslipVisible: false } });
 
-      cache.writeQuery({
+      await cache.writeQuery({
         query: ACTIVE_MODALS_QUERY,
         data: {
           activeModals: uniq([...currentModals, modal]),
@@ -95,6 +96,28 @@ const resolvers = {
       { cache }: Context
     ) => {
       cache.writeData({ data: { kambiClientVisible: isVisible } });
+      return null;
+    },
+
+    showSearch: (_: null, __: null, { cache }: Context) => {
+      cache.writeData({
+        data: {
+          kambiClientVisible: false,
+          searchVisible: true,
+        },
+      });
+
+      return null;
+    },
+
+    hideSearch: (_: null, __: null, { cache }: Context) => {
+      cache.writeData({
+        data: {
+          kambiClientVisible: true,
+          searchVisible: false,
+        },
+      });
+
       return null;
     },
   },

@@ -255,4 +255,48 @@ describe("Client state resolvers", () => {
       expect(result.data.activeModals).toEqual([]);
     });
   });
+
+  describe("Mutation.showSearch", () => {
+    test("should enable search and hide kambi client", async () => {
+      const client = createClientWithState({
+        kambiClientVisible: true,
+        searchVisible: false,
+      });
+
+      await client.mutate({ mutation: mutations.SHOW_SEARCH });
+
+      const searchVisible = (await client.query({
+        query: queries.SEARCH_VISIBLE_QUERY,
+      })).data.searchVisible;
+
+      const clientVisible = (await client.query({
+        query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
+      })).data.kambiClientVisible;
+
+      expect(searchVisible).toBe(true);
+      expect(clientVisible).toBe(false);
+    });
+  });
+
+  describe("Mutation.hideSearch", () => {
+    test("should enable kambi client and hide search", async () => {
+      const client = createClientWithState({
+        kambiClientVisible: false,
+        searchVisible: true,
+      });
+
+      await client.mutate({ mutation: mutations.HIDE_SEARCH });
+
+      const searchVisible = (await client.query({
+        query: queries.SEARCH_VISIBLE_QUERY,
+      })).data.searchVisible;
+
+      const clientVisible = (await client.query({
+        query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
+      })).data.kambiClientVisible;
+
+      expect(searchVisible).toBe(false);
+      expect(clientVisible).toBe(true);
+    });
+  });
 });
