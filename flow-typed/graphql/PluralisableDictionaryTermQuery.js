@@ -26,6 +26,16 @@ export type PluralisableDictionaryTermQueryVariables = {
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+
+/**
+ * 
+ */
+export type Modal = "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
