@@ -1,4 +1,4 @@
-// stylelint-disable-next-line
+/* stylelint-disable */
 #KambiBC.c-kambi-client--hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -9,3 +9,14 @@
   position: absolute;
   width: 1px;
 }
+
+// Hide header for all pages except bethistory
+// stylelint-disable
+#KambiBC-header-wrapper {
+  display: none;
+
+  .KambiBC-util-route-bethistory & {
+    display: block;
+  }
+}
+/* stylelint-enable */
