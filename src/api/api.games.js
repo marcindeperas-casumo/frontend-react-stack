@@ -7,7 +7,6 @@ import {
   pluck,
   head,
   pipe,
-  partial,
   sort,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
@@ -42,11 +41,9 @@ export const fetchSuggestedGames = async ({
       pipe(
         prop("games"),
         // resort to ensure we've got proper order
-        partial(sort, [
-          (game1, game2) => {
-            return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
-          },
-        ])
+        sort((game1, game2) => {
+          return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
+        })
       )
     );
 
