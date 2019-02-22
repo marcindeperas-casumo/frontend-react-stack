@@ -12,7 +12,6 @@ import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
-
 import {
   SportsStateProvider,
   ClientContext,
@@ -20,6 +19,8 @@ import {
   SHOW_SEARCH,
   HIDE_SEARCH,
 } from "Features/sports/state";
+
+import SportsShellSkeleton from "./SportsShellSkeleton";
 
 // hook up SportsStateClient to redux data until we can do a proper graphql solution
 const ConnectedSportsStateProvider = connect(state => ({
@@ -39,23 +40,26 @@ export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
-    // on mount open the choose favourites modal if the user is yet to choose favourites
-    this.context.client
-      .query({ query: SPORTS_SHELL_QUERY })
-      .then(({ data }) => {
-        if (!data.hasSelectedFavourites) {
-          this.context.client.mutate({
-            mutation: OPEN_MODAL_MUTATION,
-            variables: { modal: "CHOOSE_FAVOURITES" },
-          });
-        }
-      });
-
     bridge.on("sports-show-search", showSearch => {
       const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
 
       this.context.client.mutate({ mutation });
     });
+
+    // on mount open the choose favourites modal if the user is yet to choose favourites
+    this.context.client
+      .query({ query: SPORTS_SHELL_QUERY })
+      .then(({ data }) => {
+        if (!data.hasSelectedFavourites) {
+          // bug in apollo client is making a timeout necessary here, @adampilks - remove when we can
+          setTimeout(() => {
+            this.context.client.mutate({
+              mutation: OPEN_MODAL_MUTATION,
+              variables: { modal: "CHOOSE_FAVOURITES" },
+            });
+          }, 100);
+        }
+      });
   }
 
   render() {
@@ -63,7 +67,7 @@ export class SportsShellContainer extends React.Component<{}> {
       <Query query={SPORTS_SHELL_QUERY}>
         {({ loading, data, error }) => {
           if (loading || error) {
-            return null;
+            return <SportsShellSkeleton />;
           }
           return (
             <>

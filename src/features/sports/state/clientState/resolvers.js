@@ -18,12 +18,13 @@ const resolvers = {
       { modal }: { modal: Modal },
       { cache }: Context
     ) => {
-      const currentModals = cache.readQuery({ query: ACTIVE_MODALS_QUERY })
-        .activeModals;
+      const currentModals = await cache.readQuery({
+        query: ACTIVE_MODALS_QUERY,
+      }).activeModals;
 
       await cache.writeData({ data: { betslipVisible: false } });
 
-      cache.writeQuery({
+      await cache.writeQuery({
         query: ACTIVE_MODALS_QUERY,
         data: {
           activeModals: uniq([...currentModals, modal]),
