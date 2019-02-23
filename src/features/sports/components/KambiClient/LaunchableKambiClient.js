@@ -8,11 +8,7 @@ import { propOr } from "ramda";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 import { currency, country, getLanguage } from "Models/handshake";
-import {
-  MutateOnMount,
-  ClientContext,
-  UPDATE_BETSLIP_STATE_MUTATION,
-} from "Features/sports/state";
+import { MutateOnMount, ClientContext } from "Features/sports/state";
 
 const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {
@@ -28,6 +24,7 @@ const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClient {
     userHomepage
     kambiClientVisible @client
+    betslipVisible @client
   }
 `;
 
@@ -42,14 +39,6 @@ class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
   static contextType = ClientContext;
-
-  onBetslipVisibleChange = (isVisible: boolean) =>
-    this.context.client.mutate<UpdateBetslipState>({
-      mutation: UPDATE_BETSLIP_STATE_MUTATION,
-      variables: {
-        isVisible,
-      },
-    });
 
   onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
@@ -84,6 +73,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
               {({ data }) => {
                 return (
                   <KambiClient
+                    betslipVisible={data.betslipVisible}
                     currency={currency}
                     market={market}
                     locale={locale}
@@ -91,7 +81,6 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
                     playerId={providerPlayerId}
                     ticket={ticket}
                     homeRoute={propOr("", "userHomepage", data)}
-                    onBetslipVisibleChange={this.onBetslipVisibleChange}
                     onNavigate={this.onNavigate}
                     isHidden={!data.kambiClientVisible}
                   />

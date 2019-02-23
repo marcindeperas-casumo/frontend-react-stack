@@ -9,6 +9,7 @@ import * as queries from "./queries";
 import * as mutations from "./mutations";
 
 import resolvers from "./resolvers";
+import defaultState from "./defaultState";
 
 const widgetApiMock = {
   set: jest.fn(),
@@ -40,6 +41,48 @@ const createClientWithState = (state: {
 };
 
 describe("Client state resolvers", () => {
+  describe("Default state", () => {
+    test("Betslip should be visible by default", async () => {
+      const client = createClientWithState(defaultState);
+
+      const result = await client.query({
+        query: queries.BETSLIP_VISIBLE_QUERY,
+      });
+
+      expect(result.data.betslipVisible).toBe(true);
+    });
+
+    test("KambiClient should be visible by default", async () => {
+      const client = createClientWithState(defaultState);
+
+      const result = await client.query({
+        query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
+      });
+
+      expect(result.data.kambiClientVisible).toBe(true);
+    });
+
+    test("Search should be not be visible by default", async () => {
+      const client = createClientWithState(defaultState);
+
+      const result = await client.query({
+        query: queries.SEARCH_VISIBLE_QUERY,
+      });
+
+      expect(result.data.searchVisible).toBe(false);
+    });
+
+    test("No modals should be shown by default", async () => {
+      const client = createClientWithState(defaultState);
+
+      const result = await client.query({
+        query: queries.ACTIVE_MODALS_QUERY,
+      });
+
+      expect(result.data.activeModals).toEqual([]);
+    });
+  });
+
   describe("Mutation.openModal", () => {
     test("appends the modal to the list of active modals", async () => {
       const modal1: Modal = "CHOOSE_FAVOURITES";

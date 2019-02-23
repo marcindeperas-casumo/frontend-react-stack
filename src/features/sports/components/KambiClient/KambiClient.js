@@ -16,17 +16,17 @@ type KambiClientProps = {
   playerId?: string,
   ticket: string,
   onNavigate: string => any,
-  onBetslipVisibilityChange: boolean => any,
   homeRoute?: string,
   isHidden?: boolean,
   searchMode: boolean,
+  betslipVisible?: boolean,
 };
 
 export default class KambiClient extends React.Component<KambiClientProps> {
   static defaultProps = {
     onNavigate: () => {},
-    onBetslipVisibilityChange: () => {},
     searchMode: false,
+    betslipVisible: true,
   };
 
   componentDidMount() {
@@ -45,10 +45,6 @@ export default class KambiClient extends React.Component<KambiClientProps> {
       enableTermSearch: false,
       reservedRoutes: ["home"],
       emptyClientRoutes: [/^search$/, "search#home"],
-      betslipQuerySelectors: {
-        pinned: ".c-betslip-container--pinned",
-        unpinned: ".c-betslip-container--unpinned",
-      },
     };
     /* eslint-enable fp/no-mutation */
 
@@ -92,12 +88,24 @@ export default class KambiClient extends React.Component<KambiClientProps> {
 
   render() {
     return (
-      <div
-        id="KambiBC"
-        className={classNames({
-          "c-kambi-client--hidden": this.props.isHidden,
-        })}
-      />
+      <>
+        <div
+          id="KambiBC"
+          className={classNames({
+            "c-kambi-client--hidden": this.props.isHidden,
+          })}
+        />
+
+        {this.props.betslipVisible ? null : (
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+            .mod-KambiBC-betslip-container { display: none }
+          `,
+            }}
+          />
+        )}
+      </>
     );
   }
 }
