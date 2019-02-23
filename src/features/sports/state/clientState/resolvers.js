@@ -16,15 +16,19 @@ const resolvers = {
     openModal: async (
       _: null,
       { modal }: { modal: Modal },
-      { cache }: Context
+      context: Context
     ) => {
-      const currentModals = await cache.readQuery({
+      const currentModals = await context.cache.readQuery({
         query: ACTIVE_MODALS_QUERY,
       }).activeModals;
 
-      await cache.writeData({ data: { betslipVisible: false } });
+      await resolvers.Mutation.updateBetslipState(
+        _,
+        { isVisible: false },
+        context
+      );
 
-      await cache.writeQuery({
+      await context.cache.writeQuery({
         query: ACTIVE_MODALS_QUERY,
         data: {
           activeModals: uniq([...currentModals, modal]),
@@ -37,9 +41,9 @@ const resolvers = {
     closeModal: async (
       _: null,
       { modal }: { modal: Modal },
-      { cache }: Context
+      context: Context
     ) => {
-      const currentModals = await cache.readQuery({
+      const currentModals = await context.cache.readQuery({
         query: ACTIVE_MODALS_QUERY,
       }).activeModals;
 
@@ -47,10 +51,14 @@ const resolvers = {
 
       // if all modals are closed, then allow betslip to be visible
       if (newActiveModals.length === 0) {
-        await cache.writeData({ data: { betslipVisible: true } });
+        await resolvers.Mutation.updateBetslipState(
+          _,
+          { isVisible: true },
+          context
+        );
       }
 
-      await cache.writeQuery({
+      await context.cache.writeQuery({
         query: ACTIVE_MODALS_QUERY,
         data: {
           activeModals: newActiveModals,
@@ -63,16 +71,18 @@ const resolvers = {
     navigateClient: (
       _: null,
       { path, trackingLocation }: { path: string, trackingLocation: string },
-      { cache }: Context
+      context: Context
     ) => {
       // TODO:(adampilks) - best place to do this?
       // close all modals on navigation
-      cache.writeQuery({
+      context.cache.writeQuery({
         query: ACTIVE_MODALS_QUERY,
         data: {
           activeModals: [],
         },
       });
+
+      resolvers.Mutation.updateBetslipState(_, { isVisible: true }, context);
 
       getKambiWidgetAPI().then(wapi =>
         wapi.navigateClient(path, trackingLocation)

@@ -7,7 +7,7 @@ import { Query } from "react-apollo";
 import { sessionId, country, getLanguage } from "Models/handshake";
 import bridge from "Src/DurandalReactBridge";
 
-import KambiClient, { Betslip } from "Features/sports/components/KambiClient";
+import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
@@ -80,7 +80,6 @@ export class SportsShellContainer extends React.Component<{}> {
                   )
                 }
               </SportsHashWatcher>
-              <Betslip />
               {data.hasSelectedFavourites ? <KambiClient /> : null}
               <Modals />
             </>

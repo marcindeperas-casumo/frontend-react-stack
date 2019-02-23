@@ -11,6 +11,7 @@
 export type LaunchableKambiClient = {
   userHomepage: ?string,
   kambiClientVisible: boolean,
+  betslipVisible: boolean,
 };
 
 /* @flow */
