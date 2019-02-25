@@ -31,3 +31,15 @@ export const UPDATE_BETSLIP_STATE_MUTATION = gql`
     updateBetslipState(isVisible: $isVisible) @client
   }
 `;
+
+export const SHOW_SEARCH = gql`
+  mutation ShowSearch {
+    showSearch @client
+  }
+`;
+
+export const HIDE_SEARCH = gql`
+  mutation HideSearch {
+    hideSearch @client
+  }
+`;

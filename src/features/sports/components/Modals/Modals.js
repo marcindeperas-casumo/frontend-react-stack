@@ -1,12 +1,7 @@
 /* @flow */
 import React from "react";
 
-import {
-  ActiveModalsQuery,
-  CloseModalMutation,
-  UPDATE_BETSLIP_STATE_MUTATION,
-  ClientContext,
-} from "Features/sports/state";
+import { ActiveModalsQuery, CloseModalMutation } from "Features/sports/state";
 
 import ChooseFavouritesOverlay from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
 import ChooseFavouriteCompetitionsOverlay from "Features/sports/components/EditFavouriteCompetitionsModal";
@@ -18,37 +13,26 @@ const modalsMap: { [Modal]: any } = {
 
 const Modals = () => {
   return (
-    <ClientContext.Consumer>
-      {({ client }) => (
-        <ActiveModalsQuery>
-          {({ activeModals }) => {
-            const hasNoActiveModals = activeModals.length === 0;
+    <ActiveModalsQuery>
+      {({ activeModals }) => {
+        const hasNoActiveModals = activeModals.length === 0;
 
-            client.mutate<UpdateBetslipState>({
-              mutation: UPDATE_BETSLIP_STATE_MUTATION,
-              variables: {
-                isVisible: hasNoActiveModals,
-              },
+        return hasNoActiveModals
+          ? null
+          : activeModals.map(activeModal => {
+              const ModalComponent = modalsMap[activeModal];
+
+              return (
+                <CloseModalMutation
+                  key={activeModal}
+                  variables={{ modal: activeModal }}
+                >
+                  {closeModal => <ModalComponent onClose={closeModal} />}
+                </CloseModalMutation>
+              );
             });
-
-            return hasNoActiveModals
-              ? null
-              : activeModals.map(activeModal => {
-                  const ModalComponent = modalsMap[activeModal];
-
-                  return (
-                    <CloseModalMutation
-                      key={activeModal}
-                      variables={{ modal: activeModal }}
-                    >
-                      {closeModal => <ModalComponent onClose={closeModal} />}
-                    </CloseModalMutation>
-                  );
-                });
-          }}
-        </ActiveModalsQuery>
-      )}
-    </ClientContext.Consumer>
+      }}
+    </ActiveModalsQuery>
   );
 };
 

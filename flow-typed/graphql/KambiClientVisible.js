@@ -9,7 +9,7 @@
 // ====================================================
 
 export type KambiClientVisible = {
-  kambiClientVisible: boolean
+  searchVisible: boolean
 };
 
 /* @flow */
