@@ -5,11 +5,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: HasSelectedFavourites
+// GraphQL mutation operation: ShowSearch
 // ====================================================
 
-export type HasSelectedFavourites = {
-  hasSelectedFavourites: boolean
+export type ShowSearch = {
+  showSearch: ?boolean
 };
 
 /* @flow */
