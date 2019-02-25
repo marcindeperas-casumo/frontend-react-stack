@@ -20,6 +20,7 @@ export const game = new schema.Entity(
     idAttribute: "slug",
     // rename props from new casino player api to match old props
     // once old api is all deprecated we can remove and update game types
+    // https://github.com/Casumo/Home/issues/27141
     processStrategy: (value, parent, key) => ({
       ...value,
       name: value.name || value.title,
