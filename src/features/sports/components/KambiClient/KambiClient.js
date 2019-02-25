@@ -5,7 +5,6 @@ import { pick } from "ramda";
 
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
-import { isSearching } from "Features/sports/utils";
 
 import "./KambiClient.scss";
 
@@ -17,15 +16,17 @@ type KambiClientProps = {
   playerId?: string,
   ticket: string,
   onNavigate: string => any,
-  onBetslipVisibilityChange: boolean => any,
   homeRoute?: string,
   isHidden?: boolean,
+  searchMode: boolean,
+  betslipVisible?: boolean,
 };
 
 export default class KambiClient extends React.Component<KambiClientProps> {
   static defaultProps = {
     onNavigate: () => {},
-    onBetslipVisibilityChange: () => {},
+    searchMode: false,
+    betslipVisible: true,
   };
 
   componentDidMount() {
@@ -44,10 +45,6 @@ export default class KambiClient extends React.Component<KambiClientProps> {
       enableTermSearch: false,
       reservedRoutes: ["home"],
       emptyClientRoutes: [/^search$/, "search#home"],
-      betslipQuerySelectors: {
-        pinned: ".c-betslip-container--pinned",
-        unpinned: ".c-betslip-container--unpinned",
-      },
     };
     /* eslint-enable fp/no-mutation */
 
@@ -64,13 +61,13 @@ export default class KambiClient extends React.Component<KambiClientProps> {
   }
 
   componentWillUnmount() {
-    window._kbc.dispose();
+    window._kbc && window._kbc.dispose();
     window.removeEventListener("hashchange", this.handleHashChange);
   }
 
   redirectToUserHomeRoute = (prevHomeRoute: ?string) => {
     // allows kambi client to be hidden if search doesn't have a #filter (i.e. initial search view)
-    if (isSearching()) {
+    if (this.props.searchMode) {
       return;
     }
 
@@ -91,10 +88,24 @@ export default class KambiClient extends React.Component<KambiClientProps> {
 
   render() {
     return (
-      <div
-        id="KambiBC"
-        className={classNames(this.props.isHidden && "c-kambi-client--hidden")}
-      />
+      <>
+        <div
+          id="KambiBC"
+          className={classNames({
+            "c-kambi-client--hidden": this.props.isHidden,
+          })}
+        />
+
+        {this.props.betslipVisible ? null : (
+          <style
+            dangerouslySetInnerHTML={{
+              __html: `
+            .mod-KambiBC-betslip-container { display: none }
+          `,
+            }}
+          />
+        )}
+      </>
     );
   }
 }
