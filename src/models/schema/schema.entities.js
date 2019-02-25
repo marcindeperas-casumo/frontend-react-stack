@@ -16,7 +16,17 @@ export const liveTable = new schema.Entity(
 export const game = new schema.Entity(
   ENTITY_KEYS.GAME,
   { lobby: liveTable },
-  { idAttribute: "slug" }
+  {
+    idAttribute: "slug",
+    // https://github.com/Casumo/Home/issues/27141
+    // rename props from new casino player api to match old props
+    // once old api is all deprecated we can remove and update game types
+    processStrategy: (value, parent, key) => ({
+      ...value,
+      name: value.name || value.title,
+      logoBackground: value.logoBackground || value.backgroundImage,
+    }),
+  }
 );
 
 export const gameList = new schema.Entity(ENTITY_KEYS.GAME_LIST, {
