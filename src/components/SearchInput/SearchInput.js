@@ -23,8 +23,6 @@ type SearchInputProps = {
   onClear: () => void,
   children?: empty,
   noResults?: boolean,
-  // NOTE: in the edge-case where there are multiple instances of this in the DOM, please provide a unique ID
-  id?: string,
 };
 
 type Props = InputProps & SearchInputProps;
@@ -68,7 +66,7 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { id = "c-search-input", value, noResults } = this.props;
+    const { value, noResults } = this.props;
     const { hasFocus } = this.state;
 
     const hasSearchTerm = Boolean(value);
@@ -85,32 +83,32 @@ class SearchInput extends React.Component<Props, State> {
     );
 
     return (
-      <Flex
-        align="center"
-        className="t-background-white u-padding-vert u-padding-horiz--md t-border-r--pill"
-      >
-        <label htmlFor={id}>
-          <SearchIcon
-            size="med"
-            className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
-          />
-        </label>
-        <input
-          id={id}
-          ref={this.textInput}
-          className={inputClassName}
-          type="text"
-          onBlur={() => this.setState({ hasFocus: false })}
-          onFocus={this.onFocus}
-          {...this.inputProps}
-        />
+      <Flex align="center" className="t-background-white t-border-r--pill">
+        <Flex.Block>
+          <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-vert">
+            <SearchIcon
+              size="med"
+              className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
+            />
+            <input
+              ref={this.textInput}
+              className={inputClassName}
+              type="text"
+              onBlur={() => this.setState({ hasFocus: false })}
+              onFocus={this.onFocus}
+              {...this.inputProps}
+            />
+          </label>
+        </Flex.Block>
         {hasSearchTerm && (
           <div
+            className="u-padding-horiz--md u-padding-vert"
             data-test="search-input-clear-button"
-            className={clearButtonClassName}
             onClick={this.handleClear}
           >
-            <CrossIcon />
+            <div className={clearButtonClassName}>
+              <CrossIcon />
+            </div>
           </div>
         )}
         {hasFocus && (
