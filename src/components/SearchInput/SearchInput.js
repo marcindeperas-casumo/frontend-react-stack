@@ -16,6 +16,7 @@ type InputProps = {
   placeholder?: string,
   onChange: () => void,
   onFocus: () => void,
+  onBlur?: () => void,
 };
 
 type SearchInputProps = {
@@ -34,6 +35,10 @@ type State = {
 const noop = () => {};
 
 class SearchInput extends React.Component<Props, State> {
+  static defaultProps = {
+    onBlur: noop,
+  };
+
   state = { hasFocus: false };
   textInput: { current: ?HTMLInputElement } = React.createRef();
 
@@ -65,6 +70,11 @@ class SearchInput extends React.Component<Props, State> {
     this.setState({ hasFocus: true });
   };
 
+  onBlur = () => {
+    this.props.onBlur();
+    this.setState({ hasFocus: false });
+  };
+
   render() {
     const { value, noResults } = this.props;
     const { hasFocus } = this.state;
@@ -94,7 +104,7 @@ class SearchInput extends React.Component<Props, State> {
               ref={this.textInput}
               className={inputClassName}
               type="text"
-              onBlur={() => this.setState({ hasFocus: false })}
+              onBlur={this.onBlur}
               onFocus={this.onFocus}
               {...this.inputProps}
             />
