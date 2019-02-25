@@ -1,7 +1,15 @@
-import { put } from "redux-saga/effects";
-import { fetchPlayerGamesCount } from "Models/playerGames";
+import { put, select } from "redux-saga/effects";
+import {
+  fetchPlayerGamesCount,
+  playerGamesCountSelector,
+} from "Models/playerGames";
 
 export function* fetchPlayerGamesCountSaga() {
-  // select sessionId for the request
+  const count = yield select(playerGamesCountSelector);
+
+  if (count) {
+    return;
+  }
+
   yield put(fetchPlayerGamesCount());
 }
