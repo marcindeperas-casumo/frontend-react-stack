@@ -44,7 +44,12 @@ export default ({
   retryMessage = DEFAULT_RETRY_MESSAGE,
   retry = noop,
 }: Props) => {
-  const InnerFlex = direction === "horizontal" ? Flex.Block : Flex.Item;
+  const isVertical = direction === "vertical";
+  const InnerFlex = isVertical ? Flex.Item : Flex.Block;
+
+  const errorClassName = `u-font-weight-bold ${
+    isVertical ? "" : "u-margin-vert--none"
+  }`;
 
   return (
     <Flex
@@ -58,9 +63,7 @@ export default ({
         <SadSumo className="u-display--block" />
       </Flex.Item>
       <InnerFlex>
-        <Text className="u-font-weight-bold u-margin-vert--none">
-          {errorMessage}
-        </Text>
+        <Text className={errorClassName}>{errorMessage}</Text>
       </InnerFlex>
       {renderRetryIfHandlerProvided({ retry, retryMessage })}
     </Flex>
