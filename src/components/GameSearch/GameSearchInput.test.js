@@ -40,7 +40,10 @@ describe("GameSearchInput", () => {
     const fetchSearchResults = jest.spyOn(instance, "fetchSearchResults");
 
     expect(fetchSearchResults).toHaveBeenCalledTimes(0);
-    rendered.setState({ query: "test" });
+
+    rendered
+      .find("SearchInput")
+      .simulate("change", { target: { value: "Let me pass this test 👀" } });
     expect(fetchSearchResults).toHaveBeenCalledTimes(1);
   });
 
@@ -52,9 +55,15 @@ describe("GameSearchInput", () => {
 
     expect(initFetchQuerySearch).toHaveBeenCalledTimes(0);
 
-    rendered.setState({ query: "test 1" });
-    rendered.setState({ query: "test 2" });
-    rendered.setState({ query: "test 3" });
+    rendered
+      .find("SearchInput")
+      .simulate("change", { target: { value: "Let me pass this test 👀" } });
+    rendered.find("SearchInput").simulate("change", {
+      target: { value: "Let me pass this test 👀 again" },
+    });
+    rendered.find("SearchInput").simulate("change", {
+      target: { value: "Let me pass this test 👀 again and again" },
+    });
 
     clock.tick(500);
 
