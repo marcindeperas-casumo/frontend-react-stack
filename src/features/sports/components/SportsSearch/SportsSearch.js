@@ -30,11 +30,11 @@ export default class SportsSearch extends React.Component<{}, State> {
     window.location.hash = "#home";
   };
 
-  toggleKambiClient = () => {
+  setClientVisible = (visible: boolean) => {
     this.context.client.mutate<UpdateKambiClientState>({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {
-        isVisible: !this.state.hideSearchResults,
+        isVisible: visible,
       },
     });
   };
@@ -48,7 +48,7 @@ export default class SportsSearch extends React.Component<{}, State> {
         hideSearchResults: false,
       });
 
-      this.toggleKambiClient();
+      this.setClientVisible(false);
     }
   };
 
@@ -60,12 +60,12 @@ export default class SportsSearch extends React.Component<{}, State> {
       hideSearchResults: false,
     });
 
-    this.toggleKambiClient();
+    this.setClientVisible(false);
   };
 
   handleFocusSearchInput = () => {
     this.setState({ hideSearchResults: this.state.query.length === 0 });
-    this.toggleKambiClient();
+    this.setClientVisible(false);
   };
 
   handleSearchResultClick = (
@@ -77,7 +77,7 @@ export default class SportsSearch extends React.Component<{}, State> {
       hideSearchResults: true,
     });
 
-    this.toggleKambiClient();
+    this.setClientVisible(true);
   };
 
   render() {

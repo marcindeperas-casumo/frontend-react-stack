@@ -5,11 +5,13 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: UserHomepage
+// GraphQL query operation: LaunchableKambiClient
 // ====================================================
 
-export type UserHomepage = {
-  userHomepage: ?string
+export type LaunchableKambiClient = {
+  userHomepage: ?string,
+  kambiClientVisible: boolean,
+  betslipVisible: boolean,
 };
 
 /* @flow */

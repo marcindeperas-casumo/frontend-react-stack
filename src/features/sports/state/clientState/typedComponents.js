@@ -45,3 +45,9 @@ export const CloseModalMutation = (
     {props.children}
   </Mutation>
 );
+
+export const KambiClientVisibleQuery = (props: QueryProps<null, null>) => (
+  <SimpleQuery {...props} query={queries.KAMBI_CLIENT_VISIBLE_QUERY}>
+    {data => props.children(data)}
+  </SimpleQuery>
+);
