@@ -1,11 +1,9 @@
 import { cloneableGenerator } from "redux-saga/utils";
-import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { call, put, take } from "redux-saga/effects";
+import { all, call, select } from "redux-saga/effects";
 import {
-  fetchPlayerGames,
   fetchPlayerGamesSaga,
-  getFetchCompleteTypeByPage,
-  getPlayerGamesListIdByPage,
+  fetchPlayerGamesPageSaga,
+  playerGamesPagesLoaded,
 } from "Models/playerGames";
 
 describe("Models/PlayerGames/Saga", () => {
@@ -25,24 +23,23 @@ describe("Models/PlayerGames/Saga", () => {
 
     gen.next();
 
-    expect(gen.next().value).toEqual(put(fetchPlayerGames({ page, pageSize })));
-
-    expect(gen.next().value).toEqual(take(getFetchCompleteTypeByPage(0)));
-
-    const response = ["foo"];
-    const gameList = {
-      id: getPlayerGamesListIdByPage(0),
-      games: response,
-    };
-
-    expect(gen.next({ response }).value).toEqual(
-      call(normalizeData, { [ENTITY_KEYS.GAME_LIST]: gameList })
+    expect(gen.next().value).toEqual(
+      call(fetchPlayerGamesPageSaga, { page, pageSize })
     );
 
-    const entities = { someEntity: { id: 1 } };
+    expect(gen.next().value).toEqual(select(playerGamesPagesLoaded));
 
-    expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
+    const pagesLoaded = [0, 1];
+    const previousPagesLoaded = [false, true];
 
-    expect(gen.next().done).toBe(true);
+    gen.next(pagesLoaded);
+
+    expect(gen.next(previousPagesLoaded).value).toEqual(
+      all(
+        previousPagesLoaded.map(
+          (v, i) => !v && call(fetchPlayerGamesPageSaga, { page: i, pageSize })
+        )
+      )
+    );
   });
 });

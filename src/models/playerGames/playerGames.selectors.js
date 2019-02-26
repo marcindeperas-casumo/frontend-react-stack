@@ -1,5 +1,4 @@
 import { createSelector } from "reselect";
-
 import {
   compose,
   prop,
@@ -7,14 +6,10 @@ import {
   isEmpty,
   pickBy,
   pluck,
-  fromPairs,
-  toPairs,
-  keys,
+  sort,
   map,
   values,
   flatten,
-  curry,
-  adjust,
 } from "ramda";
 import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
 import { getPlayerGamesListIdByPage } from "Models/playerGames";
@@ -24,8 +19,6 @@ const isPlayerGames = (val, key) => key.startsWith(GAME_LIST_IDS.PLAYER_GAMES);
 
 const playerGames = state => state.playerGames;
 
-const mapKeys = curry((fn, obj) => fromPairs(map(adjust(0, fn), toPairs(obj))));
-
 export const playerGamesCountSelector = createSelector(
   playerGames,
   prop("count")
@@ -34,6 +27,7 @@ export const playerGamesCountSelector = createSelector(
 export const playerGamesSelector = createSelector(
   gameListEntitiesSelector,
   compose(
+    sort((a, b) => a.localeCompare(b)),
     flatten,
     values,
     pluck("games"),

@@ -69,9 +69,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
   isPageRequested = (page: number) => Boolean(this.state.pagesMap[page]);
 
   setRowsAsLoaded = ({ startIndex, stopIndex }: Indexes) => {
-    // adjust for last row not loading
-    const isLast = stopIndex + 1 === this.props.rowCount;
-    const stop = isLast ? stopIndex + 1 : stopIndex;
+    // adjust for last row loading
+    const stop = stopIndex + 1;
 
     range(startIndex, stop).forEach(i => {
       this.setState(prevState => {
