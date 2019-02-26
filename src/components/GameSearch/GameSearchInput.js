@@ -34,9 +34,9 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
-  handleSearchInput = (event: SyntheticEvent<HTMLInputElement>) => {
+  handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
     this.setState({
-      query: event.currentTarget.value,
+      query: target.value,
     });
   };
 

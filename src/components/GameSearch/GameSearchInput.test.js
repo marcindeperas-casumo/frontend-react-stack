@@ -57,7 +57,7 @@ describe("GameSearchInput", () => {
 
     rendered
       .find("SearchInput")
-      .simulate("change", { target: { value: "Let me pass this test 👀" } });
+      .simulate("change", { target: { value: "Let me pass this test 👀 " } });
     rendered.find("SearchInput").simulate("change", {
       target: { value: "Let me pass this test 👀 again" },
     });
