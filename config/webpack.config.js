@@ -249,7 +249,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
               test: /\.md$/,
               loader: require.resolve("raw-loader"), // storybook dependency, shouldn't be added to package.json!
             },
-            // Chromatic struggles with loading fonts occassionally.
+            // Chromatic occassionally fails to load font files.
             // Inline the fonts into the storybook css to guarantee they are available.
             isStorybook && {
               test: /\.woff2?$/,
