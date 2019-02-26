@@ -249,6 +249,10 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
               test: /\.md$/,
               loader: require.resolve("raw-loader"), // storybook dependency, shouldn't be added to package.json!
             },
+            isStorybook && {
+              test: /\.woff2?$/,
+              loader: require.resolve("base64-inline-loader"),
+            },
             // "url" loader works like "file" loader except that it embeds assets
             // smaller than specified limit in bytes as data URLs to avoid requests.
             // A missing `test` is equivalent to a match.
