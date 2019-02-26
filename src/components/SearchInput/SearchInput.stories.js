@@ -2,18 +2,14 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
+import { text } from "@storybook/addon-knobs/react";
 
 import SearchInput from "Components/SearchInput";
 
 const stories = storiesOf("SearchInput", module);
 
 const Wrapper = ({ children }) => (
-  <div
-    className="story t-background-grey-dark-1 u-padding"
-    style={{ width: "420px" }}
-  >
-    {children}
-  </div>
+  <div className="story t-background-grey-dark-1 u-padding">{children}</div>
 );
 
 const FocusHelper = () => {
@@ -34,7 +30,7 @@ const props = {
 
 stories.add("With Input", () => (
   <Wrapper>
-    <SearchInput {...props} />
+    <SearchInput {...props} value={text("query", props.value)} />
   </Wrapper>
 ));
 
