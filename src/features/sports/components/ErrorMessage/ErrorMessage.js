@@ -32,13 +32,17 @@ const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
 
 const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
   <Flex.Item>
-    <Button variant="outline-positive" onClick={retry}>
+    <Button
+      data-test="error-message-retry-button"
+      variant="outline-positive"
+      onClick={retry}
+    >
       {retryMessage}
     </Button>
   </Flex.Item>
 );
 
-export default ({
+const ErrorMessage = ({
   direction = "vertical",
   errorMessage = DEFAULT_ERROR_MESSAGE,
   retryMessage = DEFAULT_RETRY_MESSAGE,
@@ -55,17 +59,25 @@ export default ({
     <Flex
       direction={direction}
       align="center"
-      justify={direction === "horizontal" ? "space-between" : "center"}
+      justify={isVertical ? "center" : "space-between"}
       className="o-flex--1 u-padding--md"
       spacing="lg"
+      data-test="error-message-container"
     >
       <Flex.Item>
-        <SadSumo className="u-display--block" />
+        <SadSumo data-test="error-message-sumo" className="u-display--block" />
       </Flex.Item>
       <InnerFlex>
-        <Text className={errorClassName}>{errorMessage}</Text>
+        <Text
+          data-test="error-message-error-message"
+          className={errorClassName}
+        >
+          {errorMessage}
+        </Text>
       </InnerFlex>
       {renderRetryIfHandlerProvided({ retry, retryMessage })}
     </Flex>
   );
 };
+
+export default ErrorMessage;
