@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-// Sinon is imported only for testing a debounced version, as there are still prroblems testing it with Jest.
+// Sinon is imported only for testing a debounced function, as there are still prroblems testing it with Jest.
 // Once Jest will fully support debounce, we should remove sinon https://github.com/facebook/jest/issues/3465
 import sinon from "sinon";
 import GameSearchInput from "./GameSearchInput";
