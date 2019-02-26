@@ -25,6 +25,8 @@ type Props = RetryProps & ComponentProps;
 const DEFAULT_ERROR_MESSAGE = "Loading failed";
 const DEFAULT_RETRY_MESSAGE = "Try again";
 
+const noop = () => () => {};
+
 const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
   unless(equals(noop), renderRetry({ retry, retryMessage }), retry);
 
@@ -35,8 +37,6 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
     </Button>
   </Flex.Item>
 );
-
-const noop = () => () => undefined;
 
 export default ({
   direction = "vertical",

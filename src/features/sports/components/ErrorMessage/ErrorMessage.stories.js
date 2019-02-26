@@ -1,7 +1,7 @@
 // @flow
-import { storiesOf } from "@storybook/react";
 import React from "react";
-import { F } from "ramda";
+import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 
 import Flex from "@casumo/cmp-flex";
 
@@ -9,9 +9,7 @@ import ErrorMessage from "Features/sports/components/ErrorMessage";
 
 const stories = storiesOf("Sports/ErrorMessage", module);
 
-const retry = async () => {
-  await setTimeout(F, 1991);
-};
+const retry = action("retry clicked");
 
 const renderError = (props = {}) => () => (
   <Flex
