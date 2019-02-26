@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { text } from "@storybook/addon-knobs/react";
 
 import Flex from "@casumo/cmp-flex";
 
@@ -11,14 +12,22 @@ const stories = storiesOf("Sports/ErrorMessage", module);
 
 const retry = action("retry clicked");
 
-const renderError = (props = {}) => () => (
-  <Flex
-    className="t-background-grey-light-2 u-padding--2xlg"
-    style={{ minHeight: 420 }}
-  >
-    <ErrorMessage {...props} />
-  </Flex>
-);
+const renderError = (props = {}) => () => {
+  const propsWithDefaults = {
+    errorMessage: text("Error Message", "A wild error appeared!"),
+    retryMessage: text("Retry Message", "Retry"),
+    ...props,
+  };
+
+  return (
+    <Flex
+      className="t-background-grey-light-2 u-padding--2xlg"
+      style={{ minHeight: 420 }}
+    >
+      <ErrorMessage {...propsWithDefaults} />
+    </Flex>
+  );
+};
 
 stories.add("Default View (Vertical)", renderError());
 
