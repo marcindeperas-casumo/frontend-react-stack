@@ -21,8 +21,8 @@ export function* fetchPlayerGamesSaga(action) {
   // if scrolling fast make sure we get all previous pages
   // if they are not in the store
   const pagesLoaded = yield select(playerGamesPagesLoaded);
-  const previousPagesLoaded = yield range(0, page).map(i =>
-    includes(i, pagesLoaded)
+  const previousPagesLoaded = yield Promise.resolve(
+    range(0, page).map(i => includes(i, pagesLoaded))
   );
 
   yield all(
