@@ -27,9 +27,6 @@ const DEFAULT_RETRY_MESSAGE = "Try again";
 
 const noop = () => () => {};
 
-const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
-  unless(equals(noop), renderRetry({ retry, retryMessage }), retry);
-
 const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
   <Flex.Item>
     <Button
@@ -41,6 +38,9 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
     </Button>
   </Flex.Item>
 );
+
+const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
+  unless(equals(noop), renderRetry({ retry, retryMessage }), retry);
 
 const ErrorMessage = ({
   direction = "vertical",

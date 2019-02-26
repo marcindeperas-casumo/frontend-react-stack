@@ -3,6 +3,8 @@ import { shallow } from "enzyme";
 
 import ErrorMessage from "Features/sports/components/ErrorMessage";
 
+const ERROR_MESSAGE = "Loading failed";
+
 const findElements = container => ({
   flexContainer: container.find("[data-test='error-message-container']"),
   sumo: container.find("[data-test='error-message-sumo']"),
@@ -18,7 +20,7 @@ describe("ErrorMessage", () => {
 
       expect(elements.flexContainer.prop("direction")).toBe("vertical");
       expect(elements.sumo.length).toBe(1);
-      expect(elements.errorMessage.prop("children")).toBe("Loading failed");
+      expect(elements.errorMessage.prop("children")).toBe(ERROR_MESSAGE);
       expect(elements.retryButton.length).toBe(0);
     });
   });
@@ -30,7 +32,7 @@ describe("ErrorMessage", () => {
 
       expect(elements.flexContainer.prop("direction")).toBe("vertical");
       expect(elements.sumo.length).toBe(1);
-      expect(elements.errorMessage.prop("children")).toBe("Loading failed");
+      expect(elements.errorMessage.prop("children")).toBe(ERROR_MESSAGE);
       expect(elements.retryButton.length).toBe(0);
     });
   });
@@ -42,7 +44,7 @@ describe("ErrorMessage", () => {
 
       expect(elements.flexContainer.prop("direction")).toBe("horizontal");
       expect(elements.sumo.length).toBe(1);
-      expect(elements.errorMessage.prop("children")).toBe("Loading failed");
+      expect(elements.errorMessage.prop("children")).toBe(ERROR_MESSAGE);
       expect(elements.retryButton.length).toBe(0);
     });
   });
@@ -70,7 +72,7 @@ describe("ErrorMessage", () => {
 
       expect(elements.flexContainer.prop("direction")).toBe("vertical");
       expect(elements.sumo.length).toBe(1);
-      expect(elements.errorMessage.prop("children")).toBe("Loading failed");
+      expect(elements.errorMessage.prop("children")).toBe(ERROR_MESSAGE);
       expect(elements.retryButton.prop("children")).toBe("Try again");
       expect(elements.retryButton.length).toBe(1);
     });
@@ -87,7 +89,7 @@ describe("ErrorMessage", () => {
 
       expect(elements.flexContainer.prop("direction")).toBe("vertical");
       expect(elements.sumo.length).toBe(1);
-      expect(elements.errorMessage.prop("children")).toBe("Loading failed");
+      expect(elements.errorMessage.prop("children")).toBe(ERROR_MESSAGE);
       expect(elements.retryButton.prop("children")).toBe(retryMessage);
       expect(elements.retryButton.length).toBe(1);
     });
