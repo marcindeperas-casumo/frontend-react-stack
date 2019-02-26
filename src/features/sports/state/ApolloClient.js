@@ -64,7 +64,6 @@ export class SportsStateProvider extends React.Component<Props> {
       }
     });
 
-    // eslint-disable-next-line fp/no-mutation
     this.sportsStateClient = new ApolloClient<InMemoryCache>({
       link: ApolloLink.from([
         errorLink,

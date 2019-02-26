@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-mutation */
 import React, { PureComponent } from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
