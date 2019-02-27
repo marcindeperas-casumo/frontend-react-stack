@@ -1,4 +1,4 @@
-import { types } from "Models/gameSearch";
+import { types, getSearchFetchCompleteType } from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
 import {
   getGameLists,
@@ -23,7 +23,7 @@ export const noLatestPlayedAction = () => ({
 export const fetchQuerySearch = ({ platform, country, query }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,
-  postFetch: types.GAME_SEARCH_FETCH_COMPLETE,
+  postFetch: getSearchFetchCompleteType(query),
   asyncCall: getQuerySearch,
   asyncCallData: { platform, country, query },
 });

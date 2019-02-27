@@ -1,6 +1,8 @@
 import { types } from "./gameSearch.constants";
 
 export const gameSearchReducer = (state, action) => {
+  const { type, query } = action;
+
   if (typeof state === "undefined") {
     return {
       loading: false,
@@ -9,13 +11,20 @@ export const gameSearchReducer = (state, action) => {
     };
   }
 
-  switch (action.type) {
+  if (type.startsWith(types.GAME_SEARCH_FETCH_COMPLETE)) {
+    return {
+      ...state,
+      loading: false,
+    };
+  }
+
+  switch (type) {
     case types.GAME_SEARCH_FETCH: {
       return {
         ...state,
         loading: true,
         hasNoResults: false,
-        query: action.query,
+        query,
       };
     }
 
@@ -38,13 +47,6 @@ export const gameSearchReducer = (state, action) => {
       return {
         ...state,
         hasNoLatestPlayed: true,
-      };
-    }
-
-    case types.GAME_SEARCH_FETCH_COMPLETE: {
-      return {
-        ...state,
-        loading: false,
       };
     }
 
