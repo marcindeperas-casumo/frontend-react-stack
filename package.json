@@ -31,6 +31,7 @@
     "graphql-tag": "^2.10.1",
     "intersection-observer": "^0.5.1",
     "invariant": "^2.2.4",
+    "lodash.debounce": "^4.0.8",
     "luxon": "^1.10.0",
     "normalizr": "^3.3.0",
     "qs": "^6.6.0",

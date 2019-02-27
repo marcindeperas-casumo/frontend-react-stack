@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 
 import SearchInput from "Components/SearchInput";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 type Props = {
   initFetchQuerySearch: Function,
