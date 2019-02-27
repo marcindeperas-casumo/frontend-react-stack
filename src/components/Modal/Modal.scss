@@ -12,16 +12,15 @@
 
 .c-modal__top-bar {
   height: var(--top-bar-height);
+
+  @media (orientation: landscape) {
+    height: var(--top-bar-height--landscape);
+  }
 }
 
 .c-modal__dismiss-button {
   height: 48px;
   width: 48px;
-
-  // position exactly where the menu button is
-  left: -4px;
-  position: relative;
-  top: 2px;
 }
 
 .c-modal__content {

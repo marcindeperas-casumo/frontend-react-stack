@@ -1,4 +1,4 @@
-/* stylelint-disable selector-no-id */
+/* stylelint-disable selector-no-id declaration-no-important */
 #KambiBC.c-kambi-client--hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -20,7 +20,6 @@
 }
 
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
-  // stylelint-disable-next-line declaration-no-important
   max-height: calc(100% - var(--play-ok-bar-height)) !important;
 }
-/* stylelint-enable selector-no-id */
+/* stylelint-enable selector-no-id declaration-no-important */
