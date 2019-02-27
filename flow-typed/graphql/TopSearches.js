@@ -10,9 +10,13 @@
 
 export type TopSearches_topSearches_parentGroups = {
   /**
+   * The icon for the sport group
+   */
+  icon: ?string,
+  /**
    * Name of the event group, localized according to the lang parameter
    */
-  name: string
+  name: string,
 };
 
 export type TopSearches_topSearches = {
@@ -28,6 +32,10 @@ export type TopSearches_topSearches = {
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
+  /**
+   * The icon for the sport group
+   */
+  icon: ?string,
   /**
    * Array of parents of this group in order, be careful with nesting!
    */
