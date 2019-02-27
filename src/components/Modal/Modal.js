@@ -29,13 +29,15 @@ export const DismissButton = ({
   onClick,
   isVisible,
 }: DismissButtonProps) => (
-  <div
-    className="t-color-white t-background-grey-dark-4 t-border-r--circle u-padding--md"
+  <Flex
+    align="center"
+    justify="center"
+    className="c-modal__dismiss-button t-color-white t-background-grey-dark-4 t-border-r--circle"
     onClick={onClick}
     style={{ visibility: isVisible ? "visible" : "hidden" }}
   >
     {children}
-  </div>
+  </Flex>
 );
 
 // this workaround is to prevent double-scrollbars as they are already set from the durandal stack

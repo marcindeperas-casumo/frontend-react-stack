@@ -6,8 +6,22 @@
   overflow: hidden;
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--play-ok-bar-height);
   z-index: $modal-z-index;
+}
+
+.c-modal__top-bar {
+  height: var(--top-bar-height);
+}
+
+.c-modal__dismiss-button {
+  height: 48px;
+  width: 48px;
+
+  // position exactly where the menu button is
+  left: -4px;
+  position: relative;
+  top: 2px;
 }
 
 .c-modal__content {
