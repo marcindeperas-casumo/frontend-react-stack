@@ -2,6 +2,7 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
+import info from "Storybook/storybookInfo";
 
 import Modal from "./Modal";
 
@@ -37,8 +38,24 @@ const renderModal = (props = {}) => () => (
   <Modal {...defaultProps} {...props} />
 );
 
-stories.add("Default", renderModal());
-stories.add("With Back Button", renderModal({ dismissType: "back" }));
-stories.add("With No Button", renderModal({ dismissType: "none" }));
-stories.add("With Custom Header", renderModal({ header: customContent }));
-stories.add("With Custom Footer", renderModal({ footer: customContent }));
+stories.add("Default", renderModal(), info({ text: "Default" }));
+stories.add(
+  "With Back Button",
+  renderModal({ dismissType: "back" }),
+  info({ text: "With Back Button" })
+);
+stories.add(
+  "With No Button",
+  renderModal({ dismissType: "none" }),
+  info({ text: "With No Button" })
+);
+stories.add(
+  "With Custom Header",
+  renderModal({ header: customContent }),
+  info({ text: "With Custom Header" })
+);
+stories.add(
+  "With Custom Footer",
+  renderModal({ footer: customContent }),
+  info({ text: "With Custom Footer" })
+);
