@@ -1,6 +1,58 @@
-import { complement, compose, isNil, prop, path, pluck } from "ramda";
+import {
+  complement,
+  compose,
+  isNil,
+  prop,
+  path,
+  pluck,
+  head,
+  pipe,
+  sort,
+} from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
+import { getSuggestedGames } from "Api/api.gameSuggest";
+
+export const fetchSuggestedGames = async ({
+  handshake,
+  platform,
+  country,
+  latestPlayedGames,
+  variant = "default",
+}) => {
+  const { id, title } = handshake.gamesLists.suggestedGames || {};
+  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+  const latestPlayedGame = head(latestPlayedGamesResolved);
+
+  if (!latestPlayedGame || !id) {
+    return {};
+  }
+
+  const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
+
+  const games = await gamebrowserApi
+    .getGamesBySlugs({
+      platform,
+      country,
+      variant,
+      slugs,
+    })
+    .then(
+      pipe(
+        prop("games"),
+        // resort to ensure we've got proper order
+        sort((game1, game2) => {
+          return slugs.indexOf(game1.slug) - slugs.indexOf(game2.slug);
+        })
+      )
+    );
+
+  return {
+    games,
+    id,
+    title: title.replace("${GAME_NAME}", latestPlayedGame.name),
+  };
+};
 
 const fetchLatestPlayedGames = async ({
   variant = "default",
@@ -77,6 +129,17 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
     }));
 };
 
+const handleListsFetchErrors = promises => {
+  return promises.map(p =>
+    p.catch(e => {
+      console.error("Caught error: ", e);
+
+      // fallback to no data which leads to not showing a list
+      return {};
+    })
+  );
+};
+
 export const fetchGames = async ({
   platform,
   country,
@@ -137,14 +200,23 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
+  const suggestedGames = fetchSuggestedGames({
+    handshake,
+    platform,
+    country,
+    latestPlayedGames,
+  });
   const hasSomeGames = compose(
     i => i > 0,
     path(["games", "length"])
   );
-  const allListsResponses = (await Promise.all([
-    latestPlayedGames,
-    ...gameListsRequests,
-  ])).filter(hasSomeGames);
+  const allListsResponses = (await Promise.all(
+    handleListsFetchErrors([
+      latestPlayedGames,
+      suggestedGames,
+      ...gameListsRequests,
+    ])
+  )).filter(hasSomeGames);
   const jackpots = getJackpots({
     market,
     currencyCode: currency,
