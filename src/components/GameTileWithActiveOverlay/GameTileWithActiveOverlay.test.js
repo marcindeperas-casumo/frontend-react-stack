@@ -4,10 +4,10 @@ import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay/Game
 import gameInfo from "Components/GameTile/__mocks__/Game.json";
 
 describe("GameTileWithActiveOverlay", () => {
-  test("should render gameTile with isOverlayActive set to false", () => {
+  test("should render gameTile with isOverlayAlwaysActive set to true", () => {
     const rendered = shallow(<GameTileWithActiveOverlay game={gameInfo} />);
 
     expect(rendered.find("GameTile").length).toBe(1);
-    expect(rendered.find("GameTile").prop("isOverlayActive")).toBe(false);
+    expect(rendered.find("GameTile").prop("isOverlayAlwaysActive")).toBe(true);
   });
 });

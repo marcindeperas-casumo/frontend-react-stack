@@ -36,4 +36,14 @@ describe("GameTileOverlay", () => {
     );
     expect(rendered.find("TemporaryUnavailable").length).toBe(1);
   });
+
+  test("should only show play icon on overlay if alwaysActive is true", () => {
+    const rendered = shallow(
+      <GameTileOverlay {...gameInfo} alwaysActive={true} />
+    );
+
+    expect(rendered.find("PlayAction").length).toBe(1);
+    expect(rendered.find("Text").length).toBe(0);
+    expect(rendered.find("MoreInfo").length).toBe(0);
+  });
 });
