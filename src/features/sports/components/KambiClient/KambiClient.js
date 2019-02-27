@@ -38,6 +38,7 @@ export default class KambiClient extends React.Component<KambiClientProps> {
     });
 
     window.customerSettings = {
+      enableOddsFormatSelector: true,
       enableNavigationPanel: false,
       hideHeader: true,
       enableFilterMenu: false,
