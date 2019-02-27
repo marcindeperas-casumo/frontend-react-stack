@@ -20,7 +20,9 @@ const TOP_SEARCHES_QUERY = gql`
       termKey
       name
       clientPath
+      icon
       parentGroups {
+        icon
         name
       }
     }
@@ -62,6 +64,11 @@ const SEARCH_QUERY = gql`
       type
       id
       localizedName
+
+      sport {
+        icon
+        name
+      }
     }
   }
 `;
@@ -223,7 +230,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             }}
           >
             <Flex align="center">
-              <SearchResultIcon sport={sport.name} />
+              <img src={sport.icon} alt={sport.name} height="48" width="48" />
               <Flex.Block className="u-margin-left--lg">
                 <Text
                   size="sm"
@@ -278,7 +285,14 @@ class KambiSearchResults extends React.Component<Props, State> {
             }}
           >
             <Flex align="center">
-              <SearchResultIcon sport={getSportFromId(result.id)} />
+              {result.sport && (
+                <img
+                  src={result.sport.icon}
+                  alt={result.localizedName}
+                  height="48"
+                  width="48"
+                />
+              )}
 
               <Flex.Block className="u-margin-left--lg">
                 <MaskText

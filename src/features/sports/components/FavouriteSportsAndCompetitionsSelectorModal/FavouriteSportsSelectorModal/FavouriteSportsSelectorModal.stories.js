@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import info from "Storybook/storybookInfo";
 
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 
@@ -18,8 +19,9 @@ import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 
 const stories = storiesOf("Sports/FavouriteSportsSelectorModal", module);
 
-stories.add("No favourites", () => {
-  return (
+stories.add(
+  "No favourites",
+  () => (
     <MockedProviderWithContext
       mocks={[noFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
     >
@@ -30,11 +32,13 @@ stories.add("No favourites", () => {
         />
       </StageFavouritesProvider>
     </MockedProviderWithContext>
-  );
-});
+  ),
+  info({ text: "No favourites" })
+);
 
-stories.add("With favourites", () => {
-  return (
+stories.add(
+  "With favourites",
+  () => (
     <MockedProviderWithContext
       mocks={[withFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
     >
@@ -45,5 +49,6 @@ stories.add("With favourites", () => {
         />
       </StageFavouritesProvider>
     </MockedProviderWithContext>
-  );
-});
+  ),
+  info({ text: "With favourites" })
+);
