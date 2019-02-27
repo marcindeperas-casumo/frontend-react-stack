@@ -45,8 +45,6 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     this.props.clearSearch();
   };
 
-  handleFocusSearchInput = () => {};
-
   render() {
     return (
       <SearchInput
@@ -55,7 +53,6 @@ export default class GameSearchInput extends PureComponent<Props, State> {
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
         noResults={this.props.noResults}
-        onFocus={this.handleFocusSearchInput}
         placeholder={this.props.placeholder}
       />
     );
