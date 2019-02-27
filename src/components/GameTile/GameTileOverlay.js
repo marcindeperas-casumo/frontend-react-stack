@@ -20,6 +20,7 @@ type Props = {
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
+export const DEFAULT_CLASS_NAME = "c-game-tile__overlay--default";
 export const ALWAYS_ACTIVE_CLASS_NAME = "c-game-tile__overlay--active";
 
 const GameTileOverlay = ({
@@ -29,15 +30,24 @@ const GameTileOverlay = ({
   onLaunchGame,
   alwaysActive,
 }: Props) => {
+  const getClassModifier = () => {
+    if (inMaintenanceMode) {
+      return IN_MAINTENANCE_CLASS_NAME;
+    } else if (alwaysActive) {
+      return ALWAYS_ACTIVE_CLASS_NAME;
+    }
+
+    return DEFAULT_CLASS_NAME;
+  };
+
   return (
     <Flex
       align="center"
       justify={alwaysActive ? "center" : "space-between"}
       direction="vertical"
       className={classNames(
-        "o-ratio__content c-game-tile__overlay",
-        alwaysActive && ALWAYS_ACTIVE_CLASS_NAME,
-        inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
+        "o-ratio__content u-text-align-center",
+        getClassModifier(),
         "u-padding-vert--lg u-padding-horiz--md t-border-r--8"
       )}
     >

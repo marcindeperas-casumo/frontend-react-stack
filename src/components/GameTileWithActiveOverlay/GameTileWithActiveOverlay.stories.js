@@ -25,7 +25,7 @@ if (isNotChromatic) {
 }
 
 stories.add(
-  "Default tile without overlay",
+  "Default tile with active overlay",
   () => {
     return (
       <MockStore>

@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 
 import GameTile, {
   IN_MAINTENANCE_CLASS_NAME,
@@ -86,5 +86,19 @@ describe("GameTile", () => {
       <GameTile game={gameInfo} isOverlayAlwaysActive={true} />
     );
     expect(rendered.find("GameTileOverlay").length).toBe(1);
+  });
+
+  test("should launchGame if isOverlayAlwaysActive is true and component is clicked", () => {
+    const onLaunchGame = jest.fn();
+    const rendered = mount(
+      <GameTile
+        game={gameInfo}
+        onLaunchGame={onLaunchGame}
+        isOverlayAlwaysActive={true}
+      />
+    );
+    rendered.find("PlayIcon").simulate("click");
+
+    expect(onLaunchGame).toHaveBeenCalled();
   });
 });
