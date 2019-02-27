@@ -20,7 +20,7 @@ type KambiClientProps = {
   isHidden?: boolean,
   searchMode: boolean,
   betslipVisible?: boolean,
-  sessionKeepAlive: () => {},
+  sessionKeepAlive: () => void,
 };
 
 export default class KambiClient extends React.Component<KambiClientProps> {
