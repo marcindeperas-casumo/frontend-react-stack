@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 
 import GameTileOverlay, {
   IN_MAINTENANCE_CLASS_NAME,
+  ALWAYS_ACTIVE_CLASS_NAME,
 } from "Components/GameTile/GameTileOverlay";
 import gameInfo from "./__mocks__/Game.json";
 
@@ -35,6 +36,18 @@ describe("GameTileOverlay", () => {
       <GameTileOverlay {...gameInfo} inMaintenanceMode={true} />
     );
     expect(rendered.find("TemporaryUnavailable").length).toBe(1);
+  });
+
+  test("should set active class when alwaysActive is true", () => {
+    const rendered = shallow(<GameTileOverlay {...gameInfo} alwaysActive />);
+    expect(rendered.hasClass(ALWAYS_ACTIVE_CLASS_NAME)).toBe(true);
+  });
+
+  test("should set maintenance class when inMaintenanceMode is true and alwaysActive is true", () => {
+    const rendered = shallow(
+      <GameTileOverlay {...gameInfo} alwaysActive inMaintenanceMode />
+    );
+    expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
   });
 
   test("should only show play icon on overlay if alwaysActive is true", () => {

@@ -8,7 +8,7 @@ class GameTileWithActiveOverlay extends PureComponent<Props> {
   render() {
     return (
       <Flex.Item className="o-flex__item-fixed-size c-top-game">
-        <GameTile {...this.props} isOverlayAlwaysActive={true} />
+        <GameTile {...this.props} isOverlayAlwaysActive />
       </Flex.Item>
     );
   }

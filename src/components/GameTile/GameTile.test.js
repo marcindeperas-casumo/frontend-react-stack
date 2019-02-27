@@ -83,7 +83,7 @@ describe("GameTile", () => {
 
   test("should render gameOverlay if isOverlayAlwaysActive is true", () => {
     const rendered = shallow(
-      <GameTile game={gameInfo} isOverlayAlwaysActive={true} />
+      <GameTile game={gameInfo} isOverlayAlwaysActive />
     );
     expect(rendered.find("GameTileOverlay").length).toBe(1);
   });
@@ -94,7 +94,7 @@ describe("GameTile", () => {
       <GameTile
         game={gameInfo}
         onLaunchGame={onLaunchGame}
-        isOverlayAlwaysActive={true}
+        isOverlayAlwaysActive
       />
     );
     rendered.find("PlayIcon").simulate("click");
