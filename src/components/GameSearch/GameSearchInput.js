@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 
 import SearchInput from "Components/SearchInput";
-import { debounce } from "lodash";
+import debounce from "lodash/debounce";
 
 type Props = {
   initFetchQuerySearch: Function,
@@ -34,12 +34,10 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
-  handleSearchInput = (event: Event) => {
-    if (event.currentTarget instanceof HTMLInputElement) {
-      this.setState({
-        query: event.currentTarget.value,
-      });
-    }
+  handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
+    this.setState({
+      query: target.value,
+    });
   };
 
   handleClearSearchInput = () => {
@@ -47,17 +45,14 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     this.props.clearSearch();
   };
 
-  handleFocusSearchInput = () => {};
-
   render() {
     return (
       <SearchInput
-        autoFocus={true}
+        autoFocus
         value={this.state.query}
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
         noResults={this.props.noResults}
-        onFocus={this.handleFocusSearchInput}
         placeholder={this.props.placeholder}
       />
     );
