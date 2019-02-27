@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import info from "Storybook/storybookInfo";
 
 import HashWatcher from "Components/HashWatcher";
 
@@ -55,4 +56,8 @@ class HashWatcherDemo extends React.Component<{}, State> {
   }
 }
 
-stories.add("Default View", () => <HashWatcherDemo />);
+stories.add(
+  "Default View",
+  () => <HashWatcherDemo />,
+  info({ text: "Default View" })
+);
