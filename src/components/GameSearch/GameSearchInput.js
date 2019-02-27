@@ -50,7 +50,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   render() {
     return (
       <SearchInput
-        autoFocus={true}
+        autoFocus
         value={this.state.query}
         onChange={this.handleSearchInput}
         onClear={this.handleClearSearchInput}
