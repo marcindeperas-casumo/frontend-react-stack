@@ -2,11 +2,11 @@ import { call, put, select, take } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
-  types,
   fetchLatestPlayedSaga,
   fetchQuerySearch,
   noResultsAction,
   clearSearch,
+  getSearchFetchCompleteType,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -23,7 +23,7 @@ export function* gameSearchSaga(action) {
   // fetch query search
   yield put(fetchQuerySearch({ platform, country, query }));
 
-  const { response } = yield take(types.GAME_SEARCH_FETCH_COMPLETE);
+  const { response } = yield take(getSearchFetchCompleteType(query));
 
   // if no match fetch latest played games
   if (!response.games.length) {

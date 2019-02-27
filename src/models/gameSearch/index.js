@@ -6,3 +6,4 @@ export * from "./gameSearch.saga.latestPlayed";
 export * from "./gameSearch.saga.popularGames";
 export * from "./gameSearch.saga.search";
 export * from "./gameSearch.saga.clear";
+export * from "./gameSearch.utils";
