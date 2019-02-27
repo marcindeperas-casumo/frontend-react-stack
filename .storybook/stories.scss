@@ -4,20 +4,28 @@
 @import "cudl-typography";
 @include cudl-reset-compile(cudl-sass-typography);
 
-$cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+// $cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
+$cudl-font-stack: "Action Man", -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, Helvetica, sans-serif;
 
 $cudl-line-height: 1.25;
 
 $cudl-font-formats: woff woff2;
 
+// @include cudl-font-face(
+//   "Circular Pro",
+//   "./static/fonts/lineto-circular-pro-book"
+// );
+// @include cudl-font-face(
+//   "Circular Pro",
+//   "./static/fonts/lineto-circular-pro-bold",
+//   $weight: 700
+// );
+
+@include cudl-font-face("Action Man", "./static/fonts/action-man");
 @include cudl-font-face(
-  "Circular Pro",
-  "./static/fonts/lineto-circular-pro-book"
-);
-@include cudl-font-face(
-  "Circular Pro",
-  "./static/fonts/lineto-circular-pro-bold",
+  "Action Man",
+  "./static/fonts/action-man-bold",
   $weight: 700
 );
 
