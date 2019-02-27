@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs/react";
+import info from "Storybook/storybookInfo";
 
 import ExpandableListItem from "./ExpandableListItem";
 
@@ -22,30 +23,36 @@ const testLabel = index =>
     </div>
   );
 
-stories.add("Single item", () => {
-  return (
+stories.add(
+  "Single item",
+  () => (
     <ExpandableListItem label="Single Item">
       {testContent(0)}
     </ExpandableListItem>
-  );
-});
+  ),
+  info({ text: "Single item" })
+);
 
-stories.add("Multiple items", () => {
-  const numberOfListItems = number("Number of List Items", 5, {
-    range: true,
-    min: 1,
-    max: 6,
-    step: 1,
-  });
+stories.add(
+  "Multiple items",
+  () => {
+    const numberOfListItems = number("Number of List Items", 5, {
+      range: true,
+      min: 1,
+      max: 6,
+      step: 1,
+    });
 
-  const iterable = new Array(numberOfListItems).fill({});
-  return (
-    <>
-      {iterable.map((_, index) => (
-        <ExpandableListItem key={index} label={testLabel(index)}>
-          {testContent(index)}
-        </ExpandableListItem>
-      ))}
-    </>
-  );
-});
+    const iterable = new Array(numberOfListItems).fill({});
+    return (
+      <>
+        {iterable.map((_, index) => (
+          <ExpandableListItem key={index} label={testLabel(index)}>
+            {testContent(index)}
+          </ExpandableListItem>
+        ))}
+      </>
+    );
+  },
+  info({ text: "Multiple items" })
+);

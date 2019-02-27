@@ -37,6 +37,7 @@ const noop = () => {};
 class SearchInput extends React.Component<Props, State> {
   static defaultProps = {
     onBlur: noop,
+    onFocus: noop,
   };
 
   state = { hasFocus: false };

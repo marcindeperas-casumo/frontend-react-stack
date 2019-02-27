@@ -8,6 +8,17 @@
 // GraphQL query operation: SearchQuery
 // ====================================================
 
+export type SearchQuery_search_sport = {
+  /**
+   * The icon for the sport group
+   */
+  icon: ?string,
+  /**
+   * Name of the event group, localized according to the lang parameter
+   */
+  name: string,
+};
+
 export type SearchQuery_search = {
   /**
    * The type of search result, N.B Not overly reliable
@@ -21,6 +32,10 @@ export type SearchQuery_search = {
    * Translated name of the search result
    */
   localizedName: string,
+  /**
+   * The sport that this search result is associated to, nullable as relies on finding by kambi controlled data
+   */
+  sport: ?SearchQuery_search_sport,
 };
 
 export type SearchQuery = {
