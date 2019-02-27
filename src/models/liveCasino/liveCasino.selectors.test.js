@@ -1,7 +1,12 @@
+// @flow
 import {
   liveTableEntitySelector,
   liveTableSelector,
+  getAllLiveGames,
+  groupLiveGames,
+  mapLobbyTranslations,
 } from "./liveCasino.selectors";
+import defaultState from "Models/__mocks__/state.mock";
 
 describe("Models/Jackpots/Selectors", () => {
   const state = {
@@ -40,5 +45,89 @@ describe("Models/Jackpots/Selectors", () => {
 
       expect(liveTable).toEqual(null);
     });
+  });
+
+  describe("mapLobbyTranslations()", () => {
+    const input = [
+      { key: "ultimate_texas_holdem", value: "xyz" },
+      { key: "roulette", value: "asdf" },
+      { key: "non_existing", value: "yolo" },
+    ];
+    const out = {
+      UTH: input[0].value,
+      Roulette: input[1].value,
+      non_existing: input[2].value,
+    };
+    expect(mapLobbyTranslations(input)).toEqual(out);
+  });
+
+  describe("getAllLiveGames()", () => {
+    // This selector takes all live games from schema.games and adds lobby to it with data from schema.liveTable
+    expect(getAllLiveGames(defaultState)).toMatchSnapshot();
+  });
+
+  describe("getGroupedLiveGames()", () => {
+    const liveGames1 = [
+      {
+        slug: "one",
+        lobby: {
+          type: "BlackJack",
+          bets: {
+            min: 0.2,
+            max: 300,
+          },
+        },
+      },
+      {
+        slug: "two",
+        lobby: {
+          type: "BlackJack",
+          bets: {
+            min: 0.1,
+            max: 666,
+          },
+        },
+      },
+    ];
+    const expected1 = [["BlackJack", ["two", "one"]]]; // order changes due to difference in bets range
+    expect(groupLiveGames(liveGames1)).toEqual(expected1);
+
+    const liveGames2 = [
+      {
+        slug: "one",
+        lobby: {
+          type: "BlackJack",
+          bets: {
+            min: 0.1,
+            max: 1000,
+          },
+        },
+      },
+      {
+        slug: "two",
+        lobby: {
+          type: "BlackJack",
+          bets: {
+            min: 0.1,
+            max: 666,
+          },
+        },
+      },
+      {
+        slug: "three",
+        lobby: {
+          type: "MoneyWheel",
+          bets: {
+            min: 0.1,
+            max: 1000,
+          },
+        },
+      },
+    ];
+    const expected2 = [
+      ["BlackJack", ["one", "two"]],
+      ["MoneyWheel", ["three"]],
+    ]; // order changes due to difference in bets range
+    expect(groupLiveGames(liveGames2)).toEqual(expected2);
   });
 });

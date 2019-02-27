@@ -1,26 +1,22 @@
+// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import List from "@casumo/cmp-list";
-import GameRow from "Components/GameRow/GameRow";
+import GameRow from "Components/GameRow";
 import SectionTitle from "./SectionTitle";
 import LiveCasinoDetailPage from "./LiveCasinoDetailPage";
 
-import roulette from "Components/LiveCasinoCard/__mocks__/Roulette.json";
-import moneyWheel from "Components/LiveCasinoCard/__mocks__/MoneyWheel.json";
-
-const data = [
-  { id: "roulette", title: "Roulette", gamesInSection: [roulette, roulette] },
-  { id: "mw", title: "Money Wheel", gamesInSection: [moneyWheel] },
-];
+const data = [["Roulette", ["1", "2"]], ["MoneyWheel", ["3"]]];
 
 describe("<LiveCasinoDetailPage />", () => {
   test("renders correctly", () => {
     const rendered = shallow(
       <LiveCasinoDetailPage
-        gamesList={data}
-        isFetched
-        fetchPageBySlug={() => {}}
-        launchGame={() => {}}
+        groupedLiveGames={data}
+        areTranslationsFetched
+        translations={{}}
+        fetchTranslations={() => {}}
+        initFetchAllLiveGames={() => {}}
       />
     );
     // Two titles...
@@ -43,5 +39,20 @@ describe("<LiveCasinoDetailPage />", () => {
         .dive()
         .find(GameRow).length
     ).toBe(1);
+  });
+
+  test("properly initializes data", () => {
+    const initFetchAllLiveGames = jest.fn();
+    shallow(
+      <LiveCasinoDetailPage
+        groupedLiveGames={data}
+        areTranslationsFetched
+        translations={{}}
+        fetchTranslations={() => {}}
+        initFetchAllLiveGames={initFetchAllLiveGames}
+      />
+    );
+
+    expect(initFetchAllLiveGames).toBeCalledTimes(1);
   });
 });
