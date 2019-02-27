@@ -39,39 +39,39 @@ export default class GameSearch extends PureComponent<Props> {
   renderPopularGames = () => {
     if (!this.props.popularGames.length) {
       return this.renderListSkeleton();
-    } else {
-      return (
-        <SectionList
-          sections={[
-            {
-              title: this.props.popularGamesTitle,
-              data: this.props.popularGames,
-            },
-          ]}
-          renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch slug={id} />}
-        />
-      );
     }
+
+    return (
+      <SectionList
+        sections={[
+          {
+            title: this.props.popularGamesTitle,
+            data: this.props.popularGames,
+          },
+        ]}
+        renderSectionHeader={this.renderSectionHeader}
+        renderItem={id => <GameRowSearch slug={id} />}
+      />
+    );
   };
 
   renderLatestPlayed = () => {
     if (!this.props.latestPlayedGames.length) {
       return this.renderListSkeleton();
-    } else {
-      return (
-        <SectionList
-          sections={[
-            {
-              title: this.props.latestPlayedGamesTitle,
-              data: this.props.latestPlayedGames,
-            },
-          ]}
-          renderSectionHeader={this.renderSectionHeader}
-          renderItem={id => <GameRowSearch slug={id} />}
-        />
-      );
     }
+
+    return (
+      <SectionList
+        sections={[
+          {
+            title: this.props.latestPlayedGamesTitle,
+            data: this.props.latestPlayedGames,
+          },
+        ]}
+        renderSectionHeader={this.renderSectionHeader}
+        renderItem={id => <GameRowSearch slug={id} />}
+      />
+    );
   };
 
   renderSuggestions = () =>
