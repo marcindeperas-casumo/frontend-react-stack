@@ -49,6 +49,7 @@
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
     "rollbar": "^2.5.2",
+    "sass-resources-loader": "^2.0.0",
     "store": "^2.0.12",
     "wait-for-element": "^1.0.2"
   },
