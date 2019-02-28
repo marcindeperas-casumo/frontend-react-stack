@@ -1,5 +1,6 @@
-import { call, put, take } from "redux-saga/effects";
+import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
+import { sessionId as sessionIdSelector } from "Models/handshake";
 import {
   fetchPlayerGames,
   getFetchCompleteTypeByPage,
@@ -7,7 +8,9 @@ import {
 } from "Models/playerGames";
 
 export function* fetchPlayerGamesPageSaga({ page, pageSize }) {
-  yield put(fetchPlayerGames({ page, pageSize }));
+  const sessionId = yield select(sessionIdSelector);
+
+  yield put(fetchPlayerGames({ page, pageSize, sessionId }));
 
   const { response } = yield take(getFetchCompleteTypeByPage(page));
 

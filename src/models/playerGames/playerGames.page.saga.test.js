@@ -1,5 +1,6 @@
+import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { call, put, take } from "redux-saga/effects";
+import { sessionId as sessionIdSelector } from "Models/handshake";
 import {
   fetchPlayerGames,
   fetchPlayerGamesPageSaga,
@@ -11,7 +12,10 @@ describe("Models/PlayerGames/Saga", () => {
   test("fetchPlayerGamesPageSaga()", () => {
     const page = 0;
     const pageSize = 100;
-    const gen = fetchPlayerGamesPageSaga({ page, pageSize });
+    const sessionId = "123-456";
+    const gen = fetchPlayerGamesPageSaga({ page, pageSize, sessionId });
+
+    expect(gen.next().value).toEqual(select(sessionIdSelector));
 
     expect(gen.next().value).toEqual(put(fetchPlayerGames({ page, pageSize })));
     expect(gen.next().value).toEqual(take(getFetchCompleteTypeByPage(0)));

@@ -11,7 +11,8 @@ describe("Models/PlayerGames/Actions", () => {
   describe("fetchPlayerGames()", () => {
     const page = 0;
     const pageSize = 100;
-    const action = fetchPlayerGames({ page, pageSize });
+    const sessionId = 100;
+    const action = fetchPlayerGames({ page, pageSize, sessionId });
 
     test("init fetch", () => {
       expect(action).toMatchObject({

@@ -11,12 +11,12 @@ export const preloadFetchPlayerGames = ({ startIndex, pageSize }) => ({
   pageSize,
 });
 
-export const fetchPlayerGames = ({ page, pageSize }) => ({
+export const fetchPlayerGames = ({ page, pageSize, sessionId }) => ({
   type: fetchTypes.FETCH,
   name: types.PLAYER_GAMES_FETCH_START,
   postFetch: getFetchCompleteTypeByPage(page),
   asyncCall: getCasinoPlayerGames,
-  asyncCallData: { page, pageSize },
+  asyncCallData: { page, pageSize, sessionId },
 });
 
 export const preloadFetchPlayerGamesCount = () => ({
