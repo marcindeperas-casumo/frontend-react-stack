@@ -1,5 +1,11 @@
 @import "~Styles/settings.zindex";
 
+/*
+  NOTE:
+  this uses css vars set on the document root of the ko stack in order to
+  calculate the offset of the play okay bar, and the height of the top-bar
+*/
+
 .c-modal {
   bottom: 0;
   left: 0;

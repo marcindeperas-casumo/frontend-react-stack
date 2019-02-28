@@ -1,3 +1,10 @@
+/*
+  NOTE:
+  this uses css vars set on the document root of the ko stack
+  in order to calculate the offset of the play okay bar
+  also some of the selectors are nasty but these are out of our control
+*/
+
 /* stylelint-disable selector-no-id declaration-no-important */
 #KambiBC.c-kambi-client--hidden {
   border: 0;
