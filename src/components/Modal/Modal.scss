@@ -1,13 +1,32 @@
 @import "~Styles/settings.zindex";
 
+/*
+  NOTE:
+  this uses css vars set on the document root of the ko stack in order to
+  calculate the offset of the play okay bar, and the height of the top-bar
+*/
+
 .c-modal {
   bottom: 0;
   left: 0;
   overflow: hidden;
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--play-okay-bar-height, 0);
   z-index: $modal-z-index;
+}
+
+.c-modal__top-bar {
+  height: var(--top-bar-height, 75px);
+
+  @media (orientation: landscape) {
+    height: var(--top-bar-height--landscape, 64px);
+  }
+}
+
+.c-modal__dismiss-button {
+  height: 48px;
+  width: 48px;
 }
 
 .c-modal__content {

@@ -29,13 +29,15 @@ export const DismissButton = ({
   onClick,
   isVisible,
 }: DismissButtonProps) => (
-  <div
-    className="t-color-white t-background-grey-dark-4 t-border-r--circle u-padding--md"
+  <Flex
+    align="center"
+    justify="center"
+    className="c-modal__dismiss-button t-color-white t-background-grey-dark-4 t-border-r--circle"
     onClick={onClick}
     style={{ visibility: isVisible ? "visible" : "hidden" }}
   >
     {children}
-  </div>
+  </Flex>
 );
 
 // this workaround is to prevent double-scrollbars as they are already set from the durandal stack
@@ -54,29 +56,27 @@ export default class Modal extends React.Component<Props> {
 
   get header() {
     return (
-      <Flex.Item className="c-modal__top-bar o-flex--1 u-padding t-background-grey-dark-3 t-color-white">
-        <Flex className="u-padding--sm" align="center">
-          <Flex.Item>
-            <DismissButton
-              onClick={this.props.onClose}
-              isVisible={this.props.dismissType === "back"}
-            >
-              <ArrowLeftIcon />
-            </DismissButton>
-          </Flex.Item>
-          <Flex.Block className="c-modal__header o-flex-justify--center u-font-weight-bold">
-            {this.props.header}
-          </Flex.Block>
-          <Flex.Item>
-            <DismissButton
-              onClick={this.props.onClose}
-              isVisible={this.props.dismissType === "close"}
-            >
-              <CrossIcon />
-            </DismissButton>
-          </Flex.Item>
-        </Flex>
-      </Flex.Item>
+      <>
+        <Flex.Item>
+          <DismissButton
+            onClick={this.props.onClose}
+            isVisible={this.props.dismissType === "back"}
+          >
+            <ArrowLeftIcon />
+          </DismissButton>
+        </Flex.Item>
+        <Flex.Block className="c-modal__header o-flex-justify--center u-font-weight-bold">
+          {this.props.header}
+        </Flex.Block>
+        <Flex.Item>
+          <DismissButton
+            onClick={this.props.onClose}
+            isVisible={this.props.dismissType === "close"}
+          >
+            <CrossIcon />
+          </DismissButton>
+        </Flex.Item>
+      </>
     );
   }
 
@@ -96,7 +96,7 @@ export default class Modal extends React.Component<Props> {
         spacing="none"
       >
         <Flex
-          className="o-flex__item-fixed-size"
+          className="c-modal__top-bar o-flex__item-fixed-size u-padding t-background-grey-dark-3 t-color-white"
           direction="horizontal"
           align="center"
           spacing="md"
