@@ -66,7 +66,7 @@ describe("Models/Jackpots/Selectors", () => {
     expect(getAllLiveGames(defaultState)).toMatchSnapshot();
   });
 
-  describe("getGroupedLiveGames()", () => {
+  describe("groupLiveGames()", () => {
     const liveGames1 = [
       {
         slug: "one",
