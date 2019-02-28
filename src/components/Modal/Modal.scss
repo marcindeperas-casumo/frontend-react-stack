@@ -12,15 +12,15 @@
   overflow: hidden;
   position: fixed;
   right: 0;
-  top: var(--play-okay-bar-height, "0px");
+  top: var(--play-okay-bar-height, 0);
   z-index: $modal-z-index;
 }
 
 .c-modal__top-bar {
-  height: var(--top-bar-height, "0px");
+  height: var(--top-bar-height, 75px);
 
   @media (orientation: landscape) {
-    height: var(--top-bar-height--landscape, "0px");
+    height: var(--top-bar-height--landscape, 64px);
   }
 }
 
