@@ -2,11 +2,9 @@
 import {
   liveTableEntitySelector,
   liveTableSelector,
-  getAllLiveGames,
   groupLiveGames,
   mapLobbyTranslations,
 } from "./liveCasino.selectors";
-import defaultState from "Models/__mocks__/state.mock";
 
 describe("Models/Jackpots/Selectors", () => {
   const state = {
@@ -59,11 +57,6 @@ describe("Models/Jackpots/Selectors", () => {
       non_existing: input[2].value,
     };
     expect(mapLobbyTranslations(input)).toEqual(out);
-  });
-
-  describe("getAllLiveGames()", () => {
-    // This selector takes all live games from schema.games and adds lobby to it with data from schema.liveTable
-    expect(getAllLiveGames(defaultState)).toMatchSnapshot();
   });
 
   describe("groupLiveGames()", () => {
