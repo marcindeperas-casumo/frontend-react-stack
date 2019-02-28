@@ -7,6 +7,7 @@ import {
   fetchGamesByProviderGameNames,
   fetchMostPopularGames,
   types,
+  getSearchFetchCompleteType,
 } from "Models/gameSearch";
 
 describe("Models/GameSearch/Actions", () => {
@@ -44,7 +45,7 @@ describe("Models/GameSearch/Actions", () => {
 
     test("fires completed finished", () => {
       expect(action).toMatchObject({
-        postFetch: types.GAME_SEARCH_FETCH_COMPLETE,
+        postFetch: getSearchFetchCompleteType(query),
       });
     });
 

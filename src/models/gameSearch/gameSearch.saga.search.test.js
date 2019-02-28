@@ -9,6 +9,7 @@ import {
   clearSearch,
   fetchLatestPlayedSaga,
   noResultsAction,
+  getSearchFetchCompleteType,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -52,7 +53,9 @@ describe("Models/GameSearch/Saga", () => {
       )
     );
 
-    expect(gen.next().value).toEqual(take(types.GAME_SEARCH_FETCH_COMPLETE));
+    expect(gen.next().value).toEqual(
+      take(getSearchFetchCompleteType(action.query))
+    );
 
     // clone generator for noMatch scenario
     const noMatchGen = gen.clone();
