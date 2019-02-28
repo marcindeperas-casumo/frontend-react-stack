@@ -4,6 +4,8 @@ import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
 
+import "./SearchNotFound.scss";
+
 export type Props = {
   /** The not found image to render */
   image: string,
@@ -26,27 +28,30 @@ class SearchNotFound extends PureComponent<Props> {
     const { image, title, content } = this.props;
 
     return (
-      <Media
-        className="t-background-grey-light-2 u-padding-vert--lg u-padding-horiz--md"
-        renderText={() => (
-          <div>
-            <Text className="u-margin-bottom--sm u-font-weight-bold">
-              <DangerousHtml html={title} />
-            </Text>
-            <Text className="u-margin-bottom--none" size="sm">
-              <DangerousHtml html={content} />
-            </Text>
-          </div>
-        )}
-        renderImage={() => (
-          <img
-            className="u-display--block"
-            width={64}
-            alt={title}
-            src={image}
-          />
-        )}
-      />
+      <div className="u-position-relative">
+        <div className="t-background-grey-light-2 c-search-not-found-bg" />
+        <Media
+          className="u-padding-vert--lg u-padding-horiz--md"
+          renderText={() => (
+            <div>
+              <Text className="u-margin-bottom--sm u-font-weight-bold">
+                <DangerousHtml html={title} />
+              </Text>
+              <Text className="u-margin-bottom--none" size="sm">
+                <DangerousHtml html={content} />
+              </Text>
+            </div>
+          )}
+          renderImage={() => (
+            <img
+              className="u-display--block"
+              width={64}
+              alt={title}
+              src={image}
+            />
+          )}
+        />
+      </div>
     );
   }
 }

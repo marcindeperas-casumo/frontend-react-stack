@@ -17,7 +17,9 @@ export function* gameSearchSaga(action) {
 
   // if there is no query or just spaces, stop here
   if (!query || !query.replace(/\s/g, "").length) {
-    return yield put(clearSearch());
+    yield put(clearSearch());
+
+    return;
   }
 
   // fetch query search
@@ -29,7 +31,9 @@ export function* gameSearchSaga(action) {
   if (!response.games.length) {
     yield put(noResultsAction());
 
-    return yield call(fetchLatestPlayedSaga);
+    yield call(fetchLatestPlayedSaga);
+
+    return;
   }
 
   // save search results
@@ -44,8 +48,8 @@ export function* gameSearchSaga(action) {
 
   // if direct hit fetch latest played games
   if (response.games.length === 1) {
-    return yield call(fetchLatestPlayedSaga);
-  }
+    yield call(fetchLatestPlayedSaga);
 
-  return true;
+    return;
+  }
 }

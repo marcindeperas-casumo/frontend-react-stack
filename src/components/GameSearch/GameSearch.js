@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 
-import Flex from "@casumo/cmp-flex";
 import GameSearchInput from "./GameSearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
@@ -9,6 +8,8 @@ import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import List from "@casumo/cmp-list";
 import GamesVirtualList from "Components/GamesVirtualList";
+
+import "./GameSearch.scss";
 
 type Props = {
   preloadFetchPlayerGames: Function,
@@ -33,7 +34,11 @@ export default class GameSearch extends PureComponent<Props> {
   }
 
   renderListSkeleton = (hasTitle: boolean = true) => (
-    <GameListSkeleton hasTitle={hasTitle} titleYOffset={20} />
+    <GameListSkeleton
+      className="u-padding-horiz--md"
+      hasTitle={hasTitle}
+      titleYOffset={20}
+    />
   );
 
   renderPopularGames = () => {
@@ -43,6 +48,7 @@ export default class GameSearch extends PureComponent<Props> {
 
     return (
       <SectionList
+        className="u-padding-horiz--md"
         sections={[
           {
             title: this.props.popularGamesTitle,
@@ -62,6 +68,7 @@ export default class GameSearch extends PureComponent<Props> {
 
     return (
       <SectionList
+        className="u-padding-horiz--md"
         sections={[
           {
             title: this.props.latestPlayedGamesTitle,
@@ -93,7 +100,7 @@ export default class GameSearch extends PureComponent<Props> {
     return (
       <React.Fragment>
         <SearchNotFound contentField={field} />
-        <div className="u-padding-horiz--md">{this.renderSuggestions()}</div>
+        {this.renderSuggestions()}
       </React.Fragment>
     );
   };
@@ -103,16 +110,14 @@ export default class GameSearch extends PureComponent<Props> {
 
     if (!searchResults.length && !loading && !noResults) {
       return (
-        <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+        <div className="c-game-search-virtual-list">
+          <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+        </div>
       );
     }
 
     if (loading) {
-      return (
-        <div className="u-padding-horiz--md">
-          {this.renderListSkeleton(false)}
-        </div>
-      );
+      return this.renderListSkeleton(false);
     }
 
     if (noResults) {
@@ -120,8 +125,9 @@ export default class GameSearch extends PureComponent<Props> {
     }
     // replace for <VirtualList /> when new api is ready
     return (
-      <div className="u-padding-horiz--md">
+      <React.Fragment>
         <List
+          className="u-padding-top u-padding-horiz--md"
           items={searchResults}
           itemSpacing="default"
           render={id => (
@@ -129,33 +135,24 @@ export default class GameSearch extends PureComponent<Props> {
           )}
         />
         {searchResults.length === 1 && this.renderSuggestions()}
-      </div>
+      </React.Fragment>
     );
   };
 
   render() {
     return (
-      <Flex direction="vertical" spacing="none">
-        <div className="t-background-grey-light-2 u-padding--md u-position-sticky">
+      <React.Fragment>
+        <div className="u-padding--md u-position-sticky c-game-search-bar">
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
             clearSearch={this.props.clearSearch}
             noResults={this.props.noResults}
             placeholder={this.props.inputPromptPlaceholder}
           />
+          <div className="t-background-grey-light-2 c-game-search-input-bg" />
         </div>
-        <div
-          style={{
-            position: "absolute",
-            top: "72px",
-            left: 0,
-            right: 0,
-            bottom: 0,
-          }}
-        >
-          {this.renderResults()}
-        </div>
-      </Flex>
+        {this.renderResults()}
+      </React.Fragment>
     );
   }
 }
