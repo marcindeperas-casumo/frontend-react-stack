@@ -29,7 +29,7 @@ class SearchNotFound extends PureComponent<Props> {
 
     return (
       <div className="u-position-relative">
-        <div className="t-background-grey-light-2 c-search-not-found-bg" />
+        <div className="o-bleed t-background-grey-light-2 c-search-not-found-bg" />
         <Media
           className="u-padding-vert--lg u-padding-horiz--md"
           renderText={() => (

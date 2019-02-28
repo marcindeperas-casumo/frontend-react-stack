@@ -149,7 +149,7 @@ export default class GameSearch extends PureComponent<Props> {
             noResults={this.props.noResults}
             placeholder={this.props.inputPromptPlaceholder}
           />
-          <div className="t-background-grey-light-2 c-game-search-input-bg" />
+          <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />
         </div>
         {this.renderResults()}
       </React.Fragment>

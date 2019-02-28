@@ -9,9 +9,7 @@ $game-list-height: (
 .c-game-search-input-bg {
   position: absolute;
   top: 0;
-  height: 72px;
-  left: -1000px;
-  right: -1000px;
+  bottom: 0;
   z-index: -1;
 }
 
@@ -21,6 +19,11 @@ $game-list-height: (
 
 .c-game-search-virtual-list {
   @include cudl-breakpoint-with($game-list-height, height);
+  @media screen
+  and (min-width: map-get($cudl-breakpoints, phablet))
+  and (orientation: landscape) {
+    height: calc(100vh - 136px)
+  }
 }
 
 .c-game-search-virtual-list .c-virtual-list {
