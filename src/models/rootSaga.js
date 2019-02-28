@@ -28,11 +28,6 @@ import {
   takeChannel,
 } from "Models/cometd";
 import {
-  types as gameSearchTypes,
-  gameSearchSaga,
-  clearSearchSaga,
-} from "Models/gameSearch";
-import {
   types as playerGamesTypes,
   fetchPlayerGamesSaga,
   fetchPlayerGamesCountSaga,
@@ -82,6 +77,4 @@ export default function* rootSaga(dispatch) {
     playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
     fetchPlayerGamesCountSaga
   );
-  yield fork(takeEvery, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga);
-  yield fork(takeEvery, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchSaga);
 }

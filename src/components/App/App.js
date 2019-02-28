@@ -6,7 +6,6 @@ import { TopListsSkeleton } from "Components/TopLists";
 import LazyPortal from "Components/LazyPortal";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
-import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 
 class App extends PureComponent {
@@ -60,18 +59,6 @@ class App extends PureComponent {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: "campaigns.winter-games" }}
-          />
-        </MigrationComponent>
-        <MigrationComponent migrationKey={["games-search"]}>
-          <LazyPortal
-            hostElementId="react-host-games-search"
-            loader={() => import("Components/GameSearch")}
-            fallback={
-              <div>
-                <SearchInputSkeleton />
-                <GameListSkeleton />
-              </div>
-            }
           />
         </MigrationComponent>
         <MigrationComponent migrationKey={["sports"]}>
