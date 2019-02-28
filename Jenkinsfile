@@ -8,10 +8,12 @@ new PipelineBuilder(this)
         .checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
-        .customStep('Flow', this.&runFlow)
+        .parallel([
+                "Flow": {it.customStepTask('Flow', this.&runFlow)},
+                "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
+                "Sonar": {it.gradleSonarTask()}        
+        ])
         .customStep('Build', this.&runBuild)
-        .customStep('Visual Regression', this.&runChromatic)
-        .gradleSonar(false) // true to force builds to fail on Sonar failures, false otherwise 
         .gradleDockerPublish()
         .gradleRelease()
         .build('js-builder') // https://github.com/Casumo/jenkins-js-builder/blob/master/Dockerfile
