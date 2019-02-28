@@ -1,4 +1,11 @@
-/* stylelint-disable */
+/*
+  NOTE:
+  this uses css vars set on the document root of the ko stack
+  in order to calculate the offset of the play okay bar
+  also some of the selectors are nasty but these are out of our control
+*/
+
+/* stylelint-disable selector-no-id declaration-no-important */
 #KambiBC.c-kambi-client--hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -11,7 +18,6 @@
 }
 
 // Hide header for all pages except bethistory
-// stylelint-disable
 #KambiBC-header-wrapper {
   display: none;
 
@@ -19,4 +25,8 @@
     display: block;
   }
 }
-/* stylelint-enable */
+
+#mod-KambiBC-betslip-container .mod-KambiBC-betslip {
+  max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
+}
+/* stylelint-enable selector-no-id declaration-no-important */

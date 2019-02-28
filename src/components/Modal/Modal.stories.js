@@ -5,6 +5,7 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 
 import Modal from "./Modal";
+import "./Modal.stories.scss";
 
 const stories = storiesOf("Modal", module);
 
@@ -35,7 +36,7 @@ const defaultProps = {
 };
 
 const renderModal = (props = {}) => () => (
-  <Modal {...defaultProps} {...props} />
+  <Modal {...defaultProps} {...props} className="c-modal--static" />
 );
 
 stories.add("Default", renderModal(), info({ text: "Default" }));
