@@ -16,30 +16,54 @@ type Props = {
   slug: string,
   inMaintenanceMode: boolean,
   onLaunchGame: Function,
+  alwaysActive: boolean,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
+export const DEFAULT_CLASS_NAME = "c-game-tile__overlay--default";
+export const ALWAYS_ACTIVE_CLASS_NAME = "c-game-tile__overlay--active";
+
+export const getClassModifier = (
+  inMaintenanceMode: boolean,
+  alwaysActive: boolean
+) => {
+  if (inMaintenanceMode) {
+    return IN_MAINTENANCE_CLASS_NAME;
+  }
+
+  if (alwaysActive) {
+    return ALWAYS_ACTIVE_CLASS_NAME;
+  }
+
+  return DEFAULT_CLASS_NAME;
+};
 
 const GameTileOverlay = ({
   name,
   slug,
   inMaintenanceMode,
   onLaunchGame,
+  alwaysActive,
 }: Props) => {
   return (
     <Flex
       align="center"
-      justify="space-between"
+      justify={alwaysActive ? "center" : "space-between"}
       direction="vertical"
       className={classNames(
-        "o-ratio__content c-game-tile__overlay",
-        inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
+        "o-ratio__content u-text-align-center",
+        getClassModifier(inMaintenanceMode, alwaysActive),
         "u-padding-vert--lg u-padding-horiz--md t-border-r--8"
       )}
     >
-      <Text size="sm" className="t-color-white u-text-clamp u-font-weight-bold">
-        {decodeString(name)}
-      </Text>
+      {!alwaysActive && (
+        <Text
+          size="sm"
+          className="t-color-white u-text-clamp u-font-weight-bold"
+        >
+          {decodeString(name)}
+        </Text>
+      )}
 
       {inMaintenanceMode ? (
         <TemporaryUnavailable />
@@ -52,17 +76,19 @@ const GameTileOverlay = ({
         </TrackClick>
       )}
 
-      <TrackClick
-        eventName={EVENTS.GAME_DETAILS}
-        data={{ [EVENT_PROPS.GAME_NAME]: name }}
-      >
-        <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-          <MoreIcon
-            size="med"
-            className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm"
-          />
-        </a>
-      </TrackClick>
+      {!alwaysActive && (
+        <TrackClick
+          eventName={EVENTS.GAME_DETAILS}
+          data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        >
+          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
+            <MoreIcon
+              size="med"
+              className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm"
+            />
+          </a>
+        </TrackClick>
+      )}
     </Flex>
   );
 };
