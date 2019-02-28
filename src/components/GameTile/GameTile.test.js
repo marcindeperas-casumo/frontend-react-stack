@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 
 import GameTile, {
   IN_MAINTENANCE_CLASS_NAME,
@@ -81,34 +81,24 @@ describe("GameTile", () => {
     expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
   });
 
-  test("should not render gameOverlay if isOverlayEnabled is false", () => {
+  test("should render gameOverlay if isOverlayAlwaysActive is true", () => {
     const rendered = shallow(
-      <GameTile game={gameInfo} isOverlayEnabled={false} />
+      <GameTile game={gameInfo} isOverlayAlwaysActive />
     );
-    expect(rendered.find("GameTileOverlay").length).toBe(0);
-  });
-
-  test("should render gameOverlay by default", () => {
-    const rendered = shallow(<GameTile game={gameInfo} />);
-
-    rendered.simulate("click");
-
     expect(rendered.find("GameTileOverlay").length).toBe(1);
   });
 
-  test("should directly launch game on click of tile when isOverlayEnabled is false", () => {
+  test("should launchGame if isOverlayAlwaysActive is true and component is clicked", () => {
     const onLaunchGame = jest.fn();
-    const rendered = shallow(
+    const rendered = mount(
       <GameTile
         game={gameInfo}
-        isOverlayEnabled={false}
         onLaunchGame={onLaunchGame}
+        isOverlayAlwaysActive
       />
     );
+    rendered.find("PlayIcon").simulate("click");
 
-    rendered.simulate("click");
-
-    expect(rendered.find(".c-game-tile__overlay--active")).toHaveLength(1);
-    expect(onLaunchGame).toHaveBeenCalledTimes(1);
+    expect(onLaunchGame).toHaveBeenCalled();
   });
 });
