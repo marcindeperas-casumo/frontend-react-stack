@@ -48,6 +48,7 @@ describe("GameTileOverlay", () => {
       <GameTileOverlay {...gameInfo} alwaysActive inMaintenanceMode />
     );
     expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
+    expect(rendered.hasClass(ALWAYS_ACTIVE_CLASS_NAME)).toBe(false);
   });
 
   test("should only show play icon on overlay if alwaysActive is true", () => {
@@ -57,6 +58,16 @@ describe("GameTileOverlay", () => {
 
     expect(rendered.find("PlayAction").length).toBe(1);
     expect(rendered.find("Text").length).toBe(0);
-    expect(rendered.find("MoreInfo").length).toBe(0);
+    expect(rendered.find("MoreIcon").length).toBe(0);
+  });
+
+  test("should show play icon along with title and more info icon on overlay if alwaysActive is false", () => {
+    const rendered = shallow(
+      <GameTileOverlay {...gameInfo} alwaysActive={false} />
+    );
+
+    expect(rendered.find("PlayAction").length).toBe(1);
+    expect(rendered.find("Text").length).toBe(1);
+    expect(rendered.find("MoreIcon").length).toBe(1);
   });
 });
