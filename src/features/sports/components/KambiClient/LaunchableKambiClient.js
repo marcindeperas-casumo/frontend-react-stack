@@ -2,13 +2,17 @@
 import React from "react";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
-import { Query } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
 
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 import { currency, country, getLanguage } from "Models/handshake";
-import { MutateOnMount, ClientContext } from "Features/sports/state";
+import {
+  MutateOnMount,
+  ClientContext,
+  SESSION_TOUCH,
+} from "Features/sports/state";
 
 const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {
@@ -21,7 +25,7 @@ const LAUNCH_KAMBI_MUTATION = gql`
 `;
 
 const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
-  query LaunchableKambiClient {
+  query LaunchableKambiClientQuery {
     userHomepage
     kambiClientVisible @client
     betslipVisible @client
@@ -34,7 +38,10 @@ type LaunchableKambiClientProps = {
   locale?: string,
 };
 
-class LaunchableKambiClientQuery extends Query<LaunchableKambiClient, null> {}
+class LaunchableKambiClientQuery extends Query<
+  LaunchableKambiClientQuery,
+  null
+> {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
@@ -72,18 +79,23 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
             <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
               {({ data }) => {
                 return (
-                  <KambiClient
-                    betslipVisible={data.betslipVisible}
-                    currency={currency}
-                    market={market}
-                    locale={locale}
-                    bootstrapUrl={clientBootstrapUrl}
-                    playerId={providerPlayerId}
-                    ticket={ticket}
-                    homeRoute={propOr("", "userHomepage", data)}
-                    onNavigate={this.onNavigate}
-                    isHidden={!data.kambiClientVisible}
-                  />
+                  <Mutation mutation={SESSION_TOUCH}>
+                    {sessionTouch => (
+                      <KambiClient
+                        betslipVisible={data.betslipVisible}
+                        currency={currency}
+                        market={market}
+                        locale={locale}
+                        bootstrapUrl={clientBootstrapUrl}
+                        playerId={providerPlayerId}
+                        ticket={ticket}
+                        homeRoute={propOr("", "userHomepage", data)}
+                        onNavigate={this.onNavigate}
+                        isHidden={!data.kambiClientVisible}
+                        sessionKeepAlive={sessionTouch}
+                      />
+                    )}
+                  </Mutation>
                 );
               }}
             </LaunchableKambiClientQuery>

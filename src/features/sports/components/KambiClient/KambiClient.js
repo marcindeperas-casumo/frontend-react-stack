@@ -20,6 +20,7 @@ type KambiClientProps = {
   isHidden?: boolean,
   searchMode: boolean,
   betslipVisible?: boolean,
+  sessionKeepAlive: () => void,
 };
 
 export default class KambiClient extends React.Component<KambiClientProps> {
@@ -27,6 +28,7 @@ export default class KambiClient extends React.Component<KambiClientProps> {
     onNavigate: () => {},
     searchMode: false,
     betslipVisible: true,
+    sessionKeepAlive: () => {},
   };
 
   componentDidMount() {
@@ -46,6 +48,7 @@ export default class KambiClient extends React.Component<KambiClientProps> {
       enableTermSearch: false,
       reservedRoutes: ["home"],
       emptyClientRoutes: [/^search$/, "search#home"],
+      heartbeat: this.props.sessionKeepAlive,
     };
     /* eslint-enable fp/no-mutation */
 
