@@ -96,19 +96,3 @@ export const getLiveCasinoTable = (
     id: ids,
     currency,
   });
-
-export const getAllLiveCasinoGames = (
-  {
-    country,
-    platform = "mobile",
-    variant = "default",
-  }: {
-    country: string,
-    platform?: "mobile" | string,
-    variant?: "default" | string,
-  },
-  http: HTTPClient = defaultHttp
-) =>
-  http.get(`${URL.GAME_LISTS}/${platform}/${country}/liveCasinoGamesFull`, {
-    variant,
-  });

@@ -1,21 +1,31 @@
 // @flow
 import { types as fetchTypes } from "Models/fetch";
 import { types } from "./liveCasino.constants";
-import { getAllLiveCasinoGames, getLiveCasinoTable } from "Api/api.gamebrowser";
+import { getGameLists, getLiveCasinoTable } from "Api/api.gamebrowser";
 
 export const initFetchAllLiveGames = () => ({
   type: types.FETCH_ALL_LIVE_GAMES_INIT,
 });
 
-export const fetchAllLiveGames = (asyncCallData: {
+export const fetchAllLiveGames = (data: {
   country: string,
+  id?: string,
   platform?: string,
   variant?: string,
+  page?: number,
+  pageSize?: number,
 }) => ({
   type: fetchTypes.FETCH,
   name: types.FETCH_ALL_LIVE_GAMES_START,
-  asyncCallData,
-  asyncCall: getAllLiveCasinoGames,
+  asyncCallData: {
+    id: "liveCasinoGamesFull",
+    page: 0,
+    platform: "mobile",
+    variant: "default",
+    pageSize: Number.MAX_SAFE_INTEGER,
+    ...data,
+  },
+  asyncCall: getGameLists,
   postFetch: types.FETCH_ALL_LIVE_GAMES_COMPLETE,
 });
 
