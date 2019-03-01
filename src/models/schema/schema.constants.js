@@ -1,3 +1,4 @@
+// @flow
 export const types = {
   UPDATE_ENTITY: "SCHEMA/UPDATE_ENTITY",
   MERGE_ENTITY: "SCHEMA/MERGE_ENTITY",

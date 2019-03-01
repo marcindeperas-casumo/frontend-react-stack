@@ -6,6 +6,8 @@ import GameListHorizontal from "Components/GameListHorizontal/GameListHorizontal
 import TrackProvider from "Components/TrackProvider";
 import { gameListSelector } from "Models/schema";
 import { isGameListLoaded } from "Models/games";
+import { getField } from "Models/cms";
+import { market as marketSelector } from "Models/handshake";
 
 type Props = {
   /** The id of the game list. */
@@ -15,6 +17,10 @@ type Props = {
 const GameListHorizontalConnected = connect((state, { id }) => ({
   isLoading: !isGameListLoaded(state),
   list: gameListSelector(id)(state),
+  seeMoreText: getField({
+    slug: `built-pages.top-lists-${marketSelector(state)}`,
+    field: "more_link",
+  })(state),
 }))(GameListHorizontal);
 
 const GameListHorizontalContainer = (props: Props) => (
