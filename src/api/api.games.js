@@ -104,6 +104,18 @@ const createAllLiveGamesMap = allLiveGamesList =>
  */
 const getImageForTable = path(["videoSnapshot", "thumbnails", "L"]);
 
+export const normalizeTableData = (currency, table) => ({
+  tableId: table.tableId,
+  type: table.gameType,
+  image: getImageForTable(table),
+  bets: table.betLimits[currency],
+  players: table.players,
+  results: table.results || table.history || null,
+  betBehind: table.betBehind || null,
+  seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
+  provider: table.provider,
+});
+
 const getLiveGames = async ({ currency, allLiveGamesList }) => {
   const allLiveGamesById = createAllLiveGamesMap(allLiveGamesList);
 
@@ -116,17 +128,7 @@ const getLiveGames = async ({ currency, allLiveGamesList }) => {
     .filter(({ open }) => Boolean(open))
     .map(table => ({
       ...allLiveGamesById[table.tableId],
-      lobby: {
-        tableId: table.tableId,
-        type: table.gameType,
-        image: getImageForTable(table),
-        bets: table.betLimits[currency],
-        players: table.players,
-        results: table.results || table.history || null,
-        betBehind: table.betBehind || null,
-        seats: table.seatsTaken ? table.seats - table.seatsTaken.length : null,
-        provider: table.provider,
-      },
+      lobby: normalizeTableData(currency, table),
     }));
 };
 
@@ -159,6 +161,7 @@ export const fetchGames = async ({
           variant,
           platform,
           country,
+          page: 0,
           pageSize: 20,
         })
         .then(prop("games"));

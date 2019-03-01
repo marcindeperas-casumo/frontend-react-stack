@@ -1,3 +1,4 @@
+// @flow
 import { schema, normalize } from "normalizr";
 import { ENTITY_KEYS } from "./schema.constants";
 
@@ -57,11 +58,11 @@ export const applicationSchema = {
   [`${ENTITY_KEYS.LIVE_TABLE}s`]: [liveTable],
   [ENTITY_KEYS.JACKPOT]: jackpot,
   [`${ENTITY_KEYS.JACKPOT}s`]: [jackpot],
-  [ENTITY_KEYS.GAME.JACKPOT_MUST_DROP]: [jackpotMustDrop],
+  [ENTITY_KEYS.JACKPOT_MUST_DROP]: [jackpotMustDrop],
   [ENTITY_KEYS.CMS]: cms,
   [`${ENTITY_KEYS.CMS}s`]: [cms],
 };
 
-export const normalizeData = data => normalize(data, applicationSchema);
+export const normalizeData = (data: any) => normalize(data, applicationSchema);
 
 export default applicationSchema;
