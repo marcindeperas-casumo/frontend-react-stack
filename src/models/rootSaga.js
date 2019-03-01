@@ -1,4 +1,4 @@
-import { fork, takeEvery } from "redux-saga/effects";
+import { fork, takeEvery, takeLatest } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
@@ -82,6 +82,9 @@ export default function* rootSaga(dispatch) {
     playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
     fetchPlayerGamesCountSaga
   );
-  yield fork(takeEvery, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga);
-  yield fork(takeEvery, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchSaga);
+
+  yield [
+    fork(takeLatest, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga),
+    fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchSaga),
+  ];
 }
