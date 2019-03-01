@@ -37,6 +37,13 @@ class App extends PureComponent {
             fallback={<GameListSkeleton />}
           />
         </MigrationComponent>
+        <MigrationComponent migrationKey={["live-casino-details"]}>
+          <LazyPortal
+            hostElementId="react-host-live-casino-details"
+            loader={() => import("Components/LiveCasinoDetailPage")}
+            fallback={<GameListSkeleton />}
+          />
+        </MigrationComponent>
         {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
         <MigrationComponent migrationKey={["promotions-detail"]}>
           <LazyPortal

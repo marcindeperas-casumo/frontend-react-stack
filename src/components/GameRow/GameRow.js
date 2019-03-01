@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
@@ -49,7 +50,11 @@ export default class GameRow extends PureComponent<Props> {
           {/* Text */}
           <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
             <JackpotAmount amount={formattedJackpotAmount} />
-            <Text tag="div" size="sm">
+            <Text
+              tag="div"
+              size="sm"
+              className={classNames({ "u-font-weight-bold": bets })}
+            >
               <DangerousHtml html={name} />
             </Text>
             <BetsLevels bets={renderBets(bets)} />
@@ -87,7 +92,7 @@ function JackpotAmount({ amount }) {
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="sm" className="u-padding-top--sm">
+      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey">
         {bets}
       </Text>
     );
