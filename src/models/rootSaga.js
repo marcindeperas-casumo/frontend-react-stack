@@ -2,7 +2,11 @@ import { fork, takeEvery, takeLatest } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
-import { liveCasinoUpdatesSaga } from "Models/liveCasino";
+import {
+  liveCasinoTypes,
+  fetchAllLiveCasinoGamesSaga,
+  liveCasinoUpdatesSaga,
+} from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
   types as gameTypes,
@@ -74,6 +78,11 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
+    liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
+    fetchAllLiveCasinoGamesSaga
+  );
+  yield fork(
+    takeEvery,
     playerGamesTypes.PLAYER_GAMES_FETCH,
     fetchPlayerGamesSaga
   );
@@ -82,7 +91,6 @@ export default function* rootSaga(dispatch) {
     playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
     fetchPlayerGamesCountSaga
   );
-
   yield [
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchSaga),
