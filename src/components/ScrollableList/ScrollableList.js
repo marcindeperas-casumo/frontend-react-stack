@@ -8,9 +8,10 @@ import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 
 export const DEFAULT_SPACING = "default";
-export const DEFAULT_COMPONENT = GameTile;
 export const PADDING_PER_DEVICE = {
   default: "md",
   tablet: "2xlg",
@@ -19,18 +20,30 @@ export const PADDING_PER_DEVICE = {
 
 type Props = {
   title: string,
+  /** url to "see more" page, if null will not render "see more" button */
+  seeMoreUrl?: string,
   itemIds: Array<string>,
-  Component?: Function,
-  spacing?: spacerSizes | responsiveSpacerSizes,
+  Component: Function,
+  spacing: spacerSizes | responsiveSpacerSizes,
+  /** "see more" link translation */
+  seeMoreText: string,
 };
 
-export class ScrollableList extends PureComponent<Props> {
+export default class ScrollableList extends PureComponent<Props> {
+  static defaultProps = {
+    itemIds: [],
+    spacing: DEFAULT_SPACING,
+    Component: GameTile,
+  };
+
   render() {
     const {
+      Component,
+      itemIds,
+      seeMoreText,
+      seeMoreUrl,
+      spacing,
       title,
-      itemIds = [],
-      spacing = DEFAULT_SPACING,
-      Component = DEFAULT_COMPONENT,
     } = this.props;
 
     if (isEmpty(itemIds)) {
@@ -39,7 +52,21 @@ export class ScrollableList extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitle title={title} />
+        {/* Copied from  MustDropJackpotsList, should be refactored at some point */}
+        <Flex justify="space-between">
+          <Flex.Item>
+            <ScrollableListTitle title={title} />
+          </Flex.Item>
+          {seeMoreUrl ? (
+            <Flex.Item className="u-padding-right--md">
+              <a href={seeMoreUrl}>
+                <Text tag="h3" className="t-color-blue">
+                  {seeMoreText}
+                </Text>
+              </a>
+            </Flex.Item>
+          ) : null}
+        </Flex>
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={spacing}>
           {itemIds.map(itemId => (
             <Component key={itemId} id={itemId} />
@@ -49,5 +76,3 @@ export class ScrollableList extends PureComponent<Props> {
     );
   }
 }
-
-export default ScrollableList;

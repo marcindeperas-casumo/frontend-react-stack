@@ -29,6 +29,12 @@ module.exports = {
         exceptions: [{ property: "fragments" }],
       },
     ],
+    "fp/no-mutating-methods": [
+      "error",
+      {
+        allowedObjects: ["R"],
+      },
+    ],
     "prettier/prettier": "error",
     "import/no-unresolved": [
       "error",
