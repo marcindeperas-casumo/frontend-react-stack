@@ -1,5 +1,5 @@
 import React from "react";
-import { mount, shallow } from "enzyme";
+import { mount } from "enzyme";
 import CuratedCardLoader from "Components/CuratedCardLoader/CuratedCardLoader";
 import curatedData from "Models/curated/__mocks__/curated.json";
 import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";

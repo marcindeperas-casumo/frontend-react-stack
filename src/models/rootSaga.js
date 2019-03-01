@@ -1,5 +1,5 @@
 import { fork, takeEvery } from "redux-saga/effects";
-import { types as appTypes, appSaga, handshakeUpdateSaga } from "Models/app";
+import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import { liveCasinoUpdatesSaga } from "Models/liveCasino";
@@ -23,6 +23,7 @@ import {
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
+  MESSAGES as cometdMessages,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
@@ -55,8 +56,11 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    takeMessageFromChannel(cometdChannels.PLAYER, "depositConfirmed"),
-    handshakeUpdateSaga
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.DEPOSIT_CONFIRMED
+    ),
+    appSaga
   );
   yield fork(
     takeEvery,
