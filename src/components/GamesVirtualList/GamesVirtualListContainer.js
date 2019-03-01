@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
+import { createStructuredSelector } from "reselect";
 import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import {
   playerGamesSelector,
@@ -10,9 +11,9 @@ import {
 } from "Models/playerGames";
 
 const GamesVirtualListConnected = connect(
-  state => ({
-    games: playerGamesSelector(state),
-    rowCount: playerGamesCountSelector(state),
+  createStructuredSelector({
+    games: playerGamesSelector,
+    rowCount: playerGamesCountSelector,
   }),
   {
     preloadFetchPlayerGames,

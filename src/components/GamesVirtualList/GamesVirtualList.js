@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { range, assoc } from "ramda";
+import { append, range, assoc } from "ramda";
 
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
@@ -107,9 +107,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         resolve,
       };
-
       // eslint-disable-next-line
-      this.promises.list.push(promise);
+      this.promises.list = append(promise, this.promises.list);
     });
   };
 
