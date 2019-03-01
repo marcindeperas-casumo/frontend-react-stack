@@ -19,10 +19,8 @@ export const fetchAllLiveGames = (data: {
   name: types.FETCH_ALL_LIVE_GAMES_START,
   asyncCallData: {
     id: "liveCasinoGamesFull",
-    page: 0,
     platform: "mobile",
     variant: "default",
-    pageSize: Number.MAX_SAFE_INTEGER,
     ...data,
   },
   asyncCall: getGameLists,

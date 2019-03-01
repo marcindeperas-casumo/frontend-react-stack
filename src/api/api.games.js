@@ -160,6 +160,7 @@ export const fetchGames = async ({
           variant,
           platform,
           country,
+          page: 0,
           pageSize: 20,
         })
         .then(prop("games"));

@@ -22,9 +22,7 @@ export const getGameLists = (
     platform,
     country,
     id,
-    variant,
-    page = 0,
-    pageSize = 5,
+    ...data
   }: {
     platform: string,
     country: string,
@@ -34,12 +32,7 @@ export const getGameLists = (
     pageSize?: number,
   },
   http: HTTPClient = defaultHttp
-) =>
-  http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, {
-    variant,
-    page,
-    pageSize,
-  });
+) => http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, data);
 
 export const getLatestPlayedGames = (
   { playerId, pageSize = 20 }: { playerId: string, pageSize?: number },
