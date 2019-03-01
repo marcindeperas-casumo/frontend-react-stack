@@ -12,6 +12,7 @@ import {
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
+import { decodeString } from "Utils";
 
 export const fetchSuggestedGames = async ({
   handshake,
@@ -50,7 +51,7 @@ export const fetchSuggestedGames = async ({
   return {
     games,
     id,
-    title: title.replace("${GAME_NAME}", latestPlayedGame.name),
+    title: title.replace("${GAME_NAME}", decodeString(latestPlayedGame.name)),
   };
 };
 

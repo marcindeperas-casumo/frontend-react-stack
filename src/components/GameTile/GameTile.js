@@ -16,7 +16,7 @@ export type Props = {
   imgixOpts?: Object,
   onLaunchGame: Function,
   ratio?: string,
-  isOverlayEnabled?: boolean,
+  isOverlayAlwaysActive?: boolean,
 };
 
 type State = {
@@ -26,10 +26,8 @@ type State = {
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 
 export default class GameTile extends PureComponent<Props, State> {
-  setWrapperRef: Function;
   handleOnClick: Function;
   handleOutsideClick: Function;
-  wrapperRef: Node;
 
   constructor(props: Props) {
     super(props);
@@ -69,7 +67,7 @@ export default class GameTile extends PureComponent<Props, State> {
         w: 170,
       },
       ratio = "game-tile",
-      isOverlayEnabled = true,
+      isOverlayAlwaysActive = false,
     } = this.props;
     const {
       inMaintenanceMode,
@@ -81,9 +79,8 @@ export default class GameTile extends PureComponent<Props, State> {
     } = game;
     const { isOverlayActive } = this.state;
     const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
-    const onGameTileClick = isOverlayEnabled
-      ? this.handleOnClick
-      : onLaunchGame;
+    const showOverlay = isOverlayAlwaysActive || isOverlayActive;
+
     return (
       <div
         className={classNames(
@@ -92,7 +89,7 @@ export default class GameTile extends PureComponent<Props, State> {
           "c-game-tile o-ratio t-border-r--8 t-color-white",
           className
         )}
-        onClick={onGameTileClick}
+        onClick={this.handleOnClick}
       >
         <GameTileImage
           logoBackground={logoBackground}
@@ -101,16 +98,14 @@ export default class GameTile extends PureComponent<Props, State> {
           imgixOpts={imgixOpts}
         />
         {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        {isOverlayEnabled && isOverlayActive && (
+        {showOverlay && (
           <GameTileOverlay
             name={name}
             slug={slug}
             inMaintenanceMode={inMaintenanceMode}
             onLaunchGame={onLaunchGame}
+            alwaysActive={isOverlayAlwaysActive}
           />
-        )}
-        {!isOverlayEnabled && (
-          <div className="o-ratio__content c-game-tile__overlay--active" />
         )}
       </div>
     );

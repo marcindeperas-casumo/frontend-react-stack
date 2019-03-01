@@ -1,3 +1,4 @@
+// @flow
 import gql from "graphql-tag";
 
 export const TOGGLE_FAVOURITE_GROUP_MUTATION = gql`
@@ -24,5 +25,11 @@ export const SET_FAVOURITE_COMPETITIONS = gql`
       id
       userFavourite
     }
+  }
+`;
+
+export const SESSION_TOUCH = gql`
+  mutation SessionTouch {
+    sessionTouch
   }
 `;
