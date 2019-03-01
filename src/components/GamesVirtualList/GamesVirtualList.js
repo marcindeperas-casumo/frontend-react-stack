@@ -84,6 +84,15 @@ class GamesVirtualList extends PureComponent<Props, State> {
     });
   };
 
+  setPageAsLoaded = (page: number) => {
+    this.setState(prevState => ({
+      pagesMap: {
+        ...prevState.pagesMap,
+        ...assoc(page, 1, this.state.pagesMap),
+      },
+    }));
+  };
+
   loadMoreRows = ({ startIndex, stopIndex }: Indexes) => {
     const page = Math.ceil(startIndex / PAGE_SIZE);
 
@@ -93,12 +102,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         pageSize: PAGE_SIZE,
       });
-      this.setState(prevState => ({
-        pagesMap: {
-          ...prevState.pagesMap,
-          ...assoc(page, 1, this.state.pagesMap),
-        },
-      }));
+      this.setPageAsLoaded(page);
     }
 
     return new Promise<Object>(resolve => {
