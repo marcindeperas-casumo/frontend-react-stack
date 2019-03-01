@@ -41,6 +41,7 @@ class App extends PureComponent {
           <LazyPortal
             hostElementId="react-host-live-casino-details"
             loader={() => import("Components/LiveCasinoDetailPage")}
+            fallback={<GameListSkeleton />}
           />
         </MigrationComponent>
         {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
