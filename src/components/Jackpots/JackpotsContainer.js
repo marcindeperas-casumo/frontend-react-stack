@@ -1,39 +1,51 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import {
-  jackpotIdsSelector,
-  gameListTitleSelectorFactory,
-} from "Models/schema";
-import {
-  subscribeJackpotUpdates,
-  unsubscribeJackpotUpdates,
-} from "Models/cometd";
-import TrackProvider from "Components/TrackProvider";
-import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
+import { Query } from "react-apollo";
+import gql from "graphql-tag";
+import { compose, prop } from "ramda";
 import Jackpots from "./Jackpots";
 
-const JackpotsConnected = connect(
-  state => ({
-    ids: jackpotIdsSelector(state),
-    title: gameListTitleSelectorFactory(GAME_LIST_IDS.CASUMO_JACKPOT_GAMES)(
-      state
-    ),
-  }),
-  dispatch => ({
-    subscribeToUpdates: () => dispatch(subscribeJackpotUpdates()),
-    unsubscribeFromUpdates: () => dispatch(unsubscribeJackpotUpdates()),
-  })
-)(Jackpots);
+// Refreshing the jackpots by polling the API every 2 seconds.
+// This is far from ideal and is just temporary.
+// We are only using this until we implement subscribing to the RabbitMQ queues
+// in the GraphQL server.
+const REFRESH_INTERVAL = 2000;
 
-type Props = {};
+const GET_JACKPOTS = gql`
+  query {
+    gamesList(listId: "casumoJackpotGames") {
+      title
+      games {
+        slug
+        name
+        logo
+        logoBackground
+        jackpotInfo {
+          id
+          formattedJackpotAmount
+        }
+      }
+    }
+  }
+`;
 
-const JackpotsContainer = (props: Props) => {
-  return (
-    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "Jackpots" }}>
-      <JackpotsConnected {...props} />
-    </TrackProvider>
-  );
-};
+const JackpotsApolloContainer = () => (
+  <Query query={GET_JACKPOTS} pollInterval={REFRESH_INTERVAL}>
+    {({ loading, data }) => {
+      const getTitle = compose(
+        prop("title"),
+        prop("gamesList")
+      );
+      const getGames = compose(
+        prop("games"),
+        prop("gamesList")
+      );
 
-export default JackpotsContainer;
+      return loading ? null : (
+        <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
+      );
+    }}
+  </Query>
+);
+
+export default JackpotsApolloContainer;
