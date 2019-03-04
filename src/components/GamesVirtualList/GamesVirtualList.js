@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { range, assoc } from "ramda";
+import { append, range, assoc } from "ramda";
 
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
@@ -47,11 +47,9 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   componentDidUpdate() {
-    const isPromiseLoaded = ({ startIndex, stopIndex }) =>
-      this.props.games[startIndex] && this.props.games[stopIndex];
-    const loadedPromises = this.promises.list.filter(isPromiseLoaded);
+    const loadedPromises = this.promises.list.filter(this.isPromiseLoaded);
     const notLoadedPromises = this.promises.list.filter(
-      o => !isPromiseLoaded(o)
+      o => !this.isPromiseLoaded(o)
     );
 
     loadedPromises.forEach(({ startIndex, stopIndex, resolve }) => {
@@ -63,6 +61,9 @@ class GamesVirtualList extends PureComponent<Props, State> {
     this.promises.list = notLoadedPromises;
   }
 
+  isPromiseLoaded = ({ startIndex, stopIndex }: Indexes) =>
+    this.props.games[startIndex] && this.props.games[stopIndex];
+
   isRowLoaded = ({ index }: { index: number }) =>
     Boolean(this.state.loadedRowsMap[index]);
 
@@ -72,16 +73,33 @@ class GamesVirtualList extends PureComponent<Props, State> {
     // adjust for last row loading
     const stop = stopIndex + 1;
 
+    // eslint-disable-next-line
+    let loaded = {};
     range(startIndex, stop).forEach(i => {
-      this.setState(prevState => {
-        return {
-          loadedRowsMap: {
-            ...prevState.loadedRowsMap,
-            ...assoc(i, 1, this.state.loadedRowsMap),
-          },
-        };
-      });
+      // eslint-disable-next-line
+      loaded = {
+        ...loaded,
+        ...assoc(i, 1, loaded),
+      };
     });
+
+    this.setState(prevState => {
+      return {
+        loadedRowsMap: {
+          ...prevState.loadedRowsMap,
+          ...loaded,
+        },
+      };
+    });
+  };
+
+  setPageAsLoaded = (page: number) => {
+    this.setState(prevState => ({
+      pagesMap: {
+        ...prevState.pagesMap,
+        ...assoc(page, 1, this.state.pagesMap),
+      },
+    }));
   };
 
   loadMoreRows = ({ startIndex, stopIndex }: Indexes) => {
@@ -93,12 +111,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         pageSize: PAGE_SIZE,
       });
-      this.setState(prevState => ({
-        pagesMap: {
-          ...prevState.pagesMap,
-          ...assoc(page, 1, this.state.pagesMap),
-        },
-      }));
+      this.setPageAsLoaded(page);
     }
 
     return new Promise<Object>(resolve => {
@@ -107,9 +120,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         resolve,
       };
-
       // eslint-disable-next-line
-      this.promises.list.push(promise);
+      this.promises.list = append(promise, this.promises.list);
     });
   };
 
