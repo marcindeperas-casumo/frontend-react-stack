@@ -47,11 +47,9 @@ class GamesVirtualList extends PureComponent<Props, State> {
   };
 
   componentDidUpdate() {
-    const isPromiseLoaded = ({ startIndex, stopIndex }) =>
-      this.props.games[startIndex] && this.props.games[stopIndex];
-    const loadedPromises = this.promises.list.filter(isPromiseLoaded);
+    const loadedPromises = this.promises.list.filter(this.isPromiseLoaded);
     const notLoadedPromises = this.promises.list.filter(
-      o => !isPromiseLoaded(o)
+      o => !this.isPromiseLoaded(o)
     );
 
     loadedPromises.forEach(({ startIndex, stopIndex, resolve }) => {
@@ -63,6 +61,9 @@ class GamesVirtualList extends PureComponent<Props, State> {
     this.promises.list = notLoadedPromises;
   }
 
+  isPromiseLoaded = ({ startIndex, stopIndex }: Indexes) =>
+    this.props.games[startIndex] && this.props.games[stopIndex];
+
   isRowLoaded = ({ index }: { index: number }) =>
     Boolean(this.state.loadedRowsMap[index]);
 
@@ -72,15 +73,23 @@ class GamesVirtualList extends PureComponent<Props, State> {
     // adjust for last row loading
     const stop = stopIndex + 1;
 
+    // eslint-disable-next-line
+    let loaded = {};
     range(startIndex, stop).forEach(i => {
-      this.setState(prevState => {
-        return {
-          loadedRowsMap: {
-            ...prevState.loadedRowsMap,
-            ...assoc(i, 1, this.state.loadedRowsMap),
-          },
-        };
-      });
+      // eslint-disable-next-line
+      loaded = {
+        ...loaded,
+        ...assoc(i, 1, loaded),
+      };
+    });
+
+    this.setState(prevState => {
+      return {
+        loadedRowsMap: {
+          ...prevState.loadedRowsMap,
+          ...loaded,
+        },
+      };
     });
   };
 
