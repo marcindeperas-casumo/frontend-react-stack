@@ -1,8 +1,8 @@
 // @flow
 import React, { PureComponent, type ElementProps } from "react";
-import { Provider } from "react-redux";
-import configureStore from "Src/configureStore";
 import { mergeDeepRight } from "ramda";
+import { Provider } from "react-redux";
+import { getStore } from "Services/reduxStore";
 import defaultState from "Models/__mocks__/state.mock";
 
 type Props = {
@@ -21,7 +21,7 @@ type Props = {
 export default class MockStore extends PureComponent<Props> {
   render() {
     const { children, state = {} } = this.props;
-    const store = configureStore(mergeDeepRight(defaultState, state));
+    const store = getStore(mergeDeepRight(defaultState, state));
 
     return <Provider store={store}>{children}</Provider>;
   }
