@@ -53,7 +53,7 @@ if (isNotChromatic) {
     "Default (Connected)",
     () => (
       <MockStore state={state}>
-        <div style={{ height: "100vh" }}>
+        <div className="u-height--screen">
           <GamesVirtualListContainer
             renderItem={id => <GameRowSearch slug={id} />}
           />
@@ -68,7 +68,7 @@ stories.add(
   "Default",
   () => (
     <MockStore>
-      <div style={{ height: "100vh" }}>
+      <div className="u-height--screen">
         <GamesVirtualList
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
