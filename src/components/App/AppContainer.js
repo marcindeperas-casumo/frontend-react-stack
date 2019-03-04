@@ -21,15 +21,29 @@ const AppConnected = connect(
     playerId: playerId(state),
     sessionId: sessionId(state),
   }),
-  dispatch => ({
+  (dispatch, { playerId, sessionId }) => ({
     onAppStarted: () => dispatch(appStarted()),
-    subscribeToPlayerUpdates: (playerId, sessionId) =>
+    dispatchSubscribe: (playerId, sessionId) =>
       dispatch(subscribeToPlayerUpdates(playerId, sessionId)),
-    unsubscribeToPlayerUpdates: (playerId, sessionId) =>
+    dispatchUnsubscribe: (playerId, sessionId) =>
       dispatch(unsubscribeToPlayerUpdates(playerId, sessionId)),
-  })
+  }),
+  (stateProps, dispatchProps) => {
+    const { playerId, sessionId } = stateProps;
+    const { dispatchSubscribe, dispatchUnsubscribe } = dispatchProps;
+
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      subscribeToPlayerUpdates: () => dispatchSubscribe(playerId, sessionId),
+      unsubscribeToPlayerUpdates: () =>
+        dispatchUnsubscribe(playerId, sessionId),
+    };
+  }
 )(App);
 
-const AppContainer = () => <AppConnected />;
+const AppContainer = () => {
+  return <AppConnected />;
+};
 
 export default AppContainer;
