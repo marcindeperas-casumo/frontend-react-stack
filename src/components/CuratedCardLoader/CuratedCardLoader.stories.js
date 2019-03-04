@@ -14,7 +14,7 @@ stories.add(
   "Default",
   () => {
     return (
-      <MockStore state={defaultState}>
+      <MockStore>
         <div
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
@@ -63,10 +63,10 @@ stories.add(
 
 if (isNotChromatic) {
   stories.add(
-    "Default",
+    "Default (Connected)",
     () => {
       return (
-        <MockStore state={defaultState}>
+        <MockStore>
           <div
             className="u-margin-left--auto u-margin-right--auto"
             style={{ maxWidth: "686px" }}

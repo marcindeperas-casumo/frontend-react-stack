@@ -5,13 +5,25 @@ import App from "Components/App/App";
 describe("App", () => {
   test("onAppStart is called when the component is mounted", () => {
     const fn = jest.fn();
-    shallow(<App onAppStarted={fn} />);
+    shallow(
+      <App
+        onAppStarted={fn}
+        routeParams={[]}
+        subscribeToPlayerUpdates={() => {}}
+        unsubscribeToPlayerUpdates={() => {}}
+      />
+    );
     expect(fn).toHaveBeenCalledTimes(1);
   });
 
   test("does not render anything if not isAuthenticated", () => {
     const rendered = shallow(
-      <App onAppStarted={() => {}} isAuthenticated={false} />
+      <App
+        onAppStarted={() => {}}
+        isAuthenticated={false}
+        subscribeToPlayerUpdates={() => {}}
+        unsubscribeToPlayerUpdates={() => {}}
+      />
     );
 
     expect(rendered.get(0)).toBeNull();
@@ -24,6 +36,8 @@ describe("App", () => {
         isAuthenticated={true}
         activeComponents={["foo"]}
         routeParams={[]}
+        subscribeToPlayerUpdates={() => {}}
+        unsubscribeToPlayerUpdates={() => {}}
       />
     );
 

@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-mutation */
 // @flow
 import React, { PureComponent } from "react";
 import MigrationComponent, {
@@ -28,6 +27,7 @@ class App extends PureComponent<Props> {
 
   constructor() {
     super();
+    /* eslint-disable fp/no-mutation */
     this.subscribe = this.subscribe.bind(this);
   }
 
@@ -39,9 +39,7 @@ class App extends PureComponent<Props> {
   }
 
   componentWillUnmount() {
-    const { playerId, sessionId, unsubscribeToPlayerUpdates } = this.props;
-
-    unsubscribeToPlayerUpdates(playerId, sessionId);
+    this.props.unsubscribeToPlayerUpdates();
   }
 
   componentDidUpdate(props: Props) {
@@ -54,11 +52,7 @@ class App extends PureComponent<Props> {
   }
 
   subscribe() {
-    const { playerId, sessionId, subscribeToPlayerUpdates } = this.props;
-
-    if (playerId) {
-      subscribeToPlayerUpdates(playerId, sessionId);
-    }
+    this.props.subscribeToPlayerUpdates();
   }
 
   render() {
