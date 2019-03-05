@@ -43,4 +43,21 @@ describe("App", () => {
 
     expect(rendered.get(0).props.activeKeys).toEqual(["foo"]);
   });
+
+  test("should subscribe on initial load only", () => {
+    const subscribeFn = jest.fn();
+
+    shallow(
+      <App
+        onAppStarted={() => {}}
+        isAuthenticated={true}
+        activeComponents={["foo"]}
+        routeParams={[]}
+        subscribeToPlayerUpdates={subscribeFn}
+        unsubscribeToPlayerUpdates={() => {}}
+      />
+    );
+
+    expect(subscribeFn).toHaveBeenCalledTimes(1);
+  });
 });
