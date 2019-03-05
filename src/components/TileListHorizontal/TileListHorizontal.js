@@ -26,7 +26,6 @@ type ItemObject = {
 type Props = {
   /** fetches data needed to populate the list */
   fetch: () => void,
-  /** title and items to be rendered  */
   title: string,
   items: Array<ItemObject>,
   isLoaded: boolean,
