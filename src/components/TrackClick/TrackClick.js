@@ -33,7 +33,7 @@ export default class TrackClick extends React.PureComponent<Props> {
        *
        * somewhere higher in the component tree!
        */
-      console.error("Location is missing on event!");
+      console.error("Location is missing on event! Component should be wrapped around a <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "your location">(...)</TrackProvider>");
     }
     const onClick = () => trackHandler(eventName, { ...contextData, ...data });
 
