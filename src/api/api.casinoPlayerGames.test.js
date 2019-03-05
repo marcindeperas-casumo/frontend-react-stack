@@ -1,7 +1,7 @@
-import { getGameProviders, URLS } from "./api.casinoGames";
+import { getGameProviders, URL } from "./api.casinoPlayerGames";
 import { ENTITY_KEYS } from "Models/schema";
 
-describe("API/casinoGames", () => {
+describe("API/casinoPlayerGames", () => {
   let http;
 
   describe("getGameProviders()", () => {
@@ -15,7 +15,7 @@ describe("API/casinoGames", () => {
       getGameProviders(http);
 
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(http.get).toHaveBeenCalledWith(URLS.GAME_PROVIDERS);
+      expect(http.get).toHaveBeenCalledWith(URL.GAME_PROVIDERS);
     });
 
     test("should normalize output", async done => {
