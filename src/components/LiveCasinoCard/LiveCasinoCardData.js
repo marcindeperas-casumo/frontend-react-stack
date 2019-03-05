@@ -7,6 +7,7 @@ import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
 
 import { getBadgeColor, topCardLetters } from "./utils";
+import "./LiveCasinoCardData.scss";
 
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));

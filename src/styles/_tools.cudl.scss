@@ -1,0 +1,25 @@
+/** 
+    This file is injected into every sass file courtesy of sass-resources-loader
+    to allow developers to easily access cudl tools and variables without the
+    need for importing any of the framework.
+*/
+
+@import "~Styles/settings.ratio";
+@import "~Styles/settings.spacers";
+@import "~Styles/settings.breakpoints";
+@import "~Styles/settings.borders";
+@import "~Styles/settings.zindex";
+
+@import "~@casumo/cudl-compile/styles/cudl-compile";
+@import "~@casumo/cudl-breakpoints/styles/cudl-breakpoints";
+@import "~@casumo/cudl-zindex/styles/cudl-zindex";
+
+@include cudl-prevent-compile(cudl-sass-colors);
+@import "~@casumo/cudl-colors/styles/cudl-colors";
+@include cudl-reset-compile(cudl-sass-colors);
+@include cudl-prevent-compile(cudl-sass-typography);
+@import "~@casumo/cudl-typography/styles/cudl-typography";
+@include cudl-reset-compile(cudl-sass-typography);
+@include cudl-prevent-compile(cudl-sass-spacers);
+@import "~@casumo/cudl-spacers/styles/cudl-spacers";
+@include cudl-reset-compile(cudl-sass-spacers);
