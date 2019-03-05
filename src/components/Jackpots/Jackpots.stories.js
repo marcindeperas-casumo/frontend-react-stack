@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import Jackpots from "./Jackpots";
-import jackpotsMock from "./__mocks__/jackpots.mock";
+import jackpotsMock from "./__mocks__/response.games.mock";
 
 const stories = storiesOf("Jackpots", module);
 const DefaultStory = () => (

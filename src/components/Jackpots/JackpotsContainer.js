@@ -11,7 +11,7 @@ import Jackpots from "./Jackpots";
 // in the GraphQL server.
 const REFRESH_INTERVAL = 2000;
 
-const GET_JACKPOTS = gql`
+export const GET_JACKPOTS = gql`
   query {
     gamesList(listId: "casumoJackpotGames") {
       title
