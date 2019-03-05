@@ -59,8 +59,7 @@ const GameSearchConnected = connect(
 
 type Props = {};
 
-const GameSearchContainer = (props: Props) => {
-  return <GameSearchConnected {...props} />;
-};
-
+const GameSearchContainer = (props: Props) => (
+  <GameSearchConnected {...props} />
+);
 export default GameSearchContainer;
