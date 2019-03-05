@@ -13,8 +13,7 @@ type Props = {
 
 export const withGameProviderProps = ({ Component, props }: Props) =>
   connect(
-    (state, { ...ownProps }) => ({
-      ...ownProps,
+    state => ({
       isLoaded: areGameProvidersLoaded(state),
       items: gameProvidersListSelector(state),
     }),
