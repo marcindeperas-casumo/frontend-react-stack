@@ -2,7 +2,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { compose, prop } from "ramda";
+import { path } from "ramda";
 import Jackpots from "./Jackpots";
 
 // Refreshing the jackpots by polling the API every 2 seconds.
@@ -32,14 +32,8 @@ export const GET_JACKPOTS = gql`
 const JackpotsApolloContainer = () => (
   <Query query={GET_JACKPOTS} pollInterval={REFRESH_INTERVAL}>
     {({ loading, data }) => {
-      const getTitle = compose(
-        prop("title"),
-        prop("gamesList")
-      );
-      const getGames = compose(
-        prop("games"),
-        prop("gamesList")
-      );
+      const getTitle = path(["gamesList", "title"]);
+      const getGames = path(["gamesList", "games"]);
 
       return loading ? null : (
         <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
