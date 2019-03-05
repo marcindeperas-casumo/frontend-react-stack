@@ -2,6 +2,19 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
+import { hasMadeFirstDeposit } from "Models/handshake";
+import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
+
+export const curatedSlugSelector = slug =>
+  createSelector(
+    hasMadeFirstDeposit,
+    state => state,
+    (hasMadeFirstDeposit, state) => {
+      const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
+
+      return `${CURATED_SLUG}.${cardToShow}`;
+    }
+  );
 
 export const curatedSelector = slug =>
   createSelector(
