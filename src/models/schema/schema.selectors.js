@@ -43,6 +43,11 @@ export const cmsEntitiesSelector = createSelector(
   prop("cms")
 );
 
+export const gameProviderEntitiesSelector = createSelector(
+  schemaSelector,
+  prop("gameProvider")
+);
+
 export const topListIds = createSelector(
   gameListEntitiesSelector,
   keys

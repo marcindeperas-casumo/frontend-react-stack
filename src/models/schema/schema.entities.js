@@ -45,6 +45,12 @@ export const jackpotMustDrop = new schema.Entity(
   { idAttribute: "id" }
 );
 
+export const gameProvider = new schema.Entity(
+  ENTITY_KEYS.GAME_PROVIDER,
+  { games: [game] },
+  { idAttribute: "slug" }
+);
+
 export const applicationSchema = {
   // Question: Not sure defining the keys like this is good DX. If you're
   // seeing this and think it should be done differently, create a PR with your
@@ -60,6 +66,8 @@ export const applicationSchema = {
   [ENTITY_KEYS.GAME.JACKPOT_MUST_DROP]: [jackpotMustDrop],
   [ENTITY_KEYS.CMS]: cms,
   [`${ENTITY_KEYS.CMS}s`]: [cms],
+  [ENTITY_KEYS.GAME_PROVIDER]: gameProvider,
+  [`${ENTITY_KEYS.GAME_PROVIDER}s`]: [gameProvider],
 };
 
 export const normalizeData = data => normalize(data, applicationSchema);
