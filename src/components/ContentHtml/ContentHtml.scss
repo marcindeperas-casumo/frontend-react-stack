@@ -1,15 +1,4 @@
 // stylelint-disable xi/selector-pattern
-@import "cudl-compile";
-@include cudl-prevent-compile(cudl-sass-colors);
-@import "cudl-colors";
-@include cudl-reset-compile(cudl-sass-colors);
-@include cudl-prevent-compile(cudl-sass-typography);
-@import "cudl-typography";
-@include cudl-reset-compile(cudl-sass-typography);
-@include cudl-prevent-compile(cudl-sass-spacers);
-@import "cudl-spacers";
-@include cudl-reset-compile(cudl-sass-spacers);
-
 .s-content-html {
   font-size: cudl-font-size(default, $cudl-font-sizes);
   line-height: 1.5;
