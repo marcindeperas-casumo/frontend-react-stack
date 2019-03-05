@@ -4,8 +4,8 @@ import { clearSearchSaga } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/GameSearch/Saga", () => {
-  test("clearSearchSaga()", () => {
-    const expected = {
+  test("clearSearchSaga clears games array gameList entity with id GameSearch", () => {
+    const entities = {
       [ENTITY_KEYS.GAME_LIST]: {
         id: GAME_LIST_IDS.GAME_SEARCH,
         games: [],
@@ -13,9 +13,7 @@ describe("Models/GameSearch/Saga", () => {
     };
     const generator = clearSearchSaga();
 
-    expect(generator.next().value).toEqual(call(normalizeData, expected));
-
-    const entities = { someEntity: { id: 1 } };
+    expect(generator.next().value).toEqual(call(normalizeData, entities));
 
     expect(generator.next({ entities }).value).toEqual(
       put(updateEntity(entities))

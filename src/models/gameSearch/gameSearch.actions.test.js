@@ -1,4 +1,5 @@
 import { types as fetchTypes } from "Models/fetch";
+import { getQuerySearch } from "Api/api.gamebrowser";
 import {
   initFetchQuerySearch,
   clearSearch,
@@ -51,6 +52,7 @@ describe("Models/GameSearch/Actions", () => {
 
     test("passes fetch function to the action", () => {
       expect(typeof action.asyncCall).toBe("function");
+      expect(action.asyncCall).toEqual(getQuerySearch);
     });
 
     test("passes params to the fetcher function", () => {
