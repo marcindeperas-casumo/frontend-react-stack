@@ -2,6 +2,8 @@
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
+import { EVENT_PROPS } from "Src/constants";
+import TrackProvider from "Components/TrackProvider";
 import SectionTitle from "./SectionTitle";
 import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";
 import "./LiveCasinoDetailPage.scss";
@@ -29,15 +31,19 @@ export default class LiveCasinoDetailPage extends PureComponent<Props> {
   render() {
     return (
       <div className="u-padding-horiz--md u-padding-bottom--md">
-        {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
-          <React.Fragment key={id}>
-            <SectionTitle title={this.props.translations[id] || id} />
-            <List
-              items={gamesInSection}
-              render={slug => <GameRow id={slug} />}
-            />
-          </React.Fragment>
-        ))}
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
+        >
+          {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
+            <React.Fragment key={id}>
+              <SectionTitle title={this.props.translations[id] || id} />
+              <List
+                items={gamesInSection}
+                render={slug => <GameRow id={slug} />}
+              />
+            </React.Fragment>
+          ))}
+        </TrackProvider>
       </div>
     );
   }
