@@ -3,7 +3,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
-import TileListHorizontalPresentational from "./TileListHorizontal";
+import TileListHorizontal from "Components/TileListHorizontal";
+import TileListHorizontalPresentational from "Components/TileListHorizontal/TileListHorizontal";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("TileListHorizontal", module);
 const title = "Game Providers";
@@ -58,3 +60,15 @@ stories.add(
   ),
   info({ text: `...` })
 );
+
+if (isNotChromatic) {
+  stories.add(
+    "TileListHorizontal (Connected)",
+    () => (
+      <MockStore>
+        <TileListHorizontal title={"Game Providers"} type={"game-providers"} />
+      </MockStore>
+    ),
+    info({ text: `...` })
+  );
+}
