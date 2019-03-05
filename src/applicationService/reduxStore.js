@@ -10,7 +10,7 @@ import { isEnvProduction } from "Utils";
 
 const { sanitizedStateKeys } = config;
 
-export const getStore = preloadedState => {
+export const createReduxStore = preloadedState => {
   const composeEnhancers = isEnvProduction()
     ? compose
     : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -52,4 +52,4 @@ export const getStore = preloadedState => {
   return store;
 };
 
-export default getStore();
+export default createReduxStore();
