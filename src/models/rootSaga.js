@@ -31,6 +31,11 @@ import {
   cometdUnsubscribeSaga,
   takeChannel,
 } from "Models/cometd";
+import {
+  types as playerGamesTypes,
+  fetchPlayerGamesSaga,
+  fetchPlayerGamesCountSaga,
+} from "Models/playerGames";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -70,5 +75,15 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
     fetchAllLiveCasinoGamesSaga
+  );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH,
+    fetchPlayerGamesSaga
+  );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
+    fetchPlayerGamesCountSaga
   );
 }
