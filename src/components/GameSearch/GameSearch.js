@@ -98,10 +98,10 @@ export default class GameSearch extends PureComponent<Props> {
       : "no_results_continue_playing";
 
     return (
-      <React.Fragment>
+      <>
         <SearchNotFound contentField={field} />
         {this.renderSuggestions()}
-      </React.Fragment>
+      </>
     );
   };
 
