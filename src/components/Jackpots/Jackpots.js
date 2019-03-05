@@ -20,8 +20,13 @@ export type Props = {
 };
 
 export default class Jackpots extends PureComponent<Props> {
+  static defaultProps = {
+    jackpots: [],
+    title: "",
+  };
+
   render() {
-    const { jackpots = [], title = "" } = this.props;
+    const { jackpots, title } = this.props;
     const columns = generateColumns(jackpots);
 
     return (
