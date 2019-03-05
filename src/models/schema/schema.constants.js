@@ -1,3 +1,4 @@
+// @flow
 export const types = {
   UPDATE_ENTITY: "SCHEMA/UPDATE_ENTITY",
   MERGE_ENTITY: "SCHEMA/MERGE_ENTITY",
@@ -11,4 +12,5 @@ export const ENTITY_KEYS = {
   GAME_LIST: "gameList",
   CMS: "cms",
   GAME_PROVIDER: "gameProvider",
+  PLAYER_GAMES: "playerGames",
 };

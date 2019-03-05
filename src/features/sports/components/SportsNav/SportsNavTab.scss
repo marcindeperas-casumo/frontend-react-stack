@@ -1,11 +1,3 @@
-@import "cudl-compile";
-// prevent colors package from compiling
-@include cudl-prevent-compile(cudl-sass-colors);
-@include cudl-prevent-compile(cudl-sass-colors);
-@import "cudl-colors";
-// remove compile block incase needed later
-@include cudl-reset-compile(cudl-sass-colors);
-
 .c-sports-nav-tab {
   border-bottom: 4px solid transparent;
   height: 124px;

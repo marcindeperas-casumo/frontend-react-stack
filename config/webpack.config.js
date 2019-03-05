@@ -82,6 +82,18 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
         sourceMap: isEnvProduction && shouldUseSourceMap,
       },
     },
+    {
+      loader: require.resolve("sass-resources-loader"),
+      options: {
+        resources: path.resolve(
+          __dirname,
+          "..",
+          "src",
+          "styles",
+          "_tools.cudl.scss"
+        ),
+      },
+    },
   ].filter(Boolean);
 
   return {

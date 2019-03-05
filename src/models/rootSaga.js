@@ -2,7 +2,11 @@ import { fork, takeEvery } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
-import { liveCasinoUpdatesSaga } from "Models/liveCasino";
+import {
+  liveCasinoTypes,
+  fetchAllLiveCasinoGamesSaga,
+  liveCasinoUpdatesSaga,
+} from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
   types as gameProviderTypes,
@@ -31,6 +35,11 @@ import {
   cometdUnsubscribeSaga,
   takeChannel,
 } from "Models/cometd";
+import {
+  types as playerGamesTypes,
+  fetchPlayerGamesSaga,
+  fetchPlayerGamesCountSaga,
+} from "Models/playerGames";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -70,5 +79,20 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameProviderTypes.FETCH_GAME_PROVIDERS_START,
     fetchGameProvidersSaga
+  );
+  yield fork(
+    takeEvery,
+    liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
+    fetchAllLiveCasinoGamesSaga
+  );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH,
+    fetchPlayerGamesSaga
+  );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
+    fetchPlayerGamesCountSaga
   );
 }

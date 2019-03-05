@@ -9,6 +9,8 @@ import GameTileContainer from "Components/GameTile";
 import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
 import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
+import "./GameListHorizontal.scss";
+
 export type GameListObject = {
   id: string,
   title: string,
@@ -19,6 +21,8 @@ export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
   isLoading: boolean,
+  /** "see more" link translation */
+  seeMoreText: string,
 };
 
 export const ITEM_RENDERERS = {
@@ -29,6 +33,10 @@ export const ITEM_RENDERERS = {
   default: GameTileContainer,
 };
 
+const SEE_MORE_URL = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "/games/live-casino-details",
+};
+
 export const ITEM_SPACING = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "md",
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: "md",
@@ -37,11 +45,12 @@ export const ITEM_SPACING = {
 
 export default class GameListHorizontal extends PureComponent<Props> {
   render() {
-    const { list, isLoading } = this.props;
+    const { list, isLoading, seeMoreText } = this.props;
     const { id, title, games: gameIds } = list;
     const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const Component = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
+    const seeMoreUrl = SEE_MORE_URL[id];
 
     if (isLoading) {
       return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
@@ -54,6 +63,8 @@ export default class GameListHorizontal extends PureComponent<Props> {
     return (
       <ScrollableList
         title={title}
+        seeMoreText={seeMoreText}
+        seeMoreUrl={seeMoreUrl}
         itemIds={gameIds}
         Component={Component}
         spacing={spacing}
