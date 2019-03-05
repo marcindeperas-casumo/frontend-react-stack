@@ -9,6 +9,8 @@ import GameTileContainer from "Components/GameTile";
 import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
 import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
+import "./GameListHorizontal.scss";
+
 export type GameListObject = {
   id: string,
   title: string,
