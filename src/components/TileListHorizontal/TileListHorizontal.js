@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import type { Element } from "react";
+import type { Node } from "react";
 import { isEmpty, map } from "ramda";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import Scrollable from "@casumo/cmp-scrollable";
@@ -31,7 +31,7 @@ type Props = {
   items: Array<ItemObject>,
   isLoaded: boolean,
   /** Tile to be rendered */
-  Tile: Element<any>,
+  Tile: Function,
 };
 
 class TileListHorizontal extends PureComponent<Props> {
