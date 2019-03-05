@@ -5,6 +5,10 @@ import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
 import { liveCasinoUpdatesSaga } from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
+  types as gameProviderTypes,
+  fetchGameProvidersSaga,
+} from "Models/gameProviders";
+import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
@@ -61,5 +65,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameTypes.FETCH_GAMES_BY_SLUGS_START,
     fetchGamesBySlugsSaga
+  );
+  yield fork(
+    takeEvery,
+    gameProviderTypes.FETCH_GAME_PROVIDERS_START,
+    fetchGameProvidersSaga
   );
 }
