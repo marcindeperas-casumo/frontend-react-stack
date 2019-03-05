@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 
-import GameSearchInput from "./GameSearchInput";
+import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
@@ -98,10 +98,10 @@ export default class GameSearch extends PureComponent<Props> {
       : "no_results_continue_playing";
 
     return (
-      <React.Fragment>
+      <>
         <SearchNotFound contentField={field} />
         {this.renderSuggestions()}
-      </React.Fragment>
+      </>
     );
   };
 
@@ -125,7 +125,7 @@ export default class GameSearch extends PureComponent<Props> {
     }
     // replace for <VirtualList /> when new api is ready
     return (
-      <React.Fragment>
+      <>
         <List
           className="u-padding-top u-padding-horiz--md"
           items={searchResults}
@@ -135,13 +135,13 @@ export default class GameSearch extends PureComponent<Props> {
           )}
         />
         {searchResults.length === 1 && this.renderSuggestions()}
-      </React.Fragment>
+      </>
     );
   };
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <div className="u-padding--md u-position-sticky c-game-search-bar">
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
@@ -152,7 +152,7 @@ export default class GameSearch extends PureComponent<Props> {
           <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />
         </div>
         {this.renderResults()}
-      </React.Fragment>
+      </>
     );
   }
 }
