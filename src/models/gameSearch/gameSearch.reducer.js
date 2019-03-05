@@ -1,15 +1,7 @@
 import { types } from "./gameSearch.constants";
 
-export const gameSearchReducer = (state, action) => {
+export const gameSearchReducer = (state = {}, action) => {
   const { type, query } = action;
-
-  if (typeof state === "undefined") {
-    return {
-      loading: false,
-      hasNoResults: false,
-      hasNoLatestPlayed: false,
-    };
-  }
 
   if (type.startsWith(types.GAME_SEARCH_FETCH_COMPLETE)) {
     return {

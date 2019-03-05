@@ -42,7 +42,7 @@ export const getQuerySearch = (
     id,
     variant,
     page = 0,
-    pageSize = 5,
+    pageSize,
     query,
   }: {
     platform: string,
