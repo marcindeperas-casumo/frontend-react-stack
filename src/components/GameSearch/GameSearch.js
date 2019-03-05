@@ -12,16 +12,16 @@ import GamesVirtualList from "Components/GamesVirtualList";
 import "./GameSearch.scss";
 
 type Props = {
-  preloadFetchPlayerGames: Function,
-  initFetchQuerySearch: Function,
-  clearSearch: Function,
+  preloadFetchPlayerGames: () => {},
+  initFetchQuerySearch: () => {},
+  clearSearch: () => {},
   searchResults: Array<string>,
   latestPlayedGames: Array<string>,
   popularGames: Array<string>,
   hasNoLatestPlayed: boolean,
   loading: boolean,
   noResults: boolean,
-  fetchPageBySlug: () => void,
+  fetchPageBySlug: () => {},
   popularGamesTitle: string,
   latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
