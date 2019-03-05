@@ -34,7 +34,7 @@ import {
 import {
   types as gameSearchTypes,
   gameSearchSaga,
-  clearSearchSaga,
+  clearSearchResultsSaga,
 } from "Models/gameSearch";
 import {
   types as playerGamesTypes,
@@ -93,6 +93,6 @@ export default function* rootSaga(dispatch) {
   );
   yield [
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga),
-    fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchSaga),
+    fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ];
 }

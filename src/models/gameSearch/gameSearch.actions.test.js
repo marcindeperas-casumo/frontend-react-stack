@@ -50,8 +50,7 @@ describe("Models/GameSearch/Actions", () => {
       });
     });
 
-    test("passes fetch function to the action", () => {
-      expect(typeof action.asyncCall).toBe("function");
+    test("passes `getQuerySearch` fetch function to the action", () => {
       expect(action.asyncCall).toEqual(getQuerySearch);
     });
 

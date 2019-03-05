@@ -3,7 +3,7 @@ import { call, put } from "redux-saga/effects";
 import { clearSearchSaga } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
-describe("Models/GameSearch/Saga", () => {
+describe("Models/gameSearch/clearSearchResultsSaga", () => {
   test("clearSearchSaga clears games array gameList entity with id GameSearch", () => {
     const entities = {
       [ENTITY_KEYS.GAME_LIST]: {
