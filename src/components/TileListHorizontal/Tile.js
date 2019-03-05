@@ -16,12 +16,23 @@ const Tile = ({
   background,
   imgixOpts = { w: 160, h: 160 },
   ...rest
-}: Props) => (
-  <Flex.Item className="o-flex__item-fixed-size c-tile">
-    <a href={url}>
-      <ImageLazy mark={logo} src={background} imgixOpts={imgixOpts} {...rest} />
-    </a>
-  </Flex.Item>
-);
+}: Props) => {
+  if (!background || !logo) {
+    return null;
+  }
+
+  return (
+    <Flex.Item className="o-flex__item-fixed-size c-tile">
+      <a href={url}>
+        <ImageLazy
+          mark={logo}
+          src={background}
+          imgixOpts={imgixOpts}
+          {...rest}
+        />
+      </a>
+    </Flex.Item>
+  );
+};
 
 export default Tile;
