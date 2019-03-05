@@ -27,7 +27,7 @@ stories.add(
   "Default (Connected)",
   () => (
     <MockStore state={state}>
-      <div style={{ maxWidth: 360, margin: "0 auto" }}>
+      <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
         <SearchNotFoundContainer contentField="no_results_continue_playing" />
       </div>
     </MockStore>
@@ -38,7 +38,7 @@ stories.add(
 stories.add(
   "Default",
   () => (
-    <div style={{ maxWidth: 360, margin: "0 auto" }}>
+    <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
       <SearchNotFound
         image={
           "https://cms.casumo.com/wp-content/uploads/2019/01/search_no_results.svg"
