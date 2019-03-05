@@ -37,15 +37,19 @@ export const unsubscribeMustDropJackpotUpdates = () => {
 };
 
 export const subscribeToPlayerUpdates = (playerId, sessionId) => {
+  const isAuthenticated = playerId && sessionId;
+
+  if (!isAuthenticated) {
+    return { type: "" };
+  }
   return subscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
     sessionId,
   });
 };
 
-export const unsubscribeToPlayerUpdates = (playerId, sessionId) => {
+export const unsubscribeToPlayerUpdates = playerId => {
   return unsubscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
-    sessionId,
   });
 };

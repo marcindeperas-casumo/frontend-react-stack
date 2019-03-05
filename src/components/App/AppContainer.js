@@ -25,8 +25,8 @@ const AppConnected = connect(
     onAppStarted: () => dispatch(appStarted()),
     dispatchSubscribe: (playerId, sessionId) =>
       dispatch(subscribeToPlayerUpdates(playerId, sessionId)),
-    dispatchUnsubscribe: (playerId, sessionId) =>
-      dispatch(unsubscribeToPlayerUpdates(playerId, sessionId)),
+    dispatchUnsubscribe: playerId =>
+      dispatch(unsubscribeToPlayerUpdates(playerId)),
   }),
   (stateProps, dispatchProps) => {
     const { playerId, sessionId } = stateProps;
@@ -36,8 +36,7 @@ const AppConnected = connect(
       ...stateProps,
       ...dispatchProps,
       subscribeToPlayerUpdates: () => dispatchSubscribe(playerId, sessionId),
-      unsubscribeToPlayerUpdates: () =>
-        dispatchUnsubscribe(playerId, sessionId),
+      unsubscribeToPlayerUpdates: () => dispatchUnsubscribe(playerId),
     };
   }
 )(App);
