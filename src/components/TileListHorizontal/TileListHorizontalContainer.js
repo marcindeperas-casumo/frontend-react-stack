@@ -10,15 +10,18 @@ type Props = {
   title: string,
 };
 
-const TileListHorizontalContainer = (props: Props) => {
-  if (props.type === types.GAME_PROVIDERS) {
+const TileListHorizontalContainer = ({
+  type = types.GAME_PROVIDERS,
+  title = "",
+}: Props) => {
+  if (type === types.GAME_PROVIDERS) {
     const GameProviderList = withGameProviderProps({
       Component: TileListHorizontal,
-      props,
+      props: { title },
     });
     return <GameProviderList />;
   }
-  return <TileListHorizontal {...props} />;
+  return <TileListHorizontal title={title} />;
 };
 
 export default TileListHorizontalContainer;
