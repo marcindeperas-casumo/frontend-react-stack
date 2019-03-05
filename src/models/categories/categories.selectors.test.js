@@ -1,7 +1,4 @@
-import {
-  gameProvidersListSelector,
-  isGameProvidersListLoaded,
-} from "./categories.selectors";
+import { gameProvidersListSelector } from "./categories.selectors";
 
 describe("Category List Selectors", () => {
   describe("gameProvidersListSelector", () => {
