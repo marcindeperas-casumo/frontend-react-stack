@@ -12,7 +12,7 @@ import Jackpots from "./Jackpots";
 const REFRESH_INTERVAL = 2000;
 
 export const GET_JACKPOTS = gql`
-  query {
+  query GamesListJackpots {
     gamesList(listId: "casumoJackpotGames") {
       title
       games {
@@ -29,8 +29,13 @@ export const GET_JACKPOTS = gql`
   }
 `;
 
+class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}
+
 const JackpotsApolloContainer = () => (
-  <Query query={GET_JACKPOTS} pollInterval={REFRESH_INTERVAL}>
+  <GamesListJackpotsTypedQuery
+    query={GET_JACKPOTS}
+    pollInterval={REFRESH_INTERVAL}
+  >
     {({ loading, data }) => {
       const getTitle = path(["gamesList", "title"]);
       const getGames = path(["gamesList", "games"]);
@@ -39,7 +44,7 @@ const JackpotsApolloContainer = () => (
         <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
       );
     }}
-  </Query>
+  </GamesListJackpotsTypedQuery>
 );
 
 export default JackpotsApolloContainer;
