@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 
-import GameSearchInput from "./GameSearchInput";
+import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
