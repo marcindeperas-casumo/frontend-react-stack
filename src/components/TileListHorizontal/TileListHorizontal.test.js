@@ -33,26 +33,14 @@ describe("TileListHorizontal", () => {
     expect(rendered.find("ScrollableListTitle")).toHaveLength(1);
     expect(rendered.find("ScrollableListTitle").prop("title")).toBe(title);
     expect(rendered.find("Scrollable").find("Tile")).toHaveLength(1);
-    expect(
-      rendered
-        .find("Scrollable")
-        .find("Tile")
-        .first()
-        .prop("url")
-    ).toBe(item.url);
-    expect(
-      rendered
-        .find("Scrollable")
-        .find("Tile")
-        .first()
-        .prop("logo")
-    ).toBe(item.logo);
-    expect(
-      rendered
-        .find("Scrollable")
-        .find("Tile")
-        .first()
-        .prop("background")
-    ).toBe(item.background);
+
+    const tile = rendered
+      .find("Scrollable")
+      .find("Tile")
+      .first();
+
+    expect(tile.prop("url")).toBe(item.url);
+    expect(tile.prop("logo")).toBe(item.logo);
+    expect(tile.prop("background")).toBe(item.background);
   });
 });
