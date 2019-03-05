@@ -4,6 +4,7 @@ import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
 import SectionTitle from "./SectionTitle";
 import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";
+import "./LiveCasinoDetailPage.scss";
 
 type Props = {
   /** grouped list of games to render */
