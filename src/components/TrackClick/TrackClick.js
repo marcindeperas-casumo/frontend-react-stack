@@ -22,6 +22,19 @@ export default class TrackClick extends React.PureComponent<Props> {
       trackHandler = track,
     } = this.props;
     const contextData = this.context;
+    if (process.env.NODE_ENV === "development" && !contextData.location) {
+      /**
+       * This location comes from context, you should have:
+       *
+       * import { EVENT_PROPS } from "Src/constants";
+       * import TrackProvider from "Components/TrackProvider";
+       * (...)
+       * <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "your location">(...)</TrackProvider>
+       *
+       * somewhere higher in the component tree!
+       */
+      console.error("Location is missing on event!");
+    }
     const onClick = () => trackHandler(eventName, { ...contextData, ...data });
 
     return <div onClick={onClick}>{children}</div>;
