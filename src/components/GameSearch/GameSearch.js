@@ -42,11 +42,9 @@ export default class GameSearch extends PureComponent<Props> {
   );
 
   renderPopularGames = () => {
-    if (!this.props.popularGames.length) {
-      return this.renderListSkeleton();
-    }
-
-    return (
+    return !this.props.popularGames.length ? (
+      this.renderListSkeleton()
+    ) : (
       <SectionList
         className="u-padding-horiz--md"
         sections={[
@@ -62,11 +60,9 @@ export default class GameSearch extends PureComponent<Props> {
   };
 
   renderLatestPlayed = () => {
-    if (!this.props.latestPlayedGames.length) {
-      return this.renderListSkeleton();
-    }
-
-    return (
+    return !this.props.latestPlayedGames.length ? (
+      this.renderListSkeleton()
+    ) : (
       <SectionList
         className="u-padding-horiz--md"
         sections={[
