@@ -5,12 +5,17 @@ import {
   areGameProvidersLoaded,
 } from "./gameProviders.selectors";
 
+const PROVIDERS = {
+  NYX: "casumo-services-ltd-nyx",
+  NETENT: "casumo-services-ltd-netent",
+};
+
 describe("Game Providers Selectors", () => {
   test("areGameProvidersLoaded", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             inMaintenance: false,
           },
         },
@@ -34,10 +39,10 @@ describe("Game Providers Selectors", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             inMaintenance: false,
           },
-          "casumo-services-ltd-netent": {
+          [PROVIDERS.NETENT]: {
             inMaintenance: true,
           },
         },
@@ -45,7 +50,7 @@ describe("Game Providers Selectors", () => {
     };
 
     expect(activeGameProvidersSelector(state)).toEqual({
-      "casumo-services-ltd-nyx": {
+      [PROVIDERS.NYX]: {
         inMaintenance: false,
       },
     });
@@ -55,11 +60,11 @@ describe("Game Providers Selectors", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             id: 1,
             inMaintenance: false,
           },
-          "casumo-services-ltd-netent": {
+          [PROVIDERS.NETENT]: {
             id: 2,
             inMaintenance: false,
           },
@@ -67,7 +72,7 @@ describe("Game Providers Selectors", () => {
       },
     };
 
-    expect(gameProviderBySlug("casumo-services-ltd-nyx")(state)).toEqual({
+    expect(gameProviderBySlug(PROVIDERS.NYX)(state)).toEqual({
       id: 1,
       inMaintenance: false,
     });
@@ -77,7 +82,7 @@ describe("Game Providers Selectors", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             id: 1,
             inMaintenance: false,
           },
@@ -92,7 +97,7 @@ describe("Game Providers Selectors", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             id: 1,
             games: [],
             inMaintenance: false,
@@ -100,16 +105,14 @@ describe("Game Providers Selectors", () => {
         },
       },
     };
-    expect(areProviderGamesLoaded("casumo-services-ltd-nyx")(state)).toEqual(
-      false
-    );
+    expect(areProviderGamesLoaded(PROVIDERS.NYX)(state)).toEqual(false);
   });
 
   test("areProviderGamesLoaded", () => {
     const state = {
       schema: {
         gameProvider: {
-          "casumo-services-ltd-nyx": {
+          [PROVIDERS.NYX]: {
             id: 1,
             games: ["foo"],
             inMaintenance: false,
@@ -118,8 +121,6 @@ describe("Game Providers Selectors", () => {
       },
     };
 
-    expect(areProviderGamesLoaded("casumo-services-ltd-nyx")(state)).toEqual(
-      true
-    );
+    expect(areProviderGamesLoaded(PROVIDERS.NYX)(state)).toEqual(true);
   });
 });
