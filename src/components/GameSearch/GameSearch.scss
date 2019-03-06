@@ -19,10 +19,8 @@ $game-list-height: (
 
 .c-game-search-virtual-list {
   @include cudl-breakpoint-with($game-list-height, height);
-  @media screen
-  and (min-width: map-get($cudl-breakpoints, phablet))
-  and (orientation: landscape) {
-    height: calc(100vh - 136px)
+  @include cudl-breakpoint(phablet orientation landscape) {
+      height: calc(100vh - 136px)
   }
 }
 
