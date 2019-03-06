@@ -41,7 +41,7 @@ export const getQuerySearch = (
     country,
     id,
     variant,
-    page = 0,
+    page,
     pageSize,
     query,
   }: {
