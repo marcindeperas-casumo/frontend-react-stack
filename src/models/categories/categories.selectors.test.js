@@ -21,6 +21,7 @@ describe("Category List Selectors", () => {
 
       const output = [
         {
+          id: "game-provider-casumo-services-ltd-nyx",
           background:
             "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
           logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",

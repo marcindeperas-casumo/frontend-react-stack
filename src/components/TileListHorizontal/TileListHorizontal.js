@@ -62,8 +62,8 @@ class TileListHorizontal extends PureComponent<Props> {
         <ScrollableListTitle title={title} />
         <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={DEFAULT_SPACING}>
           {map(
-            item => (
-              <Tile key={objectToHash(item)} {...item} />
+            ({ id, ...rest }) => (
+              <Tile key={id} {...rest} />
             ),
             items
           )}

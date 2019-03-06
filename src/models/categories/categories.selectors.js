@@ -9,8 +9,9 @@ export const gameProvidersListSelector = createSelector(
       const providerWithUrl = {
         ...provider,
         url: `/en/games/provider/${provider.slug}`,
+        id: `game-provider-${provider.slug}`,
       };
-      return omit(["slug", "id", "name", "inMaintenance"])(providerWithUrl);
+      return omit(["slug", "name", "inMaintenance"])(providerWithUrl);
     }),
     values
   )

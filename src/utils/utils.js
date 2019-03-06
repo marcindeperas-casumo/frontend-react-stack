@@ -1,14 +1,5 @@
-import {
-  prop,
-  splitEvery,
-  assocPath,
-  compose,
-  flatten,
-  join,
-  toPairs,
-} from "ramda";
+import { prop, splitEvery, assocPath } from "ramda";
 import { ENVS } from "Src/constants";
-import md5 from "md5";
 
 const { log } = console;
 const NODE_ENV = process.env.NODE_ENV || "";
@@ -319,10 +310,3 @@ export const injectScript = url =>
 
     document.head.appendChild(script);
   });
-
-export const objectToHash = compose(
-  md5,
-  join(""),
-  flatten,
-  toPairs
-);
