@@ -18,7 +18,7 @@ export const curatedSlugSelector = slug =>
         AB_TESTS_FEATURE.DEPOSIT_NOW,
         "curated-card"
       )(state);
-      const isUK = market(state) === MARKETS.___en;
+      const isUK = market(state) === MARKETS.gb_en;
 
       if (isUK && ABTestFlavourMatch) {
         //TODO: keep only this code after abtest is removed

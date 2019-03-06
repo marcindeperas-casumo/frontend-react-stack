@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { prop, pipe, find, equals, propEq } from "ramda";
+import { prop, pipe, find, equals, propEq, any } from "ramda";
 import {
   applicationHandshakeSelector,
   APP_COMMON_KEYS,
@@ -23,5 +23,5 @@ export const flavourSelector = feature =>
 export const flavourMatchSelector = (feature, flavour) =>
   createSelector(
     flavourSelector(feature),
-    propEq(flavour)
+    any(propEq(flavour))
   );
