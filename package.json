@@ -25,6 +25,8 @@
     "apollo-cache-inmemory": "^1.4.2",
     "apollo-client": "^2.4.12",
     "apollo-link-state": "^0.4.2",
+    "apollo-link-context": "^1.0.14",
+    "apollo-link-http": "^1.5.11",
     "classnames": "^2.2.6",
     "cometd": "^3.1.7",
     "graphql": "^14.1.1",
