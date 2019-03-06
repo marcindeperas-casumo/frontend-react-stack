@@ -3,11 +3,16 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import ImageLazy from "Components/Image/ImageLazy";
 
+type imgixOptsObject = {
+  w: number,
+  h: number,
+};
+
 type Props = {
   url: string,
-  logo: string,
-  background: string,
-  imgixOpts: Object,
+  logo?: string,
+  background?: string,
+  imgixOpts: imgixOptsObject,
 };
 
 const Tile = ({
