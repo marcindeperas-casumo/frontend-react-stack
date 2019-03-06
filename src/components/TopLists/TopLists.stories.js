@@ -21,6 +21,11 @@ const componentDefinition = [
   },
   { acf_fc_layout: "GAMES_LIST", id: GAME_LIST_IDS.POPULAR_GAMES },
   { acf_fc_layout: "JACKPOTS" },
+  {
+    acf_fc_layout: "TILE_LIST_HORIZONTAL",
+    title: "Game Providers",
+    type: "game-providers",
+  },
 ];
 
 const state = {
