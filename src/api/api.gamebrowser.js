@@ -39,15 +39,13 @@ export const getQuerySearch = (
   {
     platform,
     country,
-    id,
     variant,
-    page = 0,
+    page,
     pageSize,
     query,
   }: {
     platform: string,
     country: string,
-    id: string,
     variant: string,
     page: number,
     pageSize: number,
