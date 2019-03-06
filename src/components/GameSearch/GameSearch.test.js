@@ -30,7 +30,7 @@ describe("GameSearch", () => {
   test("should render a not found component and lastPlayedGames if hasNoResults is equal true", () => {
     const rendered = shallow(
       <GameSearch
-        searchResults={[""]}
+        searchResults={[]}
         latestPlayedGames={["starburst"]}
         fetchPageBySlug={() => {}}
         noResults={true}
