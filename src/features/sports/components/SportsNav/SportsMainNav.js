@@ -43,8 +43,8 @@ class SportsMainNav extends React.Component<Props> {
     return (
       <div>
         <Scrollable
-          padding="lg"
-          itemSpacing="md"
+          padding={{ default: "lg", tablet: "3xlg" }}
+          itemSpacing="lg"
           className="t-background-grey-light-2"
         >
           {navItems.length > 1 && this.renderTabList(navItems)}

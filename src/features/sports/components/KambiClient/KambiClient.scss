@@ -1,3 +1,10 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+@import "cudl-compile";
+@include cudl-prevent-compile(cudl-sass-spacers);
+@import "cudl-spacers";
+@include cudl-reset-compile(cudl-sass-spacers);
+
 /*
   NOTE:
   this uses css vars set on the document root of the ko stack
@@ -5,7 +12,13 @@
   also some of the selectors are nasty but these are out of our control
 */
 
-/* stylelint-disable selector-max-id, xi/selector-pattern */
+/* stylelint-disable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
+#KambiBC-container {
+  @include cudl-breakpoint(tablet) {
+    padding: 0 map-get($cudl-spacer-sizes, 3xlg) !important;
+  }
+}
+
 #KambiBC.c-kambi-client--hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -27,7 +40,6 @@
 }
 
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
-  // stylelint-disable-next-line declaration-no-important,
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }
-/* stylelint-enable selector-max-id, xi/selector-pattern */
+/* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */

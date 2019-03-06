@@ -1,0 +1,9 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+
+.u-tablet-search-width {
+  @include cudl-breakpoint(tablet) {
+    margin: auto;
+    width: 400px;
+  }
+}
