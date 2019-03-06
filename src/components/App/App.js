@@ -74,10 +74,10 @@ class App extends PureComponent {
             hostElementId="react-host-games-search"
             loader={() => import("Components/GameSearch")}
             fallback={
-              <div>
+              <>
                 <SearchInputSkeleton />
                 <GameListSkeleton />
-              </div>
+              </>
             }
           />
         </MigrationComponent>
