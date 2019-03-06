@@ -28,7 +28,11 @@ export default class SectionList extends PureComponent<Props<*>> {
     className: "",
     sectionSpacing: "default",
     renderSectionHeader: (title: string) => (
-      <Text className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
+      <Text
+        tag="p"
+        size="md"
+        className="u-font-weight-bold u-padding-top--lg u-padding-bottom--md"
+      >
         {title}
       </Text>
     ),
