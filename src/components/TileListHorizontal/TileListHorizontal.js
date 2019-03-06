@@ -1,11 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
-import type { Node } from "react";
 import { isEmpty, map } from "ramda";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import Scrollable from "@casumo/cmp-scrollable";
 import Tile from "./Tile";
-import { objectToHash } from "Utils";
 import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
 
 const PADDING_PER_DEVICE = {
@@ -18,6 +16,7 @@ const DEFAULT_SPACING = "default";
 const DEFAULT_TILE = Tile;
 
 type ItemObject = {
+  id: string,
   url: string,
   logo: string,
   background: string,
