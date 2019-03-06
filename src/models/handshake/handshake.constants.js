@@ -5,3 +5,8 @@ export const types = {
   FETCH_GAMES_HANDSHAKE: "HANDSHAKE/FETCH_GAMES_HANDSHAKE",
   UPDATE_HANDSHAKE: "HANDSHAKE/UPDATE_HANDSHAKE",
 };
+//TODO: add the rest of the keys and replace them where required.
+// to be taken care of by a seperate PR
+export const APP_COMMON_KEYS = {
+  AB_TESTING: "common/ABTesting",
+};
