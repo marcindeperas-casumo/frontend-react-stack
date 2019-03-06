@@ -40,7 +40,7 @@ export const subscribeToPlayerUpdates = (playerId, sessionId) => {
   const isAuthenticated = playerId && sessionId;
 
   if (!isAuthenticated) {
-    return { type: "" };
+    return { type: TYPES.CANCEL };
   }
   return subscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,

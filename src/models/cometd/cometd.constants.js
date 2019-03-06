@@ -2,6 +2,7 @@ export const TYPES = {
   COMETD_SUBSCRIBE: "COMETD/SUBSCRIBE",
   COMETD_UNSUBSCRIBE: "COMETD/UNSUBSCRIBE",
   COMETD_MESSAGE: "COMETD/MESSAGE",
+  CANCEL: "CANCEL",
 };
 
 // Make sure that you record all channel
