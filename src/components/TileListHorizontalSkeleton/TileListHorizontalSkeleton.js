@@ -33,16 +33,20 @@ export default class TileListHorizontalSkeleton extends PureComponent<Props> {
 
   render() {
     const { className, numberOfItems, tileRadius, tileGutter } = this.props;
-
+    const tileSpan = tileRadius * 2 + tileGutter;
     return (
-      <Skeleton className={className} width="100%" height="240">
+      <Skeleton
+        className={className}
+        width={numberOfItems * tileSpan}
+        height="240"
+      >
         <rect x="0" y="0" rx="8" ry="8" width="150" height="15" />
         {times(
           n => (
             <circle
               key={`tile-list-horizontal-skeleton-${n}`}
               r="80"
-              cx={(tileRadius * 2 + tileGutter) * n + tileRadius}
+              cx={tileSpan * n + tileRadius}
               cy="120"
             />
           ),
