@@ -1,13 +1,14 @@
 const ourConfig = require("../config/webpack.config");
 
-module.exports = (baseConfig, env, defaultConfig) => {
+module.exports = ({ config, mode }) => {
   const ourDefaultConfig = ourConfig("development", { isStorybook: true });
+
   return {
-    ...defaultConfig,
+    ...config,
     resolve: {
-      ...defaultConfig.resolve,
+      ...config.resolve,
       alias: {
-        ...defaultConfig.resolve.alias,
+        ...config.resolve.alias,
         ...ourDefaultConfig.resolve.alias,
       },
       extensions: ourDefaultConfig.resolve.extensions,
