@@ -21,3 +21,5 @@ export const types = {
   GAME_SEARCH_NO_RESULTS: "GAME_SEARCH/NO_RESULTS",
   GAME_SEARCH_NO_LATEST_PLAYED: "GAME_SEARCH/NO_LATEST_PLAYED",
 };
+
+export const cmsPageSlug = "mobile.games-search";

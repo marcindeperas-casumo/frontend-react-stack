@@ -2,27 +2,28 @@
 import React from "react";
 import { connect } from "react-redux";
 import { getField, fetchPageBySlug } from "Models/cms";
+import { cmsPageSlug } from "Models/gameSearch";
 import SearchNotFound from "./SearchNotFound";
+
 type Props = {};
-const searchCMSPageSlug = "mobile.games-search";
 
 const SearchNotFoundConnected = connect(
   (state, { contentField }) => ({
     image: getField({
-      slug: searchCMSPageSlug,
+      slug: cmsPageSlug,
       field: "no_results_image",
     })(state),
     title: getField({
-      slug: searchCMSPageSlug,
+      slug: cmsPageSlug,
       field: "no_results_title",
     })(state),
     content: getField({
-      slug: searchCMSPageSlug,
+      slug: cmsPageSlug,
       field: contentField,
     })(state),
   }),
   dispatch => ({
-    startFetch: () => dispatch(fetchPageBySlug(searchCMSPageSlug)),
+    startFetch: () => dispatch(fetchPageBySlug(cmsPageSlug)),
   })
 )(SearchNotFound);
 

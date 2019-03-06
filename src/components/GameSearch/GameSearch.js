@@ -1,34 +1,28 @@
 // @flow
-import React, { PureComponent } from "react";
-
+import * as React from "react";
 import GameSearchInput from "Components/GameSearch/GameSearchInput";
-import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import List from "@casumo/cmp-list";
 import GamesVirtualList from "Components/GamesVirtualList";
+import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
 
 import "./GameSearch.scss";
 
 type Props = {
-  preloadFetchPlayerGames: () => {},
-  initFetchQuerySearch: () => {},
-  clearSearch: () => {},
   searchResults: Array<string>,
-  latestPlayedGames: Array<string>,
-  popularGames: Array<string>,
-  hasNoLatestPlayed: boolean,
   loading: boolean,
   noResults: boolean,
-  fetchPageBySlug: () => {},
-  popularGamesTitle: string,
-  latestPlayedGamesTitle: string,
   inputPromptPlaceholder: string,
   query: string,
+  initFetchQuerySearch: () => {},
+  clearSearch: () => {},
+  preloadFetchPlayerGames: () => {},
+  fetchPageBySlug: () => {},
 };
 
-export default class GameSearch extends PureComponent<Props> {
+export default class GameSearch extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.fetchPageBySlug();
   }
@@ -41,54 +35,11 @@ export default class GameSearch extends PureComponent<Props> {
     />
   );
 
-  renderPopularGames = () => {
-    return !this.props.popularGames.length ? (
-      this.renderListSkeleton()
-    ) : (
-      <SectionList
-        className="u-padding-horiz--md"
-        sections={[
-          {
-            title: this.props.popularGamesTitle,
-            data: this.props.popularGames,
-          },
-        ]}
-        renderItem={id => <GameRowSearch slug={id} />}
-      />
-    );
-  };
-
-  renderLatestPlayed = () => {
-    return !this.props.latestPlayedGames.length ? (
-      this.renderListSkeleton()
-    ) : (
-      <SectionList
-        className="u-padding-horiz--md"
-        sections={[
-          {
-            title: this.props.latestPlayedGamesTitle,
-            data: this.props.latestPlayedGames,
-          },
-        ]}
-        renderItem={id => <GameRowSearch slug={id} />}
-      />
-    );
-  };
-
-  renderSuggestions = () =>
-    this.props.hasNoLatestPlayed
-      ? this.renderPopularGames()
-      : this.renderLatestPlayed();
-
   renderNoMatch = () => {
-    const field = this.props.hasNoLatestPlayed
-      ? "no_results_popular"
-      : "no_results_continue_playing";
-
     return (
       <>
-        <SearchNotFound contentField={field} />
-        {this.renderSuggestions()}
+        <SearchNotFound contentField={"no_results_continue_playing"} />
+        <GameSearchSuggestionsList />
       </>
     );
   };
@@ -122,7 +73,7 @@ export default class GameSearch extends PureComponent<Props> {
             <GameRowSearch query={query} highlightSearchQuery slug={id} />
           )}
         />
-        {searchResults.length === 1 && this.renderSuggestions()}
+        {searchResults.length === 1 && <GameSearchSuggestionsList />}
       </>
     );
   };
