@@ -106,9 +106,11 @@ describe("GameSearch", () => {
   });
 
   test("should render search results", () => {
+    const searchResults = ["I", "am", "search", "results"];
+
     const rendered = shallow(
       <GameSearch
-        searchResults={["I", "am", "search", "results"]}
+        searchResults={searchResults}
         latestPlayedGames={["starburst"]}
         clearSearch={clearSearch}
         hasNoLatestPlayed={true}
@@ -126,6 +128,7 @@ describe("GameSearch", () => {
     );
 
     expect(rendered.find("List")).toHaveLength(1);
+    expect(rendered.find("List").props().items).toEqual(searchResults);
   });
 
   test("should render 1 search result and popular games if direct hit and player has no latest played games history", () => {
