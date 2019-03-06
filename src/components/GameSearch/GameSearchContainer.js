@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
 import GameSearch from "Components/GameSearch/GameSearch";
 import {
@@ -12,43 +13,34 @@ import {
   gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { preloadFetchPlayerGames } from "Models/playerGames";
-import { gameListSelector } from "Models/schema";
+import { gameListGamesSelector } from "Models/schema";
 import { getField, fetchPageBySlug } from "Models/cms";
 import { GAME_LIST_IDS } from "Src/constants";
 
 const searchCMSPageSlug = "mobile.games-search";
 
 const GameSearchConnected = connect(
-  state => {
-    const { games: latestPlayedGames } = gameListSelector(
-      GAME_LIST_IDS.LATEST_PLAYED
-    )(state);
-    const { games: popularGames } = gameListSelector(
-      GAME_LIST_IDS.POPULAR_GAMES
-    )(state);
-
-    return {
-      latestPlayedGames,
-      popularGames,
-      searchResults: gameSearchResults(state),
-      loading: isLoadingSelector(state),
-      noResults: hasNoResultsSelector(state),
-      hasNoLatestPlayed: hasNoLatestPlayedSelector(state),
-      latestPlayedGamesTitle: getField({
-        slug: searchCMSPageSlug,
-        field: "continue_playing",
-      })(state),
-      popularGamesTitle: getField({
-        slug: searchCMSPageSlug,
-        field: "popular_games",
-      })(state),
-      inputPromptPlaceholder: getField({
-        slug: searchCMSPageSlug,
-        field: "input_prompt",
-      })(state),
-      query: gameSearchQuerySelector(state),
-    };
-  },
+  createStructuredSelector({
+    latestPlayedGames: gameListGamesSelector(GAME_LIST_IDS.LATEST_PLAYED),
+    popularGames: gameListGamesSelector(GAME_LIST_IDS.POPULAR_GAMES),
+    searchResults: gameSearchResults,
+    loading: isLoadingSelector,
+    noResults: hasNoResultsSelector,
+    hasNoLatestPlayed: hasNoLatestPlayedSelector,
+    latestPlayedGamesTitle: getField({
+      slug: searchCMSPageSlug,
+      field: "continue_playing",
+    }),
+    popularGamesTitle: getField({
+      slug: searchCMSPageSlug,
+      field: "popular_games",
+    }),
+    inputPromptPlaceholder: getField({
+      slug: searchCMSPageSlug,
+      field: "input_prompt",
+    }),
+    query: gameSearchQuerySelector,
+  }),
   {
     initFetchQuerySearch,
     clearSearch,
