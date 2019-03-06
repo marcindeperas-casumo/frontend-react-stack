@@ -31,7 +31,7 @@ export default class SectionList extends PureComponent<Props<*>> {
       <Text
         tag="p"
         size="md"
-        className="u-font-weight-bold u-padding-top--lg u-padding-bottom--md"
+        className="u-font-weight-bold u-padding-top--md u-padding-bottom"
       >
         {title}
       </Text>
