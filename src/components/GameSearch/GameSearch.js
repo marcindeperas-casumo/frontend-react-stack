@@ -119,7 +119,7 @@ export default class GameSearch extends PureComponent<Props> {
     if (noResults) {
       return this.renderNoMatch();
     }
-    // replace for <VirtualList /> when new api is ready
+
     return (
       <>
         <List
