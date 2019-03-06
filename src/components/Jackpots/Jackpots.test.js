@@ -10,15 +10,16 @@ describe("<Jackpots />", () => {
     expect(rendered.find("ScrollableListTitle").length).toBe(1);
   });
 
-  test("renders tiles for every 3 game", () => {
+  test("groups 3 jackpots into a single column ", () => {
+    const numberOfColumns = 6;
     const rendered = shallow(<Jackpots jackpots={jackpotsMock} />);
 
-    expect(rendered.find("JackpotsColumn").length).toBe(6);
+    expect(rendered.find("JackpotsColumn").length).toBe(numberOfColumns);
   });
 
   test("renders all the jackpot rows", () => {
     const rendered = mount(<Jackpots jackpots={jackpotsMock} />);
 
-    expect(rendered.find("GameRow")).toHaveLength(17);
+    expect(rendered.find("GameRow")).toHaveLength(jackpotsMock.length);
   });
 });
