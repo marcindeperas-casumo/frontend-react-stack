@@ -105,8 +105,18 @@ describe("Models/curated/selectors", () => {
                 [mockPlayerId]: {
                   playerId: mockPlayerId,
                   firstDepositDate: null,
+                  market: "___en",
                 },
               },
+            },
+            "common/ABTesting": {
+              testSubjectId: "79e686cc-8e51-41e4-991f-dc0da0b526ad",
+              features: [
+                {
+                  name: "deposit-now",
+                  flavour: "curated-card",
+                },
+              ],
             },
           },
         },
@@ -134,8 +144,18 @@ describe("Models/curated/selectors", () => {
                 [mockPlayerId]: {
                   playerId: mockPlayerId,
                   firstDepositDate: 532738800000,
+                  market: "___en",
                 },
               },
+            },
+            "common/ABTesting": {
+              testSubjectId: "79e686cc-8e51-41e4-991f-dc0da0b526ad",
+              features: [
+                {
+                  name: "deposit-now",
+                  flavour: "curated-card",
+                },
+              ],
             },
           },
         },

@@ -2,17 +2,32 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
-import { hasMadeFirstDeposit } from "Models/handshake";
+import { hasMadeFirstDeposit, market } from "Models/handshake";
 import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
+import { flavourMatchSelector, AB_TESTS_FEATURE } from "Models/ABTesting";
+import { MARKETS } from "Src/constants";
 
 export const curatedSlugSelector = slug =>
   createSelector(
     hasMadeFirstDeposit,
     state => state,
     (hasMadeFirstDeposit, state) => {
-      const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
+      //TODO: to remove this once we are done with the test
+      // for now the test is running in the uk only
+      const ABTestFlavourMatch = flavourMatchSelector(
+        AB_TESTS_FEATURE.DEPOSIT_NOW,
+        "curated-card"
+      )(state);
+      const isUK = market(state) === MARKETS.___en;
 
-      return `${CURATED_SLUG}.${cardToShow}`;
+      if (isUK && ABTestFlavourMatch) {
+        //TODO: keep only this code after abtest is removed
+        const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
+
+        return `${CURATED_SLUG}.${cardToShow}`;
+      } else {
+        return `${CURATED_SLUG}.${slug}`;
+      }
     }
   );
 
