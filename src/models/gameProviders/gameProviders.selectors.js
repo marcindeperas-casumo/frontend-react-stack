@@ -5,6 +5,7 @@ import {
   filter,
   propEq,
   prop,
+  propOr,
   anyPass,
   isNil,
   isEmpty,
@@ -28,10 +29,7 @@ export const activeGameProvidersSelector = createSelector(
 export const gameProviderBySlug = slug =>
   createSelector(
     gameProviderEntitiesSelector,
-    compose(
-      defaultTo({}),
-      prop(slug)
-    )
+    propOr({}, slug)
   );
 
 export const areProviderGamesLoaded = provider =>
