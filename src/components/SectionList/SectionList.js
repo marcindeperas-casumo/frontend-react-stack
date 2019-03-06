@@ -3,6 +3,7 @@ import React, { PureComponent, type Node } from "react";
 
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
+import Text from "@casumo/cmp-text";
 
 export type Section = {
   data: any[],
@@ -26,6 +27,11 @@ export default class SectionList extends PureComponent<Props<*>> {
     direction: "vertical",
     className: "",
     sectionSpacing: "default",
+    renderSectionHeader: (title: string) => (
+      <Text className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
+        {title}
+      </Text>
+    ),
   };
 
   renderSection = (section: Section, index: number) => {

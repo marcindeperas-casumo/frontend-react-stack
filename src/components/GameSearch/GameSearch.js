@@ -53,7 +53,6 @@ export default class GameSearch extends PureComponent<Props> {
             data: this.props.popularGames,
           },
         ]}
-        renderSectionHeader={this.renderSectionHeader}
         renderItem={id => <GameRowSearch slug={id} />}
       />
     );
@@ -71,7 +70,6 @@ export default class GameSearch extends PureComponent<Props> {
             data: this.props.latestPlayedGames,
           },
         ]}
-        renderSectionHeader={this.renderSectionHeader}
         renderItem={id => <GameRowSearch slug={id} />}
       />
     );
@@ -81,12 +79,6 @@ export default class GameSearch extends PureComponent<Props> {
     this.props.hasNoLatestPlayed
       ? this.renderPopularGames()
       : this.renderLatestPlayed();
-
-  renderSectionHeader = (title: string) => (
-    <p className="u-font-weight-bold u-font-md u-padding-top--lg u-padding-bottom--md">
-      {title}
-    </p>
-  );
 
   renderNoMatch = () => {
     const field = this.props.hasNoLatestPlayed
