@@ -2,7 +2,7 @@
 import React from "react";
 import TileListHorizontal from "Components/TileListHorizontal/TileListHorizontal";
 import { types } from "./TileListHorizontal.constants";
-import { withGameProviderProps } from "./GameProviderProps";
+import withGameProviderProps from "./GameProviderProps";
 
 type Props = {
   /** Type of list (e.g, game-providers) */
@@ -10,18 +10,12 @@ type Props = {
   title: string,
 };
 
-const TileListHorizontalContainer = ({
-  type = types.GAME_PROVIDERS,
-  title = "",
-}: Props) => {
-  if (type === types.GAME_PROVIDERS) {
-    const GameProviderList = withGameProviderProps({
-      Component: TileListHorizontal,
-      props: { title },
-    });
-    return <GameProviderList />;
+const TileListHorizontalContainer = (props: Props) => {
+  if (props.type === types.GAME_PROVIDERS) {
+    const GameProviderList = withGameProviderProps(TileListHorizontal);
+    return <GameProviderList title={props.title} />;
   }
-  return <TileListHorizontal title={title} />;
+  return <TileListHorizontal title={props.title} />;
 };
 
 export default TileListHorizontalContainer;
