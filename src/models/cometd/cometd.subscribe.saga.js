@@ -6,7 +6,7 @@ import { message } from "Models/cometd/cometd.actions";
 // We are using eventChannels to relay cometd messages
 // as actions to the redux store.
 // Docs: https://github.com/redux-saga/redux-saga/blob/master/docs/advanced/Channels.md
-const setupEmitter = (channel, ...args) => emitter => {
+const setupEmitter = (channel, args) => emitter => {
   // TODO: Add throttling to the emitter function
   cometd.subscribe(channel, emitter, args);
 
