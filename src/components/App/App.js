@@ -75,6 +75,14 @@ class App extends PureComponent {
             fallback={<SportsShellSkeleton />}
           />
         </MigrationComponent>
+        <MigrationComponent migrationKey={["games-provider"]}>
+          <LazyPortal
+            hostElementId="react-host-provider-games"
+            loader={() => import("Components/ProviderGamesList")}
+            fallback={<GameListSkeleton />}
+            props={{ provider: routeParams[0] }}
+          />
+        </MigrationComponent>
       </MigrationComponentManager>
     );
   }
