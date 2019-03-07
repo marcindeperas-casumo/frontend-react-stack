@@ -95,7 +95,7 @@ export default class Modal extends React.Component<Props> {
         spacing="none"
       >
         <Flex
-          className="c-modal__top-bar o-flex__item-fixed-size u-padding t-background-grey-dark-3 t-color-white"
+          className="c-modal__top-bar o-flex__item-fixed-size u-padding t-background-grey-dark-4 t-color-white"
           direction="horizontal"
           align="center"
           spacing="md"
@@ -103,10 +103,12 @@ export default class Modal extends React.Component<Props> {
         >
           {this.header}
         </Flex>
-        <Flex.Block className="c-modal__content">
+        <Flex.Block className="c-modal__content u-content-width--tablet">
           {this.props.children}
         </Flex.Block>
-        <Flex.Block className="c-modal__footer">{this.props.footer}</Flex.Block>
+        <Flex.Block className="c-modal__footer u-content-width--tablet">
+          {this.props.footer}
+        </Flex.Block>
       </Flex>
     );
   }

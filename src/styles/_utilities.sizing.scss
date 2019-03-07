@@ -1,3 +1,13 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+
+.u-content-width--tablet {
+  @include cudl-breakpoint(tablet) {
+    margin: auto;
+    width: 400px;
+  }
+}
+
 .u-height--screen {
   height: 100vh;
 }

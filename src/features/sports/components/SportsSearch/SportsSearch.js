@@ -1,7 +1,6 @@
 /* @flow */
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-
 import "./SportsSearch.scss";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
