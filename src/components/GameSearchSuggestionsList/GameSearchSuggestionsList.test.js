@@ -25,7 +25,12 @@ describe("GameSearch", () => {
 
   test("Should render a skeleton if games are not fetched yet", () => {
     const rendered = shallow(
-      <GameSearchSuggestionsList gameSearchSuggestedList={{}} />
+      <GameSearchSuggestionsList
+        gameSearchSuggestedList={{
+          games: [],
+          title: "",
+        }}
+      />
     );
 
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
