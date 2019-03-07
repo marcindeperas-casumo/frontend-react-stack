@@ -18,6 +18,7 @@ describe("Models/Fetch/Reducer", () => {
 
     expect(reducer(state, action)).toEqual({
       loading: false,
+      query: "",
     });
   });
 
