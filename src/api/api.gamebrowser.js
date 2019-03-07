@@ -4,6 +4,7 @@ import defaultHttp from "Services/http";
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",
   GAME_LISTS: "/api/gamebrowser/games-lists",
+  GAME_SEARCH: "/api/gamebrowser/games-search",
   GAMES_LATEST_PLAYED: "/api/gamebrowser/latestPlayedGames/player",
   GAMES_BY_PROVIDER: "/api/gamebrowser/games-by-provider-game-names",
   GAMES_BY_SLUGS: "/api/gamebrowser/games-by-slugs",
@@ -33,6 +34,31 @@ export const getGameLists = (
   },
   http: HTTPClient = defaultHttp
 ) => http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, data);
+
+export const getQuerySearch = (
+  {
+    platform,
+    country,
+    variant,
+    page,
+    pageSize,
+    query,
+  }: {
+    platform: string,
+    country: string,
+    variant: string,
+    page: number,
+    pageSize: number,
+    query: string,
+  },
+  http: HTTPClient = defaultHttp
+) =>
+  http.get(`${URL.GAME_SEARCH}/${platform}/${country}`, {
+    variant,
+    page,
+    pageSize,
+    q: query,
+  });
 
 export const getLatestPlayedGames = (
   { playerId, pageSize = 20 }: { playerId: string, pageSize?: number },
