@@ -33,7 +33,7 @@ export default class GameRowSearchTitle extends PureComponent<Props> {
     const { query, name, highlightSearchQuery } = this.props;
 
     return (
-      <Text className="u-font-weight-bold u-font" tag="div" size="sm">
+      <Text className="u-font-weight-bold" tag="div" size="sm">
         {highlightSearchQuery && query ? (
           <TextMaskColored text={name} search={query} />
         ) : (

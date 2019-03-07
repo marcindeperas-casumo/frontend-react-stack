@@ -1,0 +1,29 @@
+@import "cudl-breakpoints";
+@import "~Styles/settings.breakpoints";
+
+$game-list-height: (
+  mobile: calc(100vh - 147px),
+  phablet: calc(100vh - 172px)
+);
+
+.c-game-search-input-bg {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.c-game-search-bar {
+  z-index: 1;	
+}
+
+.c-game-search-virtual-list {
+  @include cudl-breakpoint-with($game-list-height, height);
+  @include cudl-breakpoint(phablet orientation landscape) {
+    height: calc(100vh - 136px)
+  }
+}
+
+.c-game-search-virtual-list .c-virtual-list {
+  padding-top: 8px;
+}

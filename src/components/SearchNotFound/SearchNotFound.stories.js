@@ -27,7 +27,9 @@ stories.add(
   "Default (Connected)",
   () => (
     <MockStore state={state}>
-      <SearchNotFoundContainer contentField="no_results_continue_playing" />
+      <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
+        <SearchNotFoundContainer contentField="no_results_continue_playing" />
+      </div>
     </MockStore>
   ),
   info({ text: "Default (Connected)" })
@@ -36,14 +38,16 @@ stories.add(
 stories.add(
   "Default",
   () => (
-    <SearchNotFound
-      image={
-        "https://cms.casumo.com/wp-content/uploads/2019/01/search_no_results.svg"
-      }
-      title="No results found 🤷🏻‍♂️"
-      content="Find another game or continue playing <br /> your last played"
-      startFetch={() => {}}
-    />
+    <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
+      <SearchNotFound
+        image={
+          "https://cms.casumo.com/wp-content/uploads/2019/01/search_no_results.svg"
+        }
+        title="No results found"
+        content="Find another game or continue playing <br /> your last played"
+        startFetch={() => {}}
+      />
+    </div>
   ),
   info({ text: "Default" })
 );

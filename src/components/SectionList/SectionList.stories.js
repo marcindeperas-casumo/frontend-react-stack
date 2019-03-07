@@ -26,17 +26,12 @@ const sections = [
   { title: "T", data: ["top-cat"] },
 ];
 
-const renderSectionHeader = title => (
-  <p className="u-font-weight-bold u-font-md u-padding-vert--md">{title}</p>
-);
-
 stories.add(
   "Alphabetical",
   () => (
     <MockStore>
       <SectionList
         sections={sections}
-        renderSectionHeader={renderSectionHeader}
         renderItem={id => <GameRowSearch slug={id} />}
       />
     </MockStore>
@@ -60,7 +55,6 @@ stories.add(
             data: ["hall-of-gods", "divine-fortune"],
           },
         ]}
-        renderSectionHeader={renderSectionHeader}
         renderItem={id => <GameRowSearch slug={id} />}
       />
     </MockStore>
