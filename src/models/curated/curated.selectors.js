@@ -12,7 +12,7 @@ export const curatedSlugSelector = slug =>
     hasMadeFirstDeposit,
     state => state,
     (hasMadeFirstDeposit, state) => {
-      //TODO: to remove this once we are done with the test
+      // Remove this once we are done with the test
       // for now the test is running in the uk only
       const ABTestFlavourMatch = flavourMatchSelector(
         AB_TESTS_FEATURE.DEPOSIT_NOW,
@@ -21,7 +21,7 @@ export const curatedSlugSelector = slug =>
       const isUK = market(state) === MARKETS.gb_en;
 
       if (isUK && ABTestFlavourMatch) {
-        //TODO: keep only this code after abtest is removed
+        // Keep only this code after abtest is removed
         const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
 
         return `${CURATED_SLUG}.${cardToShow}`;
