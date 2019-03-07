@@ -4,7 +4,6 @@ import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   fetchLatestPlayedSaga,
   fetchQuerySearch,
-  noResultsAction,
   clearSearch,
   getSearchFetchCompleteType,
 } from "Models/gameSearch";
@@ -27,15 +26,6 @@ export function* gameSearchSaga(action) {
 
   const { response } = yield take(getSearchFetchCompleteType(query));
 
-  // if no match fetch latest played games
-  if (!response.games.length) {
-    yield put(noResultsAction());
-
-    yield call(fetchLatestPlayedSaga);
-
-    return;
-  }
-
   // save search results
   const { entities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: {
@@ -46,10 +36,8 @@ export function* gameSearchSaga(action) {
 
   yield put(updateEntity(entities));
 
-  // if direct hit fetch latest played games
-  if (response.games.length === 1) {
+  // if no match or direct hit fetch latest played games
+  if (response.games.length <= 1) {
     yield call(fetchLatestPlayedSaga);
-
-    return;
   }
 }

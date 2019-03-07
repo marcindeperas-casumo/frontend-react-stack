@@ -15,7 +15,6 @@ export const gameSearchReducer = (state = {}, action) => {
       return {
         ...state,
         loading: true,
-        hasNoResults: false,
         query,
       };
     }
@@ -24,21 +23,6 @@ export const gameSearchReducer = (state = {}, action) => {
       return {
         ...state,
         loading: false,
-        hasNoResults: false,
-      };
-    }
-
-    case types.GAME_SEARCH_NO_RESULTS: {
-      return {
-        ...state,
-        hasNoResults: true,
-      };
-    }
-
-    case types.GAME_SEARCH_NO_LATEST_PLAYED: {
-      return {
-        ...state,
-        hasNoLatestPlayed: true,
       };
     }
 

@@ -12,16 +12,6 @@ export const isLoadingSelector = createSelector(
   prop("loading")
 );
 
-export const hasNoResultsSelector = createSelector(
-  gameSearch,
-  prop("hasNoResults")
-);
-
-export const hasNoLatestPlayedSelector = createSelector(
-  gameSearch,
-  prop("hasNoLatestPlayed")
-);
-
 export const gameSearchResults = createSelector(
   gameListSelector(GAME_LIST_IDS.GAME_SEARCH),
   propOr([], "games")

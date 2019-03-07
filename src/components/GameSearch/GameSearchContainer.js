@@ -8,7 +8,6 @@ import {
   gameSearchResults,
   initFetchQuerySearch,
   isLoadingSelector,
-  hasNoResultsSelector,
   clearSearch,
   gameSearchQuerySelector,
 } from "Models/gameSearch";
@@ -19,7 +18,6 @@ const GameSearchConnected = connect(
   createStructuredSelector({
     searchResults: gameSearchResults,
     loading: isLoadingSelector,
-    noResults: hasNoResultsSelector,
     inputPromptPlaceholder: getField({
       slug: cmsPageSlug,
       field: "input_prompt",

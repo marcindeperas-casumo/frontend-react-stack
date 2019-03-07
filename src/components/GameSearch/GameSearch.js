@@ -13,7 +13,6 @@ import "./GameSearch.scss";
 type Props = {
   searchResults: Array<string>,
   loading: boolean,
-  noResults: boolean,
   inputPromptPlaceholder: string,
   query: string,
   initFetchQuerySearch: () => {},
@@ -25,6 +24,14 @@ type Props = {
 export default class GameSearch extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.fetchPageBySlug();
+  }
+
+  get noMatch() {
+    return Boolean(
+      !this.props.loading &&
+        !this.props.searchResults.length &&
+        this.props.query
+    );
   }
 
   renderListSkeleton = (hasTitle: boolean = true) => (
@@ -45,9 +52,9 @@ export default class GameSearch extends React.PureComponent<Props> {
   };
 
   renderResults = () => {
-    const { loading, noResults, searchResults, query } = this.props;
+    const { loading, searchResults, query } = this.props;
 
-    if (!loading && !noResults && !searchResults.length) {
+    if (!loading && !this.noMatch) {
       return (
         <div className="c-game-search-virtual-list">
           <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
@@ -59,7 +66,7 @@ export default class GameSearch extends React.PureComponent<Props> {
       return this.renderListSkeleton(false);
     }
 
-    if (noResults) {
+    if (this.noMatch) {
       return this.renderNoMatch();
     }
 
@@ -85,7 +92,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
             clearSearch={this.props.clearSearch}
-            noResults={this.props.noResults}
+            noResults={this.noMatch}
             placeholder={this.props.inputPromptPlaceholder}
           />
           <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />

@@ -28,27 +28,7 @@ describe("Models/GameSearch/Selectors", () => {
     expect(isLoadingSelector(state)).toBe(true);
   });
 
-  test("hasNoResultsSelector", () => {
-    const state = {
-      gameSearch: {
-        hasNoResults: true,
-      },
-    };
-
-    expect(hasNoResultsSelector(state)).toBe(true);
-  });
-
-  test("hasNoLatestPlayedSelector", () => {
-    const state = {
-      gameSearch: {
-        hasNoLatestPlayed: true,
-      },
-    };
-
-    expect(hasNoLatestPlayedSelector(state)).toBe(true);
-  });
-
-  describe("gameSearchResults()", () => {
+  describe("gameSearchResults", () => {
     test("returns gameList", () => {
       const gameList = { [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
@@ -64,7 +44,7 @@ describe("Models/GameSearch/Selectors", () => {
     });
   });
 
-  describe("gameSearchQuerySelector()", () => {
+  describe("gameSearchQuerySelector", () => {
     test("returns search query", () => {
       const state = {
         gameSearch: {

@@ -9,7 +9,6 @@ import {
   types,
   fetchLatestPlayedGames,
   fetchLatestPlayedSaga,
-  noLatestPlayedAction,
   fetchPopularGamesSaga,
   fetchGamesByProviderGameNames,
 } from "Models/gameSearch";
@@ -38,10 +37,8 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
     const noLatestPlayedGen = gen.clone();
 
     expect(noLatestPlayedGen.next({ response: [] }).value).toEqual(
-      put(noLatestPlayedAction())
+      call(fetchPopularGamesSaga)
     );
-
-    expect(noLatestPlayedGen.next().value).toEqual(call(fetchPopularGamesSaga));
 
     expect(noLatestPlayedGen.next().done).toBe(true);
   });

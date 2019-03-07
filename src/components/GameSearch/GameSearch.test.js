@@ -15,7 +15,6 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={[]}
         loading={true}
-        noResults={true}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={""}
         initFetchQuerySearch={initFetchQuerySearch}
@@ -33,7 +32,6 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={[]}
         loading={true}
-        noResults={true}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={""}
         initFetchQuerySearch={initFetchQuerySearch}
@@ -46,14 +44,13 @@ describe("GameSearch", () => {
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
 
-  test("should render a not found component and lastPlayedGames if noResults is equal true", () => {
+  test("should render a not found component if no match and query", () => {
     const rendered = shallow(
       <GameSearch
         searchResults={[]}
         loading={false}
-        noResults={true}
         inputPromptPlaceholder={inputPromptPlaceholder}
-        query={""}
+        query={"oooo"}
         initFetchQuerySearch={initFetchQuerySearch}
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
@@ -69,7 +66,6 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={[]}
         loading={false}
-        noResults={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={""}
         initFetchQuerySearch={initFetchQuerySearch}
@@ -89,7 +85,6 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={searchResults}
         loading={false}
-        noResults={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={""}
         initFetchQuerySearch={initFetchQuerySearch}
@@ -108,7 +103,6 @@ describe("GameSearch", () => {
       <GameSearch
         searchResults={["I"]}
         loading={false}
-        noResults={false}
         inputPromptPlaceholder={inputPromptPlaceholder}
         query={""}
         initFetchQuerySearch={initFetchQuerySearch}

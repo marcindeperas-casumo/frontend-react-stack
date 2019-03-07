@@ -20,7 +20,7 @@ $game-list-height: (
 .c-game-search-virtual-list {
   @include cudl-breakpoint-with($game-list-height, height);
   @include cudl-breakpoint(phablet orientation landscape) {
-      height: calc(100vh - 136px)
+    height: calc(100vh - 136px)
   }
 }
 

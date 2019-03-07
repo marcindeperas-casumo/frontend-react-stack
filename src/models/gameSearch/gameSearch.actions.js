@@ -14,12 +14,6 @@ export const initFetchQuerySearch = query => ({
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
-export const noResultsAction = () => ({ type: types.GAME_SEARCH_NO_RESULTS });
-
-export const noLatestPlayedAction = () => ({
-  type: types.GAME_SEARCH_NO_LATEST_PLAYED,
-});
-
 export const fetchQuerySearch = ({ platform, country, query }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,

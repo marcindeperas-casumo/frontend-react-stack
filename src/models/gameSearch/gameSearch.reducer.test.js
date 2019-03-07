@@ -8,23 +8,8 @@ describe("Models/Fetch/Reducer", () => {
     const state = {};
 
     expect(reducer(state, action)).toEqual({
-      hasNoResults: false,
       loading: true,
     });
-  });
-
-  test("GAME_SEARCH_NO_RESULTS", () => {
-    const action = actions.noResultsAction();
-    const state = {};
-
-    expect(reducer(state, action)).toEqual({ hasNoResults: true });
-  });
-
-  test("GAME_SEARCH_NO_LATEST_PLAYED", () => {
-    const action = actions.noLatestPlayedAction();
-    const state = {};
-
-    expect(reducer(state, action)).toEqual({ hasNoLatestPlayed: true });
   });
 
   test("GAME_SEARCH_CLEAR", () => {
@@ -33,7 +18,6 @@ describe("Models/Fetch/Reducer", () => {
 
     expect(reducer(state, action)).toEqual({
       loading: false,
-      hasNoResults: false,
     });
   });
 

@@ -10,7 +10,6 @@ import {
   fetchLatestPlayedGames,
   fetchGamesByProviderGameNames,
   fetchPopularGamesSaga,
-  noLatestPlayedAction,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -31,9 +30,8 @@ export function* fetchLatestPlayedSaga(action) {
 
   // no latest played games, grab most popular list instead
   if (!providerGameNames.length) {
-    yield put(noLatestPlayedAction());
-
-    return yield call(fetchPopularGamesSaga);
+    yield call(fetchPopularGamesSaga);
+    return;
   }
 
   // fetch the games by provider game slugs
