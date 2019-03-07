@@ -10,15 +10,12 @@ import { MARKETS } from "Src/constants";
 export const curatedSlugSelector = slug =>
   createSelector(
     hasMadeFirstDeposit,
-    state => state,
-    (hasMadeFirstDeposit, state) => {
+    market,
+    flavourMatchSelector(AB_TESTS_FEATURE.DEPOSIT_NOW, "curated-card"),
+    (hasMadeFirstDeposit, market, ABTestFlavourMatch) => {
       // Remove this once we are done with the test
       // for now the test is running in the uk only
-      const ABTestFlavourMatch = flavourMatchSelector(
-        AB_TESTS_FEATURE.DEPOSIT_NOW,
-        "curated-card"
-      )(state);
-      const isUK = market(state) === MARKETS.gb_en;
+      const isUK = market === MARKETS.gb_en;
 
       if (isUK && ABTestFlavourMatch) {
         // Keep only this code after abtest is removed
