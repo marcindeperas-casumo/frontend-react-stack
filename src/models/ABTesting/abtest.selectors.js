@@ -1,5 +1,5 @@
 import { createSelector } from "reselect";
-import { prop, pipe, find, propEq, equals } from "ramda";
+import { prop, pipe, find, propEq, equals, defaultTo } from "ramda";
 import {
   applicationHandshakeSelector,
   APP_COMMON_KEYS,
@@ -15,7 +15,8 @@ export const featureSelector = feature =>
     ABTestsSelector,
     pipe(
       prop("features"),
-      find(f => equals(f.name, feature))
+      find(f => equals(f.name, feature)),
+      defaultTo({})
     )
   );
 
