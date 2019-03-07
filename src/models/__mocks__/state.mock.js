@@ -273,6 +273,10 @@ export default {
             name: "mobile-deposit-cta",
             flavour: "new-version",
           },
+          {
+            name: "deposit-now",
+            flavour: "curated-card",
+          },
         ],
       },
       "common/composition/Adventure": {
