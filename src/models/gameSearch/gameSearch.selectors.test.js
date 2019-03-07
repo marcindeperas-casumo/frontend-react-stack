@@ -1,9 +1,7 @@
 import {
   gameSearch,
   isLoadingSelector,
-  hasNoResultsSelector,
   gameSearchResults,
-  hasNoLatestPlayedSelector,
   gameSearchQuerySelector,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";

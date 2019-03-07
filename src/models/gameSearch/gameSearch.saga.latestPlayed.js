@@ -62,5 +62,6 @@ export function* fetchLatestPlayedSaga(action) {
     },
   });
 
-  return yield put(updateEntity(gameListEntities));
+  yield put(updateEntity(gameListEntities));
+  return;
 }
