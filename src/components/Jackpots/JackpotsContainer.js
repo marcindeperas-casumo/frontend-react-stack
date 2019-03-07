@@ -3,6 +3,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { path } from "ramda";
+import GameRowGameFragment from "Components/GameRow/GameRow.graphql";
 import Jackpots from "./Jackpots";
 
 // Refreshing the jackpots by polling the API every 2 seconds.
@@ -16,17 +17,12 @@ export const GET_JACKPOTS = gql`
     gamesList(listId: "casumoJackpotGames") {
       title
       games {
-        slug
-        name
-        logo
-        logoBackground
-        jackpotInfo {
-          id
-          formattedJackpotAmount
-        }
+        ...GameRowGame
       }
     }
   }
+
+  ${GameRowGameFragment}
 `;
 
 class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}

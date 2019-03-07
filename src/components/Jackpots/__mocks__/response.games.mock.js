@@ -7,6 +7,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2015/07/MegaMoolah_backplate-1.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "mega-fortune-dreams",
@@ -19,6 +20,7 @@ export default [
       id: "netent-megafortunedreams_mega",
       formattedJackpotAmount: "3.069.061,08 €",
     },
+    lobby: null,
   },
   {
     slug: "mega-fortune",
@@ -31,6 +33,7 @@ export default [
       id: "netent-megajackpot1",
       formattedJackpotAmount: "2.071.582,13 €",
     },
+    lobby: null,
   },
   {
     slug: "hall-of-gods",
@@ -43,6 +46,7 @@ export default [
       id: "netent-hog_large",
       formattedJackpotAmount: "2.266.000,99 €",
     },
+    lobby: null,
   },
   {
     slug: "joker-millions",
@@ -52,6 +56,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/06/joker_millions_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "divine-fortune",
@@ -64,6 +69,7 @@ export default [
       id: "netent-gof_mega",
       formattedJackpotAmount: "11.145,41 €",
     },
+    lobby: null,
   },
   {
     slug: "dancing-in-rio",
@@ -73,6 +79,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2016/07/dancing_in_rio_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "holmes-and-the-stolen-stones",
@@ -82,6 +89,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/06/holmes_and_the_stolen_stones_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "ozwins-jackpots",
@@ -91,6 +99,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2018/01/ozwins_jackpots_thumbnail.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "book-of-ra-deluxe-jackpot-edition",
@@ -100,6 +109,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/05/bok_of_ra_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "gunslinger-reloaded",
@@ -109,6 +119,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/09/gunslinger_reloaded_thumbnail.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "irish-riches",
@@ -118,6 +129,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2018/06/irish_riches_thumbnail.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "top-cat",
@@ -126,6 +138,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/03/top_cat_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "power-force-heroes",
@@ -135,6 +148,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/05/power_force_heroes_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "monkeys-millions",
@@ -144,6 +158,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2016/06/monkeys_millions_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "keystone-kops",
@@ -153,6 +168,7 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2018/04/keystone_kops_thumbnail.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
   {
     slug: "jackpot-diamonds",
@@ -162,5 +178,6 @@ export default [
     logoBackground:
       "https://cms.casumo.com/wp-content/uploads/2017/03/jackpot_diamonds_hiroller_bg.jpg",
     jackpotInfo: null,
+    lobby: null,
   },
 ];

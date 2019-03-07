@@ -1,8 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
+import { splitEvery } from "ramda";
 import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
-import { generateColumns } from "Utils/utils";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameRow from "Components/GameRow/GameRow";
@@ -13,8 +13,14 @@ const PADDING_PER_DEVICE = {
   desktop: "2xlg",
 };
 
+// TODO: Add static typing to "src/utils" and use the utility function from there.
+const generateColumns = <T>(
+  items: Array<T>,
+  numberByColumns = 3
+): Array<Array<T>> => splitEvery(numberByColumns, items);
+
 export type Props = {
-  jackpots: Array<Object>,
+  jackpots: Array<GameRowGame>,
   className?: string,
   title: string,
 };

@@ -5,40 +5,31 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: GamesListJackpots
+// GraphQL fragment: GameRowGame
 // ====================================================
 
-export type GamesListJackpots_gamesList_games_lobby_bets = {
+export type GameRowGame_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
 
-export type GamesListJackpots_gamesList_games_lobby = {
-  bets: ?GamesListJackpots_gamesList_games_lobby_bets
+export type GameRowGame_lobby = {
+  bets: ?GameRowGame_lobby_bets
 };
 
-export type GamesListJackpots_gamesList_games_jackpotInfo = {
+export type GameRowGame_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
 
-export type GamesListJackpots_gamesList_games = {
+export type GameRowGame = {
   slug: string,
   name: string,
   logo: string,
   logoBackground: string,
-  lobby: ?GamesListJackpots_gamesList_games_lobby,
-  jackpotInfo: ?GamesListJackpots_gamesList_games_jackpotInfo,
-};
-
-export type GamesListJackpots_gamesList = {
-  title: ?string,
-  games: ?Array<?GamesListJackpots_gamesList_games>,
-};
-
-export type GamesListJackpots = {
-  gamesList: GamesListJackpots_gamesList
+  lobby: ?GameRowGame_lobby,
+  jackpotInfo: ?GameRowGame_jackpotInfo,
 };
 
 /* @flow */
