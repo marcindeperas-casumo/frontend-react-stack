@@ -13,7 +13,6 @@ type Props = {
   subscribeToPlayerUpdates: Function,
   unsubscribeToPlayerUpdates: Function,
   playerId: string,
-  sessionId: string,
   isAuthenticated: boolean,
   activeComponents: Array<string>,
   routeParams: Array<Object>,
