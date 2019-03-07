@@ -10,7 +10,8 @@ import Jackpots from "./Jackpots";
 // This is far from ideal and is just temporary.
 // We are only using this until we implement subscribing to the RabbitMQ queues
 // in the GraphQL server.
-const REFRESH_INTERVAL = 2000;
+// Related issue: https://github.com/Casumo/Home/issues/26668
+const REFRESH_INTERVAL = 3000;
 
 export const GET_JACKPOTS = gql`
   query GamesListJackpots {
