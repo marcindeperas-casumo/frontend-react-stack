@@ -15,14 +15,15 @@ export const gameSearchReducer = (state = defaultState, action) => {
     case types.GAME_SEARCH_FETCH: {
       return {
         ...state,
-        loading: true,
         query,
+        loading: true,
       };
     }
 
     case types.GAME_SEARCH_CLEAR: {
       return {
         ...state,
+        query: "",
         loading: false,
       };
     }
