@@ -15,6 +15,7 @@
 @import "cudl-ratio";
 @import "cudl-flex";
 @import "cudl-layout";
+@import "./object.bleed";
 
 // ---- Components --------------------------------------------------------- //
 
@@ -32,5 +33,6 @@
 @import "./utilities.typography";
 @import "./utilities.object-fit";
 @import "./utilities.pointer";
+@import "./utilities.position";
 @import "./utilities.opacity";
 @import "./utilities.sizing";

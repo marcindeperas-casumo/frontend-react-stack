@@ -152,6 +152,12 @@ export const gameListSelector = (listId, options = {}) =>
     }
   );
 
+export const gameListGamesSelector = (listId, options = {}) =>
+  createSelector(
+    gameListSelector(listId, options),
+    prop("games")
+  );
+
 export const gameSelector = id =>
   createSelector(
     gameEntitiesSelector,
