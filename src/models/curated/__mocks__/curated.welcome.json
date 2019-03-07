@@ -1,8 +1,8 @@
 {
     "critical_for_compliance":false,
     "small_image":"https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
-    "medium_image":"https://cms.casumo.com/wp-content/uploads/2018/11/Vikings-Tablet-new.jpg",
-    "large_image":"https://cms.casumo.com/wp-content/uploads/2018/11/Vikings-Desktop-new.jpg",
+    "medium_image":"https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
+    "large_image":"https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
     "game":[],
     "gameId":"welcome-offer-test",
     "header":"TRY OUR<br/> NEW<br/> GAME",
@@ -12,8 +12,8 @@
     "gameData":{
        "name":"Welcome Bonus",
        "slug":"welcome-offer-test",
-       "logoBackground":"https://cms.casumo.com/wp-content/uploads/2018/11/Vikings-Tablet-new.jpg",
-       "logo":"https://cms.casumo.com/wp-content/uploads/2018/08/TTLogo.png",
+       "logoBackground":"https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
+       "logo":"https://cms.casumo.com/wp-content/uploads/2018/08/mobile-deposit.png",
        "hasPlayForFun":false,
        "inMaintenanceMode":false,
        "jackpotId":null,

@@ -6,6 +6,7 @@ import CuratedCard from "Components/CuratedCard";
 import MockStore from "Components/MockStore";
 import defaultState from "Models/__mocks__/state.mock";
 import curated from "Models/curated/__mocks__/curated.json";
+import curatedWelcome from "Models/curated/__mocks__/curated.welcome.json";
 
 const stories = storiesOf("CuratedCard", module);
 
@@ -19,6 +20,9 @@ stories.add(
           "curated.curated-gb_en": {
             fields: curated,
           },
+          "wecome-offer-test": {
+            fields: curatedWelcome,
+          },
         },
       },
     };
@@ -29,7 +33,7 @@ stories.add(
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
         >
-          <CuratedCard slug={"curated.curated-gb_en"} />
+          <CuratedCard card={"curated-gb_en"} />
         </div>
       </MockStore>
     );
@@ -46,10 +50,23 @@ stories.add(
           className="u-margin-left--auto u-margin-right--auto"
           style={{ maxWidth: "686px" }}
         >
-          <CuratedCard slug={"curated.curated-gb_en"} />
+          <CuratedCard card={"curated-gb_en"} />
         </div>
       </MockStore>
     );
   },
   info({ text: "Default" })
 );
+
+stories.add("Welcome offer", () => {
+  return (
+    <MockStore>
+      <div
+        className="u-margin-left--auto u-margin-right--auto"
+        style={{ maxWidth: "686px" }}
+      >
+        <CuratedCard card={"curated-gb_en"} />
+      </div>
+    </MockStore>
+  );
+});

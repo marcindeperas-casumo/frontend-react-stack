@@ -275,7 +275,7 @@ export default {
           },
           {
             name: "deposit-now",
-            flavour: "curated-card",
+            flavour: "default",
           },
         ],
       },
