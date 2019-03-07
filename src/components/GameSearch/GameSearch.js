@@ -26,6 +26,14 @@ export default class GameSearch extends React.PureComponent<Props> {
     this.props.fetchPageBySlug();
   }
 
+  get noResults() {
+    return Boolean(
+      !this.props.loading &&
+        !this.props.searchResults.length &&
+        this.props.query.length
+    );
+  }
+
   renderResults = () => {
     const { loading, searchResults, query } = this.props;
 
@@ -37,7 +45,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           titleYOffset={20}
         />
       );
-    } else if (this.props.searchResults.length) {
+    } else if (searchResults.length) {
       return (
         <>
           <List
@@ -51,7 +59,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           {searchResults.length === 1 && <GameSearchSuggestionsList />}
         </>
       );
-    } else if (this.props.query.length) {
+    } else if (query.length) {
       return (
         <>
           <SearchNotFound contentField={"no_results_continue_playing"} />
@@ -68,18 +76,13 @@ export default class GameSearch extends React.PureComponent<Props> {
   };
 
   render() {
-    const noResults = Boolean(
-      !this.props.loading &&
-        !this.props.searchResults.length &&
-        this.props.query.length
-    );
     return (
       <>
         <div className="u-padding--md u-position-sticky c-game-search-bar">
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
             clearSearch={this.props.clearSearch}
-            noResults={noResults}
+            noResults={this.noResults}
             placeholder={this.props.inputPromptPlaceholder}
           />
           <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />

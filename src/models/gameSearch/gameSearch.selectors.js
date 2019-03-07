@@ -23,8 +23,16 @@ export const gameSearchQuerySelector = createSelector(
 );
 
 export const gameSearchSuggestedList = createSelector(
-  getField({ slug: cmsPageSlug, field: "continue_playing" }),
-  getField({ slug: cmsPageSlug, field: "popular_games" }),
+  getField({
+    slug: cmsPageSlug,
+    field: "continue_playing",
+    defaultValue: "Continue Playing",
+  }),
+  getField({
+    slug: cmsPageSlug,
+    field: "popular_games",
+    defaultValue: "Popular Games",
+  }),
   gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
   gameListSelector(GAME_LIST_IDS.POPULAR_GAMES),
   (titlePlaying, titlePopular, latest, popular) =>

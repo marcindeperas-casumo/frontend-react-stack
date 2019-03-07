@@ -3,6 +3,7 @@ import {
   isLoadingSelector,
   gameSearchResults,
   gameSearchQuerySelector,
+  gameSearchSuggestedList,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -51,6 +52,28 @@ describe("Models/GameSearch/Selectors", () => {
       };
 
       expect(gameSearchQuerySelector(state)).toBe("whatever");
+    });
+  });
+
+  describe("gameSearchSuggestedList", () => {
+    test("returns latestPlayed gameList if in state", () => {
+      const gameList = { [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchSuggestedList(state)).toEqual({
+        games: ["foo"],
+        title: "Continue Playing",
+      });
+    });
+
+    test("returns popularGames gameList if latestPlayed not in state", () => {
+      const gameList = { [GAME_LIST_IDS.POPULAR_GAMES]: { games: ["bar"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchSuggestedList(state)).toEqual({
+        games: ["bar"],
+        title: "Popular Games",
+      });
     });
   });
 });
