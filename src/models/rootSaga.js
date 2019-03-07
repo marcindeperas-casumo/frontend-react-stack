@@ -11,6 +11,7 @@ import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
   types as gameProviderTypes,
   fetchGameProvidersSaga,
+  getGameProviderSaga,
 } from "Models/gameProviders";
 import {
   types as gameTypes,
@@ -77,6 +78,11 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
+  yield fork(
+    takeEvery,
+    gameProviderTypes.GET_GAME_PROVIDER,
+    getGameProviderSaga
+  );
     gameProviderTypes.FETCH_GAME_PROVIDERS_START,
     fetchGameProvidersSaga
   );
