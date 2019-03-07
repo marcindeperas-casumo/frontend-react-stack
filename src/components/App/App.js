@@ -24,12 +24,6 @@ type Props = {
 class App extends PureComponent<Props> {
   subscribe: Function;
 
-  constructor() {
-    super();
-    /* eslint-disable fp/no-mutation */
-    this.subscribe = this.subscribe.bind(this);
-  }
-
   componentDidMount() {
     const { onAppStarted } = this.props;
 
@@ -50,9 +44,9 @@ class App extends PureComponent<Props> {
     }
   }
 
-  subscribe() {
+  subscribe = () => {
     this.props.subscribeToPlayerUpdates();
-  }
+  };
 
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
