@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent, type ElementProps } from "react";
+import React, { type ElementProps } from "react";
 import { mergeDeepRight } from "ramda";
 import { Provider } from "react-redux";
 import { MockedProvider } from "react-apollo/test-utils";
@@ -20,17 +20,16 @@ type Props = {
 //    <MockStore>
 //        <YourConnectedComponent />
 //    </MockStore>
-export default class MockStore extends PureComponent<Props> {
-  render() {
-    const { children, state = {}, queryMocks = [] } = this.props;
-    const store = createReduxStore(mergeDeepRight(defaultState, state));
+const MockStore = ({ children, state = {}, queryMocks = [] }: Props) => {
+  const store = createReduxStore(mergeDeepRight(defaultState, state));
 
-    return (
-      <Provider store={store}>
-        <MockedProvider mocks={queryMocks} addTypename={false}>
-          {children}
-        </MockedProvider>
-      </Provider>
-    );
-  }
-}
+  return (
+    <Provider store={store}>
+      <MockedProvider mocks={queryMocks} addTypename={false}>
+        {children}
+      </MockedProvider>
+    </Provider>
+  );
+};
+
+export default MockStore;
