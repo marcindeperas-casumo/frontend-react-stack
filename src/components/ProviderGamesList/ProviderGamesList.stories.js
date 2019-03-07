@@ -9,17 +9,20 @@ import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("ProviderGamesList", module);
 
+const games = ["bloodsuckers", "easter-island"];
+
 const provider = {
   inMaintenance: false,
   name: "nyx",
-  games: ["bloodsuckers", "easter-island"],
+  slug: "casumo-services-ltd-nyx",
+  games,
 };
 
 const game = {
   game: {
-    bloodsuckers: {
+    [games[0]]: {
       name: "Blood Suckers",
-      slug: "bloodsuckers",
+      slug: games[0],
       logoBackground:
         "https://cms.casumo.com/wp-content/uploads/2014/06/BloodSuckers_Thumb.jpg",
       logo:
@@ -29,9 +32,9 @@ const game = {
       jackpotId: null,
       tableId: null,
     },
-    "easter-island": {
+    [games[1]]: {
       name: "Easter Island",
-      slug: "easter-island",
+      slug: games[1],
       logoBackground:
         "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
       logo:
@@ -47,16 +50,16 @@ const game = {
 const state = {
   schema: {
     gameProvider: {
-      "casumo-services-ltd-nyx": {
+      [provider.slug]: {
         id: "0c900240-4904-11e6-a7a2-005056a975b1",
         name: "nyx",
         inMaintenance: false,
-        slug: "casumo-services-ltd-nyx",
+        slug: provider.slug,
         background:
           "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
         url: "/en/games/provider/nyx",
-        games: ["bloodsuckers", "easter-island"],
+        games,
       },
     },
     ...game,
@@ -78,7 +81,7 @@ if (isNotChromatic) {
     "ProviderGamesList (Connected)",
     () => (
       <MockStore state={state}>
-        <ProviderGamesList provider={"casumo-services-ltd-nyx"} />
+        <ProviderGamesList provider={provider.slug} />
       </MockStore>
     ),
     info({ text: "" })
