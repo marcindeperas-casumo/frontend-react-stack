@@ -26,73 +26,60 @@ export default class GameSearch extends React.PureComponent<Props> {
     this.props.fetchPageBySlug();
   }
 
-  get noMatch() {
-    return Boolean(
-      !this.props.loading &&
-        !this.props.searchResults.length &&
-        this.props.query
-    );
-  }
-
-  renderListSkeleton = (hasTitle: boolean = true) => (
-    <GameListSkeleton
-      className="u-padding-horiz--md"
-      hasTitle={hasTitle}
-      titleYOffset={20}
-    />
-  );
-
-  renderNoMatch = () => {
-    return (
-      <>
-        <SearchNotFound contentField={"no_results_continue_playing"} />
-        <GameSearchSuggestionsList />
-      </>
-    );
-  };
-
   renderResults = () => {
     const { loading, searchResults, query } = this.props;
 
-    if (!loading && !this.noMatch) {
+    if (loading) {
+      return (
+        <GameListSkeleton
+          className="u-padding-horiz--md"
+          hasTitle={false}
+          titleYOffset={20}
+        />
+      );
+    } else if (this.props.searchResults.length) {
+      return (
+        <>
+          <List
+            className="u-padding-top u-padding-horiz--md"
+            items={searchResults}
+            itemSpacing="default"
+            render={id => (
+              <GameRowSearch query={query} highlightSearchQuery slug={id} />
+            )}
+          />
+          {searchResults.length === 1 && <GameSearchSuggestionsList />}
+        </>
+      );
+    } else if (this.props.query.length) {
+      return (
+        <>
+          <SearchNotFound contentField={"no_results_continue_playing"} />
+          <GameSearchSuggestionsList />
+        </>
+      );
+    } else {
       return (
         <div className="c-game-search-virtual-list">
           <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
         </div>
       );
     }
-
-    if (loading) {
-      return this.renderListSkeleton(false);
-    }
-
-    if (this.noMatch) {
-      return this.renderNoMatch();
-    }
-
-    return (
-      <>
-        <List
-          className="u-padding-top u-padding-horiz--md"
-          items={searchResults}
-          itemSpacing="default"
-          render={id => (
-            <GameRowSearch query={query} highlightSearchQuery slug={id} />
-          )}
-        />
-        {searchResults.length === 1 && <GameSearchSuggestionsList />}
-      </>
-    );
   };
 
   render() {
+    const noResults = Boolean(
+      !this.props.loading &&
+        !this.props.searchResults.length &&
+        this.props.query.length
+    );
     return (
       <>
         <div className="u-padding--md u-position-sticky c-game-search-bar">
           <GameSearchInput
             initFetchQuerySearch={this.props.initFetchQuerySearch}
             clearSearch={this.props.clearSearch}
-            noResults={this.noMatch}
+            noResults={noResults}
             placeholder={this.props.inputPromptPlaceholder}
           />
           <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />
