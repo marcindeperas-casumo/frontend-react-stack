@@ -14,10 +14,12 @@ export const getCasinoPlayerGames = (
     page = 0,
     pageSize = 20,
     sessionId,
+    provider,
   }: {
     page: number,
     pageSize: number,
     sessionId: string,
+    provider: string,
   },
   http: HTTPClient = defaultHttp
 ) =>
@@ -26,6 +28,7 @@ export const getCasinoPlayerGames = (
     {
       page,
       pageSize,
+      providerSlug: provider,
     },
     sessionId
       ? {
