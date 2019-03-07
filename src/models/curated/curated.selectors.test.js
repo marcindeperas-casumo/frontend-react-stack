@@ -105,7 +105,7 @@ describe("Models/curated/selectors", () => {
                 [mockPlayerId]: {
                   playerId: mockPlayerId,
                   firstDepositDate: null,
-                  market: "___en",
+                  market: "gb_en",
                 },
               },
             },
@@ -144,7 +144,7 @@ describe("Models/curated/selectors", () => {
                 [mockPlayerId]: {
                   playerId: mockPlayerId,
                   firstDepositDate: 532738800000,
-                  market: "___en",
+                  market: "gb_en",
                 },
               },
             },
