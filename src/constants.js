@@ -89,3 +89,10 @@ export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
 };
+
+export const EVENT_LOCATIONS = {
+  SEARCH_GAMES: "searchGames",
+  ALL_GAMES: "allGames",
+  LATEST_PLAYED_GAMES: "latestPlayedGames",
+  POPULAR_GAMES: "popularGames",
+};

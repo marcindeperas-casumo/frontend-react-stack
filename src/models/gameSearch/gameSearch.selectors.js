@@ -3,7 +3,7 @@ import { prop, propOr } from "ramda";
 import { gameListSelector } from "Models/schema";
 import { getField } from "Models/cms";
 import { cmsPageSlug } from "Models/gameSearch";
-import { GAME_LIST_IDS } from "Src/constants";
+import { GAME_LIST_IDS, EVENT_LOCATIONS } from "Src/constants";
 
 export const gameSearch = state => state.gameSearch;
 
@@ -40,9 +40,11 @@ export const gameSearchSuggestedList = createSelector(
       ? {
           ...latest,
           title: titlePlaying,
+          location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
         }
       : {
           ...popular,
           title: titlePopular,
+          location: EVENT_LOCATIONS.POPULAR_GAMES,
         }
 );
