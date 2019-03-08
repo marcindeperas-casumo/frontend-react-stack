@@ -1,0 +1,14 @@
+#import "../GameRow/GameRow.graphql"
+
+query JackpotsQuery {
+  gamesList(listId: "casumoJackpotGames") {
+    title
+    games {
+      ...Jackpots_Game
+    }
+  }
+}
+
+fragment Jackpots_Game on Game {
+  ...GameRow_Game
+}

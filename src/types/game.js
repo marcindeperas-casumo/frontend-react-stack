@@ -8,7 +8,7 @@ export type Game = {
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,
-  jackpotInfo: void | JackpotInfo,
+  jackpotInfo: ?JackpotInfo,
   jackpotId: void | string,
   tableId: void | string,
   lobby: liveCasinoLobby,
