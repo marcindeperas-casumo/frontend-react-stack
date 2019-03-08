@@ -1,6 +1,6 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { call, put, take } from "redux-saga/effects";
-import { normalizeData, mergeEntity } from "Models/schema";
+import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { fetchGameProvidersSaga } from "./gameProviders.saga.fetchGameProviders";
 import { types } from "./gameProviders.constants";
 import { initiateFetchGameProviders } from "./gameProviders.actions";
@@ -18,7 +18,7 @@ describe("Models/GameProviders/Sagas", () => {
 
       const response = { foo: "response" };
       expect(generator.next({ response }).value).toEqual(
-        call(normalizeData, response)
+        call(normalizeData, { [`${ENTITY_KEYS.GAME_PROVIDER}s`]: response })
       );
 
       const entities = { someEntity: { id: 1 } };

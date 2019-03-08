@@ -17,13 +17,5 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(http.get).toHaveBeenCalledWith(URL.GAME_PROVIDERS);
     });
-
-    test("should normalize output", async done => {
-      const call = await getGameProviders(http);
-      const output = { [`${ENTITY_KEYS.GAME_PROVIDER}s`]: [] };
-
-      expect(call).toEqual(output);
-      done();
-    });
   });
 });
