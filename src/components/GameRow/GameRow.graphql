@@ -1,0 +1,17 @@
+fragment GameRow_Game on Game {
+  slug
+  name
+  logo
+  logoBackground
+  lobby {
+    bets {
+      min
+      max
+      symbol
+    }
+  }
+  jackpotInfo {
+    id
+    formattedJackpotAmount
+  }
+}

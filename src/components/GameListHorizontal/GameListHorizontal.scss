@@ -12,11 +12,6 @@ $exclusive-game-tile-widths: (
   desktop: 20%,
 );
 
-.c-tile {
-  @include cudl-breakpoint-with($top-game-tile-widths, width);
-  max-width: 160px;
-}
-
 .c-top-game {
   @include cudl-breakpoint-with($top-game-tile-widths, width);
   max-width: 170px;

@@ -3,6 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import ImageLazy from "Components/Image/ImageLazy";
 
+import "./Tile.scss";
+
 type imgixOptsObject = {
   w: number,
   h: number,
@@ -28,11 +30,13 @@ const Tile = ({
 
   return (
     <Flex.Item className="o-flex__item-fixed-size c-tile">
-      <a href={url}>
+      <a href={url} className="o-ratio t-border-r--circle">
         <ImageLazy
+          className="o-ratio__content"
           mark={logo}
           src={background}
           imgixOpts={imgixOpts}
+          dpr={3}
           {...rest}
         />
       </a>
