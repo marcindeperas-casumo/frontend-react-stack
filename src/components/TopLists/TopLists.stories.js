@@ -6,6 +6,7 @@ import TopLists, { getSlug } from "Components/TopLists/TopLists";
 import MockStore from "Components/MockStore";
 import curated from "Models/curated/__mocks__/curated.json";
 import { GAME_LIST_IDS } from "Src/constants";
+import jackpotsQueryMock from "Components/Jackpots/__mocks__/query.jackpots.mock";
 
 const market = "gb_en";
 const slug = getSlug(market);
@@ -39,7 +40,7 @@ const state = {
 };
 
 const TopListsStories = () => (
-  <MockStore state={state}>
+  <MockStore state={state} queryMocks={[jackpotsQueryMock]}>
     <TopLists
       market={market}
       fetchTopLists={() => {}}

@@ -1,12 +1,14 @@
 // @flow
-import React, { PureComponent, type ElementProps } from "react";
-import { Provider } from "react-redux";
-import configureStore from "Src/configureStore";
+import React, { type ElementProps } from "react";
 import { mergeDeepRight } from "ramda";
+import { Provider } from "react-redux";
+import { MockedProvider } from "react-apollo/test-utils";
+import { createReduxStore } from "Services/reduxStore";
 import defaultState from "Models/__mocks__/state.mock";
 
 type Props = {
   state?: Object,
+  queryMocks?: Array<Object>,
 } & ElementProps<any>;
 // ⚠️ This is a utility component that can be used to
 // write stories for connected components that depend
@@ -18,11 +20,16 @@ type Props = {
 //    <MockStore>
 //        <YourConnectedComponent />
 //    </MockStore>
-export default class MockStore extends PureComponent<Props> {
-  render() {
-    const { children, state = {} } = this.props;
-    const store = configureStore(mergeDeepRight(defaultState, state));
+const MockStore = ({ children, state = {}, queryMocks = [] }: Props) => {
+  const store = createReduxStore(mergeDeepRight(defaultState, state));
 
-    return <Provider store={store}>{children}</Provider>;
-  }
-}
+  return (
+    <Provider store={store}>
+      <MockedProvider mocks={queryMocks} addTypename={false}>
+        {children}
+      </MockedProvider>
+    </Provider>
+  );
+};
+
+export default MockStore;

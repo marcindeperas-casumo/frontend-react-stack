@@ -2,14 +2,12 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import Jackpots from "Components/Jackpots";
-import MockStore from "Components/MockStore";
+import Jackpots from "./Jackpots";
+import jackpotsMock from "./__mocks__/response.games.mock";
 
 const stories = storiesOf("Jackpots", module);
 const DefaultStory = () => (
-  <MockStore>
-    <Jackpots />
-  </MockStore>
+  <Jackpots title="Jackpots" jackpots={jackpotsMock} />
 );
 
 stories.add("Default", DefaultStory, info({ text: "Default" }));
