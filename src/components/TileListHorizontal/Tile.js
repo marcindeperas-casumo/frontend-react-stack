@@ -3,6 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import ImageLazy from "Components/Image/ImageLazy";
 
+import "./Tile.scss";
+
 type imgixOptsObject = {
   w: number,
   h: number,
