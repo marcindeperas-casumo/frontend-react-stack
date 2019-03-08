@@ -3,7 +3,11 @@ import defaultHttp from "Services/http";
 
 type HTTPClient = typeof defaultHttp;
 
-const url = `/casino-player/casino-games/api/v1`;
+export const URL = {
+  GAMES: `/casino-player/casino-games/api/v1/games`,
+  GAMES_COUNT: `/casino-player/casino-games/api/v1/games/count`,
+  GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
+};
 
 export const getCasinoPlayerGames = (
   {
@@ -18,7 +22,7 @@ export const getCasinoPlayerGames = (
   http: HTTPClient = defaultHttp
 ) =>
   http.get(
-    `${url}/games`,
+    URL.GAMES,
     {
       page,
       pageSize,
@@ -33,5 +37,9 @@ export const getCasinoPlayerGames = (
   );
 
 export const getCasinoPlayerGamesCount = (http: HTTPClient = defaultHttp) => {
-  return http.get(`${url}/games/count`);
+  return http.get(URL.GAMES_COUNT);
+};
+
+export const getGameProviders = async (http: HTTPClient = defaultHttp) => {
+  return await http.get(URL.GAME_PROVIDERS);
 };
