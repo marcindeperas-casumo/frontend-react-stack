@@ -11,7 +11,7 @@ import DangerousHtml from "Components/DangerousHtml";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
-  game: GameRowGame,
+  game: GameRow_Game,
   onLaunchGame: () => void,
 };
 

@@ -1,9 +1,9 @@
-import { GET_JACKPOTS } from "../JackpotsContainer";
+import { JackpotsQuery } from "../Jackpots.graphql";
 import games from "./response.games.mock";
 
 export default {
   request: {
-    query: GET_JACKPOTS,
+    query: JackpotsQuery,
     variables: {},
   },
   result: {

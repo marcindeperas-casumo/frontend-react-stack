@@ -1,10 +1,10 @@
 // @flow
 import React from "react";
 import { Query } from "react-apollo";
-import gql from "graphql-tag";
 import { path } from "ramda";
-import GameRowGameFragment from "Components/GameRow/GameRow.graphql";
 import Jackpots from "./Jackpots";
+// $FlowIgnore - Flow doesn't understand the queries imported by name.
+import { JackpotsQuery } from "./Jackpots.graphql";
 
 // Refreshing the jackpots by polling the API every 2 seconds.
 // This is far from ideal and is just temporary.
@@ -13,24 +13,11 @@ import Jackpots from "./Jackpots";
 // Related issue: https://github.com/Casumo/Home/issues/26668
 const REFRESH_INTERVAL = 3000;
 
-export const GET_JACKPOTS = gql`
-  query GamesListJackpots {
-    gamesList(listId: "casumoJackpotGames") {
-      title
-      games {
-        ...GameRowGame
-      }
-    }
-  }
-
-  ${GameRowGameFragment}
-`;
-
 class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}
 
 const JackpotsApolloContainer = () => (
   <GamesListJackpotsTypedQuery
-    query={GET_JACKPOTS}
+    query={JackpotsQuery}
     pollInterval={REFRESH_INTERVAL}
   >
     {({ loading, data }) => {

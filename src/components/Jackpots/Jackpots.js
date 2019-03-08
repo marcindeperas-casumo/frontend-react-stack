@@ -20,7 +20,7 @@ const generateColumns = <T>(
 ): Array<Array<T>> => splitEvery(numberByColumns, items);
 
 export type Props = {
-  jackpots: Array<GameRowGame>,
+  jackpots: Array<Jackpots_Game>,
   className?: string,
   title: string,
 };

@@ -1,4 +1,4 @@
-fragment GameRowGame on Game {
+fragment GameRow_Game on Game {
   slug
   name
   logo
