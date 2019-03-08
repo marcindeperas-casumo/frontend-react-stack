@@ -1,5 +1,4 @@
 import { getGameProviders, URL } from "./api.casinoPlayerGames";
-import { ENTITY_KEYS } from "Models/schema";
 
 describe("API/casinoPlayerGames", () => {
   let http;
