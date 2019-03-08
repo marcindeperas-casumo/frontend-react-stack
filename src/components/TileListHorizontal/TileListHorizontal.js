@@ -13,7 +13,6 @@ const PADDING_PER_DEVICE = {
 };
 
 const DEFAULT_SPACING = "default";
-const DEFAULT_TILE = Tile;
 
 type ItemObject = {
   id: string,
@@ -28,8 +27,6 @@ type Props = {
   title: string,
   items: Array<ItemObject>,
   isLoaded: boolean,
-  /** Tile to be rendered */
-  Tile: Function,
 };
 
 class TileListHorizontal extends PureComponent<Props> {
@@ -38,7 +35,6 @@ class TileListHorizontal extends PureComponent<Props> {
     title: "",
     items: [],
     isLoaded: false,
-    Tile: DEFAULT_TILE,
   };
 
   componentDidMount() {
@@ -46,7 +42,7 @@ class TileListHorizontal extends PureComponent<Props> {
   }
 
   render() {
-    const { title, items, isLoaded, Tile } = this.props;
+    const { title, items, isLoaded } = this.props;
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
