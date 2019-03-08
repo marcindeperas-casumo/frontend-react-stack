@@ -5,6 +5,7 @@ import {
   gameEntitiesSelector,
   liveTableEntitiesSelector,
   jackpotEntitiesSelector,
+  gameProviderEntitiesSelector,
   topListIds,
   topListSelectorById,
   topListSelectorByQuery,
@@ -56,6 +57,16 @@ describe("Schema selectors", () => {
     };
 
     expect(jackpotEntitiesSelector(state)).toEqual({ j1: 1 });
+  });
+
+  test("gameProviderEntitiesSelector", () => {
+    const state = {
+      schema: { gameProvider: { "casumo-services-ltd-nyx": 1 } },
+    };
+
+    expect(gameProviderEntitiesSelector(state)).toEqual({
+      "casumo-services-ltd-nyx": 1,
+    });
   });
 
   test("topListIds", () => {

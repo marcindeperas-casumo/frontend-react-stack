@@ -2508,6 +2508,50 @@ export default {
     },
   },
   schema: {
+    gameProvider: {
+      "casumo-services-ltd-nyx": {
+        id: "0c900240-4904-11e6-a7a2-005056a975b1",
+        name: "nyx",
+        inMaintenance: false,
+        slug: "casumo-services-ltd-nyx",
+        background:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
+        url: "/en/games/provider/nyx",
+      },
+      "casumo-services-ltd-thunderkick": {
+        id: "0d7382f0-d94d-11e3-a4fd-005056a03af2",
+        name: "thunderkick",
+        inMaintenance: false,
+        slug: "casumo-services-ltd-thunderkick",
+        background:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick-bg.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick.png",
+        url: "/en/games/provider/thunderkick",
+      },
+      "casumo-services-ltd-microgaming": {
+        id: "1ad9a810-2425-11e5-bd73-005056a03973",
+        name: "microgaming",
+        inMaintenance: false,
+        slug: "casumo-services-ltd-microgaming",
+        background:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming-bg1.png",
+        logo:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming1.png",
+        url: "/en/games/provider/microgaming",
+      },
+      "casumo-services-ltd-redtiger": {
+        id: "32554540-d2db-11e8-bd8b-0242ac110003",
+        name: "redtiger",
+        inMaintenance: false,
+        slug: "casumo-services-ltd-redtiger",
+        background:
+          "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger-bg1.png",
+        logo: "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger1.png",
+        url: "/en/games/provider/redtiger",
+      },
+    },
     game: {
       bloodsuckers: {
         name: "Blood Suckers",
