@@ -31,7 +31,7 @@ export const DismissButton = ({
   <Flex
     align="center"
     justify="center"
-    className="c-modal__dismiss-button t-color-white t-background-grey-dark-4 t-border-r--circle"
+    className="c-modal__dismiss-button t-color-white t-background-grey-dark-3 t-border-r--circle"
     onClick={onClick}
     style={{ visibility: isVisible ? "visible" : "hidden" }}
   >
