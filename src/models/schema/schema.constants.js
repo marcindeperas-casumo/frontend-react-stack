@@ -11,5 +11,6 @@ export const ENTITY_KEYS = {
   GAME: "game",
   GAME_LIST: "gameList",
   CMS: "cms",
+  GAME_PROVIDER: "gameProvider",
   PLAYER_GAMES: "playerGames",
 };

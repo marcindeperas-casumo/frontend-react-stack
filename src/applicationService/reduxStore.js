@@ -5,12 +5,12 @@ import rootReducer from "Models/rootReducer";
 import rootSaga from "Models/rootSaga";
 import logger from "Services/logger";
 import createErrorLoggerMiddleware from "Lib/logger.middleware";
-import config from "./config";
+import config from "Src/config";
 import { isEnvProduction } from "Utils";
 
 const { sanitizedStateKeys } = config;
 
-const configureStore = preloadedState => {
+export const createReduxStore = preloadedState => {
   const composeEnhancers = isEnvProduction()
     ? compose
     : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -33,8 +33,8 @@ const configureStore = preloadedState => {
 
   if (module.hot) {
     // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
-    module.hot.accept("./models/rootReducer", () => {
-      const nextRootReducer = require("./models/rootReducer").default;
+    module.hot.accept("../models/rootReducer", () => {
+      const nextRootReducer = require("../models/rootReducer").default;
       store.replaceReducer(nextRootReducer);
     });
 
@@ -52,4 +52,4 @@ const configureStore = preloadedState => {
   return store;
 };
 
-export default configureStore;
+export default createReduxStore();
