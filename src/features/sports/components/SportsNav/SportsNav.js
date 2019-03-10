@@ -22,21 +22,25 @@ type SportsNavProps = {
 
 export const USER_NAVIGATION_QUERY = gql`
   query UserNavigation {
-    userNavigation {
-      name
-      id
-      clientPath
-      termKey
-      flagEmoji
-      icon
-      canSelectSubgroups
-
-      groups {
+    sportsNavigation {
+      sport {
         name
         id
         clientPath
         termKey
         flagEmoji
+        icon
+        canSelectSubgroups
+      }
+
+      subNav {
+        competition {
+          name
+          id
+          clientPath
+          termKey
+          flagEmoji
+        }
       }
     }
   }
@@ -84,30 +88,30 @@ class SportsNav extends React.Component<SportsNavProps> {
   onNavItemSelected = (navItem: SportsNavItemType) =>
     onNavItemSelected(this.props.currentHash, navItem, this.context.client);
 
-  mapGroupToNavItem = (
-    group: UserNavigation_userNavigation
+  mapToNavItem = (
+    item: UserNavigation_sportsNavigation
   ): SportsNavItemType => ({
-    text: group.name,
-    path: group.clientPath,
-    key: group.termKey,
+    text: item.sport.name,
+    path: item.sport.clientPath,
+    key: item.sport.termKey,
     icon: (
       <img
         className="c-sports-nav-tab__icon"
-        src={group.icon}
-        alt={group.name}
+        src={item.sport.icon}
+        alt={item.sport.name}
       />
     ),
-    canEdit: group.canSelectSubgroups,
-    subNav: (group.groups || []).map(subgroup => ({
+    canEdit: item.sport.canSelectSubgroups,
+    subNav: item.subNav.map(subgroup => ({
       text: (
         <>
-          {subgroup.flagEmoji}
-          {subgroup.name}
+          {subgroup.competition.flagEmoji}
+          {subgroup.competition.name}
         </>
       ),
-      path: subgroup.clientPath,
-      parentPath: group.clientPath,
-      key: group.termKey,
+      path: subgroup.competition.clientPath,
+      parentPath: item.sport.clientPath,
+      key: item.sport.termKey,
       canEdit: false,
     })),
   });
@@ -120,10 +124,7 @@ class SportsNav extends React.Component<SportsNavProps> {
     }
 
     return (
-      <UserNavigationTypedQuery
-        query={USER_NAVIGATION_QUERY}
-        fetchPolicy="network-only"
-      >
+      <UserNavigationTypedQuery query={USER_NAVIGATION_QUERY}>
         {({ loading, error, data }) => {
           // show skeleton if loading or refetching after updating favourites
           if (loading) {
@@ -134,9 +135,9 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <SportsNavSkeleton />;
           }
 
-          if (data && data.userNavigation) {
-            const navItems: Array<SportsNavItemType> = data.userNavigation.map(
-              this.mapGroupToNavItem
+          if (data && data.sportsNavigation) {
+            const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
+              this.mapToNavItem
             );
 
             if (navItems.length === 0) {
