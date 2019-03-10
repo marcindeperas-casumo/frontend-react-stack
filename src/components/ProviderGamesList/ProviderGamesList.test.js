@@ -2,6 +2,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
 import MockStore from "Components/MockStore/index";
+import defaultState from "Models/__mocks__/state.mock";
 
 describe("ProviderGamesList", () => {
   test("renders skeleton while loading", () => {
@@ -35,38 +36,9 @@ describe("ProviderGamesList", () => {
       name: "nyx",
       games: ["bloodsuckers", "easter-island"],
     };
-    const state = {
-      schema: {
-        game: {
-          bloodsuckers: {
-            name: "Blood Suckers",
-            slug: "bloodsuckers",
-            logoBackground:
-              "https://cms.casumo.com/wp-content/uploads/2014/06/BloodSuckers_Thumb.jpg",
-            logo:
-              "https://cms.casumo.com/wp-content/uploads/2014/02/BloodSuckers_Logo.png",
-            hasPlayForFun: true,
-            inMaintenanceMode: false,
-            jackpotId: null,
-            tableId: null,
-          },
-          "easter-island": {
-            name: "Easter Island",
-            slug: "easter-island",
-            logoBackground:
-              "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_thumbnail.jpg",
-            logo:
-              "https://cms.casumo.com/wp-content/uploads/2018/03/easter_island_logo.png",
-            hasPlayForFun: true,
-            inMaintenanceMode: false,
-            jackpotId: null,
-            tableId: null,
-          },
-        },
-      },
-    };
+
     const rendered = mount(
-      <MockStore state={state}>
+      <MockStore state={defaultState}>
         <ProviderGamesList provider={provider} areGamesLoaded={true} />
       </MockStore>
     );
