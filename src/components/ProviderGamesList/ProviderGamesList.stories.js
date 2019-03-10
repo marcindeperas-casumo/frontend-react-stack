@@ -30,7 +30,10 @@ stories.add(
   "ProviderGamesList (Presentational)",
   () => (
     <MockStore state={{ game: defaultState.schema.game }}>
-      <ProviderGamesListPresentational isLoaded={true} provider={provider} />
+      <ProviderGamesListPresentational
+        areGamesLoaded={true}
+        provider={provider}
+      />
     </MockStore>
   ),
   info({ text: "Default" })

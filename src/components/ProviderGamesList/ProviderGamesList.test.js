@@ -5,7 +5,7 @@ import MockStore from "Components/MockStore/index";
 
 describe("ProviderGamesList", () => {
   test("renders skeleton while loading", () => {
-    const rendered = shallow(<ProviderGamesList isLoaded={false} />);
+    const rendered = shallow(<ProviderGamesList areGamesLoaded={false} />);
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
 
@@ -67,7 +67,7 @@ describe("ProviderGamesList", () => {
     };
     const rendered = mount(
       <MockStore state={state}>
-        <ProviderGamesList provider={provider} isLoaded={true} />
+        <ProviderGamesList provider={provider} areGamesLoaded={true} />
       </MockStore>
     );
 
