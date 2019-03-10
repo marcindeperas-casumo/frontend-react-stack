@@ -7,7 +7,6 @@ import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 import {
   fetchGameProviders,
   areGameProvidersLoaded,
-  gameProviderBySlug,
   types as gameProviderTypes,
 } from "Models/gameProviders";
 import { types } from "./games.constants";
