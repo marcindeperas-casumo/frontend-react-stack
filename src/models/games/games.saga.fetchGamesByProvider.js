@@ -1,16 +1,29 @@
 import { call, put, take, select } from "redux-saga/effects";
+import { isEmpty, isNil } from "ramda";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { sessionId } from "Models/handshake";
 import { initiateFetchGamesByProvider } from "./games.actions";
 import {
-  getGameProvider,
+  gameProviderBySlug,
+  fetchGameProviders,
+  areGameProvidersLoaded,
   types as gameProviderTypes,
 } from "Models/gameProviders";
 import { types } from "./games.constants";
+import { waitForSelector } from "Utils/";
+import { requestError } from "Models/fetch";
 
 export function* fetchGamesByProviderSaga({ provider }) {
-  yield put(getGameProvider(provider));
-  yield take(gameProviderTypes.GET_GAME_PROVIDER_SUCCESS);
+  yield put(fetchGameProviders());
+  yield call(waitForSelector, areGameProvidersLoaded);
+
+  const providerData = yield select(gameProviderBySlug(provider));
+  if (isNil(providerData) || isEmpty(providerData)) {
+    yield put(
+      requestError(gameProviderTypes.GET_GAME_PROVIDER_ERROR, "Provider error")
+    );
+    return;
+  }
 
   const session = yield select(sessionId);
   yield put(initiateFetchGamesByProvider({ provider, sessionId: session }));

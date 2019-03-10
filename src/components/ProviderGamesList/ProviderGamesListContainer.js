@@ -17,7 +17,7 @@ type Props = {
 
 const ProviderGamesListConnected = connect(
   (state, { provider }) => ({
-    isLoaded: areProviderGamesLoaded(provider)(state),
+    areGamesLoaded: areProviderGamesLoaded(provider)(state),
     provider: gameProviderBySlug(provider)(state),
     error: isFetchError(types.GET_GAME_PROVIDER_ERROR)(state),
   }),

@@ -1,9 +1,13 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { call, put, take } from "redux-saga/effects";
+import { requestError } from "Models/fetch";
+import { waitForSelector } from "Utils/";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 import {
-  getGameProvider,
+  fetchGameProviders,
+  areGameProvidersLoaded,
+  gameProviderBySlug,
   types as gameProviderTypes,
 } from "Models/gameProviders";
 import { types } from "./games.constants";
@@ -13,17 +17,40 @@ describe("Models/Games/Sagas", () => {
   describe("fetchGamesByProvider()", () => {
     const provider = "netent";
     const sessionId = "123";
-    const generator = cloneableGenerator(fetchGamesByProviderSaga)({
-      provider,
+    let generator;
+
+    beforeEach(() => {
+      generator = cloneableGenerator(fetchGamesByProviderSaga)({
+        provider,
+      });
+    });
+
+    test("should abort on when provider is empty", () => {
+      expect(generator.next().value).toEqual(put(fetchGameProviders()));
+      expect(generator.next().value).toEqual(
+        call(waitForSelector, areGameProvidersLoaded)
+      );
+      const emptyProvider = {};
+      generator.next();
+
+      expect(generator.next(emptyProvider).value).toEqual(
+        put(
+          requestError(
+            gameProviderTypes.GET_GAME_PROVIDER_ERROR,
+            "Provider error"
+          )
+        )
+      );
     });
 
     test("success path", () => {
-      expect(generator.next().value).toEqual(put(getGameProvider(provider)));
+      expect(generator.next().value).toEqual(put(fetchGameProviders()));
       expect(generator.next().value).toEqual(
-        take(gameProviderTypes.GET_GAME_PROVIDER_SUCCESS)
+        call(waitForSelector, areGameProvidersLoaded)
       );
-      //Yield the selector
+      const providerData = { foo: "bar" };
       generator.next();
+      generator.next(providerData);
 
       expect(generator.next(sessionId, provider).value).toEqual(
         put(

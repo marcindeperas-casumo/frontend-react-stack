@@ -12,13 +12,3 @@ export const initiateFetchGameProviders = () => ({
 export const fetchGameProviders = () => ({
   type: types.FETCH_GAME_PROVIDERS_START,
 });
-
-export const getGameProvider = provider => ({
-  type: types.GET_GAME_PROVIDER,
-  provider,
-});
-
-export const getGameProviderSuccess = provider => ({
-  type: types.GET_GAME_PROVIDER_SUCCESS,
-  provider,
-});

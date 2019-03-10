@@ -16,7 +16,7 @@ type Props = {
   /** the function that fetches the games */
   fetchGames: () => void,
   /**  has the game list completed loading? */
-  isLoaded: boolean,
+  areGamesLoaded: boolean,
   error?: string,
   provider: ProviderObject,
 };
@@ -24,7 +24,7 @@ type Props = {
 class ProviderGamesList extends PureComponent<Props> {
   static defaultProps = {
     fetchGames: () => {},
-    isLoaded: false,
+    areGamesLoaded: false,
     provider: {},
   };
 
@@ -33,7 +33,7 @@ class ProviderGamesList extends PureComponent<Props> {
   }
 
   render() {
-    const { isLoaded, provider, error } = this.props;
+    const { areGamesLoaded, provider, error } = this.props;
 
     if (provider.inMaintenance) {
       return <ErrorMessage errorMessage={"Provider in maintenance"} />;
@@ -43,7 +43,7 @@ class ProviderGamesList extends PureComponent<Props> {
       return <ErrorMessage errorMessage={error} />;
     }
 
-    if (!isLoaded) {
+    if (!areGamesLoaded) {
       return <GameListSkeleton />;
     }
 
