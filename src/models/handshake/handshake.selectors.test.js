@@ -1,4 +1,4 @@
-import stateMock from "Models/__mocks__/state.mock";
+import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
 import {
   handshakeSelector,
   applicationHandshakeSelector,
@@ -15,6 +15,7 @@ import {
   isGamesHandshakeLoaded,
   getLanguage,
   getCmsHash,
+  hasMadeFirstDeposit,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -265,6 +266,18 @@ describe("Handshake selectors", () => {
     test("returns the CMS hash for the current player language", () => {
       // The root-content-hash for "en"
       expect(getCmsHash(stateMock)).toBe("5899f873666807d49078629b5c58ca81");
+    });
+  });
+
+  describe("hasMadeFirstDeposit", () => {
+    test("return false when firstDepositDate is null", () => {
+      expect(hasMadeFirstDeposit(stateMock)).toBe(false);
+    });
+
+    test("returns true when firstDepositDate is not null", () => {
+      const state = getStateMock({ firstDepositDate: 12345 });
+
+      expect(hasMadeFirstDeposit(state)).toBe(true);
     });
   });
 });

@@ -29,6 +29,7 @@ import {
   takeChannel,
   takeMessageFromChannel,
 } from "Models/cometd";
+import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -60,7 +61,7 @@ export default function* rootSaga(dispatch) {
       cometdChannels.PLAYER,
       cometdMessages.DEPOSIT_CONFIRMED
     ),
-    appSaga
+    updatePlayerFirstDepositDateSaga
   );
   yield fork(
     takeEvery,

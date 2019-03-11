@@ -1,4 +1,4 @@
-export default {
+export const getStateMock = ({ firstDepositDate = null } = {}) => ({
   migrationComponents: {
     activeComponents: ["games-top"],
   },
@@ -398,7 +398,7 @@ export default {
               referrer: "SEO",
             },
             registrationDate: 1530013853000,
-            firstDepositDate: null,
+            firstDepositDate,
             bonus: null,
             blocked: false,
             market: "gb_en",
@@ -4727,4 +4727,6 @@ export default {
       },
     },
   },
-};
+});
+
+export default getStateMock();
