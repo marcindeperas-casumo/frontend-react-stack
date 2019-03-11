@@ -6,6 +6,7 @@ import classNames from "classnames";
 import SumoAvatar from "./sumo-avatar.svg";
 
 type Props = {
+  /** Level of belt (0-7) */
   beltLevel: number,
 };
 
