@@ -109,5 +109,5 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 export default connect(state => ({
   currency: currency(state),
   market: country(state).toUpperCase(),
-  locale: `${country(state)}_${getLanguage(state).toUpperCase()}`,
+  locale: `${getLanguage(state)}_${country(state).toUpperCase()}`,
 }))(LaunchableKambiClient);
