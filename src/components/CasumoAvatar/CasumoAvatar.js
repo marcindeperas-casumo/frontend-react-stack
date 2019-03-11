@@ -17,6 +17,7 @@ type BeltType =
   | "sensei";
 
 type Props = {
+  /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
 };
 
