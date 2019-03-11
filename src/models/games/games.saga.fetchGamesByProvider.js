@@ -1,7 +1,7 @@
 import { call, put, take, select } from "redux-saga/effects";
 import { isEmpty, isNil } from "ramda";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { sessionId } from "Models/handshake";
+import { sessionId as session } from "Models/handshake";
 import { initiateFetchGamesByProvider } from "./games.actions";
 import {
   gameProviderBySlug,
@@ -25,8 +25,8 @@ export function* fetchGamesByProviderSaga({ provider }) {
     return;
   }
 
-  const session = yield select(sessionId);
-  yield put(initiateFetchGamesByProvider({ provider, sessionId: session }));
+  const sessionId = yield select(session);
+  yield put(initiateFetchGamesByProvider({ provider, sessionId }));
 
   // pause execution until request is completed, normalize and update the store
   const { response } = yield take(types.FETCH_GAMES_BY_PROVIDER_COMPLETE);
