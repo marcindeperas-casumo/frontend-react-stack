@@ -1,0 +1,11 @@
+$tile-widths: (
+  mobile: 43%,
+  phablet: 26%,
+  tablet: 26%,
+  desktop: 15%,
+);
+
+.c-tile {
+  @include cudl-breakpoint-with($tile-widths, width);
+  max-width: 160px;
+}

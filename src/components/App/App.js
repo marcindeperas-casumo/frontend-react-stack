@@ -8,6 +8,7 @@ import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsSh
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
+import DataProvider from "Components/DataProvider";
 
 class App extends PureComponent {
   componentDidMount() {
@@ -25,11 +26,13 @@ class App extends PureComponent {
     return (
       <MigrationComponentManager activeKeys={activeComponents}>
         <MigrationComponent migrationKey={["games-top", "games"]}>
-          <LazyPortal
-            hostElementId="react-host-games-lists"
-            loader={() => import("Components/TopLists")}
-            fallback={<TopListsSkeleton />}
-          />
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-games-lists"
+              loader={() => import("Components/TopLists")}
+              fallback={<TopListsSkeleton />}
+            />
+          </DataProvider>
         </MigrationComponent>
         <MigrationComponent migrationKey={["must-drop-jackpots"]}>
           <LazyPortal
