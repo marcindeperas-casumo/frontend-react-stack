@@ -10,7 +10,7 @@ import {
   types as gameProviderTypes,
 } from "Models/gameProviders";
 import { types } from "./games.constants";
-import { waitForSelector } from "Utils/";
+import { waitForSelector } from "Utils";
 import { requestError } from "Models/fetch";
 
 export function* fetchGamesByProviderSaga({ provider }) {

@@ -1,7 +1,7 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { call, put, take } from "redux-saga/effects";
 import { requestError } from "Models/fetch";
-import { waitForSelector } from "Utils/";
+import { waitForSelector } from "Utils";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 import {
