@@ -4,6 +4,8 @@ import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
+import TrackProvider from "Components/TrackProvider";
+import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import List from "@casumo/cmp-list";
 import GamesVirtualList from "Components/GamesVirtualList";
 import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
@@ -47,7 +49,9 @@ export default class GameSearch extends React.PureComponent<Props> {
       );
     } else if (searchResults.length) {
       return (
-        <>
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SEARCH_GAMES }}
+        >
           <List
             className="u-padding-top u-padding-horiz--md"
             items={searchResults}
@@ -57,20 +61,24 @@ export default class GameSearch extends React.PureComponent<Props> {
             )}
           />
           {searchResults.length === 1 && <GameSearchSuggestionsList />}
-        </>
+        </TrackProvider>
       );
     } else if (query.length) {
       return (
         <>
-          <SearchNotFound contentField={"no_results_continue_playing"} />
+          <SearchNotFound />
           <GameSearchSuggestionsList />
         </>
       );
     } else {
       return (
-        <div className="c-game-search-virtual-list">
-          <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
-        </div>
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
+        >
+          <div className="c-game-search-virtual-list">
+            <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+          </div>
+        </TrackProvider>
       );
     }
   };
