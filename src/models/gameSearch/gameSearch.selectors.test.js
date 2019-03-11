@@ -63,6 +63,7 @@ describe("Models/GameSearch/Selectors", () => {
       expect(gameSearchSuggestedList(state)).toEqual({
         games: ["foo"],
         title: "Continue Playing",
+        location: "latestPlayedGames",
       });
     });
 
@@ -73,6 +74,7 @@ describe("Models/GameSearch/Selectors", () => {
       expect(gameSearchSuggestedList(state)).toEqual({
         games: ["bar"],
         title: "Popular Games",
+        location: "popularGames",
       });
     });
   });
