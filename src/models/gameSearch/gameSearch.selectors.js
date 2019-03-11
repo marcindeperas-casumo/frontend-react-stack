@@ -48,3 +48,22 @@ export const gameSearchSuggestedList = createSelector(
           location: EVENT_LOCATIONS.POPULAR_GAMES,
         }
 );
+
+export const searchNotFoundContent = createSelector(
+  getField({
+    slug: cmsPageSlug,
+    field: "no_results_continue_playing",
+    defaultValue:
+      "Find another game or continue playing your last played games",
+  }),
+  getField({
+    slug: cmsPageSlug,
+    field: "no_results_popular",
+    defaultValue: "Find another game or try something popular",
+  }),
+  gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
+  (contentContinuePlaying, contentPopular, latest) =>
+    latest.games && latest.games.length
+      ? contentContinuePlaying
+      : contentPopular
+);

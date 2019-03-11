@@ -4,6 +4,7 @@ import {
   gameSearchResults,
   gameSearchQuerySelector,
   gameSearchSuggestedList,
+  searchNotFoundContent,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -76,6 +77,34 @@ describe("Models/GameSearch/Selectors", () => {
         title: "Popular Games",
         location: "popularGames",
       });
+    });
+  });
+
+  describe("searchNotFoundContent", () => {
+    test("returns contentContinuePlaying gameList if latestPlayed exists and contains games", () => {
+      const gameList = { [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(searchNotFoundContent(state)).toEqual(
+        "Find another game or continue playing your last played games"
+      );
+    });
+
+    test("returns contentPopular if latestPlayed not in state", () => {
+      const state = {};
+
+      expect(searchNotFoundContent(state)).toEqual(
+        "Find another game or try something popular"
+      );
+    });
+
+    test("returns contentPopular if latestPlayed is in state but empty", () => {
+      const gameList = { [GAME_LIST_IDS.LATEST_PLAYED]: { games: [] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(searchNotFoundContent(state)).toEqual(
+        "Find another game or try something popular"
+      );
     });
   });
 });
