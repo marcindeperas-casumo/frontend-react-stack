@@ -1,0 +1,11 @@
+.c-progress-bar {
+    background-color: rgba(0,0,0,0.3);
+}
+.c-progress-bar__filler {
+    position: relative;
+    transition: width .2s ease-in;
+    background-color: currentColor;
+}
+.c-progress-bar__filler__highlight {
+    margin: 2px;
+}
