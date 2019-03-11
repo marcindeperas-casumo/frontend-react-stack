@@ -10,7 +10,7 @@ describe("GameSearch", () => {
         gameSearchSuggestedList={{
           title: "Latest Played",
           games: ["starburst"],
-          location: "whatever",
+          location: "latestPlayedGames",
         }}
       />
     );
@@ -20,7 +20,6 @@ describe("GameSearch", () => {
       {
         title: "Latest Played",
         data: ["starburst"],
-        location: "whatever",
       },
     ]);
   });
