@@ -11,14 +11,14 @@ type Props = {
 
 export const getClassModifier = (beltLevel: number) => {
   const beltLevelsAsColours = [
-    "brown-light-2",
-    "grey-light-1",
-    "yellow",
-    "red",
-    "blue",
-    "purple",
-    "black",
-    "black",
+    "brown-light-2", // 0: rope
+    "grey-light-1", // 1: white
+    "yellow", // 2: yellow
+    "red", // 3: red
+    "blue", // 4: blue
+    "purple", // 5: purple
+    "black", // 6: black
+    "black", // 7: sensei
   ];
   const className = beltLevelsAsColours[beltLevel] || beltLevelsAsColours[0];
   return `t-color-${className}`;
