@@ -21,6 +21,7 @@ export const getClassModifier = (beltLevel: number) => {
     "black", // 7: sensei
   ];
   const className = beltLevelsAsColours[beltLevel] || beltLevelsAsColours[0];
+
   return `t-color-${className}`;
 };
 
