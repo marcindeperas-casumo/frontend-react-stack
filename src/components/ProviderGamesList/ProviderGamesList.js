@@ -4,7 +4,7 @@ import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
 import Text from "@casumo/cmp-text";
-import ErrorMessage from "Features/sports/components/ErrorMessage/index";
+import ErrorMessage from "Components/ErrorMessage";
 
 type ProviderObject = {
   inMaintenance: boolean,
