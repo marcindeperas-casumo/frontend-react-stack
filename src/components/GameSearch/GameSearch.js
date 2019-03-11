@@ -66,7 +66,7 @@ export default class GameSearch extends React.PureComponent<Props> {
     } else if (query.length) {
       return (
         <>
-          <SearchNotFound contentField={"no_results_continue_playing"} />
+          <SearchNotFound />
           <GameSearchSuggestionsList />
         </>
       );
