@@ -19,7 +19,11 @@ export const SetFavouritesMutation = (
   <Mutation
     {...props}
     mutation={mutations.SET_FAVOURITES}
-    refetchQueries={() => ["UserNavigation"]}
+    refetchQueries={() => [
+      "UserNavigation",
+      "LaunchableKambiClientQuery",
+      "SportsShellQuery",
+    ]}
   >
     {props.children}
   </Mutation>
