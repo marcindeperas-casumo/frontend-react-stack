@@ -46,7 +46,13 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderSkeleton = () => <CuratedCardSkeleton />;
 
-  // TODO: Move URLs to a central configuration
+  /* TODO: Move URLs to a central configuration
+     For the time being these are the assumptions:
+     If not game
+     Then promotion, if not promotion
+     by default the redirection url will be deposit
+     This needs refactoring so that curated card will handle different types of curated card types
+  */
   getLink() {
     const { gameData, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
@@ -61,7 +67,7 @@ export default class CuratedCard extends PureComponent<Props> {
       return `/en/promotions/${promotionSlug}`;
     }
 
-    return "/en/promotions";
+    return "/en/cash/deposit";
   }
 
   renderCard = () => {
