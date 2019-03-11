@@ -8,5 +8,6 @@ export const types = {
 //TODO: add the rest of the keys and replace them where required.
 // to be taken care of by a seperate PR
 export const APP_COMMON_KEYS = {
+  PLAYERS: "common/composition/players",
   AB_TESTING: "common/ABTesting",
 };

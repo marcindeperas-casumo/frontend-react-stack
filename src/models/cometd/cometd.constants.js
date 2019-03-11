@@ -2,7 +2,7 @@ export const TYPES = {
   COMETD_SUBSCRIBE: "COMETD/SUBSCRIBE",
   COMETD_UNSUBSCRIBE: "COMETD/UNSUBSCRIBE",
   COMETD_MESSAGE: "COMETD/MESSAGE",
-  CANCEL: "CANCEL",
+  CANCEL: "COMETD/CANCEL",
 };
 
 // Make sure that you record all channel
@@ -16,4 +16,6 @@ export const CHANNELS = {
 
 export const MESSAGES = {
   DEPOSIT_CONFIRMED: "depositConfirmed",
+  NOTIFICATION_ADDED: "notificationAdded",
+  ENRICHED_DEPOSIT_CONFIRMED: "enrichedDepositConfirmed",
 };
