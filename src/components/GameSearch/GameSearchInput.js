@@ -58,7 +58,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     query && this.trackSearchInitiated(query);
 
     this.setState({
-      query: query,
+      query,
     });
   };
 
