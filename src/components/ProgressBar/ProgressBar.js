@@ -1,40 +1,41 @@
 // @flow
 import React, { PureComponent } from "react";
-import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
 
 import "./ProgressBar.scss";
 
 type Props = {
   progress: number,
+  className?: string,
 };
 
-const Filler = (props: Props) => {
+export const ProgressBarFiller = (props: Props) => {
   return (
-    <Flex
-      className="c-progress-bar__filler t-border-r--pill"
-      align="center"
-      justify="center"
+    <div
+      className={classNames(
+        "c-progress-bar__filler t-border-r--pill",
+        props.className
+      )}
       style={{ width: `${props.progress}%` }}
     >
-      <Flex.Block>
-        <div className="c-progress-bar__filler__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill t-background-yellow-light-2" />
-      </Flex.Block>
-    </Flex>
+      <div>
+        <div className="c-progress-bar__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill" />
+      </div>
+    </div>
   );
 };
 
-class ProgressBar extends PureComponent<Props> {
+export class ProgressBar extends PureComponent<Props> {
   render() {
     return (
-      <div className="c-progress-bar u-padding--sm t-color-yellow t-border-r--pill">
-        <Filler progress={this.props.progress} />
+      <div className="c-progress-bar u-padding--sm t-border-r--pill">
+        <ProgressBarFiller {...this.props} />
       </div>
     );
   }
 
   static defaultProps = {
     progress: 0,
+    className: "t-color-yellow",
   };
 }
-
-export default ProgressBar;

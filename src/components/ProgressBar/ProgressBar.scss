@@ -2,10 +2,10 @@
     background-color: rgba(0,0,0,0.3);
 }
 .c-progress-bar__filler {
-    position: relative;
-    transition: width .2s ease-in;
     background-color: currentColor;
+    transition: width .2s ease-in;
 }
-.c-progress-bar__filler__highlight {
+.c-progress-bar__highlight {
+    background-color: rgba(255,255,255,0.3);
     margin: 2px;
 }
