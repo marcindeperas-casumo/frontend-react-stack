@@ -9,4 +9,4 @@ export const beltToColourMap = {
   sensei: "black",
 };
 
-export const levelToBeltMap = Object.keys(beltToColourMap);
+export const belts = Object.keys(beltToColourMap);

@@ -4,14 +4,13 @@ import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
 import info from "Storybook/storybookInfo";
 import { CasumoAvatar } from "./CasumoAvatar";
-import { levelToBeltMap } from "./beltUtils";
+import { belts } from "./beltUtils";
 
 const stories = storiesOf("CasumoAvatar", module);
 
 stories.add(
   "Default",
   () => {
-    const belts = levelToBeltMap;
     const belt = select("Belt level", belts, belts[0]);
 
     return (
