@@ -7,12 +7,16 @@ import {
 } from "Models/handshake";
 import { complement } from "ramda";
 
-export function* updatePlayerFirstDepositDateSaga() {
-  const isFirstDeposit = yield select(complement(hasMadeFirstDeposit));
+export function* updatePlayerFirstDepositDateSaga(depositDate = Date.now()) {
+  const hasNeverMadeADeposit = yield select(complement(hasMadeFirstDeposit));
 
-  if (isFirstDeposit) {
+  if (hasNeverMadeADeposit) {
     const playerInfo = yield select(playerSelector);
-    const firstDepositDate = Date.now();
+    /*
+      We are 'faking' the first-deposit date as this is currently not included
+      in the CometD response message.
+    */
+    const firstDepositDate = depositDate;
 
     const player = {
       [playerInfo.playerId]: {

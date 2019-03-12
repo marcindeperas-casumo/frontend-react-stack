@@ -1,24 +1,41 @@
-import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
+import { put } from "redux-saga/effects";
+import {
+  updatePlayerFirstDepositDateSaga,
+  updateHandshake,
+  APP_COMMON_KEYS,
+} from "Models/handshake";
+import { getStateMock } from "Models/__mocks__/state.mock";
 
 describe("handshake saga update", () => {
-  test("should call action updateFirstDepositDate", () => {
-    const isFirstDeposit = true;
-    const player = { playerId: 123, firstDepositDate: 5555555 };
-    const generator = updatePlayerFirstDepositDateSaga();
+  test("should update the handshake if the user has never made a deposit", () => {
+    const depositDate = 111;
+    const generator = updatePlayerFirstDepositDateSaga(depositDate);
+    const hasNeverMadeADeposit = true;
+    const player = { playerId: 123, firstDepositDate: depositDate };
+
+    const app = {
+      [APP_COMMON_KEYS.PLAYERS]: {
+        players: {
+          [player.playerId]: {
+            ...player,
+          },
+        },
+      },
+    };
 
     generator.next();
-    generator.next(isFirstDeposit);
-    generator.next(player);
+    generator.next(hasNeverMadeADeposit);
 
+    expect(generator.next(player).value).toEqual(put(updateHandshake({ app })));
     expect(generator.next().done).toBe(true);
   });
 
-  test("should not call action updateFirstDepositDate", () => {
-    const isFirstDeposit = false;
+  test("should not update handshake if the has done a deposit previously", () => {
     const generator = updatePlayerFirstDepositDateSaga();
+    const hasNeverMadeADeposit = false;
 
     generator.next();
-    generator.next(isFirstDeposit);
+    generator.next(hasNeverMadeADeposit);
 
     expect(generator.next().done).toBe(true);
   });

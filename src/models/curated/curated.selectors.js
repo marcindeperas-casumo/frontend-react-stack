@@ -22,9 +22,9 @@ export const curatedSlugSelector = slug =>
         const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
 
         return `${CURATED_SLUG}.${cardToShow}`;
-      } else {
-        return `${CURATED_SLUG}.${slug}`;
       }
+
+      return `${CURATED_SLUG}.${slug}`;
     }
   );
 
