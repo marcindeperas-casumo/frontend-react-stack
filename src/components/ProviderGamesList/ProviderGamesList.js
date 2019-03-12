@@ -5,6 +5,8 @@ import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
 import Text from "@casumo/cmp-text";
 import ErrorMessage from "Components/ErrorMessage";
+import { EVENT_PROPS } from "Src/constants";
+import TrackProvider from "Components/TrackProvider";
 
 type ProviderObject = {
   inMaintenance: boolean,
@@ -58,7 +60,13 @@ class ProviderGamesList extends PureComponent<Props> {
           {provider.name}
         </Text>
         <div className="u-padding-horiz--md u-padding-bottom--md">
-          <List items={provider.games} render={id => <GameRow id={id} />} />
+          <TrackProvider
+            data={{
+              [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
+            }}
+          >
+            <List items={provider.games} render={id => <GameRow id={id} />} />
+          </TrackProvider>
         </div>
       </div>
     );
