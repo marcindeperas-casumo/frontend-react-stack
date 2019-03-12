@@ -1,5 +1,6 @@
 // @flow
 import defaultHttp from "Services/http";
+import { join } from "ramda";
 
 type HTTPClient = typeof defaultHttp;
 
@@ -14,12 +15,12 @@ export const getCasinoPlayerGames = (
     page = 0,
     pageSize = 20,
     sessionId,
-    provider,
+    providers = [],
   }: {
     page: number,
     pageSize: number,
     sessionId: string,
-    provider: string,
+    providers: Array<string>,
   },
   http: HTTPClient = defaultHttp
 ) =>
@@ -28,7 +29,7 @@ export const getCasinoPlayerGames = (
     {
       page,
       pageSize,
-      providerSlug: provider,
+      providerSlugs: join(",")(providers),
     },
     sessionId
       ? {

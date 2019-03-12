@@ -25,7 +25,7 @@ export const initiateFetchGamesByProvider = ({ provider, sessionId }) => {
     name: types.FETCH_GAMES_BY_PROVIDER,
     postFetch: types.FETCH_GAMES_BY_PROVIDER_COMPLETE,
     asyncCall: getCasinoPlayerGames,
-    asyncCallData: { provider, sessionId },
+    asyncCallData: { providers: [provider], sessionId },
   };
 };
 
