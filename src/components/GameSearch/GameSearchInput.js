@@ -58,7 +58,8 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
     const query = target.value;
 
-    this.trackSearchInitiated(query);
+    query && this.trackSearchInitiated(query);
+
     this.setState({
       query: query,
     });
