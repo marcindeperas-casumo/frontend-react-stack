@@ -4,23 +4,32 @@ import classNames from "classnames";
 
 import "./ProgressBar.scss";
 
+export const colourOptions = {
+  background: ["grey", "white"],
+  foreground: ["yellow", "green"],
+};
+
 type Props = {
   progress: number,
-  className?: string,
+  foregroundColour: "yellow" | "green",
+  backgroundColour: "grey" | "white",
 };
 
 export const ProgressBarFiller = (props: Props) => {
   return (
     <div
       className={classNames(
-        "c-progress-bar__filler t-border-r--pill",
-        props.className
+        `c-progress-bar__filler t-border-r--pill`,
+        `t-background-${props.foregroundColour}`
       )}
       style={{ width: `${props.progress}%` }}
     >
-      <div>
-        <div className="c-progress-bar__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill" />
-      </div>
+      <div
+        className={classNames(
+          `c-progress-bar__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill`,
+          `t-background-${props.foregroundColour}-light-2`
+        )}
+      />
     </div>
   );
 };
@@ -28,7 +37,12 @@ export const ProgressBarFiller = (props: Props) => {
 export class ProgressBar extends PureComponent<Props> {
   render() {
     return (
-      <div className="c-progress-bar u-padding--sm t-border-r--pill">
+      <div
+        className={classNames(
+          `c-progress-bar u-padding--sm t-border-r--pill`,
+          `t-background-${this.props.backgroundColour}-dark-2`
+        )}
+      >
         <ProgressBarFiller {...this.props} />
       </div>
     );
@@ -36,6 +50,7 @@ export class ProgressBar extends PureComponent<Props> {
 
   static defaultProps = {
     progress: 0,
-    className: "t-color-yellow",
+    foregroundColour: "yellow",
+    backgroundColour: "grey",
   };
 }
