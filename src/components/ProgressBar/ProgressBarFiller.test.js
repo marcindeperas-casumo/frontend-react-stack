@@ -1,6 +1,6 @@
 import React from "react";
-import { shallow } from "enzyme";
-import { ProgressBarFiller } from "./ProgressBar";
+import { shallow, mount } from "enzyme";
+import { ProgressBar, ProgressBarFiller } from "./ProgressBar";
 
 describe("ProgressBarFiller", () => {
   test("Sets width to percentage equal to prop", () => {
@@ -8,5 +8,26 @@ describe("ProgressBarFiller", () => {
     const rendered = shallow(<ProgressBarFiller progress={progress} />);
     const style = rendered.find(".c-progress-bar__filler").get(0).props.style;
     expect(style.width).toEqual(`${progress}%`);
+  });
+
+  test("Default colour applied if no props given", () => {
+    const progress = 50;
+    const defaultForegroundColour = ProgressBar.defaultProps.foregroundColour;
+    const rendered = mount(<ProgressBar progress={progress} />);
+    expect(
+      rendered.find(`.t-background-${defaultForegroundColour}`).length
+    ).toEqual(1);
+  });
+
+  test("Correct colour applied if passed in through props", () => {
+    const progress = 50;
+    const foregroundColour = "green";
+    const rendered = shallow(
+      <ProgressBarFiller
+        progress={progress}
+        foregroundColour={foregroundColour}
+      />
+    );
+    expect(rendered.hasClass(`t-background-${foregroundColour}`)).toBe(true);
   });
 });
