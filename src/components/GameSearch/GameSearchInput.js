@@ -4,7 +4,6 @@ import React, { PureComponent } from "react";
 import SearchInput from "Components/SearchInput";
 import debounce from "lodash/debounce";
 import { track } from "Services/tracker";
-import { TrackContext } from "Components/TrackProvider";
 import { EVENTS } from "Src/constants";
 
 type Props = {
@@ -20,7 +19,6 @@ type State = {
 };
 
 export default class GameSearchInput extends PureComponent<Props, State> {
-  static contextType = TrackContext;
   static defaultProps = {
     trackHandler: track,
   };
@@ -43,12 +41,11 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   }
 
   onFocus = () => {
-    this.props.trackHandler(EVENTS.SEARCH_INTENT, { ...this.context });
+    this.props.trackHandler(EVENTS.SEARCH_INTENT);
   };
 
   trackSearchInitiated = (query: string) => {
     this.props.trackHandler(EVENTS.SEARCH_INITIATED, {
-      ...this.context,
       query,
     });
   };
