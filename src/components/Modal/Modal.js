@@ -31,7 +31,7 @@ export const DismissButton = ({
   <Flex
     align="center"
     justify="center"
-    className="c-modal__dismiss-button t-color-white t-background-grey-dark-3 t-border-r--circle"
+    className="c-modal__dismiss-button t-color-white t-background-grey-dark-4 t-border-r--circle"
     onClick={onClick}
     style={{ visibility: isVisible ? "visible" : "hidden" }}
   >
@@ -95,7 +95,7 @@ export default class Modal extends React.Component<Props> {
         spacing="none"
       >
         <Flex
-          className="c-modal__top-bar o-flex__item-fixed-size u-padding t-background-grey-dark-4 t-color-white"
+          className="c-modal__top-bar o-flex__item-fixed-size u-padding t-background-grey-dark-3 t-color-white"
           direction="horizontal"
           align="center"
           spacing="md"
