@@ -32,6 +32,8 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
+    // eslint-disable-next-line fp/no-mutation
+    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -44,11 +46,21 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     this.props.trackHandler(EVENTS.SEARCH_INTENT, { ...this.context });
   };
 
+  trackSearchInitiated = (query: string) => {
+    this.props.trackHandler(EVENTS.SEARCH_INITIATED, {
+      ...this.context,
+      query,
+    });
+  };
+
   fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
+    const query = target.value;
+
+    this.trackSearchInitiated(query);
     this.setState({
-      query: target.value,
+      query: query,
     });
   };
 

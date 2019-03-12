@@ -84,6 +84,7 @@ export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",
   SEARCH_INTENT: "Search Intent",
+  SEARCH_INITIATED: "Search Initiated",
 };
 
 export const EVENT_PROPS = {
