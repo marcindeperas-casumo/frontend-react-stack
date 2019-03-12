@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import { beltToColourMap } from "./beltUtils";
 
+import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
 
 type BeltType =
@@ -34,11 +35,15 @@ export class CasumoAvatar extends PureComponent<Props> {
     return (
       <div
         className={classNames(
-          `t-border-r--16 t-background-teal o-ratio`,
+          `c-casumo-avatar t-border-r--16 t-background-teal o-ratio`,
           getClassModifier(belt)
         )}
       >
-        <Flex align="center" justify="center" className="o-ratio__content">
+        <Flex
+          align="center"
+          justify="center"
+          className="o-ratio__content u-padding--md"
+        >
           <SumoAvatar />
         </Flex>
       </div>
