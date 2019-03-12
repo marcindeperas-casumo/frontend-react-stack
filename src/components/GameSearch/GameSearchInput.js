@@ -3,12 +3,16 @@ import React, { PureComponent } from "react";
 
 import SearchInput from "Components/SearchInput";
 import debounce from "lodash/debounce";
+import { track } from "Services/tracker";
+import { TrackContext } from "Components/TrackProvider";
+import { EVENTS } from "Src/constants";
 
 type Props = {
   initFetchQuerySearch: Function,
   clearSearch: Function,
   noResults: boolean,
   placeholder: string,
+  trackHandler: Function,
 };
 
 type State = {
@@ -16,6 +20,10 @@ type State = {
 };
 
 export default class GameSearchInput extends PureComponent<Props, State> {
+  static contextType = TrackContext;
+  static defaultProps = {
+    trackHandler: track,
+  };
   state = {
     query: "",
   };
@@ -31,6 +39,10 @@ export default class GameSearchInput extends PureComponent<Props, State> {
       this.fetchSearchResults();
     }
   }
+
+  onFocus = () => {
+    this.props.trackHandler(EVENTS.SEARCH_INTENT, { ...this.context });
+  };
 
   fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
@@ -54,6 +66,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
         onClear={this.handleClearSearchInput}
         noResults={this.props.noResults}
         placeholder={this.props.placeholder}
+        onFocus={this.onFocus}
       />
     );
   }

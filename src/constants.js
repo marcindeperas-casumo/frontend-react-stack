@@ -83,6 +83,7 @@ export const ENVS = {
 export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",
+  SEARCH_INTENT: "Search Intent",
 };
 
 export const EVENT_PROPS = {
