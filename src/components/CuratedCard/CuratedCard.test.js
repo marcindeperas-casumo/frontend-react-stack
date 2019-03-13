@@ -190,7 +190,7 @@ describe("CuratedCard", () => {
     expect(href).toBeNull();
   });
 
-  test("should link to promotions if there are no promotions and game set", () => {
+  test("should link to deposit page if there are no promotions and game set", () => {
     const onLaunchGame = jest.fn();
     const rendered = mount(
       <CuratedCard
@@ -206,7 +206,7 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe("/en/promotions");
+    expect(href).toBe("/en/cash/deposit");
   });
 
   test("should link to a specific promotion if it is set", () => {
@@ -247,6 +247,6 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe(`/en/promotions`);
+    expect(href).toBe(`/en/cash/deposit`);
   });
 });

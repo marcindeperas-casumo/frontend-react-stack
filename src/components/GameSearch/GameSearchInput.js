@@ -3,12 +3,15 @@ import React, { PureComponent } from "react";
 
 import SearchInput from "Components/SearchInput";
 import debounce from "lodash/debounce";
+import { track } from "Services/tracker";
+import { EVENTS } from "Src/constants";
 
 type Props = {
   initFetchQuerySearch: Function,
   clearSearch: Function,
   noResults: boolean,
   placeholder: string,
+  trackHandler: Function,
 };
 
 type State = {
@@ -16,6 +19,9 @@ type State = {
 };
 
 export default class GameSearchInput extends PureComponent<Props, State> {
+  static defaultProps = {
+    trackHandler: track,
+  };
   state = {
     query: "",
   };
@@ -24,6 +30,8 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     super(props);
     // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
+    // eslint-disable-next-line fp/no-mutation
+    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
@@ -32,11 +40,25 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     }
   }
 
+  onFocus = () => {
+    this.props.trackHandler(EVENTS.SEARCH_INTENT);
+  };
+
+  trackSearchInitiated = (query: string) => {
+    this.props.trackHandler(EVENTS.SEARCH_INITIATED, {
+      query,
+    });
+  };
+
   fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
 
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
+    const query = target.value;
+
+    query && this.trackSearchInitiated(query);
+
     this.setState({
-      query: target.value,
+      query,
     });
   };
 
@@ -54,6 +76,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
         onClear={this.handleClearSearchInput}
         noResults={this.props.noResults}
         placeholder={this.props.placeholder}
+        onFocus={this.onFocus}
       />
     );
   }

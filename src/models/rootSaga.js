@@ -31,9 +31,11 @@ import {
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
+  MESSAGES as cometdMessages,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
+  takeMessageFromChannel,
 } from "Models/cometd";
 import {
   types as gameSearchTypes,
@@ -45,6 +47,7 @@ import {
   fetchPlayerGamesSaga,
   fetchPlayerGamesCountSaga,
 } from "Models/playerGames";
+import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -69,6 +72,14 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.LIVE_CASINO_TABLE),
     liveCasinoUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.DEPOSIT_CONFIRMED
+    ),
+    updatePlayerFirstDepositDateSaga
   );
   yield fork(
     takeEvery,

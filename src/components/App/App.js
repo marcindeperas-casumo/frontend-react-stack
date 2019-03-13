@@ -1,3 +1,4 @@
+// @flow
 import React, { PureComponent } from "react";
 import MigrationComponent, {
   MigrationComponentManager,
@@ -10,11 +11,42 @@ import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
 import DataProvider from "Components/DataProvider";
 
-class App extends PureComponent {
+type Props = {
+  onAppStarted: () => void,
+  subscribeToPlayerUpdates: Function,
+  unsubscribeToPlayerUpdates: Function,
+  playerId: string,
+  isAuthenticated: boolean,
+  activeComponents: Array<string>,
+  routeParams: Array<Object>,
+};
+
+class App extends PureComponent<Props> {
+  subscribe: Function;
+
   componentDidMount() {
     const { onAppStarted } = this.props;
+
     onAppStarted();
+    this.subscribe();
   }
+
+  componentWillUnmount() {
+    this.props.unsubscribeToPlayerUpdates();
+  }
+
+  componentDidUpdate(props: Props) {
+    const { playerId: oldPlayerId } = props;
+    const initialPageLoad = !oldPlayerId;
+
+    if (initialPageLoad) {
+      this.subscribe();
+    }
+  }
+
+  subscribe = () => {
+    this.props.subscribeToPlayerUpdates();
+  };
 
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
