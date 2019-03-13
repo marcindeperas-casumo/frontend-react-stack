@@ -32,9 +32,13 @@ export function CometDFactory(cometd) {
    * @param {function} callback - Called for every new message on the channel with parsed "message.data" property
    * @param {function} onSubscriptionReady - Call
    */
-  async function subscribe(channel, callback, onSubscriptionReady = () => {}) {
+  async function subscribe(
+    channel,
+    callback,
+    args,
+    onSubscriptionReady = () => {}
+  ) {
     let subscription;
-    const subscribeProps = {};
 
     await context.init();
 
@@ -42,7 +46,7 @@ export function CometDFactory(cometd) {
       subscription = cometd.subscribe(
         channel,
         parseMessage(callback),
-        subscribeProps,
+        args,
         resolve
       );
     }).then(() => subscription);

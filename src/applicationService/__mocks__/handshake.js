@@ -1,14 +1,17 @@
+const id = "b41053a0-79d5-11e2-90cd-005056bf3256";
+const defaultIdentifier = "martin.rylander@devcode.se";
+
 export const authenticatedResponse = {
   "common/composition/session": {
     roles: ["player"],
-    id: "b41053a0-79d5-11e2-90cd-005056bf3256",
+    id,
     sessionId: "d11e2d96-7dcb-42fb-b055-fbc0f66b8016",
   },
 
   "common/composition/players": {
     players: {
-      "b41053a0-79d5-11e2-90cd-005056bf3256": {
-        playerId: "b41053a0-79d5-11e2-90cd-005056bf3256",
+      [id]: {
+        playerId: id,
         casumoName: "markbusu",
         jurisdiction: "UKGC",
         wallet: {
@@ -116,7 +119,7 @@ export const authenticatedResponse = {
             type: "MONEYBOOKERS",
             token: "f52a1b3e-ebac-497f-be75-b17136f8d40a",
             name: "Skrill",
-            identifier: "martin.rylander@devcode.se",
+            identifier: defaultIdentifier,
             lastUsageTime: 1409765608000,
             deleted: false,
             verificationState: null,
@@ -126,7 +129,7 @@ export const authenticatedResponse = {
             type: "MONEYBOOKERS",
             token: "c2c438d8-45b9-49bd-a331-8a3992ff1a45",
             name: "Skrill",
-            identifier: "martin.rylander@devcode.se",
+            identifier: defaultIdentifier,
             lastUsageTime: 1409755027000,
             deleted: true,
             verificationState: null,
@@ -136,7 +139,7 @@ export const authenticatedResponse = {
             type: "MONEYBOOKERS",
             token: "1df51383-5b34-4def-a6e4-0112378cea51",
             name: "Mark's Skrill",
-            identifier: "martin.rylander@devcode.se",
+            identifier: defaultIdentifier,
             lastUsageTime: 1399413554000,
             deleted: true,
             verificationState: null,

@@ -1,4 +1,10 @@
-import { curatedSelector, isCuratedLoadedFactory } from "Models/curated";
+import {
+  curatedSelector,
+  isCuratedLoadedFactory,
+  curatedSlugSelector,
+} from "Models/curated";
+
+const mockPlayerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
 
 const mockState = {
   schema: {
@@ -82,6 +88,83 @@ describe("Models/curated/selectors", () => {
       const selector = isCuratedLoadedFactory(slug);
 
       expect(selector(state)).toEqual(true);
+    });
+  });
+
+  describe("curatesSlugSelector", () => {
+    test("return welcome offer slug if player has never deposited", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": {
+              id: mockPlayerId,
+              sessionId: "d11e2d96-7dcb-42fb-b055-fbc0f66b8016",
+            },
+            "common/composition/players": {
+              players: {
+                [mockPlayerId]: {
+                  playerId: mockPlayerId,
+                  firstDepositDate: null,
+                  market: "gb_en",
+                },
+              },
+            },
+            "common/ABTesting": {
+              testSubjectId: "79e686cc-8e51-41e4-991f-dc0da0b526ad",
+              features: [
+                {
+                  name: "deposit-now",
+                  flavour: "curated-card",
+                },
+              ],
+            },
+          },
+        },
+      };
+
+      const welcomeSlug = "welcome-offer-test";
+      const expectedSlug = `curated.${welcomeSlug}`;
+      const cardSlug = "curated-gb_en";
+
+      const selector = curatedSlugSelector(cardSlug);
+
+      expect(selector(state)).toEqual(expectedSlug);
+    });
+
+    test("return default slug if player made a deposit", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": {
+              id: mockPlayerId,
+              sessionId: "d11e2d96-7dcb-42fb-b055-fbc0f66b8016",
+            },
+            "common/composition/players": {
+              players: {
+                [mockPlayerId]: {
+                  playerId: mockPlayerId,
+                  firstDepositDate: 532738800000,
+                  market: "gb_en",
+                },
+              },
+            },
+            "common/ABTesting": {
+              testSubjectId: "79e686cc-8e51-41e4-991f-dc0da0b526ad",
+              features: [
+                {
+                  name: "deposit-now",
+                  flavour: "curated-card",
+                },
+              ],
+            },
+          },
+        },
+      };
+      const cardSlug = "curated-gb_en";
+      const expectedSlug = `curated.${cardSlug}`;
+      const selector = curatedSlugSelector(cardSlug);
+
+      expect(selector(state)).toEqual(expectedSlug);
     });
   });
 });

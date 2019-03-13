@@ -6,9 +6,9 @@ import { message } from "Models/cometd/cometd.actions";
 // We are using eventChannels to relay cometd messages
 // as actions to the redux store.
 // Docs: https://github.com/redux-saga/redux-saga/blob/master/docs/advanced/Channels.md
-const setupEmitter = channel => emitter => {
+const setupEmitter = (channel, args) => emitter => {
   // TODO: Add throttling to the emitter function
-  cometd.subscribe(channel, emitter);
+  cometd.subscribe(channel, emitter, args);
 
   // We need to return with an unsubscribe function
   // As we will use an other Saga to unsubscribe from
@@ -16,15 +16,19 @@ const setupEmitter = channel => emitter => {
   return () => {};
 };
 
-export const getCometdMessagesStream = channel => {
-  return eventChannel(setupEmitter(channel), buffers.sliding(50));
+export const getCometdMessagesStream = (channel, ...args) => {
+  return eventChannel(setupEmitter(channel, ...args), buffers.sliding(50));
 };
 
 export default function* cometdSubscribeSaga(action) {
-  const { channel: subscribedChannel } = action;
+  const { channel: subscribedChannel, sessionId } = action;
+  const subscribeProps = {
+    sessionId,
+  };
   const cometdMessagesStream = yield call(
     getCometdMessagesStream,
-    subscribedChannel
+    subscribedChannel,
+    subscribeProps
   );
 
   // eslint-disable-next-line fp/no-loops
