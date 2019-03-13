@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-
 import FavouriteSportsSelectorCompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 describe("<FavouriteSportsSelectorCompetitionsIntro />", () => {

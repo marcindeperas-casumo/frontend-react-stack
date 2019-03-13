@@ -1,8 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-
 import Flex from "@casumo/cmp-flex";
-
 import Modal, { DismissButton } from "Components/Modal";
 
 const requiredProps = {

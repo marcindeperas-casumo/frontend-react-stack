@@ -2,11 +2,9 @@
 import React from "react";
 import { F } from "ramda";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
-
+import info from "Storybook/storybookInfo";
 import footballData from "./__mocks__/football";
-
 import FavouriteCompetitionsSelectorRegion from "./FavouriteCompetitionsSelectorRegion";
 
 const stories = storiesOf(

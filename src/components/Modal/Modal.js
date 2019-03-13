@@ -1,7 +1,6 @@
 /* @flow */
 import * as React from "react";
 import classNames from "classnames";
-
 import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 

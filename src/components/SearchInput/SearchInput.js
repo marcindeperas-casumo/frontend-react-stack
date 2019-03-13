@@ -2,7 +2,6 @@
 import * as React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
-
 import Flex from "@casumo/cmp-flex";
 import { CrossIcon, SearchIcon } from "@casumo/cmp-icons";
 

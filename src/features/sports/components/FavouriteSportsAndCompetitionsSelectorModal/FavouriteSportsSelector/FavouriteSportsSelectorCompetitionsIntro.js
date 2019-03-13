@@ -3,7 +3,6 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 const FavouriteSportsSelectorCompetitionsIntro = ({

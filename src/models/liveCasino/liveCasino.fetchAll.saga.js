@@ -5,12 +5,12 @@ import {
   currency as currencySelector,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
+import { normalizeTableData } from "Api/api.games";
 import {
   fetchAllLiveGames,
   fetchMissingLiveTables,
 } from "./liveCasino.actions";
 import { types } from "./liveCasino.constants";
-import { normalizeTableData } from "Api/api.games";
 
 export function* fetchAllLiveCasinoGamesSaga() {
   const country = yield select(countrySelector);

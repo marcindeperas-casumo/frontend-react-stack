@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-
+import { compose, prop } from "ramda";
 import { decodeString } from "Utils/index";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
@@ -14,7 +14,6 @@ import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 import { renderBets } from "Utils/utils";
-import { compose, prop } from "ramda";
 
 export type Props = {
   game: Game,

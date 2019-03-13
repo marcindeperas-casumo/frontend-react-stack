@@ -1,6 +1,5 @@
 import React from "react";
 import { PlayerIcon } from "@casumo/cmp-icons";
-
 import Matcher from "../Matcher";
 import Casumo from "./providers/casumo.svg";
 import Evolution from "./providers/evolution.svg";

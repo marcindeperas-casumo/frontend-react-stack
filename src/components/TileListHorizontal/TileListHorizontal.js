@@ -1,10 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
 import { isEmpty, map } from "ramda";
-import ScrollableListTitle from "Components/ScrollableListTitle";
 import Scrollable from "@casumo/cmp-scrollable";
-import Tile from "./Tile";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
+import Tile from "./Tile";
 
 const PADDING_PER_DEVICE = {
   default: "md",

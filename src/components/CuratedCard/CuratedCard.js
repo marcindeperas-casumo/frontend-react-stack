@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";

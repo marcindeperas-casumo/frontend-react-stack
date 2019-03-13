@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-
 import HashWatcher from "Components/HashWatcher";
 
 const stories = storiesOf("HashWatcher", module);

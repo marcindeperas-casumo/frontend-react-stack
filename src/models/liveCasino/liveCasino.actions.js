@@ -1,7 +1,7 @@
 // @flow
 import { types as fetchTypes } from "Models/fetch";
-import { types } from "./liveCasino.constants";
 import { getGameLists, getLiveCasinoTable } from "Api/api.gamebrowser";
+import { types } from "./liveCasino.constants";
 
 export const initFetchAllLiveGames = () => ({
   type: types.FETCH_ALL_LIVE_GAMES_INIT,

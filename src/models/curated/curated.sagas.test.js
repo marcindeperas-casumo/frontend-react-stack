@@ -1,5 +1,4 @@
 import { put, take, call } from "redux-saga/effects";
-
 import curatedMock from "Models/curated/__mocks__/curated.json";
 import { types, fetchCuratedGameSaga } from "Models/curated";
 import { normalizeData, updateEntity } from "Models/schema";

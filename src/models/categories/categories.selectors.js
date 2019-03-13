@@ -1,6 +1,6 @@
 import { createSelector } from "reselect";
-import { activeGameProvidersSelector } from "Models/gameProviders";
 import { compose, values, omit, map } from "ramda";
+import { activeGameProvidersSelector } from "Models/gameProviders";
 
 export const gameProvidersListSelector = createSelector(
   activeGameProvidersSelector,

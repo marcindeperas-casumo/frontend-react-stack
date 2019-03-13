@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-
-import GroupPill from "./GroupPill";
 import { Pill } from "Components/Pill";
+import GroupPill from "./GroupPill";
 
 const testGroup = { name: "Group A", flagEmoji: "🇸🇪" };
 

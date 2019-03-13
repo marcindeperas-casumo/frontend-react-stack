@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
-import ErrorBoundary from "Components/ErrorBoundary";
 import invariant from "invariant";
+import ErrorBoundary from "Components/ErrorBoundary";
 
 type Props = {
   children: any,

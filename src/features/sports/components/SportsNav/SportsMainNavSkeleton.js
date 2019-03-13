@@ -1,6 +1,5 @@
 import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
-
 import NavTab from "./SportsNavTabSkeleton";
 
 const SportsMainNavSkeleton = () => (

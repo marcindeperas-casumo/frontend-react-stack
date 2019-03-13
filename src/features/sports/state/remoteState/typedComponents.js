@@ -1,7 +1,6 @@
 /* @flow */
 import * as React from "react";
 import { Mutation } from "react-apollo";
-
 import type { MutationProps } from "../types";
 import * as mutations from "./mutations";
 
