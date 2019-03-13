@@ -14,7 +14,9 @@ export function* updatePlayerFirstDepositDateSaga(depositDate = Date.now()) {
     const playerInfo = yield select(playerSelector);
     /*
       We are 'faking' the first-deposit date as this is currently not included
-      in the CometD response message.
+      in the CometD response message. Once we have this in the message we can use that
+      instead of Date.now() as a value.
+      issue: https://github.com/Casumo/Home/issues/27548
     */
     const firstDepositDate = depositDate;
 
