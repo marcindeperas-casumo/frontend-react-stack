@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-mutation */
 // @flow
 import React, { PureComponent } from "react";
 import ReactDOM from "react-dom";

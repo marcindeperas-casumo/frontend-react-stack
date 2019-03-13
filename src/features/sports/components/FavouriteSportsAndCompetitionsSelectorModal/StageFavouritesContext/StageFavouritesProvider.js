@@ -62,7 +62,6 @@ class StageFavouritesProvider extends React.Component<
   constructor(props: ProviderProps) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state = {
       sports: [],
       isFirstTimeSelectingFavourites: false,

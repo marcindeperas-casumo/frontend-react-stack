@@ -134,7 +134,6 @@ class KambiSearchResults extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state.searchHistory = this.persisted.searchHistory.get();
   }
 
