@@ -2,10 +2,8 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Scrollable from "@casumo/cmp-scrollable";
-
 import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-
 import type { SportsNavItemType } from "./types";
 
 export type Props = {

@@ -28,6 +28,11 @@ html {
   -moz-osx-font-smoothing: greyscale;
 }
 
+// prevent elements wider than the body from causing scroll
+body {
+  overflow-x: hidden;
+}
+
 // @storybook/addon-backgrounds needs a transparent body.
 .sb-show-main {
   background-color: transparent;

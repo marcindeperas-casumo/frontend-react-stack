@@ -1,8 +1,7 @@
-import { activateComponent } from "Models/migrationComponents";
-import { connect } from "./BridgeToDispatchService";
+import { activateComponent } from "Models/router";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
-
 import bridge from "../DurandalReactBridge";
+import { connect } from "./BridgeToDispatchService";
 jest.mock("../DurandalReactBridge");
 
 beforeEach(() => {

@@ -1,9 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import { topCardLetters } from "./utils";
-
 import roulette from "./__mocks__/Roulette.json";
 import topCard from "./__mocks__/TopCard.json";
 import moneyWheel from "./__mocks__/MoneyWheel.json";

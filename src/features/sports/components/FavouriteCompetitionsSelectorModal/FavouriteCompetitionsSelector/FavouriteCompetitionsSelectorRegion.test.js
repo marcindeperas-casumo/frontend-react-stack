@@ -1,7 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { F } from "ramda";
-
 import FavouriteCompetitionsSelectorRegion from "./FavouriteCompetitionsSelectorRegion";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 import footballData from "./__mocks__/football";

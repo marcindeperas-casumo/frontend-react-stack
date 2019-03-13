@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 const stories = storiesOf("SportsShellSkeleton", module);

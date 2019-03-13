@@ -4,15 +4,14 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
-
-import KambiClientSkeleton from "./KambiClientSkeleton";
-import KambiClient from "./KambiClient";
 import { currency, country, getLanguage } from "Models/handshake";
 import {
   MutateOnMount,
   ClientContext,
   SESSION_TOUCH,
 } from "Features/sports/state";
+import KambiClientSkeleton from "./KambiClientSkeleton";
+import KambiClient from "./KambiClient";
 
 const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {

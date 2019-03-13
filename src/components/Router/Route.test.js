@@ -1,43 +1,39 @@
 import React from "react";
 import { shallow } from "enzyme";
-import MigrationComponent from "Components/MigrationComponent";
+import { Route } from "./Route";
 
-describe("MigrationComponent", () => {
+describe("Route", () => {
   test("render its children", () => {
     const child = <div>foo</div>;
-    const component = shallow(
-      <MigrationComponent migrationKey="foo">{child}</MigrationComponent>
-    );
+    const component = shallow(<Route path="foo">{child}</Route>);
 
     expect(component.contains(child)).toBe(true);
   });
 
   test("has an error boundary", () => {
     const child = <div>foo</div>;
-    const component = shallow(
-      <MigrationComponent migrationKey="foo">{child}</MigrationComponent>
-    );
+    const component = shallow(<Route path="foo">{child}</Route>);
 
     expect(component.find("ErrorBoundaryContainer")).toHaveLength(1);
   });
 
-  test("should have a migrationKey prop value", () => {
+  test("should have a path prop value", () => {
     expect(() => {
       shallow(
-        <MigrationComponent migrationKey="">
+        <Route path="">
           <div>foo</div>
-        </MigrationComponent>
+        </Route>
       );
-    }).toThrowError("should have a migrationKey prop value");
+    }).toThrowError("should have a path prop value");
   });
 
   test("should have only one child element", () => {
     expect(() => {
       shallow(
-        <MigrationComponent migrationKey="foo">
+        <Route path="foo">
           <div>foo</div>
           <div>foo</div>
-        </MigrationComponent>
+        </Route>
       );
     }).toThrow("should have only one child element");
   });

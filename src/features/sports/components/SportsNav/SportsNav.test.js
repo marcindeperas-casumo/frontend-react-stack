@@ -1,15 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
-
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state/clientState/mutations";
-
 import SportsNav, { isNavItemSelected, onNavItemSelected } from "./SportsNav";
 import SportsNavSkeleton from "./SportsNavSkeleton";
 import SportsMainNav from "./SportsMainNav";
 import SportsSubNav from "./SportsSubNav";
-
 import multipleNavItemsMock from "./__mocks__/userNavigationQuery";
 import navItems from "./__mocks__/navItems";
 

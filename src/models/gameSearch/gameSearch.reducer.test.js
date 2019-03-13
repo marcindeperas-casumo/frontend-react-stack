@@ -1,5 +1,5 @@
-import * as actions from "./gameSearch.actions";
 import { postFetch } from "Models/fetch";
+import * as actions from "./gameSearch.actions";
 import reducer from "./gameSearch.reducer";
 
 describe("Models/Fetch/Reducer", () => {

@@ -4,8 +4,8 @@ import List from "@casumo/cmp-list";
 import GameRow from "Components/GameRow";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
-import SectionTitle from "./SectionTitle";
 import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";
+import SectionTitle from "./SectionTitle";
 import "./LiveCasinoDetailPage.scss";
 
 type Props = {

@@ -2,7 +2,6 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-
 import ModalButtonFooter from "./ModalButtonFooter";
 
 describe("<ModalButtonFooter />", () => {

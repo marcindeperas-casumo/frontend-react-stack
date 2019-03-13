@@ -2,9 +2,7 @@
 
 import React from "react";
 import gql from "graphql-tag";
-
 import Flex from "@casumo/cmp-flex";
-
 import makeOptionalCallback from "Utils/makeOptionalCallback";
 import GroupPill from "Features/sports/components/GroupPill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";

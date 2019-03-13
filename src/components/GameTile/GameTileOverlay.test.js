@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-
 import GameTileOverlay, {
   IN_MAINTENANCE_CLASS_NAME,
   ALWAYS_ACTIVE_CLASS_NAME,

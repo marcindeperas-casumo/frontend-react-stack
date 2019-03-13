@@ -1,9 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-
 import { DirectionUpIcon, DirectionDownIcon } from "@casumo/cmp-icons";
-
 import ExpandableListItem from "./ExpandableListItem";
 
 describe("<ExpandableListItem />", () => {
