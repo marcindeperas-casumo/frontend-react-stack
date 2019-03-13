@@ -2,7 +2,6 @@
 
 import React from "react";
 import { shallow } from "enzyme";
-
 import CompetitionPillsList from "./CompetitionPillsList";
 import competitions from "./__mocks__/competitions";
 

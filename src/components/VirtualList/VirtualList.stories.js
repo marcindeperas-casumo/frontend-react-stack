@@ -1,10 +1,9 @@
 import React, { PureComponent } from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
 import Flex from "@casumo/cmp-flex";
+import info from "Storybook/storybookInfo";
 import GameRow from "Components/GameRow/GameRow";
-
 import games from "./__mocks__/games";
 import VirtualList from "./";
 

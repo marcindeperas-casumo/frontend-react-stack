@@ -1,8 +1,6 @@
 /* @flow */
 import React from "react";
-
 import { ActiveModalsQuery, CloseModalMutation } from "Features/sports/state";
-
 import ChooseFavouritesOverlay from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
 import ChooseFavouriteCompetitionsOverlay from "Features/sports/components/EditFavouriteCompetitionsModal";
 

@@ -1,17 +1,17 @@
-import { call, put, take, select } from "redux-saga/effects";
 import { isEmpty, isNil } from "ramda";
+import { call, put, take, select } from "redux-saga/effects";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { sessionId as session } from "Models/handshake";
-import { initiateFetchGamesByProvider } from "./games.actions";
 import {
   gameProviderBySlug,
   fetchGameProviders,
   areGameProvidersLoaded,
   types as gameProviderTypes,
 } from "Models/gameProviders";
-import { types } from "./games.constants";
 import { waitForSelector } from "Utils";
 import { requestError } from "Models/fetch";
+import { types } from "./games.constants";
+import { initiateFetchGamesByProvider } from "./games.actions";
 
 export function* fetchGamesByProviderSaga({ provider }) {
   yield put(fetchGameProviders());

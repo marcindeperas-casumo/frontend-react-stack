@@ -1,5 +1,5 @@
-import { all, call, select } from "redux-saga/effects";
 import { range, includes } from "ramda";
+import { all, call, select } from "redux-saga/effects";
 import {
   isPlayerGamesPageLoaded,
   playerGamesPagesLoaded,

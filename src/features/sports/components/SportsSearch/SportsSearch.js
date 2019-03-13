@@ -1,15 +1,13 @@
 /* @flow */
 import React from "react";
-
 import Flex from "@casumo/cmp-flex";
-
-import KambiSearchResults from "./KambiSearchResults";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import {
   ClientContext,
   UPDATE_KAMBI_CLIENT_STATE_MUTATION,
 } from "Features/sports/state";
+import KambiSearchResults from "./KambiSearchResults";
 
 type State = {
   query: string,

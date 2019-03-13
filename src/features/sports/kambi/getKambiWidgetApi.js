@@ -1,6 +1,5 @@
 /* @flow */
 import { once } from "ramda";
-
 import { injectScript } from "Utils/utils";
 
 export type KambiWidgetApi = { [string]: any };
