@@ -24,7 +24,7 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST: GameListHorizontal,
   GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,
-  TILE_LIST_HORIZONTAL: TileListHorizontal,
+  GROUPED_LIST_HORIZONTAL: TileListHorizontal,
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
