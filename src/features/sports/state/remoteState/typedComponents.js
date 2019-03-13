@@ -1,7 +1,6 @@
 /* @flow */
 import * as React from "react";
 import { Mutation } from "react-apollo";
-
 import type { MutationProps } from "../types";
 import * as mutations from "./mutations";
 
@@ -19,7 +18,11 @@ export const SetFavouritesMutation = (
   <Mutation
     {...props}
     mutation={mutations.SET_FAVOURITES}
-    refetchQueries={() => ["UserNavigation"]}
+    refetchQueries={() => [
+      "UserNavigation",
+      "LaunchableKambiClientQuery",
+      "SportsShellQuery",
+    ]}
   >
     {props.children}
   </Mutation>

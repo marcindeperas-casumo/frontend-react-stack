@@ -7,8 +7,8 @@ import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import GameTileExclusiveConnected from "Components/GameTileExclusive";
 import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
-import exclusiveGame from "./__mocks__/ExclusiveGame.json";
 import isNotChromatic from "Storybook/isNotChromatic";
+import exclusiveGame from "./__mocks__/ExclusiveGame.json";
 
 const stories = storiesOf("GameTileExclusive", module);
 stories.addDecorator(withKnobs);

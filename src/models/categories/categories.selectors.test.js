@@ -1,44 +1,8 @@
-import {
-  gameProvidersListSelector,
-  gameProvidersRoute,
-} from "./categories.selectors";
+import { gameProvidersListSelector } from "./categories.selectors";
 
 describe("Category List Selectors", () => {
-  test("gameProvidersRoute", () => {
-    const state = {
-      handshake: {
-        app: {
-          "common/composition/session": { id: "p1" },
-          "common/composition/players": {
-            players: {
-              p1: {
-                id: "p1",
-                contactInfo: { primaryAddress: { country: "mt" } },
-              },
-            },
-          },
-        },
-      },
-    };
-
-    expect(gameProvidersRoute(state)).toBe("/mt/games/provider");
-  });
-
   test("gameProvidersListSelector", () => {
     const state = {
-      handshake: {
-        app: {
-          "common/composition/session": { id: "p1" },
-          "common/composition/players": {
-            players: {
-              p1: {
-                id: "p1",
-                contactInfo: { primaryAddress: { country: "mt" } },
-              },
-            },
-          },
-        },
-      },
       schema: {
         gameProvider: {
           "casumo-services-ltd-nyx": {
@@ -60,7 +24,7 @@ describe("Category List Selectors", () => {
         background:
           "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
-        url: "/mt/games/provider/casumo-services-ltd-nyx",
+        url: "/games/provider/casumo-services-ltd-nyx",
       },
     ];
 

@@ -3,7 +3,6 @@ import * as React from "react";
 import gql from "graphql-tag";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
 import ExpandableListItem from "Features/sports/components/ExpandableListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";

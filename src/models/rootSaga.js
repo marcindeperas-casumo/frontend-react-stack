@@ -17,6 +17,7 @@ import {
   launchGameSaga,
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
+  fetchGamesByProviderSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -31,9 +32,11 @@ import {
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
+  MESSAGES as cometdMessages,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
+  takeMessageFromChannel,
 } from "Models/cometd";
 import {
   types as gameSearchTypes,
@@ -45,6 +48,7 @@ import {
   fetchPlayerGamesSaga,
   fetchPlayerGamesCountSaga,
 } from "Models/playerGames";
+import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -72,6 +76,14 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.DEPOSIT_CONFIRMED
+    ),
+    updatePlayerFirstDepositDateSaga
+  );
+  yield fork(
+    takeEvery,
     action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
     fetchCuratedGameSaga
   );
@@ -79,6 +91,11 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameTypes.FETCH_GAMES_BY_SLUGS_START,
     fetchGamesBySlugsSaga
+  );
+  yield fork(
+    takeEvery,
+    gameTypes.FETCH_GAMES_BY_PROVIDER_START,
+    fetchGamesByProviderSaga
   );
   yield fork(
     takeEvery,

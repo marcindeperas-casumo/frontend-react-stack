@@ -2,9 +2,9 @@
 import React from "react";
 import { connect } from "react-redux";
 import { take } from "ramda";
-import PromotionCardGallery from "./PromotionGallery";
 import { fetchPageBySlug, getField } from "Models/cms";
 import { market as marketSelector } from "Models/handshake";
+import PromotionCardGallery from "./PromotionGallery";
 
 type Props = {
   /** The slug of the page in the CMS which has all the promotions available */

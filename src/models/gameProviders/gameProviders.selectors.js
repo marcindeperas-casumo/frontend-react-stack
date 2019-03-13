@@ -38,5 +38,5 @@ export const areProviderGamesLoaded = provider =>
       prop("games"),
       gameProviderBySlug(provider)
     ),
-    complement(anyPass([isNil, isEmpty]))
+    complement(isNil)
   );

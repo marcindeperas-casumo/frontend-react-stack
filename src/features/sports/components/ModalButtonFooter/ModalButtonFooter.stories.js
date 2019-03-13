@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
-
+import info from "Storybook/storybookInfo";
 import ModalButtonFooter from "./ModalButtonFooter";
 
 const stories = storiesOf("Sports/ModalButtonFooter", module);

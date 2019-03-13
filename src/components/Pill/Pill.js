@@ -2,7 +2,6 @@
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-
 import { CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";

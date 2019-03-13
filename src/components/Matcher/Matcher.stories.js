@@ -2,9 +2,7 @@
 import React from "react";
 import { select, withKnobs, boolean } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
-
 import isNotChromatic from "Storybook/isNotChromatic";
-
 import Matcher from "Components/Matcher";
 
 const stories = storiesOf("Matcher", module);

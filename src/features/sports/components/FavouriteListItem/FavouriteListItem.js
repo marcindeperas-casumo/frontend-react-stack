@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import type { Node } from "react";
-
 import { TickIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
