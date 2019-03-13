@@ -1,9 +1,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import SectionList from "./";
 import GameRowSearch from "Components/GameRowSearch";
 import MockStore from "Components/MockStore";
+import SectionList from "./";
 
 const stories = storiesOf("SectionList", module);
 

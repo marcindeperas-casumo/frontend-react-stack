@@ -1,6 +1,5 @@
 /* @flow */
 import { type ClientStateConfig } from "apollo-link-state";
-
 import clientSchema from "./clientSchema.graphql";
 import resolvers from "./resolvers";
 import defaultState from "./defaultState";

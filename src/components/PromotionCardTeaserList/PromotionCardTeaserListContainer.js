@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import PromotionCardTeaserList from "./PromotionCardTeaserList";
 import { fetchPageBySlug, getField } from "Models/cms";
+import PromotionCardTeaserList from "./PromotionCardTeaserList";
 
 type Props = {
   /** The slug of the page in the CMS which has all the promotions available */

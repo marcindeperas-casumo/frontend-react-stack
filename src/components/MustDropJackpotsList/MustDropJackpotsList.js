@@ -1,12 +1,12 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import { generateColumns } from "Utils/utils";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import JackpotsListTile from "Components/JackpotsListTile";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 
 const PADDING_PER_DEVICE = {
   default: "md",

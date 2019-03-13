@@ -1,12 +1,12 @@
 // @flow
 import * as React from "react";
+import List from "@casumo/cmp-list";
 import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
-import List from "@casumo/cmp-list";
 import GamesVirtualList from "Components/GamesVirtualList";
 import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
 

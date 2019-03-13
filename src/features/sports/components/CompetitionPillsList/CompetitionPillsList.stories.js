@@ -3,9 +3,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
-
-import CompetitionPillsList from "./";
 import competitions from "./__mocks__/competitions";
+import CompetitionPillsList from "./";
 
 const stories = storiesOf("Sports/CompetitionPillList", module);
 

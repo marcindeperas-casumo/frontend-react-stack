@@ -3,9 +3,7 @@ import wait from "waait";
 import { F } from "ramda";
 import { MockedProvider } from "react-apollo/test-utils";
 import { mount } from "enzyme";
-
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
-
 import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 import FavouriteCompetitionsSelectorRegion from "./FavouriteCompetitionsSelectorRegion";
 import favouriteCompetitionsSelectorMocks from "./__mocks__/favouriteCompetitionsSelectorQuery";

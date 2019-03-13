@@ -99,7 +99,6 @@ describe("Game Providers Selectors", () => {
         gameProvider: {
           [PROVIDERS.NYX]: {
             id: 1,
-            games: [],
             inMaintenance: false,
           },
         },
@@ -114,7 +113,7 @@ describe("Game Providers Selectors", () => {
         gameProvider: {
           [PROVIDERS.NYX]: {
             id: 1,
-            games: ["foo"],
+            games: [],
             inMaintenance: false,
           },
         },

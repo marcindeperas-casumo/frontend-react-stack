@@ -1,5 +1,5 @@
-import footballData from "./football";
 import { FAVOURITE_COMPETITIONS_SELECTOR_QUERY } from "../FavouriteCompetitionsSelector";
+import footballData from "./football";
 
 export default [
   {

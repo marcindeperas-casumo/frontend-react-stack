@@ -1,12 +1,9 @@
 // @flow
 
 import * as React from "react";
-
 import Scrollable from "@casumo/cmp-scrollable";
 import Flex from "@casumo/cmp-flex";
-
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-
 import type { SportsNavItemType } from "./types";
 import SportsNavTab from "./SportsNavTab";
 import SportsSingleNavTab from "./SportsSingleNavTab";

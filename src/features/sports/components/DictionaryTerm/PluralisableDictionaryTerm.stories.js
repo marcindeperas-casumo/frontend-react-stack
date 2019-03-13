@@ -1,12 +1,10 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { MockedProvider } from "react-apollo/test-utils";
 import { text, number, boolean } from "@storybook/addon-knobs/react";
-
+import info from "Storybook/storybookInfo";
 import PluralisableDictionaryTerm from "./PluralisableDictionaryTerm";
-
 import { mocks, WORKING_TERM, REPLACEMENT_TERM } from "./__mocks__/termMocks";
 
 const stories = storiesOf(

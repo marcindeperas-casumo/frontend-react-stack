@@ -2,12 +2,12 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import { pick } from "ramda";
-import info from "../../../.storybook/storybookInfo";
 import PromotionCardConnected from "Components/PromotionCard";
 import PromotionCard from "Components/PromotionCard/PromotionCard";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
+import info from "../../../.storybook/storybookInfo";
 
 const stories = storiesOf("PromotionCard", module);
 

@@ -3,7 +3,6 @@ import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-
 import {
   market as getMarket,
   currency as getCurrency,

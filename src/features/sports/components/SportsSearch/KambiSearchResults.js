@@ -4,15 +4,13 @@ import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
-
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
 import PersistedData from "Utils/PersistedData";
 import { NavigateClientMutation } from "Features/sports/state/clientState";
-import NoResultsIcon from "./no-results-icon.svg";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import NoResultsIcon from "./no-results-icon.svg";
 
 const TOP_SEARCHES_QUERY = gql`
   query TopSearches($count: Int!) {
@@ -134,7 +132,6 @@ class KambiSearchResults extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state.searchHistory = this.persisted.searchHistory.get();
   }
 

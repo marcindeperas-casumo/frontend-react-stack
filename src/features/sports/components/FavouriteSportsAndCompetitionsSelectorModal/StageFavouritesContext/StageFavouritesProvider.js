@@ -2,11 +2,9 @@
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
 import gql from "graphql-tag";
-
 import { ClientContext } from "Features/sports/state";
-import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
-
+import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";
 import StageFavouritesContext from "./StageFavouritesContext";
 
@@ -62,7 +60,6 @@ class StageFavouritesProvider extends React.Component<
   constructor(props: ProviderProps) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state = {
       sports: [],
       isFirstTimeSelectingFavourites: false,

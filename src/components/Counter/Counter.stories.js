@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
 import info from "Storybook/storybookInfo";
 import isNotChromatic from "Storybook/isNotChromatic";
-
 import Counter from "./";
 
 const stories = storiesOf("Counter", module);
