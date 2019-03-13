@@ -1,16 +1,3 @@
-$icon-size: 32px;
-$activity-indicator-size: 48px;
-
-.c-sports-icon,
-.c-sports-icon__active-indicator {
-  display: flex;
-  height: $activity-indicator-size;
-  width: $activity-indicator-size;
-}
-
-.c-sports-icon__icon {
-  height: $icon-size;
-  margin: auto;
-  position: relative;
-  width: $icon-size;
+.c-sports-icon {
+  width: map-get($cudl-spacer-sizes, 3xlg);
 }
