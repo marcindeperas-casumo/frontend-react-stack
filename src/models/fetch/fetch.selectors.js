@@ -53,3 +53,14 @@ export const isNotFetched = name =>
       return false;
     }
   );
+
+export const isFetchError = name =>
+  createSelector(
+    getFetch(name),
+    fetch => {
+      if (fetch && fetch.error) {
+        return fetch.error;
+      }
+      return false;
+    }
+  );

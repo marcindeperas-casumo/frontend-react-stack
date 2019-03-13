@@ -17,6 +17,7 @@ import {
   launchGameSaga,
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
+  fetchGamesByProviderSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -90,6 +91,11 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     gameTypes.FETCH_GAMES_BY_SLUGS_START,
     fetchGamesBySlugsSaga
+  );
+  yield fork(
+    takeEvery,
+    gameTypes.FETCH_GAMES_BY_PROVIDER_START,
+    fetchGamesByProviderSaga
   );
   yield fork(
     takeEvery,
