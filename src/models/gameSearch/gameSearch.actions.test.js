@@ -1,5 +1,5 @@
 import { types as fetchTypes } from "Models/fetch";
-import { getQuerySearch } from "Api/api.gamebrowser";
+import { getCasinoPlayerGameSearch } from "Api/api.casinoPlayerGames";
 import {
   initFetchQuerySearch,
   clearSearch,
@@ -32,10 +32,11 @@ describe("Models/GameSearch/Actions", () => {
   });
 
   describe("fetchQuerySearch()", () => {
-    const platform = "mobile";
-    const country = "gb";
+    const sessionId = "123";
     const query = "query";
-    const action = fetchQuerySearch({ platform, country, query });
+    const page = 0;
+    const pageSize = 5;
+    const action = fetchQuerySearch({ sessionId, page, pageSize, query });
 
     test("init api fetch", () => {
       expect(action).toMatchObject({
@@ -50,12 +51,17 @@ describe("Models/GameSearch/Actions", () => {
       });
     });
 
-    test("passes `getQuerySearch` fetch function to the action", () => {
-      expect(action.asyncCall).toEqual(getQuerySearch);
+    test("passes `getCasinoPlayerGameSearch` fetch function to the action", () => {
+      expect(action.asyncCall).toEqual(getCasinoPlayerGameSearch);
     });
 
     test("passes params to the fetcher function", () => {
-      expect(action.asyncCallData).toEqual({ platform, country, query });
+      expect(action.asyncCallData).toEqual({
+        sessionId,
+        page,
+        pageSize,
+        query,
+      });
     });
   });
 

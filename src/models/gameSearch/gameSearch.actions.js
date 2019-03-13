@@ -2,10 +2,10 @@ import { types, getSearchFetchCompleteType } from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
 import {
   getGameLists,
-  getQuerySearch,
   getLatestPlayedGames,
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
+import { getCasinoPlayerGameSearch } from "Api/api.casinoPlayerGames";
 
 export const initFetchQuerySearch = query => ({
   type: types.GAME_SEARCH_FETCH,
@@ -14,12 +14,12 @@ export const initFetchQuerySearch = query => ({
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
-export const fetchQuerySearch = ({ platform, country, query }) => ({
+export const fetchQuerySearch = ({ page, pageSize, sessionId, query }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,
   postFetch: getSearchFetchCompleteType(query),
-  asyncCall: getQuerySearch,
-  asyncCallData: { platform, country, query },
+  asyncCall: getCasinoPlayerGameSearch,
+  asyncCallData: { page, pageSize, sessionId, query },
 });
 
 export const fetchLatestPlayedGames = ({ playerId }) => ({

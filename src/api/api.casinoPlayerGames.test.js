@@ -1,9 +1,9 @@
-import { getGameProviders, URL } from "./api.casinoPlayerGames";
+import { getCasinoPlayerGameProviders, URL } from "./api.casinoPlayerGames";
 
 describe("API/casinoPlayerGames", () => {
   let http;
 
-  describe("getGameProviders()", () => {
+  describe("getCasinoPlayerGameProviders()", () => {
     beforeEach(() => {
       http = {
         get: jest.fn(() => Promise.resolve([])),
@@ -11,7 +11,7 @@ describe("API/casinoPlayerGames", () => {
     });
 
     test("calls http.get() with the right URL", () => {
-      getGameProviders(http);
+      getCasinoPlayerGameProviders(http);
 
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(http.get).toHaveBeenCalledWith(URL.GAME_PROVIDERS);

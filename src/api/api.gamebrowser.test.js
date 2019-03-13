@@ -43,31 +43,6 @@ describe("API/GameBrowser", () => {
     });
   });
 
-  describe("getQuerySearch()", () => {
-    test("requests the URL with the necessary params", () => {
-      getQuerySearch(
-        {
-          platform: "mobile",
-          country: "en-gb",
-          query: "starburst",
-          variant: "default",
-          page: 0,
-          pageSize: 5,
-        },
-        http
-      );
-
-      expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestUrl()).toMatch(`${URL.GAME_SEARCH}/mobile/en-gb`);
-      expect(getRequestData()).toMatchObject({
-        variant: "default",
-        page: 0,
-        pageSize: 5,
-        q: "starburst",
-      });
-    });
-  });
-
   describe("getLatestPlayedGames()", () => {
     test("requests the URL with the necessary params", () => {
       getLatestPlayedGames(
