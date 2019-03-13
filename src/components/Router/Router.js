@@ -4,26 +4,26 @@ import type { Node } from "react";
 import { contains, intersection } from "ramda";
 
 type Props = {
-  activeKeys: string[],
+  activePaths: string[],
   children: any,
 };
 
-export class MigrationComponentManager extends PureComponent<Props> {
+export class Router extends PureComponent<Props> {
   render() {
     return React.Children.toArray(this.props.children)
       .filter(React.isValidElement)
       .map<Node>(child => {
-        const { activeKeys } = this.props;
+        const { activePaths } = this.props;
         const {
-          props: { migrationKey },
+          props: { path },
         } = child;
 
-        if (Array.isArray(migrationKey)) {
-          const intersectionKeys = intersection(migrationKey, activeKeys);
+        if (Array.isArray(path)) {
+          const intersectionKeys = intersection(path, activePaths);
           return intersectionKeys.length > 0 ? child : null;
         }
 
-        return contains(migrationKey, activeKeys) ? child : null;
+        return contains(path, activePaths) ? child : null;
       });
   }
 }
