@@ -3,9 +3,9 @@ import React from "react";
 import { connect } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import {
-  CURATED_SLUG,
   curatedSelector,
   isCuratedLoadedFactory,
+  curatedSlugSelector,
 } from "Models/curated";
 import { fetchPageBySlug } from "Models/cms";
 import { launchGame } from "Models/games";
@@ -15,32 +15,36 @@ type Props = {
 };
 
 const CuratedConnected = connect(
-  (state, { slug }) => ({
-    ...curatedSelector(slug)(state),
-    isFetched: isCuratedLoadedFactory(slug)(state),
-  }),
-  (dispatch, { slug }) => ({
-    fetchCurated: () => dispatch(fetchPageBySlug(slug)),
+  (state, { defaultCard }) => {
+    const defaultSlug = Array.isArray(defaultCard)
+      ? defaultCard[0]
+      : defaultCard;
+    const curatedSlug = curatedSlugSelector(defaultSlug)(state);
+
+    return {
+      curatedSlug,
+      ...curatedSelector(curatedSlug)(state),
+      isFetched: isCuratedLoadedFactory(curatedSlug)(state),
+    };
+  },
+  dispatch => ({
+    dispatchFetchCurated: slug => dispatch(fetchPageBySlug(slug)),
     dispatchLaunchGame: id => dispatch(launchGame(id)),
   }),
-  (stateProps, dispatchProps, ownProps) => {
-    const { gameId } = stateProps;
+  (stateProps, dispatchProps) => {
+    const { gameId, curatedSlug } = stateProps;
+    const { dispatchFetchCurated } = dispatchProps;
 
     return {
       ...stateProps,
-      ...dispatchProps,
+      fetchCurated: () => dispatchFetchCurated(curatedSlug),
       onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
     };
   }
 )(CuratedCard);
 
-// TODO: Move this logic out from this component
-// (The "card" prop can be an array right now, because
-// in the CMS the page-relationship selector returns an array)
 const CuratedContainer = ({ card }: Props) => {
-  const slug = `${CURATED_SLUG}.${Array.isArray(card) ? card[0] : card}`;
-
-  return <CuratedConnected slug={slug} />;
+  return <CuratedConnected defaultCard={card} />;
 };
 
 export default CuratedContainer;
