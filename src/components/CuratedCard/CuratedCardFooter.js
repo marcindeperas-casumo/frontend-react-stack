@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";

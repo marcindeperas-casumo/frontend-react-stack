@@ -3,7 +3,6 @@ import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-
 import Modal from "./Modal";
 import "./Modal.stories.scss";
 

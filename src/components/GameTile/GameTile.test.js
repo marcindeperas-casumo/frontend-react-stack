@@ -1,6 +1,5 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-
 import GameTile, {
   IN_MAINTENANCE_CLASS_NAME,
 } from "Components/GameTile/GameTile";

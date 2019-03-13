@@ -1,3 +1,4 @@
+import { complement } from "ramda";
 import { put, select } from "redux-saga/effects";
 import {
   updateHandshake,
@@ -5,7 +6,6 @@ import {
   player as playerSelector,
   APP_COMMON_KEYS,
 } from "Models/handshake";
-import { complement } from "ramda";
 
 export function* updatePlayerFirstDepositDateSaga(depositDate = Date.now()) {
   const hasNeverMadeADeposit = yield select(complement(hasMadeFirstDeposit));

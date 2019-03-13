@@ -3,10 +3,8 @@ import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
 import waitForExpect from "wait-for-expect";
-
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-
 import {
   withFavouritesMock,
   noFavouritesMock,
@@ -16,7 +14,6 @@ import {
   noFavouritesResult,
 } from "../StageFavouritesContext/__mocks__/favouriteSportsSelectorContextResult";
 import competitionsSuggestionsMock from "../StageFavouritesContext/__mocks__/competititonSuggestionsQuery";
-
 import FavouriteSportsSelectorListItem from "./FavouriteSportsSelectorListItem";
 import FavouriteSportsSelector from "./FavouriteSportsSelector";
 

@@ -1,6 +1,6 @@
+import { postFetch } from "Models/fetch";
 import * as actions from "./playerGames.actions";
 import reducer from "./playerGames.reducer";
-import { postFetch } from "Models/fetch";
 
 describe("Models/Fetch/Reducer", () => {
   test("PLAYER_GAMES_FETCH_COUNT_COMPLETE", () => {

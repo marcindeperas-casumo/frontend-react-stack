@@ -2,7 +2,6 @@
 import React from "react";
 import classNames from "classnames";
 import { pick } from "ramda";
-
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 

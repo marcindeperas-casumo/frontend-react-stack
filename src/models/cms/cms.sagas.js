@@ -2,12 +2,12 @@ import { delay } from "redux-saga";
 import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { getCmsHash, getLanguage } from "Models/handshake";
-import { getChildrenAndParent, setSlug } from "./cms.utils";
 import {
   getFetchCompleteTypeBySlug,
   initiateFetch,
   shouldFetchPage,
 } from "Models/cms";
+import { getChildrenAndParent, setSlug } from "./cms.utils";
 
 // TODO: Handle failed fetches and timed out fetches.
 export function* fetchPageBySlugSaga(action) {

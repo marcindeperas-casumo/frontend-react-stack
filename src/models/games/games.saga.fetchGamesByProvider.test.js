@@ -3,12 +3,12 @@ import { call, put, take } from "redux-saga/effects";
 import { requestError } from "Models/fetch";
 import { waitForSelector } from "Utils";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 import {
   fetchGameProviders,
   areGameProvidersLoaded,
   types as gameProviderTypes,
 } from "Models/gameProviders";
+import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 import { types } from "./games.constants";
 import { initiateFetchGamesByProvider } from "./games.actions";
 

@@ -1,11 +1,9 @@
 import React from "react";
 import { mount } from "enzyme";
 import { getImgixUrl } from "@casumo/cudl-react-utils";
-
 import ImageAdaptive from "Components/Image/ImageAdaptive";
-import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
-
 import curatedData from "Models/curated/__mocks__/curated.json";
+import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 
 describe("ImageAdaptive", () => {
   const images = curatedData;

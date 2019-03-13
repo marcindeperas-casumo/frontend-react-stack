@@ -3,16 +3,13 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { has } from "ramda";
-
-import SportsMainNav from "./SportsMainNav";
-import SportsSubNav from "./SportsSubNav";
-
 import {
   NAVIGATE_CLIENT_MUTATION,
   ClientContext,
   OpenModalMutation,
 } from "Features/sports/state";
-
+import SportsMainNav from "./SportsMainNav";
+import SportsSubNav from "./SportsSubNav";
 import SportsNavSkeleton from "./SportsNavSkeleton";
 import type { SportsNavItemType } from "./types";
 
