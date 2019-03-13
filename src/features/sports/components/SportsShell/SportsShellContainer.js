@@ -3,10 +3,8 @@ import React from "react";
 import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-
 import { sessionId, country, getLanguage } from "Models/handshake";
 import bridge from "Src/DurandalReactBridge";
-
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsHashWatcher from "Components/HashWatcher";
@@ -19,7 +17,6 @@ import {
   SHOW_SEARCH,
   HIDE_SEARCH,
 } from "Features/sports/state";
-
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 // hook up SportsStateClient to redux data until we can do a proper graphql solution

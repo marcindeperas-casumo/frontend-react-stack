@@ -1,8 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
-
-import SearchInput from "Components/SearchInput";
 import debounce from "lodash/debounce";
+import SearchInput from "Components/SearchInput";
 import { track } from "Services/tracker";
 import { EVENTS } from "Src/constants";
 

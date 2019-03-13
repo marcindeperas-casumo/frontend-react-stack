@@ -2,15 +2,12 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
-
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-
+import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   withFavouritesResult,
   noFavouritesResult,
 } from "../StageFavouritesContext/__mocks__/favouriteSportsSelectorContextResult";
-import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
-
 import FavouriteSportsSelectorListItem from "./FavouriteSportsSelectorListItem";
 
 const stories = storiesOf("Sports/FavouriteSportsSelectorListItem", module);

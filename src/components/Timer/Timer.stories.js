@@ -2,10 +2,8 @@
 /* eslint-disable fp/no-let, fp/no-mutation */
 import React from "react";
 import { storiesOf } from "@storybook/react";
-
 import info from "../../../.storybook/storybookInfo";
 import isNotChromatic from "../../../.storybook/isNotChromatic";
-
 import Timer from "./";
 
 let tenSecondsFromNow = new Date();

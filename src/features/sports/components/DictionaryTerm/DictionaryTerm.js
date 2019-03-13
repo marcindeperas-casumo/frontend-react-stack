@@ -3,7 +3,6 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 

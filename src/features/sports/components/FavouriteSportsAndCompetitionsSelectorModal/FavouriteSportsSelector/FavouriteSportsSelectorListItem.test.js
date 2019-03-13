@@ -1,9 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-
 import { withFavouritesResult } from "../StageFavouritesContext/__mocks__/favouriteSportsSelectorContextResult";
-
 import FavouriteSportsSelectorListItem from "./FavouriteSportsSelectorListItem";
 
 const footballGroup = withFavouritesResult.groups[0];

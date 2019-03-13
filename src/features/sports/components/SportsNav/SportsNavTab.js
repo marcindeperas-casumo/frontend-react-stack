@@ -1,10 +1,8 @@
 // @flow
 import React from "react";
-
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
 import type { SportsNavItemType } from "./types";
 
 import "./SportsNavTab.scss";

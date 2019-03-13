@@ -1,17 +1,14 @@
 // @flow
 import React from "react";
 import Modal from "Components/Modal";
-
 import { SetFavouritesMutation } from "Features/sports/state";
-
-import FavouriteSportsSelector from "../FavouriteSportsSelector";
-import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
-
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
   DictionaryTerm,
   PluralisableDictionaryTerm,
 } from "Features/sports/components/DictionaryTerm";
+import FavouriteSportsSelector from "../FavouriteSportsSelector";
+import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 
 type Props = {
   onClose: () => void,

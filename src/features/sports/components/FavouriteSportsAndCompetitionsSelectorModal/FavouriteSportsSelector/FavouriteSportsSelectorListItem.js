@@ -2,10 +2,8 @@
 import React from "react";
 import gql from "graphql-tag";
 import { T } from "ramda";
-
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
-
 import CompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 type Props = {

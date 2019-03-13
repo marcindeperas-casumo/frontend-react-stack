@@ -1,11 +1,9 @@
 // @flow
 import React from "react";
 import { equals, unless } from "ramda";
-
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
 import SadSumo from "./sad-sumo.svg";
 
 type Direction = "horizontal" | "vertical";
