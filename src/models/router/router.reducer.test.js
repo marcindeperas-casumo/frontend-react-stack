@@ -1,7 +1,7 @@
-import reducer from "./migrationComponents.reducer";
-import { activateComponent } from "./migrationComponents.actions";
+import reducer from "./router.reducer";
+import { activateComponent } from "./router.actions";
 
-describe("Models/MigrationComponents/Reducer", () => {
+describe("Models/Router/Reducer", () => {
   test("activate a component", () => {
     const state = {
       activeComponents: [],

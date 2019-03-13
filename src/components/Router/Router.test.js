@@ -31,7 +31,7 @@ describe("Router", () => {
     expect(component.contains(barComponent)).toBe(false);
   });
 
-  test("array migration key with one element", () => {
+  test("array path with one element", () => {
     const fooComponent = <Route path={["foo"]} />;
     const barComponent = <Route path="bar" />;
     const component = shallow(
