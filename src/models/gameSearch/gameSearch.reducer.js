@@ -1,6 +1,6 @@
 import { types } from "./gameSearch.constants";
 
-const defaultState = { query: "" }
+const defaultState = { query: "" };
 export const gameSearchReducer = (state = defaultState, action) => {
   const { type, query } = action;
 
