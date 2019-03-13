@@ -2518,6 +2518,16 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         name: "nyx",
         inMaintenance: false,
         slug: "casumo-services-ltd-nyx",
+        games: [
+          "bloodsuckers",
+          "easter-island",
+          "starburst",
+          "bakers-treat",
+          "rapunzels-tower",
+          "big-bad-wolf",
+          "book-of-ra-deluxe",
+          "diamond-mine",
+        ],
         background:
           "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
