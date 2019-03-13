@@ -57,7 +57,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
       return resolve();
     });
 
-    // eslint-disable-next-line
     this.promises.list = notLoadedPromises;
   }
 
@@ -120,7 +119,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         resolve,
       };
-      // eslint-disable-next-line
       this.promises.list = append(promise, this.promises.list);
     });
   };

@@ -28,9 +28,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
-    // eslint-disable-next-line fp/no-mutation
     this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 

@@ -6,10 +6,8 @@ export default class PersistedData {
   defaultValue: any;
 
   constructor(key: string, defaultValue: any) {
-    /* eslint-disable fp/no-mutation */
     this.key = key;
     this.defaultValue = defaultValue;
-    /* eslint-enable fp/no-mutation */
   }
 
   get() {
