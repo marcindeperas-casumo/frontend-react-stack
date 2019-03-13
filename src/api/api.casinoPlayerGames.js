@@ -15,8 +15,8 @@ const getXTokenHeaders = token =>
 
 export const getCasinoPlayerGames = (
   {
-    page = 0,
-    pageSize = 20,
+    page,
+    pageSize,
     sessionId,
   }: {
     page: number,
@@ -36,8 +36,8 @@ export const getCasinoPlayerGames = (
 
 export const getCasinoPlayerGameSearch = async (
   {
-    page = 0,
-    pageSize = 20,
+    page,
+    pageSize,
     sessionId,
     query,
   }: {
