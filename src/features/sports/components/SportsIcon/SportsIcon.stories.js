@@ -7,19 +7,41 @@ import SportsIcon from "./SportsIcon";
 
 const stories = storiesOf("Sports/SportsIcon", module);
 
-const icon = "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg";
-const active =
-  "https://cms.casumo.com/wp-content/uploads/2019/01/football11.svg";
-const props = { src: { icon, active } };
+const footballProps = {
+  src: {
+    icon: "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg",
+    active: "https://cms.casumo.com/wp-content/uploads/2019/01/football11.svg",
+  },
+};
 
 stories.add(
-  "Active",
-  () => <SportsIcon {...props} isActive />,
-  info({ text: "Default" })
+  "Football (active)",
+  () => <SportsIcon {...footballProps} isActive />,
+  info({ text: "Football (active)" })
 );
 
 stories.add(
-  "Inactive",
-  () => <SportsIcon {...props} />,
-  info({ text: "Default" })
+  "Football (inactive)",
+  () => <SportsIcon {...footballProps} />,
+  info({ text: "Football (inactive)" })
+);
+
+const americanFootballProps = {
+  src: {
+    icon:
+      "https://cms.casumo.com/wp-content/uploads/2019/02/american-football.svg",
+    active: "https://cms.casumo.com/wp-content/uploads/2019/01/football11.svg",
+  },
+};
+
+stories.add(
+  "American Football (active)",
+  () => <SportsIcon {...americanFootballProps} isActive />,
+  info({ text: "Football (active)" })
+);
+
+stories.add(
+  "American Football (inactive)",
+  () => <SportsIcon {...americanFootballProps} />,
+  info({ text: "Football (inactive)" })
 );

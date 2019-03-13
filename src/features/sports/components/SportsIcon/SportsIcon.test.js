@@ -37,4 +37,8 @@ describe("SportsIcon", () => {
     expect(icon.length).toEqual(1);
     expect(activeIndicator.length).toEqual(1);
   });
+
+  // TODO:
+  // renders a default activity indicator if not given a custom one
+  // renders a custom active indicator if given one
 });
