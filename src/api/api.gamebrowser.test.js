@@ -1,7 +1,6 @@
 import {
   URL,
   getGameLists,
-  getQuerySearch,
   getLatestPlayedGames,
   getGamesByProviderGameNames,
   getGamesBySlugs,
