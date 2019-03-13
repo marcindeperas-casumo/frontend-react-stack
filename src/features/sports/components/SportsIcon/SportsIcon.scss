@@ -1,0 +1,17 @@
+$icon-size: 32px;
+$activity-indicator-size: 48px;
+
+.c-sports-icon,
+.c-sports-icon__active-indicator {
+  display: flex;
+  height: $activity-indicator-size;
+  position: absolute;
+  width: $activity-indicator-size;
+}
+
+.c-sports-icon__icon {
+  height: $icon-size;
+  margin: auto;
+  position: relative;
+  width: $icon-size;
+}
