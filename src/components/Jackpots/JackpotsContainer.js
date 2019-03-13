@@ -1,39 +1,34 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import {
-  jackpotIdsSelector,
-  gameListTitleSelectorFactory,
-} from "Models/schema";
-import {
-  subscribeJackpotUpdates,
-  unsubscribeJackpotUpdates,
-} from "Models/cometd";
-import TrackProvider from "Components/TrackProvider";
-import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
+import { Query } from "react-apollo";
+import { path } from "ramda";
 import Jackpots from "./Jackpots";
+// $FlowIgnore - Flow doesn't understand the queries imported by name.
+import { JackpotsQuery } from "./Jackpots.graphql";
 
-const JackpotsConnected = connect(
-  state => ({
-    ids: jackpotIdsSelector(state),
-    title: gameListTitleSelectorFactory(GAME_LIST_IDS.CASUMO_JACKPOT_GAMES)(
-      state
-    ),
-  }),
-  dispatch => ({
-    subscribeToUpdates: () => dispatch(subscribeJackpotUpdates()),
-    unsubscribeFromUpdates: () => dispatch(unsubscribeJackpotUpdates()),
-  })
-)(Jackpots);
+// Refreshing the jackpots by polling the API every 2 seconds.
+// This is far from ideal and is just temporary.
+// We are only using this until we implement subscribing to the RabbitMQ queues
+// in the GraphQL server.
+// Related issue: https://github.com/Casumo/Home/issues/26668
+const REFRESH_INTERVAL = 3000;
 
-type Props = {};
+class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}
 
-const JackpotsContainer = (props: Props) => {
-  return (
-    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: "Jackpots" }}>
-      <JackpotsConnected {...props} />
-    </TrackProvider>
-  );
-};
+const JackpotsApolloContainer = () => (
+  <GamesListJackpotsTypedQuery
+    query={JackpotsQuery}
+    pollInterval={REFRESH_INTERVAL}
+  >
+    {({ loading, data }) => {
+      const getTitle = path(["gamesList", "title"]);
+      const getGames = path(["gamesList", "games"]);
 
-export default JackpotsContainer;
+      return loading ? null : (
+        <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
+      );
+    }}
+  </GamesListJackpotsTypedQuery>
+);
+
+export default JackpotsApolloContainer;

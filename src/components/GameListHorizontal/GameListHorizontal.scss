@@ -1,9 +1,3 @@
-@import "cudl-compile";
-@import "cudl-breakpoints";
-@include cudl-prevent-compile(cudl-sass-spacers);
-@import "cudl-spacers";
-@include cudl-reset-compile(cudl-sass-spacers);
-
 $top-game-tile-widths: (
   mobile: 43%,
   phablet: 26%,

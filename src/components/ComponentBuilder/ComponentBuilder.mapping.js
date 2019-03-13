@@ -17,12 +17,14 @@ import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import ContentMustDropJackpotsWidget from "Components/ContentMustDropJackpotsWidget";
+import TileListHorizontal from "Components/TileListHorizontal";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
   GAMES_LIST: GameListHorizontal,
   GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,
+  GROUPED_LIST_HORIZONTAL: TileListHorizontal,
   CURATED_CARD: CuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,

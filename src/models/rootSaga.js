@@ -1,4 +1,4 @@
-import { fork, takeEvery } from "redux-saga/effects";
+import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
@@ -9,10 +9,15 @@ import {
 } from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
+  types as gameProviderTypes,
+  fetchGameProvidersSaga,
+} from "Models/gameProviders";
+import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
+  fetchGamesByProviderSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -27,10 +32,23 @@ import {
 import {
   CHANNELS as cometdChannels,
   TYPES as cometdTypes,
+  MESSAGES as cometdMessages,
   cometdSubscribeSaga,
   cometdUnsubscribeSaga,
   takeChannel,
+  takeMessageFromChannel,
 } from "Models/cometd";
+import {
+  types as gameSearchTypes,
+  gameSearchSaga,
+  clearSearchResultsSaga,
+} from "Models/gameSearch";
+import {
+  types as playerGamesTypes,
+  fetchPlayerGamesSaga,
+  fetchPlayerGamesCountSaga,
+} from "Models/playerGames";
+import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -58,6 +76,14 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.DEPOSIT_CONFIRMED
+    ),
+    updatePlayerFirstDepositDateSaga
+  );
+  yield fork(
+    takeEvery,
     action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
     fetchCuratedGameSaga
   );
@@ -68,7 +94,31 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
+    gameTypes.FETCH_GAMES_BY_PROVIDER_START,
+    fetchGamesByProviderSaga
+  );
+  yield fork(
+    takeEvery,
+    gameProviderTypes.FETCH_GAME_PROVIDERS_START,
+    fetchGameProvidersSaga
+  );
+  yield fork(
+    takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
     fetchAllLiveCasinoGamesSaga
   );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH,
+    fetchPlayerGamesSaga
+  );
+  yield fork(
+    takeEvery,
+    playerGamesTypes.PLAYER_GAMES_FETCH_COUNT,
+    fetchPlayerGamesCountSaga
+  );
+  yield all([
+    fork(takeLatest, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga),
+    fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
+  ]);
 }

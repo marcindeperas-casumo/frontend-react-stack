@@ -5,10 +5,12 @@ import {
   gameEntitiesSelector,
   liveTableEntitiesSelector,
   jackpotEntitiesSelector,
+  gameProviderEntitiesSelector,
   topListIds,
   topListSelectorById,
   topListSelectorByQuery,
   gameListSelector,
+  gameListGamesSelector,
   gameSelector,
   gameListTitleSelectorFactory,
   areGameListsLoaded,
@@ -55,6 +57,16 @@ describe("Schema selectors", () => {
     };
 
     expect(jackpotEntitiesSelector(state)).toEqual({ j1: 1 });
+  });
+
+  test("gameProviderEntitiesSelector", () => {
+    const state = {
+      schema: { gameProvider: { "casumo-services-ltd-nyx": 1 } },
+    };
+
+    expect(gameProviderEntitiesSelector(state)).toEqual({
+      "casumo-services-ltd-nyx": 1,
+    });
   });
 
   test("topListIds", () => {
@@ -205,6 +217,49 @@ describe("Schema selectors", () => {
     expect(selected1.games).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
     expect(selected2.id).toEqual(id2);
     expect(selected2.games).toEqual([
+      "book-of-ra-deluxe",
+      "diamond-mine",
+      "raging-rhino",
+    ]);
+  });
+
+  test("gameListGamesSelector() - should get games prop", () => {
+    const state = {
+      schema: {
+        gameList: {
+          "game-list": {
+            id: "game-list",
+            games: ["book-of-ra-deluxe", "diamond-mine", "raging-rhino"],
+          },
+        },
+        game: {
+          "book-of-ra-deluxe": {
+            name: "Book of Ra deluxe",
+            slug: "book-of-ra-deluxe",
+            hasPlayForFun: false,
+            inMaintenanceMode: false,
+          },
+          "diamond-mine": {
+            name: "Diamond Mine",
+            slug: "diamond-mine",
+            hasPlayForFun: true,
+            inMaintenanceMode: false,
+          },
+          "raging-rhino": {
+            name: "Raging Rhino",
+            slug: "raging-rhino",
+            hasPlayForFun: true,
+            inMaintenanceMode: true,
+          },
+        },
+      },
+    };
+    const query = { maintenance: false };
+    const selected1 = gameListGamesSelector("game-list", query)(state);
+    const selected2 = gameListGamesSelector("game-list")(state);
+
+    expect(selected1).toEqual(["book-of-ra-deluxe", "diamond-mine"]);
+    expect(selected2).toEqual([
       "book-of-ra-deluxe",
       "diamond-mine",
       "raging-rhino",

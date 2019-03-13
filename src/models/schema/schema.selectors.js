@@ -43,6 +43,11 @@ export const cmsEntitiesSelector = createSelector(
   prop("cms")
 );
 
+export const gameProviderEntitiesSelector = createSelector(
+  schemaSelector,
+  prop("gameProvider")
+);
+
 export const topListIds = createSelector(
   gameListEntitiesSelector,
   keys
@@ -145,6 +150,12 @@ export const gameListSelector = (listId, options = {}) =>
             : gameIds,
       };
     }
+  );
+
+export const gameListGamesSelector = (listId, options = {}) =>
+  createSelector(
+    gameListSelector(listId, options),
+    prop("games")
   );
 
 export const gameSelector = id =>

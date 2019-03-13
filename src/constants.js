@@ -42,6 +42,9 @@ export const GAME_LIST_IDS = {
   CASUMO_JACKPOT_GAMES: "casumoJackpotGames",
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   MUST_DROP_JACKPOTS_GAMES: "mustDropJackpotGames",
+  GAME_SEARCH: "gameSearch",
+  LATEST_PLAYED: "latestPlayedGames",
+  PLAYER_GAMES: "playerGames",
 };
 
 export const MARKETS = {
@@ -80,9 +83,18 @@ export const ENVS = {
 export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",
+  SEARCH_INTENT: "Search Intent",
+  SEARCH_INITIATED: "Search Initiated",
 };
 
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
+};
+
+export const EVENT_LOCATIONS = {
+  SEARCH_GAMES: "searchGames",
+  ALL_GAMES: "allGames",
+  LATEST_PLAYED_GAMES: "latestPlayedGames",
+  POPULAR_GAMES: "popularGames",
 };
