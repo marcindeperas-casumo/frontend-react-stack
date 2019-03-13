@@ -2,12 +2,9 @@
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
 import { withClientState } from "apollo-link-state";
-
 import * as kambi from "Features/sports/kambi";
-
 import * as queries from "./queries";
 import * as mutations from "./mutations";
-
 import resolvers from "./resolvers";
 import defaultState from "./defaultState";
 

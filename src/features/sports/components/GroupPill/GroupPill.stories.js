@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
+import info from "Storybook/storybookInfo";
 import GroupPill from "./GroupPill";
 
 const stories = storiesOf("Sports/GroupPill", module);

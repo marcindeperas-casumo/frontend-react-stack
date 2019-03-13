@@ -1,12 +1,12 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import PromotionCardContainer from "Components/PromotionCard";
 import Scrollable from "@casumo/cmp-scrollable";
-import ScrollableListTitle from "Components/ScrollableListTitle";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import ScrollableListTitle from "Components/ScrollableListTitle";
+import PromotionCardContainer from "Components/PromotionCard";
 
 type Props = {
   promotionsSlugs: Array<string>,

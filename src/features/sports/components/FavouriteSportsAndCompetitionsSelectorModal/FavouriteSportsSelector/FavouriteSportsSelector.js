@@ -1,10 +1,8 @@
 /* @flow */
 import * as React from "react";
 import gql from "graphql-tag";
-
-import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-
+import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 import Intro from "./FavouriteSportsSelectorIntro";
 import Heading from "./FavouriteSportsSelectorHeading";
 import ListItem from "./FavouriteSportsSelectorListItem";

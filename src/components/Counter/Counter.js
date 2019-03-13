@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-mutation */
 // @flow
 import React from "react";
 
@@ -96,7 +95,7 @@ class Counter extends React.Component<Props, State> {
     const time = new Date().getTime() - this.startTime;
     const difference = end - start;
 
-    // eslint-disable-next-line fp/no-let
+    /* eslint-disable fp/no-let, fp/no-mutation */
     let result;
 
     if (time < duration) {
@@ -107,6 +106,7 @@ class Counter extends React.Component<Props, State> {
       result = end.toFixed(decimals);
       this.clearTimer();
     }
+    /* eslint-enable fp/no-let, fp/no-mutation */
     this.setState({ value: result });
   }
 

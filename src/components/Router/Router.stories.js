@@ -4,10 +4,10 @@ import { storiesOf } from "@storybook/react";
 import { array, withKnobs } from "@storybook/addon-knobs";
 import isNotChromatic from "Storybook/isNotChromatic";
 import MockStore from "Components/MockStore";
-import MigrationComponent from "./MigrationComponent";
-import { MigrationComponentManager } from "./MigrationComponentManager";
+import { Route } from "./Route";
+import { Router } from "./Router";
 
-const stories = storiesOf("MigrationComponentManager", module);
+const stories = storiesOf("Router", module);
 stories.addDecorator(withKnobs);
 
 if (isNotChromatic) {
@@ -17,17 +17,17 @@ if (isNotChromatic) {
 
     return (
       <MockStore>
-        <MigrationComponentManager activeKeys={value}>
-          <MigrationComponent migrationKey="foo">
+        <Router activePaths={value}>
+          <Route path="foo">
             <h1>Foo</h1>
-          </MigrationComponent>
-          <MigrationComponent migrationKey="bar">
+          </Route>
+          <Route path="bar">
             <h1>Bar</h1>
-          </MigrationComponent>
-          <MigrationComponent migrationKey={["baz", "fiz"]}>
+          </Route>
+          <Route path={["baz", "fiz"]}>
             <h1>Baz or Fiz</h1>
-          </MigrationComponent>
-        </MigrationComponentManager>
+          </Route>
+        </Router>
       </MockStore>
     );
   });

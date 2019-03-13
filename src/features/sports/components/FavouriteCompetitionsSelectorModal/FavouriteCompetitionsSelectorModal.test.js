@@ -3,9 +3,7 @@ import wait from "waait";
 import { shallow, mount } from "enzyme";
 import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "react-apollo/test-utils";
-
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
-
 import FavouriteCompetitionsSelectorModal from "./FavouriteCompetitionsSelectorModal";
 import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./FavouriteCompetitionsSelector/__mocks__/favouriteCompetitionsSelectorQuery";

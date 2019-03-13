@@ -1,11 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
-
 import { PlanetIcon } from "@casumo/cmp-icons";
-
+import info from "Storybook/storybookInfo";
 import FavouriteListItem from "./FavouriteListItem";
 
 const stories = storiesOf("Sports/FavouriteListItem", module);

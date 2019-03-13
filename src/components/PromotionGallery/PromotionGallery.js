@@ -1,10 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import PromotionGalleryCardContainer from "Components/PromotionGalleryCard";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import PromotionGalleryCardContainer from "Components/PromotionGalleryCard";
 
 type Props = {
   promotionsSlugs: Array<string>,
