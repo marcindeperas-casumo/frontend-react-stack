@@ -1,4 +1,4 @@
-import { activateComponent } from "Models/migrationComponents";
+import { activateComponent } from "Models/router";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
 import { connect } from "./BridgeToDispatchService";

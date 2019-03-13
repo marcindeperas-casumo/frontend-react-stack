@@ -3,10 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { appStarted } from "Models/app";
 import { isAuthenticated, playerId, sessionId } from "Models/handshake";
-import {
-  activeComponents,
-  routeParamsSelector,
-} from "Models/migrationComponents";
+import { activeComponents, routeParamsSelector } from "Models/router";
 import App from "Components/App/App";
 import {
   subscribeToPlayerUpdates,
