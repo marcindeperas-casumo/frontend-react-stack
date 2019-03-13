@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Timer from "./Timer";
 import { Settings } from "luxon";
-
+import Timer from "./Timer";
 const createMockRaf = require("mock-raf");
 const mockRaf = createMockRaf();
 

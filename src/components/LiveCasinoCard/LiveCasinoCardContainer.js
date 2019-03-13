@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { connect } from "react-redux";
+import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 import {

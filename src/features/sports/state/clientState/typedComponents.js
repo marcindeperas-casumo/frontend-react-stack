@@ -2,11 +2,9 @@
 import React from "react";
 import { Mutation } from "react-apollo";
 import SimpleQuery from "Features/sports/state/components/SimpleQuery";
-
+import type { MutationProps, QueryProps } from "../types";
 import * as queries from "./queries";
 import * as mutations from "./mutations";
-
-import type { MutationProps, QueryProps } from "../types";
 
 export const ActiveModalsQuery = (props: QueryProps<ActiveModals, null>) => {
   return (

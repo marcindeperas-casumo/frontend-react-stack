@@ -2,16 +2,13 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-
 import Modal from "Components/Modal";
-
-import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
-
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
   DictionaryTerm,
   PluralisableDictionaryTerm,
 } from "Features/sports/components/DictionaryTerm";
+import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 
 type SelectedCompetitions = Array<FavouriteCompetitionsSelectorModal_Group>;
 

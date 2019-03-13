@@ -1,9 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
-import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import List from "@casumo/cmp-list";
-import GameRow from "Components/GameRow";
 import Text from "@casumo/cmp-text";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
+import GameRow from "Components/GameRow";
 import ErrorMessage from "Components/ErrorMessage";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";

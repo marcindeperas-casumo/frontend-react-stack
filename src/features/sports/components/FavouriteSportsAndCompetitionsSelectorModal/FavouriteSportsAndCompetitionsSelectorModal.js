@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react";
-
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
-
 import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 import {
   StageFavouritesProvider,

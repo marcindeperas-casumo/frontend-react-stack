@@ -4,9 +4,7 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Flex from "@casumo/cmp-flex";
 import { partition, any, propEq } from "ramda";
-
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-
 import Heading from "./FavouriteCompetitionsSelectorHeading";
 import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
