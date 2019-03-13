@@ -46,18 +46,20 @@ if (isNotChromatic) {
     },
   };
 
+  const noop = () => ({});
+
   stories.add(
     "Loading",
     () => (
       <MockStore state={state}>
         <GameSearch
-          clearSearch={() => ({})}
-          initFetchQuerySearch={() => ({})}
+          clearSearch={noop}
+          initFetchQuerySearch={noop}
           inputPromptPlaceholder="What 🐟 are you looking for?"
-          preloadFetchPlayerGames={() => ({})}
+          preloadFetchPlayerGames={noop}
           query={""}
           searchResults={[]}
-          fetchPageBySlug={() => ({})}
+          fetchPageBySlug={noop}
           loading={true}
         />
       </MockStore>
@@ -70,13 +72,13 @@ if (isNotChromatic) {
     () => (
       <MockStore state={latestPlayedGamesState}>
         <GameSearch
-          clearSearch={() => ({})}
-          initFetchQuerySearch={() => ({})}
+          clearSearch={noop}
+          initFetchQuerySearch={noop}
           inputPromptPlaceholder="What 🐟 are you looking for?"
-          preloadFetchPlayerGames={() => ({})}
+          preloadFetchPlayerGames={noop}
           query={"whatever"}
           searchResults={[]}
-          fetchPageBySlug={() => ({})}
+          fetchPageBySlug={noop}
           loading={false}
         />
       </MockStore>
@@ -89,13 +91,13 @@ if (isNotChromatic) {
     () => (
       <MockStore state={state}>
         <GameSearch
-          clearSearch={() => ({})}
-          initFetchQuerySearch={() => ({})}
+          clearSearch={noop}
+          initFetchQuerySearch={noop}
           inputPromptPlaceholder="What 🐟 are you looking for?"
-          preloadFetchPlayerGames={() => ({})}
+          preloadFetchPlayerGames={noop}
           query={"whatever"}
           searchResults={[]}
-          fetchPageBySlug={() => ({})}
+          fetchPageBySlug={noop}
           loading={false}
         />
       </MockStore>
@@ -110,10 +112,10 @@ if (isNotChromatic) {
         <GameSearch
           inputPromptPlaceholder="What 🐟 are you looking for?"
           searchResults={["starburst"]}
-          fetchPageBySlug={() => ({})}
-          clearSearch={() => ({})}
-          initFetchQuerySearch={() => ({})}
-          preloadFetchPlayerGames={() => ({})}
+          fetchPageBySlug={noop}
+          clearSearch={noop}
+          initFetchQuerySearch={noop}
+          preloadFetchPlayerGames={noop}
           query={"starburst"}
           loading={false}
         />
@@ -129,10 +131,10 @@ if (isNotChromatic) {
         <GameSearch
           inputPromptPlaceholder="What 🐟 are you looking for?"
           searchResults={["mega-fortune", "mega-fortune-dreams"]}
-          fetchPageBySlug={() => ({})}
-          clearSearch={() => ({})}
-          initFetchQuerySearch={() => ({})}
-          preloadFetchPlayerGames={() => ({})}
+          fetchPageBySlug={noop}
+          clearSearch={noop}
+          initFetchQuerySearch={noop}
+          preloadFetchPlayerGames={noop}
           query={"mega"}
           loading={false}
         />
