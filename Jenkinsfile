@@ -10,8 +10,9 @@ new PipelineBuilder(this)
         .customStep('Tests', this.&runTests)
         .parallel([
                 "Flow": {it.customStepTask('Flow', this.&runFlow)},
+                "ESlint": {it.customStepTask('ESlint', this.&runESlint)},
                 "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
-                "Sonar": {it.gradleSonarTask()}        
+                "Sonar": {it.gradleSonarTask()}
         ])
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
@@ -32,6 +33,10 @@ def runTests() {
 
 def runFlow() {
     sh "yarn flow"
+}
+
+def runESlint() {
+    sh "yarn lint"
 }
 
 def runChromatic () {
