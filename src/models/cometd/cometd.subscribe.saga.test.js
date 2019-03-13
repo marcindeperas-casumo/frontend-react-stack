@@ -6,8 +6,9 @@ import cometdSubscribeSaga, {
 
 describe("Models/CometD/Subscribe", () => {
   const channel = "/foo/*";
+  const sessionId = "foobar";
   const emittedChannel = "/foo/bar";
-  const action = { channel };
+  const action = { channel, sessionId };
   const generator = cometdSubscribeSaga(action);
   const fakeMessageStream = "PATTERN";
   const isGeneratorDone = (...args) => generator.next(...args).done;
@@ -22,7 +23,7 @@ describe("Models/CometD/Subscribe", () => {
     const fnArgs = prop("args")(CALL);
 
     expect(fn).toEqual(getCometdMessagesStream);
-    expect(fnArgs).toEqual([channel]);
+    expect(fnArgs).toEqual([channel, { sessionId }]);
   });
 
   test("relays messages on the store", () => {

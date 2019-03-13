@@ -1,5 +1,13 @@
 import { createSelector } from "reselect";
-import { compose, prop, isNil, isEmpty, complement, anyPass } from "ramda";
+import {
+  compose,
+  prop,
+  isNil,
+  isEmpty,
+  complement,
+  anyPass,
+  propSatisfies,
+} from "ramda";
 import { LANGUAGES, MARKETS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
@@ -40,15 +48,15 @@ export const playerId = createSelector(
   prop("id")
 );
 
-export const sessionId = createSelector(
-  session,
-  prop("sessionId")
-);
-
 export const player = createSelector(
   players,
   playerId,
   (players, playerId) => prop(playerId)(players)
+);
+
+export const sessionId = createSelector(
+  session,
+  prop("sessionId")
 );
 
 // TODO: check if we need to fallback on the country guesser. Another option
@@ -75,6 +83,11 @@ export const currency = createSelector(
 export const market = createSelector(
   player,
   prop("market")
+);
+
+export const hasMadeFirstDeposit = createSelector(
+  player,
+  propSatisfies(complement(isNil), "firstDepositDate")
 );
 
 export const gamesHandshakeSelector = createSelector(
