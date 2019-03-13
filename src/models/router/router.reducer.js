@@ -1,4 +1,4 @@
-import { types } from "./migrationComponents.constants";
+import { types } from "./router.constants";
 
 const initialState = {
   activeComponents: [],
