@@ -38,6 +38,7 @@ export const reducer = combineReducers({
   [ENTITY_KEYS.JACKPOT_MUST_DROP]: entityReducerFactory(
     ENTITY_KEYS.JACKPOT_MUST_DROP
   ),
+  [ENTITY_KEYS.GAME_PROVIDER]: entityReducerFactory(ENTITY_KEYS.GAME_PROVIDER),
 });
 
 export default reducer;
