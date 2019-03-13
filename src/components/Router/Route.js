@@ -5,21 +5,18 @@ import ErrorBoundary from "Components/ErrorBoundary";
 
 type Props = {
   children: any,
-  migrationKey: string | string[],
+  path: string | string[],
 };
 
-class MigrationComponent extends PureComponent<Props> {
+export class Route extends PureComponent<Props> {
   componentDidMount() {
-    const { migrationKey, children } = this.props;
+    const { path, children } = this.props;
 
-    invariant(
-      migrationKey,
-      "A <MigrationComponent> should have a migrationKey prop value"
-    );
+    invariant(path, "A <Route> should have a path prop value");
 
     invariant(
       children == null || React.Children.count(children) === 1,
-      "A <MigrationComponent> should have only one child element"
+      "A <Route> should have only one child element"
     );
   }
 
@@ -29,5 +26,3 @@ class MigrationComponent extends PureComponent<Props> {
     );
   }
 }
-
-export default MigrationComponent;
