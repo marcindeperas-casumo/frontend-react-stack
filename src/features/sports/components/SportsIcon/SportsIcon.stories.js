@@ -12,8 +12,6 @@ const footballProps = {
   activeIndicatorSrc: `https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg`,
 };
 
-// TODO: add knob selector to pick sport?
-
 stories.add(
   "Football (active)",
   () => <SportsIcon {...footballProps} isActive />,
