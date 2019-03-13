@@ -4,7 +4,6 @@ import {
   updateHandshake,
   APP_COMMON_KEYS,
 } from "Models/handshake";
-import { getStateMock } from "Models/__mocks__/state.mock";
 
 describe("handshake saga update", () => {
   test("should update the handshake if the user has never made a deposit", () => {
