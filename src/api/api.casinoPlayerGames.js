@@ -66,7 +66,7 @@ export const getCasinoPlayerGamesCount = (http: HTTPClient = defaultHttp) => {
   return http.get(URL.GAMES_COUNT);
 };
 
-export const getCasinoPlayerGameProviders = async (
+export const getGameProviders = async (
   http: HTTPClient = defaultHttp
 ) => {
   return await http.get(URL.GAME_PROVIDERS);
