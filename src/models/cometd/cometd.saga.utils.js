@@ -8,3 +8,12 @@ import { TYPES } from "./cometd.constants";
 export const takeChannel = targetChannel => ({ type, channel }) =>
   type === TYPES.COMETD_MESSAGE &&
   (channel === targetChannel || Boolean(channel.match(targetChannel)));
+
+export const takeMessageFromChannel = (targetChannel, targetMessage) => ({
+  type,
+  channel,
+  data,
+}) =>
+  type === TYPES.COMETD_MESSAGE &&
+  (channel === targetChannel || Boolean(channel.match(targetChannel))) &&
+  data[targetMessage];

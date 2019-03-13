@@ -5,3 +5,10 @@ export const types = {
   FETCH_GAMES_HANDSHAKE: "HANDSHAKE/FETCH_GAMES_HANDSHAKE",
   UPDATE_HANDSHAKE: "HANDSHAKE/UPDATE_HANDSHAKE",
 };
+// Add the rest of the keys and replace them where required.
+// to be taken care of by a seperate PR
+// ISSUE: https://github.com/Casumo/Home/issues/27506
+export const APP_COMMON_KEYS = {
+  PLAYERS: "common/composition/players",
+  AB_TESTING: "common/ABTesting",
+};
