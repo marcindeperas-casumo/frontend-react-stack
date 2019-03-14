@@ -18,6 +18,7 @@ import {
   SportsStateProvider,
   ClientContext,
   OPEN_MODAL_MUTATION,
+  UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
 } from "Features/sports/state";
@@ -48,10 +49,17 @@ export class SportsShellContainer extends React.Component<{}> {
     });
 
     bridge.on(KO_APP_EVENT_MENU_CLOSED, data =>
-      console.log("REACT NAV CLOSED", data)
+      this.context.client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: true },
+      })
     );
+
     bridge.on(KO_APP_EVENT_MENU_OPENED, data =>
-      console.log("REACT NAV OPENED", data)
+      this.context.client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: false },
+      })
     );
 
     // on mount open the choose favourites modal if the user is yet to choose favourites
