@@ -23,9 +23,10 @@ export const preloadFetchPlayerGamesCount = () => ({
   type: types.PLAYER_GAMES_FETCH_COUNT,
 });
 
-export const fetchPlayerGamesCount = () => ({
+export const fetchPlayerGamesCount = ({ provider, sessionId }) => ({
   type: fetchTypes.FETCH,
   name: types.PLAYER_GAMES_FETCH_COUNT_START,
   postFetch: types.PLAYER_GAMES_FETCH_COUNT_COMPLETE,
   asyncCall: getCasinoPlayerGamesCount,
+  asyncCallData: { providers: provider ? [provider] : undefined, sessionId },
 });

@@ -33,7 +33,7 @@ describe("Models/PlayerGames/Actions", () => {
   });
 
   describe("fetchPlayerGamesCount()", () => {
-    const action = fetchPlayerGamesCount();
+    const action = fetchPlayerGamesCount({});
 
     test("init fetch", () => {
       expect(action).toMatchObject({
