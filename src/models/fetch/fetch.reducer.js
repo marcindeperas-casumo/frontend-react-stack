@@ -1,45 +1,39 @@
 import { types } from "./fetch.constants";
 
+const reducers = {
+  [types.SENDING_REQUEST]: (state, action) => ({
+    ...state,
+    [action.name]: {
+      ...state[action.name],
+      isFetching: true,
+    },
+  }),
+  [types.REQUEST_COMPLETE]: (state, action) => ({
+    ...state,
+    [action.name]: {
+      ...state[action.name],
+      isFetching: false,
+    },
+  }),
+  [types.REQUEST_ERROR]: (state, action) => ({
+    ...state,
+    [action.name]: {
+      ...state[action.name],
+      error: action.error,
+      response: null,
+    },
+  }),
+  [types.CLEAR_ERROR]: (state, action) => ({
+    ...state,
+    [action.name]: {
+      ...state[action.name],
+      error: null,
+    },
+  }),
+};
+
 export const fetchReducer = (state = {}, action) => {
-  switch (action.type) {
-    case types.SENDING_REQUEST: {
-      return {
-        ...state,
-        [action.name]: {
-          ...state[action.name],
-          isFetching: true,
-        },
-      };
-    }
-    case types.REQUEST_COMPLETE: {
-      return {
-        ...state,
-        [action.name]: {
-          ...state[action.name],
-          isFetching: false,
-        },
-      };
-    }
-    case types.REQUEST_ERROR:
-      return {
-        ...state,
-        [action.name]: {
-          ...state[action.name],
-          error: action.error,
-          response: null,
-        },
-      };
-    case types.CLEAR_ERROR:
-      return {
-        ...state,
-        [action.name]: {
-          ...state[action.name],
-          error: null,
-        },
-      };
-    default:
-      return state;
-  }
+  return reducers[action.type] ? reducers[action.type](state, action) : state;
 };
 
 export default fetchReducer;

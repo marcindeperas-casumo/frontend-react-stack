@@ -5,17 +5,16 @@ const initialState = {
   routeParams: [],
 };
 
+const reducers = {
+  [types.ACTIVATE_COMPONENT]: (state, action) => ({
+    ...state,
+    activeComponents: [action.componentId],
+    routeParams: action.routeParams || [],
+  }),
+};
+
 const routerReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.ACTIVATE_COMPONENT:
-      return {
-        ...state,
-        activeComponents: [action.componentId],
-        routeParams: action.routeParams || [],
-      };
-    default:
-      return state;
-  }
+  return reducers[action.type] ? reducers[action.type](state, action) : state;
 };
 
 export default routerReducer;
