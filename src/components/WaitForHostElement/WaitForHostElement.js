@@ -45,5 +45,3 @@ export class WaitForHostElement extends React.PureComponent<Props, State> {
     return null;
   }
 }
-
-export default WaitForHostElement;
