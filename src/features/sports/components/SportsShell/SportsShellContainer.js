@@ -5,8 +5,9 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import bridge from "Src/DurandalReactBridge";
 import {
-  KO_APP_EVENT_MENU_OPENED,
-  KO_APP_EVENT_MENU_CLOSED,
+  REACT_APP_EVENT_MENU_OPENED,
+  REACT_APP_EVENT_MENU_CLOSED,
+  REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
 import { sessionId, country, getLanguage } from "Models/handshake";
 import SportsHashWatcher from "Components/HashWatcher";
@@ -42,20 +43,20 @@ export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
-    bridge.on("sports-show-search", showSearch => {
+    bridge.on(REACT_APP_SPORTS_SHOW_SEARCH, showSearch => {
       const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
 
       this.context.client.mutate({ mutation });
     });
 
-    bridge.on(KO_APP_EVENT_MENU_CLOSED, data =>
+    bridge.on(REACT_APP_EVENT_MENU_CLOSED, data =>
       this.context.client.mutate({
         mutation: UPDATE_BETSLIP_STATE_MUTATION,
         variables: { isVisible: true },
       })
     );
 
-    bridge.on(KO_APP_EVENT_MENU_OPENED, data =>
+    bridge.on(REACT_APP_EVENT_MENU_OPENED, data =>
       this.context.client.mutate({
         mutation: UPDATE_BETSLIP_STATE_MUTATION,
         variables: { isVisible: false },
