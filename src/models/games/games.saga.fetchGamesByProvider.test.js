@@ -1,31 +1,35 @@
-import { cloneableGenerator } from "redux-saga/utils";
-import { call, put, take } from "redux-saga/effects";
 import { requestError } from "Models/fetch";
 import { waitForSelector } from "Utils";
-import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import {
   fetchGameProviders,
   areGameProvidersLoaded,
   types as gameProviderTypes,
 } from "Models/gameProviders";
+import { call, put } from "redux-saga/effects";
+import { cloneableGenerator } from "redux-saga/utils";
 import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
-import { types } from "./games.constants";
-import { initiateFetchGamesByProvider } from "./games.actions";
 
 describe("Models/Games/Sagas", () => {
   describe("fetchGamesByProvider()", () => {
     const provider = "netent";
-    const sessionId = "123";
+    const page = 1;
+    const pageSize = 50;
     let generator;
 
     beforeEach(() => {
       generator = cloneableGenerator(fetchGamesByProviderSaga)({
         provider,
+        page,
+        pageSize,
       });
     });
 
-    test("should abort on when provider is empty", () => {
-      expect(generator.next().value).toEqual(put(fetchGameProviders()));
+    test("should abort when provider is empty", () => {
+      const areProvidersLoaded = false;
+      generator.next();
+      expect(generator.next(areProvidersLoaded).value).toEqual(
+        put(fetchGameProviders())
+      );
       expect(generator.next().value).toEqual(
         call(waitForSelector, areGameProvidersLoaded)
       );
@@ -39,44 +43,6 @@ describe("Models/Games/Sagas", () => {
             "Provider error"
           )
         )
-      );
-    });
-
-    test("success path", () => {
-      expect(generator.next().value).toEqual(put(fetchGameProviders()));
-      expect(generator.next().value).toEqual(
-        call(waitForSelector, areGameProvidersLoaded)
-      );
-      const providerData = { foo: "bar" };
-      generator.next();
-      generator.next(providerData);
-
-      expect(generator.next(sessionId, provider).value).toEqual(
-        put(
-          initiateFetchGamesByProvider({
-            sessionId,
-            provider,
-          })
-        )
-      );
-
-      expect(generator.next().value).toEqual(
-        take(types.FETCH_GAMES_BY_PROVIDER_COMPLETE)
-      );
-
-      const response = { foo: "response" };
-      expect(generator.next({ response }).value).toEqual(
-        call(normalizeData, {
-          [ENTITY_KEYS.GAME_PROVIDER]: {
-            slug: provider,
-            games: response,
-          },
-        })
-      );
-
-      const entities = { someEntity: { id: 1 } };
-      expect(generator.next({ entities }).value).toEqual(
-        put(mergeEntity(entities))
       );
     });
   });
