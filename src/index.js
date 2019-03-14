@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-let, fp/no-mutation */
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
@@ -15,6 +14,7 @@ import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
 import Debugger from "Utils/Debugger";
 import "./styles/index.scss";
 
+// eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
 
@@ -43,6 +43,7 @@ if (isEnvProduction()) {
 }
 
 if (isEnvDevelopment()) {
+  // eslint-disable-next-line fp/no-mutation
   window.Debugger = Debugger;
 }
 

@@ -1,3 +1,3 @@
 // @flow
-export type * from "./ContentButton"; // eslint-disable-line import/export
+export type * from "./ContentButton";
 export { default } from "./ContentButton";

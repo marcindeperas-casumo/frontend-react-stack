@@ -6,7 +6,7 @@ process.env.NODE_ENV = "test";
 
 module.exports = {
   parser: "babel-eslint",
-  plugins: ["prettier", "import", "flowtype", "fp", "ramda"],
+  plugins: ["prettier", "import", "flowtype", "fp", "ramda", "eslint-comments"],
   extends: [
     "react-app",
     "prettier",
@@ -15,6 +15,7 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:fp/recommended",
     "plugin:ramda/recommended",
+    "plugin:eslint-comments/recommended",
   ],
   rules: {
     "fp/no-class": "off",
@@ -59,6 +60,7 @@ module.exports = {
       },
     ],
     curly: ["error", "all"],
+    "eslint-comments/no-unused-disable": "error",
   },
   overrides: [
     {
