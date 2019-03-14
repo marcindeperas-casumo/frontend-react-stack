@@ -1,7 +1,6 @@
 import React from "react";
 import { ApolloProvider } from "react-apollo";
 import { MockedProvider } from "react-apollo/test-utils";
-
 import { ClientContext } from "../ApolloClient";
 
 /**

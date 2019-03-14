@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
-import VirtualList from "Components/VirtualList";
 import { always } from "ramda";
+import VirtualList from "Components/VirtualList";
 
 describe("VirtualList", () => {
   test("should render a VirtualList given the required params", () => {

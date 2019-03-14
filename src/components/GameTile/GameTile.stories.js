@@ -7,9 +7,9 @@ import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import GameTileConnected from "Components/GameTile";
 import GameTile from "Components/GameTile/GameTile";
+import isNotChromatic from "Storybook/isNotChromatic";
 import game from "./__mocks__/Game.json";
 import jackpotInfo from "./__mocks__/JackpotGameInfo.json";
-import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameTile", module);
 stories.addDecorator(withKnobs);

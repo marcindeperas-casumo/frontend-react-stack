@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";

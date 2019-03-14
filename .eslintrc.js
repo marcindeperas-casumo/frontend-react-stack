@@ -26,6 +26,7 @@ module.exports = {
       "error",
       {
         commonjs: true,
+        allowThis: true,
         exceptions: [{ property: "fragments" }],
       },
     ],
@@ -41,6 +42,20 @@ module.exports = {
       {
         commonjs: true,
         caseSensitive: true,
+      },
+    ],
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+        "newlines-between": "never",
       },
     ],
     curly: ["error", "all"],

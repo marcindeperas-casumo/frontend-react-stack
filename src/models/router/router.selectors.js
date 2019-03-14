@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 import { prop, defaultTo, compose } from "ramda";
 
-export const migrationComponentsSelector = prop("migrationComponents");
+export const routerComponentsSelector = prop("router");
 
 export const activeComponents = createSelector(
-  migrationComponentsSelector,
+  routerComponentsSelector,
   compose(
     defaultTo([]),
     prop("activeComponents")
@@ -12,7 +12,7 @@ export const activeComponents = createSelector(
 );
 
 export const routeParamsSelector = createSelector(
-  migrationComponentsSelector,
+  routerComponentsSelector,
   compose(
     defaultTo([]),
     prop("routeParams")

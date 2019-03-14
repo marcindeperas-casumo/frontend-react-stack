@@ -4,7 +4,6 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
-
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { decodeString } from "Utils/index";
 import PlayAction from "Components/GameTile/PlayAction";

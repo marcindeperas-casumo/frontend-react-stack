@@ -2,11 +2,9 @@
 import React from "react";
 import { F } from "ramda";
 import { shallow } from "enzyme";
-
 import SportsMainNav from "./SportsMainNav";
 import SportsNavTab from "./SportsNavTab";
 import SportsSingleNavTab from "./SportsSingleNavTab";
-
 import navItems from "./__mocks__/navItems";
 
 describe("<SportsMainNav />", () => {

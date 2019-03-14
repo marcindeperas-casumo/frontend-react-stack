@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
+import type { Node } from "react";
 import Lazy from "Components/Lazy";
 import Portal from "Components/Portal";
 import WaitForHostElement from "Components/WaitForHostElement";
-import type { Node } from "react";
 
 const DefaultFallback = () => null;
 

@@ -3,10 +3,8 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { text } from "@storybook/addon-knobs/react";
-
 import Flex from "@casumo/cmp-flex";
-
-import ErrorMessage from "Features/sports/components/ErrorMessage";
+import ErrorMessage from "Components/ErrorMessage";
 
 const stories = storiesOf("Sports/ErrorMessage", module);
 

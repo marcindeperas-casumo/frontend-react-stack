@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-
-import ErrorMessage from "Features/sports/components/ErrorMessage";
+import ErrorMessage from "Components/ErrorMessage";
 
 const ERROR_MESSAGE = "Loading failed";
 
