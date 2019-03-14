@@ -4,7 +4,6 @@ import {
   defaultTo,
   filter,
   propEq,
-  prop,
   propOr,
   anyPass,
   isNil,
