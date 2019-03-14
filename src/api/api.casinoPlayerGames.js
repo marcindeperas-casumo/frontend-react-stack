@@ -40,8 +40,24 @@ export const getCasinoPlayerGames = (
       : {}
   );
 
-export const getCasinoPlayerGamesCount = (http: HTTPClient = defaultHttp) => {
-  return http.get(URL.GAMES_COUNT);
+export const getCasinoPlayerGamesCount = (
+  {
+    providers = [],
+    sessionId,
+  }: { providers: Array<string>, sessionId: string },
+  http: HTTPClient = defaultHttp
+) => {
+  return http.get(
+    URL.GAMES_COUNT,
+    { providerSlugs: join(",")(providers) },
+    sessionId
+      ? {
+          headers: {
+            "X-Token": sessionId,
+          },
+        }
+      : {}
+  );
 };
 
 export const getGameProviders = async (http: HTTPClient = defaultHttp) => {
