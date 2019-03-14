@@ -2,3 +2,4 @@
 !.storybook
 # or it's own config
 !.eslintrc.js
+**/__mocks__/**
