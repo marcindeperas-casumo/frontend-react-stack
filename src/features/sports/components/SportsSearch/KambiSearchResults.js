@@ -36,8 +36,6 @@ const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
 );
 
-const getSportFromId = id => id.split("/")[1];
-
 const TOTAL_PLACEHOLDER_ITEMS = 5;
 
 // TODO: adampilks - make these properly dynamic translations
@@ -70,9 +68,6 @@ const SEARCH_QUERY = gql`
     }
   }
 `;
-
-// TODO:(adampilks) hook up to new icon query
-const SearchResultIcon = ({ sport }) => "";
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
   <Text
