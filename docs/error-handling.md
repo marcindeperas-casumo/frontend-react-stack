@@ -71,7 +71,7 @@ components stop working, the rest of the application remains functioning.
 We have error boundaries in the following components:
 
 - `App` - the whole application is wrapped
-- `MigrationComponent` - every use of a MigrationComponent will have a boundary
+- `Route` - every use of a Route will have a boundary
 - `ComponentBuilder` - any building block will be wrapped with an Error Boundary
 
 To add a new boundary just use it like this:

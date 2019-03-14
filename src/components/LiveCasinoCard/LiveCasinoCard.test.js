@@ -3,7 +3,6 @@ import { shallow } from "enzyme";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 
 describe("LiveCasinoCard", () => {
-  const launchGame = jest.fn();
   const subscribeToUpdates = jest.fn();
   const unsubscribeFromUpdates = jest.fn();
 
@@ -12,7 +11,7 @@ describe("LiveCasinoCard", () => {
     shallow(
       <LiveCasinoCard
         game={game}
-        launchGame={launchGame}
+        launchGame={() => {}}
         subscribeToUpdates={subscribeToUpdates}
         unsubscribeFromUpdates={unsubscribeFromUpdates}
       />
@@ -26,7 +25,7 @@ describe("LiveCasinoCard", () => {
     const rendered = shallow(
       <LiveCasinoCard
         game={game}
-        launchGame={launchGame}
+        launchGame={() => {}}
         subscribeToUpdates={subscribeToUpdates}
         unsubscribeFromUpdates={unsubscribeFromUpdates}
       />
@@ -42,12 +41,56 @@ describe("LiveCasinoCard", () => {
     const rendered = shallow(
       <LiveCasinoCard
         game={game}
-        launchGame={launchGame}
+        launchGame={() => {}}
         subscribeToUpdates={subscribeToUpdates}
         unsubscribeFromUpdates={unsubscribeFromUpdates}
       />
     );
 
     expect(rendered.getElement()).toBe(null);
+  });
+
+  test("launchGame is called when clicking in card header", () => {
+    const launchGame = jest.fn();
+    const game = { lobby: { tableId: "table" } };
+    const rendered = shallow(
+      <LiveCasinoCard
+        game={game}
+        launchGame={launchGame}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    );
+
+    rendered
+      .find("Card")
+      .shallow()
+      .find("div.o-ratio--live-casino-card")
+      .simulate("click");
+
+    expect(launchGame).toBeCalledTimes(1);
+  });
+
+  test("launchGame is called when clicking in card content", () => {
+    const launchGame = jest.fn();
+    const game = { lobby: { tableId: "table" } };
+    const rendered = shallow(
+      <LiveCasinoCard
+        game={game}
+        launchGame={launchGame}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    );
+
+    rendered
+      .find("Card")
+      .shallow()
+      .find("FlexBlock")
+      .first()
+      .childAt(0)
+      .simulate("click");
+
+    expect(launchGame).toBeCalledTimes(1);
   });
 });
