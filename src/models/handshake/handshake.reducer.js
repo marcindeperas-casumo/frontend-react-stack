@@ -5,6 +5,8 @@ import {
   GAMES_HANDSHAKE_KEY,
 } from "./handshake.constants";
 
+const DEFAULT_STATE = {};
+
 const reducers = {
   [types.UPDATE_HANDSHAKE]: (key, state, action) => ({
     ...state,
@@ -12,7 +14,7 @@ const reducers = {
   }),
 };
 
-const handshakeReducerFactory = key => (state = {}, action) => {
+const handshakeReducerFactory = key => (state = DEFAULT_STATE, action) => {
   return reducers[action.type]
     ? reducers[action.type](key, state, action)
     : state;

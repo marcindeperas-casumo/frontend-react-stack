@@ -1,6 +1,6 @@
 import { types } from "./router.constants";
 
-const initialState = {
+const DEFAULT_STATE = {
   activeComponents: [],
   routeParams: [],
 };
@@ -13,7 +13,7 @@ const reducers = {
   }),
 };
 
-const routerReducer = (state = initialState, action) => {
+const routerReducer = (state = DEFAULT_STATE, action) => {
   return reducers[action.type] ? reducers[action.type](state, action) : state;
 };
 

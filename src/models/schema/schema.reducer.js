@@ -2,7 +2,9 @@ import { mergeDeepRight } from "ramda";
 import { combineReducers } from "redux";
 import { types, ENTITY_KEYS } from "./schema.constants";
 
-const entityReducerFactory = entityKey => (state = {}, action) => {
+const DEFAULT_STATE = {};
+
+const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
   switch (action.type) {
     case types.UPDATE_ENTITY: {
       // If the entityKey is not present in the action payload we can bail out

@@ -1,5 +1,7 @@
 import { types } from "./fetch.constants";
 
+const DEFAULT_STATE = {};
+
 const reducers = {
   [types.SENDING_REQUEST]: (state, action) => ({
     ...state,
@@ -32,7 +34,7 @@ const reducers = {
   }),
 };
 
-export const fetchReducer = (state = {}, action) => {
+export const fetchReducer = (state = DEFAULT_STATE, action) => {
   return reducers[action.type] ? reducers[action.type](state, action) : state;
 };
 

@@ -1,7 +1,7 @@
 /* eslint-disable-next-line filenames/match-exported */
 import { types } from "./gameSearch.constants";
 
-const defaultState = { query: "" };
+const DEFAULT_STATE = { query: "" };
 
 const reducers = {
   [types.GAME_SEARCH_FETCH_COMPLETE]: state => ({
@@ -20,7 +20,7 @@ const reducers = {
   }),
 };
 
-export const gameSearchReducer = (state = defaultState, action) => {
+export const gameSearchReducer = (state = DEFAULT_STATE, action) => {
   const type = action.type.startsWith(types.GAME_SEARCH_FETCH_COMPLETE)
     ? types.GAME_SEARCH_FETCH_COMPLETE
     : action.type;

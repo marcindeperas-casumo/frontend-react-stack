@@ -1,7 +1,7 @@
 /* eslint-disable-next-line filenames/match-exported */
 import { types } from "./playerGames.constants";
 
-const defaultState = { count: 0 };
+const DEFAULT_STATE = { count: 0 };
 
 const reducers = {
   [types.PLAYER_GAMES_FETCH_COUNT_COMPLETE]: (state, action) => ({
@@ -10,7 +10,7 @@ const reducers = {
   }),
 };
 
-export const playerGamesReducer = (state = defaultState, action) => {
+export const playerGamesReducer = (state = DEFAULT_STATE, action) => {
   return reducers[action.type] ? reducers[action.type](state, action) : state;
 };
 
