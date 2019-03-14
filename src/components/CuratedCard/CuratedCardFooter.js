@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -8,6 +7,9 @@ import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import { stringToHTML, decodeString } from "Utils/index";
 import EitherOr from "Components/EitherOr";
 import GameThumb from "Components/GameThumb";
+import TrackClick from "Components/TrackClick";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { CURATED_TYPE } from "Models/curated";
 
 export type Game = {|
   logoBackground: string,
@@ -40,6 +42,11 @@ export default class CuratedCardFooter extends PureComponent<Props> {
   renderGame = () => {
     const { gameData, primary_action_text, onLaunchGame } = this.props;
 
+    const trackClickGamePlayData = {
+      [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
+      [EVENT_PROPS.GAME_NAME]: gameData.name,
+    };
+
     return (
       <Flex align="center">
         <Flex.Item className="o-flex__item-fixed-size">
@@ -52,15 +59,20 @@ export default class CuratedCardFooter extends PureComponent<Props> {
         </Flex.Block>
         <Flex.Item>
           <Flex justify="center">
-            <Button
-              id="gtm-curated-play"
-              onClick={onLaunchGame}
-              variant="variant-1"
-              className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+            <TrackClick
+              eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+              data={trackClickGamePlayData}
             >
-              <PlayIcon size="sml" />
-              <span className="u-margin-left">{primary_action_text}</span>
-            </Button>
+              <Button
+                id="gtm-curated-play"
+                onClick={onLaunchGame}
+                variant="variant-1"
+                className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+              >
+                <PlayIcon size="sml" />
+                <span className="u-margin-left">{primary_action_text}</span>
+              </Button>
+            </TrackClick>
             <Button
               id="gtm-curated-more"
               href={`/en/play/${gameData.slug}`}

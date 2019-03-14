@@ -5,6 +5,7 @@ import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Models/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {
+  const PROMO_TYPE = "promotion";
   let fetchCurated;
 
   beforeEach(() => {
@@ -99,8 +100,14 @@ describe("CuratedCard", () => {
   test("should render promotions_legal_text if no game", () => {
     const data = dissoc("gameData", curatedData);
     const component = mount(
-      <CuratedCard {...data} fetchCurated={fetchCurated} isFetched={true} />
+      <CuratedCard
+        {...data}
+        typeOfCurated={PROMO_TYPE}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
     );
+
     const text = component
       .find("Card")
       .find("Text")
@@ -116,6 +123,7 @@ describe("CuratedCard", () => {
     const component = mount(
       <CuratedCard
         {...promoData}
+        typeOfCurated={PROMO_TYPE}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
@@ -249,4 +257,71 @@ describe("CuratedCard", () => {
 
     expect(href).toBe(`/en/cash/deposit`);
   });
+});
+
+describe("Curated card - tracking", () => {
+  let fetchCurated;
+  let rendered;
+
+  beforeEach(() => {
+    fetchCurated = jest.fn();
+
+    rendered = render(curatedData);
+  });
+
+  test("should track card click with gane data when curated type is game", () => {
+    const trackClick = rendered.find("TrackClick").first();
+
+    assertTrackClickData(
+      trackClick,
+      curatedData.typeOfCurated,
+      curatedData.gameData.name
+    );
+  });
+
+  test("should track card click with promo data when curated type is promotion", () => {
+    const promotionMock = dissoc("gameData", curatedData);
+    rendered = render(promotionMock);
+    const trackClick = rendered.find("TrackClick").first();
+
+    assertTrackClickData(
+      trackClick,
+      promotionMock.typeOfCurated,
+      promotionMock.subtitle
+    );
+  });
+
+  test("should track play button with game data when curated ", () => {
+    const playTrackClick = rendered
+      .find("CuratedCardFooter")
+      .find("TrackClick")
+      .first();
+
+    assertTrackClickData(
+      playTrackClick,
+      curatedData.typeOfCurated,
+      curatedData.gameData.name
+    );
+  });
+
+  const render = curatedMock => {
+    return mount(
+      <CuratedCard
+        {...curatedMock}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
+    );
+  };
+
+  const assertTrackClickData = (trackComponent, expectedType, expectedName) => {
+    const expectedTrackData = {
+      type: expectedType,
+      name: expectedName,
+    };
+
+    const actualTrackData = trackComponent.prop("data");
+
+    expect(expectedTrackData).toEqual(actualTrackData);
+  };
 });

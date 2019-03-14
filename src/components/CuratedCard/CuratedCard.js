@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
@@ -8,7 +7,8 @@ import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground"
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils/index";
 import EitherOr from "Components/EitherOr";
-
+import TrackClick from "Components/TrackClick";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
 
 const justify = {
@@ -35,6 +35,7 @@ export type Props = {|
   isFetched: boolean,
   fetchCurated: Function,
   onLaunchGame: Function,
+  typeOfCurated: string,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
@@ -55,7 +56,7 @@ export default class CuratedCard extends PureComponent<Props> {
      by default the redirection url will be deposit
      This needs refactoring so that curated card will handle different types of curated card types
   */
-  getLink() {
+  getLink = () => {
     const { gameData, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
 
@@ -70,25 +71,42 @@ export default class CuratedCard extends PureComponent<Props> {
     }
 
     return "/en/cash/deposit";
-  }
+  };
+
+  getTrackClick = (isGame: boolean) => {
+    const { gameData, typeOfCurated, subtitle } = this.props;
+
+    return {
+      [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
+      [EVENT_PROPS.CURATED_NAME]: isGame ? gameData.name : subtitle,
+    };
+  };
 
   renderCard = () => {
-    const { gameData, onLaunchGame } = this.props;
+    const { onLaunchGame, gameData } = this.props;
+    const isGame = !!gameData;
+
+    const trackClickData = this.getTrackClick(isGame);
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
-        <CuratedCardBackground
-          link={this.getLink()}
-          onLaunchGame={gameData ? onLaunchGame : null}
-          {...this.props}
-        />
-        <Card
-          className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
-          justify={justify}
-          spacing={spacing}
-          header={this.renderHeader}
-          footer={this.renderFooter}
-        />
+        <TrackClick
+          eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+          data={trackClickData}
+        >
+          <CuratedCardBackground
+            link={this.getLink()}
+            onLaunchGame={isGame ? onLaunchGame : null}
+            {...this.props}
+          />
+          <Card
+            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+            justify={justify}
+            spacing={spacing}
+            header={this.renderHeader}
+            footer={this.renderFooter}
+          />
+        </TrackClick>
       </div>
     );
   };
