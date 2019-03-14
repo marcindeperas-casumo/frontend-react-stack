@@ -3,11 +3,15 @@ import React from "react";
 import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { sessionId, country, getLanguage } from "Models/handshake";
 import bridge from "Src/DurandalReactBridge";
+import {
+  KO_APP_EVENT_MENU_OPENED,
+  KO_APP_EVENT_MENU_CLOSED,
+} from "Src/constants";
+import { sessionId, country, getLanguage } from "Models/handshake";
+import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
-import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import {
@@ -42,6 +46,13 @@ export class SportsShellContainer extends React.Component<{}> {
 
       this.context.client.mutate({ mutation });
     });
+
+    bridge.on(KO_APP_EVENT_MENU_CLOSED, data =>
+      console.log("REACT NAV CLOSED", data)
+    );
+    bridge.on(KO_APP_EVENT_MENU_OPENED, data =>
+      console.log("REACT NAV OPENED", data)
+    );
 
     // on mount open the choose favourites modal if the user is yet to choose favourites
     this.context.client
