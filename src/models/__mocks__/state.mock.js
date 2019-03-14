@@ -1,5 +1,5 @@
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
-  migrationComponents: {
+  router: {
     activeComponents: ["games-top"],
   },
   fetch: {

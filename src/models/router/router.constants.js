@@ -1,0 +1,3 @@
+export const types = {
+  ACTIVATE_COMPONENT: "ROUTER/ACTIVATE_COMPONENT",
+};

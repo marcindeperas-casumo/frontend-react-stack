@@ -66,15 +66,17 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   render() {
     return (
-      <SearchInput
-        autoFocus
-        value={this.state.query}
-        onChange={this.handleSearchInput}
-        onClear={this.handleClearSearchInput}
-        noResults={this.props.noResults}
-        placeholder={this.props.placeholder}
-        onFocus={this.onFocus}
-      />
+      <div className="u-padding--md">
+        <SearchInput
+          autoFocus
+          value={this.state.query}
+          onChange={this.handleSearchInput}
+          onClear={this.handleClearSearchInput}
+          noResults={this.props.noResults}
+          placeholder={this.props.placeholder}
+          onFocus={this.onFocus}
+        />
+      </div>
     );
   }
 }
