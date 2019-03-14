@@ -1,10 +1,6 @@
 import { cloneableGenerator } from "redux-saga/utils";
-import { select, put, take, call } from "redux-saga/effects";
+import { put, take, call } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import {
-  country as countrySelector,
-  playerId as playerIdSelector,
-} from "Models/handshake";
 import {
   types,
   fetchLatestPlayedGames,
@@ -22,16 +18,25 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
   const country = "mt";
   const playerId = "playerId-1";
 
-  expect(gen.next().value).toEqual(select(countrySelector));
-  expect(gen.next(country).value).toEqual(select(playerIdSelector));
+  gen.next();
+  gen.next(country);
+  gen.next(playerId);
 
-  expect(gen.next(playerId).value).toEqual(
-    put(fetchLatestPlayedGames({ playerId }))
-  );
+  const latestPlayedListGen = gen.clone();
 
-  expect(gen.next().value).toEqual(
-    take(types.GAME_SEARCH_FETCH_LATEST_PLAYED_COMPLETE)
-  );
+  test("has latest played games in store, stop saga", () => {
+    expect(latestPlayedListGen.next({ games: ["starburst"] }).done).toBe(true);
+  });
+
+  test("does not have latest played games in store, continue saga", () => {
+    expect(gen.next({ games: [] }).value).toEqual(
+      put(fetchLatestPlayedGames({ playerId }))
+    );
+
+    expect(gen.next().value).toEqual(
+      take(types.GAME_SEARCH_FETCH_LATEST_PLAYED_COMPLETE)
+    );
+  });
 
   test("has no latest played games call fetchPopularGamesSaga", () => {
     const noLatestPlayedGen = gen.clone();
@@ -43,7 +48,7 @@ describe("Models/GameSearch/fetchLatestPlayedSaga", () => {
     expect(noLatestPlayedGen.next().done).toBe(true);
   });
 
-  test("has latest played games", () => {
+  test("has latest played games from api", () => {
     const response = [{ gameName: "foo" }];
     const providerGameNames = ["foo"];
 
