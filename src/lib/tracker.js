@@ -10,7 +10,7 @@ export default function createTracker(adapters: Array<Object> = []) {
   // A state is something that is persisted for a session on the client device
   // and is sent along with all tracked events.
   const setState = (data: Object) => callAdapters(adapters, "setState", data);
-  const track = (event: string, data: Object = {}) =>
+  const track = (event: string, data: Object) =>
     callAdapters(adapters, "track", event, data);
 
   return {
