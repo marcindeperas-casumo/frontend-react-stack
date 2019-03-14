@@ -30,8 +30,8 @@ describe("GameSearchInput", () => {
       <GameSearchInput noResults={noResults} placeholder={placeholder} />
     );
 
-    expect(rendered.prop("placeholder")).toBe(placeholder);
-    expect(rendered.prop("noResults")).toBe(noResults);
+    expect(rendered.find("SearchInput").prop("placeholder")).toBe(placeholder);
+    expect(rendered.find("SearchInput").prop("noResults")).toBe(noResults);
   });
 
   test("should call fetchSearchResults when component updates query", () => {
