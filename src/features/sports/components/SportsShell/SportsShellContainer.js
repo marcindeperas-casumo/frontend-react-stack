@@ -32,7 +32,7 @@ const ConnectedSportsStateProvider = connect(state => ({
   sessionId: sessionId(state),
 }))(SportsStateProvider);
 
-const SPORTS_SHELL_QUERY = gql`
+export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
     hasSelectedFavourites
     searchVisible @client
@@ -43,6 +43,9 @@ export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
+    // test to see if spy is working...
+    this.context.client.mutate({ mutation: {} });
+
     bridge.on(REACT_APP_SPORTS_SHOW_SEARCH, showSearch => {
       const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
 
