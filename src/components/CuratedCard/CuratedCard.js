@@ -84,7 +84,7 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderCard = () => {
     const { onLaunchGame, gameData } = this.props;
-    const isGame = !!gameData;
+    const isGame = Boolean(gameData);
 
     const trackClickData = this.getTrackClick(isGame);
 
