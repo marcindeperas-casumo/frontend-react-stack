@@ -21,6 +21,11 @@ const formatWebpackMessages = require("react-dev-utils/formatWebpackMessages");
 const printHostingInstructions = require("react-dev-utils/printHostingInstructions");
 const FileSizeReporter = require("react-dev-utils/FileSizeReporter");
 const printBuildError = require("react-dev-utils/printBuildError");
+// We require that you explicitly set browsers and do not fall back to
+// browserslist defaults.
+const { checkBrowsers } = require("react-dev-utils/browsersHelper");
+const paths = require("../config/paths");
+const configFactory = require("../config/webpack.config");
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -41,11 +46,6 @@ if (!checkRequiredFiles([paths.appIndexJs])) {
 // Generate configuration
 const config = configFactory("production");
 
-// We require that you explicitly set browsers and do not fall back to
-// browserslist defaults.
-const { checkBrowsers } = require("react-dev-utils/browsersHelper");
-const paths = require("../config/paths");
-const configFactory = require("../config/webpack.config");
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // First, read the current file sizes in build directory.
@@ -119,7 +119,7 @@ function build(previousFileSizes) {
 
   let compiler = webpack(config);
   return new Promise((resolve, reject) => {
-    /* eslint-disable fp/no-let, fp/no-mutation */
+    /* eslint-disable fp/no-mutation */
     compiler.run((err, stats) => {
       let messages;
       if (err) {
@@ -143,6 +143,7 @@ function build(previousFileSizes) {
         }
         return reject(new Error(messages.errors.join("\n\n")));
       }
+      /* eslint-enable fp/no-mutation */
       if (
         process.env.CI &&
         (typeof process.env.CI !== "string" ||

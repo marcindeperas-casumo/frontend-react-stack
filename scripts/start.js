@@ -13,7 +13,6 @@ process.on("unhandledRejection", err => {
 
 // Ensure environment variables are read.
 require("../config/env");
-
 const fs = require("fs");
 const chalk = require("chalk");
 const webpack = require("webpack");
@@ -24,6 +23,9 @@ const {
   choosePort,
   createCompiler,
 } = require("react-dev-utils/WebpackDevServerUtils");
+// We require that you explictly set browsers and do not fall back to
+// browserslist defaults.
+const { checkBrowsers } = require("react-dev-utils/browsersHelper");
 const paths = require("../config/paths");
 const configFactory = require("../config/webpack.config");
 const devServerConfig = require("../config/webpackDevServer.config");
@@ -57,9 +59,6 @@ if (process.env.HOST) {
   console.log();
 }
 
-// We require that you explictly set browsers and do not fall back to
-// browserslist defaults.
-const { checkBrowsers } = require("react-dev-utils/browsersHelper");
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // We attempt to use the default port but if it is busy, we offer the user to
