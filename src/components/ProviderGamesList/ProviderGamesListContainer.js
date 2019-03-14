@@ -7,6 +7,7 @@ import {
   gameProviderBySlug,
   areProviderGamesLoaded,
   types,
+  gameProviderGameCount,
 } from "Models/gameProviders";
 import { isFetchError } from "Models/fetch";
 
@@ -20,9 +21,11 @@ const ProviderGamesListConnected = connect(
     areGamesLoaded: areProviderGamesLoaded(provider)(state),
     provider: gameProviderBySlug(provider)(state),
     error: isFetchError(types.GET_GAME_PROVIDER_ERROR)(state),
+    count: gameProviderGameCount(provider)(state),
   }),
   (dispatch, { provider }) => ({
-    fetchGames: () => dispatch(fetchGamesByProvider(provider)),
+    fetchGames: (page, pageSize) =>
+      dispatch(fetchGamesByProvider(provider, page, pageSize)),
   })
 )(ProviderGamesList);
 

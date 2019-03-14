@@ -1,12 +1,15 @@
 // @flow
 import React, { PureComponent } from "react";
-import List from "@casumo/cmp-list";
+import { nth, inc } from "ramda";
+import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import GameRow from "Components/GameRow";
 import ErrorMessage from "Components/ErrorMessage";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
+import VirtualList from "Components/VirtualList";
+import GameRowSkeleton from "Components/GameRowSkeleton";
 
 type ProviderObject = {
   inMaintenance: boolean,
@@ -16,26 +19,89 @@ type ProviderObject = {
 
 type Props = {
   /** the function that fetches the games */
-  fetchGames: () => void,
+  fetchGames: (page: number, pageSize: number) => void,
   /**  has the game list completed loading? */
   areGamesLoaded: boolean,
   error?: string,
   provider: ProviderObject,
+  count: number,
 };
 
-class ProviderGamesList extends PureComponent<Props> {
+type State = {
+  currentPage: number,
+};
+
+const PAGE_SIZE = 50;
+const ROW_HEIGHT = 80;
+
+class ProviderGamesList extends PureComponent<Props, State> {
   static defaultProps = {
     fetchGames: () => {},
     areGamesLoaded: false,
     provider: {},
+    count: 0,
+  };
+
+  state = {
+    currentPage: 0,
   };
 
   componentDidMount() {
-    this.props.fetchGames();
+    this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
+  }
+
+  isRowLoaded({ index }: { index: number }) {
+    const { games } = this.props.provider;
+    return Boolean(nth(index, games));
+  }
+
+  componentDidUpdate(_: any, prevState: { currentPage: number }) {
+    if (this.state.currentPage !== prevState.currentPage) {
+      this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
+    }
+  }
+
+  loadMoreRows({ startIndex }: { startIndex: number }) {
+    if (!this.isRowLoaded({ index: startIndex })) {
+      this.setState(({ currentPage }) => {
+        return { currentPage: inc(currentPage) };
+      });
+    }
+    return Promise.resolve();
+  }
+
+  rowRenderer({
+    key,
+    index,
+    style,
+  }: {
+    key: string,
+    index: number,
+    style: string,
+  }) {
+    if (this.isRowLoaded({ index })) {
+      const { games } = this.props.provider;
+      return (
+        <div key={key} index={index} style={style}>
+          <GameRow id={nth(index, games)} />
+        </div>
+      );
+    }
+    return (
+      <Flex
+        className="u-padding-horiz--md"
+        align="center"
+        key={key}
+        index={index}
+        style={style}
+      >
+        <GameRowSkeleton />
+      </Flex>
+    );
   }
 
   render() {
-    const { areGamesLoaded, provider, error } = this.props;
+    const { areGamesLoaded, provider, error, count } = this.props;
 
     if (provider.inMaintenance) {
       return <ErrorMessage errorMessage={"Provider in maintenance"} />;
@@ -65,7 +131,16 @@ class ProviderGamesList extends PureComponent<Props> {
               [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
             }}
           >
-            <List items={provider.games} render={id => <GameRow id={id} />} />
+            <div style={{ height: "100vh" }}>
+              <VirtualList
+                isRowLoaded={(...args) => this.isRowLoaded(...args)}
+                rowHeight={ROW_HEIGHT}
+                totalNumberOfRows={count}
+                loadMoreRows={(...args) => this.loadMoreRows(...args)}
+                rowRenderer={(...args) => this.rowRenderer(...args)}
+                pageSize={PAGE_SIZE}
+              />
+            </div>
           </TrackProvider>
         </div>
       </div>
