@@ -1,34 +1,28 @@
-import { mergeDeepRight } from "ramda";
+import { mergeDeepRight, path } from "ramda";
 import { combineReducers } from "redux";
 import { types, ENTITY_KEYS } from "./schema.constants";
 
 const DEFAULT_STATE = {};
 
-const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
-  switch (action.type) {
-    case types.UPDATE_ENTITY: {
-      // If the entityKey is not present in the action payload we can bail out
-      // early and return the previous state. This will ensure that identity
-      // comparison for the downstream selectors will return true since the
-      // state remained the same.
-      if (!action.payload[entityKey]) {
-        return state;
-      }
+const reducers = {
+  [types.UPDATE_ENTITY]: (entityKey, state, action) => ({
+    ...state,
+    ...action.payload[entityKey],
+  }),
+  [types.MERGE_ENTITY]: (entityKey, state, action) =>
+    mergeDeepRight(state, action.payload[entityKey]),
+};
 
-      return {
-        ...state,
-        ...action.payload[entityKey],
-      };
-    }
-    case types.MERGE_ENTITY: {
-      if (!action.payload[entityKey]) {
-        return state;
-      }
-      return mergeDeepRight(state, action.payload[entityKey]);
-    }
-    default:
-      return state;
-  }
+const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
+  // If the entityKey is not present in the action payload we can bail out
+  // early and return the previous state. This will ensure that identity
+  // comparison for the downstream selectors will return true since the
+  // state remained the same.
+  const doesEntityExist = !!path(["payload", entityKey], action);
+
+  return reducers[action.type] && doesEntityExist
+    ? reducers[action.type](entityKey, state, action)
+    : state;
 };
 
 const schemaReducer = combineReducers({
