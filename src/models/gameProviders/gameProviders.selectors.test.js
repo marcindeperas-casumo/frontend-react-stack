@@ -3,6 +3,8 @@ import {
   gameProviderBySlug,
   areProviderGamesLoaded,
   areGameProvidersLoaded,
+  gameProviderGameCount,
+  gameProviderGames,
 } from "./gameProviders.selectors";
 
 const PROVIDERS = {
@@ -93,6 +95,69 @@ describe("Game Providers Selectors", () => {
     expect(gameProviderBySlug("foo")(state)).toEqual({});
   });
 
+  test("gameProviderGameCount", () => {
+    const state = {
+      schema: {
+        gameProvider: {
+          [PROVIDERS.NYX]: {
+            id: 1,
+            games: ["foo"],
+            gameCount: 1,
+            inMaintenance: false,
+          },
+        },
+      },
+    };
+
+    expect(gameProviderGameCount(PROVIDERS.NYX)(state)).toEqual(1);
+  });
+
+  test("gameProviderGameCount", () => {
+    const state = {
+      schema: {
+        gameProvider: {
+          [PROVIDERS.NYX]: {
+            id: 1,
+            inMaintenance: false,
+          },
+        },
+      },
+    };
+
+    expect(gameProviderGameCount(PROVIDERS.NYX)(state)).toEqual(0);
+  });
+
+  test("gameProviderGames", () => {
+    const state = {
+      schema: {
+        gameProvider: {
+          [PROVIDERS.NYX]: {
+            id: 1,
+            games: ["foo", "bar"],
+            inMaintenance: false,
+          },
+        },
+      },
+    };
+
+    expect(gameProviderGames(PROVIDERS.NYX)(state)).toEqual(["foo", "bar"]);
+  });
+
+  test("gameProviderGames", () => {
+    const state = {
+      schema: {
+        gameProvider: {
+          [PROVIDERS.NYX]: {
+            id: 1,
+            inMaintenance: false,
+          },
+        },
+      },
+    };
+
+    expect(gameProviderGames(PROVIDERS.NYX)(state)).toEqual([]);
+  });
+
   test("areProviderGamesLoaded", () => {
     const state = {
       schema: {
@@ -113,7 +178,7 @@ describe("Game Providers Selectors", () => {
         gameProvider: {
           [PROVIDERS.NYX]: {
             id: 1,
-            games: [],
+            games: ["foo"],
             inMaintenance: false,
           },
         },
