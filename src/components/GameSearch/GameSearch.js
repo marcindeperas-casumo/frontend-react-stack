@@ -86,7 +86,7 @@ export default class GameSearch extends React.PureComponent<Props> {
   render() {
     return (
       <>
-        <div className={"u-position-sticky c-game-search-bar"}>
+        <div className="u-position-sticky c-game-search-bar">
           <div className="o-bleed t-background-grey-light-2">
             <GameSearchInput
               initFetchQuerySearch={this.props.initFetchQuerySearch}
