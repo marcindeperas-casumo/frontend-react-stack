@@ -9,7 +9,7 @@ export default [
     result: {
       data: {
         hasSelectedFavourites: true,
-        searchVisible: false,
+        searchVisible: !false,
       },
     },
   },

@@ -43,9 +43,6 @@ export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
-    // test to see if spy is working...
-    this.context.client.mutate({ mutation: {} });
-
     bridge.on(REACT_APP_SPORTS_SHOW_SEARCH, showSearch => {
       const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
 
