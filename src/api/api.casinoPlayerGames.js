@@ -10,7 +10,7 @@ export const URL = {
   GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
 };
 
-const getXTokenHeaders = token =>
+const getXTokenHeaders = (token: string) =>
   token ? { headers: { "X-Token": token } } : {};
 
 export const getCasinoPlayerGames = (
