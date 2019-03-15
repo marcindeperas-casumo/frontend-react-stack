@@ -9,7 +9,7 @@ export default [
     },
     result: {
       data: {
-        userNavigation: mockData,
+        sportsNavigation: mockData,
       },
     },
   },
