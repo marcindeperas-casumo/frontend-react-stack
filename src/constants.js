@@ -47,6 +47,7 @@ export const GAME_LIST_IDS = {
   GAME_SEARCH: "gameSearch",
   LATEST_PLAYED: "latestPlayedGames",
   PLAYER_GAMES: "playerGames",
+  SUGGESTED_GAMES: "suggestedGames",
 };
 
 export const MARKETS = {

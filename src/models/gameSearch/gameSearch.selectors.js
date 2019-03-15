@@ -17,6 +17,11 @@ export const gameSearchResults = createSelector(
   propOr([], "games")
 );
 
+export const suggestedGames = createSelector(
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  propOr([], "games")
+);
+
 export const gameSearchQuerySelector = createSelector(
   gameSearch,
   prop("query")

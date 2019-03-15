@@ -6,6 +6,7 @@ import {
   getLatestPlayedGames,
   getGamesByProviderGameNames,
 } from "Api/api.gamebrowser";
+import { fetchSuggestedGames } from "Api/api.games";
 
 export const initFetchQuerySearch = query => ({
   type: types.GAME_SEARCH_FETCH,
@@ -56,4 +57,24 @@ export const fetchMostPopularGames = ({
   postFetch: types.GAME_SEARCH_FETCH_MOSTPOPULAR_COMPLETE,
   asyncCall: getGameLists,
   asyncCallData: { platform, country, id, variant, page, pageSize },
+});
+
+export const fetchSuggestedGamesAction = ({
+  gameLookingForSuggestions,
+  handshake,
+  platform,
+  country,
+  variant,
+}) => ({
+  type: fetchTypes.FETCH,
+  name: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+  postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,
+  asyncCall: fetchSuggestedGames,
+  asyncCallData: {
+    gameLookingForSuggestions,
+    handshake,
+    platform,
+    country,
+    variant,
+  },
 });

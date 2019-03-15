@@ -6,6 +6,7 @@ import {
   fetchQuerySearch,
   clearSearch,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesSaga,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -36,8 +37,13 @@ export function* gameSearchSaga(action) {
 
   yield put(updateEntity(entities));
 
-  // if no match or direct hit fetch latest played games
-  if (response.games.length <= 1) {
+  // if no match fetch latest played games
+  if (response.games.length < 1) {
     yield call(fetchLatestPlayedSaga);
+  }
+
+  // if direct hit fetch suggested games
+  if (response.games.length === 1) {
+    yield call(fetchSuggestedGamesSaga, response.games[0]);
   }
 }

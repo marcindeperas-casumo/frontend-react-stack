@@ -6,6 +6,7 @@ import GameSearch from "Components/GameSearch/GameSearch";
 import {
   cmsPageSlug,
   gameSearchResults,
+  suggestedGames,
   initFetchQuerySearch,
   isLoadingSelector,
   clearSearch,
@@ -17,6 +18,7 @@ import { getField, fetchPageBySlug } from "Models/cms";
 const GameSearchConnected = connect(
   createStructuredSelector({
     searchResults: gameSearchResults,
+    suggestedGames,
     loading: isLoadingSelector,
     inputPromptPlaceholder: getField({
       slug: cmsPageSlug,
