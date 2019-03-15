@@ -13,7 +13,7 @@ export const URL = {
 const getXTokenHeaders = (token: string) =>
   token ? { headers: { "X-Token": token } } : {};
 
-export const getCasinoPlayerGames = (
+export const getCasinoPlayerGames = async (
   {
     page = 0,
     pageSize = 20,
@@ -27,7 +27,7 @@ export const getCasinoPlayerGames = (
   },
   http: HTTPClient = defaultHttp
 ) =>
-  http.get(
+  await http.get(
     URL.GAMES,
     {
       page,
@@ -37,11 +37,12 @@ export const getCasinoPlayerGames = (
     getXTokenHeaders(sessionId)
   );
 
-export const getCasinoPlayerGamesCount = (
+export const getCasinoPlayerGamesCount = async (
   { sessionId }: { sessionId: string },
   http: HTTPClient = defaultHttp
-) => http.get(URL.GAMES_COUNT, {}, getXTokenHeaders(sessionId));
+) => await http.get(URL.GAMES_COUNT, {}, getXTokenHeaders(sessionId));
 
-export const getGameProviders = async (http: HTTPClient = defaultHttp) => {
-  return await http.get(URL.GAME_PROVIDERS);
-};
+export const getGameProviders = async (
+  { sessionId }: { sessionId: string },
+  http: HTTPClient = defaultHttp
+) => await http.get(URL.GAME_PROVIDERS, {}, getXTokenHeaders(sessionId));
