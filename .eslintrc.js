@@ -14,6 +14,7 @@ module.exports = {
     "ramda",
     "eslint-comments",
     "no-only-tests",
+    "sonarjs",
   ],
   extends: [
     "react-app",
@@ -24,6 +25,7 @@ module.exports = {
     "plugin:fp/recommended",
     "plugin:ramda/recommended",
     "plugin:eslint-comments/recommended",
+    "plugin:sonarjs/recommended",
   ],
   rules: {
     "fp/no-class": "off",
@@ -85,6 +87,12 @@ module.exports = {
       files: ["scripts/**/*.js"],
       rules: {
         "no-console": "off",
+      },
+    },
+    {
+      files: ["*.reducer.js"],
+      rules: {
+        "sonarjs/no-small-switch": "off",
       },
     },
   ],
