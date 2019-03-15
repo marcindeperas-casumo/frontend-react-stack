@@ -88,7 +88,6 @@ function createFile(filename, template) {
 }
 
 function getComponentTemplate() {
-  // eslint-disable-next-line
   return `// @flow
 import React, { PureComponent } from "react";
 
@@ -108,7 +107,6 @@ export default {{ componentName }};\n`;
 }
 
 function getComponentTestTemplate() {
-  /* eslint-disable */
   return `import React from "react";
 import { shallow } from "enzyme";
 import {{ componentName }} from "Components/{{ componentName }}";
@@ -122,7 +120,6 @@ describe("{{ componentName }}", () => {
   });
 });\n`;
 }
-/* eslint-enable */
 
 function getComponentStoryTemplate() {
   return `// @flow

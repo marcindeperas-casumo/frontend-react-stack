@@ -1,8 +1,6 @@
 // @flow
 import React from "react";
-
 import Flex from "@casumo/cmp-flex";
-
 import "./SportsIcon.scss";
 
 type Props = {

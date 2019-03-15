@@ -14,6 +14,7 @@ $game-list-height: (
   }
 }
 
+// stylelint-disable xi/selector-pattern
 .c-game-search-virtual-list .c-virtual-list {
   padding-top: 8px;
 }
