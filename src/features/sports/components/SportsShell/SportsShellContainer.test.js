@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
-import { mount, shallow } from "enzyme";
-import wait from "waait";
+import { mount } from "enzyme";
 import {
   REACT_APP_EVENT_MENU_OPENED,
   REACT_APP_EVENT_MENU_CLOSED,
@@ -10,7 +9,6 @@ import {
 import bridge from "Src/DurandalReactBridge";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import {
-  OPEN_MODAL_MUTATION,
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
