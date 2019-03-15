@@ -90,7 +90,9 @@ describe("Models/GameSearch/Saga", () => {
       put(updateEntity(gameListEntity))
     );
 
-    expect(directHitGen.next().value).toEqual(call(fetchSuggestedGamesSaga));
+    expect(directHitGen.next().value).toEqual(
+      call(fetchSuggestedGamesSaga, "foo")
+    );
 
     expect(directHitGen.next().done).toBe(true);
 
