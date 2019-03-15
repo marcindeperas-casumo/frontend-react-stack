@@ -1,20 +1,10 @@
-@import "cudl-breakpoints";
-@import "~Styles/settings.breakpoints";
-
 $game-list-height: (
   mobile: calc(100vh - 147px),
   phablet: calc(100vh - 172px),
 );
 
-.c-game-search-input-bg {
-  bottom: 0;
-  position: absolute;
-  top: 0;
-  z-index: -1;
-}
-
 .c-game-search-bar {
-  z-index: 1;
+  z-index: cudl-z("content-overlay");
 }
 
 .c-game-search-virtual-list {

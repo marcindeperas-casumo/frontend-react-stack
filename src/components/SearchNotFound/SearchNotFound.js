@@ -28,8 +28,7 @@ class SearchNotFound extends PureComponent<Props> {
     const { image, title, content } = this.props;
 
     return (
-      <div className="u-position-relative">
-        <div className="o-bleed t-background-grey-light-2 c-search-not-found-bg" />
+      <div className="o-bleed t-background-grey-light-2">
         <Media
           className="u-padding-vert--lg u-padding-horiz--md"
           renderText={() => (
