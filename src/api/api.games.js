@@ -28,11 +28,11 @@ export const fetchSuggestedGames = async ({
   handshake,
   platform,
   country,
-  latestPlayedGame,
+  gameLookingForSuggestions, // I've no clue how to call this :P
   variant = "default",
 }) => {
   const { id, title } = handshake.gamesLists.suggestedGames || {};
-  const game = await latestPlayedGame;
+  const game = await gameLookingForSuggestions;
 
   if (!game || !id) {
     return {};
@@ -213,12 +213,12 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
-  const latestPlayedGame = getLatestPlayedGame(latestPlayedGames);
+  const gameLookingForSuggestions = getLatestPlayedGame(latestPlayedGames);
   const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
     country,
-    latestPlayedGame,
+    gameLookingForSuggestions,
   });
   const hasSomeGames = compose(
     i => i > 0,
