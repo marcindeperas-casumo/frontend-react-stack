@@ -6,7 +6,15 @@ process.env.NODE_ENV = "test";
 
 module.exports = {
   parser: "babel-eslint",
-  plugins: ["prettier", "import", "flowtype", "fp", "ramda", "eslint-comments"],
+  plugins: [
+    "prettier",
+    "import",
+    "flowtype",
+    "fp",
+    "ramda",
+    "eslint-comments",
+    "no-only-tests",
+  ],
   extends: [
     "react-app",
     "prettier",
@@ -61,6 +69,9 @@ module.exports = {
     ],
     curly: ["error", "all"],
     "eslint-comments/no-unused-disable": "error",
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-debugger": "error",
+    "no-only-tests/no-only-tests": "error",
   },
   overrides: [
     {
@@ -68,6 +79,12 @@ module.exports = {
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
+      },
+    },
+    {
+      files: ["scripts/**/*.js"],
+      rules: {
+        "no-console": "off",
       },
     },
   ],
