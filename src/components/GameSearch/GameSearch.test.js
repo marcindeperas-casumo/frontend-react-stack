@@ -98,7 +98,7 @@ describe("GameSearch", () => {
     expect(rendered.find("List").props().items).toEqual(searchResults);
   });
 
-  test("should render 1 search result and suggested games list", () => {
+  test("should render 1 search result and Game List Skeleton if suggested games are not ready", () => {
     const rendered = shallow(
       <GameSearch
         searchResults={["I"]}
@@ -109,10 +109,38 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
     expect(rendered.find("List")).toHaveLength(1);
-    expect(rendered.find("Connect(GameSearchSuggestionsList)")).toHaveLength(1);
+    expect(rendered.find("List").prop("items")).toHaveLength(1);
+    expect(rendered.find("SectionList")).toHaveLength(0);
+    expect(rendered.find("GameListSkeleton")).toHaveLength(1);
+  });
+
+  test("should render 1 search result and suggested games", () => {
+    const suggestedGames = ["game"];
+    const rendered = shallow(
+      <GameSearch
+        searchResults={["I"]}
+        loading={false}
+        inputPromptPlaceholder={inputPromptPlaceholder}
+        query={""}
+        initFetchQuerySearch={initFetchQuerySearch}
+        clearSearch={clearSearch}
+        preloadFetchPlayerGames={preloadFetchPlayerGames}
+        fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={suggestedGames}
+      />
+    );
+
+    expect(rendered.find("List")).toHaveLength(1);
+    expect(rendered.find("List").prop("items")).toHaveLength(1);
+    expect(rendered.find("SectionList")).toHaveLength(1);
+    expect(rendered.find("SectionList").prop("sections")[0].data).toEqual(
+      suggestedGames
+    );
+    expect(rendered.find("GameListSkeleton")).toHaveLength(0);
   });
 });
