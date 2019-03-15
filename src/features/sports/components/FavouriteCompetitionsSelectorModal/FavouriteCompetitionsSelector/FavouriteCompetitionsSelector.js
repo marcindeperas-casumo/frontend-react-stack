@@ -5,6 +5,7 @@ import { Query } from "react-apollo";
 import Flex from "@casumo/cmp-flex";
 import { partition, any, propEq } from "ramda";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import { isNilOrEmpty } from "Src/utils";
 import Heading from "./FavouriteCompetitionsSelectorHeading";
 import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
@@ -55,7 +56,7 @@ export const transformOrphanGroups = (
 ) =>
   // $FlowFixMe - @adampilks/@cpoliver when refactoring query to use Sports/Compeition types, remove this.
   groups
-    .filter(g => !g.groups)
+    .filter(g => isNilOrEmpty(g.groups))
     // make flow happy as have different properties on different group levels, above TODO will solve this
     .map(g => ({
       popular: false,
