@@ -23,8 +23,6 @@ const {
   choosePort,
   createCompiler,
 } = require("react-dev-utils/WebpackDevServerUtils");
-// We require that you explictly set browsers and do not fall back to
-// browserslist defaults.
 const { checkBrowsers } = require("react-dev-utils/browsersHelper");
 const paths = require("../config/paths");
 const configFactory = require("../config/webpack.config");
@@ -59,6 +57,8 @@ if (process.env.HOST) {
   console.log();
 }
 
+// We require that you explictly set browsers and do not fall back to
+// browserslist defaults.
 checkBrowsers(paths.appPath, isInteractive)
   .then(() => {
     // We attempt to use the default port but if it is busy, we offer the user to
