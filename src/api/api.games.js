@@ -14,22 +14,31 @@ import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { decodeString } from "Utils";
 
+const getLatestPlayedGame = async latestPlayedGames => {
+  if (!latestPlayedGames) {
+    return null;
+  }
+
+  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+
+  return head(latestPlayedGamesResolved);
+};
+
 export const fetchSuggestedGames = async ({
   handshake,
   platform,
   country,
-  latestPlayedGames,
+  latestPlayedGame,
   variant = "default",
 }) => {
   const { id, title } = handshake.gamesLists.suggestedGames || {};
-  const latestPlayedGamesResolved = (await latestPlayedGames).games;
-  const latestPlayedGame = head(latestPlayedGamesResolved);
+  const game = await latestPlayedGame;
 
-  if (!latestPlayedGame || !id) {
+  if (!game || !id) {
     return {};
   }
 
-  const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
+  const slugs = await getSuggestedGames({ gameSlug: game.slug });
 
   const games = await gamebrowserApi
     .getGamesBySlugs({
@@ -51,7 +60,7 @@ export const fetchSuggestedGames = async ({
   return {
     games,
     id,
-    title: title.replace("${GAME_NAME}", decodeString(latestPlayedGame.name)), // eslint-disable-line no-template-curly-in-string
+    title: title.replace("${GAME_NAME}", decodeString(game.name)),
   };
 };
 
@@ -204,11 +213,12 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
+  const latestPlayedGame = getLatestPlayedGame(latestPlayedGames);
   const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
     country,
-    latestPlayedGames,
+    latestPlayedGame,
   });
   const hasSomeGames = compose(
     i => i > 0,
