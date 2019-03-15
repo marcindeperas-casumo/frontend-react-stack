@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-
 import SportsIcon from "Features/sports/components/SportsIcon";
 
 const src = "some-active-icon.svg";

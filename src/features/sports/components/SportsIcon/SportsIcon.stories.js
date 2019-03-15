@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-
 import SportsIcon from "./SportsIcon";
 
 const stories = storiesOf("Sports/SportsIcon", module);
