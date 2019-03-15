@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { mount } from "enzyme";
+import { mount, shallow } from "enzyme";
 import wait from "waait";
 import {
   REACT_APP_EVENT_MENU_OPENED,
@@ -15,8 +15,13 @@ import {
   SHOW_SEARCH,
   HIDE_SEARCH,
 } from "Features/sports/state";
-import { getQueryMocks } from "./__mocks__/sportsShellQuery";
+import KambiClient from "Features/sports/components/KambiClient";
+import SportsSearch from "Features/sports/components/SportsSearch";
+import { SportsNav } from "Features/sports/components/SportsNav";
+import Modals from "Features/sports/components/Modals";
 import { SportsShellContainer } from "./SportsShellContainer";
+import SportsShellSkeleton from "./SportsShellSkeleton";
+import { getQueryMocks } from "./__mocks__/sportsShellQuery";
 import type { MockResult } from "./__mocks__/sportsShellQuery";
 
 const initStateResult = {
@@ -26,7 +31,7 @@ const initStateResult = {
   },
 };
 
-const getInstanceForMocks = (mockResult: MockResult) =>
+const renderForMocks = (mockResult: MockResult) =>
   mount(
     <MockedProviderWithContext
       mocks={getQueryMocks(mockResult)}
@@ -34,22 +39,43 @@ const getInstanceForMocks = (mockResult: MockResult) =>
     >
       <SportsShellContainer />
     </MockedProviderWithContext>
-  )
+  );
+
+const getInstanceForMocks = (mockResult: MockResult) =>
+  renderForMocks(mockResult)
     .find(SportsShellContainer)
     .instance();
 
+const findComponents = rendered => ({
+  skeleton: rendered.find(SportsShellSkeleton),
+  search: rendered.find(SportsSearch),
+  nav: rendered.find(SportsNav),
+  modals: rendered.find(Modals),
+  kambiClient: rendered.find(KambiClient),
+});
+
 describe("<SportsShellContainer />", () => {
   describe("when the sports shell query errors", () => {
-    // TODO: migrate to storybook, should render ErrorComponent instead
-    test("it should render the skeleton", () => {
-      expect(false).toBe(true);
+    test("it should render the skeleton, and not the rest of the UI", () => {
+      const ui = findComponents(renderForMocks({ error: true }));
+
+      expect(ui.skeleton.length).toBe(1);
+      expect(ui.search.length).toBe(0);
+      expect(ui.nav.length).toBe(0);
+      expect(ui.modals.length).toBe(0);
+      expect(ui.kambiClient.length).toBe(0);
     });
   });
 
   describe("when the sports shell query is loading", () => {
-    // TODO: migrate to storybook
-    test("it should render the skeleton", () => {
-      expect(false).toBe(true);
+    test("it should render the skeleton, and not the rest of the UI", () => {
+      const ui = findComponents(renderForMocks({ loading: true }));
+
+      expect(ui.skeleton.length).toBe(1);
+      expect(ui.search.length).toBe(0);
+      expect(ui.nav.length).toBe(0);
+      expect(ui.modals.length).toBe(0);
+      expect(ui.kambiClient.length).toBe(0);
     });
   });
 
@@ -101,63 +127,6 @@ describe("<SportsShellContainer />", () => {
       expect(mutate).toHaveBeenCalledWith({
         mutation: UPDATE_BETSLIP_STATE_MUTATION,
         variables: { isVisible: false },
-      });
-    });
-
-    describe("when a player has selected favourites", () => {
-      test("it should not call the open modal mutation on mount", () => {
-        const instance = getInstanceForMocks({
-          ...initStateResult,
-          hasSelectedFavourites: true,
-        });
-        const mutate = jest.spyOn(instance.context.client, "mutate");
-
-        instance.componentDidMount();
-        expect(mutate).not.toHaveBeenCalledWith({
-          mutation: OPEN_MODAL_MUTATION,
-          variables: { modal: "CHOOSE_FAVOURITES" },
-        });
-      });
-
-      // TODO: migrate to storybook
-      test("it should render a kambi client", () => {
-        expect(false).toBe(true);
-      });
-    });
-
-    describe("when a player has not selected favourites", () => {
-      test("it should call the open modal mutation on mount", async () => {
-        const instance = getInstanceForMocks(initStateResult);
-        const mutate = jest.spyOn(instance.context.client, "mutate");
-
-        instance.componentDidMount();
-
-        // account for setTimeout workaround for apollo bug
-        await wait(150);
-
-        expect(mutate).toHaveBeenCalledWith({
-          mutation: OPEN_MODAL_MUTATION,
-          variables: { modal: "CHOOSE_FAVOURITES" },
-        });
-      });
-
-      // TODO: migrate to storybook
-      test("it should render null", () => {
-        expect(false).toBe(true);
-      });
-    });
-
-    describe("when search is visible", () => {
-      // TODO: migrate to storybook
-      test("it should render sports search", () => {
-        expect(false).toBe(true);
-      });
-    });
-
-    describe("when search is not visible", () => {
-      // TODO: migrate to storybook
-      test("it should render sports nav", () => {
-        expect(false).toBe(true);
       });
     });
   });
