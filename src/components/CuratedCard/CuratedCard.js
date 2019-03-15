@@ -39,6 +39,41 @@ export type Props = {|
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
+  /* TODO: Move URLs to a central configuration
+     For the time being these are the assumptions:
+     If not game
+     Then promotion, if not promotion
+     by default the redirection url will be deposit
+     This needs refactoring so that curated card will handle different types of curated card types
+  */
+  get cardClickUrl() {
+    const { gameData, promotion = [] } = this.props;
+    const [promotionSlug = ""] = promotion;
+    const isGame = Boolean(gameData);
+
+    // If there is a game selected, we don't link to anything,
+    // we just use the onLaunchGame() prop.
+    if (isGame) {
+      return null;
+    }
+
+    if (promotionSlug) {
+      return `/en/promotions/${promotionSlug}`;
+    }
+
+    return "/en/cash/deposit";
+  }
+
+  get trackClickData() {
+    const { typeOfCurated, subtitle, gameData } = this.props;
+    const isGame = Boolean(gameData);
+
+    return {
+      [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
+      [EVENT_PROPS.CURATED_NAME]: isGame ? gameData.name : subtitle,
+    };
+  }
+
   componentDidMount() {
     const { isFetched, fetchCurated } = this.props;
 
@@ -49,53 +84,18 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderSkeleton = () => <CuratedCardSkeleton />;
 
-  /* TODO: Move URLs to a central configuration
-     For the time being these are the assumptions:
-     If not game
-     Then promotion, if not promotion
-     by default the redirection url will be deposit
-     This needs refactoring so that curated card will handle different types of curated card types
-  */
-  getLink = () => {
-    const { gameData, promotion = [] } = this.props;
-    const [promotionSlug = ""] = promotion;
-
-    // If there is a game selected, we don't link to anything,
-    // we just use the onLaunchGame() prop.
-    if (gameData) {
-      return null;
-    }
-
-    if (promotionSlug) {
-      return `/en/promotions/${promotionSlug}`;
-    }
-
-    return "/en/cash/deposit";
-  };
-
-  getTrackClick = (isGame: boolean) => {
-    const { gameData, typeOfCurated, subtitle } = this.props;
-
-    return {
-      [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_NAME]: isGame ? gameData.name : subtitle,
-    };
-  };
-
   renderCard = () => {
     const { onLaunchGame, gameData } = this.props;
     const isGame = Boolean(gameData);
-
-    const trackClickData = this.getTrackClick(isGame);
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <TrackClick
           eventName={EVENTS.CURATED_COMPONENT_CLICKED}
-          data={trackClickData}
+          data={this.trackClickData}
         >
           <CuratedCardBackground
-            link={this.getLink()}
+            link={this.cardClickUrl}
             onLaunchGame={isGame ? onLaunchGame : null}
             {...this.props}
           />
