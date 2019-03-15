@@ -39,7 +39,8 @@ describe("<SearchInput />", () => {
 
   describe("when the value is empty", () => {
     const props = { value: "", placeholder, ...baseProps };
-
+    // that function isn't identical, it gets different props object
+    // eslint-disable-next-line sonarjs/no-identical-functions
     test("renders a search icon", () => {
       const component = shallow(<SearchInput {...props} />);
 

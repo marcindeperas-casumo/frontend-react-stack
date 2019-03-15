@@ -22,6 +22,7 @@ const staticFolderName = "react-stack";
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
+// eslint-disable-next-line sonarjs/cognitive-complexity
 module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";

@@ -24,6 +24,7 @@ const getProjectMixpanel = (config: MixpanelConfig) => {
   return mixpanel[mixpanelProjectName];
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 const loadMixpanelIfNeeded = () => {
   if (window.mixpanel) {
     return;

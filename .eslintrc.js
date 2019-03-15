@@ -77,16 +77,18 @@ module.exports = {
   },
   overrides: [
     {
-      files: ["*.test.js"],
+      files: ["*.test.js", "*.stories.js"],
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
+        "sonarjs/no-duplicate-string": "off",
       },
     },
     {
-      files: ["scripts/**/*.js"],
+      files: ["scripts/**/*.js", "config/**/*.js"],
       rules: {
         "no-console": "off",
+        "sonarjs/no-duplicate-string": "off",
       },
     },
     {
