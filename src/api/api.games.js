@@ -51,7 +51,7 @@ export const fetchSuggestedGames = async ({
   return {
     games,
     id,
-    title: title.replace("${GAME_NAME}", decodeString(latestPlayedGame.name)),
+    title: title.replace("${GAME_NAME}", decodeString(latestPlayedGame.name)), // eslint-disable-line no-template-curly-in-string
   };
 };
 

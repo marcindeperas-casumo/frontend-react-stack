@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
-const stories = storiesOf("SportsShellSkeleton", module);
+const stories = storiesOf("Sports/SportsShellSkeleton", module);
 
 stories.add(
   "Default View",

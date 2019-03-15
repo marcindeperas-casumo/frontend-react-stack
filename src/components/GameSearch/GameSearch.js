@@ -86,14 +86,15 @@ export default class GameSearch extends React.PureComponent<Props> {
   render() {
     return (
       <>
-        <div className="u-padding--md u-position-sticky c-game-search-bar">
-          <GameSearchInput
-            initFetchQuerySearch={this.props.initFetchQuerySearch}
-            clearSearch={this.props.clearSearch}
-            noResults={this.noResults}
-            placeholder={this.props.inputPromptPlaceholder}
-          />
-          <div className="o-bleed t-background-grey-light-2 c-game-search-input-bg" />
+        <div className="u-position-sticky c-game-search-bar">
+          <div className="o-bleed t-background-grey-light-2">
+            <GameSearchInput
+              initFetchQuerySearch={this.props.initFetchQuerySearch}
+              clearSearch={this.props.clearSearch}
+              noResults={this.noResults}
+              placeholder={this.props.inputPromptPlaceholder}
+            />
+          </div>
         </div>
         {this.renderResults()}
       </>
