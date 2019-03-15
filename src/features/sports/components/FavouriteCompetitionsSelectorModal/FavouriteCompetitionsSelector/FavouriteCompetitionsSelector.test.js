@@ -4,12 +4,23 @@ import { F } from "ramda";
 import { MockedProvider } from "react-apollo/test-utils";
 import { mount } from "enzyme";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
-import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
+import FavouriteCompetitionsSelector, {
+  transformOrphanGroups,
+} from "./FavouriteCompetitionsSelector";
 import FavouriteCompetitionsSelectorRegion from "./FavouriteCompetitionsSelectorRegion";
 import favouriteCompetitionsSelectorMocks from "./__mocks__/favouriteCompetitionsSelectorQuery";
 import footballData from "./__mocks__/football";
 
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
+
+describe("transformOrphanGroups", () => {
+  test("should only transform groups that have an empty groups array", async () => {
+    const footballGroup = footballData.data.group.groups;
+    const orphanGroups = transformOrphanGroups(footballGroup);
+
+    expect(orphanGroups.length).toBe(15);
+  });
+});
 
 describe("<FavouriteCompetitionsSelector />", () => {
   test("should render a region competition selector for each region group, and group all leaf regions into a single group", async () => {

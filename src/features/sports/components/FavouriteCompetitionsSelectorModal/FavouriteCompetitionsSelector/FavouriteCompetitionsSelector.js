@@ -48,6 +48,23 @@ class FavouriteCompetitionsSelectorTypedQuery extends Query<
   FavouriteCompetitionsSelectorQueryVariables
 > {}
 
+// need to group all those groups without a parent into an international group
+// TODO:(adampilks) - change graphql server to have concept of Sports/Regions/Competitions?
+export const transformOrphanGroups = (
+  groups: Array<FavouriteCompetitionsSelectorQuery_group_groups>
+) =>
+  // $FlowFixMe - @adampilks/@cpoliver when refactoring query to use Sports/Compeition types, remove this.
+  groups
+    .filter(g => !g.groups)
+    // make flow happy as have different properties on different group levels, above TODO will solve this
+    .map(g => ({
+      popular: false,
+      groups: undefined,
+      flagEmoji: "",
+      userFavourite: true,
+      ...g,
+    }));
+
 const FavouriteCompetitionsSelector = (props: Props) => (
   <FavouriteCompetitionsSelectorTypedQuery
     query={FAVOURITE_COMPETITIONS_SELECTOR_QUERY}
@@ -64,18 +81,8 @@ const FavouriteCompetitionsSelector = (props: Props) => (
       const groups: Array<FavouriteCompetitionsSelectorQuery_group_groups> =
         data.group.groups || [];
 
-      // need to group all those groups without a parent into an international group
-      // TODO:(adampilks) - change graphql server to have concept of Sports/Regions/Competitions?
-      const orphanGroups = groups
-        .filter(g => !g.groups)
-        // make flow happy as have different properties on different group levels, above TODO will solve this
-        .map(g => ({
-          popular: false,
-          groups: undefined,
-          flagEmoji: "",
-          userFavourite: true,
-          ...g,
-        }));
+      const orphanGroups = transformOrphanGroups(groups);
+
       const regionGroups = [
         ...groups.filter(g => g.groups),
         // Create region that contains all orphaned (non country competitions)
