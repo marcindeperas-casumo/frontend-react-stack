@@ -49,6 +49,7 @@ const resultTypesTranslationsMap = {
 
 const resultTypesGroupingMap = {
   PARTICIPANT: "Team",
+  // eslint-disable-next-line sonarjs/no-duplicate-string
   SPORT: "Sports, Regions & Leagues",
   REGION: "Sports, Regions & Leagues",
   LEAGUE: "Sports, Regions & Leagues",
@@ -290,7 +291,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
-                    isMatch: false || renderAllTextAsMatched,
+                    isMatch: renderAllTextAsMatched,
                   })}
                   search={this.props.query}
                   text={result.localizedName}
