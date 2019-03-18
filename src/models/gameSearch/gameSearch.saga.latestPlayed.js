@@ -1,6 +1,6 @@
 import { pluck } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
-import { country as countrySelector, playerIdSelector } from "Models/handshake";
+import { countrySelector, playerIdSelector } from "Models/handshake";
 import {
   ENTITY_KEYS,
   normalizeData,

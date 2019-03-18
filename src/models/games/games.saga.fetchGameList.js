@@ -1,6 +1,6 @@
 import { call, put, select, take } from "redux-saga/effects";
 import {
-  country as countrySelector,
+  countrySelector,
   currencySelector,
   playerIdSelector,
   fetchGamesHandshake,

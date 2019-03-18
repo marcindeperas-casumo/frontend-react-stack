@@ -62,7 +62,7 @@ export const sessionIdSelector = createSelector(
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
-export const country = createSelector(
+export const countrySelector = createSelector(
   playerSelector,
   compose(
     prop("country"),
@@ -100,13 +100,13 @@ export const isGamesHandshakeLoaded = createSelector(
   complement(anyPass([isNil, isEmpty]))
 );
 
-export const getLanguage = createSelector(
+export const languageSelector = createSelector(
   marketSelector,
   market => LANGUAGES[market] || DEFAULT_LANGUAGE
 );
 
 export const getCmsHash = createSelector(
-  getLanguage,
+  languageSelector,
   compose(
     prop("rootContentHashes"),
     prop("common/composition/wpInterface"),

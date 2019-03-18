@@ -9,12 +9,12 @@ import {
   playerIdSelector,
   sessionIdSelector,
   playerSelector,
-  country,
+  countrySelector,
   currencySelector,
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-  getLanguage,
+  languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
 } from "./handshake.selectors";
@@ -157,7 +157,7 @@ describe("Handshake selectors", () => {
     expect(playerSelector(state)).toEqual({ id: "p1" });
   });
 
-  test("player", () => {
+  test("countrySelector", () => {
     const state = {
       handshake: {
         app: {
@@ -174,10 +174,10 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(country(state)).toEqual("mt");
+    expect(countrySelector(state)).toEqual("mt");
   });
 
-  test("player", () => {
+  test("currencySelector", () => {
     const state = {
       handshake: {
         app: {
@@ -197,7 +197,7 @@ describe("Handshake selectors", () => {
     expect(currencySelector(state)).toEqual("EUR");
   });
 
-  test("player", () => {
+  test("marketSelector", () => {
     const state = {
       handshake: {
         app: {
@@ -263,13 +263,13 @@ describe("Handshake selectors", () => {
     });
   });
 
-  describe("getLanguage()", () => {
+  describe("languageSelector()", () => {
     test("returns the language of the player if there is a player logged in", () => {
-      expect(getLanguage(stateMock)).toBe("gb");
+      expect(languageSelector(stateMock)).toBe("gb");
     });
 
     test("returns the default language if the player is not logged in", () => {
-      expect(getLanguage({})).toBe("en");
+      expect(languageSelector({})).toBe("en");
     });
   });
 

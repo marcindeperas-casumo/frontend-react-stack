@@ -38,16 +38,15 @@ describe("<SearchInput />", () => {
   });
 
   describe("when the value is empty", () => {
+    const props2 = { value: "", placeholder, ...baseProps };
     test("renders a search icon", () => {
-      const component = shallow(
-        <SearchInput value="" placeholder={placeholder} {...baseProps} />
-      );
+      const component = shallow(<SearchInput {...props2} />);
 
       expect(component.find(SearchIcon).length).toBe(1);
     });
 
     test("renders an input with the correct placeholder", () => {
-      const component = shallow(<SearchInput {...props} />);
+      const component = shallow(<SearchInput {...props2} />);
       const input = component.find("input");
 
       expect(input.prop("value")).toBe("");
@@ -55,7 +54,7 @@ describe("<SearchInput />", () => {
     });
 
     test("renders without a clear button", () => {
-      const component = shallow(<SearchInput {...props} />);
+      const component = shallow(<SearchInput {...props2} />);
 
       expect(component.find(clearButtonSelector).length).toBe(0);
     });

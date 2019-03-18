@@ -6,8 +6,8 @@ import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
 import {
   currencySelector,
-  country as countrySelector,
-  getLanguage,
+  countrySelector,
+  languageSelector,
 } from "Models/handshake";
 import {
   MutateOnMount,
@@ -113,5 +113,5 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 export default connect(state => ({
   currency: currencySelector(state),
   market: countrySelector(state).toUpperCase(),
-  locale: `${getLanguage(state)}_${countrySelector(state).toUpperCase()}`,
+  locale: `${languageSelector(state)}_${countrySelector(state).toUpperCase()}`,
 }))(LaunchableKambiClient);
