@@ -44,7 +44,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
   }
 
   isCompetitionSelected = (groupId: number): boolean => {
-    return !!this.state.selectedCompetitions.find(c => c.id === groupId);
+    return Boolean(this.state.selectedCompetitions.find(c => c.id === groupId));
   };
 
   toggleCompetition = (group: FavouriteCompetitionsSelectorModal_Group) =>

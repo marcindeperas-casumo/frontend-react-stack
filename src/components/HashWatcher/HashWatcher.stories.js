@@ -16,7 +16,6 @@ class HashWatcherDemo extends React.Component<{}, State> {
   };
 
   applyNewHash = () => {
-    // eslint-disable-next-line fp/no-mutation
     window.location.hash = this.state.newHash;
   };
 

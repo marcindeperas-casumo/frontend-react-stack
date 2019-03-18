@@ -73,7 +73,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "scripts/forgotten-statements.sh && flow"
+      "pre-commit": "lint-staged && yarn flow"
     }
   },
   "jest": {
@@ -122,12 +122,12 @@
       "eslint --fix",
       "git add"
     ],
-    "*.{scss}": [
+    "*.scss": [
       "stylelint --fix",
       "git add"
     ],
-    "*.md": [
-      "prettier --parser markdown --write",
+    "*.{md,json,yaml}": [
+      "prettier --write",
       "git add"
     ]
   },
@@ -171,9 +171,11 @@
     "eslint-plugin-fp": "^2.3.0",
     "eslint-plugin-import": "^2.15.0",
     "eslint-plugin-jsx-a11y": "^6.2.0",
+    "eslint-plugin-no-only-tests": "^2.1.0",
     "eslint-plugin-prettier": "^3.0.1",
     "eslint-plugin-ramda": "^2.5.1",
     "eslint-plugin-react": "^7.12.4",
+    "eslint-plugin-sonarjs": "^0.3.0",
     "file-loader": "^3.0.1",
     "flow-bin": "^0.92.1",
     "fs-extra": "^7.0.1",

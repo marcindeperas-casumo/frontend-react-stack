@@ -1,6 +1,6 @@
 export default {
-  debug: console.debug,
-  info: console.log,
+  debug: console.debug, // eslint-disable-line no-console
+  info: console.log, // eslint-disable-line no-console
   warn: console.warn,
   error: console.error,
 };
