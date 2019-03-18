@@ -1,3 +1,3 @@
 // @flow
-export type * from "./PromotionHeaderImage"; // eslint-disable-line import/export
+export type * from "./PromotionHeaderImage";
 export { default } from "./PromotionHeaderImage";

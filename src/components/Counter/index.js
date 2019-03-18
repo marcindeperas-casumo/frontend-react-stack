@@ -1,3 +1,3 @@
 // @flow
-export type * from "./Counter"; // eslint-disable-line import/export
+export type * from "./Counter";
 export { default } from "./Counter";

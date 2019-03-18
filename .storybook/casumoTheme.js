@@ -1,4 +1,4 @@
-import { create, themes } from "@storybook/theming";
+import { create } from "@storybook/theming";
 
 export const color = {
   // Base

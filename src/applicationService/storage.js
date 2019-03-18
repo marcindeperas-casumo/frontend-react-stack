@@ -1,5 +1,5 @@
 // @flow
-import storage from "Lib/storage";
+import * as storage from "Lib/storage";
 
 export const NAMESPACE = "react-stack";
 
@@ -10,9 +10,3 @@ export const set = (key: string, value: any) =>
   storage.set(key, value, NAMESPACE);
 
 export const remove = (key: string) => storage.remove(key, NAMESPACE);
-
-export default {
-  get,
-  set,
-  remove,
-};

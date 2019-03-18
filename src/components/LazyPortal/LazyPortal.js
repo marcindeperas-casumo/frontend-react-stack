@@ -3,7 +3,7 @@ import React from "react";
 import type { Node } from "react";
 import Lazy from "Components/Lazy";
 import Portal from "Components/Portal";
-import WaitForHostElement from "Components/WaitForHostElement";
+import { WaitForHostElement } from "Components/WaitForHostElement";
 
 const DefaultFallback = () => null;
 

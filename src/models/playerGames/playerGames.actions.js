@@ -1,3 +1,4 @@
+import { filter, identity } from "ramda";
 import { types, getFetchCompleteTypeByPage } from "Models/playerGames";
 import { types as fetchTypes } from "Models/fetch";
 import {
@@ -28,5 +29,8 @@ export const fetchPlayerGamesCount = ({ provider, sessionId }) => ({
   name: types.PLAYER_GAMES_FETCH_COUNT_START,
   postFetch: types.PLAYER_GAMES_FETCH_COUNT_COMPLETE,
   asyncCall: getCasinoPlayerGamesCount,
-  asyncCallData: { providers: provider ? [provider] : undefined, sessionId },
+  asyncCallData: filter(identity)({
+    providers: provider ? [provider] : undefined,
+    sessionId,
+  }),
 });

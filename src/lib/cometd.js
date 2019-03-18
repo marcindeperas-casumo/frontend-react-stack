@@ -1,4 +1,3 @@
-/* eslint-disable fp/no-let, fp/no-mutation */
 import cometdLib from "cometd";
 
 const CometD = new cometdLib.CometD();
@@ -6,7 +5,7 @@ const CometD = new cometdLib.CometD();
 export default CometDFactory(CometD);
 
 export function CometDFactory(cometd) {
-  let handshakePromise;
+  let handshakePromise; // eslint-disable-line fp/no-let
 
   const context = {
     init,
@@ -18,6 +17,7 @@ export function CometDFactory(cometd) {
     if (!isInitialised()) {
       cometd.configure(configuration);
 
+      /* eslint-disable-next-line fp/no-mutation */
       handshakePromise = getHandshakePromise();
     }
 
@@ -38,11 +38,12 @@ export function CometDFactory(cometd) {
     args,
     onSubscriptionReady = () => {}
   ) {
-    let subscription;
+    let subscription; // eslint-disable-line fp/no-let
 
     await context.init();
 
     return new Promise(resolve => {
+      /* eslint-disable-next-line fp/no-mutation */
       subscription = cometd.subscribe(
         channel,
         parseMessage(callback),

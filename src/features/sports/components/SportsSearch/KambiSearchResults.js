@@ -36,8 +36,6 @@ const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
 );
 
-const getSportFromId = id => id.split("/")[1];
-
 const TOTAL_PLACEHOLDER_ITEMS = 5;
 
 // TODO: adampilks - make these properly dynamic translations
@@ -51,6 +49,7 @@ const resultTypesTranslationsMap = {
 
 const resultTypesGroupingMap = {
   PARTICIPANT: "Team",
+  // eslint-disable-next-line sonarjs/no-duplicate-string
   SPORT: "Sports, Regions & Leagues",
   REGION: "Sports, Regions & Leagues",
   LEAGUE: "Sports, Regions & Leagues",
@@ -70,9 +69,6 @@ const SEARCH_QUERY = gql`
     }
   }
 `;
-
-// TODO:(adampilks) hook up to new icon query
-const SearchResultIcon = ({ sport }) => "";
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
   <Text
@@ -295,7 +291,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
-                    isMatch: false || renderAllTextAsMatched,
+                    isMatch: renderAllTextAsMatched,
                   })}
                   search={this.props.query}
                   text={result.localizedName}

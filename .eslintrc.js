@@ -6,7 +6,16 @@ process.env.NODE_ENV = "test";
 
 module.exports = {
   parser: "babel-eslint",
-  plugins: ["prettier", "import", "flowtype", "fp", "ramda"],
+  plugins: [
+    "prettier",
+    "import",
+    "flowtype",
+    "fp",
+    "ramda",
+    "eslint-comments",
+    "no-only-tests",
+    "sonarjs",
+  ],
   extends: [
     "react-app",
     "prettier",
@@ -15,6 +24,8 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:fp/recommended",
     "plugin:ramda/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:sonarjs/recommended",
   ],
   rules: {
     "fp/no-class": "off",
@@ -59,13 +70,39 @@ module.exports = {
       },
     ],
     curly: ["error", "all"],
+    "eslint-comments/no-unused-disable": "error",
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-debugger": "error",
+    "no-alert": "error",
+    "no-useless-catch": "error",
+    "no-caller": "error",
+    "no-delete-var": "error",
+    "no-implicit-coercion": "error",
+    "no-void": "error",
+    "no-array-constructor": "error",
+    "no-sequences": "error",
+    "no-only-tests/no-only-tests": "error",
   },
   overrides: [
     {
-      files: ["*.test.js"],
+      files: ["*.test.js", "*.stories.js"],
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
+        "sonarjs/no-duplicate-string": "off",
+      },
+    },
+    {
+      files: ["scripts/**/*.js", "config/**/*.js"],
+      rules: {
+        "no-console": "off",
+        "sonarjs/no-duplicate-string": "off",
+      },
+    },
+    {
+      files: ["*.reducer.js"],
+      rules: {
+        "sonarjs/no-small-switch": "off",
       },
     },
   ],
