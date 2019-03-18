@@ -1,6 +1,6 @@
 // @flow
-import { join } from "ramda";
 import defaultHttp from "Services/http";
+import { commaSeparated } from "Utils";
 
 type HTTPClient = typeof defaultHttp;
 
@@ -32,7 +32,7 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: join(",")(providers),
+      providerSlugs: commaSeparated(providers),
     },
     getXTokenHeaders(sessionId)
   );

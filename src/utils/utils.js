@@ -1,4 +1,15 @@
-import { assocPath, either, isEmpty, isNil, prop, splitEvery } from "ramda";
+import {
+  assocPath,
+  either,
+  isEmpty,
+  isNil,
+  prop,
+  splitEvery,
+  join,
+  compose,
+  filter,
+  identity,
+} from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
@@ -312,3 +323,8 @@ export const injectScript = url =>
 
     document.head.appendChild(script);
   });
+
+export const commaSeparated = compose(
+  join(","),
+  filter(identity)
+);

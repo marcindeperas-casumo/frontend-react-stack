@@ -10,6 +10,7 @@ import {
   renderBets,
   sanitizeObject,
   SimpleCache,
+  commaSeparated,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -297,5 +298,25 @@ describe("renderBets()", () => {
       expect(getEnv(nodeEnv, windowTest)).toBe(ENVS.TEST);
       expect(getEnv(nodeEnv, windowStage)).toBe(ENVS.TEST);
     });
+  });
+});
+
+describe("commaSeparated()", () => {
+  test("should return a string with the input joined by commas", () => {
+    const input = ["foo", "bar", "baz"];
+    const expected = "foo,bar,baz";
+    expect(commaSeparated(input)).toBe(expected);
+  });
+
+  test("should return a single item", () => {
+    const input = [undefined, "foo", undefined];
+    const expected = "foo";
+    expect(commaSeparated(input)).toBe(expected);
+  });
+
+  test("should return empty string", () => {
+    const input = [undefined, undefined, undefined];
+    const expected = "";
+    expect(commaSeparated(input)).toBe(expected);
   });
 });
