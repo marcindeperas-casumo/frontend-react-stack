@@ -33,7 +33,7 @@ export const fetchSuggestedGames = async ({
 }) => {
   const { id, title } = handshake.gamesLists.suggestedGames || {};
 
-  const game = gameLookingForSuggestions;
+  const game = await gameLookingForSuggestions;
 
   if (!game || !id) {
     return {};
