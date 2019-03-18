@@ -28,6 +28,7 @@ describe("API/casinoPlayerGames", () => {
   });
 
   describe("getGameProviders()", () => {
+    // eslint-disable-next-line sonarjs/no-identical-functions
     beforeEach(() => {
       http = {
         get: jest.fn(() => Promise.resolve([])),
