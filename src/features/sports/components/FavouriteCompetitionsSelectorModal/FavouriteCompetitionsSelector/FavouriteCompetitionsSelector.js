@@ -3,7 +3,7 @@ import * as React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Flex from "@casumo/cmp-flex";
-import { partition, any, propEq } from "ramda";
+import { any, partition, propEq } from "ramda";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { isNilOrEmpty } from "Src/utils";
 import Heading from "./FavouriteCompetitionsSelectorHeading";
@@ -49,22 +49,24 @@ class FavouriteCompetitionsSelectorTypedQuery extends Query<
   FavouriteCompetitionsSelectorQueryVariables
 > {}
 
-// need to group all those groups without a parent into an international group
+export const isOrphanGroup = (
+  group: FavouriteCompetitionsSelectorQuery_group
+) => isNilOrEmpty(group.groups);
+
+export const isPopularGroup = (
+  group: FavouriteCompetitionsSelectorQuery_group
+) => any(propEq("popular", true), group.groups);
+
 // TODO:(adampilks) - change graphql server to have concept of Sports/Regions/Competitions?
-export const transformOrphanGroups = (
-  groups: Array<FavouriteCompetitionsSelectorQuery_group_groups>
-) =>
-  // $FlowFixMe - @adampilks/@cpoliver when refactoring query to use Sports/Compeition types, remove this.
-  groups
-    .filter(g => isNilOrEmpty(g.groups))
-    // make flow happy as have different properties on different group levels, above TODO will solve this
-    .map(g => ({
-      popular: false,
-      groups: undefined,
-      flagEmoji: "",
-      userFavourite: true,
-      ...g,
-    }));
+export const transformOrphanGroup = (
+  group: FavouriteCompetitionsSelectorQuery_group
+) => ({
+  popular: false,
+  groups: undefined,
+  flagEmoji: "",
+  userFavourite: true,
+  ...group,
+});
 
 const FavouriteCompetitionsSelector = (props: Props) => (
   <FavouriteCompetitionsSelectorTypedQuery
@@ -82,23 +84,23 @@ const FavouriteCompetitionsSelector = (props: Props) => (
       const groups: Array<FavouriteCompetitionsSelectorQuery_group_groups> =
         data.group.groups || [];
 
-      const orphanGroups = transformOrphanGroups(groups);
+      const [orphanGroups, nonOrphanGroups] = partition(isOrphanGroup, groups);
 
       const regionGroups = [
-        ...groups.filter(g => g.groups),
-        // Create region that contains all orphaned (non country competitions)
+        ...nonOrphanGroups,
+        // Create region that contains all orphaned (non-regional competitions)
         {
           name: "International",
           userFavourite: false,
           popular: false,
-          groups: orphanGroups,
+          groups: orphanGroups.map(transformOrphanGroup),
           id: -1,
           flagEmoji: "",
         },
       ];
 
       const [popularRegionGroups, otherRegionGroups] = partition(
-        g => any(propEq("popular", true), g.groups),
+        isPopularGroup,
         regionGroups
       );
 
