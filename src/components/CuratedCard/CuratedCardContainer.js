@@ -10,10 +10,8 @@ import { fetchPageBySlug } from "Models/cms";
 import { launchGame } from "Models/games";
 
 export default connect(
-  (state, { defaultCard }) => {
-    const defaultSlug = Array.isArray(defaultCard)
-      ? defaultCard[0]
-      : defaultCard;
+  (state, { card }) => {
+    const defaultSlug = Array.isArray(card) ? card[0] : card;
     const curatedSlug = curatedSlugSelector(defaultSlug)(state);
 
     return {
