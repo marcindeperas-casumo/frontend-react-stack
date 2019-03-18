@@ -6452,7 +6452,7 @@ eslint-plugin-eslint-comments@^3.1.1:
 
 "eslint-plugin-filenames@https://github.com/futuun/eslint-plugin-filenames#add-dot-case":
   version "1.3.2"
-  resolved "https://github.com/futuun/eslint-plugin-filenames#7b9604c2b763ee482cc8c097934bbd9ee5ab3366"
+  resolved "https://github.com/futuun/eslint-plugin-filenames#db59fcd7435357ebab9c86a31c41d54852e8d054"
   dependencies:
     dot-case "2.1.1"
     lodash.camelcase "4.3.0"

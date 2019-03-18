@@ -29,31 +29,33 @@ module.exports = {
     "plugin:sonarjs/recommended",
   ],
   rules: {
+    curly: ["error", "all"],
+    "eslint-comments/no-unused-disable": "error",
+    "filenames/match-exported": "error",
     "fp/no-class": "off",
-    "fp/no-nil": "off",
-    "fp/no-rest-parameters": "off",
-    "fp/no-this": "off",
-    "fp/no-unused-expression": "off",
-    "fp/no-mutation": [
-      "error",
-      {
-        commonjs: true,
-        allowThis: true,
-        exceptions: [{ property: "fragments" }],
-      },
-    ],
     "fp/no-mutating-methods": [
       "error",
       {
         allowedObjects: ["R"],
       },
     ],
-    "prettier/prettier": "error",
+    "fp/no-mutation": [
+      "error",
+      {
+        allowThis: true,
+        commonjs: true,
+        exceptions: [{ property: "fragments" }],
+      },
+    ],
+    "fp/no-nil": "off",
+    "fp/no-rest-parameters": "off",
+    "fp/no-this": "off",
+    "fp/no-unused-expression": "off",
     "import/no-unresolved": [
       "error",
       {
-        commonjs: true,
         caseSensitive: true,
+        commonjs: true,
       },
     ],
     "import/order": [
@@ -70,20 +72,26 @@ module.exports = {
         "newlines-between": "never",
       },
     ],
-    curly: ["error", "all"],
-    "eslint-comments/no-unused-disable": "error",
+    "max-lines": ["error", 1000],
+    "max-lines-per-function": ["error", 200],
+    "max-params": ["error", 7],
+    "no-alert": "error",
+    "no-array-constructor": "error",
+    "no-caller": "error",
     "no-console": ["error", { allow: ["warn", "error"] }],
     "no-debugger": "error",
-    "no-alert": "error",
-    "no-useless-catch": "error",
-    "no-caller": "error",
     "no-delete-var": "error",
+    "no-empty": "error",
     "no-implicit-coercion": "error",
-    "no-void": "error",
-    "no-array-constructor": "error",
-    "no-sequences": "error",
+    "no-nested-ternary": "error",
     "no-only-tests/no-only-tests": "error",
-    "filenames/match-exported": "error",
+    "no-sequences": "error",
+    "no-undefined": "off",
+    "no-unused-expressions": "error",
+    "no-useless-catch": "error",
+    "no-void": "error",
+    "prettier/prettier": "error",
+    "sonarjs/no-duplicate-string": "off",
   },
   overrides: [
     {
@@ -91,14 +99,14 @@ module.exports = {
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
-        "sonarjs/no-duplicate-string": "off",
+        "max-lines-per-function": "off",
       },
     },
     {
       files: ["scripts/**/*.js", "config/**/*.js"],
       rules: {
+        "max-lines-per-function": "off",
         "no-console": "off",
-        "sonarjs/no-duplicate-string": "off",
       },
     },
     {
@@ -118,11 +126,11 @@ module.exports = {
     flowtype: {
       onlyFilesWithFlowAnnotation: false,
     },
-    react: {
-      version: "detect",
-    },
     "import/resolver": {
       "babel-module": {},
+    },
+    react: {
+      version: "detect",
     },
   },
 };

@@ -15,6 +15,7 @@ const renderResults = ({ results, type }) => {
       <div className="o-layout o-layout--gap u-margin-bottom">
         {list.map((n, i) => {
           const color = getBadgeColor(type, n);
+          const notTopCardType = isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
           return (
             <Badge
               key={i}
@@ -23,11 +24,7 @@ const renderResults = ({ results, type }) => {
               txtColor={color === "yellow" ? "grey-dark-3" : "white"}
               circle={true}
             >
-              {type === "TopCard"
-                ? topCardLetters[n]
-                : isNaN(parseInt(n, 10))
-                ? n
-                : parseInt(n, 10)}
+              {type === "TopCard" ? topCardLetters[n] : notTopCardType}
             </Badge>
           );
         })}
