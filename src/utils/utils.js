@@ -1,8 +1,10 @@
-import { prop, splitEvery, assocPath } from "ramda";
+import { assocPath, either, isEmpty, isNil, prop, splitEvery } from "ramda";
 import { ENVS } from "Src/constants";
 
 const { log } = console;
 const NODE_ENV = process.env.NODE_ENV || "";
+
+export const isNilOrEmpty = either(isNil, isEmpty);
 
 export const getEnv = (nodeEnv = NODE_ENV, windowObject = window) => {
   const hostname = windowObject.location.hostname;
