@@ -25,12 +25,13 @@ const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 const UPDATE_INTERVAL = 1000;
 
 const diffTime = endTime => {
-  const time = DateTime.fromMillis(endTime)
-    // The endTime timestamp should always be UTC. Rather than use diffNow we
-    // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
-    .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
-    .toObject();
-  return time;
+  return (
+    DateTime.fromMillis(endTime)
+      // The endTime timestamp should always be UTC. Rather than use diffNow we
+      // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
+      .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
+      .toObject()
+  );
 };
 
 export default class Timer extends PureComponent<Props, State> {

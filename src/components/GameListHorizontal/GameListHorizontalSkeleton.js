@@ -37,11 +37,8 @@ export default function GameListHorizontalSkeleton({
   const skeletonWidth = itemWidth * items;
   const itemHeight: number = itemWidth * itemRatio;
   const displayCards = display === "cards";
-  const skeletonHeight: number = displayCards
-    ? itemHeight
-    : title
-    ? itemHeight + 40
-    : itemHeight;
+  const titleHeight = title ? itemHeight + 40 : itemHeight;
+  const skeletonHeight: number = displayCards ? itemHeight : titleHeight;
 
   const renderCards = () =>
     Array.from(Array(items).keys()).map(pos => {

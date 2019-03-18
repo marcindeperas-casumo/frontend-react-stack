@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import ExpandableListItem from "Features/sports/components/ExpandableListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
+import { isNilOrEmpty } from "Src/utils";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 
 type Competition = FavouriteCompetitionsSelectorRegion_Group_groups;
@@ -25,8 +26,8 @@ const FavouriteCompetitionsSelectorRegion = ({
   isExpanded,
   isSelected,
   onClick,
-}: Props): React.Node => {
-  return !group.groups ? null : (
+}: Props): React.Node =>
+  !group.groups || isNilOrEmpty(group.groups) ? null : (
     <div className="u-margin-vert">
       <ExpandableListItem
         isExpanded={isExpanded}
@@ -51,7 +52,6 @@ const FavouriteCompetitionsSelectorRegion = ({
       </ExpandableListItem>
     </div>
   );
-};
 
 FavouriteCompetitionsSelectorRegion.fragments = {
   group: gql`

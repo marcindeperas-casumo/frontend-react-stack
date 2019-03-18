@@ -71,15 +71,13 @@ class GamesVirtualList extends PureComponent<Props, State> {
     // adjust for last row loading
     const stop = stopIndex + 1;
 
-    // eslint-disable-next-line
-    let loaded = {};
-    range(startIndex, stop).forEach(i => {
-      // eslint-disable-next-line
-      loaded = {
-        ...loaded,
-        ...assoc(i, 1, loaded),
-      };
-    });
+    const loaded = range(startIndex, stop).reduce(
+      (acc, curr) => ({
+        ...acc,
+        [curr]: 1,
+      }),
+      {}
+    );
 
     this.setState(prevState => {
       return {

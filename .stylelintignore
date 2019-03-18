@@ -1,0 +1,8 @@
+# don't ignore storybook folder
+!.storybook
+# ignore files with spam
+**/node_modules/**
+**/__mocks__/**
+**/flow-typed/**
+**/build/**
+**/.history/**

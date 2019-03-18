@@ -1,14 +1,14 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import invariant from "invariant";
 import ErrorBoundary from "Components/ErrorBoundary";
 
 type Props = {
-  children: any,
+  children?: React.Node,
   path: string | string[],
 };
 
-export class Route extends PureComponent<Props> {
+export class Route extends React.PureComponent<Props> {
   componentDidMount() {
     const { path, children } = this.props;
 

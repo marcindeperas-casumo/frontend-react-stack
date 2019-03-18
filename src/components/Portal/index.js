@@ -1,3 +1,3 @@
 // @flow
-export type * from "./Portal"; // eslint-disable-line import/export
+export type * from "./Portal";
 export { default } from "./Portal";

@@ -28,12 +28,6 @@ describe("CometD", () => {
       expect(cometdMock.handshake.mock.calls.length).toBe(1);
     });
 
-    test("should call cometd.configure() on init", async () => {
-      await cometd.init({ url });
-
-      expect(cometdMock.handshake.mock.calls.length).toBe(1);
-    });
-
     test("should call cometd.handshake() only once", async () => {
       await cometd.init({ url });
       await cometd.init({ url });

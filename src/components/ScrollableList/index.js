@@ -1,3 +1,3 @@
 // @flow
-export type * from "./ScrollableList"; // eslint-disable-line import/export
+export type * from "./ScrollableList";
 export { default } from "./ScrollableList";
