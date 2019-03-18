@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo } from "ramda";
 import { getField } from "Models/cms";
-import { isNotFetched, isFetched } from "Models/fetch";
+import { isNotFetchedSelector, isFetched } from "Models/fetch";
 import { TYPES } from "./jackpotsMustDrop.constants";
 
 export const getJackpotsMustDropSchema = compose(
@@ -10,7 +10,7 @@ export const getJackpotsMustDropSchema = compose(
   prop("schema")
 );
 
-export const shouldFetchJackpotsMustDrop = isNotFetched(TYPES.FETCH);
+export const shouldFetchJackpotsMustDrop = isNotFetchedSelector(TYPES.FETCH);
 
 export const isFetchedJackpotsMustDrop = isFetched(TYPES.FETCH);
 

@@ -2,7 +2,11 @@
 import React from "react";
 import { connect } from "react-redux";
 import { appStarted } from "Models/app";
-import { isAuthenticated, playerId, sessionId } from "Models/handshake";
+import {
+  isAuthenticated,
+  playerIdSelector,
+  sessionIdSelector,
+} from "Models/handshake";
 import { activeComponents, routeParamsSelector } from "Models/router";
 import App from "Components/App/App";
 import {
@@ -15,16 +19,14 @@ const AppConnected = connect(
     isAuthenticated: isAuthenticated(state),
     activeComponents: activeComponents(state),
     routeParams: routeParamsSelector(state),
-    playerId: playerId(state),
-    sessionId: sessionId(state),
+    playerId: playerIdSelector(state),
+    sessionId: sessionIdSelector(state),
   }),
-  (dispatch, { playerId, sessionId }) => ({
-    onAppStarted: () => dispatch(appStarted()),
-    dispatchSubscribe: (playerId, sessionId) =>
-      dispatch(subscribeToPlayerUpdates(playerId, sessionId)),
-    dispatchUnsubscribe: playerId =>
-      dispatch(unsubscribeToPlayerUpdates(playerId)),
-  }),
+  {
+    onAppStarted: appStarted,
+    dispatchSubscribe: subscribeToPlayerUpdates,
+    dispatchUnsubscribe: unsubscribeToPlayerUpdates,
+  },
   (stateProps, dispatchProps) => {
     const { playerId, sessionId } = stateProps;
     const {

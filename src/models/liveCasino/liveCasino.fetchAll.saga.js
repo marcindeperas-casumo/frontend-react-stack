@@ -1,9 +1,6 @@
 import { pluck } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
-import {
-  country as countrySelector,
-  currency as currencySelector,
-} from "Models/handshake";
+import { country as countrySelector, currencySelector } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
 import { normalizeTableData } from "Api/api.games";
 import {

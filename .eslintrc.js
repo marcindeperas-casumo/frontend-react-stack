@@ -86,6 +86,7 @@ module.exports = {
     "no-nested-ternary": "error",
     "no-only-tests/no-only-tests": "error",
     "no-sequences": "error",
+    "no-shadow": "error",
     "no-undefined": "off",
     "no-unused-expressions": "error",
     "no-useless-catch": "error",

@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import { take } from "ramda";
 import { fetchPageBySlug, getField } from "Models/cms";
-import { market as marketSelector } from "Models/handshake";
+import { marketSelector } from "Models/handshake";
 import PromotionCardGallery from "./PromotionGallery";
 
 const field = "promotions";

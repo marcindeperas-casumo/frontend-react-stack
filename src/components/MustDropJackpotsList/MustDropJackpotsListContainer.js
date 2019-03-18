@@ -5,7 +5,7 @@ import {
   mustDropJackpotsIdsSelector,
   gameListTitleSelectorFactory,
 } from "Models/schema";
-import { market as marketSelector } from "Models/handshake";
+import { marketSelector } from "Models/handshake";
 import { getField } from "Models/cms";
 import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";

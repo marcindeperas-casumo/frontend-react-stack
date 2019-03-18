@@ -44,12 +44,14 @@ describe("Sagas/CMS", () => {
 
     test("updates a single schema entity on a successful fetch", () => {
       const response = cmsApiMock;
-      const { action } = clonedGenerator.next({ response }).value.PUT;
+      const { action: currAction } = clonedGenerator.next({
+        response,
+      }).value.PUT;
       const expectedPayload = { ...cmsApiMock, slug }; // It should extend the slug with the base-path
 
-      expect(action.type).toBe(schemaTypes.UPDATE_ENTITY);
-      expect(action.payload).toBeDefined();
-      expect(action.payload.cms[slug]).toEqual(expectedPayload);
+      expect(currAction.type).toBe(schemaTypes.UPDATE_ENTITY);
+      expect(currAction.payload).toBeDefined();
+      expect(currAction.payload.cms[slug]).toEqual(expectedPayload);
     });
 
     test("does not fetch if page is already in the state", () => {
