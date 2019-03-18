@@ -36,6 +36,20 @@ describe("Models/GameSearch/Saga", () => {
       call(waitForSelector, isGamesHandshakeLoaded)
     );
 
+    const response = { games: [] };
+    const clearGameList = { id, games: response.games };
+    const clearEntities = {
+      [ENTITY_KEYS.GAME_LIST]: clearGameList,
+    };
+
+    expect(gen.next({ response }).value).toEqual(
+      call(normalizeData, clearEntities)
+    );
+
+    expect(gen.next({ entities: clearEntities }).value).toEqual(
+      put(updateEntity(clearEntities))
+    );
+
     expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
 
     expect(gen.next(handshake).value).toEqual(
@@ -54,13 +68,15 @@ describe("Models/GameSearch/Saga", () => {
       take(types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE)
     );
 
-    const response = { games: ["foo"] };
-    const gameList = { id, games: response.games };
+    const gamesResponse = { games: ["foo"] };
+    const gameList = { id, games: gamesResponse.games };
     const entities = {
       [ENTITY_KEYS.GAME_LIST]: gameList,
     };
 
-    expect(gen.next({ response }).value).toEqual(call(normalizeData, entities));
+    expect(gen.next({ response: gamesResponse }).value).toEqual(
+      call(normalizeData, entities)
+    );
 
     expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
 

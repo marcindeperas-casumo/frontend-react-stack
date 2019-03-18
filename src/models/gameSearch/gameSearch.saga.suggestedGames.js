@@ -17,6 +17,7 @@ export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
   const variant = "default";
   const country = yield select(countrySelector);
   const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+
   const areGamesFetched = yield select(
     isFetchingStarted(handshakeTypes.FETCH_GAMES_HANDSHAKE)
   );
@@ -28,6 +29,14 @@ export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
 
   // Wait for the Games Lists handshake to be loaded before running the rest
   yield call(waitForSelector, isGamesHandshakeLoaded);
+
+  // make sure to remove any suggested games if they already exists
+  const emptyGameList = { id, games: [] };
+  const { entities } = yield call(normalizeData, {
+    [ENTITY_KEYS.GAME_LIST]: emptyGameList,
+  });
+
+  yield put(updateEntity(entities));
 
   const handshake = yield select(gamesHandshakeSelector);
 
@@ -45,9 +54,9 @@ export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
     types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE
   );
   const gameList = { id, games: response.games };
-  const { entities } = yield call(normalizeData, {
+  const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
   });
 
-  yield put(updateEntity(entities));
+  yield put(updateEntity(gameListEntities));
 }
