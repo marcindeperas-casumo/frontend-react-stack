@@ -61,6 +61,7 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={true}
+          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -80,6 +81,7 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={false}
+          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -99,6 +101,7 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={false}
+          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -118,6 +121,7 @@ if (isNotChromatic) {
           preloadFetchPlayerGames={noop}
           query={"starburst"}
           loading={false}
+          suggestedGames={["mega-fortune", "mega-fortune-dreams"]}
         />
       </MockStore>
     ),
@@ -137,6 +141,7 @@ if (isNotChromatic) {
           preloadFetchPlayerGames={noop}
           query={"mega"}
           loading={false}
+          suggestedGames={[]}
         />
       </MockStore>
     ),
