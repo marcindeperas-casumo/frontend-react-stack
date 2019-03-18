@@ -38,32 +38,37 @@ export function* fetchGamesByProviderSaga({ provider, page, pageSize }) {
   }
 
   const sessionId = yield select(session);
-  //eslint-disable-next-line
-  let gameCount = yield select(gameProviderGameCount(provider));
+
+  yield put(
+    initiateFetchGamesByProvider({ provider, sessionId, page, pageSize })
+  );
+
+  const newGamesAction = yield take(types.FETCH_GAMES_BY_PROVIDER_COMPLETE);
+  const currentGames = yield select(gameProviderGames(provider));
+
+  const gameCount = yield select(gameProviderGameCount(provider));
 
   if (!gameCount) {
     yield put(fetchPlayerGamesCount({ provider, sessionId }));
     const { response } = yield take(
       playerGamesTypes.PLAYER_GAMES_FETCH_COUNT_COMPLETE
     );
-    //eslint-disable-next-line
-    gameCount = response;
+    const { entities } = yield call(normalizeData, {
+      [ENTITY_KEYS.GAME_PROVIDER]: {
+        slug: provider,
+        gameCount: response,
+        games: [...currentGames, ...newGamesAction.response],
+      },
+    });
+    yield put(mergeEntity(entities));
+  } else {
+    const { entities } = yield call(normalizeData, {
+      [ENTITY_KEYS.GAME_PROVIDER]: {
+        slug: provider,
+        gameCount,
+        games: [...currentGames, ...newGamesAction.response],
+      },
+    });
+    yield put(mergeEntity(entities));
   }
-
-  yield put(
-    initiateFetchGamesByProvider({ provider, sessionId, page, pageSize })
-  );
-
-  // pause execution until request is completed, normalize and update the store
-  const { response } = yield take(types.FETCH_GAMES_BY_PROVIDER_COMPLETE);
-
-  const currentGames = yield select(gameProviderGames(provider));
-  const { entities } = yield call(normalizeData, {
-    [ENTITY_KEYS.GAME_PROVIDER]: {
-      slug: provider,
-      gameCount,
-      games: [...currentGames, ...response],
-    },
-  });
-  yield put(mergeEntity(entities));
 }
