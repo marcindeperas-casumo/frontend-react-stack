@@ -1,6 +1,7 @@
 // @flow
 import defaultHttp from "Services/http";
 import { commaSeparated } from "Utils";
+import { isNilOrEmpty } from "Utils";
 
 type HTTPClient = typeof defaultHttp;
 
@@ -12,6 +13,9 @@ export const URL = {
 
 const getXTokenHeaders = (token: string) =>
   token ? { headers: { "X-Token": token } } : {};
+
+const getGamesCountParams = (providers?: Array<string>) =>
+  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
 
 export const getCasinoPlayerGames = async (
   {
@@ -38,9 +42,14 @@ export const getCasinoPlayerGames = async (
   );
 
 export const getCasinoPlayerGamesCount = async (
-  { sessionId }: { sessionId: string },
+  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
   http: HTTPClient = defaultHttp
-) => await http.get(URL.GAMES_COUNT, {}, getXTokenHeaders(sessionId));
+) =>
+  await http.get(
+    URL.GAMES_COUNT,
+    getGamesCountParams(providers),
+    getXTokenHeaders(sessionId)
+  );
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },
