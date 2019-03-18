@@ -21,6 +21,7 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
@@ -38,6 +39,7 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
@@ -55,6 +57,7 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
@@ -72,6 +75,7 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
@@ -91,6 +95,7 @@ describe("GameSearch", () => {
         clearSearch={clearSearch}
         preloadFetchPlayerGames={preloadFetchPlayerGames}
         fetchPageBySlug={fetchPageBySlug}
+        suggestedGames={[]}
       />
     );
 
