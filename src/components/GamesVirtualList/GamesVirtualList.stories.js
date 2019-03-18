@@ -12,26 +12,26 @@ import GameRowSearch from "Components/GameRowSearch";
 const stories = storiesOf("GamesVirtualList", module);
 
 const gamesArray = [
-  "easter-island",
-  "starburst",
-  "mega-fortune",
-  "mega-fortune-dreams",
-  "bakers-treat",
-  "rapunzels-tower",
-  "big-bad-wolf",
-  "book-of-ra-deluxe",
-  "diamond-mine",
-  "raging-rhino",
-  "jammin-jars",
-  "legacy-of-egypt",
-  "danger-high-voltage",
-  "88-fortunes",
-  "fruit-warp",
-  "gonzos-quest",
-  "white-rabbit",
-  "action-bank",
-  "wild-toro",
-  "twin-spin",
+  { game: "easter-island" },
+  { game: "starburst" },
+  { game: "mega-fortune" },
+  { game: "mega-fortune-dreams" },
+  { game: "bakers-treat" },
+  { game: "rapunzels-tower" },
+  { game: "big-bad-wolf" },
+  { game: "book-of-ra-deluxe" },
+  { game: "diamond-mine" },
+  { game: "raging-rhino" },
+  { game: "jammin-jars" },
+  { game: "legacy-of-egypt" },
+  { game: "danger-high-voltage" },
+  { game: "88-fortunes" },
+  { game: "fruit-warp" },
+  { game: "gonzos-quest" },
+  { game: "white-rabbit" },
+  { game: "action-bank" },
+  { game: "wild-toro" },
+  { game: "twin-spin" },
 ];
 
 const state = {
@@ -56,6 +56,7 @@ if (isNotChromatic) {
         <div className="u-height--screen">
           <GamesVirtualListContainer
             renderItem={id => <GameRowSearch slug={id} />}
+            renderTitle={() => {}}
           />
         </div>
       </MockStore>
@@ -72,6 +73,7 @@ stories.add(
         <GamesVirtualList
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
+          renderTitle={() => {}}
           preloadFetchPlayerGames={() => {}}
           preloadFetchPlayerGamesCount={() => {}}
           rowCount={20}

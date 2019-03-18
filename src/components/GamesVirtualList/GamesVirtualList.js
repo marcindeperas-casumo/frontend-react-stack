@@ -10,7 +10,7 @@ const PAGE_SIZE = 100;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: {},
+  games: Object[],
   /** The function that triggers the action that fetches the next batch of games */
   preloadFetchPlayerGames: Function,
   preloadFetchPlayerGamesCount: Function,
