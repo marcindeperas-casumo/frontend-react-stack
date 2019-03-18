@@ -10,7 +10,7 @@ const PAGE_SIZE = 100;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: string[],
+  games: {},
   /** The function that triggers the action that fetches the next batch of games */
   preloadFetchPlayerGames: Function,
   preloadFetchPlayerGamesCount: Function,
@@ -18,6 +18,7 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: Function,
+  renderTitle: Function,
 };
 
 type Indexes = {
@@ -143,14 +144,27 @@ class GamesVirtualList extends PureComponent<Props, State> {
       );
     }
 
+    if (this.props.games[index].game) {
+      return (
+        <div
+          className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+          key={key}
+          index={index}
+          style={style}
+        >
+          {this.props.renderItem(this.props.games[index].game)}
+        </div>
+      );
+    }
+
     return (
       <div
-        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding-horiz--md o-flex"
         key={key}
         index={index}
         style={style}
       >
-        {this.props.renderItem(this.props.games[index])}
+        {this.props.renderTitle(this.props.games[index].title)}
       </div>
     );
   };

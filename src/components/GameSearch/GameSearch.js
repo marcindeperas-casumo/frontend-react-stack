@@ -3,6 +3,7 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import GameRowSearch from "Components/GameRowSearch";
+import GameRowSearchSectionTitle from "Components/GameRowSearch/GameRowSearchSectionTitle";
 import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
@@ -76,7 +77,10 @@ export default class GameSearch extends React.PureComponent<Props> {
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
           <div className="c-game-search-virtual-list">
-            <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
+            <GamesVirtualList
+              renderItem={id => <GameRowSearch slug={id} />}
+              renderTitle={title => <GameRowSearchSectionTitle title={title} />}
+            />
           </div>
         </TrackProvider>
       );
