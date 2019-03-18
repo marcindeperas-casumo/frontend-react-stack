@@ -44,6 +44,14 @@ export function* gameSearchSaga(action) {
 
   // if direct hit fetch suggested games
   if (response.games.length === 1) {
+    // make sure to remove any suggested games if they already exists
+    const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+    const gameList = { id, games: [] };
+    const { entities } = yield call(normalizeData, {
+      [ENTITY_KEYS.GAME_LIST]: gameList,
+    });
+
+    yield put(updateEntity(entities));
     yield call(fetchSuggestedGamesSaga, response.games[0]);
   }
 }
