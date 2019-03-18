@@ -1,6 +1,6 @@
 import { color } from "./casumoTheme";
 
-const info = options => ({
+const storybookInfo = options => ({
   info: {
     disable: navigator.userAgent.match(/Chromatic/),
     ...options,
@@ -14,4 +14,4 @@ const info = options => ({
   },
 });
 
-export default info;
+export default storybookInfo;

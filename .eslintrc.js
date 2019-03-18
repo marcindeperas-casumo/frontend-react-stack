@@ -15,6 +15,7 @@ module.exports = {
     "eslint-comments",
     "no-only-tests",
     "sonarjs",
+    "filenames",
   ],
   extends: [
     "react-app",
@@ -82,6 +83,7 @@ module.exports = {
     "no-array-constructor": "error",
     "no-sequences": "error",
     "no-only-tests/no-only-tests": "error",
+    "filenames/match-exported": "error",
   },
   overrides: [
     {
@@ -103,6 +105,12 @@ module.exports = {
       files: ["*.reducer.js"],
       rules: {
         "sonarjs/no-small-switch": "off",
+      },
+    },
+    {
+      files: ["**/models/**", "**/lib/**"],
+      rules: {
+        "filenames/match-exported": ["error", "dot"],
       },
     },
   ],

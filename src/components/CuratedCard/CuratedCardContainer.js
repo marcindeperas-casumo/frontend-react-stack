@@ -1,5 +1,4 @@
 // @flow
-import React from "react";
 import { connect } from "react-redux";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import {
@@ -10,11 +9,7 @@ import {
 import { fetchPageBySlug } from "Models/cms";
 import { launchGame } from "Models/games";
 
-type Props = {
-  card: string | Array<string>,
-};
-
-const CuratedConnected = connect(
+export default connect(
   (state, { defaultCard }) => {
     const defaultSlug = Array.isArray(defaultCard)
       ? defaultCard[0]
@@ -42,9 +37,3 @@ const CuratedConnected = connect(
     };
   }
 )(CuratedCard);
-
-const CuratedContainer = ({ card }: Props) => {
-  return <CuratedConnected defaultCard={card} />;
-};
-
-export default CuratedContainer;

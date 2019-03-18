@@ -50,7 +50,7 @@ const setState = curry((config: MixpanelConfig, data: Object) => {
   getProjectMixpanel(config).register(data);
 });
 
-const createAdapter = (
+const trackerAdapterMixpanel = (
   config: MixpanelConfig,
   loadMixpanel: Function = loadMixpanelIfNeeded
 ) => {
@@ -63,4 +63,4 @@ const createAdapter = (
   };
 };
 
-export default createAdapter;
+export default trackerAdapterMixpanel;

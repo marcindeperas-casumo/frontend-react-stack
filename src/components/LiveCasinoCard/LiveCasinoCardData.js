@@ -96,7 +96,7 @@ const LobbyType = ({ lobby }) => {
   ])(type);
 };
 
-const CardData = ({ lobby }) => {
+const LiveCasinoCardData = ({ lobby }) => {
   return (
     <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
       <LobbyType lobby={lobby} />
@@ -104,4 +104,4 @@ const CardData = ({ lobby }) => {
   );
 };
 
-export default CardData;
+export default LiveCasinoCardData;
