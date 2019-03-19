@@ -1,7 +1,7 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import App from "Components/App";
+import AppContainer from "Components/App";
 import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import config from "Src/config";
@@ -28,13 +28,13 @@ const renderApp = App =>
     document.getElementById("root")
   );
 
-renderApp(App);
+renderApp(AppContainer);
 
 if (module.hot) {
   // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
   module.hot.accept("./components/App", () => {
-    const NextApp = require("./components/App").default;
-    renderApp(NextApp);
+    const NextAppContainer = require("./components/App").default;
+    renderApp(NextAppContainer);
   });
 }
 

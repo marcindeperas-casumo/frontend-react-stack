@@ -52,7 +52,7 @@ describe("Lib/Tracker.Adapter.Mixpanel", () => {
     test("does not fail if mixpanel is not available", () => {
       const eventName = "event";
       const data = { foo: "bar" };
-      const loadLibrary = () => {};
+      loadLibrary = () => {};
 
       mixpanelAdapter = createAdapter(config, loadLibrary);
 
@@ -73,7 +73,7 @@ describe("Lib/Tracker.Adapter.Mixpanel", () => {
 
     test("does not fail if mixpanel is not available", () => {
       const data = { foo: "bar" };
-      const loadLibrary = () => {};
+      loadLibrary = () => {};
 
       mixpanelAdapter = createAdapter(config, loadLibrary);
 

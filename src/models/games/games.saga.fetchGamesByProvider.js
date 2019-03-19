@@ -1,7 +1,7 @@
 import { isEmpty, isNil } from "ramda";
 import { call, put, take, select } from "redux-saga/effects";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { sessionId as session } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import {
   gameProviderBySlug,
   fetchGameProviders,
@@ -25,7 +25,7 @@ export function* fetchGamesByProviderSaga({ provider }) {
     return;
   }
 
-  const sessionId = yield select(session);
+  const sessionId = yield select(sessionIdSelector);
   yield put(initiateFetchGamesByProvider({ provider, sessionId }));
 
   // pause execution until request is completed, normalize and update the store

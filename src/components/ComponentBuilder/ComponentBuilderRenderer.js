@@ -8,7 +8,7 @@ type Props = {
   componentDefinitions: Array<Object>,
 };
 
-export default class ComponentBuilder extends PureComponent<Props> {
+export default class ComponentBuilderRenderer extends PureComponent<Props> {
   render() {
     const { componentDefinitions = [] } = this.props;
     const hasNoDefinitions =

@@ -81,15 +81,13 @@ class StageFavouritesProvider extends React.Component<
   async fetchSports() {
     // fetch the initial data and store in state
     const {
-      data,
+      data: { groups: sports },
     }: {
       data: FavouriteSportsSelectorContext,
     } = await this.context.client.query({
       query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
       fetchPolicy: "network-only",
     });
-
-    const { groups: sports } = data;
 
     // determine if this is the first time selecting favourites and favourite competitions
     // if all favourited competitions are empty

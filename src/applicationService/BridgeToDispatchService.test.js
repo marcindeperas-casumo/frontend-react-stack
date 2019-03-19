@@ -1,7 +1,7 @@
 import { activateComponent } from "Models/router";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
-import { connect } from "./BridgeToDispatchService";
+import BridgeToDispatchService from "./BridgeToDispatchService";
 jest.mock("../DurandalReactBridge");
 
 beforeEach(() => {
@@ -10,7 +10,7 @@ beforeEach(() => {
 
 test("listen to REACT_APP_EVENT_ROUTE_CHANGE event", () => {
   const dispatch = jest.fn();
-  connect({ dispatch });
+  BridgeToDispatchService({ dispatch });
 
   expect(bridge.on).toHaveBeenCalledTimes(1);
   expect(bridge.on).toHaveBeenCalledWith(
@@ -21,7 +21,7 @@ test("listen to REACT_APP_EVENT_ROUTE_CHANGE event", () => {
 
 test("callback should call dispatch with the event data", () => {
   const dispatch = jest.fn();
-  connect({ dispatch });
+  BridgeToDispatchService({ dispatch });
 
   const eventName = bridge.on.mock.calls[0][0];
   expect(eventName).toEqual(REACT_APP_EVENT_ROUTE_CHANGE);

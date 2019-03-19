@@ -45,7 +45,7 @@ describe("GameListHorizontal", () => {
 
   test("speficies spacing by list id", () => {
     Object.keys(ITEM_SPACING).forEach(listId => {
-      const rendered = shallow(<GameListHorizontal list={getList(listId)} />);
+      rendered = shallow(<GameListHorizontal list={getList(listId)} />);
       const { spacing } = rendered.props();
 
       expect(spacing).toBe(ITEM_SPACING[listId]);
@@ -54,7 +54,7 @@ describe("GameListHorizontal", () => {
 
   test("speficies renderer by list id", () => {
     Object.keys(ITEM_RENDERERS).forEach(listId => {
-      const rendered = shallow(<GameListHorizontal list={getList(listId)} />);
+      rendered = shallow(<GameListHorizontal list={getList(listId)} />);
       const { Component } = rendered.props();
 
       expect(Component).toEqual(ITEM_RENDERERS[listId]);

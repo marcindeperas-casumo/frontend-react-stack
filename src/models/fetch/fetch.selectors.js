@@ -42,7 +42,7 @@ export const isFetchingStarted = name =>
     }
   );
 
-export const isNotFetched = name =>
+export const isNotFetchedSelector = name =>
   createSelector(
     getFetch(name),
     fetch => {

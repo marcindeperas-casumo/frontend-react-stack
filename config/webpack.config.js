@@ -94,14 +94,14 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
     },
   ].filter(Boolean);
 
+  const sourceMapDevtool = shouldUseSourceMap ? "source-map" : false;
+
   return {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
     // Stop compilation early in production
     bail: isEnvProduction,
     devtool: isEnvProduction
-      ? shouldUseSourceMap
-        ? "source-map"
-        : false
+      ? sourceMapDevtool
       : isEnvDevelopment && "cheap-module-source-map",
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.

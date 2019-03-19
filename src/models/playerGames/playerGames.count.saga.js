@@ -1,5 +1,5 @@
 import { put, select } from "redux-saga/effects";
-import { sessionId as sessionIdSelector } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import {
   fetchPlayerGamesCount,
   playerGamesCountSelector,

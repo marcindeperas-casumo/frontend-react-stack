@@ -4,7 +4,11 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
-import { currency, country, getLanguage } from "Models/handshake";
+import {
+  currencySelector,
+  countrySelector,
+  languageSelector,
+} from "Models/handshake";
 import {
   MutateOnMount,
   ClientContext,
@@ -76,6 +80,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 
           return (
             <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
+              {/* eslint-disable-next-line no-shadow */}
               {({ data }) => {
                 return (
                   <Mutation mutation={SESSION_TOUCH}>
@@ -106,7 +111,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 }
 
 export default connect(state => ({
-  currency: currency(state),
-  market: country(state).toUpperCase(),
-  locale: `${getLanguage(state)}_${country(state).toUpperCase()}`,
+  currency: currencySelector(state),
+  market: countrySelector(state).toUpperCase(),
+  locale: `${languageSelector(state)}_${countrySelector(state).toUpperCase()}`,
 }))(LaunchableKambiClient);
