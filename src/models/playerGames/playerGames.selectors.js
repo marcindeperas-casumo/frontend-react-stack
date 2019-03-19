@@ -12,6 +12,7 @@ import {
   flatten,
   includes,
   append,
+  head,
 } from "ramda";
 import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
 import { getPlayerGamesListIdByPage } from "Models/playerGames";
@@ -37,7 +38,7 @@ export const playerGamesSelector = createSelector(
       let lettersMap = [];
       let list = [];
       map(game => {
-        const letter = game[0].toLocaleUpperCase();
+        const letter = head(game).toLocaleUpperCase();
         const title = isNaN(letter) ? letter : "#0-9";
         if (!includes(title, lettersMap)) {
           lettersMap = append(title, lettersMap);
