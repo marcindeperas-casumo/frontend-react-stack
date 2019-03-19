@@ -1,11 +1,16 @@
+// @flow
 import { assocPath, either, isEmpty, isNil, splitEvery } from "ramda";
 import { ENVS } from "Src/constants";
+import type { Bets } from "Types/liveCasinoLobby";
 
 const NODE_ENV = process.env.NODE_ENV || "";
 
 export const isNilOrEmpty = either(isNil, isEmpty);
 
-export const getEnv = (nodeEnv = NODE_ENV, windowObject = window) => {
+export const getEnv = (
+  nodeEnv: string = NODE_ENV,
+  windowObject: any = window
+): string => {
   const hostname = windowObject.location.hostname;
   const env = ENVS[nodeEnv.toUpperCase()] || ENVS.DEVELOPMENT;
   const isLiveSite = hostname.match("casumo.com") !== null;
@@ -29,7 +34,7 @@ export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
 export const bridgeFactory = () => {
   const obj = {};
   return {
-    on: (ev, cb) => {
+    on: (ev: string, cb: any => void) => {
       if (!obj[ev]) {
         // eslint-disable-next-line fp/no-mutation
         obj[ev] = [];
@@ -38,7 +43,7 @@ export const bridgeFactory = () => {
       // eslint-disable-next-line fp/no-mutating-methods
       obj[ev].push(cb);
     },
-    emit: (ev, data) => {
+    emit: (ev: string, data: any) => {
       console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
 
       if (obj[ev]) {
@@ -50,14 +55,12 @@ export const bridgeFactory = () => {
   };
 };
 
-export const composePromises = (...fns) => iv =>
+export const composePromises = (...fns: Array<*>) => (iv: Promise<*>) =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
-export const decodeString = s =>
-  new DOMParser().parseFromString(
-    `<!doctype html><body>${s}</body></html>`,
-    "text/html"
-  ).body.textContent;
+export const decodeString = (s: string) =>
+  new DOMParser().parseFromString(`<div>${s}</div>`, "text/html").childNodes[0]
+    .textContent;
 
 /**
  * Use this method when you want to know which parts of the string are the
@@ -65,7 +68,7 @@ export const decodeString = s =>
  * @param {string} str String to search into
  * @param {string} searchTerm Search term to search into a given string
  */
-export const matchingGroups = (str, searchTerm) => {
+export const matchingGroups = (str: string, searchTerm: string) => {
   const matchType = (type, value) => ({
     type,
     value,
@@ -103,7 +106,7 @@ export const matchingGroups = (str, searchTerm) => {
   return matchers;
 };
 
-export const makeProtocolAwareUrl = url => {
+export const makeProtocolAwareUrl = (url: string) => {
   const { hostname, protocol } = window.location;
 
   const startsWith = (string, keyword) =>
@@ -123,25 +126,39 @@ export const makeProtocolAwareUrl = url => {
   return url;
 };
 
-export const stringToHTML = string => {
-  return { __html: string };
+export const stringToHTML = (s: string) => {
+  return { __html: s };
 };
 
-export const generateColumns = (items, numberByColumns = 3) =>
-  splitEvery(numberByColumns, items);
+export function generateColumns<T>(
+  items: Array<T>,
+  numberByColumns: number = 3
+): Array<Array<T>> {
+  return splitEvery(numberByColumns, items);
+}
 
 // TODO: make this a component
-export const renderBets = o =>
-  o ? `${o.symbol}${o.min} - ${o.symbol}${o.max}` : "";
+// TODO2: decide which type is correct
+export const renderBets = (bet: ?(Bets | GameRow_Game_lobby_bets)) => {
+  if (!bet) {
+    return "";
+  }
 
-export const sanitizeObject = (obj, keysToSanitize = []) => {
+  return `${bet.symbol || ""}${bet.min || 0} - ${bet.symbol || ""}${bet.max ||
+    0}`;
+};
+
+export const sanitizeObject = (
+  obj: Object,
+  keysToSanitize: Array<string> = []
+) => {
   return keysToSanitize
     .map(key => key.split("."))
     .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
 
-export const injectScript = url =>
-  new Promise((resolve, reject) => {
+export const injectScript = (url: string) =>
+  new Promise<void>((resolve, reject) => {
     const script = document.createElement("script");
     /* eslint-disable fp/no-mutation */
     script.onload = () => resolve();
@@ -149,6 +166,7 @@ export const injectScript = url =>
 
     script.src = url;
     /* eslint-enable fp/no-mutation */
-
-    document.head.appendChild(script);
+    if (document.head) {
+      document.head.appendChild(script);
+    }
   });

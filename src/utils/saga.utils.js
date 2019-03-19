@@ -1,6 +1,7 @@
+// @flow
 import { select, take } from "redux-saga/effects";
 
-export function* waitForSelector(selector) {
+export function* waitForSelector(selector: string): any {
   if (yield select(selector)) {
     return;
   }
