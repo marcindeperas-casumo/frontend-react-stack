@@ -61,7 +61,7 @@ export const fetchSuggestedGames = async ({
   return {
     games,
     id,
-    // The following needs to be decoupled from here also also. If we wanna use fetchSuggestedGames for
+    // The following needs to be decoupled from here also. If we wanna use fetchSuggestedGames for
     // different purposes we need to be able to choose between different string
     title: title.replace("${GAME_NAME}", decodeString(game.name)),
   };
