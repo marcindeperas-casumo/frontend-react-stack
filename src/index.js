@@ -10,8 +10,7 @@ import logger from "Services/logger";
 import { setState } from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
-import Debugger from "Utils/Debugger";
+import { isEnvProduction, sanitizeObject } from "Utils";
 import "./styles/index.scss";
 
 // eslint-disable-next-line fp/no-mutation
@@ -40,11 +39,6 @@ if (module.hot) {
 
 if (isEnvProduction()) {
   disableReactDevTools();
-}
-
-if (isEnvDevelopment()) {
-  // eslint-disable-next-line fp/no-mutation
-  window.Debugger = Debugger;
 }
 
 initNumberOfVisits();

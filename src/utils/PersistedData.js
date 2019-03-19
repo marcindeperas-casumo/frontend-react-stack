@@ -1,7 +1,7 @@
 /* @flow */
 import { isNil } from "ramda";
 
-export default class PersistedData {
+export class PersistedData {
   key: string;
   defaultValue: any;
 

@@ -1,5 +1,5 @@
 // @flow
-type Bets = {
+export type Bets = {
   symbol: string,
   min: number,
   max: number,

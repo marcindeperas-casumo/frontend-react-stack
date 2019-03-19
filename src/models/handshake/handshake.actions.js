@@ -1,7 +1,7 @@
 import { getCommonHandshake } from "Api/api.common";
 import { getGameBrowserHandshake } from "Api/api.gamebrowser";
 import { types as fetchTypes } from "Models/fetch";
-import { composePromises } from "Utils/utils";
+import { composePromises } from "Utils";
 import { types } from "./handshake.constants";
 
 // This function definitions below (*HandshakeCall) are assigned to their own

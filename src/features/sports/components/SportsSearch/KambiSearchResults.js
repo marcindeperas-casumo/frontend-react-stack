@@ -6,7 +6,7 @@ import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import PersistedData from "Utils/PersistedData";
+import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/state/clientState";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
