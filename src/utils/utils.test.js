@@ -4,7 +4,6 @@ import {
   makeProtocolAwareUrl,
   matchingGroups,
   renderBets,
-  sanitizeObject,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -118,35 +117,5 @@ describe("renderBets()", () => {
     };
 
     expect(renderBets(bets)).toEqual("£1 - £10000");
-  });
-
-  describe("sanitizeObject()", () => {
-    test("fills the specified paths in the object with ******", async () => {
-      const input = {
-        a: 1,
-        b: {
-          c: {
-            d: 3,
-            f: 2,
-            g: 5,
-          },
-        },
-        e: "abd",
-      };
-      const expectedOutput = {
-        a: 1,
-        b: {
-          c: {
-            d: "******",
-            f: "******",
-            g: 5,
-          },
-        },
-        e: "******",
-      };
-      const keysToExclude = ["b.c.d", "b.c.f", "e"];
-
-      expect(sanitizeObject(input, keysToExclude)).toEqual(expectedOutput);
-    });
   });
 });
