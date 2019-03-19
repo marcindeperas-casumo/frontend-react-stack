@@ -82,14 +82,14 @@ class ProviderGamesList extends PureComponent<Props, State> {
     if (this.isRowLoaded({ index })) {
       const { games } = this.props.provider;
       return (
-        <div key={key} index={index} style={style}>
+        <div key={key} className="t-border-bottom" index={index} style={style}>
           <GameRow id={nth(index, games)} />
         </div>
       );
     }
     return (
       <Flex
-        className="u-padding-horiz--md"
+        className="u-padding-horiz--md t-border-bottom"
         align="center"
         key={key}
         index={index}
