@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
+import ErrorMessage from "Components/ErrorMessage";
 import {
   currencySelector,
   countrySelector,
@@ -65,7 +66,7 @@ export class LaunchableKambiClient extends React.Component<LaunchableKambiClient
       <LaunchKambiMutationOnMount mutation={LAUNCH_KAMBI_MUTATION}>
         {({ loading, error, data }) => {
           if (error) {
-            return "Error loading client";
+            return <ErrorMessage />;
           }
 
           if (!data || !data.launchKambi) {
