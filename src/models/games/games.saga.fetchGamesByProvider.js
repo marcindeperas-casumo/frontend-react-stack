@@ -30,7 +30,7 @@ export function* fetchGamesByProviderSaga({ provider, page, pageSize }) {
       yield put(
         requestError(
           gameProviderTypes.GET_GAME_PROVIDER_ERROR,
-          "Provider error"
+          "Provider not found"
         )
       );
       return;
