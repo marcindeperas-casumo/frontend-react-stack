@@ -7,10 +7,6 @@ import logger from "Services/logger";
 
 const tracker = getTracker();
 
-export const track = tracker.track;
-
-export const setState = tracker.setState;
-
 export default tracker;
 
 export function getTracker() {

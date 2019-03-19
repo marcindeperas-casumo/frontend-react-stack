@@ -7,7 +7,7 @@ import bridge from "Src/DurandalReactBridge";
 import config from "Src/config";
 import * as storage from "Lib/storage";
 import logger from "Services/logger";
-import { setState } from "Services/tracker";
+import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import { sanitizeObject } from "Utils";
@@ -86,6 +86,6 @@ window.addEventListener("error", e => {
 function initNumberOfVisits() {
   const numberOfVisits = storage.get("numberOfVisits", 0) + 1;
 
-  setState({ numberOfVisits });
+  tracker.setState({ numberOfVisits });
   storage.set("numberOfVisits", numberOfVisits);
 }
