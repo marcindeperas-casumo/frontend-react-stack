@@ -1,6 +1,5 @@
 import defaultCometD from "Lib/cometd";
-import { makeProtocolAwareUrl } from "Utils/utils";
-import Debugger from "Utils/Debugger";
+import { makeProtocolAwareUrl, isEnvDevelopment } from "Utils";
 
 const defaultUrl = makeProtocolAwareUrl("/cometd/");
 
@@ -16,10 +15,13 @@ export const CometdFactory = ({ cometd, url }) => {
   const subscriptions = {};
   const subscriptionCallbacks = {};
 
+  if (isEnvDevelopment()) {
+    window.Debugger = {
+      cometd: { emit },
+    };
+  }
+
   cometd.init({ url });
-  Debugger.cometd = {
-    emit,
-  };
 
   return {
     subscribe,

@@ -1,4 +1,4 @@
-import makeOptionalCallback from "./makeOptionalCallback";
+import { makeOptionalCallback } from "./makeOptionalCallback";
 
 describe("makeOptionalCallback", () => {
   test("returns undefined if no callback supplied", () => {
