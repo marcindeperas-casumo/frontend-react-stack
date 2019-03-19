@@ -138,7 +138,7 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-// TODO2: decide which type is correct
+// TODO2: decide which type is correct, see: Casumo/Home#27723
 export const renderBets = (bet: ?(Bets | GameRow_Game_lobby_bets)) => {
   if (!bet) {
     return "";
