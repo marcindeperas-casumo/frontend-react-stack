@@ -21,7 +21,7 @@ const games = [
 ];
 const provider = {
   inMaintenance: false,
-  name: "nyx",
+  name: "Nyx",
   slug: "casumo-services-ltd-nyx",
   games,
 };
@@ -33,6 +33,7 @@ stories.add(
       <ProviderGamesListPresentational
         areGamesLoaded={true}
         provider={provider}
+        count={games.length}
       />
     </MockStore>
   ),
