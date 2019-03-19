@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { matchingGroups } from "Utils/index";
+import { matchingGroups } from "Utils";
 import Matcher from "Components/Matcher";
 
 type Props = {
