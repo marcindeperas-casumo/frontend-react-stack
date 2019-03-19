@@ -131,7 +131,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
               [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
             }}
           >
-            <div style={{ height: "100vh" }}>
+            <div className="u-height--screen">
               <VirtualList
                 isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}
