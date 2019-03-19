@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { append, range, assoc } from "ramda";
+import { append, range, assoc, has } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
@@ -144,27 +144,27 @@ class GamesVirtualList extends PureComponent<Props, State> {
       );
     }
 
-    if (this.props.games[index].game) {
+    if (has("title", this.props.games[index])) {
       return (
         <div
-          className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+          className="u-padding-horiz--md o-flex"
           key={key}
           index={index}
           style={style}
         >
-          {this.props.renderItem(this.props.games[index].game)}
+          {this.props.renderTitle(this.props.games[index].title)}
         </div>
       );
     }
 
     return (
       <div
-        className="u-padding-horiz--md o-flex"
+        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}
       >
-        {this.props.renderTitle(this.props.games[index].title)}
+        {this.props.renderItem(this.props.games[index].game)}
       </div>
     );
   };
