@@ -40,7 +40,7 @@ describe("Models/Games/Sagas", () => {
         put(
           requestError(
             gameProviderTypes.GET_GAME_PROVIDER_ERROR,
-            "Provider error"
+            "Provider not found"
           )
         )
       );
