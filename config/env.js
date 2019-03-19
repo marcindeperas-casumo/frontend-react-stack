@@ -1,3 +1,4 @@
+/* eslint-disable-next-line filenames/match-exported */
 "use strict";
 
 const fs = require("fs");

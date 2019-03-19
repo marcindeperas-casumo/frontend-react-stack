@@ -29,9 +29,9 @@ const apiPromise = new Promise(resolve => {
   }
 });
 
-const getKambiWidgetAPI = (): Promise<KambiWidgetApi> => {
+const getKambiWidgetApi = (): Promise<KambiWidgetApi> => {
   injectKambiWidgetAPI();
   return apiPromise;
 };
 
-export default getKambiWidgetAPI;
+export default getKambiWidgetApi;

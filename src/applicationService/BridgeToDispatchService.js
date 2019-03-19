@@ -2,7 +2,7 @@ import { activateComponent } from "Models/router";
 import { REACT_APP_EVENT_ROUTE_CHANGE } from "../constants";
 import bridge from "../DurandalReactBridge";
 
-export const connect = store => {
+const BridgeToDispatchService = store => {
   const dispatch = ({ config, params }) =>
     store.dispatch(
       activateComponent({
@@ -14,4 +14,4 @@ export const connect = store => {
   bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, dispatch);
 };
 
-export default connect;
+export default BridgeToDispatchService;

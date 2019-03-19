@@ -16,7 +16,7 @@ const Provider = props => (
   />
 );
 
-export default function CardFooter({ players, provider }) {
+export default function LiveCasinoCardFooter({ players, provider }) {
   return (
     <div className="o-flex o-flex-justify--space-between o-flex__block t-border-top t-border--current-color t-color-grey-light-2">
       <div className="o-flex-align--center">

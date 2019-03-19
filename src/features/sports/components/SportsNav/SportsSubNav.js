@@ -14,7 +14,7 @@ export type Props = {
   onEdit: () => void,
 };
 
-const SportsSubNavComponent = ({
+const SportsSubNav = ({
   navItems,
   canEdit,
   onEdit,
@@ -49,4 +49,4 @@ const SportsSubNavComponent = ({
   </Scrollable>
 );
 
-export default SportsSubNavComponent;
+export default SportsSubNav;

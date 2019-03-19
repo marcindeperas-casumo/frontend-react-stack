@@ -1,7 +1,7 @@
 import { delay } from "redux-saga";
 import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { getCmsHash, getLanguage } from "Models/handshake";
+import { getCmsHash, languageSelector } from "Models/handshake";
 import {
   getFetchCompleteTypeBySlug,
   initiateFetch,
@@ -29,7 +29,7 @@ export function* fetchPageBySlugSaga(action) {
   if (shouldFetch) {
     const completedActionType = getFetchCompleteTypeBySlug(slug);
     const hash = yield select(getCmsHash);
-    const lang = yield select(getLanguage);
+    const lang = yield select(languageSelector);
 
     yield put(initiateFetch({ slug, hash, lang }));
 

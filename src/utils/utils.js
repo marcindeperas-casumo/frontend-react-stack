@@ -1,7 +1,6 @@
-import { assocPath, either, isEmpty, isNil, prop, splitEvery } from "ramda";
+import { assocPath, either, isEmpty, isNil, splitEvery } from "ramda";
 import { ENVS } from "Src/constants";
 
-const { log } = console;
 const NODE_ENV = process.env.NODE_ENV || "";
 
 export const isNilOrEmpty = either(isNil, isEmpty);
@@ -27,16 +26,6 @@ export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
 
 export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
 
-export const isEnvTest = () => getEnv() === ENVS.TEST;
-
-export const sleep = ms => data => {
-  return new Promise(resolve => {
-    setTimeout(() => {
-      resolve(data);
-    }, ms);
-  });
-};
-
 export const bridgeFactory = () => {
   const obj = {};
   return {
@@ -50,7 +39,7 @@ export const bridgeFactory = () => {
       obj[ev].push(cb);
     },
     emit: (ev, data) => {
-      log("🌈 Emitting event", { ev, data });
+      console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
 
       if (obj[ev]) {
         obj[ev].forEach(listener => {
@@ -61,155 +50,8 @@ export const bridgeFactory = () => {
   };
 };
 
-export const cacheLocallyForMs = ms => {
-  // eslint-disable-next-line fp/no-let
-  let lastValue = {
-    lastUpdated: 0,
-  };
-
-  log(`🏝 Setting up local cache for ${ms}ms`);
-
-  return performCall => (...args) => {
-    const now = new Date().getTime();
-    log(`🏝 Last updated: ${lastValue.lastUpdated}, now: ${now}`);
-    if (now - lastValue.lastUpdated <= ms) {
-      log(
-        `🏝 Still ${ms -
-          (now - lastValue.lastUpdated)}ms before the cache expires.`,
-        lastValue
-      );
-      return lastValue.success
-        ? Promise.resolve(lastValue.value)
-        : Promise.reject(lastValue.error);
-    }
-
-    log(`🏝 Returning a promise to perform work`);
-    return new Promise((resolve, reject) => {
-      log(`🏝 Performing work`);
-      try {
-        const result = performCall(...args);
-        resolve(result);
-      } catch (e) {
-        log("CACHE ERROR", e);
-        reject(e);
-      }
-    })
-      .then(value => {
-        // eslint-disable-next-line fp/no-mutation
-        lastValue = {
-          success: true,
-          value,
-          lastUpdated: new Date().getTime(),
-        };
-        log(`🏝 Work performed updating internal values`, {
-          lastValue,
-        });
-
-        return value;
-      })
-      .catch(e => {
-        console.error("performCall Error", e);
-
-        // eslint-disable-next-line fp/no-mutation
-        lastValue = {
-          success: false,
-          error: e,
-          lastUpdated: new Date().getTime(),
-        };
-
-        return Promise.reject(e);
-      });
-  };
-};
-
-export const trace = x => {
-  log(x);
-  return x;
-};
-
-export const getBodyTag = () => window.document.getElementsByTagName("body")[0];
-export const getHostElement = id => {
-  const el = window.document.getElementById(id);
-  if (!el) {
-    console.error(
-      `Trying to find element with id #${id} but it was not found. Going to fallback on the body tag instead.`
-    );
-    return getBodyTag();
-  }
-
-  return el;
-};
-
 export const composePromises = (...fns) => iv =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
-
-export const arrayToObject = (array, key) => {
-  return array.reduce((obj, item) => {
-    // eslint-disable-next-line fp/no-mutation
-    obj[item[key]] = item;
-    return obj;
-  }, {});
-};
-
-export const SimpleCache = () => {
-  /* eslint-disable fp/no-let */
-  let internalValue = null;
-  let valueSet = false;
-  /* eslint-enable fp/no-let */
-
-  const isEmpty = () => {
-    return !valueSet;
-  };
-
-  const get = () => {
-    return internalValue;
-  };
-
-  /* eslint-disable fp/no-mutation */
-  const set = newValue => {
-    internalValue = newValue;
-    valueSet = true;
-  };
-
-  const invalidate = () => {
-    internalValue = null;
-    valueSet = false;
-  };
-  /* eslint-enable fp/no-mutation */
-
-  return {
-    isEmpty,
-    get,
-    set,
-    invalidate,
-  };
-};
-
-export const cacheFunction = ({ fn, cache = SimpleCache() }) => async () => {
-  // NOTE: The return cached function does not accept any arguments. In case you
-  // want to start accepting arguments, make sure that the cache is also based
-  // on the arguments.
-  if (cache.isEmpty()) {
-    cache.set(await fn());
-  }
-
-  return cache.get();
-};
-
-export const ServiceConfig = ({ defaultOptions, cache }) => {
-  return {
-    get: () => {
-      return cache.get();
-    },
-    set: options => {
-      cache.set({
-        ...cache.get(),
-        ...defaultOptions,
-        ...options,
-      });
-    },
-  };
-};
 
 export const decodeString = s =>
   new DOMParser().parseFromString(
@@ -260,8 +102,6 @@ export const matchingGroups = (str, searchTerm) => {
 
   return matchers;
 };
-
-export const fromCommonHandshake = k => prop(`common/composition/${k}`);
 
 export const makeProtocolAwareUrl = url => {
   const { hostname, protocol } = window.location;

@@ -2,7 +2,7 @@ import {
   isFetched,
   getFetch,
   isFetchingStarted,
-  isNotFetched,
+  isNotFetchedSelector,
 } from "./fetch.selectors";
 
 describe("Fetch selectors", () => {
@@ -127,14 +127,14 @@ describe("Fetch selectors", () => {
     });
   });
 
-  describe("isNotFetched()", () => {
+  describe("isNotFetchedSelector()", () => {
     test("returns TRUE if it was not started to be fetched yet", () => {
       const name = "FOO/BAR";
       const state = {
         fetch: {},
       };
 
-      expect(isNotFetched(name)(state)).toBe(true);
+      expect(isNotFetchedSelector(name)(state)).toBe(true);
     });
 
     test("returns FALSE if it was started to be fetched", () => {
@@ -148,7 +148,7 @@ describe("Fetch selectors", () => {
         },
       };
 
-      expect(isNotFetched(name)(state)).toBe(false);
+      expect(isNotFetchedSelector(name)(state)).toBe(false);
     });
 
     test("returns FALSE if it is already fetched", () => {
@@ -162,7 +162,7 @@ describe("Fetch selectors", () => {
         },
       };
 
-      expect(isNotFetched(name)(state)).toBe(false);
+      expect(isNotFetchedSelector(name)(state)).toBe(false);
     });
 
     test("returns FALSE if it was fetched but errored out", () => {
@@ -176,7 +176,7 @@ describe("Fetch selectors", () => {
         },
       };
 
-      expect(isNotFetched(name)(state)).toBe(false);
+      expect(isNotFetchedSelector(name)(state)).toBe(false);
     });
   });
 });

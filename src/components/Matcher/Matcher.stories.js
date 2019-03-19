@@ -50,7 +50,7 @@ if (isNotChromatic) {
       );
     })
     .add("Implement EitherOr", () => {
-      const condition = boolean("Is condition true", false);
+      const cond = boolean("Is condition true", false);
       const EitherOrMatcher = props => (
         <Matcher
           getKey={({ condition }) => Boolean(condition)}
@@ -61,6 +61,6 @@ if (isNotChromatic) {
           {...props}
         />
       );
-      return <EitherOrMatcher condition={condition} />;
+      return <EitherOrMatcher condition={cond} />;
     });
 }
