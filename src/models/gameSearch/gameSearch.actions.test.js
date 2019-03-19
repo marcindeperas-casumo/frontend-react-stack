@@ -9,6 +9,7 @@ import {
   fetchMostPopularGames,
   types,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesAction,
 } from "Models/gameSearch";
 
 describe("Models/GameSearch/Actions", () => {
@@ -163,6 +164,49 @@ describe("Models/GameSearch/Actions", () => {
         id,
         page,
         pageSize,
+        platform,
+        variant,
+      });
+    });
+  });
+
+  describe("fetchSuggestedGamesAction()", () => {
+    const country = "gb";
+    const handshake = { foo: "bar" };
+    const gameLookingForSuggestions = "starburst";
+    const platform = "mobile";
+    const variant = "default";
+
+    const action = fetchSuggestedGamesAction({
+      country,
+      handshake,
+      gameLookingForSuggestions,
+      platform,
+      variant,
+    });
+
+    test("starts api fetch for suggestedGames", () => {
+      expect(action).toMatchObject({
+        type: fetchTypes.FETCH,
+        name: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+      });
+    });
+
+    test("fires done action when fetch is finished", () => {
+      expect(action).toMatchObject({
+        postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,
+      });
+    });
+
+    test("asyncCall fetcher function exists in the action", () => {
+      expect(typeof action.asyncCall).toBe("function");
+    });
+
+    test("passes all parameters for the fetch function", () => {
+      expect(action.asyncCallData).toEqual({
+        country,
+        handshake,
+        gameLookingForSuggestions,
         platform,
         variant,
       });
