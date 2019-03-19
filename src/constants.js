@@ -100,4 +100,5 @@ export const EVENT_LOCATIONS = {
   ALL_GAMES: "allGames",
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
+  SUGGESTED_GAMES: "suggestedGames",
 };
