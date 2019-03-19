@@ -1,4 +1,4 @@
-import { call, put, select, take } from "redux-saga/effects";
+import { call, put, select, take, head } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
@@ -44,6 +44,6 @@ export function* gameSearchSaga(action) {
 
   // if direct hit fetch suggested games
   if (response.games.length === 1) {
-    yield call(fetchSuggestedGamesSaga, response.games[0]);
+    yield call(fetchSuggestedGamesSaga, head(response.games));
   }
 }
