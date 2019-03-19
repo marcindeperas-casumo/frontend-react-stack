@@ -5,7 +5,7 @@ const initialState = {
   routeParams: [],
 };
 
-const reducer = (state = initialState, action) => {
+const routerReducer = (state = initialState, action) => {
   switch (action.type) {
     case types.ACTIVATE_COMPONENT:
       return {
@@ -18,4 +18,4 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-export default reducer;
+export default routerReducer;

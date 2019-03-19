@@ -1,6 +1,6 @@
 import { types } from "./fetch.constants";
 
-export const fetchStatus = (state = {}, action) => {
+export const fetchReducer = (state = {}, action) => {
   switch (action.type) {
     case types.SENDING_REQUEST: {
       return {
@@ -42,4 +42,4 @@ export const fetchStatus = (state = {}, action) => {
   }
 };
 
-export default fetchStatus;
+export default fetchReducer;

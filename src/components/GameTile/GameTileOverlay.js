@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
-import { decodeString } from "Utils/index";
+import { decodeString } from "Utils";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 import TrackClick from "Components/TrackClick";

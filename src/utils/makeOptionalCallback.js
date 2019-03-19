@@ -15,4 +15,4 @@ const makeOptionalCallback = (fn?: any => mixed, ...params: Array<mixed>) => {
     : undefined;
 };
 
-export default makeOptionalCallback;
+export { makeOptionalCallback };

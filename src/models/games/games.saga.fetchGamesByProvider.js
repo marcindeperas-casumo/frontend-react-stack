@@ -1,6 +1,6 @@
 import { isEmpty, isNil } from "ramda";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { sessionId as session } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import {
   gameProviderBySlug,
   fetchGameProviders,
@@ -37,7 +37,8 @@ export function* fetchGamesByProviderSaga({ provider, page, pageSize }) {
     }
   }
 
-  const sessionId = yield select(session);
+  const sessionId = yield select(sessionIdSelector);
+  yield put(initiateFetchGamesByProvider({ provider, sessionId }));
 
   yield put(
     initiateFetchGamesByProvider({ provider, sessionId, page, pageSize })

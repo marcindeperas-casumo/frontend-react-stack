@@ -1,6 +1,6 @@
 import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { sessionId as sessionIdSelector } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import {
   fetchPlayerGames,
   getFetchCompleteTypeByPage,

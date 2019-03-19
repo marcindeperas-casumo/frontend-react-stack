@@ -4,19 +4,19 @@ import {
   applicationHandshakeSelector,
   isApplicationHandshakeLoaded,
   session,
-  players,
+  playersSelector,
   isAuthenticated,
-  playerId,
-  sessionId,
-  player,
-  country,
-  currency,
-  market,
+  playerIdSelector,
+  sessionIdSelector,
+  playerSelector,
+  countrySelector,
+  currencySelector,
+  marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-  getLanguage,
+  languageSelector,
   getCmsHash,
-  hasMadeFirstDeposit,
+  hasMadeFirstDepositSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -80,7 +80,7 @@ describe("Handshake selectors", () => {
     expect(session(state)).toEqual({ foo: "session" });
   });
 
-  test("players", () => {
+  test("playersSelector", () => {
     const state = {
       handshake: {
         app: {
@@ -89,7 +89,7 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(players(state)).toEqual({ p1: { id: "p1" } });
+    expect(playersSelector(state)).toEqual({ p1: { id: "p1" } });
   });
 
   describe("isAuthenticated", () => {
@@ -124,27 +124,27 @@ describe("Handshake selectors", () => {
     });
   });
 
-  test("playerId", () => {
+  test("playerIdSelector", () => {
     const state = {
       handshake: {
         app: { "common/composition/session": { id: "id-123" } },
       },
     };
 
-    expect(playerId(state)).toEqual("id-123");
+    expect(playerIdSelector(state)).toEqual("id-123");
   });
 
-  test("sessionId", () => {
+  test("sessionIdSelector", () => {
     const state = {
       handshake: {
         app: { "common/composition/session": { sessionId: "id-123" } },
       },
     };
 
-    expect(sessionId(state)).toEqual("id-123");
+    expect(sessionIdSelector(state)).toEqual("id-123");
   });
 
-  test("player", () => {
+  test("playerSelector", () => {
     const state = {
       handshake: {
         app: {
@@ -154,10 +154,10 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(player(state)).toEqual({ id: "p1" });
+    expect(playerSelector(state)).toEqual({ id: "p1" });
   });
 
-  test("player", () => {
+  test("countrySelector", () => {
     const state = {
       handshake: {
         app: {
@@ -174,10 +174,10 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(country(state)).toEqual("mt");
+    expect(countrySelector(state)).toEqual("mt");
   });
 
-  test("player", () => {
+  test("currencySelector", () => {
     const state = {
       handshake: {
         app: {
@@ -194,10 +194,10 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(currency(state)).toEqual("EUR");
+    expect(currencySelector(state)).toEqual("EUR");
   });
 
-  test("player", () => {
+  test("marketSelector", () => {
     const state = {
       handshake: {
         app: {
@@ -214,7 +214,7 @@ describe("Handshake selectors", () => {
       },
     };
 
-    expect(market(state)).toEqual("foo");
+    expect(marketSelector(state)).toEqual("foo");
   });
 
   test("gamesHandshakeSelector", () => {
@@ -263,13 +263,13 @@ describe("Handshake selectors", () => {
     });
   });
 
-  describe("getLanguage()", () => {
+  describe("languageSelector()", () => {
     test("returns the language of the player if there is a player logged in", () => {
-      expect(getLanguage(stateMock)).toBe("gb");
+      expect(languageSelector(stateMock)).toBe("gb");
     });
 
     test("returns the default language if the player is not logged in", () => {
-      expect(getLanguage({})).toBe("en");
+      expect(languageSelector({})).toBe("en");
     });
   });
 
@@ -280,15 +280,15 @@ describe("Handshake selectors", () => {
     });
   });
 
-  describe("hasMadeFirstDeposit", () => {
+  describe("hasMadeFirstDepositSelector", () => {
     test("return false when firstDepositDate is null", () => {
-      expect(hasMadeFirstDeposit(stateMock)).toBe(false);
+      expect(hasMadeFirstDepositSelector(stateMock)).toBe(false);
     });
 
     test("returns true when firstDepositDate is not null", () => {
       const state = getStateMock({ firstDepositDate: 12345 });
 
-      expect(hasMadeFirstDeposit(state)).toBe(true);
+      expect(hasMadeFirstDepositSelector(state)).toBe(true);
     });
   });
 });

@@ -2,15 +2,15 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
-import { hasMadeFirstDeposit, market } from "Models/handshake";
+import { hasMadeFirstDepositSelector, marketSelector } from "Models/handshake";
 import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
 import { flavourMatchSelector, AB_TESTS_FEATURE } from "Models/ABTesting";
 import { MARKETS } from "Src/constants";
 
 export const curatedSlugSelector = slug =>
   createSelector(
-    hasMadeFirstDeposit,
-    market,
+    hasMadeFirstDepositSelector,
+    marketSelector,
     flavourMatchSelector(AB_TESTS_FEATURE.DEPOSIT_NOW, "curated-card"),
     (hasMadeFirstDeposit, market, ABTestFlavourMatch) => {
       // Remove this once we are done with the test

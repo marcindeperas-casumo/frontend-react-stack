@@ -1,2 +1,5 @@
+// @flow
 export * from "./utils";
-export * from "./saga.utils";
+export { waitForSelector } from "./saga.utils";
+export { PersistedData } from "./PersistedData";
+export { makeOptionalCallback } from "./makeOptionalCallback";
