@@ -2,6 +2,7 @@ import {
   gameSearch,
   isLoadingSelector,
   gameSearchResults,
+  suggestedGames,
   gameSearchQuerySelector,
   gameSearchSuggestedList,
   searchNotFoundContent,
@@ -53,6 +54,15 @@ describe("Models/GameSearch/Selectors", () => {
       };
 
       expect(gameSearchQuerySelector(state)).toBe("whatever");
+    });
+  });
+
+  describe("suggestedGamesSelector", () => {
+    test("returns suggested games list", () => {
+      const gameList = { [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(suggestedGames(state)).toEqual(["foo"]);
     });
   });
 
