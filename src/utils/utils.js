@@ -1,35 +1,8 @@
 // @flow
 import { assocPath, either, isEmpty, isNil, splitEvery } from "ramda";
-import { ENVS } from "Src/constants";
 import type { Bets } from "Types/liveCasinoLobby";
 
-const NODE_ENV = process.env.NODE_ENV || "";
-
 export const isNilOrEmpty = either(isNil, isEmpty);
-
-export const getEnv = (
-  nodeEnv: string = NODE_ENV,
-  windowObject: any = window
-): string => {
-  const hostname = windowObject.location.hostname;
-  const env = ENVS[nodeEnv.toUpperCase()] || ENVS.DEVELOPMENT;
-  const isLiveSite = hostname.match("casumo.com") !== null;
-  const isProductionEnv = env === ENVS.PRODUCTION;
-
-  if (isProductionEnv && isLiveSite) {
-    return ENVS.PRODUCTION;
-  }
-
-  if (isProductionEnv && !isLiveSite) {
-    return ENVS.TEST;
-  }
-
-  return env;
-};
-
-export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
-
-export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
 
 export const bridgeFactory = () => {
   const obj = {};

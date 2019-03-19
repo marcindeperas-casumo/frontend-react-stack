@@ -6,14 +6,13 @@ import rootSaga from "Models/root.saga";
 import logger from "Services/logger";
 import createErrorLoggerMiddleware from "Lib/logger.middleware";
 import config from "Src/config";
-import { isEnvProduction } from "Utils";
 
 const { sanitizedStateKeys } = config;
 
 export const createReduxStore = preloadedState => {
-  const composeEnhancers = isEnvProduction()
-    ? compose
-    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = __DEV__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    : compose;
 
   const sagaMiddleware = createSagaMiddleware();
   const errorLoggerMiddleware = createErrorLoggerMiddleware(

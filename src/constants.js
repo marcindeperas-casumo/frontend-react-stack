@@ -72,17 +72,6 @@ export const LANGUAGES = {
   [MARKETS.se_sv]: "sv",
 };
 
-// DEVELOPMENT: the local dev environment
-// PRODUCTION: only casumo.com
-// AUTOMATED_TESTS: unit tests environment
-// TEST: anything which is not the local environment and not casumo.com
-export const ENVS = {
-  DEVELOPMENT: "DEVELOPMENT",
-  PRODUCTION: "PRODUCTION",
-  AUTOMATED_TESTS: "AUTOMATED_TESTS",
-  TEST: "TEST",
-};
-
 export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",

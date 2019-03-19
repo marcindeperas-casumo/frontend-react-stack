@@ -10,7 +10,7 @@ import logger from "Services/logger";
 import { setState } from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, sanitizeObject } from "Utils";
+import { sanitizeObject } from "Utils";
 import "./styles/index.scss";
 
 // eslint-disable-next-line fp/no-mutation
@@ -37,7 +37,7 @@ if (module.hot) {
   });
 }
 
-if (isEnvProduction()) {
+if (!__DEV__) {
   disableReactDevTools();
 }
 

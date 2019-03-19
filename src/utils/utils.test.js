@@ -1,8 +1,6 @@
-import { ENVS } from "Src/constants";
 import {
   bridgeFactory,
   generateColumns,
-  getEnv,
   makeProtocolAwareUrl,
   matchingGroups,
   renderBets,
@@ -149,56 +147,6 @@ describe("renderBets()", () => {
       const keysToExclude = ["b.c.d", "b.c.f", "e"];
 
       expect(sanitizeObject(input, keysToExclude)).toEqual(expectedOutput);
-    });
-  });
-
-  describe("getEnv()", () => {
-    test("returns the development environment if env is not set", () => {
-      const nodeEnv = "";
-      const env = getEnv(nodeEnv);
-
-      expect(env).toBe(ENVS.DEVELOPMENT);
-    });
-
-    test("returns the development environment if env is unknown", () => {
-      const nodeEnv = "foobar";
-      const env = getEnv(nodeEnv);
-
-      expect(env).toBe(ENVS.DEVELOPMENT);
-    });
-
-    test("returns the environment if it is a known environment", () => {
-      const nodeEnv = ENVS.AUTOMATED_TESTS;
-      const env = getEnv(nodeEnv);
-
-      expect(env).toBe(ENVS.AUTOMATED_TESTS);
-    });
-
-    test("finds the environment even if it is lowercase", () => {
-      const nodeEnv = "automated_tests";
-      const env = getEnv(nodeEnv);
-
-      expect(env).toBe(ENVS.AUTOMATED_TESTS);
-    });
-
-    test("only returns the production env=production and it is casumo.com", () => {
-      const nodeEnv = ENVS.PRODUCTION;
-      const windowProd = { location: { hostname: "www.casumo.com" } };
-      const windowTest = { location: { hostname: "www.casumotest.com" } };
-      const windowStage = { location: { hostname: "www.casumostage.com" } };
-
-      expect(getEnv(nodeEnv, windowProd)).toBe(ENVS.PRODUCTION);
-      expect(getEnv(nodeEnv, windowTest)).not.toBe(ENVS.PRODUCTION);
-      expect(getEnv(nodeEnv, windowStage)).not.toBe(ENVS.PRODUCTION);
-    });
-
-    test("returns the test env if env=production and it is casumotest.com", () => {
-      const nodeEnv = ENVS.PRODUCTION;
-      const windowTest = { location: { hostname: "www.casumotest.com" } };
-      const windowStage = { location: { hostname: "www.casumostage.com" } };
-
-      expect(getEnv(nodeEnv, windowTest)).toBe(ENVS.TEST);
-      expect(getEnv(nodeEnv, windowStage)).toBe(ENVS.TEST);
     });
   });
 });
