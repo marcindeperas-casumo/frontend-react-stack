@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import info from "Storybook/storybookInfo";
 import isNotChromatic from "Storybook/isNotChromatic";
-import { loadingMocks, errorMocks } from "./__mocks__/kambiClientMocks";
+import { errorMocks, loadingMocks } from "./__mocks__/kambiClientMocks";
 import { LaunchableKambiClient } from "./LaunchableKambiClient";
 
 const stories = storiesOf("Sports/LaunchableKambiClient", module);
@@ -20,10 +20,7 @@ if (isNotChromatic) {
     "Loading",
     () => (
       <MockedProviderWithContext mocks={loadingMocks} addTypename={false}>
-        <>
-          <pre>{JSON.stringify(loadingMocks, null, 2)}</pre>
-          <LaunchableKambiClient {...props} />
-        </>
+        <LaunchableKambiClient {...props} />
       </MockedProviderWithContext>
     ),
     info({ text: "Loading" })
@@ -33,10 +30,7 @@ if (isNotChromatic) {
     "Error",
     () => (
       <MockedProviderWithContext mocks={errorMocks} addTypename={false}>
-        <>
-          <pre>{JSON.stringify(errorMocks, null, 2)}</pre>
-          <LaunchableKambiClient {...props} />
-        </>
+        <LaunchableKambiClient {...props} />
       </MockedProviderWithContext>
     ),
     info({ text: "Error" })

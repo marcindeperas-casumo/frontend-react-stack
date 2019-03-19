@@ -1,4 +1,5 @@
 import { assocPath } from "ramda";
+import { SESSION_TOUCH } from "Features/sports/state";
 import {
   LAUNCH_KAMBI_MUTATION,
   LAUNCHABLE_KAMBI_CLIENT_QUERY,
@@ -34,14 +35,26 @@ const launchableKambiClientQueryMock = {
   },
 };
 
-export const mocks = [launchKambiMutationMock, launchableKambiClientQueryMock];
+const sessionTouchMutationMock = {
+  request: {
+    query: SESSION_TOUCH,
+    variables: {},
+  },
+  result: {
+    data: {
+      sessionTouch: true,
+    },
+  },
+};
 
 export const loadingMocks = [
-  assocPath(["result", "loading"], true, launchKambiMutationMock),
+  assocPath(["result", "data"], false, launchKambiMutationMock),
   launchableKambiClientQueryMock,
+  sessionTouchMutationMock,
 ];
 
 export const errorMocks = [
-  assocPath(["result", "error"], true, launchKambiMutationMock),
+  assocPath(["error"], true, launchKambiMutationMock),
   launchableKambiClientQueryMock,
+  sessionTouchMutationMock,
 ];
