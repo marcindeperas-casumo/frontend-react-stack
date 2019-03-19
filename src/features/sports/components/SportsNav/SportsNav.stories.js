@@ -29,16 +29,6 @@ stories.add(
 );
 
 stories.add(
-  "Loading",
-  () => (
-    <MockedProviderWithContext mocks={mocks.loading} addTypename={false}>
-      <SportsNav currentHash="#filter/tennis/wta" />
-    </MockedProviderWithContext>
-  ),
-  info({ text: "Single sport" })
-);
-
-stories.add(
   "Error",
   () => (
     <MockedProviderWithContext mocks={mocks.error} addTypename={false}>

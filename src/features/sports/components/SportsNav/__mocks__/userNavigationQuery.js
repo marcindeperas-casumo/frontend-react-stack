@@ -15,10 +15,9 @@ const baseMock = {
 };
 
 export default {
+  error: [assocPath(["error"], true, baseMock)],
   multipleSports: [baseMock],
   singleSport: [
     assocPath(["result", "data", "sportsNavigation"], [mockData[0]], baseMock),
   ],
-  error: [assocPath(["error"], true, baseMock)],
-  loading: [assocPath(["result"], undefined, baseMock)],
 };
