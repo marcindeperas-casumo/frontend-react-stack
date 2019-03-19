@@ -17,7 +17,7 @@ import {
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
-const LAUNCH_KAMBI_MUTATION = gql`
+export const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {
     launchKambi {
       clientBootstrapUrl
@@ -27,7 +27,7 @@ const LAUNCH_KAMBI_MUTATION = gql`
   }
 `;
 
-const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
+export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClientQuery {
     userHomepage
     kambiClientVisible @client
@@ -47,7 +47,7 @@ class LaunchableKambiClientQuery extends Query<
 > {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
-class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
+export class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
   static contextType = ClientContext;
 
   onNavigate = () =>
