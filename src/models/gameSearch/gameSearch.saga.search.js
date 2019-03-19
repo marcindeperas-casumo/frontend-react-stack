@@ -1,4 +1,5 @@
-import { call, put, select, take, head } from "redux-saga/effects";
+import { head } from "ramda";
+import { call, put, select, take } from "redux-saga/effects";
 import { country as countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
