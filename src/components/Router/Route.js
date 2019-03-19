@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import invariant from "invariant";
-import ErrorBoundary from "Components/ErrorBoundary";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 
 type Props = {
   children?: React.Node,

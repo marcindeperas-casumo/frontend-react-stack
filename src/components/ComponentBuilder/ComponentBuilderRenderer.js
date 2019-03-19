@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import ErrorBoundary from "Components/ErrorBoundary";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 import { mapContentDefinitionToComponent } from "Components/ComponentBuilder/ComponentBuilder.utils";
 
 type Props = {
