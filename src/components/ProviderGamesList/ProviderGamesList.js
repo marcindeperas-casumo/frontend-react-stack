@@ -50,10 +50,10 @@ class ProviderGamesList extends PureComponent<Props, State> {
     this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
   }
 
-  isRowLoaded({ index }: { index: number }) {
+  isRowLoaded = ({ index }: { index: number }) => {
     const { games } = this.props.provider;
     return Boolean(nth(index, games));
-  }
+  };
 
   componentDidUpdate(_: any, prevState: { currentPage: number }) {
     if (this.state.currentPage !== prevState.currentPage) {
@@ -61,16 +61,16 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
   }
 
-  loadMoreRows({ startIndex }: { startIndex: number }) {
+  loadMoreRows = ({ startIndex }: { startIndex: number }) => {
     if (!this.isRowLoaded({ index: startIndex })) {
       this.setState(({ currentPage }) => {
         return { currentPage: inc(currentPage) };
       });
     }
     return Promise.resolve();
-  }
+  };
 
-  rowRenderer({
+  rowRenderer = ({
     key,
     index,
     style,
@@ -78,7 +78,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     key: string,
     index: number,
     style: string,
-  }) {
+  }) => {
     if (this.isRowLoaded({ index })) {
       const { games } = this.props.provider;
       return (
@@ -98,7 +98,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
         <GameRowSkeleton />
       </Flex>
     );
-  }
+  };
 
   render() {
     const { areGamesLoaded, provider, error, count } = this.props;
@@ -133,11 +133,11 @@ class ProviderGamesList extends PureComponent<Props, State> {
           >
             <div style={{ height: "100vh" }}>
               <VirtualList
-                isRowLoaded={(...args) => this.isRowLoaded(...args)}
+                isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}
                 totalNumberOfRows={count}
-                loadMoreRows={(...args) => this.loadMoreRows(...args)}
-                rowRenderer={(...args) => this.rowRenderer(...args)}
+                loadMoreRows={this.loadMoreRows}
+                rowRenderer={this.rowRenderer}
                 pageSize={PAGE_SIZE}
               />
             </div>
