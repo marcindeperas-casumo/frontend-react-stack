@@ -15,7 +15,6 @@ import "./GameSearch.scss";
 
 type Props = {
   searchResults: Array<string>,
-  suggestedGames: Array<string>,
   loading: boolean,
   inputPromptPlaceholder: string,
   query: string,
@@ -39,7 +38,7 @@ export default class GameSearch extends React.PureComponent<Props> {
   }
 
   renderResults = () => {
-    const { loading, searchResults, query, suggestedGames } = this.props;
+    const { loading, searchResults, query } = this.props;
 
     if (loading) {
       return (
@@ -62,25 +61,7 @@ export default class GameSearch extends React.PureComponent<Props> {
               <GameRowSearch query={query} highlightSearchQuery slug={id} />
             )}
           />
-          {searchResults.length === 1 &&
-            (suggestedGames.length ? (
-              <SectionList
-                className="u-padding-horiz--md"
-                sections={[
-                  {
-                    title: "You might also like...",
-                    data: suggestedGames,
-                  },
-                ]}
-                renderItem={id => <GameRowSearch slug={id} />}
-              />
-            ) : (
-              <GameListSkeleton
-                className="u-padding-horiz--md"
-                hasTitle
-                titleYOffset={20}
-              />
-            ))}
+          {searchResults.length === 1 && <GameSearchSuggestionsList />}
         </TrackProvider>
       );
     } else if (query.length) {

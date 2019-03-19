@@ -38,20 +38,43 @@ export const gameSearchSuggestedList = createSelector(
     field: "popular_games",
     defaultValue: "Popular Games",
   }),
+  // getField({
+  //   slug: cmsPageSlug,
+  //   field: "popular_games",
+  //   defaultValue: "Popular Games",
+  // }), // uncomment titleSuggested once CMS is ready
   gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
   gameListSelector(GAME_LIST_IDS.POPULAR_GAMES),
-  (titlePlaying, titlePopular, latest, popular) =>
-    latest.games && latest.games.length
-      ? {
-          ...latest,
-          title: titlePlaying,
-          location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
-        }
-      : {
-          ...popular,
-          title: titlePopular,
-          location: EVENT_LOCATIONS.POPULAR_GAMES,
-        }
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  gameSearchResults,
+  (
+    titlePlaying,
+    titlePopular,
+    /* titleSuggested, */ latest, // uncomment titleSuggested once CMS is ready
+    popular,
+    suggested,
+    gameSearchResults
+  ) => {
+    if (gameSearchResults && gameSearchResults.length === 1) {
+      return {
+        ...suggested,
+        title: "You might also like...", // use titleSuggested once CMS is ready
+        location: EVENT_LOCATIONS.SUGGESTED_GAMES,
+      };
+    } else if (latest.games && latest.games.length) {
+      return {
+        ...latest,
+        title: titlePlaying,
+        location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
+      };
+    } else {
+      return {
+        ...popular,
+        title: titlePopular,
+        location: EVENT_LOCATIONS.POPULAR_GAMES,
+      };
+    }
+  }
 );
 
 export const searchNotFoundContent = createSelector(

@@ -46,6 +46,23 @@ if (isNotChromatic) {
     },
   };
 
+  const suggestedGamesState = {
+    ...defaultState,
+    schema: {
+      cms: cmsState,
+      gameList: {
+        suggestedGames: {
+          id: "suggestedGames",
+          games: ["mega-fortune-dreams", "book-of-dead", "mega-fortune"],
+        },
+        gameSearch: {
+          id: "gameSearch",
+          games: ["starburst"],
+        },
+      },
+    },
+  };
+
   const noop = () => ({});
 
   stories.add(
@@ -61,7 +78,6 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={true}
-          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -81,7 +97,6 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={false}
-          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -101,7 +116,6 @@ if (isNotChromatic) {
           searchResults={[]}
           fetchPageBySlug={noop}
           loading={false}
-          suggestedGames={[]}
         />
       </MockStore>
     ),
@@ -111,7 +125,7 @@ if (isNotChromatic) {
   stories.add(
     "Direct hit - query: starburst",
     () => (
-      <MockStore state={latestPlayedGamesState}>
+      <MockStore state={suggestedGamesState}>
         <GameSearch
           inputPromptPlaceholder="What 🐟 are you looking for?"
           searchResults={["starburst"]}
@@ -121,7 +135,6 @@ if (isNotChromatic) {
           preloadFetchPlayerGames={noop}
           query={"starburst"}
           loading={false}
-          suggestedGames={["mega-fortune", "mega-fortune-dreams"]}
         />
       </MockStore>
     ),
@@ -141,7 +154,6 @@ if (isNotChromatic) {
           preloadFetchPlayerGames={noop}
           query={"mega"}
           loading={false}
-          suggestedGames={[]}
         />
       </MockStore>
     ),
