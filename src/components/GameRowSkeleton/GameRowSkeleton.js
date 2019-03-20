@@ -17,12 +17,12 @@ class GameRowSkeleton extends PureComponent<Props> {
         <rect x="80" y="32" rx="3" ry="3" width="150" height="16" />
         <rect
           x="100%"
-          y="28"
+          y="32"
           rx="3"
           ry="3"
-          width="24"
-          height="24"
-          transform="translate(-40, 0)"
+          width="16"
+          height="16"
+          transform="translate(-16, 0)"
         />
       </Skeleton>
     );
