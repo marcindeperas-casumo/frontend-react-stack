@@ -260,6 +260,27 @@ describe("CuratedCard", () => {
 });
 
 describe("Curated card - tracking", () => {
+  const render = curatedMock => {
+    return mount(
+      <CuratedCard
+        {...curatedMock}
+        fetchCurated={fetchCurated}
+        isFetched={true}
+      />
+    );
+  };
+
+  const assertTrackClickData = (trackComponent, expectedType, expectedName) => {
+    const expectedTrackData = {
+      type: expectedType,
+      name: expectedName,
+    };
+
+    const actualTrackData = trackComponent.prop("data");
+
+    expect(expectedTrackData).toEqual(actualTrackData);
+  };
+
   let fetchCurated;
   let rendered;
 
@@ -303,25 +324,4 @@ describe("Curated card - tracking", () => {
       curatedData.gameData.name
     );
   });
-
-  const render = curatedMock => {
-    return mount(
-      <CuratedCard
-        {...curatedMock}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
-  };
-
-  const assertTrackClickData = (trackComponent, expectedType, expectedName) => {
-    const expectedTrackData = {
-      type: expectedType,
-      name: expectedName,
-    };
-
-    const actualTrackData = trackComponent.prop("data");
-
-    expect(expectedTrackData).toEqual(actualTrackData);
-  };
 });
