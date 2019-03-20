@@ -7,14 +7,14 @@ import {
   getLobbyNames,
   liveCasinoSlugs,
 } from "Models/liveCasino";
-import { fetchPageBySlug, isPageFetched } from "Models/cms";
+import { fetchPageBySlug, isPageFetchedSelector } from "Models/cms";
 import LiveCasinoDetailPage from "./LiveCasinoDetailPage";
 
 export default connect(
   createStructuredSelector({
     groupedLiveGames: getGroupedLiveGames,
     translations: getLobbyNames,
-    areTranslationsFetched: isPageFetched(liveCasinoSlugs.TRANSLATIONS),
+    areTranslationsFetched: isPageFetchedSelector(liveCasinoSlugs.TRANSLATIONS),
   }),
   {
     initFetchAllLiveGames,

@@ -30,7 +30,7 @@ export const session = createSelector(
   prop("common/composition/session")
 );
 
-export const players = createSelector(
+export const playersSelector = createSelector(
   applicationHandshakeSelector,
   compose(
     prop("players"),
@@ -43,18 +43,18 @@ export const isAuthenticated = createSelector(
   complement(anyPass([isNil, isEmpty]))
 );
 
-export const playerId = createSelector(
+export const playerIdSelector = createSelector(
   session,
   prop("id")
 );
 
-export const player = createSelector(
-  players,
-  playerId,
+export const playerSelector = createSelector(
+  playersSelector,
+  playerIdSelector,
   (players, playerId) => prop(playerId)(players)
 );
 
-export const sessionId = createSelector(
+export const sessionIdSelector = createSelector(
   session,
   prop("sessionId")
 );
@@ -62,8 +62,8 @@ export const sessionId = createSelector(
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
-export const country = createSelector(
-  player,
+export const countrySelector = createSelector(
+  playerSelector,
   compose(
     prop("country"),
     prop("primaryAddress"),
@@ -71,8 +71,8 @@ export const country = createSelector(
   )
 );
 
-export const currency = createSelector(
-  player,
+export const currencySelector = createSelector(
+  playerSelector,
   compose(
     prop("iso4217CurrencyCode"),
     prop("balance"),
@@ -80,13 +80,13 @@ export const currency = createSelector(
   )
 );
 
-export const market = createSelector(
-  player,
+export const marketSelector = createSelector(
+  playerSelector,
   prop("market")
 );
 
-export const hasMadeFirstDeposit = createSelector(
-  player,
+export const hasMadeFirstDepositSelector = createSelector(
+  playerSelector,
   propSatisfies(complement(isNil), "firstDepositDate")
 );
 
@@ -100,13 +100,13 @@ export const isGamesHandshakeLoaded = createSelector(
   complement(anyPass([isNil, isEmpty]))
 );
 
-export const getLanguage = createSelector(
-  market,
+export const languageSelector = createSelector(
+  marketSelector,
   market => LANGUAGES[market] || DEFAULT_LANGUAGE
 );
 
 export const getCmsHash = createSelector(
-  getLanguage,
+  languageSelector,
   compose(
     prop("rootContentHashes"),
     prop("common/composition/wpInterface"),

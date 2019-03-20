@@ -15,7 +15,7 @@ const REFRESH_INTERVAL = 3000;
 
 class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}
 
-const JackpotsApolloContainer = () => (
+const JackpotsContainer = () => (
   <GamesListJackpotsTypedQuery
     query={JackpotsQuery}
     pollInterval={REFRESH_INTERVAL}
@@ -31,4 +31,4 @@ const JackpotsApolloContainer = () => (
   </GamesListJackpotsTypedQuery>
 );
 
-export default JackpotsApolloContainer;
+export default JackpotsContainer;

@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
 import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
 import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
-import { stringToHTML } from "Utils/index";
+import { stringToHTML } from "Utils";
 import EitherOr from "Components/EitherOr";
 
 import "./CuratedCard.scss";

@@ -1,4 +1,4 @@
-export default function polyfillWindowForChromatic() {
+export function polyfillWindowForChromatic() {
   if (!window.URL.createObjectURL) {
     // eslint-disable-next-line fp/no-mutating-methods
     Object.defineProperty(window.URL, "createObjectURL", { value: () => {} });

@@ -29,14 +29,14 @@ describe("Models/JackpotsMustDrop/Selectors", () => {
     });
 
     test("returns TRUE if the jackpots are not fetched yet", () => {
-      const state = {
+      const currState = {
         fetch: {},
         schema: {
           jackpotMustDrop: [],
           cms,
         },
       };
-      expect(shouldFetchJackpotsMustDrop(state)).toBe(true);
+      expect(shouldFetchJackpotsMustDrop(currState)).toBe(true);
     });
   });
 
@@ -46,14 +46,14 @@ describe("Models/JackpotsMustDrop/Selectors", () => {
     });
 
     test("returns FALSE if the jackpots are not started to be fetched yet", () => {
-      const state = {
+      const currState = {
         fetch: {},
         schema: {
           jackpotMustDrop: [],
           cms,
         },
       };
-      expect(isFetchedJackpotsMustDrop(state)).toBe(false);
+      expect(isFetchedJackpotsMustDrop(currState)).toBe(false);
     });
   });
 
@@ -74,15 +74,15 @@ describe("Models/JackpotsMustDrop/Selectors", () => {
     test("should default to an empty array if jackpot data doesn't exist", () => {
       const slug = "must-drop-jackpots";
       const selector = mergeJackpotsMustDropSelectorFactory(slug);
-      const state = { schema: { cms } };
+      const currState = { schema: { cms } };
 
-      expect(selector(state)).toEqual([]);
+      expect(selector(currState)).toEqual([]);
     });
 
     test("only displays jackpots that have jackpot-info and cms content", () => {
       const slug = "must-drop-jackpots";
       const selector = mergeJackpotsMustDropSelectorFactory(slug);
-      const state = {
+      const currState = {
         schema: {
           cms,
           jackpotMustDrop: {
@@ -95,7 +95,7 @@ describe("Models/JackpotsMustDrop/Selectors", () => {
           },
         },
       };
-      const computed = selector(state);
+      const computed = selector(currState);
 
       expect(computed).toHaveLength(2);
       expect(computed[0].id).toBe("31001");

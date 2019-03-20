@@ -29,7 +29,7 @@ const entityReducerFactory = entityKey => (state = {}, action) => {
   }
 };
 
-export const reducer = combineReducers({
+const schemaReducer = combineReducers({
   [ENTITY_KEYS.GAME]: entityReducerFactory(ENTITY_KEYS.GAME),
   [ENTITY_KEYS.LIVE_TABLE]: entityReducerFactory(ENTITY_KEYS.LIVE_TABLE),
   [ENTITY_KEYS.GAME_LIST]: entityReducerFactory(ENTITY_KEYS.GAME_LIST),
@@ -41,4 +41,4 @@ export const reducer = combineReducers({
   [ENTITY_KEYS.GAME_PROVIDER]: entityReducerFactory(ENTITY_KEYS.GAME_PROVIDER),
 });
 
-export default reducer;
+export default schemaReducer;

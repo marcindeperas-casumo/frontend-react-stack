@@ -1,3 +1,4 @@
+/* eslint-disable-next-line filenames/match-exported */
 import { types } from "./gameSearch.constants";
 
 const defaultState = { query: "" };

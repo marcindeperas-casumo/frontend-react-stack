@@ -1,6 +1,6 @@
 import { select, call, put, take } from "redux-saga/effects";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { sessionId as sessionIdSelector } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import { initiateFetchGameProviders } from "./gameProviders.actions";
 import { types } from "./gameProviders.constants";
 

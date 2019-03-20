@@ -7,7 +7,7 @@ import TrackProvider from "Components/TrackProvider";
 import { gameListSelector } from "Models/schema";
 import { isGameListLoaded } from "Models/games";
 import { getField } from "Models/cms";
-import { market as marketSelector } from "Models/handshake";
+import { marketSelector } from "Models/handshake";
 
 type Props = {
   /** The id of the game list. */

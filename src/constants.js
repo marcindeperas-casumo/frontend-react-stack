@@ -1,3 +1,4 @@
+// @flow
 // 📣📣📣 NOTE 📣📣📣
 //
 // The contents of this file are meant to be reflected and kept in sync between
@@ -25,7 +26,7 @@ export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 
 export const LOW_RES_IMAGE_SETTINGS = {
-  mark: null,
+  mark: "",
   dpr: 1,
   imgixOpts: {
     w: 5,

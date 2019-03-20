@@ -1,8 +1,8 @@
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
-import rootReducer from "Models/rootReducer";
-import rootSaga from "Models/rootSaga";
+import rootReducer from "Models/root.reducer";
+import rootSaga from "Models/root.saga";
 import logger from "Services/logger";
 import createErrorLoggerMiddleware from "Lib/logger.middleware";
 import config from "Src/config";
@@ -33,8 +33,8 @@ export const createReduxStore = preloadedState => {
 
   if (module.hot) {
     // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
-    module.hot.accept("../models/rootReducer", () => {
-      const nextRootReducer = require("../models/rootReducer").default;
+    module.hot.accept("../models/root.reducer", () => {
+      const nextRootReducer = require("../models/root.reducer").default;
       store.replaceReducer(nextRootReducer);
     });
 
