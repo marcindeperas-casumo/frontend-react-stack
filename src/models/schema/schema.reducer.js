@@ -18,7 +18,7 @@ const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
   // early and return the previous state. This will ensure that identity
   // comparison for the downstream selectors will return true since the
   // state remained the same.
-  const doesEntityExist = !!path(["payload", entityKey], action);
+  const doesEntityExist = Boolean(path(["payload", entityKey], action));
 
   return reducers[action.type] && doesEntityExist
     ? reducers[action.type](entityKey, state, action)
