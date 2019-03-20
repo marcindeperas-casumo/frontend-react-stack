@@ -1,21 +1,19 @@
-/* eslint-disable fp/no-let, fp/no-mutation */
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-
-import App from "Components/App";
+import AppContainer from "Components/App";
 import ErrorBoundary from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import config from "Src/config";
-import storage from "Lib/storage";
+import * as storage from "Lib/storage";
 import logger from "Services/logger";
-import tracker from "Services/tracker";
+import { setState } from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, isEnvDevelopment, sanitizeObject } from "Utils";
-import Debugger from "Utils/Debugger";
+import { isEnvProduction, sanitizeObject } from "Utils";
 import "./styles/index.scss";
 
+// eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
 
@@ -29,22 +27,18 @@ const renderApp = App =>
     document.getElementById("root")
   );
 
-renderApp(App);
+renderApp(AppContainer);
 
 if (module.hot) {
   // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
   module.hot.accept("./components/App", () => {
-    const NextApp = require("./components/App").default;
-    renderApp(NextApp);
+    const NextAppContainer = require("./components/App").default;
+    renderApp(NextAppContainer);
   });
 }
 
 if (isEnvProduction()) {
   disableReactDevTools();
-}
-
-if (isEnvDevelopment()) {
-  window.Debugger = Debugger;
 }
 
 initNumberOfVisits();
@@ -92,6 +86,6 @@ window.addEventListener("error", e => {
 function initNumberOfVisits() {
   const numberOfVisits = storage.get("numberOfVisits", 0) + 1;
 
-  tracker.setState({ numberOfVisits });
+  setState({ numberOfVisits });
   storage.set("numberOfVisits", numberOfVisits);
 }

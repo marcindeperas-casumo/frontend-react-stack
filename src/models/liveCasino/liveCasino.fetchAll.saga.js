@@ -1,16 +1,13 @@
 import { pluck } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
-import {
-  country as countrySelector,
-  currency as currencySelector,
-} from "Models/handshake";
+import { countrySelector, currencySelector } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
+import { normalizeTableData } from "Api/api.games";
 import {
   fetchAllLiveGames,
   fetchMissingLiveTables,
 } from "./liveCasino.actions";
 import { types } from "./liveCasino.constants";
-import { normalizeTableData } from "Api/api.games";
 
 export function* fetchAllLiveCasinoGamesSaga() {
   const country = yield select(countrySelector);

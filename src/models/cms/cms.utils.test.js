@@ -21,17 +21,14 @@ describe("CMS Utils", () => {
     });
 
     test("removes the .* from the parent slug", () => {
-      const page = { slug: "promotions.*", children };
-      const [child1, child2] = getChildren(page);
+      const [child1, child2] = getChildren({ slug: "promotions.*", children });
 
       expect(child1.slug).toBe("promotions.promotion-1");
       expect(child2.slug).toBe("promotions.promotion-2");
     });
 
     test("returns with an empty array if children are not defined", () => {
-      const page = { slug: "promotions.*" };
-
-      expect(getChildren(page)).toEqual([]);
+      expect(getChildren({ slug: "promotions.*" })).toEqual([]);
     });
   });
 

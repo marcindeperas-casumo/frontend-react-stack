@@ -1,7 +1,7 @@
 /* @flow */
-import React from "react";
+import * as React from "react";
+import { times } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
-import Matcher from "Components/Matcher";
 
 const defaultClassNames = `
   u-padding-top--lg
@@ -13,133 +13,141 @@ const defaultClassNames = `
 `;
 
 type Props = {
-  itemWidth?: number,
-  items?: number,
-  itemRatio?: number,
-  itemGap?: number,
-  cornerRadius?: number,
-  display?: string,
-  title?: boolean,
-  className?: string,
+  itemWidth: number,
+  items: number,
+  itemRatio: number,
+  itemGap: number,
+  cornerRadius: number,
+  display: string,
+  title: boolean,
+  className: string,
 };
 
-export default function GameListHorizontalSkeleton({
-  itemWidth = 170,
-  items = 8,
-  itemRatio = 120 / 100,
-  itemGap = 8,
-  cornerRadius = 8,
-  display = "tiles",
-  title = true,
-  className = defaultClassNames,
-  ...props
-}: Props) {
-  const skeletonWidth = itemWidth * items;
-  const itemHeight: number = itemWidth * itemRatio;
-  const displayCards = display === "cards";
-  const skeletonHeight: number = displayCards
-    ? itemHeight
-    : title
-    ? itemHeight + 40
-    : itemHeight;
+export default class GameListHorizontalSkeleton extends React.Component<Props> {
+  static defaultProps = {
+    itemWidth: 170,
+    items: 8,
+    itemRatio: 120 / 100,
+    itemGap: 8,
+    cornerRadius: 8,
+    display: "tiles",
+    title: true,
+    className: defaultClassNames,
+  };
 
-  const renderCards = () =>
-    Array.from(Array(items).keys()).map(pos => {
-      const x = pos === 0 ? pos * itemWidth : pos * (itemWidth + itemGap);
-      return (
-        <React.Fragment key={pos}>
-          <rect
-            x={x}
-            y={title ? itemHeight - (itemHeight - 30) : 0}
-            rx={cornerRadius}
-            ry={cornerRadius}
-            width={itemWidth}
-            height={itemHeight - 135}
-          />
-          <rect
-            x={x}
-            y={itemHeight - 120}
-            rx={cornerRadius}
-            ry={cornerRadius}
-            width={(45 / 100) * itemWidth}
-            height="18"
-          />
-          <rect
-            x={x}
-            y={itemHeight - 95}
-            rx={cornerRadius}
-            ry={cornerRadius}
-            width={itemWidth / 4}
-            height="14"
-          />
-          <rect
-            x={x + itemWidth - (40 / 100) * itemWidth}
-            y={itemHeight - 120}
-            rx="25"
-            ry="25"
-            width={(40 / 100) * itemWidth}
-            height="50"
-          />
-          <rect
-            x={x}
-            y={itemHeight - 30}
-            rx="0"
-            ry="0"
-            width={itemWidth}
-            height="1"
-          />
-          <rect
-            x={x}
-            y={itemHeight - 20}
-            rx="8"
-            ry="8"
-            width="28"
-            height="16"
-          />
-        </React.Fragment>
-      );
-    });
+  get itemsPos(): Array<number> {
+    return times(
+      i =>
+        i === 0
+          ? i * this.props.itemWidth
+          : i * (this.props.itemWidth + this.props.itemGap),
+      this.props.items
+    );
+  }
 
-  const renderTiles = () =>
-    Array.from(Array(items).keys()).map(pos => {
-      const x = pos === 0 ? pos * itemWidth : pos * (itemWidth + itemGap);
-      return (
+  get itemHeight() {
+    return this.props.itemWidth * this.props.itemRatio;
+  }
+
+  get shouldDisplayCards() {
+    return this.props.display === "cards";
+  }
+
+  get titleHeight() {
+    return this.props.title ? this.itemHeight + 40 : this.itemHeight;
+  }
+
+  get renderTiles() {
+    return this.itemsPos.map<React.Node>((pos, i) => (
+      <rect
+        key={i}
+        x={pos}
+        y={this.props.title ? 40 : 0}
+        rx={this.props.cornerRadius}
+        ry={this.props.cornerRadius}
+        width={this.props.itemWidth}
+        height={this.itemHeight}
+      />
+    ));
+  }
+
+  get renderCards() {
+    const { title, itemWidth } = this.props;
+
+    return this.itemsPos.map<React.Node>((pos, i) => (
+      <React.Fragment key={i}>
         <rect
-          key={pos}
-          x={x}
-          y={title ? 40 : 0}
-          rx={cornerRadius}
-          ry={cornerRadius}
+          x={pos}
+          y={title ? this.itemHeight - (this.itemHeight - 30) : 0}
+          rx={this.props.cornerRadius}
+          ry={this.props.cornerRadius}
           width={itemWidth}
-          height={itemHeight}
+          height={this.itemHeight - 135}
         />
-      );
-    });
+        <rect
+          x={pos}
+          y={this.itemHeight - 120}
+          rx={this.props.cornerRadius}
+          ry={this.props.cornerRadius}
+          width={(45 / 100) * itemWidth}
+          height="18"
+        />
+        <rect
+          x={pos}
+          y={this.itemHeight - 95}
+          rx={this.props.cornerRadius}
+          ry={this.props.cornerRadius}
+          width={itemWidth / 4}
+          height="14"
+        />
+        <rect
+          x={pos + itemWidth - (40 / 100) * itemWidth}
+          y={this.itemHeight - 120}
+          rx="25"
+          ry="25"
+          width={(40 / 100) * itemWidth}
+          height="50"
+        />
+        <rect
+          x={pos}
+          y={this.itemHeight - 30}
+          rx="0"
+          ry="0"
+          width={itemWidth}
+          height="1"
+        />
+        <rect
+          x={pos}
+          y={this.itemHeight - 20}
+          rx="8"
+          ry="8"
+          width="28"
+          height="16"
+        />
+      </React.Fragment>
+    ));
+  }
 
-  const CardOrTile = props => (
-    <Matcher
-      getKey={({ display }) => display}
-      matchers={{
-        cards: renderCards,
-        tiles: renderTiles,
-        default: renderTiles,
-      }}
-      {...props}
-    />
-  );
+  render() {
+    const skeletonWidth = this.props.itemWidth * this.props.items;
+    const skeletonHeight = this.shouldDisplayCards
+      ? this.itemHeight
+      : this.titleHeight;
 
-  return (
-    <Skeleton
-      width={skeletonWidth}
-      height={skeletonHeight}
-      preserveAspectRatio="xMinYMin"
-      colorLow="#eff6f6"
-      colorHi="#ffffff"
-      className={className}
-      {...props}
-    >
-      {title && <rect x="0" y="0" rx="3" ry="3" width="80" height="18" />}
-      <CardOrTile display={display} />
-    </Skeleton>
-  );
+    return (
+      <Skeleton
+        width={skeletonWidth}
+        height={skeletonHeight}
+        preserveAspectRatio="xMinYMin"
+        colorLow="#eff6f6"
+        colorHi="#ffffff"
+        className={this.props.className}
+      >
+        {this.props.title && (
+          <rect x="0" y="0" rx="3" ry="3" width="80" height="18" />
+        )}
+        {this.shouldDisplayCards ? this.renderCards : this.renderTiles}
+      </Skeleton>
+    );
+  }
 }

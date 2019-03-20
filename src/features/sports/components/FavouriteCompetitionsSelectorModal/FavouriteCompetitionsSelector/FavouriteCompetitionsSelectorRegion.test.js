@@ -1,23 +1,42 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { F } from "ramda";
-
 import FavouriteCompetitionsSelectorRegion from "./FavouriteCompetitionsSelectorRegion";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 import footballData from "./__mocks__/football";
 
 describe("<FavouriteCompetitionsSelectorRegion />", () => {
   test("should not render if group has no competitions", () => {
-    const rendered = shallow(
-      <FavouriteCompetitionsSelectorRegion
-        group={{ groups: null, name: "test" }}
-        isExpanded={false}
-        isSelected={F}
-        onClick={() => {}}
-      />
-    );
+    const rendered = {
+      emptyGroups: shallow(
+        <FavouriteCompetitionsSelectorRegion
+          group={{ groups: [], name: "test" }}
+          isExpanded={false}
+          isSelected={F}
+          onClick={() => {}}
+        />
+      ),
+      nullGroups: shallow(
+        <FavouriteCompetitionsSelectorRegion
+          group={{ groups: null, name: "test" }}
+          isExpanded={false}
+          isSelected={F}
+          onClick={() => {}}
+        />
+      ),
+      undefinedGroups: shallow(
+        <FavouriteCompetitionsSelectorRegion
+          group={{ name: "test" }}
+          isExpanded={false}
+          isSelected={F}
+          onClick={() => {}}
+        />
+      ),
+    };
 
-    expect(rendered.html()).toBe(null);
+    expect(rendered.emptyGroups.html()).toBe(null);
+    expect(rendered.nullGroups.html()).toBe(null);
+    expect(rendered.undefinedGroups.html()).toBe(null);
   });
 
   test("should check if each competition is selected based on the competition id", () => {

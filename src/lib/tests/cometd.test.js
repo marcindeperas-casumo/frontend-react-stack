@@ -14,21 +14,13 @@ describe("CometD", () => {
         subscribeCb();
         return subscription;
       }),
-      unsubscribe: jest.fn((subscription, unsubscribeProps, unsubscribeCb) =>
-        unsubscribeCb()
-      ),
+      unsubscribe: jest.fn((a, b, unsubscribeCb) => unsubscribeCb()),
     };
     cometd = CometDFactory(cometdMock);
   });
 
   describe(".init()", () => {
     test("should call cometd.handshake() on init", async () => {
-      await cometd.init({ url });
-
-      expect(cometdMock.handshake.mock.calls.length).toBe(1);
-    });
-
-    test("should call cometd.configure() on init", async () => {
       await cometd.init({ url });
 
       expect(cometdMock.handshake.mock.calls.length).toBe(1);

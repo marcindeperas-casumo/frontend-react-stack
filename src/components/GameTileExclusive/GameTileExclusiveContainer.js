@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
 import { connect } from "react-redux";
+import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 

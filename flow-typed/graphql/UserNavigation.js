@@ -8,30 +8,7 @@
 // GraphQL query operation: UserNavigation
 // ====================================================
 
-export type UserNavigation_userNavigation_groups = {
-  /**
-   * Name of the event group, localized according to the lang parameter
-   */
-  name: string,
-  /**
-   * Unique identifier of the event group
-   */
-  id: number,
-  /**
-   * The full path in the kambi client to navigate to this group
-   */
-  clientPath: string,
-  /**
-   * Normalized name of the group
-   */
-  termKey: string,
-  /**
-   * Emoji flag representing the country this event takes place in, if available
-   */
-  flagEmoji: ?string,
-};
-
-export type UserNavigation_userNavigation = {
+export type UserNavigation_sportsNavigation_sport = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -60,14 +37,42 @@ export type UserNavigation_userNavigation = {
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
    */
   canSelectSubgroups: boolean,
+};
+
+export type UserNavigation_sportsNavigation_subNav_competition = {
   /**
-   * Array of subgroups in this event group
+   * Name of the event group, localized according to the lang parameter
    */
-  groups: ?Array<UserNavigation_userNavigation_groups>,
+  name: string,
+  /**
+   * Unique identifier of the event group
+   */
+  id: number,
+  /**
+   * The full path in the kambi client to navigate to this group
+   */
+  clientPath: string,
+  /**
+   * Normalized name of the group
+   */
+  termKey: string,
+  /**
+   * Emoji flag representing the country this event takes place in, if available
+   */
+  flagEmoji: ?string,
+};
+
+export type UserNavigation_sportsNavigation_subNav = {
+  competition: UserNavigation_sportsNavigation_subNav_competition
+};
+
+export type UserNavigation_sportsNavigation = {
+  sport: UserNavigation_sportsNavigation_sport,
+  subNav: Array<UserNavigation_sportsNavigation_subNav>,
 };
 
 export type UserNavigation = {
-  userNavigation: Array<UserNavigation_userNavigation>
+  sportsNavigation: Array<UserNavigation_sportsNavigation>
 };
 
 /* @flow */

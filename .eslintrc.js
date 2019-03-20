@@ -6,7 +6,17 @@ process.env.NODE_ENV = "test";
 
 module.exports = {
   parser: "babel-eslint",
-  plugins: ["prettier", "import", "flowtype", "fp", "ramda"],
+  plugins: [
+    "prettier",
+    "import",
+    "flowtype",
+    "fp",
+    "ramda",
+    "eslint-comments",
+    "no-only-tests",
+    "sonarjs",
+    "filenames",
+  ],
   extends: [
     "react-app",
     "prettier",
@@ -15,42 +25,101 @@ module.exports = {
     "plugin:import/warnings",
     "plugin:fp/recommended",
     "plugin:ramda/recommended",
+    "plugin:eslint-comments/recommended",
+    "plugin:sonarjs/recommended",
   ],
   rules: {
+    curly: ["error", "all"],
+    "eslint-comments/no-unused-disable": "error",
+    "filenames/match-exported": "error",
     "fp/no-class": "off",
-    "fp/no-nil": "off",
-    "fp/no-rest-parameters": "off",
-    "fp/no-this": "off",
-    "fp/no-unused-expression": "off",
-    "fp/no-mutation": [
-      "error",
-      {
-        commonjs: true,
-        exceptions: [{ property: "fragments" }],
-      },
-    ],
     "fp/no-mutating-methods": [
       "error",
       {
         allowedObjects: ["R"],
       },
     ],
-    "prettier/prettier": "error",
+    "fp/no-mutation": [
+      "error",
+      {
+        allowThis: true,
+        commonjs: true,
+        exceptions: [{ property: "fragments" }],
+      },
+    ],
+    "fp/no-nil": "off",
+    "fp/no-rest-parameters": "off",
+    "fp/no-this": "off",
+    "fp/no-unused-expression": "off",
     "import/no-unresolved": [
       "error",
       {
-        commonjs: true,
         caseSensitive: true,
+        commonjs: true,
       },
     ],
-    curly: ["error", "all"],
+    "import/order": [
+      "error",
+      {
+        groups: [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+        ],
+        "newlines-between": "never",
+      },
+    ],
+    "max-lines": ["error", 1000],
+    "max-lines-per-function": ["error", 200],
+    "max-params": ["error", 7],
+    "no-alert": "error",
+    "no-array-constructor": "error",
+    "no-caller": "error",
+    "no-console": ["error", { allow: ["warn", "error"] }],
+    "no-debugger": "error",
+    "no-delete-var": "error",
+    "no-empty": "error",
+    "no-implicit-coercion": "error",
+    "no-nested-ternary": "error",
+    "no-only-tests/no-only-tests": "error",
+    "no-sequences": "error",
+    "no-shadow": "error",
+    "no-undefined": "off",
+    "no-unused-expressions": "error",
+    "no-useless-catch": "error",
+    "no-void": "error",
+    "prettier/prettier": "error",
+    "sonarjs/no-duplicate-string": "off",
   },
   overrides: [
     {
-      files: ["*.test.js"],
+      files: ["*.test.js", "*.stories.js"],
       rules: {
         "fp/no-let": "off",
         "fp/no-mutation": "off",
+        "max-lines-per-function": "off",
+      },
+    },
+    {
+      files: ["scripts/**/*.js", "config/**/*.js"],
+      rules: {
+        "max-lines-per-function": "off",
+        "no-console": "off",
+      },
+    },
+    {
+      files: ["*.reducer.js"],
+      rules: {
+        "sonarjs/no-small-switch": "off",
+      },
+    },
+    {
+      files: ["**/models/**", "**/lib/**"],
+      rules: {
+        "filenames/match-exported": ["error", "dot"],
       },
     },
   ],
@@ -58,11 +127,11 @@ module.exports = {
     flowtype: {
       onlyFilesWithFlowAnnotation: false,
     },
-    react: {
-      version: "detect",
-    },
     "import/resolver": {
       "babel-module": {},
+    },
+    react: {
+      version: "detect",
     },
   },
 };

@@ -29,7 +29,7 @@ describe("App", () => {
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("pass activeComponents prop to MigrationComponentManager", () => {
+  test("pass activeComponents prop to Router", () => {
     const rendered = shallow(
       <App
         onAppStarted={() => {}}
@@ -41,7 +41,7 @@ describe("App", () => {
       />
     );
 
-    expect(rendered.get(0).props.activeKeys).toEqual(["foo"]);
+    expect(rendered.get(0).props.activePaths).toEqual(["foo"]);
   });
 
   test("should subscribe on initial load only", () => {

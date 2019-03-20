@@ -42,7 +42,7 @@ const PromotionTitleTextWithBadge = ({ title, dates, badge }: Props) => (
   />
 );
 
-export class PromotionTitle extends PureComponent<Props> {
+class PromotionTitle extends PureComponent<Props> {
   render() {
     const { title, dates, badge } = this.props;
 

@@ -1,7 +1,8 @@
 import { types as fetchTypes } from "Models/fetch";
 import { fetchGames } from "Api/api.games";
-import { types } from "./games.constants";
 import { getGamesBySlugs } from "Api/api.gamebrowser";
+import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
+import { types } from "./games.constants";
 
 export const initiateFetchGamesBySlugs = ({
   slugs,
@@ -15,6 +16,20 @@ export const initiateFetchGamesBySlugs = ({
     postFetch: types.FETCH_GAMES_BY_SLUGS_COMPLETE,
     asyncCall: getGamesBySlugs,
     asyncCallData: { platform, country, slugs, variant },
+  };
+};
+
+export const initiateFetchGamesByProvider = ({
+  provider,
+  sessionId,
+  pageSize = 50,
+}) => {
+  return {
+    type: fetchTypes.FETCH,
+    name: types.FETCH_GAMES_BY_PROVIDER,
+    postFetch: types.FETCH_GAMES_BY_PROVIDER_COMPLETE,
+    asyncCall: getCasinoPlayerGames,
+    asyncCallData: { providers: [provider], sessionId, pageSize },
   };
 };
 
@@ -36,3 +51,8 @@ export const fetchGamesBySlugs = slugs => ({
 });
 
 export const launchGame = slug => ({ type: types.LAUNCH_GAME, slug });
+
+export const fetchGamesByProvider = provider => ({
+  provider,
+  type: types.FETCH_GAMES_BY_PROVIDER_START,
+});

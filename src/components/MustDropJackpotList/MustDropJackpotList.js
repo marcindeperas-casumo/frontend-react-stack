@@ -1,9 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
-import GameRow from "Components/GameRow";
 import List from "@casumo/cmp-list";
-import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import Text from "@casumo/cmp-text";
+import GameRow from "Components/GameRow";
+import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 
 type Props = {
   ids: Array<string>,

@@ -3,9 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-
 import SportsNav from "./SportsNav";
-
 import multipleSportsNavigationMock from "./__mocks__/userNavigationQuery";
 import singleSportNavigationMock from "./__mocks__/userNavigationQuerySingle";
 

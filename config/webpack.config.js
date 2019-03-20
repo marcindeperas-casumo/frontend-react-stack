@@ -10,10 +10,10 @@ const safePostCssParser = require("postcss-safe-parser");
 const ManifestPlugin = require("webpack-manifest-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
-const paths = require("./paths");
-const getClientEnvironment = require("./env");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
 const cudl = require("@casumo/cudl");
+const paths = require("./paths");
+const getClientEnvironment = require("./env");
 
 // Source maps are resource heavy and can cause out of memory issue for large source files.
 const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== "false";
@@ -22,6 +22,7 @@ const staticFolderName = "react-stack";
 
 // This is the production and development configuration.
 // It is focused on developer experience, fast rebuilds, and a minimal bundle.
+// eslint-disable-next-line sonarjs/cognitive-complexity
 module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const isEnvDevelopment = webpackEnv === "development";
   const isEnvProduction = webpackEnv === "production";
@@ -32,9 +33,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
   const publicPath = isEnvProduction
     ? paths.servedPath
     : isEnvDevelopment && "/";
-  // Some apps do not use client-side routing with pushState.
-  // For these, "homepage" can be set to "." to enable relative asset paths.
-  const shouldUseRelativeAssetPaths = publicPath === "./";
 
   // `publicUrl` is just like `publicPath`, but we will provide it to our app
   // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
@@ -96,14 +94,14 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
     },
   ].filter(Boolean);
 
+  const sourceMapDevtool = shouldUseSourceMap ? "source-map" : false;
+
   return {
     mode: isEnvProduction ? "production" : isEnvDevelopment && "development",
     // Stop compilation early in production
     bail: isEnvProduction,
     devtool: isEnvProduction
-      ? shouldUseSourceMap
-        ? "source-map"
-        : false
+      ? sourceMapDevtool
       : isEnvDevelopment && "cheap-module-source-map",
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.

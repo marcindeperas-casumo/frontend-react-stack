@@ -5,7 +5,7 @@
   also some of the selectors are nasty but these are out of our control
 */
 
-/* stylelint-disable selector-no-id declaration-no-important */
+/* stylelint-disable selector-max-id, xi/selector-pattern */
 #KambiBC.c-kambi-client--hidden {
   border: 0;
   clip: rect(0 0 0 0);
@@ -27,6 +27,7 @@
 }
 
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
+  // stylelint-disable-next-line declaration-no-important,
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }
-/* stylelint-enable selector-no-id declaration-no-important */
+/* stylelint-enable selector-max-id, xi/selector-pattern */

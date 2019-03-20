@@ -1,8 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
-
-import SearchInput from "Components/SearchInput";
 import debounce from "lodash/debounce";
+import SearchInput from "Components/SearchInput";
 import { track } from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
@@ -28,9 +27,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    // eslint-disable-next-line fp/no-mutation
     this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
-    // eslint-disable-next-line fp/no-mutation
     this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 
@@ -69,15 +66,17 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   render() {
     return (
-      <SearchInput
-        autoFocus
-        value={this.state.query}
-        onChange={this.handleSearchInput}
-        onClear={this.handleClearSearchInput}
-        noResults={this.props.noResults}
-        placeholder={this.props.placeholder}
-        onFocus={this.onFocus}
-      />
+      <div className="u-padding--md">
+        <SearchInput
+          autoFocus
+          value={this.state.query}
+          onChange={this.handleSearchInput}
+          onClear={this.handleClearSearchInput}
+          noResults={this.props.noResults}
+          placeholder={this.props.placeholder}
+          onFocus={this.onFocus}
+        />
+      </div>
     );
   }
 }

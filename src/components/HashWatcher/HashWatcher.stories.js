@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-
 import HashWatcher from "Components/HashWatcher";
 
 const stories = storiesOf("HashWatcher", module);
@@ -17,7 +16,6 @@ class HashWatcherDemo extends React.Component<{}, State> {
   };
 
   applyNewHash = () => {
-    // eslint-disable-next-line fp/no-mutation
     window.location.hash = this.state.newHash;
   };
 

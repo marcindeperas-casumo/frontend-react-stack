@@ -2,3 +2,9 @@
 !.storybook
 # or it's own config
 !.eslintrc.js
+# ignore files with spam
+**/node_modules/**
+**/__mocks__/**
+**/flow-typed/**
+**/build/**
+**/.history/**

@@ -1,8 +1,6 @@
 // @flow
 import * as React from "react";
-
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
-
 import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 import {
   StageFavouritesProvider,
@@ -33,7 +31,7 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
   hideCompetitionSelector = () => this.showCompetitionSelectorFor(null);
 
   get isSelectingCompetitions() {
-    return !!this.state.selectingCompetitionsFor;
+    return Boolean(this.state.selectingCompetitionsFor);
   }
 
   renderCompetitionsSelector = () => {

@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import WaitForHostElement from "Components/WaitForHostElement";
+import { WaitForHostElement } from "Components/WaitForHostElement";
 
 const HelloSampleComponent = () => "Hello";
 

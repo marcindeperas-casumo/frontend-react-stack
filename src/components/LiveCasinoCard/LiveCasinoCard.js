@@ -4,8 +4,8 @@ import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-
-import { decodeString } from "Utils/index";
+import { compose, prop } from "ramda";
+import { decodeString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import CMSField from "Components/CMSField";
@@ -13,8 +13,6 @@ import TrackClick from "Components/TrackClick";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
-import { renderBets } from "Utils/utils";
-import { compose, prop } from "ramda";
 
 export type Props = {
   game: Game,
@@ -51,7 +49,10 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     const { lobby } = this;
 
     return (
-      <div className="o-ratio o-ratio--live-casino-card t-border-r--8">
+      <div
+        className="o-ratio o-ratio--live-casino-card t-border-r--8"
+        onClick={this.props.launchGame}
+      >
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
         <Flex
           direction="vertical"
@@ -72,7 +73,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     const { game, launchGame } = this.props;
 
     return (
-      <Flex>
+      <Flex onClick={launchGame}>
         <Flex.Block>
           <Text
             tag="h3"
@@ -87,10 +88,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             eventName={EVENTS.GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <Button
-              onClick={launchGame}
-              className="u-text-nowrap u-text-transform-capitalize"
-            >
+            <Button className="u-text-nowrap u-text-transform-capitalize">
               <CMSField
                 slug="mobile.live-casino-cards-content"
                 field="play_now"

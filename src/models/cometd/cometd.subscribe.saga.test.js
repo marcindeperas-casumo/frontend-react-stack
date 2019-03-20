@@ -8,8 +8,7 @@ describe("Models/CometD/Subscribe", () => {
   const channel = "/foo/*";
   const sessionId = "foobar";
   const emittedChannel = "/foo/bar";
-  const action = { channel, sessionId };
-  const generator = cometdSubscribeSaga(action);
+  const generator = cometdSubscribeSaga({ channel, sessionId });
   const fakeMessageStream = "PATTERN";
   const isGeneratorDone = (...args) => generator.next(...args).done;
 

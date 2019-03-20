@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
-import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import classNames from "classnames";
+import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import "./PromotionCardTeaserList.scss";
 
 type Props = {

@@ -1,4 +1,4 @@
-/* eslint-disable max-len */
+// @flow
 // 📣📣📣 NOTE 📣📣📣
 //
 // The contents of this file are meant to be reflected and kept in sync between
@@ -17,13 +17,16 @@
 // to.
 export const REACT_APP_EVENT_ON_LOGIN = "REACT_APP_EVENT/onLogin";
 export const REACT_APP_EVENT_ROUTE_CHANGE = "REACT_APP_EVENT/routeChange";
+export const REACT_APP_EVENT_MENU_OPENED = "REACT_APP_EVENT/menuOpened";
+export const REACT_APP_EVENT_MENU_CLOSED = "REACT_APP_EVENT/menuClosed";
+export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 
 export const LOW_RES_IMAGE_SETTINGS = {
-  mark: null,
+  mark: "",
   dpr: 1,
   imgixOpts: {
     w: 5,

@@ -1,11 +1,9 @@
-/* eslint-disable fp/no-mutation */
 import React, { PureComponent } from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
 import Flex from "@casumo/cmp-flex";
+import info from "Storybook/storybookInfo";
 import GameRow from "Components/GameRow/GameRow";
-
 import games from "./__mocks__/games";
 import VirtualList from "./";
 
@@ -40,9 +38,9 @@ class MyComponent extends PureComponent {
         setTimeout(() => {
           resolve(games);
         }, 3000 + Math.round(Math.random() * 1000));
-      }).then(games => {
+      }).then(gamesList => {
         this.setState({
-          list: [...this.state.list, ...games],
+          list: [...this.state.list, ...gamesList],
         });
         return this.state.list;
       });

@@ -1,35 +1,42 @@
-/* @flow */
+// @flow
 import React from "react";
 import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-
-import { sessionId, country, getLanguage } from "Models/handshake";
 import bridge from "Src/DurandalReactBridge";
-
+import {
+  REACT_APP_EVENT_MENU_OPENED,
+  REACT_APP_EVENT_MENU_CLOSED,
+  REACT_APP_SPORTS_SHOW_SEARCH,
+} from "Src/constants";
+import {
+  sessionIdSelector,
+  countrySelector,
+  languageSelector,
+} from "Models/handshake";
+import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
-import SportsHashWatcher from "Components/HashWatcher";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import {
   SportsStateProvider,
   ClientContext,
   OPEN_MODAL_MUTATION,
+  UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
 } from "Features/sports/state";
-
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 // hook up SportsStateClient to redux data until we can do a proper graphql solution
 const ConnectedSportsStateProvider = connect(state => ({
-  locale: getLanguage(state).toUpperCase(),
-  market: country(state).toUpperCase(),
-  sessionId: sessionId(state),
+  locale: languageSelector(state).toUpperCase(),
+  market: countrySelector(state).toUpperCase(),
+  sessionId: sessionIdSelector(state),
 }))(SportsStateProvider);
 
-const SPORTS_SHELL_QUERY = gql`
+export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
     hasSelectedFavourites
     searchVisible @client
@@ -40,11 +47,25 @@ export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
-    bridge.on("sports-show-search", showSearch => {
+    bridge.on(REACT_APP_SPORTS_SHOW_SEARCH, showSearch => {
       const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
 
       this.context.client.mutate({ mutation });
     });
+
+    bridge.on(REACT_APP_EVENT_MENU_CLOSED, data =>
+      this.context.client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: true },
+      })
+    );
+
+    bridge.on(REACT_APP_EVENT_MENU_OPENED, data =>
+      this.context.client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: false },
+      })
+    );
 
     // on mount open the choose favourites modal if the user is yet to choose favourites
     this.context.client

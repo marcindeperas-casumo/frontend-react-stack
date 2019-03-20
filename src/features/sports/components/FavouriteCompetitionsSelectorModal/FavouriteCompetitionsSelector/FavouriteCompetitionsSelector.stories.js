@@ -3,11 +3,9 @@ import React from "react";
 import { MockedProvider } from "react-apollo/test-utils";
 import { F } from "ramda";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { action } from "@storybook/addon-actions";
-
+import info from "Storybook/storybookInfo";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
-
 import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./__mocks__/favouriteCompetitionsSelectorQuery";
 

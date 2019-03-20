@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import { append, range, assoc } from "ramda";
-
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
@@ -57,7 +56,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
       return resolve();
     });
 
-    // eslint-disable-next-line
     this.promises.list = notLoadedPromises;
   }
 
@@ -73,15 +71,13 @@ class GamesVirtualList extends PureComponent<Props, State> {
     // adjust for last row loading
     const stop = stopIndex + 1;
 
-    // eslint-disable-next-line
-    let loaded = {};
-    range(startIndex, stop).forEach(i => {
-      // eslint-disable-next-line
-      loaded = {
-        ...loaded,
-        ...assoc(i, 1, loaded),
-      };
-    });
+    const loaded = range(startIndex, stop).reduce(
+      (acc, curr) => ({
+        ...acc,
+        [curr]: 1,
+      }),
+      {}
+    );
 
     this.setState(prevState => {
       return {
@@ -120,7 +116,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
         stopIndex,
         resolve,
       };
-      // eslint-disable-next-line
       this.promises.list = append(promise, this.promises.list);
     });
   };

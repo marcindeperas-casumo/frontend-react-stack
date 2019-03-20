@@ -4,15 +4,13 @@ import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
-
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
-import PersistedData from "Utils/PersistedData";
+import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/state/clientState";
-import NoResultsIcon from "./no-results-icon.svg";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import NoResultsIcon from "./no-results-icon.svg";
 
 const TOP_SEARCHES_QUERY = gql`
   query TopSearches($count: Int!) {
@@ -37,8 +35,6 @@ type GroupByResultTypeType = (
 const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
 );
-
-const getSportFromId = id => id.split("/")[1];
 
 const TOTAL_PLACEHOLDER_ITEMS = 5;
 
@@ -72,9 +68,6 @@ const SEARCH_QUERY = gql`
     }
   }
 `;
-
-// TODO:(adampilks) hook up to new icon query
-const SearchResultIcon = ({ sport }) => "";
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
   <Text
@@ -134,7 +127,6 @@ class KambiSearchResults extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state.searchHistory = this.persisted.searchHistory.get();
   }
 
@@ -298,7 +290,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
-                    isMatch: false || renderAllTextAsMatched,
+                    isMatch: renderAllTextAsMatched,
                   })}
                   search={this.props.query}
                   text={result.localizedName}

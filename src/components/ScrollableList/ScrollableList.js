@@ -1,8 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import ScrollableListTitle from "Components/ScrollableListTitle";
-import GameTile from "Components/GameTile";
 import { isEmpty } from "ramda";
 import type {
   spacerSizes,
@@ -10,6 +8,8 @@ import type {
 } from "@casumo/cudl-react-prop-types";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import GameTile from "Components/GameTile";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 
 export const DEFAULT_SPACING = "default";
 export const PADDING_PER_DEVICE = {

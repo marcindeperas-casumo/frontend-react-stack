@@ -1,11 +1,9 @@
 import React from "react";
 import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
-
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
-
 import { getBadgeColor, topCardLetters } from "./utils";
 import "./LiveCasinoCardData.scss";
 
@@ -17,6 +15,7 @@ const renderResults = ({ results, type }) => {
       <div className="o-layout o-layout--gap u-margin-bottom">
         {list.map((n, i) => {
           const color = getBadgeColor(type, n);
+          const notTopCardType = isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
           return (
             <Badge
               key={i}
@@ -25,11 +24,7 @@ const renderResults = ({ results, type }) => {
               txtColor={color === "yellow" ? "grey-dark-3" : "white"}
               circle={true}
             >
-              {type === "TopCard"
-                ? topCardLetters[n]
-                : isNaN(parseInt(n, 10))
-                ? n
-                : parseInt(n, 10)}
+              {type === "TopCard" ? topCardLetters[n] : notTopCardType}
             </Badge>
           );
         })}
@@ -98,7 +93,7 @@ const LobbyType = ({ lobby }) => {
   ])(type);
 };
 
-const CardData = ({ lobby }) => {
+const LiveCasinoCardData = ({ lobby }) => {
   return (
     <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
       <LobbyType lobby={lobby} />
@@ -106,4 +101,4 @@ const CardData = ({ lobby }) => {
   );
 };
 
-export default CardData;
+export default LiveCasinoCardData;

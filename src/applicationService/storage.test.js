@@ -1,5 +1,5 @@
-import storageLib from "Lib/storage";
-import storageService, { NAMESPACE } from "./storage";
+import * as storageLib from "Lib/storage";
+import * as storageService from "./storage";
 
 jest.mock("../lib/storage");
 
@@ -15,7 +15,11 @@ describe("Services/Storage", () => {
     storageService.get(key, defaultValue);
 
     expect(storageLib.get).toHaveBeenCalledTimes(1);
-    expect(storageLib.get).toHaveBeenCalledWith(key, defaultValue, NAMESPACE);
+    expect(storageLib.get).toHaveBeenCalledWith(
+      key,
+      defaultValue,
+      storageService.NAMESPACE
+    );
   });
 
   test(".set() proxies with the correct namespace", () => {
@@ -25,7 +29,11 @@ describe("Services/Storage", () => {
     storageService.set(key, value);
 
     expect(storageLib.set).toHaveBeenCalledTimes(1);
-    expect(storageLib.set).toHaveBeenCalledWith(key, value, NAMESPACE);
+    expect(storageLib.set).toHaveBeenCalledWith(
+      key,
+      value,
+      storageService.NAMESPACE
+    );
   });
 
   test(".remove() proxies with the correct namespace", () => {
@@ -34,6 +42,9 @@ describe("Services/Storage", () => {
     storageService.remove(key);
 
     expect(storageLib.remove).toHaveBeenCalledTimes(1);
-    expect(storageLib.remove).toHaveBeenCalledWith(key, NAMESPACE);
+    expect(storageLib.remove).toHaveBeenCalledWith(
+      key,
+      storageService.NAMESPACE
+    );
   });
 });

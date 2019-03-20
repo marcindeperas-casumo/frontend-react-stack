@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
-import { renderBets } from "Utils/utils";
+import { renderBets } from "Utils";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import TrackClick from "Components/TrackClick";

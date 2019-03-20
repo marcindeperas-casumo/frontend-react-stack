@@ -1,13 +1,11 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
-import isNotChromatic from "Storybook/isNotChromatic";
 import { MockedProvider } from "react-apollo/test-utils";
 import { text, number } from "@storybook/addon-knobs/react";
-
+import info from "Storybook/storybookInfo";
+import isNotChromatic from "Storybook/isNotChromatic";
 import DictionaryTerm from "./DictionaryTerm";
-
 import { mocks, WORKING_TERM, REPLACEMENT_TERM } from "./__mocks__/termMocks";
 
 const stories = storiesOf("Sports/DictionaryTerm/DictionaryTerm", module);

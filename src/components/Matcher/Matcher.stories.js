@@ -2,9 +2,7 @@
 import React from "react";
 import { select, withKnobs, boolean } from "@storybook/addon-knobs/react";
 import { storiesOf } from "@storybook/react";
-
 import isNotChromatic from "Storybook/isNotChromatic";
-
 import Matcher from "Components/Matcher";
 
 const stories = storiesOf("Matcher", module);
@@ -52,7 +50,7 @@ if (isNotChromatic) {
       );
     })
     .add("Implement EitherOr", () => {
-      const condition = boolean("Is condition true", false);
+      const cond = boolean("Is condition true", false);
       const EitherOrMatcher = props => (
         <Matcher
           getKey={({ condition }) => Boolean(condition)}
@@ -63,6 +61,6 @@ if (isNotChromatic) {
           {...props}
         />
       );
-      return <EitherOrMatcher condition={condition} />;
+      return <EitherOrMatcher condition={cond} />;
     });
 }

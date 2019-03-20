@@ -4,15 +4,18 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
-
-import KambiClientSkeleton from "./KambiClientSkeleton";
-import KambiClient from "./KambiClient";
-import { currency, country, getLanguage } from "Models/handshake";
+import {
+  currencySelector,
+  countrySelector,
+  languageSelector,
+} from "Models/handshake";
 import {
   MutateOnMount,
   ClientContext,
   SESSION_TOUCH,
 } from "Features/sports/state";
+import KambiClientSkeleton from "./KambiClientSkeleton";
+import KambiClient from "./KambiClient";
 
 const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {
@@ -77,6 +80,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 
           return (
             <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
+              {/* eslint-disable-next-line no-shadow */}
               {({ data }) => {
                 return (
                   <Mutation mutation={SESSION_TOUCH}>
@@ -107,7 +111,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
 }
 
 export default connect(state => ({
-  currency: currency(state),
-  market: country(state).toUpperCase(),
-  locale: `${getLanguage(state)}_${country(state).toUpperCase()}`,
+  currency: currencySelector(state),
+  market: countrySelector(state).toUpperCase(),
+  locale: `${languageSelector(state)}_${countrySelector(state).toUpperCase()}`,
 }))(LaunchableKambiClient);

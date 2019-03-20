@@ -4,7 +4,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
-import { stringToHTML, decodeString } from "Utils/index";
+import { stringToHTML, decodeString } from "Utils";
 import EitherOr from "Components/EitherOr";
 import GameThumb from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";

@@ -1,10 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import PromotionGalleryCardContainer from "Components/PromotionGalleryCard";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import PromotionGalleryCardContainer from "Components/PromotionGalleryCard";
 
 type Props = {
   promotionsSlugs: Array<string>,
@@ -22,7 +22,7 @@ const marginPerDevice = {
   desktop: "xlg",
 };
 
-class PromotionCardGallery extends PureComponent<Props> {
+class PromotionGallery extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchCampaign();
     this.props.fetchPromotions();
@@ -87,4 +87,4 @@ class PromotionCardGallery extends PureComponent<Props> {
   }
 }
 
-export default PromotionCardGallery;
+export default PromotionGallery;

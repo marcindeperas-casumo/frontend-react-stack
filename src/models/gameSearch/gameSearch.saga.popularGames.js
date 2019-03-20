@@ -1,6 +1,6 @@
 import { select, put, take, call } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { country as countrySelector } from "Models/handshake";
+import { countrySelector } from "Models/handshake";
 import { types, fetchMostPopularGames } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 

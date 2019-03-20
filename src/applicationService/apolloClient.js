@@ -3,11 +3,10 @@ import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
 import { InMemoryCache } from "apollo-cache-inmemory";
-
 import {
-  market as getMarket,
-  currency as getCurrency,
-  sessionId as getSessionId,
+  marketSelector,
+  currencySelector,
+  sessionIdSelector,
 } from "Models/handshake";
 import reduxStore from "Services/reduxStore";
 
@@ -26,9 +25,9 @@ export function getApolloClient(store) {
 function getContextLink(store) {
   return setContext(() => {
     const state = store.getState();
-    const market = getMarket(state);
-    const currency = getCurrency(state);
-    const sessionId = getSessionId(state);
+    const market = marketSelector(state);
+    const currency = currencySelector(state);
+    const sessionId = sessionIdSelector(state);
 
     return {
       headers: {

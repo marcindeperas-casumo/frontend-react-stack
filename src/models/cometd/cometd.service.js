@@ -1,10 +1,9 @@
+import defaultCometD from "Lib/cometd";
+import { makeProtocolAwareUrl, isEnvDevelopment } from "Utils";
+
+const defaultUrl = makeProtocolAwareUrl("/cometd/");
+
 /* eslint-disable fp/no-mutation, fp/no-delete */
-import cometd from "Lib/cometd";
-import { makeProtocolAwareUrl } from "Utils/utils";
-import Debugger from "Utils/Debugger";
-
-const url = makeProtocolAwareUrl("/cometd/");
-
 export const CometdFactory = ({ cometd, url }) => {
   // We want to know how many subscriptions happened to a certain channel,
   // so we only unsubscribe finally when there are no more outstanding subscriptions
@@ -16,10 +15,13 @@ export const CometdFactory = ({ cometd, url }) => {
   const subscriptions = {};
   const subscriptionCallbacks = {};
 
+  if (isEnvDevelopment()) {
+    window.Debugger = {
+      cometd: { emit },
+    };
+  }
+
   cometd.init({ url });
-  Debugger.cometd = {
-    emit,
-  };
 
   return {
     subscribe,
@@ -81,8 +83,9 @@ export const CometdFactory = ({ cometd, url }) => {
     // the subscription.
     return Object.keys(subscriptionCallbacks)
       .filter(subscribedChannel => channel.match(subscribedChannel))
-      .map(channel => subscriptionCallbacks[channel]);
+      .map(x => subscriptionCallbacks[x]);
   }
 };
+/* eslint-enable fp/no-mutation, fp/no-delete */
 
-export default CometdFactory({ cometd, url });
+export default CometdFactory({ cometd: defaultCometD, url: defaultUrl });

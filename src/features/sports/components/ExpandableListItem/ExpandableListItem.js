@@ -1,7 +1,6 @@
 /* @flow */
 import React, { PureComponent } from "react";
 import type { Node } from "react";
-
 import { DirectionUpIcon, DirectionDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 

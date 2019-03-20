@@ -2,11 +2,9 @@
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
 import gql from "graphql-tag";
-
 import { ClientContext } from "Features/sports/state";
-import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
-
+import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";
 import StageFavouritesContext from "./StageFavouritesContext";
 
@@ -62,7 +60,6 @@ class StageFavouritesProvider extends React.Component<
   constructor(props: ProviderProps) {
     super(props);
 
-    // eslint-disable-next-line fp/no-mutation
     this.state = {
       sports: [],
       isFirstTimeSelectingFavourites: false,
@@ -84,15 +81,13 @@ class StageFavouritesProvider extends React.Component<
   async fetchSports() {
     // fetch the initial data and store in state
     const {
-      data,
+      data: { groups: sports },
     }: {
       data: FavouriteSportsSelectorContext,
     } = await this.context.client.query({
       query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
       fetchPolicy: "network-only",
     });
-
-    const { groups: sports } = data;
 
     // determine if this is the first time selecting favourites and favourite competitions
     // if all favourited competitions are empty

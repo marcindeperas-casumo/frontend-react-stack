@@ -1,12 +1,12 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { isPageFetched, getField } from "Models/cms";
+import { isPageFetchedSelector, getField } from "Models/cms";
 import PromotionGalleryCard from "./PromotionGalleryCard";
 import type { Props } from "./PromotionGalleryCard";
 
 const PromotionGalleryCardConnected = connect((state, { slug }) => ({
-  isFetched: isPageFetched(slug)(state),
+  isFetched: isPageFetchedSelector(slug)(state),
   image: getField({
     slug,
     field: "image",

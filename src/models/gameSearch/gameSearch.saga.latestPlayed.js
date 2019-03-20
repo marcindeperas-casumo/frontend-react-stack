@@ -1,10 +1,12 @@
 import { pluck } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
+import { countrySelector, playerIdSelector } from "Models/handshake";
 import {
-  country as countrySelector,
-  playerId as playerIdSelector,
-} from "Models/handshake";
-import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
+  ENTITY_KEYS,
+  normalizeData,
+  updateEntity,
+  gameListSelector,
+} from "Models/schema";
 import {
   types,
   fetchLatestPlayedGames,
@@ -18,6 +20,14 @@ export function* fetchLatestPlayedSaga(action) {
   const variant = "default";
   const country = yield select(countrySelector);
   const playerId = yield select(playerIdSelector);
+
+  const { games: latestPlayedGames } = yield select(
+    gameListSelector(GAME_LIST_IDS.LATEST_PLAYED)
+  );
+
+  if (latestPlayedGames.length) {
+    return;
+  }
 
   // fetch latest played returns provider game names
   yield put(fetchLatestPlayedGames({ playerId }));
