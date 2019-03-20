@@ -53,9 +53,9 @@ export const gameSearchSuggestedList = createSelector(
     /* titleSuggested, */ latest, // uncomment titleSuggested once CMS is ready
     popular,
     suggested,
-    gameSearchResults
+    searchResults
   ) => {
-    if (gameSearchResults && gameSearchResults.length === 1) {
+    if (searchResults && searchResults.length === 1) {
       return {
         ...suggested,
         title: "You might also like...", // use titleSuggested once CMS is ready
