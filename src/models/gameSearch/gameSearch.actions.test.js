@@ -11,6 +11,7 @@ import {
   getSearchFetchCompleteType,
   fetchSuggestedGamesAction,
 } from "Models/gameSearch";
+import { fetchSuggestedGames } from "Api/api.games";
 
 describe("Models/GameSearch/Actions", () => {
   describe("initFetchQuerySearch()", () => {
@@ -200,6 +201,7 @@ describe("Models/GameSearch/Actions", () => {
 
     test("asyncCall fetcher function exists in the action", () => {
       expect(typeof action.asyncCall).toBe("function");
+      expect(action.asyncCall).toEqual(fetchSuggestedGames);
     });
 
     test("passes all parameters for the fetch function", () => {
