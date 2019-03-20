@@ -85,7 +85,7 @@ export default class GameSearch extends React.PureComponent<Props> {
 
   render() {
     return (
-      <div style={{ "-webkit-transform": "translate3d(0,0,0)" }}>
+      <div className="c-game-search">
         <div className="u-position-sticky c-game-search-bar">
           <div className="o-bleed t-background-grey-light-2">
             <GameSearchInput
