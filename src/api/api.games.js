@@ -15,11 +15,11 @@ import { getSuggestedGames } from "Api/api.gameSuggest";
 import { decodeString } from "Utils";
 
 const getLatestPlayedGame = async latestPlayedGames => {
-  if (!latestPlayedGames) {
+  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+
+  if (!latestPlayedGamesResolved) {
     return null;
   }
-
-  const latestPlayedGamesResolved = (await latestPlayedGames).games;
 
   return head(latestPlayedGamesResolved);
 };
