@@ -63,6 +63,7 @@ export const fetchSuggestedGames = async ({
     id,
     // The following needs to be decoupled from here also. If we wanna use fetchSuggestedGames for
     // different purposes we need to be able to choose between different string
+    // https://github.com/Casumo/Home/issues/27736
     title: title.replace("${GAME_NAME}", decodeString(game.name)),
   };
 };
