@@ -1,7 +1,7 @@
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { select, put, take, call } from "redux-saga/effects";
 import {
-  country,
+  countrySelector,
   fetchGamesHandshake,
   isGamesHandshakeLoaded,
   gamesHandshakeSelector,
@@ -26,10 +26,10 @@ describe("Models/GameSearch/Saga", () => {
     const handshake = { foo: "bar" };
 
     gen.next();
-    gen.next(country);
+    gen.next(countrySelector);
 
     expect(gen.next(areGamesFetched).value).toEqual(
-      put(fetchGamesHandshake({ country }))
+      put(fetchGamesHandshake({ country: countrySelector }))
     );
 
     expect(gen.next().value).toEqual(
@@ -57,7 +57,7 @@ describe("Models/GameSearch/Saga", () => {
         fetchSuggestedGamesAction({
           handshake,
           platform,
-          country,
+          country: countrySelector,
           gameLookingForSuggestions,
           variant,
         })
