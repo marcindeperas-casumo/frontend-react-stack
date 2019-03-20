@@ -59,13 +59,13 @@ export const fetchMostPopularGames = ({
   asyncCallData: { platform, country, id, variant, page, pageSize },
 });
 
-export const fetchSuggestedGamesAction = ({
+export const fetchSuggestedGamesAction = (
   gameLookingForSuggestions,
   handshake,
   platform,
   country,
-  variant,
-}) => ({
+  variant
+) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
   postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,

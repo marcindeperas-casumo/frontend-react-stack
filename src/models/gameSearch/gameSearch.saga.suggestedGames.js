@@ -41,13 +41,13 @@ export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
   const handshake = yield select(gamesHandshakeSelector);
 
   yield put(
-    fetchSuggestedGamesAction({
+    fetchSuggestedGamesAction(
+      gameLookingForSuggestions,
       handshake,
       platform,
       country,
-      gameLookingForSuggestions,
-      variant,
-    })
+      variant
+    )
   );
 
   const { response } = yield take(

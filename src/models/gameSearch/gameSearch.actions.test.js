@@ -178,13 +178,13 @@ describe("Models/GameSearch/Actions", () => {
     const platform = "mobile";
     const variant = "default";
 
-    const action = fetchSuggestedGamesAction({
-      country,
-      handshake,
+    const action = fetchSuggestedGamesAction(
       gameLookingForSuggestions,
+      handshake,
       platform,
-      variant,
-    });
+      country,
+      variant
+    );
 
     test("starts api fetch for suggestedGames", () => {
       expect(action).toMatchObject({

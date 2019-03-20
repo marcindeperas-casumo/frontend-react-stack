@@ -54,13 +54,13 @@ describe("Models/GameSearch/Saga", () => {
 
     expect(gen.next(handshake).value).toEqual(
       put(
-        fetchSuggestedGamesAction({
+        fetchSuggestedGamesAction(
+          gameLookingForSuggestions,
           handshake,
           platform,
-          country: countrySelector,
-          gameLookingForSuggestions,
-          variant,
-        })
+          countrySelector,
+          variant
+        )
       )
     );
 
