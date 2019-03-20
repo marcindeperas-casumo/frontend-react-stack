@@ -14,8 +14,8 @@ import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { decodeString } from "Utils";
 
-const getLatestPlayedGame = async latestPlayedGames => {
-  const latestPlayedGamesResolved = (await latestPlayedGames).games;
+const getLatestPlayedGame = async latestPlayedGamesPromise => {
+  const latestPlayedGamesResolved = (await latestPlayedGamesPromise).games;
 
   if (!latestPlayedGamesResolved) {
     return null;
