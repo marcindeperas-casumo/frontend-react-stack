@@ -1,12 +1,12 @@
 import { call, put, select, take } from "redux-saga/effects";
 import {
-  country as countrySelector,
-  currency as currencySelector,
-  playerId as playerIdSelector,
+  countrySelector,
+  currencySelector,
+  playerIdSelector,
   fetchGamesHandshake,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-  market as marketSelector,
+  marketSelector,
   types as handshakeTypes,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";

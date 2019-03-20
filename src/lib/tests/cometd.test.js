@@ -14,9 +14,7 @@ describe("CometD", () => {
         subscribeCb();
         return subscription;
       }),
-      unsubscribe: jest.fn((subscription, unsubscribeProps, unsubscribeCb) =>
-        unsubscribeCb()
-      ),
+      unsubscribe: jest.fn((a, b, unsubscribeCb) => unsubscribeCb()),
     };
     cometd = CometDFactory(cometdMock);
   });

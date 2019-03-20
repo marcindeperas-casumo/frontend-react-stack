@@ -3,7 +3,7 @@ import {
   getCms,
   getPage,
   getField,
-  isPageFetched,
+  isPageFetchedSelector,
   shouldFetchPage,
 } from "Models/cms";
 
@@ -41,7 +41,7 @@ describe("CMS Selectors", () => {
     });
   });
 
-  describe("isPageFetched()", () => {
+  describe("isPageFetchedSelector()", () => {
     test("returns TRUE if the page has been fetched", () => {
       const slug = "foo";
       const state = {
@@ -52,14 +52,14 @@ describe("CMS Selectors", () => {
         },
       };
 
-      expect(isPageFetched(slug)(state)).toBe(true);
+      expect(isPageFetchedSelector(slug)(state)).toBe(true);
     });
 
     test("returns FALSE if the page is not started to be fetched yet", () => {
       const slug = "foo";
       const state = { fetch: {} };
 
-      expect(isPageFetched(slug)(state)).toBe(false);
+      expect(isPageFetchedSelector(slug)(state)).toBe(false);
     });
   });
 

@@ -1,6 +1,6 @@
 import { head } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
-import { country as countrySelector } from "Models/handshake";
+import { countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   fetchLatestPlayedSaga,

@@ -6,7 +6,7 @@ import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import PersistedData from "Utils/PersistedData";
+import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/state/clientState";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -49,7 +49,6 @@ const resultTypesTranslationsMap = {
 
 const resultTypesGroupingMap = {
   PARTICIPANT: "Team",
-  // eslint-disable-next-line sonarjs/no-duplicate-string
   SPORT: "Sports, Regions & Leagues",
   REGION: "Sports, Regions & Leagues",
   LEAGUE: "Sports, Regions & Leagues",

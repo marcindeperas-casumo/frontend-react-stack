@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchPageBySlug, getField } from "Models/cms";
-import { market as marketSelector } from "Models/handshake";
+import { marketSelector } from "Models/handshake";
 import PromotionCardList from "./PromotionCardList";
 
 type Props = {

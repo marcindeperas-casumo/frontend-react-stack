@@ -6,7 +6,7 @@ import { withBackgrounds } from "@storybook/addon-backgrounds";
 // Prevent random errors with chromatic
 // TypeError: window.URL.createObjectURL is not a function
 // Chromatic will (eventually) solve this at there end.
-import polyfillWindowForChromatic from "Storybook/utils";
+import { polyfillWindowForChromatic } from "Storybook/utils";
 import casumoTheme from "./casumoTheme";
 import "storybook-chromatic";
 import "./stories.scss";

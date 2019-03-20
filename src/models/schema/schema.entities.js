@@ -52,7 +52,7 @@ export const gameProvider = new schema.Entity(
   { idAttribute: "slug" }
 );
 
-export const applicationSchema = {
+export const schemaEntities = {
   // Question: Not sure defining the keys like this is good DX. If you're
   // seeing this and think it should be done differently, create a PR with your
   // suggestion.
@@ -71,6 +71,6 @@ export const applicationSchema = {
   [`${ENTITY_KEYS.GAME_PROVIDER}s`]: [gameProvider],
 };
 
-export const normalizeData = (data: any) => normalize(data, applicationSchema);
+export const normalizeData = (data: any) => normalize(data, schemaEntities);
 
-export default applicationSchema;
+export default schemaEntities;

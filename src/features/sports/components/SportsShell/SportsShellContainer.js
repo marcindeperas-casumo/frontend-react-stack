@@ -9,7 +9,11 @@ import {
   REACT_APP_EVENT_MENU_CLOSED,
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
-import { sessionId, country, getLanguage } from "Models/handshake";
+import {
+  sessionIdSelector,
+  countrySelector,
+  languageSelector,
+} from "Models/handshake";
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
@@ -27,9 +31,9 @@ import SportsShellSkeleton from "./SportsShellSkeleton";
 
 // hook up SportsStateClient to redux data until we can do a proper graphql solution
 const ConnectedSportsStateProvider = connect(state => ({
-  locale: getLanguage(state).toUpperCase(),
-  market: country(state).toUpperCase(),
-  sessionId: sessionId(state),
+  locale: languageSelector(state).toUpperCase(),
+  market: countrySelector(state).toUpperCase(),
+  sessionId: sessionIdSelector(state),
 }))(SportsStateProvider);
 
 export const SPORTS_SHELL_QUERY = gql`

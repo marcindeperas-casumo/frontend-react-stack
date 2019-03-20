@@ -16,10 +16,7 @@ const isError = action => action.type === "ERROR";
 const noop = () => {};
 
 // TODO: Add possibility to wrap actions in a try {} catch () {} as well
-export default function createErrorLoggerMiddleware(
-  logError = noop,
-  sanitizedKeys = []
-) {
+export default function loggerMiddleware(logError = noop, sanitizedKeys = []) {
   return store => next => action => {
     if (isError(action)) {
       const { message = "", error, ...additionalParams } = action;
