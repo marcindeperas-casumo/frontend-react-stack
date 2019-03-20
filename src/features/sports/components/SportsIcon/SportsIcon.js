@@ -3,17 +3,18 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import "./SportsIcon.scss";
 
-type Props = {
+export type Props = {
+  alt: string,
   iconSrc: string,
   activeIndicatorSrc: string,
   isActive?: boolean,
 };
 
-const SportsIcon = ({ iconSrc, activeIndicatorSrc, isActive }: Props) => (
+const SportsIcon = ({ alt, iconSrc, activeIndicatorSrc, isActive }: Props) => (
   <Flex.Item className="o-ratio c-sports-icon">
     {isActive && (
       <img
-        alt="sport is active"
+        alt={alt}
         className="o-ratio__content"
         data-test="sports-icon-active-indicator"
         src={activeIndicatorSrc}

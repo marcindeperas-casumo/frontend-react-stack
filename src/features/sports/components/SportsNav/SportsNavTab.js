@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import SportsIcon from "Features/sports/components/SportsIcon";
 import type { SportsNavItemType } from "./types";
 
 import "./SportsNavTab.scss";
@@ -26,7 +27,7 @@ const SportsNavTab = ({ navItem, isSelected, onClick }: SportsNavTabProps) => (
       direction="vertical"
       className="o-flex--1"
     >
-      {navItem.icon}
+      <SportsIcon {...navItem.iconProps} isActive={isSelected} />
       <Text
         tag="span"
         size="sm"
