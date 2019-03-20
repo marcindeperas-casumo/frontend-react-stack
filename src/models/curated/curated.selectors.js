@@ -2,10 +2,9 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
-import { hasMadeFirstDepositSelector, marketSelector } from "Models/handshake";
+import { hasMadeFirstDepositSelector } from "Models/handshake";
 import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
 import { flavourMatchSelector, AB_TESTS_FEATURE } from "Models/ABTesting";
-import { MARKETS } from "Src/constants";
 
 export const curatedSlugSelector = slug =>
   createSelector(
