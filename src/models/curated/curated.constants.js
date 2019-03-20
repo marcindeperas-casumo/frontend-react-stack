@@ -6,3 +6,8 @@ export const types = {
 
 export const CURATED_SLUG = "curated";
 export const WELCOME_OFFER_CARD = "welcome-offer-test";
+
+export const CURATED_TYPE = {
+  GAME: "game",
+  PROMOTION: "promotion",
+};
