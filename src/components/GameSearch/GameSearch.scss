@@ -5,7 +5,7 @@ $game-list-height: (
 
 .c-game-search {
   // fix iOS Safari issue with list results not displaying
-  // https://casumo.slack.com/archives/CCDJ244T0/p1553073433095000?thread_ts=1553072925.091800&cid=CCDJ244T0
+  // https://github.com/Casumo/Home/issues/27760
   transform: translate3d(0, 0, 0);
 }
 
