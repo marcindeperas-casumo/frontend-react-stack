@@ -52,17 +52,15 @@ export default class GameSearch extends React.PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SEARCH_GAMES }}
         >
-          <div style={{ transform: "translateZ(0)" }}>
-            <List
-              className="u-padding-top u-padding-horiz--md"
-              items={searchResults}
-              itemSpacing="default"
-              render={id => (
-                <GameRowSearch query={query} highlightSearchQuery slug={id} />
-              )}
-            />
-            {searchResults.length === 1 && <GameSearchSuggestionsList />}
-          </div>
+          <List
+            className="u-padding-top u-padding-horiz--md"
+            items={searchResults}
+            itemSpacing="default"
+            render={id => (
+              <GameRowSearch query={query} highlightSearchQuery slug={id} />
+            )}
+          />
+          {searchResults.length === 1 && <GameSearchSuggestionsList />}
         </TrackProvider>
       );
     } else if (query.length) {
@@ -87,7 +85,7 @@ export default class GameSearch extends React.PureComponent<Props> {
 
   render() {
     return (
-      <>
+      <div style={{ "-webkit-transform": "translate3d(0,0,0)" }}>
         <div className="u-position-sticky c-game-search-bar">
           <div className="o-bleed t-background-grey-light-2">
             <GameSearchInput
@@ -99,7 +97,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           </div>
         </div>
         {this.renderResults()}
-      </>
+      </div>
     );
   }
 }
