@@ -5,7 +5,7 @@ import {
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
 import { call, put, select, take } from "redux-saga/effects";
-import { waitForSelector } from "Utils/saga.utils";
+import { waitForSelector } from "Utils";
 import { fetchGameListSaga } from "./games.saga.fetchGameList";
 import { fetchTopLists } from "./games.actions";
 import { types } from "./games.constants";

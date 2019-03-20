@@ -1,7 +1,7 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { select, put, take, call } from "redux-saga/effects";
-import { sessionId as sessionIdSelector } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import {
   fetchQuerySearch,
   gameSearchSaga,

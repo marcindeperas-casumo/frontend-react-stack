@@ -1,6 +1,6 @@
 /* @flow */
 import { once } from "ramda";
-import { injectScript } from "Utils/utils";
+import { injectScript } from "Utils";
 
 export type KambiWidgetApi = { [string]: any };
 
@@ -29,9 +29,9 @@ const apiPromise = new Promise(resolve => {
   }
 });
 
-const getKambiWidgetAPI = (): Promise<KambiWidgetApi> => {
+const getKambiWidgetApi = (): Promise<KambiWidgetApi> => {
   injectKambiWidgetAPI();
   return apiPromise;
 };
 
-export default getKambiWidgetAPI;
+export default getKambiWidgetApi;

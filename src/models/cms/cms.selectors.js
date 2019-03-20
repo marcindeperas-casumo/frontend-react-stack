@@ -1,7 +1,7 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo, not, isNil } from "ramda";
 import { getFetchTypeBySlug } from "Models/cms";
-import { isNotFetched, isFetchingStarted } from "Models/fetch";
+import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
 
 export const getCms = compose(
   defaultTo({}),
@@ -35,7 +35,7 @@ export const isPageFetchingStarted = slug =>
 // because if we fetch a lot of children by their
 // parent (e.g. "/promotions.*") then the children's
 // fetch information won't be in the fetch status
-export const isPageFetched = slug =>
+export const isPageFetchedSelector = slug =>
   createSelector(
     getCms,
     compose(
@@ -48,7 +48,7 @@ export const isPageFetched = slug =>
 // Only fetch a page if it was not fetched yet and if it is not in the store already.
 export const shouldFetchPage = slug =>
   createSelector(
-    isPageFetched(slug),
-    isNotFetched(getFetchTypeBySlug(slug)),
-    (isPageObjectInStore, isNotFetched) => !isPageObjectInStore && isNotFetched
+    isPageFetchedSelector(slug),
+    isNotFetchedSelector(getFetchTypeBySlug(slug)),
+    (isPageFetched, isNotFetched) => !isPageFetched && isNotFetched
   );

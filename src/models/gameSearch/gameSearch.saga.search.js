@@ -1,5 +1,5 @@
 import { call, put, select, take } from "redux-saga/effects";
-import { sessionId as sessionIdSelector } from "Models/handshake";
+import { sessionIdSelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import {
   fetchLatestPlayedSaga,

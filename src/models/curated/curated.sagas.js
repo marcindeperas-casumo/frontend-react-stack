@@ -6,7 +6,7 @@ import {
   CURATED_SLUG,
 } from "Models/curated";
 import { normalizeData, updateEntity } from "Models/schema";
-import { country as getCountry } from "Models/handshake";
+import { countrySelector } from "Models/handshake";
 
 export function* fetchCuratedGameSaga(action) {
   const platform = "mobile";
@@ -14,7 +14,7 @@ export function* fetchCuratedGameSaga(action) {
   const gameId = type.split(".")[1];
   const slug = `${CURATED_SLUG}.${gameId}`;
   const curated = yield select(curatedSelector(slug));
-  const country = yield select(getCountry);
+  const country = yield select(countrySelector);
 
   const { gameData } = curated;
 

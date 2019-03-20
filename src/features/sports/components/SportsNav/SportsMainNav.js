@@ -16,7 +16,7 @@ export type Props = {
   onEdit: () => void,
 };
 
-class SportsNav extends React.Component<Props> {
+class SportsMainNav extends React.Component<Props> {
   renderTabList = (navItems: Array<SportsNavItemType>) => {
     return navItems.map<React.Node>(navItem => (
       <SportsNavTab
@@ -67,4 +67,4 @@ class SportsNav extends React.Component<Props> {
   }
 }
 
-export default SportsNav;
+export default SportsMainNav;

@@ -109,7 +109,11 @@ class App extends PureComponent<Props> {
             fallback={
               <>
                 <SearchInputSkeleton />
-                <GameListSkeleton className="u-padding-horiz--md" />
+                <GameListSkeleton
+                  className="u-padding-horiz--md"
+                  hasTitle={false}
+                  titleYOffset={20}
+                />
               </>
             }
           />

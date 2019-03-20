@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { generateColumns } from "Utils/utils";
+import { generateColumns } from "Utils";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import JackpotsListTile from "Components/JackpotsListTile";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
