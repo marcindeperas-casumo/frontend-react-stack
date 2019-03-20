@@ -38,13 +38,14 @@ export function* gameSearchSaga(action) {
 
   yield put(updateEntity(entities));
 
-  // if no match fetch latest played games
-  if (response.games.length < 1) {
+  const isNoMatch = response.games.length === 0;
+  const isDirectMatch = response.games.length === 1;
+
+  if (isNoMatch) {
     yield call(fetchLatestPlayedSaga);
   }
 
-  // if direct hit fetch suggested games
-  if (response.games.length === 1) {
+  if (isDirectMatch) {
     yield call(fetchSuggestedGamesSaga, head(response.games));
   }
 }
