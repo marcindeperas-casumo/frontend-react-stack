@@ -49,9 +49,7 @@ export default class GameSearch extends React.PureComponent<Props> {
       );
     } else if (searchResults.length) {
       return (
-        <TrackProvider
-          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SEARCH_GAMES }}
-        >
+        <>
           <List
             className="u-padding-top u-padding-horiz--md"
             items={searchResults}
@@ -61,7 +59,7 @@ export default class GameSearch extends React.PureComponent<Props> {
             )}
           />
           {searchResults.length === 1 && <GameSearchSuggestionsList />}
-        </TrackProvider>
+        </>
       );
     } else if (query.length) {
       return (
