@@ -12,7 +12,7 @@ import { isFetchingStarted } from "Models/fetch";
 import { types, fetchSuggestedGamesAction } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
-export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
+export function* fetchSuggestedGamesSaga(game) {
   const platform = "mobile";
   const variant = "default";
   const country = yield select(countrySelector);
@@ -41,13 +41,7 @@ export function* fetchSuggestedGamesSaga(gameLookingForSuggestions) {
   const handshake = yield select(gamesHandshakeSelector);
 
   yield put(
-    fetchSuggestedGamesAction(
-      gameLookingForSuggestions,
-      handshake,
-      platform,
-      country,
-      variant
-    )
+    fetchSuggestedGamesAction(game, handshake, platform, country, variant)
   );
 
   const { response } = yield take(

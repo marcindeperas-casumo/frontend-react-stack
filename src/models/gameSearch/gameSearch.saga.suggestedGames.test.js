@@ -16,8 +16,8 @@ import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/GameSearch/Saga", () => {
   test("fetchSuggestedGamesSaga", () => {
-    const gameLookingForSuggestions = "starburst";
-    const gen = fetchSuggestedGamesSaga(gameLookingForSuggestions);
+    const game = "starburst";
+    const gen = fetchSuggestedGamesSaga(game);
 
     const platform = "mobile";
     const id = GAME_LIST_IDS.SUGGESTED_GAMES;
@@ -55,7 +55,7 @@ describe("Models/GameSearch/Saga", () => {
     expect(gen.next(handshake).value).toEqual(
       put(
         fetchSuggestedGamesAction(
-          gameLookingForSuggestions,
+          game,
           handshake,
           platform,
           countrySelector,

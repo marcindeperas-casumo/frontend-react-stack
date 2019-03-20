@@ -60,7 +60,7 @@ export const fetchMostPopularGames = ({
 });
 
 export const fetchSuggestedGamesAction = (
-  gameLookingForSuggestions,
+  game,
   handshake,
   platform,
   country,
@@ -71,7 +71,7 @@ export const fetchSuggestedGamesAction = (
   postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,
   asyncCall: fetchSuggestedGames,
   asyncCallData: {
-    gameLookingForSuggestions,
+    game,
     handshake,
     platform,
     country,

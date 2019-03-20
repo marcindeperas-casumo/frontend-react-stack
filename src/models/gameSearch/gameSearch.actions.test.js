@@ -174,12 +174,12 @@ describe("Models/GameSearch/Actions", () => {
   describe("fetchSuggestedGamesAction()", () => {
     const country = "gb";
     const handshake = { foo: "bar" };
-    const gameLookingForSuggestions = "starburst";
+    const game = "starburst";
     const platform = "mobile";
     const variant = "default";
 
     const action = fetchSuggestedGamesAction(
-      gameLookingForSuggestions,
+      game,
       handshake,
       platform,
       country,
@@ -208,7 +208,7 @@ describe("Models/GameSearch/Actions", () => {
       expect(action.asyncCallData).toEqual({
         country,
         handshake,
-        gameLookingForSuggestions,
+        game,
         platform,
         variant,
       });
