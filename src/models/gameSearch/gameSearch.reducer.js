@@ -3,7 +3,7 @@ import { types } from "./gameSearch.constants";
 
 const DEFAULT_STATE = { query: "" };
 
-const reducers = {
+const handlers = {
   [types.GAME_SEARCH_FETCH_COMPLETE]: state => ({
     ...state,
     loading: false,
@@ -25,7 +25,7 @@ export const gameSearchReducer = (state = DEFAULT_STATE, action) => {
     ? types.GAME_SEARCH_FETCH_COMPLETE
     : action.type;
 
-  return reducers[type] ? reducers[type](state, action) : state;
+  return handlers[type] ? handlers[type](state, action) : state;
 };
 
 export default gameSearchReducer;

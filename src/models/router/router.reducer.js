@@ -5,7 +5,7 @@ const DEFAULT_STATE = {
   routeParams: [],
 };
 
-const reducers = {
+const handlers = {
   [types.ACTIVATE_COMPONENT]: (state, action) => ({
     ...state,
     activeComponents: [action.componentId],
@@ -14,7 +14,7 @@ const reducers = {
 };
 
 const routerReducer = (state = DEFAULT_STATE, action) => {
-  return reducers[action.type] ? reducers[action.type](state, action) : state;
+  return handlers[action.type] ? handlers[action.type](state, action) : state;
 };
 
 export default routerReducer;

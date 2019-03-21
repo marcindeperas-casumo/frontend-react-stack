@@ -7,7 +7,7 @@ import {
 
 const DEFAULT_STATE = {};
 
-const reducers = {
+const handlers = {
   [types.UPDATE_HANDSHAKE]: (key, state, action) => ({
     ...state,
     ...action.response[key],
@@ -15,8 +15,8 @@ const reducers = {
 };
 
 const handshakeReducerFactory = key => (state = DEFAULT_STATE, action) => {
-  return reducers[action.type]
-    ? reducers[action.type](key, state, action)
+  return handlers[action.type]
+    ? handlers[action.type](key, state, action)
     : state;
 };
 

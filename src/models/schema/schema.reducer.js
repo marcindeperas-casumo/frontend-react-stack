@@ -4,7 +4,7 @@ import { types, ENTITY_KEYS } from "./schema.constants";
 
 const DEFAULT_STATE = {};
 
-const reducers = {
+const handlers = {
   [types.UPDATE_ENTITY]: (entityKey, state, action) => ({
     ...state,
     ...action.payload[entityKey],
@@ -20,8 +20,8 @@ const entityReducerFactory = entityKey => (state = DEFAULT_STATE, action) => {
   // state remained the same.
   const doesEntityExist = Boolean(path(["payload", entityKey], action));
 
-  return reducers[action.type] && doesEntityExist
-    ? reducers[action.type](entityKey, state, action)
+  return handlers[action.type] && doesEntityExist
+    ? handlers[action.type](entityKey, state, action)
     : state;
 };
 
