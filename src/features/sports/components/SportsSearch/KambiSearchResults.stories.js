@@ -15,11 +15,23 @@ const props = {
   hideSearchResults: false,
 };
 
+const props2 = { ...props, query: "arsez" };
+
+stories.add(
+  "Search Results",
+  () => (
+    <MockedProviderWithContext mocks={mocks.hasResults} addTypename={false}>
+      <KambiSearchResults {...props} />
+    </MockedProviderWithContext>
+  ),
+  info({ text: "Search Results" })
+);
+
 stories.add(
   "No Search Results",
   () => (
     <MockedProviderWithContext mocks={mocks.noResults} addTypename={false}>
-      <KambiSearchResults {...props} />
+      <KambiSearchResults {...props2} />
     </MockedProviderWithContext>
   ),
   info({ text: "No Search Results" })

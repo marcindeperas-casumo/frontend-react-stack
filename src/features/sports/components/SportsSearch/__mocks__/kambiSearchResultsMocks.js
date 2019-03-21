@@ -1,4 +1,5 @@
 import { TOP_SEARCHES_QUERY, SEARCH_QUERY } from "../KambiSearchResults";
+import { mocks as termMocks } from "./termMocks";
 import searchResults from "./searchResults";
 import topSearchesResults from "./topSearchesResults";
 
@@ -22,13 +23,25 @@ const searchResultsMock = {
     },
   },
   result: {
-    data: searchResults,
+    data: searchResults.hasResults,
+  },
+};
+
+const noSearchResultsMock = {
+  request: {
+    query: SEARCH_QUERY,
+    variables: {
+      query: "arsez",
+    },
+  },
+  result: {
+    data: searchResults.noResults,
   },
 };
 
 export default {
-  error: [topSearchesMock, searchResultsMock],
-  notSearching: [topSearchesMock, searchResultsMock],
-  hasResults: [topSearchesMock, searchResultsMock],
-  noResults: [topSearchesMock, searchResultsMock],
+  // error: [topSearchesMock, searchResultsMock, ...termMocks],
+  // notSearching: [topSearchesMock, searchResultsMock, ...termMocks],
+  hasResults: [topSearchesMock, searchResultsMock, ...termMocks],
+  noResults: [topSearchesMock, noSearchResultsMock, ...termMocks],
 };

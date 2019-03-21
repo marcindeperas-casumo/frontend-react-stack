@@ -1,6 +1,6 @@
 const icon = "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg";
 
-export default {
+const hasResults = {
   search: [
     {
       type: "PARTICIPANT",
@@ -30,4 +30,9 @@ export default {
       },
     },
   ],
+};
+
+export default {
+  hasResults,
+  noResults: { search: [] },
 };
