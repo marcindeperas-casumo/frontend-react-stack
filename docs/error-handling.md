@@ -14,7 +14,7 @@ Rollbar is a 3rd party log-collector service that we use in production.
 ```javascript
 import logger from "Services/logger";
 
-logger.log/debug/info/warning/error/critical()
+logger.log / debug / info / warning / error / critical();
 ```
 
 ### Adding Error Boundaries
@@ -32,7 +32,7 @@ We have error boundaries in the following components:
 To add a new boundary just use it like this:
 
 ```javascript
-import ErrorBoundary from "Components/ErrorBoundary";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 
 // ...
 
