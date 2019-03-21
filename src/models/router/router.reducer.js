@@ -1,3 +1,4 @@
+import { createReducer } from "Utils";
 import { types } from "./router.constants";
 
 const DEFAULT_STATE = {
@@ -13,8 +14,6 @@ const handlers = {
   }),
 };
 
-const routerReducer = (state = DEFAULT_STATE, action) => {
-  return handlers[action.type] ? handlers[action.type](state, action) : state;
-};
+const routerReducer = createReducer(DEFAULT_STATE, handlers);
 
 export default routerReducer;

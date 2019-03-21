@@ -1,3 +1,4 @@
+import { createReducer } from "Utils";
 import { types } from "./fetch.constants";
 
 const DEFAULT_STATE = {};
@@ -34,8 +35,6 @@ const handlers = {
   }),
 };
 
-export const fetchReducer = (state = DEFAULT_STATE, action) => {
-  return handlers[action.type] ? handlers[action.type](state, action) : state;
-};
+export const fetchReducer = createReducer(DEFAULT_STATE, handlers);
 
 export default fetchReducer;

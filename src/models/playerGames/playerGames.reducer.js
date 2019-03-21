@@ -1,4 +1,5 @@
 /* eslint-disable-next-line filenames/match-exported */
+import { createReducer } from "Utils";
 import { types } from "./playerGames.constants";
 
 const DEFAULT_STATE = { count: 0 };
@@ -10,8 +11,6 @@ const handlers = {
   }),
 };
 
-export const playerGamesReducer = (state = DEFAULT_STATE, action) => {
-  return handlers[action.type] ? handlers[action.type](state, action) : state;
-};
+export const playerGamesReducer = createReducer(DEFAULT_STATE, handlers);
 
 export default playerGamesReducer;
