@@ -3,6 +3,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { has } from "ramda";
+import ErrorMessage from "Components/ErrorMessage";
 import {
   NAVIGATE_CLIENT_MUTATION,
   ClientContext,
@@ -127,9 +128,10 @@ class SportsNav extends React.Component<SportsNavProps> {
           if (loading) {
             return <SportsNavSkeleton />;
           }
+
+          // TODO: adampilks - handle error here
           if (error) {
-            // TODO: adampilks - handle error here
-            return <SportsNavSkeleton />;
+            return <ErrorMessage direction="horizontal" />;
           }
 
           if (data && data.sportsNavigation) {
