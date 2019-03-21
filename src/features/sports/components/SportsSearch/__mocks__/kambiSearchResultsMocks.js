@@ -31,7 +31,19 @@ const noSearchResultsMock = {
   request: {
     query: SEARCH_QUERY,
     variables: {
-      query: "arsez",
+      query: "abcd",
+    },
+  },
+  result: {
+    data: searchResults.noResults,
+  },
+};
+
+const notSearchingMock = {
+  request: {
+    query: SEARCH_QUERY,
+    variables: {
+      query: "abcd",
     },
   },
   result: {
@@ -41,7 +53,7 @@ const noSearchResultsMock = {
 
 export default {
   // error: [topSearchesMock, searchResultsMock, ...termMocks],
-  // notSearching: [topSearchesMock, searchResultsMock, ...termMocks],
+  notSearching: [topSearchesMock, notSearchingMock, ...termMocks],
   hasResults: [topSearchesMock, searchResultsMock, ...termMocks],
   noResults: [topSearchesMock, noSearchResultsMock, ...termMocks],
 };

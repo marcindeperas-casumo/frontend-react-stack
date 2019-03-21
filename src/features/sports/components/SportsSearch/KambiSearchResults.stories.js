@@ -15,7 +15,9 @@ const props = {
   hideSearchResults: false,
 };
 
-const props2 = { ...props, query: "arsez" };
+const props2 = { ...props, query: "abcd" };
+
+const props3 = { ...props, query: "" };
 
 stories.add(
   "Search Results",
@@ -35,6 +37,16 @@ stories.add(
     </MockedProviderWithContext>
   ),
   info({ text: "No Search Results" })
+);
+
+stories.add(
+  "Not Searching",
+  () => (
+    <MockedProviderWithContext mocks={mocks.notSearching} addTypename={false}>
+      <KambiSearchResults {...props3} />
+    </MockedProviderWithContext>
+  ),
+  info({ text: "Not Searching" })
 );
 
 // not-searching: popular/recent
