@@ -130,6 +130,8 @@ class GamesVirtualList extends PureComponent<Props, State> {
     index: number,
     style: Object,
   }) => {
+    const isGameSectionTitleRow = has("title", this.props.games[index]);
+
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
@@ -144,7 +146,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
       );
     }
 
-    if (has("title", this.props.games[index])) {
+    if (isGameSectionTitleRow) {
       return (
         <div
           className="u-padding-horiz--md o-flex"
