@@ -38,11 +38,11 @@ export const gameSearchSuggestedList = createSelector(
     field: "popular_games",
     defaultValue: "Popular Games",
   }),
-  // getField({
-  //   slug: cmsPageSlug,
-  //   field: "popular_games",
-  //   defaultValue: "Popular Games",
-  // }), // uncomment titleSuggested once CMS is ready
+  getField({
+    slug: cmsPageSlug,
+    field: "similar_games",
+    defaultValue: "You might also like",
+  }),
   gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
   gameListSelector(GAME_LIST_IDS.POPULAR_GAMES),
   gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
@@ -50,7 +50,8 @@ export const gameSearchSuggestedList = createSelector(
   (
     titlePlaying,
     titlePopular,
-    /* titleSuggested, */ latest, // uncomment titleSuggested once CMS is ready
+    titleSuggested,
+    latest,
     popular,
     suggested,
     searchResults
@@ -58,7 +59,7 @@ export const gameSearchSuggestedList = createSelector(
     if (searchResults && searchResults.length === 1) {
       return {
         ...suggested,
-        title: "You might also like...", // use titleSuggested once CMS is ready
+        title: titleSuggested,
         location: EVENT_LOCATIONS.SUGGESTED_GAMES,
       };
     } else if (latest.games && latest.games.length) {

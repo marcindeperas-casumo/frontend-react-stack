@@ -76,7 +76,7 @@ describe("Models/GameSearch/Selectors", () => {
 
       expect(gameSearchSuggestedList(state)).toEqual({
         games: ["foo"],
-        title: "You might also like...",
+        title: "You might also like",
         location: "suggestedGames",
       });
     });
