@@ -12,7 +12,7 @@ import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import NoResultsIcon from "./no-results-icon.svg";
 
-const TOP_SEARCHES_QUERY = gql`
+export const TOP_SEARCHES_QUERY = gql`
   query TopSearches($count: Int!) {
     topSearches(count: $count) {
       termKey
@@ -54,7 +54,7 @@ const resultTypesGroupingMap = {
   LEAGUE: "Sports, Regions & Leagues",
 };
 
-const SEARCH_QUERY = gql`
+export const SEARCH_QUERY = gql`
   query SearchQuery($query: String!) {
     search(query: $query) {
       type
