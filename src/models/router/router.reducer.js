@@ -1,21 +1,19 @@
+import { createReducer } from "Utils";
 import { types } from "./router.constants";
 
-const initialState = {
+const DEFAULT_STATE = {
   activeComponents: [],
   routeParams: [],
 };
 
-const routerReducer = (state = initialState, action) => {
-  switch (action.type) {
-    case types.ACTIVATE_COMPONENT:
-      return {
-        ...state,
-        activeComponents: [action.componentId],
-        routeParams: action.routeParams || [],
-      };
-    default:
-      return state;
-  }
+const handlers = {
+  [types.ACTIVATE_COMPONENT]: (state, action) => ({
+    ...state,
+    activeComponents: [action.componentId],
+    routeParams: action.routeParams || [],
+  }),
 };
+
+const routerReducer = createReducer(DEFAULT_STATE, handlers);
 
 export default routerReducer;
