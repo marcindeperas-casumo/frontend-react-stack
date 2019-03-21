@@ -39,10 +39,10 @@ export const playerGamesSelector = createSelector(
       let list = [];
       map(game => {
         const letter = head(game).toLocaleUpperCase();
-        const title = isNaN(letter) ? letter : "#0-9";
-        if (!includes(title, lettersMap)) {
-          lettersMap = append(title, lettersMap);
-          list = append({ title }, list);
+        const sectionTitle = isNaN(letter) ? letter : "#0-9";
+        if (!includes(sectionTitle, lettersMap)) {
+          lettersMap = append(sectionTitle, lettersMap);
+          list = append({ title: sectionTitle }, list);
         }
         list = append({ game }, list);
       }, games);

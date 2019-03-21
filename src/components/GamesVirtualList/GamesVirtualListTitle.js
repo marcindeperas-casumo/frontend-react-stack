@@ -8,7 +8,7 @@ type Props = {
   title: string,
 };
 
-export default class GameRowSearchSectionTitle extends PureComponent<Props> {
+export default class GamesVirtualListTitle extends PureComponent<Props> {
   render() {
     return (
       <Flex align="center">

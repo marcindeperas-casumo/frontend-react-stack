@@ -3,12 +3,12 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import GameRowSearch from "Components/GameRowSearch";
-import GameRowSearchSectionTitle from "Components/GameRowSearch/GameRowSearchSectionTitle";
 import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import GamesVirtualList from "Components/GamesVirtualList";
+import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
 import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
 
 import "./GameSearch.scss";
@@ -79,7 +79,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           <div className="c-game-search-virtual-list">
             <GamesVirtualList
               renderItem={id => <GameRowSearch slug={id} />}
-              renderTitle={title => <GameRowSearchSectionTitle title={title} />}
+              renderTitle={title => <GamesVirtualListTitle title={title} />}
             />
           </div>
         </TrackProvider>
