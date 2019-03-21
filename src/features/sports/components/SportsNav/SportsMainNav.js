@@ -56,7 +56,7 @@ class SportsMainNav extends React.Component<Props> {
               <Flex justify="end" align="center" className="o-flex--1">
                 <EditPillsButton
                   onClick={onEdit}
-                  className="t-background-white t-color-grey"
+                  className="t-background-white t-color-grey u-drop-shadow"
                 />
               </Flex>
             </Flex.Block>
