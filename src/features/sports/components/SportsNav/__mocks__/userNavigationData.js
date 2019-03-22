@@ -1,3 +1,6 @@
+const activeIndicator =
+  "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
+
 export default [
   {
     sport: {
@@ -7,6 +10,7 @@ export default [
       termKey: "football",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg",
+      activeIndicator,
       canSelectSubgroups: true,
     },
     subNav: [
@@ -65,6 +69,7 @@ export default [
       termKey: "basketball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/basketball1.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -123,6 +128,7 @@ export default [
       termKey: "golf",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/golf.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -181,6 +187,7 @@ export default [
       termKey: "tennis",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -240,6 +247,7 @@ export default [
       flagEmoji: null,
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/american-football.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -280,6 +288,7 @@ export default [
       termKey: "athletics",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/athletics.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -311,6 +320,7 @@ export default [
       termKey: "australian_rules",
       flagEmoji: "🇦🇺",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -342,6 +352,7 @@ export default [
       termKey: "badminton",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -364,6 +375,7 @@ export default [
       termKey: "bandy",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/bandy.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -386,6 +398,7 @@ export default [
       termKey: "baseball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/baseball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -417,6 +430,7 @@ export default [
       termKey: "boxing",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/boxing.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -448,6 +462,7 @@ export default [
       termKey: "chess",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/chess.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -479,6 +494,7 @@ export default [
       termKey: "cricket",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -501,6 +517,7 @@ export default [
       termKey: "cycling",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cycling.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -559,6 +576,7 @@ export default [
       termKey: "darts",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/darts.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -590,6 +608,7 @@ export default [
       termKey: "esports",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/e-sports.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -648,6 +667,7 @@ export default [
       termKey: "floorball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/floorball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -679,6 +699,7 @@ export default [
       termKey: "futsal",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -701,6 +722,7 @@ export default [
       termKey: "gaelic_sports",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/gaelic.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -753,6 +775,7 @@ export default [
       termKey: "handball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/handball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -811,6 +834,7 @@ export default [
       termKey: "ice_hockey",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/ice_hockey.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -869,6 +893,7 @@ export default [
       termKey: "motorsports",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/motorsports.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -927,6 +952,7 @@ export default [
       termKey: "netball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/netball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -968,6 +994,7 @@ export default [
       flagEmoji: null,
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -990,6 +1017,7 @@ export default [
       termKey: "politics",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/politics.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1048,6 +1076,7 @@ export default [
       termKey: "rugby_league",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1088,6 +1117,7 @@ export default [
       termKey: "rugby_union",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1146,6 +1176,7 @@ export default [
       termKey: "snooker",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/snooker.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1186,6 +1217,7 @@ export default [
       termKey: "squash",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1208,6 +1240,7 @@ export default [
       termKey: "surfing",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/surfing.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1239,6 +1272,7 @@ export default [
       termKey: "trotting",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/trotting.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1288,6 +1322,7 @@ export default [
       termKey: "tv___novelty",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tv_novelty.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1328,6 +1363,7 @@ export default [
       termKey: "ufc_mma",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/mma.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1359,6 +1395,7 @@ export default [
       termKey: "volleyball",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1417,6 +1454,7 @@ export default [
       termKey: "water_polo",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1440,6 +1478,7 @@ export default [
       flagEmoji: null,
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1463,6 +1502,7 @@ export default [
       flagEmoji: null,
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/wintersports.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1503,6 +1543,7 @@ export default [
       termKey: "wwe_pro_wrestling",
       flagEmoji: null,
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
