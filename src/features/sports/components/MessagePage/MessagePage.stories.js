@@ -1,7 +1,7 @@
-/* @flow */
+// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MessagePage from "./MessagePage";
+import { MessagePage } from "./MessagePage";
 
 const stories = storiesOf("Sports/MessagePage", module);
 

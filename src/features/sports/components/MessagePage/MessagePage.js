@@ -3,14 +3,15 @@ import React from "react";
 import type { Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 type Props = {
-  heading: string,
-  message: string,
+  headingTermKey: string,
+  messageTermKey: string,
   image: Node,
 };
 
-const MessagePage = ({ image, heading, message }: Props) => (
+const MessagePage = ({ image, headingTermKey, messageTermKey }: Props) => (
   <Flex
     direction="vertical"
     spacing="md"
@@ -21,11 +22,13 @@ const MessagePage = ({ image, heading, message }: Props) => (
     <Flex.Item>{image}</Flex.Item>
     <Flex.Item>
       <Text tag="h2" size="4xlg" className="u-text-align-center">
-        {heading}
+        <DictionaryTerm termKey={headingTermKey} />
       </Text>
     </Flex.Item>
     <Flex.Item>
-      <Text className="u-text-align-center">{message}</Text>
+      <Text className="u-text-align-center">
+        <DictionaryTerm termKey={messageTermKey} />
+      </Text>
     </Flex.Item>
   </Flex>
 );
