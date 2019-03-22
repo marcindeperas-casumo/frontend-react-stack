@@ -14,7 +14,10 @@ describe("Models/PlayerGames/Selectors", () => {
       const gameList = { [GAME_LIST_IDS.PLAYER_GAMES]: { games } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(playerGamesSelector(state)).toEqual(games);
+      expect(playerGamesSelector(state)).toEqual([
+        { title: "F" },
+        { game: "foo" },
+      ]);
     });
 
     test("returns empty array if not in state", () => {
@@ -48,7 +51,7 @@ describe("Models/PlayerGames/Selectors", () => {
         },
       };
 
-      expect(playerGamesCountSelector(state)).toBe(123);
+      expect(playerGamesCountSelector(state)).toBe(123 + 27);
     });
   });
 });
