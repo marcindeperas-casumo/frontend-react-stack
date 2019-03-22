@@ -89,6 +89,7 @@ export const EVENTS = {
   SEARCH_INTENT: "Search Intent",
   SEARCH_INITIATED: "Search Initiated",
   CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
+  CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
 };
 
 export const EVENT_PROPS = {

@@ -10,6 +10,7 @@ import EitherOr from "Components/EitherOr";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
+import TrackView from "Components/TrackView";
 
 const justify = {
   mobile: "end",
@@ -36,6 +37,7 @@ export type Props = {|
   fetchCurated: Function,
   onLaunchGame: Function,
   typeOfCurated: string,
+  curatedSlug: string,
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
@@ -64,13 +66,13 @@ export default class CuratedCard extends PureComponent<Props> {
     return "/en/cash/deposit";
   }
 
-  get trackClickData() {
-    const { typeOfCurated, subtitle, gameData } = this.props;
+  get trackData() {
+    const { typeOfCurated, subtitle, gameData, curatedSlug } = this.props;
     const isGame = Boolean(gameData);
 
     return {
       [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_NAME]: isGame ? gameData.name : subtitle,
+      [EVENT_PROPS.CURATED_NAME]: curatedSlug,
     };
   }
 
@@ -90,9 +92,13 @@ export default class CuratedCard extends PureComponent<Props> {
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
+        <TrackView
+          eventName={EVENTS.CURATED_COMPONENT_VIEWED}
+          data={this.trackData}
+        />
         <TrackClick
           eventName={EVENTS.CURATED_COMPONENT_CLICKED}
-          data={this.trackClickData}
+          data={this.trackData}
         >
           <CuratedCardBackground
             link={this.cardClickUrl}
