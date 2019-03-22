@@ -53,9 +53,8 @@ export const isNavItemSelected = (
   allowSubPathMatching: boolean
 ) => {
   const isCurrentHash = currentHash === `#${navItem.path}`;
-  const isParentPath = allowSubPathMatching
-    ? currentHash.includes(`${navItem.path}/`)
-    : false;
+  const isParentPath =
+    allowSubPathMatching && currentHash.includes(`${navItem.path}/`);
   const isDrillDown = currentHash.includes(
     navItem.path.replace(/racing|filter/, "drill-down")
   );
