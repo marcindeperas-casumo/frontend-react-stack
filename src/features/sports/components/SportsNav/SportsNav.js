@@ -28,6 +28,7 @@ export const USER_NAVIGATION_QUERY = gql`
         termKey
         flagEmoji
         icon
+        activeIndicator
         canSelectSubgroups
       }
 
@@ -92,13 +93,11 @@ class SportsNav extends React.Component<SportsNavProps> {
     text: item.sport.name,
     path: item.sport.clientPath,
     key: item.sport.termKey,
-    icon: (
-      <img
-        className="c-sports-nav-tab__icon"
-        src={item.sport.icon}
-        alt={item.sport.name}
-      />
-    ),
+    iconProps: {
+      iconSrc: item.sport.icon,
+      activeIndicatorSrc: item.sport.activeIndicator,
+      alt: item.sport.name,
+    },
     canEdit: item.sport.canSelectSubgroups,
     subNav: item.subNav.map(subgroup => ({
       text: (
