@@ -7,14 +7,14 @@ import SportsNav, { isNavItemSelected, onNavItemSelected } from "./SportsNav";
 import SportsNavSkeleton from "./SportsNavSkeleton";
 import SportsMainNav from "./SportsMainNav";
 import SportsSubNav from "./SportsSubNav";
-import multipleNavItemsMock from "./__mocks__/userNavigationQuery";
+import mocks from "./__mocks__/userNavigationQuery";
 import navItems from "./__mocks__/navItems";
 
 describe("<SportsNav/>", () => {
   test("should render skeleton while loading navigation data", async () => {
     const rendered = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#home"} />
@@ -27,7 +27,7 @@ describe("<SportsNav/>", () => {
   test("should not be rendered on #event, or #bethistory kambi routes", async () => {
     const renderedOnEventPage = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#event"} />
@@ -35,7 +35,7 @@ describe("<SportsNav/>", () => {
     );
     const renderedOnBethistoryPage = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#bethistory"} />
@@ -49,7 +49,7 @@ describe("<SportsNav/>", () => {
   test("should render without errors once data is resolved", async () => {
     const rendered = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#home"} />

@@ -9,7 +9,9 @@ import {
   fetchMostPopularGames,
   types,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesAction,
 } from "Models/gameSearch";
+import { fetchSuggestedGames } from "Api/api.games";
 
 describe("Models/GameSearch/Actions", () => {
   describe("initFetchQuerySearch()", () => {
@@ -169,6 +171,50 @@ describe("Models/GameSearch/Actions", () => {
         id,
         page,
         pageSize,
+        platform,
+        variant,
+      });
+    });
+  });
+
+  describe("fetchSuggestedGamesAction()", () => {
+    const country = "gb";
+    const handshake = { foo: "bar" };
+    const game = "starburst";
+    const platform = "mobile";
+    const variant = "default";
+
+    const action = fetchSuggestedGamesAction(
+      game,
+      handshake,
+      platform,
+      country,
+      variant
+    );
+
+    test("starts api fetch for suggestedGames", () => {
+      expect(action).toMatchObject({
+        type: fetchTypes.FETCH,
+        name: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+      });
+    });
+
+    test("fires done action when fetch is finished", () => {
+      expect(action).toMatchObject({
+        postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,
+      });
+    });
+
+    test("asyncCall fetcher function exists in the action", () => {
+      expect(typeof action.asyncCall).toBe("function");
+      expect(action.asyncCall).toEqual(fetchSuggestedGames);
+    });
+
+    test("passes all parameters for the fetch function", () => {
+      expect(action.asyncCallData).toEqual({
+        country,
+        handshake,
+        game,
         platform,
         variant,
       });

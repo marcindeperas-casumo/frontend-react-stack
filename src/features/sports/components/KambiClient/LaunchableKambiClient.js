@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
+import ErrorMessage from "Components/ErrorMessage";
 import {
   currencySelector,
   countrySelector,
@@ -17,7 +18,7 @@ import {
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
-const LAUNCH_KAMBI_MUTATION = gql`
+export const LAUNCH_KAMBI_MUTATION = gql`
   mutation LaunchKambi {
     launchKambi {
       clientBootstrapUrl
@@ -27,7 +28,7 @@ const LAUNCH_KAMBI_MUTATION = gql`
   }
 `;
 
-const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
+export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClientQuery {
     userHomepage
     kambiClientVisible @client
@@ -47,7 +48,7 @@ class LaunchableKambiClientQuery extends Query<
 > {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
-class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
+export class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
   static contextType = ClientContext;
 
   onNavigate = () =>
@@ -65,7 +66,7 @@ class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> 
       <LaunchKambiMutationOnMount mutation={LAUNCH_KAMBI_MUTATION}>
         {({ loading, error, data }) => {
           if (error) {
-            return "Error loading client";
+            return <ErrorMessage />;
           }
 
           if (!data || !data.launchKambi) {

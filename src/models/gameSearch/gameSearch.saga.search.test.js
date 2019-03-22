@@ -8,6 +8,7 @@ import {
   clearSearch,
   fetchLatestPlayedSaga,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesSaga,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -86,7 +87,9 @@ describe("Models/GameSearch/Saga", () => {
       put(updateEntity(gameListEntity))
     );
 
-    expect(directHitGen.next().value).toEqual(call(fetchLatestPlayedSaga));
+    expect(directHitGen.next().value).toEqual(
+      call(fetchSuggestedGamesSaga, "foo")
+    );
 
     expect(directHitGen.next().done).toBe(true);
 

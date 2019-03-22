@@ -3,6 +3,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { has } from "ramda";
+import ErrorMessage from "Components/ErrorMessage";
 import {
   NAVIGATE_CLIENT_MUTATION,
   ClientContext,
@@ -27,6 +28,7 @@ export const USER_NAVIGATION_QUERY = gql`
         termKey
         flagEmoji
         icon
+        activeIndicator
         canSelectSubgroups
       }
 
@@ -91,13 +93,11 @@ class SportsNav extends React.Component<SportsNavProps> {
     text: item.sport.name,
     path: item.sport.clientPath,
     key: item.sport.termKey,
-    icon: (
-      <img
-        className="c-sports-nav-tab__icon"
-        src={item.sport.icon}
-        alt={item.sport.name}
-      />
-    ),
+    iconProps: {
+      iconSrc: item.sport.icon,
+      activeIndicatorSrc: item.sport.activeIndicator,
+      alt: item.sport.name,
+    },
     canEdit: item.sport.canSelectSubgroups,
     subNav: item.subNav.map(subgroup => ({
       text: (
@@ -127,9 +127,10 @@ class SportsNav extends React.Component<SportsNavProps> {
           if (loading) {
             return <SportsNavSkeleton />;
           }
+
+          // TODO: adampilks - handle error here
           if (error) {
-            // TODO: adampilks - handle error here
-            return <SportsNavSkeleton />;
+            return <ErrorMessage direction="horizontal" />;
           }
 
           if (data && data.sportsNavigation) {
