@@ -19,7 +19,7 @@ describe.only("<TrackView />", () => {
     expect(track).toHaveBeenCalledTimes(1);
   });
 
-//   test("should pass the correct information to track handler", () => {
-//       expect
-//   });
+  //   test("should pass the correct information to track handler", () => {
+  //       expect
+  //   });
 });
