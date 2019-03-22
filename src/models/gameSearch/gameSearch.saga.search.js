@@ -37,8 +37,8 @@ export function* gameSearchSaga(action) {
 
   yield put(updateEntity(entities));
 
-  const isNoMatch = response.games.length === 0;
-  const isDirectMatch = response.games.length === 1;
+  const isNoMatch = response.games && response.games.length === 0;
+  const isDirectMatch = response.games && response.games.length === 1;
 
   if (isNoMatch) {
     yield call(fetchLatestPlayedSaga);
