@@ -3,6 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import SportsIcon from "Features/sports/components/SportsIcon";
 import type { SportsNavItemType } from "./types";
 
 import "./SportsNavTab.scss";
@@ -15,9 +16,10 @@ type SportsNavTabProps = {
 
 const SportsNavTab = ({ navItem, isSelected, onClick }: SportsNavTabProps) => (
   <Flex.Item
-    className={classNames("c-sports-nav-tab u-padding-horiz o-flex", {
-      "c-sports-nav-tab--selected": isSelected,
-    })}
+    className={classNames(
+      "c-sports-nav-tab u-padding-horiz u-padding-top--md u-padding-bottom--lg o-flex",
+      isSelected && "c-sports-nav-tab--selected"
+    )}
     onClick={() => onClick(navItem)}
   >
     <Flex
@@ -25,8 +27,9 @@ const SportsNavTab = ({ navItem, isSelected, onClick }: SportsNavTabProps) => (
       justify="center"
       direction="vertical"
       className="o-flex--1"
+      spacing="none"
     >
-      {navItem.icon}
+      <SportsIcon {...navItem.iconProps} isActive={isSelected} />
       <Text
         tag="span"
         size="sm"

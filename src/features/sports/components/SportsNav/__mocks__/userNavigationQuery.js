@@ -1,5 +1,5 @@
 // @flow
-import { assocPath } from "ramda";
+import { evolve, take } from "ramda";
 import { USER_NAVIGATION_QUERY } from "../SportsNav";
 import mockData from "./userNavigationData";
 
@@ -14,10 +14,23 @@ const baseMock = {
   },
 };
 
+const mockWithXSports = numberOfSports =>
+  evolve({
+    result: {
+      data: {
+        sportsNavigation: take(numberOfSports),
+      },
+    },
+  });
+
+const manySports = [baseMock];
+const multipleSports = [mockWithXSports(3)(baseMock)];
+const singleSport = [mockWithXSports(1)(baseMock)];
+const error = [{ ...baseMock, error: true }];
+
 export default {
-  error: [assocPath(["error"], true, baseMock)],
-  multipleSports: [baseMock],
-  singleSport: [
-    assocPath(["result", "data", "sportsNavigation"], [mockData[0]], baseMock),
-  ],
+  manySports,
+  multipleSports,
+  singleSport,
+  error,
 };

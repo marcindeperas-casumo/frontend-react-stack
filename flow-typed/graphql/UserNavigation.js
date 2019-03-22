@@ -34,6 +34,10 @@ export type UserNavigation_sportsNavigation_sport = {
    */
   icon: ?string,
   /**
+   * The active indicator for the sport group, used on the nav
+   */
+  activeIndicator: ?string,
+  /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
    */
   canSelectSubgroups: boolean,
