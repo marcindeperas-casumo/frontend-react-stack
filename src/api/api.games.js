@@ -155,6 +155,19 @@ const handleListsFetchErrors = promises => {
   );
 };
 
+export const fetchJackpots = async ({ market, currency }) => {
+  try {
+    const { jackpots } = await getJackpots({
+      market,
+      currencyCode: currency,
+    });
+
+    return jackpots;
+  } catch (e) {
+    return [];
+  }
+};
+
 export const fetchGames = async ({
   platform,
   country,
@@ -234,13 +247,11 @@ export const fetchGames = async ({
       ...gameListsRequests,
     ])
   )).filter(hasSomeGames);
-  const jackpots = getJackpots({
-    market,
-    currencyCode: currency,
-  });
+
+  const jackpots = await fetchJackpots({ market, currency });
 
   return {
     gameLists: allListsResponses,
-    jackpots: (await jackpots).jackpots,
+    jackpots,
   };
 };
