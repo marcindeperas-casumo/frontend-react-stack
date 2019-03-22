@@ -14,22 +14,30 @@ import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { decodeString } from "Utils";
 
+const getLatestPlayedGame = async latestPlayedGamesPromise => {
+  const latestPlayedGamesResolved = (await latestPlayedGamesPromise).games;
+
+  if (!latestPlayedGamesResolved) {
+    return null;
+  }
+
+  return head(latestPlayedGamesResolved);
+};
+
 export const fetchSuggestedGames = async ({
   handshake,
   platform,
   country,
-  latestPlayedGames,
+  game,
   variant = "default",
 }) => {
   const { id, title } = handshake.gamesLists.suggestedGames || {};
-  const latestPlayedGamesResolved = (await latestPlayedGames).games;
-  const latestPlayedGame = head(latestPlayedGamesResolved);
 
-  if (!latestPlayedGame || !id) {
+  if (!game || !id) {
     return {};
   }
 
-  const slugs = await getSuggestedGames({ gameSlug: latestPlayedGame.slug });
+  const slugs = await getSuggestedGames({ gameSlug: game.slug });
 
   const games = await gamebrowserApi
     .getGamesBySlugs({
@@ -51,7 +59,11 @@ export const fetchSuggestedGames = async ({
   return {
     games,
     id,
-    title: title.replace("${GAME_NAME}", decodeString(latestPlayedGame.name)), // eslint-disable-line no-template-curly-in-string
+    // The following needs to be decoupled from here also. If we wanna use fetchSuggestedGames for
+    // different purposes we need to be able to choose between different string
+    // https://github.com/Casumo/Home/issues/27736
+    // eslint-disable-next-line no-template-curly-in-string
+    title: title.replace("${GAME_NAME}", decodeString(game.name)),
   };
 };
 
@@ -204,11 +216,12 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
+  const game = await getLatestPlayedGame(latestPlayedGames);
   const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
     country,
-    latestPlayedGames,
+    game,
   });
   const hasSomeGames = compose(
     i => i > 0,

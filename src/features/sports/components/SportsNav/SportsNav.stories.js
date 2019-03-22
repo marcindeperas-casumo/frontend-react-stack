@@ -9,6 +9,16 @@ import mocks from "./__mocks__/userNavigationQuery";
 const stories = storiesOf("Sports/SportsNav", module);
 
 stories.add(
+  "Many sports (scrolling)",
+  () => (
+    <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
+      <SportsNav currentHash="#filter/tennis/wta" />
+    </MockedProviderWithContext>
+  ),
+  info({ text: "Many sports (scrolling)" })
+);
+
+stories.add(
   "Multiple sports",
   () => (
     <MockedProviderWithContext mocks={mocks.multipleSports} addTypename={false}>
@@ -35,5 +45,5 @@ stories.add(
       <SportsNav currentHash="#filter/tennis/wta" />
     </MockedProviderWithContext>
   ),
-  info({ text: "Single sport" })
+  info({ text: "Error" })
 );

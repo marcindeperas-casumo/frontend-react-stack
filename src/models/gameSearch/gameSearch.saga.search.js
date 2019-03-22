@@ -1,3 +1,4 @@
+import { head } from "ramda";
 import { call, put, select, take } from "redux-saga/effects";
 import { countrySelector } from "Models/handshake";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
@@ -6,6 +7,7 @@ import {
   fetchQuerySearch,
   clearSearch,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesSaga,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -36,8 +38,14 @@ export function* gameSearchSaga(action) {
 
   yield put(updateEntity(entities));
 
-  // if no match or direct hit fetch latest played games
-  if (response.games.length <= 1) {
+  const isNoMatch = response.games.length === 0;
+  const isDirectMatch = response.games.length === 1;
+
+  if (isNoMatch) {
     yield call(fetchLatestPlayedSaga);
+  }
+
+  if (isDirectMatch) {
+    yield call(fetchSuggestedGamesSaga, head(response.games));
   }
 }
