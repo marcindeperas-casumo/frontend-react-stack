@@ -9,21 +9,22 @@ import mocks from "./__mocks__/kambiSearchResultsMocks";
 
 const stories = storiesOf("Sports/KambiSearchResults", module);
 
-const props = {
-  query: "arse",
+const baseProps = {
   onResultClick: action("search result clicked"),
   hideSearchResults: false,
 };
 
-const props2 = { ...props, query: "abcd" };
-
-const props3 = { ...props, query: "" };
+const props = {
+  hasResults: { ...baseProps, query: "arse" },
+  noResults: { ...baseProps, query: "nothingtofind" },
+  notSearching: { ...baseProps, query: "" },
+};
 
 stories.add(
   "Search Results",
   () => (
     <MockedProviderWithContext mocks={mocks.hasResults} addTypename={false}>
-      <KambiSearchResults {...props} />
+      <KambiSearchResults {...props.hasResults} />
     </MockedProviderWithContext>
   ),
   info({ text: "Search Results" })
@@ -33,7 +34,7 @@ stories.add(
   "No Search Results",
   () => (
     <MockedProviderWithContext mocks={mocks.noResults} addTypename={false}>
-      <KambiSearchResults {...props2} />
+      <KambiSearchResults {...props.noResults} />
     </MockedProviderWithContext>
   ),
   info({ text: "No Search Results" })
@@ -43,12 +44,8 @@ stories.add(
   "Not Searching",
   () => (
     <MockedProviderWithContext mocks={mocks.notSearching} addTypename={false}>
-      <KambiSearchResults {...props3} />
+      <KambiSearchResults {...props.notSearching} />
     </MockedProviderWithContext>
   ),
   info({ text: "Not Searching" })
 );
-
-// not-searching: popular/recent
-// searching: has results
-// searching: no results
