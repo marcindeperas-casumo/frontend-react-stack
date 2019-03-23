@@ -48,7 +48,6 @@ export const Pill = ({
 
       {onRemove && (
         <CrossIcon
-          className="t-color-grey-dark-1"
           onClick={event => {
             event.stopPropagation();
             onRemove();

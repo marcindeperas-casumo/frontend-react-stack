@@ -19,7 +19,7 @@ describe("<ModalButtonFooter />", () => {
       <ModalButtonFooter onClick={onClick}>TEST CONTENT</ModalButtonFooter>
     );
 
-    rendered.simulate("click");
+    rendered.find("Button").simulate("click");
 
     expect(onClick).toHaveBeenCalledTimes(1);
   });

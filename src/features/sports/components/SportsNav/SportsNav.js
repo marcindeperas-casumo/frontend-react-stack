@@ -109,7 +109,7 @@ class SportsNav extends React.Component<SportsNavProps> {
           {subgroup.competition.regionCode && (
             <RegionFlag
               regionCode={subgroup.competition.regionCode}
-              className="u-margin-right--sm"
+              className="u-margin-right"
             />
           )}
           {subgroup.competition.name}

@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
+import Button from "@casumo/cmp-button";
 
 type Props = {
   /** onClick handler of the footer button */
@@ -11,11 +11,11 @@ type Props = {
 };
 
 const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
-  <Flex.Block onClick={onClick} className="t-background-green">
-    <Text className="t-color-white u-font-weight-bold u-padding--lg u-text-align-center">
+  <div className="t-background-grey-light-3 u-padding--md">
+    <Button size="md" onClick={onClick} className="u-width--1/1">
       {children}
-    </Text>
-  </Flex.Block>
+    </Button>
+  </div>
 );
 
 export default ModalButtonFooter;

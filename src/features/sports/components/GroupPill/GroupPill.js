@@ -2,6 +2,7 @@
 
 import React from "react";
 import gql from "graphql-tag";
+import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { Pill } from "Components/Pill";
 
 type Props = {
@@ -16,8 +17,16 @@ type Props = {
 };
 
 const GroupPill = ({ onClick, onRemove, group, isActive = false }: Props) => (
-  <Pill onClick={onClick} onRemove={onRemove} isActive={isActive}>
-    {group.flagEmoji} {group.name}
+  <Pill
+    onClick={onClick}
+    onRemove={onRemove}
+    isActive={isActive}
+    activeClassNames="t-background-grey-dark-2 t-color-grey-light-3"
+  >
+    {group.regionCode && (
+      <RegionFlag regionCode={group.regionCode} className="u-margin-right" />
+    )}
+    {group.name}
   </Pill>
 );
 
@@ -25,7 +34,7 @@ GroupPill.fragments = {
   group: gql`
     fragment GroupPill_Group on EventGroup {
       name
-      flagEmoji
+      regionCode
     }
   `,
 };
