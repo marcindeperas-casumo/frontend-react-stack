@@ -1,5 +1,6 @@
 /* @flow */
 import * as React from "react";
+import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import Flex from "@casumo/cmp-flex";
@@ -111,30 +112,36 @@ const FavouriteCompetitionsSelector = (props: Props) => (
           <Heading>
             <DictionaryTerm termKey="favourite-competitions-selector.heading.popular" />
           </Heading>
-          {popularRegionGroups.map((group, index) => (
-            <Region
-              key={group.id}
-              group={group}
-              isExpanded={index === 0}
-              isSelected={props.isCompetitionSelected}
-              // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
-              onClick={props.toggleCompetition}
-            />
-          ))}
+          <List
+            items={popularRegionGroups}
+            render={group => (
+              <Region
+                key={group.id}
+                group={group}
+                isExpanded={group === popularRegionGroups[0]}
+                isSelected={props.isCompetitionSelected}
+                // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
+                onClick={props.toggleCompetition}
+              />
+            )}
+          />
 
           <Heading>
             <DictionaryTerm termKey="favourite-competitions-selector.heading.all" />
           </Heading>
-          {otherRegionGroups.map((group, index) => (
-            <Region
-              key={group.id}
-              group={group}
-              isExpanded={false}
-              isSelected={props.isCompetitionSelected}
-              // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
-              onClick={props.toggleCompetition}
-            />
-          ))}
+          <List
+            items={otherRegionGroups}
+            render={group => (
+              <Region
+                key={group.id}
+                group={group}
+                isExpanded={false}
+                isSelected={props.isCompetitionSelected}
+                // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
+                onClick={props.toggleCompetition}
+              />
+            )}
+          />
         </>
       );
     }}
