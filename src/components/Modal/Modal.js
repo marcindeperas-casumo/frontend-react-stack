@@ -103,11 +103,11 @@ export default class Modal extends React.Component<Props> {
         >
           {this.header}
         </Flex>
-        <Flex.Block className="c-modal__content u-content-width--tablet">
-          {this.props.children}
+        <Flex.Block className="c-modal__content">
+          <div className="u-content-width--tablet">{this.props.children}</div>
         </Flex.Block>
-        <Flex.Block className="c-modal__footer u-content-width--tablet">
-          {this.props.footer}
+        <Flex.Block className="c-modal__footer">
+          <div className="u-content-width--tablet">{this.props.footer}</div>
         </Flex.Block>
       </Flex>
     );
