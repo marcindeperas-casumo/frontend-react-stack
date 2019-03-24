@@ -1,7 +1,6 @@
 /* @flow */
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import "./SportsSearch.scss";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import {
@@ -87,7 +86,7 @@ export default class SportsSearch extends React.Component<{}, State> {
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
-                  <div className="u-tablet-search-width">
+                  <div className="u-content-width--tablet">
                     <SearchInput
                       autoFocus={true}
                       value={this.state.query}
