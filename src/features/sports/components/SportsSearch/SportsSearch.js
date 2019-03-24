@@ -8,7 +8,7 @@ import {
   UPDATE_KAMBI_CLIENT_STATE_MUTATION,
 } from "Features/sports/state";
 import KambiSearchResults from "./KambiSearchResults";
-
+import "./SportsSearch.scss";
 type State = {
   query: string,
   hideSearchResults: boolean,
@@ -80,8 +80,8 @@ export default class SportsSearch extends React.Component<{}, State> {
 
   render() {
     return (
-      <Flex direction="vertical" spacing="none">
-        <Flex.Block className="t-background-grey-light-2">
+      <>
+        <Flex.Block className="t-background-grey-light-2 c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
@@ -108,7 +108,7 @@ export default class SportsSearch extends React.Component<{}, State> {
             onResultClick={this.handleSearchResultClick}
           />
         </div>
-      </Flex>
+      </>
     );
   }
 }
