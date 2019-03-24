@@ -101,11 +101,13 @@ export default class SportsSearch extends React.Component<{}, State> {
             </Flex.Block>
           </Flex>
         </Flex.Block>
-        <KambiSearchResults
-          query={this.state.query}
-          hideSearchResults={this.state.hideSearchResults}
-          onResultClick={this.handleSearchResultClick}
-        />
+        <div className="u-content-width--tablet">
+          <KambiSearchResults
+            query={this.state.query}
+            hideSearchResults={this.state.hideSearchResults}
+            onResultClick={this.handleSearchResultClick}
+          />
+        </div>
       </Flex>
     );
   }
