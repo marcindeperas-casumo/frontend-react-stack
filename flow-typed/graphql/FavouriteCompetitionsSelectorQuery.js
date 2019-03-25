@@ -69,7 +69,8 @@ export type FavouriteCompetitionsSelectorQuery = {
   /**
    * Get list of sub-groups from a given group
    */
-  group: FavouriteCompetitionsSelectorQuery_group
+  group: FavouriteCompetitionsSelectorQuery_group,
+  internationalGroupName: string,
 };
 
 export type FavouriteCompetitionsSelectorQueryVariables = {

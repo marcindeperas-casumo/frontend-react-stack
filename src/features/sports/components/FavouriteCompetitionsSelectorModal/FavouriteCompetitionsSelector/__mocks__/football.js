@@ -1,5 +1,6 @@
 export default {
   data: {
+    internationalGroupName: "International",
     group: {
       __typename: "EventGroup",
       name: "Football",

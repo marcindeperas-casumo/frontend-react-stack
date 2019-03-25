@@ -40,6 +40,10 @@ export const FAVOURITE_COMPETITIONS_SELECTOR_QUERY = gql`
         }
       }
     }
+
+    internationalGroupName: dictionaryTerm(
+      key: "favourite-competitions-selector.group.international"
+    )
   }
   ${Intro.fragments.group}
   ${Region.fragments.group}
@@ -91,7 +95,7 @@ const FavouriteCompetitionsSelector = (props: Props) => (
         ...nonOrphanGroups,
         // Create region that contains all orphaned (non-regional competitions)
         {
-          name: "International",
+          name: data.internationalGroupName,
           userFavourite: false,
           popular: false,
           groups: orphanGroups.map(transformOrphanGroup),
