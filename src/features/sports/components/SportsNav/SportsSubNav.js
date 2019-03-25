@@ -54,7 +54,7 @@ const SportsSubNav = ({
   return (
     <Scrollable
       className="t-background-grey-light-2 u-margin-top--sm"
-      padding="lg"
+      padding={{ default: "lg", tablet: "3xlg" }}
       itemSpacing="default"
     >
       <SportsSubNavItem

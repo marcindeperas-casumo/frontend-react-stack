@@ -8,7 +8,7 @@ import ModalButtonFooter from "./ModalButtonFooter";
 const stories = storiesOf("Sports/ModalButtonFooter", module);
 
 stories.add(
-  "Default",
+  "Default View",
   () => (
     <ModalButtonFooter onClick={action("onClick")}>
       Modal button footer
