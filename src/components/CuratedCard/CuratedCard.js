@@ -67,12 +67,11 @@ export default class CuratedCard extends PureComponent<Props> {
   }
 
   get trackData() {
-    const { typeOfCurated, subtitle, gameData, curatedSlug } = this.props;
-    const isGame = Boolean(gameData);
+    const { typeOfCurated, curatedSlug = "" } = this.props;
 
     return {
       [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_NAME]: curatedSlug,
+      [EVENT_PROPS.CURATED_SLUG]: curatedSlug.split(".")[1],
     };
   }
 

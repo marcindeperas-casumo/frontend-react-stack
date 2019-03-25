@@ -96,7 +96,7 @@ export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
   CURATED_TYPE: "type",
-  CURATED_NAME: "name",
+  CURATED_SLUG: "slug",
 };
 
 export const EVENT_LOCATIONS = {
