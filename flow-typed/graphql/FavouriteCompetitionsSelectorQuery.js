@@ -45,6 +45,10 @@ export type FavouriteCompetitionsSelectorQuery_group_groups = {
    */
   name: string,
   /**
+   * The region code for the group, iso3166 code for most with some custom regions
+   */
+  regionCode: ?string,
+  /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,

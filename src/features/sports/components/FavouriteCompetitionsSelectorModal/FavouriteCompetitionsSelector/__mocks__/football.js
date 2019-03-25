@@ -9,6 +9,7 @@ export default {
           id: 1000093381,
           popular: true,
           name: "Champions League",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -16,6 +17,7 @@ export default {
           id: 1000461733,
           popular: false,
           name: "England",
+          regionCode: "GB-ENG",
           groups: [
             {
               id: 1000094985,
@@ -34,22 +36,6 @@ export default {
               popular: true,
             },
             {
-              id: 1000094982,
-              userFavourite: false,
-              name: "League One",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000094987,
-              userFavourite: false,
-              name: "League Two",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 1000094984,
               userFavourite: false,
               name: "FA Cup",
@@ -65,54 +51,6 @@ export default {
               __typename: "EventGroup",
               popular: false,
             },
-            {
-              id: 2000054642,
-              userFavourite: false,
-              name: "Isthmian League Premier Division",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000095485,
-              userFavourite: false,
-              name: "National League",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000050126,
-              userFavourite: false,
-              name: "National League North",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000385084,
-              userFavourite: false,
-              name: "National League South",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000054030,
-              userFavourite: false,
-              name: "Northern League Premier Division",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000052846,
-              userFavourite: false,
-              name: "Southern League Premier Division",
-              regionCode: "GB-ENG",
-              __typename: "EventGroup",
-              popular: false,
-            },
           ],
         },
         {
@@ -120,6 +58,7 @@ export default {
           id: 1000461745,
           popular: false,
           name: "Italy",
+          regionCode: "IT",
           groups: [
             {
               id: 1000095001,
@@ -141,14 +80,6 @@ export default {
               id: 1000094998,
               userFavourite: false,
               name: "TIM Cup",
-              regionCode: "IT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000056483,
-              userFavourite: false,
-              name: "Serie A (W)",
               regionCode: "IT",
               __typename: "EventGroup",
               popular: false,
@@ -177,14 +108,6 @@ export default {
               __typename: "EventGroup",
               popular: false,
             },
-            {
-              id: 2000056085,
-              userFavourite: false,
-              name: "Serie D",
-              regionCode: "IT",
-              __typename: "EventGroup",
-              popular: false,
-            },
           ],
         },
         {
@@ -192,6 +115,7 @@ export default {
           id: 1000461813,
           popular: false,
           name: "Spain",
+          regionCode: "ES",
           groups: [
             {
               id: 1000095049,
@@ -205,30 +129,6 @@ export default {
               id: 1000094708,
               userFavourite: false,
               name: "La Liga 2",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000094816,
-              userFavourite: false,
-              name: "Segunda B-1",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000094817,
-              userFavourite: false,
-              name: "Segunda B-2",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000094818,
-              userFavourite: false,
-              name: "Segunda B-3",
               regionCode: "ES",
               __typename: "EventGroup",
               popular: false,
@@ -249,102 +149,6 @@ export default {
               __typename: "EventGroup",
               popular: false,
             },
-            {
-              id: 2000051626,
-              userFavourite: false,
-              name: "Superliga Femenina (W)",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103573,
-              userFavourite: false,
-              name: "Tercera División 1",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103583,
-              userFavourite: false,
-              name: "Tercera División 11",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103584,
-              userFavourite: false,
-              name: "Tercera División 12",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103585,
-              userFavourite: false,
-              name: "Tercera División 13",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103586,
-              userFavourite: false,
-              name: "Tercera División 14",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103587,
-              userFavourite: false,
-              name: "Tercera División 15",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103588,
-              userFavourite: false,
-              name: "Tercera División 16",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103590,
-              userFavourite: false,
-              name: "Tercera División 18",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103575,
-              userFavourite: false,
-              name: "Tercera División 3",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103576,
-              userFavourite: false,
-              name: "Tercera División 4",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103578,
-              userFavourite: false,
-              name: "Tercera División 6",
-              regionCode: "ES",
-              __typename: "EventGroup",
-              popular: false,
-            },
           ],
         },
         {
@@ -352,6 +156,7 @@ export default {
           id: 1000461728,
           popular: false,
           name: "Germany",
+          regionCode: "DE",
           groups: [
             {
               id: 1000094994,
@@ -394,97 +199,9 @@ export default {
               popular: false,
             },
             {
-              id: 2000062770,
-              userFavourite: false,
-              name: "Oberliga Baden-Württemberg",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000062774,
-              userFavourite: false,
-              name: "Oberliga Bayern Nord",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000062775,
-              userFavourite: false,
-              name: "Oberliga Bayern Süd",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000065519,
-              userFavourite: false,
-              name: "Oberliga Bremen",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000062771,
-              userFavourite: false,
-              name: "Oberliga Hamburg",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000064573,
-              userFavourite: false,
-              name: "Oberliga Hessen",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000062736,
-              userFavourite: false,
-              name: "Oberliga Rheinland-Pfalz/Saar",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000059631,
-              userFavourite: false,
-              name: "Regionalliga Bayern",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 1000094593,
               userFavourite: false,
               name: "Regionalliga Nord",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000059629,
-              userFavourite: false,
-              name: "Regionalliga Nordost",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000059630,
-              userFavourite: false,
-              name: "Regionalliga Südwest",
-              regionCode: "DE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000355768,
-              userFavourite: false,
-              name: "Regionalliga West",
               regionCode: "DE",
               __typename: "EventGroup",
               popular: false,
@@ -496,6 +213,7 @@ export default {
           id: 1000461727,
           popular: false,
           name: "France",
+          regionCode: "FR",
           groups: [
             {
               id: 1000094991,
@@ -538,22 +256,6 @@ export default {
               popular: false,
             },
             {
-              id: 1000190533,
-              userFavourite: false,
-              name: "Division 1 (W)",
-              regionCode: "FR",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000181002,
-              userFavourite: false,
-              name: "National 2 Group D",
-              regionCode: "FR",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 2000056080,
               userFavourite: false,
               name: "National 3",
@@ -568,6 +270,7 @@ export default {
           id: 2000084547,
           popular: false,
           name: "AFC Champions League",
+          regionCode: null,
           groups: [],
         },
         {
@@ -575,6 +278,7 @@ export default {
           id: 1000123032,
           popular: false,
           name: "African Nations Cup",
+          regionCode: null,
           groups: [],
         },
         {
@@ -582,6 +286,7 @@ export default {
           id: 2000066140,
           popular: false,
           name: "African Nations Cup Qualification",
+          regionCode: null,
           groups: [],
         },
         {
@@ -589,6 +294,7 @@ export default {
           id: 1000461754,
           popular: false,
           name: "Argentina",
+          regionCode: "AR",
           groups: [
             {
               id: 2000050561,
@@ -645,6 +351,7 @@ export default {
           id: 1000461755,
           popular: false,
           name: "Australia",
+          regionCode: "AU",
           groups: [
             {
               id: 1000182606,
@@ -677,6 +384,7 @@ export default {
           id: 1000461751,
           popular: false,
           name: "Austria",
+          regionCode: "AT",
           groups: [
             {
               id: 1000345237,
@@ -685,22 +393,6 @@ export default {
               regionCode: "AT",
               __typename: "EventGroup",
               popular: true,
-            },
-            {
-              id: 2000055929,
-              userFavourite: false,
-              name: "Regional League Central",
-              regionCode: "AT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000055928,
-              userFavourite: false,
-              name: "Regional League East",
-              regionCode: "AT",
-              __typename: "EventGroup",
-              popular: false,
             },
             {
               id: 2000055930,
@@ -725,6 +417,7 @@ export default {
           id: 1000461740,
           popular: false,
           name: "Belgium",
+          regionCode: "BE",
           groups: [
             {
               id: 1000094965,
@@ -754,14 +447,6 @@ export default {
               id: 1000094954,
               userFavourite: false,
               name: "Eerste Klasse Amateurs",
-              regionCode: "BE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000105053,
-              userFavourite: false,
-              name: "First Division (W)",
               regionCode: "BE",
               __typename: "EventGroup",
               popular: false,
@@ -797,6 +482,7 @@ export default {
           id: 2000051030,
           popular: false,
           name: "Bolivia",
+          regionCode: "BO",
           groups: [
             {
               id: 2000051031,
@@ -813,6 +499,7 @@ export default {
           id: 1000461741,
           popular: false,
           name: "Brazil",
+          regionCode: "BR",
           groups: [
             {
               id: 1000094569,
@@ -823,9 +510,25 @@ export default {
               popular: false,
             },
             {
+              id: 2000106234,
+              userFavourite: false,
+              name: "Acriano",
+              regionCode: "BR",
+              __typename: "EventGroup",
+              popular: false,
+            },
+            {
               id: 2000068940,
               userFavourite: false,
               name: "Campeonato Brasileiro (W)",
+              regionCode: "BR",
+              __typename: "EventGroup",
+              popular: false,
+            },
+            {
+              id: 1000094971,
+              userFavourite: false,
+              name: "Carioca",
               regionCode: "BR",
               __typename: "EventGroup",
               popular: false,
@@ -847,6 +550,22 @@ export default {
               popular: false,
             },
             {
+              id: 1000095035,
+              userFavourite: false,
+              name: "Gaúcho",
+              regionCode: "BR",
+              __typename: "EventGroup",
+              popular: false,
+            },
+            {
+              id: 2000066021,
+              userFavourite: false,
+              name: "Gaúcho U20",
+              regionCode: "BR",
+              __typename: "EventGroup",
+              popular: false,
+            },
+            {
               id: 2000052788,
               userFavourite: false,
               name: "Goiano",
@@ -858,14 +577,6 @@ export default {
               id: 1000095036,
               userFavourite: false,
               name: "Mineiro",
-              regionCode: "BR",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000103873,
-              userFavourite: false,
-              name: "Mineiro 2",
               regionCode: "BR",
               __typename: "EventGroup",
               popular: false,
@@ -909,6 +620,7 @@ export default {
           id: 1000461757,
           popular: false,
           name: "Bulgaria",
+          regionCode: "BG",
           groups: [
             {
               id: 1000285388,
@@ -928,7 +640,7 @@ export default {
             },
             {
               id: 2000115276,
-              userFavourite: true,
+              userFavourite: false,
               name: "PFL 1 Play-offs",
               regionCode: "BG",
               __typename: "EventGroup",
@@ -941,6 +653,7 @@ export default {
           id: 1000461738,
           popular: false,
           name: "Chile",
+          regionCode: "CL",
           groups: [
             {
               id: 2000050080,
@@ -973,6 +686,7 @@ export default {
           id: 1000461784,
           popular: false,
           name: "China",
+          regionCode: "CN",
           groups: [
             {
               id: 2000055591,
@@ -997,6 +711,7 @@ export default {
           id: 1000093393,
           popular: false,
           name: "Club Friendly Matches",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1004,10 +719,11 @@ export default {
           id: 1000461759,
           popular: false,
           name: "Colombia",
+          regionCode: "CO",
           groups: [
             {
               id: 1000449742,
-              userFavourite: true,
+              userFavourite: false,
               name: "Liga Águila",
               regionCode: "CO",
               __typename: "EventGroup",
@@ -1028,6 +744,7 @@ export default {
           id: 2000114415,
           popular: false,
           name: "CONCACAF Champions League",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1035,6 +752,7 @@ export default {
           id: 1000093398,
           popular: false,
           name: "Copa America",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1042,6 +760,7 @@ export default {
           id: 1000093399,
           popular: false,
           name: "Copa Libertadores",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1049,7 +768,16 @@ export default {
           id: 2000050275,
           popular: false,
           name: "Costa Rica",
+          regionCode: "CR",
           groups: [
+            {
+              id: 2000057464,
+              userFavourite: false,
+              name: "Liga de Ascenso",
+              regionCode: "CR",
+              __typename: "EventGroup",
+              popular: false,
+            },
             {
               id: 2000050276,
               userFavourite: false,
@@ -1065,27 +793,12 @@ export default {
           id: 1000461739,
           popular: false,
           name: "Croatia",
+          regionCode: "HR",
           groups: [
             {
               id: 1000095736,
               userFavourite: false,
               name: "1. HNL League",
-              regionCode: "HR",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000052327,
-              userFavourite: false,
-              name: "2. HNL League",
-              regionCode: "HR",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000085049,
-              userFavourite: false,
-              name: "3. HNL League",
               regionCode: "HR",
               __typename: "EventGroup",
               popular: false,
@@ -1097,43 +810,12 @@ export default {
           id: 1000461735,
           popular: false,
           name: "Czech Republic",
+          regionCode: "CZ",
           groups: [
             {
               id: 1000094975,
               userFavourite: false,
               name: "First League",
-              regionCode: "CZ",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000085689,
-              userFavourite: false,
-              name: "4. Liga",
-              regionCode: "CZ",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000051610,
-              userFavourite: false,
-              name: "MSFL",
-              regionCode: "CZ",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000085810,
-              userFavourite: false,
-              name: "Regional Leagues",
-              regionCode: "CZ",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000051159,
-              userFavourite: false,
-              name: "ČFL",
               regionCode: "CZ",
               __typename: "EventGroup",
               popular: false,
@@ -1145,6 +827,7 @@ export default {
           id: 1000461736,
           popular: false,
           name: "Denmark",
+          regionCode: "DK",
           groups: [
             {
               id: 1000094978,
@@ -1187,14 +870,6 @@ export default {
               popular: false,
             },
             {
-              id: 1000393906,
-              userFavourite: false,
-              name: "DS Pulje 3",
-              regionCode: "DK",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 2000088288,
               userFavourite: false,
               name: "2nd Division Pulje 1",
@@ -1225,6 +900,7 @@ export default {
           id: 2000095271,
           popular: false,
           name: "Euro 2020",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -1232,6 +908,7 @@ export default {
           id: 2000117846,
           popular: false,
           name: "Euro 2020 Qualification",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -1239,6 +916,7 @@ export default {
           id: 2000051195,
           popular: false,
           name: "Europa League",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -1246,6 +924,7 @@ export default {
           id: 1000151772,
           popular: false,
           name: "FIFA World Cup U20",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1253,10 +932,11 @@ export default {
           id: 1000461822,
           popular: false,
           name: "Finland",
+          regionCode: "FI",
           groups: [
             {
               id: 1000094989,
-              userFavourite: true,
+              userFavourite: false,
               name: "Veikkausliiga",
               regionCode: "FI",
               __typename: "EventGroup",
@@ -1269,6 +949,7 @@ export default {
           id: 1000461752,
           popular: false,
           name: "Greece",
+          regionCode: "GR",
           groups: [
             {
               id: 1000094996,
@@ -1285,6 +966,7 @@ export default {
           id: 2000050538,
           popular: false,
           name: "Guatemala",
+          regionCode: "GT",
           groups: [
             {
               id: 2000084267,
@@ -1301,44 +983,13 @@ export default {
           id: 1000461748,
           popular: false,
           name: "Hungary",
+          regionCode: "HU",
           groups: [
             {
               id: 1000094997,
               userFavourite: false,
               name: "NB 1",
               regionCode: "HU",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000053582,
-              userFavourite: false,
-              name: "NB 1 (W)",
-              regionCode: "HU",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000080688,
-              userFavourite: false,
-              name: "NB 3",
-              regionCode: "HU",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 1000461749,
-          popular: false,
-          name: "Iceland",
-          groups: [
-            {
-              id: 2000084987,
-              userFavourite: false,
-              name: "League Cup B",
-              regionCode: "IS",
               __typename: "EventGroup",
               popular: false,
             },
@@ -1349,6 +1000,7 @@ export default {
           id: 1000093570,
           popular: false,
           name: "International Friendly Matches",
+          regionCode: null,
           groups: [],
         },
         {
@@ -1356,6 +1008,7 @@ export default {
           id: 2000057339,
           popular: false,
           name: "International Tournaments",
+          regionCode: null,
           groups: [
             {
               id: 2000117768,
@@ -1369,49 +1022,10 @@ export default {
         },
         {
           __typename: "EventGroup",
-          id: 1000461750,
-          popular: false,
-          name: "Ireland",
-          groups: [
-            {
-              id: 1000157155,
-              userFavourite: false,
-              name: "1st Division",
-              regionCode: "IE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000082492,
-              userFavourite: false,
-              name: "Elite League U19",
-              regionCode: "IE",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 1000461820,
-          popular: false,
-          name: "Israel",
-          groups: [
-            {
-              id: 2000056903,
-              userFavourite: false,
-              name: "Liga Bet",
-              regionCode: "IL",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
           id: 1000461746,
           popular: false,
           name: "Japan",
+          regionCode: "JP",
           groups: [
             {
               id: 1000152623,
@@ -1425,34 +1039,11 @@ export default {
         },
         {
           __typename: "EventGroup",
-          id: 2000050579,
-          popular: false,
-          name: "Jordan",
-          groups: [
-            {
-              id: 2000053443,
-              userFavourite: false,
-              name: "FA Cup",
-              regionCode: "JO",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
           id: 2000073085,
           popular: false,
           name: "Kenya",
+          regionCode: "KE",
           groups: [
-            {
-              id: 2000073086,
-              userFavourite: false,
-              name: "Premier League",
-              regionCode: "KE",
-              __typename: "EventGroup",
-              popular: false,
-            },
             {
               id: 2000114293,
               userFavourite: false,
@@ -1468,19 +1059,12 @@ export default {
           id: 1000461742,
           popular: false,
           name: "Mexico",
+          regionCode: "MX",
           groups: [
             {
               id: 1000094112,
               userFavourite: false,
               name: "Liga MX",
-              regionCode: "MX",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000109034,
-              userFavourite: false,
-              name: "Liga MX Femenil (W)",
               regionCode: "MX",
               __typename: "EventGroup",
               popular: false,
@@ -1500,6 +1084,7 @@ export default {
           id: 1000461753,
           popular: false,
           name: "Netherlands",
+          regionCode: "NL",
           groups: [
             {
               id: 1000094980,
@@ -1540,6 +1125,7 @@ export default {
           id: 1000461743,
           popular: false,
           name: "New Zealand",
+          regionCode: "NZ",
           groups: [
             {
               id: 1000281673,
@@ -1556,6 +1142,7 @@ export default {
           id: 1000258090,
           popular: false,
           name: "Northern Ireland",
+          regionCode: "GB",
           groups: [
             {
               id: 1000258091,
@@ -1572,6 +1159,7 @@ export default {
           id: 1000461744,
           popular: false,
           name: "Norway",
+          regionCode: "NO",
           groups: [
             {
               id: 1000095010,
@@ -1582,25 +1170,9 @@ export default {
               popular: false,
             },
             {
-              id: 1000095008,
-              userFavourite: false,
-              name: "NM Cupen",
-              regionCode: "NO",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 2000074108,
               userFavourite: false,
               name: "4 Div Agder 1",
-              regionCode: "NO",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000074111,
-              userFavourite: false,
-              name: "4 Div Akershus 1",
               regionCode: "NO",
               __typename: "EventGroup",
               popular: false,
@@ -1684,11 +1256,20 @@ export default {
           id: 2000055545,
           popular: false,
           name: "Panama",
+          regionCode: "PA",
           groups: [
             {
               id: 2000055546,
               userFavourite: false,
               name: "LPF",
+              regionCode: "PA",
+              __typename: "EventGroup",
+              popular: false,
+            },
+            {
+              id: 2000062635,
+              userFavourite: false,
+              name: "Reserve League",
               regionCode: "PA",
               __typename: "EventGroup",
               popular: false,
@@ -1700,6 +1281,7 @@ export default {
           id: 2000050114,
           popular: false,
           name: "Paraguay",
+          regionCode: "PY",
           groups: [
             {
               id: 2000050115,
@@ -1716,6 +1298,7 @@ export default {
           id: 1000461802,
           popular: false,
           name: "Peru",
+          regionCode: "PE",
           groups: [
             {
               id: 1000237680,
@@ -1732,10 +1315,11 @@ export default {
           id: 1000461811,
           popular: false,
           name: "Poland",
+          regionCode: "PL",
           groups: [
             {
               id: 1000385219,
-              userFavourite: true,
+              userFavourite: false,
               name: "Ekstraklasa",
               regionCode: "PL",
               __typename: "EventGroup",
@@ -1745,22 +1329,6 @@ export default {
               id: 1000348167,
               userFavourite: false,
               name: "I Liga",
-              regionCode: "PL",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000077607,
-              userFavourite: false,
-              name: "II Liga",
-              regionCode: "PL",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000057911,
-              userFavourite: false,
-              name: "III Liga",
               regionCode: "PL",
               __typename: "EventGroup",
               popular: false,
@@ -1780,27 +1348,12 @@ export default {
           id: 1000461812,
           popular: false,
           name: "Portugal",
+          regionCode: "PT",
           groups: [
             {
               id: 1000095042,
-              userFavourite: true,
+              userFavourite: false,
               name: "Primeira Liga",
-              regionCode: "PT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000116777,
-              userFavourite: false,
-              name: "Liga Revelacao U23",
-              regionCode: "PT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000076626,
-              userFavourite: false,
-              name: "Taça de Portugal (W)",
               regionCode: "PT",
               __typename: "EventGroup",
               popular: false,
@@ -1812,6 +1365,7 @@ export default {
           id: 1000461808,
           popular: false,
           name: "Romania",
+          regionCode: "RO",
           groups: [
             {
               id: 1000095499,
@@ -1844,28 +1398,13 @@ export default {
           id: 1000461809,
           popular: false,
           name: "Russia",
+          regionCode: "RU",
           groups: [
             {
               id: 1000095590,
-              userFavourite: true,
+              userFavourite: false,
               name: "Premier League",
               regionCode: "RU",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 1000461819,
-          popular: false,
-          name: "Saudi Arabia",
-          groups: [
-            {
-              id: 1000250591,
-              userFavourite: false,
-              name: "Professional League",
-              regionCode: "SA",
               __typename: "EventGroup",
               popular: false,
             },
@@ -1876,6 +1415,7 @@ export default {
           id: 1000461810,
           popular: false,
           name: "Scotland",
+          regionCode: "GB-SCT",
           groups: [
             {
               id: 1000095047,
@@ -1894,82 +1434,10 @@ export default {
               popular: false,
             },
             {
-              id: 1000280417,
-              userFavourite: false,
-              name: "League One",
-              regionCode: "GB-SCT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000280418,
-              userFavourite: false,
-              name: "League Two",
-              regionCode: "GB-SCT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
               id: 1000094254,
               userFavourite: false,
               name: "Scottish Cup",
               regionCode: "GB-SCT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 1000193401,
-              userFavourite: false,
-              name: "Challenge Cup",
-              regionCode: "GB-SCT",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 2000050598,
-          popular: false,
-          name: "Serbia",
-          groups: [
-            {
-              id: 2000055499,
-              userFavourite: false,
-              name: "Prva Liga",
-              regionCode: "RS",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000097633,
-              userFavourite: false,
-              name: "Srpska Liga",
-              regionCode: "RS",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 1000461798,
-          popular: false,
-          name: "Slovenia",
-          groups: [
-            {
-              id: 2000074146,
-              userFavourite: false,
-              name: "SNL 2",
-              regionCode: "SI",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000076187,
-              userFavourite: false,
-              name: "SNL 3",
-              regionCode: "SI",
               __typename: "EventGroup",
               popular: false,
             },
@@ -1980,15 +1448,8 @@ export default {
           id: 1000461803,
           popular: false,
           name: "South Africa",
+          regionCode: "ZA",
           groups: [
-            {
-              id: 2000051878,
-              userFavourite: true,
-              name: "1st Division",
-              regionCode: "ZA",
-              __typename: "EventGroup",
-              popular: false,
-            },
             {
               id: 2000050659,
               userFavourite: false,
@@ -2012,6 +1473,7 @@ export default {
           id: 1000461814,
           popular: false,
           name: "Sweden",
+          regionCode: "SE",
           groups: [
             {
               id: 1000095057,
@@ -2092,6 +1554,7 @@ export default {
           id: 1000461815,
           popular: false,
           name: "Switzerland",
+          regionCode: "CH",
           groups: [
             {
               id: 1000095020,
@@ -2108,10 +1571,11 @@ export default {
           id: 1000461821,
           popular: false,
           name: "Turkey",
+          regionCode: "TR",
           groups: [
             {
               id: 1000095062,
-              userFavourite: true,
+              userFavourite: false,
               name: "Süper Lig",
               regionCode: "TR",
               __typename: "EventGroup",
@@ -2124,6 +1588,7 @@ export default {
           id: 1000151680,
           popular: false,
           name: "UEFA Championship U21",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -2131,6 +1596,7 @@ export default {
           id: 2000113672,
           popular: false,
           name: "UEFA Nations League",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -2138,6 +1604,7 @@ export default {
           id: 2000065880,
           popular: false,
           name: "UEFA Qualification U21",
+          regionCode: "EU",
           groups: [],
         },
         {
@@ -2145,36 +1612,13 @@ export default {
           id: 1000461804,
           popular: false,
           name: "Ukraine",
+          regionCode: "UA",
           groups: [
             {
               id: 1000171537,
               userFavourite: false,
               name: "Premier League",
               regionCode: "UA",
-              __typename: "EventGroup",
-              popular: false,
-            },
-            {
-              id: 2000051471,
-              userFavourite: false,
-              name: "Persha Liga",
-              regionCode: "UA",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
-          id: 1000461805,
-          popular: false,
-          name: "United Arab Emirates",
-          groups: [
-            {
-              id: 2000050277,
-              userFavourite: false,
-              name: "Division 1",
-              regionCode: "AE",
               __typename: "EventGroup",
               popular: false,
             },
@@ -2185,10 +1629,11 @@ export default {
           id: 1000461760,
           popular: false,
           name: "Uruguay",
+          regionCode: "UY",
           groups: [
             {
               id: 1000450453,
-              userFavourite: true,
+              userFavourite: false,
               name: "Primera Division",
               regionCode: "UY",
               __typename: "EventGroup",
@@ -2201,10 +1646,11 @@ export default {
           id: 1000461816,
           popular: false,
           name: "USA",
+          regionCode: "US",
           groups: [
             {
               id: 1000095063,
-              userFavourite: true,
+              userFavourite: false,
               name: "MLS",
               regionCode: "US",
               __typename: "EventGroup",
@@ -2233,6 +1679,7 @@ export default {
           id: 2000050117,
           popular: false,
           name: "Venezuela",
+          regionCode: "VE",
           groups: [
             {
               id: 2000050118,
@@ -2254,25 +1701,10 @@ export default {
         },
         {
           __typename: "EventGroup",
-          id: 2000050124,
-          popular: false,
-          name: "Wales",
-          groups: [
-            {
-              id: 2000050125,
-              userFavourite: true,
-              name: "Premier League",
-              regionCode: "GB-WLS",
-              __typename: "EventGroup",
-              popular: false,
-            },
-          ],
-        },
-        {
-          __typename: "EventGroup",
           id: 2000101172,
           popular: false,
           name: "World Cup (W)",
+          regionCode: "WORLD",
           groups: [],
         },
         {
@@ -2280,6 +1712,7 @@ export default {
           id: 2000116272,
           popular: false,
           name: "World Cup 2022",
+          regionCode: "WORLD",
           groups: [],
         },
       ],
