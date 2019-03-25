@@ -28,7 +28,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      " u-padding t-border-r--circle t-color-white",
+      "u-padding t-border-r--circle t-color-white",
       isFavourite && "t-background-green-light-1",
       !isFavourite && "t-background-white"
     );
