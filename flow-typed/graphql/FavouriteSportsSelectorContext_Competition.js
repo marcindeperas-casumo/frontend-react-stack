@@ -14,9 +14,9 @@ export type FavouriteSportsSelectorContext_Competition = {
    */
   id: number,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
   /**
    * Name of the event group, localized according to the lang parameter
    */

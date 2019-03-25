@@ -63,7 +63,7 @@ export const transformOrphanGroup = (
 ) => ({
   popular: false,
   groups: undefined,
-  flagEmoji: "",
+  regionCode: "",
   userFavourite: true,
   ...group,
 });
@@ -95,7 +95,7 @@ const FavouriteCompetitionsSelector = (props: Props) => (
           popular: false,
           groups: orphanGroups.map(transformOrphanGroup),
           id: -1,
-          flagEmoji: "",
+          regionCode: "",
         },
       ];
 

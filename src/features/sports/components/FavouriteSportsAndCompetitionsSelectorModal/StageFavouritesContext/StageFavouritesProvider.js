@@ -17,7 +17,7 @@ type ProviderState = StageFavouritesAPI;
 export const FAVOURITE_SPORTS_SELECTOR_CONTEXT_COMPETITION_FIELDS_FRAGMENT = gql`
   fragment FavouriteSportsSelectorContext_Competition on EventGroup {
     id
-    flagEmoji
+    regionCode
     name
     ...FavouriteCompetitionsSelectorModal_Group
   }
