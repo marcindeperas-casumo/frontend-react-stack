@@ -26,10 +26,6 @@ export type UserNavigation_sportsNavigation_sport = {
    */
   termKey: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
-   */
-  flagEmoji: ?string,
-  /**
    * The icon for the sport group
    */
   icon: ?string,
@@ -61,9 +57,9 @@ export type UserNavigation_sportsNavigation_subNav_competition = {
    */
   termKey: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
 };
 
 export type UserNavigation_sportsNavigation_subNav = {

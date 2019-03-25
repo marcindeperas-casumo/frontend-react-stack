@@ -4,8 +4,6 @@ import type { Node } from "react";
 import classNames from "classnames";
 import { CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-
 import "./Pill.scss";
 
 export type Props = {
@@ -32,17 +30,21 @@ export const Pill = ({
   inactiveClassNames = "t-background-grey-light-2 t-color-grey-dark-1",
 }: Props) => {
   const className = classNames(
-    "c-pill t-border-r--pill u-font-weight-bold u-padding-horiz u-padding-vert--sm u-text-nowrap",
+    "c-pill t-border-r--pill u-font-weight-bold u-padding-horiz u-padding-vert--sm",
     isActive ? activeClassNames : inactiveClassNames
   );
 
   return (
     <Flex onClick={onClick} spacing="sm" className={className} align="center">
-      <Flex.Block>
-        <Text size="sm" tag="div" className="u-margin-horiz--sm">
+      <div className="u-padding--sm">
+        <Flex.Block
+          justify="center"
+          align="center"
+          className="u-text-nowrap o-flex-align--center u-line-height--1 u-font-sm"
+        >
           {children}
-        </Text>
-      </Flex.Block>
+        </Flex.Block>
+      </div>
 
       {onRemove && (
         <CrossIcon
