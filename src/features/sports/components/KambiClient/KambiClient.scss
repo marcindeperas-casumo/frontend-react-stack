@@ -19,15 +19,9 @@
   }
 }
 
-#KambiBC.c-kambi-client--hidden {
-  border: 0;
-  clip: rect(0 0 0 0);
-  height: 1px;
-  margin: -1px;
+.c-kambi-client--hidden {
+  height: 0;
   overflow: hidden;
-  padding: 0;
-  position: absolute;
-  width: 1px;
 }
 
 // Hide header for all pages except bethistory
