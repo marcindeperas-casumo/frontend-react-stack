@@ -80,6 +80,10 @@ const dictionary = [
     key: "search-results.no-results",
     value: "No search results",
   },
+  {
+    key: "sports-sub-nav.all",
+    value: "All",
+  },
 ];
 
 const keys = dictionary.map(term =>

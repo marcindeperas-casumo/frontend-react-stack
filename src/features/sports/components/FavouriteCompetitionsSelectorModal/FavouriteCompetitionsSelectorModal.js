@@ -81,11 +81,13 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
           )
         }
       >
-        <FavouriteCompetitionsSelector
-          groupId={this.props.groupId}
-          isCompetitionSelected={this.isCompetitionSelected}
-          toggleCompetition={this.toggleCompetition}
-        />
+        <div className="u-margin-horiz--md">
+          <FavouriteCompetitionsSelector
+            groupId={this.props.groupId}
+            isCompetitionSelected={this.isCompetitionSelected}
+            toggleCompetition={this.toggleCompetition}
+          />
+        </div>
       </Modal>
     );
   }

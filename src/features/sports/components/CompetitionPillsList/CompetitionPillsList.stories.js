@@ -58,7 +58,7 @@ stories.add(
       onRemove={action("onRemove")}
       onAdd={action("onAdd")}
       onClick={action("onClick")}
-      isActive={g => g.id === 1000094981}
+      isActive={g => g.id % 2 === 0}
     />
   ),
   info({ text: "With isActive" })

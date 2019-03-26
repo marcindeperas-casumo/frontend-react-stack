@@ -4,6 +4,7 @@ import gql from "graphql-tag";
 import { T } from "ramda";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
+import SportsIcon from "Features/sports/components/SportsIcon";
 import CompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 type Props = {
@@ -35,30 +36,43 @@ const FavouriteSportsSelectorListItem = ({
   isFavourite,
   onRemoveFavouriteCompetition,
 }: Props) => (
-  <>
+  <div>
     <FavouriteListItem
       label={group.name}
-      icon={<img src={group.icon} alt={group.name} />}
+      icon={
+        <SportsIcon
+          alt={group.name}
+          iconSrc={group.icon}
+          activeIndicatorSrc={group.activeIndicator}
+          isActive={isFavourite}
+        />
+      }
       onClick={() => onToggleFavouriteSport(group.id)}
       isFavourite={isFavourite}
       isFavouritable={isFavouritable}
     />
     {group.canSelectSubgroups && isFavourite && (
-      <div className="u-margin-horiz--md u-margin-bottom--lg">
+      <>
         {showCompetitionIntro && (
-          <CompetitionsIntro onAdd={() => onAddCompetition(group.id)} />
+          <div className="u-margin-top--md">
+            <CompetitionsIntro onAdd={() => onAddCompetition(group.id)} />
+          </div>
         )}
-        <CompetitionPillsList
-          competitions={group.favouriteCompetitions}
-          onRemove={c => onRemoveFavouriteCompetition(group.id, c)}
-          isActive={T}
-          onAdd={
-            showCompetitionIntro ? undefined : () => onAddCompetition(group.id)
-          }
-        />
-      </div>
+        <div className="u-margin-top--md">
+          <CompetitionPillsList
+            competitions={group.favouriteCompetitions}
+            onRemove={c => onRemoveFavouriteCompetition(group.id, c)}
+            isActive={T}
+            onAdd={
+              showCompetitionIntro
+                ? undefined
+                : () => onAddCompetition(group.id)
+            }
+          />
+        </div>
+      </>
     )}
-  </>
+  </div>
 );
 
 FavouriteSportsSelectorListItem.fragments = {
@@ -67,6 +81,7 @@ FavouriteSportsSelectorListItem.fragments = {
       id
       name
       icon
+      activeIndicator
       canSelectSubgroups
 
       favouriteCompetitions {

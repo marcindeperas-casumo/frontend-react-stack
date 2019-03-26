@@ -53,7 +53,7 @@ stories.add(
   "With favourites, first time",
   () => (
     <MockedProviderWithContext
-      mocks={[withFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
+      mocks={[noFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
     >
       <StageFavouritesProvider>
         <FavouriteSportsSelector

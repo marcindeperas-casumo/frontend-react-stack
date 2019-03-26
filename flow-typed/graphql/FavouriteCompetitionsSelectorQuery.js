@@ -22,9 +22,9 @@ export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
    */
   name: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
@@ -44,6 +44,10 @@ export type FavouriteCompetitionsSelectorQuery_group_groups = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+  /**
+   * The region code for the group, iso3166 code for most with some custom regions
+   */
+  regionCode: ?string,
   /**
    * Array of subgroups in this event group
    */
@@ -65,7 +69,8 @@ export type FavouriteCompetitionsSelectorQuery = {
   /**
    * Get list of sub-groups from a given group
    */
-  group: FavouriteCompetitionsSelectorQuery_group
+  group: FavouriteCompetitionsSelectorQuery_group,
+  internationalGroupName: string,
 };
 
 export type FavouriteCompetitionsSelectorQueryVariables = {

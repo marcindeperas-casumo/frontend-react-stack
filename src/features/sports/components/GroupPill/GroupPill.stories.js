@@ -9,12 +9,12 @@ const stories = storiesOf("Sports/GroupPill", module);
 
 const groupA: GroupPill_Group = {
   name: "Group A",
-  flagEmoji: "",
+  regionCode: "",
 };
 
 const groupB: GroupPill_Group = {
   name: "Group B",
-  flagEmoji: "🇸🇪",
+  regionCode: "SE",
 };
 
 stories.add(
@@ -30,7 +30,7 @@ stories.add(
 );
 
 stories.add(
-  "Group with Emoji",
+  "Group with flag",
   () => <GroupPill group={groupB} />,
   info({ text: "Group with Emoji" })
 );

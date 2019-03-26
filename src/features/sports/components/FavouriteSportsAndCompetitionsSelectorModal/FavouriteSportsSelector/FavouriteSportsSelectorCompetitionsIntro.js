@@ -16,13 +16,17 @@ const FavouriteSportsSelectorCompetitionsIntro = ({
     justify="space-between"
     className="u-margin-bottom--md"
   >
-    <Text size="sm">
-      <DictionaryTerm termKey="favourite-sports-selector.suggestion" />
-    </Text>
+    <Flex.Block>
+      <Text size="sm" className="u-margin--none">
+        <DictionaryTerm termKey="favourite-sports-selector.suggestion" />
+      </Text>
+    </Flex.Block>
 
-    <Button size="sm" variant="outline-positive" onClick={onAdd}>
-      <DictionaryTerm termKey="favourite-sports-selector.suggestion.button" />
-    </Button>
+    <Flex.Item>
+      <Button size="sm" variant="outline-positive" onClick={onAdd}>
+        <DictionaryTerm termKey="favourite-sports-selector.suggestion.button" />
+      </Button>
+    </Flex.Item>
   </Flex>
 );
 

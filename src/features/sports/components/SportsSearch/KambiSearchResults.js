@@ -374,7 +374,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         : this.renderSearchResultsPlaceholder();
 
     return (
-      <Flex.Block className="c-kambi-search-results t-background-white">
+      <Flex.Block className="u-tablet-search-width t-background-white">
         {content}
       </Flex.Block>
     );
