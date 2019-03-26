@@ -260,20 +260,24 @@ describe("CuratedCard", () => {
 });
 
 describe("Curated card - tracking", () => {
+  const curatedSlug = "CURATED";
+  const contentSlug = "topwheel-treasures";
+
   const render = curatedMock => {
     return mount(
       <CuratedCard
         {...curatedMock}
         fetchCurated={fetchCurated}
         isFetched={true}
+        curatedSlug={`${curatedSlug}.${contentSlug}`}
       />
     );
   };
 
-  const assertTrackClickData = (trackComponent, expectedType, expectedName) => {
+  const assertTrackClickData = (trackComponent, type, slug) => {
     const expectedTrackData = {
-      type: expectedType,
-      name: expectedName,
+      type,
+      slug,
     };
 
     const actualTrackData = trackComponent.prop("data");
@@ -293,11 +297,7 @@ describe("Curated card - tracking", () => {
   test("should track card click with gane data when curated type is game", () => {
     const trackClick = rendered.find("TrackClick").first();
 
-    assertTrackClickData(
-      trackClick,
-      curatedData.typeOfCurated,
-      curatedData.gameData.name
-    );
+    assertTrackClickData(trackClick, curatedData.typeOfCurated, contentSlug);
   });
 
   test("should track card click with promo data when curated type is promotion", () => {
@@ -305,11 +305,7 @@ describe("Curated card - tracking", () => {
     rendered = render(promotionMock);
     const trackClick = rendered.find("TrackClick").first();
 
-    assertTrackClickData(
-      trackClick,
-      promotionMock.typeOfCurated,
-      promotionMock.subtitle
-    );
+    assertTrackClickData(trackClick, promotionMock.typeOfCurated, contentSlug);
   });
 
   test("should track play button with game data when curated ", () => {
@@ -321,7 +317,7 @@ describe("Curated card - tracking", () => {
     assertTrackClickData(
       playTrackClick,
       curatedData.typeOfCurated,
-      curatedData.gameData.name
+      contentSlug
     );
   });
 });

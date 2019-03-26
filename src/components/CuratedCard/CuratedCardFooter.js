@@ -44,7 +44,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
 
     const trackClickGamePlayData = {
       [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-      [EVENT_PROPS.GAME_NAME]: gameData.name,
+      [EVENT_PROPS.CURATED_SLUG]: gameData.slug,
     };
 
     return (
