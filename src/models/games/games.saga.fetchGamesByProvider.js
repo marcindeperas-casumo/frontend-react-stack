@@ -38,15 +38,12 @@ export function* fetchGamesByProviderSaga({ provider, page, pageSize }) {
   }
 
   const sessionId = yield select(sessionIdSelector);
-  yield put(initiateFetchGamesByProvider({ provider, sessionId }));
 
   yield put(
     initiateFetchGamesByProvider({ provider, sessionId, page, pageSize })
   );
-
   const newGamesAction = yield take(types.FETCH_GAMES_BY_PROVIDER_COMPLETE);
   const currentGames = yield select(gameProviderGames(provider));
-
   const gameCount = yield select(gameProviderGameCount(provider));
 
   if (!gameCount) {
