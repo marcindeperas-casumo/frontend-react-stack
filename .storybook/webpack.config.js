@@ -5,6 +5,7 @@ module.exports = ({ config, mode }) => {
 
   return {
     ...config,
+    plugins: [...config.plugins, ...ourDefaultConfig.plugins],
     resolve: {
       ...config.resolve,
       alias: {
