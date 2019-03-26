@@ -2,11 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GamesVirtualListContainer from "Components/GamesVirtualList";
 import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import MockStore from "Components/MockStore";
-import defaultState from "Models/__mocks__/state.mock";
-import isNotChromatic from "Storybook/isNotChromatic";
 import GameRowSearch from "Components/GameRowSearch";
 import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
 
