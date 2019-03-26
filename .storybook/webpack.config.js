@@ -1,11 +1,14 @@
+const webpack = require("webpack");
 const ourConfig = require("../config/webpack.config");
+const getClientEnvironment = require("../config//env");
+const env = getClientEnvironment("casumo.com");
 
 module.exports = ({ config, mode }) => {
   const ourDefaultConfig = ourConfig("development", { isStorybook: true });
 
   return {
     ...config,
-    plugins: [...config.plugins, ...ourDefaultConfig.plugins],
+    plugins: [...config.plugins, new webpack.DefinePlugin(env.stringified)],
     resolve: {
       ...config.resolve,
       alias: {
