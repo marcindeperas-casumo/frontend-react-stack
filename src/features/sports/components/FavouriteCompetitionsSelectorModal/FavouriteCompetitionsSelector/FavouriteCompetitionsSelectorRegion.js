@@ -57,6 +57,7 @@ FavouriteCompetitionsSelectorRegion.fragments = {
   group: gql`
     fragment FavouriteCompetitionsSelectorRegion_Group on EventGroup {
       name
+      regionCode
       groups {
         id
         ...CompetitionPillsList_Group

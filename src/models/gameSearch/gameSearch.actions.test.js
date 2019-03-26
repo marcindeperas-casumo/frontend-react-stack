@@ -1,5 +1,5 @@
 import { types as fetchTypes } from "Models/fetch";
-import { getQuerySearch } from "Api/api.gamebrowser";
+import { getCasinoPlayerGameSearch } from "Api/api.casinoPlayerGames";
 import {
   initFetchQuerySearch,
   clearSearch,
@@ -9,7 +9,9 @@ import {
   fetchMostPopularGames,
   types,
   getSearchFetchCompleteType,
+  fetchSuggestedGamesAction,
 } from "Models/gameSearch";
+import { fetchSuggestedGames } from "Api/api.games";
 
 describe("Models/GameSearch/Actions", () => {
   describe("initFetchQuerySearch()", () => {
@@ -32,10 +34,11 @@ describe("Models/GameSearch/Actions", () => {
   });
 
   describe("fetchQuerySearch()", () => {
-    const platform = "mobile";
-    const country = "gb";
+    const sessionId = "123";
     const query = "query";
-    const action = fetchQuerySearch({ platform, country, query });
+    const page = 0;
+    const pageSize = 5;
+    const action = fetchQuerySearch({ sessionId, page, pageSize, query });
 
     test("init api fetch", () => {
       expect(action).toMatchObject({
@@ -50,12 +53,17 @@ describe("Models/GameSearch/Actions", () => {
       });
     });
 
-    test("passes `getQuerySearch` fetch function to the action", () => {
-      expect(action.asyncCall).toEqual(getQuerySearch);
+    test("passes `getCasinoPlayerGameSearch` fetch function to the action", () => {
+      expect(action.asyncCall).toEqual(getCasinoPlayerGameSearch);
     });
 
     test("passes params to the fetcher function", () => {
-      expect(action.asyncCallData).toEqual({ platform, country, query });
+      expect(action.asyncCallData).toEqual({
+        sessionId,
+        page,
+        pageSize,
+        query,
+      });
     });
   });
 
@@ -163,6 +171,50 @@ describe("Models/GameSearch/Actions", () => {
         id,
         page,
         pageSize,
+        platform,
+        variant,
+      });
+    });
+  });
+
+  describe("fetchSuggestedGamesAction()", () => {
+    const country = "gb";
+    const handshake = { foo: "bar" };
+    const game = "starburst";
+    const platform = "mobile";
+    const variant = "default";
+
+    const action = fetchSuggestedGamesAction(
+      game,
+      handshake,
+      platform,
+      country,
+      variant
+    );
+
+    test("starts api fetch for suggestedGames", () => {
+      expect(action).toMatchObject({
+        type: fetchTypes.FETCH,
+        name: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+      });
+    });
+
+    test("fires done action when fetch is finished", () => {
+      expect(action).toMatchObject({
+        postFetch: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE,
+      });
+    });
+
+    test("asyncCall fetcher function exists in the action", () => {
+      expect(typeof action.asyncCall).toBe("function");
+      expect(action.asyncCall).toEqual(fetchSuggestedGames);
+    });
+
+    test("passes all parameters for the fetch function", () => {
+      expect(action.asyncCallData).toEqual({
+        country,
+        handshake,
+        game,
         platform,
         variant,
       });

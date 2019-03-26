@@ -35,31 +35,6 @@ export const getGameLists = (
   http: HTTPClient = defaultHttp
 ) => http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, data);
 
-export const getQuerySearch = (
-  {
-    platform,
-    country,
-    variant,
-    page,
-    pageSize,
-    query,
-  }: {
-    platform: string,
-    country: string,
-    variant: string,
-    page: number,
-    pageSize: number,
-    query: string,
-  },
-  http: HTTPClient = defaultHttp
-) =>
-  http.get(`${URL.GAME_SEARCH}/${platform}/${country}`, {
-    variant,
-    page,
-    pageSize,
-    q: query,
-  });
-
 export const getLatestPlayedGames = (
   { playerId, pageSize = 20 }: { playerId: string, pageSize?: number },
   http: HTTPClient = defaultHttp

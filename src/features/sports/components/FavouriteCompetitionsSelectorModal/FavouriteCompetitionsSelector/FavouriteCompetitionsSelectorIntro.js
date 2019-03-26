@@ -10,7 +10,7 @@ const FavouriteCompetitionsSelectorIntro = ({
 }: {
   group: FavouriteCompetitionsSelectorIntro_Group,
 }) => (
-  <Text size="sm" className="u-margin-horiz--md u-margin-vert--xlg">
+  <Text size="sm" className="u-margin-vert--xlg">
     <DictionaryTerm
       termKey="favourite-competitions-selector.intro"
       replacements={{

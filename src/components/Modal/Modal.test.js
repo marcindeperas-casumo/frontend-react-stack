@@ -45,7 +45,7 @@ describe("<Modal />", () => {
 
     expect(
       component
-        .find(".c-modal__content")
+        .find("[data-test='c-modal__content-container']")
         .children()
         .first()
         .equals(requiredProps.children)
@@ -86,7 +86,7 @@ describe("<Modal />", () => {
 
     expect(
       component
-        .find(".c-modal__footer")
+        .find("[data-test='c-modal__footer-container']")
         .children()
         .first()
         .equals(footer)

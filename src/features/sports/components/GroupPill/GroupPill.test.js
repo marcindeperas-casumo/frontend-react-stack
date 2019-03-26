@@ -1,17 +1,21 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { Pill } from "Components/Pill";
+import { RegionFlag } from "Features/sports/components/RegionFlag";
 import GroupPill from "./GroupPill";
 
-const testGroup = { name: "Group A", flagEmoji: "🇸🇪" };
+const testGroup = { name: "Group A", regionCode: "SE" };
+const noRegionTestGroup = { name: "Group A", regionCode: null };
 
 describe("<GroupPill />", () => {
   test("renders out a pill with the correct contents", () => {
     const rendered = shallow(<GroupPill group={testGroup} />);
+    const renderedNoRegion = shallow(<GroupPill group={noRegionTestGroup} />);
 
-    expect(rendered.find(Pill).html()).toContain(
-      `${testGroup.flagEmoji} ${testGroup.name}`
-    );
+    expect(rendered.find(Pill).html()).toContain(`${testGroup.name}`);
+    expect(rendered.find(RegionFlag)).toHaveLength(1);
+    expect(renderedNoRegion.find(Pill).html()).toContain(`${testGroup.name}`);
+    expect(renderedNoRegion.find(RegionFlag)).toHaveLength(0);
   });
 
   test("passes down onRemove to Pill", () => {
