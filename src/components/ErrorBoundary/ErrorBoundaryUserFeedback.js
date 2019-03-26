@@ -1,5 +1,4 @@
 // @flow
-
 import React from "react";
 
 // TODO: Figure out how it is the best way to show

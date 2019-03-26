@@ -1,5 +1,5 @@
 import { put, call } from "redux-saga/effects";
-import http from "Services/http";
+import http from "Lib/http";
 import * as actions from "./fetch.actions";
 
 export function* fetchSaga(action) {
