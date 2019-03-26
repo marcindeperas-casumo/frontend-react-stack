@@ -13,26 +13,28 @@ import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListT
 const stories = storiesOf("GamesVirtualList", module);
 
 const gamesArray = [
-  "easter-island",
-  "starburst",
-  "mega-fortune",
-  "mega-fortune-dreams",
-  "bakers-treat",
-  "rapunzels-tower",
-  "big-bad-wolf",
-  "book-of-ra-deluxe",
-  "diamond-mine",
-  "raging-rhino",
-  "jammin-jars",
-  "legacy-of-egypt",
-  "danger-high-voltage",
-  "88-fortunes",
-  "fruit-warp",
-  "gonzos-quest",
-  "white-rabbit",
-  "action-bank",
-  "wild-toro",
-  "twin-spin",
+  { sectionTitle: "Awesome games" },
+  { game: "easter-island" },
+  { game: "starburst" },
+  { game: "mega-fortune" },
+  { game: "mega-fortune-dreams" },
+  { game: "bakers-treat" },
+  { game: "rapunzels-tower" },
+  { game: "big-bad-wolf" },
+  { game: "book-of-ra-deluxe" },
+  { game: "diamond-mine" },
+  { sectionTitle: "Even more fun" },
+  { game: "raging-rhino" },
+  { game: "jammin-jars" },
+  { game: "legacy-of-egypt" },
+  { game: "danger-high-voltage" },
+  { game: "88-fortunes" },
+  { game: "fruit-warp" },
+  { game: "gonzos-quest" },
+  { game: "white-rabbit" },
+  { game: "action-bank" },
+  { game: "wild-toro" },
+  { game: "twin-spin" },
 ];
 
 const state = {
@@ -48,22 +50,6 @@ const state = {
     },
   },
 };
-
-if (isNotChromatic) {
-  stories.add(
-    "Default (Connected)",
-    () => (
-      <MockStore state={state}>
-        <div className="u-height--screen">
-          <GamesVirtualListContainer
-            renderItem={id => <GameRowSearch slug={id} />}
-          />
-        </div>
-      </MockStore>
-    ),
-    info({ text: "Default" })
-  );
-}
 
 stories.add(
   "Default",

@@ -43,7 +43,7 @@ export const playerGamesLetterTitlesSelector = createSelector(
       },
       { list: [], lettersMap: [] }
     ),
-    R.sort((a, b) => a.localeCompare(b)),
+    R.sort((a, b) => a && a.localeCompare(b)),
     R.flatten,
     R.values,
     R.pluck("games"),
