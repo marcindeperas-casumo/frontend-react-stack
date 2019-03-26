@@ -10,9 +10,6 @@ import {
   map,
   values,
   flatten,
-  includes,
-  append,
-  head,
 } from "ramda";
 import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
 import { getPlayerGamesListIdByPage } from "Models/playerGames";
