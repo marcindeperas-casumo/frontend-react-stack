@@ -1,9 +1,9 @@
-@import "~Styles/settings.zindex";
-
 /*
   NOTE:
   this uses css vars set on the document root of the ko stack in order to
-  calculate the offset of the play okay bar, and the height of the top-bar
+  calculate the offset of the play okay bar, the height of the top-bar, and the width of the menu
+
+  https://github.com/Casumo/casumo-frontend/blob/master/web/mobile/src/stylesheets/sass/core/base.scss
 */
 
 .c-modal {
@@ -14,6 +14,14 @@
   right: 0;
   top: var(--play-okay-bar-height, 0);
   z-index: $modal-z-index;
+
+  @include cudl-breakpoint(tablet) {
+    left: var(--menu-tablet);
+
+    @media (orientation: landscape) {
+      left: var(--menu-tablet--landscape);
+    }
+  }
 }
 
 .c-modal__top-bar {

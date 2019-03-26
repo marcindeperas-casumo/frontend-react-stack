@@ -22,9 +22,9 @@ export type FavouriteCompetitionsSelectorRegion_Group_groups = {
    */
   name: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
 };
 
 export type FavouriteCompetitionsSelectorRegion_Group = {
@@ -32,6 +32,10 @@ export type FavouriteCompetitionsSelectorRegion_Group = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+  /**
+   * The region code for the group, iso3166 code for most with some custom regions
+   */
+  regionCode: ?string,
   /**
    * Array of subgroups in this event group
    */

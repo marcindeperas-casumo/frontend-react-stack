@@ -47,10 +47,14 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
           dismissType={api.isFirstTimeSelectingFavourites ? "none" : "back"}
           footer={modalFooterButton}
         >
-          <FavouriteSportsSelector
-            showCompetitionIntro={api.isFirstTimeSelectingFavouriteCompetitions}
-            onAddCompetition={onAddCompetition}
-          />
+          <div className="u-margin-horiz--md">
+            <FavouriteSportsSelector
+              showCompetitionIntro={
+                api.isFirstTimeSelectingFavouriteCompetitions
+              }
+              onAddCompetition={onAddCompetition}
+            />
+          </div>
         </Modal>
       );
     }}

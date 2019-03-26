@@ -22,9 +22,9 @@ export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
    */
   name: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
 };
 
 export type FavouriteSportsSelectorListItem_Group = {
@@ -40,6 +40,10 @@ export type FavouriteSportsSelectorListItem_Group = {
    * The icon for the sport group
    */
   icon: ?string,
+  /**
+   * The active indicator for the sport group, used on the nav
+   */
+  activeIndicator: ?string,
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items, instead of just popular ones
    */

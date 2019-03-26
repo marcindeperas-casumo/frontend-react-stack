@@ -1,5 +1,6 @@
 /* @flow */
 import * as React from "react";
+import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
@@ -29,18 +30,22 @@ const FavouriteSportsSelector = (props: Props) => (
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.popular" />
           </Heading>
-          {popularGroups.map(group => (
-            <ListItem
-              data-test="favourite-sports-selector-popular"
-              key={group.id}
-              group={group}
-              showCompetitionIntro={props.showCompetitionIntro}
-              onAddCompetition={props.onAddCompetition}
-              onToggleFavouriteSport={api.toggleFavouriteSport}
-              isFavourite={api.isSelected(group.id)}
-              onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
-            />
-          ))}
+          <List
+            itemSpacing="md"
+            items={popularGroups}
+            render={group => (
+              <ListItem
+                data-test="favourite-sports-selector-popular"
+                key={group.id}
+                group={group}
+                showCompetitionIntro={props.showCompetitionIntro}
+                onAddCompetition={props.onAddCompetition}
+                onToggleFavouriteSport={api.toggleFavouriteSport}
+                isFavourite={api.isSelected(group.id)}
+                onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
+              />
+            )}
+          />
 
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.all" />
@@ -55,34 +60,41 @@ const FavouriteSportsSelector = (props: Props) => (
                 sport: "all",
                 canSelectSubgroups: false,
                 favouriteCompetitions: [],
+                activeIndicator: null,
               };
               return (
-                <ListItem
-                  data-test="favourite-sports-selector-all"
-                  group={allSportsGroup}
-                  isFavouritable={false}
-                  showCompetitionIntro={false}
-                  onAddCompetition={props.onAddCompetition}
-                  onToggleFavouriteSport={api.toggleAllSports}
-                  isFavourite={false}
-                  onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
+                <List
+                  itemSpacing="md"
+                  items={[allSportsGroup, ...otherGroups]}
+                  render={group => {
+                    const isAllToggle = group.id === -1;
+                    const toggleAction = isAllToggle
+                      ? api.toggleAllSports
+                      : api.toggleFavouriteSport;
+                    const testIdentifier = isAllToggle
+                      ? "favourite-sports-selector-all"
+                      : "favourite-sports-selector-other";
+
+                    return (
+                      <ListItem
+                        data-test={testIdentifier}
+                        key={group.id}
+                        group={group}
+                        isFavouritable={!isAllToggle}
+                        showCompetitionIntro={props.showCompetitionIntro}
+                        onAddCompetition={props.onAddCompetition}
+                        onToggleFavouriteSport={toggleAction}
+                        isFavourite={api.isSelected(group.id)}
+                        onRemoveFavouriteCompetition={
+                          api.toggleFavouriteCompetition
+                        }
+                      />
+                    );
+                  }}
                 />
               );
             }}
           </DictionaryTerm>
-
-          {otherGroups.map(group => (
-            <ListItem
-              data-test="favourite-sports-selector-other"
-              key={group.id}
-              group={group}
-              showCompetitionIntro={props.showCompetitionIntro}
-              onAddCompetition={props.onAddCompetition}
-              onToggleFavouriteSport={api.toggleFavouriteSport}
-              isFavourite={api.isSelected(group.id)}
-              onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
-            />
-          ))}
         </>
       );
     }}

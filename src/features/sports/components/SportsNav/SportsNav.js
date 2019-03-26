@@ -4,6 +4,7 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { has } from "ramda";
 import ErrorMessage from "Components/ErrorMessage";
+import { RegionFlag } from "Features/sports/components/RegionFlag";
 import {
   NAVIGATE_CLIENT_MUTATION,
   ClientContext,
@@ -26,7 +27,6 @@ export const USER_NAVIGATION_QUERY = gql`
         id
         clientPath
         termKey
-        flagEmoji
         icon
         activeIndicator
         canSelectSubgroups
@@ -38,7 +38,7 @@ export const USER_NAVIGATION_QUERY = gql`
           id
           clientPath
           termKey
-          flagEmoji
+          regionCode
         }
       }
     }
@@ -49,10 +49,12 @@ class UserNavigationTypedQuery extends Query<UserNavigation, null> {}
 
 export const isNavItemSelected = (
   currentHash: string = "",
-  navItem: SportsNavItemType
+  navItem: SportsNavItemType,
+  allowSubPathMatching: boolean
 ) => {
   const isCurrentHash = currentHash === `#${navItem.path}`;
-  const isParentPath = currentHash.includes(`${navItem.path}/`);
+  const isParentPath =
+    allowSubPathMatching && currentHash.includes(`${navItem.path}/`);
   const isDrillDown = currentHash.includes(
     navItem.path.replace(/racing|filter/, "drill-down")
   );
@@ -81,8 +83,10 @@ export const onNavItemSelected = (
 class SportsNav extends React.Component<SportsNavProps> {
   static contextType = ClientContext;
 
-  isNavItemSelected = (navItem: SportsNavItemType) =>
-    isNavItemSelected(this.props.currentHash, navItem);
+  isNavItemSelected = (
+    navItem: SportsNavItemType,
+    allowSubPathMatching?: boolean = true
+  ) => isNavItemSelected(this.props.currentHash, navItem, allowSubPathMatching);
 
   onNavItemSelected = (navItem: SportsNavItemType) =>
     onNavItemSelected(this.props.currentHash, navItem, this.context.client);
@@ -102,7 +106,12 @@ class SportsNav extends React.Component<SportsNavProps> {
     subNav: item.subNav.map(subgroup => ({
       text: (
         <>
-          {subgroup.competition.flagEmoji}
+          {subgroup.competition.regionCode && (
+            <RegionFlag
+              regionCode={subgroup.competition.regionCode}
+              className="u-margin-right"
+            />
+          )}
           {subgroup.competition.name}
         </>
       ),
@@ -128,7 +137,6 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <SportsNavSkeleton />;
           }
 
-          // TODO: adampilks - handle error here
           if (error) {
             return <ErrorMessage direction="horizontal" />;
           }
@@ -143,7 +151,8 @@ class SportsNav extends React.Component<SportsNavProps> {
             }
 
             const selectedNavItem =
-              navItems.find(this.isNavItemSelected) || navItems[0];
+              navItems.find(navItem => this.isNavItemSelected(navItem)) ||
+              navItems[0];
 
             return (
               <>
