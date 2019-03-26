@@ -36,10 +36,14 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   }
 `;
 
-type LaunchableKambiClientProps = {
+type Props = {
   currency?: string,
   market?: string,
   locale?: string,
+};
+
+type State = {
+  firstLoadCompleted: boolean,
 };
 
 class LaunchableKambiClientQuery extends Query<
@@ -48,12 +52,22 @@ class LaunchableKambiClientQuery extends Query<
 > {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
-export class LaunchableKambiClient extends React.Component<LaunchableKambiClientProps> {
+export class LaunchableKambiClient extends React.Component<Props, State> {
   static contextType = ClientContext;
+
+  state = {
+    firstLoadCompleted: false,
+  };
 
   onNavigate = () =>
     // eslint-disable-next-line fp/no-mutation
     document.querySelectorAll(".scroll-y").forEach(el => (el.scrollTop = 0));
+
+  setFirstLoadCompleted = () => this.setState({ firstLoadCompleted: true });
+
+  isKambiClientVisible = (kambiLaunchData: LaunchableKambiClientQuery) => {
+    return kambiLaunchData.kambiClientVisible && this.state.firstLoadCompleted;
+  };
 
   render() {
     const { currency, market, locale } = this.props;
@@ -69,7 +83,7 @@ export class LaunchableKambiClient extends React.Component<LaunchableKambiClient
             return <ErrorMessage />;
           }
 
-          if (!data || !data.launchKambi) {
+          if (loading || !data || !data.launchKambi) {
             return <KambiClientSkeleton />;
           }
 
@@ -86,19 +100,27 @@ export class LaunchableKambiClient extends React.Component<LaunchableKambiClient
                 return (
                   <Mutation mutation={SESSION_TOUCH}>
                     {sessionTouch => (
-                      <KambiClient
-                        betslipVisible={data.betslipVisible}
-                        currency={currency}
-                        market={market}
-                        locale={locale}
-                        bootstrapUrl={clientBootstrapUrl}
-                        playerId={providerPlayerId}
-                        ticket={ticket}
-                        homeRoute={propOr("", "userHomepage", data)}
-                        onNavigate={this.onNavigate}
-                        isHidden={!data.kambiClientVisible}
-                        sessionKeepAlive={sessionTouch}
-                      />
+                      <>
+                        <KambiClient
+                          betslipVisible={data.betslipVisible}
+                          currency={currency}
+                          market={market}
+                          locale={locale}
+                          bootstrapUrl={clientBootstrapUrl}
+                          playerId={providerPlayerId}
+                          ticket={ticket}
+                          homeRoute={propOr("", "userHomepage", data)}
+                          onNavigate={this.onNavigate}
+                          isHidden={!this.isKambiClientVisible(data)}
+                          sessionKeepAlive={sessionTouch}
+                          onLoginCompleted={this.setFirstLoadCompleted}
+                        />
+
+                        {/* Show skeleton until kambi client loading is completed */}
+                        {!this.state.firstLoadCompleted && (
+                          <KambiClientSkeleton />
+                        )}
+                      </>
                     )}
                   </Mutation>
                 );
