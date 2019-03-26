@@ -4,28 +4,31 @@ Tracking of client side events is currently done with Mixpanel, but we can easil
 add different / multiple destinations in the future.
 
 ### Where to see the tracked events
+
 Just visit [https://mixpanel.com/report/1874529/insights](https://mixpanel.com/report/1874529/insights).
 If you don't have an account yet, ask in #frontend.
 
 ### How to use
+
 **Tracking an event**
 
 ```javascript
-import { track } from "Services/tracker";
+import tracker from "Services/tracker";
 
-track("Clicked Button", { name: "Launch Game" });
+tracker.track("Clicked Button", { name: "Launch Game" });
 ```
 
 **Setting global properties**
 These properties are going to be sent with all events.
 
 ```javascript
-import { setState } from "Services/tracker";
+import tracker from "Services/tracker";
 
-setState({ loginPageFlavour: "A" });
+tracker.setState({ loginPageFlavour: "A" });
 ```
 
 ### How it works
+
 The tracker service (`Services/tracker`) uses adapters to propagate
 the tracked events to multiple destinations.
 

@@ -14,7 +14,7 @@ describe("Route", () => {
     const child = <div>foo</div>;
     const component = shallow(<Route path="foo">{child}</Route>);
 
-    expect(component.find("ErrorBoundaryContainer")).toHaveLength(1);
+    expect(component.find("ErrorBoundary")).toHaveLength(1);
   });
 
   test("should have a path prop value", () => {

@@ -1,35 +1,8 @@
 // @flow
-import { assocPath, either, isEmpty, isNil, splitEvery } from "ramda";
-import { ENVS } from "Src/constants";
+import { either, isEmpty, isNil, splitEvery } from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
-const NODE_ENV = process.env.NODE_ENV || "";
-
 export const isNilOrEmpty = either(isNil, isEmpty);
-
-export const getEnv = (
-  nodeEnv: string = NODE_ENV,
-  windowObject: any = window
-): string => {
-  const hostname = windowObject.location.hostname;
-  const env = ENVS[nodeEnv.toUpperCase()] || ENVS.DEVELOPMENT;
-  const isLiveSite = hostname.match("casumo.com") !== null;
-  const isProductionEnv = env === ENVS.PRODUCTION;
-
-  if (isProductionEnv && isLiveSite) {
-    return ENVS.PRODUCTION;
-  }
-
-  if (isProductionEnv && !isLiveSite) {
-    return ENVS.TEST;
-  }
-
-  return env;
-};
-
-export const isEnvProduction = () => getEnv() === ENVS.PRODUCTION;
-
-export const isEnvDevelopment = () => getEnv() === ENVS.DEVELOPMENT;
 
 export const bridgeFactory = () => {
   const obj = {};
@@ -146,15 +119,6 @@ export const renderBets = (bet: ?(Bets | GameRow_Game_lobby_bets)) => {
 
   return `${bet.symbol || ""}${bet.min || 0} - ${bet.symbol || ""}${bet.max ||
     0}`;
-};
-
-export const sanitizeObject = (
-  obj: Object,
-  keysToSanitize: Array<string> = []
-) => {
-  return keysToSanitize
-    .map(key => key.split("."))
-    .reduce((acc, key) => assocPath(key, "******", acc), obj);
 };
 
 export const injectScript = (url: string) =>

@@ -1,17 +1,7 @@
 # Error Handling
 
 **NOTE!** We don't have dynamic log-levels in place yet, in development mode we log all
-levels to the console, in production we only log errors to Rollbar, and while running
-the unit tests we silence all log levels.
-
-### Adapters
-
-Adapters are used to send the log output to different places.
-Right now we have the following adapters:
-
-- `Console Adapter` (logs to the console)
-- `Rollbar Adapter` (logs to Rollbar - only errors at the moment)
-- `Null Adapter` (swallows all log messages - used in unit tests)
+levels to the console, in production we only log errors to Rollbar.
 
 ### Rollbar
 
@@ -21,45 +11,10 @@ Rollbar is a 3rd party log-collector service that we use in production.
 
 ### Logging an error
 
-#### Log an error when the store is available
-
-In most of the cases (logging from a component, action creator or saga) we have
-access to the store. In these cases we should always use the `logError()` action creator.
-The benefit of this is that **like this the actual state is going to be visible in
-Rollbar as well**, which gives us context and makes debugging easier.
-
-```javascript
-import { logError } from "Models/errors";
-
-const Container = connect(
-    () => ({}),
-    { logError }
-);
-
-// Usage in SAGAs
-import { put } from "redux-saga/effects";
-import { logError } from "Models/errors";
-
-// ...
-
-yield put(logError("Something really bad happened!", err));
-```
-
-#### Log an error when the store is NOT available
-
-There can be times when the store is not available you would like to log
-a `warning`, `info` or `debug` message. Make sure you always reference the logger
-service in these cases, as it will always use the right logger adapter for the environment.
-
 ```javascript
 import logger from "Services/logger";
 
-// ...
-
-logger.error("Oups, I did something naughty!");
-logger.warn("Heads up, I testing in live!");
-logger.info("Bla, bla, bla.");
-logger.debug("Even more bla, bla, bla.");
+logger.log / debug / info / warning / error / critical();
 ```
 
 ### Adding Error Boundaries
@@ -77,7 +32,7 @@ We have error boundaries in the following components:
 To add a new boundary just use it like this:
 
 ```javascript
-import ErrorBoundary from "Components/ErrorBoundary";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 
 // ...
 
@@ -87,3 +42,7 @@ return (
   </ErrorBoundary>
 );
 ```
+
+### Store snapshot in errors
+
+Currently unavaiable, will be added back once we know what we need there.

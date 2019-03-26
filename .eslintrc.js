@@ -130,4 +130,7 @@ module.exports = {
       version: "detect",
     },
   },
+  globals: {
+    __DEV__: "readonly",
+  },
 };

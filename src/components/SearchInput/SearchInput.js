@@ -19,7 +19,7 @@ type InputProps = {
 };
 
 type SearchInputProps = {
-  [key: string]: any,
+  onBlur: () => void,
   onClear: () => void,
   children?: empty,
   noResults?: boolean,
