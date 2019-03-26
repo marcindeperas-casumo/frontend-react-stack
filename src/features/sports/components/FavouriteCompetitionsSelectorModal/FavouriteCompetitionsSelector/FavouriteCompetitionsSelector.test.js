@@ -77,13 +77,13 @@ describe("transformOrphanGroup", () => {
         popular: false,
         name: "Champignons League 🍄",
         groups: [],
-        flagEmoji: "",
+        regionCode: "",
         userFavourite: true,
       },
       {
         popular: false,
         groups: undefined,
-        flagEmoji: "",
+        regionCode: "",
         userFavourite: true,
       },
     ]);

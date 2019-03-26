@@ -1,7 +1,6 @@
 import {
   URL,
   getGameLists,
-  getQuerySearch,
   getLatestPlayedGames,
   getGamesByProviderGameNames,
   getGamesBySlugs,
@@ -39,31 +38,6 @@ describe("API/GameBrowser", () => {
         variant: "default",
         page: 2,
         pageSize: 10,
-      });
-    });
-  });
-
-  describe("getQuerySearch()", () => {
-    test("requests the URL with the necessary params", () => {
-      getQuerySearch(
-        {
-          platform: "mobile",
-          country: "en-gb",
-          query: "starburst",
-          variant: "default",
-          page: 0,
-          pageSize: 5,
-        },
-        http
-      );
-
-      expect(http.get).toHaveBeenCalledTimes(1);
-      expect(getRequestUrl()).toMatch(`${URL.GAME_SEARCH}/mobile/en-gb`);
-      expect(getRequestData()).toMatchObject({
-        variant: "default",
-        page: 0,
-        pageSize: 5,
-        q: "starburst",
       });
     });
   });

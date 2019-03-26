@@ -8,6 +8,7 @@ import {
   renderBets,
   sanitizeObject,
   commaSeparated,
+  createReducer,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -200,6 +201,47 @@ describe("renderBets()", () => {
 
       expect(getEnv(nodeEnv, windowTest)).toBe(ENVS.TEST);
       expect(getEnv(nodeEnv, windowStage)).toBe(ENVS.TEST);
+    });
+  });
+
+  describe("createReducer()", () => {
+    test("creates a reducer from a map of handlers", () => {
+      const state = { foo: "bar" };
+      const handlers = {
+        ACTION_1: jest.fn().mockReturnValue("ACTION_1"),
+        ACTION_2: jest.fn().mockReturnValue("ACTION_2"),
+      };
+      const action = { type: "ACTION_1" };
+      const reducer = createReducer(state, handlers);
+
+      expect(reducer(state, action)).toBe("ACTION_1");
+    });
+
+    test("passes down the state to the individual handlers", () => {
+      const state = { foo: "bar" };
+      const handlers = {
+        ACTION_1: jest.fn().mockReturnValue("ACTION_1"),
+        ACTION_2: jest.fn().mockReturnValue("ACTION_2"),
+      };
+      const action = { type: "ACTION_1" };
+      const reducer = createReducer(state, handlers);
+
+      reducer(state, action);
+
+      expect(handlers.ACTION_1).toBeCalledTimes(1);
+      expect(handlers.ACTION_1).toBeCalledWith(state, action);
+    });
+
+    test("returns with the state if there are no matching handlers found", () => {
+      const state = { foo: "bar" };
+      const handlers = {
+        ACTION_1: jest.fn().mockReturnValue("ACTION_1"),
+        ACTION_2: jest.fn().mockReturnValue("ACTION_2"),
+      };
+      const unknownAction = { type: "UNKNOWN" };
+      const reducer = createReducer(state, handlers);
+
+      expect(reducer(state, unknownAction)).toEqual(state);
     });
   });
 });

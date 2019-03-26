@@ -2,31 +2,31 @@ export default {
   topCompetitions: [
     {
       id: 2000051195,
-      flagEmoji: "🇪🇺",
+      regionCode: "EU",
       name: "Europa League",
       __typename: "EventGroup",
     },
     {
       id: 1000094981,
-      flagEmoji: null,
+      regionCode: "GB-ENG",
       name: "The Championship",
       __typename: "EventGroup",
     },
     {
       id: 1000094985,
-      flagEmoji: null,
+      regionCode: "GB-ENG",
       name: "Premier League",
       __typename: "EventGroup",
     },
     {
       id: 1000093381,
-      flagEmoji: "🇪🇺",
+      regionCode: "EU",
       name: "Champions League",
       __typename: "EventGroup",
     },
     {
       id: 1000095057,
-      flagEmoji: null,
+      regionCode: "SE",
       name: "Allsvenskan",
       __typename: "EventGroup",
     },

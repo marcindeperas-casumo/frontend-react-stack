@@ -17,6 +17,11 @@ export const gameSearchResults = createSelector(
   propOr([], "games")
 );
 
+export const suggestedGames = createSelector(
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  propOr([], "games")
+);
+
 export const gameSearchQuerySelector = createSelector(
   gameSearch,
   prop("query")
@@ -33,20 +38,44 @@ export const gameSearchSuggestedList = createSelector(
     field: "popular_games",
     defaultValue: "Popular Games",
   }),
+  getField({
+    slug: cmsPageSlug,
+    field: "similar_games",
+    defaultValue: "You might also like",
+  }),
   gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
   gameListSelector(GAME_LIST_IDS.POPULAR_GAMES),
-  (titlePlaying, titlePopular, latest, popular) =>
-    latest.games && latest.games.length
-      ? {
-          ...latest,
-          title: titlePlaying,
-          location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
-        }
-      : {
-          ...popular,
-          title: titlePopular,
-          location: EVENT_LOCATIONS.POPULAR_GAMES,
-        }
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  gameSearchResults,
+  (
+    titlePlaying,
+    titlePopular,
+    titleSuggested,
+    latest,
+    popular,
+    suggested,
+    searchResults
+  ) => {
+    if (searchResults && searchResults.length === 1) {
+      return {
+        ...suggested,
+        title: titleSuggested,
+        location: EVENT_LOCATIONS.SUGGESTED_GAMES,
+      };
+    } else if (latest.games && latest.games.length) {
+      return {
+        ...latest,
+        title: titlePlaying,
+        location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
+      };
+    } else {
+      return {
+        ...popular,
+        title: titlePopular,
+        location: EVENT_LOCATIONS.POPULAR_GAMES,
+      };
+    }
+  }
 );
 
 export const searchNotFoundContent = createSelector(

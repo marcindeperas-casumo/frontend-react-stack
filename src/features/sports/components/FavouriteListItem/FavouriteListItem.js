@@ -21,18 +21,14 @@ export type Props = {
 
 export default class FavouriteListItem extends PureComponent<Props> {
   get icon(): ?Node {
-    return (
-      this.props.icon && (
-        <Flex.Item className="u-padding--md">{this.props.icon}</Flex.Item>
-      )
-    );
+    return this.props.icon && <Flex.Item>{this.props.icon}</Flex.Item>;
   }
 
   get favouriteIcon(): ?Node {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      "u-margin-right--md u-padding t-border-r--circle t-color-white",
+      "u-padding t-border-r--circle t-color-white",
       isFavourite && "t-background-green-light-1",
       !isFavourite && "t-background-white"
     );

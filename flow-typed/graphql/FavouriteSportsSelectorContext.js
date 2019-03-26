@@ -22,9 +22,9 @@ export type FavouriteSportsSelectorContext_groups_favouriteCompetitions = {
    */
   name: string,
   /**
-   * Emoji flag representing the country this event takes place in, if available
+   * The region code for the group, iso3166 code for most with some custom regions
    */
-  flagEmoji: ?string,
+  regionCode: ?string,
 };
 
 export type FavouriteSportsSelectorContext_groups = {
@@ -52,6 +52,10 @@ export type FavouriteSportsSelectorContext_groups = {
    * The icon for the sport group
    */
   icon: ?string,
+  /**
+   * The active indicator for the sport group, used on the nav
+   */
+  activeIndicator: ?string,
   /**
    * The favourited competitions for this EventGroup
    */

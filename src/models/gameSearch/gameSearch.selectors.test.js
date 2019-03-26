@@ -2,6 +2,7 @@ import {
   gameSearch,
   isLoadingSelector,
   gameSearchResults,
+  suggestedGames,
   gameSearchQuerySelector,
   gameSearchSuggestedList,
   searchNotFoundContent,
@@ -56,8 +57,31 @@ describe("Models/GameSearch/Selectors", () => {
     });
   });
 
+  describe("suggestedGamesSelector", () => {
+    test("returns suggested games list", () => {
+      const gameList = { [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(suggestedGames(state)).toEqual(["foo"]);
+    });
+  });
+
   describe("gameSearchSuggestedList", () => {
-    test("returns latestPlayed gameList if in state", () => {
+    test("returns suggestedGames if gameSearchResults exists and length is 1", () => {
+      const gameList = {
+        [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] },
+        [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] },
+      };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchSuggestedList(state)).toEqual({
+        games: ["foo"],
+        title: "You might also like",
+        location: "suggestedGames",
+      });
+    });
+
+    test("returns latestPlayed gameList if in state and gameSearchResults is not existing or greater than 1", () => {
       const gameList = { [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
@@ -68,7 +92,7 @@ describe("Models/GameSearch/Selectors", () => {
       });
     });
 
-    test("returns popularGames gameList if latestPlayed not in state", () => {
+    test("returns popularGames gameList if latestPlayed not in state and gameSearchResults is not existing or greater than 1", () => {
       const gameList = { [GAME_LIST_IDS.POPULAR_GAMES]: { games: ["bar"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
