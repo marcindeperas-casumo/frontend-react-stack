@@ -1,3 +1,4 @@
+const path = require("path");
 const webpack = require("webpack");
 const ourConfig = require("../config/webpack.config");
 const getClientEnvironment = require("../config//env");
@@ -8,7 +9,14 @@ module.exports = ({ config, mode }) => {
 
   return {
     ...config,
-    plugins: [...config.plugins, new webpack.DefinePlugin(env.stringified)],
+    plugins: [
+      ...config.plugins,
+      new webpack.DefinePlugin(env.stringified),
+      new webpack.NormalModuleReplacementPlugin(
+        /applicationService\/logger/,
+        path.resolve(__dirname, "fakeLogger.js") // extension required!
+      ),
+    ],
     resolve: {
       ...config.resolve,
       alias: {
