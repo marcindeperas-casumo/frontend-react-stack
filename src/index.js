@@ -1,31 +1,35 @@
+// @flow
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import AppContainer from "Components/App";
-import ErrorBoundary from "Components/ErrorBoundary";
+import { ErrorBoundary } from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
-import config from "Src/config";
 import * as storage from "Lib/storage";
-import logger from "Services/logger";
-import { setState } from "Services/tracker";
+import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
-import { isEnvProduction, sanitizeObject } from "Utils";
+import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
 
-const renderApp = App =>
-  ReactDOM.render(
-    <Provider store={reduxStore}>
-      <ErrorBoundary>
-        <App />
-      </ErrorBoundary>
-    </Provider>,
-    document.getElementById("root")
-  );
+const renderApp = App => {
+  const root = document.getElementById("root");
+
+  if (root) {
+    ReactDOM.render(
+      <Provider store={reduxStore}>
+        <ErrorBoundary>
+          <App />
+        </ErrorBoundary>
+      </Provider>,
+      root
+    );
+  }
+};
 
 renderApp(AppContainer);
 
@@ -37,18 +41,14 @@ if (module.hot) {
   });
 }
 
-if (isEnvProduction()) {
-  disableReactDevTools();
-}
-
 initNumberOfVisits();
 
-// Call this to disable react DevTools integration, meaning that this will
-// prevent the react DevTools extension to scan the elements and show anything
-// react related in the extension tab.
-// We need it to prevent people to look into our React tree with the extension
-// in production.
-function disableReactDevTools() {
+if (!__DEV__) {
+  // Call this to disable react DevTools integration, meaning that this will
+  // prevent the react DevTools extension to scan the elements and show anything
+  // react related in the extension tab.
+  // We need it to prevent people to look into our React tree with the extension
+  // in production.
   if (typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
     // eslint-disable-next-line fp/no-loops, fp/no-let
     for (let [key, value] of Object.entries(
@@ -61,31 +61,9 @@ function disableReactDevTools() {
   }
 }
 
-// Log Async Errors
-// Only logging errors that are coming from
-// this project by checking the filename in the error stack.
-window.addEventListener("error", e => {
-  const { message, filename, lineno, colno, error } = e;
-  const state = reduxStore.getState();
-  const sanitizedState = sanitizeObject(state, config.sanitizedStateKeys);
-  const stringifiedState = JSON.stringify(sanitizedState);
-  const isErrorProjectRelated = filename.match("/react-stack/") !== null;
-
-  if (!isErrorProjectRelated) {
-    return;
-  }
-
-  logger.error(message, error, {
-    state: stringifiedState,
-    filename,
-    lineno,
-    colno,
-  });
-});
-
 function initNumberOfVisits() {
   const numberOfVisits = storage.get("numberOfVisits", 0) + 1;
 
-  setState({ numberOfVisits });
+  tracker.setState({ numberOfVisits });
   storage.set("numberOfVisits", numberOfVisits);
 }

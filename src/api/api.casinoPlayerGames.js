@@ -1,6 +1,6 @@
 // @flow
 import { join } from "ramda";
-import defaultHttp from "Services/http";
+import defaultHttp from "Lib/http";
 
 type HTTPClient = typeof defaultHttp;
 

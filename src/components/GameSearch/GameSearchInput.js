@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import debounce from "lodash/debounce";
 import SearchInput from "Components/SearchInput";
-import { track } from "Services/tracker";
+import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
 type Props = {
@@ -19,7 +19,7 @@ type State = {
 
 export default class GameSearchInput extends PureComponent<Props, State> {
   static defaultProps = {
-    trackHandler: track,
+    trackHandler: tracker.track,
   };
   state = {
     query: "",

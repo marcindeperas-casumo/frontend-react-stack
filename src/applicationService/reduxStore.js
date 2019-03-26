@@ -3,25 +3,14 @@ import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
-import logger from "Services/logger";
-import createErrorLoggerMiddleware from "Lib/logger.middleware";
-import config from "Src/config";
-import { isEnvProduction } from "Utils";
-
-const { sanitizedStateKeys } = config;
 
 export const createReduxStore = preloadedState => {
-  const composeEnhancers = isEnvProduction()
-    ? compose
-    : window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+  const composeEnhancers = __DEV__
+    ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
+    : compose;
 
   const sagaMiddleware = createSagaMiddleware();
-  const errorLoggerMiddleware = createErrorLoggerMiddleware(
-    logger.error,
-    sanitizedStateKeys
-  );
-
-  const middlewares = [thunk, sagaMiddleware, errorLoggerMiddleware];
+  const middlewares = [thunk, sagaMiddleware];
   const middlewareEnhancer = applyMiddleware(...middlewares);
 
   const enhancers = [middlewareEnhancer];

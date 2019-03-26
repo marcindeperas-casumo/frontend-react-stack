@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import type { Node } from "react";
-import { track } from "Services/tracker";
+import tracker from "Services/tracker";
 import { TrackContext } from "Components/TrackProvider";
 
 type Props = {
@@ -19,7 +19,7 @@ export default class TrackClick extends React.PureComponent<Props> {
       children,
       eventName = "Click",
       data = {},
-      trackHandler = track,
+      trackHandler = tracker.track,
     } = this.props;
     const contextData = this.context;
     const onClick = () => trackHandler(eventName, { ...contextData, ...data });
