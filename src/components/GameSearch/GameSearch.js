@@ -8,7 +8,6 @@ import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import GamesVirtualList from "Components/GamesVirtualList";
-import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
 import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
 
 import "./GameSearch.scss";
@@ -77,10 +76,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
           <div className="c-game-search-virtual-list">
-            <GamesVirtualList
-              renderItem={id => <GameRowSearch slug={id} />}
-              renderTitle={title => <GamesVirtualListTitle title={title} />}
-            />
+            <GamesVirtualList renderItem={id => <GameRowSearch slug={id} />} />
           </div>
         </TrackProvider>
       );

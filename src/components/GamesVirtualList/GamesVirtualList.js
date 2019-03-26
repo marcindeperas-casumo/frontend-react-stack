@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { append, range, assoc, has } from "ramda";
+import { append, range, assoc } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
@@ -10,7 +10,7 @@ const PAGE_SIZE = 100;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: Object[],
+  games: string[],
   /** The function that triggers the action that fetches the next batch of games */
   preloadFetchPlayerGames: Function,
   preloadFetchPlayerGamesCount: Function,
@@ -18,7 +18,6 @@ type Props = {
   rowCount: number,
   /** The element to render as a row  */
   renderItem: Function,
-  renderTitle: Function,
 };
 
 type Indexes = {
@@ -144,19 +143,6 @@ class GamesVirtualList extends PureComponent<Props, State> {
       );
     }
 
-    if (has("title", this.props.games[index])) {
-      return (
-        <div
-          className="u-padding-horiz--md o-flex"
-          key={key}
-          index={index}
-          style={style}
-        >
-          {this.props.renderTitle(this.props.games[index].title)}
-        </div>
-      );
-    }
-
     return (
       <div
         className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
@@ -164,7 +150,7 @@ class GamesVirtualList extends PureComponent<Props, State> {
         index={index}
         style={style}
       >
-        {this.props.renderItem(this.props.games[index].game)}
+        {this.props.renderItem(this.props.games[index])}
       </div>
     );
   };
