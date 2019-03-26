@@ -8,6 +8,7 @@ import MockStore from "Components/MockStore";
 import defaultState from "Models/__mocks__/state.mock";
 import isNotChromatic from "Storybook/isNotChromatic";
 import GameRowSearch from "Components/GameRowSearch";
+import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
 
 const stories = storiesOf("GamesVirtualList", module);
 
@@ -72,6 +73,9 @@ stories.add(
         <GamesVirtualList
           games={gamesArray}
           renderItem={id => <GameRowSearch slug={id} />}
+          renderTitle={sectionTitle => (
+            <GamesVirtualListTitle title={sectionTitle} />
+          )}
           preloadFetchPlayerGames={() => {}}
           preloadFetchPlayerGamesCount={() => {}}
           rowCount={20}

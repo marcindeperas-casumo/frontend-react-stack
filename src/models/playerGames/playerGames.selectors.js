@@ -1,16 +1,5 @@
 import { createSelector } from "reselect";
-import {
-  compose,
-  prop,
-  not,
-  isEmpty,
-  pickBy,
-  pluck,
-  sort,
-  map,
-  values,
-  flatten,
-} from "ramda";
+import * as R from "ramda";
 import { gameListSelector, gameListEntitiesSelector } from "Models/schema";
 import { getPlayerGamesListIdByPage } from "Models/playerGames";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -21,36 +10,63 @@ const playerGames = state => state.playerGames;
 
 export const playerGamesCountSelector = createSelector(
   playerGames,
-  prop("count")
+  R.prop("count")
 );
 
-export const playerGamesSelector = createSelector(
+export const playerGamesLetterTitlesCountSelector = createSelector(
+  playerGamesCountSelector,
+  count => count + 26 // 26 alphabet letters
+);
+
+export const playerGamesLetterTitlesSelector = createSelector(
   gameListEntitiesSelector,
-  compose(
-    sort((a, b) => a.localeCompare(b)),
-    flatten,
-    values,
-    pluck("games"),
-    pickBy(isPlayerGames)
+  R.compose(
+    R.prop("list"),
+    R.reduce(
+      (acc, game) => {
+        const letter = R.head(game).toLocaleUpperCase();
+        const sectionTitle = isNaN(letter) ? letter : "#0-9";
+
+        if (!R.includes(sectionTitle, acc.lettersMap)) {
+          return R.evolve({
+            lettersMap: R.append(sectionTitle),
+            list: R.compose(
+              R.append({ game }),
+              R.append({ sectionTitle })
+            ),
+          })(acc);
+        }
+
+        return R.evolve({
+          list: R.append({ game }),
+        })(acc);
+      },
+      { list: [], lettersMap: [] }
+    ),
+    R.sort((a, b) => a.localeCompare(b)),
+    R.flatten,
+    R.values,
+    R.pluck("games"),
+    R.pickBy(isPlayerGames)
   )
 );
 
 export const isPlayerGamesPageLoaded = page =>
   createSelector(
     gameListSelector(getPlayerGamesListIdByPage(page)),
-    compose(
-      not,
-      isEmpty,
-      prop("games")
+    R.compose(
+      R.not,
+      R.isEmpty,
+      R.prop("games")
     )
   );
 
 export const playerGamesPagesLoaded = createSelector(
   gameListEntitiesSelector,
-  compose(
-    values,
-    map(o => Number(o.replace(`${GAME_LIST_IDS.PLAYER_GAMES}Page`, ""))),
-    pluck("id"),
-    pickBy(isPlayerGames)
+  R.compose(
+    R.values,
+    R.map(o => Number(o.replace(`${GAME_LIST_IDS.PLAYER_GAMES}Page`, ""))),
+    R.pluck("id"),
+    R.pickBy(isPlayerGames)
   )
 );
