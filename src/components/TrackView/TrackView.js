@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { track } from "Services/tracker";
+import tracker from "Services/tracker";
 
 export type Props = {
   eventName?: string,
@@ -11,7 +11,11 @@ export type Props = {
 export default class TrackView extends React.PureComponent<Props> {
   trackView = () => {
     const contextData = this.context;
-    const { eventName = "View", data = {}, trackHandler = track } = this.props;
+    const {
+      eventName = "View",
+      data = {},
+      trackHandler = tracker.track,
+    } = this.props;
 
     trackHandler(eventName, {
       ...contextData,
