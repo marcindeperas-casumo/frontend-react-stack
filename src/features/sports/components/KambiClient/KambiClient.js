@@ -91,13 +91,12 @@ export default class KambiClient extends React.Component<KambiClientProps> {
 
   render() {
     return (
-      <>
-        <div
-          id="KambiBC"
-          className={classNames({
-            "c-kambi-client--hidden": this.props.isHidden,
-          })}
-        />
+      <div
+        className={classNames({
+          "c-kambi-client--hidden": this.props.isHidden,
+        })}
+      >
+        <div id="KambiBC" />
 
         {this.props.betslipVisible ? null : (
           <style
@@ -108,7 +107,7 @@ export default class KambiClient extends React.Component<KambiClientProps> {
             }}
           />
         )}
-      </>
+      </div>
     );
   }
 }

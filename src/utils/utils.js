@@ -134,3 +134,19 @@ export const injectScript = (url: string) =>
       document.head.appendChild(script);
     }
   });
+
+type Handlers = {
+  [type: string]: (state: Object, action: Object) => any,
+};
+
+// This can be used as suggested in the Redux docs:
+// https://redux.js.org/recipes/reducing-boilerplate#generating-reducers
+export const createReducer = (initialState: Object, handlers: Handlers) => {
+  return function reducer(state: Object = initialState, action: Object) {
+    if (handlers.hasOwnProperty(action.type)) {
+      return handlers[action.type](state, action);
+    } else {
+      return state;
+    }
+  };
+};

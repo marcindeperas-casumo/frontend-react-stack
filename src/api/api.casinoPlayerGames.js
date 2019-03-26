@@ -5,8 +5,9 @@ import defaultHttp from "Lib/http";
 type HTTPClient = typeof defaultHttp;
 
 export const URL = {
-  GAMES: `/casino-player/casino-games/api/v1/games`,
-  GAMES_COUNT: `/casino-player/casino-games/api/v1/games/count`,
+  GAMES: "/casino-player/casino-games/api/v1/games",
+  GAMES_COUNT: "/casino-player/casino-games/api/v1/games/count",
+  GAME_SEARCH: "/casino-player/casino-games/api/v1/games/search",
   GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
 };
 
@@ -15,8 +16,8 @@ const getXTokenHeaders = (token: string) =>
 
 export const getCasinoPlayerGames = async (
   {
-    page = 0,
-    pageSize = 20,
+    page,
+    pageSize,
     sessionId,
     providers = [],
   }: {
@@ -36,6 +37,30 @@ export const getCasinoPlayerGames = async (
     },
     getXTokenHeaders(sessionId)
   );
+
+export const getCasinoPlayerGameSearch = async (
+  {
+    page,
+    pageSize,
+    sessionId,
+    query,
+  }: {
+    page: number,
+    pageSize: number,
+    sessionId: string,
+    query: string,
+  },
+  http: HTTPClient = defaultHttp
+) => {
+  return await http.get(
+    `${URL.GAME_SEARCH}/${query}`,
+    {
+      page,
+      pageSize,
+    },
+    getXTokenHeaders(sessionId)
+  );
+};
 
 export const getCasinoPlayerGamesCount = async (
   { sessionId }: { sessionId: string },

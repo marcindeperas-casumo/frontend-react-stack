@@ -16,13 +16,16 @@ type CompetitionPillsListProps = {
 };
 
 const CompetitionPillsList = (props: CompetitionPillsListProps) => (
-  <Flex style={{ flexWrap: "wrap" }}>
+  <Flex gap="none" style={{ flexWrap: "wrap" }}>
     {props.competitions.map(competition => {
       const onClick = makeOptionalCallback(props.onClick, competition);
       const onRemove = makeOptionalCallback(props.onRemove, competition);
 
       return (
-        <Flex.Item key={competition.id} className="u-margin--sm">
+        <Flex.Item
+          key={competition.id}
+          className="u-margin-vert--sm u-margin-left--none u-margin-right--sm"
+        >
           <GroupPill
             onClick={onClick}
             onRemove={onRemove}

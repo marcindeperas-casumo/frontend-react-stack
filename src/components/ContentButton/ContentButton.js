@@ -15,6 +15,7 @@ export const ACTION_MAP = {
   "all-games": "/games/all",
   "all-red-tiger-games": "/games/must-drop-jackpots",
   "reel-races": "/reel-races",
+  sports: "/sports",
 };
 export default class ContentButton extends PureComponent<Props> {
   render() {

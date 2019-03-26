@@ -27,7 +27,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.fetchSearchResults = debounce(this.fetchSearchResults, 500);
+    this.fetchSearchResults = debounce(this.fetchSearchResults, 250);
     this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 

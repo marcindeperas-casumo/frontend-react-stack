@@ -16,6 +16,7 @@ module.exports = {
     "no-only-tests",
     "sonarjs",
     "filenames",
+    "no-switch-statements",
   ],
   extends: [
     "react-app",
@@ -87,6 +88,7 @@ module.exports = {
     "no-only-tests/no-only-tests": "error",
     "no-sequences": "error",
     "no-shadow": "error",
+    "no-switch-statements/no-switch": "error",
     "no-undefined": "off",
     "no-unused-expressions": "error",
     "no-useless-catch": "error",
@@ -108,12 +110,6 @@ module.exports = {
       rules: {
         "max-lines-per-function": "off",
         "no-console": "off",
-      },
-    },
-    {
-      files: ["*.reducer.js"],
-      rules: {
-        "sonarjs/no-small-switch": "off",
       },
     },
     {

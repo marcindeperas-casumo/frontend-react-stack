@@ -7,14 +7,14 @@ import SportsNav, { isNavItemSelected, onNavItemSelected } from "./SportsNav";
 import SportsNavSkeleton from "./SportsNavSkeleton";
 import SportsMainNav from "./SportsMainNav";
 import SportsSubNav from "./SportsSubNav";
-import multipleNavItemsMock from "./__mocks__/userNavigationQuery";
+import mocks from "./__mocks__/userNavigationQuery";
 import navItems from "./__mocks__/navItems";
 
 describe("<SportsNav/>", () => {
   test("should render skeleton while loading navigation data", async () => {
     const rendered = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#home"} />
@@ -27,7 +27,7 @@ describe("<SportsNav/>", () => {
   test("should not be rendered on #event, or #bethistory kambi routes", async () => {
     const renderedOnEventPage = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#event"} />
@@ -35,7 +35,7 @@ describe("<SportsNav/>", () => {
     );
     const renderedOnBethistoryPage = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#bethistory"} />
@@ -49,7 +49,7 @@ describe("<SportsNav/>", () => {
   test("should render without errors once data is resolved", async () => {
     const rendered = mount(
       <MockedProviderWithContext
-        mocks={multipleNavItemsMock}
+        mocks={mocks.multipleSports}
         addTypename={false}
       >
         <SportsNav currentHash={"#home"} />
@@ -77,24 +77,40 @@ describe("<SportsNav/>", () => {
 
   describe("isNavItemSelected()", () => {
     test("should check if navItem's path matches the current location", () => {
-      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[0])).toBe(true);
+      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[0], true)).toBe(
+        true
+      );
 
-      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[1])).toBe(
+      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[1], true)).toBe(
         false
       );
     });
 
-    test("should check if the navItem is a parent of the current location", () => {
+    test("should check if the navItem is a parent of the current location if sub path matching is enabled", () => {
       expect(
-        isNavItemSelected(`#${navItems[0].subNav[0].path}`, navItems[0])
+        isNavItemSelected(`#${navItems[0].subNav[0].path}`, navItems[0], true)
       ).toBe(true);
 
       expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[1])
+        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[1], true)
       ).toBe(true);
 
       expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[0])
+        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[0], true)
+      ).toBe(false);
+    });
+
+    test("should not check if the navItem is a parent of the current location if sub path matching is disabled", () => {
+      expect(
+        isNavItemSelected(`#${navItems[0].subNav[0].path}`, navItems[0], false)
+      ).toBe(false);
+
+      expect(
+        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[1], false)
+      ).toBe(false);
+
+      expect(
+        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[0], false)
       ).toBe(false);
     });
 

@@ -46,6 +46,23 @@ if (isNotChromatic) {
     },
   };
 
+  const suggestedGamesState = {
+    ...defaultState,
+    schema: {
+      cms: cmsState,
+      gameList: {
+        suggestedGames: {
+          id: "suggestedGames",
+          games: ["mega-fortune-dreams", "book-of-dead", "mega-fortune"],
+        },
+        gameSearch: {
+          id: "gameSearch",
+          games: ["starburst"],
+        },
+      },
+    },
+  };
+
   const noop = () => ({});
 
   stories.add(
@@ -108,7 +125,7 @@ if (isNotChromatic) {
   stories.add(
     "Direct hit - query: starburst",
     () => (
-      <MockStore state={latestPlayedGamesState}>
+      <MockStore state={suggestedGamesState}>
         <GameSearch
           inputPromptPlaceholder="What 🐟 are you looking for?"
           searchResults={["starburst"]}

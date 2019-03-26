@@ -48,6 +48,7 @@ export const GAME_LIST_IDS = {
   GAME_SEARCH: "gameSearch",
   LATEST_PLAYED: "latestPlayedGames",
   PLAYER_GAMES: "playerGames",
+  SUGGESTED_GAMES: "suggestedGames",
 };
 
 export const MARKETS = {
@@ -77,11 +78,14 @@ export const EVENTS = {
   GAME_DETAILS: "Game Information",
   SEARCH_INTENT: "Search Intent",
   SEARCH_INITIATED: "Search Initiated",
+  CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
 };
 
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
+  CURATED_TYPE: "type",
+  CURATED_NAME: "name",
 };
 
 export const EVENT_LOCATIONS = {
@@ -89,4 +93,5 @@ export const EVENT_LOCATIONS = {
   ALL_GAMES: "allGames",
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
+  SUGGESTED_GAMES: "suggestedGames",
 };

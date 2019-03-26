@@ -1,3 +1,10 @@
+.u-content-width--tablet {
+  @include cudl-breakpoint(tablet) {
+    margin: auto;
+    width: 408px;
+  }
+}
+
 .u-height--screen {
   height: 100vh;
 }

@@ -12,7 +12,7 @@ import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import NoResultsIcon from "./no-results-icon.svg";
 
-const TOP_SEARCHES_QUERY = gql`
+export const TOP_SEARCHES_QUERY = gql`
   query TopSearches($count: Int!) {
     topSearches(count: $count) {
       termKey
@@ -54,7 +54,7 @@ const resultTypesGroupingMap = {
   LEAGUE: "Sports, Regions & Leagues",
 };
 
-const SEARCH_QUERY = gql`
+export const SEARCH_QUERY = gql`
   query SearchQuery($query: String!) {
     search(query: $query) {
       type
@@ -70,10 +70,7 @@ const SEARCH_QUERY = gql`
 `;
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
-  <Text
-    size="md"
-    className="t-background-white t-color-grey-dark-2 u-padding-vert--md u-font-weight-bold"
-  >
+  <Text className="t-background-white t-color-black-dark-1 u-padding-vert--md u-font-weight-bold">
     {children}
   </Text>
 );
@@ -89,7 +86,7 @@ const ResultRow = ({
 }): React.Node => (
   <div
     className={classNames("u-padding--md", className || "t-background-white")}
-    style={{ marginBottom: 2 }}
+    style={{ marginBottom: 1 }}
     onClick={onClick}
   >
     {children}
@@ -222,7 +219,13 @@ class KambiSearchResults extends React.Component<Props, State> {
             }}
           >
             <Flex align="center">
-              <img src={sport.icon} alt={sport.name} height="48" width="48" />
+              <img
+                src={sport.icon}
+                alt={sport.name}
+                height="24"
+                width="24"
+                className="u-opacity-28"
+              />
               <Flex.Block className="u-margin-left--lg">
                 <Text
                   size="sm"
@@ -281,8 +284,9 @@ class KambiSearchResults extends React.Component<Props, State> {
                 <img
                   src={result.sport.icon}
                   alt={result.localizedName}
-                  height="48"
-                  width="48"
+                  height="24"
+                  width="24"
+                  className="u-opacity-28"
                 />
               )}
 
@@ -370,7 +374,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         : this.renderSearchResultsPlaceholder();
 
     return (
-      <Flex.Block className="c-kambi-search-results t-background-white">
+      <Flex.Block className="u-tablet-search-width t-background-white">
         {content}
       </Flex.Block>
     );

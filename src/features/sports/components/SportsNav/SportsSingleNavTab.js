@@ -2,6 +2,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import SportsIcon from "Features/sports/components/SportsIcon";
 import type { SportsNavItemType } from "./types";
 
 type Props = {
@@ -12,7 +13,7 @@ type Props = {
 const SportsSingleNavTab = ({ navItem, onClick }: Props) => (
   <Flex.Item className="c-sports-nav-tab o-flex" onClick={onClick}>
     <Flex align="center" justify="center" className="o-flex--1">
-      {navItem.icon}
+      <SportsIcon {...navItem.iconProps} isActive />
       <Text
         tag="span"
         size="xlg"

@@ -7,7 +7,7 @@ const FavouriteSportsSelectorIntro = ({
 }: {
   children: React.Node,
 }) => (
-  <Text className="u-padding-horiz--md u-padding-vert--lg" size="sm">
+  <Text className="u-padding-top--lg" size="sm">
     {children}
   </Text>
 );

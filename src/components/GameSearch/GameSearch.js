@@ -85,7 +85,7 @@ export default class GameSearch extends React.PureComponent<Props> {
 
   render() {
     return (
-      <>
+      <div className="c-game-search">
         <div className="u-position-sticky c-game-search-bar">
           <div className="o-bleed t-background-grey-light-2">
             <GameSearchInput
@@ -97,7 +97,7 @@ export default class GameSearch extends React.PureComponent<Props> {
           </div>
         </div>
         {this.renderResults()}
-      </>
+      </div>
     );
   }
 }

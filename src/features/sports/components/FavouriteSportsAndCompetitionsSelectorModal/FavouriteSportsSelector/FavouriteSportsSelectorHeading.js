@@ -7,7 +7,10 @@ const FavouriteSportsSelectorHeading = ({
 }: {
   children: React.Node,
 }) => (
-  <Text tag="h2" className="u-margin-horiz--md u-margin-vert--lg">
+  <Text
+    tag="h2"
+    className="u-margin-top--2xlg u-margin-bottom--md t-color-grey-dark-1"
+  >
     {children}
   </Text>
 );
