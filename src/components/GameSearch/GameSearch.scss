@@ -21,6 +21,12 @@ $game-list-height: (
 }
 
 // stylelint-disable xi/selector-pattern
+.play-okay-bar-visible .c-game-search-virtual-list {
+  @include cudl-breakpoint(mobile) {
+    height: calc(100vh - 187px);
+  }
+}
+
 .c-game-search-virtual-list .c-virtual-list {
   padding-top: 8px;
 }
