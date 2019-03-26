@@ -1,6 +1,10 @@
+// @flow
 import React from "react";
 import { mount } from "enzyme";
-import ErrorBoundary from "./ErrorBoundary";
+import logger from "Services/logger";
+import { ErrorBoundary } from "./ErrorBoundary";
+
+jest.mock("Services/logger");
 
 describe("<ErrorBoundary />", () => {
   const onError = e => {
@@ -30,13 +34,12 @@ describe("<ErrorBoundary />", () => {
   });
 
   test("does not render out anything in case of an error and if withoutUserFeedback is set", () => {
-    const logError = jest.fn();
     const Component = () => {
       // eslint-disable-next-line fp/no-throw
       throw new Error("Test");
     };
     const rendered = mount(
-      <ErrorBoundary logError={logError} withoutUserFeedback>
+      <ErrorBoundary withoutUserFeedback>
         <Component />
       </ErrorBoundary>
     );
@@ -46,13 +49,12 @@ describe("<ErrorBoundary />", () => {
   });
 
   test("renders a user feedback by default in case of an error", () => {
-    const logError = jest.fn();
     const Component = () => {
       // eslint-disable-next-line fp/no-throw
       throw new Error("Test");
     };
     const rendered = mount(
-      <ErrorBoundary logError={logError}>
+      <ErrorBoundary>
         <Component />
       </ErrorBoundary>
     );
@@ -61,27 +63,23 @@ describe("<ErrorBoundary />", () => {
   });
 
   test("calls the logError() function if there was an error thrown in the children", () => {
-    const logError = jest.fn();
-    const message = "Random Error";
-    const error = new Error(message);
+    const logError = logger.error;
+    logError.mockClear();
+    const error = new Error("Random Error");
     const Component = () => {
       // eslint-disable-next-line fp/no-throw
       throw error;
     };
 
     mount(
-      <ErrorBoundary logError={logError}>
+      <ErrorBoundary>
         <Component />
       </ErrorBoundary>
     );
 
     const firstArg = logError.mock.calls[0][0];
-    const secondArg = logError.mock.calls[0][1];
-    const thirdArg = logError.mock.calls[0][1];
 
     expect(logError).toHaveBeenCalledTimes(1);
-    expect(firstArg).toEqual(message);
-    expect(secondArg).toEqual(error);
-    expect(thirdArg).toBeInstanceOf(Object);
+    expect(firstArg).toEqual(error);
   });
 });

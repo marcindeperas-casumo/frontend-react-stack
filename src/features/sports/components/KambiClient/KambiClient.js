@@ -7,7 +7,7 @@ import { injectScript } from "Utils";
 
 import "./KambiClient.scss";
 
-type KambiClientProps = {
+type Props = {
   bootstrapUrl: string,
   market: string,
   locale: string,
@@ -20,14 +20,16 @@ type KambiClientProps = {
   searchMode: boolean,
   betslipVisible?: boolean,
   sessionKeepAlive: () => void,
+  onLoginCompleted?: () => void,
 };
 
-export default class KambiClient extends React.Component<KambiClientProps> {
+export default class KambiClient extends React.Component<Props> {
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
     betslipVisible: true,
     sessionKeepAlive: () => {},
+    onLoginCompleted: () => {},
   };
 
   componentDidMount() {
@@ -48,6 +50,7 @@ export default class KambiClient extends React.Component<KambiClientProps> {
       reservedRoutes: ["home"],
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
+      notification: this.onNotification,
     };
     /* eslint-enable fp/no-mutation */
 
@@ -57,7 +60,13 @@ export default class KambiClient extends React.Component<KambiClientProps> {
     bridge.on("sports-path-updated", this.handleHashChange);
   }
 
-  componentDidUpdate(prevProps: KambiClientProps) {
+  onNotification = (event: { [string]: * }) => {
+    if (event.name === "loginRequestDone") {
+      this.props.onLoginCompleted && this.props.onLoginCompleted();
+    }
+  };
+
+  componentDidUpdate(prevProps: Props) {
     if (prevProps.homeRoute !== this.props.homeRoute) {
       this.redirectToUserHomeRoute(prevProps.homeRoute);
     }

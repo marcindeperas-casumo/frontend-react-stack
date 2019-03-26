@@ -1,5 +1,5 @@
 // @flow
-import defaultHttp from "Services/http";
+import defaultHttp from "Lib/http";
 
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",

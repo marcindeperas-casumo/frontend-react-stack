@@ -1,6 +1,6 @@
 // @flow
-import defaultHttp from "Services/http";
 import { commaSeparated, isNilOrEmpty } from "Utils";
+import defaultHttp from "Lib/http";
 
 type HTTPClient = typeof defaultHttp;
 

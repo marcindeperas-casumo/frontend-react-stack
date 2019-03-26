@@ -77,6 +77,9 @@
     }
   },
   "jest": {
+    "globals": {
+      "__DEV__": true
+    },
     "setupFilesAfterEnv": [
       "<rootDir>/config/jest/enzyme.js"
     ],

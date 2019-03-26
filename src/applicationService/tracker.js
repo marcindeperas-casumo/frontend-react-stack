@@ -1,32 +1,16 @@
-import { getEnv } from "Utils";
+// @flow
 import config from "Src/config";
-import { ENVS } from "Src/constants";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
 import createAdapterLog from "Lib/tracker.adapter.log";
 import logger from "Services/logger";
 
-const ADAPTER_GETTERS = {
-  [ENVS.TEST]: getAdaptersDev,
-  [ENVS.DEVELOPMENT]: getAdaptersDev,
-  [ENVS.AUTOMATED_TESTS]: getAdaptersDev,
-  [ENVS.PRODUCTION]: getAdaptersProd,
-};
-
 const tracker = getTracker();
-
-export const track = tracker.track;
-
-export const setState = tracker.setState;
 
 export default tracker;
 
-export function getTracker(env = getEnv(), adapterGetters = ADAPTER_GETTERS) {
-  const adapterGetter = adapterGetters[env];
-  const emptyAdapters = [];
-  const adapters = adapterGetter ? adapterGetter() : emptyAdapters;
-
-  return createTracker(adapters);
+export function getTracker() {
+  return createTracker(__DEV__ ? getAdaptersDev() : getAdaptersProd());
 }
 
 function getAdaptersDev() {
