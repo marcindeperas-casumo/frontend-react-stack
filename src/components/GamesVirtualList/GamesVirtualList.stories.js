@@ -12,18 +12,17 @@ import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListT
 
 const stories = storiesOf("GamesVirtualList", module);
 
-const gamesArray = [
-  { sectionTitle: "Awesome games" },
+const games = [
   { game: "easter-island" },
   { game: "starburst" },
   { game: "mega-fortune" },
   { game: "mega-fortune-dreams" },
   { game: "bakers-treat" },
+  { sectionTitle: "More fun games" },
   { game: "rapunzels-tower" },
   { game: "big-bad-wolf" },
   { game: "book-of-ra-deluxe" },
   { game: "diamond-mine" },
-  { sectionTitle: "Even more fun" },
   { game: "raging-rhino" },
   { game: "jammin-jars" },
   { game: "legacy-of-egypt" },
@@ -37,27 +36,13 @@ const gamesArray = [
   { game: "twin-spin" },
 ];
 
-const state = {
-  ...defaultState,
-  playerGames: {
-    count: gamesArray.length,
-  },
-  schema: {
-    gameList: {
-      playerGamesPage0: {
-        games: gamesArray,
-      },
-    },
-  },
-};
-
 stories.add(
   "Default",
   () => (
     <MockStore>
       <div className="u-height--screen">
         <GamesVirtualList
-          games={gamesArray}
+          games={games}
           renderItem={id => <GameRowSearch slug={id} />}
           renderTitle={sectionTitle => (
             <GamesVirtualListTitle title={sectionTitle} />
