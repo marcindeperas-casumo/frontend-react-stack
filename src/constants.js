@@ -79,13 +79,14 @@ export const EVENTS = {
   SEARCH_INTENT: "Search Intent",
   SEARCH_INITIATED: "Search Initiated",
   CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
+  CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
 };
 
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
   CURATED_TYPE: "type",
-  CURATED_NAME: "name",
+  CURATED_SLUG: "slug",
 };
 
 export const EVENT_LOCATIONS = {
