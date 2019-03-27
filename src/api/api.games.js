@@ -15,13 +15,13 @@ import { getSuggestedGames } from "Api/api.gameSuggest";
 import { decodeString } from "Utils";
 
 const getLatestPlayedGame = async latestPlayedGamesPromise => {
-  const latestPlayedGamesResolved = (await latestPlayedGamesPromise).games;
+  const latestPlayedGamesResolved = await latestPlayedGamesPromise;
 
   if (!latestPlayedGamesResolved) {
     return null;
   }
 
-  return head(latestPlayedGamesResolved);
+  return head(latestPlayedGamesResolved.games);
 };
 
 export const fetchSuggestedGames = async ({
