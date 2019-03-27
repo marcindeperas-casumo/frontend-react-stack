@@ -46,11 +46,7 @@ describe("Models/PlayerGames/Selectors", () => {
 
   describe("playerGamesCountSelector()", () => {
     test("should return games count", () => {
-      const state = {
-        playerGames: {
-          count: 123,
-        },
-      };
+      const state = { [ENTITY_KEYS.PLAYER_GAMES]: { count: 123 } };
 
       expect(playerGamesCountSelector(state)).toBe(123);
     });
@@ -58,13 +54,16 @@ describe("Models/PlayerGames/Selectors", () => {
 
   describe("playerGamesLetterTitlesCountSelector()", () => {
     test("should return games count plus 26 alphabet letters", () => {
+      const games = ["foo", "bar"];
+      const gameList = { [getPlayerGamesListIdByPage(0)]: { games } };
       const state = {
-        playerGames: {
-          count: 123,
+        [ENTITY_KEYS.PLAYER_GAMES]: { count: 2 },
+        schema: {
+          [ENTITY_KEYS.GAME_LIST]: gameList,
         },
       };
 
-      expect(playerGamesLetterTitlesCountSelector(state)).toBe(123 + 26);
+      expect(playerGamesLetterTitlesCountSelector(state)).toBe(4);
     });
   });
 });
