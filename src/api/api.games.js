@@ -229,7 +229,7 @@ export const fetchGames = async ({
     platform,
     playerId,
   });
-  const game = getLatestPlayedGame(latestPlayedGames);
+  const game = await getLatestPlayedGame(latestPlayedGames);
   const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
