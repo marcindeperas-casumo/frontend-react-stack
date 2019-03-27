@@ -223,28 +223,23 @@ export const fetchGames = async ({
         title,
       };
     });
-
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
     platform,
     playerId,
   });
-
   const game = getLatestPlayedGame(latestPlayedGames);
-
   const suggestedGames = fetchSuggestedGames({
     handshake,
     platform,
     country,
     game,
   });
-
   const hasSomeGames = compose(
     i => i > 0,
     path(["games", "length"])
   );
-
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
       latestPlayedGames,
