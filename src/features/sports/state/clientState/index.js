@@ -1,11 +1,9 @@
 /* @flow */
-import { type ClientStateConfig } from "apollo-link-state";
 import clientSchema from "./clientSchema.graphql";
 import resolvers from "./resolvers";
-import defaultState from "./defaultState";
+export { default as defaultState } from "./defaultState";
 
-export const clientState: ClientStateConfig = {
-  defaults: defaultState,
+export const clientState = {
   typeDefs: clientSchema,
   resolvers,
 };

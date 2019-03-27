@@ -100,8 +100,10 @@ describe("<DictionaryTerm />", () => {
 
     mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <DictionaryTerm termKey={WORKING_TERM.key}>{children}</DictionaryTerm>
-        <DictionaryTerm termKey="not found key">{children2}</DictionaryTerm>
+        <>
+          <DictionaryTerm termKey={WORKING_TERM.key}>{children}</DictionaryTerm>
+          <DictionaryTerm termKey="not found key">{children2}</DictionaryTerm>
+        </>
       </MockedProvider>
     );
 
