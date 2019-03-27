@@ -1,7 +1,6 @@
 // @flow
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
-import { withClientState } from "apollo-link-state";
 import * as kambi from "Features/sports/kambi";
 import * as queries from "./queries";
 import * as mutations from "./mutations";
@@ -25,16 +24,16 @@ const createClientWithState = (state: {
 }): ApolloClient<InMemoryCache> => {
   const cache = new InMemoryCache();
 
-  const link = withClientState({
-    resolvers,
-    defaults: state,
+  const client = new ApolloClient({
     cache,
+    resolvers,
   });
 
-  return new ApolloClient({
-    link,
-    cache,
+  cache.writeData({
+    data: state,
   });
+
+  return client;
 };
 
 describe("Client state resolvers", () => {

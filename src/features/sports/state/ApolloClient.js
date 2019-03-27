@@ -6,9 +6,8 @@ import { HttpLink } from "apollo-link-http";
 import { setContext } from "apollo-link-context";
 import { ApolloLink } from "apollo-link";
 import { ApolloProvider } from "react-apollo";
-import { withClientState } from "apollo-link-state";
 import { createPersistedQueryLink } from "apollo-link-persisted-queries";
-import { clientState } from "./clientState";
+import { clientState, defaultState } from "./clientState";
 
 type Props = {
   children: React.Node,
@@ -51,11 +50,6 @@ export class SportsStateProvider extends React.Component<Props> {
       })
     );
 
-    const clientStateLink = withClientState({
-      ...clientState,
-      cache,
-    });
-
     // Pass default locale and market so we do not have to pass these in each query.
     // These are available in the context of the apollo server for all resolvers to use
     const contextLink = setContext(() => {
@@ -73,13 +67,13 @@ export class SportsStateProvider extends React.Component<Props> {
     });
 
     this.sportsStateClient = new ApolloClient<InMemoryCache>({
-      link: ApolloLink.from([
-        persistedQueryLink,
-        contextLink,
-        clientStateLink,
-        httpLink,
-      ]),
+      link: ApolloLink.from([contextLink, httpLink]),
       cache,
+      ...clientState,
+    });
+
+    cache.writeData({
+      data: defaultState,
     });
   }
 
