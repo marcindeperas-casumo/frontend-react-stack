@@ -53,7 +53,7 @@ describe("Models/PlayerGames/Selectors", () => {
   });
 
   describe("playerGamesLetterTitlesCountSelector()", () => {
-    test("should return games count plus 26 alphabet letters", () => {
+    test("should return games count + already inserted titles count", () => {
       const games = ["foo", "bar"];
       const gameList = { [getPlayerGamesListIdByPage(0)]: { games } };
       const state = {
