@@ -1,5 +1,5 @@
 // @flow
-import { join } from "ramda";
+import { commaSeparated, isNilOrEmpty } from "Utils";
 import defaultHttp from "Lib/http";
 
 type HTTPClient = typeof defaultHttp;
@@ -27,6 +27,9 @@ const getHeaders = (token: string) => {
   };
 };
 
+const getGamesCountParams = (providers?: Array<string>) =>
+  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
+
 export const getCasinoPlayerGames = async (
   {
     page,
@@ -46,7 +49,7 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: join(",")(providers),
+      providerSlugs: commaSeparated(providers),
     },
     getHeaders(sessionId)
   );
@@ -76,9 +79,14 @@ export const getCasinoPlayerGameSearch = async (
 };
 
 export const getCasinoPlayerGamesCount = async (
-  { sessionId }: { sessionId: string },
+  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
   http: HTTPClient = defaultHttp
-) => await http.get(URL.GAMES_COUNT, {}, getHeaders(sessionId));
+) =>
+  await http.get(
+    URL.GAMES_COUNT,
+    getGamesCountParams(providers),
+    getHeaders(sessionId)
+  );
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },
