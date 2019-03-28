@@ -5,17 +5,13 @@ import {
 } from "./api.casinoPlayerGames";
 
 describe("API/casinoPlayerGames", () => {
-  let http;
   const sessionId = "123";
 
   describe("getCasinoPlayerGamesCount()", () => {
-    beforeEach(() => {
-      http = {
-        get: jest.fn(() => Promise.resolve([])),
-      };
-    });
-
     test("calls http.get() with the right URL for GAMES_COUNT", () => {
+      const http = { get: jest.fn(() => Promise.resolve([])) };
+
+      localStorage.setItem("showDisabledGames", "true");
       getCasinoPlayerGamesCount({ sessionId }, http);
 
       expect(http.get).toHaveBeenCalledTimes(1);
@@ -24,7 +20,7 @@ describe("API/casinoPlayerGames", () => {
         {},
         {
           headers: {
-            "X-Request-Features": null,
+            "X-Request-Features": "HIDDEN_GAMES",
             "X-Token": sessionId,
           },
         }
@@ -33,14 +29,10 @@ describe("API/casinoPlayerGames", () => {
   });
 
   describe("getGameProviders()", () => {
-    // eslint-disable-next-line sonarjs/no-identical-functions
-    beforeEach(() => {
-      http = {
-        get: jest.fn(() => Promise.resolve([])),
-      };
-    });
-
     test("calls http.get() with the right URL", () => {
+      const http = { get: jest.fn(() => Promise.resolve([])) };
+
+      localStorage.setItem("showDisabledGames", "false");
       getGameProviders({ sessionId }, http);
 
       expect(http.get).toHaveBeenCalledTimes(1);
