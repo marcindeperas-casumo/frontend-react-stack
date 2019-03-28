@@ -22,7 +22,12 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledWith(
         URL.GAMES_COUNT,
         {},
-        { headers: { "X-Token": sessionId } }
+        {
+          headers: {
+            "X-Request-Features": null,
+            "X-Token": sessionId,
+          },
+        }
       );
     });
   });
@@ -42,7 +47,12 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledWith(
         URL.GAME_PROVIDERS,
         {},
-        { headers: { "X-Token": sessionId } }
+        {
+          headers: {
+            "X-Request-Features": null,
+            "X-Token": sessionId,
+          },
+        }
       );
     });
   });
