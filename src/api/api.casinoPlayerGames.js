@@ -1,5 +1,5 @@
 // @flow
-import { join } from "ramda";
+import { commaSeparated, isNilOrEmpty } from "Utils";
 import defaultHttp from "Lib/http";
 
 type HTTPClient = typeof defaultHttp;
@@ -13,6 +13,9 @@ export const URL = {
 
 const getXTokenHeaders = (token: string) =>
   token ? { headers: { "X-Token": token } } : {};
+
+const getGamesCountParams = (providers?: Array<string>) =>
+  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
 
 export const getCasinoPlayerGames = async (
   {
@@ -33,7 +36,7 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: join(",")(providers),
+      providerSlugs: commaSeparated(providers),
     },
     getXTokenHeaders(sessionId)
   );
@@ -63,9 +66,14 @@ export const getCasinoPlayerGameSearch = async (
 };
 
 export const getCasinoPlayerGamesCount = async (
-  { sessionId }: { sessionId: string },
+  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
   http: HTTPClient = defaultHttp
-) => await http.get(URL.GAMES_COUNT, {}, getXTokenHeaders(sessionId));
+) =>
+  await http.get(
+    URL.GAMES_COUNT,
+    getGamesCountParams(providers),
+    getXTokenHeaders(sessionId)
+  );
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },

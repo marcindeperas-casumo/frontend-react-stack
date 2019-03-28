@@ -15,13 +15,24 @@ describe("API/casinoPlayerGames", () => {
       };
     });
 
-    test("calls http.get() with the right URL for GAMES_COUNT", () => {
+    test("calls http.get() with the right URL for GAMES_COUNT (without params)", () => {
       getCasinoPlayerGamesCount({ sessionId }, http);
 
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(http.get).toHaveBeenCalledWith(
         URL.GAMES_COUNT,
         {},
+        { headers: { "X-Token": sessionId } }
+      );
+    });
+
+    test("calls http.get() with the right URL for GAMES_COUNT (with params)", () => {
+      getCasinoPlayerGamesCount({ sessionId, providers: ["foo", "bar"] }, http);
+
+      expect(http.get).toHaveBeenCalledTimes(1);
+      expect(http.get).toHaveBeenCalledWith(
+        URL.GAMES_COUNT,
+        { providerSlugs: "foo,bar" },
         { headers: { "X-Token": sessionId } }
       );
     });
