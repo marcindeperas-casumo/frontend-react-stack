@@ -7,7 +7,7 @@ function checkIgnore(isUncaught, args, payload) {
      * In development we only want to have logs from rollbar
      * without actually sending them to the server.
      */
-    // console.log("Rollbar log:", { isUncaught, args, payload }); // eslint-disable-line no-console
+    console.log("Rollbar log:", { isUncaught, args, payload }); // eslint-disable-line no-console
     return true;
   }
 
