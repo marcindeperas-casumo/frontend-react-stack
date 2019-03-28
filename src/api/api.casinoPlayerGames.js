@@ -1,5 +1,5 @@
 // @flow
-import { join } from "ramda";
+import { commaSeparated, isNilOrEmpty } from "Utils";
 import defaultHttp from "Lib/http";
 
 type HTTPClient = typeof defaultHttp;
@@ -11,8 +11,24 @@ export const URL = {
   GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
 };
 
-const getXTokenHeaders = (token: string) =>
-  token ? { headers: { "X-Token": token } } : {};
+const getHeaders = (token: string) => {
+  if (!token) {
+    return {};
+  }
+  const showDisabledGames = localStorage.getItem("showDisabledGames");
+  const isFeatureHiddenGames =
+    showDisabledGames === "true" ? "HIDDEN_GAMES" : null;
+
+  return {
+    headers: {
+      "X-Token": token,
+      "X-Request-Features": isFeatureHiddenGames,
+    },
+  };
+};
+
+const getGamesCountParams = (providers?: Array<string>) =>
+  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
 
 export const getCasinoPlayerGames = async (
   {
@@ -33,9 +49,9 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: join(",")(providers),
+      providerSlugs: commaSeparated(providers),
     },
-    getXTokenHeaders(sessionId)
+    getHeaders(sessionId)
   );
 
 export const getCasinoPlayerGameSearch = async (
@@ -58,16 +74,21 @@ export const getCasinoPlayerGameSearch = async (
       page,
       pageSize,
     },
-    getXTokenHeaders(sessionId)
+    getHeaders(sessionId)
   );
 };
 
 export const getCasinoPlayerGamesCount = async (
-  { sessionId }: { sessionId: string },
+  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
   http: HTTPClient = defaultHttp
-) => await http.get(URL.GAMES_COUNT, {}, getXTokenHeaders(sessionId));
+) =>
+  await http.get(
+    URL.GAMES_COUNT,
+    getGamesCountParams(providers),
+    getHeaders(sessionId)
+  );
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },
   http: HTTPClient = defaultHttp
-) => await http.get(URL.GAME_PROVIDERS, {}, getXTokenHeaders(sessionId));
+) => await http.get(URL.GAME_PROVIDERS, {}, getHeaders(sessionId));

@@ -23,13 +23,14 @@ export const initiateFetchGamesByProvider = ({
   provider,
   sessionId,
   pageSize = 50,
+  page,
 }) => {
   return {
     type: fetchTypes.FETCH,
     name: types.FETCH_GAMES_BY_PROVIDER,
     postFetch: types.FETCH_GAMES_BY_PROVIDER_COMPLETE,
     asyncCall: getCasinoPlayerGames,
-    asyncCallData: { providers: [provider], sessionId, pageSize },
+    asyncCallData: { providers: [provider], sessionId, pageSize, page },
   };
 };
 
@@ -52,7 +53,9 @@ export const fetchGamesBySlugs = slugs => ({
 
 export const launchGame = slug => ({ type: types.LAUNCH_GAME, slug });
 
-export const fetchGamesByProvider = provider => ({
+export const fetchGamesByProvider = (provider, page, pageSize) => ({
   provider,
+  page,
+  pageSize,
   type: types.FETCH_GAMES_BY_PROVIDER_START,
 });

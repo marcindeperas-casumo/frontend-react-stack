@@ -4,6 +4,7 @@ import {
   makeProtocolAwareUrl,
   matchingGroups,
   renderBets,
+  commaSeparated,
   createReducer,
 } from "./utils";
 
@@ -159,5 +160,25 @@ describe("renderBets()", () => {
 
       expect(reducer(state, unknownAction)).toEqual(state);
     });
+  });
+});
+
+describe("commaSeparated()", () => {
+  test("should return a string with the input joined by commas", () => {
+    const input = ["foo", "bar", "baz"];
+    const expected = "foo,bar,baz";
+    expect(commaSeparated(input)).toBe(expected);
+  });
+
+  test("should return a single item", () => {
+    const input = [undefined, "foo", undefined];
+    const expected = "foo";
+    expect(commaSeparated(input)).toBe(expected);
+  });
+
+  test("should return empty string", () => {
+    const input = [undefined, undefined, undefined];
+    const expected = "";
+    expect(commaSeparated(input)).toBe(expected);
   });
 });

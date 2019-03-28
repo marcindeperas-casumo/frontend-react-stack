@@ -30,7 +30,7 @@ describe("ProviderGamesList", () => {
     expect(mock).toHaveBeenCalled();
   });
 
-  test("renders provider name and games", () => {
+  test("renders provider name and virtuallist", () => {
     const provider = {
       inMaintenance: false,
       name: "nyx",
@@ -50,7 +50,6 @@ describe("ProviderGamesList", () => {
         .first()
         .text()
     ).toBe("nyx");
-
-    expect(rendered.find("GameRow")).toHaveLength(2);
+    expect(rendered.find("VirtualList")).toHaveLength(1);
   });
 });
