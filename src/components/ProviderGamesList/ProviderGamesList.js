@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { nth, inc } from "ramda";
+import { nth, contains } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
@@ -29,6 +29,7 @@ type Props = {
 
 type State = {
   currentPage: number,
+  requestedPages: Array<number>,
 };
 
 const PAGE_SIZE = 50;
@@ -44,6 +45,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
 
   state = {
     currentPage: 0,
+    requestedPages: [],
   };
 
   componentDidMount() {
@@ -55,17 +57,15 @@ class ProviderGamesList extends PureComponent<Props, State> {
     return Boolean(nth(index, games));
   };
 
-  componentDidUpdate(_: any, prevState: { currentPage: number }) {
-    if (this.state.currentPage !== prevState.currentPage) {
-      this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
-    }
-  }
-
-  loadMoreRows = ({ startIndex }: { startIndex: number }) => {
-    if (!this.isRowLoaded({ index: startIndex })) {
-      this.setState(({ currentPage }) => {
-        return { currentPage: inc(currentPage) };
-      });
+  loadMoreRows = ({ stopIndex }: { stopIndex: number }) => {
+    const page = Math.ceil(stopIndex / PAGE_SIZE) - 1;
+    const pages = this.state.requestedPages;
+    this.setState(({ currentPage }) => ({ currentPage: page }));
+    if (!contains(page, pages)) {
+      this.setState(({ requestedPages }) => ({
+        requestedPages: [...requestedPages, page],
+      }));
+      this.props.fetchGames(page, PAGE_SIZE);
     }
     return Promise.resolve();
   };
