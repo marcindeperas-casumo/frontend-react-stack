@@ -39,6 +39,10 @@ export const fetchSuggestedGames = async ({
 
   const slugs = await getSuggestedGames({ gameSlug: game.slug });
 
+  if (!slugs.length) {
+    return {};
+  }
+
   const games = await gamebrowserApi
     .getGamesBySlugs({
       platform,
