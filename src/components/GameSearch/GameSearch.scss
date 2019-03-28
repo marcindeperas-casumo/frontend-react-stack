@@ -3,6 +3,11 @@ $game-list-height: (
   phablet: calc(100vh - 172px),
 );
 
+$game-list--playok-height: (
+  mobile: calc(100vh - 187px),
+  phablet: calc(100vh - 210px),
+);
+
 .c-game-search {
   // fix iOS Safari issue with list results not displaying
   // https://github.com/Casumo/Home/issues/27760
@@ -22,9 +27,7 @@ $game-list-height: (
 
 // stylelint-disable xi/selector-pattern
 .play-okay-bar-visible .c-game-search-virtual-list {
-  @include cudl-breakpoint(mobile) {
-    height: calc(100vh - 187px);
-  }
+  @include cudl-breakpoint-with($game-list--playok-height, height);
 }
 
 .c-game-search-virtual-list .c-virtual-list {
