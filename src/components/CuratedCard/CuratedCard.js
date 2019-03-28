@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
@@ -11,6 +12,7 @@ import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
 import TrackView from "Components/TrackView";
+import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
 
 const justify = {
   mobile: "end",
@@ -41,29 +43,17 @@ export type Props = {|
 |};
 
 export default class CuratedCard extends PureComponent<Props> {
-  /* TODO: Move URLs to a central configuration
-     For the time being these are the assumptions:
-     If not game
-     Then promotion, if not promotion
-     by default the redirection url will be deposit
-     This needs refactoring so that curated card will handle different types of curated card types
-  */
   get cardClickUrl() {
-    const { gameData, promotion = [] } = this.props;
+    const { typeOfCurated, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
-    const isGame = Boolean(gameData);
 
-    // If there is a game selected, we don't link to anything,
-    // we just use the onLaunchGame() prop.
-    if (isGame) {
-      return null;
+    const url = CARD_CLICK_URL[typeOfCurated];
+
+    if (typeOfCurated === CURATED_TYPE.PROMOTION) {
+      return replace("#promotionSlug", promotionSlug, url);
     }
 
-    if (promotionSlug) {
-      return `/en/promotions/${promotionSlug}`;
-    }
-
-    return "/en/cash/deposit";
+    return url;
   }
 
   get trackData() {
@@ -86,8 +76,8 @@ export default class CuratedCard extends PureComponent<Props> {
   renderSkeleton = () => <CuratedCardSkeleton />;
 
   renderCard = () => {
-    const { onLaunchGame, gameData } = this.props;
-    const isGame = Boolean(gameData);
+    const { onLaunchGame, typeOfCurated } = this.props;
+    const isGame = typeOfCurated === CURATED_TYPE.game;
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
@@ -117,11 +107,12 @@ export default class CuratedCard extends PureComponent<Props> {
   };
 
   renderHeader = () => {
-    const { gameData, subtitle, header } = this.props;
+    const { subtitle, header, typeOfCurated } = this.props;
+    const isGame = typeOfCurated === CURATED_TYPE.GAME;
 
     return (
       <React.Fragment>
-        {!gameData && (
+        {!isGame && (
           <Text
             className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
             size="xs"
