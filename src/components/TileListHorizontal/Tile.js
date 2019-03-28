@@ -21,7 +21,7 @@ const Tile = ({
   url,
   logo,
   background,
-  imgixOpts = { w: 160, h: 160 },
+  imgixOpts = { w: 160, h: 160, markalign: "middle" },
   ...rest
 }: Props) => {
   if (!background || !logo) {
