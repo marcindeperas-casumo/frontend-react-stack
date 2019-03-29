@@ -5,9 +5,10 @@ const SportsNavTabSkeleton = () => (
     <div
       style={{
         backgroundColor: "#FFF",
-        height: 50,
-        width: 50,
-        borderRadius: 25,
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+        margin: "0 auto",
       }}
     />
     <div

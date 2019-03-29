@@ -11,6 +11,7 @@ import { NavigateClientMutation } from "Features/sports/state/clientState";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import NoResultsIcon from "./no-results-icon.svg";
+import KambiSearchResultsSkeleton from "./KambiSearchResultsSkeleton";
 
 export const TOP_SEARCHES_QUERY = gql`
   query TopSearches($count: Int!) {
@@ -318,8 +319,16 @@ class KambiSearchResults extends React.Component<Props, State> {
         variables={{ query: this.props.query }}
       >
         {res => {
-          if (res.error || res.loading || !res.data || !res.data.search) {
-            return null;
+          if (res.error) {
+            return this.renderNoResultsFound();
+          }
+
+          if (res.loading || !res.data || !res.data.search) {
+            return (
+              <div className="u-margin-horiz--md">
+                <KambiSearchResultsSkeleton />
+              </div>
+            );
           }
 
           const groupedResults: {
