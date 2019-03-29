@@ -81,6 +81,20 @@ describe("Models/GameSearch/Selectors", () => {
       });
     });
 
+    test("returns latestPlayed gameList if gameSearchResults exists, its length is 1 but suggested games length === 0", () => {
+      const gameList = {
+        [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] },
+        [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] },
+      };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchSuggestedList(state)).toEqual({
+        games: ["foo"],
+        title: "Continue Playing",
+        location: "latestPlayedGames",
+      });
+    });
+
     test("returns latestPlayed gameList if in state and gameSearchResults is not existing or greater than 1", () => {
       const gameList = { [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
