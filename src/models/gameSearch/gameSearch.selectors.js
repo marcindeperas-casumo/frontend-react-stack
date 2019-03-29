@@ -56,7 +56,7 @@ export const gameSearchSuggestedList = createSelector(
     suggested,
     searchResults
   ) => {
-    if (searchResults && searchResults.length === 1 && suggested.length) {
+    if (searchResults && searchResults.length === 1 && suggested.games.length) {
       return {
         ...suggested,
         title: titleSuggested,
