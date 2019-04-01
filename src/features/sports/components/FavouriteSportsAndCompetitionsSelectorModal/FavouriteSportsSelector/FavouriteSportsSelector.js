@@ -7,6 +7,7 @@ import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesCo
 import Intro from "./FavouriteSportsSelectorIntro";
 import Heading from "./FavouriteSportsSelectorHeading";
 import ListItem from "./FavouriteSportsSelectorListItem";
+import ListItemSkeleton from "./FavouriteSportsSelectorListItemSkeleton";
 
 type Props = {
   /** Whether the introduction to how to favourite competitions should be shown */
@@ -30,22 +31,31 @@ const FavouriteSportsSelector = (props: Props) => (
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.popular" />
           </Heading>
-          <List
-            itemSpacing="md"
-            items={popularGroups}
-            render={group => (
-              <ListItem
-                data-test="favourite-sports-selector-popular"
-                key={group.id}
-                group={group}
-                showCompetitionIntro={props.showCompetitionIntro}
-                onAddCompetition={props.onAddCompetition}
-                onToggleFavouriteSport={api.toggleFavouriteSport}
-                isFavourite={api.isSelected(group.id)}
-                onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
-              />
-            )}
-          />
+
+          {popularGroups.length > 0 ? (
+            <List
+              itemSpacing="md"
+              items={popularGroups}
+              render={group => (
+                <ListItem
+                  data-test="favourite-sports-selector-popular"
+                  key={group.id}
+                  group={group}
+                  showCompetitionIntro={props.showCompetitionIntro}
+                  onAddCompetition={props.onAddCompetition}
+                  onToggleFavouriteSport={api.toggleFavouriteSport}
+                  isFavourite={api.isSelected(group.id)}
+                  onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
+                />
+              )}
+            />
+          ) : (
+            <List
+              itemSpacing="md"
+              items={[...Array(5)]}
+              render={(_, i) => <ListItemSkeleton key={i} />}
+            />
+          )}
 
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.all" />
@@ -62,7 +72,7 @@ const FavouriteSportsSelector = (props: Props) => (
                 favouriteCompetitions: [],
                 activeIndicator: null,
               };
-              return (
+              return otherGroups.length > 0 ? (
                 <List
                   itemSpacing="md"
                   items={[allSportsGroup, ...otherGroups]}
@@ -91,6 +101,12 @@ const FavouriteSportsSelector = (props: Props) => (
                       />
                     );
                   }}
+                />
+              ) : (
+                <List
+                  itemSpacing="md"
+                  items={[...Array(5)]}
+                  render={(_, i) => <ListItemSkeleton key={i} />}
                 />
               );
             }}

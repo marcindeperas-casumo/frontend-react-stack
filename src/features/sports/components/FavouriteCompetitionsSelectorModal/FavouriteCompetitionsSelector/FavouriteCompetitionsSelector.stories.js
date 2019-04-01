@@ -8,6 +8,7 @@ import info from "Storybook/storybookInfo";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
 import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./__mocks__/favouriteCompetitionsSelectorQuery";
+import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";
 
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
 
@@ -30,6 +31,8 @@ stories.add(
   info({ text: "Default" })
 );
 
+stories.add("Loading", () => <Skeleton />, info({ text: "Loading" }));
+
 stories.add(
   "With selections",
   () => (
@@ -41,5 +44,5 @@ stories.add(
       />
     </MockedProvider>
   ),
-  info({ text: "Default" })
+  info({ text: "With selections" })
 );
