@@ -118,7 +118,8 @@
       "json",
       "jsx",
       "mjs"
-    ]
+    ],
+    "restoreMocks": true
   },
   "lint-staged": {
     "*.js": [

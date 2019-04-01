@@ -14,10 +14,6 @@ describe("Timer", () => {
     jest.spyOn(window, "requestAnimationFrame").mockImplementation(mockRaf.raf);
   });
 
-  afterEach(() => {
-    jest.restoreAllMocks();
-  });
-
   test("should set state equal to endTime minus now", () => {
     const renderProp = jest.fn();
     const rendered = shallow(
