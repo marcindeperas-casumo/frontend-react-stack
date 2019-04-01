@@ -18,7 +18,7 @@ function checkIgnore(isUncaught, args, payload) {
    */
   const error: Error = args[1];
   const firstStackTraceLine: string = error.stack.split("\n")[1];
-  if (/react-stack/.test(firstStackTraceLine)) {
+  if (!/react-stack/.test(firstStackTraceLine)) {
     return true;
   }
 
