@@ -131,7 +131,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
         >
           {provider.name}
         </Text>
-        <div className="">
+        <div>
           <TrackProvider
             data={{
               [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",

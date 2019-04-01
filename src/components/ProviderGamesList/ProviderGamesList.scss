@@ -1,3 +1,4 @@
 .c-provider-games-list__games-list {
+  //Total height of the games list, excluding provider name bar and top bar (71px and 75px)
   height: calc(100vh - 71px - 75px);
 }
