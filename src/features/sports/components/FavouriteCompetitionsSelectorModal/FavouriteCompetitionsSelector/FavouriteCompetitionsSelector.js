@@ -3,13 +3,13 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import Flex from "@casumo/cmp-flex";
 import { any, partition, propEq } from "ramda";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { isNilOrEmpty } from "Src/utils";
 import Heading from "./FavouriteCompetitionsSelectorHeading";
 import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
+import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";
 
 type Competition = FavouriteCompetitionsSelectorQuery_group_groups_groups;
 type Props = {
@@ -82,8 +82,7 @@ const FavouriteCompetitionsSelector = (props: Props) => (
   >
     {({ data }) => {
       if (!data || !data.group) {
-        // TODO: add skeleton
-        return <Flex.Block>{""}</Flex.Block>;
+        return <Skeleton />;
       }
 
       const groups: Array<FavouriteCompetitionsSelectorQuery_group_groups> =
