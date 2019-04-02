@@ -7,6 +7,7 @@ import ProviderGamesListPresentational from "Components/ProviderGamesList/Provid
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 import defaultState from "Models/__mocks__/state.mock";
+import "./ProviderGamesList.stories.scss";
 const stories = storiesOf("ProviderGamesList", module);
 
 const games = [
