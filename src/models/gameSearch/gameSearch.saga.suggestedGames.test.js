@@ -51,6 +51,10 @@ describe("Models/GameSearch/Saga", () => {
       put(updateEntity(clearEntities))
     );
 
+    expect(gen.next().value).toEqual(
+      put({ type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START })
+    );
+
     expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
 
     expect(gen.next(handshake).value).toEqual(
@@ -117,6 +121,10 @@ describe("Models/GameSearch/Saga", () => {
 
     expect(gen.next({ entities: clearEntities }).value).toEqual(
       put(updateEntity(clearEntities))
+    );
+
+    expect(gen.next().value).toEqual(
+      put({ type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START })
     );
 
     expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
