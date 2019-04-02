@@ -45,7 +45,7 @@ export const gameSearchSuggestedList = createSelector(
   }),
   gameListSelector(GAME_LIST_IDS.LATEST_PLAYED),
   gameListSelector(GAME_LIST_IDS.POPULAR_GAMES),
-  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  suggestedGames,
   gameSearchResults,
   (
     titlePlaying,
@@ -56,9 +56,9 @@ export const gameSearchSuggestedList = createSelector(
     suggested,
     searchResults
   ) => {
-    if (searchResults && searchResults.length === 1) {
+    if (searchResults && searchResults.length === 1 && suggested.length) {
       return {
-        ...suggested,
+        games: suggested,
         title: titleSuggested,
         location: EVENT_LOCATIONS.SUGGESTED_GAMES,
       };

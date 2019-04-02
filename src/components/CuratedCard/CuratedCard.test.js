@@ -3,9 +3,10 @@ import { mount, shallow } from "enzyme";
 import { dissoc } from "ramda";
 import CuratedCard from "Components/CuratedCard/CuratedCard";
 import curatedData from "Models/curated/__mocks__/curated.json";
+import { CURATED_TYPE } from "Models/curated";
 
 describe("CuratedCard", () => {
-  const PROMO_TYPE = "promotion";
+  const PROMO_TYPE = CURATED_TYPE.PROMOTION;
   let fetchCurated;
 
   beforeEach(() => {
@@ -144,6 +145,7 @@ describe("CuratedCard", () => {
         {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
+        typeOfCurated={CURATED_TYPE.GAME}
       />
     );
     const html = component
@@ -188,6 +190,7 @@ describe("CuratedCard", () => {
         fetchCurated={fetchCurated}
         isFetched={true}
         onLaunchGame={onLaunchGame}
+        typeOfCurated={CURATED_TYPE.GAME}
       />
     );
     const { href } = rendered
@@ -207,6 +210,7 @@ describe("CuratedCard", () => {
         fetchCurated={fetchCurated}
         isFetched={true}
         onLaunchGame={onLaunchGame}
+        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
       />
     );
     const { href } = rendered
@@ -217,7 +221,7 @@ describe("CuratedCard", () => {
     expect(href).toBe("/en/cash/deposit");
   });
 
-  test("should link to a specific promotion if it is set", () => {
+  test("should link to a specific promotion if curated type is promotion", () => {
     const promotion = "boosted-reel-races";
     const onLaunchGame = jest.fn();
     const rendered = mount(
@@ -228,6 +232,7 @@ describe("CuratedCard", () => {
         fetchCurated={fetchCurated}
         isFetched={true}
         onLaunchGame={onLaunchGame}
+        typeOfCurated={CURATED_TYPE.PROMOTION}
       />
     );
     const { href } = rendered
@@ -248,6 +253,7 @@ describe("CuratedCard", () => {
         fetchCurated={fetchCurated}
         isFetched={true}
         onLaunchGame={onLaunchGame}
+        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
       />
     );
     const { href } = rendered
@@ -256,6 +262,45 @@ describe("CuratedCard", () => {
       .props();
 
     expect(href).toBe(`/en/cash/deposit`);
+  });
+
+  test("should not call onLaunchGame if not game", () => {
+    const gameLaunch = jest.fn();
+    const rendered = mount(
+      <CuratedCard
+        gameData={null}
+        promotion=""
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={gameLaunch}
+        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
+      />
+    );
+    const cardBackground = rendered.find("CuratedCardBackground");
+
+    cardBackground.simulate("click");
+
+    expect(gameLaunch).toHaveBeenCalledTimes(0);
+  });
+
+  test("should call onLaunchGame if curated type is game", () => {
+    const gameLaunch = jest.fn();
+
+    const rendered = mount(
+      <CuratedCard
+        gameData={null}
+        promotion=""
+        fetchCurated={fetchCurated}
+        isFetched={true}
+        onLaunchGame={gameLaunch}
+        typeOfCurated={CURATED_TYPE.GAME}
+      />
+    );
+    const cardBackground = rendered.find("CuratedCardBackground");
+
+    cardBackground.simulate("click");
+
+    expect(gameLaunch).toHaveBeenCalledTimes(1);
   });
 });
 

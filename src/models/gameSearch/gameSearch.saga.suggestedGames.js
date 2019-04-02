@@ -9,7 +9,11 @@ import {
 } from "Models/handshake";
 import { waitForSelector } from "Utils";
 import { isFetchingStarted } from "Models/fetch";
-import { types, fetchSuggestedGamesAction } from "Models/gameSearch";
+import {
+  types,
+  fetchSuggestedGamesAction,
+  fetchLatestPlayedSaga,
+} from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
 export function* fetchSuggestedGamesSaga(game) {
@@ -47,6 +51,11 @@ export function* fetchSuggestedGamesSaga(game) {
   const { response } = yield take(
     types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE
   );
+
+  if (!response.games) {
+    return yield call(fetchLatestPlayedSaga);
+  }
+
   const gameList = { id, games: response.games };
   const { entities: gameListEntities } = yield call(normalizeData, {
     [ENTITY_KEYS.GAME_LIST]: gameList,
