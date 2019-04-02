@@ -67,7 +67,7 @@ describe("Models/GameSearch/Selectors", () => {
   });
 
   describe("gameSearchSuggestedList", () => {
-    test("returns suggestedGames if gameSearchResults exists and length is 1", () => {
+    test("returns suggestedGames if gameSearchResults exists, its length is 1 and suggested games length > 0", () => {
       const gameList = {
         [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] },
         [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] },
@@ -78,6 +78,20 @@ describe("Models/GameSearch/Selectors", () => {
         games: ["foo"],
         title: "You might also like",
         location: "suggestedGames",
+      });
+    });
+
+    test("returns latestPlayed gameList if gameSearchResults exists, its length is 1 but suggested games length === 0", () => {
+      const gameList = {
+        [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] },
+        [GAME_LIST_IDS.LATEST_PLAYED]: { games: ["foo"] },
+      };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchSuggestedList(state)).toEqual({
+        games: ["foo"],
+        title: "Continue Playing",
+        location: "latestPlayedGames",
       });
     });
 
