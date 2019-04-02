@@ -19,7 +19,7 @@ const PromotionCardHeader = ({ badge, dates }) => {
           {dates}
         </Text>
       </Flex.Item>
-      <Flex.Item className="o-flex__item-fixed-size">
+      <Flex.Item className="o-flex__item--no-shrink">
         <ImageLazy
           className="u-display--block"
           width="40px"

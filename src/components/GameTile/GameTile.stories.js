@@ -16,9 +16,11 @@ stories.addDecorator(withKnobs);
 if (isNotChromatic) {
   stories.add("Default (Connected)", () => {
     return (
-      <MockStore>
-        <GameTileConnected id="starburst" />
-      </MockStore>
+      <div style={{ maxWidth: "170px" }}>
+        <MockStore>
+          <GameTileConnected id="starburst" />
+        </MockStore>
+      </div>
     );
   });
 }

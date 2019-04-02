@@ -97,7 +97,6 @@ class SearchInput extends React.Component<Props, State> {
         <Flex.Block>
           <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-vert">
             <SearchIcon
-              size="med"
               className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
             />
             <input

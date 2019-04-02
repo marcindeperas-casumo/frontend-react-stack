@@ -32,7 +32,11 @@ export default class Jackpots extends PureComponent<Props> {
     return (
       <div className="u-padding-top--xlg">
         <ScrollableListTitle title={title} />
-        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
+        <Scrollable
+          itemClassName="c-jackpots-list-tile"
+          padding={PADDING_PER_DEVICE}
+          itemSpacing="md"
+        >
           {columns.map((column, i) => (
             <JackpotsColumn key={`jackpots-column-${i}`} column={column} />
           ))}
@@ -44,16 +48,14 @@ export default class Jackpots extends PureComponent<Props> {
 
 function JackpotsColumn({ column }) {
   return (
-    <div className="c-jackpots-list-tile o-flex__item o-flex__item-fixed-size">
-      <List
-        items={column}
-        render={jackpot => (
-          <GameRow
-            game={jackpot}
-            onLaunchGame={() => launchGame({ slug: jackpot.slug })}
-          />
-        )}
-      />
-    </div>
+    <List
+      items={column}
+      render={jackpot => (
+        <GameRow
+          game={jackpot}
+          onLaunchGame={() => launchGame({ slug: jackpot.slug })}
+        />
+      )}
+    />
   );
 }

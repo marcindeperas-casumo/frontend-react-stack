@@ -4,7 +4,7 @@ import Skeleton from "@casumo/cmp-skeleton";
 export default class PromotionGalleryCardSkeleton extends PureComponent {
   render() {
     return (
-      <div className="c-promotion-gallery-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size">
+      <div className="c-promotion-gallery-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item--no-shrink">
         <Skeleton
           viewBox={null}
           className="o-ratio__content"

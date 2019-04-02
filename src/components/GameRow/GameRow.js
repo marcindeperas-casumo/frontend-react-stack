@@ -34,7 +34,7 @@ export class GameRow extends PureComponent<Props> {
           onClick={onLaunchGame}
         >
           {/* Image */}
-          <Flex.Item className="o-flex__item-fixed-size">
+          <Flex.Item className="o-flex__item--no-shrink">
             <GameThumb
               src={logoBackground}
               alt={name}
@@ -58,10 +58,7 @@ export class GameRow extends PureComponent<Props> {
 
           {/* Play Icon */}
           <Flex.Item>
-            <PlayIcon
-              size="med"
-              className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md"
-            />
+            <PlayIcon className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md" />
           </Flex.Item>
         </Flex>
       </TrackClick>

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import GameTile from "Components/GameTile/GameTileWrapper";
+import GameTile from "Components/GameTile/GameTile";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
 

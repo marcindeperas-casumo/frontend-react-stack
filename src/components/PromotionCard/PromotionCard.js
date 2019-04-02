@@ -29,7 +29,7 @@ const PromotionCardWrapper = ({
   return (
     <a
       href={link}
-      className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
+      className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item--no-shrink"
     >
       <Card
         className="o-ratio__content t-border-r--16 t-background-white"

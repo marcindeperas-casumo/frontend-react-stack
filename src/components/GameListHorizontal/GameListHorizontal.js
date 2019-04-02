@@ -62,6 +62,7 @@ export class GameListHorizontal extends PureComponent<Props> {
 
     return (
       <ScrollableList
+        itemClassName="c-top-game"
         title={title}
         seeMoreText={seeMoreText}
         seeMoreUrl={seeMoreUrl}

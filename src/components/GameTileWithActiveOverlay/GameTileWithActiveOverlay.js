@@ -7,7 +7,7 @@ import type { Props } from "Components/GameTile/GameTile";
 class GameTileWithActiveOverlay extends PureComponent<Props> {
   render() {
     return (
-      <Flex.Item className="o-flex__item-fixed-size c-top-game">
+      <Flex.Item className="o-flex__item--no-shrink c-top-game">
         <GameTile {...this.props} isOverlayAlwaysActive />
       </Flex.Item>
     );

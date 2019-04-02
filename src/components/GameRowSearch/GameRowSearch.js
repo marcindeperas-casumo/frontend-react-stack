@@ -29,7 +29,7 @@ const TrackPlayIcon = ({ name, onLaunchGame }) => (
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item onClick={onLaunchGame}>
-      <PlayIcon size="med" className={iconStyle} />
+      <PlayIcon className={iconStyle} />
     </Flex.Item>
   </TrackClick>
 );
@@ -41,7 +41,7 @@ const TrackMoreIcon = ({ name, slug }) => (
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/en/play/${slug}`}>
-        <MoreIcon size="med" className={iconStyle} />
+        <MoreIcon className={iconStyle} />
       </a>
     </TrackClick>
   </Flex.Item>
@@ -65,7 +65,7 @@ export class GameRowSearch extends PureComponent<Props> {
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
             <Flex align="center">
-              <Flex.Item className="o-flex__item-fixed-size">
+              <Flex.Item className="o-flex__item--no-shrink">
                 <GameThumb
                   src={logoBackground}
                   alt={name}

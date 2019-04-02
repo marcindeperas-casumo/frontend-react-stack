@@ -25,6 +25,15 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   render() {
     const { ids, title, seeMore } = this.props;
     const idsByColumns = generateColumns(ids);
+    const scrollableChildren = [
+      <MustDropJackpotsWidget />,
+      ...idsByColumns.map((columnIds, i) => (
+        <JackpotsListTile
+          ids={columnIds}
+          key={`must-drop-jackpots-tile-${i}`}
+        />
+      )),
+    ];
 
     return (
       <div className="u-padding-top--xlg">
@@ -40,16 +49,12 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
             </a>
           </Flex.Item>
         </Flex>
-        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
-          <div className="c-jackpots-list-tile o-flex o-flex__item o-flex__item-fixed-size">
-            <MustDropJackpotsWidget />
-          </div>
-          {idsByColumns.map((columnIds, i) => (
-            <JackpotsListTile
-              ids={columnIds}
-              key={`must-drop-jackpots-tile-${i}`}
-            />
-          ))}
+        <Scrollable
+          itemClassName="c-jackpots-list-tile"
+          padding={PADDING_PER_DEVICE}
+          itemSpacing="md"
+        >
+          {scrollableChildren}
         </Scrollable>
       </div>
     );
