@@ -44,6 +44,7 @@ export function* fetchSuggestedGamesSaga(game) {
 
   const handshake = yield select(gamesHandshakeSelector);
 
+  yield put({ type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START });
   yield put(
     fetchSuggestedGamesAction(game, handshake, platform, country, variant)
   );

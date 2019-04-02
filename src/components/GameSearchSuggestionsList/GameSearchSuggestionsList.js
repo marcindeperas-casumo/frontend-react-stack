@@ -11,6 +11,7 @@ type Props = {
     games: Array<string>,
     title: string,
     location: string,
+    gameSearchSuggestedLoading: boolean,
   },
 };
 
@@ -26,7 +27,7 @@ export default class GameSearchSuggestionsList extends PureComponent<Props> {
   render() {
     const { games, title, location } = this.props.gameSearchSuggestedList;
 
-    return games && games.length ? (
+    return games && games.length && !this.props.gameSearchSuggestedLoading ? (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: location }}>
         <SectionList
           className="u-padding-horiz--md"
