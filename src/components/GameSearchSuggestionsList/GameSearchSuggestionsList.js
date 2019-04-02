@@ -11,8 +11,8 @@ type Props = {
     games: Array<string>,
     title: string,
     location: string,
-    gameSearchSuggestedLoading: boolean,
   },
+  gameSearchSuggestedLoading: boolean,
 };
 
 export default class GameSearchSuggestionsList extends PureComponent<Props> {

@@ -12,6 +12,7 @@ describe("GameSearch", () => {
           games: ["starburst"],
           location: "latestPlayedGames",
         }}
+        gameSearchSuggestedLoading={false}
       />
     );
 
@@ -32,6 +33,7 @@ describe("GameSearch", () => {
           title: "",
           location: "whatever",
         }}
+        gameSearchSuggestedLoading={false}
       />
     );
 
