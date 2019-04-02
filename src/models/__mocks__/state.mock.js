@@ -2515,9 +2515,10 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
     gameProvider: {
       "casumo-services-ltd-nyx": {
         id: "0c900240-4904-11e6-a7a2-005056a975b1",
-        name: "nyx",
+        name: "Nyx",
         inMaintenance: false,
         slug: "casumo-services-ltd-nyx",
+        gameCount: 8,
         games: [
           "bloodsuckers",
           "easter-island",

@@ -1,5 +1,15 @@
+//@flow
+import {
+  either,
+  isEmpty,
+  isNil,
+  splitEvery,
+  join,
+  compose,
+  filter,
+  identity,
+} from "ramda";
 // @flow
-import { either, isEmpty, isNil, splitEvery } from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
 export const isNilOrEmpty = either(isNil, isEmpty);
@@ -135,6 +145,10 @@ export const injectScript = (url: string) =>
     }
   });
 
+export const commaSeparated = compose(
+  join(","),
+  filter(identity)
+);
 type Handlers = {
   [type: string]: (state: Object, action: Object) => any,
 };

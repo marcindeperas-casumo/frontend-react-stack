@@ -46,7 +46,7 @@ const KambiNavSkeleton = () => {
           x={`calc((100% - ${totalElWidth}) / 2 + (${i} * ${gap} + ${calculateWidths(
             i
           )}))`}
-          y={20}
+          y={40}
           height={16}
           width={width}
         />

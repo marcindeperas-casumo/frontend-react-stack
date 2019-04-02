@@ -11,17 +11,15 @@ function checkIgnore(isUncaught, args, payload) {
     return true;
   }
 
-  if (isUncaught) {
-    /**
-     * looks like all uncaught exceptions contain error object as second argument
-     * based on that we can get raw stacktrace, split it on line break and check
-     * if second line contains react-stack in path (first line contains error msg)
-     */
-    const error: Error = args[1];
-    const firstStackTraceLine: string = error.stack.split("\n")[1];
-    if (/react-stack/.test(firstStackTraceLine)) {
-      return true;
-    }
+  /**
+   * looks like all exceptions contain error object as second argument
+   * based on that we can get raw stacktrace, split it on line break and check
+   * if second line contains react-stack in path (first line contains error msg)
+   */
+  const error: Error = args[1];
+  const firstStackTraceLine: string = error.stack.split("\n")[1];
+  if (!/react-stack/.test(firstStackTraceLine)) {
+    return true;
   }
 
   return false;

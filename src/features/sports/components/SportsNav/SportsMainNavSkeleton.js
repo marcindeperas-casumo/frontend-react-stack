@@ -5,7 +5,7 @@ import NavTab from "./SportsNavTabSkeleton";
 const SportsMainNavSkeleton = () => (
   <div
     style={{
-      height: 126,
+      height: 106,
       position: "relative",
       overflow: "hidden",
     }}

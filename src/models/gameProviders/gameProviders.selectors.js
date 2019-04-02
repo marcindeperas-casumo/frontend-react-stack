@@ -4,7 +4,6 @@ import {
   defaultTo,
   filter,
   propEq,
-  prop,
   propOr,
   anyPass,
   isNil,
@@ -32,11 +31,20 @@ export const gameProviderBySlug = slug =>
     propOr({}, slug)
   );
 
+export const gameProviderGameCount = provider =>
+  createSelector(
+    gameProviderBySlug(provider),
+    propOr(0, "gameCount")
+  );
+
+export const gameProviderGames = provider =>
+  createSelector(
+    gameProviderBySlug(provider),
+    propOr([], "games")
+  );
+
 export const areProviderGamesLoaded = provider =>
   createSelector(
-    compose(
-      prop("games"),
-      gameProviderBySlug(provider)
-    ),
-    complement(isNil)
+    gameProviderGames(provider),
+    complement(anyPass([isEmpty, isNil]))
   );

@@ -119,15 +119,20 @@ describe("<PluralisableDictionaryTerm />", () => {
 
     mount(
       <MockedProvider mocks={mocks} addTypename={false}>
-        <PluralisableDictionaryTerm termKey={WORKING_TERM.key}>
-          {children}
-        </PluralisableDictionaryTerm>
-        <PluralisableDictionaryTerm termKey={WORKING_TERM.key} isPlural={true}>
-          {children2}
-        </PluralisableDictionaryTerm>
-        <PluralisableDictionaryTerm termKey="not found key">
-          {children3}
-        </PluralisableDictionaryTerm>
+        <>
+          <PluralisableDictionaryTerm termKey={WORKING_TERM.key}>
+            {children}
+          </PluralisableDictionaryTerm>
+          <PluralisableDictionaryTerm
+            termKey={WORKING_TERM.key}
+            isPlural={true}
+          >
+            {children2}
+          </PluralisableDictionaryTerm>
+          <PluralisableDictionaryTerm termKey="not found key">
+            {children3}
+          </PluralisableDictionaryTerm>
+        </>
       </MockedProvider>
     );
 

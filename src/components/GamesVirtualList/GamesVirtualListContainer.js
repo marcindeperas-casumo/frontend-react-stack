@@ -4,16 +4,16 @@ import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
 import {
-  playerGamesSelector,
+  playerGamesLetterTitlesSelector,
   preloadFetchPlayerGames,
   preloadFetchPlayerGamesCount,
-  playerGamesCountSelector,
+  playerGamesLetterTitlesCountSelector,
 } from "Models/playerGames";
 
 const GamesVirtualListConnected = connect(
   createStructuredSelector({
-    games: playerGamesSelector,
-    rowCount: playerGamesCountSelector,
+    games: playerGamesLetterTitlesSelector,
+    rowCount: playerGamesLetterTitlesCountSelector,
   }),
   {
     preloadFetchPlayerGames,

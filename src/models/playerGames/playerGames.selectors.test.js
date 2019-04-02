@@ -1,5 +1,6 @@
 import {
-  playerGamesSelector,
+  playerGamesLetterTitlesCountSelector,
+  playerGamesLetterTitlesSelector,
   isPlayerGamesPageLoaded,
   playerGamesCountSelector,
   getPlayerGamesListIdByPage,
@@ -8,20 +9,23 @@ import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
 
 describe("Models/PlayerGames/Selectors", () => {
-  describe("playerGamesSelector()", () => {
+  describe("playerGamesLetterTitlesSelector()", () => {
     test("returns gameList", () => {
       const games = ["foo"];
       const gameList = { [GAME_LIST_IDS.PLAYER_GAMES]: { games } };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(playerGamesSelector(state)).toEqual(games);
+      expect(playerGamesLetterTitlesSelector(state)).toEqual([
+        { sectionTitle: "F" },
+        { game: "foo" },
+      ]);
     });
 
     test("returns empty array if not in state", () => {
       const gameList = {};
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
-      expect(playerGamesSelector(state)).toEqual([]);
+      expect(playerGamesLetterTitlesSelector(state)).toEqual([]);
     });
   });
 
@@ -42,13 +46,24 @@ describe("Models/PlayerGames/Selectors", () => {
 
   describe("playerGamesCountSelector()", () => {
     test("should return games count", () => {
+      const state = { [ENTITY_KEYS.PLAYER_GAMES]: { count: 123 } };
+
+      expect(playerGamesCountSelector(state)).toBe(123);
+    });
+  });
+
+  describe("playerGamesLetterTitlesCountSelector()", () => {
+    test("should return games count + already inserted titles count", () => {
+      const games = ["foo", "bar"];
+      const gameList = { [getPlayerGamesListIdByPage(0)]: { games } };
       const state = {
-        playerGames: {
-          count: 123,
+        [ENTITY_KEYS.PLAYER_GAMES]: { count: 2 },
+        schema: {
+          [ENTITY_KEYS.GAME_LIST]: gameList,
         },
       };
 
-      expect(playerGamesCountSelector(state)).toBe(123);
+      expect(playerGamesLetterTitlesCountSelector(state)).toBe(4);
     });
   });
 });
