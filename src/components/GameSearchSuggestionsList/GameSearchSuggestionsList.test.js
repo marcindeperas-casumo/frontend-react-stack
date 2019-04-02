@@ -39,4 +39,19 @@ describe("GameSearch", () => {
 
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
+
+  test("Should render a skeleton if gameSearchSuggestedLoading is equal to true", () => {
+    const rendered = shallow(
+      <GameSearchSuggestionsList
+        gameSearchSuggestedList={{
+          games: ["whatever"],
+          title: "",
+          location: "whatever",
+        }}
+        gameSearchSuggestedLoading
+      />
+    );
+
+    expect(rendered.find("GameListSkeleton")).toHaveLength(1);
+  });
 });
