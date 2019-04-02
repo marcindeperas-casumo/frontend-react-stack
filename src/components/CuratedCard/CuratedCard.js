@@ -77,7 +77,11 @@ export default class CuratedCard extends PureComponent<Props> {
 
   renderCard = () => {
     const { onLaunchGame, typeOfCurated } = this.props;
-    const isGame = typeOfCurated === CURATED_TYPE.game;
+    const isGame = typeOfCurated === CURATED_TYPE.GAME;
+    const backgroundProps = {
+      ...this.props,
+      onLaunchGame: isGame ? onLaunchGame : null,
+    };
 
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
@@ -91,8 +95,7 @@ export default class CuratedCard extends PureComponent<Props> {
         >
           <CuratedCardBackground
             link={this.cardClickUrl}
-            onLaunchGame={isGame ? onLaunchGame : null}
-            {...this.props}
+            {...backgroundProps}
           />
           <Card
             className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
