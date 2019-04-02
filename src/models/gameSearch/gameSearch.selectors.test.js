@@ -6,6 +6,7 @@ import {
   gameSearchQuerySelector,
   gameSearchSuggestedList,
   searchNotFoundContent,
+  isSuggestedLoadingSelector,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -27,6 +28,16 @@ describe("Models/GameSearch/Selectors", () => {
     };
 
     expect(isLoadingSelector(state)).toBe(true);
+  });
+
+  test("isSuggestedLoadingSelector", () => {
+    const state = {
+      gameSearch: {
+        loadingSuggested: true,
+      },
+    };
+
+    expect(isSuggestedLoadingSelector(state)).toBe(true);
   });
 
   describe("gameSearchResults", () => {
