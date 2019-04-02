@@ -7,6 +7,7 @@
   );
 
   @media (orientation: landscape) {
+    // prettier-ignore
     height: calc(
       100vh - #{$provider-bar--landscape} - var(
         --top-bar-height--landscape,
