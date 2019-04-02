@@ -10,4 +10,11 @@ export const WELCOME_OFFER_CARD = "welcome-offer-test";
 export const CURATED_TYPE = {
   GAME: "game",
   PROMOTION: "promotion",
+  WELCOME_OFFER: "welcome offer",
+};
+
+export const CARD_CLICK_URL = {
+  [CURATED_TYPE.GAME]: null,
+  [CURATED_TYPE.PROMOTION]: "/en/promotions/#promotionSlug",
+  [CURATED_TYPE.WELCOME_OFFER]: "/en/cash/deposit",
 };
