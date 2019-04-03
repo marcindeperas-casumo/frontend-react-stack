@@ -10,6 +10,7 @@ import {
   types,
   getSearchFetchCompleteType,
   fetchSuggestedGamesAction,
+  initFetchSuggested,
 } from "Models/gameSearch";
 import { fetchSuggestedGames } from "Api/api.games";
 
@@ -30,6 +31,16 @@ describe("Models/GameSearch/Actions", () => {
 
     test("returns an action with the correct type", () => {
       expect(action).toEqual({ type: types.GAME_SEARCH_CLEAR });
+    });
+  });
+
+  describe("initFetchSuggested()", () => {
+    const action = initFetchSuggested();
+
+    test("returns an action with the correct type", () => {
+      expect(action).toEqual({
+        type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+      });
     });
   });
 

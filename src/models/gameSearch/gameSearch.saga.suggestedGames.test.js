@@ -11,6 +11,7 @@ import {
   fetchSuggestedGamesAction,
   fetchSuggestedGamesSaga,
   fetchLatestPlayedSaga,
+  initFetchSuggested,
 } from "Models/gameSearch";
 import { waitForSelector } from "Utils";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -50,6 +51,8 @@ describe("Models/GameSearch/Saga", () => {
     expect(gen.next({ entities: clearEntities }).value).toEqual(
       put(updateEntity(clearEntities))
     );
+
+    expect(gen.next().value).toEqual(put(initFetchSuggested()));
 
     expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
 
@@ -118,6 +121,8 @@ describe("Models/GameSearch/Saga", () => {
     expect(gen.next({ entities: clearEntities }).value).toEqual(
       put(updateEntity(clearEntities))
     );
+
+    expect(gen.next().value).toEqual(put(initFetchSuggested()));
 
     expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
 

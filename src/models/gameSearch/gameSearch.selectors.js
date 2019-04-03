@@ -12,6 +12,11 @@ export const isLoadingSelector = createSelector(
   prop("loading")
 );
 
+export const isSuggestedLoadingSelector = createSelector(
+  gameSearch,
+  prop("loadingSuggested")
+);
+
 export const gameSearchResults = createSelector(
   gameListSelector(GAME_LIST_IDS.GAME_SEARCH),
   propOr([], "games")
