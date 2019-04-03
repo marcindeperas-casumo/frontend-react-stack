@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import SectionList from "Components/SectionList";
 import GameRowSearch from "Components/GameRowSearch";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
@@ -12,6 +13,7 @@ type Props = {
     title: string,
     location: string,
   },
+  className?: string,
 };
 
 export default class GameSearchSuggestionsList extends PureComponent<Props> {
@@ -29,7 +31,7 @@ export default class GameSearchSuggestionsList extends PureComponent<Props> {
     return games && games.length ? (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: location }}>
         <SectionList
-          className="u-padding-horiz--md"
+          className={classNames("u-padding-horiz--md", this.props.className)}
           sections={[
             {
               title,
