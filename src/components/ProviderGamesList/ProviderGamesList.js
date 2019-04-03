@@ -10,6 +10,7 @@ import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
 import GameRowSkeleton from "Components/GameRowSkeleton";
+import "./ProviderGamesList.scss";
 
 type ProviderObject = {
   inMaintenance: boolean,
@@ -82,7 +83,12 @@ class ProviderGamesList extends PureComponent<Props, State> {
     if (this.isRowLoaded({ index })) {
       const { games } = this.props.provider;
       return (
-        <div key={key} className="t-border-bottom" index={index} style={style}>
+        <div
+          key={key}
+          className="t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-horiz--md"
+          index={index}
+          style={style}
+        >
           <GameRow id={nth(index, games)} />
         </div>
       );
@@ -125,13 +131,13 @@ class ProviderGamesList extends PureComponent<Props, State> {
         >
           {provider.name}
         </Text>
-        <div className="u-padding-horiz--md u-padding-bottom--md">
+        <div>
           <TrackProvider
             data={{
               [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
             }}
           >
-            <div className="u-height--screen">
+            <div className="c-provider-games-list__games-list">
               <VirtualList
                 isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}
