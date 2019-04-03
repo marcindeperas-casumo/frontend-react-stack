@@ -30,14 +30,26 @@ describe("Models/GameSearch/Selectors", () => {
     expect(isLoadingSelector(state)).toBe(true);
   });
 
-  test("isSuggestedLoadingSelector", () => {
-    const state = {
-      gameSearch: {
-        loadingSuggested: true,
-      },
-    };
+  describe("isSuggestedLoadingSelector", () => {
+    test("isSuggestedLoading is true", () => {
+      const state = {
+        gameSearch: {
+          loadingSuggested: true,
+        },
+      };
 
-    expect(isSuggestedLoadingSelector(state)).toBe(true);
+      expect(isSuggestedLoadingSelector(state)).toBe(true);
+    });
+
+    test("isSuggestedLoading is false", () => {
+      const state = {
+        gameSearch: {
+          loadingSuggested: false,
+        },
+      };
+
+      expect(isSuggestedLoadingSelector(state)).toBe(false);
+    });
   });
 
   describe("gameSearchResults", () => {
