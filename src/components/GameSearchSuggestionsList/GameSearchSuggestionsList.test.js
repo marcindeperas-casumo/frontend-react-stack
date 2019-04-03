@@ -7,12 +7,12 @@ describe("GameSearch", () => {
   test("Should render a SectionList", () => {
     const rendered = shallow(
       <GameSearchSuggestionsList
-        gameSearchSuggestedList={{
+        list={{
           title: "Latest Played",
           games: ["starburst"],
           location: "latestPlayedGames",
         }}
-        gameSearchSuggestedLoading={false}
+        loading={false}
       />
     );
 
@@ -28,27 +28,27 @@ describe("GameSearch", () => {
   test("Should render a skeleton if games are not fetched yet", () => {
     const rendered = shallow(
       <GameSearchSuggestionsList
-        gameSearchSuggestedList={{
+        list={{
           games: [],
           title: "",
           location: "whatever",
         }}
-        gameSearchSuggestedLoading={false}
+        loading={false}
       />
     );
 
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
 
-  test("Should render a skeleton if gameSearchSuggestedLoading is equal to true", () => {
+  test("Should render a skeleton if loading is equal to true", () => {
     const rendered = shallow(
       <GameSearchSuggestionsList
-        gameSearchSuggestedList={{
+        list={{
           games: ["whatever"],
           title: "",
           location: "whatever",
         }}
-        gameSearchSuggestedLoading
+        loading
       />
     );
 

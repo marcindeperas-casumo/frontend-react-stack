@@ -7,6 +7,6 @@ import {
 import GameSearchSuggestionsList from "./GameSearchSuggestionsList";
 
 export default connect(state => ({
-  gameSearchSuggestedList: gameSearchSuggestedList(state),
-  gameSearchSuggestedLoading: isSuggestedLoadingSelector(state),
+  list: gameSearchSuggestedList(state),
+  loading: isSuggestedLoadingSelector(state),
 }))(GameSearchSuggestionsList);
