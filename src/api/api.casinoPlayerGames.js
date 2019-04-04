@@ -69,7 +69,7 @@ export const getCasinoPlayerGameSearch = async (
   http: HTTPClient = defaultHttp
 ) => {
   return await http.get(
-    `${URL.GAME_SEARCH}/${query}`,
+    `${URL.GAME_SEARCH}?query=${query}`,
     {
       page,
       pageSize,
