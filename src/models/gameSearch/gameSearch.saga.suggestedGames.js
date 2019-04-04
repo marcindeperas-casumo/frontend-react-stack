@@ -14,6 +14,7 @@ import {
   fetchSuggestedGamesAction,
   fetchLatestPlayedSaga,
   initFetchSuggested,
+  gameForSuggestionsSelector,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -22,6 +23,13 @@ export function* fetchSuggestedGamesSaga(game) {
   const variant = "default";
   const country = yield select(countrySelector);
   const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+  const gameSlug = game.slug;
+  const lastGameForSuggestions = yield select(gameForSuggestionsSelector);
+
+  // check if game is the same as previous search and eventually return straight away
+  if (gameSlug === lastGameForSuggestions) {
+    return;
+  }
 
   const areGamesFetched = yield select(
     isFetchingStarted(handshakeTypes.FETCH_GAMES_HANDSHAKE)
@@ -43,7 +51,7 @@ export function* fetchSuggestedGamesSaga(game) {
 
   yield put(updateEntity(entities));
 
-  yield put(initFetchSuggested());
+  yield put(initFetchSuggested(gameSlug));
 
   const handshake = yield select(gamesHandshakeSelector);
 
