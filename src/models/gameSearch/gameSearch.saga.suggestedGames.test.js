@@ -1,5 +1,6 @@
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { select, put, take, call } from "redux-saga/effects";
+import { cloneableGenerator } from "redux-saga/utils";
 import {
   countrySelector,
   fetchGamesHandshake,
@@ -12,140 +13,97 @@ import {
   fetchSuggestedGamesSaga,
   fetchLatestPlayedSaga,
   initFetchSuggested,
+  gameForSuggestionsSelector,
 } from "Models/gameSearch";
 import { waitForSelector } from "Utils";
 import { GAME_LIST_IDS } from "Src/constants";
 
-describe("Models/GameSearch/Saga", () => {
-  test("fetchSuggestedGamesSaga", () => {
-    const game = "starburst";
-    const gen = fetchSuggestedGamesSaga(game);
+describe("Models/GameSearch/fetchSuggestedGamesSaga", () => {
+  const game = { slug: "starburst" };
+  const gameSlug = game.slug;
+  const gen = cloneableGenerator(fetchSuggestedGamesSaga)(game);
+  const platform = "mobile";
+  const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+  const areGamesFetched = false;
+  const variant = "default";
+  const handshake = { foo: "bar" };
 
-    const platform = "mobile";
-    const id = GAME_LIST_IDS.SUGGESTED_GAMES;
-    const areGamesFetched = false;
-    const variant = "default";
-    const handshake = { foo: "bar" };
+  gen.next();
+  gen.next(countrySelector);
 
-    gen.next();
-    gen.next(countrySelector);
+  const sameGameAsPreviousGen = gen.clone();
 
-    expect(gen.next(areGamesFetched).value).toEqual(
-      put(fetchGamesHandshake({ country: countrySelector }))
-    );
-
-    expect(gen.next().value).toEqual(
-      call(waitForSelector, isGamesHandshakeLoaded)
-    );
-
-    const response = { games: [] };
-    const clearGameList = { id, games: response.games };
-    const clearEntities = {
-      [ENTITY_KEYS.GAME_LIST]: clearGameList,
-    };
-
-    expect(gen.next({ response }).value).toEqual(
-      call(normalizeData, clearEntities)
-    );
-
-    expect(gen.next({ entities: clearEntities }).value).toEqual(
-      put(updateEntity(clearEntities))
-    );
-
-    expect(gen.next().value).toEqual(put(initFetchSuggested()));
-
-    expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
-
-    expect(gen.next(handshake).value).toEqual(
-      put(
-        fetchSuggestedGamesAction(
-          game,
-          handshake,
-          platform,
-          countrySelector,
-          variant
-        )
-      )
-    );
-
-    expect(gen.next().value).toEqual(
-      take(types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE)
-    );
-
-    const gamesResponse = { games: ["foo"] };
-    const gameList = { id, games: gamesResponse.games };
-    const entities = {
-      [ENTITY_KEYS.GAME_LIST]: gameList,
-    };
-
-    expect(gen.next({ response: gamesResponse }).value).toEqual(
-      call(normalizeData, entities)
-    );
-
-    expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
-
-    expect(gen.next().done).toBe(true);
+  test("searching suggestions for same game as previous one, games already in store, stop saga", () => {
+    expect(sameGameAsPreviousGen.next("starburst").done).toBe(true);
   });
 
-  test("fetchSuggestedGamesSaga - empty game suggestions response", () => {
-    const game = "starburst";
-    const gen = fetchSuggestedGamesSaga(game);
+  gen.next(gameForSuggestionsSelector);
 
-    const platform = "mobile";
-    const id = GAME_LIST_IDS.SUGGESTED_GAMES;
-    const areGamesFetched = false;
-    const variant = "default";
-    const handshake = { foo: "bar" };
+  expect(gen.next(areGamesFetched).value).toEqual(
+    put(fetchGamesHandshake({ country: countrySelector }))
+  );
 
-    gen.next();
-    gen.next(countrySelector);
+  expect(gen.next().value).toEqual(
+    call(waitForSelector, isGamesHandshakeLoaded)
+  );
 
-    expect(gen.next(areGamesFetched).value).toEqual(
-      put(fetchGamesHandshake({ country: countrySelector }))
-    );
+  const response = { games: [] };
+  const clearGameList = { id, games: response.games };
+  const clearEntities = {
+    [ENTITY_KEYS.GAME_LIST]: clearGameList,
+  };
 
-    expect(gen.next().value).toEqual(
-      call(waitForSelector, isGamesHandshakeLoaded)
-    );
+  expect(gen.next({ response }).value).toEqual(
+    call(normalizeData, clearEntities)
+  );
 
-    const response = { games: [] };
-    const clearGameList = { id, games: response.games };
-    const clearEntities = {
-      [ENTITY_KEYS.GAME_LIST]: clearGameList,
-    };
+  expect(gen.next({ entities: clearEntities }).value).toEqual(
+    put(updateEntity(clearEntities))
+  );
 
-    expect(gen.next({ response }).value).toEqual(
-      call(normalizeData, clearEntities)
-    );
+  expect(gen.next().value).toEqual(put(initFetchSuggested(gameSlug)));
 
-    expect(gen.next({ entities: clearEntities }).value).toEqual(
-      put(updateEntity(clearEntities))
-    );
+  expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
 
-    expect(gen.next().value).toEqual(put(initFetchSuggested()));
-
-    expect(gen.next().value).toEqual(select(gamesHandshakeSelector));
-
-    expect(gen.next(handshake).value).toEqual(
-      put(
-        fetchSuggestedGamesAction(
-          game,
-          handshake,
-          platform,
-          countrySelector,
-          variant
-        )
+  expect(gen.next(handshake).value).toEqual(
+    put(
+      fetchSuggestedGamesAction(
+        game,
+        handshake,
+        platform,
+        countrySelector,
+        variant
       )
-    );
+    )
+  );
 
-    expect(gen.next().value).toEqual(
-      take(types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE)
-    );
+  expect(gen.next().value).toEqual(
+    take(types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE)
+  );
 
-    const gamesResponse = {};
+  const latestGen = gen.clone();
 
-    expect(gen.next({ response: gamesResponse }).value).toEqual(
+  test("empty game suggestions response, fetch latest played games instead", () => {
+    const gamesResponseLatest = {};
+
+    expect(latestGen.next({ response: gamesResponseLatest }).value).toEqual(
       call(fetchLatestPlayedSaga)
     );
+
+    expect(latestGen.next().done).toBe(true);
   });
+
+  const gamesResponse = { games: ["foo"] };
+  const gameList = { id, games: gamesResponse.games };
+  const entities = {
+    [ENTITY_KEYS.GAME_LIST]: gameList,
+  };
+
+  expect(gen.next({ response: gamesResponse }).value).toEqual(
+    call(normalizeData, entities)
+  );
+
+  expect(gen.next({ entities }).value).toEqual(put(updateEntity(entities)));
+
+  expect(gen.next().done).toBe(true);
 });
