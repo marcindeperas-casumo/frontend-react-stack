@@ -56,7 +56,7 @@ describe("Models/GameSearch/Selectors", () => {
   test("gameForSuggestionsSelector", () => {
     const state = {
       gameSearch: {
-        game: "starburst",
+        gameSuggested: "starburst",
       },
     };
 

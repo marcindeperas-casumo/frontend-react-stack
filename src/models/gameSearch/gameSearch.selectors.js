@@ -19,7 +19,7 @@ export const isSuggestedLoadingSelector = createSelector(
 
 export const gameForSuggestionsSelector = createSelector(
   gameSearch,
-  prop("game")
+  prop("gameSuggested")
 );
 
 export const gameSearchResults = createSelector(
