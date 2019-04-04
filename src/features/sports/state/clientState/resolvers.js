@@ -94,7 +94,7 @@ const resolvers = {
       { isVisible }: { isVisible: boolean },
       { cache }: Context
     ) => {
-      cache.writeData({ data: { betslipVisible: isVisible } });
+      cache.writeData({ data: { isBetslipVisible: isVisible } });
       return null;
     },
 
@@ -111,7 +111,7 @@ const resolvers = {
       cache.writeData({
         data: {
           kambiClientVisible: false,
-          searchVisible: true,
+          isSearchVisible: true,
         },
       });
 
@@ -122,7 +122,7 @@ const resolvers = {
       cache.writeData({
         data: {
           kambiClientVisible: true,
-          searchVisible: false,
+          isSearchVisible: false,
         },
       });
 

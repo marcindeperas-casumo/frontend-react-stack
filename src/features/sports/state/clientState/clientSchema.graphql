@@ -1,8 +1,8 @@
 extend type Query {
   activeModals: [Modal!]!
-  betslipVisible: Boolean!
+  isBetslipVisible: Boolean!
   kambiClientVisible: Boolean!
-  searchVisible: Boolean!
+  isSearchVisible: Boolean!
 }
 
 enum Modal {

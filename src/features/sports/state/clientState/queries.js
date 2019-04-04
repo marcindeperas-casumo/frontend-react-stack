@@ -9,7 +9,7 @@ export const ACTIVE_MODALS_QUERY = gql`
 
 export const BETSLIP_VISIBLE_QUERY = gql`
   query BetslipVisible {
-    betslipVisible @client
+    isBetslipVisible @client
   }
 `;
 
@@ -21,6 +21,6 @@ export const KAMBI_CLIENT_VISIBLE_QUERY = gql`
 
 export const SEARCH_VISIBLE_QUERY = gql`
   query KambiClientVisible {
-    searchVisible @client
+    isSearchVisible @client
   }
 `;

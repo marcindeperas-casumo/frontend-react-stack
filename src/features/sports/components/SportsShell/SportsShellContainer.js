@@ -39,7 +39,7 @@ const ConnectedSportsStateProvider = connect(state => ({
 export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
     hasSelectedFavourites
-    searchVisible @client
+    isSearchVisible @client
   }
 `;
 
@@ -94,7 +94,7 @@ export class SportsShellContainer extends React.Component<{}> {
             <>
               <SportsHashWatcher>
                 {({ currentHash }) =>
-                  data.searchVisible ? (
+                  data.isSearchVisible ? (
                     <SportsSearch />
                   ) : (
                     <SportsNav currentHash={currentHash} />
