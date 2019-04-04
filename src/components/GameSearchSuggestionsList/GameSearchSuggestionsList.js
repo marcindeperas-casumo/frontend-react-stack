@@ -8,11 +8,12 @@ import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
 
 type Props = {
-  gameSearchSuggestedList: {
+  list: {
     games: Array<string>,
     title: string,
     location: string,
   },
+  loading: boolean,
   className?: string,
 };
 
@@ -26,9 +27,9 @@ export default class GameSearchSuggestionsList extends PureComponent<Props> {
   );
 
   render() {
-    const { games, title, location } = this.props.gameSearchSuggestedList;
+    const { games, title, location } = this.props.list;
 
-    return games && games.length ? (
+    return games && games.length && !this.props.loading ? (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: location }}>
         <SectionList
           className={classNames("u-padding-horiz--md", this.props.className)}

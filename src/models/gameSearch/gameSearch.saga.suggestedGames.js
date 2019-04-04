@@ -13,6 +13,7 @@ import {
   types,
   fetchSuggestedGamesAction,
   fetchLatestPlayedSaga,
+  initFetchSuggested,
 } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
 
@@ -41,6 +42,8 @@ export function* fetchSuggestedGamesSaga(game) {
   });
 
   yield put(updateEntity(entities));
+
+  yield put(initFetchSuggested());
 
   const handshake = yield select(gamesHandshakeSelector);
 

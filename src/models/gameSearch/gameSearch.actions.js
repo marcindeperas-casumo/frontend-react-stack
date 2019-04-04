@@ -15,6 +15,10 @@ export const initFetchQuerySearch = query => ({
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
+export const initFetchSuggested = () => ({
+  type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+});
+
 export const fetchQuerySearch = ({ page, pageSize, sessionId, query }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_START,

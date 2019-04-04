@@ -18,6 +18,14 @@ const handlers = {
     query: "",
     loading: false,
   }),
+  [types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START]: state => ({
+    ...state,
+    loadingSuggested: true,
+  }),
+  [types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE]: state => ({
+    ...state,
+    loadingSuggested: false,
+  }),
 };
 
 export const gameSearchReducer = (state = DEFAULT_STATE, action) => {

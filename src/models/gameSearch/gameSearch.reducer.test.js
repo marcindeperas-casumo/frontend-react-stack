@@ -32,4 +32,34 @@ describe("Models/Fetch/Reducer", () => {
 
     expect(reducer(state, postFetchAction)).toEqual({ loading: false });
   });
+
+  test("GAME_SEARCH_FETCH_SUGGESTED_GAMES_START", () => {
+    const action = actions.initFetchSuggested();
+    const state = {};
+
+    expect(reducer(state, action)).toEqual({
+      loadingSuggested: true,
+    });
+  });
+
+  test("GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE", () => {
+    const state = {};
+    const game = "whatever";
+    const handshake = {};
+    const platform = "mobile";
+    const country = "gb";
+    const variant = "default";
+    const action = actions.fetchSuggestedGamesAction({
+      game,
+      handshake,
+      platform,
+      country,
+      variant,
+    });
+    const postFetchAction = postFetch(action.postFetch, {});
+
+    expect(reducer(state, postFetchAction)).toEqual({
+      loadingSuggested: false,
+    });
+  });
 });

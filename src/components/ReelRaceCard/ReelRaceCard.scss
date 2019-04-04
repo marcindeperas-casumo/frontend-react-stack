@@ -1,0 +1,20 @@
+$reel-race-tile-widths: (
+  mobile: 90%,
+);
+
+.c-reel-race-card {
+  @include cudl-breakpoint-with($reel-race-tile-widths, width);
+  max-width: 330px;
+}
+
+.c-reel-race__separator {
+  align-self: stretch;
+  background-color: rgba($white, 0.15);
+  width: 1px;
+}
+
+.c-reel-race__badge {
+  left: 8px;
+  position: absolute;
+  top: 8px;
+}
