@@ -22,7 +22,7 @@ describe("Models/GameSearch/Saga", () => {
     const gen = fetchSuggestedGamesSaga(game);
 
     const platform = "mobile";
-    const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+    const id = GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH;
     const areGamesFetched = false;
     const variant = "default";
     const handshake = { foo: "bar" };
@@ -92,7 +92,7 @@ describe("Models/GameSearch/Saga", () => {
     const gen = fetchSuggestedGamesSaga(game);
 
     const platform = "mobile";
-    const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+    const id = GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH;
     const areGamesFetched = false;
     const variant = "default";
     const handshake = { foo: "bar" };
