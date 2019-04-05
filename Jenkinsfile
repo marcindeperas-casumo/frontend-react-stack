@@ -32,7 +32,7 @@ def runTests() {
 }
 
 def runFlow() {
-    sh "yarn flow"
+    sh "yarn flow check"
 }
 
 def runLint() {

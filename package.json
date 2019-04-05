@@ -56,7 +56,7 @@
     "wait-for-element": "^1.0.2"
   },
   "scripts": {
-    "flow": "flow check",
+    "flow": "flow",
     "start": "node scripts/start.js",
     "dev": "npm run start",
     "build": "node scripts/build.js",
