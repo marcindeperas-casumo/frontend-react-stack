@@ -28,7 +28,7 @@ export const gameSearchResults = createSelector(
 );
 
 export const suggestedGames = createSelector(
-  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH),
   propOr([], "games")
 );
 

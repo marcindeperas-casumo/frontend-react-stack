@@ -22,7 +22,7 @@ export function* fetchSuggestedGamesSaga(game) {
   const platform = "mobile";
   const variant = "default";
   const country = yield select(countrySelector);
-  const id = GAME_LIST_IDS.SUGGESTED_GAMES;
+  const id = GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH;
   const gameSlug = game.slug;
   const lastGameForSuggestions = yield select(gameForSuggestionsSelector);
 
