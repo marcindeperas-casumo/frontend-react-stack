@@ -40,11 +40,13 @@ describe("Models/GameSearch/Actions", () => {
   });
 
   describe("initFetchSuggested()", () => {
-    const action = initFetchSuggested();
+    const game = "whatever";
+    const action = initFetchSuggested(game);
 
     test("returns an action with the correct type", () => {
       expect(action).toEqual({
         type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+        game,
       });
     });
   });

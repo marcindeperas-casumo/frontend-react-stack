@@ -19,6 +19,11 @@ export const isSuggestedLoadingSelector = createSelector(
   R.prop("loadingSuggested")
 );
 
+export const gameForSuggestionsSelector = createSelector(
+  gameSearch,
+  R.prop("gameSuggested")
+);
+
 export const gameSearchResults = createSelector(
   gameListEntitiesSelector,
   R.compose(
@@ -45,7 +50,7 @@ export const gameSearchResultsCountSelector = createSelector(
 );
 
 export const suggestedGames = createSelector(
-  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES),
+  gameListSelector(GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH),
   R.propOr([], "games")
 );
 

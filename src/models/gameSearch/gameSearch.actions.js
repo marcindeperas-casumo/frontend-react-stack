@@ -25,8 +25,9 @@ export const initFetchGameSearchPage = ({ startIndex, pageSize, query }) => ({
 
 export const clearSearch = () => ({ type: types.GAME_SEARCH_CLEAR });
 
-export const initFetchSuggested = () => ({
+export const initFetchSuggested = game => ({
   type: types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START,
+  game,
 });
 
 export const fetchGameSearch = ({ page, pageSize, sessionId, query }) => ({

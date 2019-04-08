@@ -23,9 +23,10 @@ const handlers = {
     loading: false,
     count: 0,
   }),
-  [types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START]: state => ({
+  [types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_START]: (state, action) => ({
     ...state,
     loadingSuggested: true,
+    gameSuggested: action.game,
   }),
   [types.GAME_SEARCH_FETCH_SUGGESTED_GAMES_COMPLETE]: state => ({
     ...state,
