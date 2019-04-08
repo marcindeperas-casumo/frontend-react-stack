@@ -1,13 +1,16 @@
-import { httpMock } from "Utils";
 import { getCommonHandshake, URLS } from "./api.common";
 
 describe("API/Common", () => {
   describe("getCommonHandshake()", () => {
-    test("calls http.get() with the right URL", () => {
-      getCommonHandshake(httpMock);
+    const http = {
+      get: jest.fn(),
+    };
 
-      expect(httpMock.get).toHaveBeenCalledTimes(1);
-      expect(httpMock.get).toHaveBeenCalledWith(URLS.HANDSHAKE);
+    test("calls http.get() with the right URL", () => {
+      getCommonHandshake(http);
+
+      expect(http.get).toHaveBeenCalledTimes(1);
+      expect(http.get).toHaveBeenCalledWith(URLS.HANDSHAKE);
     });
   });
 });
