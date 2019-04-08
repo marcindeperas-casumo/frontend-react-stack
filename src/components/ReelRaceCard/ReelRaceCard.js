@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, TickIcon, TimeIconIcon } from "@casumo/cmp-icons";
+import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import Timer from "Components/Timer";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
@@ -12,40 +13,27 @@ import ImageLazy from "Components/Image/ImageLazy";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
-type Props = {
-  status: "Scheduled" | "Started",
-  type: "Standard" | "Promoted",
-  startTime: number, // timestamp
-  endTime: number, // timestamp
-  minBet?: string,
-  spinLimit: number,
-  opted: boolean,
-  prize: string,
+type Props = ReelRace & {
   game: GameRow_Game,
-  color: string, // cudl color style ie. "yellow-light-1", "red" or "purple-dark-2"
-  t: {
-    spins: string,
-    duration: string,
-    minBet: string,
-    startingIn: string,
-    endingIn: string,
-    optIn: string,
-    optedIn: string,
-    play: string,
-    prize: string,
-  },
+  t: ReelRacesTranslations,
+  optIn: () => void,
+  launchGame: () => void,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
   <Flex direction="vertical" spacing="none">
-    <span className="t-color-white u-font-weight-bold">{props.top}</span>
-    <span className="t-color-white u-font-sm u-opacity-75">{props.bottom}</span>
+    <Text tag="span" className="t-color-white u-font-weight-bold">
+      {props.top}
+    </Text>
+    <Text tag="span" size="sm" className="t-color-white u-opacity-75">
+      {props.bottom}
+    </Text>
   </Flex>
 );
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
-export class ReelRaceCard extends React.PureComponent<Props> {
+export class ReelRaceCard extends React.Component<Props> {
   timeout: TimeoutID;
 
   componentDidMount() {
@@ -68,9 +56,15 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= 0) {
       if (this.props.opted) {
         return (
-          <Button variant="variant-1">
-            <PlayIcon size="sml" />
-            <span className="u-margin-left">{t.play}</span>
+          <Button
+            variant="variant-1"
+            className="u-padding-vert--md u-padding-horiz--xlg"
+            onClick={this.props.launchGame}
+          >
+            <PlayIcon className="c-reel-race__button-icon" />
+            <Text tag="span" className="u-margin-left">
+              {t.opted_in_cta_single_game_short}
+            </Text>
           </Button>
         );
       }
@@ -80,9 +74,15 @@ export class ReelRaceCard extends React.PureComponent<Props> {
 
     if (this.props.opted) {
       return (
-        <Button variant="variant-1" disabled>
-          <TickIcon size="sml" />
-          {t.optedIn}
+        <Button
+          variant="variant-1"
+          className="u-padding-vert--md u-padding-horiz--xlg"
+          disabled
+        >
+          <TickIcon className="c-reel-race__button-icon" />
+          <Text tag="span" className="u-margin-left">
+            {t.opted_in}
+          </Text>
         </Button>
       );
     }
@@ -91,8 +91,9 @@ export class ReelRaceCard extends React.PureComponent<Props> {
       <Button
         variant="variant-1"
         className="u-padding-vert--md u-padding-horiz--xlg"
+        onClick={this.props.optIn}
       >
-        {t.optIn}
+        <Text tag="span">{t.opt_in}</Text>
       </Button>
     );
   }
@@ -103,16 +104,20 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= 0) {
       return (
         <Flex direction="vertical" spacing="none">
-          <span className="t-color-white u-font-weight-bold u-font-sm">
-            {t.endingIn}
-          </span>
-          <span className="u-font-weight-bold u-font-lg">
+          <Text
+            tag="span"
+            size="sm"
+            className="t-color-white u-font-weight-bold"
+          >
+            {t.ending_in}
+          </Text>
+          <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={this.props.endTime}
               render={state => `${state.minutes}:${state.seconds}`}
-              onEnd={() => "Ended!"}
+              onEnd={() => "00:00"}
             />
-          </span>
+          </Text>
         </Flex>
       );
     }
@@ -120,27 +125,35 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= THIRTY_MINUTES) {
       return (
         <Flex direction="vertical" spacing="none">
-          <span className="t-color-white u-font-weight-bold u-font-sm">
-            {t.startingIn}
-          </span>
-          <span className="u-font-weight-bold u-font-lg">
+          <Text
+            tag="span"
+            size="sm"
+            className="t-color-white u-font-weight-bold"
+          >
+            {t.starting_in}
+          </Text>
+          <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={this.props.startTime}
               render={state => `${state.minutes}:${state.seconds}`}
-              onEnd={() => "Starting!"}
+              onEnd={() => "00:00"}
             />
-          </span>
+          </Text>
         </Flex>
       );
     }
 
-    const hour = DateTime.fromMillis(this.props.startTime).toFormat("hh:mm");
+    const startTime = DateTime.fromMillis(this.props.startTime);
     return (
       <Flex spacing="none">
         <TimeIconIcon size="sml" /> {/* TODO(28094): that's wrong icon */}
-        <span className="t-color-white u-font-weight-bold u-font-sm">
-          Tonight {hour}
-        </span>
+        <Text
+          tag="span"
+          size="sm"
+          className="t-color-white u-font-weight-bold u-text-transform-capitalize"
+        >
+          {startTime.toRelativeCalendar()} {startTime.toFormat("t")}
+        </Text>
       </Flex>
     );
   }
@@ -173,9 +186,15 @@ export class ReelRaceCard extends React.PureComponent<Props> {
   render() {
     const { t } = this.props;
 
+    if (this.timeRemainingBeforeStart <= 0 && !this.props.opted) {
+      return null;
+    }
+
     return (
       <Flex
         className={[
+          "o-flex__item",
+          "o-flex__item-fixed-size",
           "c-reel-race-card",
           "t-border-r--16",
           "o-ratio",
@@ -192,7 +211,8 @@ export class ReelRaceCard extends React.PureComponent<Props> {
           alt={this.props.game.name}
           imgixOpts={{
             w: 330,
-            blur: 75,
+            blur: 100,
+            sat: -50,
           }}
         />
 
@@ -200,40 +220,42 @@ export class ReelRaceCard extends React.PureComponent<Props> {
           className="u-padding--md o-ratio__content"
           direction="vertical"
           spacing="none"
+          justify="space-between"
         >
           <Flex align="center">
-            <Flex>
-              <GameThumb
-                src={this.props.game.logoBackground}
-                alt={this.props.game.name}
-                mark={this.props.game.logo}
-              />
-              {this.props.type === "Promoted" && (
-                <GrandReelRaceBadge className="c-reel-race__badge" />
-              )}
-            </Flex>
+            <GameThumb
+              src={this.props.game.logoBackground}
+              alt={this.props.game.name}
+              mark={this.props.game.logo}
+            />
+            {this.props.promoted && (
+              <GrandReelRaceBadge className="c-reel-race__badge" />
+            )}
             <Flex
               direction="vertical"
               spacing="sm"
               className="u-margin-left--md"
             >
-              <span className="u-font-weight-bold">
-                {t.prize} {this.props.prize}
-              </span>
+              <Text tag="span" className="u-font-weight-bold">
+                {t.compete_for.replace("{{prize}}", this.props.prize)}
+              </Text>
               <Text tag="span" size="sm" className="t-color-white u-opacity-75">
                 <DangerousHtml html={this.props.game.name} />
               </Text>
             </Flex>
           </Flex>
 
-          <Flex className="u-margin-vert--lg" align="center">
-            <Column top={this.props.spinLimit} bottom={t.spins} />
+          <Flex align="center">
+            <Column top={this.props.spins} bottom={t.spins} />
             <div className="c-reel-race__separator u-margin-horiz--md" />
-            <Column top={`${this.duration} min`} bottom={t.duration} />
+            <Column
+              top={t.duration_template.replace("{{duration}}", this.duration)}
+              bottom={t.duration}
+            />
             {this.props.minBet && (
               <>
                 <div className="c-reel-race__separator u-margin-horiz--md" />
-                <Column top={this.props.minBet} bottom={t.minBet} />
+                <Column top={this.props.minBet} bottom={t.min_bet} />
               </>
             )}
           </Flex>
