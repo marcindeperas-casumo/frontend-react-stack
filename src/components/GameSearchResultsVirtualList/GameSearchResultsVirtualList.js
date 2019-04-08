@@ -6,7 +6,7 @@ import GameRowSkeleton from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 
 const ROW_HEIGHT = 80;
-const PAGE_SIZE = 40;
+const PAGE_SIZE = 100;
 
 type Indexes = {
   startIndex: number,

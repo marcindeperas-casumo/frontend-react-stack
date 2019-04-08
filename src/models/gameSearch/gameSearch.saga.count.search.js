@@ -20,5 +20,5 @@ export function* gameSearchCountSaga(action) {
 
   yield put(fetchGameSearchCount({ sessionId, query }));
 
-  yield put(initFetchGameSearchPage({ startIndex: 0, pageSize: 40, query }));
+  yield put(initFetchGameSearchPage({ startIndex: 0, query }));
 }

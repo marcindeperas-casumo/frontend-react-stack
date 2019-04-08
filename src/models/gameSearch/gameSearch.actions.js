@@ -16,7 +16,11 @@ export const initFetchGameSearchCount = query => ({
   query,
 });
 
-export const initFetchGameSearchPage = ({ startIndex, pageSize, query }) => ({
+export const initFetchGameSearchPage = ({
+  startIndex,
+  pageSize = 100,
+  query,
+}) => ({
   type: types.GAME_SEARCH_FETCH_PAGE,
   startIndex,
   pageSize,

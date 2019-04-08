@@ -45,7 +45,7 @@ describe("Models/GameSearch/gameSearchCountSaga", () => {
       put(
         initFetchGameSearchPage({
           startIndex: 0,
-          pageSize: 40,
+          pageSize: 100,
           query: action.query,
         })
       )
