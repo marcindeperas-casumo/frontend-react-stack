@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
+import MockDate from "mockdate";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const stories = storiesOf("ReelRaceCard", module);
@@ -35,7 +36,9 @@ const props = {
   },
 };
 
+MockDate.set(new Date().toString());
 const now = Date.now();
+
 stories.add("Default", () => {
   const type = select("Type", ["Standard", "Promoted"], "Standard");
   const opted = select("Opted", [false, true], false);

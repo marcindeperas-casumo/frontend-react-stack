@@ -1,11 +1,9 @@
-$game-list-height: (
-  mobile: calc(100vh - 147px),
-  phablet: calc(100vh - 172px),
-);
+$search-bar: 72px;
 
-$game-list--playok-height: (
-  mobile: calc(100vh - 187px),
-  phablet: calc(100vh - 210px),
+$game-search-widths: (
+  mobile: 100%,
+  tablet: 490px,
+  desktop: 670px,
 );
 
 .c-game-search {
@@ -14,22 +12,23 @@ $game-list--playok-height: (
   transform: translate3d(0, 0, 0);
 }
 
+.u-game-search-max-width {
+  @include cudl-breakpoint-with($game-search-widths, width);
+  margin: 0 auto;
+}
+
 .c-game-search-bar {
   z-index: cudl-z("content-overlay");
 }
 
 .c-game-search-virtual-list {
-  @include cudl-breakpoint-with($game-list-height, height);
-  @include cudl-breakpoint(phablet orientation landscape) {
-    height: calc(100vh - 136px);
+  height: calc(
+    100vh - #{$search-bar} - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)
+  );
+
+  @media (orientation: landscape) {
+    height: calc(
+      100vh - #{$search-bar} - var(--top-bar-height--landscape, 64px) - var(--play-okay-bar-height, 0)
+    );
   }
-}
-
-// stylelint-disable xi/selector-pattern
-.play-okay-bar-visible .c-game-search-virtual-list {
-  @include cudl-breakpoint-with($game-list--playok-height, height);
-}
-
-.c-game-search-virtual-list .c-virtual-list {
-  padding-top: 8px;
 }
