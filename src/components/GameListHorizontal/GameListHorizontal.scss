@@ -1,19 +1,15 @@
-$top-game-tile-widths: (
-  mobile: 43%,
-  phablet: 26%,
-  tablet: 26%,
-  desktop: 15%,
-);
-
-$exclusive-game-tile-widths: (
-  mobile: 48%,
-  phablet: 31%,
-  tablet: 31%,
-  desktop: 20%,
-);
+$exclusive-game-tile-widths: ();
+@each $breakpoint, $value in $tile-widths {
+  $exclusive-game-tile-widths: map-merge(
+    $exclusive-game-tile-widths,
+    (
+      $breakpoint: #{$value + 5%},
+    )
+  );
+}
 
 .c-top-game {
-  @include cudl-breakpoint-with($top-game-tile-widths, width);
+  @include cudl-breakpoint-with($tile-widths, width);
   max-width: 170px;
 }
 
