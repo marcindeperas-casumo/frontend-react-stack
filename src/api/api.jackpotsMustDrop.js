@@ -1,7 +1,7 @@
 // @flow
-import defaultHttp from "Lib/http";
+import httpClient from "Lib/http";
 
-type HTTPClient = typeof defaultHttp;
+type HTTPClient = typeof httpClient;
 
 export const URLS = {
   MUSTDROP_JACKPOTS:
@@ -14,7 +14,7 @@ export const getJackpotsMustDrop = async (
   }: {
     currency: string,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = httpClient
 ) => {
   const url = `${URLS.MUSTDROP_JACKPOTS}?currency=${currency}`;
   return (await http.get(url)) || {};
