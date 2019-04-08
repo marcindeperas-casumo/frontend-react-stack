@@ -1,7 +1,7 @@
 // @flow
-import defaultHttp from "Lib/http";
+import clientHttp from "Lib/http";
 
-type HTTPClient = typeof defaultHttp;
+type HTTPClient = typeof clientHttp;
 
 export const URLS = {
   GAME_SUGGEST: "/api/game-suggest/",
@@ -9,5 +9,5 @@ export const URLS = {
 
 export const getSuggestedGames = async (
   { gameSlug }: { gameSlug: string },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => http.get(`${URLS.GAME_SUGGEST}${gameSlug}`);
