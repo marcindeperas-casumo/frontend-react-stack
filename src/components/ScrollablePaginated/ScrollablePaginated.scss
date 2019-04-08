@@ -1,0 +1,14 @@
+.c-scrollable-paginated {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+.c-scrollable-paginated__list {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.c-scrollable-paginated__controls {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: cudl-z();
+}
