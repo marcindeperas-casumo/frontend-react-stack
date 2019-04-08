@@ -44,7 +44,7 @@ export default class GameSearch extends React.PureComponent<Props> {
     if (loading) {
       return (
         <GameListSkeleton
-          className="u-padding-horiz--md"
+          className="u-game-search-max-width u-padding-horiz--md"
           hasTitle={false}
           titleYOffset={20}
         />
@@ -80,8 +80,10 @@ export default class GameSearch extends React.PureComponent<Props> {
     } else if (query.length) {
       return (
         <>
-          <SearchNotFound />
-          <GameSearchSuggestionsList />
+          <div className="t-background-grey-light-2">
+            <SearchNotFound className="u-game-search-max-width" />
+          </div>
+          <GameSearchSuggestionsList className="u-game-search-max-width" />
         </>
       );
     } else {
@@ -89,7 +91,7 @@ export default class GameSearch extends React.PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
-          <div className="c-game-search-virtual-list">
+          <div className="c-game-search-virtual-list u-game-search-max-width">
             <GamesVirtualList
               renderItem={id => <GameRowSearch slug={id} />}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
@@ -103,9 +105,10 @@ export default class GameSearch extends React.PureComponent<Props> {
   render() {
     return (
       <div className="c-game-search">
-        <div className="u-position-sticky c-game-search-bar">
-          <div className="o-bleed t-background-grey-light-2">
+        <div className="c-game-search-bar u-position-sticky">
+          <div className="t-background-grey-light-2">
             <GameSearchInput
+              className="u-game-search-max-width u-padding--md"
               initFetchGameSearchCount={this.props.initFetchGameSearchCount}
               clearSearch={this.props.clearSearch}
               noResults={this.noResults}
