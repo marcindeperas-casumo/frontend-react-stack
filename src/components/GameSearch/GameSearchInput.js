@@ -11,6 +11,7 @@ type Props = {
   noResults: boolean,
   placeholder: string,
   trackHandler: Function,
+  className?: string,
 };
 
 type State = {
@@ -66,7 +67,7 @@ export default class GameSearchInput extends PureComponent<Props, State> {
 
   render() {
     return (
-      <div className="u-padding--md">
+      <div className={this.props.className}>
         <SearchInput
           autoFocus
           value={this.state.query}

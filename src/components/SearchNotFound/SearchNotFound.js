@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import DangerousHtml from "Components/DangerousHtml";
@@ -15,6 +16,7 @@ export type Props = {
   content: string,
   /** The function that fecthes search page on the CMS */
   startFetch: () => void,
+  className?: string,
 };
 
 class SearchNotFound extends PureComponent<Props> {
@@ -28,29 +30,31 @@ class SearchNotFound extends PureComponent<Props> {
     const { image, title, content } = this.props;
 
     return (
-      <div className="o-bleed t-background-grey-light-2">
-        <Media
-          className="u-padding-vert--lg u-padding-horiz--md"
-          renderText={() => (
-            <div>
-              <Text className="u-margin-bottom--sm u-font-weight-bold">
-                <DangerousHtml html={title} />
-              </Text>
-              <Text className="u-margin-bottom--none" size="sm">
-                <DangerousHtml html={content} />
-              </Text>
-            </div>
-          )}
-          renderImage={() => (
-            <img
-              className="u-display--block"
-              width={64}
-              alt={title}
-              src={image}
-            />
-          )}
-        />
-      </div>
+      <Media
+        className={classNames(
+          "u-padding-vert--lg",
+          "u-padding-horiz--md",
+          this.props.className
+        )}
+        renderText={() => (
+          <div>
+            <Text className="u-margin-bottom--sm u-font-weight-bold">
+              <DangerousHtml html={title} />
+            </Text>
+            <Text className="u-margin-bottom--none" size="sm">
+              <DangerousHtml html={content} />
+            </Text>
+          </div>
+        )}
+        renderImage={() => (
+          <img
+            className="u-display--block"
+            width={64}
+            alt={title}
+            src={image}
+          />
+        )}
+      />
     );
   }
 }
