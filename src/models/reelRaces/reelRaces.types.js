@@ -1,4 +1,6 @@
 // @flow
+
+// object stored in redux store
 export type ReelRace = {
   tournamentId: string,
   startTime: number, // timestamp
@@ -57,7 +59,7 @@ export type TournamentPrizeRaw = {
   |},
 };
 
-type TournamentRaw = {
+export type TournamentRaw = {
   tournamentId: string,
   status: "Scheduled" | "Started",
   type: "Standard" | "Promoted",
