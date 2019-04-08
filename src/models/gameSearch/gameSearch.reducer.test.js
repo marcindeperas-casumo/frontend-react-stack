@@ -3,11 +3,13 @@ import * as actions from "./gameSearch.actions";
 import reducer from "./gameSearch.reducer";
 
 describe("Models/Fetch/Reducer", () => {
-  test("GAME_SEARCH_FETCH", () => {
-    const action = actions.initFetchQuerySearch();
+  test("GAME_SEARCH_FETCH_COUNT", () => {
+    const query = "star";
+    const action = actions.initFetchGameSearchCount(query);
     const state = {};
 
     expect(reducer(state, action)).toEqual({
+      query,
       loading: true,
     });
   });
@@ -17,6 +19,7 @@ describe("Models/Fetch/Reducer", () => {
     const state = {};
 
     expect(reducer(state, action)).toEqual({
+      count: 0,
       loading: false,
       query: "",
     });
@@ -27,7 +30,7 @@ describe("Models/Fetch/Reducer", () => {
     const platform = "mobile";
     const country = "gb";
     const query = "hola";
-    const action = actions.fetchQuerySearch({ platform, country, query });
+    const action = actions.fetchGameSearch({ platform, country, query });
     const postFetchAction = postFetch(action.postFetch, {});
 
     expect(reducer(state, postFetchAction)).toEqual({ loading: false });

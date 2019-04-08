@@ -8,6 +8,7 @@ export const URL = {
   GAMES: "/casino-player/casino-games/api/v1/games",
   GAMES_COUNT: "/casino-player/casino-games/api/v1/games/count",
   GAME_SEARCH: "/casino-player/casino-games/api/v1/games/search",
+  GAME_SEARCH_COUNT: "/casino-player/casino-games/api/v1/games/search/count",
   GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
 };
 
@@ -69,11 +70,29 @@ export const getCasinoPlayerGameSearch = async (
   http: HTTPClient = defaultHttp
 ) => {
   return await http.get(
-    `${URL.GAME_SEARCH}?query=${query}`,
+    `${URL.GAME_SEARCH}`,
     {
+      query,
       page,
       pageSize,
     },
+    getHeaders(sessionId)
+  );
+};
+
+export const getCasinoPlayerGameSearchCount = async (
+  {
+    sessionId,
+    query,
+  }: {
+    sessionId: string,
+    query: string,
+  },
+  http: HTTPClient = defaultHttp
+) => {
+  return await http.get(
+    `${URL.GAME_SEARCH_COUNT}`,
+    { query },
     getHeaders(sessionId)
   );
 };

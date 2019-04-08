@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
+import GameSearchResultsVirtualList from "Components/GameSearchResultsVirtualList";
 import GameSearchInput from "Components/GameSearch/GameSearchInput";
 import GameRowSearch from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
@@ -15,12 +16,12 @@ import "./GameSearch.scss";
 
 type Props = {
   searchResults: Array<string>,
+  searchResultsCount: number,
   loading: boolean,
   inputPromptPlaceholder: string,
   query: string,
-  initFetchQuerySearch: () => {},
   clearSearch: () => {},
-  preloadFetchPlayerGames: () => {},
+  initFetchGameSearchCount: () => {},
   fetchPageBySlug: () => {},
 };
 
@@ -32,13 +33,13 @@ export default class GameSearch extends React.PureComponent<Props> {
   get noResults() {
     return Boolean(
       !this.props.loading &&
-        !this.props.searchResults.length &&
+        !this.props.searchResultsCount &&
         this.props.query.length
     );
   }
 
   renderResults = () => {
-    const { loading, searchResults, query } = this.props;
+    const { loading, searchResults, searchResultsCount, query } = this.props;
 
     if (loading) {
       return (
@@ -48,20 +49,32 @@ export default class GameSearch extends React.PureComponent<Props> {
           titleYOffset={20}
         />
       );
-    } else if (searchResults.length) {
+    } else if (searchResultsCount) {
       return (
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SEARCH_GAMES }}
         >
-          <List
-            className="u-padding-top u-padding-horiz--md"
-            items={searchResults}
-            itemSpacing="default"
-            render={id => (
-              <GameRowSearch query={query} highlightSearchQuery slug={id} />
-            )}
-          />
-          {searchResults.length === 1 && <GameSearchSuggestionsList />}
+          {searchResultsCount < 10 ? (
+            <List
+              className="u-padding-top u-padding-horiz--md"
+              items={searchResults}
+              itemSpacing="default"
+              render={id => (
+                <GameRowSearch query={query} highlightSearchQuery slug={id} />
+              )}
+            />
+          ) : (
+            <div className="c-game-search-virtual-list">
+              <GameSearchResultsVirtualList
+                query={query}
+                games={searchResults}
+                renderItem={id => (
+                  <GameRowSearch query={query} highlightSearchQuery slug={id} />
+                )}
+              />
+            </div>
+          )}
+          {searchResultsCount === 1 && <GameSearchSuggestionsList />}
         </TrackProvider>
       );
     } else if (query.length) {
@@ -93,7 +106,7 @@ export default class GameSearch extends React.PureComponent<Props> {
         <div className="u-position-sticky c-game-search-bar">
           <div className="o-bleed t-background-grey-light-2">
             <GameSearchInput
-              initFetchQuerySearch={this.props.initFetchQuerySearch}
+              initFetchGameSearchCount={this.props.initFetchGameSearchCount}
               clearSearch={this.props.clearSearch}
               noResults={this.noResults}
               placeholder={this.props.inputPromptPlaceholder}
