@@ -2,17 +2,19 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { ArrowRightIcon } from "@casumo/cmp-icons";
 import info from "Storybook/storybookInfo";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 
 const stories = storiesOf("ScrollablePaginated", module);
+const numberOfCells = 20;
 
 const cellRenderer = ({ columnIndex, style }) => {
   return (
     <div style={style} onClick={action(`Clicked item ${columnIndex}`)}>
       <div
         style={{ height: 240, width: 200 }}
-        className={columnIndex !== 0 ? "u-padding-left" : null}
+        className={columnIndex !== numberOfCells - 1 ? "u-padding-right" : null}
       >
         <div
           style={{ height: "100%", width: "100%" }}
@@ -31,7 +33,7 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
     <div style={style}>
       <div
         style={{ height: "100%" }}
-        className={columnIndex !== 0 ? "u-padding-left" : null}
+        className={columnIndex !== numberOfCells - 1 ? "u-padding-right" : null}
       >
         <div
           style={{ height: "100%" }}
@@ -41,7 +43,6 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
             style={{ height: "100%", width: width }}
             className="o-flex-justify--center o-flex-align--center"
           >
-            {" "}
             {columnIndex}
           </div>
         </div>
@@ -50,13 +51,21 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
   );
 };
 
+const myButtonRenderer = () => (
+  <div className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer">
+    <ArrowRightIcon className="t-color-grey-light-3" />
+  </div>
+);
+
 stories.add(
   "Default",
   () => (
     <ScrollablePaginated
-      columnCount={20}
+      columnCount={numberOfCells}
       cellRenderer={cellRenderer}
       height={240}
+      buttonRenderer={myButtonRenderer}
+      buttonContainerClassName="s-stories-linear-gradient u-padding-horiz--xlg"
     />
   ),
   info({ text: "Default" })
@@ -67,9 +76,11 @@ stories.add(
   () => (
     <div style={{ height: 204 }}>
       <ScrollablePaginated
-        columnCount={20}
+        columnCount={numberOfCells}
         height={204}
         cellRenderer={cellRendererAltWidths}
+        buttonRenderer={myButtonRenderer}
+        buttonContainerClassName="s-stories-linear-gradient u-padding-horiz--xlg"
       />
     </div>
   ),

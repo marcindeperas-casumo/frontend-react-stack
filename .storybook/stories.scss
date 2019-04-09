@@ -3,6 +3,9 @@
 @include cudl-prevent-compile(cudl-sass-typography);
 @import "cudl-typography";
 @include cudl-reset-compile(cudl-sass-typography);
+@include cudl-prevent-compile(cudl-sass-typography);
+@import "cudl-typography";
+@include cudl-reset-compile(cudl-sass-typography);
 
 $cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, Helvetica, sans-serif;
@@ -55,5 +58,9 @@ img {
 // remove cudl-reset heading margin bottom property.
 #{cudl-headings()} {
   margin-bottom: 0;
+}
+
+.s-stories-linear-gradient {
+  background-image: linear-gradient(to left, rgba(#fff, 1) 2%, rgba(#fff, 0));
 }
 // stylelint-enable xi/selector-pattern
