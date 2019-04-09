@@ -1,6 +1,7 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import { clamp } from "ramda";
+import classNames from "classnames";
 import type { CellRenderer } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
 import { ScrollableWithRef, type GridRef } from "Components/Scrollable";
@@ -16,6 +17,8 @@ type Props = {
   easing: number => number,
   duration: number,
   cellRenderer: CellRenderer,
+  buttonRenderer: () => React.Node,
+  buttonContainerClassName: string,
 };
 
 type State = {
@@ -27,10 +30,14 @@ type State = {
   isStartOfScroll: boolean,
 };
 
-export default class ScrollablePaginated extends PureComponent<Props, State> {
+export default class ScrollablePaginated extends React.PureComponent<
+  Props,
+  State
+> {
   static defaultProps = {
     easing: easeInQuad,
     duration: 300,
+    buttonContainerClassName: "",
   };
 
   gridRef = React.createRef<GridRef>();
@@ -142,6 +149,13 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     }, 0);
   }
 
+  get buttonContainerClasses() {
+    return classNames(
+      "u-height--1/1 o-flex-justify--center o-flex-align--center",
+      this.props.buttonContainerClassName
+    );
+  }
+
   render() {
     const showLeftBtn = !this.state.isStartOfScroll;
     const showRightBtn = !this.state.isEndOfScroll;
@@ -167,26 +181,30 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
           className="c-scrollable-paginated__controls u-pointer-events-none"
           gap="none"
         >
-          <Flex.Item className="o-flex o-flex-justify--center o-flex-align--center">
+          <div className="o-flex u-transform--flip-x">
             {showLeftBtn && (
-              <button
-                className="u-pointer-events-initial"
-                onClick={e => this.clickHandler("left")}
-              >
-                {"<-"}
-              </button>
+              <div className={this.buttonContainerClasses}>
+                <div
+                  className="u-pointer-events-initial"
+                  onClick={e => this.clickHandler("left")}
+                >
+                  {this.props.buttonRenderer()}
+                </div>
+              </div>
             )}
-          </Flex.Item>
-          <Flex.Item className="o-flex o-flex-justify--center o-flex-align--center">
+          </div>
+          <div className="o-flex">
             {showRightBtn && (
-              <button
-                className="u-pointer-events-initial"
-                onClick={e => this.clickHandler("right")}
-              >
-                {"->"}
-              </button>
+              <div className={this.buttonContainerClasses}>
+                <div
+                  className="u-pointer-events-initial"
+                  onClick={e => this.clickHandler("right")}
+                >
+                  {this.props.buttonRenderer()}
+                </div>
+              </div>
             )}
-          </Flex.Item>
+          </div>
         </Flex>
       </div>
     );
