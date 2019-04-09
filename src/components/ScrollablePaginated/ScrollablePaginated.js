@@ -24,6 +24,7 @@ type State = {
   visibleColumns: number,
   scrollLeft: number | null,
   isEndOfScroll: boolean,
+  isStartOfScroll: boolean,
 };
 
 export default class ScrollablePaginated extends PureComponent<Props, State> {
@@ -43,6 +44,7 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     visibleColumns: 0,
     scrollLeft: null,
     isEndOfScroll: false,
+    isStartOfScroll: true,
   };
 
   // TODO(mm): this function should have type of Grid's onScroll
@@ -55,11 +57,14 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
         Math.ceil(scrollingContainer.offsetWidth) +
           Math.ceil(scrollingContainer.scrollLeft) ===
         scrollingContainer.scrollWidth;
+      const isStartOfScroll = Math.ceil(scrollingContainer.scrollLeft) === 0;
+
       if (this.gridRef.current) {
         this.setState({
-          startColumn: this.gridRef.current._columnStartIndex,
-          stopColumn: this.gridRef.current._columnStopIndex,
+          startColumn: this.gridRef.current._renderedColumnStartIndex,
+          stopColumn: this.gridRef.current._renderedColumnStopIndex,
           isEndOfScroll,
+          isStartOfScroll,
         });
       }
     }
@@ -115,8 +120,8 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
         if (this.gridRef.current) {
           this.setState({
             scrollLeft: null,
-            startColumn: this.gridRef.current._columnStartIndex,
-            stopColumn: this.gridRef.current._columnStopIndex,
+            startColumn: this.gridRef.current._renderedColumnStartIndex,
+            stopColumn: this.gridRef.current._renderedColumnStopIndex,
           });
         }
       }
@@ -129,8 +134,8 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     setTimeout(() => {
       if (this.gridRef.current) {
         this.setState({
-          startColumn: this.gridRef.current._columnStartIndex,
-          stopColumn: this.gridRef.current._columnStopIndex,
+          startColumn: this.gridRef.current._renderedColumnStartIndex,
+          stopColumn: this.gridRef.current._renderedColumnStopIndex,
           visibleColumns: this.gridRef.current._renderedColumnStopIndex,
         });
       }
@@ -138,7 +143,7 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
   }
 
   render() {
-    const showLeftBtn = this.state.startColumn > 0;
+    const showLeftBtn = !this.state.isStartOfScroll;
     const showRightBtn = !this.state.isEndOfScroll;
 
     return (
@@ -154,6 +159,7 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
             height={this.props.height}
             scrollLeft={this.state.scrollLeft}
             scrollHandler={this.scrollHandler}
+            overscanColumnCount={this.state.visibleColumns}
           />
         </div>
         <Flex
