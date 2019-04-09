@@ -34,7 +34,7 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
 
   gridRef = React.createRef<GridRef>();
   scrollToOffset = 0;
-  animationStartTime: ?number = 0;
+  animationStartTime = 0;
   currentScrollOffset = 0;
   isScrolling = false;
   state = {
@@ -45,7 +45,8 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     isEndOfScroll: false,
   };
 
-  scrollHandler = ({ scrollLeft }) => {
+  // TODO(mm): this function should have type of Grid's onScroll
+  scrollHandler = ({ scrollLeft }: { scrollLeft: number }) => {
     this.currentScrollOffset = scrollLeft;
     // Does this need optimising or does setState already handle a lot of this?
     if (this.gridRef.current) {
@@ -54,11 +55,13 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
         Math.ceil(scrollingContainer.offsetWidth) +
           Math.ceil(scrollingContainer.scrollLeft) ===
         scrollingContainer.scrollWidth;
-      this.setState({
-        startColumn: this.gridRef.current._columnStartIndex,
-        stopColumn: this.gridRef.current._columnStopIndex,
-        isEndOfScroll,
-      });
+      if (this.gridRef.current) {
+        this.setState({
+          startColumn: this.gridRef.current._columnStartIndex,
+          stopColumn: this.gridRef.current._columnStopIndex,
+          isEndOfScroll,
+        });
+      }
     }
   };
 
@@ -77,11 +80,13 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
         ? this.state.startColumn + this.state.visibleColumns
         : this.state.startColumn - this.state.visibleColumns
     );
-    this.scrollToOffset = this.gridRef.current.getOffsetForCell({
-      alignment: "start",
-      columnIndex: nextColumn,
-      rowIndex: 0,
-    }).scrollLeft;
+    if (this.gridRef.current) {
+      this.scrollToOffset = this.gridRef.current.getOffsetForCell({
+        alignment: "start",
+        columnIndex: nextColumn,
+        rowIndex: 0,
+      }).scrollLeft;
+    }
     this.animate();
   };
 
@@ -106,11 +111,14 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
         this.isScrolling = false;
         this.currentScrollOffset = this.scrollToOffset;
         this.animationStartTime = undefined;
-        this.setState({
-          scrollLeft: null,
-          startColumn: this.gridRef.current._columnStartIndex,
-          stopColumn: this.gridRef.current._columnStopIndex,
-        });
+
+        if (this.gridRef.current) {
+          this.setState({
+            scrollLeft: null,
+            startColumn: this.gridRef.current._columnStartIndex,
+            stopColumn: this.gridRef.current._columnStopIndex,
+          });
+        }
       }
     });
   };
@@ -119,11 +127,13 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     // I'm not convinced by this but pushing to the next tick
     // prevents things blowing up when current doesn't exist.
     setTimeout(() => {
-      this.setState({
-        startColumn: this.gridRef.current._columnStartIndex,
-        stopColumn: this.gridRef.current._columnStopIndex,
-        visibleColumns: this.gridRef.current._renderedColumnStopIndex,
-      });
+      if (this.gridRef.current) {
+        this.setState({
+          startColumn: this.gridRef.current._columnStartIndex,
+          stopColumn: this.gridRef.current._columnStopIndex,
+          visibleColumns: this.gridRef.current._renderedColumnStopIndex,
+        });
+      }
     }, 0);
   }
 

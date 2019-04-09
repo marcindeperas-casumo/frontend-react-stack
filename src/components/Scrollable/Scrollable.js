@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import classNames from "classnames";
 import {
   Grid,
@@ -12,20 +12,25 @@ import "./Scrollable.scss";
 
 type Props = {
   cellRenderer: CellRenderer,
-  className?: string,
+  className: string,
   columnCount: number,
   height: string | number,
-  innerRef?: any,
-  scrollHandler?: () => void,
-  scrollLeft?: number,
+  scrollHandler: ({
+    clientHeight: number,
+    clientWidth: number,
+    scrollHeight: number,
+    scrollLeft: number,
+    scrollTop: number,
+    scrollWidth: number,
+  }) => void,
+  innerRef?: *,
+  scrollLeft?: ?number,
 };
 
-export default class Scrollable extends PureComponent<Props> {
+export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "",
-    innerRef: null,
-    scrollHander: () => {},
-    scrollLeft: null,
+    scrollHandler: (x: any) => {},
   };
 
   cellSizeCache = new CellMeasurerCache({
@@ -34,7 +39,8 @@ export default class Scrollable extends PureComponent<Props> {
     minWidth: 170,
   });
 
-  cellRenderer = ({ columnIndex, key, parent, rowIndex, style }) => {
+  // TODO(mm): Grid's cellRenderer instead of any
+  cellRenderer = ({ columnIndex, key, parent, rowIndex, style }: any) => {
     return (
       <CellMeasurer
         key={key}
@@ -87,6 +93,7 @@ export type GridRef = {
   getOffsetForCell: Function,
 };
 
-export const ScrollableWithRef = React.forwardRef<Props, GridRef>(
-  (props, ref) => <Scrollable innerRef={ref} {...props} />
-);
+export const ScrollableWithRef = React.forwardRef<
+  $Diff<Props, typeof Scrollable.defaultProps>, // that's to make flow understand which props are optional because they have default value
+  GridRef
+>((props, ref) => <Scrollable innerRef={ref} {...props} />);
