@@ -42,6 +42,6 @@ describe("Models/gameSearch/clearSearchResultsSaga", () => {
       all(entitiesListYieled.map(({ entities }) => put(updateEntity(entities))))
     );
 
-    // expect(generator.next().done).toBe(true);
+    expect(generator.next().done).toBe(true);
   });
 });
