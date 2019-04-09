@@ -67,13 +67,13 @@ describe("Models/GameSearch/fetchSuggestedGamesSaga", () => {
 
   expect(gen.next(handshake).value).toEqual(
     put(
-      fetchSuggestedGamesAction(
+      fetchSuggestedGamesAction({
         game,
         handshake,
         platform,
-        countrySelector,
-        variant
-      )
+        country: countrySelector,
+        variant,
+      })
     )
   );
 
