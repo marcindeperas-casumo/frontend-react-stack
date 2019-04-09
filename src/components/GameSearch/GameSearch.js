@@ -64,7 +64,7 @@ export default class GameSearch extends React.PureComponent<Props> {
               )}
             />
           ) : (
-            <div className="c-game-search-virtual-list">
+            <div className="c-game-search-virtual-list u-game-search-max-width">
               <GameSearchResultsVirtualList
                 query={query}
                 games={searchResults}
