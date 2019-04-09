@@ -8,7 +8,7 @@
 ## Table of Contents
 
 - [How it works](#how-it-works)
-- [Usage](#development-instructions)
+- [Development instructions](#development-instructions)
 - [Error Handling](./docs/error-handling.md)
 - [Tracking](./docs/tracking.md)
 - Modules
@@ -48,7 +48,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 #### Developing within the SPA
 
 - Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
-- Within the `casumo-frontend` repository run `yarn mobile gulp dev`.
+- Within the `casumo-frontend` repository under `/web` run `yarn mobile gulp dev`.
 - Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.
