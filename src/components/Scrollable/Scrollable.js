@@ -26,6 +26,7 @@ type Props = {
   innerRef?: *,
   scrollLeft?: ?number,
   overscanColumnCount: number,
+  defaultWidth: number,
 };
 
 export default class Scrollable extends React.PureComponent<Props> {
@@ -33,12 +34,12 @@ export default class Scrollable extends React.PureComponent<Props> {
     className: "",
     scrollHandler: (x: any) => {},
     overscanColumnCount: 10,
+    defaultWidth: 100,
   };
 
   cellSizeCache = new CellMeasurerCache({
-    defaultWidth: 170,
+    defaultWidth: this.props.defaultWidth,
     fixedHeight: true,
-    minWidth: 170,
   });
 
   // TODO(mm): Grid's cellRenderer instead of any
