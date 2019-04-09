@@ -11,10 +11,22 @@ import {
   getSearchFetchCompleteTypeByPage,
   fetchSuggestedGamesAction,
   initFetchSuggested,
+  initFetchGameSearchCount,
 } from "Models/gameSearch";
 import { fetchSuggestedGames } from "Api/api.games";
 
 describe("Models/GameSearch/Actions", () => {
+  describe("initFetchGameSearchCount()", () => {
+    const action = initFetchGameSearchCount("star");
+
+    test("returns an action with the correct type and query", () => {
+      expect(action).toEqual({
+        type: types.GAME_SEARCH_FETCH_COUNT,
+        query: "star",
+      });
+    });
+  });
+
   describe("initFetchGameSearchPage()", () => {
     const startIndex = 0;
     const pageSize = 100;
@@ -202,13 +214,13 @@ describe("Models/GameSearch/Actions", () => {
     const platform = "mobile";
     const variant = "default";
 
-    const action = fetchSuggestedGamesAction(
+    const action = fetchSuggestedGamesAction({
       game,
       handshake,
       platform,
       country,
-      variant
-    );
+      variant,
+    });
 
     test("starts api fetch for suggestedGames", () => {
       expect(action).toMatchObject({
