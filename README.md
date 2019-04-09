@@ -9,7 +9,6 @@
 
 - [How it works](#how-it-works)
 - [Usage](#development-instructions)
-- [Resources](#resources)
 - [Error Handling](./docs/error-handling.md)
 - [Tracking](./docs/tracking.md)
 - Modules
