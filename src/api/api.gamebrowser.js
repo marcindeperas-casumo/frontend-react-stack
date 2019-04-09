@@ -1,5 +1,5 @@
 // @flow
-import defaultHttp from "Lib/http";
+import clientHttp from "Lib/http";
 
 export const URL = {
   HANDSHAKE: "/api/gamebrowser/handshake",
@@ -11,11 +11,11 @@ export const URL = {
   LIVE_CASINO: "/api/gamebrowser/liveCasino/tablesById",
 };
 
-type HTTPClient = typeof defaultHttp;
+type HTTPClient = typeof clientHttp;
 
 export const getGameBrowserHandshake = (
   { platform, country }: { platform: string, country: string },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => http.get(`${URL.HANDSHAKE}/${platform}/${country}`);
 
 export const getGameLists = (
@@ -32,12 +32,12 @@ export const getGameLists = (
     page?: number,
     pageSize?: number,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => http.get(`${URL.GAME_LISTS}/${platform}/${country}/${id}`, data);
 
 export const getLatestPlayedGames = (
   { playerId, pageSize = 20 }: { playerId: string, pageSize?: number },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   http.get(`${URL.GAMES_LATEST_PLAYED}/${playerId}?numberOfGames=${pageSize}`);
 
@@ -53,7 +53,7 @@ export const getGamesByProviderGameNames = (
     variant: "default" | string,
     providerGameNames: string,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   http.get(`${URL.GAMES_BY_PROVIDER}/${platform}/${country}`, {
     variant,
@@ -72,7 +72,7 @@ export const getGamesBySlugs = (
     variant: "default" | string,
     slugs: string,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   http.get(`${URL.GAMES_BY_SLUGS}/${platform}/${country}`, {
     variant,
@@ -81,7 +81,7 @@ export const getGamesBySlugs = (
 
 export const getLiveCasinoTable = (
   { ids, currency }: { ids: Array<string>, currency: string },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   http.get(`${URL.LIVE_CASINO}`, {
     // Even if it is an array we need to use "id"

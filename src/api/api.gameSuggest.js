@@ -1,5 +1,13 @@
 // @flow
-import http from "Lib/http";
+import clientHttp from "Lib/http";
 
-export const getSuggestedGames = async ({ gameSlug }: { gameSlug: string }) =>
-  http.get(`/api/game-suggest/${gameSlug}`);
+type HTTPClient = typeof clientHttp;
+
+export const URLS = {
+  GAME_SUGGEST: "/api/game-suggest/",
+};
+
+export const getSuggestedGames = async (
+  { gameSlug }: { gameSlug: string },
+  http: HTTPClient = clientHttp
+) => http.get(`${URLS.GAME_SUGGEST}${gameSlug}`);

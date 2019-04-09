@@ -1,8 +1,8 @@
 // @flow
 import { commaSeparated, isNilOrEmpty } from "Utils";
-import defaultHttp from "Lib/http";
+import clientHttp from "Lib/http";
 
-type HTTPClient = typeof defaultHttp;
+type HTTPClient = typeof clientHttp;
 
 export const URL = {
   GAMES: "/casino-player/casino-games/api/v1/games",
@@ -43,7 +43,7 @@ export const getCasinoPlayerGames = async (
     sessionId: string,
     providers: Array<string>,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   await http.get(
     URL.GAMES,
@@ -67,7 +67,7 @@ export const getCasinoPlayerGameSearch = async (
     sessionId: string,
     query: string,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => {
   return await http.get(
     `${URL.GAME_SEARCH}`,
@@ -99,7 +99,7 @@ export const getCasinoPlayerGameSearchCount = async (
 
 export const getCasinoPlayerGamesCount = async (
   { sessionId, providers }: { sessionId: string, providers?: Array<string> },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) =>
   await http.get(
     URL.GAMES_COUNT,
@@ -109,5 +109,5 @@ export const getCasinoPlayerGamesCount = async (
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => await http.get(URL.GAME_PROVIDERS, {}, getHeaders(sessionId));
