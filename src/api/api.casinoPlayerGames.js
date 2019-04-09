@@ -55,6 +55,16 @@ export const getCasinoPlayerGames = async (
     getHeaders(sessionId)
   );
 
+export const getCasinoPlayerGamesCount = async (
+  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
+  http: HTTPClient = clientHttp
+) =>
+  await http.get(
+    URL.GAMES_COUNT,
+    getGamesCountParams(providers),
+    getHeaders(sessionId)
+  );
+
 export const getCasinoPlayerGameSearch = async (
   {
     page,
@@ -96,16 +106,6 @@ export const getCasinoPlayerGameSearchCount = async (
     getHeaders(sessionId)
   );
 };
-
-export const getCasinoPlayerGamesCount = async (
-  { sessionId, providers }: { sessionId: string, providers?: Array<string> },
-  http: HTTPClient = clientHttp
-) =>
-  await http.get(
-    URL.GAMES_COUNT,
-    getGamesCountParams(providers),
-    getHeaders(sessionId)
-  );
 
 export const getGameProviders = async (
   { sessionId }: { sessionId: string },
