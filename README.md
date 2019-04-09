@@ -87,7 +87,7 @@ Whilst developing CUDL components should generally be done within the storybook 
 ### Deploy to test
 
 ```sh
-ssh <assigned-ssh-username>@ttrelease01
+ssh <assigned-ssh-username>@test-release
 
 deploy-service mobile-react-stack-poc <branch-name>
 ```
