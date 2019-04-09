@@ -15,7 +15,7 @@ type Indexes = {
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: Object[],
+  games: Array<string>,
   /** The search query for highlighting text in results */
   query: string,
   /** The function that triggers the action that fetches the next batch of games */
@@ -27,7 +27,7 @@ type Props = {
   /** The total number of rows */
   rowCount: number,
   /** The element to render as a row  */
-  renderItem: ({}) => React.Node,
+  renderItem: (game: string) => React.Node,
 };
 
 type State = {
@@ -53,7 +53,7 @@ class GameSearchResultsVirtualList extends React.PureComponent<Props, State> {
 
     loadedPromises.forEach(({ startIndex, stopIndex, resolve }) => {
       this.setRowsAsLoaded({ startIndex, stopIndex });
-      return resolve();
+      resolve();
     });
 
     this.promises.list = notLoadedPromises;

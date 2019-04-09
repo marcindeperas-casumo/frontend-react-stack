@@ -132,9 +132,5 @@ export const searchNotFoundContent = createSelector(
 export const isGameSearchPageLoaded = page =>
   createSelector(
     gameListSelector(getgameSearchListIdByPage(page)),
-    R.compose(
-      R.not,
-      R.isEmpty,
-      R.prop("games")
-    )
+    R.propSatisfies(R.complement(R.isEmpty), "games")
   );
