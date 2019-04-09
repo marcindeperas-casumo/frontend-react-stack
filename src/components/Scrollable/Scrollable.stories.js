@@ -5,13 +5,14 @@ import info from "Storybook/storybookInfo";
 import Scrollable from "Components/Scrollable";
 
 const stories = storiesOf("Scrollable", module);
+const numberOfCells = 20;
 
 const cellRenderer = ({ columnIndex, style }) => {
   return (
     <div style={style}>
       <div
         style={{ height: "100%", width: 200 }}
-        className={columnIndex !== 0 ? "u-padding-left" : null}
+        className={columnIndex !== numberOfCells - 1 ? "u-padding-right" : null}
       >
         <div
           style={{ height: "100%" }}
@@ -30,7 +31,7 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
     <div style={style}>
       <div
         style={{ height: "100%" }}
-        className={columnIndex !== 0 ? "u-padding-left" : null}
+        className={columnIndex !== numberOfCells ? "u-padding-right" : null}
       >
         <div
           style={{ height: "100%" }}
@@ -40,7 +41,6 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
             style={{ height: "100%", width: width }}
             className="o-flex-justify--center o-flex-align--center"
           >
-            {" "}
             {columnIndex}
           </div>
         </div>
@@ -53,7 +53,11 @@ stories.add(
   "Default",
   () => (
     <div style={{ height: 275 }}>
-      <Scrollable columnCount={20} height={275} cellRenderer={cellRenderer} />
+      <Scrollable
+        columnCount={numberOfCells}
+        height={275}
+        cellRenderer={cellRenderer}
+      />
     </div>
   ),
   info({ text: "Default" })
@@ -64,7 +68,7 @@ stories.add(
   () => (
     <div style={{ height: 204 }}>
       <Scrollable
-        columnCount={20}
+        columnCount={numberOfCells}
         height={204}
         cellRenderer={cellRendererAltWidths}
       />
