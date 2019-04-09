@@ -8,6 +8,7 @@ import SearchNotFound from "Components/SearchNotFound";
 import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import { PAGE_SIZE } from "Models/gameSearch";
 import GamesVirtualList from "Components/GamesVirtualList";
 import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
 import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
@@ -54,9 +55,9 @@ export default class GameSearch extends React.PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.SEARCH_GAMES }}
         >
-          {searchResultsCount < 10 ? (
+          {searchResultsCount < PAGE_SIZE ? (
             <List
-              className="u-padding-top u-padding-horiz--md"
+              className="u-padding-top u-padding-horiz--md u-game-search-max-width"
               items={searchResults}
               itemSpacing="default"
               render={id => (

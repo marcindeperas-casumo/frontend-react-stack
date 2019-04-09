@@ -1,5 +1,9 @@
 // @flow
-import { types, getSearchFetchCompleteTypeByPage } from "Models/gameSearch";
+import {
+  types,
+  PAGE_SIZE,
+  getSearchFetchCompleteTypeByPage,
+} from "Models/gameSearch";
 import { types as fetchTypes } from "Models/fetch";
 import {
   getGameLists,
@@ -19,7 +23,7 @@ export const initFetchGameSearchCount = (query: string) => ({
 
 export const initFetchGameSearchPage = ({
   startIndex,
-  pageSize = 100,
+  pageSize = PAGE_SIZE,
   query,
 }: {
   startIndex: number,

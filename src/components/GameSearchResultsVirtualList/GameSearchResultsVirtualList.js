@@ -4,9 +4,9 @@ import { append, range, assoc } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import GameRowSkeleton from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
+import { PAGE_SIZE } from "Models/gameSearch";
 
 const ROW_HEIGHT = 80;
-const PAGE_SIZE = 100;
 
 type Indexes = {
   startIndex: number,
