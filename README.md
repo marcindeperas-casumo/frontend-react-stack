@@ -17,16 +17,11 @@
 
 ## How it works
 
-`mobile-react-stack-poc` contains a couple of services that enable us to build react components and embed them in the
-current mobile application.
+Casumo React Stack contains a couple of services that enable us to build React components and embed them in the current `casumo-frontend` app, for mobile and site, using [React Portals](https://reactjs.org/docs/portals.html).
 
-### `mobile-react-stack`
+It started with a `create-react-app` and evolved into what it is today. `casumo-frontend` is being deprecated and we are in the process of migrating to this new `react-stack`.
 
-In simple terms, this is just a `create-react-app` with some components
-in it.
-
-This service runs in dev mode (`yarn start`), so every time a change in the
-source files is made, the target app will be reloaded.
+This service runs in dev mode (`yarn start`), so every time a change in the source files is made, the target app will be hot reloaded.
 
 ## Development instructions
 
@@ -45,11 +40,7 @@ source files is made, the target app will be reloaded.
 }
 ```
 
-- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to local
-
-### Daily development
-
-Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
+- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to your local environment.
 
 #### Contributing
 
@@ -58,8 +49,8 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 #### Developing within the SPA
 
 - Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
-- Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
-- Within the `mobile-react-stack-poc` repository run `yarn start`
+- Within the `casumo-frontend` repository run `yarn mobile gulp dev`.
+- Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.
 
@@ -99,10 +90,3 @@ ssh <assigned-ssh-username>@live-release
 
 deploy-service mobile-react-stack-poc master
 ```
-
----
-
-## Resources
-
-- [FAC Business Idea](https://docs.google.com/document/d/1VUJQ2RFFmRxU06dJRsL1vDy2QBPGjQUEJG8kr5qV3eQ/preview)
-- [Project Board](https://github.com/Casumo/Home/projects/91)
