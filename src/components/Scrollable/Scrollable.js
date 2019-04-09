@@ -25,12 +25,14 @@ type Props = {
   }) => void,
   innerRef?: *,
   scrollLeft?: ?number,
+  overscanColumnCount: number,
 };
 
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "",
     scrollHandler: (x: any) => {},
+    overscanColumnCount: 10,
   };
 
   cellSizeCache = new CellMeasurerCache({
@@ -59,7 +61,14 @@ export default class Scrollable extends React.PureComponent<Props> {
   }
 
   render() {
-    const { columnCount, innerRef, height } = this.props;
+    const {
+      columnCount,
+      innerRef,
+      height,
+      scrollHandler,
+      scrollLeft,
+      overscanColumnCount,
+    } = this.props;
 
     return (
       <AutoSizer>
@@ -75,8 +84,9 @@ export default class Scrollable extends React.PureComponent<Props> {
             rowCount={1}
             rowHeight={height}
             width={width}
-            onScroll={this.props.scrollHandler}
-            scrollLeft={this.props.scrollLeft}
+            onScroll={scrollHandler}
+            scrollLeft={scrollLeft}
+            overscanColumnCount={overscanColumnCount}
           />
         )}
       </AutoSizer>
@@ -86,8 +96,8 @@ export default class Scrollable extends React.PureComponent<Props> {
 
 export type GridRef = {
   // TODO(mm): should be just `Grid`, but types are fucked in react-virtualized
-  _columnStartIndex: number,
-  _columnStopIndex: number,
+  _renderedColumnStartIndex: number,
+  _renderedColumnStopIndex: number,
   _scrollingContainer: HTMLDivElement,
   _renderedColumnStopIndex: number,
   getOffsetForCell: Function,
