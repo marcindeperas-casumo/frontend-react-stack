@@ -88,7 +88,7 @@ export const getCasinoPlayerGameSearchCount = async (
     sessionId: string,
     query: string,
   },
-  http: HTTPClient = defaultHttp
+  http: HTTPClient = clientHttp
 ) => {
   return await http.get(
     `${URL.GAME_SEARCH_COUNT}`,

@@ -16,6 +16,7 @@ type Indexes = {
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
   games: Object[],
+  /** The search query for highlighting text in results */
   query: string,
   /** The function that triggers the action that fetches the next batch of games */
   initFetchGameSearchPage: ({
