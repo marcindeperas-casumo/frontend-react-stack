@@ -13,8 +13,8 @@ const easeInQuad = (t: number) => {
 type Props = {
   height: number | string,
   columnCount: number,
-  easing?: number => number,
-  duration?: number,
+  easing: number => number,
+  duration: number,
   cellRenderer: CellRenderer,
 };
 
@@ -27,39 +27,30 @@ type State = {
 };
 
 export default class ScrollablePaginated extends PureComponent<Props, State> {
-  gridRef: {
-    current: ?{
-      _columnStartIndex: number,
-      _columnStopIndex: number,
-      _scrollingContainer: HTMLDivElement,
-      getOffsetForCell: Function,
-    },
-  };
-  scrollToOffset: number;
-  animationStartTime: number | void;
-  currentScrollOffset: number;
-  isScrolling: boolean;
-
   static defaultProps = {
     easing: easeInQuad,
     duration: 300,
   };
 
-  constructor(props: Props) {
-    super(props);
-    this.gridRef = React.createRef();
-    this.scrollToOffset = 0;
-    this.animationStartTime = 0;
-    this.currentScrollOffset = 0;
-    this.isScrolling = false;
-    this.state = {
-      startColumn: 0,
-      stopColumn: 0,
-      visibleColumns: 0,
-      scrollLeft: null,
-      isEndOfScroll: false,
-    };
-  }
+  gridRef = React.createRef<{
+    // TODO(mm): should be just `Grid`, but types are fucked in react-virtualized
+    _columnStartIndex: number,
+    _columnStopIndex: number,
+    _scrollingContainer: HTMLDivElement,
+    _renderedColumnStopIndex: number,
+    getOffsetForCell: Function,
+  }>();
+  scrollToOffset = 0;
+  animationStartTime: ?number = 0;
+  currentScrollOffset = 0;
+  isScrolling = false;
+  state = {
+    startColumn: 0,
+    stopColumn: 0,
+    visibleColumns: 0,
+    scrollLeft: null,
+    isEndOfScroll: false,
+  };
 
   scrollHandler = ({ scrollLeft }) => {
     this.currentScrollOffset = scrollLeft;
