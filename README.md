@@ -1,4 +1,5 @@
-# Casumo Mobile - React Stack Proof of Concept
+# Casumo React Stack
+
 [![Commitizen friendly](https://img.shields.io/badge/commitizen-friendly-brightgreen.svg)](http://commitizen.github.io/cz-cli/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
@@ -16,16 +17,13 @@
 
 ## How it works
 
-`mobile-react-stack-poc` contains a couple of services that showcases the proof
-of concept that enable us to build react components and embed them in the
+`mobile-react-stack-poc` contains a couple of services that enable us to build react components and embed them in the
 current mobile application.
 
 ### `mobile-react-stack`
 
-In simple terms, this is just a `create-react-app` with a couple of components
-in it. For the sake of the proof of concept most of the wiring is left untouched
-as these are not crucial in proving that this concept could work, and all
-these details can be revisited and refined later on.
+In simple terms, this is just a `create-react-app` with some components
+in it.
 
 This service runs in dev mode (`yarn start`), so every time a change in the
 source files is made, the target app will be reloaded.
@@ -77,7 +75,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 
 ### Linking CUDL Components
 
-Whilst developing CUDL components should generally be done within the storybook environment it can be useful to see your changes in place in the PoC. This can be achieved by making use of npm/yarn link:
+Whilst developing CUDL components should generally be done within the storybook environment it can be useful to see your changes in place in the SPA. This can be achieved by making use of npm/yarn link:
 
 - Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components`
 - Run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
