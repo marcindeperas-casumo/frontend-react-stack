@@ -78,6 +78,15 @@ export default class Scrollable extends PureComponent<Props> {
   }
 }
 
-export const ScrollableWithRef = React.forwardRef<Props, Scrollable>(
+export type GridRef = {
+  // TODO(mm): should be just `Grid`, but types are fucked in react-virtualized
+  _columnStartIndex: number,
+  _columnStopIndex: number,
+  _scrollingContainer: HTMLDivElement,
+  _renderedColumnStopIndex: number,
+  getOffsetForCell: Function,
+};
+
+export const ScrollableWithRef = React.forwardRef<Props, GridRef>(
   (props, ref) => <Scrollable innerRef={ref} {...props} />
 );

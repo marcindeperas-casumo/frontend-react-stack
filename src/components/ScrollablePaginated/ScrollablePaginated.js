@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import { clamp } from "ramda";
 import type { CellRenderer } from "react-virtualized";
 import Flex from "@casumo/cmp-flex";
-import { ScrollableWithRef } from "Components/Scrollable";
+import { ScrollableWithRef, type GridRef } from "Components/Scrollable";
 import "./ScrollablePaginated.scss";
 
 const easeInQuad = (t: number) => {
@@ -32,14 +32,7 @@ export default class ScrollablePaginated extends PureComponent<Props, State> {
     duration: 300,
   };
 
-  gridRef = React.createRef<{
-    // TODO(mm): should be just `Grid`, but types are fucked in react-virtualized
-    _columnStartIndex: number,
-    _columnStopIndex: number,
-    _scrollingContainer: HTMLDivElement,
-    _renderedColumnStopIndex: number,
-    getOffsetForCell: Function,
-  }>();
+  gridRef = React.createRef<GridRef>();
   scrollToOffset = 0;
   animationStartTime: ?number = 0;
   currentScrollOffset = 0;
