@@ -12,39 +12,56 @@ type State = {
 };
 
 type Props = {
-  /** The (UTC) time in milliseconds */
-  endTime: Date | number,
+  /** The (UTC) time in milliseconds the clock should start at */
+  startTime?: Date | number,
+  /** The (UTC) time in milliseconds the clock should stop at */
+  endTime?: Date | number,
   /** Render prop to display the timer */
   render: (state: State) => Node,
   /** Render prop to display once the timer reaches 0 */
-  onEnd: () => Node,
+  onEnd: () => Node | null,
 };
 
 const greaterThanZero = gte(0);
 const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 const UPDATE_INTERVAL = 1000;
+const COUNT_DOWN = -1;
+const COUNT_UP = 1;
 
-const diffTime = endTime => {
-  return (
-    DateTime.fromMillis(endTime)
-      // The endTime timestamp should always be UTC. Rather than use diffNow we
-      // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
-      .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
-      .toObject()
-  );
+const diffTime = (start, end) => {
+  return DateTime.fromMillis(start)
+    .diff(end, ["days", "hours", "minutes", "seconds"])
+    .toObject();
+};
+
+const diffTimeAbs = (time, direction) => {
+  return direction === COUNT_DOWN
+    ? diffTime(time, DateTime.utc()) //The timestamp should always be UTC. Rather than use diffNow we explictly use DateTime.utc to make sure we don't have to deal with TimeZones
+    : diffTime(DateTime.utc().ts, DateTime.fromMillis(time));
 };
 
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
   updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
+  countDirection: number;
+
+  static defaultProps = {
+    onEnd: () => null,
+  };
 
   constructor(props: Props) {
     super(props);
     this.lastTime = 0;
     this.updateTime = this.updateTime.bind(this);
+    this.countDirection = props.endTime ? COUNT_DOWN : COUNT_UP;
     this.state = {
-      ...padTimes(diffTime(this.props.endTime)),
+      ...padTimes(
+        diffTimeAbs(
+          this.props.startTime || this.props.endTime,
+          this.countDirection
+        )
+      ),
     };
   }
 
@@ -58,7 +75,10 @@ export default class Timer extends PureComponent<Props, State> {
 
   updateTime(currentTime: number) {
     if (currentTime >= this.lastTime + UPDATE_INTERVAL) {
-      const time = diffTime(this.props.endTime);
+      const time = diffTimeAbs(
+        this.props.startTime || this.props.endTime,
+        this.countDirection
+      );
       const hasEnded = compose(
         all(greaterThanZero),
         values
