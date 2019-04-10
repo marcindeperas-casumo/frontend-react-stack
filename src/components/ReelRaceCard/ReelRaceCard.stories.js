@@ -76,3 +76,5 @@ stories.add("Default", () => {
     />
   );
 });
+
+MockDate.reset();
