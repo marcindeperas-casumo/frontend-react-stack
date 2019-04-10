@@ -10,7 +10,8 @@ const stories = storiesOf("ReelRaceCard", module);
 
 const minute = 60 * 1000;
 const props = {
-  spinLimit: 666,
+  tournamentId: "1",
+  spins: 666,
   minBet: "€0.50",
   prize: "€666",
   game: {
@@ -22,18 +23,21 @@ const props = {
       "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
     hasPlayForFun: true,
     inMaintenanceMode: false,
-    jackpotId: null,
+    jackpotInfo: null,
+    lobby: null,
   },
   t: {
     spins: "Spins",
     duration: "Duration",
-    minBet: "Min Bet",
-    startingIn: "Starting in",
-    endingIn: "Ending in",
-    optIn: "Opt In",
-    optedIn: "Opted In",
-    play: "Play",
-    prize: "Compete for",
+    duration_template: "{{duration}} min",
+    min_bet: "Min Bet",
+    starting_in: "Starting in",
+    ending_in: "Ending in",
+    opt_in: "Opt In",
+    opted_in: "Opted In",
+    opted_in_cta_single_game_short: "Play",
+    compete_for: "Compete for {{prize}}",
+    title: "Reel Races",
   },
 };
 
@@ -44,7 +48,7 @@ if (isChromatic) {
 const now = Date.now();
 
 stories.add("Default", () => {
-  const type = select("Type", ["Standard", "Promoted"], "Standard");
+  const promoted = select("Promoted", [false, true], false);
   const opted = select("Opted", [false, true], false);
   const time = select("Time", ["scheduled", "ongoing"], "scheduled");
   const color = select(
@@ -72,8 +76,7 @@ stories.add("Default", () => {
   return (
     <ReelRaceCard
       {...props}
-      status="Scheduled"
-      type={type}
+      promoted={promoted}
       opted={opted}
       color={color}
       {...timeOptions[time]}
