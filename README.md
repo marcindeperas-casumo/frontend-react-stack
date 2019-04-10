@@ -8,8 +8,7 @@
 ## Table of Contents
 
 - [How it works](#how-it-works)
-- [Usage](#development-instructions)
-- [Resources](#resources)
+- [Development instructions](#development-instructions)
 - [Error Handling](./docs/error-handling.md)
 - [Tracking](./docs/tracking.md)
 - Modules
@@ -17,16 +16,11 @@
 
 ## How it works
 
-`mobile-react-stack-poc` contains a couple of services that enable us to build react components and embed them in the
-current mobile application.
+Casumo React Stack contains a couple of services that enable us to build React components and embed them in the current `casumo-frontend` app, for mobile and site, using [React Portals](https://reactjs.org/docs/portals.html).
 
-### `mobile-react-stack`
+It started with a `create-react-app` and evolved into what it is today. `casumo-frontend` is being deprecated and we are in the process of migrating to this new `react-stack`.
 
-In simple terms, this is just a `create-react-app` with some components
-in it.
-
-This service runs in dev mode (`yarn start`), so every time a change in the
-source files is made, the target app will be reloaded.
+This service runs in dev mode (`yarn start`), so every time a change in the source files is made, the target app will be hot reloaded.
 
 ## Development instructions
 
@@ -45,7 +39,7 @@ source files is made, the target app will be reloaded.
 }
 ```
 
-- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to local
+- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to your local environment.
 
 ### Daily development
 
@@ -58,8 +52,8 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 #### Developing within the SPA
 
 - Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
-- Within the `casumo-frontend` repository under `/web/mobile` run `gulp dev`
-- Within the `mobile-react-stack-poc` repository run `yarn start`
+- Within the `casumo-frontend` repository under `/web` run `yarn mobile gulp dev`.
+- Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.
 
@@ -72,17 +66,6 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 
 - Within the `mobile-react-stack-poc` respository run `yarn test`
 - TDD is heavily encouraged!
-
-### Linking CUDL Components
-
-Whilst developing CUDL components should generally be done within the storybook environment it can be useful to see your changes in place in the SPA. This can be achieved by making use of npm/yarn link:
-
-- Navigate to the [cudl-react](https://github.com/Casumo/cudl-react) checkout on your computer and run `yarn link-components`
-- Run `lerna run --scope=@casumo/<name_of_component> build -- --watch` so changes you make to the component will cause the component to build.
-- Return to the root of this repo and run `yarn link <name_of_component>` (e.g `yarn link @casumo/cmp-button`) to link it inside the react-stack.
-- In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
-- You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
-- Any changes you make to the component will now flow through to the PoC
 
 ### Deploy to test
 
@@ -112,10 +95,3 @@ Whilst developing CUDL components should generally be done within the storybook 
 - In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
 - You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
 - Any changes you make to the component will now flow through to the PoC
-
----
-
-## Resources
-
-- [FAC Business Idea](https://docs.google.com/document/d/1VUJQ2RFFmRxU06dJRsL1vDy2QBPGjQUEJG8kr5qV3eQ/preview)
-- [Project Board](https://github.com/Casumo/Home/projects/91)
