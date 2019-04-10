@@ -1,0 +1,18 @@
+// stylelint-disable xi/selector-pattern
+.c-valuable-card {
+  max-width: 170px;
+  width: 100%;
+}
+
+.c-valuable-card > * {
+  position: absolute;
+}
+
+.c-valuable-card-background {
+  position: absolute;
+}
+
+.c-valuable-card-content {
+  height: 95px;
+  margin-top: 36px;
+}
