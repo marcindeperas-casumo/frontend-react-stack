@@ -40,7 +40,16 @@ export default class Scrollable extends React.PureComponent<Props> {
   });
 
   // TODO(mm): Grid's cellRenderer instead of any
-  cellRenderer = ({ columnIndex, key, parent, rowIndex, style }: any) => {
+  cellRenderer = ({
+    columnIndex,
+    isScrolling,
+    isVisible,
+    key,
+    parent,
+    rowIndex,
+    style,
+  }: any) => {
+    const gridRef = this.props.innerRef;
     return (
       <CellMeasurer
         key={key}
@@ -49,14 +58,19 @@ export default class Scrollable extends React.PureComponent<Props> {
         parent={parent}
         rowIndex={rowIndex}
       >
-        {this.props.cellRenderer({ columnIndex, key, parent, rowIndex, style })}
+        {this.props.cellRenderer({
+          columnIndex,
+          isScrolling,
+          isVisible,
+          key,
+          parent,
+          rowIndex,
+          style,
+          gridRef,
+        })}
       </CellMeasurer>
     );
   };
-
-  get componentClasses() {
-    return classNames("c-scrollable", this.props.className);
-  }
 
   render() {
     const {
