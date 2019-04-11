@@ -2,7 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { ArrowRightIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
+import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import info from "Storybook/storybookInfo";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 
@@ -51,11 +52,35 @@ const cellRendererAltWidths = ({ columnIndex, style }) => {
   );
 };
 
-const myButtonRenderer = () => (
-  <div className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer">
-    <ArrowRightIcon className="t-color-grey-light-3" />
-  </div>
-);
+const myButtonRenderer = (scrollableState, scrollableClickHandler) => {
+  const showLeftBtn = !scrollableState.isStartOfScroll;
+  const showRightBtn = !scrollableState.isEndOfScroll;
+
+  return (
+    <Flex justify="space-between">
+      <Flex.Item>
+        {showLeftBtn && (
+          <div
+            onClick={e => scrollableClickHandler("left")}
+            className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+          >
+            <ArrowLeftIcon className="t-color-grey-light-3" />
+          </div>
+        )}
+      </Flex.Item>
+      <Flex.Item>
+        {showRightBtn && (
+          <div
+            onClick={e => scrollableClickHandler("right")}
+            className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+          >
+            <ArrowRightIcon className="t-color-grey-light-3" />
+          </div>
+        )}
+      </Flex.Item>
+    </Flex>
+  );
+};
 
 stories.add(
   "Default",
