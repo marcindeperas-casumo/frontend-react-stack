@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import ValuableCard from "Components/ValuableCard";
 
 describe("ValuableCard", () => {
-  test("should do something", () => {
+  test("should render component", () => {
     const rendered = shallow(<ValuableCard msg="hi" />);
 
     expect(rendered.find("ValuableCard")).not.toBeNull();
