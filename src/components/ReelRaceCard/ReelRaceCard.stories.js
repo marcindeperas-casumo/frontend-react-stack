@@ -38,6 +38,7 @@ const props = {
     opted_in_cta_single_game_short: "Play",
     compete_for: "Compete for {{prize}}",
     title: "Reel Races",
+    caveat_short: "false",
   },
 };
 

@@ -1,3 +1,4 @@
+// @flow
 import { KO_APP_EVENT_LAUNCH_MODAL } from "Src/constants";
 import bridge from "../DurandalReactBridge";
 import { launchModal } from "./LaunchModalService";

@@ -24,4 +24,5 @@ export type ReelRacesTranslations = {
   opted_in_cta_single_game_short: string, // play
   compete_for: string,
   title: string,
+  caveat_short: ?string, // for some reason it's rather "false" than empty
 };
