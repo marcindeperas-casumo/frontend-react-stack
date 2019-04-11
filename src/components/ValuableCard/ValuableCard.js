@@ -11,7 +11,7 @@ class ValuableCard extends PureComponent<Props> {
     return (
       <div className="c-valuable-card t-border-r--16 o-flex-justify--center t-color-grey">
         <ValuableBackground />
-        <div className="c-valuable-card-content o-flex--vertical o-flex-align--center o-flex-justify--space-between">
+        <div className="c-valuable-card__content o-flex--vertical o-flex-align--center o-flex-justify--space-between">
           <Valuable />
           <div className="t-color-grey-dark-2 u-font-weight-bold">
             <div>20 Bonus Spins</div>
