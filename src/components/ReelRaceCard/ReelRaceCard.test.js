@@ -1,28 +1,43 @@
+// @flow
 import React from "react";
 import { shallow } from "enzyme";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
-  spinLimit: 666,
+  tournamentId: "1",
+  color: "yellow-light-1",
+  spins: 666,
   minBet: "€0.50",
   prize: "€666",
-  color: "#ffd073",
+  gameSlug: "gonzos-quest",
   game: {
+    name: "Gonzo&#8217;s Quest",
+    slug: "gonzos-quest",
+    logoBackground:
+      "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
     logo:
-      "https://images.casumo.com/2014/06/GonzosQuest_Thumb.jpg?w=64&fit=crop&markscale=100&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1&h=64&crop=top%2Cleft&mark=https%3A%2F%2Fimages.casumo.com%2F2014%2F02%2FGonzosQuest_Logo.png",
-    name: "Gonzo's Quest",
+      "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
+    hasPlayForFun: true,
+    inMaintenanceMode: false,
+    jackpotInfo: null,
+    lobby: null,
   },
   t: {
     spins: "Spins",
     duration: "Duration",
-    minBet: "Min Bet",
-    startingIn: "Starting in",
-    endingIn: "Ending in",
-    optIn: "Opt In",
-    optedIn: "Opted In",
-    play: "Play",
-    prize: "Compete for",
+    duration_template: "{{duration}} min",
+    min_bet: "Min Bet",
+    starting_in: "Starting in",
+    ending_in: "Ending in",
+    opt_in: "Opt In",
+    opted_in: "Opted In",
+    opted_in_cta_single_game_short: "Play",
+    compete_for: "Compete for {{prize}}",
+    title: "Reel Races",
+    caveat_short: "false",
   },
+  launchGame: () => {},
+  optIn: () => {},
 };
 const minute = 60 * 1000;
 
@@ -32,8 +47,7 @@ describe("ReelRaceCard", () => {
     const rendered = shallow(
       <ReelRaceCard
         {...props}
-        status="Scheduled"
-        type="Standard"
+        promoted={false}
         opted={false}
         startTime={now + 30 * minute}
         endTime={now + 60 * minute}
@@ -58,9 +72,8 @@ describe("ReelRaceCard", () => {
     const rendered = shallow(
       <ReelRaceCard
         {...props}
-        status="Scheduled"
-        type="Standard"
-        opted={true}
+        promoted={false}
+        opted
         startTime={now}
         endTime={now + 30 * minute}
       />
@@ -71,7 +84,12 @@ describe("ReelRaceCard", () => {
     });
 
     test('should show "Play" button', () => {
-      expect(rendered.find("Button").contains("Play")).toBe(true);
+      expect(
+        rendered
+          .find("Button")
+          .children()
+          .contains("Play")
+      ).toBe(true);
     });
 
     test("shouldn't contain promoted badge", () => {
@@ -84,9 +102,8 @@ describe("ReelRaceCard", () => {
     const rendered = shallow(
       <ReelRaceCard
         {...props}
-        status="Scheduled"
-        type="Promoted"
-        opted={true}
+        promoted
+        opted
         startTime={now}
         endTime={now + 30 * minute}
       />

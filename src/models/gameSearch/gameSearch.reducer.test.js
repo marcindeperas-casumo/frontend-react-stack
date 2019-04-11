@@ -34,11 +34,13 @@ describe("Models/Fetch/Reducer", () => {
   });
 
   test("GAME_SEARCH_FETCH_SUGGESTED_GAMES_START", () => {
-    const action = actions.initFetchSuggested();
+    const game = "whatever";
+    const action = actions.initFetchSuggested(game);
     const state = {};
 
     expect(reducer(state, action)).toEqual({
       loadingSuggested: true,
+      gameSuggested: game,
     });
   });
 

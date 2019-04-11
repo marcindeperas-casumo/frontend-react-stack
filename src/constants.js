@@ -24,6 +24,7 @@ export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
+export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
 
 export const LOW_RES_IMAGE_SETTINGS = {
   mark: "",
@@ -49,6 +50,7 @@ export const GAME_LIST_IDS = {
   LATEST_PLAYED: "latestPlayedGames",
   PLAYER_GAMES: "playerGames",
   SUGGESTED_GAMES: "suggestedGames",
+  SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
 };
 
 export const MARKETS = {
@@ -95,4 +97,14 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
+};
+
+export const MODALS = {
+  ACCOUNT_SETTINGS: {
+    CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
+    CHANGE_PASSWORD: "ACCOUNT_SETTINGS/CHANGE_PASSWORD",
+  },
+  TOP_LIST: {
+    REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS",
+  },
 };

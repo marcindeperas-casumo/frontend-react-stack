@@ -7,6 +7,7 @@ import {
   gameSearchSuggestedList,
   searchNotFoundContent,
   isSuggestedLoadingSelector,
+  gameForSuggestionsSelector,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -52,6 +53,16 @@ describe("Models/GameSearch/Selectors", () => {
     });
   });
 
+  test("gameForSuggestionsSelector", () => {
+    const state = {
+      gameSearch: {
+        gameSuggested: "starburst",
+      },
+    };
+
+    expect(gameForSuggestionsSelector(state)).toBe("starburst");
+  });
+
   describe("gameSearchResults", () => {
     test("returns gameList", () => {
       const gameList = { [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] } };
@@ -82,7 +93,9 @@ describe("Models/GameSearch/Selectors", () => {
 
   describe("suggestedGamesSelector", () => {
     test("returns suggested games list", () => {
-      const gameList = { [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] } };
+      const gameList = {
+        [GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH]: { games: ["foo"] },
+      };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
 
       expect(suggestedGames(state)).toEqual(["foo"]);
@@ -90,9 +103,9 @@ describe("Models/GameSearch/Selectors", () => {
   });
 
   describe("gameSearchSuggestedList", () => {
-    test("returns suggestedGames if gameSearchResults exists, its length is 1 and suggested games length > 0", () => {
+    test("returns suggestedGamesSearch if gameSearchResults exists, its length is 1 and suggested games length > 0", () => {
       const gameList = {
-        [GAME_LIST_IDS.SUGGESTED_GAMES]: { games: ["foo"] },
+        [GAME_LIST_IDS.SUGGESTED_GAMES_SEARCH]: { games: ["foo"] },
         [GAME_LIST_IDS.GAME_SEARCH]: { games: ["foo"] },
       };
       const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
