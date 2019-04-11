@@ -6,6 +6,8 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, TickIcon } from "@casumo/cmp-icons";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import { launchModal } from "Services/LaunchModalService";
+import { MODALS } from "Src/constants";
 import Timer from "Components/Timer";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
@@ -147,7 +149,7 @@ export class ReelRaceCard extends React.Component<Props> {
     const startTime = DateTime.fromMillis(this.props.startTime);
     return (
       <Flex spacing="none">
-        <Clock class="u-margin-right" />
+        <Clock className="u-margin-right" />
         <Text
           tag="span"
           size="sm"
@@ -184,6 +186,10 @@ export class ReelRaceCard extends React.Component<Props> {
     }, updateTime);
   }
 
+  showCaveatsModal = () => {
+    launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
+  };
+
   render() {
     const { t } = this.props;
 
@@ -194,78 +200,105 @@ export class ReelRaceCard extends React.Component<Props> {
     return (
       <Flex
         className={[
+          "c-reel-race-card",
           "o-flex__item",
           "o-flex__item-fixed-size",
-          "c-reel-race-card",
-          "t-border-r--16",
-          "o-ratio",
           "o-ratio--reel-race-card",
-          `t-color-${this.props.color}`,
         ].join(" ")}
         direction="vertical"
-        justify="space-between"
-        spacing="none"
       >
-        <ImageLazy
-          className="o-ratio__content"
-          src={this.props.game.logoBackground}
-          alt={this.props.game.name}
-          imgixOpts={{
-            w: 330,
-            blur: 100,
-            sat: -50,
-          }}
-        />
-
         <Flex
-          className="u-padding--md o-ratio__content"
+          className={[
+            "o-flex__item",
+            "o-flex__item-fixed-size",
+            "t-border-r--16",
+            "o-ratio",
+            "o-ratio--reel-race-card",
+            `t-color-${this.props.color}`,
+          ].join(" ")}
           direction="vertical"
-          spacing="none"
           justify="space-between"
+          spacing="none"
         >
-          <Flex align="center">
-            <GameThumb
-              src={this.props.game.logoBackground}
-              alt={this.props.game.name}
-              mark={this.props.game.logo}
-            />
-            {this.props.promoted && (
-              <GrandReelRaceBadge className="c-reel-race__badge" />
-            )}
-            <Flex
-              direction="vertical"
-              spacing="sm"
-              className="u-margin-left--md"
-            >
-              <Text tag="span" className="u-font-weight-bold">
-                {t.compete_for.replace("{{prize}}", this.props.prize)}
-              </Text>
-              <Text tag="span" size="sm" className="t-color-white u-opacity-75">
-                <DangerousHtml html={this.props.game.name} />
-              </Text>
+          <ImageLazy
+            className="o-ratio__content"
+            src={this.props.game.logoBackground}
+            alt={this.props.game.name}
+            imgixOpts={{
+              w: 330,
+              blur: 100,
+              sat: -50,
+            }}
+          />
+
+          <Flex
+            className="u-padding--md o-ratio__content"
+            direction="vertical"
+            spacing="none"
+            justify="space-between"
+          >
+            <Flex align="center">
+              <GameThumb
+                src={this.props.game.logoBackground}
+                alt={this.props.game.name}
+                mark={this.props.game.logo}
+              />
+              {this.props.promoted && (
+                <GrandReelRaceBadge className="c-reel-race__badge" />
+              )}
+              <Flex
+                direction="vertical"
+                spacing="sm"
+                className="u-margin-left--md"
+              >
+                <Text tag="span" className="u-font-weight-bold">
+                  {t.compete_for.replace("{{prize}}", this.props.prize)}
+                </Text>
+                <Text
+                  tag="span"
+                  size="sm"
+                  className="t-color-white u-opacity-75"
+                >
+                  <DangerousHtml html={this.props.game.name} />
+                </Text>
+              </Flex>
+            </Flex>
+
+            <Flex align="center">
+              <Column top={this.props.spins} bottom={t.spins} />
+              <div className="c-reel-race__separator u-margin-horiz--md" />
+              <Column
+                top={t.duration_template.replace("{{duration}}", this.duration)}
+                bottom={t.duration}
+              />
+              {this.props.minBet && (
+                <>
+                  <div className="c-reel-race__separator u-margin-horiz--md" />
+                  <Column top={this.props.minBet} bottom={t.min_bet} />
+                </>
+              )}
+            </Flex>
+
+            <Flex direction="horizontal" justify="space-between" align="end">
+              {this.countdown}
+              {this.button}
             </Flex>
           </Flex>
-
-          <Flex align="center">
-            <Column top={this.props.spins} bottom={t.spins} />
-            <div className="c-reel-race__separator u-margin-horiz--md" />
-            <Column
-              top={t.duration_template.replace("{{duration}}", this.duration)}
-              bottom={t.duration}
-            />
-            {this.props.minBet && (
-              <>
-                <div className="c-reel-race__separator u-margin-horiz--md" />
-                <Column top={this.props.minBet} bottom={t.min_bet} />
-              </>
-            )}
-          </Flex>
-
-          <Flex direction="horizontal" justify="space-between" align="end">
-            {this.countdown}
-            {this.button}
-          </Flex>
         </Flex>
+        {t.caveat_short && t.caveat_short !== "false" && (
+          <Text
+            size="xs"
+            className="c-reel-race__terms t-color-grey"
+            onClick={this.showCaveatsModal}
+          >
+            <DangerousHtml
+              html={t.caveat_short.replace(
+                "{{{ ctaTermsAndConditions }}}",
+                'class="t-color-black"'
+              )}
+            />
+          </Text>
+        )}
       </Flex>
     );
   }
