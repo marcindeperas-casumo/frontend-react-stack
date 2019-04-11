@@ -1,11 +1,6 @@
-// stylelint-disable xi/selector-pattern
 .c-valuable-card {
   max-width: 170px;
   width: 100%;
-}
-
-.c-valuable-card > * {
-  position: absolute;
 }
 
 .c-valuable-card__content {

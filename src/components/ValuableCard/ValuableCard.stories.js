@@ -6,12 +6,4 @@ import ValuableCard from "./";
 
 const stories = storiesOf("ValuableCard", module);
 
-stories.add(
-  "Default",
-  () => (
-    <div>
-      <ValuableCard />
-    </div>
-  ),
-  info({ text: "Default" })
-);
+stories.add("Default", () => <ValuableCard />, info({ text: "Default" }));
