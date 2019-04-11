@@ -51,8 +51,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 
 #### Developing within the SPA
 
-- Within the `casumo-frontend` repository under `/web` run `casumo-proxy start`
-- Within the `casumo-frontend` repository under `/web` run `yarn mobile gulp dev`.
+- Within the `casumo-frontend` repository under `/web` run `casumo-proxy start && yarn mobile gulp dev`
 - Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.
