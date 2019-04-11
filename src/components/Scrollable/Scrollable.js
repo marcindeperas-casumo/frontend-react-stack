@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import {
   Grid,
   AutoSizer,
@@ -28,7 +27,7 @@ type Props = {
 
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
-    className: "",
+    className: "c-scrollable",
     scrollHandler: (x: any) => {},
     overscanColumnCount: 10,
     defaultWidth: 100,
@@ -86,7 +85,7 @@ export default class Scrollable extends React.PureComponent<Props> {
       <AutoSizer>
         {({ width }) => (
           <Grid
-            className={this.componentClasses}
+            className={this.props.className}
             cellRenderer={this.cellRenderer}
             columnCount={columnCount}
             columnWidth={this.cellSizeCache.columnWidth}
