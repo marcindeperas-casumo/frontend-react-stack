@@ -1,14 +1,20 @@
 // @flow
 import * as React from "react";
 import { clamp } from "ramda";
-import classNames from "classnames";
-import type { CellRenderer } from "react-virtualized";
-import Flex from "@casumo/cmp-flex";
-import { ScrollableWithRef, type GridRef } from "Components/Scrollable";
-import "./ScrollablePaginated.scss";
+// TODO: get this type from the lib and put it in src/types.
+import type { CellRenderer, GridRef } from "Types/ReactVirtualized/Grid";
+import { ScrollableWithRef } from "Components/Scrollable";
 
 const easeInQuad = (t: number) => {
   return t * t;
+};
+export type State = {
+  startColumn: number,
+  stopColumn: number,
+  visibleColumns: number,
+  scrollLeft: number | null,
+  isEndOfScroll: boolean,
+  isStartOfScroll: boolean,
 };
 
 type Props = {
@@ -17,17 +23,8 @@ type Props = {
   easing: number => number,
   duration: number,
   cellRenderer: CellRenderer,
-  buttonRenderer: () => React.Node,
-  buttonContainerClassName: string,
-};
-
-type State = {
-  startColumn: number,
-  stopColumn: number,
-  visibleColumns: number,
-  scrollLeft: number | null,
-  isEndOfScroll: boolean,
-  isStartOfScroll: boolean,
+  buttonRenderer: (State, Function) => React.Node,
+  className: string,
 };
 
 export default class ScrollablePaginated extends React.PureComponent<
@@ -37,7 +34,7 @@ export default class ScrollablePaginated extends React.PureComponent<
   static defaultProps = {
     easing: easeInQuad,
     duration: 300,
-    buttonContainerClassName: "",
+    className: "c-scrollable-paginated",
   };
 
   gridRef = React.createRef<GridRef>();
@@ -135,6 +132,10 @@ export default class ScrollablePaginated extends React.PureComponent<
     });
   };
 
+  buttonRenderer() {
+    return this.props.buttonRenderer(this.state, this.clickHandler);
+  }
+
   componentDidMount() {
     // I'm not convinced by this but pushing to the next tick
     // prevents things blowing up when current doesn't exist.
@@ -149,22 +150,12 @@ export default class ScrollablePaginated extends React.PureComponent<
     }, 0);
   }
 
-  get buttonContainerClasses() {
-    return classNames(
-      "u-height--1/1 o-flex-justify--center o-flex-align--center",
-      this.props.buttonContainerClassName
-    );
-  }
-
   render() {
-    const showLeftBtn = !this.state.isStartOfScroll;
-    const showRightBtn = !this.state.isEndOfScroll;
-
     return (
-      <div className="c-scrollable-paginated">
+      <div className={`${this.props.className}`}>
         <div
           style={{ height: this.props.height }}
-          className="c-scrollable-paginated__list"
+          className={`${this.props.className}__list`}
         >
           <ScrollableWithRef
             ref={this.gridRef}
@@ -176,36 +167,7 @@ export default class ScrollablePaginated extends React.PureComponent<
             overscanColumnCount={this.state.visibleColumns}
           />
         </div>
-        <Flex
-          justify="space-between"
-          className="c-scrollable-paginated__controls u-pointer-events-none"
-          gap="none"
-        >
-          <div className="o-flex u-transform--flip-x">
-            {showLeftBtn && (
-              <div className={this.buttonContainerClasses}>
-                <div
-                  className="u-pointer-events-initial"
-                  onClick={e => this.clickHandler("left")}
-                >
-                  {this.props.buttonRenderer()}
-                </div>
-              </div>
-            )}
-          </div>
-          <div className="o-flex">
-            {showRightBtn && (
-              <div className={this.buttonContainerClasses}>
-                <div
-                  className="u-pointer-events-initial"
-                  onClick={e => this.clickHandler("right")}
-                >
-                  {this.props.buttonRenderer()}
-                </div>
-              </div>
-            )}
-          </div>
-        </Flex>
+        {this.buttonRenderer()}
       </div>
     );
   }
