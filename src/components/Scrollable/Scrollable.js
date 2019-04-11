@@ -7,7 +7,11 @@ import {
   CellMeasurer,
   CellMeasurerCache,
 } from "react-virtualized";
-import type { CellRenderer } from "react-virtualized";
+import type {
+  CellRenderer,
+  Scroll,
+  GridRef,
+} from "Types/ReactVirtualized/Grid";
 import "./Scrollable.scss";
 
 type Props = {
@@ -15,14 +19,7 @@ type Props = {
   className: string,
   columnCount: number,
   height: string | number,
-  scrollHandler: ({
-    clientHeight: number,
-    clientWidth: number,
-    scrollHeight: number,
-    scrollLeft: number,
-    scrollTop: number,
-    scrollWidth: number,
-  }) => void,
+  scrollHandler: Scroll => void,
   innerRef?: *,
   scrollLeft?: ?number,
   overscanColumnCount: number,
@@ -94,15 +91,6 @@ export default class Scrollable extends React.PureComponent<Props> {
     );
   }
 }
-
-export type GridRef = {
-  // TODO(mm): should be just `Grid`, but types are fucked in react-virtualized
-  _renderedColumnStartIndex: number,
-  _renderedColumnStopIndex: number,
-  _scrollingContainer: HTMLDivElement,
-  _renderedColumnStopIndex: number,
-  getOffsetForCell: Function,
-};
 
 export const ScrollableWithRef = React.forwardRef<
   $Diff<Props, typeof Scrollable.defaultProps>, // that's to make flow understand which props are optional because they have default value
