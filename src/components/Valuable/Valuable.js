@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import Coin from "./coin.svg";
-// import Text from "@casumo/cmp-text";
 import "./Valuable.scss";
 
 type Props = {};
