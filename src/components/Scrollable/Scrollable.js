@@ -93,7 +93,7 @@ export default class Scrollable extends React.PureComponent<Props> {
     } = this.props;
 
     return (
-      <AutoSizer>
+      <AutoSizer disableHeight={true}>
         {({ width }) => (
           <Grid
             className={className}
