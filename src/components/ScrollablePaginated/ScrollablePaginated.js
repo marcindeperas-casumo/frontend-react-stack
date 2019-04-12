@@ -1,8 +1,11 @@
 // @flow
 import * as React from "react";
 import { clamp } from "ramda";
-// TODO: get this type from the lib and put it in src/types.
-import type { CellRenderer, GridRef } from "Types/ReactVirtualized/Grid";
+import type {
+  CellRenderer,
+  GridRef,
+  Scroll,
+} from "Types/ReactVirtualized/Grid";
 import { ScrollableWithRef } from "Components/Scrollable";
 
 const easeInQuad = (t: number) => {
@@ -29,7 +32,7 @@ type Props = {
   /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
   /** The renderProp responsible for rendering the controls to paginate through the columns */
-  buttonRenderer: (State, Function) => React.Node,
+  buttonRenderer: (State, (x: string) => void) => React.Node,
   /** Custom classname for styling the wrapping div elements. */
   className: string,
 };
@@ -58,10 +61,8 @@ export default class ScrollablePaginated extends React.PureComponent<
     isStartOfScroll: true,
   };
 
-  // TODO(mm): this function should have type of Grid's onScroll
-  scrollHandler = ({ scrollLeft }: { scrollLeft: number }) => {
+  scrollHandler = ({ scrollLeft }: Scroll) => {
     this.currentScrollOffset = scrollLeft;
-    // Does this need optimising or does setState already handle a lot of this?
     if (this.gridRef.current) {
       const scrollingContainer = this.gridRef.current._scrollingContainer;
       const isEndOfScroll =
@@ -103,6 +104,7 @@ export default class ScrollablePaginated extends React.PureComponent<
         rowIndex: 0,
       }).scrollLeft;
     }
+    this.isScrolling = true;
     this.animate();
   };
 
