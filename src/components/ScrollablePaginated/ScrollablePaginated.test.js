@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { ScrollablePaginated } from "Components/ScrollablePaginated";
+import ScrollablePaginated from "Components/ScrollablePaginated";
 
 describe("ScrollablePaginated", () => {
   test("should do something", () => {

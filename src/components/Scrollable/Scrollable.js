@@ -120,7 +120,8 @@ export default class Scrollable extends React.PureComponent<Props> {
   }
 }
 
+// This makes flow understand which props are optional because they have default value
 export const ScrollableWithRef = React.forwardRef<
-  $Diff<Props, typeof Scrollable.defaultProps>, // that's to make flow understand which props are optional because they have default value
+  $Diff<Props, typeof Scrollable.defaultProps>,
   GridRef
 >((props, ref) => <Scrollable innerRef={ref} {...props} />);

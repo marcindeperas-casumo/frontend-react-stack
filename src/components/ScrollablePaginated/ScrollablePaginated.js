@@ -18,12 +18,19 @@ export type State = {
 };
 
 type Props = {
+  /** The height of the horizontal scrolling container in pixels. */
   height: number | string,
+  /** The total number of columns that can be rendered. */
   columnCount: number,
+  /** An easing function to use for animated pagination */
   easing: number => number,
+  /** The duration of animated pagination */
   duration: number,
+  /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
+  /** The renderProp responsible for rendering the controls to paginate through the columns */
   buttonRenderer: (State, Function) => React.Node,
+  /** Custom classname for styling the wrapping div elements. */
   className: string,
 };
 
@@ -151,17 +158,15 @@ export default class ScrollablePaginated extends React.PureComponent<
   }
 
   render() {
+    const { className, height, columnCount, cellRenderer } = this.props;
     return (
-      <div className={`${this.props.className}`}>
-        <div
-          style={{ height: this.props.height }}
-          className={`${this.props.className}__list`}
-        >
+      <div className={`${className}`}>
+        <div style={{ height: height }} className={`${className}__list`}>
           <ScrollableWithRef
             ref={this.gridRef}
-            columnCount={this.props.columnCount}
-            cellRenderer={this.props.cellRenderer}
-            height={this.props.height}
+            columnCount={columnCount}
+            cellRenderer={cellRenderer}
+            height={height}
             scrollLeft={this.state.scrollLeft}
             scrollHandler={this.scrollHandler}
             overscanColumnCount={this.state.visibleColumns}
