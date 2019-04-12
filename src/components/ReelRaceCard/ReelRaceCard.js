@@ -254,9 +254,11 @@ export class ReelRaceCard extends React.Component<Props> {
               src={this.props.game.logoBackground}
               alt={this.props.game.name}
               imgixOpts={{
-                w: 330,
+                w: 348,
+                h: 232,
                 blur: 100,
-                sat: -50,
+                high: -70,
+                fit: "crop",
               }}
             />
 
