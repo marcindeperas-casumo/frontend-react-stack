@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { min } from "ramda";
 import {
   Grid,
   AutoSizer,
@@ -14,22 +15,32 @@ import type {
 import "./Scrollable.scss";
 
 type Props = {
+  /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
+  /** Custom classname for styling the Scrollable */
   className: string,
+  /** The total number of columns that can be rendered. */
   columnCount: number,
+  /** The height of the horizontal scrolling container in pixels. */
   height: string | number,
+  /** A function to listen to the scroll event of the component */
   scrollHandler: Scroll => void,
+  /** A ref for access to the Grid component API */
   innerRef?: *,
+  /** Used to set the horizontal scroll position of the Grid */
   scrollLeft?: ?number,
+  /** Number of items to render before/after the visible slice of the grid. */
   overscanColumnCount: number,
+  /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
   defaultWidth: number,
 };
 
+const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "c-scrollable",
     scrollHandler: (x: any) => {},
-    overscanColumnCount: 10,
+    overscanColumnCount: DEFAULT_OVERSCAN_COLUMN_COUNT,
     defaultWidth: 100,
   };
 
@@ -38,7 +49,6 @@ export default class Scrollable extends React.PureComponent<Props> {
     fixedHeight: true,
   });
 
-  // TODO(mm): Grid's cellRenderer instead of any
   cellRenderer = ({
     columnIndex,
     isScrolling,
@@ -47,7 +57,7 @@ export default class Scrollable extends React.PureComponent<Props> {
     parent,
     rowIndex,
     style,
-  }: any) => {
+  }: CellRenderer) => {
     const gridRef = this.props.innerRef;
     return (
       <CellMeasurer
@@ -79,13 +89,14 @@ export default class Scrollable extends React.PureComponent<Props> {
       scrollHandler,
       scrollLeft,
       overscanColumnCount,
+      className,
     } = this.props;
 
     return (
       <AutoSizer>
         {({ width }) => (
           <Grid
-            className={this.props.className}
+            className={className}
             cellRenderer={this.cellRenderer}
             columnCount={columnCount}
             columnWidth={this.cellSizeCache.columnWidth}
@@ -97,7 +108,11 @@ export default class Scrollable extends React.PureComponent<Props> {
             width={width}
             onScroll={scrollHandler}
             scrollLeft={scrollLeft}
-            overscanColumnCount={overscanColumnCount}
+            // overscanColumnCount can have an adverse affect on performance
+            overscanColumnCount={min(
+              overscanColumnCount,
+              DEFAULT_OVERSCAN_COLUMN_COUNT
+            )}
           />
         )}
       </AutoSizer>
