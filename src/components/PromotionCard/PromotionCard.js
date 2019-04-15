@@ -32,7 +32,7 @@ const PromotionCardWrapper = ({
       className="c-promotion-card o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
     >
       <Card
-        className="o-ratio__content t-border-r--16 t-background-white"
+        className="o__content-ratio t-border-r--16 t-background-white"
         spacing="none"
         header={() => <PromotionCardHeader badge={badge} dates={dates} />}
         content={() => <PromotionCardContent title={title} />}
