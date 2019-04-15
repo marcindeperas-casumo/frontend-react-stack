@@ -8,7 +8,7 @@ import { PlayIcon, TickIcon } from "@casumo/cmp-icons";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENT_PROPS } from "Src/constants";
-import { BUTTON_STATE } from "Models/reelRaces";
+import { BUTTON_STATE, MIXPANEL_EVENT_NAME } from "Models/reelRaces";
 import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
@@ -62,7 +62,10 @@ export class ReelRaceCard extends React.Component<Props> {
     if (this.timeRemainingBeforeStart <= 0) {
       if (this.props.opted) {
         return (
-          <TrackClick data={{ state: BUTTON_STATE.PLAY }}>
+          <TrackClick
+            eventName={MIXPANEL_EVENT_NAME}
+            data={{ state: BUTTON_STATE.PLAY }}
+          >
             <Button
               variant="variant-1"
               className="u-padding-vert--md u-padding-horiz--xlg"
@@ -82,7 +85,10 @@ export class ReelRaceCard extends React.Component<Props> {
 
     if (this.props.opted) {
       return (
-        <TrackClick data={{ state: BUTTON_STATE.OPTED_IN }}>
+        <TrackClick
+          eventName={MIXPANEL_EVENT_NAME}
+          data={{ state: BUTTON_STATE.OPTED_IN }}
+        >
           <Button
             variant="variant-1"
             className="u-padding-vert--md u-padding-horiz--xlg"
@@ -98,7 +104,10 @@ export class ReelRaceCard extends React.Component<Props> {
     }
 
     return (
-      <TrackClick data={{ state: BUTTON_STATE.OPT_IN }}>
+      <TrackClick
+        eventName={MIXPANEL_EVENT_NAME}
+        data={{ state: BUTTON_STATE.OPT_IN }}
+      >
         <Button
           variant="variant-1"
           className="u-padding-vert--md u-padding-horiz--xlg"
