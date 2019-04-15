@@ -50,7 +50,7 @@ export const ErrorMessage = ({
   const InnerFlex = isVertical ? Flex.Item : Flex.Block;
 
   const errorClassName = `u-font-weight-bold ${
-    isVertical ? "" : "u-margin-vert--none"
+    isVertical ? "" : "u-margin-y--none"
   }`;
 
   return (

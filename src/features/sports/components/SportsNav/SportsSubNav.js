@@ -27,7 +27,7 @@ const SportsSubNavItem = (props: SportsSubNavItemProps) => (
   <div
     key={props.navItem.path}
     onClick={props.onSelected}
-    className="u-margin-vert--md u-margin-horiz--sm"
+    className="u-margin-y--md u-margin-horiz--sm"
   >
     <Pill
       inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"

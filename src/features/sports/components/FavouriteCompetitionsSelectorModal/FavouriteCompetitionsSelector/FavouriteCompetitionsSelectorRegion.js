@@ -28,7 +28,7 @@ const FavouriteCompetitionsSelectorRegion = ({
   onClick,
 }: Props): React.Node =>
   !group.groups || isNilOrEmpty(group.groups) ? null : (
-    <div className="u-margin-vert">
+    <div className="u-margin-y">
       <ExpandableListItem
         isExpanded={isExpanded}
         label={
