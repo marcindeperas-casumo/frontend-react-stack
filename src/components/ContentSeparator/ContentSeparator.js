@@ -6,7 +6,7 @@ export class ContentSeparator extends PureComponent<{}> {
     const className = `
       t-border-bottom
       u-margin-vert--xlg
-      u-margin-horiz--lg
+      u-margin-x--lg
     `;
 
     return <div className={className} />;

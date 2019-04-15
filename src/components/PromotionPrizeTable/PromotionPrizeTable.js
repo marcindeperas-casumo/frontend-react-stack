@@ -20,7 +20,7 @@ class PromotionPrizeTable extends PureComponent<Props> {
     const { prizes } = this.props;
 
     return (
-      <div className="u-margin-bottom--lg u-margin-horiz--lg">
+      <div className="u-margin-bottom--lg u-margin-x--lg">
         <Table
           className="c-prize-table"
           displayHeader={false}

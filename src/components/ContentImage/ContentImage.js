@@ -20,7 +20,7 @@ export class ContentImage extends PureComponent<Props> {
       u-width--1/1
       u-padding-x--lg
       u-padding-x--none@mobile
-      u-margin-horiz--auto
+      u-margin-x--auto
       u-margin-bottom--lg
     `;
 

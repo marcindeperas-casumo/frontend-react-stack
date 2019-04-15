@@ -138,7 +138,7 @@ export class CuratedCard extends PureComponent<Props> {
     const { isFetched } = this.props;
 
     return (
-      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-horiz--md u-margin-horiz--2xlg@tablet u-margin-horiz--2xlg@desktop">
+      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop">
         <EitherOr
           either={this.renderCard}
           or={this.renderSkeleton}

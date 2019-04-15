@@ -195,7 +195,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
 
     return (
-      <Flex.Item className="u-margin-horiz--md t-background-grey-light-2">
+      <Flex.Item className="u-margin-x--md t-background-grey-light-2">
         {this.renderSearchHistory(noOfSearchHistoryItems)}
         {this.renderPopularSearches(noOfPopularSearchItems)}
       </Flex.Item>
@@ -328,7 +328,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
           if (res.loading || !res.data || !res.data.search) {
             return (
-              <div className="u-margin-horiz--md">
+              <div className="u-margin-x--md">
                 <KambiSearchResultsSkeleton />
               </div>
             );
@@ -343,7 +343,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           return (
-            <Flex.Item className="u-margin-horiz--md t-background-grey-light-2">
+            <Flex.Item className="u-margin-x--md t-background-grey-light-2">
               {Object.keys(groupedResults).map(typeTitle => (
                 <React.Fragment key={typeTitle}>
                   <GroupTitle>{typeTitle}</GroupTitle>
