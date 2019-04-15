@@ -136,10 +136,10 @@ describe("CMS Selectors", () => {
       const { slug } = pageObject;
       const replacements = { var: "variable" };
       const selector = getFieldWithReplacements({ slug, field: "foobar" })(
-        state
+        replacements
       );
 
-      expect(selector(replacements)).toEqual("I am a variable");
+      expect(selector(state)).toEqual("I am a variable");
     });
   });
 });

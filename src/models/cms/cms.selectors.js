@@ -33,7 +33,7 @@ export const getFieldWithReplacements = ({
   slug,
   field,
   defaultValue = "",
-}) => state => replacements =>
+}) => replacements => state =>
   interpolate(getField({ slug, field, defaultValue })(state), replacements);
 
 export const isPageFetchingStarted = slug =>
