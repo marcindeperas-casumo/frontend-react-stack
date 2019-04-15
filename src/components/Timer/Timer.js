@@ -13,9 +13,9 @@ type State = {
 
 type Props = {
   /** The (UTC) time in milliseconds the clock should start at */
-  startTime?: Date | number,
+  startTime?: number,
   /** The (UTC) time in milliseconds the clock should stop at */
-  endTime?: Date | number,
+  endTime?: number,
   /** Render prop to display the timer */
   render: (state: State) => Node,
   /** Render prop to display once the timer reaches 0 */
