@@ -229,4 +229,9 @@ describe("interpolate()", () => {
       output
     );
   });
+
+  test("should not replace when param is not defined", () => {
+    const input = "I am a {{var}}";
+    expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
 });
