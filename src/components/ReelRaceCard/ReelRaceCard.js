@@ -300,7 +300,7 @@ export class ReelRaceCard extends React.Component<Props> {
                 <div className="c-reel-race__separator u-margin-horiz--md" />
                 <Column
                   top={t.duration_template.replace(
-                    "{{duration}}",
+                    "{{{duration}}}",
                     this.duration
                   )}
                   bottom={t.duration}
