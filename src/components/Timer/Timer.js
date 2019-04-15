@@ -1,7 +1,7 @@
 // @flow
 import { PureComponent, type Node } from "react";
 import { DateTime } from "luxon";
-import { compose, all, gte, values, map } from "ramda";
+import { compose, all, gte, values, map, isNil } from "ramda";
 
 type State = {
   days: string,
@@ -27,12 +27,16 @@ const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 const UPDATE_INTERVAL = 1000;
 
 const diffTime = time => {
-  const value = DateTime.fromMillis(time)
-    .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
-    .toObject();
-
-  return map(Math.abs, value);
+  return (
+    DateTime.fromMillis(time)
+      // The endTime timestamp should always be UTC. Rather than use diffNow we
+      // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
+      .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
+      .toObject()
+  );
 };
+
+const toAbsolute = map(Math.abs);
 
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
@@ -48,7 +52,12 @@ export default class Timer extends PureComponent<Props, State> {
     this.lastTime = 0;
     this.updateTime = this.updateTime.bind(this);
     this.state = {
-      ...padTimes(diffTime(this.props.startTime || this.props.endTime)),
+      ...padTimes(
+        compose(
+          toAbsolute,
+          diffTime
+        )(this.props.startTime || this.props.endTime)
+      ),
     };
   }
 
@@ -63,13 +72,15 @@ export default class Timer extends PureComponent<Props, State> {
   updateTime(currentTime: number) {
     if (currentTime >= this.lastTime + UPDATE_INTERVAL) {
       const time = diffTime(this.props.startTime || this.props.endTime);
-      const hasEnded = compose(
-        all(greaterThanZero),
-        values
-      )(time);
+      const hasEnded =
+        !isNil(this.props.endTime) &&
+        compose(
+          all(greaterThanZero),
+          values
+        )(time);
 
       this.setState({
-        ...padTimes(time),
+        ...padTimes(toAbsolute(time)),
         hasEnded,
       });
 
