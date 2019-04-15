@@ -25,7 +25,7 @@ const props = {
   t: {
     spins: "Spins",
     duration: "Duration",
-    duration_template: "{{duration}} min",
+    duration_template: "{{{duration}}} min",
     min_bet: "Min Bet",
     starting_in: "Starting in",
     ending_in: "Ending in",
