@@ -1,5 +1,6 @@
 import { createSelector } from "reselect";
 import { prop, compose, defaultTo, not, isNil } from "ramda";
+import { interpolate } from "Utils/";
 import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
 
@@ -27,6 +28,13 @@ export const getField = ({ slug, field, defaultValue = null }) =>
       prop("fields")
     )
   );
+
+export const getFieldWithReplacements = ({
+  slug,
+  field,
+  defaultValue = "",
+}) => state => replacements =>
+  interpolate(getField({ slug, field, defaultValue })(state), replacements);
 
 export const isPageFetchingStarted = slug =>
   isFetchingStarted(getFetchTypeBySlug(slug));

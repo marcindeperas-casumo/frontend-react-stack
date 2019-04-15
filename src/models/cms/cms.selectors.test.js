@@ -3,6 +3,7 @@ import {
   getCms,
   getPage,
   getField,
+  getFieldWithReplacements,
   isPageFetchedSelector,
   shouldFetchPage,
 } from "Models/cms";
@@ -125,6 +126,20 @@ describe("CMS Selectors", () => {
       const selector = getField({ slug, field, defaultValue });
 
       expect(selector(state)).toEqual(defaultValue);
+    });
+  });
+
+  describe("getFieldWithReplacements()", () => {
+    test("should return field with replacements", () => {
+      const pageObject = { slug: "foo", fields: { foobar: "I am a {{var}}" } };
+      const state = { schema: { cms: { [pageObject.slug]: pageObject } } };
+      const { slug } = pageObject;
+      const replacements = { var: "variable" };
+      const selector = getFieldWithReplacements({ slug, field: "foobar" })(
+        state
+      );
+
+      expect(selector(replacements)).toEqual("I am a variable");
     });
   });
 });
