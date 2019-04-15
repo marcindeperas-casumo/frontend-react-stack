@@ -33,6 +33,11 @@ export const ITEM_RENDERERS = {
   default: GameTileContainer,
 };
 
+const GAME_LIST_CLASS_NAME = {
+  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: "c-exclusive-game",
+  default: "c-top-game",
+};
+
 const SEE_MORE_URL = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "/games/live-casino-details",
 };
@@ -48,6 +53,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     const { list, isLoading, seeMoreText } = this.props;
     const { id, title, games: gameIds } = list;
     const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
+    const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const Component = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
     const seeMoreUrl = SEE_MORE_URL[id];
@@ -62,7 +68,7 @@ export class GameListHorizontal extends PureComponent<Props> {
 
     return (
       <ScrollableList
-        itemClassName="c-top-game"
+        itemClassName={className}
         title={title}
         seeMoreText={seeMoreText}
         seeMoreUrl={seeMoreUrl}
