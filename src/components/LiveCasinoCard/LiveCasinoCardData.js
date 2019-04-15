@@ -27,26 +27,28 @@ const renderResults = ({ results, type }) => {
 
   return (
     <>
-      <div className="o-layout o-layout--gap">
+      <Flex className="u-margin-bottom">
         {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={color}
-              txtColor={getTextColor(color)}
-              circle={true}
-              className={classNames(
-                borderColor && `c-card-data-badge-shadow-${borderColor}`
-              )}
-            >
-              {getResultsDisplay(type, n)}
-            </Badge>
+            <Flex.Item>
+              <Badge
+                key={i}
+                tag="div"
+                bgColor={color}
+                txtColor={getTextColor(color)}
+                circle={true}
+                className={classNames(
+                  borderColor && `c-card-data-badge-shadow-${borderColor}`
+                )}
+              >
+                {getResultsDisplay(type, n)}
+              </Badge>
+            </Flex.Item>
           );
         })}
-      </div>
+      </Flex>
       <Text
         size="xs"
         className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
