@@ -8,22 +8,24 @@ import "./ValuableCard.scss";
 type Props = {};
 
 class ValuableCard extends PureComponent<Props> {
+  ValuableCoin = () => <Valuable />;
+
   render() {
     return (
-      <div className="c-valuable-card t-border-r--16 o-flex-justify--center t-color-grey">
-        <ValuableCardBackground />
-        <Flex
-          className="c-valuable-card__content u-position-absolute"
-          direction="vertical"
-          justify="space-between"
-          align="center"
-        >
-          <Valuable />
+      <Flex
+        className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding"
+        justify="center"
+        direction="vertical"
+      >
+        <Flex.Block>
+          <ValuableCardBackground ValuableCoin={this.ValuableCoin} />
+        </Flex.Block>
+        <Flex.Item className="c-valuable-card__content u-text-align-center">
           <div className="t-color-grey-dark-2 u-font-weight-bold">
-            <div>20 Bonus Spins</div>
+            20 Bonus Spins
           </div>
-        </Flex>
-      </div>
+        </Flex.Item>
+      </Flex>
     );
   }
 }

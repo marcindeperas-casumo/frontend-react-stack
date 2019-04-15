@@ -1,8 +1,16 @@
 import React from "react";
+import Flex from "@casumo/cmp-flex";
 import Background from "./background.svg";
 
-function ValuableCardBackground() {
-  return <Background className="u-position-absolute" />;
+function ValuableCardBackground({ ValuableCoin }) {
+  return (
+    <Flex justify="center">
+      <Background className="u-position-absolute" />
+      <div className="u-margin-top--lg u-padding--sm">
+        <ValuableCoin />
+      </div>
+    </Flex>
+  );
 }
 
 export default ValuableCardBackground;
