@@ -30,7 +30,7 @@ export class GameRow extends PureComponent<Props> {
         <Flex
           align="center"
           data-test="game-row"
-          className="u-padding-vert"
+          className="u-padding-y"
           onClick={onLaunchGame}
         >
           {/* Image */}

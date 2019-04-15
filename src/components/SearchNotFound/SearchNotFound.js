@@ -32,7 +32,7 @@ class SearchNotFound extends PureComponent<Props> {
     return (
       <Media
         className={classNames(
-          "u-padding-vert--lg",
+          "u-padding-y--lg",
           "u-padding-horiz--md",
           this.props.className
         )}

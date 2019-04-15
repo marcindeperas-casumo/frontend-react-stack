@@ -159,7 +159,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
 
     return (
       <div
-        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding-horiz--md u-padding-y t-border-bottom t-color-grey-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}

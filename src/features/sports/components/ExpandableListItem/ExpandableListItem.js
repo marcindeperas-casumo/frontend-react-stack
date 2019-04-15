@@ -31,7 +31,7 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
 
   render() {
     return (
-      <Flex direction="vertical" className="u-padding-vert--sm">
+      <Flex direction="vertical" className="u-padding-y--sm">
         <Flex.Item
           data-test="expandable-list-item-header"
           onClick={() => this.toggleExpanded()}

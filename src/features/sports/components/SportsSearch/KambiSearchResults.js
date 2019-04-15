@@ -71,7 +71,7 @@ export const SEARCH_QUERY = gql`
 `;
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
-  <Text className="t-background-white t-color-black-dark-1 u-padding-vert--md u-font-weight-bold">
+  <Text className="t-background-white t-color-black-dark-1 u-padding-y--md u-font-weight-bold">
     {children}
   </Text>
 );
