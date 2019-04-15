@@ -25,26 +25,19 @@ type Props = {
 const greaterThanZero = gte(0);
 const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 const UPDATE_INTERVAL = 1000;
-const COUNT_DOWN = -1;
-const COUNT_UP = 1;
 
-const diffTime = (start, end) => {
-  return DateTime.fromMillis(start)
-    .diff(end, ["days", "hours", "minutes", "seconds"])
+const diffTime = time => {
+  const value = DateTime.fromMillis(time)
+    .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
     .toObject();
-};
 
-const diffTimeAbs = (time, direction) => {
-  return direction === COUNT_DOWN
-    ? diffTime(time, DateTime.utc()) //The timestamp should always be UTC. Rather than use diffNow we explictly use DateTime.utc to make sure we don't have to deal with TimeZones
-    : diffTime(DateTime.utc().ts, DateTime.fromMillis(time));
+  return map(Math.abs, value);
 };
 
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
   updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
-  countDirection: number;
 
   static defaultProps = {
     onEnd: () => null,
@@ -54,14 +47,8 @@ export default class Timer extends PureComponent<Props, State> {
     super(props);
     this.lastTime = 0;
     this.updateTime = this.updateTime.bind(this);
-    this.countDirection = props.endTime ? COUNT_DOWN : COUNT_UP;
     this.state = {
-      ...padTimes(
-        diffTimeAbs(
-          this.props.startTime || this.props.endTime,
-          this.countDirection
-        )
-      ),
+      ...padTimes(diffTime(this.props.startTime || this.props.endTime)),
     };
   }
 
@@ -75,10 +62,7 @@ export default class Timer extends PureComponent<Props, State> {
 
   updateTime(currentTime: number) {
     if (currentTime >= this.lastTime + UPDATE_INTERVAL) {
-      const time = diffTimeAbs(
-        this.props.startTime || this.props.endTime,
-        this.countDirection
-      );
+      const time = diffTime(this.props.startTime || this.props.endTime);
       const hasEnded = compose(
         all(greaterThanZero),
         values
