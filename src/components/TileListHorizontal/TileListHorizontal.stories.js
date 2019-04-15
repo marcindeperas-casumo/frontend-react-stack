@@ -11,20 +11,23 @@ const stories = storiesOf("TileListHorizontal", module);
 const title = "Game Providers";
 const items = [
   {
-    background: "https://images.casumo.com/2019/02/evolution-bg.png",
-    logo: "https://images.casumo.com/2019/02/evolution.png",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2019/03/evolution-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/evolution1.png",
     url: "/en/games/provider/casumo-services-ltd-evolution",
     id: "game-providers-casumo-services-ltd-evolution",
   },
   {
-    background: "https://images.casumo.com/2019/02/netent-bg.png",
-    logo: "https://images.casumo.com/2019/02/netent.png",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2019/03/netent-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/netent1.png",
     url: "/en/games/provider/casumo-services-ltd-netent",
     id: "game-providers-casumo-services-ltd-netent",
   },
   {
-    background: "https://images.casumo.com/2019/02/redtiger-bg.png",
-    logo: "https://images.casumo.com/2019/02/redtiger.png",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2019/03/redtiger-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger1.png",
     url: "/en/games/provider/casumo-services-ltd-redtiger",
     id: "game-providers-casumo-services-ltd-redtiger",
   },
@@ -35,20 +38,22 @@ const items = [
     id: "game-providers-casumo-services-ltd-quickspin",
   },
   {
-    background: "https://images.casumo.com/2019/02/playngo-bg.png",
-    logo: "https://images.casumo.com/2019/02/playngo.png",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2019/03/playngo-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/playngo2.png",
     url: "/en/games/provider/casumo-services-ltd-playngo",
     id: "game-providers-casumo-services-ltd-playngo",
   },
   {
-    background: "https://images.casumo.com/2019/02/nextgen-bg.png",
-    logo: "https://images.casumo.com/2019/02/nextgen.png",
+    background: "https://cms.casumo.com/wp-content/uploads/2019/03/nyx-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
     url: "/en/games/provider/casumo-services-ltd-nextgen",
     id: "game-providers-casumo-services-ltd-nextgen",
   },
   {
-    background: "https://images.casumo.com/2019/02/relax-bg.png",
-    logo: "https://images.casumo.com/2019/02/relax.png",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2019/03/relax-bg.png",
+    logo: "https://cms.casumo.com/wp-content/uploads/2019/02/relax1.png",
     url: "/en/games/provider/casumo-services-ltd-relax",
     id: "game-providers-casumo-services-ltd-relax",
   },
