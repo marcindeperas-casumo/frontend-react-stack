@@ -111,7 +111,7 @@ class SearchInput extends React.Component<Props, State> {
         </Flex.Block>
         {hasSearchTerm && (
           <div
-            className="u-padding-horiz--md u-padding-y"
+            className="u-padding-x--md u-padding-y"
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >

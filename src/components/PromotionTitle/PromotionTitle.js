@@ -28,7 +28,7 @@ const PromotionTitleText = ({ title, dates }: Props) => (
 
 const PromotionTitleTextWithBadge = ({ title, dates, badge }: Props) => (
   <Media
-    className="u-padding-horiz--lg u-margin-bottom--lg"
+    className="u-padding-x--lg u-margin-bottom--lg"
     renderText={() => <PromotionTitleText title={title} dates={dates} />}
     renderImage={() => (
       <img
@@ -49,7 +49,7 @@ class PromotionTitle extends PureComponent<Props> {
     return badge ? (
       <PromotionTitleTextWithBadge title={title} dates={dates} badge={badge} />
     ) : (
-      <div className="u-padding-horiz--lg u-margin-bottom--lg">
+      <div className="u-padding-x--lg u-margin-bottom--lg">
         <PromotionTitleText title={title} dates={dates} />
       </div>
     );

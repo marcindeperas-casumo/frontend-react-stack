@@ -69,7 +69,7 @@ export class ReelRaceCard extends React.Component<Props> {
           >
             <Button
               variant="variant-1"
-              className="u-padding-y--md u-padding-horiz--xlg"
+              className="u-padding-y--md u-padding-x--xlg"
               onClick={this.props.launchGame}
             >
               <PlayIcon className="c-reel-race__button-icon" />
@@ -285,7 +285,7 @@ export class ReelRaceCard extends React.Component<Props> {
 
               <Flex align="center">
                 <Column top={this.props.spins} bottom={t.spins} />
-                <div className="c-reel-race__separator u-margin-horiz--md" />
+                <div className="c-reel-race__separator u-margin-x--md" />
                 <Column
                   top={t.duration_template.replace(
                     "{{{duration}}}",
@@ -295,7 +295,7 @@ export class ReelRaceCard extends React.Component<Props> {
                 />
                 {this.props.minBet && (
                   <>
-                    <div className="c-reel-race__separator u-margin-horiz--md" />
+                    <div className="c-reel-race__separator u-margin-x--md" />
                     <Column top={this.props.minBet} bottom={t.min_bet} />
                   </>
                 )}

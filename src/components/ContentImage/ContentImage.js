@@ -18,8 +18,8 @@ export class ContentImage extends PureComponent<Props> {
     const { src, alt = "", maxWidth = MAX_CONTENT_WIDTH } = this.props;
     const className = `
       u-width--1/1
-      u-padding-horiz--lg
-      u-padding-horiz--none@mobile
+      u-padding-x--lg
+      u-padding-x--none@mobile
       u-margin-horiz--auto
       u-margin-bottom--lg
     `;

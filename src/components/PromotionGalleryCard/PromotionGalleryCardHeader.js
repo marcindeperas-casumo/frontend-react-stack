@@ -6,9 +6,9 @@ import ImageLazy from "Components/Image/ImageLazy";
 const PromotionGalleryCardHeader = ({ badge, dates }) => {
   return (
     <Flex
-      className="u-padding-horiz@mobile
-        u-padding-horiz@phablet
-        u-padding-horiz--md
+      className="u-padding-x@mobile
+        u-padding-x@phablet
+        u-padding-x--md
         u-padding-bottom--sm"
       justify="space-between"
       align="end"

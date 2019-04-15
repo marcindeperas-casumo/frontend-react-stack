@@ -67,7 +67,7 @@ export class CuratedCardFooter extends PureComponent<Props> {
                 id="gtm-curated-play"
                 onClick={onLaunchGame}
                 variant="variant-1"
-                className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+                className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--2xlg@tablet u-padding-x--2xlg@desktop"
               >
                 <PlayIcon size="sm" />
                 <span className="u-margin-left">{primary_action_text}</span>

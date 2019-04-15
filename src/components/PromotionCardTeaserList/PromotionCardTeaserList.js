@@ -45,7 +45,7 @@ class PromotionCardTeaserList extends PureComponent<Props> {
           className="u-padding-bottom--xlg c-promotion-card-teaser-list__wrap"
           style={{ backgroundImage: `url(${maskImageBottom})` }}
         >
-          <div className="c-promotion-card-teaser-list__items u-padding-horiz--lg">
+          <div className="c-promotion-card-teaser-list__items u-padding-x--lg">
             {promotionsSlugs.map(promotionSlug => (
               <div className="u-margin-bottom--md" key={promotionSlug}>
                 <PromotionCardTeaser

@@ -110,7 +110,7 @@ export class App extends PureComponent<Props> {
               <>
                 <SearchInputSkeleton />
                 <GameListSkeleton
-                  className="u-padding-horiz--md"
+                  className="u-padding-x--md"
                   hasTitle={false}
                   titleYOffset={20}
                 />
