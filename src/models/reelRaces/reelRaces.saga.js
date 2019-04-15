@@ -58,17 +58,15 @@ function extractMinBet(
 
 function extractSpins(
   spinLimit,
-  opted: boolean,
   tournamentId: string,
-  playerReelRaces: Object
+  playerReelRaces: Object,
+  playerId: string
 ) {
-  if (!opted) {
-    return spinLimit;
-  }
-
-  // $FlowIgnore, Object.values returns mixed here
-  return Object.values(playerReelRaces[tournamentId].leaderboard)[0]
-    .remainingSpins;
+  return R.pathOr(
+    spinLimit,
+    [tournamentId, "leaderboard", playerId, "remainingSpins"],
+    playerReelRaces
+  );
 }
 
 export function* fetchReelRacesSaga(): * {
@@ -101,24 +99,23 @@ export function* fetchReelRacesSaga(): * {
   const playerReelRaces = yield select(optedInReelRacesSelector);
   const optedReelRaces = new Set(Object.keys(playerReelRaces));
 
-  const tournamentsWithGames = R.map((reelRace: TournamentRaw) => {
-    const opted = optedReelRaces.has(reelRace.tournamentId);
-
-    return {
+  const tournamentsWithGames = R.map(
+    (reelRace: TournamentRaw) => ({
       ...R.pick(["endTime", "promoted", "startTime", "tournamentId"], reelRace),
-      opted,
+      opted: optedReelRaces.has(reelRace.tournamentId),
       prize: extractPrize(reelRace.prizes, locale),
       gameSlug: providerGameNameToSlug[extractProviderGameName(reelRace)],
       spins: extractSpins(
         reelRace.spinLimit,
-        opted,
         reelRace.tournamentId,
-        playerReelRaces
+        playerReelRaces,
+        playerId
       ),
       minBet: extractMinBet(locale, currency, reelRace.minBetByCurrency),
       color: "yellow-light-1", // Will come from color picker at some point https://github.com/Casumo/Home/issues/28123
-    };
-  }, tournaments);
+    }),
+    tournaments
+  );
 
   yield put(updateEntity({ reelRaces: tournamentsWithGames }));
 }
