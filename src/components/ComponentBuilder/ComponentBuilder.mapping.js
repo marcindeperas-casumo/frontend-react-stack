@@ -18,6 +18,7 @@ import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import ContentMustDropJackpotsWidget from "Components/ContentMustDropJackpotsWidget";
 import TileListHorizontal from "Components/TileListHorizontal";
+import ReelRacesList from "Components/ReelRacesList";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -41,4 +42,5 @@ export const COMPONENT_MAPPING = {
   MUST_DROP_JACKPOTS: ContentMustDropJackpotsWidget,
   MUST_DROP_JACKPOTS_GAMES_LIST: MustDropJackpotsList,
   PRIZE_LIST: PromotionPrizeTable,
+  REEL_RACES: ReelRacesList,
 };

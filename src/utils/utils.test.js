@@ -6,6 +6,7 @@ import {
   renderBets,
   commaSeparated,
   createReducer,
+  formatCurrency,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -180,5 +181,41 @@ describe("commaSeparated()", () => {
     const input = [undefined, undefined, undefined];
     const expected = "";
     expect(commaSeparated(input)).toBe(expected);
+  });
+});
+
+describe("formatCurrency()", () => {
+  test("should render with two zeros precision if fraction given", () => {
+    expect(
+      formatCurrency({
+        currency: "EUR",
+        locale: "de-DE",
+        value: 3.14,
+      })
+    ).toBe("€3.14");
+    expect(
+      formatCurrency({
+        currency: "EUR",
+        locale: "de-DE",
+        value: 3.1,
+      })
+    ).toBe("€3.10");
+  });
+
+  test("should render without fractions instead of 00", () => {
+    expect(
+      formatCurrency({
+        currency: "EUR",
+        locale: "de-DE",
+        value: 3,
+      })
+    ).toBe("€3");
+    expect(
+      formatCurrency({
+        currency: "EUR",
+        locale: "de-DE",
+        value: 66.0,
+      })
+    ).toBe("€66");
   });
 });

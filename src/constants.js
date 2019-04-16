@@ -75,6 +75,17 @@ export const LANGUAGES = {
   [MARKETS.se_sv]: "sv",
 };
 
+export const INTL_LOCALES = {
+  [MARKETS.___en]: "en",
+  [MARKETS.ca_en]: "en-CA",
+  [MARKETS.de_de]: "de-DE",
+  [MARKETS.dk_da]: "da-DK",
+  [MARKETS.fi_fi]: "fi-FI",
+  [MARKETS.gb_en]: "en-GB",
+  [MARKETS.no_no]: "no-NO",
+  [MARKETS.se_sv]: "sv-SE",
+};
+
 export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",

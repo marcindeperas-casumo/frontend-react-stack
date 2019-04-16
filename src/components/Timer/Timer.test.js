@@ -6,7 +6,7 @@ const createMockRaf = require("mock-raf");
 const mockRaf = createMockRaf();
 
 describe("Timer", () => {
-  let endTime;
+  let endTime, startTime;
 
   beforeEach(() => {
     endTime = new Date(Date.UTC(2018, 1, 1, 1, 1, 10));
@@ -73,5 +73,19 @@ describe("Timer", () => {
 
     expect(rendered.state().hasEnded).toEqual(true);
     expect(onEndProp).toHaveBeenCalledTimes(1);
+  });
+
+  test("should count upwards when startTime is defined", () => {
+    const renderProp = jest.fn();
+    startTime = new Date(Date.UTC(2018, 1, 1, 1, 1, 0));
+    Settings.now = () => new Date(Date.UTC(2018, 1, 1, 1, 2, 10)).getTime();
+    const rendered = shallow(
+      <Timer startTime={startTime.getTime()} render={renderProp} />
+    );
+    mockRaf.step({ time: 1000, count: 1 });
+    expect(rendered.state().days).toEqual("00");
+    expect(rendered.state().hours).toEqual("00");
+    expect(rendered.state().minutes).toEqual("01");
+    expect(rendered.state().seconds).toEqual("10");
   });
 });

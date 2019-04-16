@@ -17,6 +17,8 @@ import {
   languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
+  optedInReelRacesSelector,
+  localeSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -290,5 +292,47 @@ describe("Handshake selectors", () => {
 
       expect(hasMadeFirstDepositSelector(state)).toBe(true);
     });
+  });
+
+  test("optedInReelRacesSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                playerTournamentCampaign: {
+                  tournaments: "complex object here",
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(optedInReelRacesSelector(state)).toEqual("complex object here");
+  });
+
+  test("localeSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                market: "se_sv",
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(localeSelector(state)).toEqual("sv-SE");
   });
 });
