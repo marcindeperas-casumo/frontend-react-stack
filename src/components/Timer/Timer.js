@@ -1,7 +1,7 @@
 // @flow
 import { PureComponent, type Node } from "react";
 import { DateTime } from "luxon";
-import { compose, all, gte, values, map } from "ramda";
+import { compose, all, gte, values, map, isNil } from "ramda";
 
 type State = {
   days: string,
@@ -12,21 +12,23 @@ type State = {
 };
 
 type Props = {
-  /** The (UTC) time in milliseconds */
-  endTime: Date | number,
+  /** The (UTC) time in milliseconds the clock should start at */
+  startTime?: number,
+  /** The (UTC) time in milliseconds the clock should stop at */
+  endTime?: number,
   /** Render prop to display the timer */
   render: (state: State) => Node,
   /** Render prop to display once the timer reaches 0 */
-  onEnd: () => Node,
+  onEnd: () => Node | null,
 };
 
 const greaterThanZero = gte(0);
 const padTimes = map(time => `${Math.floor(time)}`.padStart(2, "0"));
 const UPDATE_INTERVAL = 1000;
 
-const diffTime = endTime => {
+const diffTime = time => {
   return (
-    DateTime.fromMillis(endTime)
+    DateTime.fromMillis(time)
       // The endTime timestamp should always be UTC. Rather than use diffNow we
       // explictly use DateTime.utc to make sure we don't have to deal with TimeZones
       .diff(DateTime.utc(), ["days", "hours", "minutes", "seconds"])
@@ -34,17 +36,28 @@ const diffTime = endTime => {
   );
 };
 
+const toAbsolute = map(Math.abs);
+
 export default class Timer extends PureComponent<Props, State> {
   lastTime: number;
   updateTime: (currentTime: number) => void;
   interval: AnimationFrameID;
+
+  static defaultProps = {
+    onEnd: () => null,
+  };
 
   constructor(props: Props) {
     super(props);
     this.lastTime = 0;
     this.updateTime = this.updateTime.bind(this);
     this.state = {
-      ...padTimes(diffTime(this.props.endTime)),
+      ...padTimes(
+        compose(
+          toAbsolute,
+          diffTime
+        )(this.props.startTime || this.props.endTime)
+      ),
     };
   }
 
@@ -58,14 +71,16 @@ export default class Timer extends PureComponent<Props, State> {
 
   updateTime(currentTime: number) {
     if (currentTime >= this.lastTime + UPDATE_INTERVAL) {
-      const time = diffTime(this.props.endTime);
-      const hasEnded = compose(
-        all(greaterThanZero),
-        values
-      )(time);
+      const time = diffTime(this.props.startTime || this.props.endTime);
+      const hasEnded =
+        !isNil(this.props.endTime) &&
+        compose(
+          all(greaterThanZero),
+          values
+        )(time);
 
       this.setState({
-        ...padTimes(time),
+        ...padTimes(toAbsolute(time)),
         hasEnded,
       });
 

@@ -2,13 +2,14 @@ import { createSelector } from "reselect";
 import {
   compose,
   prop,
+  pathOr,
   isNil,
   isEmpty,
   complement,
   anyPass,
   propSatisfies,
 } from "ramda";
-import { LANGUAGES, MARKETS } from "Src/constants";
+import { INTL_LOCALES, LANGUAGES, MARKETS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
@@ -116,4 +117,19 @@ export const getCmsHash = createSelector(
   (lang, rootContentHashes) => {
     return prop(lang)(rootContentHashes);
   }
+);
+
+/**
+ * Inside player object in handshake we have info about reel races that player
+ * opted for. We have to use that to check if ongoing race should be shown and
+ * how much spins player have left (on the card).
+ */
+export const optedInReelRacesSelector = createSelector(
+  playerSelector,
+  pathOr({}, ["playerTournamentCampaign", "tournaments"])
+);
+
+export const localeSelector = createSelector(
+  marketSelector,
+  market => INTL_LOCALES[market]
 );

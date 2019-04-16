@@ -1,3 +1,5 @@
+const now = Date.now();
+const THIRTY_MINUTES = 30 * 60 * 1000;
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
   router: {
     activeComponents: ["games-top"],
@@ -2530,7 +2532,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
           "diamond-mine",
         ],
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/nyx-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
         url: "/en/games/provider/nyx",
       },
@@ -2540,7 +2542,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-thunderkick",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick-bg.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/thunderkick-bg.png",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick.png",
         url: "/en/games/provider/thunderkick",
@@ -2551,7 +2553,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-microgaming",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming-bg1.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/microgaming-bg.png",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming1.png",
         url: "/en/games/provider/microgaming",
@@ -2562,7 +2564,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-redtiger",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger-bg1.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/redtiger-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger1.png",
         url: "/en/games/provider/redtiger",
       },
@@ -4926,6 +4928,63 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         childSlugs: [],
       },
     },
+    reelRaces: {
+      "edc71c70-56d6-11e9-8587-0242ac11000b": {
+        "tournamentId": "edc71c70-56d6-11e9-8587-0242ac11000b",
+        "startTime": now + THIRTY_MINUTES,
+        "endTime": now + THIRTY_MINUTES * 2,
+        "minbet": null,
+        "prize": "€20",
+        "gameSlug": "tiki-fruits",
+        "spins": 200,
+        "color": "yellow-light-1",
+        "promoted": false
+      },
+      "c21ee900-560d-11e9-8587-0242ac11000b": {
+        "tournamentId": "c21ee900-560d-11e9-8587-0242ac11000b",
+        "startTime": now + THIRTY_MINUTES * 2,
+        "endTime": now + THIRTY_MINUTES * 3,
+        "minBet": null,
+        "prize": "€100",
+        "gameSlug": "white-rabbit",
+        "spins": 475,
+        "color": "yellow-light-1",
+        "promoted": false
+      },
+      "f05408e0-56d6-11e9-8587-0242ac11000b": {
+        "tournamentId": "f05408e0-56d6-11e9-8587-0242ac11000b",
+        "startTime": now + THIRTY_MINUTES * 3,
+        "endTime": now + THIRTY_MINUTES * 4,
+        "minBet": null,
+        "prize": "€50",
+        "gameSlug": "fat-rabbit",
+        "spins": 600,
+        "color": "yellow-light-1",
+        "promoted": false
+      },
+      "c1c1fbf0-560d-11e9-8587-0242ac11000b": {
+        "tournamentId": "c1c1fbf0-560d-11e9-8587-0242ac11000b",
+        "startTime": now + THIRTY_MINUTES * 4,
+        "endTime": now + THIRTY_MINUTES * 5,
+        "minBet": null,
+        "prize": "€50",
+        "gameSlug": "mega-fortune-dreams",
+        "spins": 350,
+        "color": "yellow-light-1",
+        "promoted": false
+      },
+      "c1f9fbe0-560d-11e9-8587-0242ac11000b": {
+        "tournamentId": "c1f9fbe0-560d-11e9-8587-0242ac11000b",
+        "startTime": now + THIRTY_MINUTES * 5,
+        "endTime": now + THIRTY_MINUTES * 6,
+        "minBet": null,
+        "prize": "€1000",
+        "gameSlug": "the-tales-of-dr-dolittle",
+        "spins": 350,
+        "color": "yellow-light-1",
+        "promoted": true
+      }
+    }
   },
 });
 
