@@ -164,3 +164,28 @@ export const createReducer = (initialState: Object, handlers: Handlers) => {
     }
   };
 };
+
+export function formatCurrency({
+  locale,
+  currency,
+  value,
+}: {
+  locale: string,
+  currency: string,
+  value: number,
+}): string {
+  /**
+   * Hack? if modulo 1 returns something other than 0 we have fractions and
+   * we want them rendered nicely (ie. 4.2 should be rendered as €4.20), in
+   * other case we want to render number without them (ie. 50 should be €50
+   * rather than €50.00). I'm pretty sure that latter should never happened
+   * https://github.com/search?q=This+should+never+happen&type=Code&utf8=✓
+   */
+  const minimumFractionDigits = value % 1 === 0 ? 0 : 2;
+
+  return new Intl.NumberFormat(locale, {
+    style: "currency",
+    currency,
+    minimumFractionDigits,
+  }).format(value);
+}

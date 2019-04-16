@@ -35,6 +35,7 @@ const schemaReducer = combineReducers({
     ENTITY_KEYS.JACKPOT_MUST_DROP
   ),
   [ENTITY_KEYS.GAME_PROVIDER]: entityReducerFactory(ENTITY_KEYS.GAME_PROVIDER),
+  [ENTITY_KEYS.REEL_RACES]: entityReducerFactory(ENTITY_KEYS.REEL_RACES),
 });
 
 export default schemaReducer;

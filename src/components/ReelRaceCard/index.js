@@ -1,2 +1,2 @@
 // @flow
-export { ReelRaceCard } from "./ReelRaceCard";
+export { default } from "./ReelRaceCardContainer";

@@ -5,7 +5,7 @@ import info from "../../../.storybook/storybookInfo";
 import isNotChromatic from "../../../.storybook/isNotChromatic";
 import Timer from "./";
 
-const tenSecondsFromNow = Date.now() + 10;
+const tenSecondsFromNow = Date.now() + 10 * 1000;
 
 const stories = storiesOf("Timer", module);
 if (isNotChromatic) {

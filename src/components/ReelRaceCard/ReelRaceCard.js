@@ -4,48 +4,42 @@ import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { PlayIcon, TickIcon, TimeIconIcon } from "@casumo/cmp-icons";
+import { PlayIcon, TickIcon } from "@casumo/cmp-icons";
+import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import { launchModal } from "Services/LaunchModalService";
+import { MODALS, EVENT_PROPS } from "Src/constants";
+import { BUTTON_STATE, MIXPANEL_EVENT_NAME } from "Models/reelRaces";
+import TrackProvider from "Components/TrackProvider";
+import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
 import GameThumb from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
+import Clock from "./Clock.svg"; // use it from @casumo/cmp-icons if we're on v2
 import "./ReelRaceCard.scss";
 
-type Props = {
-  status: "Scheduled" | "Started",
-  type: "Standard" | "Promoted",
-  startTime: number, // timestamp
-  endTime: number, // timestamp
-  minBet?: string,
-  spinLimit: number,
-  opted: boolean,
-  prize: string,
+type Props = ReelRace & {
   game: GameRow_Game,
-  color: string, // cudl color style ie. "yellow-light-1", "red" or "purple-dark-2"
-  t: {
-    spins: string,
-    duration: string,
-    minBet: string,
-    startingIn: string,
-    endingIn: string,
-    optIn: string,
-    optedIn: string,
-    play: string,
-    prize: string,
-  },
+  t: ReelRacesTranslations,
+  optIn: () => void,
+  launchGame: () => void,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
   <Flex direction="vertical" spacing="none">
-    <span className="t-color-white u-font-weight-bold">{props.top}</span>
-    <span className="t-color-white u-font-sm u-opacity-75">{props.bottom}</span>
+    <Text tag="span" className="t-color-white u-font-weight-bold">
+      {props.top}
+    </Text>
+    <Text tag="span" size="sm" className="t-color-white u-opacity-75">
+      {props.bottom}
+    </Text>
   </Flex>
 );
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
-export class ReelRaceCard extends React.PureComponent<Props> {
+export class ReelRaceCard extends React.Component<Props> {
   timeout: TimeoutID;
 
   componentDidMount() {
@@ -68,10 +62,21 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= 0) {
       if (this.props.opted) {
         return (
-          <Button variant="variant-1">
-            <PlayIcon size="sml" />
-            <span className="u-margin-left">{t.play}</span>
-          </Button>
+          <TrackClick
+            eventName={MIXPANEL_EVENT_NAME}
+            data={{ state: BUTTON_STATE.PLAY }}
+          >
+            <Button
+              variant="variant-1"
+              className="u-padding-vert--md u-padding-horiz--xlg"
+              onClick={this.props.launchGame}
+            >
+              <PlayIcon className="c-reel-race__button-icon" />
+              <Text tag="span" className="u-margin-left">
+                {t.opted_in_cta_single_game_short}
+              </Text>
+            </Button>
+          </TrackClick>
         );
       }
 
@@ -80,20 +85,37 @@ export class ReelRaceCard extends React.PureComponent<Props> {
 
     if (this.props.opted) {
       return (
-        <Button variant="variant-1" disabled>
-          <TickIcon size="sml" />
-          {t.optedIn}
-        </Button>
+        <TrackClick
+          eventName={MIXPANEL_EVENT_NAME}
+          data={{ state: BUTTON_STATE.OPTED_IN }}
+        >
+          <Button
+            variant="variant-1"
+            className="u-padding-vert--md u-padding-horiz--xlg"
+            disabled
+          >
+            <TickIcon className="c-reel-race__button-icon" />
+            <Text tag="span" className="u-margin-left">
+              {t.opted_in}
+            </Text>
+          </Button>
+        </TrackClick>
       );
     }
 
     return (
-      <Button
-        variant="variant-1"
-        className="u-padding-vert--md u-padding-horiz--xlg"
+      <TrackClick
+        eventName={MIXPANEL_EVENT_NAME}
+        data={{ state: BUTTON_STATE.OPT_IN }}
       >
-        {t.optIn}
-      </Button>
+        <Button
+          variant="variant-1"
+          className="u-padding-vert--md u-padding-horiz--xlg"
+          onClick={this.props.optIn}
+        >
+          <Text tag="span">{t.opt_in}</Text>
+        </Button>
+      </TrackClick>
     );
   }
 
@@ -103,16 +125,20 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= 0) {
       return (
         <Flex direction="vertical" spacing="none">
-          <span className="t-color-white u-font-weight-bold u-font-sm">
-            {t.endingIn}
-          </span>
-          <span className="u-font-weight-bold u-font-lg">
+          <Text
+            tag="span"
+            size="sm"
+            className="t-color-white u-font-weight-bold"
+          >
+            {t.ending_in}
+          </Text>
+          <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={this.props.endTime}
               render={state => `${state.minutes}:${state.seconds}`}
-              onEnd={() => "Ended!"}
+              onEnd={() => "00:00"}
             />
-          </span>
+          </Text>
         </Flex>
       );
     }
@@ -120,27 +146,35 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     if (this.timeRemainingBeforeStart <= THIRTY_MINUTES) {
       return (
         <Flex direction="vertical" spacing="none">
-          <span className="t-color-white u-font-weight-bold u-font-sm">
-            {t.startingIn}
-          </span>
-          <span className="u-font-weight-bold u-font-lg">
+          <Text
+            tag="span"
+            size="sm"
+            className="t-color-white u-font-weight-bold"
+          >
+            {t.starting_in}
+          </Text>
+          <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
               endTime={this.props.startTime}
               render={state => `${state.minutes}:${state.seconds}`}
-              onEnd={() => "Starting!"}
+              onEnd={() => "00:00"}
             />
-          </span>
+          </Text>
         </Flex>
       );
     }
 
-    const hour = DateTime.fromMillis(this.props.startTime).toFormat("hh:mm");
+    const startTime = DateTime.fromMillis(this.props.startTime);
     return (
       <Flex spacing="none">
-        <TimeIconIcon size="sml" /> {/* TODO(28094): that's wrong icon */}
-        <span className="t-color-white u-font-weight-bold u-font-sm">
-          Tonight {hour}
-        </span>
+        <Clock className="u-margin-right" />
+        <Text
+          tag="span"
+          size="sm"
+          className="t-color-white u-font-weight-bold u-text-transform-capitalize"
+        >
+          {startTime.toRelativeCalendar()} {startTime.toFormat("t")}
+        </Text>
       </Flex>
     );
   }
@@ -170,80 +204,137 @@ export class ReelRaceCard extends React.PureComponent<Props> {
     }, updateTime);
   }
 
+  showCaveatsModal = () => {
+    launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
+  };
+
   render() {
     const { t } = this.props;
 
+    if (this.timeRemainingBeforeStart <= 0 && !this.props.opted) {
+      return null;
+    }
+
+    const trackData = {
+      [EVENT_PROPS.LOCATION]: "Reel Race",
+      splinLimit: this.props.spins,
+      timeLimit: this.duration,
+      minBet: this.props.minBet,
+      mainPrize: this.props.prize,
+      name: this.props.game.name,
+      isPromoted: this.props.promoted,
+    };
+
     return (
-      <Flex
-        className={[
-          "c-reel-race-card",
-          "t-border-r--16",
-          "o-ratio",
-          "o-ratio--reel-race-card",
-          `t-color-${this.props.color}`,
-        ].join(" ")}
-        direction="vertical"
-        justify="space-between"
-        spacing="none"
-      >
-        <ImageLazy
-          className="o-ratio__content"
-          src={this.props.game.logoBackground}
-          alt={this.props.game.name}
-          imgixOpts={{
-            w: 330,
-            blur: 75,
-          }}
-        />
-
+      <TrackProvider data={trackData}>
         <Flex
-          className="u-padding--md o-ratio__content"
+          className={[
+            "c-reel-race-card",
+            "o-flex__item",
+            "o-flex__item-fixed-size",
+            "o-ratio--reel-race-card",
+          ].join(" ")}
           direction="vertical"
-          spacing="none"
         >
-          <Flex align="center">
-            <Flex>
-              <GameThumb
-                src={this.props.game.logoBackground}
-                alt={this.props.game.name}
-                mark={this.props.game.logo}
-              />
-              {this.props.type === "Promoted" && (
-                <GrandReelRaceBadge className="c-reel-race__badge" />
-              )}
-            </Flex>
+          <Flex
+            className={[
+              "o-flex__item",
+              "o-flex__item-fixed-size",
+              "t-border-r--16",
+              "o-ratio",
+              "o-ratio--reel-race-card",
+              `t-color-${this.props.color}`,
+            ].join(" ")}
+            direction="vertical"
+            justify="space-between"
+            spacing="none"
+          >
+            <ImageLazy
+              className="o-ratio__content"
+              src={this.props.game.logoBackground}
+              alt={this.props.game.name}
+              imgixOpts={{
+                w: 348,
+                h: 232,
+                blur: 100,
+                high: -70,
+                fit: "crop",
+              }}
+            />
+
             <Flex
+              className="u-padding--md o-ratio__content"
               direction="vertical"
-              spacing="sm"
-              className="u-margin-left--md"
+              spacing="none"
+              justify="space-between"
             >
-              <span className="u-font-weight-bold">
-                {t.prize} {this.props.prize}
-              </span>
-              <Text tag="span" size="sm" className="t-color-white u-opacity-75">
-                <DangerousHtml html={this.props.game.name} />
-              </Text>
+              <Flex align="center">
+                <GameThumb
+                  src={this.props.game.logoBackground}
+                  alt={this.props.game.name}
+                  mark={this.props.game.logo}
+                />
+                {this.props.promoted && (
+                  <GrandReelRaceBadge className="c-reel-race__badge" />
+                )}
+                <Flex
+                  direction="vertical"
+                  spacing="sm"
+                  className="u-margin-left--md"
+                >
+                  <Text tag="span" className="u-font-weight-bold">
+                    {t.compete_for.replace("{{prize}}", this.props.prize)}
+                  </Text>
+                  <Text
+                    tag="span"
+                    size="sm"
+                    className="t-color-white u-opacity-75"
+                  >
+                    <DangerousHtml html={this.props.game.name} />
+                  </Text>
+                </Flex>
+              </Flex>
+
+              <Flex align="center">
+                <Column top={this.props.spins} bottom={t.spins} />
+                <div className="c-reel-race__separator u-margin-horiz--md" />
+                <Column
+                  top={t.duration_template.replace(
+                    "{{{duration}}}",
+                    this.duration
+                  )}
+                  bottom={t.duration}
+                />
+                {this.props.minBet && (
+                  <>
+                    <div className="c-reel-race__separator u-margin-horiz--md" />
+                    <Column top={this.props.minBet} bottom={t.min_bet} />
+                  </>
+                )}
+              </Flex>
+
+              <Flex direction="horizontal" justify="space-between" align="end">
+                {this.countdown}
+                {this.button}
+              </Flex>
             </Flex>
           </Flex>
-
-          <Flex className="u-margin-vert--lg" align="center">
-            <Column top={this.props.spinLimit} bottom={t.spins} />
-            <div className="c-reel-race__separator u-margin-horiz--md" />
-            <Column top={`${this.duration} min`} bottom={t.duration} />
-            {this.props.minBet && (
-              <>
-                <div className="c-reel-race__separator u-margin-horiz--md" />
-                <Column top={this.props.minBet} bottom={t.minBet} />
-              </>
-            )}
-          </Flex>
-
-          <Flex direction="horizontal" justify="space-between" align="end">
-            {this.countdown}
-            {this.button}
-          </Flex>
+          {t.caveat_short && t.caveat_short !== "false" && (
+            <Text
+              size="xs"
+              className="c-reel-race__terms t-color-grey"
+              onClick={this.showCaveatsModal}
+            >
+              <DangerousHtml
+                html={t.caveat_short.replace(
+                  "{{{ ctaTermsAndConditions }}}",
+                  'class="t-color-black"'
+                )}
+              />
+            </Text>
+          )}
         </Flex>
-      </Flex>
+      </TrackProvider>
     );
   }
 }
