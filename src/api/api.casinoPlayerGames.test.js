@@ -2,6 +2,8 @@ import {
   getGameProviders,
   getCasinoPlayerGames,
   getCasinoPlayerGamesCount,
+  getCasinoPlayerGameSearch,
+  getCasinoPlayerGameSearchCount,
   URL,
 } from "./api.casinoPlayerGames";
 
@@ -10,6 +12,7 @@ describe("API/casinoPlayerGames", () => {
   const sessionId = "123";
   const page = 0;
   const pageSize = 100;
+  const query = "hola";
   const providers = [];
   const headers = {
     headers: {
@@ -39,6 +42,32 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledWith(
         URL.GAMES_COUNT,
         { providerSlugs: "foo,bar" },
+        headers
+      );
+    });
+  });
+
+  describe("getCasinoPlayerGameSearch()", () => {
+    test("calls http.get() with the right URL for GAME_SEARCH with params", () => {
+      getCasinoPlayerGameSearch({ page, pageSize, sessionId, query }, http);
+
+      expect(http.get).toHaveBeenCalledTimes(1);
+      expect(http.get).toHaveBeenCalledWith(
+        URL.GAME_SEARCH,
+        { page, pageSize, query },
+        headers
+      );
+    });
+  });
+
+  describe("getCasinoPlayerGameSearchCount()", () => {
+    test("calls http.get() with the right URL and params", () => {
+      getCasinoPlayerGameSearchCount({ sessionId, query }, http);
+
+      expect(http.get).toHaveBeenCalledTimes(1);
+      expect(http.get).toHaveBeenCalledWith(
+        URL.GAME_SEARCH_COUNT,
+        { query },
         headers
       );
     });

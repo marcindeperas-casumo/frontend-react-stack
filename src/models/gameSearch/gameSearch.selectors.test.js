@@ -8,6 +8,10 @@ import {
   searchNotFoundContent,
   isSuggestedLoadingSelector,
   gameForSuggestionsSelector,
+  getgameSearchListIdByPage,
+  isGameSearchPageLoaded,
+  gameSearchResultsCountSelector,
+  gameSearchResultsPagesLoaded,
 } from "Models/gameSearch";
 import { ENTITY_KEYS } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -179,6 +183,50 @@ describe("Models/GameSearch/Selectors", () => {
       expect(searchNotFoundContent(state)).toEqual(
         "Find another game or try something popular"
       );
+    });
+  });
+
+  describe("isGameSearchPageLoaded", () => {
+    test("returns true if list is in state", () => {
+      const gameList = { [getgameSearchListIdByPage(0)]: { games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(isGameSearchPageLoaded(0)(state)).toBe(true);
+    });
+
+    test("returns false if list not in state", () => {
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: {} } };
+
+      expect(isGameSearchPageLoaded()(state)).toBe(false);
+    });
+  });
+
+  describe("gameSearchResultsCountSelector", () => {
+    test("should return games count", () => {
+      const state = { [ENTITY_KEYS.GAME_SEARCH]: { count: 123 } };
+      expect(gameSearchResultsCountSelector(state)).toBe(123);
+    });
+  });
+
+  describe("gameSearchResultsPagesLoaded", () => {
+    test("should return array with page number", () => {
+      const id = getgameSearchListIdByPage(0);
+      const gameList = { [id]: { id, games: ["foo"] } };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchResultsPagesLoaded(state)).toEqual([0]);
+    });
+
+    test("should return array with page numbers", () => {
+      const id0 = getgameSearchListIdByPage(0);
+      const id1 = getgameSearchListIdByPage(1);
+      const gameList = {
+        [id0]: { id: id0, games: ["foo"] },
+        [id1]: { id: id1, games: ["bar"] },
+      };
+      const state = { schema: { [ENTITY_KEYS.GAME_LIST]: gameList } };
+
+      expect(gameSearchResultsPagesLoaded(state)).toEqual([0, 1]);
     });
   });
 });
