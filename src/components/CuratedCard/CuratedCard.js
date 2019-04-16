@@ -124,8 +124,8 @@ export class CuratedCard extends PureComponent<Props> {
           </Text>
         )}
         <Text
-          className="u-line-height--1 u-font-weight-bold t-color-white"
-          size="3xlg"
+          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+          size="2xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />
       </React.Fragment>

@@ -53,7 +53,11 @@ export class CuratedCardFooter extends PureComponent<Props> {
           <GameThumb src={gameData.logoBackground} mark={gameData.logo} />
         </Flex.Item>
         <Flex.Block>
-          <Text tag="span" className="u-font-weight-bold t-color-white">
+          <Text
+            tag="span"
+            size="sm"
+            className="u-font-weight-bold t-color-white"
+          >
             {decodeString(gameData.name)}
           </Text>
         </Flex.Block>
