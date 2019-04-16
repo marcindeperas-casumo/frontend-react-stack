@@ -20,8 +20,8 @@ type Props = {
 
 const paddingPerDevice = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 const marginPerDevice = {

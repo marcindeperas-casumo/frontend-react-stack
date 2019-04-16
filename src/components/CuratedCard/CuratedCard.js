@@ -125,7 +125,7 @@ export class CuratedCard extends PureComponent<Props> {
         )}
         <Text
           className="u-line-height--1 u-font-weight-bold t-color-white"
-          size="2xlg"
+          size="3xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />
       </React.Fragment>
@@ -138,7 +138,7 @@ export class CuratedCard extends PureComponent<Props> {
     const { isFetched } = this.props;
 
     return (
-      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--2xlg@tablet u-margin-x--2xlg@desktop">
+      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
         <EitherOr
           either={this.renderCard}
           or={this.renderSkeleton}

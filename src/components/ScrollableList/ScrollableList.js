@@ -14,8 +14,8 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 export const DEFAULT_SPACING = "default";
 export const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 type Props = {

@@ -9,8 +9,8 @@ import { generateColumns } from "Utils";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 export type Props = {

@@ -8,8 +8,8 @@ import Tile from "./Tile";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 const DEFAULT_SPACING = "default";
