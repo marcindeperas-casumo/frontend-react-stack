@@ -58,7 +58,6 @@ export default class Scrollable extends React.PureComponent<Props> {
     rowIndex,
     style,
   }: CellRenderer) => {
-    const gridRef = this.props.innerRef;
     return (
       <CellMeasurer
         key={key}
@@ -75,7 +74,6 @@ export default class Scrollable extends React.PureComponent<Props> {
           parent,
           rowIndex,
           style,
-          gridRef,
         })}
       </CellMeasurer>
     );
