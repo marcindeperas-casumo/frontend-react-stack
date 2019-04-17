@@ -63,7 +63,7 @@ export function* fetchAdventurerSaga(): * {
 
   yield put(
     updateEntity({
-      [ENTITY_KEYS.ADVENTURER_DETAILS]: {
+      [ENTITY_KEYS.ADVENTURER]: {
         belt: translateBeltNumberToColour(currentBelt),
         inTravelMode,
         level,

@@ -15,6 +15,5 @@ export const ENTITY_KEYS = {
   GAME_PROVIDER: "gameProvider",
   PLAYER_GAMES: "playerGames",
   REEL_RACES: "reelRaces",
-  ADVENTURER_PROGRESSION: "adventurerProgression",
-  ADVENTURER_DETAILS: "adventurerDetails",
+  ADVENTURER: "adventurer",
 };

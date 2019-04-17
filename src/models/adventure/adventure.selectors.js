@@ -3,11 +3,7 @@
 import { createSelector } from "reselect";
 import * as R from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
-import type {
-  AdventurerDetails,
-  AdventurerProgression,
-  AdventurerProgressionRaw,
-} from "./adventure.types";
+import type { Adventurer, AdventurerRaw } from "./adventure.types";
 import { NUMBER_OF_LEVELS_IN_TRAVEL_MODE } from "./adventure.constants";
 
 function translateTravelModeToSingleLevelProgression(
@@ -28,7 +24,7 @@ function translateTravelModeToSingleLevelProgression(
 }
 
 function getProgression(
-  data: AdventurerProgressionRaw,
+  data: AdventurerRaw,
   levels: Array<number[]>,
   pointsVersion: number
 ): any {
@@ -60,36 +56,35 @@ function getProgression(
   };
 }
 
-export const adventurerProgressionSelector: any => AdventurerProgression = createSelector(
-  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER_PROGRESSION]),
-  adventurerProgression => {
+export const adventurerSelector: any => Adventurer = createSelector(
+  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
+  adventurer => {
     const {
       inTravelMode,
       level,
       levels,
+      name,
+      belt,
       pointsVersion,
-    } = adventurerProgression;
+    } = adventurer;
     const { points, pointsRequiredForNextLevel } = getProgression(
-      adventurerProgression,
+      adventurer,
       levels,
       pointsVersion
     );
 
     return {
-      level,
+      belt,
       inTravelMode,
+      level,
+      name,
       points,
       pointsRequiredForNextLevel,
     };
   }
 );
 
-export const adventurerProgressionRawSelector: any => AdventurerProgression = createSelector(
-  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER_PROGRESSION]),
-  R.identity
-);
-
-export const adventurerDetailsSelector: any => AdventurerDetails = createSelector(
-  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER_DETAILS]),
+export const adventurerRawSelector: any => AdventurerRaw = createSelector(
+  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
   R.identity
 );

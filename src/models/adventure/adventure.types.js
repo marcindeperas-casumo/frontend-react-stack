@@ -6,9 +6,13 @@ export type AdventurerDetailsRaw = {
   playerId: string,
 };
 
-export type AdventurerDetails = {
+export type Adventurer = {
+  belt: String,
+  level: number,
+  inTravelMode: boolean,
   name: string,
-  belt: string,
+  points: number,
+  pointsRequiredForNextLevel: number,
 };
 
 export type AdventureResponse<T> = {
@@ -47,12 +51,17 @@ export type AdventurerProgressionRaw = {
   world: number,
 };
 
-export type AdventurerProgression = {
+export type AdventurerRaw = {
+  belt: String,
   inTravelMode: boolean,
   level: number,
+  levels: Array<number>,
+  name: String,
   points: number,
-  pointsRequiredForNextLevel: number,
+  pointsRequiredForNextSpaceCrystal: number,
+  pointsVersion: number,
   progression: number,
+  spaceCrystals: Array<number>,
 };
 
 export type BeltType =
@@ -64,12 +73,3 @@ export type BeltType =
   | "purple"
   | "black"
   | "sensei";
-
-export type Adventurer = {
-  belt: BeltType,
-  inTravelMode: boolean,
-  level: number,
-  name: string,
-  points: number,
-  pointsRequiredForNextLevel: number,
-};
