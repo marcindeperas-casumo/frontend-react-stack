@@ -27,7 +27,7 @@ const renderResults = ({ results, type }) => {
 
   return (
     <>
-      <Flex className="u-margin-bottom">
+      <Flex spacing="sm" className="u-margin-bottom">
         {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
@@ -50,7 +50,7 @@ const renderResults = ({ results, type }) => {
         })}
       </Flex>
       <Text
-        size="xs"
+        size="2xs"
         className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
         <DisplayText type={type} />
@@ -93,11 +93,7 @@ const getText = field => (
   <CMSField
     slug="mobile.live-casino-cards-content"
     field={field}
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
+    view={text => text}
   />
 );
 
