@@ -48,12 +48,12 @@ describe("GameSearchInput", () => {
   });
 
   test("should debounce fetchSearchResults", () => {
-    const initFetchQuerySearch = jest.fn();
+    const initFetchGameSearchCount = jest.fn();
     const rendered = shallow(
-      <GameSearchInput initFetchQuerySearch={initFetchQuerySearch} />
+      <GameSearchInput initFetchGameSearchCount={initFetchGameSearchCount} />
     );
 
-    expect(initFetchQuerySearch).toHaveBeenCalledTimes(0);
+    expect(initFetchGameSearchCount).toHaveBeenCalledTimes(0);
 
     rendered
       .find("SearchInput")
@@ -67,7 +67,7 @@ describe("GameSearchInput", () => {
 
     clock.tick(500);
 
-    expect(initFetchQuerySearch).toHaveBeenCalledTimes(1);
+    expect(initFetchGameSearchCount).toHaveBeenCalledTimes(1);
   });
 
   test("should call clear search when onClear (handleClearSearchInput) is called", () => {

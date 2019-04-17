@@ -6,7 +6,7 @@ import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
 type Props = {
-  initFetchQuerySearch: Function,
+  initFetchGameSearchCount: Function,
   clearSearch: Function,
   noResults: boolean,
   placeholder: string,
@@ -48,7 +48,8 @@ export default class GameSearchInput extends PureComponent<Props, State> {
     });
   };
 
-  fetchSearchResults = () => this.props.initFetchQuerySearch(this.state.query);
+  fetchSearchResults = () =>
+    this.props.initFetchGameSearchCount(this.state.query);
 
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
     const query = target.value;

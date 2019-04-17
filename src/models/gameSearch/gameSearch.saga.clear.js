@@ -1,14 +1,23 @@
-import { call, put } from "redux-saga/effects";
+import { call, put, select, all } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
-import { GAME_LIST_IDS } from "Src/constants";
+import {
+  gameSearchResultsPagesLoaded,
+  getgameSearchListIdByPage,
+} from "Models/gameSearch";
 
 export function* clearSearchResultsSaga() {
-  const { entities } = yield call(normalizeData, {
-    [ENTITY_KEYS.GAME_LIST]: {
-      id: GAME_LIST_IDS.GAME_SEARCH,
-      games: [],
-    },
-  });
+  const pagesLoaded = yield select(gameSearchResultsPagesLoaded);
 
-  yield put(updateEntity(entities));
+  const entitiesList = yield all(
+    pagesLoaded.map(page =>
+      call(normalizeData, {
+        [ENTITY_KEYS.GAME_LIST]: {
+          id: getgameSearchListIdByPage(page),
+          games: [],
+        },
+      })
+    )
+  );
+
+  yield all(entitiesList.map(({ entities }) => put(updateEntity(entities))));
 }
