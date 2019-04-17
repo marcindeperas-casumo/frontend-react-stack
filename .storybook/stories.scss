@@ -3,9 +3,6 @@
 @include cudl-prevent-compile(cudl-sass-typography);
 @import "cudl-typography";
 @include cudl-reset-compile(cudl-sass-typography);
-@include cudl-prevent-compile(cudl-sass-typography);
-@import "cudl-typography";
-@include cudl-reset-compile(cudl-sass-typography);
 
 $cudl-font-stack: "Circular Pro", -apple-system, BlinkMacSystemFont, "Segoe UI",
   "Helvetica Neue", Arial, Helvetica, sans-serif;
