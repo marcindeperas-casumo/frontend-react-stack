@@ -10,6 +10,7 @@ export const ENTITY_KEYS = {
   LIVE_TABLE: "liveTable",
   GAME: "game",
   GAME_LIST: "gameList",
+  GAME_SEARCH: "gameSearch",
   CMS: "cms",
   GAME_PROVIDER: "gameProvider",
   PLAYER_GAMES: "playerGames",

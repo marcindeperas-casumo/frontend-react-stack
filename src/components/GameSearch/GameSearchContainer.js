@@ -6,7 +6,8 @@ import GameSearch from "Components/GameSearch/GameSearch";
 import {
   cmsPageSlug,
   gameSearchResults,
-  initFetchQuerySearch,
+  gameSearchResultsCountSelector,
+  initFetchGameSearchCount,
   isLoadingSelector,
   clearSearch,
   gameSearchQuerySelector,
@@ -17,6 +18,7 @@ import { getField, fetchPageBySlug } from "Models/cms";
 const GameSearchConnected = connect(
   createStructuredSelector({
     searchResults: gameSearchResults,
+    searchResultsCount: gameSearchResultsCountSelector,
     loading: isLoadingSelector,
     inputPromptPlaceholder: getField({
       slug: cmsPageSlug,
@@ -25,7 +27,7 @@ const GameSearchConnected = connect(
     query: gameSearchQuerySelector,
   }),
   {
-    initFetchQuerySearch,
+    initFetchGameSearchCount,
     clearSearch,
     preloadFetchPlayerGames,
     fetchPageBySlug: () => fetchPageBySlug(cmsPageSlug),

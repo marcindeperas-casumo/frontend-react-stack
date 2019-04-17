@@ -40,8 +40,9 @@ import {
 } from "Models/cometd";
 import {
   types as gameSearchTypes,
-  gameSearchSaga,
+  gameSearchCountSaga,
   clearSearchResultsSaga,
+  fetchGameSearchPageSaga,
 } from "Models/gameSearch";
 import {
   types as playerGamesTypes,
@@ -124,7 +125,16 @@ export default function* rootSaga(dispatch) {
     fetchPlayerGamesCountSaga
   );
   yield all([
-    fork(takeLatest, gameSearchTypes.GAME_SEARCH_FETCH, gameSearchSaga),
+    fork(
+      takeLatest,
+      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
+      gameSearchCountSaga
+    ),
+    fork(
+      takeEvery,
+      gameSearchTypes.GAME_SEARCH_FETCH_PAGE,
+      fetchGameSearchPageSaga
+    ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);

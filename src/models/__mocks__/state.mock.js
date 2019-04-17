@@ -2532,7 +2532,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
           "diamond-mine",
         ],
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/nyx-bg.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/nyx-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/nyx.png",
         url: "/en/games/provider/nyx",
       },
@@ -2542,7 +2542,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-thunderkick",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick-bg.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/thunderkick-bg.png",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2019/02/thunderkick.png",
         url: "/en/games/provider/thunderkick",
@@ -2553,7 +2553,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-microgaming",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming-bg1.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/microgaming-bg.png",
         logo:
           "https://cms.casumo.com/wp-content/uploads/2019/02/microgaming1.png",
         url: "/en/games/provider/microgaming",
@@ -2564,7 +2564,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         inMaintenance: false,
         slug: "casumo-services-ltd-redtiger",
         background:
-          "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger-bg1.png",
+          "https://cms.casumo.com/wp-content/uploads/2019/03/redtiger-bg.png",
         logo: "https://cms.casumo.com/wp-content/uploads/2019/02/redtiger1.png",
         url: "/en/games/provider/redtiger",
       },
