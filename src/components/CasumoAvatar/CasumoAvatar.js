@@ -6,27 +6,41 @@ import { type BeltType } from "../../models/adventure";
 import { beltToColourMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
+import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
   /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
+  backgroundColour?: string,
 };
 
-export const getClassModifier = (belt: BeltType) => {
+export const getClassModifierByBelt = (belt: BeltType) => {
   const className = beltToColourMap[belt] || beltToColourMap.rope;
 
   return `t-color-${className}`;
 };
+export const getBackgroundColourClassModifier = (backgroundColour: string) => {
+  return `t-background-${backgroundColour}`;
+};
+
+const Avatar = (props: Props) => {
+  if (props.belt === "sensei") {
+    return <SenseiAvatar />;
+  }
+
+  return <SumoAvatar />;
+};
 
 export class CasumoAvatar extends PureComponent<Props> {
   render() {
-    const { belt } = this.props;
+    const { belt, backgroundColour = "teal" } = this.props;
 
     return (
       <div
         className={classNames(
-          `c-casumo-avatar t-border-r--16 t-background-teal o-ratio`,
-          getClassModifier(belt)
+          `c-casumo-avatar t-border-r--16 o-ratio`,
+          getBackgroundColourClassModifier(backgroundColour),
+          getClassModifierByBelt(belt)
         )}
       >
         <Flex
@@ -34,7 +48,7 @@ export class CasumoAvatar extends PureComponent<Props> {
           justify="center"
           className="o-ratio__content u-padding--md"
         >
-          <SumoAvatar />
+          <Avatar {...this.props} />
         </Flex>
       </div>
     );

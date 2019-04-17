@@ -12,13 +12,18 @@ stories.add(
   "Default",
   () => {
     const belt = select("Belt level", belts, belts[0]);
+    const backgroundColour = select(
+      "Background Colour",
+      ["teal", "yellow"],
+      "teal"
+    );
 
     return (
       <div
         className="u-margin-left--auto u-margin-right--auto"
         style={{ maxWidth: "80px" }}
       >
-        <CasumoAvatar belt={belt} />
+        <CasumoAvatar belt={belt} backgroundColour={backgroundColour} />
       </div>
     );
   },
