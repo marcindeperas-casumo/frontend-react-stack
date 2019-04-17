@@ -2,19 +2,10 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
+import { type BeltType } from "../../models/adventure";
 import { beltToColourMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
-
-type BeltType =
-  | "rope"
-  | "white"
-  | "yellow"
-  | "red"
-  | "blue"
-  | "purple"
-  | "black"
-  | "sensei";
 
 type Props = {
   /** Type of belt (rope, ..., sensei) */

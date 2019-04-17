@@ -1,0 +1,10 @@
+$casumo-avatar-widths: (
+    mobile: 80px,
+    phablet: 96px,
+    tablet: 96px,
+    desktop: 96px,
+);
+  
+.c-adventure-card__avatar {
+    @include cudl-breakpoint-with($casumo-avatar-widths, width);
+}
