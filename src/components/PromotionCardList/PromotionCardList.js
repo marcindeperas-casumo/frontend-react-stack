@@ -74,7 +74,11 @@ class PromotionCardList extends PureComponent<Props> {
             </a>
           </Flex.Item>
         </Flex>
-        <Scrollable padding={paddingPerDevice} itemSpacing="md">
+        <Scrollable
+          itemClassName="c-promotion-card"
+          padding={paddingPerDevice}
+          itemSpacing="md"
+        >
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
               slug={`promotions.${promotionSlug}`}
