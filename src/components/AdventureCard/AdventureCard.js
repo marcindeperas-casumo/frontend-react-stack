@@ -5,20 +5,26 @@ import Text from "@casumo/cmp-text";
 import { ProgressBar } from "Components/ProgressBar/ProgressBar";
 import { stringToHTML } from "Utils/index";
 import { CasumoAvatar } from "Components/CasumoAvatar/CasumoAvatar";
-import type { Adventurer } from "../../models/adventure";
+import type { Adventurer, AdventureContent } from "Models/adventure";
 import "./AdventureCard.scss";
 
 type Props = {
   adventurer: Adventurer,
+  content: AdventureContent,
+  isContentFetched: boolean,
+  isAdventurerFetched: Boolean,
   playerId: string,
   sessionId: string,
   fetchAdventurer: () => void,
+  fetchContent: () => void,
   subscribeToUpdates: (playerId: string, sessionId: string) => void,
   unsubscribeFromUpdates: (playerId: string) => void,
 };
 
 const AdventureAvatarAndDetails = (props: Props) => {
   const { name, belt, level } = props.adventurer;
+  const { level_label } = props.content;
+
   return (
     <Flex
       align="center"
@@ -36,9 +42,11 @@ const AdventureAvatarAndDetails = (props: Props) => {
         />
         <Text
           tag="div"
-          className="u-font-weight-bold t-color-grey-light-2"
+          className="t-color-grey-light-2"
           size="sm"
-          dangerouslySetInnerHTML={stringToHTML(`Level ${level}`)}
+          dangerouslySetInnerHTML={stringToHTML(
+            level_label.replace("{{level}}", level.toString())
+          )}
         />
       </Flex.Item>
     </Flex>
@@ -46,27 +54,11 @@ const AdventureAvatarAndDetails = (props: Props) => {
 };
 
 export class AdventureProgressBar extends React.PureComponent<Props> {
-  componentDidMount() {
-    const {
-      fetchAdventurer,
-      subscribeToUpdates,
-      playerId,
-      sessionId,
-    } = this.props;
-
-    fetchAdventurer();
-    subscribeToUpdates(playerId, sessionId);
-  }
-  componentWillUnmount() {
-    const { unsubscribeFromUpdates, playerId } = this.props;
-    unsubscribeFromUpdates(playerId);
-  }
-
   render() {
     const {
+      inBonusMode,
       points,
       pointsRequiredForNextLevel,
-      inTravelMode,
     } = this.props.adventurer;
 
     const progressPercentage = points * 100;
@@ -90,7 +82,7 @@ export class AdventureProgressBar extends React.PureComponent<Props> {
               `<strong>${progressPercentage}% completed</strong> to next level`
             )}
           />
-          {!inTravelMode ? (
+          {!inBonusMode ? (
             <Text
               tag="div"
               size="sm"
@@ -108,7 +100,35 @@ export class AdventureProgressBar extends React.PureComponent<Props> {
 }
 
 export default class AdventureCard extends PureComponent<Props> {
+  componentDidMount() {
+    const {
+      isContentFetched,
+      fetchAdventurer,
+      playerId,
+      sessionId,
+      subscribeToUpdates,
+    } = this.props;
+
+    if (!isContentFetched) {
+      this.props.fetchContent();
+    }
+
+    fetchAdventurer();
+    subscribeToUpdates(playerId, sessionId);
+  }
+  componentWillUnmount() {
+    const { unsubscribeFromUpdates, playerId } = this.props;
+
+    unsubscribeFromUpdates(playerId);
+  }
+
   render() {
+    const { isContentFetched, isAdventurerFetched } = this.props;
+
+    if (!isContentFetched || !isAdventurerFetched) {
+      return null;
+    }
+
     return (
       <Flex
         align="center"

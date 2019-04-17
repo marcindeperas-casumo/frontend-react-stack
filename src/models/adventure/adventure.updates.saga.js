@@ -1,18 +1,15 @@
 import { put, select } from "redux-saga/effects";
 import { updateEntity, ENTITY_KEYS } from "Models/schema";
-import {
-  adventurerProgressionSelector,
-  adventurerProgressionRawSelector,
-} from "Models/adventure";
+import { adventurerRawSelector } from "Models/adventure";
 
 export function* adventureUpdatesSaga(action) {
   const { data } = action;
-  const currentProgression = yield select(adventurerProgressionRawSelector);
+  const currentProgression = yield select(adventurerRawSelector);
 
   if (data.setPoints) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           points: data.setPoints,
         },
@@ -23,7 +20,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.leveledUp) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           level: data.leveledUp,
         },
@@ -34,7 +31,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.worldEntered) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           points: 0,
         },
@@ -45,7 +42,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.arrivedOnPlanet) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           inTravelMode: false,
           points: 0,
@@ -57,7 +54,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.limboEntered) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           inTravelMode: true,
           points: 0,
@@ -69,7 +66,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.limboGemReceived) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           spaceCrystals: currentProgression.spaceCrystals.concat([
             data.limboGemReceived.type,
@@ -85,7 +82,7 @@ export function* adventureUpdatesSaga(action) {
   if (data.limboGemsConverted) {
     yield put(
       updateEntity({
-        [ENTITY_KEYS.ADVENTURER_PROGRESSION]: {
+        [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
           spaceCrystals: [],
         },

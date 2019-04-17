@@ -7,30 +7,8 @@ import {
   fetchAdventurerDetails,
   fetchAdventurerProgression,
 } from "./adventure.actions";
-import {
-  actionTypes,
-  NUMBER_OF_LEVELS_IN_TRAVEL_MODE,
-} from "./adventure.constants";
-import type {
-  AdventureResponse,
-  AdventurerDetailsRaw,
-  AdventurerProgressionRaw,
-} from "./adventure.types";
-
-function translateBeltNumberToColour(belt: number) {
-  const belts = [
-    "rope",
-    "white",
-    "yellow",
-    "red",
-    "blue",
-    "purple",
-    "black",
-    "sensei",
-  ];
-
-  return belts[belt];
-}
+import { actionTypes } from "./adventure.constants";
+import { translateBeltNumberToColour } from "./adventure.utils";
 
 export function* fetchAdventurerSaga(): * {
   const playerId = yield select(playerIdSelector);

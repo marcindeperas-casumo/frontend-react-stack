@@ -1,72 +1,33 @@
 // @flow
 
 import { createSelector } from "reselect";
-import * as R from "ramda";
+import { compose, not, isNil, pathOr, prop, propOr, identity } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
-import type { Adventurer, AdventurerRaw } from "./adventure.types";
-import { NUMBER_OF_LEVELS_IN_TRAVEL_MODE } from "./adventure.constants";
+import { getPage } from "Models/cms";
+import { CMS_CONTENT_SLUG } from "./adventure.constants";
+import type {
+  Adventurer,
+  AdventurerRaw,
+  AdventureContent,
+} from "./adventure.types";
+import { getProgression } from "./adventure.utils";
 
-function translateTravelModeToSingleLevelProgression(
-  points: number,
-  remainingPointsToNextLevel: number,
-  spaceCrystals: Array<number>
-): any {
-  const progressPerLevel = 1 / NUMBER_OF_LEVELS_IN_TRAVEL_MODE;
-  const progressBasedOnPreviousLevels = spaceCrystals.length * progressPerLevel;
-  const currentLevelProgress = points / remainingPointsToNextLevel;
-
-  return {
-    points:
-      progressBasedOnPreviousLevels + currentLevelProgress * progressPerLevel,
-    pointsRequiredForNextLevel:
-      progressBasedOnPreviousLevels + currentLevelProgress,
-  };
-}
-
-function getProgression(
-  data: AdventurerRaw,
-  levels: Array<number[]>,
-  pointsVersion: number
-): any {
-  const {
-    inTravelMode,
-    points,
-    pointsRequiredForNextSpaceCrystal,
-    spaceCrystals,
-  } = data;
-
-  const progressionOutline = levels ? levels[pointsVersion] : [];
-
-  if (inTravelMode) {
-    return translateTravelModeToSingleLevelProgression(
-      points,
-      pointsRequiredForNextSpaceCrystal,
-      spaceCrystals
-    );
-  }
-
-  const pointsRequiredForNextLevel = progressionOutline.reduce(
-    (acc, level) => (points > level ? acc + level : acc),
-    0
-  );
-
-  return {
-    points,
-    pointsRequiredForNextLevel,
-  };
-}
-
-export const adventurerSelector: any => Adventurer = createSelector(
-  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
+export const adventurerSelector: void => Adventurer = createSelector(
+  pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
   adventurer => {
     const {
-      inTravelMode,
+      inTravelMode = false,
       level,
       levels,
       name,
       belt,
       pointsVersion,
     } = adventurer;
+
+    if (!name) {
+      return {};
+    }
+
     const { points, pointsRequiredForNextLevel } = getProgression(
       adventurer,
       levels,
@@ -75,7 +36,7 @@ export const adventurerSelector: any => Adventurer = createSelector(
 
     return {
       belt,
-      inTravelMode,
+      inBonusMode: inTravelMode,
       level,
       name,
       points,
@@ -84,7 +45,21 @@ export const adventurerSelector: any => Adventurer = createSelector(
   }
 );
 
-export const adventurerRawSelector: any => AdventurerRaw = createSelector(
-  R.pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
-  R.identity
+export const adventurerRawSelector: void => AdventurerRaw = createSelector(
+  pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
+  identity
+);
+
+export const adventureContentSelector: ({}) => AdventureContent = createSelector(
+  getPage(CMS_CONTENT_SLUG),
+  propOr({}, "fields")
+);
+
+export const isAdventurerFetchedSelector = createSelector(
+  adventurerRawSelector,
+  compose(
+    not,
+    isNil,
+    prop("name")
+  )
 );

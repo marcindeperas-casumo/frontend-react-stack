@@ -1,25 +1,16 @@
 // @flow
 
-export type AdventurerDetailsRaw = {
-  casumoName: string,
-  currentBelt: number,
-  playerId: string,
-};
+export type BeltType =
+  | "rope"
+  | "white"
+  | "yellow"
+  | "red"
+  | "blue"
+  | "purple"
+  | "black"
+  | "sensei";
 
-export type Adventurer = {
-  belt: String,
-  level: number,
-  inTravelMode: boolean,
-  name: string,
-  points: number,
-  pointsRequiredForNextLevel: number,
-};
-
-export type AdventureResponse<T> = {
-  response: T,
-};
-
-export type AcheivementRaw = {
+type AcheivementRaw = {
   badgeRuleName: string,
   count: string,
   lastCreatedTime: number,
@@ -51,12 +42,18 @@ export type AdventurerProgressionRaw = {
   world: number,
 };
 
+export type AdventurerDetailsRaw = {
+  casumoName: string,
+  currentBelt: number,
+  playerId: string,
+};
+
 export type AdventurerRaw = {
-  belt: String,
+  belt: string,
   inTravelMode: boolean,
   level: number,
   levels: Array<number>,
-  name: String,
+  name: string,
   points: number,
   pointsRequiredForNextSpaceCrystal: number,
   pointsVersion: number,
@@ -64,12 +61,23 @@ export type AdventurerRaw = {
   spaceCrystals: Array<number>,
 };
 
-export type BeltType =
-  | "rope"
-  | "white"
-  | "yellow"
-  | "red"
-  | "blue"
-  | "purple"
-  | "black"
-  | "sensei";
+export type AdventurerLevelProgress = {
+  points: number,
+  pointsRequiredForNextLevel: number,
+};
+
+export type AdventureContent = {
+  progression_label_standard: string,
+  progression_label_bonus: string,
+  level_label: string,
+  bonus_mode_label: string,
+};
+
+export type Adventurer = {
+  belt: BeltType,
+  inBonusMode: boolean,
+  level: number,
+  name: string,
+  points: number,
+  pointsRequiredForNextLevel: number,
+};
