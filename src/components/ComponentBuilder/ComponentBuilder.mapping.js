@@ -19,6 +19,7 @@ import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import ContentMustDropJackpotsWidget from "Components/ContentMustDropJackpotsWidget";
 import TileListHorizontal from "Components/TileListHorizontal";
 import ReelRacesList from "Components/ReelRacesList";
+import OptInButton from "Components/OptInButton";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -32,6 +33,7 @@ export const COMPONENT_MAPPING = {
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
   CTA: ContentButton,
+  OPT_IN_BUTTON: OptInButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
   PROMOTION_CARDS_GALLERY: PromotionGallery,
