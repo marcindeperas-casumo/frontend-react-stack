@@ -1,0 +1,20 @@
+[
+  {
+    "valuableType": "cash",
+    "title": "50€ Bonus Money",
+    "magnitude": "50",
+    "currencySymbol": "€"
+  },
+  {
+    "valuableType": "deposit",
+    "title": "100% Deposit Bonus"
+  },
+  {
+    "valuableType": "sport",
+    "title": "5€ Sport Bet"
+  },
+  {
+    "valuableType": "spins",
+    "title": "20 Free Spins"
+  }
+]
