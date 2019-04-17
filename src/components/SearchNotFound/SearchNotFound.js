@@ -41,7 +41,7 @@ class SearchNotFound extends PureComponent<Props> {
             <Text className="u-margin-bottom--sm u-font-weight-bold">
               <DangerousHtml html={title} />
             </Text>
-            <Text className="u-margin-bottom--none" size="sm">
+            <Text className="u-margin-bottom--none" size="xs">
               <DangerousHtml html={content} />
             </Text>
           </div>
