@@ -98,7 +98,7 @@ export class CuratedCard extends PureComponent<Props> {
             {...backgroundProps}
           />
           <Card
-            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg"
             justify={justify}
             spacing={spacing}
             header={this.renderHeader}
@@ -118,7 +118,7 @@ export class CuratedCard extends PureComponent<Props> {
         {!isGame && (
           <Text
             className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
-            size="xs"
+            size="2xs"
           >
             {subtitle}
           </Text>
