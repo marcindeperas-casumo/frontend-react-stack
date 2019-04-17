@@ -1,12 +1,11 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import Valuable from "Components/Valuable";
-import { VALUABLE_TYPE } from "Models/valuables/valuables.constants";
+import { VALUABLE_TYPES } from "Models/valuables/valuables.constants";
 import ValuableCardBackground from "./ValuableCardBackground";
 import "./ValuableCard.scss";
 
-type ValuableType = $Values<VALUABLE_TYPE>;
+type ValuableType = $Values<VALUABLE_TYPES>;
 
 type Props = {
   title: string,
@@ -14,10 +13,8 @@ type Props = {
 };
 
 class ValuableCard extends PureComponent<Props> {
-  ValuableCoin = () => <Valuable magnitude={"20"} />;
-
   render() {
-    const { title } = this.props;
+    const { title, valuableType } = this.props;
 
     return (
       <Flex
@@ -26,15 +23,15 @@ class ValuableCard extends PureComponent<Props> {
         direction="vertical"
       >
         <Flex.Block>
-          <ValuableCardBackground
-            valuableType={VALUABLE_TYPE.CASH}
-            ValuableCoin={this.ValuableCoin}
-          />
+          {/*
+            TODO:
+            -> to rename this to card header
+            -> spread props
+          */}
+          <ValuableCardBackground valuableType={valuableType} />
         </Flex.Block>
         <Flex.Item className="c-valuable-card__content u-text-align-center">
-          <div className="t-color-grey-dark-2 u-font-weight-bold">
-            20 Bonus Spins
-          </div>
+          <div className="t-color-grey-dark-2 u-font-weight-bold">{title}</div>
         </Flex.Item>
       </Flex>
     );
