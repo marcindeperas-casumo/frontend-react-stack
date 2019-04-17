@@ -12,17 +12,24 @@ const stories = storiesOf("GameTileWithActiveOverlay", module);
 if (isNotChromatic) {
   stories.add("Default tile with active overlay (Connected)", () => {
     return (
-      <MockStore>
-        <GameTileWithActiveOverlayConnected id={game.slug} />
-      </MockStore>
+      <div style={{ maxWidth: "170px" }}>
+        <MockStore>
+          <GameTileWithActiveOverlayConnected id={game.slug} />
+        </MockStore>
+      </div>
     );
   });
 }
 
 stories.add("Default tile with active overlay", () => {
   return (
-    <MockStore>
-      <GameTileWithActiveOverlay game={game} onLaunchGame={action(game.name)} />
-    </MockStore>
+    <div style={{ maxWidth: "170px" }}>
+      <MockStore>
+        <GameTileWithActiveOverlay
+          game={game}
+          onLaunchGame={action(game.name)}
+        />
+      </MockStore>
+    </div>
   );
 });
