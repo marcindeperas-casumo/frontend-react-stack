@@ -32,7 +32,7 @@ const Column = (props: { top: string | number, bottom: string | number }) => (
     <Text tag="span" className="t-color-white u-font-weight-bold">
       {props.top}
     </Text>
-    <Text tag="span" size="sm" className="t-color-white u-opacity-75">
+    <Text tag="span" size="xs" className="t-color-white u-opacity-75">
       {props.bottom}
     </Text>
   </Flex>
@@ -68,14 +68,15 @@ export class ReelRaceCard extends React.Component<Props> {
             data={{ state: BUTTON_STATE.PLAY }}
           >
             <Button
+              size="sm"
               variant="variant-1"
-              className="u-padding-y--md u-padding-x--xlg"
+              className="u-padding-y--md u-padding-x--lg"
               onClick={this.props.launchGame}
             >
-              <PlayIcon className="c-reel-race__button-icon" />
-              <Text tag="span" className="u-margin-left">
+              <PlayIcon size="sm" className="c-reel-race__button-icon" />
+              <span className="u-margin-left">
                 {t.opted_in_cta_single_game_short}
-              </Text>
+              </span>
             </Button>
           </TrackClick>
         );
@@ -115,7 +116,7 @@ export class ReelRaceCard extends React.Component<Props> {
         <Flex direction="vertical" spacing="none">
           <Text
             tag="span"
-            size="sm"
+            size="xs"
             className="t-color-white u-font-weight-bold"
           >
             {t.ending_in}
@@ -136,7 +137,7 @@ export class ReelRaceCard extends React.Component<Props> {
         <Flex direction="vertical" spacing="none">
           <Text
             tag="span"
-            size="sm"
+            size="xs"
             className="t-color-white u-font-weight-bold"
           >
             {t.starting_in}
@@ -270,12 +271,15 @@ export class ReelRaceCard extends React.Component<Props> {
                   spacing="sm"
                   className="u-margin-left--md"
                 >
-                  <Text tag="span" className="u-font-weight-bold">
+                  <Text
+                    tag="span"
+                    className="u-margin-bottom--sm u-font-weight-bold"
+                  >
                     {t.compete_for.replace("{{prize}}", this.props.prize)}
                   </Text>
                   <Text
                     tag="span"
-                    size="sm"
+                    size="xs"
                     className="t-color-white u-opacity-75"
                   >
                     <DangerousHtml html={this.props.game.name} />
