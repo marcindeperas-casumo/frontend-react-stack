@@ -1,0 +1,8 @@
+query PlayerValuablesQuery {
+  player {
+    valuables {
+      id
+      state
+    }
+  }
+}
