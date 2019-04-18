@@ -19,9 +19,7 @@ export default class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
     const { name, logo, logoBackground } = game;
-    const jackpotInfo = game.jackpotInfo || {};
     const lobby = game.lobby || {};
-    const { formattedJackpotAmount } = jackpotInfo;
     const { bets } = lobby;
 
     return (
@@ -48,7 +46,6 @@ export default class GameRow extends PureComponent<Props> {
 
           {/* Text */}
           <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
-            <JackpotAmount amount={formattedJackpotAmount} />
             <Text
               tag="div"
               size="sm"
@@ -70,22 +67,6 @@ export default class GameRow extends PureComponent<Props> {
       </TrackClick>
     );
   }
-}
-
-function JackpotAmount({ amount }) {
-  if (amount) {
-    return (
-      <Text
-        tag="div"
-        size="sm"
-        className="u-font-weight-bold t-color-red u-padding-bottom--sm"
-      >
-        {amount}
-      </Text>
-    );
-  }
-
-  return null;
 }
 
 function BetsLevels({ bets }) {
