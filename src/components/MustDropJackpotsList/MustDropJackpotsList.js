@@ -43,7 +43,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           </Flex.Item>
           <Flex.Item className="u-padding-right--md">
             <a href="/games/must-drop-jackpots">
-              <Text tag="h3" className="t-color-blue">
+              <Text size="xs" tag="h3" className="t-color-blue">
                 {seeMore}
               </Text>
             </a>

@@ -62,7 +62,7 @@ export default class ScrollableList extends PureComponent<Props> {
           {seeMoreUrl ? (
             <Flex.Item className="u-padding-right--md">
               <a href={seeMoreUrl}>
-                <Text tag="h3" className="t-color-blue">
+                <Text size="xs" tag="h3" className="t-color-blue">
                   {seeMoreText}
                 </Text>
               </a>
