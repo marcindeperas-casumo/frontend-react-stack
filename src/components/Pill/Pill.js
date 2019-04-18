@@ -35,15 +35,11 @@ export const Pill = ({
   );
 
   return (
-    <Flex onClick={onClick} spacing="sm" className={className} align="center">
+    <Flex onClick={onClick} className={className} align="center">
       <div className="u-padding--sm">
-        <Flex.Block
-          justify="center"
-          align="center"
-          className="u-text-nowrap o-flex-align--center u-line-height--1 u-font-sm"
-        >
+        <div className="u-text-nowrap o-flex-align--center u-line-height--1 u-font-sm">
           {children}
-        </Flex.Block>
+        </div>
       </div>
 
       {onRemove && (
