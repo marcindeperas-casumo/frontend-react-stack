@@ -4,9 +4,11 @@ import { EVENTS, EVENT_PROPS } from "Src/constants";
 import OptInButton from "Components/OptInButton";
 
 type Props = {
-  /** A descriptive comment about the 'msg' prop. Note that this will appear in storybook info addon props table. */
+  /** The slug of the page in the CMS which contains opt-in/opt-out fields */
   slug: string,
+  /** The opt-in field name on the CMS page - more flexibility when there is no standard */
   optInField: string,
+  /** The opt-out field name on the CMS page - more flexibility when there is no standard */
   optOutField: string,
 };
 
