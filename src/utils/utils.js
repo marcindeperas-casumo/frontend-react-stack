@@ -191,7 +191,7 @@ export function formatCurrency({
   }).format(value);
 }
 
-const INTERPOLATION_REGEX = /{{2,3}\s*(\S+)\s*}{2,3}/gm;
+const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
 export const interpolate = (
   target: string,

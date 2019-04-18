@@ -223,7 +223,7 @@ describe("formatCurrency()", () => {
 
 describe("interpolate()", () => {
   test("should replace dynamic strings", () => {
-    const input = "I am a {{var}} to be replaced with {{  something  }}";
+    const input = "I am a {{  var  }} to be replaced with {{{something}}}";
     const output = "I am a variable to be replaced with a value";
     expect(interpolate(input, { var: "variable", something: "a value" })).toBe(
       output
