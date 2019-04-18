@@ -15,7 +15,6 @@ type Props = {
 
 const defaultOptInValue = "Opt-In";
 const defaultOptOutValue = "Opted-In";
-const getSlug = slug => `${slug}.*`;
 
 const OptInButtonConnected = connect(
   (state, { slug, optInField, optOutField }) => ({
@@ -35,7 +34,7 @@ const OptInButtonConnected = connect(
     },
   }),
   (dispatch, { slug }) => ({
-    fetchPage: () => dispatch(fetchPageBySlug(getSlug(slug))),
+    fetchPage: () => dispatch(fetchPageBySlug(slug)),
   })
 )(OptInButton);
 
