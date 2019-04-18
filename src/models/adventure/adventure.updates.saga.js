@@ -1,6 +1,7 @@
 import { put, select } from "redux-saga/effects";
 import { updateEntity, ENTITY_KEYS } from "Models/schema";
 import { adventurerRawSelector } from "Models/adventure";
+import { translateBeltNumberToColour } from "./adventure.utils";
 
 export function* adventureUpdatesSaga(action) {
   const { data } = action;
@@ -22,7 +23,8 @@ export function* adventureUpdatesSaga(action) {
       updateEntity({
         [ENTITY_KEYS.ADVENTURER]: {
           ...currentProgression,
-          level: data.leveledUp,
+          // Level is zero based
+          level: data.leveledUp + 1,
         },
       })
     );
@@ -91,6 +93,13 @@ export function* adventureUpdatesSaga(action) {
   }
 
   if (data.beltEarned) {
-    // change belt
+    yield put(
+      updateEntity({
+        [ENTITY_KEYS.ADVENTURER]: {
+          ...currentProgression,
+          belt: translateBeltNumberToColour(data.beltEarned),
+        },
+      })
+    );
   }
 }

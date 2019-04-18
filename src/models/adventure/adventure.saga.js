@@ -44,8 +44,9 @@ export function* fetchAdventurerSaga(): * {
       [ENTITY_KEYS.ADVENTURER]: {
         belt: translateBeltNumberToColour(currentBelt),
         inTravelMode,
-        level,
-        levels: levels[pointsVersion],
+        // Level is zero based
+        level: level + 1,
+        levels: levels[pointsVersion] || [],
         name: casumoName,
         points,
         pointsRequiredForNextSpaceCrystal,
