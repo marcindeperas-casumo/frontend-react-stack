@@ -196,8 +196,7 @@ const INTERPOLATION_REGEX = /{{2,3}\s*(\S+)\s*}{2,3}/gm;
 export const interpolate = (
   target: string,
   replacements: { [string]: string | number }
-) => {
-  return target.replace(INTERPOLATION_REGEX, (match, param) =>
+) =>
+  target.replace(INTERPOLATION_REGEX, (match, param) =>
     pathOr(match, [param], replacements)
   );
-};
