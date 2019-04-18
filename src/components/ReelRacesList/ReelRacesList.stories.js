@@ -30,7 +30,7 @@ const props = {
     opt_in: "opt_in",
     opted_in: "opted_in",
     opted_in_cta_single_game_short: "opted_in_cta_single_game_short",
-    compete_for: "Chocola for {{prize}}",
+    compete_for: "Compete for {{prize}}",
     title: "Reel Races",
     caveat_short: "false",
   },
