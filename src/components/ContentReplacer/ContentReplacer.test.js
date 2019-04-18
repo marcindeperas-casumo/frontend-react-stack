@@ -11,6 +11,8 @@ describe("ContentReplacer", () => {
         replacements={{ var: "variable" }}
       />
     );
-    expect(rendered.find("DangerousHtml").html()).toBe("<div>a variable</div>");
+    expect(rendered.find("DangerousHtml").html()).toBe(
+      '<div class="">a variable</div>'
+    );
   });
 });

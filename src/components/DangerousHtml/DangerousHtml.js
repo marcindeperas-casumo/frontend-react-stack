@@ -3,7 +3,8 @@ import React, { PureComponent } from "react";
 
 type Props = {
   html: string,
-  element?: string,
+  element: string,
+  className: string,
 };
 // ⚠️ IMPORTANT
 // This component is dangerous as it is easy to introduce
@@ -11,10 +12,19 @@ type Props = {
 // Always make sure know where the injected `html` prop
 // comes from and that it is not editable by the user.
 export default class DangerousHtml extends PureComponent<Props> {
-  render() {
-    const { html, element = "span" } = this.props;
-    const Element = element;
+  static defaultProps = {
+    element: "span",
+    className: "",
+  };
 
-    return <Element dangerouslySetInnerHTML={{ __html: html }} />;
+  render() {
+    const Element = this.props.element;
+
+    return (
+      <Element
+        className={this.props.className}
+        dangerouslySetInnerHTML={{ __html: this.props.html }}
+      />
+    );
   }
 }
