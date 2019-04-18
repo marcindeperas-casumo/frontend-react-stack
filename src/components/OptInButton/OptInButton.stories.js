@@ -1,9 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
-import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 import optin from "./__mocks__/optin.json";
