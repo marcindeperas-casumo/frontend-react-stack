@@ -11,7 +11,7 @@ export const colourOptions = {
 
 type Props = {
   progress: number,
-  foregroundColour: "yellow" | "green",
+  foregroundColour: "yellow" | "violet",
   backgroundColour: "grey-dark-3" | "grey",
 };
 
