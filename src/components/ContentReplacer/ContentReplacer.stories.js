@@ -10,8 +10,8 @@ stories.add(
   "Default",
   () => (
     <ContentReplacer
-      value="I am a {{ var }} in need of a <strong>{{val}}</strong>"
-      replacements={{ var: "variable", val: "value" }}
+      value="I am a {{var}} in need of a {{{val}}}"
+      replacements={{ var: "variable", val: "<strong>value</strong>" }}
     />
   ),
   info({ text: "Default" })
