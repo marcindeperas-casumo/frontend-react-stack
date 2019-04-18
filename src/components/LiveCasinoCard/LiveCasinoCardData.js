@@ -34,6 +34,7 @@ const renderResults = ({ results, type }) => {
           return (
             <Flex.Item>
               <Badge
+                size="sm"
                 key={i}
                 tag="div"
                 bgColor={color}
@@ -62,7 +63,8 @@ const renderResults = ({ results, type }) => {
 const renderSeats = ({ seats }) => (
   <>
     <Badge
-      className={classNames(!seats && `u-width--3/4`)}
+      size="sm"
+      className={classNames(!seats && "u-width--3/4", "u-margin-bottom")}
       tag="div"
       bgColor="green"
       txtColor="white"
@@ -73,7 +75,7 @@ const renderSeats = ({ seats }) => (
           slug="mobile.live-casino-cards-content"
           field="bet_behind"
           view={text => (
-            <Text size="xs" tag="span" className="u-text-nowrap">
+            <Text size="sm" tag="span" className="u-text-nowrap">
               {text}
             </Text>
           )}
@@ -81,7 +83,7 @@ const renderSeats = ({ seats }) => (
       )}
     </Badge>
     <Text
-      size="xs"
+      size="2xs"
       className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
     >
       {seats ? getText("open_seats") : getText("table_full")}
