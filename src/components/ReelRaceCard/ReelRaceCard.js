@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { PlayIcon } from "@casumo/cmp-icons";
+import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
@@ -17,7 +17,6 @@ import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import OptInButton from "Components/OptInButton/OptInButton";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
-import Clock from "./Clock.svg"; // use it from @casumo/cmp-icons if we're on v2
 import "./ReelRaceCard.scss";
 
 type Props = ReelRace & {
@@ -156,7 +155,7 @@ export class ReelRaceCard extends React.Component<Props> {
     const startTime = DateTime.fromMillis(this.props.startTime);
     return (
       <Flex spacing="none">
-        <Clock className="u-margin-right" />
+        <ClockIcon className="u-margin-right" />
         <Text
           tag="span"
           size="sm"
