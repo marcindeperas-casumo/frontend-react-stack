@@ -38,51 +38,35 @@ const props = {
 };
 
 if (isNotChromatic) {
-  stories.add(
-    "Default (Connected)",
-    () => (
-      <MockStore state={state}>
-        <OptInButtonContainer
-          {...props}
-          slug="the_page_we_need"
-          optInField="foo"
-          optOutField="bar"
-        />
-      </MockStore>
-    ),
-    info({ text: "Default" })
-  );
+  stories.add("Default (Connected)", () => (
+    <MockStore state={state}>
+      <OptInButtonContainer
+        {...props}
+        slug="the_page_we_need"
+        optInField="foo"
+        optOutField="bar"
+      />
+    </MockStore>
+  ));
 }
 
-stories.add(
-  "Default",
-  () => {
-    return <OptInButton {...props} />;
-  },
-  info({ text: "Default" })
-);
+stories.add("Default", () => {
+  return <OptInButton {...props} />;
+});
 
-stories.add(
-  "Opted-In",
-  () => {
-    const isOptedIn = true;
+stories.add("Opted-In", () => {
+  const isOptedIn = true;
 
-    return <OptInButton {...props} isOptedIn={isOptedIn} />;
-  },
-  info({ text: "Default" })
-);
+  return <OptInButton {...props} isOptedIn={isOptedIn} />;
+});
 
-stories.add(
-  "With Button Callback",
-  () => {
-    const customProps = Object.assign({}, props, {
-      active: {
-        ...props.active,
-        buttonCallback: action("click"),
-      },
-    });
+stories.add("With Button Callback", () => {
+  const customProps = Object.assign({}, props, {
+    active: {
+      ...props.active,
+      buttonCallback: action("click"),
+    },
+  });
 
-    return <OptInButton {...customProps} />;
-  },
-  info({ text: "Default" })
-);
+  return <OptInButton {...customProps} />;
+});
