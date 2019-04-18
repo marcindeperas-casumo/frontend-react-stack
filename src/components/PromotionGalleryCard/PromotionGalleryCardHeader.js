@@ -17,7 +17,7 @@ const PromotionGalleryCardHeader = ({ badge, dates }) => {
         <Text
           tag="strong"
           className="t-color-red u-text-transform-uppercase"
-          size="xs"
+          size="2xs"
         >
           {dates}
         </Text>
