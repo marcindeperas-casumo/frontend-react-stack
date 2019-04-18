@@ -16,22 +16,26 @@ export const adventurerSelector: void => Adventurer = createSelector(
   pathOr({}, ["schema", ENTITY_KEYS.ADVENTURER]),
   adventurer => {
     const {
+      belt,
       inTravelMode = false,
       level,
       levels,
       name,
-      belt,
-      pointsVersion,
+      points,
+      pointsRequiredForNextSpaceCrystal,
+      spaceCrystals,
     } = adventurer;
 
     if (!name) {
       return {};
     }
 
-    const { points, pointsRequiredForNextLevel } = getProgression(
-      adventurer,
-      levels,
-      pointsVersion
+    const progression = getProgression(
+      inTravelMode,
+      points,
+      pointsRequiredForNextSpaceCrystal,
+      spaceCrystals,
+      levels
     );
 
     return {
@@ -39,8 +43,8 @@ export const adventurerSelector: void => Adventurer = createSelector(
       inBonusMode: inTravelMode,
       level,
       name,
-      points,
-      pointsRequiredForNextLevel,
+      points: progression.points,
+      pointsRequiredForNextLevel: progression.pointsRequiredForNextLevel,
     };
   }
 );

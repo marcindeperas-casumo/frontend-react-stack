@@ -32,27 +32,26 @@ export function translateTravelModeToSingleLevelProgression(
 ): AdventurerLevelProgress {
   const pointsBasedOnPreviousLevels =
     spaceCrystals.length * NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE;
+  const accumulatedPoints = pointsBasedOnPreviousLevels + points;
+  const maxPointsForSingleLevelProgression =
+    NUMBER_OF_LEVELS_IN_TRAVEL_MODE * NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE;
 
   return {
-    points: pointsBasedOnPreviousLevels + points,
-    pointsRequiredForNextLevel:
-      NUMBER_OF_LEVELS_IN_TRAVEL_MODE *
-      NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE,
+    points:
+      accumulatedPoints > maxPointsForSingleLevelProgression
+        ? maxPointsForSingleLevelProgression
+        : accumulatedPoints,
+    pointsRequiredForNextLevel: maxPointsForSingleLevelProgression,
   };
 }
 
 export function getProgression(
-  rawAdventurerData: AdventurerRaw,
-  levels: Array<number[]>,
-  pointsVersion: number
+  inTravelMode: boolean,
+  points: number,
+  pointsRequiredForNextSpaceCrystal: number,
+  spaceCrystals: Array<number>,
+  levels: Array<number>
 ): AdventurerLevelProgress {
-  const {
-    inTravelMode,
-    points,
-    pointsRequiredForNextSpaceCrystal,
-    spaceCrystals,
-  } = rawAdventurerData;
-
   if (inTravelMode) {
     return translateTravelModeToSingleLevelProgression(
       points,
@@ -61,13 +60,10 @@ export function getProgression(
     );
   }
 
-  const progressionOutline =
-    levels && levels[pointsVersion] ? levels[pointsVersion] : [];
-
-  const pointsRequiredForNextLevel = progressionOutline.reduce(
+  const pointsRequiredForNextLevel = levels.reduce(
     (acc, level, index, allLevels) => {
       if (points >= acc) {
-        return allLevels[index + 1] ? allLevels[index + 1] : allLevels[index];
+        return allLevels[index + 1] || allLevels[index];
       }
 
       return acc;
@@ -75,8 +71,12 @@ export function getProgression(
     0
   );
 
+  const levelAsIndex = levels.indexOf(pointsRequiredForNextLevel);
+  const previousLevelsPointsRequirement = levels[levelAsIndex - 1];
+
   return {
-    points,
-    pointsRequiredForNextLevel,
+    points: points - previousLevelsPointsRequirement,
+    pointsRequiredForNextLevel:
+      pointsRequiredForNextLevel - previousLevelsPointsRequirement,
   };
 }

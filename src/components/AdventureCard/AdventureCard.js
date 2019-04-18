@@ -21,47 +21,63 @@ type Props = {
   unsubscribeFromUpdates: (playerId: string) => void,
 };
 
-const AdventureAvatarAndDetails = (props: Props) => {
-  const { name, belt, level } = props.adventurer;
-  const { level_label } = props.content;
+class AdventureAvatarAndDetails extends PureComponent<Props> {
+  render() {
+    const { name, belt, level, inBonusMode } = this.props.adventurer;
+    const { level_label, bonus_mode_label } = this.props.content;
+    const levelLabel = inBonusMode
+      ? `${level_label} | <strong class="t-color-violet">${bonus_mode_label}</strong>`
+      : level_label;
 
-  return (
-    <Flex
-      align="center"
-      className="t-border-r--8 u-width--1/1 u-margin-bottom--md"
-    >
-      <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
-        <CasumoAvatar belt={belt} />
-      </Flex.Item>
-      <Flex.Item className="u-margin-left--md">
-        <Text
-          tag="div"
-          className="u-font-weight-bold t-color-white u-margin-bottom--sm"
-          size="md"
-          dangerouslySetInnerHTML={stringToHTML(name)}
-        />
-        <Text
-          tag="div"
-          className="t-color-grey-light-2"
-          size="sm"
-          dangerouslySetInnerHTML={stringToHTML(
-            level_label.replace("{{level}}", level.toString())
-          )}
-        />
-      </Flex.Item>
-    </Flex>
-  );
-};
+    return (
+      <Flex
+        align="center"
+        className="t-border-r--8 u-width--1/1 u-margin-bottom--md"
+      >
+        <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
+          <CasumoAvatar
+            belt={belt}
+            backgroundColour={inBonusMode ? "violet" : "teal"}
+          />
+        </Flex.Item>
+        <Flex.Item className="u-margin-left--md">
+          <Text
+            tag="div"
+            className="u-font-weight-bold t-color-white u-margin-bottom--sm"
+            size="md"
+            dangerouslySetInnerHTML={stringToHTML(name)}
+          />
+          <Text
+            tag="div"
+            className="t-color-grey-light-2"
+            size="sm"
+            dangerouslySetInnerHTML={stringToHTML(
+              levelLabel.replace("{{level}}", level.toString())
+            )}
+          />
+        </Flex.Item>
+      </Flex>
+    );
+  }
+}
 
-export class AdventureProgressBar extends React.PureComponent<Props> {
+class AdventureProgressBar extends PureComponent<Props> {
   render() {
     const {
       inBonusMode,
       points,
       pointsRequiredForNextLevel,
     } = this.props.adventurer;
-
-    const progressPercentage = points * 100;
+    const {
+      progression_label_standard,
+      progression_label_bonus,
+    } = this.props.content;
+    const progressPercentage = Math.floor(
+      (points / pointsRequiredForNextLevel) * 100
+    );
+    const progressionLabel = inBonusMode
+      ? progression_label_bonus
+      : progression_label_standard;
 
     return (
       <React.Fragment>
@@ -69,6 +85,7 @@ export class AdventureProgressBar extends React.PureComponent<Props> {
           <ProgressBar
             progress={progressPercentage}
             backgroundColour="grey-dark-3"
+            foregroundColour={inBonusMode ? "violet" : "yellow"}
           />
         </Flex.Item>
         <Flex
@@ -79,20 +96,19 @@ export class AdventureProgressBar extends React.PureComponent<Props> {
             tag="div"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
-              `<strong>${progressPercentage}% completed</strong> to next level`
+              progressionLabel.replace(
+                "{{progression}}",
+                progressPercentage.toString()
+              )
             )}
           />
-          {!inBonusMode ? (
-            <Text
-              tag="div"
-              size="sm"
-              dangerouslySetInnerHTML={stringToHTML(
-                `${points} / ${pointsRequiredForNextLevel}`
-              )}
-            />
-          ) : (
-            ""
-          )}
+          <Text
+            tag="div"
+            size="sm"
+            dangerouslySetInnerHTML={stringToHTML(
+              `${points} / ${pointsRequiredForNextLevel}`
+            )}
+          />
         </Flex>
       </React.Fragment>
     );

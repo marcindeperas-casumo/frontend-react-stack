@@ -9,9 +9,9 @@ const adventurerRaw = {
   belt: "rope",
   inTravelMode: false,
   level: 12,
-  levels: [[1, 10, 100, 200], [1, 10, 100, 200]],
+  levels: [1, 10, 100, 200],
   name: "casumoSmith",
-  points: 100,
+  points: 110,
   pointsRequiredForNextSpaceCrystal: NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE,
   pointsVersion: 1,
   spaceCrystals: [1],
@@ -25,8 +25,8 @@ const adventurer = {
   inBonusMode: adventurerRaw.inTravelMode,
   level: adventurerRaw.level,
   name: adventurerRaw.name,
-  points: adventurerRaw.points,
-  pointsRequiredForNextLevel: 200,
+  points: 10,
+  pointsRequiredForNextLevel: 100,
 };
 const state = {
   schema: {
@@ -35,7 +35,10 @@ const state = {
 };
 const travellingState = {
   schema: {
-    adventurer: travellingAdventurerRaw,
+    adventurer: {
+      ...adventurerRaw,
+      inTravelMode: true,
+    },
   },
 };
 
