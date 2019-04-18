@@ -4,7 +4,7 @@ import { shallow } from "enzyme";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 
 describe("PromotionOptInButton", () => {
-  test("should OptInButtonContainer with active and disabled props", () => {
+  test("should render OptInButtonContainer with active and disabled props", () => {
     const rendered = shallow(
       <PromotionOptInButton
         slug="the_page_we_need"
