@@ -49,7 +49,7 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
           />
           <Text
             tag="div"
-            className="t-color-grey-light-2"
+            className="t-color-grey-light-1"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
               levelLabel.replace("{{level}}", level.toString())
@@ -88,11 +88,9 @@ class AdventureProgressBar extends PureComponent<Props> {
             foregroundColour={inBonusMode ? "violet" : "yellow"}
           />
         </Flex.Item>
-        <Flex
-          justify="space-between"
-          className="u-width--1/1 u-font-sm t-color-white"
-        >
+        <Flex justify="space-between" className="u-width--1/1 u-font-sm">
           <Text
+            className="t-color-grey-light-2"
             tag="div"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
@@ -103,6 +101,7 @@ class AdventureProgressBar extends PureComponent<Props> {
             )}
           />
           <Text
+            className="t-color-grey"
             tag="div"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
