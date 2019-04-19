@@ -26,7 +26,7 @@ class SportsMainNav extends React.Component<Props> {
     const label = hasMultipleTabs && this.props.editLabel;
 
     const className = hasMultipleTabs
-      ? "u-margin-vert--lg u-margin-left--md"
+      ? "u-margin-y--lg u-margin-left--md"
       : "u-margin--xlg u-padding-top";
 
     return (
