@@ -362,13 +362,13 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <ResultRow className="t-background-grey-light-2 u-padding--lg">
+        <ResultRow className="t-background-grey-light-2 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
-            <Flex.Item className="u-margin-left--md">
+            <Flex.Item>
               <NoResultsIcon />
             </Flex.Item>
             <Flex.Block>
-              <Text className="u-margin-left u-font-weight-bold">
+              <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>
