@@ -43,6 +43,10 @@ class TileListHorizontal extends PureComponent<Props> {
 
   render() {
     const { title, items, isLoaded } = this.props;
+    const scrollableChildren = map(
+      ({ id, ...rest }) => <Tile key={id} {...rest} />,
+      items.filter(item => item.background !== null)
+    );
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
@@ -60,12 +64,7 @@ class TileListHorizontal extends PureComponent<Props> {
           padding={PADDING_PER_DEVICE}
           itemSpacing={DEFAULT_SPACING}
         >
-          {map(
-            ({ id, ...rest }) => (
-              <Tile key={id} {...rest} />
-            ),
-            items
-          )}
+          {scrollableChildren}
         </Scrollable>
       </div>
     );

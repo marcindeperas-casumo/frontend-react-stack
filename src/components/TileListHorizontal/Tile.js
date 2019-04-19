@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
 import ImageLazy from "Components/Image/ImageLazy";
 
 import "./Tile.scss";
