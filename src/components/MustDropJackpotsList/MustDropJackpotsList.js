@@ -26,7 +26,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     const { ids, title, seeMore } = this.props;
     const idsByColumns = generateColumns(ids);
     const scrollableChildren = [
-      <MustDropJackpotsWidget />,
+      <MustDropJackpotsWidget key={"must-drop-jackpots-widget"} />,
       ...idsByColumns.map((columnIds, i) => (
         <JackpotsListTile
           ids={columnIds}

@@ -66,6 +66,7 @@ class PromotionCardList extends PureComponent<Props> {
           <Flex.Item align="right" className="u-padding-right--md">
             <a href="/promotions">
               <Text
+                size="sm"
                 tag="h3"
                 className={classNames(titleColor && `t-color-${titleColor}`)}
               >
