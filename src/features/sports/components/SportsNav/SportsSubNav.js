@@ -27,7 +27,7 @@ const SportsSubNavItem = (props: SportsSubNavItemProps) => (
   <div
     key={props.navItem.path}
     onClick={props.onSelected}
-    className="u-margin-y--md u-margin-horiz--sm"
+    className="u-margin-y--md u-margin-x--sm"
   >
     <Pill
       inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"
@@ -50,7 +50,7 @@ class SportsSubNav extends React.Component<Props> {
 
     return (
       <div style={style}>
-        <div className="u-margin-left--md u-margin-vert--md">
+        <div className="u-margin-left--md u-margin-y--md">
           <SportsSubNavItem
             navItem={allNavItem}
             onSelected={() => this.props.onSelected(allNavItem)}
