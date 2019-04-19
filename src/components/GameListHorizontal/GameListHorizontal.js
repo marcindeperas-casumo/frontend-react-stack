@@ -35,6 +35,7 @@ export const ITEM_RENDERERS = {
 
 const GAME_LIST_CLASS_NAME = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: "c-exclusive-game",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "c-live-casino-card",
   default: "c-top-game",
 };
 
