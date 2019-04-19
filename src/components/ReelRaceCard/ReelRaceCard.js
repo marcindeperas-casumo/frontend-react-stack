@@ -217,114 +217,104 @@ export class ReelRaceCard extends React.Component<Props> {
       <TrackProvider data={trackData}>
         <Flex
           className={[
-            "c-reel-race-card",
             "o-flex__item",
             "o-flex__item-fixed-size",
+            "t-border-r--16",
+            "o-ratio",
             "o-ratio--reel-race-card",
+            `t-color-${this.props.color}`,
           ].join(" ")}
           direction="vertical"
+          justify="space-between"
+          spacing="none"
         >
+          <ImageLazy
+            className="o-ratio__content"
+            src={this.props.game.logoBackground}
+            alt={this.props.game.name}
+            imgixOpts={{
+              w: 348,
+              h: 232,
+              blur: 100,
+              high: -70,
+              fit: "crop",
+            }}
+          />
+
           <Flex
-            className={[
-              "o-flex__item",
-              "o-flex__item-fixed-size",
-              "t-border-r--16",
-              "o-ratio",
-              "o-ratio--reel-race-card",
-              `t-color-${this.props.color}`,
-            ].join(" ")}
+            className="u-padding--md o-ratio__content"
             direction="vertical"
-            justify="space-between"
             spacing="none"
+            justify="space-between"
           >
-            <ImageLazy
-              className="o-ratio__content"
-              src={this.props.game.logoBackground}
-              alt={this.props.game.name}
-              imgixOpts={{
-                w: 348,
-                h: 232,
-                blur: 100,
-                high: -70,
-                fit: "crop",
-              }}
-            />
-
-            <Flex
-              className="u-padding--md o-ratio__content"
-              direction="vertical"
-              spacing="none"
-              justify="space-between"
-            >
-              <Flex align="center">
-                <GameThumb
-                  src={this.props.game.logoBackground}
-                  alt={this.props.game.name}
-                  mark={this.props.game.logo}
-                />
-                {this.props.promoted && (
-                  <GrandReelRaceBadge className="c-reel-race__badge" />
-                )}
-                <Flex
-                  direction="vertical"
-                  spacing="sm"
-                  className="u-margin-left--md"
+            <Flex align="center">
+              <GameThumb
+                src={this.props.game.logoBackground}
+                alt={this.props.game.name}
+                mark={this.props.game.logo}
+              />
+              {this.props.promoted && (
+                <GrandReelRaceBadge className="c-reel-race__badge" />
+              )}
+              <Flex
+                direction="vertical"
+                spacing="sm"
+                className="u-margin-left--md"
+              >
+                <Text
+                  tag="span"
+                  className="u-margin-bottom--sm u-font-weight-bold"
                 >
-                  <Text
-                    tag="span"
-                    className="u-margin-bottom--sm u-font-weight-bold"
-                  >
-                    {t.compete_for.replace("{{prize}}", this.props.prize)}
-                  </Text>
-                  <Text
-                    tag="span"
-                    size="xs"
-                    className="t-color-white u-opacity-75"
-                  >
-                    <DangerousHtml html={this.props.game.name} />
-                  </Text>
-                </Flex>
-              </Flex>
-
-              <Flex align="center">
-                <Column top={this.props.spins} bottom={t.spins} />
-                <div className="c-reel-race__separator u-margin-x--md" />
-                <Column
-                  top={t.duration_template.replace(
-                    "{{{duration}}}",
-                    this.duration
-                  )}
-                  bottom={t.duration}
-                />
-                {this.props.minBet && (
-                  <>
-                    <div className="c-reel-race__separator u-margin-x--md" />
-                    <Column top={this.props.minBet} bottom={t.min_bet} />
-                  </>
-                )}
-              </Flex>
-
-              <Flex direction="horizontal" justify="space-between" align="end">
-                {this.countdown}
-                {this.button}
+                  {t.compete_for.replace("{{prize}}", this.props.prize)}
+                </Text>
+                <Text
+                  tag="span"
+                  size="xs"
+                  className="t-color-white u-opacity-75"
+                >
+                  <DangerousHtml html={this.props.game.name} />
+                </Text>
               </Flex>
             </Flex>
-          </Flex>
-          {t.caveat_short && t.caveat_short !== "false" && (
-            <Text
-              size="xs"
-              className="c-reel-race__terms t-color-grey"
-              onClick={this.showCaveatsModal}
-            >
-              <DangerousHtml
-                html={t.caveat_short.replace(
-                  "{{{ ctaTermsAndConditions }}}",
-                  'class="t-color-black"'
+
+            <Flex align="center">
+              <Column top={this.props.spins} bottom={t.spins} />
+              <div className="c-reel-race__separator u-margin-x--md" />
+              <Column
+                top={t.duration_template.replace(
+                  "{{{duration}}}",
+                  this.duration
                 )}
+                bottom={t.duration}
               />
-            </Text>
-          )}
+              {this.props.minBet && (
+                <>
+                  <div className="c-reel-race__separator u-margin-x--md" />
+                  <Column top={this.props.minBet} bottom={t.min_bet} />
+                </>
+              )}
+            </Flex>
+
+            <Flex direction="horizontal" justify="space-between" align="end">
+              {this.countdown}
+              {this.button}
+            </Flex>
+          </Flex>
         </Flex>
+        {t.caveat_short && t.caveat_short !== "false" && (
+          <Text
+            size="xs"
+            className="c-reel-race__terms t-color-grey"
+            onClick={this.showCaveatsModal}
+          >
+            <DangerousHtml
+              html={t.caveat_short.replace(
+                "{{{ ctaTermsAndConditions }}}",
+                'class="t-color-black"'
+              )}
+            />
+          </Text>
+        )}
       </TrackProvider>
     );
   }
