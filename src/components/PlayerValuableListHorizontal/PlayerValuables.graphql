@@ -3,6 +3,23 @@ query PlayerValuablesQuery {
     valuables {
       id
       state
+      usables {
+        ... on PlayerValuableUsable_BonusMoneyUsableUsedEvent {
+          wageringFactor
+        }
+
+        ... on PlayerValuableUsable_DepositBonusUsableUsedEvent {
+          minDepositAmount {
+            amount
+          }
+        }
+
+        ... on PlayerValuableUsable_SourceSpecificFreeSpinsUsableUsedEvent {
+          source
+          promoCode
+          gameName
+        }
+      }
     }
   }
 }

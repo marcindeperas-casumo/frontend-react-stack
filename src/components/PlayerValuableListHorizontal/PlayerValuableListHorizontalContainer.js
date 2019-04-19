@@ -3,22 +3,21 @@ import React from "react";
 import { Query } from "react-apollo";
 import { map } from "ramda";
 import ScrollableList from "Components/ScrollableList";
-import ScrollableListTitle from "Components/ScrollableListTitle";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
-const noop = () => {};
-
 const findById = (list, id) => list.find(item => item.id === id);
 const mapIds = map(x => x.id);
 
-const TileConnected = ({ id, state }) => (
+const TileConnected = ({ id, state, usables }) => (
   <div>
     {id}
     <br />
     {state}
+    <br />
+    {JSON.stringify(usables)}
   </div>
 );
 
@@ -29,9 +28,9 @@ const withValuableData = valuables => ({ id }) => {
     return null;
   }
 
-  const { state } = valuable;
+  const { state, usables } = valuable;
 
-  return <TileConnected id={id} state={state} {...valuable} />;
+  return <TileConnected id={id} state={state} usables={usables} />;
 };
 
 const PlayerValuableListHorizontalContainer = () => (
