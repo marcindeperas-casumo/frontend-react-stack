@@ -16,7 +16,7 @@ stories.addDecorator(withKnobs);
 if (isNotChromatic) {
   stories.add("Default (Connected)", () => {
     return (
-      <div style={{ maxWidth: "170px" }}>
+      <div className="c-top-game">
         <MockStore>
           <GameTileConnected id="starburst" />
         </MockStore>
@@ -31,7 +31,7 @@ stories.add("Default", () => {
     game.inMaintenanceMode
   );
   return (
-    <div style={{ maxWidth: "170px" }}>
+    <div className="c-top-game">
       <MockStore>
         <GameTile
           game={{ ...game, inMaintenanceMode }}
@@ -48,7 +48,7 @@ stories.add("With Jackpot", () => {
     game.inMaintenanceMode
   );
   return (
-    <div style={{ maxWidth: "170px" }}>
+    <div className="c-top-game">
       <MockStore>
         <GameTile
           game={{ ...game, jackpotInfo, inMaintenanceMode }}

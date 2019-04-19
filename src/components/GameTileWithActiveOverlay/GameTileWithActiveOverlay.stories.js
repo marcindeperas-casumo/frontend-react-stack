@@ -12,7 +12,7 @@ const stories = storiesOf("GameTileWithActiveOverlay", module);
 if (isNotChromatic) {
   stories.add("Default tile with active overlay (Connected)", () => {
     return (
-      <div style={{ maxWidth: "170px" }}>
+      <div className="c-top-game">
         <MockStore>
           <GameTileWithActiveOverlayConnected id={game.slug} />
         </MockStore>
@@ -23,7 +23,7 @@ if (isNotChromatic) {
 
 stories.add("Default tile with active overlay", () => {
   return (
-    <div style={{ maxWidth: "170px" }}>
+    <div className="c-top-game">
       <MockStore>
         <GameTileWithActiveOverlay
           game={game}

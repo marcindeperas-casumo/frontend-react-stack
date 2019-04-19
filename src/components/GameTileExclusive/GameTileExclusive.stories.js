@@ -15,7 +15,7 @@ stories.addDecorator(withKnobs);
 if (isNotChromatic) {
   stories.add("Default Tile (Connected)", () => {
     return (
-      <div style={{ maxWidth: 188 }}>
+      <div className="c-exclusive-game">
         <MockStore>
           <GameTileExclusiveConnected id="jammin-jars" />
         </MockStore>
@@ -30,7 +30,7 @@ stories.add("Default Tile", () => {
     exclusiveGame.inMaintenanceMode
   );
   return (
-    <div style={{ maxWidth: 188 }}>
+    <div className="c-exclusive-game">
       <GameTileExclusive
         game={{ ...exclusiveGame, inMaintenanceMode }}
         onLaunchGame={action(exclusiveGame.name)}
