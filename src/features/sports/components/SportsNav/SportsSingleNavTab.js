@@ -11,7 +11,7 @@ type Props = {
 };
 
 const SportsSingleNavTab = ({ navItem, onClick }: Props) => (
-  <Flex.Item
+  <div
     className="c-sports-nav-tab o-flex u-margin-left--lg u-margin-top--sm"
     onClick={onClick}
   >
@@ -25,7 +25,7 @@ const SportsSingleNavTab = ({ navItem, onClick }: Props) => (
         {navItem.text}
       </Text>
     </Flex>
-  </Flex.Item>
+  </div>
 );
 
 export default SportsSingleNavTab;
