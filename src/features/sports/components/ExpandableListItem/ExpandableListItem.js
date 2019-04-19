@@ -41,7 +41,11 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
             <Flex.Item>{this.icon}</Flex.Item>
           </Flex>
         </Flex.Item>
-        {this.state.isExpanded && <Flex.Item>{this.props.children}</Flex.Item>}
+        {this.state.isExpanded && (
+          <Flex.Item className="u-margin-top--md">
+            {this.props.children}
+          </Flex.Item>
+        )}
       </Flex>
     );
   }

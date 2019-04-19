@@ -34,7 +34,10 @@ const FavouriteCompetitionsSelectorRegion = ({
         label={
           <Flex align="center">
             <Flex.Item>
-              <Text size="md" className="u-font-weight-bold">
+              <Text
+                size="md"
+                className="u-font-weight-bold u-margin-bottom--none"
+              >
                 {group.name}
               </Text>
             </Flex.Item>
