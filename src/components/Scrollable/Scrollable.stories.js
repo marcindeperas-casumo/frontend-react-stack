@@ -34,7 +34,7 @@ stories.add(
     };
 
     return (
-      <div style={{ height: height }}>
+      <div style={{ height }}>
         <Scrollable
           columnCount={columnCount}
           height={height}
