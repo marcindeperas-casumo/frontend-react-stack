@@ -45,7 +45,7 @@ describe("OptInButton", () => {
     const customProps = Object.assign({}, props, {
       active: {
         ...props.active,
-        buttonCallback: spy,
+        onClick: spy,
       },
     });
 

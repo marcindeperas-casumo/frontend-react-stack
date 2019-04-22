@@ -16,7 +16,7 @@ type Props = {
     /** The event data of the active button state */
     data: {},
     /** The onClick callback of the active button state */
-    buttonCallback?: () => void,
+    onClick?: () => void,
   },
   disabled: {
     /** The label of the disabled button state */
@@ -43,9 +43,6 @@ class OptInButton extends PureComponent<Props> {
 
   render() {
     const { active, disabled } = this.props;
-    const onClickHandler = active.buttonCallback
-      ? active.buttonCallback
-      : () => {};
 
     if (this.props.isOptedIn) {
       return (
@@ -69,7 +66,7 @@ class OptInButton extends PureComponent<Props> {
         <Button
           variant="variant-1"
           className="u-padding-vert--md u-padding-horiz--xlg"
-          onClick={onClickHandler}
+          onClick={active.onClick ? active.onClick : () => {}}
         >
           <Text tag="span">{active.label}</Text>
         </Button>

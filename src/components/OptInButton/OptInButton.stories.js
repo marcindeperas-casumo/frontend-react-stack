@@ -62,7 +62,7 @@ stories.add("With Button Callback", () => {
   const customProps = Object.assign({}, props, {
     active: {
       ...props.active,
-      buttonCallback: action("click"),
+      onClick: action("click"),
     },
   });
 
