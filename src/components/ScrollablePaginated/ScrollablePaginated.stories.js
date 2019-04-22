@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { number, boolean } from "@storybook/addon-knobs/react";
+import { number } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import info from "Storybook/storybookInfo";
@@ -14,13 +14,13 @@ export const myButtonRenderer = (
   scrollableState: State,
   scrollableClickHandler: (x: string) => void
 ) => {
-  const showLeftBtn = !scrollableState.isStartOfScroll;
-  const showRightBtn = !scrollableState.isEndOfScroll;
+  const showLeftButton = !scrollableState.isStartOfScroll;
+  const showRightButton = !scrollableState.isEndOfScroll;
 
   return (
     <Flex justify="space-between">
       <Flex.Item>
-        {showLeftBtn && (
+        {showLeftButton && (
           <div
             onClick={e => scrollableClickHandler("left")}
             className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
@@ -30,7 +30,7 @@ export const myButtonRenderer = (
         )}
       </Flex.Item>
       <Flex.Item>
-        {showRightBtn && (
+        {showRightButton && (
           <div
             onClick={e => scrollableClickHandler("right")}
             className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
@@ -59,7 +59,7 @@ stories.add(
             }
           >
             <div
-              style={{ height: "100%", width: width }}
+              style={{ height: "100%", width }}
               className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
             >
               {columnIndex}

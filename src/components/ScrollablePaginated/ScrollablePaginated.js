@@ -8,9 +8,8 @@ import type {
 } from "Types/ReactVirtualized/Grid";
 import { ScrollableWithRef } from "Components/Scrollable";
 
-const easeInQuad = (t: number) => {
-  return t * t;
-};
+const easeInQuad = (t: number) => t * t;
+
 export type State = {
   startColumn: number,
   stopColumn: number,
@@ -141,9 +140,8 @@ export default class ScrollablePaginated extends React.PureComponent<
     });
   };
 
-  buttonRenderer = () => {
-    return this.props.buttonRenderer(this.state, this.clickHandler);
-  };
+  buttonRenderer = () =>
+    this.props.buttonRenderer(this.state, this.clickHandler);
 
   // Keep state in sync with column count for buttonRenderer
   componentDidUpdate(nextProps: Props) {
