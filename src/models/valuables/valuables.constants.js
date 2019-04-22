@@ -22,4 +22,8 @@ export const valuableToColor = {
     background: "green-light-3",
     coin: "green-dark-1",
   },
+  default: {
+    background: "grey-light-2",
+    coin: "grey",
+  },
 };

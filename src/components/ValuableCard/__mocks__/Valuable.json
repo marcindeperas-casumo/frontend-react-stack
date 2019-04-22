@@ -1,9 +1,8 @@
 [
   {
     "valuableType": "cash",
-    "title": "50€ Bonus Money",
-    "magnitude": "50",
-    "currencySymbol": "€"
+    "title": "€50 Bonus Money",
+    "magnitude": "50"
   },
   {
     "valuableType": "deposit",
@@ -11,7 +10,7 @@
   },
   {
     "valuableType": "sport",
-    "title": "5€ Sport Bet"
+    "title": "€5 Sport Bet"
   },
   {
     "valuableType": "spins",

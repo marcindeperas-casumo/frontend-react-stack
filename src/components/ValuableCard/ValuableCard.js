@@ -1,8 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import { VALUABLE_TYPES } from "Models/valuables/valuables.constants";
+import Text from "@casumo/cmp-text";
+import { valuableToColor, VALUABLE_TYPES } from "Models/valuables";
 import ValuableCardBackground from "./ValuableCardBackground";
+import { ValuableIcons } from "./ValuableIcons.utils";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
@@ -13,22 +15,43 @@ type Props = {
 };
 
 class ValuableCard extends PureComponent<Props> {
+  get valuableTheme() {
+    const { valuableType } = this.props;
+
+    return valuableToColor[valuableType] || valuableToColor["default"];
+  }
+
+  get valuableSymbol() {
+    const { valuableType } = this.props;
+
+    if (valuableType === VALUABLE_TYPES.CASH) {
+      return this.cashSymbol;
+    }
+
+    return ValuableIcons[valuableType];
+  }
+
+  cashSymbol = () => {
+    return (
+      <Text tag="div" size="lg">
+        €
+      </Text>
+    );
+  };
+
   render() {
-    const { title, valuableType } = this.props;
+    const { title } = this.props;
+    const ValuableSymbol = this.valuableSymbol;
 
     return (
       <Flex
-        className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding"
-        justify="center"
+        className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
         direction="vertical"
       >
         <Flex.Block>
-          {/*
-            TODO:
-            -> to rename this to card header
-            -> spread props
-          */}
-          <ValuableCardBackground valuableType={valuableType} />
+          <ValuableCardBackground {...this.valuableTheme}>
+            <ValuableSymbol />
+          </ValuableCardBackground>
         </Flex.Block>
         <Flex.Item className="c-valuable-card__content u-text-align-center">
           <div className="t-color-grey-dark-2 u-font-weight-bold">{title}</div>

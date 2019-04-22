@@ -1,55 +1,33 @@
-// @flow
-import React, { PureComponent } from "react";
+/* @flow */
+import React from "react";
+import type { Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Valuable from "Components/Valuable";
-import { valuableToColor, VALUABLE_TYPES } from "Models/valuables";
 import Background from "./background.svg";
 
-type ValuableType = $Values<VALUABLE_TYPES>;
-
 type Props = {
-  valuableType: ValuableType,
+  background: String,
+  coin: String,
+  children: Node,
 };
 
-class ValuableCardBackground extends PureComponent<Props> {
-  get valuableColors() {
-    const { valuableType } = this.props;
+const ValuableCardBackground = ({ background, coin, children }: Props) => {
+  //TODO: check solution toString
+  // (Cannot coerce coin to string because String [1] should not be coerced.)
+  const backgroundClass = `t-color-${background.toString()}`;
+  const coinClass = `t-color-${coin.toString()}`;
 
-    return valuableToColor[valuableType] || "black"; //TODO: revise the default
-  }
-
-  render() {
-    const themeColors = this.valuableColors;
-
-    return (
-      <Flex justify="center" className="u-position-relative t-border-r--16">
-        <Background
-          className={classNames(
-            "u-position-absolute",
-            `t-color-${themeColors.background}`
-          )}
-        />
-        <div
-          className={classNames(
-            "u-margin-top--lg u-padding--sm",
-            `t-color-${themeColors.coin}`
-          )}
-        >
-          <Valuable />
-        </div>
-      </Flex>
-    );
-  }
-}
+  return (
+    <Flex justify="center" className="t-border-r--16">
+      <Background
+        className={classNames("u-position-absolute", backgroundClass)}
+      />
+      <div className={classNames("u-margin-top--lg u-padding--sm", coinClass)}>
+        <Valuable content={children} />
+      </div>
+    </Flex>
+  );
+};
 
 export default ValuableCardBackground;
-
-/*
-
-// #FFF9C7
-<div className="u-position-absolute">
-  <BackgroundSVG colour1="#FFF9C7" colour2="#FFC930" colour3="#FFFCBE" />
-</div>
-*/ // #FFC930 t-color-yellow
-// #FFFCBE

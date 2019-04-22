@@ -86,6 +86,15 @@ export const INTL_LOCALES = {
   [MARKETS.se_sv]: "sv-SE",
 };
 
+export const CURRENCY_CODE_SYMBOLS = {
+  CAD: "$",
+  EUR: "€",
+  GBP: "£",
+  SEK: "kr",
+  JPY: "¥",
+  INR: "₹",
+};
+
 export const EVENTS = {
   GAME_LAUNCH: "Game Started",
   GAME_DETAILS: "Game Information",
