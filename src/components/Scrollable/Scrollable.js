@@ -35,12 +35,12 @@ type Props = {
   defaultWidth: number,
 };
 
-const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
+const MAX_OVERSCAN_COLUMN_COUNT = 10;
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "c-scrollable",
     scrollHandler: (x: any) => {},
-    overscanColumnCount: DEFAULT_OVERSCAN_COLUMN_COUNT,
+    overscanColumnCount: MAX_OVERSCAN_COLUMN_COUNT,
     defaultWidth: 100,
   };
 
@@ -109,7 +109,7 @@ export default class Scrollable extends React.PureComponent<Props> {
             // overscanColumnCount can have an adverse affect on performance
             overscanColumnCount={min(
               overscanColumnCount,
-              DEFAULT_OVERSCAN_COLUMN_COUNT
+              MAX_OVERSCAN_COLUMN_COUNT
             )}
           />
         )}
