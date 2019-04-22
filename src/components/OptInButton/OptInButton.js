@@ -6,7 +6,7 @@ import { TickIcon } from "@casumo/cmp-icons";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
-  /** The function that fecthes the translation page if not fecthed yet */
+  /** The function that fetches the translation page if not fetched yet */
   fetchPage: () => void,
   active: {
     /** The label of the active button state */
