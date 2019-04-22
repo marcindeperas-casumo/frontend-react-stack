@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import { Grid, AutoSizer } from "react-virtualized";
 import Scrollable, { ScrollableWithRef } from "Components/Scrollable";
 
 describe("Scrollable", () => {
@@ -17,8 +18,8 @@ describe("Scrollable", () => {
         cellRenderer={renderItem}
       />
     );
-    expect(rendered.find("AutoSizer").length).toBe(1);
-    expect(rendered.find("Grid").length).toBe(1);
+    expect(rendered.find(AutoSizer).length).toBe(1);
+    expect(rendered.find(Grid).length).toBe(1);
   });
 
   test("should pass Grid specific props to Grid", () => {
@@ -33,7 +34,7 @@ describe("Scrollable", () => {
         scrollHandler={scrollHandler}
       />
     );
-    const gridProps = rendered.find("Grid").props();
+    const gridProps = rendered.find(Grid).props();
 
     expect(gridProps.className).toBe("test-test");
     expect(gridProps.columnCount).toBe(columnCount);
@@ -50,7 +51,7 @@ describe("Scrollable", () => {
         cellRenderer={renderItem}
       />
     );
-    expect(rendered.find("Grid").prop("rowCount")).toBe(1);
+    expect(rendered.find(Grid).prop("rowCount")).toBe(1);
   });
 
   test("should not set overscanColumnCount greater than ten", () => {
@@ -62,7 +63,7 @@ describe("Scrollable", () => {
         overscanColumnCount={100}
       />
     );
-    expect(rendered.find("Grid").prop("overscanColumnCount")).toBe(10);
+    expect(rendered.find(Grid).prop("overscanColumnCount")).toBe(10);
   });
 });
 
