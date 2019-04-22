@@ -15,7 +15,7 @@ type Props = {
     eventName: string,
     /** The event data of the active button state */
     data: {},
-    /** (optional) The onClick callback of the active button state */
+    /** The onClick callback of the active button state */
     buttonCallback?: () => void,
   },
   disabled: {
@@ -26,7 +26,7 @@ type Props = {
     /** The event data of the disabled button state */
     data: {},
   },
-  /** (optional) The className to be used added to the button */
+  /** The className to be used added to the button */
   className?: string,
   /** The initial state of the button */
   isOptedIn: boolean,
