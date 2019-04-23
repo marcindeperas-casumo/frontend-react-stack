@@ -4,6 +4,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { TickIcon } from "@casumo/cmp-icons";
 import TrackClick from "Components/TrackClick";
+import { noop } from "Utils";
 
 type Props = {
   /** The function that fetches the translation page if not fetched yet */
@@ -66,7 +67,7 @@ class OptInButton extends PureComponent<Props> {
         <Button
           variant="variant-1"
           className="u-padding-vert--md u-padding-horiz--xlg"
-          onClick={active.onClick ? active.onClick : () => {}}
+          onClick={active.onClick || noop}
         >
           <Text tag="span">{active.label}</Text>
         </Button>

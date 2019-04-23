@@ -13,6 +13,8 @@ import {
 // @flow
 import type { Bets } from "Types/liveCasinoLobby";
 
+export const noop = () => {};
+
 export const isNilOrEmpty = either(isNil, isEmpty);
 
 export const bridgeFactory = () => {
