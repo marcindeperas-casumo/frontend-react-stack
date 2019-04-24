@@ -110,7 +110,7 @@ export default class ScrollablePaginated extends React.PureComponent<
       if (!this.animationStartTime) {
         this.animationStartTime = time;
       }
-      const { easing = easeInQuad, duration = 300 } = this.props;
+      const { easing, duration } = this.props;
       const elapsedTime = time - this.animationStartTime;
       const scrollDelta = this.scrollToOffset - this.currentScrollOffset;
       const easedTime = easing(Math.min(1, elapsedTime / duration));
