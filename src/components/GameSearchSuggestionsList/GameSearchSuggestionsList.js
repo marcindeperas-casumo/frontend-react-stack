@@ -20,7 +20,7 @@ type Props = {
 export default class GameSearchSuggestionsList extends PureComponent<Props> {
   renderListSkeleton = () => (
     <GameListSkeleton
-      className="u-padding-horiz--md"
+      className="u-padding-horiz--md u-game-search-max-width"
       hasTitle
       titleYOffset={20}
     />
