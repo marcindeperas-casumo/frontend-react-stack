@@ -19,6 +19,8 @@ export type State = {
   isStartOfScroll: boolean,
 };
 
+type ClickHanderType = (direction: string) => void;
+
 type Props = {
   /** The height of the horizontal scrolling container in pixels. */
   height: number | string,
@@ -31,7 +33,7 @@ type Props = {
   /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
   /** The renderProp responsible for rendering the controls to paginate through the columns */
-  buttonRenderer: (State, (x: string) => void) => React.Node,
+  buttonRenderer: (State, ClickHanderType) => React.Node,
   /** Custom classname for styling the wrapping div elements. */
   className: string,
 };
@@ -70,18 +72,16 @@ export default class ScrollablePaginated extends React.PureComponent<
         scrollingContainer.scrollWidth;
       const isStartOfScroll = Math.ceil(scrollingContainer.scrollLeft) === 0;
 
-      if (this.gridRef.current) {
-        this.setState({
-          startColumn: this.gridRef.current._renderedColumnStartIndex,
-          stopColumn: this.gridRef.current._renderedColumnStopIndex,
-          isEndOfScroll,
-          isStartOfScroll,
-        });
-      }
+      this.setState({
+        startColumn: this.gridRefCurrent._renderedColumnStartIndex,
+        stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
+        isEndOfScroll,
+        isStartOfScroll,
+      });
     }
   };
 
-  clickHandler = (direction: string) => {
+  clickHandler: ClickHanderType = direction => {
     if (this.isScrolling) {
       // dunno how to handle this but we don't want this is fire
       // multiple times otherwise animation will go bananas
@@ -96,13 +96,11 @@ export default class ScrollablePaginated extends React.PureComponent<
         ? this.state.startColumn + this.state.visibleColumns
         : this.state.startColumn - this.state.visibleColumns
     );
-    if (this.gridRef.current) {
-      this.scrollToOffset = this.gridRef.current.getOffsetForCell({
-        alignment: "start",
-        columnIndex: nextColumn,
-        rowIndex: 0,
-      }).scrollLeft;
-    }
+    this.scrollToOffset = this.gridRefCurrent.getOffsetForCell({
+      alignment: "start",
+      columnIndex: nextColumn,
+      rowIndex: 0,
+    }).scrollLeft;
     this.isScrolling = true;
     this.animate();
   };
@@ -129,16 +127,18 @@ export default class ScrollablePaginated extends React.PureComponent<
         this.currentScrollOffset = this.scrollToOffset;
         this.animationStartTime = undefined;
 
-        if (this.gridRef.current) {
-          this.setState({
-            scrollLeft: null,
-            startColumn: this.gridRef.current._renderedColumnStartIndex,
-            stopColumn: this.gridRef.current._renderedColumnStopIndex,
-          });
-        }
+        this.setState({
+          scrollLeft: null,
+          startColumn: this.gridRefCurrent._renderedColumnStartIndex,
+          stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
+        });
       }
     });
   };
+
+  get gridRefCurrent() {
+    return this.gridRef.current || {};
+  }
 
   buttonRenderer = () =>
     this.props.buttonRenderer(this.state, this.clickHandler);
@@ -165,13 +165,11 @@ export default class ScrollablePaginated extends React.PureComponent<
     // I'm not convinced by this but pushing to the next tick
     // prevents things blowing up when current doesn't exist on mount.
     setTimeout(() => {
-      if (this.gridRef.current) {
-        this.setState({
-          startColumn: this.gridRef.current._renderedColumnStartIndex,
-          stopColumn: this.gridRef.current._renderedColumnStopIndex,
-          visibleColumns: this.gridRef.current._renderedColumnStopIndex,
-        });
-      }
+      this.setState({
+        startColumn: this.gridRefCurrent._renderedColumnStartIndex,
+        stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
+        visibleColumns: this.gridRefCurrent._renderedColumnStopIndex,
+      });
     }, 0);
   }
 
