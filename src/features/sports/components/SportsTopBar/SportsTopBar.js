@@ -8,7 +8,8 @@ import Text from "@casumo/cmp-text";
 import { REACT_APP_SPORTS_SHOW_SEARCH } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-import { StadiumIcon, BetslipIcon } from "./icons";
+import StadiumIcon from "./icons/stadium.svg";
+import BetslipIcon from "./icons/betslip.svg";
 import "./SportsTopBar.scss";
 
 export const hashes = {
