@@ -4,20 +4,65 @@ query PlayerValuablesQuery {
       id
       state
       usables {
-        ... on PlayerValuableUsable_BonusMoneyUsableUsedEvent {
-          wageringFactor
-        }
-
-        ... on PlayerValuableUsable_DepositBonusUsableUsedEvent {
+        ... on PlayerValuableDeposit {
+          valuableType
+          amount {
+            ... on PlayerValuableUsable_DepositPercentBonusAmount {
+              percent
+              maxBonusAmount {
+                amount
+                currency
+              }
+            }
+          }
           minDepositAmount {
             amount
+            currency
           }
         }
 
-        ... on PlayerValuableUsable_SourceSpecificFreeSpinsUsableUsedEvent {
+        ... on PlayerValuableDepositLadder {
+          valuableType
+          itemsToAwardLadder {
+            minDepositAmount {
+              amount
+              currency
+            }
+            maxDepositAmount {
+              amount
+              currency
+            }
+            itemsToAward {
+              usables {
+                freeSpinsTemplate {
+                  numberOfFreeSpins
+                }
+              }
+            }
+          }
+        }
+
+        ... on PlayerValuableSpins {
+          valuableType
           source
           promoCode
           gameName
+          freeSpinsTemplate {
+            numberOfFreeSpins
+            validFrom
+            betLevels {
+              amount
+              currency
+            }
+          }
+        }
+
+        ... on PlayerValuableCash {
+          valuableType
+          cash {
+            amount
+            currency
+          }
         }
       }
     }
