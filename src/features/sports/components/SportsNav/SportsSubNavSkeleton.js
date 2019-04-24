@@ -2,6 +2,50 @@ import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 import Flex from "@casumo/cmp-flex";
 
+const PillSkeleton = ({ width, subs }) => (
+  <Flex.Item>
+    <svg
+      width={width}
+      height="32"
+      viewBox={`0 0 ${width} 32`}
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fill-rule="evenodd"
+        clip-rule="evenodd"
+        d={`M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 ${
+          subs[0]
+        } 32 ${width} 24.8366 ${width} ${subs[1]} 7.16344 ${subs[2]} 0 ${
+          subs[3]
+        } 0H16ZM16 8C11.5817 8 8 11.5817 8 16C8 20.4183 11.5817 24 16 24C20.4183 24 24 20.4183 24 16C24 11.5817 20.4183 8 16 8Z`}
+        fill="white"
+      />
+    </svg>
+  </Flex.Item>
+);
+
+const PillSkeletons = {
+  sm: (
+    <PillSkeleton
+      width={90}
+      subs={["32H74C82.8366", "16C90", "82.8366", "74"]}
+    />
+  ),
+  md: (
+    <PillSkeleton
+      width={148}
+      subs={["32H132C140.837", "16C148", "140.837", "132"]}
+    />
+  ),
+  lg: (
+    <PillSkeleton
+      width={171}
+      subs={["32H155C163.837", "16C171", "163.837", "155"]}
+    />
+  ),
+};
+
 const SportsSubNavSkeleton = () => (
   <div
     className="u-margin-top--sm"
@@ -21,18 +65,12 @@ const SportsSubNavSkeleton = () => (
       className="u-padding-horiz--lg u-padding-horix--3xlg@tablet"
       spacing="default"
     >
-      {[...Array(5)].map((_, i) => (
-        <Flex.Item
-          className="o-flex__item-fixed-size"
-          key={i}
-          style={{
-            backgroundColor: "#FFF",
-            width: i === 0 ? 55 : 150,
-            height: 32,
-            borderRadius: 16,
-          }}
-        />
-      ))}
+      {PillSkeletons.md}
+      {PillSkeletons.sm}
+      {PillSkeletons.lg}
+      {PillSkeletons.md}
+      {PillSkeletons.sm}
+      {PillSkeletons.lg}
     </Flex>
   </div>
 );
