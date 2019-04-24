@@ -35,7 +35,7 @@ type Props = {
   defaultWidth: number,
 };
 
-const MAX_OVERSCAN_COLUMN_COUNT = 10;
+export const MAX_OVERSCAN_COLUMN_COUNT = 10;
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "c-scrollable",

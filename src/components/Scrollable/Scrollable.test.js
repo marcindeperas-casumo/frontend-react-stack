@@ -1,7 +1,10 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Grid, AutoSizer } from "react-virtualized";
-import Scrollable, { ScrollableWithRef } from "Components/Scrollable";
+import Scrollable, {
+  ScrollableWithRef,
+  MAX_OVERSCAN_COLUMN_COUNT,
+} from "Components/Scrollable";
 
 describe("Scrollable", () => {
   const renderItem = () => <div />;
@@ -54,7 +57,7 @@ describe("Scrollable", () => {
     expect(rendered.find(Grid).prop("rowCount")).toBe(1);
   });
 
-  test("should not set overscanColumnCount greater than ten", () => {
+  test("should not set overscanColumnCount greater than MAX_OVERSCAN_COLUMN_COUNT", () => {
     const rendered = mount(
       <Scrollable
         columnCount={columnCount}
@@ -63,7 +66,9 @@ describe("Scrollable", () => {
         overscanColumnCount={100}
       />
     );
-    expect(rendered.find(Grid).prop("overscanColumnCount")).toBe(10);
+    expect(rendered.find(Grid).prop("overscanColumnCount")).toBe(
+      MAX_OVERSCAN_COLUMN_COUNT
+    );
   });
 });
 
