@@ -6,13 +6,13 @@ import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import info from "Storybook/storybookInfo";
 import ScrollablePaginated from "Components/ScrollablePaginated";
-import type { State } from "Components/ScrollablePaginated";
+import type { State, ClickHandlerType } from "Components/ScrollablePaginated";
 
 const stories = storiesOf("ScrollablePaginated", module);
 
 export const myButtonRenderer = (
   scrollableState: State,
-  scrollableClickHandler: (x: string) => void
+  scrollableClickHandler: ClickHandlerType
 ) => {
   const showLeftButton = !scrollableState.isStartOfScroll;
   const showRightButton = !scrollableState.isEndOfScroll;

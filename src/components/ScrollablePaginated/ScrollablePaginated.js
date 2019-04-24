@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { clamp } from "ramda";
+import { clamp, isEmpty } from "ramda";
 import type {
   CellRenderer,
   GridRef,
@@ -19,7 +19,7 @@ export type State = {
   isStartOfScroll: boolean,
 };
 
-type ClickHanderType = (direction: string) => void;
+export type ClickHandlerType = (direction: "left" | "right") => void;
 
 type Props = {
   /** The height of the horizontal scrolling container in pixels. */
@@ -33,7 +33,7 @@ type Props = {
   /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
   /** The renderProp responsible for rendering the controls to paginate through the columns */
-  buttonRenderer: (State, ClickHanderType) => React.Node,
+  buttonRenderer: (State, ClickHandlerType) => React.Node,
   /** Custom classname for styling the wrapping div elements. */
   className: string,
 };
@@ -62,29 +62,40 @@ export default class ScrollablePaginated extends React.PureComponent<
     isStartOfScroll: true,
   };
 
+  get gridRefCurrent() {
+    return this.gridRef.current || {};
+  }
+
+  get isEndOfScroll() {
+    const scrollingContainer = this.gridRefCurrent._scrollingContainer;
+    return (
+      Math.ceil(scrollingContainer.offsetWidth) +
+        Math.ceil(scrollingContainer.scrollLeft) ===
+      scrollingContainer.scrollWidth
+    );
+  }
+
+  get isStartOfScroll() {
+    const scrollingContainer = this.gridRefCurrent._scrollingContainer;
+    return Math.ceil(scrollingContainer.scrollLeft) === 0;
+  }
+
   scrollHandler = ({ scrollLeft }: Scroll) => {
     this.currentScrollOffset = scrollLeft;
-    if (this.gridRef.current) {
-      const scrollingContainer = this.gridRef.current._scrollingContainer;
-      const isEndOfScroll =
-        Math.ceil(scrollingContainer.offsetWidth) +
-          Math.ceil(scrollingContainer.scrollLeft) ===
-        scrollingContainer.scrollWidth;
-      const isStartOfScroll = Math.ceil(scrollingContainer.scrollLeft) === 0;
-
+    if (!isEmpty(this.gridRefCurrent)) {
       this.setState({
         startColumn: this.gridRefCurrent._renderedColumnStartIndex,
         stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
-        isEndOfScroll,
-        isStartOfScroll,
+        isEndOfScroll: this.isEndOfScroll,
+        isStartOfScroll: this.isStartOfScroll,
       });
     }
   };
 
-  clickHandler: ClickHanderType = direction => {
+  clickHandler: ClickHandlerType = direction => {
     if (this.isScrolling) {
-      // dunno how to handle this but we don't want this is fire
-      // multiple times otherwise animation will go bananas
+      // dunno how to handle this but we don't want this to fire
+      // if the container is already scrolling.
       return;
     }
 
@@ -136,33 +147,21 @@ export default class ScrollablePaginated extends React.PureComponent<
     });
   };
 
-  get gridRefCurrent() {
-    return this.gridRef.current || {};
-  }
-
   buttonRenderer = () =>
     this.props.buttonRenderer(this.state, this.clickHandler);
 
   // Keep state in sync with column count for buttonRenderer
   componentDidUpdate(nextProps: Props) {
     if (nextProps.columnCount !== this.props.columnCount) {
-      if (this.gridRef.current) {
-        const scrollingContainer = this.gridRef.current._scrollingContainer;
-        const isEndOfScroll =
-          Math.ceil(scrollingContainer.offsetWidth) +
-            Math.ceil(scrollingContainer.scrollLeft) ===
-          scrollingContainer.scrollWidth;
-        const isStartOfScroll = Math.ceil(scrollingContainer.scrollLeft) === 0;
-        this.setState({
-          isEndOfScroll,
-          isStartOfScroll,
-        });
-      }
+      this.setState({
+        isEndOfScroll: this.isEndOfScroll,
+        isStartOfScroll: this.isStartOfScroll,
+      });
     }
   }
 
   componentDidMount() {
-    // I'm not convinced by this but pushing to the next tick
+    // Not convinced by this but pushing to the next tick
     // prevents things blowing up when current doesn't exist on mount.
     setTimeout(() => {
       this.setState({
@@ -176,8 +175,8 @@ export default class ScrollablePaginated extends React.PureComponent<
   render() {
     const { className, height, columnCount, cellRenderer } = this.props;
     return (
-      <div className={`${className}`}>
-        <div style={{ height: height }} className={`${className}__list`}>
+      <div className={className}>
+        <div style={{ height }} className={`${className}__list`}>
           <ScrollableWithRef
             ref={this.gridRef}
             columnCount={columnCount}
