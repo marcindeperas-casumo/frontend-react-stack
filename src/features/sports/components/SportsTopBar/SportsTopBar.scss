@@ -1,0 +1,12 @@
+// stylelint-disable xi/selector-pattern
+.c-sports-shell--mobile .c-sports-top-bar {
+  display: none;
+}
+
+.c-sports-top-bar--bet-history {
+  margin-top: -4px;
+}
+
+.c-sports-top-bar--search .Icons-c-icon {
+  height: 32px;
+}
