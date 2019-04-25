@@ -75,7 +75,9 @@ export default class GameSearch extends React.PureComponent<Props> {
               />
             </div>
           )}
-          {searchResultsCount === 1 && <GameSearchSuggestionsList />}
+          {searchResultsCount === 1 && (
+            <GameSearchSuggestionsList className="u-game-search-max-width" />
+          )}
         </TrackProvider>
       );
     } else if (query.length) {
