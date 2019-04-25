@@ -2,7 +2,7 @@ import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 import Flex from "@casumo/cmp-flex";
 
-const PillSkeleton = ({ width, subs }) => (
+const PillSkeleton = ({ width, subs, hideBadge }) => (
   <Flex.Item>
     <svg
       width={width}
@@ -12,7 +12,7 @@ const PillSkeleton = ({ width, subs }) => (
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule="evenodd"
+        fill-rule={hideBadge ? "nonzero" : "evenodd"}
         clip-rule="evenodd"
         d={`M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 ${
           subs[0]
@@ -26,6 +26,13 @@ const PillSkeleton = ({ width, subs }) => (
 );
 
 const PillSkeletons = {
+  all: (
+    <PillSkeleton
+      width={43}
+      subs={["32H27C35.8366", "16C43", "35.8366", "27"]}
+      hideBadge
+    />
+  ),
   sm: (
     <PillSkeleton
       width={90}
@@ -65,6 +72,7 @@ const SportsSubNavSkeleton = () => (
       className="u-padding-horiz--lg u-padding-horix--3xlg@tablet"
       spacing="default"
     >
+      {PillSkeletons.all}
       {PillSkeletons.md}
       {PillSkeletons.sm}
       {PillSkeletons.lg}
