@@ -11,13 +11,11 @@ class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 const findById = (list, id) => list.find(item => item.id === id);
 const mapIds = map(x => x.id);
 
-const TileConnected = ({ id, state, usables }) => (
+const TileConnected = ({ id, valuable }) => (
   <div>
     {id}
     <br />
-    {state}
-    <br />
-    {JSON.stringify(usables)}
+    {JSON.stringify(valuable)}
   </div>
 );
 
@@ -28,9 +26,7 @@ const withValuableData = valuables => ({ id }) => {
     return null;
   }
 
-  const { state, usables } = valuable;
-
-  return <TileConnected id={id} state={state} usables={usables} />;
+  return <TileConnected id={id} valuable={valuable} />;
 };
 
 const PlayerValuableListHorizontalContainer = () => (

@@ -3,66 +3,64 @@ query PlayerValuablesQuery {
     valuables {
       id
       state
-      usables {
-        ... on PlayerValuableDeposit {
-          valuableType
-          amount {
-            ... on PlayerValuableUsable_DepositPercentBonusAmount {
-              percent
-              maxBonusAmount {
-                amount
-                currency
-              }
+      ... on PlayerValuableDeposit {
+        valuableType
+        amount {
+          ... on PlayerValuableUsable_DepositPercentBonusAmount {
+            percent
+            maxBonusAmount {
+              amount
+              currency
             }
           }
+        }
+        minDepositAmount {
+          amount
+          currency
+        }
+      }
+
+      ... on PlayerValuableDepositLadder {
+        valuableType
+        itemsToAwardLadder {
           minDepositAmount {
             amount
             currency
           }
-        }
-
-        ... on PlayerValuableDepositLadder {
-          valuableType
-          itemsToAwardLadder {
-            minDepositAmount {
-              amount
-              currency
-            }
-            maxDepositAmount {
-              amount
-              currency
-            }
-            itemsToAward {
-              usables {
-                freeSpinsTemplate {
-                  numberOfFreeSpins
-                }
+          maxDepositAmount {
+            amount
+            currency
+          }
+          itemsToAward {
+            usables {
+              freeSpinsTemplate {
+                numberOfFreeSpins
               }
             }
           }
         }
+      }
 
-        ... on PlayerValuableSpins {
-          valuableType
-          source
-          promoCode
-          gameName
-          freeSpinsTemplate {
-            numberOfFreeSpins
-            validFrom
-            betLevels {
-              amount
-              currency
-            }
-          }
-        }
-
-        ... on PlayerValuableCash {
-          valuableType
-          cash {
+      ... on PlayerValuableSpins {
+        valuableType
+        source
+        promoCode
+        gameName
+        freeSpinsTemplate {
+          numberOfFreeSpins
+          validFrom
+          betLevels {
             amount
             currency
           }
+        }
+      }
+
+      ... on PlayerValuableCash {
+        valuableType
+        cash {
+          amount
+          currency
         }
       }
     }
