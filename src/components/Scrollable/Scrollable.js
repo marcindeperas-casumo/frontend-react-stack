@@ -14,6 +14,8 @@ import type {
 } from "Types/ReactVirtualized/Grid";
 import "./Scrollable.scss";
 
+export type overscanColumnCountType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+
 type Props = {
   /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
@@ -32,13 +34,13 @@ type Props = {
   /** Number of items to render before/after the visible slice of the grid.
   Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
    */
-  overscanColumnCount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
+  overscanColumnCount: overscanColumnCountType,
   /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
   defaultWidth: number,
 };
 
 export const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
-export default class Scrollable extends React.PureComponent<Props> {
+export class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
     className: "",
     scrollHandler: (x: any) => {},

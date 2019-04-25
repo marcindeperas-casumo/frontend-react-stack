@@ -1,2 +1,7 @@
 // @flow
-export { default, ScrollableWithRef } from "./Scrollable";
+export {
+  Scrollable,
+  ScrollableWithRef,
+  DEFAULT_OVERSCAN_COLUMN_COUNT,
+} from "./Scrollable";
+export type { overscanColumnCountType } from "./Scrollable";

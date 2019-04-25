@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Grid, AutoSizer } from "react-virtualized";
-import Scrollable, { ScrollableWithRef } from "Components/Scrollable";
+import { Scrollable, ScrollableWithRef } from "Components/Scrollable";
 
 describe("Scrollable", () => {
   const renderItem = () => <div />;

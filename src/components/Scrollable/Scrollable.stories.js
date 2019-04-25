@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs/react";
 import info from "Storybook/storybookInfo";
-import Scrollable from "Components/Scrollable";
+import { Scrollable } from "Components/Scrollable";
 
 const stories = storiesOf("Scrollable", module);
 const height = 240;
