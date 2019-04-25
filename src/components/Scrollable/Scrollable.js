@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { min } from "ramda";
+import classNames from "classnames";
 import {
   Grid,
   AutoSizer,
@@ -29,18 +29,20 @@ type Props = {
   innerRef?: *,
   /** Used to set the horizontal scroll position of the Grid */
   scrollLeft?: ?number,
-  /** Number of items to render before/after the visible slice of the grid. */
-  overscanColumnCount: number,
+  /** Number of items to render before/after the visible slice of the grid.
+  Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
+   */
+  overscanColumnCount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10,
   /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
   defaultWidth: number,
 };
 
-export const MAX_OVERSCAN_COLUMN_COUNT = 10;
+export const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
 export default class Scrollable extends React.PureComponent<Props> {
   static defaultProps = {
-    className: "c-scrollable",
+    className: "",
     scrollHandler: (x: any) => {},
-    overscanColumnCount: MAX_OVERSCAN_COLUMN_COUNT,
+    overscanColumnCount: DEFAULT_OVERSCAN_COLUMN_COUNT,
     defaultWidth: 100,
   };
 
@@ -94,7 +96,7 @@ export default class Scrollable extends React.PureComponent<Props> {
       <AutoSizer disableHeight={true}>
         {({ width }) => (
           <Grid
-            className={className}
+            className={classNames("c-scrollable", className)}
             cellRenderer={this.cellRenderer}
             columnCount={columnCount}
             columnWidth={this.cellSizeCache.columnWidth}
@@ -106,11 +108,7 @@ export default class Scrollable extends React.PureComponent<Props> {
             width={width}
             onScroll={scrollHandler}
             scrollLeft={scrollLeft}
-            // overscanColumnCount can have an adverse affect on performance
-            overscanColumnCount={min(
-              overscanColumnCount,
-              MAX_OVERSCAN_COLUMN_COUNT
-            )}
+            overscanColumnCount={overscanColumnCount}
           />
         )}
       </AutoSizer>
