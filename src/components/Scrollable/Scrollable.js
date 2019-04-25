@@ -9,6 +9,7 @@ import {
 } from "react-virtualized";
 import type {
   CellRenderer,
+  CellRendererParams,
   Scroll,
   GridRef,
 } from "Types/ReactVirtualized/Grid";
@@ -99,7 +100,17 @@ export class Scrollable extends React.PureComponent<Props> {
         {({ width }) => (
           <Grid
             className={classNames("c-scrollable", className)}
-            cellRenderer={this.cellRenderer}
+            cellRenderer={(x: CellRendererParams) => (
+              <CellMeasurer
+                key={x.key}
+                columnIndex={x.columnIndex}
+                cache={this.cellSizeCache}
+                parent={x.parent}
+                rowIndex={x.rowIndex}
+              >
+                {this.props.cellRenderer(x)}
+              </CellMeasurer>
+            )}
             columnCount={columnCount}
             columnWidth={this.cellSizeCache.columnWidth}
             deferredMeasurementCache={this.cellSizeCache}
