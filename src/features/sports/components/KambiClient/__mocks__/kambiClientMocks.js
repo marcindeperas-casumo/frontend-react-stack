@@ -30,7 +30,7 @@ const launchableKambiClientQueryMock = {
     data: {
       userHomepage: "some homepage",
       kambiClientVisible: true,
-      betslipVisible: true,
+      isBetslipVisible: true,
     },
   },
 };

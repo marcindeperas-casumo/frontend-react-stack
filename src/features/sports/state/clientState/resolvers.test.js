@@ -45,7 +45,7 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result.data.betslipVisible).toBe(true);
+      expect(result.data.isBetslipVisible).toBe(true);
     });
 
     test("KambiClient should be visible by default", async () => {
@@ -65,7 +65,7 @@ describe("Client state resolvers", () => {
         query: queries.SEARCH_VISIBLE_QUERY,
       });
 
-      expect(result.data.searchVisible).toBe(false);
+      expect(result.data.isSearchVisible).toBe(false);
     });
 
     test("No modals should be shown by default", async () => {
@@ -86,7 +86,7 @@ describe("Client state resolvers", () => {
 
       const client = createClientWithState({
         activeModals: [],
-        betslipVisible: false,
+        isBetslipVisible: false,
       });
 
       await client.mutate({
@@ -117,7 +117,7 @@ describe("Client state resolvers", () => {
     test("sets betslip visibility to be false when modal is opened", async () => {
       const client = createClientWithState({
         activeModals: [],
-        betslipVisible: true,
+        isBetslipVisible: true,
       });
 
       await client.mutate({
@@ -128,7 +128,7 @@ describe("Client state resolvers", () => {
       const result = await client.query({
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
-      expect(result.data.betslipVisible).toBe(false);
+      expect(result.data.isBetslipVisible).toBe(false);
     });
   });
 
@@ -138,7 +138,7 @@ describe("Client state resolvers", () => {
       const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
       const client = createClientWithState({
         activeModals: [modal1, modal2],
-        betslipVisible: false,
+        isBetslipVisible: false,
       });
 
       await client.mutate({
@@ -171,7 +171,7 @@ describe("Client state resolvers", () => {
       const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
       const client = createClientWithState({
         activeModals: [modal1, modal2],
-        betslipVisible: false,
+        isBetslipVisible: false,
       });
 
       await client.mutate({
@@ -184,7 +184,7 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result1.data.betslipVisible).toBe(false);
+      expect(result1.data.isBetslipVisible).toBe(false);
 
       await client.mutate({
         mutation: mutations.CLOSE_MODAL_MUTATION,
@@ -196,14 +196,14 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result2.data.betslipVisible).toBe(true);
+      expect(result2.data.isBetslipVisible).toBe(true);
     });
   });
 
   describe("Mutation.updateBetslipState", () => {
-    test("sets the betslipVisible state correctly in the cache", async () => {
+    test("sets the isBetslipVisible state correctly in the cache", async () => {
       const client = createClientWithState({
-        betslipVisible: true,
+        isBetslipVisible: true,
       });
 
       await client.mutate({
@@ -215,7 +215,7 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result1.data.betslipVisible).toBe(false);
+      expect(result1.data.isBetslipVisible).toBe(false);
 
       await client.mutate({
         mutation: mutations.UPDATE_BETSLIP_STATE_MUTATION,
@@ -226,7 +226,7 @@ describe("Client state resolvers", () => {
         query: queries.BETSLIP_VISIBLE_QUERY,
       });
 
-      expect(result2.data.betslipVisible).toBe(true);
+      expect(result2.data.isBetslipVisible).toBe(true);
     });
   });
 
@@ -299,20 +299,20 @@ describe("Client state resolvers", () => {
     test("should enable search and hide kambi client", async () => {
       const client = createClientWithState({
         kambiClientVisible: true,
-        searchVisible: false,
+        isSearchVisible: false,
       });
 
       await client.mutate({ mutation: mutations.SHOW_SEARCH });
 
-      const searchVisible = (await client.query({
+      const isSearchVisible = (await client.query({
         query: queries.SEARCH_VISIBLE_QUERY,
-      })).data.searchVisible;
+      })).data.isSearchVisible;
 
       const clientVisible = (await client.query({
         query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
       })).data.kambiClientVisible;
 
-      expect(searchVisible).toBe(true);
+      expect(isSearchVisible).toBe(true);
       expect(clientVisible).toBe(false);
     });
   });
@@ -321,20 +321,20 @@ describe("Client state resolvers", () => {
     test("should enable kambi client and hide search", async () => {
       const client = createClientWithState({
         kambiClientVisible: false,
-        searchVisible: true,
+        isSearchVisible: true,
       });
 
       await client.mutate({ mutation: mutations.HIDE_SEARCH });
 
-      const searchVisible = (await client.query({
+      const isSearchVisible = (await client.query({
         query: queries.SEARCH_VISIBLE_QUERY,
-      })).data.searchVisible;
+      })).data.isSearchVisible;
 
       const clientVisible = (await client.query({
         query: queries.KAMBI_CLIENT_VISIBLE_QUERY,
       })).data.kambiClientVisible;
 
-      expect(searchVisible).toBe(false);
+      expect(isSearchVisible).toBe(false);
       expect(clientVisible).toBe(true);
     });
   });
