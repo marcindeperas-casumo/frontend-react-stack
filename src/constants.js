@@ -26,6 +26,9 @@ export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
 
+export const STORE_REHYDRATE = "REHYDRATE";
+export const STORE_PERSISTED_STATE_KEY = "persistedState";
+
 export const LOW_RES_IMAGE_SETTINGS = {
   mark: "",
   dpr: 1,

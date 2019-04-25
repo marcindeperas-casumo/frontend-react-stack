@@ -17,8 +17,9 @@ const defaultOptInValue = "Opt-In";
 const defaultOptOutValue = "Opted-In";
 
 const OptInButtonConnected = connect(
-  (state, { slug, optInField, optOutField }) => ({
+  (state, { slug, optInField, optOutField, active, disabled }) => ({
     active: {
+      ...active,
       label: getField({
         slug,
         field: optInField,
@@ -26,6 +27,7 @@ const OptInButtonConnected = connect(
       })(state),
     },
     disabled: {
+      ...disabled,
       label: getField({
         slug,
         field: optOutField,
