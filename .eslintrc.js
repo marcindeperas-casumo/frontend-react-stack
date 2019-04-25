@@ -17,6 +17,7 @@ module.exports = {
     "sonarjs",
     "filenames",
     "no-switch-statements",
+    "react-hooks",
   ],
   extends: [
     "react-app",
@@ -95,6 +96,8 @@ module.exports = {
     "no-void": "error",
     "prettier/prettier": "error",
     "sonarjs/no-duplicate-string": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
   },
   overrides: [
     {
