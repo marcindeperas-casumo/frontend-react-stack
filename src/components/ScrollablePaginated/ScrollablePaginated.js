@@ -7,7 +7,7 @@ import type {
   Scroll,
 } from "Types/ReactVirtualized/Grid";
 import { ScrollableWithRef } from "Components/Scrollable";
-
+import type { overscanColumnCountType } from "Components/Scrollable";
 const easeInQuad = (t: number) => t * t;
 
 export type State = {
@@ -36,6 +36,10 @@ type Props = {
   buttonRenderer: (State, ClickHandlerType) => React.Node,
   /** Custom classname for styling the wrapping div elements. */
   className: string,
+  /** Number of items to render before/after the visible slice of the grid.
+  Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
+   */
+  overscanColumnCount?: overscanColumnCountType,
 };
 
 export default class ScrollablePaginated extends React.PureComponent<
@@ -184,7 +188,7 @@ export default class ScrollablePaginated extends React.PureComponent<
             height={height}
             scrollLeft={this.state.scrollLeft}
             scrollHandler={this.scrollHandler}
-            overscanColumnCount={this.state.visibleColumns}
+            overscanColumnCount={this.props.overscanColumnCount}
           />
         </div>
         {this.buttonRenderer()}
