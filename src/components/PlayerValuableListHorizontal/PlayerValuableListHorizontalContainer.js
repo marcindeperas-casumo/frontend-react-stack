@@ -15,6 +15,8 @@ const TileConnected = ({ id, valuable }) => (
   <div>
     {id}
     <br />
+    {valuable.expirationTime}
+    <br />
     {JSON.stringify(valuable)}
   </div>
 );

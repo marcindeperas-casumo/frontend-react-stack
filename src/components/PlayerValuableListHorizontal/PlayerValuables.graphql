@@ -3,8 +3,9 @@ query PlayerValuablesQuery {
     valuables {
       id
       state
+      expirationTime
+      valuableType
       ... on PlayerValuableDeposit {
-        valuableType
         amount {
           ... on PlayerValuableUsable_DepositPercentBonusAmount {
             percent
@@ -21,7 +22,6 @@ query PlayerValuablesQuery {
       }
 
       ... on PlayerValuableDepositLadder {
-        valuableType
         itemsToAwardLadder {
           minDepositAmount {
             amount
@@ -42,7 +42,6 @@ query PlayerValuablesQuery {
       }
 
       ... on PlayerValuableSpins {
-        valuableType
         source
         promoCode
         gameName
@@ -57,7 +56,6 @@ query PlayerValuablesQuery {
       }
 
       ... on PlayerValuableCash {
-        valuableType
         cash {
           amount
           currency
