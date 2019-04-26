@@ -36,7 +36,7 @@ describe("Scrollable", () => {
     );
     const gridProps = rendered.find(Grid).props();
 
-    expect(gridProps.className).toBe("test-test");
+    expect(gridProps.className).toBe("c-scrollable test-test");
     expect(gridProps.columnCount).toBe(columnCount);
     expect(gridProps.height).toBe(height);
     expect(gridProps.rowHeight).toBe(height);
