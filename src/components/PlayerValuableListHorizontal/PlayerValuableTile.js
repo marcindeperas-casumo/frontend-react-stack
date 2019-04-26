@@ -2,17 +2,22 @@
 import React from "react";
 
 export type Props = {
-  id: string,
   valuable: any,
 };
 
-const PlayerValuableTile = ({ id, valuable }: Props) => (
+const PlayerValuableTile = ({
+  valuable: { id, title, expirationTime, state, ...rest },
+}: Props) => (
   <div>
     {id}
     <br />
-    {valuable.expirationTime}
+    {title}
     <br />
-    {JSON.stringify(valuable)}
+    {state}
+    <br />
+    {expirationTime}
+    <br />
+    {JSON.stringify(rest)}
   </div>
 );
 

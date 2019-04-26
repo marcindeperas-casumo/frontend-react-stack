@@ -19,7 +19,7 @@ const withValuableData = valuables => ({ id }) => {
     return null;
   }
 
-  return <PlayerValuableTile id={id} valuable={valuable} />;
+  return <PlayerValuableTile valuable={valuable} />;
 };
 
 const PlayerValuableListHorizontalContainer = () => (

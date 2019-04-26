@@ -5,6 +5,8 @@ query PlayerValuablesQuery {
       state
       expirationTime
       valuableType
+      title
+      
       ... on PlayerValuableDeposit {
         amount {
           ... on PlayerValuableUsable_DepositPercentBonusAmount {
