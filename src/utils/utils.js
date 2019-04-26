@@ -8,6 +8,7 @@ import {
   compose,
   filter,
   identity,
+  pathOr,
 } from "ramda";
 // @flow
 import type { Bets } from "Types/liveCasinoLobby";
@@ -189,3 +190,13 @@ export function formatCurrency({
     minimumFractionDigits,
   }).format(value);
 }
+
+const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
+
+export const interpolate = (
+  target: string,
+  replacements: { [string]: string | number }
+) =>
+  target.replace(INTERPOLATION_REGEX, (match, param) =>
+    pathOr(match, [param], replacements)
+  );
