@@ -25,7 +25,7 @@ type Props = {
   /** The total number of columns that can be rendered. */
   columnCount: number,
   /** The height of the horizontal scrolling container in pixels. */
-  height: string | number,
+  height: number,
   /** A function to listen to the scroll event of the component */
   scrollHandler: Scroll => void,
   /** A ref for access to the Grid component API */

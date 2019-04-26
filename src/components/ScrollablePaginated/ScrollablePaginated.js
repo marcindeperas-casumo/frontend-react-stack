@@ -23,7 +23,7 @@ export type ClickHandlerType = (direction: "left" | "right") => void;
 
 type Props = {
   /** The height of the horizontal scrolling container in pixels. */
-  height: number | string,
+  height: number,
   /** The total number of columns that can be rendered. */
   columnCount: number,
   /** An easing function to use for animated pagination */
