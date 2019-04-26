@@ -98,8 +98,7 @@ export default class ScrollablePaginated extends React.PureComponent<
 
   clickHandler: ClickHandlerType = direction => {
     if (this.isScrolling) {
-      // dunno how to handle this but we don't want this to fire
-      // if the container is already scrolling.
+      // prevent multiple clicks if the container is already scrolling.
       return;
     }
 
@@ -120,7 +119,7 @@ export default class ScrollablePaginated extends React.PureComponent<
     this.animate();
   };
 
-  animate = () => {
+  animate() {
     requestAnimationFrame(time => {
       if (!this.animationStartTime) {
         this.animationStartTime = time;
@@ -149,10 +148,11 @@ export default class ScrollablePaginated extends React.PureComponent<
         });
       }
     });
-  };
+  }
 
-  buttonRenderer = () =>
-    this.props.buttonRenderer(this.state, this.clickHandler);
+  buttonRenderer() {
+    return this.props.buttonRenderer(this.state, this.clickHandler);
+  }
 
   // Keep state in sync with column count for buttonRenderer
   componentDidUpdate(nextProps: Props) {
