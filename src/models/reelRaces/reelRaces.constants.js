@@ -12,5 +12,3 @@ export const BUTTON_STATE = {
   OPT_IN: "OPT_IN",
   OPTED_IN: "OPTED_IN",
 };
-
-export const MIXPANEL_EVENT_NAME = "Reel Race Card Clicked";

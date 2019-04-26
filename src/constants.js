@@ -87,12 +87,13 @@ export const INTL_LOCALES = {
 };
 
 export const EVENTS = {
-  GAME_LAUNCH: "Game Started",
-  GAME_DETAILS: "Game Information",
-  SEARCH_INTENT: "Search Intent",
-  SEARCH_INITIATED: "Search Initiated",
-  CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
-  CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
+  MIXPANEL_GAME_LAUNCH: "Game Started",
+  MIXPANEL_GAME_DETAILS: "Game Information",
+  MIXPANEL_SEARCH_INTENT: "Search Intent",
+  MIXPANEL_SEARCH_INITIATED: "Search Initiated",
+  MIXPANEL_CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
+  MIXPANEL_CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
+  MIXPANEL_REEL_RACE_CLICKED: "Reel Race Card Clicked",
 };
 
 export const EVENT_PROPS = {

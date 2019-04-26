@@ -24,7 +24,7 @@ export default class GameRow extends PureComponent<Props> {
 
     return (
       <TrackClick
-        eventName={EVENTS.GAME_LAUNCH}
+        eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
         data={{ [EVENT_PROPS.GAME_NAME]: name }}
       >
         <Flex

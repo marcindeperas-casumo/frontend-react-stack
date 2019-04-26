@@ -60,7 +60,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
         <Flex.Item>
           <Flex justify="center">
             <TrackClick
-              eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+              eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
               data={trackClickGamePlayData}
             >
               <Button
