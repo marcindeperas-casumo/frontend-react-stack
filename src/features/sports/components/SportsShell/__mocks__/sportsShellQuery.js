@@ -3,7 +3,7 @@ import { SPORTS_SHELL_QUERY } from "../SportsShellContainer";
 
 type MockData = {
   hasSelectedFavourites: boolean,
-  searchVisible: boolean,
+  isSearchVisible: boolean,
 };
 
 export type MockResult = {

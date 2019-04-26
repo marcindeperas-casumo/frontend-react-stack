@@ -9,7 +9,7 @@
 // ====================================================
 
 export type BetslipVisible = {
-  betslipVisible: boolean
+  isBetslipVisible: boolean
 };
 
 /* @flow */

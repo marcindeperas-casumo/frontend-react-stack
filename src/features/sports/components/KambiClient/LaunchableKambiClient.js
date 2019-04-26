@@ -32,7 +32,7 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClientQuery {
     userHomepage
     kambiClientVisible @client
-    betslipVisible @client
+    isBetslipVisible @client
   }
 `;
 
@@ -102,7 +102,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
                     {sessionTouch => (
                       <>
                         <KambiClient
-                          betslipVisible={data.betslipVisible}
+                          isBetslipVisible={data.isBetslipVisible}
                           currency={currency}
                           market={market}
                           locale={locale}
