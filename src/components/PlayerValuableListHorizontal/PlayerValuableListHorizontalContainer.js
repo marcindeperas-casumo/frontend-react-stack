@@ -5,21 +5,12 @@ import { map } from "ramda";
 import ScrollableList from "Components/ScrollableList";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
+import PlayerValuableTile from "./PlayerValuableTile";
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
 const findById = (list, id) => list.find(item => item.id === id);
 const mapIds = map(x => x.id);
-
-const TileConnected = ({ id, valuable }) => (
-  <div>
-    {id}
-    <br />
-    {valuable.expirationTime}
-    <br />
-    {JSON.stringify(valuable)}
-  </div>
-);
 
 const withValuableData = valuables => ({ id }) => {
   const valuable = findById(valuables, id);
@@ -28,7 +19,7 @@ const withValuableData = valuables => ({ id }) => {
     return null;
   }
 
-  return <TileConnected id={id} valuable={valuable} />;
+  return <PlayerValuableTile id={id} valuable={valuable} />;
 };
 
 const PlayerValuableListHorizontalContainer = () => (
