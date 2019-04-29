@@ -4,13 +4,16 @@
 }
 
 .c-sports-shell--site .c-sports-top-bar {
-  display: block;
+  display: flex;
 }
 
+.c-sports-top-bar .Icons-c-icon {
+  height: 32px;
+}
 .c-sports-top-bar--bet-history {
   margin-top: -4px;
 }
 
-.c-sports-top-bar--search .Icons-c-icon {
-  height: 32px;
+.c-sports-top-bar-tab--label {
+  border-width: 2px;
 }
