@@ -1,6 +1,10 @@
 // stylelint-disable xi/selector-pattern
-.c-sports-shell--mobile .c-sports-top-bar {
+.c-sports-top-bar {
   display: none;
+}
+
+.c-sports-shell--site .c-sports-top-bar {
+  display: block;
 }
 
 .c-sports-top-bar--bet-history {
