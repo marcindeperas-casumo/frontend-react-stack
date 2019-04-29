@@ -7,7 +7,21 @@ import SportsShellSkeleton from "./SportsShellSkeleton";
 const stories = storiesOf("Sports/SportsShellSkeleton", module);
 
 stories.add(
-  "Default View",
-  () => <SportsShellSkeleton />,
-  info("Default View")
+  "Mobile",
+  () => (
+    <div className="c-sports-shell--mobile">
+      <SportsShellSkeleton />
+    </div>
+  ),
+  info("Mobile")
+);
+
+stories.add(
+  "Site",
+  () => (
+    <div className="c-sports-shell--site">
+      <SportsShellSkeleton />
+    </div>
+  ),
+  info("Site")
 );
