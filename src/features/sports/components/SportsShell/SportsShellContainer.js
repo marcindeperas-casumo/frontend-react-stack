@@ -17,6 +17,7 @@ import {
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
+import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals from "Features/sports/components/Modals";
 import {
@@ -39,7 +40,7 @@ const ConnectedSportsStateProvider = connect(state => ({
 export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
     hasSelectedFavourites
-    searchVisible @client
+    isSearchVisible @client
   }
 `;
 
@@ -93,13 +94,19 @@ export class SportsShellContainer extends React.Component<{}> {
           return (
             <>
               <SportsHashWatcher>
-                {({ currentHash }) =>
-                  data.searchVisible ? (
-                    <SportsSearch />
-                  ) : (
-                    <SportsNav currentHash={currentHash} />
-                  )
-                }
+                {({ currentHash }) => (
+                  <>
+                    <SportsTopBar
+                      currentHash={currentHash}
+                      isSearchVisible={data.isSearchVisible}
+                    />
+                    {data.isSearchVisible ? (
+                      <SportsSearch />
+                    ) : (
+                      <SportsNav currentHash={currentHash} />
+                    )}
+                  </>
+                )}
               </SportsHashWatcher>
               {data.hasSelectedFavourites ? <KambiClient /> : null}
               <Modals />
