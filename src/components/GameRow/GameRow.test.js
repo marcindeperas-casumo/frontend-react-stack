@@ -33,10 +33,6 @@ describe("<GameRow />", () => {
     expect(thumbnailProps.alt).toBe(game.name);
   });
 
-  test("renders the formatted jackpot amount", () => {
-    expect(rendered.html()).toMatch(game.jackpotInfo.formattedJackpotAmount);
-  });
-
   test("renders a play icon", () => {
     const playIcon = rendered.find("PlayIcon");
 

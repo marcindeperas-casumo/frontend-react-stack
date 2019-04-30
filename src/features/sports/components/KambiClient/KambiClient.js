@@ -18,7 +18,7 @@ type Props = {
   homeRoute?: string,
   isHidden?: boolean,
   searchMode: boolean,
-  betslipVisible?: boolean,
+  isBetslipVisible?: boolean,
   sessionKeepAlive: () => void,
   onLoginCompleted?: () => void,
 };
@@ -27,7 +27,7 @@ export default class KambiClient extends React.Component<Props> {
   static defaultProps = {
     onNavigate: () => {},
     searchMode: false,
-    betslipVisible: true,
+    isBetslipVisible: true,
     sessionKeepAlive: () => {},
     onLoginCompleted: () => {},
   };
@@ -107,7 +107,7 @@ export default class KambiClient extends React.Component<Props> {
       >
         <div id="KambiBC" />
 
-        {this.props.betslipVisible ? null : (
+        {this.props.isBetslipVisible ? null : (
           <style
             dangerouslySetInnerHTML={{
               __html: `

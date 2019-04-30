@@ -25,7 +25,7 @@ import type { MockResult } from "./__mocks__/sportsShellQuery";
 const initStateResult = {
   data: {
     hasSelectedFavourites: false,
-    searchVisible: false,
+    isSearchVisible: false,
   },
 };
 

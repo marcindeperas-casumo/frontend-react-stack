@@ -1,27 +1,44 @@
 import { types as fetchTypes } from "Models/fetch";
 import { getCasinoPlayerGameSearch } from "Api/api.casinoPlayerGames";
 import {
-  initFetchQuerySearch,
+  initFetchGameSearchPage,
   clearSearch,
-  fetchQuerySearch,
+  fetchGameSearch,
   fetchLatestPlayedGames,
   fetchGamesByProviderGameNames,
   fetchMostPopularGames,
   types,
-  getSearchFetchCompleteType,
+  getSearchFetchCompleteTypeByPage,
   fetchSuggestedGamesAction,
   initFetchSuggested,
+  initFetchGameSearchCount,
 } from "Models/gameSearch";
 import { fetchSuggestedGames } from "Api/api.games";
 
 describe("Models/GameSearch/Actions", () => {
-  describe("initFetchQuerySearch()", () => {
-    const action = initFetchQuerySearch("hi");
+  describe("initFetchGameSearchCount()", () => {
+    const action = initFetchGameSearchCount("star");
 
     test("returns an action with the correct type and query", () => {
       expect(action).toEqual({
-        type: types.GAME_SEARCH_FETCH,
-        query: "hi",
+        type: types.GAME_SEARCH_FETCH_COUNT,
+        query: "star",
+      });
+    });
+  });
+
+  describe("initFetchGameSearchPage()", () => {
+    const startIndex = 0;
+    const pageSize = 100;
+    const query = "star";
+    const action = initFetchGameSearchPage({ startIndex, pageSize, query });
+
+    test("returns an action with the correct type and query", () => {
+      expect(action).toEqual({
+        type: types.GAME_SEARCH_FETCH_PAGE,
+        query,
+        pageSize,
+        startIndex,
       });
     });
   });
@@ -46,12 +63,12 @@ describe("Models/GameSearch/Actions", () => {
     });
   });
 
-  describe("fetchQuerySearch()", () => {
+  describe("fetchGameSearch()", () => {
     const sessionId = "123";
     const query = "query";
     const page = 0;
     const pageSize = 5;
-    const action = fetchQuerySearch({ sessionId, page, pageSize, query });
+    const action = fetchGameSearch({ sessionId, page, pageSize, query });
 
     test("init api fetch", () => {
       expect(action).toMatchObject({
@@ -62,7 +79,7 @@ describe("Models/GameSearch/Actions", () => {
 
     test("fires completed finished", () => {
       expect(action).toMatchObject({
-        postFetch: getSearchFetchCompleteType(query),
+        postFetch: getSearchFetchCompleteTypeByPage(query, page),
       });
     });
 
@@ -197,13 +214,13 @@ describe("Models/GameSearch/Actions", () => {
     const platform = "mobile";
     const variant = "default";
 
-    const action = fetchSuggestedGamesAction(
+    const action = fetchSuggestedGamesAction({
       game,
       handshake,
       platform,
       country,
-      variant
-    );
+      variant,
+    });
 
     test("starts api fetch for suggestedGames", () => {
       expect(action).toMatchObject({

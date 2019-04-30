@@ -70,14 +70,15 @@ if (isNotChromatic) {
     () => (
       <MockStore state={state}>
         <GameSearch
+          initFetchGameSearchCount={noop}
           clearSearch={noop}
-          initFetchQuerySearch={noop}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
           preloadFetchPlayerGames={noop}
-          query={""}
-          searchResults={[]}
           fetchPageBySlug={noop}
+          searchResults={[]}
+          searchResultsCount={0}
           loading={true}
+          inputPromptPlaceholder="What 🐟 are you looking for?"
+          query={""}
         />
       </MockStore>
     ),
@@ -89,14 +90,15 @@ if (isNotChromatic) {
     () => (
       <MockStore state={latestPlayedGamesState}>
         <GameSearch
+          initFetchGameSearchCount={noop}
           clearSearch={noop}
-          initFetchQuerySearch={noop}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
           preloadFetchPlayerGames={noop}
-          query={"whatever"}
-          searchResults={[]}
           fetchPageBySlug={noop}
+          searchResults={[]}
+          searchResultsCount={0}
           loading={false}
+          inputPromptPlaceholder="What 🐟 are you looking for?"
+          query={"whatever"}
         />
       </MockStore>
     ),
@@ -108,14 +110,15 @@ if (isNotChromatic) {
     () => (
       <MockStore state={state}>
         <GameSearch
+          initFetchGameSearchCount={noop}
           clearSearch={noop}
-          initFetchQuerySearch={noop}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
           preloadFetchPlayerGames={noop}
-          query={"whatever"}
-          searchResults={[]}
           fetchPageBySlug={noop}
+          searchResults={[]}
+          searchResultsCount={0}
           loading={false}
+          inputPromptPlaceholder="What 🐟 are you looking for?"
+          query={"whatever"}
         />
       </MockStore>
     ),
@@ -127,14 +130,15 @@ if (isNotChromatic) {
     () => (
       <MockStore state={suggestedGamesState}>
         <GameSearch
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          searchResults={["starburst"]}
-          fetchPageBySlug={noop}
+          initFetchGameSearchCount={noop}
           clearSearch={noop}
-          initFetchQuerySearch={noop}
           preloadFetchPlayerGames={noop}
-          query={"starburst"}
+          fetchPageBySlug={noop}
+          searchResults={["starburst"]}
+          searchResultsCount={1}
           loading={false}
+          inputPromptPlaceholder="What 🐟 are you looking for?"
+          query={"starburst"}
         />
       </MockStore>
     ),
@@ -146,14 +150,15 @@ if (isNotChromatic) {
     () => (
       <MockStore state={state}>
         <GameSearch
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          searchResults={["mega-fortune", "mega-fortune-dreams"]}
-          fetchPageBySlug={noop}
+          initFetchGameSearchCount={noop}
           clearSearch={noop}
-          initFetchQuerySearch={noop}
           preloadFetchPlayerGames={noop}
-          query={"mega"}
+          fetchPageBySlug={noop}
+          searchResults={["mega-fortune", "mega-fortune-dreams"]}
+          searchResultsCount={1}
           loading={false}
+          inputPromptPlaceholder="What 🐟 are you looking for?"
+          query={"mega"}
         />
       </MockStore>
     ),
