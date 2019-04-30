@@ -6,7 +6,9 @@ query PlayerValuablesQuery {
       expirationTime
       valuableType
       title
-      
+      caveat
+      content
+
       ... on PlayerValuableDeposit {
         amount {
           ... on PlayerValuableUsable_DepositPercentBonusAmount {

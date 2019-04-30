@@ -6,14 +6,18 @@ export type Props = {
 };
 
 const PlayerValuableTile = ({
-  valuable: { id, title, expirationTime, state, ...rest },
+  valuable: { id, title, expirationTime, state, caveat, content, ...rest },
 }: Props) => (
   <div>
     {id}
     <br />
     {title}
     <br />
+    {content}
+    <br />
     {state}
+    <br />
+    {caveat}
     <br />
     {expirationTime}
     <br />
