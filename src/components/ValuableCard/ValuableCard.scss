@@ -1,6 +1,10 @@
-@mixin valuable-color($rewardColor) {
+@mixin valuable-color($backgroundColor, $fontColor) {
   .c-valuable-card__reward {
-    color: $rewardColor;
+    color: $backgroundColor;
+  }
+
+  .c-valuable-reward__content {
+    color: $fontColor;
   }
 }
 
@@ -14,17 +18,17 @@
 }
 
 .c-valuable-card--cash {
-  @include valuable-color(cudl-palette(yellow));
+  @include valuable-color(cudl-palette(yellow), cudl-palette(brown));
 }
 
 .c-valuable-card--deposit {
-  @include valuable-color(cudl-palette(blue, light-1));
+  @include valuable-color(cudl-palette(blue, light-1), red);
 }
 
 .c-valuable-card--spins {
-  @include valuable-color(cudl-palette(grey, light-1));
+  @include valuable-color(cudl-palette(grey, light-1), red);
 }
 
 .c-valuable-card--sport {
-  @include valuable-color(cudl-palette(green, dark-1));
+  @include valuable-color(cudl-palette(green, dark-1), red);
 }
