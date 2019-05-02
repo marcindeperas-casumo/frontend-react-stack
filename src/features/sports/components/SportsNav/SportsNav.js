@@ -43,10 +43,11 @@ export const USER_NAVIGATION_QUERY = gql`
       }
     }
 
-    labels {
-      all: dictionaryTerm(key: "navigation.all")
-      edit: dictionaryTerm(key: "navigation.edit")
-    }
+    # TODO(CPO): this was working before? check before creating PR
+    # labels {
+    allLabel: dictionaryTerm(key: "navigation.all")
+    editLabel: dictionaryTerm(key: "navigation.edit")
+    # }
   }
 `;
 
@@ -146,7 +147,12 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <ErrorMessage direction="horizontal" />;
           }
 
-          if (data && data.sportsNavigation && data.labels) {
+          if (
+            data &&
+            data.sportsNavigation &&
+            data.allLabel &&
+            data.editLabel
+          ) {
             const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
               this.mapToNavItem
             );
@@ -169,7 +175,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
-                      labels={data.labels}
+                      labels={{ all: data.allLabel, edit: data.editLabel }}
                     />
                   )}
                 </OpenModalMutation>
@@ -184,7 +190,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={selectedNavItem.canEdit}
                       onEdit={openChooseFavouriteLeaguesModal}
-                      labels={data.labels}
+                      labels={{ all: data.allLabel, edit: data.editLabel }}
                     />
                   )}
                 </OpenModalMutation>

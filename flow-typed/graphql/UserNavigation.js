@@ -72,7 +72,9 @@ export type UserNavigation_sportsNavigation = {
 };
 
 export type UserNavigation = {
-  sportsNavigation: Array<UserNavigation_sportsNavigation>
+  sportsNavigation: Array<UserNavigation_sportsNavigation>,
+  all: string,
+  edit: string,
 };
 
 /* @flow */
