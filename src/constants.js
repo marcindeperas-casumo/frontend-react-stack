@@ -128,3 +128,10 @@ export const MODALS = {
     REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS",
   },
 };
+
+export const CURRENCY_SYMBOLS = {
+  EUR: "€",
+  GBP: "£",
+  INR: "₹",
+  JPY: "¥",
+};

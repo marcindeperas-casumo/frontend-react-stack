@@ -1,19 +1,34 @@
 [
   {
+    "id": "123",
     "valuableType": "cash",
     "title": "€50 Bonus Money",
-    "magnitude": "50"
+    "magnitude": "50",
+    "currency": "EUR",
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png"
   },
   {
+    "id": "111",
     "valuableType": "deposit",
-    "title": "100% Deposit Bonus"
+    "title": "100% Deposit Bonus",
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png"
   },
   {
+    "id": "432",
     "valuableType": "sport",
-    "title": "€5 Sport Bet"
+    "title": "€5 Sport Bet",
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png"
   },
   {
+    "id": "654",
     "valuableType": "spins",
-    "title": "20 Free Spins"
+    "title": "20 Free Spins",
+    "magnitude": "20",
+    "coinValue": 30,
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
+    "game": {
+      "title": "Starburst",
+      "imageUrl": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
+    }
   }
 ]

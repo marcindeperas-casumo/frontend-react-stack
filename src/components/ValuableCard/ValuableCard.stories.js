@@ -14,13 +14,12 @@ stories.add(
   "Default",
   () => {
     const valuableType =
-      select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
+      select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.SPINS) ||
       VALUABLE_TYPES.CASH;
     const valuableDetails =
       find(propEq("valuableType", valuableType))(mockData) || mockData[0];
-    const { title } = valuableDetails;
 
-    return <ValuableCard title={title} valuableType={valuableType} />;
+    return <ValuableCard {...valuableDetails} />;
   },
   info({ text: "Default" })
 );

@@ -2,25 +2,27 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { valuableToColor, VALUABLE_TYPES } from "Models/valuables";
-import ValuableCardBackground from "./ValuableCardBackground";
-import { ValuableIcons } from "./ValuableIcons.utils";
+import { VALUABLE_TYPES } from "Models/valuables";
+import { CURRENCY_SYMBOLS } from "Src/constants";
+import ValuableHeaderBackground from "./ValuableHeaderBackground";
+import { VALUABLE_ICON } from "./ValuableIcons.utils";
+import { CoinValueToSpinType } from "./ValuableCard.utils";
+import ValuableReward from "./ValuableReward";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
 
 type Props = {
+  id: string,
   title: string,
   valuableType: ValuableType,
+  currency: string,
+  valuableType: ValuableType,
+  backgroundImageUrl: string,
+  coinValue: number,
 };
 
 class ValuableCard extends PureComponent<Props> {
-  get valuableTheme() {
-    const { valuableType } = this.props;
-
-    return valuableToColor[valuableType] || valuableToColor["default"];
-  }
-
   get valuableSymbol() {
     const { valuableType } = this.props;
 
@@ -28,30 +30,55 @@ class ValuableCard extends PureComponent<Props> {
       return this.cashSymbol;
     }
 
-    return ValuableIcons[valuableType];
+    return VALUABLE_ICON[valuableType];
+  }
+
+  get classModifier(): string {
+    const { valuableType } = this.props;
+
+    return `c-valuable-card--${valuableType}`;
+  }
+
+  // TODO: maybe move to graphql
+  get spinType() {
+    return CoinValueToSpinType(this.props.coinValue);
   }
 
   cashSymbol = () => {
+    const { currency } = this.props;
+    const currencySymbol = CURRENCY_SYMBOLS[currency];
+
     return (
       <Text tag="div" size="lg">
-        €
+        {currencySymbol}
       </Text>
     );
   };
 
   render() {
-    const { title } = this.props;
+    const { id, title, backgroundImageUrl, valuableType } = this.props;
     const ValuableSymbol = this.valuableSymbol;
+    const level0 = 0;
+    const rewardLevel =
+      valuableType === VALUABLE_TYPES.SPINS ? this.spinType : level0;
 
     return (
       <Flex
         className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
         direction="vertical"
+        gap="none"
       >
         <Flex.Block>
-          <ValuableCardBackground {...this.valuableTheme}>
-            <ValuableSymbol />
-          </ValuableCardBackground>
+          <ValuableHeaderBackground
+            className={this.classModifier}
+            imageUrl={backgroundImageUrl}
+            id={id}
+          >
+            <ValuableReward
+              ValuableSymbol={ValuableSymbol}
+              rewardLevel={rewardLevel}
+            />
+          </ValuableHeaderBackground>
         </Flex.Block>
         <Flex.Item className="c-valuable-card__content u-text-align-center">
           <div className="t-color-grey-dark-2 u-font-weight-bold">{title}</div>

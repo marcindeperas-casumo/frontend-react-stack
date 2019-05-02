@@ -1,3 +1,9 @@
+@mixin valuable-color($rewardColor) {
+  .c-valuable-card__reward {
+    color: $rewardColor;
+  }
+}
+
 .c-valuable-card {
   height: 204px;
   max-width: 170px;
@@ -5,4 +11,20 @@
 
 .c-valuable-card__content {
   height: 80px;
+}
+
+.c-valuable-card--cash {
+  @include valuable-color(cudl-palette(yellow));
+}
+
+.c-valuable-card--deposit {
+  @include valuable-color(cudl-palette(blue, light-1));
+}
+
+.c-valuable-card--spins {
+  @include valuable-color(cudl-palette(grey, light-1));
+}
+
+.c-valuable-card--sport {
+  @include valuable-color(cudl-palette(green, dark-1));
 }
