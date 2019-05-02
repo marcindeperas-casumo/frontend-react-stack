@@ -6,7 +6,13 @@ import EditPillsButton from "./EditPillsButton";
 
 const stories = storiesOf("Sports/EditPillsButton", module);
 
-stories.add("Default", () => <EditPillsButton onClick={action("onClick")} />);
+stories.add("Without Label", () => (
+  <EditPillsButton onClick={action("onClick")} />
+));
+
+stories.add("With Label", () => (
+  <EditPillsButton onClick={action("onClick")} label="Edit" />
+));
 
 stories.add("Custom className", () => (
   <EditPillsButton

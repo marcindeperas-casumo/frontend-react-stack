@@ -1,8 +1,11 @@
 // @flow
 
 import React from "react";
+import type { Node } from "react";
 import classNames from "classnames";
 import { CrossIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 
 import "./EditPillsButton.scss";
 
@@ -11,17 +14,38 @@ type Props = {
   onClick: () => void,
   /** className overrides to restyle the button */
   className?: string,
+  /** optional label to show below the button */
+  label?: Node,
 };
 
 export const defaultClasses = "t-color-grey t-background-grey-light-2";
 
-const EditPillsButton = ({ onClick, className = defaultClasses }: Props) => (
-  <span
-    className={classNames("c-edit-pills-button", className)}
+const EditPillsButton = ({
+  onClick,
+  label,
+  className = defaultClasses,
+}: Props) => (
+  <Flex
+    direction="vertical"
+    align="center"
+    className="u-cursor-pointer"
     onClick={onClick}
   >
-    <CrossIcon />
-  </span>
+    <Flex.Item className={classNames("c-edit-pills-button", className)}>
+      <CrossIcon />
+    </Flex.Item>
+    {label && (
+      <Flex.Item>
+        <Text
+          style={{ marginTop: 1 }}
+          size="sm"
+          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-grey u-margin-bottom--none"
+        >
+          {label}
+        </Text>
+      </Flex.Item>
+    )}
+  </Flex>
 );
 
 export default EditPillsButton;
