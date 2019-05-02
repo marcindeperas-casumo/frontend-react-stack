@@ -1,0 +1,29 @@
+.c-sports-nav-paginated {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+.c-sports-nav-paginated__list {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.c-sports-nav-paginated__controls {
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: cudl-z();
+}
+
+.c-sports-nav-paginated__button {
+  background-image: linear-gradient(to left, rgba(#fff, 1) 2%, rgba(#fff, 0));
+}
+
+// stylelint-disable xi/selector-pattern
+.c-sports-nav-paginated .c-sports-nav-paginated__button {
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+}
+
+.c-sports-nav-paginated:hover .c-sports-nav-paginated__button {
+  opacity: 1;
+}
+// stylelint-enable xi/selector-pattern

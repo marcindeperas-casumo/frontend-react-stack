@@ -1,12 +1,13 @@
 // @flow
-
 import * as React from "react";
-import Scrollable from "@casumo/cmp-scrollable";
-import Flex from "@casumo/cmp-flex";
+import type { CellRendererParams } from "react-virtualized";
+import classNames from "classnames";
+import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import type { SportsNavItemType } from "./types";
 import SportsNavTab from "./SportsNavTab";
 import SportsSingleNavTab from "./SportsSingleNavTab";
+import { sportsPagerButtonRenderer } from "./SportsScrollablePaginatedButton";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -14,54 +15,94 @@ export type Props = {
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
+  labels: {
+    all: string,
+    edit: string,
+  },
 };
 
 class SportsMainNav extends React.Component<Props> {
-  renderTabList = (navItems: Array<SportsNavItemType>) => {
-    return navItems.map<React.Node>(navItem => (
-      <SportsNavTab
-        key={navItem.path}
-        navItem={navItem}
-        isSelected={this.props.isSelected(navItem)}
-        onClick={() => this.props.onSelected(navItem)}
-      />
-    ));
+  renderEditButton = () => {
+    const hasMultipleTabs = this.props.navItems.length > 1;
+
+    const label = hasMultipleTabs && this.props.labels.edit;
+
+    const className = hasMultipleTabs
+      ? "u-margin-vert--lg u-margin-left--md"
+      : "u-margin--xlg u-padding-top";
+
+    return (
+      <div className={className}>
+        {this.props.canEdit && (
+          <EditPillsButton
+            onClick={this.props.onEdit}
+            className="t-background-white t-color-grey u-drop-shadow"
+            label={label}
+          />
+        )}
+      </div>
+    );
   };
 
-  renderSingleNav = (navItem: SportsNavItemType) => {
+  renderSingleNav = ({ columnIndex, style }: CellRendererParams) => {
+    const navItem = this.props.navItems[columnIndex];
+
     return (
-      <SportsSingleNavTab
-        onClick={() => this.props.onSelected(navItem)}
-        navItem={navItem}
-      />
+      <div style={style}>
+        {navItem ? (
+          <SportsSingleNavTab
+            onClick={() => this.props.onSelected(navItem)}
+            navItem={navItem}
+          />
+        ) : (
+          this.renderEditButton()
+        )}
+      </div>
+    );
+  };
+
+  renderTabList = ({ columnIndex, style }: CellRendererParams) => {
+    const navItem = this.props.navItems[columnIndex];
+
+    const className = classNames(
+      columnIndex === 0 && "u-margin-left--md",
+      columnIndex === this.props.navItems.length && "u-margin-right--xlg"
+    );
+
+    return (
+      <div style={style}>
+        <div className={className}>
+          {navItem ? (
+            <SportsNavTab
+              key={navItem.path}
+              navItem={navItem}
+              isSelected={this.props.isSelected(navItem)}
+              onClick={() => this.props.onSelected(navItem)}
+            />
+          ) : (
+            this.renderEditButton()
+          )}
+        </div>
+      </div>
     );
   };
 
   render() {
-    const { navItems, canEdit, onEdit } = this.props;
+    const tabCount = this.props.navItems.length;
+    const buttonCount = 1; // include edit button to append
+    const columnCount = tabCount + buttonCount;
 
     return (
-      <div>
-        <Scrollable
-          padding={{ default: "lg", tablet: "3xlg" }}
-          itemSpacing="lg"
-          className="t-background-grey-light-2"
-        >
-          {navItems.length > 1 && this.renderTabList(navItems)}
-
-          {navItems.length === 1 && this.renderSingleNav(navItems[0])}
-
-          {canEdit && (
-            <Flex.Block className="o-flex-align--center">
-              <Flex justify="end" align="center" className="o-flex--1">
-                <EditPillsButton
-                  onClick={onEdit}
-                  className="t-background-white t-color-grey u-drop-shadow"
-                />
-              </Flex>
-            </Flex.Block>
-          )}
-        </Scrollable>
+      <div className="t-background-grey-light-2">
+        <ScrollablePaginated
+          className="c-sports-nav-paginated"
+          columnCount={columnCount}
+          cellRenderer={
+            tabCount > 1 ? this.renderTabList : this.renderSingleNav
+          }
+          height={106}
+          buttonRenderer={sportsPagerButtonRenderer}
+        />
       </div>
     );
   }

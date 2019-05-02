@@ -42,6 +42,11 @@ export const USER_NAVIGATION_QUERY = gql`
         }
       }
     }
+
+    labels {
+      all: dictionaryTerm(key: "navigation.all")
+      edit: dictionaryTerm(key: "navigation.edit")
+    }
   }
 `;
 
@@ -141,7 +146,7 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <ErrorMessage direction="horizontal" />;
           }
 
-          if (data && data.sportsNavigation) {
+          if (data && data.sportsNavigation && data.labels) {
             const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
               this.mapToNavItem
             );
@@ -164,6 +169,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
+                      labels={data.labels}
                     />
                   )}
                 </OpenModalMutation>
@@ -178,6 +184,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={selectedNavItem.canEdit}
                       onEdit={openChooseFavouriteLeaguesModal}
+                      labels={data.labels}
                     />
                   )}
                 </OpenModalMutation>

@@ -1,11 +1,11 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
-import Scrollable from "@casumo/cmp-scrollable";
+import type { CellRendererParams } from "react-virtualized";
+import ScrollablePaginated from "Components/ScrollablePaginated";
 import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import type { SportsNavItemType } from "./types";
+import { sportsPagerButtonRenderer } from "./SportsScrollablePaginatedButton";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -13,6 +13,9 @@ export type Props = {
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
+  labels: {
+    all: string,
+  },
 };
 
 type SportsSubNavItemProps = {
@@ -22,10 +25,10 @@ type SportsSubNavItemProps = {
 };
 
 const SportsSubNavItem = (props: SportsSubNavItemProps) => (
-  <Flex.Item
+  <div
     key={props.navItem.path}
     onClick={props.onSelected}
-    className="o-flex__item-fixed-size u-margin-vert--md "
+    className="u-margin-vert--md u-margin-horiz--sm"
   >
     <Pill
       inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"
@@ -34,57 +37,84 @@ const SportsSubNavItem = (props: SportsSubNavItemProps) => (
     >
       {props.navItem.text}
     </Pill>
-  </Flex.Item>
+  </div>
 );
 
-const SportsSubNav = ({
-  navItems,
-  canEdit,
-  onEdit,
-  isSelected,
-  onSelected,
-}: Props) => {
-  const allNavItem = {
-    text: <DictionaryTerm termKey="sports-sub-nav.all" />,
-    path: navItems[0].parentPath || "",
-    key: "all",
-    canEdit: false,
+class SportsSubNav extends React.Component<Props> {
+  renderAllNavItem = ({ style }: CellRendererParams) => {
+    const allNavItem = {
+      text: this.props.labels.all,
+      path: this.props.navItems[0].parentPath || "",
+      key: "all",
+      canEdit: false,
+    };
+
+    return (
+      <div style={style}>
+        <div className="u-margin-left--md u-margin-vert--md">
+          <SportsSubNavItem
+            navItem={allNavItem}
+            onSelected={() => this.props.onSelected(allNavItem)}
+            isSelected={this.props.isSelected(allNavItem, false)}
+          />
+        </div>
+      </div>
+    );
   };
 
-  return (
-    <Scrollable
-      className="t-background-grey-light-2 u-margin-top--sm"
-      padding={{ default: "lg", tablet: "3xlg" }}
-      itemSpacing="default"
-    >
-      <SportsSubNavItem
-        navItem={allNavItem}
-        onSelected={() => onSelected(allNavItem)}
-        isSelected={isSelected(allNavItem, false)}
-      />
-      {navItems.map(navItem => {
-        return (
-          <SportsSubNavItem
-            key={navItem.path}
-            navItem={navItem}
-            onSelected={() => onSelected(navItem)}
-            isSelected={isSelected(navItem, false)}
+  renderEditButton = ({ style }: CellRendererParams) => (
+    <div style={style}>
+      <div className="u-margin--md u-margin-left--sm">
+        {this.props.canEdit && (
+          <EditPillsButton
+            onClick={this.props.onEdit}
+            className="t-background-grey-light-3 t-color-grey u-drop-shadow"
           />
-        );
-      })}
-
-      {canEdit && (
-        <Flex.Block className="o-flex-align--center u-margin-left--md">
-          <Flex justify="end" align="center" className="o-flex--1">
-            <EditPillsButton
-              onClick={onEdit}
-              className="t-background-grey-light-3 t-color-grey u-drop-shadow"
-            />
-          </Flex>
-        </Flex.Block>
-      )}
-    </Scrollable>
+        )}
+      </div>
+    </div>
   );
-};
+
+  renderItem = ({ columnIndex, style }: CellRendererParams) => {
+    if (columnIndex === 0) {
+      return this.renderAllNavItem({ style });
+    }
+
+    const navItem = this.props.navItems[columnIndex - 1];
+
+    if (!navItem) {
+      return this.renderEditButton({ style });
+    }
+
+    return (
+      <div style={style}>
+        <SportsSubNavItem
+          key={navItem.path}
+          navItem={navItem}
+          onSelected={() => this.props.onSelected(navItem)}
+          isSelected={this.props.isSelected(navItem, false)}
+        />
+      </div>
+    );
+  };
+
+  render() {
+    const tabCount = this.props.navItems.length;
+    const buttonCount = 2; // include "all" pill to prepend, edit button to append
+    const columnCount = tabCount + buttonCount;
+
+    return (
+      <div className="t-background-grey-light-2 u-margin-top--sm">
+        <ScrollablePaginated
+          className="c-sports-nav-paginated"
+          columnCount={columnCount}
+          cellRenderer={this.renderItem}
+          height={64}
+          buttonRenderer={sportsPagerButtonRenderer}
+        />
+      </div>
+    );
+  }
+}
 
 export default SportsSubNav;
