@@ -6,7 +6,6 @@ import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";
 import SectionTitle from "./SectionTitle";
-import "./LiveCasinoDetailPage.scss";
 
 type Props = {
   /** grouped list of games to render */
