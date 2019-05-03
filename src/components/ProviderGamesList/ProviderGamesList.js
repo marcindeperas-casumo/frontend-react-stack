@@ -123,14 +123,6 @@ class ProviderGamesList extends PureComponent<Props, State> {
 
     return (
       <div>
-        <Text
-          align="center"
-          size="md"
-          className="u-padding--lg t-background-grey-light-2"
-          data-test="provider-games-list-title"
-        >
-          {provider.name}
-        </Text>
         <div>
           <TrackProvider
             data={{

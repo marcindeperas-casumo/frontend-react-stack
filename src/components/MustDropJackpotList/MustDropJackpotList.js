@@ -30,14 +30,6 @@ export default class MustDropJackpotList extends PureComponent<Props> {
       />
     ) : (
       <div>
-        <Text
-          align="center"
-          size="md"
-          className="u-padding--lg t-background-grey-light-2"
-          data-test="must-drop-jackpot-title"
-        >
-          {title}
-        </Text>
         <div className="u-padding-horiz--md u-padding-bottom--md">
           <List
             items={ids}
