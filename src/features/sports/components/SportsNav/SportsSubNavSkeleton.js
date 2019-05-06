@@ -12,8 +12,8 @@ const PillSkeleton = ({ width, subs, hideBadge }) => (
       xmlns="http://www.w3.org/2000/svg"
     >
       <path
-        fill-rule={hideBadge ? "nonzero" : "evenodd"}
-        clip-rule="evenodd"
+        fillRule={hideBadge ? "nonzero" : "evenodd"}
+        clipRule="evenodd"
         d={`M16 0C7.16344 0 0 7.16344 0 16C0 24.8366 7.16344 32 16 ${
           subs[0]
         } 32 ${width} 24.8366 ${width} ${subs[1]} 7.16344 ${subs[2]} 0 ${
