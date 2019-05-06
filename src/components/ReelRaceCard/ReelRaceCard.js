@@ -7,8 +7,8 @@ import Button from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
-import { MODALS, EVENT_PROPS } from "Src/constants";
-import { BUTTON_STATE, MIXPANEL_EVENT_NAME } from "Models/reelRaces";
+import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
+import { BUTTON_STATE } from "Models/reelRaces";
 import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
@@ -64,7 +64,7 @@ export class ReelRaceCard extends React.Component<Props> {
       if (this.props.opted) {
         return (
           <TrackClick
-            eventName={MIXPANEL_EVENT_NAME}
+            eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
             data={{ state: BUTTON_STATE.PLAY }}
           >
             <Button
@@ -86,14 +86,14 @@ export class ReelRaceCard extends React.Component<Props> {
 
     const active = {
       label: t.opt_in,
-      eventName: MIXPANEL_EVENT_NAME,
+      eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPT_IN },
       onClick: this.props.optIn,
     };
 
     const disabled = {
       label: t.opted_in,
-      eventName: MIXPANEL_EVENT_NAME,
+      eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPTED_IN },
     };
 

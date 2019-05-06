@@ -29,7 +29,7 @@ const PromotionOptInButtonConnected = connect(
         field: optInField,
         defaultValue: defaultOptInValue,
       })(state),
-      eventName: EVENTS.PROMOTION_OPTED_IN,
+      eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: true,
       },
@@ -40,7 +40,7 @@ const PromotionOptInButtonConnected = connect(
         field: optOutField,
         defaultValue: defaultOptOutValue,
       })(state),
-      eventName: EVENTS.PROMOTION_OPTED_IN,
+      eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: false,
       },

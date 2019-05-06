@@ -35,6 +35,11 @@ Before you create a component please consider the following steps:
 - Test files (tests or stories) should live alongside the components it tests.
 - Create chromatic stories for each visual regression required on the component and a single non-chromatic story with all the available knobs/actions required.
 
+# Events
+
+Make sure that all Mixpanel events are defined on [`src/constants.js`](src/constants.js) file, and not spread across the code.
+And the same applies to the event properties.
+
 ## Folder structure
 
 ```bash
