@@ -4,11 +4,7 @@ import {
   NUMBER_OF_LEVELS_IN_TRAVEL_MODE,
   NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE,
 } from "./adventure.constants";
-import type {
-  AdventurerRaw,
-  AdventurerLevelProgress,
-  BeltType,
-} from "./adventure.types";
+import type { AdventurerLevelProgress, BeltType } from "./adventure.types";
 
 export function translateBeltNumberToColour(belt: number = 0) {
   const belts: Array<BeltType> = [
