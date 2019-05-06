@@ -56,11 +56,15 @@ class ValuableCard extends PureComponent<Props> {
   };
 
   render() {
-    const { id, title, backgroundImageUrl, valuableType } = this.props;
+    const { id, title, valuableType } = this.props;
     const ValuableSymbol = this.valuableSymbol;
     const level0 = 0;
+
+    // TODO: group this
     const rewardLevel =
       valuableType === VALUABLE_TYPES.SPINS ? this.spinType : level0;
+    const backgroundImageUrl =
+      valuableType === VALUABLE_TYPES.SPINS ? this.props.game.gameImageUrl : "";
 
     return (
       <Flex
@@ -80,8 +84,12 @@ class ValuableCard extends PureComponent<Props> {
             />
           </ValuableHeaderBackground>
         </Flex.Block>
+        {/* TODO: format content */}
         <Flex.Item className="c-valuable-card__content u-text-align-center">
-          <div className="t-color-grey-dark-2 u-font-weight-bold">{title}</div>
+          <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
+            {title}
+          </div>
+          <div className="t-color-grey u-font-xs u-margin-top">Starburst</div>
         </Flex.Item>
       </Flex>
     );

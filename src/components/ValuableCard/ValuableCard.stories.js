@@ -14,7 +14,7 @@ stories.add(
   "Default",
   () => {
     const valuableType =
-      select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.SPINS) ||
+      select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
       VALUABLE_TYPES.CASH;
     const valuableDetails =
       find(propEq("valuableType", valuableType))(mockData) || mockData[0];
