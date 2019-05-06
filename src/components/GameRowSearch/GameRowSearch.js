@@ -25,7 +25,7 @@ type Props = {
 
 const TrackPlayIcon = ({ name, onLaunchGame }) => (
   <TrackClick
-    eventName={EVENTS.GAME_LAUNCH}
+    eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item onClick={onLaunchGame}>
@@ -37,7 +37,7 @@ const TrackPlayIcon = ({ name, onLaunchGame }) => (
 const TrackMoreIcon = ({ name, slug }) => (
   <Flex.Item>
     <TrackClick
-      eventName={EVENTS.GAME_DETAILS}
+      eventName={EVENTS.MIXPANEL_GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/en/play/${slug}`}>
@@ -61,7 +61,7 @@ export default class GameRowSearch extends PureComponent<Props> {
       <Flex align="center">
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick
-            eventName={EVENTS.GAME_LAUNCH}
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
             <Flex align="center">
