@@ -85,7 +85,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         </Flex.Block>
         <Flex.Item>
           <TrackClick
-            eventName={EVENTS.GAME_LAUNCH}
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
             <Button className="u-text-nowrap u-text-transform-capitalize">

@@ -86,11 +86,11 @@ export default class CuratedCard extends PureComponent<Props> {
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <TrackView
-          eventName={EVENTS.CURATED_COMPONENT_VIEWED}
+          eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
           data={this.trackData}
         />
         <TrackClick
-          eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+          eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
           data={this.trackData}
         >
           <CuratedCardBackground
