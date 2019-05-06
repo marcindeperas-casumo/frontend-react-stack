@@ -12,33 +12,25 @@
 //
 // If we could keep the same var names across repositories, that would avoid
 // unnecessary confusion.
-
 // REACT_APP* events are events that the react app will be responsible to react
 // to.
 export const REACT_APP_EVENT_ON_LOGIN = "REACT_APP_EVENT/onLogin";
 export const REACT_APP_EVENT_ROUTE_CHANGE = "REACT_APP_EVENT/routeChange";
 export const REACT_APP_EVENT_MENU_OPENED = "REACT_APP_EVENT/menuOpened";
 export const REACT_APP_EVENT_MENU_CLOSED = "REACT_APP_EVENT/menuClosed";
-export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
-
-// KO_APP* events are events that the KO app will be responsible to react
-// to.
+export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch"; // KO_APP* events are events that the KO app will be responsible to react // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
-
+export const STORE_REHYDRATE = "REHYDRATE";
+export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {
   mark: "",
   dpr: 1,
-  imgixOpts: {
-    w: 5,
-    blur: 2000,
-  },
+  imgixOpts: { w: 5, blur: 2000 },
 };
-
 export const GAME_LIST_IDS = {
   POPULAR_GAMES: "popularGames",
-  LIVE_CASINO_GAMES: "liveCasinoGames",
-  // TODO: remove this by using unique ids everywhere in the CMS
+  LIVE_CASINO_GAMES: "liveCasinoGames", // TODO: remove this by using unique ids everywhere in the CMS
   LIVE_CASINO_GAMES_ALIAS: "liveCasino",
   NEW_GAMES: "newGames",
   EXCLUSIVE_GAMES: "exclusiveGames",
@@ -52,7 +44,6 @@ export const GAME_LIST_IDS = {
   SUGGESTED_GAMES: "suggestedGames",
   SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
 };
-
 export const MARKETS = {
   ___en: "___en",
   ca_en: "ca_en",
@@ -63,7 +54,6 @@ export const MARKETS = {
   no_no: "no_no",
   se_sv: "se_sv",
 };
-
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "ca",
@@ -74,7 +64,6 @@ export const LANGUAGES = {
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
 };
-
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
   [MARKETS.ca_en]: "en-CA",
@@ -85,7 +74,6 @@ export const INTL_LOCALES = {
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
 };
-
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",
@@ -94,15 +82,15 @@ export const EVENTS = {
   MIXPANEL_CURATED_COMPONENT_CLICKED: "Curated Component Clicked",
   MIXPANEL_CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
   MIXPANEL_REEL_RACE_CLICKED: "Reel Race Card Clicked",
+  MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
 };
-
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
   CURATED_TYPE: "type",
   CURATED_SLUG: "slug",
+  OPTED_IN: "opted in",
 };
-
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
   ALL_GAMES: "allGames",
@@ -110,13 +98,10 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
-
 export const MODALS = {
   ACCOUNT_SETTINGS: {
     CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
     CHANGE_PASSWORD: "ACCOUNT_SETTINGS/CHANGE_PASSWORD",
   },
-  TOP_LIST: {
-    REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS",
-  },
+  TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
 };

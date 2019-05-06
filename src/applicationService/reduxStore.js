@@ -1,10 +1,13 @@
+//@flow
 import { createStore, applyMiddleware, compose } from "redux";
 import thunk from "redux-thunk";
 import createSagaMiddleware from "redux-saga";
 import rootReducer from "Models/root.reducer";
 import rootSaga from "Models/root.saga";
+import * as storage from "Lib/storage";
+import { STORE_REHYDRATE, STORE_PERSISTED_STATE_KEY } from "Src/constants";
 
-export const createReduxStore = preloadedState => {
+export const createReduxStore = (preloadedState: {}) => {
   const composeEnhancers = __DEV__
     ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
     : compose;
@@ -17,6 +20,12 @@ export const createReduxStore = preloadedState => {
   const composedEnhancers = composeEnhancers(...enhancers);
 
   const store = createStore(rootReducer, preloadedState, composedEnhancers);
+
+  // Rehydrate store from the persisting storage
+  store.dispatch({
+    type: STORE_REHYDRATE,
+    state: storage.get(STORE_PERSISTED_STATE_KEY, {}),
+  });
 
   sagaMiddleware.run(rootSaga);
 
@@ -41,4 +50,4 @@ export const createReduxStore = preloadedState => {
   return store;
 };
 
-export default createReduxStore();
+export default createReduxStore({});

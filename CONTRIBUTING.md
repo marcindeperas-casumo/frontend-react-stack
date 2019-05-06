@@ -33,6 +33,7 @@ Before you create a component please consider the following steps:
 - When making changes to a component or introducing a new prop make sure there is a story that caters for it.
 - Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
 - Test files (tests or stories) should live alongside the components it tests.
+- Create chromatic stories for each visual regression required on the component and a single non-chromatic story with all the available knobs/actions required.
 
 # Events
 
