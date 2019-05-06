@@ -118,7 +118,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
 
     if (!areGamesLoaded) {
-      return <GameListSkeleton />;
+      return <GameListSkeleton hasTitle={false} />;
     }
 
     return (

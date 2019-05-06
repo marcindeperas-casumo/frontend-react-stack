@@ -23,11 +23,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
     const { ids, areGamesLoaded, title } = this.props;
 
     return !areGamesLoaded ? (
-      <GameListSkeleton
-        className="u-padding--md"
-        titleXOffset={100}
-        titleYOffset={10}
-      />
+      <GameListSkeleton className="u-padding--md" hasTitle={false} />
     ) : (
       <div>
         <div className="u-padding-horiz--md u-padding-bottom--md">
