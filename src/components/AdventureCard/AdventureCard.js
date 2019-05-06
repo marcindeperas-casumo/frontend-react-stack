@@ -24,10 +24,17 @@ type Props = {
 class AdventureAvatarAndDetails extends PureComponent<Props> {
   render() {
     const { name, belt, level, inBonusMode } = this.props.adventurer;
-    const { level_label, bonus_mode_label } = this.props.content;
-    const levelLabel = inBonusMode
-      ? `${level_label} | <strong class="t-color-violet">${bonus_mode_label}</strong>`
-      : level_label;
+    const {
+      max_level_label,
+      level_label,
+      bonus_mode_label,
+    } = this.props.content;
+
+    const levelLabel = level > 180 ? max_level_label : level_label;
+
+    const levelLabelWithBonusIndicator = inBonusMode
+      ? `${levelLabel} | <strong class="t-color-violet">${bonus_mode_label}</strong>`
+      : levelLabel;
 
     return (
       <Flex
@@ -52,7 +59,10 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
             className="t-color-grey-light-1"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
-              levelLabel.replace("{{level}}", level.toString())
+              levelLabelWithBonusIndicator.replace(
+                "{{level}}",
+                level.toString()
+              )
             )}
           />
         </Flex.Item>

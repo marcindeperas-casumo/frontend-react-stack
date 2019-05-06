@@ -67,10 +67,11 @@ export type AdventurerLevelProgress = {
 };
 
 export type AdventureContent = {
+  bonus_mode_label: string,
+  level_label: string,
+  max_level_label: string,
   progression_label_standard: string,
   progression_label_bonus: string,
-  level_label: string,
-  bonus_mode_label: string,
 };
 
 export type Adventurer = {
