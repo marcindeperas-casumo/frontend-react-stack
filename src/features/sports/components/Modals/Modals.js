@@ -21,13 +21,13 @@ export const ModalsArea = ({ children }: { children: Node }) => (
 );
 
 const setScrollingEnabled = (isEnabled: boolean) => {
-  const root = document.querySelector(":root");
+  const root = document.documentElement;
+
   if (root) {
-    if (isEnabled) {
-      root.removeAttribute("style");
-    } else {
-      root.style.setProperty("--scroll-y-overflow", "hidden");
-    }
+    root.style.setProperty(
+      "--scroll-y-overflow",
+      isEnabled ? "auto" : "hidden"
+    );
   }
 };
 
