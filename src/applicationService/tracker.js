@@ -3,7 +3,7 @@ import config from "Src/config";
 import createTracker from "Lib/tracker";
 import createAdapterMixpanel from "Lib/tracker.adapter.mixpanel";
 import createAdapterLog from "Lib/tracker.adapter.log";
-import logger from "Services/logger";
+import { logger } from "Services/logger";
 
 const tracker = getTracker();
 

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import logger from "Services/logger";
+import { logger } from "Services/logger";
 import { ErrorBoundary } from "./ErrorBoundary";
 
 jest.mock("Services/logger");

@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import logger from "Services/logger";
+import { logger } from "Services/logger";
 import ErrorBoundaryUserFeedback from "./ErrorBoundaryUserFeedback";
 
 type Props = {
