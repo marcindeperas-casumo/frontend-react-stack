@@ -34,6 +34,11 @@ Before you create a component please consider the following steps:
 - Every component that isn't a) exclusively an inner component of another (read: not re-usable) or b) a Container should be a top level component.
 - Test files (tests or stories) should live alongside the components it tests.
 
+# Events
+
+Make sure that all Mixpanel events are defined on [`src/constants.js`](src/constants.js) file, and not spread across the code.
+And the same applies to the event properties.
+
 ## Folder structure
 
 ```bash
@@ -114,7 +119,7 @@ The Casumo Sonar dashboard for this project can be found [**here**](http://sonar
 
 It is advised that all issues raised by Sonar be solved prior to any code merge. To help with that, using [SonarLint's VSCode extension](https://www.sonarlint.org/vscode/) is recommended. Instructions on setting up the extension can be found on the [Configuring SonarLint](#configuring-sonarlint-with-vscode) session below.
 
-For more information on how to configure Sonar itself, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project. 
+For more information on how to configure Sonar itself, please refer to the [jenkins-pipeline-libraries](https://github.com/Casumo/jenkins-pipeline-libraries/) project.
 
 ### Configuring SonarLint with VSCode
 
@@ -142,4 +147,3 @@ For more information on how to configure Sonar itself, please refer to the [jenk
         "projectKey": "mobile-react-stack-poc"
       }
 ```
-
