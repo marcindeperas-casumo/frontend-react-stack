@@ -7,7 +7,6 @@ import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import {
   isGameListFetchedFactory,
   mustDropJackpotsIdsSelector,
-  gameListTitleSelectorFactory,
 } from "Models/schema";
 import { initFetchTopLists } from "Models/games";
 
@@ -17,9 +16,6 @@ const MustDropJackpotListConnected = connect(
       GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES
     )(state),
     ids: mustDropJackpotsIdsSelector(state),
-    title: gameListTitleSelectorFactory(GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES)(
-      state
-    ),
   }),
   { initFetchTopLists }
 )(MustDropJackpotList);

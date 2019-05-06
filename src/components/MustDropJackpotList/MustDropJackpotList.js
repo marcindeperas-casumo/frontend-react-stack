@@ -8,7 +8,6 @@ import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
 type Props = {
   ids: Array<string>,
   areGamesLoaded: boolean,
-  title: string,
   initFetchTopLists: () => void,
 };
 export default class MustDropJackpotList extends PureComponent<Props> {
@@ -20,7 +19,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
   }
 
   render() {
-    const { ids, areGamesLoaded, title } = this.props;
+    const { ids, areGamesLoaded } = this.props;
 
     return !areGamesLoaded ? (
       <GameListSkeleton className="u-padding--md" hasTitle={false} />
