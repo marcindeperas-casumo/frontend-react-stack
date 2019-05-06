@@ -68,7 +68,7 @@ const GameTileOverlay = ({
         <TemporaryUnavailable />
       ) : (
         <TrackClick
-          eventName={EVENTS.GAME_LAUNCH}
+          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
           data={{ [EVENT_PROPS.GAME_NAME]: name }}
         >
           <PlayAction onLaunchGame={onLaunchGame} />
@@ -77,7 +77,7 @@ const GameTileOverlay = ({
 
       {!alwaysActive && (
         <TrackClick
-          eventName={EVENTS.GAME_DETAILS}
+          eventName={EVENTS.MIXPANEL_GAME_DETAILS}
           data={{ [EVENT_PROPS.GAME_NAME]: name }}
         >
           <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
