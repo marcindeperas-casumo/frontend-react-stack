@@ -39,7 +39,7 @@ class ValuableCard extends PureComponent<Props> {
     return `c-valuable-card--${valuableType}`;
   }
 
-  // TODO: maybe move to graphql
+  // TODO: to check with @adr maybe move to graphql
   get spinType() {
     return CoinValueToSpinType(this.props.coinValue);
   }
@@ -56,16 +56,10 @@ class ValuableCard extends PureComponent<Props> {
   };
 
   render() {
-    const { id, title, valuableType } = this.props;
+    const { id, title, valuableType, game } = this.props;
     const ValuableSymbol = this.valuableSymbol;
+    const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const level0 = 0;
-
-    const rewardLevel =
-      valuableType === VALUABLE_TYPES.SPINS ? this.spinType : level0;
-    const backgroundImageUrl =
-      valuableType === VALUABLE_TYPES.SPINS ? this.props.game.gameImageUrl : "";
-    const gameTitle =
-      valuableType === VALUABLE_TYPES.SPINS ? this.props.game.title : "";
 
     return (
       <Flex
@@ -76,20 +70,25 @@ class ValuableCard extends PureComponent<Props> {
         <Flex.Block>
           <ValuableHeaderBackground
             className={this.classModifier}
-            imageUrl={backgroundImageUrl}
+            imageUrl={isValuableTypeSpins ? game.gameImageUrl : ""}
             id={id}
           >
             <ValuableReward
               ValuableSymbol={ValuableSymbol}
-              rewardLevel={rewardLevel}
+              rewardLevel={isValuableTypeSpins ? this.spinType : level0}
             />
           </ValuableHeaderBackground>
         </Flex.Block>
         <Flex.Item className="c-valuable-card__content u-text-align-center">
+          {/* TODO: to check with @adr population of amount from graphql?  */}
           <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
             {title}
           </div>
-          <div className="t-color-grey u-font-xs u-margin-top">{gameTitle}</div>
+          {isValuableTypeSpins && (
+            <div className="t-color-grey u-font-xs u-margin-top">
+              {game.title}
+            </div>
+          )}
         </Flex.Item>
       </Flex>
     );
