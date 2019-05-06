@@ -44,7 +44,7 @@
     right: auto;
     top: 10vh;
 
-    width: calc(100vw - var(--shell-offset-left, 0) - 20vw);
+    width: calc(100vw - var(--shell-offset-left, 0vw) - 20vw);
   }
 
   .c-sports-modal__header {
@@ -64,7 +64,7 @@
     border-radius: 3px;
     position: fixed;
     right: 15px;
-    top: calc(var(--top-bar-offset-top, 0) + 15px);
+    top: calc(var(--top-bar-offset-top, 0px) + 15px);
   }
 
   .c-sports-modal__back-button {
