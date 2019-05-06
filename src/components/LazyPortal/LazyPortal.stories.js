@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import LazyPortal from "Components/LazyPortal/LazyPortal";
-import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 const stories = storiesOf("LazyPortal", module);
 const hostElementId = "portal-host-element";

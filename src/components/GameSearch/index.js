@@ -1,1 +1,1 @@
-export { default } from "./GameSearchContainer";
+export { GameSearchContainer as GameSearch } from "./GameSearchContainer";

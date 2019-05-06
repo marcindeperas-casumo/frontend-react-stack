@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ComponentBuilderRenderer from "./ComponentBuilderRenderer";
+import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 
 const componentDefinitions = [
   { acf_fc_layout: "GAMES_LIST", listId: "foo" },

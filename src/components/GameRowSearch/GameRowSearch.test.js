@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
+import { GameRowSearch } from "Components/GameRowSearch/GameRowSearch";
 
 describe("<GameRowSearch />", () => {
   let rendered;

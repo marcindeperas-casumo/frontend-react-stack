@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import MaskText from "Components/MaskText";
-import DangerousHtml from "Components/DangerousHtml";
+import { DangerousHtml } from "Components/DangerousHtml";
 
 type Props = {
   /** The search query */
@@ -28,7 +28,7 @@ const TextMaskColored = props => (
   <MaskText matchRender={TextMatch} unmatchedRender={TextNotMatch} {...props} />
 );
 
-export default class GameRowSearchTitle extends PureComponent<Props> {
+export class GameRowSearchTitle extends PureComponent<Props> {
   render() {
     const { query, name, highlightSearchQuery } = this.props;
 

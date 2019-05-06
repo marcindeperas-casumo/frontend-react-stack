@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GameRowSkeleton from "./";
+import { GameRowSkeleton } from "./";
 
 const stories = storiesOf("GameRowSkeleton", module);
 

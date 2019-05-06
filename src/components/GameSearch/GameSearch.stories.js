@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GameSearch from "Components/GameSearch/GameSearch";
+import { GameSearch } from "Components/GameSearch/GameSearch";
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";

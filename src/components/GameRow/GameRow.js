@@ -6,8 +6,8 @@ import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { renderBets } from "Utils";
-import GameThumb from "Components/GameThumb";
-import DangerousHtml from "Components/DangerousHtml";
+import { GameThumb } from "Components/GameThumb";
+import { DangerousHtml } from "Components/DangerousHtml";
 import TrackClick from "Components/TrackClick";
 
 type Props = {
@@ -15,7 +15,7 @@ type Props = {
   onLaunchGame: () => void,
 };
 
-export default class GameRow extends PureComponent<Props> {
+export class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
     const { name, logo, logoBackground } = game;

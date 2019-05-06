@@ -5,8 +5,8 @@ import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import game from "Components/GameTile/__mocks__/Game.json";
 import MockStore from "Components/MockStore";
-import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
-import GameRowSearchContainer from "Components/GameRowSearch";
+import { GameRowSearch } from "Components/GameRowSearch/GameRowSearch";
+import { GameRowSearchContainer } from "Components/GameRowSearch/GameRowSearchContainer";
 import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameRowSearch", module);

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import GameSearch from "Components/GameSearch/GameSearch";
+import { GameSearch } from "Components/GameSearch/GameSearch";
 
 describe("GameSearch", () => {
   const clearSearch = jest.fn();
