@@ -1,8 +1,8 @@
 const defaultState = {
-  betslipVisible: true,
+  isBetslipVisible: true,
   activeModals: [],
   kambiClientVisible: true,
-  searchVisible: false,
+  isSearchVisible: false,
 };
 
 export default defaultState;
