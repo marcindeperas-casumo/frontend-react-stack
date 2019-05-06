@@ -166,7 +166,7 @@ export default class ScrollablePaginated extends React.PureComponent<
 
   componentDidMount() {
     // Not convinced by this but pushing to the next tick
-    // prevents things blowing up when current doesn't exist on mount.
+    // gives the gridRef values time to update.
     setTimeout(() => {
       this.setState({
         startColumn: this.gridRefCurrent._renderedColumnStartIndex,
