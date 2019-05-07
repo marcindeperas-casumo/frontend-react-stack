@@ -59,10 +59,8 @@ query PlayerValuablesQuery {
       }
 
       ... on PlayerValuableCash {
-        cash {
-          amount
-          currency
-        }
+        magnitude
+        currency
       }
     }
   }
