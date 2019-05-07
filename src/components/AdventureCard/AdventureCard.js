@@ -44,9 +44,13 @@ function getLevelLabel(
   bonusModeLabel
 ) {
   const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
-  const label = level > MAX_LEVEL ? maxLevelLabel : levelLabel;
+  const isMaxLevel = level > MAX_LEVEL;
+  const label = isMaxLevel ? maxLevelLabel : levelLabel;
+  const requiresBonusModeIndicator = inBonusMode && !isMaxLevel;
 
-  return inBonusMode ? `${label} | ${bonusModeIndicator}` : label;
+  return requiresBonusModeIndicator
+    ? `${label} | ${bonusModeIndicator}`
+    : label;
 }
 
 class AdventureAvatarAndDetails extends PureComponent<Props> {
