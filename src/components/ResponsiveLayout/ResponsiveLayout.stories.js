@@ -7,19 +7,6 @@ import { Desktop, Mobile } from "./ResponsiveLayout";
 
 const stories = storiesOf("ResponsiveLayout", module);
 
-if (isNotChromatic) {
-  stories.add(
-    "Conditional rendering example",
-    () => (
-      <div>
-        <Desktop children={<p>I'm a Desktop device 🖥 </p>} />
-        <Mobile children={<p>I'm a Mobile device 📱</p>} />
-      </div>
-    ),
-    info({ text: "Conditional rendering example" })
-  );
-}
-
 /*
   Desktop and mobile are currently being tested on Chromatic as it is not trivial how to test matchMedia
   via unit-testing https://github.com/Casumo/mobile-react-stack-poc/pull/473#discussion_r281507505
@@ -27,17 +14,35 @@ if (isNotChromatic) {
 */
 
 stories.add(
-  "Desktop",
-  () => <Desktop children={<p>I'm a Desktop device 🖥 </p>} />,
+  "Desktop - 1280px viepwport",
+  () => (
+    <div>
+      <Desktop children={<p>I'm a Desktop device 🖥 </p>} />
+      <Mobile
+        children={
+          <p>I'm a Mobile device 📱and chromatic should NOT see me 👀</p>
+        }
+      />
+    </div>
+  ),
   {
-    chromatic: { viewports: [768, 1280] },
+    chromatic: { viewports: [1280] },
   }
 );
 
 stories.add(
-  "Mobile",
-  () => <Mobile children={<p>I'm a Mobile device 📱</p>} />,
+  "Mobile - 768px viewport",
+  () => (
+    <div>
+      <Mobile children={<p>I'm a Mobile device 📱</p>} />
+      <Desktop
+        children={
+          <p>I'm a Desktop device 🖥 and chromatic should NOT see me 👀</p>
+        }
+      />
+    </div>
+  ),
   {
-    chromatic: { viewports: [768, 1280] },
+    chromatic: { viewports: [768] },
   }
 );
