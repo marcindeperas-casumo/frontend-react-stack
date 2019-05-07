@@ -7,7 +7,7 @@ import ImageLazy from "Components/Image/ImageLazy";
 type Props = {
   /** The boolean that states if the promotion page has been fetched */
   isFetched: boolean,
-  /** The function that fecthes the promotion page if not fecthed yet */
+  /** The function that fetches the promotion page if not fetched yet */
   startFetch: () => void,
   /** The link to the right promotion detailed view */
   link: string,
