@@ -6,6 +6,7 @@ import { ProgressBar } from "Components/ProgressBar/ProgressBar";
 import { stringToHTML } from "Utils/index";
 import { CasumoAvatar } from "Components/CasumoAvatar/CasumoAvatar";
 import {
+  isMaxLevel,
   type Adventurer,
   type AdventureContent,
   MAX_LEVEL,
@@ -25,8 +26,51 @@ type Props = {
   unsubscribeFromUpdates: (playerId: string) => void,
 };
 
+export default class AdventureCard extends PureComponent<Props> {
+  componentDidMount() {
+    const {
+      isContentFetched,
+      fetchAdventurer,
+      playerId,
+      sessionId,
+      subscribeToUpdates,
+    } = this.props;
+
+    if (!isContentFetched) {
+      this.props.fetchContent();
+    }
+
+    fetchAdventurer();
+    subscribeToUpdates(playerId, sessionId);
+  }
+  componentWillUnmount() {
+    const { unsubscribeFromUpdates, playerId } = this.props;
+
+    unsubscribeFromUpdates(playerId);
+  }
+
+  render() {
+    const { isContentFetched, isAdventurerFetched } = this.props;
+
+    if (!isContentFetched || !isAdventurerFetched) {
+      return null;
+    }
+
+    return (
+      <Flex
+        align="center"
+        className="t-background-grey-dark-3 u-padding-horiz--md u-padding-vert--lg"
+        direction="vertical"
+      >
+        <AdventureAvatarAndDetails {...this.props} />
+        <AdventureProgressBar {...this.props} />
+      </Flex>
+    );
+  }
+}
+
 function getAvatarBackgroundColour(inBonusMode, level) {
-  if (level >= MAX_LEVEL) {
+  if (isMaxLevel(level)) {
     return "yellow";
   }
   if (inBonusMode) {
@@ -44,9 +88,9 @@ function getLevelLabel(
   bonusModeLabel
 ) {
   const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
-  const isMaxLevel = level >= MAX_LEVEL;
-  const label = isMaxLevel ? maxLevelLabel : levelLabel;
-  const requiresBonusModeIndicator = inBonusMode && !isMaxLevel;
+  const maxLevelReached = isMaxLevel(level);
+  const label = maxLevelReached ? maxLevelLabel : levelLabel;
+  const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
 
   return requiresBonusModeIndicator
     ? `${label} | ${bonusModeIndicator}`
@@ -111,13 +155,16 @@ class AdventureProgressBar extends PureComponent<Props> {
       points,
       pointsRequiredForNextLevel,
     } = this.props.adventurer;
+
     const {
       progression_label_standard,
       progression_label_bonus,
     } = this.props.content;
+
     const progressPercentage = Math.floor(
       (points / pointsRequiredForNextLevel) * 100
     );
+
     const progressionLabel = inBonusMode
       ? progression_label_bonus
       : progression_label_standard;
@@ -129,7 +176,7 @@ class AdventureProgressBar extends PureComponent<Props> {
             progress={progressPercentage}
             backgroundColour="grey-dark-4"
             foregroundColour={
-              inBonusMode && level < MAX_LEVEL ? "violet" : "yellow"
+              inBonusMode && !isMaxLevel(level) ? "violet" : "yellow"
             }
           />
         </Flex.Item>
@@ -158,49 +205,6 @@ class AdventureProgressBar extends PureComponent<Props> {
           />
         </Flex>
       </React.Fragment>
-    );
-  }
-}
-
-export default class AdventureCard extends PureComponent<Props> {
-  componentDidMount() {
-    const {
-      isContentFetched,
-      fetchAdventurer,
-      playerId,
-      sessionId,
-      subscribeToUpdates,
-    } = this.props;
-
-    if (!isContentFetched) {
-      this.props.fetchContent();
-    }
-
-    fetchAdventurer();
-    subscribeToUpdates(playerId, sessionId);
-  }
-  componentWillUnmount() {
-    const { unsubscribeFromUpdates, playerId } = this.props;
-
-    unsubscribeFromUpdates(playerId);
-  }
-
-  render() {
-    const { isContentFetched, isAdventurerFetched } = this.props;
-
-    if (!isContentFetched || !isAdventurerFetched) {
-      return null;
-    }
-
-    return (
-      <Flex
-        align="center"
-        className="t-background-grey-dark-3 u-padding-horiz--md u-padding-vert--lg"
-        direction="vertical"
-      >
-        <AdventureAvatarAndDetails {...this.props} />
-        <AdventureProgressBar {...this.props} />
-      </Flex>
     );
   }
 }
