@@ -9,7 +9,7 @@ import {
 
 type Props = {
   /** The media queries to fullfill to render the children */
-  breakpoint: string,
+  breakpoint: Object,
   /** The children to render if viewport fullfills the provided breakpoint */
   children: React.Node,
 };
