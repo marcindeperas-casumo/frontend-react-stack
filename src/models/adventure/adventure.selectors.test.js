@@ -16,10 +16,6 @@ const adventurerRaw = {
   pointsVersion: 1,
   spaceCrystals: [1],
 };
-const travellingAdventurerRaw = {
-  ...adventurerRaw,
-  inTravelMode: true,
-};
 const adventurer = {
   belt: adventurerRaw.belt,
   inBonusMode: adventurerRaw.inTravelMode,
@@ -66,9 +62,10 @@ describe("Adventure Selectors", () => {
 
       const travellingAdventurer = {
         ...adventurer,
-        inBonusMode: travellingAdventurerRaw.inTravelMode,
+        inBonusMode: true,
         points,
         pointsRequiredForNextLevel,
+        level: adventurer.level - 1,
       };
       expect(adventurerSelector(travellingState)).toEqual(travellingAdventurer);
     });
