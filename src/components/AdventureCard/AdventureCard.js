@@ -69,7 +69,7 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className="t-border-r--8 u-width--1/1 u-margin-bottom--md"
+        className="t-border-r--8 u-width--1/1 u-margin-bottom--lg"
       >
         <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
           <CasumoAvatar
@@ -122,11 +122,14 @@ class AdventureProgressBar extends PureComponent<Props> {
         <Flex.Item className="u-width--1/1">
           <ProgressBar
             progress={progressPercentage}
-            backgroundColour="grey-dark-3"
+            backgroundColour="grey-dark-4"
             foregroundColour={inBonusMode ? "violet" : "yellow"}
           />
         </Flex.Item>
-        <Flex justify="space-between" className="u-width--1/1 u-font-sm">
+        <Flex
+          justify="space-between"
+          className="u-width--1/1 u-font-sm u-padding-horiz--sm"
+        >
           <Text
             className="t-color-grey-light-2"
             tag="div"
@@ -185,7 +188,7 @@ export default class AdventureCard extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className="t-background-grey-dark-2 u-padding--md"
+        className="t-background-grey-dark-3 u-padding-horiz--md u-padding-vert--lg"
         direction="vertical"
       >
         <AdventureAvatarAndDetails {...this.props} />

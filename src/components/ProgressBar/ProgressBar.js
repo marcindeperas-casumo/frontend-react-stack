@@ -5,14 +5,14 @@ import classNames from "classnames";
 import "./ProgressBar.scss";
 
 export const colourOptions = {
-  background: ["grey-dark-3", "grey"],
+  background: ["grey-dark-4", "grey"],
   foreground: ["yellow", "green"],
 };
 
 type Props = {
   progress: number,
-  foregroundColour: "yellow" | "violet",
-  backgroundColour: "grey-dark-3" | "grey",
+  foregroundColour: "yellow" | "green" | "violet",
+  backgroundColour: "grey-dark-4" | "grey",
 };
 
 export const ProgressBarFiller = (props: Props) => {
@@ -51,6 +51,6 @@ export class ProgressBar extends PureComponent<Props> {
   static defaultProps = {
     progress: 0,
     foregroundColour: "yellow",
-    backgroundColour: "grey-dark-3",
+    backgroundColour: "grey-dark-4",
   };
 }
