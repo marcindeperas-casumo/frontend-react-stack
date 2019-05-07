@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { type BeltType } from "../../models/adventure";
+import { type BeltType, MAX_LEVEL } from "Models/adventure";
 import { beltToColourMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
@@ -10,6 +10,7 @@ import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
   /** Type of belt (rope, ..., sensei) */
+  level: number,
   belt: BeltType,
   backgroundColour?: string,
 };
@@ -24,7 +25,7 @@ export const getBackgroundColourClassModifier = (backgroundColour: string) => {
 };
 
 const Avatar = (props: Props) => {
-  if (props.belt === "sensei") {
+  if (props.level > MAX_LEVEL) {
     return <SenseiAvatar />;
   }
 

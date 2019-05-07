@@ -13,5 +13,6 @@ export const actionTypes = {
 
 export const NUMBER_OF_LEVELS_IN_TRAVEL_MODE = 7;
 export const NUMBER_OF_POINTS_PER_LEVEL_IN_TRAVEL_MODE = 1000;
+export const MAX_LEVEL: number = 180;
 
 export const CMS_CONTENT_SLUG = "adventure-vocas";

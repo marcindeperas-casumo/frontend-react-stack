@@ -23,7 +23,11 @@ stories.add(
         className="u-margin-left--auto u-margin-right--auto"
         style={{ maxWidth: "80px" }}
       >
-        <CasumoAvatar belt={belt} backgroundColour={backgroundColour} />
+        <CasumoAvatar
+          belt={belt}
+          backgroundColour={backgroundColour}
+          level={1}
+        />
       </div>
     );
   },

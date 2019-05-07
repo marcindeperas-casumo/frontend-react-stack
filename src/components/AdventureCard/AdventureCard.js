@@ -5,7 +5,11 @@ import Text from "@casumo/cmp-text";
 import { ProgressBar } from "Components/ProgressBar/ProgressBar";
 import { stringToHTML } from "Utils/index";
 import { CasumoAvatar } from "Components/CasumoAvatar/CasumoAvatar";
-import type { Adventurer, AdventureContent } from "Models/adventure";
+import {
+  type Adventurer,
+  type AdventureContent,
+  MAX_LEVEL,
+} from "Models/adventure";
 import "./AdventureCard.scss";
 
 type Props = {
@@ -21,6 +25,30 @@ type Props = {
   unsubscribeFromUpdates: (playerId: string) => void,
 };
 
+function getAvatarBackgroundColour(inBonusMode, level) {
+  if (level > MAX_LEVEL) {
+    return "yellow";
+  }
+  if (inBonusMode) {
+    return "violet";
+  }
+
+  return "teal";
+}
+
+function getLevelLabel(
+  inBonusMode,
+  level,
+  maxLevelLabel,
+  levelLabel,
+  bonusModeLabel
+) {
+  const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
+  const label = level > MAX_LEVEL ? maxLevelLabel : levelLabel;
+
+  return inBonusMode ? `${label} | ${bonusModeIndicator}` : label;
+}
+
 class AdventureAvatarAndDetails extends PureComponent<Props> {
   render() {
     const { name, belt, level, inBonusMode } = this.props.adventurer;
@@ -30,11 +58,13 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
       bonus_mode_label,
     } = this.props.content;
 
-    const levelLabel = level > 180 ? max_level_label : level_label;
-
-    const levelLabelWithBonusIndicator = inBonusMode
-      ? `${levelLabel} | <strong class="t-color-violet">${bonus_mode_label}</strong>`
-      : levelLabel;
+    const levelLabel = getLevelLabel(
+      inBonusMode,
+      level,
+      max_level_label,
+      level_label,
+      bonus_mode_label
+    );
 
     return (
       <Flex
@@ -44,7 +74,8 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
         <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
           <CasumoAvatar
             belt={belt}
-            backgroundColour={inBonusMode ? "violet" : "teal"}
+            backgroundColour={getAvatarBackgroundColour(inBonusMode, level)}
+            level={level}
           />
         </Flex.Item>
         <Flex.Item className="u-margin-left--md">
@@ -59,10 +90,7 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
             className="t-color-grey-light-1"
             size="sm"
             dangerouslySetInnerHTML={stringToHTML(
-              levelLabelWithBonusIndicator.replace(
-                "{{level}}",
-                level.toString()
-              )
+              levelLabel.replace("{{level}}", level.toString())
             )}
           />
         </Flex.Item>
