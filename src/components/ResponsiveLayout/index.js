@@ -1,2 +1,2 @@
 // @flow
-export { RenderIfDesktop, RenderIfMobile } from "./ResponsiveLayout";
+export { Desktop, Mobile } from "./ResponsiveLayout";

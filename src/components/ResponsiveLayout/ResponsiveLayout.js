@@ -27,7 +27,7 @@ const RenderIfMatchBreakpoint = ({
   return isBreakpointActive ? children : null;
 };
 
-export const RenderIfDesktop = ({ children }: { children: React.Node }) => {
+export const Desktop = ({ children }: { children: React.Node }) => {
   return (
     <RenderIfMatchBreakpoint minBreakpoint={breakpoints.desktop}>
       {children}
@@ -35,7 +35,7 @@ export const RenderIfDesktop = ({ children }: { children: React.Node }) => {
   );
 };
 
-export const RenderIfMobile = ({ children }: { children: React.Node }) => {
+export const Mobile = ({ children }: { children: React.Node }) => {
   return (
     <RenderIfMatchBreakpoint
       minBreakpoint={breakpoints.mobile}
