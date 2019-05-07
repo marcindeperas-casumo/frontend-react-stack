@@ -66,6 +66,7 @@ class ValuableCard extends PureComponent<Props> {
   render() {
     const { id, title, valuableType, game } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
+    const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
 
     return (
       <Flex
@@ -81,7 +82,7 @@ class ValuableCard extends PureComponent<Props> {
           >
             <ValuableReward
               ValuableSymbol={this.valuableSymbol}
-              // rewardLevel={isValuableTypeSpins ? this.spinType : level0}
+              justifyCenter={isValuableTypeCash}
             />
           </ValuableHeaderBackground>
         </Flex.Block>
