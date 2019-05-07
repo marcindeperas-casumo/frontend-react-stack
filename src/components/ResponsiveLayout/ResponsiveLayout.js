@@ -8,7 +8,7 @@ import {
 } from "./ResponsiveLayout.utils";
 
 type Props = {
-  /** The media queries to fullfill to render the children */
+  /** The media queries object to fullfill to render the children */
   breakpoint: Object,
   /** The children to render if viewport fullfills the provided breakpoint */
   children: React.Node,
