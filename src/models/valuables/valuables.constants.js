@@ -6,7 +6,8 @@ export const VALUABLE_TYPES = {
 };
 
 export const VALUABLE_SPIN_TYPES = {
-  BONUS: 1,
-  SUPER: 2,
-  MEGA: 3,
+  BASIC_SPINS: "basic_spins",
+  BONUS: "bonus",
+  SUPER: "super",
+  MEGA: "mega",
 };

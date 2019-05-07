@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { compose, prop } from "ramda";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
@@ -30,6 +31,13 @@ class ValuableCard extends PureComponent<Props> {
       return this.cashSymbol;
     }
 
+    if (valuableType === VALUABLE_TYPES.SPINS) {
+      return compose(
+        prop(this.spinType),
+        prop(valuableType)
+      )(VALUABLE_ICON);
+    }
+
     return VALUABLE_ICON[valuableType];
   }
 
@@ -39,7 +47,7 @@ class ValuableCard extends PureComponent<Props> {
     return `c-valuable-card--${valuableType}`;
   }
 
-  // TODO: to check with @adr maybe move to graphql
+  // To consider moving this to graphql
   get spinType() {
     return CoinValueToSpinType(this.props.coinValue);
   }
@@ -57,9 +65,7 @@ class ValuableCard extends PureComponent<Props> {
 
   render() {
     const { id, title, valuableType, game } = this.props;
-    const ValuableSymbol = this.valuableSymbol;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
-    const level0 = 0;
 
     return (
       <Flex
@@ -74,13 +80,12 @@ class ValuableCard extends PureComponent<Props> {
             id={id}
           >
             <ValuableReward
-              ValuableSymbol={ValuableSymbol}
-              rewardLevel={isValuableTypeSpins ? this.spinType : level0}
+              ValuableSymbol={this.valuableSymbol}
+              // rewardLevel={isValuableTypeSpins ? this.spinType : level0}
             />
           </ValuableHeaderBackground>
         </Flex.Block>
         <Flex.Item className="c-valuable-card__content u-text-align-center">
-          {/* TODO: to check with @adr population of amount from graphql?  */}
           <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
             {title}
           </div>

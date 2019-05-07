@@ -5,7 +5,7 @@
 }
 
 @mixin valuable-gradient($primaryColor, $secondaryColor) {
-  .c-valuable-header__overlay {
+  .c-valuable-header__gradient-overlay {
     opacity: 0.5;
     background: radial-gradient(circle farthest-side, $primaryColor, $secondaryColor);
     background-repeat: no-repeat;

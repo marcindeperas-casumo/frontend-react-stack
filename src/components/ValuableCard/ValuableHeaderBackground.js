@@ -13,14 +13,16 @@ type Props = {
   children: React.Node,
 };
 
-const GradientOverlay = () => {
+const gradientOverlay = () => {
   // eslint-disable-next-line prettier/prettier
-    return <div className="c-valuable-header__overlay" style={{ width: '144px', height: '80px' }}></div>;
+    return <div className="c-valuable-header__gradient-overlay" style={{ width: '144px', height: '80px' }}></div>;
 };
 
+//TODO: set width height
 const imageOverlay = src => {
   return (
     <ImageLazy
+      className="c-valuable-header__image-overlay"
       src={src}
       alt={"TEST"}
       imgixOpts={{
@@ -32,6 +34,7 @@ const imageOverlay = src => {
   );
 };
 
+//TODO: pass on dimensions (remove from hardcoded)
 const backgroundFill = () => {
   return <rect width="144" height="80" fill="currentColor" />;
 };
@@ -43,7 +46,7 @@ const ValuableHeaderBackground = ({
   children,
 }: Props) => {
   const hasImage = !isEmpty(imageUrl);
-  const overlay = hasImage ? () => imageOverlay(imageUrl) : GradientOverlay;
+  const overlay = hasImage ? () => imageOverlay(imageUrl) : gradientOverlay;
 
   return (
     <Flex
@@ -57,7 +60,6 @@ const ValuableHeaderBackground = ({
         id={id}
         width={144}
         height={80}
-        imageUrl={imageUrl}
         className="u-position-absolute c-valuable-card__header"
         itemToMask={backgroundFill}
         overlay={overlay}
