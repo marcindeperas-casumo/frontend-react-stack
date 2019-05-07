@@ -64,11 +64,11 @@ export function getProgression(
 
       return acc;
     },
-    0
+    levels[0]
   );
 
   const levelAsIndex = levels.indexOf(pointsRequiredForNextLevel);
-  const previousLevelsPointsRequirement = levels[levelAsIndex - 1];
+  const previousLevelsPointsRequirement = levels[levelAsIndex - 1] || 0;
 
   return {
     points: points - previousLevelsPointsRequirement,
