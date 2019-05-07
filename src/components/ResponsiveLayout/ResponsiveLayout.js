@@ -1,35 +1,28 @@
 // @flow
 import * as React from "react";
 import useMedia from "react-use/lib/useMedia";
-// Styles/_settings.breakpoints.scss wouldn't work?! 🤔
-import breakpoints from "../../styles/_settings.breakpoints.scss";
+import {
+  mobileBreakpoint,
+  desktopBreakpoint,
+  getMediaQuery,
+} from "./ResponsiveLayout.utils";
 
 type Props = {
-  /** The min CSS media query breakpoint for rendering the children */
-  minBreakpoint: string,
-  /** The max CSS media query breakpoint for rendering the children */
-  maxBreakpoint?: string,
-  /** The children to render if viewport fullfills the provided breakpoint/s */
+  /** The media queries to fullfill to render the children */
+  breakpoint: string,
+  /** The children to render if viewport fullfills the provided breakpoint */
   children: React.Node,
 };
 
-const RenderIfMatchBreakpoint = ({
-  minBreakpoint,
-  maxBreakpoint = "",
-  children,
-}: Props) => {
-  const maxMediaQueryString =
-    maxBreakpoint && `and (max-width: ${maxBreakpoint})`;
-  const isBreakpointActive = useMedia(
-    `(min-width: ${minBreakpoint}) ${maxMediaQueryString}`
-  );
+const RenderIfMatchBreakpoint = ({ breakpoint, children }: Props) => {
+  const isBreakpointActive = useMedia(getMediaQuery(breakpoint));
 
   return isBreakpointActive ? children : null;
 };
 
 export const Desktop = ({ children }: { children: React.Node }) => {
   return (
-    <RenderIfMatchBreakpoint minBreakpoint={breakpoints.desktop}>
+    <RenderIfMatchBreakpoint breakpoint={desktopBreakpoint}>
       {children}
     </RenderIfMatchBreakpoint>
   );
@@ -37,10 +30,7 @@ export const Desktop = ({ children }: { children: React.Node }) => {
 
 export const Mobile = ({ children }: { children: React.Node }) => {
   return (
-    <RenderIfMatchBreakpoint
-      minBreakpoint={breakpoints.mobile}
-      maxBreakpoint={breakpoints.desktop}
-    >
+    <RenderIfMatchBreakpoint breakpoint={mobileBreakpoint}>
       {children}
     </RenderIfMatchBreakpoint>
   );
