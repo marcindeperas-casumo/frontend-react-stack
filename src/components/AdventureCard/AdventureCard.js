@@ -107,6 +107,7 @@ class AdventureProgressBar extends PureComponent<Props> {
   render() {
     const {
       inBonusMode,
+      level,
       points,
       pointsRequiredForNextLevel,
     } = this.props.adventurer;
@@ -127,7 +128,9 @@ class AdventureProgressBar extends PureComponent<Props> {
           <ProgressBar
             progress={progressPercentage}
             backgroundColour="grey-dark-4"
-            foregroundColour={inBonusMode ? "violet" : "yellow"}
+            foregroundColour={
+              inBonusMode && level < MAX_LEVEL ? "violet" : "yellow"
+            }
           />
         </Flex.Item>
         <Flex
