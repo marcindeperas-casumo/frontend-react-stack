@@ -41,7 +41,7 @@ export const adventurerSelector: void => Adventurer = createSelector(
     return {
       belt,
       inBonusMode: inTravelMode,
-      level,
+      level: inTravelMode ? level - 1 : level,
       name,
       points: progression.points,
       pointsRequiredForNextLevel: progression.pointsRequiredForNextLevel,
