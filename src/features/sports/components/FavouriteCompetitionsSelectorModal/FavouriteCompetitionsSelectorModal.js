@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-import Modal from "Components/Modal";
+import { SportsModal } from "Features/sports/components/SportsModal";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
   DictionaryTerm,
@@ -13,7 +13,8 @@ import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 type SelectedCompetitions = Array<FavouriteCompetitionsSelectorModal_Group>;
 
 type Props = {
-  onCancel: () => void,
+  onClose: () => void,
+  onBack?: () => void,
   onSave: SelectedCompetitions => void,
   initiallySelectedCompetitions: SelectedCompetitions,
   groupId: number,
@@ -62,15 +63,24 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     const selectedCompetitionsCount = this.state.selectedCompetitions.length;
 
     return (
-      <Modal
-        header={
+      <SportsModal>
+        <SportsModal.Header
+          onClose={this.props.onClose}
+          onBack={this.props.onBack}
+        >
           <DictionaryTerm termKey="favourite-competitions-selector.title" />
-        }
-        onClose={this.props.onCancel}
-        dismissType="back"
-        className="t-background-white"
-        footer={
-          selectedCompetitionsCount === 0 ? null : (
+        </SportsModal.Header>
+
+        <SportsModal.Content>
+          <FavouriteCompetitionsSelector
+            groupId={this.props.groupId}
+            isCompetitionSelected={this.isCompetitionSelected}
+            toggleCompetition={this.toggleCompetition}
+          />
+        </SportsModal.Content>
+
+        {selectedCompetitionsCount === 0 ? null : (
+          <SportsModal.Footer>
             <ModalButtonFooter onClick={this.onSave}>
               <PluralisableDictionaryTerm
                 termKey="favourite-competitions-selector.button"
@@ -78,17 +88,9 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
                 isPlural={selectedCompetitionsCount > 1}
               />
             </ModalButtonFooter>
-          )
-        }
-      >
-        <div className="u-margin-horiz--md">
-          <FavouriteCompetitionsSelector
-            groupId={this.props.groupId}
-            isCompetitionSelected={this.isCompetitionSelected}
-            toggleCompetition={this.toggleCompetition}
-          />
-        </div>
-      </Modal>
+          </SportsModal.Footer>
+        )}
+      </SportsModal>
     );
   }
 

@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 import info from "Storybook/storybookInfo";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { ModalsArea } from "Features/sports/components/Modals";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   withFavouritesMock,
@@ -22,10 +23,12 @@ stories.add(
       mocks={[noFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
     >
       <StageFavouritesProvider>
-        <FavouriteSportsSelectorModal
-          onClose={action("")}
-          onAddCompetition={action("onAddCompetition")}
-        />
+        <ModalsArea>
+          <FavouriteSportsSelectorModal
+            onClose={action("onClose")}
+            onAddCompetition={action("onAddCompetition")}
+          />
+        </ModalsArea>
       </StageFavouritesProvider>
     </MockedProviderWithContext>
   ),
@@ -39,10 +42,12 @@ stories.add(
       mocks={[withFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
     >
       <StageFavouritesProvider>
-        <FavouriteSportsSelectorModal
-          onClose={action("")}
-          onAddCompetition={action("onAddCompetition")}
-        />
+        <ModalsArea>
+          <FavouriteSportsSelectorModal
+            onClose={action("onClose")}
+            onAddCompetition={action("onAddCompetition")}
+          />
+        </ModalsArea>
       </StageFavouritesProvider>
     </MockedProviderWithContext>
   ),
