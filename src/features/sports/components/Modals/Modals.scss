@@ -1,0 +1,32 @@
+.c-modals {
+  bottom: 0;
+  left: 0;
+  padding-left: var(--shell-offset-left, 0);
+  position: fixed;
+  right: 0;
+  top: var(--top-bar-offset-top, 0);
+  z-index: var(--z-index-modals);
+}
+
+.c-modals-fade {
+  background-color: rgba(cudl-palette(grey, light-2), 0.9);
+  bottom: 0;
+  display: none;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  z-index: -1;
+}
+
+@include cudl-breakpoint(tablet) {
+  .c-modals {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+
+  .c-modals-fade {
+    display: block;
+  }
+}

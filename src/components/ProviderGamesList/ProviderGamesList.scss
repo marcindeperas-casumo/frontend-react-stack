@@ -1,18 +1,6 @@
 .c-provider-games-list__games-list {
   $provider-bar: 71px;
-  $provider-bar--landscape: 72px;
-
   height: calc(
     100vh - #{$provider-bar} - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)
   );
-
-  @media (orientation: landscape) {
-    // prettier-ignore
-    height: calc(
-      100vh - #{$provider-bar--landscape} - var(
-        --top-bar-height--landscape,
-        64px
-      ) - var(--play-okay-bar-height, 0)
-    );
-  }
 }
