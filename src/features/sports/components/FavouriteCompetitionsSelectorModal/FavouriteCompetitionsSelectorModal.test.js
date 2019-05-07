@@ -4,7 +4,6 @@ import { shallow, mount } from "enzyme";
 import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "react-apollo/test-utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
-import { SportsModal } from "Features/sports/components/SportsModal";
 import FavouriteCompetitionsSelectorModal from "./FavouriteCompetitionsSelectorModal";
 import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./FavouriteCompetitionsSelector/__mocks__/favouriteCompetitionsSelectorQuery";
@@ -44,46 +43,23 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
     });
   });
 
-  test("should call onClose when modal is closed", () => {
-    const onClose = jest.fn();
-    const rendered = mount(
-      <MockedProvider mocks={mocks}>
-        <FavouriteCompetitionsSelectorModal
-          groupId={1}
-          initiallySelectedCompetitions={[{ id: 1 }]}
-          onSave={() => {}}
-          onClose={onClose}
-        />
-      </MockedProvider>
+  test("should call onCancel when modal is closed", () => {
+    const onCancel = jest.fn();
+    const rendered = shallow(
+      <FavouriteCompetitionsSelectorModal
+        groupId={1}
+        initiallySelectedCompetitions={[{ id: 1 }]}
+        onSave={() => {}}
+        onCancel={onCancel}
+      />
     );
 
     rendered
-      .find(SportsModal.Header)
+      .find("Modal")
       .props()
       .onClose();
 
-    expect(onClose).toHaveBeenCalledTimes(1);
-  });
-
-  test("should call onBack when back action is initiated", () => {
-    const onBack = jest.fn();
-    const rendered = mount(
-      <MockedProvider mocks={mocks}>
-        <FavouriteCompetitionsSelectorModal
-          groupId={1}
-          initiallySelectedCompetitions={[{ id: 1 }]}
-          onSave={() => {}}
-          onBack={onBack}
-        />
-      </MockedProvider>
-    );
-
-    rendered
-      .find(SportsModal.Header)
-      .props()
-      .onBack();
-
-    expect(onBack).toHaveBeenCalledTimes(1);
+    expect(onCancel).toHaveBeenCalledTimes(1);
   });
 
   test("should render FavouriteCompetitionsSelector to change state of selections", () => {

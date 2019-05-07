@@ -6,13 +6,6 @@
 */
 
 /* stylelint-disable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
-#KambiBC {
-  // Kambi tries to set its own container height with js and on some breakpoints gets this all wrong and
-  // forces there to be an inner scroll bar to the kambi client.  This overrides that to make sure it always
-  // as big as its contents
-  height: auto !important;
-}
-
 #KambiBC-container {
   @include cudl-breakpoint(tablet) {
     padding: 0 map-get($cudl-spacer-sizes, 3xlg) !important;

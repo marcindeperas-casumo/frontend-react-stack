@@ -41,7 +41,7 @@ const EditFavouriteCompetitionsModal = ({
         <SetFavouriteCompetitions>
           {setFavouriteCompetitions => (
             <FavouriteCompetitionsSelectorModal
-              onClose={onClose}
+              onCancel={onClose}
               onSave={selectedCompetitions => {
                 setFavouriteCompetitions({
                   variables: {
