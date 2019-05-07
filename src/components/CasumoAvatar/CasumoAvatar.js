@@ -25,7 +25,7 @@ export const getBackgroundColourClassModifier = (backgroundColour: string) => {
 };
 
 const Avatar = (props: Props) => {
-  if (props.level > MAX_LEVEL) {
+  if (props.level >= MAX_LEVEL) {
     return <SenseiAvatar />;
   }
 
