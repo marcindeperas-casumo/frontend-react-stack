@@ -123,7 +123,7 @@ class AdventureProgressBar extends PureComponent<Props> {
 
     return (
       <React.Fragment>
-        <Flex.Item className="u-width--1/1">
+        <Flex.Item className="u-width--1/1 u-margin-top--none">
           <ProgressBar
             progress={progressPercentage}
             backgroundColour="grey-dark-4"
