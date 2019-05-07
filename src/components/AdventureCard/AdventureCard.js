@@ -26,7 +26,7 @@ type Props = {
 };
 
 function getAvatarBackgroundColour(inBonusMode, level) {
-  if (level > MAX_LEVEL) {
+  if (level >= MAX_LEVEL) {
     return "yellow";
   }
   if (inBonusMode) {
@@ -44,7 +44,7 @@ function getLevelLabel(
   bonusModeLabel
 ) {
   const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
-  const isMaxLevel = level > MAX_LEVEL;
+  const isMaxLevel = level >= MAX_LEVEL;
   const label = isMaxLevel ? maxLevelLabel : levelLabel;
   const requiresBonusModeIndicator = inBonusMode && !isMaxLevel;
 
