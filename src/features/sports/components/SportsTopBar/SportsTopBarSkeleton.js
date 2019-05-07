@@ -9,7 +9,9 @@ const SportsTopBarSkeleton = () => (
       position: "relative",
       overflow: "hidden",
     }}
-  />
+  >
+    {/* TODO(CPO): add proper skeleton once noel has provided one */}
+  </div>
 );
 
 export default SportsTopBarSkeleton;

@@ -1,22 +1,16 @@
+// stylelint-disable xi/selector-pattern
 .c-sports-top-bar {
   display: none;
 }
 
-// stylelint-disable xi/selector-pattern
 .c-sports-shell--site .c-sports-top-bar {
-  display: flex;
+  display: block;
 }
-
-.c-sports-top-bar .Icons-c-icon {
-  height: 32px;
-  width: 28px;
-}
-// stylelint-enable xi/selector-pattern
 
 .c-sports-top-bar--bet-history {
   margin-top: -4px;
 }
 
-.c-sports-top-bar-tab--label {
-  border-width: 2px;
+.c-sports-top-bar--search .Icons-c-icon {
+  height: 32px;
 }
