@@ -137,16 +137,6 @@ class App extends PureComponent<Props> {
           <LazyPortal
             hostElementId="react-host-adventure"
             loader={() => import("Components/AdventureCard")}
-            fallback={
-              <>
-                <SearchInputSkeleton />
-                <GameListSkeleton
-                  className="u-padding-horiz--md"
-                  hasTitle={false}
-                  titleYOffset={20}
-                />
-              </>
-            }
           />
         </Route>
       </Router>
