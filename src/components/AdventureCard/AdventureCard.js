@@ -9,7 +9,6 @@ import {
   isMaxLevel,
   type Adventurer,
   type AdventureContent,
-  MAX_LEVEL,
 } from "Models/adventure";
 import "./AdventureCard.scss";
 
@@ -69,7 +68,10 @@ export default class AdventureCard extends PureComponent<Props> {
   }
 }
 
-function getAvatarBackgroundColour(inBonusMode, level) {
+function getAvatarBackgroundColour(
+  inBonusMode: boolean,
+  level: number
+): string {
   if (isMaxLevel(level)) {
     return "yellow";
   }
@@ -81,12 +83,12 @@ function getAvatarBackgroundColour(inBonusMode, level) {
 }
 
 function getLevelLabel(
-  inBonusMode,
-  level,
-  maxLevelLabel,
-  levelLabel,
-  bonusModeLabel
-) {
+  inBonusMode: boolean,
+  level: number,
+  maxLevelLabel: string,
+  levelLabel: string,
+  bonusModeLabel: string
+): string {
   const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
   const maxLevelReached = isMaxLevel(level);
   const label = maxLevelReached ? maxLevelLabel : levelLabel;

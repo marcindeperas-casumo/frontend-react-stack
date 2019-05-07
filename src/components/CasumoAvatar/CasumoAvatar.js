@@ -2,39 +2,21 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { type BeltType, MAX_LEVEL } from "Models/adventure";
+import { type BeltType, isMaxLevel } from "Models/adventure";
 import { beltToColourMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
 import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
-  /** Type of belt (rope, ..., sensei) */
   level: number,
   belt: BeltType,
-  backgroundColour?: string,
-};
-
-export const getClassModifierByBelt = (belt: BeltType) => {
-  const className = beltToColourMap[belt] || beltToColourMap.rope;
-
-  return `t-color-${className}`;
-};
-export const getBackgroundColourClassModifier = (backgroundColour: string) => {
-  return `t-background-${backgroundColour}`;
-};
-
-const Avatar = (props: Props) => {
-  if (props.level >= MAX_LEVEL) {
-    return <SenseiAvatar />;
-  }
-
-  return <SumoAvatar />;
+  backgroundColour: string,
 };
 
 export class CasumoAvatar extends PureComponent<Props> {
   render() {
-    const { belt, backgroundColour = "teal" } = this.props;
+    const { belt, level, backgroundColour } = this.props;
 
     return (
       <div
@@ -49,9 +31,26 @@ export class CasumoAvatar extends PureComponent<Props> {
           justify="center"
           className="o-ratio__content u-padding--md"
         >
-          <Avatar {...this.props} />
+          {isMaxLevel(level) ? <SenseiAvatar /> : <SumoAvatar />}
         </Flex>
       </div>
     );
   }
+
+  static defaultProps = {
+    belt: "rope",
+    level: 1,
+    backgroundColour: "teal",
+  };
+}
+
+export function getClassModifierByBelt(belt: BeltType): string {
+  const className = beltToColourMap[belt] || beltToColourMap.rope;
+
+  return `t-color-${className}`;
+}
+export function getBackgroundColourClassModifier(
+  backgroundColour: string
+): string {
+  return `t-background-${backgroundColour}`;
 }
