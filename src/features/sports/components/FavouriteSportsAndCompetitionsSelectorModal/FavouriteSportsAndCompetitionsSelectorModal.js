@@ -52,8 +52,7 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
             <FavouriteCompetitionsSelectorModal
               groupId={selectingCompetitionsFor}
               initiallySelectedCompetitions={initiallySelectedCompetitions}
-              onBack={this.hideCompetitionSelector}
-              onClose={this.props.onClose}
+              onCancel={this.hideCompetitionSelector}
               onSave={selectedCompetitions => {
                 selectingCompetitionsFor &&
                   setFavouriteCompetitions(

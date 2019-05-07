@@ -12,7 +12,6 @@
         "color-named": ['never', ignore: ["inside-function"]],
         "property-no-unknown": [true, ignoreProperties: ["error", "warn"]],
         "selector-class-pattern": null,
-        "length-zero-no-unit": null,
         "scss/selector-no-redundant-nesting-selector": true,
         "xi/selector-pattern": ["^({namespace}{block}({element})?({modifier})?({breakpoint})?({state})?({pseudo})?)$", {
             "subpatterns": {
