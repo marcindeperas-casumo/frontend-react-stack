@@ -14,7 +14,7 @@ const stories = storiesOf("ResponsiveLayout", module);
 */
 
 stories.add(
-  "Desktop - 1280px viepwport",
+  "Desktop - 1280px viewport",
   () => (
     <div>
       <Desktop children={<p>I'm a Desktop device 🖥 </p>} />
