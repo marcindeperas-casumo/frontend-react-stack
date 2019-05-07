@@ -4,11 +4,11 @@ import classNames from "classnames";
 import Coin from "./Icons/coin.svg";
 
 type Props = {
-  ValuableSymbol: React.Node,
+  valuableSymbol: Function,
   justifyCenter?: boolean,
 };
 
-const ValuableReward = ({ ValuableSymbol, justifyCenter }: Props) => {
+const ValuableReward = ({ valuableSymbol, justifyCenter }: Props) => {
   const contentClassModifier = justifyCenter
     ? "o-flex-justify--center o-flex-align--center"
     : "";
@@ -21,7 +21,7 @@ const ValuableReward = ({ ValuableSymbol, justifyCenter }: Props) => {
       )}
     >
       <div className="c-valuable-reward__content u-position-absolute u-font-weight-bold">
-        <ValuableSymbol />
+        {valuableSymbol()}
       </div>
       <Coin />
     </div>

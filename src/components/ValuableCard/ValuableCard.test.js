@@ -6,7 +6,7 @@ import ValuableCard from "Components/ValuableCard";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
 
-describe.only("ValuableCard", () => {
+describe("ValuableCard", () => {
   let rendered;
   let mockValuable;
 
@@ -42,22 +42,16 @@ describe.only("ValuableCard", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should pass on reward level of 0 if to ValuableReward valuableType is not SPINS", () => {
-    expect(rendered.find("ValuableReward").prop("rewardLevel")).toBe(0);
+  test("should justify reward content if type is CASH", () => {
+    expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(true);
   });
 
-  // To confirm logic of valuabletype first
-  test("should pass on the correct rewardLevel to ValuableReward if valuableType is SPINS", () => {
-    mockValuable = mockData(VALUABLE_TYPES.SPINS);
+  test("should not justify reward content if type is not CASH", () => {
+    mockValuable = mockData(VALUABLE_TYPES.DEPOSIT);
+
     rendered = shallow(<ValuableCard {...mockValuable} />);
 
-    expect(rendered.find("ValuableReward").prop("rewardLevel")).toBeGreaterThan(
-      0
-    );
-  });
-
-  test("should display currency if valuable type is CASH", () => {
-    console.log(rendered.debug());
+    expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
   });
 });
 

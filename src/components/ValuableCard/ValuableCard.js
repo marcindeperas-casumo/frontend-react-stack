@@ -81,7 +81,7 @@ class ValuableCard extends PureComponent<Props> {
             id={id}
           >
             <ValuableReward
-              ValuableSymbol={this.valuableSymbol}
+              valuableSymbol={this.valuableSymbol}
               justifyCenter={isValuableTypeCash}
             />
           </ValuableHeaderBackground>
