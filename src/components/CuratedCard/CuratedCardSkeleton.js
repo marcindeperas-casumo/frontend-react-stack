@@ -1,7 +1,7 @@
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-export default class CuratedCardSkeleton extends PureComponent {
+export class CuratedCardSkeleton extends PureComponent {
   render() {
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card">

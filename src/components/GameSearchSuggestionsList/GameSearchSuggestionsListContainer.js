@@ -4,9 +4,9 @@ import {
   gameSearchSuggestedList,
   isSuggestedLoadingSelector,
 } from "Models/gameSearch";
-import GameSearchSuggestionsList from "./GameSearchSuggestionsList";
+import { GameSearchSuggestionsList } from "./GameSearchSuggestionsList";
 
-export default connect(state => ({
+export const GameSearchSuggestionsListContainer = connect(state => ({
   list: gameSearchSuggestedList(state),
   loading: isSuggestedLoadingSelector(state),
 }))(GameSearchSuggestionsList);

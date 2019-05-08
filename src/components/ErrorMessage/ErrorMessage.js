@@ -40,7 +40,7 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
 const renderRetryIfHandlerProvided = ({ retry, retryMessage }: RetryProps) =>
   unless(equals(noop), renderRetry({ retry, retryMessage }), retry);
 
-const ErrorMessage = ({
+export const ErrorMessage = ({
   direction = "vertical",
   errorMessage = DEFAULT_ERROR_MESSAGE,
   retryMessage = DEFAULT_RETRY_MESSAGE,
@@ -77,5 +77,3 @@ const ErrorMessage = ({
     </Flex>
   );
 };
-
-export default ErrorMessage;

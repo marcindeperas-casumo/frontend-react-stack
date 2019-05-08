@@ -28,7 +28,7 @@ const TextMaskColored = props => (
   <MaskText matchRender={TextMatch} unmatchedRender={TextNotMatch} {...props} />
 );
 
-export default class GameRowSearchTitle extends PureComponent<Props> {
+export class GameRowSearchTitle extends PureComponent<Props> {
   render() {
     const { query, name, highlightSearchQuery } = this.props;
 

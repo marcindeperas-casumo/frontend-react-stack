@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import Modal from "Components/Modal";
+import { SportsModal } from "Features/sports/components/SportsModal";
 import { SetFavouritesMutation } from "Features/sports/state";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
@@ -19,43 +19,46 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
   <StageFavouritesConsumer>
     {api => {
       const selectedSportsCount = api.getSelectedSportsCount();
-      const modalFooterButton =
-        selectedSportsCount === 0 ? null : (
-          <SetFavouritesMutation variables={{ ids: api.getSelectedIds() }}>
-            {setFavouriteGroups => (
-              <ModalButtonFooter
-                onClick={() => {
-                  setFavouriteGroups();
-                  onClose();
-                }}
-              >
-                <PluralisableDictionaryTerm
-                  termKey="favourite-sports-selector.button"
-                  replacements={{ sportsCount: selectedSportsCount }}
-                  isPlural={selectedSportsCount > 1}
-                />
-              </ModalButtonFooter>
-            )}
-          </SetFavouritesMutation>
-        );
 
       return (
-        <Modal
-          header={<DictionaryTerm termKey="favourite-sports-selector.title" />}
-          onClose={onClose}
-          className="t-background-white"
-          dismissType={api.isFirstTimeSelectingFavourites ? "none" : "back"}
-          footer={modalFooterButton}
-        >
-          <div className="u-margin-horiz--md">
+        <SportsModal>
+          <SportsModal.Header
+            onClose={api.isFirstTimeSelectingFavourites ? undefined : onClose}
+            dismissType={api.isFirstTimeSelectingFavourites ? "none" : "close"}
+          >
+            <DictionaryTerm termKey="favourite-sports-selector.title" />
+          </SportsModal.Header>
+
+          <SportsModal.Content>
             <FavouriteSportsSelector
               showCompetitionIntro={
                 api.isFirstTimeSelectingFavouriteCompetitions
               }
               onAddCompetition={onAddCompetition}
             />
-          </div>
-        </Modal>
+          </SportsModal.Content>
+
+          {selectedSportsCount === 0 ? null : (
+            <SportsModal.Footer>
+              <SetFavouritesMutation variables={{ ids: api.getSelectedIds() }}>
+                {setFavouriteGroups => (
+                  <ModalButtonFooter
+                    onClick={() => {
+                      setFavouriteGroups();
+                      onClose();
+                    }}
+                  >
+                    <PluralisableDictionaryTerm
+                      termKey="favourite-sports-selector.button"
+                      replacements={{ sportsCount: selectedSportsCount }}
+                      isPlural={selectedSportsCount > 1}
+                    />
+                  </ModalButtonFooter>
+                )}
+              </SetFavouritesMutation>
+            </SportsModal.Footer>
+          )}
+        </SportsModal>
       );
     }}
   </StageFavouritesConsumer>

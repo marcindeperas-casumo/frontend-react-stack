@@ -46,7 +46,7 @@ const ContentMediaListItem = ({
   />
 );
 
-class ContentMediaList extends PureComponent<Props> {
+export class ContentMediaList extends PureComponent<Props> {
   render() {
     const { items } = this.props;
     return (
@@ -62,5 +62,3 @@ class ContentMediaList extends PureComponent<Props> {
     );
   }
 }
-
-export default ContentMediaList;

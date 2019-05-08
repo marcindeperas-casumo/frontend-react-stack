@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import CuratedCard from "Components/CuratedCard/CuratedCard";
+import { CuratedCard } from "Components/CuratedCard/CuratedCard";
 import {
   curatedSelector,
   isCuratedLoadedFactory,
@@ -9,7 +9,7 @@ import {
 import { fetchPageBySlug } from "Models/cms";
 import { launchGame } from "Models/games";
 
-export default connect(
+export const CuratedCardContainer = connect(
   (state, { card }) => {
     const defaultSlug = Array.isArray(card) ? card[0] : card;
     const curatedSlug = curatedSlugSelector(defaultSlug)(state);

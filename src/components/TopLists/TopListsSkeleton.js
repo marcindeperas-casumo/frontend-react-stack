@@ -1,6 +1,6 @@
 /* @flow */
 import React from "react";
-import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 export default function TopListsSkeleton() {
   return (

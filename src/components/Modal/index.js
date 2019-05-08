@@ -1,1 +1,1 @@
-export { default, DismissButton } from "./Modal";
+export { Modal } from "./Modal";

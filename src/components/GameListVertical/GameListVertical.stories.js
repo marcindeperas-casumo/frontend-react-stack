@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
-import GameListVertical from "./";
+import { GameListVertical } from "./";
 
 const stories = storiesOf("GameListVertical", module);
 

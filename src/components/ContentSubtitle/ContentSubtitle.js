@@ -7,7 +7,7 @@ type Props = {
   subtitle: string,
 };
 
-export default class ContentSubtitle extends PureComponent<Props> {
+export class ContentSubtitle extends PureComponent<Props> {
   render() {
     const { subtitle } = this.props;
 

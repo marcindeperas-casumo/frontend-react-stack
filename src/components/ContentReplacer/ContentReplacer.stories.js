@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import ContentReplacer from "./";
+import { ContentReplacer } from "./";
 
 const stories = storiesOf("ContentReplacer", module);
 

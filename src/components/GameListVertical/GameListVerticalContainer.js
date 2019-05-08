@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import GameListVertical from "Components/GameListVertical/GameListVertical";
+import { GameListVertical } from "Components/GameListVertical/GameListVertical";
 import { fetchGamesBySlugs } from "Models/games";
 
 type Props = {
@@ -16,8 +16,6 @@ const GameListVerticalConnected = connect(
   })
 )(GameListVertical);
 
-const GameListVerticalContainer = (props: Props) => (
+export const GameListVerticalContainer = (props: Props) => (
   <GameListVerticalConnected {...props} />
 );
-
-export default GameListVerticalContainer;

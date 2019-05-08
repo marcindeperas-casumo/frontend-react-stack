@@ -8,7 +8,7 @@ import { compose, prop } from "ramda";
 import { decodeString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
-import CMSField from "Components/CMSField";
+import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
