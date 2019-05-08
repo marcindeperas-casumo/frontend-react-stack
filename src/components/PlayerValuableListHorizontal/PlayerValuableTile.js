@@ -6,20 +6,31 @@ export type Props = {
 };
 
 const PlayerValuableTile = ({
-  valuable: { id, title, expirationTime, state, caveat, content, ...rest },
+  valuable: {
+    id,
+    valuableType,
+    title,
+    expirationTime,
+    state,
+    caveat,
+    content,
+    ...rest
+  },
 }: Props) => (
   <div>
-    {id}
+    id: {id}
     <br />
-    {title}
+    valuableType: {valuableType}
     <br />
-    {content}
+    title: {title}
     <br />
-    {state}
+    content: {content}
     <br />
-    {caveat}
+    state: {state}
     <br />
-    {expirationTime}
+    caveat: {caveat}
+    <br />
+    expirationTime: {expirationTime}
     <br />
     {JSON.stringify(rest)}
   </div>

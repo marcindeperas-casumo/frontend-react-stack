@@ -10,19 +10,11 @@ query PlayerValuablesQuery {
       content
 
       ... on PlayerValuableDeposit {
-        amount {
-          ... on PlayerValuable_DepositPercentBonusAmount {
-            percent
-            maxBonusAmount {
-              amount
-              currency
-            }
-          }
-        }
-        minDepositAmount {
-          amount
-          currency
-        }
+        currency
+        maxBonusValue
+        minDepositValue
+        magnitude
+        wageringFactor
       }
 
       ... on PlayerValuableDepositLadder {
@@ -38,9 +30,6 @@ query PlayerValuablesQuery {
           itemsToAward {
             usables {
               id
-              # freeSpinsTemplate {
-              #   numberOfFreeSpins
-              # }
             }
           }
         }
