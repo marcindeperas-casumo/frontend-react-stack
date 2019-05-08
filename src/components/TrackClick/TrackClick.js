@@ -22,11 +22,7 @@ export default class TrackClick extends React.PureComponent<Props> {
       trackHandler = tracker.track,
     } = this.props;
     const contextData = this.context;
-    const onClick = () => {
-      const clickTime = new Date().toISOString();
-
-      trackHandler(eventName, { ...contextData, ...data, clickTime });
-    };
+    const onClick = () => trackHandler(eventName, { ...contextData, ...data });
 
     return <div onClick={onClick}>{children}</div>;
   }
