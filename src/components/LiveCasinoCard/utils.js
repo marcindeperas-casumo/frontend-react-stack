@@ -8,6 +8,8 @@ const COLORS = {
   BLUE: "blue-light-1",
   PURPLE: "purple",
   ORANGE: "orange",
+  GREY_LIGHT_1: "grey-light-1",
+  GREY_LIGHT_3: "grey-light-3",
 };
 
 /* Roulette */
@@ -96,6 +98,27 @@ const getTopCardColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
+/* Monopoly */
+
+const monopolyResults = {
+  "1": COLORS.GREY_LIGHT_1,
+  "2": COLORS.GREEN,
+  "5": COLORS.RED,
+  "10": COLORS.BLUE,
+  "2r": COLORS.BLACK,
+  "4r": COLORS.BLACK,
+};
+
+const monopolyResultsBorderColor = {
+  "2r": COLORS.GREY_LIGHT_3,
+  "4r": COLORS.YELLOW,
+};
+
+const getMonopolyColor = pipe(
+  flip(prop)(monopolyResults),
+  when(isNil, () => COLORS.BLACK)
+);
+
 export const getBadgeColor = (type, n) => {
   if (type === "MoneyWheel") {
     return getMoneyWheelColor(n);
@@ -105,5 +128,14 @@ export const getBadgeColor = (type, n) => {
   }
   if (type === "TopCard") {
     return getTopCardColor(n);
+  }
+  if (type == "Monopoly") {
+    return getMonopolyColor(n);
+  }
+};
+
+export const getBadgeBorderColor = (type, n) => {
+  if (type == "Monopoly") {
+    return prop(n, monopolyResultsBorderColor);
   }
 };

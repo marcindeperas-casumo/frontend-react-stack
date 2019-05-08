@@ -1,4 +1,4 @@
-import { getBadgeColor, rouletteResults } from "./utils";
+import { getBadgeColor, getBadgeBorderColor, rouletteResults } from "./utils";
 
 const rouletteRed = [
   "1",
@@ -106,4 +106,37 @@ describe("getBadgeColor() for `TopCard`", () => {
 
   test("should return `grey-dark-2` colour by default", () =>
     expect(getBadgeColor(type, "W")).toBe("grey-dark-2"));
+});
+
+describe("getBadgeColor() for `Monopoly`", () => {
+  const type = "Monopoly";
+  test("should return `grey-light-1` colour for `1`", () =>
+    expect(getBadgeColor(type, "1")).toBe("grey-light-1"));
+
+  test("should return `green-light-1` colour for `2`", () =>
+    expect(getBadgeColor(type, "2")).toBe("green-light-1"));
+
+  test("should return `red` colour for `5`", () =>
+    expect(getBadgeColor(type, "5")).toBe("red"));
+
+  test("should return `blue-light-1` for `10`", () =>
+    expect(getBadgeColor(type, "10")).toBe("blue-light-1"));
+
+  test("should return `grey-dark-2` for `2r`", () =>
+    expect(getBadgeColor(type, "2r")).toBe("grey-dark-2"));
+
+  test("should return `grey-dark-2` for `4r`", () =>
+    expect(getBadgeColor(type, "4r")).toBe("grey-dark-2"));
+
+  test("should return `grey-dark-2` colour by default", () =>
+    expect(getBadgeColor(type, "W")).toBe("grey-dark-2"));
+});
+
+describe("getBadgeBorderColor() for `Monopoly`", () => {
+  const type = "Monopoly";
+  test("should return `grey-light-3` colour for `2r`", () =>
+    expect(getBadgeBorderColor(type, "2r")).toBe("grey-light-3"));
+
+  test("should return `yellow` colour for `4r`", () =>
+    expect(getBadgeBorderColor(type, "4r")).toBe("yellow"));
 });

@@ -4,7 +4,7 @@ import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
-import { getBadgeColor, topCardLetters } from "./utils";
+import { getBadgeColor, getBadgeBorderColor, topCardLetters } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 const renderResults = ({ results, type }) => {
@@ -15,14 +15,22 @@ const renderResults = ({ results, type }) => {
       <div className="o-layout o-layout--gap u-margin-bottom">
         {list.map((n, i) => {
           const color = getBadgeColor(type, n);
+          const borderColor = getBadgeBorderColor(type, n);
           const notTopCardType = isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
           return (
             <Badge
               key={i}
               tag="div"
               bgColor={color}
-              txtColor={color === "yellow" ? "grey-dark-3" : "white"}
+              txtColor={
+                contains(color, ["yellow", "grey-light-1"])
+                  ? "grey-dark-3"
+                  : "white"
+              }
               circle={true}
+              className={classNames(
+                borderColor && `c-card-data-badge-border-${borderColor}`
+              )}
             >
               {type === "TopCard" ? topCardLetters[n] : notTopCardType}
             </Badge>
@@ -88,7 +96,10 @@ const LobbyType = ({ lobby }) => {
   const { type } = lobby;
   return cond([
     [equals("Blackjack"), () => renderSeats(lobby)],
-    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => renderResults(lobby)],
+    [
+      isIn(["MoneyWheel", "Roulette", "TopCard", "Monopoly"]),
+      () => renderResults(lobby),
+    ],
     [T, () => null],
   ])(type);
 };
