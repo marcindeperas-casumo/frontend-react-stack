@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
@@ -65,103 +64,83 @@ if (isNotChromatic) {
 
   const noop = () => ({});
 
-  stories.add(
-    "Loading",
-    () => (
-      <MockStore state={state}>
-        <GameSearch
-          initFetchGameSearchCount={noop}
-          clearSearch={noop}
-          preloadFetchPlayerGames={noop}
-          fetchPageBySlug={noop}
-          searchResults={[]}
-          searchResultsCount={0}
-          loading={true}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          query={""}
-        />
-      </MockStore>
-    ),
-    info({ text: "Loading" })
-  );
+  stories.add("Loading", () => (
+    <MockStore state={state}>
+      <GameSearch
+        initFetchGameSearchCount={noop}
+        clearSearch={noop}
+        preloadFetchPlayerGames={noop}
+        fetchPageBySlug={noop}
+        searchResults={[]}
+        searchResultsCount={0}
+        loading={true}
+        inputPromptPlaceholder="What 🐟 are you looking for?"
+        query={""}
+      />
+    </MockStore>
+  ));
 
-  stories.add(
-    "Not Found - Latest Played Games",
-    () => (
-      <MockStore state={latestPlayedGamesState}>
-        <GameSearch
-          initFetchGameSearchCount={noop}
-          clearSearch={noop}
-          preloadFetchPlayerGames={noop}
-          fetchPageBySlug={noop}
-          searchResults={[]}
-          searchResultsCount={0}
-          loading={false}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          query={"whatever"}
-        />
-      </MockStore>
-    ),
-    info({ text: "Not Found - Latest Played Games" })
-  );
+  stories.add("Not Found - Latest Played Games", () => (
+    <MockStore state={latestPlayedGamesState}>
+      <GameSearch
+        initFetchGameSearchCount={noop}
+        clearSearch={noop}
+        preloadFetchPlayerGames={noop}
+        fetchPageBySlug={noop}
+        searchResults={[]}
+        searchResultsCount={0}
+        loading={false}
+        inputPromptPlaceholder="What 🐟 are you looking for?"
+        query={"whatever"}
+      />
+    </MockStore>
+  ));
 
-  stories.add(
-    "Not Found - Popular Games",
-    () => (
-      <MockStore state={state}>
-        <GameSearch
-          initFetchGameSearchCount={noop}
-          clearSearch={noop}
-          preloadFetchPlayerGames={noop}
-          fetchPageBySlug={noop}
-          searchResults={[]}
-          searchResultsCount={0}
-          loading={false}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          query={"whatever"}
-        />
-      </MockStore>
-    ),
-    info({ text: "Not Found - Popular Games" })
-  );
+  stories.add("Not Found - Popular Games", () => (
+    <MockStore state={state}>
+      <GameSearch
+        initFetchGameSearchCount={noop}
+        clearSearch={noop}
+        preloadFetchPlayerGames={noop}
+        fetchPageBySlug={noop}
+        searchResults={[]}
+        searchResultsCount={0}
+        loading={false}
+        inputPromptPlaceholder="What 🐟 are you looking for?"
+        query={"whatever"}
+      />
+    </MockStore>
+  ));
 
-  stories.add(
-    "Direct hit - query: starburst",
-    () => (
-      <MockStore state={suggestedGamesState}>
-        <GameSearch
-          initFetchGameSearchCount={noop}
-          clearSearch={noop}
-          preloadFetchPlayerGames={noop}
-          fetchPageBySlug={noop}
-          searchResults={["starburst"]}
-          searchResultsCount={1}
-          loading={false}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          query={"starburst"}
-        />
-      </MockStore>
-    ),
-    info({ text: "Direct hit" })
-  );
+  stories.add("Direct hit - query: starburst", () => (
+    <MockStore state={suggestedGamesState}>
+      <GameSearch
+        initFetchGameSearchCount={noop}
+        clearSearch={noop}
+        preloadFetchPlayerGames={noop}
+        fetchPageBySlug={noop}
+        searchResults={["starburst"]}
+        searchResultsCount={1}
+        loading={false}
+        inputPromptPlaceholder="What 🐟 are you looking for?"
+        query={"starburst"}
+      />
+    </MockStore>
+  ));
 
-  stories.add(
-    "Multiple results - query: mega",
-    () => (
-      <MockStore state={state}>
-        <GameSearch
-          initFetchGameSearchCount={noop}
-          clearSearch={noop}
-          preloadFetchPlayerGames={noop}
-          fetchPageBySlug={noop}
-          searchResults={["mega-fortune", "mega-fortune-dreams"]}
-          searchResultsCount={1}
-          loading={false}
-          inputPromptPlaceholder="What 🐟 are you looking for?"
-          query={"mega"}
-        />
-      </MockStore>
-    ),
-    info({ text: "Multiple results - query: mega" })
-  );
+  stories.add("Multiple results - query: mega", () => (
+    <MockStore state={state}>
+      <GameSearch
+        initFetchGameSearchCount={noop}
+        clearSearch={noop}
+        preloadFetchPlayerGames={noop}
+        fetchPageBySlug={noop}
+        searchResults={["mega-fortune", "mega-fortune-dreams"]}
+        searchResultsCount={1}
+        loading={false}
+        inputPromptPlaceholder="What 🐟 are you looking for?"
+        query={"mega"}
+      />
+    </MockStore>
+  ));
 }

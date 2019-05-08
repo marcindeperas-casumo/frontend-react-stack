@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import MockStore from "Components/MockStore";
 import { GameRowSearch } from "Components/GameRowSearch";
@@ -33,23 +32,19 @@ const games = [
   { game: "twin-spin" },
 ];
 
-stories.add(
-  "Default",
-  () => (
-    <MockStore>
-      <div className="u-height--screen">
-        <GamesVirtualList
-          games={games}
-          renderItem={id => <GameRowSearch slug={id} />}
-          renderTitle={sectionTitle => (
-            <GamesVirtualListTitle title={sectionTitle} />
-          )}
-          preloadFetchPlayerGames={() => {}}
-          preloadFetchPlayerGamesCount={() => {}}
-          rowCount={20}
-        />
-      </div>
-    </MockStore>
-  ),
-  info({ text: "Default" })
-);
+stories.add("Default", () => (
+  <MockStore>
+    <div className="u-height--screen">
+      <GamesVirtualList
+        games={games}
+        renderItem={id => <GameRowSearch slug={id} />}
+        renderTitle={sectionTitle => (
+          <GamesVirtualListTitle title={sectionTitle} />
+        )}
+        preloadFetchPlayerGames={() => {}}
+        preloadFetchPlayerGamesCount={() => {}}
+        rowCount={20}
+      />
+    </div>
+  </MockStore>
+));

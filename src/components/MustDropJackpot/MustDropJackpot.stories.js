@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import MustDropJackpot from "Components/MustDropJackpot";
 const stories = storiesOf("MustDropJackpot", module);
 
@@ -19,8 +18,4 @@ const jackpot = {
   target: "2018-11-22 22:00:00",
 };
 
-stories.add(
-  "Default",
-  () => <MustDropJackpot jackpot={jackpot} />,
-  info({ text: "Default" })
-);
+stories.add("Default", () => <MustDropJackpot jackpot={jackpot} />);

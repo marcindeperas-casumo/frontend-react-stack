@@ -4,7 +4,6 @@ import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
-import info from "Storybook/storybookInfo";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { State, ClickHandlerType } from "Components/ScrollablePaginated";
 
@@ -43,76 +42,68 @@ export const myButtonRenderer = (
   );
 };
 
-stories.add(
-  "Default",
-  () => {
-    const numberOfCells = number("Number of cells", 20);
-    const cellRenderer = ({ columnIndex, style }) => {
-      const width = 200;
-
-      return (
-        <div style={style}>
-          <div
-            style={{ height: "100%" }}
-            className={
-              columnIndex <= numberOfCells - 1 ? "u-padding-right" : null
-            }
-          >
-            <div
-              style={{ height: "100%", width }}
-              className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
-            >
-              {columnIndex}
-            </div>
-          </div>
-        </div>
-      );
-    };
+stories.add("Default", () => {
+  const numberOfCells = number("Number of cells", 20);
+  const cellRenderer = ({ columnIndex, style }) => {
+    const width = 200;
 
     return (
-      <ScrollablePaginated
-        columnCount={numberOfCells}
-        cellRenderer={cellRenderer}
-        height={240}
-        buttonRenderer={myButtonRenderer}
-      />
-    );
-  },
-  info({ text: "Default" })
-);
-
-stories.add(
-  "Mixed width elements",
-  () => {
-    const numberOfCells = number("Number of cells", 20);
-
-    const cellRendererAltWidths = ({ columnIndex, style }) => {
-      const width = columnIndex % 3 === 0 ? 300 : 200;
-      return (
-        <div style={style}>
+      <div style={style}>
+        <div
+          style={{ height: "100%" }}
+          className={
+            columnIndex <= numberOfCells - 1 ? "u-padding-right" : null
+          }
+        >
           <div
-            style={{ height: "100%" }}
-            className={columnIndex !== numberOfCells ? "u-padding-right" : null}
+            style={{ height: "100%", width }}
+            className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
           >
-            <div
-              style={{ height: "100%", width: width }}
-              className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
-            >
-              {columnIndex}
-            </div>
+            {columnIndex}
           </div>
         </div>
-      );
-    };
-
-    return (
-      <ScrollablePaginated
-        columnCount={numberOfCells}
-        cellRenderer={cellRendererAltWidths}
-        height={240}
-        buttonRenderer={myButtonRenderer}
-      />
+      </div>
     );
-  },
-  info({ text: "Default" })
-);
+  };
+
+  return (
+    <ScrollablePaginated
+      columnCount={numberOfCells}
+      cellRenderer={cellRenderer}
+      height={240}
+      buttonRenderer={myButtonRenderer}
+    />
+  );
+});
+
+stories.add("Mixed width elements", () => {
+  const numberOfCells = number("Number of cells", 20);
+
+  const cellRendererAltWidths = ({ columnIndex, style }) => {
+    const width = columnIndex % 3 === 0 ? 300 : 200;
+    return (
+      <div style={style}>
+        <div
+          style={{ height: "100%" }}
+          className={columnIndex !== numberOfCells ? "u-padding-right" : null}
+        >
+          <div
+            style={{ height: "100%", width: width }}
+            className="t-color-white t-background-red o-flex-justify--center o-flex-align--center"
+          >
+            {columnIndex}
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  return (
+    <ScrollablePaginated
+      columnCount={numberOfCells}
+      cellRenderer={cellRendererAltWidths}
+      height={240}
+      buttonRenderer={myButtonRenderer}
+    />
+  );
+});

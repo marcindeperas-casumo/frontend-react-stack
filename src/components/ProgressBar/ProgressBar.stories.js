@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number, select } from "@storybook/addon-knobs/react";
-import info from "Storybook/storybookInfo";
 import { ProgressBar, colourOptions } from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
@@ -34,4 +33,4 @@ const DefaultStory = () => {
   );
 };
 
-stories.add("Default", DefaultStory, info({ text: "Default" }));
+stories.add("Default", DefaultStory);

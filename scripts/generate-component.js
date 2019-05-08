@@ -125,7 +125,6 @@ function getComponentStoryTemplate() {
   return `// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import {{ componentName }} from "./";
 
 const stories = storiesOf("{{ componentName }}", module);
@@ -134,8 +133,7 @@ stories.add(
   "Default",
   () => (
     <{{ componentName }} msg="howdy! 🤠" />
-  ),
-  info({ text: "Default" })
+  )
 );\n`;
 }
 
