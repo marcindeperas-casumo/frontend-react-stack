@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import info from "Storybook/storybookInfo";
 import isNotChromatic from "Storybook/isNotChromatic";
 import LiveCasinoCardConnected from "Components/LiveCasinoCard";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
@@ -19,99 +18,75 @@ const subscribeToUpdates = () => {};
 const unsubscribeFromUpdates = () => {};
 
 if (isNotChromatic) {
-  stories.add(
-    "Card (connected)",
-    () => (
-      <div style={{ maxWidth: "320px" }}>
-        <MockStore>
-          <LiveCasinoCardConnected id="topwheel-treasures" />
-        </MockStore>
-      </div>
-    ),
-    info({ text: "Card (connected)" })
-  );
+  stories.add("Card (connected)", () => (
+    <div style={{ maxWidth: "320px" }}>
+      <MockStore>
+        <LiveCasinoCardConnected id="topwheel-treasures" />
+      </MockStore>
+    </div>
+  ));
 }
-stories.add(
-  "Card MoneyWheel",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCard
-          game={gameMoneyWheel}
-          launchGame={action(gameMoneyWheel.slug)}
-          subscribeToUpdates={subscribeToUpdates}
-          unsubscribeFromUpdates={unsubscribeFromUpdates}
-        />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card MoneyWheel" })
-);
+stories.add("Card MoneyWheel", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameMoneyWheel}
+        launchGame={action(gameMoneyWheel.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
 
-stories.add(
-  "Card Roulette",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCard
-          game={gameRoulette}
-          launchGame={action(gameRoulette.slug)}
-          subscribeToUpdates={subscribeToUpdates}
-          unsubscribeFromUpdates={unsubscribeFromUpdates}
-        />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card Roulette" })
-);
+stories.add("Card Roulette", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameRoulette}
+        launchGame={action(gameRoulette.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
 
-stories.add(
-  "Card Blackjack Open Seats",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCard
-          game={gameBlackjack}
-          launchGame={action(gameBlackjack.slug)}
-          subscribeToUpdates={subscribeToUpdates}
-          unsubscribeFromUpdates={unsubscribeFromUpdates}
-        />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card Blackjack Open Seats" })
-);
+stories.add("Card Blackjack Open Seats", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBlackjack}
+        launchGame={action(gameBlackjack.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
 
-stories.add(
-  "Card Blackjack Full",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCard
-          game={gameBlackjackFull}
-          launchGame={action(gameBlackjackFull.slug)}
-          subscribeToUpdates={subscribeToUpdates}
-          unsubscribeFromUpdates={unsubscribeFromUpdates}
-        />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card Blackjack Full" })
-);
+stories.add("Card Blackjack Full", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBlackjackFull}
+        launchGame={action(gameBlackjackFull.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
 
-stories.add(
-  "Card TopCard (Football)",
-  () => (
-    <div style={{ maxWidth: "320px" }}>
-      <MockStore>
-        <LiveCasinoCard
-          game={gameTopCard}
-          launchGame={action(gameTopCard.slug)}
-          subscribeToUpdates={subscribeToUpdates}
-          unsubscribeFromUpdates={unsubscribeFromUpdates}
-        />
-      </MockStore>
-    </div>
-  ),
-  info({ text: "Card TopCard (Football)" })
-);
+stories.add("Card TopCard (Football)", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameTopCard}
+        launchGame={action(gameTopCard.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));

@@ -1,8 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
-import isNotChromatic from "Storybook/isNotChromatic";
 import { Desktop, Mobile } from "./ResponsiveLayout";
 
 const stories = storiesOf("ResponsiveLayout", module);
@@ -17,10 +15,28 @@ stories.add(
   "Desktop - 1280px viewport",
   () => (
     <div>
-      <Desktop children={<p>I'm a Desktop device 🖥 </p>} />
+      <Desktop
+        children={
+          <p>
+            I'm a Desktop device
+            <span role="img" aria-label="desktop">
+              🖥
+            </span>
+          </p>
+        }
+      />
       <Mobile
         children={
-          <p>I'm a Mobile device 📱and chromatic should NOT see me 👀</p>
+          <p>
+            I'm a Mobile device
+            <span role="img" aria-label="mobile">
+              📱
+            </span>
+            and chromatic should NOT see me
+            <span role="img" aria-label="eyes">
+              👀
+            </span>
+          </p>
         }
       />
     </div>
@@ -34,10 +50,28 @@ stories.add(
   "Mobile - 768px viewport",
   () => (
     <div>
-      <Mobile children={<p>I'm a Mobile device 📱</p>} />
+      <Mobile
+        children={
+          <p>
+            I'm a Mobile device
+            <span role="img" aria-label="mobile">
+              📱
+            </span>
+          </p>
+        }
+      />
       <Desktop
         children={
-          <p>I'm a Desktop device 🖥 and chromatic should NOT see me 👀</p>
+          <p>
+            I'm a Desktop device
+            <span role="img" aria-label="desktop">
+              🖥
+            </span>
+            and chromatic should NOT see me
+            <span role="img" aria-label="eyes">
+              👀
+            </span>
+          </p>
         }
       />
     </div>

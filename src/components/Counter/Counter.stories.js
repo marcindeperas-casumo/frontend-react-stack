@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Text from "@casumo/cmp-text";
-import info from "Storybook/storybookInfo";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { Counter } from "./";
 
@@ -59,17 +58,9 @@ const Formatter = ({ number }) => {
 };
 
 if (isNotChromatic) {
-  stories.add(
-    "Default",
-    () => (
-      <Counter end={200000000} render={state => <div>{state.value}</div>} />
-    ),
-    info({ text: "Default" })
-  );
+  stories.add("Default", () => (
+    <Counter end={200000000} render={state => <div>{state.value}</div>} />
+  ));
 
-  stories.add(
-    "With Update",
-    () => <MockTimerUpdate />,
-    info({ text: "With Update" })
-  );
+  stories.add("With Update", () => <MockTimerUpdate />);
 }

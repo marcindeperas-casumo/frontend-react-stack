@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import ProviderGamesList from "Components/ProviderGamesList";
 import ProviderGamesListPresentational from "Components/ProviderGamesList/ProviderGamesList";
 import MockStore from "Components/MockStore";
@@ -27,28 +26,20 @@ const provider = {
   games,
 };
 
-stories.add(
-  "ProviderGamesList (Presentational)",
-  () => (
-    <MockStore state={{ game: defaultState.schema.game }}>
-      <ProviderGamesListPresentational
-        areGamesLoaded={true}
-        provider={provider}
-        count={games.length}
-      />
-    </MockStore>
-  ),
-  info({ text: "Default" })
-);
+stories.add("ProviderGamesList (Presentational)", () => (
+  <MockStore state={{ game: defaultState.schema.game }}>
+    <ProviderGamesListPresentational
+      areGamesLoaded={true}
+      provider={provider}
+      count={games.length}
+    />
+  </MockStore>
+));
 
 if (isNotChromatic) {
-  stories.add(
-    "ProviderGamesList (Connected)",
-    () => (
-      <MockStore state={defaultState}>
-        <ProviderGamesList provider={provider.slug} />
-      </MockStore>
-    ),
-    info({ text: "" })
-  );
+  stories.add("ProviderGamesList (Connected)", () => (
+    <MockStore state={defaultState}>
+      <ProviderGamesList provider={provider.slug} />
+    </MockStore>
+  ));
 }
