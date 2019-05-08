@@ -29,7 +29,7 @@ function checkIgnore(isUncaught, args, payload) {
   return false;
 }
 
-export const logger = new Rollbar({
+const logger = new Rollbar({
   accessToken: "2a7d7f810245499e9250ee718205429a",
   captureUncaught: true,
   captureUnhandledRejections: true,
@@ -41,3 +41,5 @@ export const logger = new Rollbar({
   includeItemsInTelemetry: true,
   checkIgnore,
 });
+
+export default logger;

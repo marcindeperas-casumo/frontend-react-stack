@@ -12,7 +12,7 @@ Rollbar is a 3rd party log-collector service that we use in production.
 ### Logging an error
 
 ```javascript
-import { logger } from "Services/logger";
+import logger from "Services/logger";
 
 logger.log / debug / info / warning / error / critical();
 ```
