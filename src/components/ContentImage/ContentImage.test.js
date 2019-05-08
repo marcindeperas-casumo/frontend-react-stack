@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ContentImage from "./ContentImage";
+import { ContentImage } from "./ContentImage";
 
 describe("<ContentImage />", () => {
   const src = "http://foo.com/foo.jpg";

@@ -5,7 +5,5 @@ type Props = {
   condition: Function,
 };
 
-const EitherOr = ({ either, or, condition, ...restProps }: Props) =>
+export const EitherOr = ({ either, or, condition, ...restProps }: Props) =>
   condition(restProps) ? either(restProps) : or(restProps);
-
-export default EitherOr;

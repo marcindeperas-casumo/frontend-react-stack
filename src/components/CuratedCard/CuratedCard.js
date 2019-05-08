@@ -3,11 +3,11 @@ import React, { PureComponent } from "react";
 import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
-import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
-import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
-import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
+import { CuratedCardFooter } from "Components/CuratedCard/CuratedCardFooter";
+import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
+import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils";
-import EitherOr from "Components/EitherOr";
+import { EitherOr } from "Components/EitherOr";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
@@ -42,7 +42,7 @@ export type Props = {|
   curatedSlug: string,
 |};
 
-export default class CuratedCard extends PureComponent<Props> {
+export class CuratedCard extends PureComponent<Props> {
   get cardClickUrl() {
     const { typeOfCurated, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;

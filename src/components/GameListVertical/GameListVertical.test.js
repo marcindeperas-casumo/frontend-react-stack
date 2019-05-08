@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameListVertical from "./GameListVertical";
+import { GameListVertical } from "./GameListVertical";
 
 describe("<GameListVertical />", () => {
   test("should render a list", () => {

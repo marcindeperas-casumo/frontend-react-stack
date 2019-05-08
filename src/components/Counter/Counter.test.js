@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Counter, { REFRESH_RATE } from "./Counter";
+import { Counter, REFRESH_RATE } from "./Counter";
 
 jest.useFakeTimers();
 
