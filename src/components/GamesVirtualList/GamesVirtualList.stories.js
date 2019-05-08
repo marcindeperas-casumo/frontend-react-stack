@@ -2,10 +2,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
+import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import MockStore from "Components/MockStore";
-import GameRowSearch from "Components/GameRowSearch";
-import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
+import { GameRowSearch } from "Components/GameRowSearch";
+import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 
 const stories = storiesOf("GamesVirtualList", module);
 

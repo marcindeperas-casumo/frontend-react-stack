@@ -1,3 +1,3 @@
 // @flow
-export type * from "./CuratedCardContainer"; // eslint-disable-line import/export
-export { default } from "./CuratedCardContainer";
+export type * from "./CuratedCardContainer";
+export { CuratedCardContainer as CuratedCard } from "./CuratedCardContainer";

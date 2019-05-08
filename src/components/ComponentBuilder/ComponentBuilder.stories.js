@@ -2,9 +2,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import ComponentBuilder from "Components/ComponentBuilder";
-import ComponentBuilderRenderer from "Components/ComponentBuilder/ComponentBuilderRenderer";
-import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS";
+import { ComponentBuilder } from "Components/ComponentBuilder";
+import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
+import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 

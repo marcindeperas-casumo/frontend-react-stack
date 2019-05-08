@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { EVENT_PROPS } from "Src/constants";
-import GameListVertical from "Components/GameListVertical";
+import { GameListVertical } from "Components/GameListVertical";
 import TrackProvider from "Components/TrackProvider";
 
 type Props = {
@@ -9,7 +9,7 @@ type Props = {
   ids: Array<string>,
 };
 
-class ContentGameList extends PureComponent<Props> {
+export class ContentGameList extends PureComponent<Props> {
   render() {
     const ids = this.props.ids || [];
     return (
@@ -23,5 +23,3 @@ class ContentGameList extends PureComponent<Props> {
     );
   }
 }
-
-export default ContentGameList;

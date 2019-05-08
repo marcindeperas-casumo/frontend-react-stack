@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { times, identity } from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
-import GameRowSkeleton from "Components/GameRowSkeleton";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 
 type Props = {
   /* Additional css classes to add to the component **/
@@ -19,7 +19,7 @@ type Props = {
   gameRowHeight: number,
 };
 
-export default class GameListSkeleton extends PureComponent<Props> {
+export class GameListSkeleton extends PureComponent<Props> {
   static defaultProps = {
     className: "",
     hasTitle: true,

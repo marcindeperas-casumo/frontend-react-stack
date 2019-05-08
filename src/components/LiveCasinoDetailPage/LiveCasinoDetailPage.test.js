@@ -2,7 +2,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import List from "@casumo/cmp-list";
-import GameRow from "Components/GameRow";
+import { GameRow } from "Components/GameRow";
 import SectionTitle from "./SectionTitle";
 import LiveCasinoDetailPage from "./LiveCasinoDetailPage";
 

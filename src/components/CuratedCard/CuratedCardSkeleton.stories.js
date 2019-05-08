@@ -2,7 +2,7 @@
 import { storiesOf } from "@storybook/react";
 import React from "react";
 import info from "Storybook/storybookInfo";
-import CuratedCardSkeleton from "./CuratedCardSkeleton";
+import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 
 const stories = storiesOf("CuratedCardSkeleton", module);
 

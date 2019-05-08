@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import App from "Components/App/App";
+import { App } from "Components/App/App";
 
 describe("App", () => {
   test("onAppStart is called when the component is mounted", () => {

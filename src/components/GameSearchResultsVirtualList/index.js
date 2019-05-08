@@ -1,2 +1,4 @@
 // @flow
-export { default } from "./GameSearchResultsVirtualListContainer";
+export {
+  GameSearchResultsVirtualListContainer as GameSearchResultsVirtualList,
+} from "./GameSearchResultsVirtualListContainer";

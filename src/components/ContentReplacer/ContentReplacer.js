@@ -9,12 +9,10 @@ type Props = {
   element?: string,
 };
 
-class ContentReplacer extends PureComponent<Props> {
+export class ContentReplacer extends PureComponent<Props> {
   render() {
     const { value, replacements, element } = this.props;
     const interpolated = interpolate(value, replacements);
     return <DangerousHtml element={element} html={interpolated} />;
   }
 }
-
-export default ContentReplacer;
