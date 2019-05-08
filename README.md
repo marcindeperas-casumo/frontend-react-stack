@@ -52,7 +52,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 - Within the `casumo-frontend` repository under `/web` run the following commands in order:
   - `casumo-proxy add-hosts` to add entries to host file
   - `casumo-proxy use local` in order to proxy to your local environment.
-  - `casumo-proxy start` to start paused proxy, or creates it if it does not exist.
+  - `casumo-proxy start` to start paused proxy, or create it if it does not exist.
   - `yarn mobile gulp dev` to run the mobile build
 - Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
