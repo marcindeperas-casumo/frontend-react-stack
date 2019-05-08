@@ -1,4 +1,4 @@
-import { cond, flip, isNil, pipe, prop, T, when } from "ramda";
+import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
 
 const COLORS = {
   BLACK: "grey-dark-2",
@@ -101,10 +101,6 @@ const getTopCardColor = pipe(
 /* Monopoly */
 
 const monopolyResultsDisplay = {
-  "1": "1",
-  "2": "2",
-  "5": "5",
-  "10": "10",
   "2r": "2",
   "4r": "4",
   ch: "?",
@@ -153,11 +149,11 @@ export const getBadgeBorderColor = (type, n) => {
 
 export const getResultsDisplay = (type, n) => {
   if (type === "TopCard") {
-    return topCardLettersDisplay[n] || n;
+    return propOr(n, n, topCardLettersDisplay);
   }
 
   if (type === "Monopoly") {
-    return monopolyResultsDisplay[n] || n;
+    return propOr(n, n, monopolyResultsDisplay);
   }
 
   return isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);

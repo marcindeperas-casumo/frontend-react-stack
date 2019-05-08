@@ -1,4 +1,9 @@
-import { getBadgeColor, getBadgeBorderColor, rouletteResults } from "./utils";
+import {
+  getBadgeColor,
+  getBadgeBorderColor,
+  rouletteResults,
+  getResultsDisplay,
+} from "./utils";
 
 const rouletteRed = [
   "1",
@@ -142,4 +147,34 @@ describe("getBadgeBorderColor() for `Monopoly`", () => {
 
   test("should return `yellow` colour for `4r`", () =>
     expect(getBadgeBorderColor(type, "4r")).toBe("yellow"));
+});
+
+describe("getResultsDisplay() for `Monopoly`", () => {
+  const type = "Monopoly";
+  test("should return correct display for `2r`", () =>
+    expect(getResultsDisplay(type, "2r")).toBe("2"));
+
+  test("should return correct display for `4r`", () =>
+    expect(getResultsDisplay(type, "4r")).toBe("4"));
+
+  test("should return correct display for `ch`", () =>
+    expect(getResultsDisplay(type, "ch")).toBe("?"));
+
+  test("should return correct display for `2`", () =>
+    expect(getResultsDisplay(type, "2")).toBe("2"));
+});
+
+describe("getResultsDisplay() for `Monopoly`", () => {
+  const type = "TopCard";
+  test("should return correct display for `L`", () =>
+    expect(getResultsDisplay(type, "L")).toBe("H"));
+
+  test("should return correct display for `T`", () =>
+    expect(getResultsDisplay(type, "T")).toBe("D"));
+
+  test("should return correct display for `R`", () =>
+    expect(getResultsDisplay(type, "R")).toBe("A"));
+
+  test("should return correct display for `2`", () =>
+    expect(getResultsDisplay(type, "2")).toBe("2"));
 });
