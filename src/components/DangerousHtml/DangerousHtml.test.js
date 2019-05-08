@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { DangerousHtml } from "./DangerousHtml";
+import DangerousHtml from "./DangerousHtml";
 
 describe("<DangerousHtml />", () => {
   test("renders out a html", () => {

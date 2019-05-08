@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { interpolate } from "Utils/";
-import { DangerousHtml } from "Components/DangerousHtml";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   value: string,

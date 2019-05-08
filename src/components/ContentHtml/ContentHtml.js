@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import { DangerousHtml } from "Components/DangerousHtml";
+import DangerousHtml from "Components/DangerousHtml";
 import "./ContentHtml.scss";
 
 type Props = {

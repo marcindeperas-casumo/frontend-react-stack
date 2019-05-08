@@ -13,7 +13,7 @@ import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
 import { GameThumb } from "Components/GameThumb";
-import { DangerousHtml } from "Components/DangerousHtml";
+import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import OptInButton from "Components/OptInButton/OptInButton";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";

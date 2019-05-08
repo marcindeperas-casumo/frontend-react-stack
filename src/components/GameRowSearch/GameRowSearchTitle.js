@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import MaskText from "Components/MaskText";
-import { DangerousHtml } from "Components/DangerousHtml";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** The search query */

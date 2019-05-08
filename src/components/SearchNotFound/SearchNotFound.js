@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
-import { DangerousHtml } from "Components/DangerousHtml";
+import DangerousHtml from "Components/DangerousHtml";
 
 import "./SearchNotFound.scss";
 

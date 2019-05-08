@@ -11,7 +11,7 @@ type Props = {
 // a surface for a possible XSS attack.
 // Always make sure know where the injected `html` prop
 // comes from and that it is not editable by the user.
-export class DangerousHtml extends PureComponent<Props> {
+export default class DangerousHtml extends PureComponent<Props> {
   static defaultProps = {
     element: "span",
     className: "",
