@@ -15,10 +15,7 @@ const props = {
   onEdit: jest.fn(),
   isSelected: jest.fn(),
   onSelected: jest.fn(),
-  labels: {
-    all: "all",
-    edit: "edit",
-  },
+  editLabel: "edit",
 };
 
 const render = overrideProps =>

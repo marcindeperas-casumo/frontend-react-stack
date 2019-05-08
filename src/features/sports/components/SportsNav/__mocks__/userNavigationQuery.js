@@ -5,8 +5,8 @@ import { USER_NAVIGATION_QUERY } from "../SportsNav";
 import mockData from "./userNavigationData";
 
 const labels = {
-  all: "All",
-  edit: "Edit",
+  allLabel: "All",
+  editLabel: "Edit",
 };
 
 const baseMock = {
@@ -15,7 +15,7 @@ const baseMock = {
   },
   result: {
     data: {
-      labels,
+      ...labels,
       sportsNavigation: mockData,
     },
   },
@@ -25,7 +25,7 @@ const mockWithXSports = numberOfSports =>
   evolve({
     result: {
       data: {
-        labels,
+        ...labels,
         sportsNavigation: take(numberOfSports),
       },
     },

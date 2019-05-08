@@ -21,6 +21,9 @@ type SportsNavProps = {
 
 export const USER_NAVIGATION_QUERY = gql`
   query UserNavigation {
+    allLabel: dictionaryTerm(key: "navigation.all")
+    editLabel: dictionaryTerm(key: "navigation.edit")
+
     sportsNavigation {
       sport {
         name
@@ -42,12 +45,6 @@ export const USER_NAVIGATION_QUERY = gql`
         }
       }
     }
-
-    # TODO(CPO): this was working before? check before creating PR
-    # labels {
-    allLabel: dictionaryTerm(key: "navigation.all")
-    editLabel: dictionaryTerm(key: "navigation.edit")
-    # }
   }
 `;
 
@@ -175,7 +172,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
-                      labels={{ all: data.allLabel, edit: data.editLabel }}
+                      editLabel={data.editLabel}
                     />
                   )}
                 </OpenModalMutation>
@@ -190,7 +187,8 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={selectedNavItem.canEdit}
                       onEdit={openChooseFavouriteLeaguesModal}
-                      labels={{ all: data.allLabel, edit: data.editLabel }}
+                      allLabel={data.allLabel}
+                      editLabel={data.editLabel}
                     />
                   )}
                 </OpenModalMutation>

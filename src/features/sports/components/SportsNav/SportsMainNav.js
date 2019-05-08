@@ -15,17 +15,14 @@ export type Props = {
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
-  labels: {
-    all: string,
-    edit: string,
-  },
+  editLabel: string,
 };
 
 class SportsMainNav extends React.Component<Props> {
   renderEditButton = () => {
     const hasMultipleTabs = this.props.navItems.length > 1;
 
-    const label = hasMultipleTabs && this.props.labels.edit;
+    const label = hasMultipleTabs && this.props.editLabel;
 
     const className = hasMultipleTabs
       ? "u-margin-vert--lg u-margin-left--md"

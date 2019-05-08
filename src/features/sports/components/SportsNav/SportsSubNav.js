@@ -13,9 +13,7 @@ export type Props = {
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
-  labels: {
-    all: string,
-  },
+  allLabel: string,
 };
 
 type SportsSubNavItemProps = {
@@ -43,7 +41,7 @@ const SportsSubNavItem = (props: SportsSubNavItemProps) => (
 class SportsSubNav extends React.Component<Props> {
   renderAllNavItem = ({ style }: CellRendererParams) => {
     const allNavItem = {
-      text: this.props.labels.all,
+      text: this.props.allLabel,
       path: this.props.navItems[0].parentPath || "",
       key: "all",
       canEdit: false,
