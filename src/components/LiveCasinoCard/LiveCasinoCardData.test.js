@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
-import { topCardLetters } from "./utils";
+import { topCardLettersDisplay } from "./utils";
 import roulette from "./__mocks__/Roulette.json";
 import topCard from "./__mocks__/TopCard.json";
 import moneyWheel from "./__mocks__/MoneyWheel.json";
@@ -38,7 +38,7 @@ describe("LiveCasinoCardData", () => {
       const data = component.find("LobbyType").shallow();
       const results = topCard.lobby.results
         .slice(0, 5)
-        .map(v => topCardLetters[v]);
+        .map(v => topCardLettersDisplay[v]);
       const rendered = data
         .find("Badge")
         .map(node => node.props().children.toString());

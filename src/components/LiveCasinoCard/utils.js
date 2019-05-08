@@ -85,12 +85,12 @@ const getMoneyWheelColor = pipe(
 
 /* Top Card */
 
-export const topCardLetters = { L: "H", T: "D", R: "A" };
+export const topCardLettersDisplay = { L: "H", T: "D", R: "A" };
 
 const topCardResults = {
-  L: "red",
-  T: "yellow",
-  R: "blue-light-1",
+  L: COLORS.RED,
+  T: COLORS.YELLOW,
+  R: COLORS.BLUE,
 };
 
 const getTopCardColor = pipe(
@@ -100,13 +100,24 @@ const getTopCardColor = pipe(
 
 /* Monopoly */
 
-const monopolyResults = {
+const monopolyResultsDisplay = {
+  "1": "1",
+  "2": "2",
+  "5": "5",
+  "10": "10",
+  "2r": "2",
+  "4r": "4",
+  ch: "?",
+};
+
+const monopolyResultsColors = {
   "1": COLORS.GREY_LIGHT_1,
   "2": COLORS.GREEN,
   "5": COLORS.RED,
   "10": COLORS.BLUE,
   "2r": COLORS.BLACK,
   "4r": COLORS.BLACK,
+  ch: COLORS.ORANGE,
 };
 
 const monopolyResultsBorderColor = {
@@ -115,7 +126,7 @@ const monopolyResultsBorderColor = {
 };
 
 const getMonopolyColor = pipe(
-  flip(prop)(monopolyResults),
+  flip(prop)(monopolyResultsColors),
   when(isNil, () => COLORS.BLACK)
 );
 
@@ -129,13 +140,25 @@ export const getBadgeColor = (type, n) => {
   if (type === "TopCard") {
     return getTopCardColor(n);
   }
-  if (type == "Monopoly") {
+  if (type === "Monopoly") {
     return getMonopolyColor(n);
   }
 };
 
 export const getBadgeBorderColor = (type, n) => {
-  if (type == "Monopoly") {
+  if (type === "Monopoly") {
     return prop(n, monopolyResultsBorderColor);
   }
+};
+
+export const getResultsDisplay = (type, n) => {
+  if (type === "TopCard") {
+    return topCardLettersDisplay[n] || n;
+  }
+
+  if (type === "Monopoly") {
+    return monopolyResultsDisplay[n] || n;
+  }
+
+  return isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
 };

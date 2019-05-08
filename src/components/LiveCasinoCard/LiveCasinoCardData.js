@@ -4,7 +4,7 @@ import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import CMSField from "Components/CMSField";
-import { getBadgeColor, getBadgeBorderColor, topCardLetters } from "./utils";
+import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
 const renderResults = ({ results, type }) => {
@@ -16,7 +16,6 @@ const renderResults = ({ results, type }) => {
         {list.map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
-          const notTopCardType = isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
           return (
             <Badge
               key={i}
@@ -32,7 +31,7 @@ const renderResults = ({ results, type }) => {
                 borderColor && `c-card-data-badge-border-${borderColor}`
               )}
             >
-              {type === "TopCard" ? topCardLetters[n] : notTopCardType}
+              {getResultsDisplay(type, n)}
             </Badge>
           );
         })}

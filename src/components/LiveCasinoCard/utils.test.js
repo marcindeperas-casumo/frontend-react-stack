@@ -128,6 +128,9 @@ describe("getBadgeColor() for `Monopoly`", () => {
   test("should return `grey-dark-2` for `4r`", () =>
     expect(getBadgeColor(type, "4r")).toBe("grey-dark-2"));
 
+  test("should return `orange` for `ch`", () =>
+    expect(getBadgeColor(type, "ch")).toBe("orange"));
+
   test("should return `grey-dark-2` colour by default", () =>
     expect(getBadgeColor(type, "W")).toBe("grey-dark-2"));
 });
