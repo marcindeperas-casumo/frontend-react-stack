@@ -34,7 +34,6 @@ const PromotionOptInButtonConnected = connect(
       data: {
         [EVENT_PROPS.OPTED_IN]: true,
         playerId: playerIdSelector(state),
-        date: new Date().toISOString(),
       },
     },
     disabled: {
@@ -47,7 +46,6 @@ const PromotionOptInButtonConnected = connect(
       data: {
         [EVENT_PROPS.OPTED_IN]: false,
         playerId: playerIdSelector(state),
-        date: new Date().toISOString(),
       },
     },
     isOptedIn: isPromotionOptedInSelector(slug)(state),
