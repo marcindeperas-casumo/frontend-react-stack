@@ -4,7 +4,7 @@ import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import GameRow from "Components/GameRow/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 import { generateColumns } from "Utils";
 
 const PADDING_PER_DEVICE = {

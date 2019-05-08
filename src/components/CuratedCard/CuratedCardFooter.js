@@ -5,8 +5,8 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import { stringToHTML, decodeString } from "Utils";
-import EitherOr from "Components/EitherOr";
-import GameThumb from "Components/GameThumb";
+import { EitherOr } from "Components/EitherOr";
+import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { CURATED_TYPE } from "Models/curated";
@@ -25,7 +25,7 @@ type Props = {
   onLaunchGame: Function,
 };
 
-export default class CuratedCardFooter extends PureComponent<Props> {
+export class CuratedCardFooter extends PureComponent<Props> {
   renderLegal = () => {
     const { promotions_legal_text } = this.props;
 
@@ -60,7 +60,7 @@ export default class CuratedCardFooter extends PureComponent<Props> {
         <Flex.Item>
           <Flex justify="center">
             <TrackClick
-              eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+              eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
               data={trackClickGamePlayData}
             >
               <Button

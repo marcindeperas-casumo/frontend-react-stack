@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 
-export default class ContentSeparator extends PureComponent<{}> {
+export class ContentSeparator extends PureComponent<{}> {
   render() {
     const className = `
       t-border-bottom

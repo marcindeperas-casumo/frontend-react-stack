@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameRow from "Components/GameRow/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { renderBets } from "Utils";
 

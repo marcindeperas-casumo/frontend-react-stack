@@ -4,7 +4,7 @@ import Skeleton from "@casumo/cmp-skeleton";
 
 type Props = {};
 
-class GameRowSkeleton extends PureComponent<Props> {
+export class GameRowSkeleton extends PureComponent<Props> {
   render() {
     return (
       <Skeleton
@@ -28,5 +28,3 @@ class GameRowSkeleton extends PureComponent<Props> {
     );
   }
 }
-
-export default GameRowSkeleton;

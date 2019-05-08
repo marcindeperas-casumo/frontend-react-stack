@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./DataProvider";
+export { DataProvider } from "./DataProvider";

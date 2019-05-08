@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ContentButton, { ACTION_MAP } from "./ContentButton";
+import { ContentButton, ACTION_MAP } from "./ContentButton";
 
 describe("ContentButton", () => {
   test("should reference ACTION_MAP for hrefs", () => {

@@ -4,8 +4,8 @@ import Flex from "@casumo/cmp-flex";
 import { MoreIcon, PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { Game } from "Types/game";
-import GameThumb from "Components/GameThumb";
-import GameRowSearchTitle from "Components/GameRowSearch/GameRowSearchTitle";
+import { GameThumb } from "Components/GameThumb";
+import { GameRowSearchTitle } from "Components/GameRowSearch/GameRowSearchTitle";
 import TrackClick from "Components/TrackClick";
 // The following style classes are coupled to GameRowSearch. If you're thinking of moving out TrackPlayIcon
 // and TrackMoreIcon, style might not be applicable for their usage
@@ -25,7 +25,7 @@ type Props = {
 
 const TrackPlayIcon = ({ name, onLaunchGame }) => (
   <TrackClick
-    eventName={EVENTS.GAME_LAUNCH}
+    eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item onClick={onLaunchGame}>
@@ -37,7 +37,7 @@ const TrackPlayIcon = ({ name, onLaunchGame }) => (
 const TrackMoreIcon = ({ name, slug }) => (
   <Flex.Item>
     <TrackClick
-      eventName={EVENTS.GAME_DETAILS}
+      eventName={EVENTS.MIXPANEL_GAME_DETAILS}
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/en/play/${slug}`}>
@@ -47,7 +47,7 @@ const TrackMoreIcon = ({ name, slug }) => (
   </Flex.Item>
 );
 
-export default class GameRowSearch extends PureComponent<Props> {
+export class GameRowSearch extends PureComponent<Props> {
   static defaultProps = {
     query: "",
     highlightSearchQuery: false,
@@ -61,7 +61,7 @@ export default class GameRowSearch extends PureComponent<Props> {
       <Flex align="center">
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick
-            eventName={EVENTS.GAME_LAUNCH}
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
             <Flex align="center">

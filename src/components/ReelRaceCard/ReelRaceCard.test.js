@@ -55,15 +55,25 @@ describe("ReelRaceCard", () => {
     );
 
     test('should show "Starting In" text', () => {
-      expect(rendered.contains("Starting in")).toBe(true);
+      expect(rendered.contains(props.t.starting_in)).toBe(true);
     });
     test('should show "Opt In" button', () => {
-      expect(rendered.contains("Opt In")).toBe(true);
+      expect(
+        rendered
+          .find("OptInButton")
+          .dive()
+          .contains(props.t.opt_in)
+      ).toBe(true);
     });
 
     test('should show "Opted In" button if user opted for race', () => {
       rendered.setProps({ opted: true });
-      expect(rendered.contains("Opted In")).toBe(true);
+      expect(
+        rendered
+          .find("OptInButton")
+          .dive()
+          .contains(props.t.opted_in)
+      ).toBe(true);
     });
   });
 
@@ -80,7 +90,7 @@ describe("ReelRaceCard", () => {
     );
 
     test('should show "Ending In" text', () => {
-      expect(rendered.contains("Ending in")).toBe(true);
+      expect(rendered.contains(props.t.ending_in)).toBe(true);
     });
 
     test('should show "Play" button', () => {
@@ -88,7 +98,7 @@ describe("ReelRaceCard", () => {
         rendered
           .find("Button")
           .children()
-          .contains("Play")
+          .contains(props.t.opted_in_cta_single_game_short)
       ).toBe(true);
     });
 

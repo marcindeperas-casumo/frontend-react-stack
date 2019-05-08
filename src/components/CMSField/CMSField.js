@@ -11,7 +11,7 @@ export type Props = {
   view?: string => Node,
 };
 
-export default class CMSField extends React.PureComponent<Props> {
+export class CMSField extends React.PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 

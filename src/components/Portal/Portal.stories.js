@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
 import Portal from "Components/Portal";
 import { WaitForHostElement } from "Components/WaitForHostElement";
-import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 const stories = storiesOf("Portal", module);
 const hostElementId = "portal-host-element";

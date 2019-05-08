@@ -1,3 +1,3 @@
 // @flow
 export type * from "./ContentImage"; // eslint-disable-line import/export
-export { default } from "./ContentImage";
+export { ContentImage } from "./ContentImage"; // eslint-disable-line import/export

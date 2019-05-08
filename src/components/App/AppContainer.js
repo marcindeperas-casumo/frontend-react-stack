@@ -8,7 +8,7 @@ import {
   sessionIdSelector,
 } from "Models/handshake";
 import { activeComponents, routeParamsSelector } from "Models/router";
-import App from "Components/App/App";
+import { App } from "Components/App/App";
 import {
   subscribeToPlayerUpdates,
   unsubscribeToPlayerUpdates,
@@ -44,8 +44,6 @@ const AppConnected = connect(
   }
 )(App);
 
-const AppContainer = () => {
+export const AppContainer = () => {
   return <AppConnected />;
 };
-
-export default AppContainer;

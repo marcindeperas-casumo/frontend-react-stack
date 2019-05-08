@@ -6,7 +6,7 @@ import Text from "@casumo/cmp-text";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { renderBets } from "Utils";
-import GameThumb from "Components/GameThumb";
+import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import TrackClick from "Components/TrackClick";
 
@@ -15,7 +15,7 @@ type Props = {
   onLaunchGame: () => void,
 };
 
-export default class GameRow extends PureComponent<Props> {
+export class GameRow extends PureComponent<Props> {
   render() {
     const { game = {}, onLaunchGame } = this.props;
     const { name, logo, logoBackground } = game;
@@ -24,7 +24,7 @@ export default class GameRow extends PureComponent<Props> {
 
     return (
       <TrackClick
-        eventName={EVENTS.GAME_LAUNCH}
+        eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
         data={{ [EVENT_PROPS.GAME_NAME]: name }}
       >
         <Flex
