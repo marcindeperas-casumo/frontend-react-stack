@@ -1,7 +1,6 @@
 // @flow
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import info from "Storybook/storybookInfo";
 import PromotionCardList from "Components/PromotionCardList";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
@@ -25,8 +24,4 @@ const PromotionCardsStories = () => (
   </MockStore>
 );
 
-stories.add(
-  "PromotionCardList",
-  PromotionCardsStories,
-  info({ text: "Displays the promotion cards" })
-);
+stories.add("PromotionCardList", PromotionCardsStories);

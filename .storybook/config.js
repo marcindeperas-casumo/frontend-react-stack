@@ -4,7 +4,7 @@ import { withKnobs } from "@storybook/addon-knobs";
 import { withInfo } from "@storybook/addon-info";
 import { withBackgrounds } from "@storybook/addon-backgrounds";
 import "storybook-chromatic";
-import casumoTheme from "./casumoTheme";
+import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
 
@@ -34,6 +34,16 @@ addDecorator(story => (
 addParameters({
   options: {
     theme: casumoTheme,
+  },
+  info: {
+    disable: navigator.userAgent.match(/Chromatic/),
+    styles: {
+      button: {
+        base: {
+          background: color.secondary,
+        },
+      },
+    },
   },
 });
 

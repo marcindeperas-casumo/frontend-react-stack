@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { ReelRacesList } from "./ReelRacesList";
@@ -37,13 +36,9 @@ const props = {
 };
 
 if (isNotChromatic) {
-  stories.add(
-    "ReelRacesList",
-    () => (
-      <MockStore state={state}>
-        <ReelRacesList {...props} />
-      </MockStore>
-    ),
-    info({ text: "Default" })
-  );
+  stories.add("ReelRacesList", () => (
+    <MockStore state={state}>
+      <ReelRacesList {...props} />
+    </MockStore>
+  ));
 }

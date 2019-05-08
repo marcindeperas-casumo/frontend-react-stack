@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import info from "Storybook/storybookInfo";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import { ModalsArea } from "Features/sports/components/Modals";
@@ -16,40 +15,32 @@ import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 
 const stories = storiesOf("Sports/FavouriteSportsSelectorModal", module);
 
-stories.add(
-  "No favourites",
-  () => (
-    <MockedProviderWithContext
-      mocks={[noFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
-    >
-      <StageFavouritesProvider>
-        <ModalsArea>
-          <FavouriteSportsSelectorModal
-            onClose={action("onClose")}
-            onAddCompetition={action("onAddCompetition")}
-          />
-        </ModalsArea>
-      </StageFavouritesProvider>
-    </MockedProviderWithContext>
-  ),
-  info({ text: "No favourites" })
-);
+stories.add("No favourites", () => (
+  <MockedProviderWithContext
+    mocks={[noFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
+  >
+    <StageFavouritesProvider>
+      <ModalsArea>
+        <FavouriteSportsSelectorModal
+          onClose={action("onClose")}
+          onAddCompetition={action("onAddCompetition")}
+        />
+      </ModalsArea>
+    </StageFavouritesProvider>
+  </MockedProviderWithContext>
+));
 
-stories.add(
-  "With favourites",
-  () => (
-    <MockedProviderWithContext
-      mocks={[withFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
-    >
-      <StageFavouritesProvider>
-        <ModalsArea>
-          <FavouriteSportsSelectorModal
-            onClose={action("onClose")}
-            onAddCompetition={action("onAddCompetition")}
-          />
-        </ModalsArea>
-      </StageFavouritesProvider>
-    </MockedProviderWithContext>
-  ),
-  info({ text: "With favourites" })
-);
+stories.add("With favourites", () => (
+  <MockedProviderWithContext
+    mocks={[withFavouritesMock, competitionsSuggestionsMock, ...cmsMocks]}
+  >
+    <StageFavouritesProvider>
+      <ModalsArea>
+        <FavouriteSportsSelectorModal
+          onClose={action("onClose")}
+          onAddCompetition={action("onAddCompetition")}
+        />
+      </ModalsArea>
+    </StageFavouritesProvider>
+  </MockedProviderWithContext>
+));
