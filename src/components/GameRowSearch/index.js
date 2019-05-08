@@ -1,1 +1,3 @@
-export { default } from "./GameRowSearchContainer";
+export {
+  GameRowSearchContainer as GameRowSearch,
+} from "./GameRowSearchContainer";

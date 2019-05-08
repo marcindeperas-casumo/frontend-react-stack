@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
-import GameRow from "Components/GameRow";
+import { GameRow } from "Components/GameRow";
 
 type Props = {
   /** The list of game ids. */
@@ -10,7 +10,7 @@ type Props = {
   fetch: () => void,
 };
 
-class GameListVertical extends PureComponent<Props> {
+export class GameListVertical extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetch();
   }
@@ -26,5 +26,3 @@ class GameListVertical extends PureComponent<Props> {
     );
   }
 }
-
-export default GameListVertical;

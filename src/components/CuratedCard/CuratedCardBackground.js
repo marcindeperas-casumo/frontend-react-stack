@@ -10,7 +10,7 @@ type Props = {
   link: ?string,
 };
 
-export default class CuratedCardBackground extends PureComponent<Props> {
+export class CuratedCardBackground extends PureComponent<Props> {
   render() {
     const {
       small_image,

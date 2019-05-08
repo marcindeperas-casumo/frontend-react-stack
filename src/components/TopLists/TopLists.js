@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import ComponentBuilder from "Components/ComponentBuilder";
+import { ComponentBuilder } from "Components/ComponentBuilder";
 
 export const getSlug = (market: string = "___en") =>
   `built-pages.top-lists-${market}`;

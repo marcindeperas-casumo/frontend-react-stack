@@ -10,7 +10,7 @@ type Props = {
   alt?: string | void,
 };
 
-class GameThumb extends PureComponent<Props> {
+export class GameThumb extends PureComponent<Props> {
   render() {
     const { src, mark, width = 56, height = 56, alt = null } = this.props;
 
@@ -38,5 +38,3 @@ class GameThumb extends PureComponent<Props> {
     );
   }
 }
-
-export default GameThumb;

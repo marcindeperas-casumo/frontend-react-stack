@@ -7,8 +7,8 @@ import game from "Components/GameTile/__mocks__/Game.json";
 import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import MockStore from "Components/MockStore";
-import GameRow from "Components/GameRow/GameRow";
-import GameRowContainer from "Components/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowContainer } from "Components/GameRow/GameRowContainer";
 import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameRow", module);

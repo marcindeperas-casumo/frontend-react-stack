@@ -2,8 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import info from "Storybook/storybookInfo";
-import GameListHorizontal from "Components/GameListHorizontal";
-import GameListHorizontalPresentational from "Components/GameListHorizontal/GameListHorizontal";
+import { GameListHorizontal } from "Components/GameListHorizontal";
+import { GameListHorizontal as GameListHorizontalPresentational } from "Components/GameListHorizontal/GameListHorizontal";
 import MockStore from "Components/MockStore";
 import { GAME_LIST_IDS } from "Src/constants";
 import isNotChromatic from "Storybook/isNotChromatic";

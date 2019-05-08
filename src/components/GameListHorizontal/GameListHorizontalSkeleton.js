@@ -23,7 +23,7 @@ type Props = {
   className: string,
 };
 
-export default class GameListHorizontalSkeleton extends React.Component<Props> {
+export class GameListHorizontalSkeleton extends React.Component<Props> {
   static defaultProps = {
     itemWidth: 170,
     items: 8,

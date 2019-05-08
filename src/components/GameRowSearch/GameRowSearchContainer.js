@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
-import GameRowSearch from "Components/GameRowSearch/GameRowSearch";
+import { GameRowSearch } from "Components/GameRowSearch/GameRowSearch";
 
 const GameRowSearchConnected = connect(
   (state, { slug }) => ({
@@ -23,7 +23,7 @@ type Props = {
   highlightSearchQuery?: boolean,
 };
 
-const GameRowSearchContainer = ({
+export const GameRowSearchContainer = ({
   slug,
   query,
   highlightSearchQuery,
@@ -34,5 +34,3 @@ const GameRowSearchContainer = ({
     highlightSearchQuery={highlightSearchQuery}
   />
 );
-
-export default GameRowSearchContainer;
