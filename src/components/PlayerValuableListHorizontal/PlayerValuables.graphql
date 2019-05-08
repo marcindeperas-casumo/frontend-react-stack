@@ -37,9 +37,10 @@ query PlayerValuablesQuery {
           }
           itemsToAward {
             usables {
-              freeSpinsTemplate {
-                numberOfFreeSpins
-              }
+              id
+              # freeSpinsTemplate {
+              #   numberOfFreeSpins
+              # }
             }
           }
         }
@@ -47,14 +48,12 @@ query PlayerValuablesQuery {
 
       ... on PlayerValuableSpins {
         source
-        gameName
-        freeSpinsTemplate {
-          numberOfFreeSpins
-          validFrom
-          betLevels {
-            amount
-            currency
-          }
+        magnitude
+        coinValue
+        currency
+        wageringFactor
+        game {
+          name
         }
       }
 
