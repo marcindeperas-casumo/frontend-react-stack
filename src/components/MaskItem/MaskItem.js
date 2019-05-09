@@ -7,8 +7,8 @@ type Props = {
   width: number,
   height: number,
   className?: string,
-  shapeMask: string,
-  children: React.Node,
+  shapeMask: Function,
+  children: Node,
 };
 
 const MaskItem = ({

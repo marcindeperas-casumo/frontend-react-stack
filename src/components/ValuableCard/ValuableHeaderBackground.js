@@ -1,5 +1,6 @@
 /* @flow */
 import React from "react";
+import type { Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { isEmpty } from "ramda";
@@ -10,7 +11,7 @@ type Props = {
   id: string,
   className: string,
   imageUrl?: string,
-  children: React.Node,
+  children: Node,
 };
 
 const headerDimensions = {

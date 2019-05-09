@@ -14,6 +14,11 @@ import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
 
+type Game = {
+  gameImageUrl: string,
+  title: string,
+};
+
 type Props = {
   id: string,
   title: string,
@@ -22,6 +27,7 @@ type Props = {
   valuableType: ValuableType,
   backgroundImageUrl: string,
   coinValue: number,
+  game: Game,
 };
 
 class ValuableCard extends PureComponent<Props> {
