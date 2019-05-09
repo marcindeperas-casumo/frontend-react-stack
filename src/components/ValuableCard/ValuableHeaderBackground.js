@@ -20,7 +20,7 @@ const headerDimensions = {
 
 const GradientBackground = () => {
   // eslint-disable-next-line prettier/prettier
-    return <div className="c-valuable-header__gradient-overlay" style={{ width: '144px', height: '80px' }}></div>;
+    return <div className="c-valuable-header__gradient-overlay u-opacity-50" style={{ width: '144px', height: '80px' }}></div>;
 };
 
 const ImageBackground = ({ src, alt, width, height }) => {

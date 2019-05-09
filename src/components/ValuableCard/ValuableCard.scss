@@ -15,7 +15,6 @@
       $secondaryColor
     );
     background-repeat: no-repeat;
-    opacity: 0.5;
   }
 }
 
@@ -33,7 +32,7 @@
   @include valuable-gradient(
     cudl-palette(yellow, light-3),
     cudl-palette(yellow)
-  ); // #FFF9C7 -- not cudl primitive
+  );
 }
 
 .c-valuable-card--deposit {
@@ -48,7 +47,7 @@
   @include valuable-gradient(
     cudl-palette(grey, light-3),
     cudl-palette(grey)
-  ); // #FFF9C7 -- not cudl primitive
+  );
   @include valuable-reward-theme(
     cudl-palette(grey, light-1),
     cudl-palette(grey, dark-2)
@@ -71,5 +70,5 @@
   @include valuable-gradient(
     cudl-palette(green, light-3),
     cudl-palette(green)
-  ); // #FFF9C7 -- not cudl primitive
+  );
 }
