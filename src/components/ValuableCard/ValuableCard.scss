@@ -1,7 +1,6 @@
-@mixin valuable-theme($rewardColor, $headerColor, $fontColor) {
-  .c-valuable-card__reward { color: $rewardColor; }
+@mixin valuable-reward-theme($rewardColor, $fontColor) {
+  .c-valuable-reward { color: $rewardColor; }
   .c-valuable-reward__content { color: $fontColor; }
-  .c-valuable-card__header { color: $headerColor }
 }
 
 @mixin valuable-gradient($primaryColor, $secondaryColor) {
@@ -22,21 +21,25 @@
 }
 
 .c-valuable-card--cash {
-  @include valuable-theme(cudl-palette(yellow), cudl-palette(yellow, light-3), cudl-palette(brown));
+  @include valuable-reward-theme(cudl-palette(yellow), cudl-palette(brown));
   @include valuable-gradient(cudl-palette(yellow, light-3), cudl-palette(yellow)); // #FFF9C7 -- not cudl primitive
 }
 
 .c-valuable-card--deposit {
-  @include valuable-theme(cudl-palette(blue, light-1), cudl-palette(blue, light-3), red);
+  @include valuable-reward-theme(cudl-palette(blue, light-1), cudl-palette(grey, dark-2));
   @include valuable-gradient(#BBE7FF, cudl-palette(blue));
 }
 
 .c-valuable-card--spins {
-  @include valuable-theme(cudl-palette(grey, light-1), cudl-palette(grey, light-3), red);
   @include valuable-gradient(cudl-palette(grey, light-3), cudl-palette(grey)); // #FFF9C7 -- not cudl primitive
+  @include valuable-reward-theme(cudl-palette(grey, light-1), cudl-palette(grey, dark-2));
+
+  &.mega, &.super {
+    @include valuable-reward-theme(cudl-palette(grey, dark-3), cudl-palette(yellow));
+  }
 }
 
 .c-valuable-card--sport {
-  @include valuable-theme(cudl-palette(green, light-1), cudl-palette(green, light-3), red);
+  @include valuable-reward-theme(cudl-palette(green, light-1), cudl-palette(grey, dark-2));
   @include valuable-gradient(cudl-palette(green, light-3), cudl-palette(green)); // #FFF9C7 -- not cudl primitive
 }

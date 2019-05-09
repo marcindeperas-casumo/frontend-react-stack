@@ -1,10 +1,10 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import { compose, prop } from "ramda";
 import mockData from "Components/ValuableCard/__mocks__/Valuable.mock";
 import ValuableCard from "Components/ValuableCard";
-import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
-import ValuableHeaderBackground from "./ValuableHeaderBackground";
+import { VALUABLE_TYPES } from "Models/valuables";
+import { CoinValueToSpinType } from "./ValuableCard.utils";
 
 describe("ValuableCard", () => {
   let rendered;
@@ -53,18 +53,31 @@ describe("ValuableCard", () => {
 
     expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
   });
-});
 
-describe("ValubaleHeaderBackground", () => {
-  let rendered;
+  test("should display game title as description if valuableType is SPINS", () => {
+    mockValuable = mockData(VALUABLE_TYPES.SPINS);
+    const expectedGameDetails = mockValuable.game;
 
-  test("should render content inside valuable header", () => {
-    rendered = shallow(
-      <ValuableHeaderBackground>
-        <div className="foo-bar">Foo</div>
-      </ValuableHeaderBackground>
+    rendered = shallow(<ValuableCard {...mockValuable} />);
+
+    expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
+      expectedGameDetails.title
     );
+  });
 
-    expect(rendered.find(".foo-bar")).toHaveLength(1);
+  test("should not display any description if valuableType is not SPINS", () => {
+    const contentDescriptionIdentifier =
+      ".c-valuable-card__content-description";
+
+    expect(rendered.find(contentDescriptionIdentifier)).toHaveLength(0);
+  });
+
+  test("should include spinType in class if valuableType is SPINS", () => {
+    mockValuable = mockData(VALUABLE_TYPES.SPINS);
+    const expectedValue = CoinValueToSpinType(mockValuable.coinValue);
+
+    rendered = shallow(<ValuableCard {...mockValuable} />);
+
+    expect(rendered.find("ValuableHeaderBackground").hasClass(expectedValue));
   });
 });

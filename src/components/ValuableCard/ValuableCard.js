@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { CURRENCY_SYMBOLS } from "Src/constants";
@@ -41,7 +42,7 @@ class ValuableCard extends PureComponent<Props> {
     return VALUABLE_ICON[valuableType];
   }
 
-  get classModifier(): string {
+  get headerClassModifier(): string {
     const { valuableType } = this.props;
 
     return `c-valuable-card--${valuableType}`;
@@ -76,7 +77,10 @@ class ValuableCard extends PureComponent<Props> {
       >
         <Flex.Block>
           <ValuableHeaderBackground
-            className={this.classModifier}
+            className={classNames(
+              this.headerClassModifier,
+              isValuableTypeSpins && this.spinType
+            )}
             imageUrl={isValuableTypeSpins ? game.gameImageUrl : ""}
             id={id}
           >
@@ -91,7 +95,7 @@ class ValuableCard extends PureComponent<Props> {
             {title}
           </div>
           {isValuableTypeSpins && (
-            <div className="t-color-grey u-font-xs u-margin-top">
+            <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
               {game.title}
             </div>
           )}

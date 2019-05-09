@@ -6,9 +6,14 @@ import Coin from "./Icons/coin.svg";
 type Props = {
   valuableSymbol: Function,
   justifyCenter?: boolean,
+  className?: string,
 };
 
-const ValuableReward = ({ valuableSymbol, justifyCenter }: Props) => {
+const ValuableReward = ({
+  valuableSymbol,
+  justifyCenter,
+  className,
+}: Props) => {
   const contentClassModifier = justifyCenter
     ? "o-flex-justify--center o-flex-align--center"
     : "";
@@ -16,6 +21,7 @@ const ValuableReward = ({ valuableSymbol, justifyCenter }: Props) => {
   return (
     <div
       className={classNames(
+        className,
         "c-valuable-reward u-position-relative",
         contentClassModifier
       )}
