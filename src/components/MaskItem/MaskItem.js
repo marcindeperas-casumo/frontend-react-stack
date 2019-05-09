@@ -1,15 +1,13 @@
 // @flow
 import * as React from "react";
 import type { Node } from "react";
-import ImageLazy from "Components/Image/ImageLazy";
 
 type Props = {
   id: string,
-  overlay: Node,
   width: number,
   height: number,
-  itemToMask: Node,
-  className: string,
+  className?: string,
+  shapeMask: string,
   children: React.Node,
 };
 
@@ -18,17 +16,16 @@ const MaskItem = ({
   width,
   height,
   className,
-  overlay,
-  itemToMask,
+  shapeMask,
   children,
 }: Props) => {
   return (
     <div className={className} style={{ width, height }}>
       <div
-        className="u-position-absolute"
-        style={{ clipPath: `url(#__mask-image-${id})` }}
+        className="u-position-absolute o-mask-overlay"
+        style={{ clipPath: `url(#__mask-item-${id})` }}
       >
-        {overlay && overlay()}
+        {children}
       </div>
       <svg
         viewBox={`0 0 ${width} ${height}`}
@@ -37,17 +34,10 @@ const MaskItem = ({
         height={height}
       >
         <defs>
-          <clipPath id={`__mask-image-${id}`}>{children}</clipPath>
+          <clipPath id={`__mask-item-${id}`}>
+            {shapeMask && shapeMask()}
+          </clipPath>
         </defs>
-        <div style={{ clipPath: `url(#__mask-image-${id})` }}>
-          {itemToMask && itemToMask()}
-        </div>
-        <rect
-          clipPath={`url(#__mask-image-${id})`}
-          width="144"
-          height="80"
-          fill="currentColor"
-        />
       </svg>
     </div>
   );

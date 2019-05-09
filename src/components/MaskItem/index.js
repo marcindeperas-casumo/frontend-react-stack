@@ -1,3 +1,3 @@
-import MaskItem from './MaskItem';
+import MaskItem from "./MaskItem";
 
 export default MaskItem;
