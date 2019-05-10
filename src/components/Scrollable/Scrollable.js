@@ -38,10 +38,11 @@ type Props = {
   overscanColumnCount: overscanColumnCountType,
   /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
   defaultWidth: number,
+  rerenderMotherfucker?: string,
 };
 
 export const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
-export class Scrollable extends React.PureComponent<Props> {
+export class Scrollable extends React.Component<Props> {
   static defaultProps = {
     className: "",
     scrollHandler: (x: any) => {},
@@ -52,12 +53,16 @@ export class Scrollable extends React.PureComponent<Props> {
   cellSizeCache = new CellMeasurerCache({
     defaultWidth: this.props.defaultWidth,
     fixedHeight: true,
-    keyMapper: (...args) => {
-      console.log("args", args);
-
-      return 1;
-    },
   });
+
+  shouldComponentUpdate(nextProps: Props) {
+    if (this.props.rerenderMotherfucker !== nextProps.rerenderMotherfucker) {
+      this.cellSizeCache.clearAll();
+    }
+    // Changed PureComponent to Component.
+    // We should probably consider performance optimisations here
+    return true;
+  }
 
   cellRenderer = ({
     columnIndex,
@@ -127,6 +132,7 @@ export class Scrollable extends React.PureComponent<Props> {
             onScroll={scrollHandler}
             scrollLeft={scrollLeft}
             overscanColumnCount={overscanColumnCount}
+            rerenderMotherfucker={this.props.rerenderMotherfucker}
           />
         )}
       </AutoSizer>

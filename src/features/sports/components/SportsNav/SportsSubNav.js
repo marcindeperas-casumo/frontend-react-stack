@@ -14,6 +14,7 @@ export type Props = {
   canEdit: boolean,
   onEdit: () => void,
   allLabel: string,
+  rerenderMotherfucker: string,
 };
 
 type SportsSubNavItemProps = {
@@ -109,6 +110,7 @@ class SportsSubNav extends React.Component<Props> {
           cellRenderer={this.renderItem}
           height={64}
           buttonRenderer={sportsPagerButtonRenderer}
+          rerenderMotherfucker={this.props.rerenderMotherfucker}
         />
       </div>
     );

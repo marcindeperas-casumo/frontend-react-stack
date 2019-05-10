@@ -162,6 +162,15 @@ class SportsNav extends React.Component<SportsNavProps> {
               navItems.find(navItem => this.isNavItemSelected(navItem)) ||
               navItems[0];
 
+            const mainNavCacheBuster = [
+              selectedNavItem.path,
+              ...navItems.map(navItem => navItem.path),
+            ].join();
+            // $FlowFixMe
+            const subNavCacheBuster = selectedNavItem.subNav
+              .map(navItem => navItem.path)
+              .join();
+
             return (
               <>
                 <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
@@ -173,6 +182,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
                       editLabel={data.editLabel}
+                      rerenderMotherfucker={mainNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>
@@ -189,6 +199,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       onEdit={openChooseFavouriteLeaguesModal}
                       allLabel={data.allLabel}
                       editLabel={data.editLabel}
+                      rerenderMotherfucker={subNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>

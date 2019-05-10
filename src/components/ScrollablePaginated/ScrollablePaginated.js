@@ -40,6 +40,7 @@ type Props = {
   Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
    */
   overscanColumnCount?: overscanColumnCountType,
+  rerenderMotherfucker?: string,
 };
 
 export default class ScrollablePaginated extends React.PureComponent<
@@ -189,6 +190,7 @@ export default class ScrollablePaginated extends React.PureComponent<
             scrollLeft={this.state.scrollLeft}
             scrollHandler={this.scrollHandler}
             overscanColumnCount={this.props.overscanColumnCount}
+            rerenderMotherfucker={this.props.rerenderMotherfucker}
           />
         </div>
         {this.buttonRenderer()}
