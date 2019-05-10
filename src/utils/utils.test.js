@@ -7,6 +7,7 @@ import {
   commaSeparated,
   createReducer,
   formatCurrency,
+  getSymbolForCurrency,
   interpolate,
 } from "./utils";
 
@@ -218,6 +219,29 @@ describe("formatCurrency()", () => {
         value: 66.0,
       })
     ).toBe("€66");
+  });
+});
+
+describe("getSymbolForCurrency()", () => {
+  test("should return proper symbol?", () => {
+    expect(
+      getSymbolForCurrency({
+        currency: "EUR",
+        locale: "en-GB",
+      })
+    ).toBe("€");
+    expect(
+      getSymbolForCurrency({
+        currency: "JPY",
+        locale: "en-GB",
+      })
+    ).toBe("¥");
+    expect(
+      getSymbolForCurrency({
+        currency: "USD",
+        locale: "en-GB",
+      })
+    ).toBe("$");
   });
 });
 

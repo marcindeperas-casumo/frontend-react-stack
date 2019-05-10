@@ -193,6 +193,27 @@ export function formatCurrency({
   }).format(value);
 }
 
+export function getSymbolForCurrency({
+  locale,
+  currency,
+}: {
+  locale: string,
+  currency: string,
+}): string {
+  /**
+   * Safari doesn't contain formatToParts on Intl.NumberFormat object.
+   * My idea here was to format any number and the replace all
+   * numbers and separators so we get only symbol.
+   *
+   * fun fact - sometimes formatted currencies use " " instead of space.
+   */
+  return formatCurrency({
+    locale,
+    currency,
+    value: 0,
+  }).replace(/\d|\s|\.|,/g, "");
+}
+
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
 export const interpolate = (
