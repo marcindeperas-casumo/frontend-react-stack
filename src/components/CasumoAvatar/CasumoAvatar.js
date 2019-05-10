@@ -9,9 +9,10 @@ import SumoAvatar from "./sumo-avatar.svg";
 import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
-  level: number,
+  /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
   backgroundColour: string,
+  level: number,
 };
 
 export class CasumoAvatar extends PureComponent<Props> {
