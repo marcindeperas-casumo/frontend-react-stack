@@ -2,8 +2,8 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import DangerousHtml from "Components/DangerousHtml";
 import { ProgressBar } from "Components/ProgressBar";
-import { stringToHTML } from "Utils";
 import { CasumoAvatar } from "Components/CasumoAvatar";
 import {
   isMaxLevel,
@@ -124,16 +124,14 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
             tag="div"
             className="u-font-weight-bold t-color-white u-margin-bottom--sm"
             size="md"
-            dangerouslySetInnerHTML={stringToHTML(name)}
-          />
-          <Text
-            tag="div"
-            className="t-color-grey-light-1"
-            size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
-              levelLabel.replace("{{level}}", level.toString())
-            )}
-          />
+          >
+            <DangerousHtml html={name} />
+          </Text>
+          <Text tag="div" className="t-color-grey-light-1" size="sm">
+            <DangerousHtml
+              html={levelLabel.replace("{{level}}", level.toString())}
+            />
+          </Text>
         </Flex.Item>
       </Flex>
     );
@@ -177,25 +175,17 @@ class AdventureProgressBar extends PureComponent<Props> {
           justify="space-between"
           className="u-width--1/1 u-font-sm u-padding-horiz--sm"
         >
-          <Text
-            className="t-color-grey-light-2"
-            tag="div"
-            size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
-              progressionLabel.replace(
+          <Text className="t-color-grey-light-2" tag="div" size="sm">
+            <DangerousHtml
+              html={progressionLabel.replace(
                 "{{progression}}",
                 progressPercentage.toString()
-              )
-            )}
-          />
-          <Text
-            className="t-color-grey"
-            tag="div"
-            size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
-              `${points} / ${pointsRequiredForNextLevel}`
-            )}
-          />
+              )}
+            />
+          </Text>
+          <Text className="t-color-grey" tag="div" size="sm">
+            {`${points} / ${pointsRequiredForNextLevel}`}
+          </Text>
         </Flex>
       </React.Fragment>
     );
