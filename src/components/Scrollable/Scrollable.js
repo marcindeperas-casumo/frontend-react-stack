@@ -46,12 +46,17 @@ export class Scrollable extends React.PureComponent<Props> {
     className: "",
     scrollHandler: (x: any) => {},
     overscanColumnCount: DEFAULT_OVERSCAN_COLUMN_COUNT,
-    defaultWidth: 100,
+    defaultWidth: 40,
   };
 
   cellSizeCache = new CellMeasurerCache({
     defaultWidth: this.props.defaultWidth,
     fixedHeight: true,
+    keyMapper: (...args) => {
+      console.log("args", args);
+
+      return 1;
+    },
   });
 
   cellRenderer = ({

@@ -5,7 +5,7 @@
   position: fixed;
   right: 0;
   top: var(--top-bar-offset-top, 0);
-  z-index: var(--z-index-modals);
+  z-index: var(--z-index-modals, 99);
 }
 
 .c-modals-fade {

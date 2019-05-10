@@ -89,6 +89,10 @@ class SportsMainNav extends React.Component<Props> {
     const buttonCount = 1; // include edit button to append
     const columnCount = tabCount + buttonCount;
 
+    const epoch = new Date().getTime();
+
+    console.log(`epoch: ${epoch}`);
+
     return (
       <div className="t-background-grey-light-2">
         <ScrollablePaginated
@@ -99,6 +103,7 @@ class SportsMainNav extends React.Component<Props> {
           }
           height={106}
           buttonRenderer={sportsPagerButtonRenderer}
+          rerenderMotherfucker={epoch}
         />
       </div>
     );
