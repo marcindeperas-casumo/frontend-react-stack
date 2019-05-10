@@ -19,7 +19,7 @@ import type { TournamentRaw, TournamentPrizeRaw } from "./reelRaces.types";
 function getSlugs(slugs: Array<string>) {
   const getSlugForGameName = (gameName: string): Promise<{ slug: string }> =>
     http.get(
-      `/api/cmsquery/v2/root/en/findChildSlug/games/provider_game_name/${gameName}`
+      `/casino-player/casino-games/api/v1/mapping/providergamename/${gameName}/slug`
     );
 
   return Promise.all(slugs.map(getSlugForGameName)).then(R.pluck("slug"));
