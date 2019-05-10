@@ -10,15 +10,16 @@ export const URL = {
   ADVENTURE: "/api/common/query/gamification/adventure",
 };
 
+type ReqParams = {|
+  playerId: string,
+|};
+
 export const getAdventurerDetailsReq = ({
   playerId,
-}: {|
-  playerId: string,
-|}): Promise<AdventurerDetailsRaw> => http.get(`${URL.ADVENTURER}/${playerId}`);
+}: ReqParams): Promise<AdventurerDetailsRaw> =>
+  http.get(`${URL.ADVENTURER}/${playerId}`);
 
 export const getAdventurerProgressionReq = ({
   playerId,
-}: {|
-  playerId: string,
-|}): Promise<AdventurerProgressionRaw> =>
+}: ReqParams): Promise<AdventurerProgressionRaw> =>
   http.get(`${URL.ADVENTURE}/${playerId}`);

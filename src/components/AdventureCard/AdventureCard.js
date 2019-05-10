@@ -2,9 +2,10 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ProgressBar } from "Components/ProgressBar/ProgressBar";
-import { stringToHTML } from "Utils/index";
-import { CasumoAvatar } from "Components/CasumoAvatar/CasumoAvatar";
+import DangerousHtml from "Components/DangerousHtml";
+import { ProgressBar } from "Components/ProgressBar";
+import { stringToHTML } from "Utils";
+import { CasumoAvatar } from "Components/CasumoAvatar";
 import {
   isMaxLevel,
   type Adventurer,
@@ -16,7 +17,7 @@ type Props = {
   adventurer: Adventurer,
   content: AdventureContent,
   isContentFetched: boolean,
-  isAdventurerFetched: Boolean,
+  isAdventurerFetched: boolean,
   playerId: string,
   sessionId: string,
   fetchAdventurer: () => void,
@@ -30,15 +31,15 @@ export default class AdventureCard extends PureComponent<Props> {
     const {
       isContentFetched,
       fetchAdventurer,
+      fetchContent,
       playerId,
       sessionId,
       subscribeToUpdates,
     } = this.props;
 
     if (!isContentFetched) {
-      this.props.fetchContent();
+      fetchContent();
     }
-
     fetchAdventurer();
     subscribeToUpdates(playerId, sessionId);
   }
@@ -82,39 +83,29 @@ function getAvatarBackgroundColour(
   return "teal";
 }
 
-function getLevelLabel(
-  inBonusMode: boolean,
-  level: number,
-  maxLevelLabel: string,
-  levelLabel: string,
-  bonusModeLabel: string
-): string {
-  const bonusModeIndicator = `<strong class="t-color-violet">${bonusModeLabel}</strong>`;
-  const maxLevelReached = isMaxLevel(level);
-  const label = maxLevelReached ? maxLevelLabel : levelLabel;
-  const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
-
-  return requiresBonusModeIndicator
-    ? `${label} | ${bonusModeIndicator}`
-    : label;
-}
-
 class AdventureAvatarAndDetails extends PureComponent<Props> {
-  render() {
-    const { name, belt, level, inBonusMode } = this.props.adventurer;
+  getLevelLabel() {
+    const { level, inBonusMode } = this.props.adventurer;
     const {
       max_level_label,
       level_label,
       bonus_mode_label,
     } = this.props.content;
 
-    const levelLabel = getLevelLabel(
-      inBonusMode,
-      level,
-      max_level_label,
-      level_label,
-      bonus_mode_label
-    );
+    const bonusModeIndicator = `<strong class="t-color-violet">${bonus_mode_label}</strong>`;
+    const maxLevelReached = isMaxLevel(level);
+    const label = maxLevelReached ? max_level_label : level_label;
+    const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
+
+    return requiresBonusModeIndicator
+      ? `${label} | ${bonusModeIndicator}`
+      : label;
+  }
+
+  render() {
+    const { name, belt, level, inBonusMode } = this.props.adventurer;
+
+    const levelLabel = this.getLevelLabel();
 
     return (
       <Flex
@@ -133,13 +124,14 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
             tag="div"
             className="u-font-weight-bold t-color-white u-margin-bottom--sm"
             size="md"
-            dangerouslySetInnerHTML={stringToHTML(name)}
-          />
-          <Text
+          >
+            {name}
+          </Text>
+          <DangerousHtml
             tag="div"
             className="t-color-grey-light-1"
             size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
+            html={stringToHTML(
               levelLabel.replace("{{level}}", level.toString())
             )}
           />
@@ -186,24 +178,22 @@ class AdventureProgressBar extends PureComponent<Props> {
           justify="space-between"
           className="u-width--1/1 u-font-sm u-padding-horiz--sm"
         >
-          <Text
+          <DangerousHtml
             className="t-color-grey-light-2"
             tag="div"
             size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
+            html={stringToHTML(
               progressionLabel.replace(
                 "{{progression}}",
                 progressPercentage.toString()
               )
             )}
           />
-          <Text
+          <DangerousHtml
             className="t-color-grey"
             tag="div"
             size="sm"
-            dangerouslySetInnerHTML={stringToHTML(
-              `${points} / ${pointsRequiredForNextLevel}`
-            )}
+            html={stringToHTML(`${points} / ${pointsRequiredForNextLevel}`)}
           />
         </Flex>
       </React.Fragment>

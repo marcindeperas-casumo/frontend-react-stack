@@ -61,15 +61,9 @@ export function getProgression(
     );
   }
 
-  const pointsRequiredForNextLevel = levels.reduce(
-    (acc, level, index, allLevels) => {
-      if (points >= acc) {
-        return allLevels[index + 1] || allLevels[index];
-      }
-
-      return acc;
-    },
-    levels[0]
+  const pointsRequiredForNextLevel = getPointsRequiredForNextLevel(
+    levels,
+    points
   );
 
   const levelAsIndex = levels.indexOf(pointsRequiredForNextLevel);
@@ -80,4 +74,14 @@ export function getProgression(
     pointsRequiredForNextLevel:
       pointsRequiredForNextLevel - previousLevelsPointsRequirement,
   };
+}
+
+function getPointsRequiredForNextLevel(levels, points) {
+  return levels.reduce((acc, level, index, allLevels) => {
+    if (points >= acc) {
+      return allLevels[index + 1] || allLevels[index];
+    }
+
+    return acc;
+  }, levels[0]);
 }
