@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import DangerousHtml from "Components/DangerousHtml";
 import { ProgressBar } from "Components/ProgressBar";
 import { stringToHTML } from "Utils";
 import { CasumoAvatar } from "Components/CasumoAvatar";
@@ -40,6 +39,7 @@ export default class AdventureCard extends PureComponent<Props> {
     if (!isContentFetched) {
       fetchContent();
     }
+    // already has adventurer data
     fetchAdventurer();
     subscribeToUpdates(playerId, sessionId);
   }
@@ -124,14 +124,13 @@ class AdventureAvatarAndDetails extends PureComponent<Props> {
             tag="div"
             className="u-font-weight-bold t-color-white u-margin-bottom--sm"
             size="md"
-          >
-            {name}
-          </Text>
-          <DangerousHtml
+            dangerouslySetInnerHTML={stringToHTML(name)}
+          />
+          <Text
             tag="div"
             className="t-color-grey-light-1"
             size="sm"
-            html={stringToHTML(
+            dangerouslySetInnerHTML={stringToHTML(
               levelLabel.replace("{{level}}", level.toString())
             )}
           />
@@ -178,22 +177,24 @@ class AdventureProgressBar extends PureComponent<Props> {
           justify="space-between"
           className="u-width--1/1 u-font-sm u-padding-horiz--sm"
         >
-          <DangerousHtml
+          <Text
             className="t-color-grey-light-2"
             tag="div"
             size="sm"
-            html={stringToHTML(
+            dangerouslySetInnerHTML={stringToHTML(
               progressionLabel.replace(
                 "{{progression}}",
                 progressPercentage.toString()
               )
             )}
           />
-          <DangerousHtml
+          <Text
             className="t-color-grey"
             tag="div"
             size="sm"
-            html={stringToHTML(`${points} / ${pointsRequiredForNextLevel}`)}
+            dangerouslySetInnerHTML={stringToHTML(
+              `${points} / ${pointsRequiredForNextLevel}`
+            )}
           />
         </Flex>
       </React.Fragment>
