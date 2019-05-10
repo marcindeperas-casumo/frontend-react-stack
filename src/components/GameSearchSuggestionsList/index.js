@@ -1,1 +1,3 @@
-export { default } from "./GameSearchSuggestionsListContainer";
+export {
+  GameSearchSuggestionsListContainer as GameSearchSuggestionsList,
+} from "./GameSearchSuggestionsListContainer";

@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import CMSField from "Components/CMSField/CMSField";
+import { CMSField } from "Components/CMSField/CMSField";
 
 const shouldContainText = (rendered, text) =>
   expect(rendered.text()).toMatch(text);

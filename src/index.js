@@ -2,13 +2,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
-import AppContainer from "Components/App";
+import ReactModal from "react-modal";
+import { App } from "Components/App";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import * as storage from "Lib/storage";
 import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
+import Modal from "Components/RSModal";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
@@ -16,14 +18,17 @@ import "./styles/index.scss";
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
 
-const renderApp = App => {
+ReactModal.setAppElement("#root");
+
+const renderApp = AppComponent => {
   const root = document.getElementById("root");
 
   if (root) {
     ReactDOM.render(
       <Provider store={reduxStore}>
+        <Modal />
         <ErrorBoundary>
-          <App />
+          <AppComponent />
         </ErrorBoundary>
       </Provider>,
       root
@@ -31,13 +36,13 @@ const renderApp = App => {
   }
 };
 
-renderApp(AppContainer);
+renderApp(App);
 
 if (module.hot) {
   // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
   module.hot.accept("./components/App", () => {
-    const NextAppContainer = require("./components/App").default;
-    renderApp(NextAppContainer);
+    const NextApp = require("./components/App").App;
+    renderApp(NextApp);
   });
 }
 

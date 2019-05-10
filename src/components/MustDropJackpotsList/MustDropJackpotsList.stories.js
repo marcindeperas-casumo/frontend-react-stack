@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
 import MockStore from "Components/MockStore";
 
@@ -13,4 +12,4 @@ const DefaultStory = () => (
   </MockStore>
 );
 
-stories.add("Default", DefaultStory, info({ text: "Default" }));
+stories.add("Default", DefaultStory);

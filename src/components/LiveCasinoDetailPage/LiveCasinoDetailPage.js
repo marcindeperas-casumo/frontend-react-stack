@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
-import GameRow from "Components/GameRow";
+import { GameRow } from "Components/GameRow";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";

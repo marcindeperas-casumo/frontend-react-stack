@@ -1,25 +1,25 @@
 // TODO: Make these components lazy-loaded
-import ContentHtml from "Components/ContentHtml";
-import CuratedCard from "Components/CuratedCard";
+import { ContentHtml } from "Components/ContentHtml";
+import { CuratedCard } from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
-import GameListHorizontal from "Components/GameListHorizontal";
-import GameListVertical from "Components/ContentGameList";
-import ContentImage from "Components/ContentImage";
-import ContentSeparator from "Components/ContentSeparator";
-import ContentSubtitle from "Components/ContentSubtitle";
-import ContentButton from "Components/ContentButton";
+import { GameListHorizontal } from "Components/GameListHorizontal";
+import { ContentGameList as GameListVertical } from "Components/ContentGameList";
+import { ContentImage } from "Components/ContentImage";
+import { ContentSeparator } from "Components/ContentSeparator";
+import { ContentSubtitle } from "Components/ContentSubtitle";
+import { ContentButton } from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
 import PromotionGallery from "Components/PromotionGallery";
-import ContentMediaList from "Components/ContentMediaList";
+import { ContentMediaList } from "Components/ContentMediaList";
 import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
-import ContentMustDropJackpotsWidget from "Components/ContentMustDropJackpotsWidget";
+import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
 import TileListHorizontal from "Components/TileListHorizontal";
 import ReelRacesList from "Components/ReelRacesList";
-import OptInButton from "Components/OptInButton";
+import PromotionOptInButton from "Components/PromotionOptInButton";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -33,7 +33,7 @@ export const COMPONENT_MAPPING = {
   CONTENT_SEPARATOR: ContentSeparator,
   CONTENT_SUBTITLE: ContentSubtitle,
   CTA: ContentButton,
-  OPT_IN_BUTTON: OptInButton,
+  PROMOTION_OPT_IN_BUTTON: PromotionOptInButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
   PROMOTION_CARDS_GALLERY: PromotionGallery,

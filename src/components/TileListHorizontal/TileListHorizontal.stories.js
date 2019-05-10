@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import MockStore from "Components/MockStore";
 import TileListHorizontal from "Components/TileListHorizontal";
 import TileListHorizontalPresentational from "Components/TileListHorizontal/TileListHorizontal";
@@ -59,28 +58,20 @@ const items = [
   },
 ];
 
-stories.add(
-  "Game Providers List (Presentational)",
-  () => (
-    <MockStore>
-      <TileListHorizontalPresentational
-        isLoaded={true}
-        title={title}
-        items={items}
-      />
-    </MockStore>
-  ),
-  info({ text: `...` })
-);
+stories.add("Game Providers List (Presentational)", () => (
+  <MockStore>
+    <TileListHorizontalPresentational
+      isLoaded={true}
+      title={title}
+      items={items}
+    />
+  </MockStore>
+));
 
 if (isNotChromatic) {
-  stories.add(
-    "Game Providers List (Connected)",
-    () => (
-      <MockStore>
-        <TileListHorizontal title={"Game Providers"} type={"game-providers"} />
-      </MockStore>
-    ),
-    info({ text: `...` })
-  );
+  stories.add("Game Providers List (Connected)", () => (
+    <MockStore>
+      <TileListHorizontal title={"Game Providers"} type={"game-providers"} />
+    </MockStore>
+  ));
 }

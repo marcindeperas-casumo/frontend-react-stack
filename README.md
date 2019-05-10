@@ -39,8 +39,6 @@ This service runs in dev mode (`yarn start`), so every time a change in the sour
 }
 ```
 
-- Within the `casumo-frontend` repository under `/web` run `casumo-proxy use local` in order to proxy to your local environment.
-
 ### Daily development
 
 Development can be done within the casumo-frontend SPA or by using [Storybook](https://storybook.js.org). If the task consists of creating new components or making changes to existing components it is advised to start with [Storybook](#developing-with-storybook) then move to developing within the SPA.
@@ -51,7 +49,11 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 
 #### Developing within the SPA
 
-- Within the `casumo-frontend` repository under `/web` run `casumo-proxy start && yarn mobile gulp dev`
+- Within the `casumo-frontend` repository under `/web` run the following commands in order:
+  - `casumo-proxy add-hosts` to add entries to host file
+  - `casumo-proxy use local` in order to proxy to your local environment.
+  - `casumo-proxy start` to start paused proxy, or create it if it does not exist.
+  - `yarn mobile gulp dev` to run the mobile build
 - Within the `mobile-react-stack-poc` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.

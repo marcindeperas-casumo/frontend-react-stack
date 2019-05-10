@@ -2,7 +2,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { Pill } from "Components/Pill";
 
 const stories = storiesOf("Pill", module);
@@ -54,4 +53,4 @@ const pills = [
   },
 ];
 
-pills.map(({ title, cmp }) => stories.add(title, cmp, info({ text: title })));
+pills.map(({ title, cmp }) => stories.add(title, cmp));

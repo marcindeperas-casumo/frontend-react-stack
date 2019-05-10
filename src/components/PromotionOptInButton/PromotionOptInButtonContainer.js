@@ -3,6 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { getField } from "Models/cms";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
+import { playerIdSelector } from "Models/handshake";
 import {
   setPromotionOptIn,
   isPromotionOptedInSelector,
@@ -32,6 +33,7 @@ const PromotionOptInButtonConnected = connect(
       eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: true,
+        playerId: playerIdSelector(state),
       },
     },
     disabled: {
@@ -43,14 +45,22 @@ const PromotionOptInButtonConnected = connect(
       eventName: EVENTS.MIXPANEL_PROMOTION_OPTED_IN,
       data: {
         [EVENT_PROPS.OPTED_IN]: false,
+        playerId: playerIdSelector(state),
       },
     },
     isOptedIn: isPromotionOptedInSelector(slug)(state),
   }),
-  (dispatch, { slug, active }) => ({
+  (dispatch, { slug }) => ({
     active: {
-      ...active,
       onClick: () => dispatch(setPromotionOptIn(slug, true)),
+    },
+  }),
+  (stateProps, dispatchProps, ownProps) => ({
+    ...stateProps,
+    ...ownProps,
+    active: {
+      ...stateProps.active,
+      ...dispatchProps.active,
     },
   })
 )(OptInButton);

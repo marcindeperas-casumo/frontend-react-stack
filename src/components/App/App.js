@@ -4,10 +4,10 @@ import { Route, Router } from "Components/Router";
 import { TopListsSkeleton } from "Components/TopLists";
 import LazyPortal from "Components/LazyPortal";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
-import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
+import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
-import DataProvider from "Components/DataProvider";
+import { DataProvider } from "Components/DataProvider";
 
 type Props = {
   onAppStarted: () => void,
@@ -19,7 +19,7 @@ type Props = {
   routeParams: Array<Object>,
 };
 
-class App extends PureComponent<Props> {
+export class App extends PureComponent<Props> {
   subscribe: Function;
 
   componentDidMount() {
@@ -143,5 +143,3 @@ class App extends PureComponent<Props> {
     );
   }
 }
-
-export default App;

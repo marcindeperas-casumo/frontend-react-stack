@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS";
+import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
 import { getField, fetchPageBySlug } from "Models/cms";
 
 // This is the field that holds the component definitions under a CMS page
@@ -21,8 +21,6 @@ const ComponentBuilderConnected = connect(
   })
 )(ComponentBuilderCMS);
 
-const ComponentBuilderContainer = ({ slug }: Props) => {
+export const ComponentBuilderContainer = ({ slug }: Props) => {
   return <ComponentBuilderConnected slug={slug} />;
 };
-
-export default ComponentBuilderContainer;

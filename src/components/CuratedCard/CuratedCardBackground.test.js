@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
+import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import curatedData from "Models/curated/__mocks__/curated.json";
 
 describe("CuratedCard", () => {

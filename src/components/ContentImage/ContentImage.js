@@ -13,7 +13,7 @@ type Props = {
 
 const MAX_CONTENT_WIDTH = 578;
 
-export default class ContentImage extends PureComponent<Props> {
+export class ContentImage extends PureComponent<Props> {
   render() {
     const { src, alt = "", maxWidth = MAX_CONTENT_WIDTH } = this.props;
     const className = `
