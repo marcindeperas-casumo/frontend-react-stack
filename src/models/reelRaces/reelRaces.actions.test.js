@@ -49,7 +49,7 @@ describe("Models/reelRaces/Actions", () => {
     const reqMock = optInForReelRaceReq.mock.calls;
 
     expect(reqMock.length).toBe(1);
-    expect(reqMock.calls[0][0].playerId).toBe(playerId);
-    expect(reqMock.calls[0][0].tournamentId).toBe(tournamentId);
+    expect(reqMock[0][0].playerId).toBe(playerId);
+    expect(reqMock[0][0].tournamentId).toBe(tournamentId);
   });
 });
