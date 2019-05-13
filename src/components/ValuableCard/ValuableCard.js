@@ -7,8 +7,7 @@ import { compose, prop } from "ramda";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
-import { VALUABLE_ICON } from "./ValuableIcons.utils";
-import { CoinValueToSpinType } from "./ValuableCard.utils";
+import { VALUABLE_ICON, CoinValueToSpinType } from "./ValuableCard.utils";
 import ValuableReward from "./ValuableReward";
 import "./ValuableCard.scss";
 
