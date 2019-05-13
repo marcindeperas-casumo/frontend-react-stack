@@ -18,7 +18,7 @@ type State = {
   query: string,
 };
 
-export default class GameSearchInput extends PureComponent<Props, State> {
+export class GameSearchInput extends PureComponent<Props, State> {
   static defaultProps = {
     trackHandler: tracker.track,
   };
@@ -39,11 +39,11 @@ export default class GameSearchInput extends PureComponent<Props, State> {
   }
 
   onFocus = () => {
-    this.props.trackHandler(EVENTS.SEARCH_INTENT);
+    this.props.trackHandler(EVENTS.MIXPANEL_SEARCH_INTENT);
   };
 
   trackSearchInitiated = (query: string) => {
-    this.props.trackHandler(EVENTS.SEARCH_INITIATED, {
+    this.props.trackHandler(EVENTS.MIXPANEL_SEARCH_INITIATED, {
       query,
     });
   };

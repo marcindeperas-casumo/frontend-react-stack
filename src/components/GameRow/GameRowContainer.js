@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
-import GameRow from "Components/GameRow/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 
 const GameRowConnected = connect(
   (state, { id }) => ({
@@ -19,6 +19,4 @@ type Props = {
   id: string,
 };
 
-const GameRowContainer = ({ id }: Props) => <GameRowConnected id={id} />;
-
-export default GameRowContainer;
+export const GameRowContainer = ({ id }: Props) => <GameRowConnected id={id} />;

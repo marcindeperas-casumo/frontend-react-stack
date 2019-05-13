@@ -3,7 +3,7 @@ import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import CMSField from "Components/CMSField";
+import { CMSField } from "Components/CMSField";
 import { getBadgeColor, topCardLetters } from "./utils";
 import "./LiveCasinoCardData.scss";
 

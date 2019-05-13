@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
-import ErrorMessage from "Components/ErrorMessage";
+import { ErrorMessage } from "Components/ErrorMessage";
 import {
   currencySelector,
   countrySelector,

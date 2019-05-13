@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameListSkeleton from "./GameListSkeleton";
+import { GameListSkeleton } from "./GameListSkeleton";
 
 describe("GameListSkeleton", () => {
   test("should render 8 GameRowSkeleton if not specified", () => {

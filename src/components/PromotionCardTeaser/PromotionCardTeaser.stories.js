@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import PromotionCardTeaser from "Components/PromotionCardTeaser";
 import PromotionCardTeaserPresentational from "Components/PromotionCardTeaser/PromotionCardTeaser";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
@@ -28,7 +27,6 @@ if (isNotChromatic) {
     ),
     {
       backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-      ...info({ text: "Default" }),
     }
   );
 }
@@ -52,6 +50,5 @@ stories.add(
   ),
   {
     backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-    ...info({ text: "Default" }),
   }
 );

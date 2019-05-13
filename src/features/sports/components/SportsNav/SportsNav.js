@@ -3,7 +3,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
 import { has } from "ramda";
-import ErrorMessage from "Components/ErrorMessage";
+import { ErrorMessage } from "Components/ErrorMessage";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
 import {
   NAVIGATE_CLIENT_MUTATION,

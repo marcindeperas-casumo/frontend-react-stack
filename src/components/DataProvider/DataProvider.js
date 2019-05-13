@@ -7,8 +7,6 @@ type Props = {
   children: React.Node,
 };
 
-const DataProvider = ({ children }: Props) => (
+export const DataProvider = ({ children }: Props) => (
   <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
 );
-
-export default DataProvider;

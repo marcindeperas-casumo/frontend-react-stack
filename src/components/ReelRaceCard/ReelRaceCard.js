@@ -4,17 +4,18 @@ import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { PlayIcon, TickIcon } from "@casumo/cmp-icons";
+import { PlayIcon } from "@casumo/cmp-icons";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
-import { MODALS, EVENT_PROPS } from "Src/constants";
-import { BUTTON_STATE, MIXPANEL_EVENT_NAME } from "Models/reelRaces";
+import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
+import { BUTTON_STATE } from "Models/reelRaces";
 import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
 import Timer from "Components/Timer";
-import GameThumb from "Components/GameThumb";
+import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
+import OptInButton from "Components/OptInButton/OptInButton";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import Clock from "./Clock.svg"; // use it from @casumo/cmp-icons if we're on v2
 import "./ReelRaceCard.scss";
@@ -63,7 +64,7 @@ export class ReelRaceCard extends React.Component<Props> {
       if (this.props.opted) {
         return (
           <TrackClick
-            eventName={MIXPANEL_EVENT_NAME}
+            eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
             data={{ state: BUTTON_STATE.PLAY }}
           >
             <Button
@@ -83,39 +84,26 @@ export class ReelRaceCard extends React.Component<Props> {
       return null; // In that case whole component should be hidden
     }
 
-    if (this.props.opted) {
-      return (
-        <TrackClick
-          eventName={MIXPANEL_EVENT_NAME}
-          data={{ state: BUTTON_STATE.OPTED_IN }}
-        >
-          <Button
-            variant="variant-1"
-            className="u-padding-vert--md u-padding-horiz--xlg"
-            disabled
-          >
-            <TickIcon className="c-reel-race__button-icon" />
-            <Text tag="span" className="u-margin-left">
-              {t.opted_in}
-            </Text>
-          </Button>
-        </TrackClick>
-      );
-    }
+    const active = {
+      label: t.opt_in,
+      eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
+      data: { state: BUTTON_STATE.OPT_IN },
+      onClick: this.props.optIn,
+    };
+
+    const disabled = {
+      label: t.opted_in,
+      eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
+      data: { state: BUTTON_STATE.OPTED_IN },
+    };
 
     return (
-      <TrackClick
-        eventName={MIXPANEL_EVENT_NAME}
-        data={{ state: BUTTON_STATE.OPT_IN }}
-      >
-        <Button
-          variant="variant-1"
-          className="u-padding-vert--md u-padding-horiz--xlg"
-          onClick={this.props.optIn}
-        >
-          <Text tag="span">{t.opt_in}</Text>
-        </Button>
-      </TrackClick>
+      <OptInButton
+        active={active}
+        disabled={disabled}
+        className="c-reel-race__button-icon"
+        isOptedIn={this.props.opted}
+      />
     );
   }
 

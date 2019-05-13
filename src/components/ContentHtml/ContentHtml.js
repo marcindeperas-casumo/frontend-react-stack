@@ -11,7 +11,7 @@ type Props = {
 
 const classes = "s-content-html u-padding-horiz--lg u-margin-bottom--lg";
 
-class ContentHtml extends PureComponent<Props> {
+export class ContentHtml extends PureComponent<Props> {
   render() {
     const { html, style = "" } = this.props;
     const componentClasses = classNames(
@@ -25,5 +25,3 @@ class ContentHtml extends PureComponent<Props> {
     );
   }
 }
-
-export default ContentHtml;

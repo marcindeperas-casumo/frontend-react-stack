@@ -54,7 +54,7 @@ export const SportsTopBarTab = ({
   <Flex
     align="center"
     className={classNames(
-      "c-sports-top-bar__tab u-cursor-pointer",
+      "c-sports-top-bar-tab u-cursor-pointer",
       !isActive && "t-color-grey-dark-1",
       className
     )}
@@ -68,10 +68,9 @@ export const SportsTopBarTab = ({
       <Text
         size="sm"
         className={classNames(
-          "u-font-weight-bold u-margin--none",
+          "c-sports-top-bar-tab--label u-font-weight-bold u-margin--none",
           isActive && "t-border--current-color t-border-bottom"
         )}
-        style={{ borderWidth: "2px" }}
       >
         <DictionaryTerm termKey={termKey} />
       </Text>

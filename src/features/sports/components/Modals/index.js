@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./Modals";
+export { default, ModalsArea } from "./Modals";

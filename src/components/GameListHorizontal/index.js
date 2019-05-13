@@ -1,3 +1,5 @@
 // @flow
-export type * from "./GameListHorizontalContainer"; // eslint-disable-line import/export
-export { default } from "./GameListHorizontalContainer";
+export type * from "./GameListHorizontalContainer";
+export {
+  GameListHorizontalContainer as GameListHorizontal,
+} from "./GameListHorizontalContainer";

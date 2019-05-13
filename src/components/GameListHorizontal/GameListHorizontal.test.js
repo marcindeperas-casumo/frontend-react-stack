@@ -1,6 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import GameListHorizontal, {
+import {
+  GameListHorizontal,
   ITEM_SPACING,
   ITEM_RENDERERS,
 } from "Components/GameListHorizontal/GameListHorizontal";

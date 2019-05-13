@@ -7,7 +7,7 @@ import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
 import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
-import GameListHorizontalSkeleton from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 import "./GameListHorizontal.scss";
 
@@ -43,7 +43,7 @@ export const ITEM_SPACING = {
   default: "default",
 };
 
-export default class GameListHorizontal extends PureComponent<Props> {
+export class GameListHorizontal extends PureComponent<Props> {
   render() {
     const { list, isLoading, seeMoreText } = this.props;
     const { id, title, games: gameIds } = list;

@@ -2,8 +2,8 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import SectionList from "Components/SectionList";
-import GameRowSearch from "Components/GameRowSearch";
-import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
+import { GameRowSearch } from "Components/GameRowSearch";
+import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
 
@@ -17,7 +17,7 @@ type Props = {
   className?: string,
 };
 
-export default class GameSearchSuggestionsList extends PureComponent<Props> {
+export class GameSearchSuggestionsList extends PureComponent<Props> {
   renderListSkeleton = () => (
     <GameListSkeleton
       className="u-padding-horiz--md u-game-search-max-width"

@@ -21,11 +21,11 @@ $reel-race-tile-widths: ();
 }
 
 .c-reel-race__badge {
-  left: 8px;
+  left: map-get($cudl-spacer-sizes, default);
   position: absolute;
-  top: 8px;
+  top: map-get($cudl-spacer-sizes, default);
 }
 
 .c-reel-race__button-icon {
-  margin: -4px;
+  margin: -map-get($cudl-spacer-sizes, sm);
 }
