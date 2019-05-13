@@ -39,7 +39,7 @@ export default class AdventureProgressBar extends PureComponent<Props> {
       : progression_label_standard;
 
     return (
-      <React.Fragment>
+      <>
         <Flex.Item className="u-width--1/1 u-margin-top--none">
           <ProgressBar
             progress={progressPercentage}
@@ -65,7 +65,7 @@ export default class AdventureProgressBar extends PureComponent<Props> {
             {`${points} / ${pointsRequiredForNextLevel}`}
           </Text>
         </Flex>
-      </React.Fragment>
+      </>
     );
   }
 }

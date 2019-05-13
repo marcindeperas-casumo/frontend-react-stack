@@ -1,6 +1,5 @@
 // @flow
 
-import React from "react";
 import { connect } from "react-redux";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
 import {
@@ -17,7 +16,7 @@ import {
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import AdventureCard from "Components/AdventureCard/AdventureCard";
 
-const AdventureCardConnected = connect(
+export default connect(
   state => ({
     adventurer: adventurerSelector(state),
     playerId: playerIdSelector(state),
@@ -35,7 +34,3 @@ const AdventureCardConnected = connect(
       dispatch(unsubscribeToAdventureUpdates(playerId)),
   })
 )(AdventureCard);
-
-const AdventureCardContainer = () => <AdventureCardConnected />;
-
-export default AdventureCardContainer;
