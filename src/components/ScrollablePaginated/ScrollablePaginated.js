@@ -11,12 +11,9 @@ import type { overscanColumnCountType } from "Components/Scrollable";
 const easeInQuad = (t: number) => t * t;
 
 export type State = {
-  startColumn: number,
-  stopColumn: number,
-  visibleColumns: number,
   scrollLeft: number | null,
-  isEndOfScroll: boolean,
-  isStartOfScroll: boolean,
+  hasNextPage: boolean,
+  hasPreviousPage: boolean,
 };
 
 export type ClickHandlerType = (direction: "left" | "right") => void;
@@ -33,7 +30,7 @@ type Props = {
   /** The renderProp responsible for rendering each "cell" */
   cellRenderer: CellRenderer,
   /** The renderProp responsible for rendering the controls to paginate through the columns */
-  buttonRenderer: (State, ClickHandlerType) => React.Node,
+  buttonRenderer: (boolean, boolean, ClickHandlerType) => React.Node,
   /** Custom classname for styling the wrapping div elements. */
   className: string,
   /** Number of items to render before/after the visible slice of the grid.
@@ -58,13 +55,13 @@ export default class ScrollablePaginated extends React.PureComponent<
   animationStartTime = 0;
   currentScrollOffset = 0;
   isScrolling = false;
+  startColumn = 0;
+  stopColumn = 0;
+  visibleColumns = 0;
   state = {
-    startColumn: 0,
-    stopColumn: 0,
-    visibleColumns: 0,
     scrollLeft: null,
-    isEndOfScroll: false,
-    isStartOfScroll: true,
+    hasNextPage: false,
+    hasPreviousPage: false,
   };
 
   get gridRefCurrent() {
@@ -73,6 +70,7 @@ export default class ScrollablePaginated extends React.PureComponent<
 
   get isEndOfScroll() {
     const scrollingContainer = this.gridRefCurrent._scrollingContainer;
+
     return (
       Math.ceil(scrollingContainer.offsetWidth) +
         Math.ceil(scrollingContainer.scrollLeft) ===
@@ -88,11 +86,11 @@ export default class ScrollablePaginated extends React.PureComponent<
   scrollHandler = ({ scrollLeft }: Scroll) => {
     this.currentScrollOffset = scrollLeft;
     if (!isEmpty(this.gridRefCurrent)) {
+      this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+      this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
       this.setState({
-        startColumn: this.gridRefCurrent._renderedColumnStartIndex,
-        stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
-        isEndOfScroll: this.isEndOfScroll,
-        isStartOfScroll: this.isStartOfScroll,
+        hasNextPage: !this.isEndOfScroll,
+        hasPreviousPage: !this.isStartOfScroll,
       });
     }
   };
@@ -108,8 +106,8 @@ export default class ScrollablePaginated extends React.PureComponent<
       0,
       columnCount,
       direction === "right"
-        ? this.state.startColumn + this.state.visibleColumns
-        : this.state.startColumn - this.state.visibleColumns
+        ? this.startColumn + this.visibleColumns
+        : this.startColumn - this.visibleColumns
     );
     this.scrollToOffset = this.gridRefCurrent.getOffsetForCell({
       alignment: "start",
@@ -141,26 +139,29 @@ export default class ScrollablePaginated extends React.PureComponent<
         this.isScrolling = false;
         this.currentScrollOffset = this.scrollToOffset;
         this.animationStartTime = undefined;
-
+        this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+        this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
         this.setState({
           scrollLeft: null,
-          startColumn: this.gridRefCurrent._renderedColumnStartIndex,
-          stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
         });
       }
     });
   }
 
   buttonRenderer() {
-    return this.props.buttonRenderer(this.state, this.clickHandler);
+    return this.props.buttonRenderer(
+      this.state.hasNextPage,
+      this.state.hasPreviousPage,
+      this.clickHandler
+    );
   }
 
   // Keep state in sync with column count for buttonRenderer
   componentDidUpdate(nextProps: Props) {
     if (nextProps.columnCount !== this.props.columnCount) {
       this.setState({
-        isEndOfScroll: this.isEndOfScroll,
-        isStartOfScroll: this.isStartOfScroll,
+        hasNextPage: !this.isEndOfScroll,
+        hasPreviousPage: !this.isStartOfScroll,
       });
     }
   }
@@ -170,15 +171,18 @@ export default class ScrollablePaginated extends React.PureComponent<
     // gives the gridRef values time to update.
     setTimeout(() => {
       this.setState({
-        startColumn: this.gridRefCurrent._renderedColumnStartIndex,
-        stopColumn: this.gridRefCurrent._renderedColumnStopIndex,
-        visibleColumns: this.gridRefCurrent._renderedColumnStopIndex,
+        hasNextPage: !this.isEndOfScroll,
+        hasPreviousPage: !this.isStartOfScroll,
       });
+      this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
+      this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
+      this.visibleColumns = this.gridRefCurrent._renderedColumnStopIndex;
     }, 0);
   }
 
   render() {
     const { className, height, columnCount, cellRenderer } = this.props;
+
     return (
       <div className={className}>
         <div style={{ height }} className={`${className}__list`}>
