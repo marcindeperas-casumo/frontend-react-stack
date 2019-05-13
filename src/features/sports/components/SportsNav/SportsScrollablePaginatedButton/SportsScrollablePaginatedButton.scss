@@ -14,7 +14,11 @@
 }
 
 .c-sports-nav-paginated__button {
-  background-image: linear-gradient(to left, rgba(#fff, 1) 2%, rgba(#fff, 0));
+  background-image: linear-gradient(
+    to left,
+    rgba(cudl-palette(grey, light-2), 1) 2%,
+    rgba(cudl-palette(grey, light-2), 0)
+  );
 }
 
 // stylelint-disable xi/selector-pattern
