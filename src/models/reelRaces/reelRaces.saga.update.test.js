@@ -1,5 +1,4 @@
 import { reelRacesUpdatesSaga } from "./reelRaces.saga.update";
-// import tournamentMock from "./__mocks__/liveCasino.state.mock";
 
 describe("Models/reelRaces/UpdateSaga", () => {
   const action = {
