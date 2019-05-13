@@ -1,6 +1,6 @@
 // @flow
 import { types as fetchTypes } from "Models/fetch";
-import { getReelRacesReq } from "Api/api.reelRaces";
+import { getReelRacesReq, optInForReelRaceReq } from "Api/api.reelRaces";
 import {
   initReelRacesSaga,
   fetchReelRaces,
@@ -34,19 +34,22 @@ describe("Models/reelRaces/Actions", () => {
   });
 
   test("optInForReelRace()", async () => {
+    const playerId = "23";
     const tournamentId = "13a";
     const dispatch = jest.fn();
     const getState = jest.fn();
-    await optInForReelRace(tournamentId)(dispatch, getState);
-    expect(dispatch).toBeCalledWith({
-      payload: {
-        reelRaces: {
-          "13a": {
-            opted: true,
-          },
-        },
-      },
-      type: "SCHEMA/MERGE_ENTITY",
-    });
+
+    const { playerIdSelector } = require("Models/handshake");
+    playerIdSelector.mockImplementation(() => playerId);
+    jest.fn(optInForReelRaceReq);
+
+    optInForReelRace(tournamentId)(dispatch, getState);
+
+    // $FlowIgnore
+    const reqMock = optInForReelRaceReq.mock.calls;
+
+    expect(reqMock.length).toBe(1);
+    expect(reqMock.calls[0][0].playerId).toBe(playerId);
+    expect(reqMock.calls[0][0].tournamentId).toBe(tournamentId);
   });
 });

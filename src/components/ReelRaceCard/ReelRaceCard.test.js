@@ -38,6 +38,8 @@ const props = {
   },
   launchGame: () => {},
   optIn: () => {},
+  subscribeReelRacesUpdates: () => {},
+  unsubscribeReelRacesUpdates: () => {},
 };
 const minute = 60 * 1000;
 

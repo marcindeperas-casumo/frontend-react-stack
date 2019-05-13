@@ -50,7 +50,11 @@ import {
   fetchPlayerGamesCountSaga,
 } from "Models/playerGames";
 import { updatePlayerFirstDepositDateSaga } from "Models/handshake";
-import { types as reelRacesTypes, fetchReelRacesSaga } from "Models/reelRaces";
+import {
+  types as reelRacesTypes,
+  fetchReelRacesSaga,
+  reelRacesUpdatesSaga,
+} from "Models/reelRaces";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -75,6 +79,11 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.LIVE_CASINO_TABLE),
     liveCasinoUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    takeChannel(cometdChannels.REEL_RACES),
+    reelRacesUpdatesSaga
   );
   yield fork(
     takeEvery,
