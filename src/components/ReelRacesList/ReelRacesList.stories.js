@@ -8,6 +8,7 @@ import state from "./__mocks__/ReelRacesList";
 const stories = storiesOf("ReelRacesList", module);
 
 const props = {
+  isFetched: true,
   fetchReelRaces: () => {},
   fetchTranslations: () => {},
   areTranslationsFetched: true,

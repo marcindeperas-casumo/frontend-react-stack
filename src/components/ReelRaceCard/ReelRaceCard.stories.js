@@ -80,6 +80,7 @@ stories.add("Default", () => {
       promoted={promoted}
       opted={opted}
       color={color}
+      isFetched
       {...timeOptions[time]}
     />
   );

@@ -5,6 +5,7 @@ import ScrollableList from "Components/ScrollableList";
 import { ReelRacesList } from "./ReelRacesList";
 
 const props = {
+  isFetched: true,
   fetchReelRaces: jest.fn(),
   fetchTranslations: jest.fn(),
   areTranslationsFetched: true,

@@ -10,11 +10,14 @@ type Props = {
   fetchTranslations: () => void,
   t: ReelRacesTranslations & { more_link: string },
   reelRacesIds: Array<string>,
+  isFetched: boolean,
 };
 
 export class ReelRacesList extends React.PureComponent<Props> {
   componentDidMount() {
-    this.props.fetchReelRaces();
+    if (!this.props.isFetched) {
+      this.props.fetchReelRaces();
+    }
 
     if (!this.props.areTranslationsFetched) {
       this.props.fetchTranslations();

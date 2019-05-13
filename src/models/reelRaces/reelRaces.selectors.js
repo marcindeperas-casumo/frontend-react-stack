@@ -15,6 +15,11 @@ export const reelRacesSelector: any => Array<ReelRace> = createSelector(
   R.identity
 );
 
+export const isReelRacesLoaded = createSelector(
+  reelRacesSelector,
+  R.complement(R.anyPass([R.isNil, R.isEmpty]))
+);
+
 export const reelRacesByIdSelector: string => ({}) => ?ReelRace = id =>
   createSelector(
     reelRacesSelector,

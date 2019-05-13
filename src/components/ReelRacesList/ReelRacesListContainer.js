@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import {
   slug,
+  isReelRacesLoaded,
   reelRacesIdsSelector,
   reelRacesTranslationsSelector,
   initReelRacesSaga,
@@ -21,6 +22,7 @@ export default connect(
     },
     areTranslationsFetched: isPageFetchedSelector(slug)(state),
     reelRacesIds: reelRacesIdsSelector(state),
+    isFetched: isReelRacesLoaded(state),
   }),
   {
     fetchReelRaces: initReelRacesSaga,

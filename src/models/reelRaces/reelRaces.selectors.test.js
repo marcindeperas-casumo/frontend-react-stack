@@ -1,5 +1,6 @@
 import {
   reelRacesSelector,
+  isReelRacesLoaded,
   reelRacesByIdSelector,
   reelRacesIdsSelector,
 } from "./reelRaces.selectors";
@@ -51,6 +52,16 @@ describe("Reel Races Selectors", () => {
 
     test("returns {} is reelRaces object is missing", () => {
       expect(reelRacesSelector({})).toEqual({});
+    });
+  });
+
+  describe("isReelRacesLoaded()", () => {
+    test("returns true if exists", () => {
+      expect(isReelRacesLoaded(state)).toBeTruthy();
+    });
+    test("returns false if doesn't exists or is empty", () => {
+      expect(isReelRacesLoaded(null)).toBeFalsy();
+      expect(isReelRacesLoaded({})).toBeFalsy();
     });
   });
 
