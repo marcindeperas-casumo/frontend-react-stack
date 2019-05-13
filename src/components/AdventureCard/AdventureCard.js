@@ -42,9 +42,7 @@ export default class AdventureCard extends PureComponent<Props> {
     subscribeToUpdates(playerId, sessionId);
   }
   componentWillUnmount() {
-    const { unsubscribeFromUpdates, playerId } = this.props;
-
-    unsubscribeFromUpdates(playerId);
+    this.props.unsubscribeFromUpdates(this.props.playerId);
   }
 
   render() {
