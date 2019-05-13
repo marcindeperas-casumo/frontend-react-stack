@@ -10,6 +10,8 @@ const stories = storiesOf("ReelRaceCard", module);
 
 const minute = 60 * 1000;
 const props = {
+  subscribeReelRacesUpdates: () => {},
+  unsubscribeReelRacesUpdates: () => {},
   tournamentId: "1",
   spins: 666,
   minBet: "€0.50",
