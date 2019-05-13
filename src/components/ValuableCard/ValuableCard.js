@@ -53,7 +53,7 @@ class ValuableCard extends PureComponent<Props> {
     return `c-valuable-card--${valuableType}`;
   }
 
-  // To consider moving this to graphql
+  // To move this to graphql
   get spinType() {
     return CoinValueToSpinType(this.props.coinValue);
   }
