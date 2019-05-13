@@ -182,7 +182,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
                       editLabel={data.editLabel}
-                      rerenderMotherfucker={mainNavCacheBuster}
+                      cacheBuster={mainNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>
@@ -199,7 +199,7 @@ class SportsNav extends React.Component<SportsNavProps> {
                       onEdit={openChooseFavouriteLeaguesModal}
                       allLabel={data.allLabel}
                       editLabel={data.editLabel}
-                      rerenderMotherfucker={subNavCacheBuster}
+                      cacheBuster={subNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>
