@@ -1,18 +1,12 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-import DangerousHtml from "Components/DangerousHtml";
-import { ProgressBar } from "Components/ProgressBar";
-import { CasumoAvatar } from "Components/CasumoAvatar";
-import {
-  isMaxLevel,
-  type Adventurer,
-  type AdventureContent,
-} from "Models/adventure";
+import { type Adventurer, type AdventureContent } from "Models/adventure";
+import AdventureAvatarAndDetails from "./AdventureAvatarAndDetails";
+import AdventureProgressBar from "./AdventureProgressBar";
 import "./AdventureCard.scss";
 
-type Props = {
+export type Props = {
   adventurer: Adventurer,
   content: AdventureContent,
   isContentFetched: boolean,
@@ -29,6 +23,7 @@ export default class AdventureCard extends PureComponent<Props> {
   componentDidMount() {
     const {
       isContentFetched,
+      isAdventurerFetched,
       fetchAdventurer,
       fetchContent,
       playerId,
@@ -39,8 +34,11 @@ export default class AdventureCard extends PureComponent<Props> {
     if (!isContentFetched) {
       fetchContent();
     }
-    // already has adventurer data
-    fetchAdventurer();
+
+    if (!isAdventurerFetched) {
+      fetchAdventurer();
+    }
+
     subscribeToUpdates(playerId, sessionId);
   }
   componentWillUnmount() {
@@ -50,9 +48,7 @@ export default class AdventureCard extends PureComponent<Props> {
   }
 
   render() {
-    const { isContentFetched, isAdventurerFetched } = this.props;
-
-    if (!isContentFetched || !isAdventurerFetched) {
+    if (!this.props.isContentFetched || !this.props.isAdventurerFetched) {
       return null;
     }
 
@@ -65,129 +61,6 @@ export default class AdventureCard extends PureComponent<Props> {
         <AdventureAvatarAndDetails {...this.props} />
         <AdventureProgressBar {...this.props} />
       </Flex>
-    );
-  }
-}
-
-function getAvatarBackgroundColour(
-  inBonusMode: boolean,
-  level: number
-): string {
-  if (isMaxLevel(level)) {
-    return "yellow";
-  }
-  if (inBonusMode) {
-    return "violet";
-  }
-
-  return "teal";
-}
-
-class AdventureAvatarAndDetails extends PureComponent<Props> {
-  getLevelLabel() {
-    const { level, inBonusMode } = this.props.adventurer;
-    const {
-      max_level_label,
-      level_label,
-      bonus_mode_label,
-    } = this.props.content;
-
-    const bonusModeIndicator = `<strong class="t-color-violet">${bonus_mode_label}</strong>`;
-    const maxLevelReached = isMaxLevel(level);
-    const label = maxLevelReached ? max_level_label : level_label;
-    const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
-
-    return requiresBonusModeIndicator
-      ? `${label} | ${bonusModeIndicator}`
-      : label;
-  }
-
-  render() {
-    const { name, belt, level, inBonusMode } = this.props.adventurer;
-
-    const levelLabel = this.getLevelLabel();
-
-    return (
-      <Flex
-        align="center"
-        className="t-border-r--8 u-width--1/1 u-margin-bottom--lg"
-      >
-        <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
-          <CasumoAvatar
-            belt={belt}
-            backgroundColour={getAvatarBackgroundColour(inBonusMode, level)}
-            level={level}
-          />
-        </Flex.Item>
-        <Flex.Item className="u-margin-left--md">
-          <Text
-            tag="div"
-            className="u-font-weight-bold t-color-white u-margin-bottom--sm"
-            size="md"
-          >
-            <DangerousHtml html={name} />
-          </Text>
-          <Text tag="div" className="t-color-grey-light-1" size="sm">
-            <DangerousHtml
-              html={levelLabel.replace("{{level}}", level.toString())}
-            />
-          </Text>
-        </Flex.Item>
-      </Flex>
-    );
-  }
-}
-
-class AdventureProgressBar extends PureComponent<Props> {
-  render() {
-    const {
-      inBonusMode,
-      level,
-      points,
-      pointsRequiredForNextLevel,
-    } = this.props.adventurer;
-
-    const {
-      progression_label_standard,
-      progression_label_bonus,
-    } = this.props.content;
-
-    const progressPercentage = Math.floor(
-      (points / pointsRequiredForNextLevel) * 100
-    );
-
-    const progressionLabel = inBonusMode
-      ? progression_label_bonus
-      : progression_label_standard;
-
-    return (
-      <React.Fragment>
-        <Flex.Item className="u-width--1/1 u-margin-top--none">
-          <ProgressBar
-            progress={progressPercentage}
-            backgroundColour="grey-dark-4"
-            foregroundColour={
-              inBonusMode && !isMaxLevel(level) ? "violet" : "yellow"
-            }
-          />
-        </Flex.Item>
-        <Flex
-          justify="space-between"
-          className="u-width--1/1 u-font-sm u-padding-horiz--sm"
-        >
-          <Text className="t-color-grey-light-2" tag="div" size="sm">
-            <DangerousHtml
-              html={progressionLabel.replace(
-                "{{progression}}",
-                progressPercentage.toString()
-              )}
-            />
-          </Text>
-          <Text className="t-color-grey" tag="div" size="sm">
-            {`${points} / ${pointsRequiredForNextLevel}`}
-          </Text>
-        </Flex>
-      </React.Fragment>
     );
   }
 }
