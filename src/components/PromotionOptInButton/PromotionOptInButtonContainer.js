@@ -8,6 +8,7 @@ import {
   setPromotionOptIn,
   isPromotionOptedInSelector,
 } from "Models/promotions";
+import { routeParamsSelector } from "Models/router";
 import OptInButton from "../OptInButton";
 
 type Props = {
@@ -34,6 +35,7 @@ const PromotionOptInButtonConnected = connect(
       data: {
         [EVENT_PROPS.OPTED_IN]: true,
         playerId: playerIdSelector(state),
+        slug: routeParamsSelector(state)[0],
       },
     },
     disabled: {
@@ -46,6 +48,7 @@ const PromotionOptInButtonConnected = connect(
       data: {
         [EVENT_PROPS.OPTED_IN]: false,
         playerId: playerIdSelector(state),
+        slug: routeParamsSelector(state)[0],
       },
     },
     isOptedIn: isPromotionOptedInSelector(slug)(state),
