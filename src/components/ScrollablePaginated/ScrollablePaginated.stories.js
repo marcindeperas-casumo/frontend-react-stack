@@ -5,42 +5,38 @@ import { number } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
 import ScrollablePaginated from "Components/ScrollablePaginated";
-import type { State, ClickHandlerType } from "Components/ScrollablePaginated";
+import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 const stories = storiesOf("ScrollablePaginated", module);
 
 export const myButtonRenderer = (
-  scrollableState: State,
+  hasNextPage: boolean,
+  hasPreviousPage: boolean,
   scrollableClickHandler: ClickHandlerType
-) => {
-  const showLeftButton = !scrollableState.isStartOfScroll;
-  const showRightButton = !scrollableState.isEndOfScroll;
-
-  return (
-    <Flex justify="space-between">
-      <Flex.Item>
-        {showLeftButton && (
-          <div
-            onClick={e => scrollableClickHandler("left")}
-            className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
-          >
-            <ArrowLeftIcon className="t-color-grey-light-3" />
-          </div>
-        )}
-      </Flex.Item>
-      <Flex.Item>
-        {showRightButton && (
-          <div
-            onClick={e => scrollableClickHandler("right")}
-            className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
-          >
-            <ArrowRightIcon className="t-color-grey-light-3" />
-          </div>
-        )}
-      </Flex.Item>
-    </Flex>
-  );
-};
+) => (
+  <Flex justify="space-between">
+    <Flex.Item>
+      {hasPreviousPage && (
+        <div
+          onClick={e => scrollableClickHandler("left")}
+          className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+        >
+          <ArrowLeftIcon className="t-color-grey-light-3" />
+        </div>
+      )}
+    </Flex.Item>
+    <Flex.Item>
+      {hasNextPage && (
+        <div
+          onClick={e => scrollableClickHandler("right")}
+          className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+        >
+          <ArrowRightIcon className="t-color-grey-light-3" />
+        </div>
+      )}
+    </Flex.Item>
+  </Flex>
+);
 
 stories.add("Default", () => {
   const numberOfCells = number("Number of cells", 20);
@@ -81,6 +77,7 @@ stories.add("Mixed width elements", () => {
 
   const cellRendererAltWidths = ({ columnIndex, style }) => {
     const width = columnIndex % 3 === 0 ? 300 : 200;
+
     return (
       <div style={style}>
         <div

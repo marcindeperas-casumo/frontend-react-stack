@@ -3,65 +3,63 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
 import "./SportsScrollablePaginatedButton.scss";
-import type { State, ClickHandlerType } from "Components/ScrollablePaginated";
+import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 type Props = {
-  scrollableState: State,
+  hasNextPage: boolean,
+  hasPreviousPage: boolean,
   scrollableClickHandler: ClickHandlerType,
 };
 
 const SportsScrollablePaginatedButton = ({
-  scrollableState,
+  hasNextPage,
+  hasPreviousPage,
   scrollableClickHandler,
-}: Props) => {
-  const showLeftButton = !scrollableState.isStartOfScroll;
-  const showRightButton = !scrollableState.isEndOfScroll;
-
-  return (
-    <Flex
-      justify="space-between"
-      className="c-sports-nav-paginated__controls u-pointer-events-none"
-      gap="none"
-    >
-      <div className="o-flex u-transform--flip-x">
-        {showLeftButton && (
-          <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
-            <div
-              className="u-pointer-events-initial"
-              onClick={e => scrollableClickHandler("left")}
-            >
-              <div className="u-padding--md u-cursor-pointer">
-                <ArrowRightIcon className="t-color-grey-dark-3" />
-              </div>
+}: Props) => (
+  <Flex
+    justify="space-between"
+    className="c-sports-nav-paginated__controls u-pointer-events-none"
+    gap="none"
+  >
+    <div className="o-flex u-transform--flip-x">
+      {hasPreviousPage && (
+        <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
+          <div
+            className="u-pointer-events-initial"
+            onClick={e => scrollableClickHandler("left")}
+          >
+            <div className="u-padding--md u-cursor-pointer">
+              <ArrowRightIcon className="t-color-grey-dark-3" />
             </div>
           </div>
-        )}
-      </div>
-      <div className="o-flex">
-        {showRightButton && (
-          <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
-            <div
-              className="u-pointer-events-initial"
-              onClick={e => scrollableClickHandler("right")}
-            >
-              <div className="u-padding--md u-cursor-pointer">
-                <ArrowRightIcon className="t-color-grey-dark-3" />
-              </div>
+        </div>
+      )}
+    </div>
+    <div className="o-flex">
+      {hasNextPage && (
+        <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
+          <div
+            className="u-pointer-events-initial"
+            onClick={e => scrollableClickHandler("right")}
+          >
+            <div className="u-padding--md u-cursor-pointer">
+              <ArrowRightIcon className="t-color-grey-dark-3" />
             </div>
           </div>
-        )}
-      </div>
-    </Flex>
-  );
-};
+        </div>
+      )}
+    </div>
+  </Flex>
+);
 
 export default SportsScrollablePaginatedButton;
 
 export const sportsPagerButtonRenderer = (
-  scrollableState: State,
+  hasNextPage: boolean,
+  hasPreviousPage: boolean,
   scrollableClickHandler: ClickHandlerType
 ) => {
-  const props = { scrollableState, scrollableClickHandler };
+  const props = { hasNextPage, hasPreviousPage, scrollableClickHandler };
 
   return <SportsScrollablePaginatedButton {...props} />;
 };
