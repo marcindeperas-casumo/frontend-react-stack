@@ -16,6 +16,12 @@ type Props = {
 };
 
 export class CasumoAvatar extends PureComponent<Props> {
+  static defaultProps = {
+    belt: "rope",
+    level: 1,
+    backgroundColour: "teal",
+  };
+
   render() {
     const { belt, level, backgroundColour } = this.props;
 
@@ -36,12 +42,6 @@ export class CasumoAvatar extends PureComponent<Props> {
       </div>
     );
   }
-
-  static defaultProps = {
-    belt: "rope",
-    level: 1,
-    backgroundColour: "teal",
-  };
 }
 
 export function getClassModifierByBelt(belt: BeltType): string {

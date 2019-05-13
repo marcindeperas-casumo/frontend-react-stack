@@ -35,6 +35,12 @@ export const ProgressBarFiller = (props: Props) => {
 };
 
 export class ProgressBar extends PureComponent<Props> {
+  static defaultProps = {
+    progress: 0,
+    foregroundColour: "yellow",
+    backgroundColour: "grey-dark-4",
+  };
+
   render() {
     return (
       <div
@@ -47,10 +53,4 @@ export class ProgressBar extends PureComponent<Props> {
       </div>
     );
   }
-
-  static defaultProps = {
-    progress: 0,
-    foregroundColour: "yellow",
-    backgroundColour: "grey-dark-4",
-  };
 }
