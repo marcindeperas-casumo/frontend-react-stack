@@ -1,3 +1,4 @@
+// Yet to move this to CUDL
 export { default as DepositIcon } from "./Icons/deposit.svg";
 export { default as SportIcon } from "./Icons/sport.svg";
 export { default as BasicSpinsIcon } from "./Icons/spins-1star.svg";
