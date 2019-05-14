@@ -13,8 +13,9 @@ const shape = () => {
 
 stories.add("Default", () => (
   <MaskItem id="123" width={144} height={80} shapeMask={shape}>
-    {/* eslint-disable-next-line prettier/prettier */}
-      <div className="t-background-yellow" style={{ width: "200px", height: "200px" }}></div>
+    <div
+      className="t-background-yellow"
+      style={{ width: "200px", height: "200px" }}
     />
   </MaskItem>
 ));
