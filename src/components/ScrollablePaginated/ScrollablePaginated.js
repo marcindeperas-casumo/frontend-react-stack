@@ -85,9 +85,11 @@ export default class ScrollablePaginated extends React.PureComponent<
 
   scrollHandler = ({ scrollLeft }: Scroll) => {
     this.currentScrollOffset = scrollLeft;
+
     if (!isEmpty(this.gridRefCurrent)) {
       this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
       this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
+
       this.setState({
         hasNextPage: !this.isEndOfScroll,
         hasPreviousPage: !this.isStartOfScroll,
