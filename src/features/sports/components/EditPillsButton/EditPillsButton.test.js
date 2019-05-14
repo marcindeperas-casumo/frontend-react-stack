@@ -23,7 +23,7 @@ describe("<EditPillsButton />", () => {
     const newClassNames = "test-class-1 test-class-2";
     const rendered = shallow(
       <EditPillsButton onClick={() => {}} className={newClassNames} />
-    ).find(".c-edit-pills-button");
+    ).find('[data-test="edit-pills-button-container"]');
 
     expect(rendered.hasClass(newClassNames)).toBe(true);
     expect(rendered.hasClass(defaultClasses)).toBe(false);

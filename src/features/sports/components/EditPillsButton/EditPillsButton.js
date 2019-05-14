@@ -31,7 +31,10 @@ const EditPillsButton = ({
     className="u-cursor-pointer"
     onClick={onClick}
   >
-    <Flex.Item className={classNames("c-edit-pills-button", className)}>
+    <Flex.Item
+      className={classNames("c-edit-pills-button", className)}
+      data-test="edit-pills-button-container"
+    >
       <CrossIcon />
     </Flex.Item>
     {label && (
