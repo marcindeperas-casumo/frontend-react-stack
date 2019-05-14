@@ -18,7 +18,7 @@ export const myButtonRenderer = (
     <Flex.Item>
       {hasPreviousPage && (
         <div
-          onClick={e => scrollableClickHandler("left")}
+          onClick={e => scrollableClickHandler("previous")}
           className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
         >
           <ArrowLeftIcon className="t-color-grey-light-3" />
@@ -28,7 +28,7 @@ export const myButtonRenderer = (
     <Flex.Item>
       {hasNextPage && (
         <div
-          onClick={e => scrollableClickHandler("right")}
+          onClick={e => scrollableClickHandler("next")}
           className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
         >
           <ArrowRightIcon className="t-color-grey-light-3" />

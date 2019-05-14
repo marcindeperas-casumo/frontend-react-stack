@@ -26,7 +26,7 @@ const SportsNavPagerButton = ({
         <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
           <div
             className="u-pointer-events-initial"
-            onClick={e => scrollableClickHandler("left")}
+            onClick={e => scrollableClickHandler("previous")}
           >
             <div className="u-padding--md u-cursor-pointer">
               <ArrowRightIcon className="t-color-grey-dark-3" />
@@ -40,7 +40,7 @@ const SportsNavPagerButton = ({
         <div className="o-flex-justify--center o-flex-align--center c-sports-nav-paginated__button">
           <div
             className="u-pointer-events-initial"
-            onClick={e => scrollableClickHandler("right")}
+            onClick={e => scrollableClickHandler("next")}
           >
             <div className="u-padding--md u-cursor-pointer">
               <ArrowRightIcon className="t-color-grey-dark-3" />

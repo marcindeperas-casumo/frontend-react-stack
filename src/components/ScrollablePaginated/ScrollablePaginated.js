@@ -16,7 +16,7 @@ export type State = {
   hasPreviousPage: boolean,
 };
 
-export type ClickHandlerType = (direction: "left" | "right") => void;
+export type ClickHandlerType = (direction: "previous" | "next") => void;
 
 type Props = {
   /** The height of the horizontal scrolling container in pixels. */
@@ -107,7 +107,7 @@ export default class ScrollablePaginated extends React.PureComponent<
     const nextColumn = clamp(
       0,
       columnCount,
-      direction === "right"
+      direction === "next"
         ? this.startColumn + this.visibleColumns
         : this.startColumn - this.visibleColumns
     );
