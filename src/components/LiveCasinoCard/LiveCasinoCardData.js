@@ -1,14 +1,23 @@
+// @flow
 import React from "react";
 import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import { CMSField } from "Components/CMSField";
+import type { liveCasinoLobby } from "Types/liveCasinoLobby";
+import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
+type Props = {|
+  lobby: liveCasinoLobby,
+|};
+
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
+  const getTextColor = color =>
+    contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
   return (
     <React.Fragment>
@@ -21,14 +30,10 @@ const renderResults = ({ results, type }) => {
               key={i}
               tag="div"
               bgColor={color}
-              txtColor={
-                contains(color, ["yellow", "grey-light-1"])
-                  ? "grey-dark-3"
-                  : "white"
-              }
+              txtColor={getTextColor(color)}
               circle={true}
               className={classNames(
-                borderColor && `c-card-data-badge-border-${borderColor}`
+                borderColor && `c-card-data-badge-shadow-${borderColor}`
               )}
             >
               {getResultsDisplay(type, n)}
@@ -40,7 +45,7 @@ const renderResults = ({ results, type }) => {
         size="xs"
         className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
-        {type === "TopCard"
+        {type === TYPES.TOPCARD
           ? getText("recent_letters")
           : getText("recent_numbers")}
       </Text>
@@ -94,16 +99,16 @@ const isIn = flip(contains);
 const LobbyType = ({ lobby }) => {
   const { type } = lobby;
   return cond([
-    [equals("Blackjack"), () => renderSeats(lobby)],
+    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
     [
-      isIn(["MoneyWheel", "Roulette", "TopCard", "Monopoly"]),
+      isIn([TYPES.MONEYWHEEL, TYPES.ROULETTE, TYPES.TOPCARD, TYPES.MONOPOLY]),
       () => renderResults(lobby),
     ],
     [T, () => null],
   ])(type);
 };
 
-const LiveCasinoCardData = ({ lobby }) => {
+const LiveCasinoCardData = ({ lobby }: Props) => {
   return (
     <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
       <LobbyType lobby={lobby} />

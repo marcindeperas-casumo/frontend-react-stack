@@ -1,4 +1,6 @@
+// @flow
 import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
+import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 
 const COLORS = {
   BLACK: "grey-dark-2",
@@ -126,33 +128,37 @@ const getMonopolyColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
-export const getBadgeColor = (type, n) => {
-  if (type === "MoneyWheel") {
+export const getBadgeColor = (type: string, n: string) => {
+  if (type === TYPES.MONEYWHEEL) {
     return getMoneyWheelColor(n);
   }
-  if (type === "Roulette") {
+  if (type === TYPES.ROULETTE) {
     return getRouletteColor(n);
   }
-  if (type === "TopCard") {
+  if (type === TYPES.TOPCARD) {
     return getTopCardColor(n);
   }
-  if (type === "Monopoly") {
+  if (type === TYPES.MONOPOLY) {
     return getMonopolyColor(n);
   }
+
+  return COLORS.BLACK;
 };
 
-export const getBadgeBorderColor = (type, n) => {
-  if (type === "Monopoly") {
+export const getBadgeBorderColor = (type: string, n: string) => {
+  if (type === TYPES.MONOPOLY) {
     return prop(n, monopolyResultsBorderColor);
   }
+
+  return null;
 };
 
-export const getResultsDisplay = (type, n) => {
-  if (type === "TopCard") {
+export const getResultsDisplay = (type: string, n: string) => {
+  if (type === TYPES.TOPCARD) {
     return propOr(n, n, topCardLettersDisplay);
   }
 
-  if (type === "Monopoly") {
+  if (type === TYPES.MONOPOLY) {
     return propOr(n, n, monopolyResultsDisplay);
   }
 
