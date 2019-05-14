@@ -18,7 +18,7 @@
             "subpatterns": {
                 "namespace": ".(o-|c-|u-|t-|s-|is-|has-|_|js-|qa-)",
                 "block": "[a-z][a-z0-9-]+",
-                "modifier": "--[a-z0-9-]+",
+                "modifier": "--[a-z0-9-\\\\////]+",
                 "breakpoint": "[\\\\@a-z0-9-]+",
                 "element": "__[a-z][a-z0-9-]+",
                 "state": ".(is-|has-)[a-z0-9-]+",

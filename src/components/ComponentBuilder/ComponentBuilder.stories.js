@@ -1,10 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
-import ComponentBuilder from "Components/ComponentBuilder";
-import ComponentBuilderRenderer from "Components/ComponentBuilder/ComponentBuilderRenderer";
-import ComponentBuilderCMS from "Components/ComponentBuilder/ComponentBuilderCMS";
+import { ComponentBuilder } from "Components/ComponentBuilder";
+import { ComponentBuilderRenderer } from "Components/ComponentBuilder/ComponentBuilderRenderer";
+import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 
@@ -57,30 +56,24 @@ const ComponentBuilderCMSStory = () => (
 );
 
 if (isNotChromatic) {
-  stories.add(
-    "ComponentBuilder (Connected)",
-    ComponentBuilderStory,
-    info({
+  stories.add("ComponentBuilder (Connected)", ComponentBuilderStory, {
+    info: {
       text: `This component is rendering out components defined in a CMS page (indentified by its slug).
       If the page is not fetched yet it will start fetching it.`,
-    })
-  );
+    },
+  });
 }
 
-stories.add(
-  "ComponentBuilderRenderer",
-  ComponentBuilderRendererStory,
-  info({
+stories.add("ComponentBuilderRenderer", ComponentBuilderRendererStory, {
+  info: {
     text:
       "This component is rendering out components defined by a data structure.",
-  })
-);
+  },
+});
 
-stories.add(
-  "ComponentBuilderCMS",
-  ComponentBuilderCMSStory,
-  info({
+stories.add("ComponentBuilderCMS", ComponentBuilderCMSStory, {
+  info: {
     text: `The component is rendering out the components defined by a data structure,
       and also calls the 'fetch' prop on component mount.`,
-  })
-);
+  },
+});

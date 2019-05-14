@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import GameSearchSuggestionsList from "./GameSearchSuggestionsList";
+import { GameSearchSuggestionsList } from "./GameSearchSuggestionsList";
 
 describe("GameSearch", () => {
   test("Should render a SectionList", () => {

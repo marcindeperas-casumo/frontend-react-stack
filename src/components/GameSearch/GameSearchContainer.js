@@ -2,7 +2,7 @@
 import React from "react";
 import { createStructuredSelector } from "reselect";
 import { connect } from "react-redux";
-import GameSearch from "Components/GameSearch/GameSearch";
+import { GameSearch } from "Components/GameSearch/GameSearch";
 import {
   cmsPageSlug,
   gameSearchResults,
@@ -36,8 +36,6 @@ const GameSearchConnected = connect(
 
 type Props = {};
 
-const GameSearchContainer = (props: Props) => (
+export const GameSearchContainer = (props: Props) => (
   <GameSearchConnected {...props} />
 );
-
-export default GameSearchContainer;

@@ -18,7 +18,7 @@ type State = {
   query: string,
 };
 
-export default class GameSearchInput extends PureComponent<Props, State> {
+export class GameSearchInput extends PureComponent<Props, State> {
   static defaultProps = {
     trackHandler: tracker.track,
   };

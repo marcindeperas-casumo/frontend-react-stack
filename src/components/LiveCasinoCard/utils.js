@@ -1,4 +1,6 @@
-import { cond, flip, isNil, pipe, prop, T, when } from "ramda";
+// @flow
+import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
+import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 
 const COLORS = {
   BLACK: "grey-dark-2",
@@ -8,6 +10,8 @@ const COLORS = {
   BLUE: "blue-light-1",
   PURPLE: "purple",
   ORANGE: "orange",
+  GREY_LIGHT_1: "grey-light-1",
+  GREY_LIGHT_3: "grey-light-3",
 };
 
 /* Roulette */
@@ -83,12 +87,12 @@ const getMoneyWheelColor = pipe(
 
 /* Top Card */
 
-export const topCardLetters = { L: "H", T: "D", R: "A" };
+export const topCardLettersDisplay = { L: "H", T: "D", R: "A" };
 
 const topCardResults = {
-  L: "red",
-  T: "yellow",
-  R: "blue-light-1",
+  L: COLORS.RED,
+  T: COLORS.YELLOW,
+  R: COLORS.BLUE,
 };
 
 const getTopCardColor = pipe(
@@ -96,14 +100,67 @@ const getTopCardColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
-export const getBadgeColor = (type, n) => {
-  if (type === "MoneyWheel") {
+/* Monopoly */
+
+const monopolyResultsDisplay = {
+  "2r": "2",
+  "4r": "4",
+  ch: "?", // `ch` stands for "Chance" so we display `?`
+};
+
+const monopolyResultsColors = {
+  "1": COLORS.GREY_LIGHT_1,
+  "2": COLORS.GREEN,
+  "5": COLORS.RED,
+  "10": COLORS.BLUE,
+  "2r": COLORS.BLACK,
+  "4r": COLORS.BLACK,
+  ch: COLORS.ORANGE,
+};
+
+const monopolyResultsBorderColor = {
+  "2r": COLORS.GREY_LIGHT_3,
+  "4r": COLORS.YELLOW,
+};
+
+const getMonopolyColor = pipe(
+  flip(prop)(monopolyResultsColors),
+  when(isNil, () => COLORS.BLACK)
+);
+
+export const getBadgeColor = (type: string, n: string) => {
+  if (type === TYPES.MONEYWHEEL) {
     return getMoneyWheelColor(n);
   }
-  if (type === "Roulette") {
+  if (type === TYPES.ROULETTE) {
     return getRouletteColor(n);
   }
-  if (type === "TopCard") {
+  if (type === TYPES.TOPCARD) {
     return getTopCardColor(n);
   }
+  if (type === TYPES.MONOPOLY) {
+    return getMonopolyColor(n);
+  }
+
+  return COLORS.BLACK;
+};
+
+export const getBadgeBorderColor = (type: string, n: string) => {
+  if (type === TYPES.MONOPOLY) {
+    return prop(n, monopolyResultsBorderColor);
+  }
+
+  return null;
+};
+
+export const getResultsDisplay = (type: string, n: string) => {
+  if (type === TYPES.TOPCARD) {
+    return propOr(n, n, topCardLettersDisplay);
+  }
+
+  if (type === TYPES.MONOPOLY) {
+    return propOr(n, n, monopolyResultsDisplay);
+  }
+
+  return isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
 };

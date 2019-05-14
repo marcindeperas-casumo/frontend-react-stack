@@ -105,3 +105,10 @@ export const MODALS = {
   },
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
 };
+export const EVOLUTION_LOBBY_TYPES = {
+  MONEYWHEEL: "MoneyWheel",
+  ROULETTE: "Roulette",
+  TOPCARD: "TopCard",
+  MONOPOLY: "Monopoly",
+  BLACKJACK: "Blackjack",
+};

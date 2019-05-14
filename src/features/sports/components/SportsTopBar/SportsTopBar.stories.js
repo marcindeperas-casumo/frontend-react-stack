@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import SportsTopBar, { hashes } from "./SportsTopBar";
 import mocks from "./__mocks__/termMocks";
@@ -27,26 +26,13 @@ const render = (props, isMobile) => () => (
   </div>
 );
 
-stories.add(
-  "Site: Home Active",
-  render({ currentHash: hashes.home }),
-  info("Site: Home Active")
-);
+stories.add("Site: Home Active", render({ currentHash: hashes.home }));
 
 stories.add(
   "Site: Search Active",
-  render({ currentHash: hashes.home, isSearchVisible: true }),
-  info("Site: Search Active")
+  render({ currentHash: hashes.home, isSearchVisible: true })
 );
 
-stories.add(
-  "Site: My Bets Active",
-  render({ currentHash: hashes.betHistory }),
-  info("Site: My Bets Active")
-);
+stories.add("Site: My Bets Active", render({ currentHash: hashes.betHistory }));
 
-stories.add(
-  "Mobile (hidden)",
-  render({ currentHash: hashes.home }, true),
-  info("Mobile (hidden)")
-);
+stories.add("Mobile (hidden)", render({ currentHash: hashes.home }, true));

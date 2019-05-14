@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import TopLists, { getSlug } from "Components/TopLists/TopLists";
 import MockStore from "Components/MockStore";
 import curated from "Models/curated/__mocks__/curated.json";
@@ -49,10 +48,8 @@ const TopListsStories = () => (
   </MockStore>
 );
 
-stories.add(
-  "TopLists",
-  TopListsStories,
-  info({
+stories.add("TopLists", TopListsStories, {
+  info: {
     text: "Displays the top lists.",
-  })
-);
+  },
+});

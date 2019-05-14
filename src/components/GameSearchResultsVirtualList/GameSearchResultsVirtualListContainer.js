@@ -6,7 +6,7 @@ import {
   gameSearchResultsCountSelector,
   initFetchGameSearchPage,
 } from "Models/gameSearch";
-import GameSearchResultsVirtualList from "./GameSearchResultsVirtualList";
+import { GameSearchResultsVirtualList } from "./GameSearchResultsVirtualList";
 
 const GameSearchResultsVirtualListConnected = connect(
   createStructuredSelector({
@@ -23,8 +23,6 @@ type Props = {
   query: string,
 };
 
-const GameSearchResultsVirtualListContainer = (props: Props) => (
+export const GameSearchResultsVirtualListContainer = (props: Props) => (
   <GameSearchResultsVirtualListConnected {...props} />
 );
-
-export default GameSearchResultsVirtualListContainer;

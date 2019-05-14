@@ -17,7 +17,7 @@ export const ACTION_MAP = {
   "reel-races": "/reel-races",
   sports: "/sports",
 };
-export default class ContentButton extends PureComponent<Props> {
+export class ContentButton extends PureComponent<Props> {
   render() {
     const { text, type } = this.props;
     const url = ACTION_MAP[type];
