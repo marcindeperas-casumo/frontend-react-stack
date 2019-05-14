@@ -105,7 +105,7 @@ const getTopCardColor = pipe(
 const monopolyResultsDisplay = {
   "2r": "2",
   "4r": "4",
-  ch: "?",
+  ch: "?", // `ch` stands for "Chance" so we display `?`
 };
 
 const monopolyResultsColors = {
