@@ -13,11 +13,17 @@ type Props = {
 };
 
 const MaskItem = ({
+  /** An id for the masked item. This should be unique all through out the page */
   id,
+  /** Total width of the masked element */
   width,
+  /** Total height of the masked element */
   height,
+  /** Class name to attach to the masked item */
   className,
+  /** The shape of the mask to display from the elemen t */
   shapeMask,
+  /** The element to mask */
   children,
 }: Props) => {
   return (
