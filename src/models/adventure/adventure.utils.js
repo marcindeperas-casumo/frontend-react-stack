@@ -8,7 +8,7 @@ import {
 import type { AdventurerLevelProgress, BeltType } from "./adventure.types";
 
 export function isMaxLevel(level: number) {
-  return MAX_LEVEL >= level;
+  return level >= MAX_LEVEL;
 }
 
 export function translateBeltNumberToColour(belt: number = 0) {
