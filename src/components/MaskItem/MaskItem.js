@@ -8,7 +8,7 @@ type Props = {
   width: number,
   height: number,
   className?: string,
-  shapeMask: Function,
+  shapeMask: () => Node,
   children: Node,
 };
 
