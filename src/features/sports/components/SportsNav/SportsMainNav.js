@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
-import type { CellRendererParams } from "react-virtualized";
 import classNames from "classnames";
+import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import type { SportsNavItemType } from "./types";
