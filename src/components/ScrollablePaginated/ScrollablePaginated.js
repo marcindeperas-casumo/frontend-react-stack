@@ -34,9 +34,9 @@ type Props = {
   /** Custom classname for styling the wrapping div elements. */
   className: string,
   /** Number of items to render before/after the visible slice of the grid.
-  Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md
-   */
+      Note this is limited to 10 for performance reasons: https://github.com/bvaughn/react-virtualized/blob/master/docs/overscanUsage.md **/
   overscanColumnCount?: overscanColumnCountType,
+  /** A way to force the column widths to recalculate by changing the string passed here */
   cacheBuster?: string,
 };
 
