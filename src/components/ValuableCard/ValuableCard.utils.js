@@ -20,9 +20,7 @@ export const VALUABLE_ICON = {
 };
 
 export const CoinValueToSpinType = coinValue => {
-  if (coinValue >= 0.1 && coinValue <= 0.3) {
-    return VALUABLE_SPIN_TYPES.BASIC_SPINS;
-  } else if (coinValue > 0.3 && coinValue <= 0.9) {
+  if (coinValue > 0.3 && coinValue <= 0.9) {
     return VALUABLE_SPIN_TYPES.BONUS;
   } else if (coinValue > 0.9 && coinValue <= 3) {
     return VALUABLE_SPIN_TYPES.SUPER;
