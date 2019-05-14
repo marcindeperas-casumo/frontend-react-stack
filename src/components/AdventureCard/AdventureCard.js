@@ -11,12 +11,10 @@ export type Props = {
   content: AdventureContent,
   isContentFetched: boolean,
   isAdventurerFetched: boolean,
-  playerId: string,
-  sessionId: string,
-  fetchAdventurer: () => void,
-  fetchContent: () => void,
-  subscribeToUpdates: (playerId: string, sessionId: string) => void,
-  unsubscribeFromUpdates: (playerId: string) => void,
+  fetchAdventurer: Function,
+  fetchContent: Function,
+  subscribeToAdventureUpdates: Function,
+  unsubscribeFromAdventureUpdates: Function,
 };
 
 export default class AdventureCard extends PureComponent<Props> {
@@ -26,9 +24,7 @@ export default class AdventureCard extends PureComponent<Props> {
       isAdventurerFetched,
       fetchAdventurer,
       fetchContent,
-      playerId,
-      sessionId,
-      subscribeToUpdates,
+      subscribeToAdventureUpdates,
     } = this.props;
 
     if (!isContentFetched) {
@@ -39,10 +35,10 @@ export default class AdventureCard extends PureComponent<Props> {
       fetchAdventurer();
     }
 
-    subscribeToUpdates(playerId, sessionId);
+    subscribeToAdventureUpdates();
   }
   componentWillUnmount() {
-    this.props.unsubscribeFromUpdates(this.props.playerId);
+    this.props.unsubscribeFromAdventureUpdates();
   }
 
   render() {

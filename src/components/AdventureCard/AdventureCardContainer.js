@@ -11,7 +11,7 @@ import {
 } from "Models/adventure";
 import {
   subscribeToAdventureUpdates,
-  unsubscribeToAdventureUpdates,
+  unsubscribeFromAdventureUpdates,
 } from "Models/cometd";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import AdventureCard from "Components/AdventureCard/AdventureCard";
@@ -28,9 +28,38 @@ export default connect(
   dispatch => ({
     fetchAdventurer: () => dispatch(initAdventurerSaga()),
     fetchContent: () => dispatch(fetchPageBySlug(CMS_CONTENT_SLUG)),
-    subscribeToUpdates: (playerId, sessionId) =>
+    dispatchSubscribeToAdventureUpdates: (playerId, sessionId) =>
       dispatch(subscribeToAdventureUpdates(playerId, sessionId)),
-    unsubscribeFromUpdates: playerId =>
-      dispatch(unsubscribeToAdventureUpdates(playerId)),
-  })
+    dispatchUnsubscribeFromAdventureUpdates: playerId =>
+      dispatch(unsubscribeFromAdventureUpdates(playerId)),
+  }),
+  (stateProps, dispatchProps) => {
+    const {
+      playerId,
+      sessionId,
+      adventurer,
+      content,
+      isContentFetched,
+      isAdventurerFetched,
+    } = stateProps;
+    const {
+      dispatchSubscribeToAdventureUpdates,
+      dispatchUnsubscribeFromAdventureUpdates,
+      fetchAdventurer,
+      fetchContent,
+    } = dispatchProps;
+
+    return {
+      adventurer,
+      content,
+      isContentFetched,
+      isAdventurerFetched,
+      fetchAdventurer,
+      fetchContent,
+      subscribeToAdventureUpdates: () =>
+        dispatchSubscribeToAdventureUpdates(playerId, sessionId),
+      unsubscribeFromAdventureUpdates: () =>
+        dispatchUnsubscribeFromAdventureUpdates(playerId),
+    };
+  }
 )(AdventureCard);

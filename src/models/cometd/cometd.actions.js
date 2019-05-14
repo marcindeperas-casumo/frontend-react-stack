@@ -66,7 +66,7 @@ export const subscribeToAdventureUpdates = (playerId, sessionId) => {
   });
 };
 
-export const unsubscribeToAdventureUpdates = playerId => {
+export const unsubscribeFromAdventureUpdates = playerId => {
   return unsubscribe({
     channel: `${CHANNELS.ADVENTURE}/${playerId}`,
   });
