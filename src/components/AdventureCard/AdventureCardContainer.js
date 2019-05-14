@@ -1,6 +1,7 @@
 // @flow
 
 import { connect } from "react-redux";
+import { omit } from "ramda";
 import { playerIdSelector, sessionIdSelector } from "Models/handshake";
 import {
   adventureContentSelector,
@@ -34,14 +35,7 @@ export default connect(
       dispatch(unsubscribeFromAdventureUpdates(playerId)),
   }),
   (stateProps, dispatchProps) => {
-    const {
-      playerId,
-      sessionId,
-      adventurer,
-      content,
-      isContentFetched,
-      isAdventurerFetched,
-    } = stateProps;
+    const { playerId, sessionId } = stateProps;
     const {
       dispatchSubscribeToAdventureUpdates,
       dispatchUnsubscribeFromAdventureUpdates,
@@ -50,10 +44,7 @@ export default connect(
     } = dispatchProps;
 
     return {
-      adventurer,
-      content,
-      isContentFetched,
-      isAdventurerFetched,
+      ...omit(["playerId", "sessionId"], stateProps),
       fetchAdventurer,
       fetchContent,
       subscribeToAdventureUpdates: () =>
