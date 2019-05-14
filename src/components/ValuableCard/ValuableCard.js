@@ -24,7 +24,6 @@ type Props = {
   valuableType: ValuableType,
   currency: string,
   valuableType: ValuableType,
-  backgroundImageUrl: string,
   coinValue: number,
   game: Game,
 };
