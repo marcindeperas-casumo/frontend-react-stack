@@ -1,12 +1,11 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import isNotChromatic from "Storybook/isNotChromatic";
 import TrackProvider from "./";
 
 const stories = storiesOf("TrackProvider", module);
 
 if (isNotChromatic) {
-  stories.add("Default", () => <TrackProvider />, info({ text: "Default" }));
+  stories.add("Default", () => <TrackProvider />);
 }

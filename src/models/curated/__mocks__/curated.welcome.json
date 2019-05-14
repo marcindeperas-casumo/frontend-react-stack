@@ -1,14 +1,13 @@
 {
   "critical_for_compliance": false,
-  "small_image": "https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
-  "medium_image": "https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
-  "large_image": "https://cms.casumo.com/wp-content/uploads/2019/01/mobile-deposit.png",
-  "game": [],
-  "gameId": "welcome-offer-test",
-  "header": "TRY OUR<br/> NEW<br/> GAME",
-  "subtitle": "PROMOTIONS",
-  "primary_action_text": "Play",
-  "promotions_legal_text": "Nulla aliquam dictum quam, ut euismod est ornare ac. Phasellus et ipsum sed neque sodales sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Nulla porttitor ornare neque, vitae dignissim ipsum venenatis quis. Nullam eget erat laoreet, aliquam augue nec, rutrum tellus. Nam volutpat rutrum ipsum at convallis. Curabitur tempor malesuada massa, non suscipit turpis fringilla et. Nulla facilisi. Curabitur laoreet arcu tristique, pellentesque nulla sed, sodales augue. Morbi semper mauris quam, auctor eleifend tortor tristique et.",
-  "typeOfCurated": "promotion",
-  "gameData": {}
+  "header": "Deposit Now</br>to collect your welcome bonus",
+  "primary_action_text": "Deposit Now",
+  "small_image": "https://cms.casumo.com/wp-content/uploads/2019/01/img-mobile-welcomeoffer-green.png",
+  "medium_image": "https://cms.casumo.com/wp-content/uploads/2019/01/img-tablet-welcomeoffer-green.png",
+  "large_image": "https://cms.casumo.com/wp-content/uploads/2019/01/img-desktop-welcomeoffer-green.png",
+  "typeOfCurated": "welcome offer",
+  "promotions_legal_text": "Make your first deposit today and double it up to £300. 18+. minimum deposit £10. 30x wager requirement. T&C apply",
+  "subtitle": "Welcome Bonus",
+  "promotion": "",
+  "game": ""
 }

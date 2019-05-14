@@ -7,7 +7,6 @@ import PromotionGalleryCard from "Components/PromotionGalleryCard/PromotionGalle
 import promotions from "Components/PromotionGalleryCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
-import info from "../../../.storybook/storybookInfo";
 
 const stories = storiesOf("PromotionGalleryCard", module);
 
@@ -23,28 +22,20 @@ const promotionFields = pick(
 );
 
 if (isNotChromatic) {
-  stories.add(
-    "Default (Connected)",
-    () => (
-      <MockStore state={state}>
-        <PromotionGalleryCardConnected slug="promotions.boosted-reelraces" />
-      </MockStore>
-    ),
-    info({ text: "Displays the promotion card" })
-  );
+  stories.add("Default (Connected)", () => (
+    <MockStore state={state}>
+      <PromotionGalleryCardConnected slug="promotions.boosted-reelraces" />
+    </MockStore>
+  ));
 }
 
-stories.add(
-  "Default (Presentational)",
-  () => (
-    <PromotionGalleryCard
-      badge={promotionFields.campaign_badge}
-      dates={promotionFields.dates}
-      image={promotionFields.image}
-      link={promotionFields.link}
-      title={promotionFields.title}
-      isFetched={true}
-    />
-  ),
-  info({ text: "Displays the promotion card" })
-);
+stories.add("Default (Presentational)", () => (
+  <PromotionGalleryCard
+    badge={promotionFields.campaign_badge}
+    dates={promotionFields.dates}
+    image={promotionFields.image}
+    link={promotionFields.link}
+    title={promotionFields.title}
+    isFetched={true}
+  />
+));

@@ -2,7 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import info from "Storybook/storybookInfo";
 import { ModalsArea } from "Features/sports/components/Modals";
 import { SportsModal } from "./SportsModal";
 
@@ -23,59 +22,44 @@ const content = (
   </div>
 );
 
-stories.add(
-  "Default",
-  () => (
-    <ModalsArea>
-      <SportsModal>
-        <SportsModal.Header onClose={action("onClose")}>
-          This is the header
-        </SportsModal.Header>
+stories.add("Default", () => (
+  <ModalsArea>
+    <SportsModal>
+      <SportsModal.Header onClose={action("onClose")}>
+        This is the header
+      </SportsModal.Header>
 
-        <SportsModal.Content>{content}</SportsModal.Content>
+      <SportsModal.Content>{content}</SportsModal.Content>
 
-        <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-      </SportsModal>
-    </ModalsArea>
-  ),
-  info({ text: "Default" })
-);
+      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
+    </SportsModal>
+  </ModalsArea>
+));
 
-stories.add(
-  "With back",
-  () => (
-    <ModalsArea>
-      <SportsModal>
-        <SportsModal.Header
-          onClose={action("onClose")}
-          onBack={action("onBack")}
-        >
-          This is the header
-        </SportsModal.Header>
+stories.add("With back", () => (
+  <ModalsArea>
+    <SportsModal>
+      <SportsModal.Header onClose={action("onClose")} onBack={action("onBack")}>
+        This is the header
+      </SportsModal.Header>
 
-        <SportsModal.Content>{content}</SportsModal.Content>
+      <SportsModal.Content>{content}</SportsModal.Content>
 
-        <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-      </SportsModal>
-    </ModalsArea>
-  ),
-  info({ text: "Default" })
-);
+      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
+    </SportsModal>
+  </ModalsArea>
+));
 
-stories.add(
-  "Long content",
-  () => (
-    <ModalsArea>
-      <SportsModal>
-        <SportsModal.Header>This is the header</SportsModal.Header>
+stories.add("Long content", () => (
+  <ModalsArea>
+    <SportsModal>
+      <SportsModal.Header>This is the header</SportsModal.Header>
 
-        <SportsModal.Content>
-          {content} {content} {content} {content}
-        </SportsModal.Content>
+      <SportsModal.Content>
+        {content} {content} {content} {content}
+      </SportsModal.Content>
 
-        <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-      </SportsModal>
-    </ModalsArea>
-  ),
-  info({ text: "Default" })
-);
+      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
+    </SportsModal>
+  </ModalsArea>
+));
