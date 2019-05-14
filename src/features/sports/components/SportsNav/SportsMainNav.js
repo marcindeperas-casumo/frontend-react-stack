@@ -7,7 +7,7 @@ import EditPillsButton from "Features/sports/components/EditPillsButton";
 import type { SportsNavItemType } from "./types";
 import SportsNavTab from "./SportsNavTab";
 import SportsSingleNavTab from "./SportsSingleNavTab";
-import { sportsPagerButtonRenderer } from "./SportsScrollablePaginatedButton";
+import { sportsPagerButtonRenderer } from "./SportsNavPagerButton";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,

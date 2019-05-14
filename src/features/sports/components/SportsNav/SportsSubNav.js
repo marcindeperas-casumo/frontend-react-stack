@@ -5,7 +5,7 @@ import ScrollablePaginated from "Components/ScrollablePaginated";
 import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import type { SportsNavItemType } from "./types";
-import { sportsPagerButtonRenderer } from "./SportsScrollablePaginatedButton";
+import { sportsPagerButtonRenderer } from "./SportsNavPagerButton";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,

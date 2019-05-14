@@ -2,7 +2,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ArrowRightIcon } from "@casumo/cmp-icons";
-import "./SportsScrollablePaginatedButton.scss";
+import "./SportsNavPagerButton.scss";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 type Props = {
@@ -11,7 +11,7 @@ type Props = {
   scrollableClickHandler: ClickHandlerType,
 };
 
-const SportsScrollablePaginatedButton = ({
+const SportsNavPagerButton = ({
   hasNextPage,
   hasPreviousPage,
   scrollableClickHandler,
@@ -52,7 +52,7 @@ const SportsScrollablePaginatedButton = ({
   </Flex>
 );
 
-export default SportsScrollablePaginatedButton;
+export default SportsNavPagerButton;
 
 export const sportsPagerButtonRenderer = (
   hasNextPage: boolean,
@@ -61,5 +61,5 @@ export const sportsPagerButtonRenderer = (
 ) => {
   const props = { hasNextPage, hasPreviousPage, scrollableClickHandler };
 
-  return <SportsScrollablePaginatedButton {...props} />;
+  return <SportsNavPagerButton {...props} />;
 };

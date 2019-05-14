@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import SportsScrollablePaginatedButton from "./SportsScrollablePaginatedButton";
+import SportsNavPagerButton from "./SportsNavPagerButton";
 
-const stories = storiesOf("Sports/SportsScrollablePaginatedButton", module);
+const stories = storiesOf("Sports/SportsNavPagerButton", module);
 
 const defaultProps = {
   hasNextPage: false,
@@ -12,7 +12,7 @@ const defaultProps = {
 
 const render = (props = {}) => () => (
   <div className="t-background-grey-light-1">
-    <SportsScrollablePaginatedButton {...{ ...defaultProps, ...props }} />
+    <SportsNavPagerButton {...{ ...defaultProps, ...props }} />
   </div>
 );
 
