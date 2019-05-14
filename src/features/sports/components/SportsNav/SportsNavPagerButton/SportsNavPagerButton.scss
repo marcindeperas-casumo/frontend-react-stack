@@ -13,6 +13,15 @@
   z-index: cudl-z();
 }
 
+.c-sports-nav-paginated__controls {
+  display: none;
+}
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-shell--site .c-sports-nav-paginated__controls {
+  display: flex;
+}
+
 .c-sports-nav-paginated__button {
   background-image: linear-gradient(
     to left,
@@ -21,13 +30,13 @@
   );
 }
 
-// stylelint-disable xi/selector-pattern
+// stylelint-disable-next-line xi/selector-pattern
 .c-sports-nav-paginated .c-sports-nav-paginated__button {
   opacity: 0;
   transition: opacity 0.25s ease-in;
 }
 
+// stylelint-disable-next-line xi/selector-pattern
 .c-sports-nav-paginated:hover .c-sports-nav-paginated__button {
   opacity: 1;
 }
-// stylelint-enable xi/selector-pattern

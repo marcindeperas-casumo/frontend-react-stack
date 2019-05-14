@@ -72,15 +72,16 @@ export default class ScrollablePaginated extends React.PureComponent<
     const scrollingContainer = this.gridRefCurrent._scrollingContainer;
 
     return (
+      scrollingContainer &&
       Math.ceil(scrollingContainer.offsetWidth) +
         Math.ceil(scrollingContainer.scrollLeft) ===
-      scrollingContainer.scrollWidth
+        scrollingContainer.scrollWidth
     );
   }
 
   get isStartOfScroll() {
     const scrollingContainer = this.gridRefCurrent._scrollingContainer;
-    return Math.ceil(scrollingContainer.scrollLeft) === 0;
+    return scrollingContainer && Math.ceil(scrollingContainer.scrollLeft) === 0;
   }
 
   scrollHandler = ({ scrollLeft }: Scroll) => {
