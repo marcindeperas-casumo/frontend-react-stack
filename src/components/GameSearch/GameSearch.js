@@ -1,17 +1,17 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import GameSearchResultsVirtualList from "Components/GameSearchResultsVirtualList";
-import GameSearchInput from "Components/GameSearch/GameSearchInput";
-import GameRowSearch from "Components/GameRowSearch";
+import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList";
+import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
+import { GameRowSearch } from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
-import GameListSkeleton from "Components/GameListSkeleton/GameListSkeleton";
+import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import { PAGE_SIZE } from "Models/gameSearch";
-import GamesVirtualList from "Components/GamesVirtualList";
-import GamesVirtualListTitle from "Components/GamesVirtualList/GamesVirtualListTitle";
-import GameSearchSuggestionsList from "Components/GameSearchSuggestionsList";
+import { GamesVirtualList } from "Components/GamesVirtualList";
+import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
+import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
 
 import "./GameSearch.scss";
 
@@ -26,7 +26,7 @@ type Props = {
   fetchPageBySlug: () => {},
 };
 
-export default class GameSearch extends React.PureComponent<Props> {
+export class GameSearch extends React.PureComponent<Props> {
   componentDidMount() {
     this.props.fetchPageBySlug();
   }
@@ -75,7 +75,9 @@ export default class GameSearch extends React.PureComponent<Props> {
               />
             </div>
           )}
-          {searchResultsCount === 1 && <GameSearchSuggestionsList />}
+          {searchResultsCount === 1 && (
+            <GameSearchSuggestionsList className="u-game-search-max-width" />
+          )}
         </TrackProvider>
       );
     } else if (query.length) {

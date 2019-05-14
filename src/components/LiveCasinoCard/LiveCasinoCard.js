@@ -8,7 +8,7 @@ import { compose, prop } from "ramda";
 import { decodeString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
-import CMSField from "Components/CMSField";
+import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
@@ -85,7 +85,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         </Flex.Block>
         <Flex.Item>
           <TrackClick
-            eventName={EVENTS.GAME_LAUNCH}
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
             <Button className="u-text-nowrap u-text-transform-capitalize">

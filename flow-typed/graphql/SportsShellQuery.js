@@ -10,7 +10,7 @@
 
 export type SportsShellQuery = {
   hasSelectedFavourites: boolean,
-  searchVisible: boolean,
+  isSearchVisible: boolean,
 };
 
 /* @flow */

@@ -1,10 +1,13 @@
+//@flow
 import { combineReducers } from "redux";
 import { reducer as router } from "Models/router";
 import { reducer as fetch } from "Models/fetch";
 import { reducer as handshake } from "Models/handshake";
 import { reducer as gameSearch } from "Models/gameSearch";
 import { reducer as playerGames } from "Models/playerGames";
+import { reducer as promotions } from "Models/promotions";
 import { reducer as schema } from "Models/schema";
+import { modalReducer as modal } from "Models/modal";
 
 const rootReducer = combineReducers({
   router,
@@ -12,7 +15,9 @@ const rootReducer = combineReducers({
   handshake,
   gameSearch,
   playerGames,
+  promotions,
   schema,
+  modal,
 });
 
 export default rootReducer;

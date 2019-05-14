@@ -1,7 +1,12 @@
 .u-content-width--tablet {
+  margin: auto;
+
   @include cudl-breakpoint(tablet) {
-    margin: auto;
     width: 408px;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    width: auto;
   }
 }
 

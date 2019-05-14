@@ -2,7 +2,7 @@
 import * as React from "react";
 import { append, range, assoc } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import GameRowSkeleton from "Components/GameRowSkeleton";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 
@@ -35,7 +35,10 @@ type State = {
   pagesMap: {},
 };
 
-class GameSearchResultsVirtualList extends React.PureComponent<Props, State> {
+export class GameSearchResultsVirtualList extends React.PureComponent<
+  Props,
+  State
+> {
   promises = {
     list: [],
   };
@@ -168,5 +171,3 @@ class GameSearchResultsVirtualList extends React.PureComponent<Props, State> {
     );
   }
 }
-
-export default GameSearchResultsVirtualList;

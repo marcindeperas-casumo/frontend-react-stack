@@ -1,3 +1,3 @@
 // @flow
-export type * from "./GameRowContainer"; // eslint-disable-line import/export
-export { default } from "./GameRowContainer";
+export type * from "./GameRowContainer";
+export { GameRowContainer as GameRow } from "./GameRowContainer";

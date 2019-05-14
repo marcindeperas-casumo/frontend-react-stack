@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
-import GamesVirtualList from "Components/GamesVirtualList/GamesVirtualList";
+import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import {
   playerGamesLetterTitlesSelector,
   preloadFetchPlayerGames,
@@ -25,8 +25,6 @@ type Props = {
   renderItem: Function,
 };
 
-const GamesVirtualListContainer = (props: Props) => (
+export const GamesVirtualListContainer = (props: Props) => (
   <GamesVirtualListConnected {...props} />
 );
-
-export default GamesVirtualListContainer;

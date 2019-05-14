@@ -2,7 +2,7 @@
 import * as React from "react";
 import { append, range, assoc, has } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import GameRowSkeleton from "Components/GameRowSkeleton";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 
 const ROW_HEIGHT = 80;
@@ -31,7 +31,7 @@ type State = {
   pagesMap: {},
 };
 
-class GamesVirtualList extends React.PureComponent<Props, State> {
+export class GamesVirtualList extends React.PureComponent<Props, State> {
   componentDidMount() {
     this.props.preloadFetchPlayerGamesCount &&
       this.props.preloadFetchPlayerGamesCount();
@@ -182,5 +182,3 @@ class GamesVirtualList extends React.PureComponent<Props, State> {
     );
   }
 }
-
-export default GamesVirtualList;

@@ -3,11 +3,11 @@ import React, { PureComponent } from "react";
 import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
-import CuratedCardFooter from "Components/CuratedCard/CuratedCardFooter";
-import CuratedCardBackground from "Components/CuratedCard/CuratedCardBackground";
-import CuratedCardSkeleton from "Components/CuratedCard/CuratedCardSkeleton";
+import { CuratedCardFooter } from "Components/CuratedCard/CuratedCardFooter";
+import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
+import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
 import { stringToHTML } from "Utils";
-import EitherOr from "Components/EitherOr";
+import { EitherOr } from "Components/EitherOr";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
@@ -42,7 +42,7 @@ export type Props = {|
   curatedSlug: string,
 |};
 
-export default class CuratedCard extends PureComponent<Props> {
+export class CuratedCard extends PureComponent<Props> {
   get cardClickUrl() {
     const { typeOfCurated, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
@@ -86,11 +86,11 @@ export default class CuratedCard extends PureComponent<Props> {
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
         <TrackView
-          eventName={EVENTS.CURATED_COMPONENT_VIEWED}
+          eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
           data={this.trackData}
         />
         <TrackClick
-          eventName={EVENTS.CURATED_COMPONENT_CLICKED}
+          eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
           data={this.trackData}
         >
           <CuratedCardBackground

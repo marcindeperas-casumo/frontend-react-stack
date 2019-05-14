@@ -1,7 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
-import GameRowSearch from "Components/GameRowSearch";
+import { GameRowSearch } from "Components/GameRowSearch";
 import MockStore from "Components/MockStore";
 import SectionList from "./";
 
@@ -26,38 +25,30 @@ const sections = [
   { title: "T", data: ["top-cat"] },
 ];
 
-stories.add(
-  "Alphabetical",
-  () => (
-    <MockStore>
-      <SectionList
-        sections={sections}
-        renderItem={id => <GameRowSearch slug={id} />}
-      />
-    </MockStore>
-  ),
-  info({ text: "alphabetical" })
-);
+stories.add("Alphabetical", () => (
+  <MockStore>
+    <SectionList
+      sections={sections}
+      renderItem={id => <GameRowSearch slug={id} />}
+    />
+  </MockStore>
+));
 
-stories.add(
-  "Section with no games",
-  () => (
-    <MockStore>
-      <SectionList
-        sections={[
-          {
-            title: "I'm a section with results",
-            data: ["mega-fortune-dreams", "mega-fortune"],
-          },
-          { title: "I'm an empty section" },
-          {
-            title: "I'm a section with other results",
-            data: ["hall-of-gods", "divine-fortune"],
-          },
-        ]}
-        renderItem={id => <GameRowSearch slug={id} />}
-      />
-    </MockStore>
-  ),
-  info({ text: "Section with no games" })
-);
+stories.add("Section with no games", () => (
+  <MockStore>
+    <SectionList
+      sections={[
+        {
+          title: "I'm a section with results",
+          data: ["mega-fortune-dreams", "mega-fortune"],
+        },
+        { title: "I'm an empty section" },
+        {
+          title: "I'm a section with other results",
+          data: ["hall-of-gods", "divine-fortune"],
+        },
+      ]}
+      renderItem={id => <GameRowSearch slug={id} />}
+    />
+  </MockStore>
+));

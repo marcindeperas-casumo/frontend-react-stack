@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "Storybook/storybookInfo";
 import SearchNotFound from "Components/SearchNotFound/SearchNotFound";
 import SearchNotFoundContainer from "Components/SearchNotFound";
 import MockStore from "Components/MockStore";
@@ -23,44 +22,32 @@ const state = {
   },
 };
 
-stories.add(
-  "Default (Connected)",
-  () => (
-    <MockStore state={state}>
-      <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-        <SearchNotFoundContainer contentField="no_results_continue_playing" />
-      </div>
-    </MockStore>
-  ),
-  info({ text: "Default (Connected)" })
-);
-
-stories.add(
-  "Default - Continue Playing",
-  () => (
+stories.add("Default (Connected)", () => (
+  <MockStore state={state}>
     <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-      <SearchNotFound
-        image={noResultImage}
-        title="No results found"
-        content="Find another game or continue playing <br /> your last played"
-        startFetch={() => {}}
-      />
+      <SearchNotFoundContainer contentField="no_results_continue_playing" />
     </div>
-  ),
-  info({ text: "Default - Continue Playing" })
-);
+  </MockStore>
+));
 
-stories.add(
-  "Default - Popular Games",
-  () => (
-    <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-      <SearchNotFound
-        image={noResultImage}
-        title="No results found"
-        content="Find another game or try something popular"
-        startFetch={() => {}}
-      />
-    </div>
-  ),
-  info({ text: "Default - Popular Games" })
-);
+stories.add("Default - Continue Playing", () => (
+  <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
+    <SearchNotFound
+      image={noResultImage}
+      title="No results found"
+      content="Find another game or continue playing <br /> your last played"
+      startFetch={() => {}}
+    />
+  </div>
+));
+
+stories.add("Default - Popular Games", () => (
+  <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
+    <SearchNotFound
+      image={noResultImage}
+      title="No results found"
+      content="Find another game or try something popular"
+      startFetch={() => {}}
+    />
+  </div>
+));

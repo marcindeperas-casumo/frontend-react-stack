@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import info from "../../../.storybook/storybookInfo";
 import MaskItem from ".";
 
 const stories = storiesOf("MaskItem", module);
@@ -12,13 +11,10 @@ const shape = () => {
   );
 };
 
-stories.add(
-  "Default",
-  () => (
-    <MaskItem id="123" width={144} height={80} shapeMask={shape}>
-      {/* eslint-disable-next-line prettier/prettier */}
+stories.add("Default", () => (
+  <MaskItem id="123" width={144} height={80} shapeMask={shape}>
+    {/* eslint-disable-next-line prettier/prettier */}
       <div className="t-background-yellow" style={{ width: "200px", height: "200px" }}></div>
-    </MaskItem>
-  ),
-  info({ text: "Default" })
-);
+    />
+  </MaskItem>
+));

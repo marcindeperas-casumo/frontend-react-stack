@@ -4,7 +4,7 @@ import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { propOr } from "ramda";
-import ErrorMessage from "Components/ErrorMessage";
+import { ErrorMessage } from "Components/ErrorMessage";
 import {
   currencySelector,
   countrySelector,
@@ -32,7 +32,7 @@ export const LAUNCHABLE_KAMBI_CLIENT_QUERY = gql`
   query LaunchableKambiClientQuery {
     userHomepage
     kambiClientVisible @client
-    betslipVisible @client
+    isBetslipVisible @client
   }
 `;
 
@@ -102,7 +102,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
                     {sessionTouch => (
                       <>
                         <KambiClient
-                          betslipVisible={data.betslipVisible}
+                          isBetslipVisible={data.isBetslipVisible}
                           currency={currency}
                           market={market}
                           locale={locale}

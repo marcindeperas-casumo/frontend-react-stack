@@ -7,6 +7,8 @@ import {
   commaSeparated,
   createReducer,
   formatCurrency,
+  getSymbolForCurrency,
+  interpolate,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -217,5 +219,43 @@ describe("formatCurrency()", () => {
         value: 66.0,
       })
     ).toBe("€66");
+  });
+});
+
+describe("getSymbolForCurrency()", () => {
+  test("should return proper symbol?", () => {
+    expect(
+      getSymbolForCurrency({
+        currency: "EUR",
+        locale: "en-GB",
+      })
+    ).toBe("€");
+    expect(
+      getSymbolForCurrency({
+        currency: "JPY",
+        locale: "en-GB",
+      })
+    ).toBe("¥");
+    expect(
+      getSymbolForCurrency({
+        currency: "USD",
+        locale: "en-GB",
+      })
+    ).toBe("$");
+  });
+});
+
+describe("interpolate()", () => {
+  test("should replace dynamic strings", () => {
+    const input = "I am a {{  var  }} to be replaced with {{{something}}}";
+    const output = "I am a variable to be replaced with a value";
+    expect(interpolate(input, { var: "variable", something: "a value" })).toBe(
+      output
+    );
+  });
+
+  test("should not replace when param is not defined", () => {
+    const input = "I am a {{var}}";
+    expect(interpolate(input, { foo: "bar" })).toBe(input);
   });
 });
