@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import { type BeltType, isMaxLevel } from "Models/adventure";
-import { beltToColourMap } from "./beltUtils";
+import { beltToColorMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
 import SenseiAvatar from "./sensei-avatar.svg";
@@ -11,7 +11,7 @@ import SenseiAvatar from "./sensei-avatar.svg";
 type Props = {
   /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
-  backgroundColour: string,
+  backgroundColor: string,
   level: number,
 };
 
@@ -19,16 +19,16 @@ export class CasumoAvatar extends PureComponent<Props> {
   static defaultProps = {
     belt: "rope",
     level: 1,
-    backgroundColour: "teal",
+    backgroundColor: "teal",
   };
 
   render() {
-    const { belt, level, backgroundColour } = this.props;
+    const { belt, level, backgroundColor } = this.props;
 
     return (
       <div
         className={classNames(
-          `c-casumo-avatar t-border-r--16 o-ratio t-background-${backgroundColour}`,
+          `c-casumo-avatar t-border-r--16 o-ratio t-background-${backgroundColor}`,
           getClassModifierByBelt(belt)
         )}
       >
@@ -45,7 +45,7 @@ export class CasumoAvatar extends PureComponent<Props> {
 }
 
 export function getClassModifierByBelt(belt: BeltType): string {
-  const className = beltToColourMap[belt] || beltToColourMap.rope;
+  const className = beltToColorMap[belt] || beltToColorMap.rope;
 
   return `t-color-${className}`;
 }

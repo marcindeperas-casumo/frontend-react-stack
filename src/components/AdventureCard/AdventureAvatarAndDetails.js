@@ -17,7 +17,7 @@ export type Props = {
 };
 
 export default class AdventureAvatarAndDetails extends PureComponent<Props> {
-  getAvatarBackgroundColour(inBonusMode: boolean, level: number): string {
+  getAvatarBackgroundColor(inBonusMode: boolean, level: number): string {
     if (isMaxLevel(level)) {
       return "yellow";
     }
@@ -59,10 +59,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
         <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
           <CasumoAvatar
             belt={belt}
-            backgroundColour={this.getAvatarBackgroundColour(
-              inBonusMode,
-              level
-            )}
+            backgroundColor={this.getAvatarBackgroundColor(inBonusMode, level)}
             level={level}
           />
         </Flex.Item>

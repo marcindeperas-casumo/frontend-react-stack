@@ -11,7 +11,7 @@ export function isMaxLevel(level: number) {
   return level >= MAX_LEVEL;
 }
 
-export function translateBeltNumberToColour(belt: number = 0) {
+export function translateBeltNumberToColor(belt: number = 0) {
   const belts: Array<BeltType> = [
     "rope",
     "white",

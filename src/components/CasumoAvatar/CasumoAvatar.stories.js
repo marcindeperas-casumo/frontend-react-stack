@@ -10,8 +10,8 @@ const levels = Array.from(Array(180).keys()).map(value => value + 1);
 
 stories.add("Default", () => {
   const belt = select("Belt level", belts, belts[0]);
-  const backgroundColour = select(
-    "Background Colour",
+  const backgroundColor = select(
+    "Background Color",
     ["teal", "yellow"],
     "teal"
   );
@@ -23,7 +23,7 @@ stories.add("Default", () => {
       style={{ maxWidth: "80px" }}
     >
       <CasumoAvatar
-        backgroundColour={backgroundColour}
+        backgroundColor={backgroundColor}
         belt={belt}
         level={level}
       />

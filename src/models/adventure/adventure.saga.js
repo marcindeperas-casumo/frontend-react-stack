@@ -8,7 +8,7 @@ import {
   fetchAdventurerProgression,
 } from "./adventure.actions";
 import { actionTypes } from "./adventure.constants";
-import { translateBeltNumberToColour } from "./adventure.utils";
+import { translateBeltNumberToColor } from "./adventure.utils";
 
 export function* fetchAdventurerSaga(): * {
   const playerId = yield select(playerIdSelector);
@@ -42,7 +42,7 @@ export function* fetchAdventurerSaga(): * {
   yield put(
     updateEntity({
       [ENTITY_KEYS.ADVENTURER]: {
-        belt: translateBeltNumberToColour(currentBelt),
+        belt: translateBeltNumberToColor(currentBelt),
         inTravelMode,
         // Level is zero based
         level: level + 1,

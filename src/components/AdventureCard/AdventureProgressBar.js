@@ -43,8 +43,8 @@ export default class AdventureProgressBar extends PureComponent<Props> {
         <Flex.Item className="u-width--1/1 u-margin-top--none">
           <ProgressBar
             progress={progressPercentage}
-            backgroundColour="grey-dark-4"
-            foregroundColour={
+            backgroundColor="grey-dark-4"
+            foregroundColor={
               inBonusMode && !isMaxLevel(level) ? "violet" : "yellow"
             }
           />

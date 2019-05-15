@@ -10,10 +10,10 @@ describe("CasumoAvatar", () => {
 
     expect(rendered.find(`.${classModifier}`).length).toBe(1);
   });
-  test("Renders avatar with the correct background colour class applied", () => {
-    const backgroundColour = "violet";
+  test("Renders avatar with the correct background color class applied", () => {
+    const backgroundColor = "violet";
     const rendered = shallow(
-      <CasumoAvatar belt="rope" backgroundColour={backgroundColour} />
+      <CasumoAvatar belt="rope" backgroundColor={backgroundColor} />
     );
 
     expect(rendered.find(`.t-background-violet`).length).toBe(1);
