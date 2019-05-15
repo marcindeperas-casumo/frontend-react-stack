@@ -128,6 +128,19 @@ const getMonopolyColor = pipe(
   when(isNil, () => COLORS.BLACK)
 );
 
+/* Baccarat */
+
+const baccaratHistoryColors = {
+  P: COLORS.BLUE,
+  T: COLORS.GREEN,
+  B: COLORS.RED,
+};
+
+const getBaccaratColor = pipe(
+  flip(prop)(baccaratHistoryColors),
+  when(isNil, () => COLORS.BLACK)
+);
+
 export const getBadgeColor = (type: string, n: string) => {
   if (type === TYPES.MONEYWHEEL) {
     return getMoneyWheelColor(n);
@@ -140,6 +153,9 @@ export const getBadgeColor = (type: string, n: string) => {
   }
   if (type === TYPES.MONOPOLY) {
     return getMonopolyColor(n);
+  }
+  if (type === TYPES.BACCARAT) {
+    return getBaccaratColor(n);
   }
 
   return COLORS.BLACK;

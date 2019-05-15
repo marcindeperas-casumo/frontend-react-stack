@@ -83,6 +83,36 @@ const renderSeats = ({ seats }) => (
   </React.Fragment>
 );
 
+const renderHistory = ({ history, type }) => {
+  return (
+    <React.Fragment>
+      <div className="o-layout o-layout--gap u-margin-bottom">
+        {history &&
+          history.slice(0, 5).map((n, i) => {
+            const color = getBadgeColor(type, n);
+            return (
+              <Badge
+                key={i}
+                tag="div"
+                bgColor={color}
+                txtColor={"white"}
+                circle={true}
+              >
+                {n}
+              </Badge>
+            );
+          })}
+      </div>
+      <Text
+        size="xs"
+        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
+      >
+        {getText("recent_outcomes")}
+      </Text>
+    </React.Fragment>
+  );
+};
+
 const getText = field => (
   <CMSField
     slug="mobile.live-casino-cards-content"
@@ -100,6 +130,7 @@ const LobbyType = ({ lobby }) => {
   const { type } = lobby;
   return cond([
     [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
+    [equals(TYPES.BACCARAT), () => renderHistory(lobby)],
     [
       isIn([TYPES.MONEYWHEEL, TYPES.ROULETTE, TYPES.TOPCARD, TYPES.MONOPOLY]),
       () => renderResults(lobby),

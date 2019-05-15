@@ -11,6 +11,8 @@ import gameTopCard from "./__mocks__/TopCard.json";
 import gameMoneyWheel from "./__mocks__/MoneyWheel.json";
 import gameBlackjack from "./__mocks__/Blackjack.json";
 import gameBlackjackFull from "./__mocks__/BlackjackFull.json";
+import gameMonopoly from "./__mocks__/Monopoly.json";
+import gameBaccarat from "./__mocks__/Baccarat.json";
 
 const stories = storiesOf("LiveCasinoCard", module);
 
@@ -84,6 +86,32 @@ stories.add("Card TopCard (Football)", () => (
       <LiveCasinoCard
         game={gameTopCard}
         launchGame={action(gameTopCard.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
+
+stories.add("Card Monopoly", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameMonopoly}
+        launchGame={action(gameMonopoly.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
+));
+
+stories.add("Card Baccarat", () => (
+  <div style={{ maxWidth: "320px" }}>
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBaccarat}
+        launchGame={action(gameBaccarat.slug)}
         subscribeToUpdates={subscribeToUpdates}
         unsubscribeFromUpdates={unsubscribeFromUpdates}
       />
