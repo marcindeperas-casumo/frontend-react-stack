@@ -1,3 +1,5 @@
 // @flow
-export type * from "./PlayerValuableListHorizontalContainer"; // eslint-disable-line import/export
-export { default } from "./PlayerValuableListHorizontalContainer";
+export type * from "./PlayerValuableListHorizontalContainer";
+export {
+  PlayerValuableListHorizontalContainer as PlayerValuableListHorizontal,
+} from "./PlayerValuableListHorizontalContainer";

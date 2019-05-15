@@ -5,7 +5,7 @@ export type Props = {
   valuable: any,
 };
 
-const PlayerValuableTile = ({
+export const DummyPlayerValuableTile = ({
   valuable: {
     id,
     valuableType,
@@ -35,5 +35,3 @@ const PlayerValuableTile = ({
     {JSON.stringify(rest)}
   </div>
 );
-
-export default PlayerValuableTile;

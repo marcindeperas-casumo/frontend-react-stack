@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import ComponentBuilder from "Components/ComponentBuilder";
-import PlayerValuableListHorizontal from "Components/PlayerValuableListHorizontal";
+import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal";
 
 export const getSlug = (market: string = "___en") =>
   `built-pages.top-lists-${market}`;

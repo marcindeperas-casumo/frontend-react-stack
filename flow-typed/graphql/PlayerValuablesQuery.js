@@ -8,21 +8,6 @@
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_amount_maxBonusAmount = {
-  amount: number,
-  currency: Currency,
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_amount = {
-  percent: number,
-  maxBonusAmount: ?PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_amount_maxBonusAmount,
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_minDepositAmount = {
-  amount: number,
-  currency: Currency,
-};
-
 export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_minDepositAmount = {
   amount: number,
   currency: Currency,
@@ -33,12 +18,8 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_it
   currency: Currency,
 };
 
-export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_itemsToAward_usables_freeSpinsTemplate = {
-  numberOfFreeSpins: number
-};
-
 export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_itemsToAward_usables = {
-  freeSpinsTemplate: ?PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_itemsToAward_usables_freeSpinsTemplate
+  id: string
 };
 
 export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_itemsToAward = {
@@ -55,37 +36,28 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_it
   itemsToAward: Array<?PlayerValuablesQuery_player_valuables_PlayerValuableDepositLadder_itemsToAwardLadder_itemsToAward>,
 };
 
-export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_freeSpinsTemplate_betLevels = {
-  amount: number,
-  currency: Currency,
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_freeSpinsTemplate = {
-  numberOfFreeSpins: number,
-  validFrom: ?string,
-  betLevels: ?Array<?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_freeSpinsTemplate_betLevels>,
-};
-
-export type PlayerValuablesQuery_player_valuables_PlayerValuableCash_cash = {
-  amount: number,
-  currency: Currency,
+export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
+  name: string
 };
 
 export type PlayerValuablesQuery_player_valuables = {
   id: string,
   state: PlayerValuableState,
   expirationTime: any,
-  valuableType: PlayerValuableType,
+  valuableType: SimplePlayerValuableType,
   title: string,
   caveat: ?string,
   content: string,
-  amount: PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_amount,
-  minDepositAmount: PlayerValuablesQuery_player_valuables_PlayerValuableDeposit_minDepositAmount,
+  currency: Currency,
+  maxBonusValue: number,
+  minDepositValue: number,
+  magnitude: number,
+  wageringFactor: ?number,
 } | {
   id: string,
   state: PlayerValuableState,
   expirationTime: any,
-  valuableType: PlayerValuableType,
+  valuableType: SimplePlayerValuableType,
   title: string,
   caveat: ?string,
   content: string,
@@ -94,23 +66,26 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   state: PlayerValuableState,
   expirationTime: any,
-  valuableType: PlayerValuableType,
+  valuableType: SimplePlayerValuableType,
   title: string,
   caveat: ?string,
   content: string,
-  source: ?PlayerValuableUsable_Platform,
-  promoCode: ?string,
-  gameName: string,
-  freeSpinsTemplate: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_freeSpinsTemplate,
+  source: ?Platform,
+  magnitude: number,
+  coinValue: number,
+  currency: Currency,
+  wageringFactor: ?number,
+  game: PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
 } | {
   id: string,
   state: PlayerValuableState,
   expirationTime: any,
-  valuableType: PlayerValuableType,
+  valuableType: SimplePlayerValuableType,
   title: string,
   caveat: ?string,
   content: string,
-  cash: PlayerValuablesQuery_player_valuables_PlayerValuableCash_cash,
+  magnitude: number,
+  currency: Currency,
 };
 
 export type PlayerValuablesQuery_player = {
@@ -137,7 +112,7 @@ export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
 /**
  * 
  */
-export type PlayerValuableType = "PlayerValuableCash" | "PlayerValuableDeposit" | "PlayerValuableDepositLadder" | "PlayerValuableSpins";
+export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
 
 /**
  * 
@@ -147,7 +122,7 @@ export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 /**
  * 
  */
-export type PlayerValuableUsable_Platform = "desktop" | "mobile";
+export type Platform = "desktop" | "mobile";
 
 //==============================================================
 // END Enums and Input Objects
