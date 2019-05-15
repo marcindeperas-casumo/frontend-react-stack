@@ -90,20 +90,17 @@ const renderHistory = ({ history, type }) => {
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
-        {history.slice(0, 5).map((n, i) => {
-          const color = getBadgeColor(type, n);
-          return (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={color}
-              txtColor={"white"}
-              circle={true}
-            >
-              {n}
-            </Badge>
-          );
-        })}
+        {history.slice(0, 5).map((n, i) => (
+          <Badge
+            key={i}
+            tag="div"
+            bgColor={getBadgeColor(type, n)}
+            txtColor={"white"}
+            circle={true}
+          >
+            {n}
+          </Badge>
+        ))}
       </div>
       <Text
         size="xs"
