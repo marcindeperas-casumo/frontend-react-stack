@@ -10,6 +10,8 @@ import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
+const RESULT_BADGES = 5;
+
 type Props = {|
   lobby: liveCasinoLobby,
 |};
@@ -19,9 +21,9 @@ const renderResults = ({ results, type }) => {
     contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
   return (
-    <React.Fragment>
+    <>
       <div className="o-layout o-layout--gap u-margin-bottom">
-        {results.slice(0, 5).map((n, i) => {
+        {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
@@ -48,12 +50,12 @@ const renderResults = ({ results, type }) => {
           ? getText("recent_letters")
           : getText("recent_numbers")}
       </Text>
-    </React.Fragment>
+    </>
   );
 };
 
 const renderSeats = ({ seats }) => (
-  <React.Fragment>
+  <>
     <Badge
       className={classNames(!seats && "u-width--2/3", "u-margin-bottom")}
       tag="div"
@@ -79,7 +81,7 @@ const renderSeats = ({ seats }) => (
     >
       {seats ? getText("open_seats") : getText("table_full")}
     </Text>
-  </React.Fragment>
+  </>
 );
 
 const renderHistory = ({ history, type }) => {
@@ -88,9 +90,9 @@ const renderHistory = ({ history, type }) => {
   }
 
   return (
-    <React.Fragment>
+    <>
       <div className="o-layout o-layout--gap u-margin-bottom">
-        {history.slice(0, 5).map((n, i) => (
+        {history.slice(0, RESULT_BADGES).map((n, i) => (
           <Badge
             key={i}
             tag="div"
@@ -108,7 +110,7 @@ const renderHistory = ({ history, type }) => {
       >
         {getText("recent_outcomes")}
       </Text>
-    </React.Fragment>
+    </>
   );
 };
 

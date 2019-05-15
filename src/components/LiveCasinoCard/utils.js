@@ -87,11 +87,11 @@ const getMoneyWheelColor = pipe(
 
 /* Top Card */
 
-export const topCardLettersDisplay = { L: "H", T: "D", R: "A" };
+export const topCardLettersDisplay = { L: "H", S: "D", R: "A" };
 
 const topCardResults = {
   L: COLORS.RED,
-  T: COLORS.YELLOW,
+  S: COLORS.YELLOW,
   R: COLORS.BLUE,
 };
 
