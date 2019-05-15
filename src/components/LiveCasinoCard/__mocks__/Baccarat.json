@@ -1,14 +1,14 @@
 {
-  "name": "Monopoly Live",
-  "slug": "monopoly",
+  "name": "Baccarat A",
+  "slug": "baccarat",
   "logoBackground": "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-roulette.png",
   "logo": "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-roulette.png",
   "hasPlayForFun": false,
   "inMaintenanceMode": false,
   "jackpotId": null,
-  "tableId": "Monopoly00000001",
+  "tableId": "fowehfwregegwerbgwephqeu",
   "lobby": {
-    "tableId": "Monopoly00000001",
+    "tableId": "fowehfwregegwerbgwephqeu",
     "type": "Baccarat",
     "image": "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
     "bets": {

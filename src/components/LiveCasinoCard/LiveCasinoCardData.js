@@ -15,14 +15,13 @@ type Props = {|
 |};
 
 const renderResults = ({ results, type }) => {
-  const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
   const getTextColor = color =>
     contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
-        {list.map((n, i) => {
+        {results.slice(0, 5).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
@@ -84,24 +83,27 @@ const renderSeats = ({ seats }) => (
 );
 
 const renderHistory = ({ history, type }) => {
+  if (!history) {
+    return null;
+  }
+
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
-        {history &&
-          history.slice(0, 5).map((n, i) => {
-            const color = getBadgeColor(type, n);
-            return (
-              <Badge
-                key={i}
-                tag="div"
-                bgColor={color}
-                txtColor={"white"}
-                circle={true}
-              >
-                {n}
-              </Badge>
-            );
-          })}
+        {history.slice(0, 5).map((n, i) => {
+          const color = getBadgeColor(type, n);
+          return (
+            <Badge
+              key={i}
+              tag="div"
+              bgColor={color}
+              txtColor={"white"}
+              circle={true}
+            >
+              {n}
+            </Badge>
+          );
+        })}
       </div>
       <Text
         size="xs"

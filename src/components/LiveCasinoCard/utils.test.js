@@ -113,6 +113,21 @@ describe("getBadgeColor() for `TopCard`", () => {
     expect(getBadgeColor(type, "W")).toBe("grey-dark-2"));
 });
 
+describe("getResultsDisplay() for `TopCard`", () => {
+  const type = "TopCard";
+  test("should return correct display for `L`", () =>
+    expect(getResultsDisplay(type, "L")).toBe("H"));
+
+  test("should return correct display for `T`", () =>
+    expect(getResultsDisplay(type, "T")).toBe("D"));
+
+  test("should return correct display for `R`", () =>
+    expect(getResultsDisplay(type, "R")).toBe("A"));
+
+  test("should return correct display for `2`", () =>
+    expect(getResultsDisplay(type, "2")).toBe("2"));
+});
+
 describe("getBadgeColor() for `Monopoly`", () => {
   const type = "Monopoly";
   test("should return `grey-light-1` colour for `1`", () =>
@@ -164,17 +179,14 @@ describe("getResultsDisplay() for `Monopoly`", () => {
     expect(getResultsDisplay(type, "2")).toBe("2"));
 });
 
-describe("getResultsDisplay() for `Monopoly`", () => {
-  const type = "TopCard";
-  test("should return correct display for `L`", () =>
-    expect(getResultsDisplay(type, "L")).toBe("H"));
+describe("getBadgeColor() for `Baccarat`", () => {
+  const type = "Baccarat";
+  test("should return `blue` colour for `P`", () =>
+    expect(getBadgeColor(type, "P")).toBe("blue-light-1"));
 
-  test("should return correct display for `T`", () =>
-    expect(getResultsDisplay(type, "T")).toBe("D"));
+  test("should return `green` colour for `T`", () =>
+    expect(getBadgeColor(type, "T")).toBe("green-light-1"));
 
-  test("should return correct display for `R`", () =>
-    expect(getResultsDisplay(type, "R")).toBe("A"));
-
-  test("should return correct display for `2`", () =>
-    expect(getResultsDisplay(type, "2")).toBe("2"));
+  test("should return `red` colour for `B`", () =>
+    expect(getBadgeColor(type, "B")).toBe("red"));
 });
