@@ -39,7 +39,7 @@ const MaskItem = ({
       height={height}
     >
       <defs>
-        <clipPath id={`__mask-item-${id}`}>{shapeMask && shapeMask()}</clipPath>
+        <clipPath id={`__mask-item-${id}`}>{shapeMask()}</clipPath>
       </defs>
     </svg>
   </div>
