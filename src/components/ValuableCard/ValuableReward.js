@@ -1,16 +1,17 @@
 // @flow
 import React from "react";
+import type { Node } from "react";
 import classNames from "classnames";
 import Coin from "./Icons/coin.svg";
 
 type Props = {
-  valuableSymbol: Function,
+  ValuableSymbol: () => Node,
   justifyCenter?: boolean,
   className?: string,
 };
 
 const ValuableReward = ({
-  valuableSymbol,
+  ValuableSymbol,
   justifyCenter,
   className,
 }: Props) => {
@@ -27,7 +28,7 @@ const ValuableReward = ({
       )}
     >
       <div className="c-valuable-reward__content u-position-absolute u-font-weight-bold">
-        {valuableSymbol()}
+        <ValuableSymbol />
       </div>
       <Coin />
     </div>

@@ -3,11 +3,11 @@ import { shallow } from "enzyme";
 import ValuableReward from "./ValuableReward";
 
 describe("ValuableReward", () => {
-  const rewardContent = jest.fn();
+  const RewardContent = () => <div>foo</div>;
 
   test("Should render component as content", () => {
-    shallow(<ValuableReward valuableSymbol={rewardContent} />);
+    const rendered = shallow(<ValuableReward ValuableSymbol={RewardContent} />);
 
-    expect(rewardContent).toHaveBeenCalled();
+    expect(rendered.find("RewardContent")).toHaveLength(1);
   });
 });

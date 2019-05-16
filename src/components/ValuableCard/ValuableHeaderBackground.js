@@ -3,9 +3,9 @@ import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { isEmpty } from "ramda";
 import MaskItem from "Components/MaskItem";
 import ImageLazy from "Components/Image/ImageLazy";
+import { isNilOrEmpty } from "Utils";
 
 type Props = {
   id: string,
@@ -54,7 +54,7 @@ const ValuableHeaderBackground = ({
   imageUrl,
   children,
 }: Props) => {
-  const hasImage = imageUrl && !isEmpty(imageUrl);
+  const hasImage = !isNilOrEmpty(imageUrl);
   const background = hasImage ? (
     <ImageBackground src={imageUrl} {...headerDimensions} />
   ) : (
