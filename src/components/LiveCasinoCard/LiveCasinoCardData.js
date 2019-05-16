@@ -1,30 +1,42 @@
+// @flow
 import React from "react";
 import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import { CMSField } from "Components/CMSField";
-import { getBadgeColor, topCardLetters } from "./utils";
+import type { liveCasinoLobby } from "Types/liveCasinoLobby";
+import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
+import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
+
+type Props = {|
+  lobby: liveCasinoLobby,
+|};
 
 const renderResults = ({ results, type }) => {
   const list = results.slice(0, 5).map(v => (v === "S" ? "T" : v));
+  const getTextColor = color =>
+    contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
   return (
     <React.Fragment>
       <div className="o-layout o-layout--gap u-margin-bottom">
         {list.map((n, i) => {
           const color = getBadgeColor(type, n);
-          const notTopCardType = isNaN(parseInt(n, 10)) ? n : parseInt(n, 10);
+          const borderColor = getBadgeBorderColor(type, n);
           return (
             <Badge
               key={i}
               tag="div"
               bgColor={color}
-              txtColor={color === "yellow" ? "grey-dark-3" : "white"}
+              txtColor={getTextColor(color)}
               circle={true}
+              className={classNames(
+                borderColor && `c-card-data-badge-shadow-${borderColor}`
+              )}
             >
-              {type === "TopCard" ? topCardLetters[n] : notTopCardType}
+              {getResultsDisplay(type, n)}
             </Badge>
           );
         })}
@@ -33,7 +45,7 @@ const renderResults = ({ results, type }) => {
         size="xs"
         className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
-        {type === "TopCard"
+        {type === TYPES.TOPCARD
           ? getText("recent_letters")
           : getText("recent_numbers")}
       </Text>
@@ -87,13 +99,16 @@ const isIn = flip(contains);
 const LobbyType = ({ lobby }) => {
   const { type } = lobby;
   return cond([
-    [equals("Blackjack"), () => renderSeats(lobby)],
-    [isIn(["MoneyWheel", "Roulette", "TopCard"]), () => renderResults(lobby)],
+    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
+    [
+      isIn([TYPES.MONEYWHEEL, TYPES.ROULETTE, TYPES.TOPCARD, TYPES.MONOPOLY]),
+      () => renderResults(lobby),
+    ],
     [T, () => null],
   ])(type);
 };
 
-const LiveCasinoCardData = ({ lobby }) => {
+const LiveCasinoCardData = ({ lobby }: Props) => {
   return (
     <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
       <LobbyType lobby={lobby} />
