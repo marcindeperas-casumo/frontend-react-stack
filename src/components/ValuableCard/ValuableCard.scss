@@ -46,11 +46,15 @@
 
 // stylelint-disable xi/selector-pattern
 .c-valuable-card--spins {
-  @include valuable-reward-theme(
-    cudl-palette(grey, light-1),
-    cudl-palette(grey, dark-2)
-  );
   @include valuable-gradient(cudl-palette(grey, light-3), cudl-palette(grey));
+
+  &.basic,
+  &.bonus {
+    @include valuable-reward-theme(
+      cudl-palette(grey, light-1),
+      cudl-palette(grey, dark-2)
+    );
+  }
 
   &.mega,
   &.super {

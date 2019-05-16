@@ -49,8 +49,12 @@ class ValuableCard extends PureComponent<Props> {
 
   get headerClassModifier(): string {
     const { valuableType } = this.props;
+    const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
 
-    return `c-valuable-card--${valuableType}`;
+    return classNames(
+      `c-valuable-card--${valuableType}`,
+      isValuableTypeSpins && this.spinType
+    );
   }
 
   // To move this to graphql
@@ -82,10 +86,7 @@ class ValuableCard extends PureComponent<Props> {
       >
         <Flex.Block>
           <ValuableHeaderBackground
-            className={classNames(
-              this.headerClassModifier,
-              isValuableTypeSpins && this.spinType
-            )}
+            className={this.headerClassModifier}
             imageUrl={isValuableTypeSpins ? game.gameImageUrl : ""}
             id={id}
           >
