@@ -75,15 +75,6 @@ export const INTL_LOCALES = {
   [MARKETS.se_sv]: "sv-SE",
 };
 
-export const CURRENCY_CODE_SYMBOLS = {
-  CAD: "$",
-  EUR: "€",
-  GBP: "£",
-  SEK: "kr",
-  JPY: "¥",
-  INR: "₹",
-};
-
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",
@@ -121,11 +112,4 @@ export const EVOLUTION_LOBBY_TYPES = {
   TOPCARD: "TopCard",
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
-};
-
-export const CURRENCY_SYMBOLS = {
-  EUR: "€",
-  GBP: "£",
-  INR: "₹",
-  JPY: "¥",
 };

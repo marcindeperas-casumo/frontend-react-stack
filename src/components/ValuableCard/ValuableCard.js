@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES } from "Models/valuables";
-import { CURRENCY_SYMBOLS } from "Src/constants";
+import { getSymbolForCurrency } from "Utils";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
 import { VALUABLE_ICON, CoinValueToSpinType } from "./ValuableCard.utils";
 import ValuableReward from "./ValuableReward";
@@ -26,6 +26,7 @@ type Props = {
   valuableType: ValuableType,
   coinValue: number,
   game: Game,
+  market: string,
 };
 
 class ValuableCard extends PureComponent<Props> {
@@ -58,8 +59,8 @@ class ValuableCard extends PureComponent<Props> {
   }
 
   cashSymbol = () => {
-    const { currency } = this.props;
-    const currencySymbol = CURRENCY_SYMBOLS[currency];
+    const { market: locale, currency } = this.props;
+    const currencySymbol = getSymbolForCurrency({ currency, locale });
 
     return (
       <Text tag="div" size="lg">

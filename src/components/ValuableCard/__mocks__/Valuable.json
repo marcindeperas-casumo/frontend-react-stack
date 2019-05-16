@@ -5,17 +5,20 @@
     "title": "€50 Bonus Money",
     "magnitude": "50",
     "currency": "EUR",
-    "caveat": "terms and consitions apply"
+    "caveat": "terms and consitions apply",
+    "market": "en"
   },
   {
     "id": "111",
     "valuableType": "deposit",
-    "title": "100% Deposit Bonus"
+    "title": "100% Deposit Bonus",
+    "market": "en"
   },
   {
     "id": "432",
     "valuableType": "sport",
-    "title": "€5 Sport Bet"
+    "title": "€5 Sport Bet",
+    "market": "en"
   },
   {
     "id": "654",
@@ -26,6 +29,7 @@
     "game": {
       "title": "Starburst",
       "gameImageUrl": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
-    }
+    },
+    "market": "en"
   }
 ]
