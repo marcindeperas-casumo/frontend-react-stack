@@ -19,11 +19,11 @@ const headerDimensions = {
   height: 80,
 };
 
-const GradientBackground = ({ width, height }) => {
+const GradientBackground = ({ ...dimensions }) => {
   return (
     <div
       className="c-valuable-header__gradient-overlay u-opacity-50"
-      style={{ width, height }}
+      style={{ ...dimensions }}
     />
   );
 };
