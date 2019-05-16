@@ -16,43 +16,41 @@ type Props = {|
   lobby: liveCasinoLobby,
 |};
 
-const renderResults = ({ results, type }) => {
-  const getTextColor = color =>
-    contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
+const getTextColor = (color: string) =>
+  contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
-  return (
-    <>
-      <div className="o-layout o-layout--gap u-margin-bottom">
-        {results.slice(0, RESULT_BADGES).map((n, i) => {
-          const color = getBadgeColor(type, n);
-          const borderColor = getBadgeBorderColor(type, n);
-          return (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={color}
-              txtColor={getTextColor(color)}
-              circle={true}
-              className={classNames(
-                borderColor && `c-card-data-badge-shadow-${borderColor}`
-              )}
-            >
-              {getResultsDisplay(type, n)}
-            </Badge>
-          );
-        })}
-      </div>
-      <Text
-        size="xs"
-        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-      >
-        {type === TYPES.TOPCARD
-          ? getText("recent_letters")
-          : getText("recent_numbers")}
-      </Text>
-    </>
-  );
-};
+const renderResults = ({ results, type }) => (
+  <>
+    <div className="o-layout o-layout--gap u-margin-bottom">
+      {results.slice(0, RESULT_BADGES).map((n, i) => {
+        const color = getBadgeColor(type, n);
+        const borderColor = getBadgeBorderColor(type, n);
+        return (
+          <Badge
+            key={i}
+            tag="div"
+            bgColor={color}
+            txtColor={getTextColor(color)}
+            circle={true}
+            className={classNames(
+              borderColor && `c-card-data-badge-shadow-${borderColor}`
+            )}
+          >
+            {getResultsDisplay(type, n)}
+          </Badge>
+        );
+      })}
+    </div>
+    <Text
+      size="xs"
+      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
+    >
+      {type === TYPES.TOPCARD
+        ? getText("recent_letters")
+        : getText("recent_numbers")}
+    </Text>
+  </>
+);
 
 const renderSeats = ({ seats }) => (
   <>
@@ -127,9 +125,8 @@ const getText = field => (
 );
 
 const isIn = flip(contains);
-const LobbyType = ({ lobby }) => {
-  const { type } = lobby;
-  return cond([
+const LobbyType = ({ lobby }) =>
+  cond([
     [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
     [equals(TYPES.BACCARAT), () => renderHistory(lobby)],
     [
@@ -137,15 +134,12 @@ const LobbyType = ({ lobby }) => {
       () => renderResults(lobby),
     ],
     [T, () => null],
-  ])(type);
-};
+  ])(lobby.type);
 
-const LiveCasinoCardData = ({ lobby }: Props) => {
-  return (
-    <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-      <LobbyType lobby={lobby} />
-    </div>
-  );
-};
+const LiveCasinoCardData = ({ lobby }: Props) => (
+  <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+    <LobbyType lobby={lobby} />
+  </div>
+);
 
 export default LiveCasinoCardData;
