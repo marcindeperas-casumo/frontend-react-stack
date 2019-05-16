@@ -1,4 +1,7 @@
-import { isPromotionOptedInSelector } from "./promotions.selectors";
+import {
+  isPromotionOptedInSelector,
+  routeSlugSelector,
+} from "./promotions.selectors";
 
 describe("Models/Promotions/Selectors", () => {
   test("isPromotionOptedInSelector is true", () => {
@@ -31,5 +34,16 @@ describe("Models/Promotions/Selectors", () => {
     };
 
     expect(isPromotionOptedInSelector("foo")(state)).toBeNull();
+  });
+
+  test("routeSlugSelector returns route param", () => {
+    const routeSlug = "boosted-reelraces";
+    const state = {
+      router: {
+        routeParams: [routeSlug],
+      },
+    };
+
+    expect(routeSlugSelector(state)).toEqual(routeSlug);
   });
 });

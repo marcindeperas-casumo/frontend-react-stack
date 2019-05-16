@@ -30,7 +30,7 @@ describe("ProviderGamesList", () => {
     expect(mock).toHaveBeenCalled();
   });
 
-  test("renders provider name and virtuallist", () => {
+  test("renders provider virtuallist", () => {
     const provider = {
       inMaintenance: false,
       name: "nyx",
@@ -43,13 +43,6 @@ describe("ProviderGamesList", () => {
       </MockStore>
     );
 
-    expect(
-      rendered
-        .find("div")
-        .find("Text")
-        .first()
-        .text()
-    ).toBe("nyx");
     expect(rendered.find("VirtualList")).toHaveLength(1);
   });
 });

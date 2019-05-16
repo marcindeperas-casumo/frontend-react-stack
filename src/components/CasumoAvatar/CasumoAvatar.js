@@ -2,40 +2,35 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { beltToColourMap } from "./beltUtils";
+import { type BeltType, isMaxLevel } from "Models/adventure";
+import { beltToColorMap } from "./beltUtils";
 import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
-
-type BeltType =
-  | "rope"
-  | "white"
-  | "yellow"
-  | "red"
-  | "blue"
-  | "purple"
-  | "black"
-  | "sensei";
+import SenseiAvatar from "./sensei-avatar.svg";
 
 type Props = {
   /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
-};
-
-export const getClassModifier = (belt: BeltType) => {
-  const className = beltToColourMap[belt] || beltToColourMap.rope;
-
-  return `t-color-${className}`;
+  inBonusMode: boolean,
+  level: number,
 };
 
 export class CasumoAvatar extends PureComponent<Props> {
+  static defaultProps = {
+    belt: "rope",
+    inBonusMode: false,
+    level: 1,
+  };
+
   render() {
-    const { belt } = this.props;
+    const { belt, level, inBonusMode } = this.props;
+    const backgroundColor = getBackgroundColor(inBonusMode, level);
 
     return (
       <div
         className={classNames(
-          `c-casumo-avatar t-border-r--16 t-background-teal o-ratio`,
-          getClassModifier(belt)
+          `c-casumo-avatar t-border-r--16 o-ratio t-background-${backgroundColor}`,
+          getClassModifierByBelt(belt)
         )}
       >
         <Flex
@@ -43,9 +38,26 @@ export class CasumoAvatar extends PureComponent<Props> {
           justify="center"
           className="o-ratio__content u-padding--md"
         >
-          <SumoAvatar />
+          {isMaxLevel(level, inBonusMode) ? <SenseiAvatar /> : <SumoAvatar />}
         </Flex>
       </div>
     );
   }
+}
+
+export function getClassModifierByBelt(belt: BeltType): string {
+  const className = beltToColorMap[belt] || beltToColorMap.rope;
+
+  return `t-color-${className}`;
+}
+
+function getBackgroundColor(inBonusMode: boolean, level: number): string {
+  if (isMaxLevel(level, inBonusMode)) {
+    return "yellow";
+  }
+  if (inBonusMode) {
+    return "violet";
+  }
+
+  return "teal";
 }

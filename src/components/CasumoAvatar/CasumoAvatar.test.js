@@ -1,13 +1,32 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { CasumoAvatar, getClassModifier } from "./CasumoAvatar";
+import { CasumoAvatar, getClassModifierByBelt } from "./CasumoAvatar";
 
 describe("CasumoAvatar", () => {
-  test("Renders avatar with the correct color class applied", () => {
+  test("Renders avatar with the correct color class applied based on belt", () => {
     const belt = "rope";
-    const classModifier = getClassModifier(belt);
+    const classModifier = getClassModifierByBelt(belt);
     const rendered = shallow(<CasumoAvatar belt={belt} />);
 
     expect(rendered.find(`.${classModifier}`).length).toBe(1);
+  });
+  test("Renders avatar with the yellow background color when at max level", () => {
+    const level = 180;
+    const inBonusMode = true;
+    const rendered = shallow(
+      <CasumoAvatar belt="rope" level={level} inBonusMode={inBonusMode} />
+    );
+
+    expect(rendered.find(`.t-background-yellow`).length).toBe(1);
+  });
+
+  test("Renders avatar with the violet background color when in bonus mode", () => {
+    const level = 60;
+    const inBonusMode = true;
+    const rendered = shallow(
+      <CasumoAvatar belt="rope" level={level} inBonusMode={inBonusMode} />
+    );
+
+    expect(rendered.find(`.t-background-violet`).length).toBe(1);
   });
 });
