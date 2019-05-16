@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import MaskItem from "./MaskItem";
 
-describe("MakItem", () => {
+describe("MaskItem", () => {
   const mockMask = jest.fn();
   const id = "123";
   let rendered;

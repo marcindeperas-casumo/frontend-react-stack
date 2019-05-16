@@ -1,5 +1,4 @@
 // @flow
-// To move this to CUDL
 import * as React from "react";
 import type { Node } from "react";
 
@@ -13,7 +12,7 @@ type Props = {
 };
 
 const MaskItem = ({
-  /** An id for the masked item. This should be unique all through out the page */
+  /** An id for the masked item. This should be unique all throughout the page */
   id,
   /** Total width of the masked element */
   width,
@@ -21,7 +20,7 @@ const MaskItem = ({
   height,
   /** Class name to attach to the masked item */
   className,
-  /** The shape of the mask to display from the elemen t */
+  /** The shape of the mask to display from the element */
   shapeMask,
   /** The element to mask */
   children,
