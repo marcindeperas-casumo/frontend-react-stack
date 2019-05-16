@@ -17,17 +17,6 @@ export type Props = {
 };
 
 export default class AdventureAvatarAndDetails extends PureComponent<Props> {
-  getAvatarBackgroundColor(inBonusMode: boolean, level: number): string {
-    if (isMaxLevel(level)) {
-      return "yellow";
-    }
-    if (inBonusMode) {
-      return "violet";
-    }
-
-    return "teal";
-  }
-
   getLevelLabel() {
     const { level, inBonusMode } = this.props.adventurer;
     const {
@@ -37,7 +26,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
     } = this.props.content;
 
     const bonusModeIndicator = `<strong class="t-color-violet">${bonus_mode_label}</strong>`;
-    const maxLevelReached = isMaxLevel(level);
+    const maxLevelReached = isMaxLevel(level, inBonusMode);
     const label = maxLevelReached ? max_level_label : level_label;
     const requiresBonusModeIndicator = inBonusMode && !maxLevelReached;
 
@@ -57,11 +46,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
         className="t-border-r--8 u-width--1/1 u-margin-bottom--lg"
       >
         <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
-          <CasumoAvatar
-            belt={belt}
-            backgroundColor={this.getAvatarBackgroundColor(inBonusMode, level)}
-            level={level}
-          />
+          <CasumoAvatar belt={belt} level={level} inBonusMode={inBonusMode} />
         </Flex.Item>
         <Flex.Item className="u-margin-left--md">
           <Text

@@ -68,7 +68,7 @@ export class App extends PureComponent<Props> {
           <LazyPortal
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpotList")}
-            fallback={<GameListSkeleton />}
+            fallback={<GameListSkeleton hasTitle={false} />}
           />
         </Route>
         <Route path={["live-casino-details"]}>
@@ -129,7 +129,7 @@ export class App extends PureComponent<Props> {
           <LazyPortal
             hostElementId="react-host-provider-games"
             loader={() => import("Components/ProviderGamesList")}
-            fallback={<GameListSkeleton />}
+            fallback={<GameListSkeleton hasTitle={false} />}
             props={{ provider: routeParams[0] }}
           />
         </Route>

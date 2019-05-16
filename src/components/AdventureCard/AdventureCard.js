@@ -49,7 +49,7 @@ export default class AdventureCard extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className="t-background-grey-dark-3 u-padding-horiz--md u-padding-vert--lg"
+        className="t-background-grey-dark-3 u-padding-horiz--md u-padding-horiz--lg@tablet u-padding-horiz--lg@desktop u-padding-vert--lg"
         direction="vertical"
       >
         <AdventureAvatarAndDetails {...this.props} />

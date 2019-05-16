@@ -6,7 +6,7 @@ import "./ProgressBar.scss";
 
 export const colorOptions = {
   background: ["grey-dark-4", "grey"],
-  foreground: ["yellow", "green"],
+  foreground: ["yellow", "green", "violet"],
 };
 
 type Props = {

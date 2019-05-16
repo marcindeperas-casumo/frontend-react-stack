@@ -23,7 +23,6 @@ const MustDropJackpotListStories = () => (
         "keystone-kops",
         "jackpot-diamonds",
       ]}
-      title="🐯 I'm a pretty title bae 🦁"
       areGamesLoaded={true}
       initFetchTopLists={() => {}}
     />

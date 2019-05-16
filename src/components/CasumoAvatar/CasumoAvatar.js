@@ -11,19 +11,20 @@ import SenseiAvatar from "./sensei-avatar.svg";
 type Props = {
   /** Type of belt (rope, ..., sensei) */
   belt: BeltType,
-  backgroundColor: string,
+  inBonusMode: boolean,
   level: number,
 };
 
 export class CasumoAvatar extends PureComponent<Props> {
   static defaultProps = {
     belt: "rope",
+    inBonusMode: false,
     level: 1,
-    backgroundColor: "teal",
   };
 
   render() {
-    const { belt, level, backgroundColor } = this.props;
+    const { belt, level, inBonusMode } = this.props;
+    const backgroundColor = getBackgroundColor(inBonusMode, level);
 
     return (
       <div
@@ -37,7 +38,7 @@ export class CasumoAvatar extends PureComponent<Props> {
           justify="center"
           className="o-ratio__content u-padding--md"
         >
-          {isMaxLevel(level) ? <SenseiAvatar /> : <SumoAvatar />}
+          {isMaxLevel(level, inBonusMode) ? <SenseiAvatar /> : <SumoAvatar />}
         </Flex>
       </div>
     );
@@ -48,4 +49,15 @@ export function getClassModifierByBelt(belt: BeltType): string {
   const className = beltToColorMap[belt] || beltToColorMap.rope;
 
   return `t-color-${className}`;
+}
+
+function getBackgroundColor(inBonusMode: boolean, level: number): string {
+  if (isMaxLevel(level, inBonusMode)) {
+    return "yellow";
+  }
+  if (inBonusMode) {
+    return "violet";
+  }
+
+  return "teal";
 }
