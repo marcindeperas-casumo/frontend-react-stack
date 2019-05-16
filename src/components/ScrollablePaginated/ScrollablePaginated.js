@@ -151,36 +151,36 @@ export default class ScrollablePaginated extends React.PureComponent<
     });
   }
 
-  buttonRenderer() {
-    return this.props.buttonRenderer(
+  buttonRenderer = () =>
+    this.props.buttonRenderer(
       this.state.hasNextPage,
       this.state.hasPreviousPage,
       this.clickHandler
     );
-  }
 
-  // Keep state in sync with column count for buttonRenderer
-  componentDidUpdate(nextProps: Props) {
-    if (nextProps.columnCount !== this.props.columnCount) {
-      this.setState({
-        hasNextPage: !this.isEndOfScroll,
-        hasPreviousPage: !this.isStartOfScroll,
-      });
-    }
-  }
-
-  componentDidMount() {
-    // Not convinced by this but pushing to the next tick
-    // gives the gridRef values time to update.
+  // Not convinced by this but pushing to the next tick
+  // gives the gridRef values time to update.
+  forcePageCheck = () => {
     setTimeout(() => {
       this.setState({
         hasNextPage: !this.isEndOfScroll,
         hasPreviousPage: !this.isStartOfScroll,
       });
+
       this.startColumn = this.gridRefCurrent._renderedColumnStartIndex;
       this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
       this.visibleColumns = this.gridRefCurrent._renderedColumnStopIndex;
     }, 0);
+  };
+  // Keep state in sync with column count for buttonRenderer
+  componentDidUpdate(nextProps: Props) {
+    if (nextProps.columnCount !== this.props.columnCount) {
+      this.forcePageCheck();
+    }
+  }
+
+  componentDidMount() {
+    this.forcePageCheck();
   }
 
   render() {
