@@ -19,7 +19,7 @@ describe("ValubaleHeaderBackground", () => {
     expect(rendered.find(".foo-bar")).toHaveLength(1);
   });
 
-  test("should render a gradient overlay if image url is left empty", () => {
+  test("should render a gradient overlay as background if image url is left empty", () => {
     rendered = mount(
       <ValuableHeaderBackground id="123">
         <div>foo</div>

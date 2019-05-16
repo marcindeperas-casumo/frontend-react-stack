@@ -54,7 +54,7 @@ const ValuableHeaderBackground = ({
   imageUrl,
   children,
 }: Props) => {
-  const hasImage = !isEmpty(imageUrl);
+  const hasImage = imageUrl && !isEmpty(imageUrl);
   const background = hasImage ? (
     <ImageBackground src={imageUrl} {...headerDimensions} />
   ) : (
