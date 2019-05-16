@@ -11,10 +11,18 @@ const defaultProps = {
 };
 
 const render = (props = {}) => () => (
-  <div className="t-background-grey-light-1">
-    <SportsNavPagerButton {...{ ...defaultProps, ...props }} />
+  <div className="c-sports-shell--site">
+    <div className="t-background-grey-light-1">
+      <SportsNavPagerButton {...{ ...defaultProps, ...props }} />
+    </div>
   </div>
 );
+
+stories.add("Not Desktop (hidden)", () => (
+  <div className="t-background-grey-light-1">
+    <SportsNavPagerButton {...defaultProps} />
+  </div>
+));
 
 stories.add("No Pages", render());
 
