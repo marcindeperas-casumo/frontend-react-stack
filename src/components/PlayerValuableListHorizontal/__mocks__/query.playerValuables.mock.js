@@ -23,6 +23,8 @@ export const failedQuery = {
       variables: {},
     },
     result: {
-      error: new Error('Failed GraphQL query.')
+      errors: [
+        new Error('Failed GraphQL query.')
+      ]
     },
   };
