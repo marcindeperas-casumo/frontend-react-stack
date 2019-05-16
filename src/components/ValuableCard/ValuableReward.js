@@ -23,14 +23,14 @@ const ValuableReward = ({
     <div
       className={classNames(
         className,
-        "c-valuable-reward u-position-relative",
+        "u-position-relative",
         contentClassModifier
       )}
     >
       <div className="c-valuable-reward__content u-position-absolute u-font-weight-bold">
         <ValuableSymbol />
       </div>
-      <Coin />
+      <Coin className="c-valuable-reward" />
     </div>
   );
 };
