@@ -133,6 +133,12 @@ export class App extends PureComponent<Props> {
             props={{ provider: routeParams[0] }}
           />
         </Route>
+        <Route path={["player"]}>
+          <LazyPortal
+            hostElementId="react-host-adventure"
+            loader={() => import("Components/AdventureCard")}
+          />
+        </Route>
       </Router>
     );
   }

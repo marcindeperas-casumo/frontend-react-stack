@@ -60,6 +60,11 @@ export const sessionIdSelector = createSelector(
   prop("sessionId")
 );
 
+export const adventureLevelsSelector = createSelector(
+  applicationHandshakeSelector,
+  prop("common/composition/Adventure")
+);
+
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
