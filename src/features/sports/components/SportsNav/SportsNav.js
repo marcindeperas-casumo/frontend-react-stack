@@ -172,6 +172,7 @@ class SportsNav extends React.Component<SportsNavProps> {
             const mainNavCacheBuster = [
               selectedNavItem.path,
               ...navItems.map(navItem => navItem.path),
+              this.props.currentHash,
             ].join();
 
             const subNavCacheBuster = subNav
@@ -179,7 +180,10 @@ class SportsNav extends React.Component<SportsNavProps> {
                 const isActive =
                   selectedSubNavItem &&
                   selectedSubNavItem.path === navItem.path;
-                return isActive ? `${navItem.path}:active` : navItem.path;
+                return [
+                  isActive ? `${navItem.path}:active` : navItem.path,
+                  this.props.currentHash,
+                ].join();
               })
               .join();
 

@@ -38,6 +38,8 @@ type Props = {
   overscanColumnCount?: overscanColumnCountType,
   /** A way to force the column widths to recalculate by changing the string passed here */
   cacheBuster?: string,
+  /** The number of items that will be shown on both the current page and next/previous pages */
+  overlappingItemCount: number,
 };
 
 export default class ScrollablePaginated extends React.PureComponent<
@@ -48,6 +50,7 @@ export default class ScrollablePaginated extends React.PureComponent<
     easing: easeInQuad,
     duration: 300,
     className: "c-scrollable-paginated",
+    overlappingItemCount: 2,
   };
 
   gridRef = React.createRef<GridRef>();
@@ -109,8 +112,10 @@ export default class ScrollablePaginated extends React.PureComponent<
       0,
       columnCount,
       direction === "next"
-        ? this.startColumn + this.visibleColumns
-        : this.startColumn - this.visibleColumns
+        ? this.startColumn +
+            (this.visibleColumns - this.props.overlappingItemCount)
+        : this.startColumn -
+            (this.visibleColumns - this.props.overlappingItemCount)
     );
     this.scrollToOffset = this.gridRefCurrent.getOffsetForCell({
       alignment: "start",
@@ -160,7 +165,7 @@ export default class ScrollablePaginated extends React.PureComponent<
 
   // Not convinced by this but pushing to the next tick
   // gives the gridRef values time to update.
-  forcePageCheck = () => {
+  forcePageCheck = () =>
     setTimeout(() => {
       this.setState({
         hasNextPage: !this.isEndOfScroll,
@@ -171,7 +176,7 @@ export default class ScrollablePaginated extends React.PureComponent<
       this.stopColumn = this.gridRefCurrent._renderedColumnStopIndex;
       this.visibleColumns = this.gridRefCurrent._renderedColumnStopIndex;
     }, 0);
-  };
+
   // Keep state in sync with column count for buttonRenderer
   componentDidUpdate(nextProps: Props) {
     if (nextProps.columnCount !== this.props.columnCount) {
@@ -184,15 +189,15 @@ export default class ScrollablePaginated extends React.PureComponent<
   }
 
   render() {
-    const { className, height, columnCount, cellRenderer } = this.props;
+    const { className, height } = this.props;
 
     return (
       <div className={className}>
         <div style={{ height }} className={`${className}__list`}>
           <ScrollableWithRef
             ref={this.gridRef}
-            columnCount={columnCount}
-            cellRenderer={cellRenderer}
+            columnCount={this.props.columnCount}
+            cellRenderer={this.props.cellRenderer}
             height={height}
             scrollLeft={this.state.scrollLeft}
             scrollHandler={this.scrollHandler}
