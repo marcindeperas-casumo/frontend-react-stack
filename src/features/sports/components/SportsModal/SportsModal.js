@@ -70,7 +70,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
 );
 
 const Content = ({ children, className }: ContentProps) => (
-  <Modal.Content className={classNames("u-padding-horiz--md", className)}>
+  <Modal.Content className={classNames("u-padding-x--md", className)}>
     <div className="c-sports-modal__content-inner">{children}</div>
   </Modal.Content>
 );

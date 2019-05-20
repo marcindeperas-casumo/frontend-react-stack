@@ -28,7 +28,7 @@ class PromotionPrizeTable extends PureComponent<Props> {
           thumbnail={Image}
           prize={CashAmount}
           // $FlowFixMe
-          cellPadding="vert--md"
+          cellPadding="y--md"
         />
       </div>
     );
