@@ -1,5 +1,5 @@
-import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { select, put, take, call } from "redux-saga/effects";
+import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { countrySelector } from "Models/handshake";
 import {
   types,

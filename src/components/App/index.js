@@ -1,3 +1,2 @@
 // @flow
-export type * from "./AppContainer";
-export { AppContainer as App } from "./AppContainer";
+export { default as App } from "./AppContainer";

@@ -1,4 +1,5 @@
 import { isEmpty, isNil } from "ramda";
+import { call, put, take, select } from "redux-saga/effects";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { sessionIdSelector } from "Models/handshake";
 import {
@@ -15,7 +16,6 @@ import {
   fetchPlayerGamesCount,
   types as playerGamesTypes,
 } from "Models/playerGames";
-import { call, put, take, select } from "redux-saga/effects";
 import { types } from "./games.constants";
 import { initiateFetchGamesByProvider } from "./games.actions";
 

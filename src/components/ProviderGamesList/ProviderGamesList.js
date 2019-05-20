@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import { nth, contains } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { GameRow } from "Components/GameRow";
 import { ErrorMessage } from "Components/ErrorMessage";

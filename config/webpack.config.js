@@ -106,18 +106,16 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
     // These are the "entry points" to our application.
     // This means they will be the "root" imports that are included in JS bundle.
     entry: [
-      // Include an alternative client for WebpackDevServer. A client's job is to
-      // connect to WebpackDevServer by a socket and get notified about changes.
-      // When you save a file, the client will either apply hot updates (in case
-      // of CSS changes), or refresh the page (in case of JS changes). When you
-      // make a syntax error, this client will display a syntax error overlay.
-      // Note: instead of the default WebpackDevServer client, we use a custom one
-      // to bring better experience for Create React App users. You can replace
-      // the line below with these two lines if you prefer the stock client:
-      // require.resolve('webpack-dev-server/client') + '?/',
-      // require.resolve('webpack/hot/dev-server'),
-      isEnvDevelopment &&
-        require.resolve("react-dev-utils/webpackHotDevClient"),
+      // A client's job is to connect to WebpackDevServer by a socket and get
+      // notified about changes. When you save a file, this client will apply
+      // hot updates. While create-react-app client fails on error and reloads
+      // whole page on next update, this one will try to "fix" itself. Default
+      // webpack client works the same way.
+      isEnvDevelopment && require.resolve("react-hot-loader/patch"),
+      // When you make a syntax error, this client will display error overlay.
+      // It won't collide with other client because it just hangs until next
+      // update if error occured.
+      isEnvDevelopment && require.resolve("./errorOverlay"),
       // Finally, this is your app's code:
       paths.appIndexJs,
       // We include the app code last so that if there is a runtime error during
@@ -225,6 +223,7 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
         // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
         "react-native": "react-native-web",
         Styles: path.resolve(__dirname, "../src/styles"),
+        ...(isEnvDevelopment ? { "react-dom": "@hot-loader/react-dom" } : {}),
       },
       plugins: [
         // Adds support for installing with Plug'n'Play, leading to faster installs and adding

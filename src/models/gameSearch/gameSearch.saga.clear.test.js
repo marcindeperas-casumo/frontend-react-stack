@@ -1,5 +1,5 @@
-import { ENTITY_KEYS, updateEntity, normalizeData } from "Models/schema";
 import { call, all, put } from "redux-saga/effects";
+import { ENTITY_KEYS, updateEntity, normalizeData } from "Models/schema";
 import {
   clearSearchResultsSaga,
   getgameSearchListIdByPage,

@@ -1,5 +1,5 @@
-import { fetchAppHandshake, isAuthenticated } from "Models/handshake";
 import { call, put } from "redux-saga/effects";
+import { fetchAppHandshake, isAuthenticated } from "Models/handshake";
 import { waitForSelector } from "Utils";
 
 export function* appSaga() {
