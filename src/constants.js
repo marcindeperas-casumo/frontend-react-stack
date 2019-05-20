@@ -111,4 +111,5 @@ export const EVOLUTION_LOBBY_TYPES = {
   TOPCARD: "TopCard",
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
+  BACCARAT: "Baccarat",
 };
