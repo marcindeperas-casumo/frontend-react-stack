@@ -18,7 +18,6 @@ export function ModalHeader(props: { title: ?string, hideModal: () => void }) {
         {props.title || <ModalTitleSkeleton />}
       </Text>
       <CrossIcon
-        size="med"
         className="u-padding-right--lg t-color-blue u-cursor-pointer"
         onClick={props.hideModal}
       />

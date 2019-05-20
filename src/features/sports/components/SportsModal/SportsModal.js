@@ -52,7 +52,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
       onClick={onBack}
       isVisible={Boolean(onBack)}
     >
-      <ArrowLeftIcon size="med" />
+      <ArrowLeftIcon />
     </DismissButton>
 
     <div className="o-flex-justify--center o-flex--1 u-font-weight-bold">
@@ -64,7 +64,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
       onClick={onClose}
       isVisible={Boolean(onClose)}
     >
-      <CrossIcon size="med" />
+      <CrossIcon />
     </DismissButton>
   </Modal.Header>
 );
