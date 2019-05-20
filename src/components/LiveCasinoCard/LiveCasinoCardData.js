@@ -56,7 +56,7 @@ const renderResults = ({ results, type }) => (
 const renderSeats = ({ seats }) => (
   <>
     <Badge
-      className="u-margin-bottom"
+      className={classNames(!seats && `u-width--3/4`)}
       tag="div"
       bgColor="green"
       txtColor="white"
