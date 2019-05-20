@@ -37,8 +37,9 @@
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }
 
+// has to be important as the kambi client pulls in a dynamic class with higher specificty
 .mod-KambiBC-betslip__header-pin-btn {
-  display: none;
+  display: none !important;
 }
 
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
