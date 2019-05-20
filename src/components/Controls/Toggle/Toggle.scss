@@ -1,0 +1,27 @@
+$width: 56px;
+$height: 32px;
+
+.c-toggle {
+  display: inline-block;
+  height: $height;
+  width: $width;
+}
+
+.c-toggle-container {
+  height: $height;
+  width: $width;
+}
+
+.c-toggle:hover {
+  cursor: pointer;
+}
+
+.c-toggle-circle--active {
+  transform: translate3d(40px, 0, 0);
+  transition: 0.1s;
+}
+
+.c-toggle-circle--inactive {
+  transform: translate3d(16px, 0, 0);
+  transition: 0.1s;
+}
