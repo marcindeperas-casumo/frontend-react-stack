@@ -4,6 +4,7 @@ import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
+import Flex from "@casumo/cmp-flex";
 import { CMSField } from "Components/CMSField";
 import type { liveCasinoLobby } from "Types/liveCasinoLobby";
 import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
@@ -21,7 +22,7 @@ const getTextColor = (color: string) =>
 
 const renderResults = ({ results, type }) => (
   <>
-    <div className="o-layout o-layout--gap u-margin-bottom">
+    <div className="o-layout o-layout--gap">
       {results.slice(0, RESULT_BADGES).map((n, i) => {
         const color = getBadgeColor(type, n);
         const borderColor = getBadgeBorderColor(type, n);
@@ -55,7 +56,7 @@ const renderResults = ({ results, type }) => (
 const renderSeats = ({ seats }) => (
   <>
     <Badge
-      className={classNames(!seats && "u-width--2/3", "u-margin-bottom")}
+      className="u-margin-bottom"
       tag="div"
       bgColor="green"
       txtColor="white"
@@ -66,7 +67,7 @@ const renderSeats = ({ seats }) => (
           slug="mobile.live-casino-cards-content"
           field="bet_behind"
           view={text => (
-            <Text size="xs" tag="span">
+            <Text size="xs" tag="span" className="u-text-nowrap">
               {text}
             </Text>
           )}
@@ -89,7 +90,7 @@ const renderHistory = ({ history, type }) => {
 
   return (
     <>
-      <div className="o-layout o-layout--gap u-margin-bottom">
+      <div className="o-layout o-layout--gap">
         {history.slice(0, RESULT_BADGES).map((n, i) => (
           <Badge
             key={i}
@@ -137,9 +138,12 @@ const LobbyType = ({ lobby }) =>
   ])(lobby.type);
 
 const LiveCasinoCardData = ({ lobby }: Props) => (
-  <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+  // <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
+  //   <LobbyType lobby={lobby} />
+  // </div>
+  <Flex direction="vertical" align="center">
     <LobbyType lobby={lobby} />
-  </div>
+  </Flex>
 );
 
 export default LiveCasinoCardData;
