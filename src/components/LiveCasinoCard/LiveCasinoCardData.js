@@ -138,9 +138,6 @@ const LobbyType = ({ lobby }) =>
   ])(lobby.type);
 
 const LiveCasinoCardData = ({ lobby }: Props) => (
-  // <div className="c-card-data o-flex--vertical o-flex-align--center o-flex-justify--end u-width--1/1 u-font-weight-bold">
-  //   <LobbyType lobby={lobby} />
-  // </div>
   <Flex direction="vertical" align="center">
     <LobbyType lobby={lobby} />
   </Flex>
