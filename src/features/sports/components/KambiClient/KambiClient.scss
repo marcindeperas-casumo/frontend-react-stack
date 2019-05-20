@@ -36,4 +36,9 @@
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }
+
+.mod-KambiBC-betslip__header-pin-btn {
+  display: none;
+}
+
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
