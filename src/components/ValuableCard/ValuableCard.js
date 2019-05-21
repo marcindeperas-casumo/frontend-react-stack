@@ -78,7 +78,7 @@ class ValuableCard extends PureComponent<Props> {
     const { id, title, valuableType, game, backgroundImageUrl } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
-    const blurAmount = 2;
+    const blurAmount = 3;
 
     return (
       <Flex
