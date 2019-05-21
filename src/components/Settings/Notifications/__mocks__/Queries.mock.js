@@ -57,6 +57,8 @@ export const notificationsLabelsQueryMock = {
       subscriptionsPostLabel: "foo",
       notificationsApprovedWithdrawalsEmailLabel: "foo",
       notificationsInGameSessionUpdatesLabel: "foo",
+      inGameSessionUpdatesOffLabel: "foo",
+      inGameSessionUpdatesFrequencyLabel: "foo",
     },
   },
 };

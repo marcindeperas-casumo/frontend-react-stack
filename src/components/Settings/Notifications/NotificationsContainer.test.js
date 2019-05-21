@@ -45,6 +45,36 @@ describe("Notifications", () => {
       expect(rendered.find("RowListSkeleton")).toHaveLength(1);
     });
 
+    test("should pass correct player data to children", async () => {
+      const rendered = mount(
+        <MockedProvider
+          mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
+        >
+          <NotificationsContainer />
+        </MockedProvider>
+      );
+      await wait(0);
+      rendered.update();
+      expect(
+        JSON.parse(JSON.stringify(rendered.find("Component").prop("player")))
+      ).toStrictEqual(playerContactSettingsQueryMock.result.data.player);
+    });
+
+    test("should pass correct labels to children", async () => {
+      const rendered = mount(
+        <MockedProvider
+          mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
+        >
+          <NotificationsContainer />
+        </MockedProvider>
+      );
+      await wait(0);
+      rendered.update();
+      expect(
+        JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
+      ).toStrictEqual(notificationsLabelsQueryMock.result.data);
+    });
+
     test("should show error when settings fail to load", async () => {
       const rendered = mount(
         <MockedProvider
