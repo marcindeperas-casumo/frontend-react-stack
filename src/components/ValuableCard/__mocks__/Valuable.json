@@ -31,7 +31,7 @@
     "coinValue": 30,
     "game": {
       "title": "Starburst",
-      "gameImageUrl": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
+      "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
     },
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
     "market": "en"

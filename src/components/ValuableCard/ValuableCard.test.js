@@ -19,7 +19,7 @@ describe("ValuableCard", () => {
   test("should pass on game image url to valuable header if type is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
     const expectedValue = compose(
-      prop("gameImageUrl"),
+      prop("backgroundImage"),
       prop("game")
     )(mockValuable);
 

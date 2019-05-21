@@ -14,7 +14,7 @@ import "./ValuableCard.scss";
 type ValuableType = $Values<VALUABLE_TYPES>;
 
 type Game = {
-  gameImageUrl: string,
+  backgroundImage: string,
   title: string,
 };
 
@@ -90,7 +90,7 @@ class ValuableCard extends PureComponent<Props> {
           <ValuableHeaderBackground
             className={this.headerClassModifier}
             imageUrl={
-              isValuableTypeSpins ? game.gameImageUrl : backgroundImageUrl
+              isValuableTypeSpins ? game.backgroundImage : backgroundImageUrl
             }
             id={id}
             blur={isValuableTypeSpins ? blurAmount : 0}

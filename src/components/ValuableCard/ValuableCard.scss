@@ -30,7 +30,7 @@
 
 // stylelint-disable xi/selector-pattern
 .c-valuable-card--spins {
-  &.basic,
+  &.basic_spins,
   &.bonus {
     @include valuable-reward-theme(
       cudl-palette(grey, light-1),
