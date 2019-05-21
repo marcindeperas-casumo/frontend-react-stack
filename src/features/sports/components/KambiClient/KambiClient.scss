@@ -17,6 +17,10 @@
   @include cudl-breakpoint(tablet) {
     padding: 0 map-get($cudl-spacer-sizes, 3xlg) !important;
   }
+
+  @include cudl-breakpoint(desktop) {
+    padding: 0 !important;
+  }
 }
 
 .c-kambi-client--hidden {
@@ -40,6 +44,10 @@
 // has to be important as the kambi client pulls in a dynamic class with higher specificty
 .mod-KambiBC-betslip__header-pin-btn {
   display: none !important;
+}
+
+.c-sports-shell--site .KambiBC-event-groups-list {
+  padding: 0 !important;
 }
 
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
