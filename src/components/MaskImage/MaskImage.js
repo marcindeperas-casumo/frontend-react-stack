@@ -48,8 +48,8 @@ const MaskImage = ({
         preserveAspectRatio="none"
         x="0"
         y="0"
-        width={width}
-        height={height}
+        width="100%"
+        height="100%"
       />
     </svg>
   </div>
