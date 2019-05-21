@@ -27,7 +27,7 @@ describe("<Lazy />", () => {
     const rendered = mount(
       <Lazy
         fallback={<span>Loading...</span>}
-        loader={() => import("Components/UnknownComponent")}
+        loader={() => import("Components/UnknownComponent")} // eslint-disable-line import/no-unresolved
         props={{
           html,
         }}

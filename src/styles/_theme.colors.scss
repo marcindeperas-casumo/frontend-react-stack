@@ -2,6 +2,18 @@
   background: #1e2121;
 }
 
+.t-background-violet {
+  background-color: #d0bdff;
+
+  &-light-2 {
+    background-color: #e3d7ff;
+  }
+}
+
+.t-color-violet {
+  color: #d0bdff;
+}
+
 .t-color-black-dark-1 {
   color: #181c1c;
 }

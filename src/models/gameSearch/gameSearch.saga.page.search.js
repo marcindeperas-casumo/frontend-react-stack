@@ -1,4 +1,5 @@
 import { head } from "ramda";
+import { call, put, take, select } from "redux-saga/effects";
 import {
   fetchGameSearch,
   fetchLatestPlayedSaga,
@@ -7,7 +8,6 @@ import {
   fetchSuggestedGamesSaga,
   getgameSearchListIdByPage,
 } from "Models/gameSearch";
-import { call, put, take, select } from "redux-saga/effects";
 import { ENTITY_KEYS, normalizeData, updateEntity } from "Models/schema";
 import { sessionIdSelector } from "Models/handshake";
 

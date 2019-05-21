@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number, select } from "@storybook/addon-knobs/react";
-import { ProgressBar, colourOptions } from "./ProgressBar";
+import { ProgressBar, colorOptions } from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
 
@@ -13,22 +13,22 @@ const DefaultStory = () => {
     max: 100,
     step: 1,
   });
-  const backgroundColour = select(
-    "Background colour",
-    colourOptions.background,
-    colourOptions.background[0]
+  const backgroundColor = select(
+    "Background color",
+    colorOptions.background,
+    colorOptions.background[0]
   );
-  const foregroundColour = select(
-    "Foreground colour",
-    colourOptions.foreground,
-    colourOptions.foreground[0]
+  const foregroundColor = select(
+    "Foreground color",
+    colorOptions.foreground,
+    colorOptions.foreground[0]
   );
 
   return (
     <ProgressBar
       progress={progress}
-      foregroundColour={foregroundColour}
-      backgroundColour={backgroundColour}
+      foregroundColor={foregroundColor}
+      backgroundColor={backgroundColor}
     />
   );
 };

@@ -76,7 +76,13 @@ checkBrowsers(paths.appPath, isInteractive)
     // can use it properly
     const urls = { localUrlForTerminal: "https://mobile.dev" };
     // Create a webpack compiler that is configured with custom messages.
-    const compiler = createCompiler(webpack, config, appName, urls, useYarn);
+    const compiler = createCompiler({
+      appName,
+      config,
+      urls,
+      useYarn,
+      webpack,
+    });
     const devServer = new WebpackDevServer(compiler, devServerConfig);
     // Launch WebpackDevServer.
     devServer.listen(port, HOST, err => {

@@ -16,4 +16,5 @@ export type liveCasinoLobby = {
   seats: number,
   provider: string,
   results: [string],
+  history: [string],
 };
