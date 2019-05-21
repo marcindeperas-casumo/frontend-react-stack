@@ -17,7 +17,7 @@ type Props = {
   setContactByPhone: ToggleFn,
   setNewsletterSubscription: ToggleFn,
   setSMSNewsletterSubscription: ToggleFn,
-  labels: NotificationsLabelsQuery,
+  labels: NOTIFICATIONS_LABELS_QUERY,
 };
 
 export const ToggleRow = ({
