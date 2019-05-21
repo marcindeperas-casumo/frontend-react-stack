@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import ComponentBuilder from "Components/ComponentBuilder";
-import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal";
 
 export const getSlug = (market: string = "___en") =>
   `built-pages.top-lists-${market}`;
@@ -23,12 +22,6 @@ export default class TopLists extends PureComponent<Props> {
     const { market } = this.props;
     const slug = getSlug(market);
 
-    // TODO remove PlayerValuableListHorizontal from here when Account Page is ready
-    return (
-      <React.Fragment>
-        <PlayerValuableListHorizontal />
-        <ComponentBuilder slug={slug} />
-      </React.Fragment>
-    );
+    return <ComponentBuilder slug={slug} />;
   }
 }
