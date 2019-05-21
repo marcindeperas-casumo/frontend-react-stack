@@ -11,7 +11,10 @@ type Props = {
 };
 
 const SportsSingleNavTab = ({ navItem, onClick }: Props) => (
-  <Flex.Item className="c-sports-nav-tab o-flex" onClick={onClick}>
+  <Flex.Item
+    className="c-sports-nav-tab o-flex u-margin-left--lg u-margin-top--sm"
+    onClick={onClick}
+  >
     <Flex align="center" justify="center" className="o-flex--1">
       <SportsIcon {...navItem.iconProps} isActive />
       <Text

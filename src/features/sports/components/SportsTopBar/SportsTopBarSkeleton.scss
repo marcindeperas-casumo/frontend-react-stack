@@ -1,4 +1,11 @@
-// stylelint-disable xi/selector-pattern
-.c-sports-shell--mobile .c-sports-top-bar-skeleton {
+.c-sports-top-bar-skeleton {
   display: none;
+  height: 126px;
+  overflow: "hidden";
+  position: "relative";
+}
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-shell--site .c-sports-top-bar-skeleton {
+  display: flex;
 }

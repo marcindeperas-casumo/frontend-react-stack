@@ -7,7 +7,15 @@ import mocks from "./__mocks__/userNavigationQuery";
 
 const stories = storiesOf("Sports/SportsNav", module);
 
-stories.add("Many sports (scrolling)", () => (
+stories.add("Many sports (desktop)", () => (
+  <div className="c-sports-shell--site">
+    <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
+      <SportsNav currentHash="#filter/tennis/wta" />
+    </MockedProviderWithContext>
+  </div>
+));
+
+stories.add("Many sports", () => (
   <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
     <SportsNav currentHash="#filter/tennis/wta" />
   </MockedProviderWithContext>

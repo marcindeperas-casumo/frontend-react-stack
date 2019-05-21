@@ -21,6 +21,9 @@ type SportsNavProps = {
 
 export const USER_NAVIGATION_QUERY = gql`
   query UserNavigation {
+    allLabel: dictionaryTerm(key: "navigation.all")
+    editLabel: dictionaryTerm(key: "navigation.edit")
+
     sportsNavigation {
       sport {
         name
@@ -122,6 +125,7 @@ class SportsNav extends React.Component<SportsNavProps> {
     })),
   });
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   render() {
     // Decision was made that our nav doesn't add any benefit on the following kambi routes
     // and take too much focus away from what is happening
@@ -141,7 +145,12 @@ class SportsNav extends React.Component<SportsNavProps> {
             return <ErrorMessage direction="horizontal" />;
           }
 
-          if (data && data.sportsNavigation) {
+          if (
+            data &&
+            data.sportsNavigation &&
+            data.allLabel &&
+            data.editLabel
+          ) {
             const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
               this.mapToNavItem
             );
@@ -154,6 +163,30 @@ class SportsNav extends React.Component<SportsNavProps> {
               navItems.find(navItem => this.isNavItemSelected(navItem)) ||
               navItems[0];
 
+            const { subNav = [] } = selectedNavItem;
+
+            const selectedSubNavItem = subNav.find(subNavItem =>
+              this.isNavItemSelected(subNavItem)
+            );
+
+            const mainNavCacheBuster = [
+              selectedNavItem.path,
+              ...navItems.map(navItem => navItem.path),
+              this.props.currentHash,
+            ].join();
+
+            const subNavCacheBuster = subNav
+              .map(navItem => {
+                const isActive =
+                  selectedSubNavItem &&
+                  selectedSubNavItem.path === navItem.path;
+                return [
+                  isActive ? `${navItem.path}:active` : navItem.path,
+                  this.props.currentHash,
+                ].join();
+              })
+              .join();
+
             return (
               <>
                 <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
@@ -164,6 +197,8 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={true}
                       onEdit={openChooseFavouritesModal}
+                      editLabel={data.editLabel}
+                      cacheBuster={mainNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>
@@ -178,6 +213,9 @@ class SportsNav extends React.Component<SportsNavProps> {
                       isSelected={this.isNavItemSelected}
                       canEdit={selectedNavItem.canEdit}
                       onEdit={openChooseFavouriteLeaguesModal}
+                      allLabel={data.allLabel}
+                      editLabel={data.editLabel}
+                      cacheBuster={subNavCacheBuster}
                     />
                   )}
                 </OpenModalMutation>

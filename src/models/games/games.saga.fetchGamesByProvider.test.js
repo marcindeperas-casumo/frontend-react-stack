@@ -1,3 +1,5 @@
+import { cloneableGenerator } from "redux-saga/utils";
+import { call, put, select, take } from "redux-saga/effects";
 import { requestError } from "Models/fetch";
 import { waitForSelector } from "Utils";
 import { normalizeData, mergeEntity, ENTITY_KEYS } from "Models/schema";
@@ -12,8 +14,6 @@ import {
   types as playerGamesTypes,
 } from "Models/playerGames";
 import { sessionIdSelector } from "Models/handshake";
-import { call, put, select, take } from "redux-saga/effects";
-import { cloneableGenerator } from "redux-saga/utils";
 import { fetchGamesByProviderSaga } from "./games.saga.fetchGamesByProvider";
 
 describe("Models/Games/Sagas", () => {

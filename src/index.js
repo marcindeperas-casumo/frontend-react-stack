@@ -38,14 +38,6 @@ const renderApp = AppComponent => {
 
 renderApp(App);
 
-if (module.hot) {
-  // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
-  module.hot.accept("./components/App", () => {
-    const NextApp = require("./components/App").App;
-    renderApp(NextApp);
-  });
-}
-
 initNumberOfVisits();
 
 if (!__DEV__) {

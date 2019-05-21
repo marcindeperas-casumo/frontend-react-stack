@@ -1,3 +1,5 @@
+import { range } from "ramda";
+
 const activeIndicator =
   "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
 
@@ -236,6 +238,15 @@ export default [
           regionCode: null,
         },
       },
+      ...range(0, 8).map(i => ({
+        competition: {
+          name: `Madeup Comp ${i}`,
+          id: 2000070647 + i,
+          clientPath: `filter/tennis/comp${i}`,
+          termKey: `comp_${i}`,
+          regionCode: null,
+        },
+      })),
     ],
   },
   {
