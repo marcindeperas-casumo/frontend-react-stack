@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
+import { equals } from "ramda";
 import {
   Grid,
   AutoSizer,
@@ -38,21 +39,31 @@ type Props = {
   overscanColumnCount: overscanColumnCountType,
   /** A "default" width value to allow the Grid to guess the width of items as scrolling occurs */
   defaultWidth: number,
+  /** A way to force the column widths to recalculate by changing the string passed here */
+  cacheBuster?: string,
 };
 
 export const DEFAULT_OVERSCAN_COLUMN_COUNT = 10;
-export class Scrollable extends React.PureComponent<Props> {
+export class Scrollable extends React.Component<Props> {
   static defaultProps = {
     className: "",
     scrollHandler: (x: any) => {},
     overscanColumnCount: DEFAULT_OVERSCAN_COLUMN_COUNT,
-    defaultWidth: 100,
+    defaultWidth: 40,
   };
 
   cellSizeCache = new CellMeasurerCache({
     defaultWidth: this.props.defaultWidth,
     fixedHeight: true,
   });
+
+  shouldComponentUpdate(nextProps: Props) {
+    if (this.props.cacheBuster !== nextProps.cacheBuster) {
+      this.cellSizeCache.clearAll();
+    }
+
+    return !equals(this.props, nextProps);
+  }
 
   cellRenderer = ({
     columnIndex,
@@ -122,6 +133,7 @@ export class Scrollable extends React.PureComponent<Props> {
             onScroll={scrollHandler}
             scrollLeft={scrollLeft}
             overscanColumnCount={overscanColumnCount}
+            cacheBuster={this.props.cacheBuster}
           />
         )}
       </AutoSizer>

@@ -12,6 +12,7 @@ export const CHANNELS = {
   LIVE_CASINO_TABLE: "/public/liveCasino/table",
   MUST_DROP_JACKPOTS: "/public/redtiger-jackpots/*",
   PLAYER: "/player",
+  ADVENTURE: "/adventurer",
 };
 
 export const MESSAGES = {

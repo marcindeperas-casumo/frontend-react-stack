@@ -1,4 +1,4 @@
-export const beltToColourMap = {
+export const beltToColorMap = {
   rope: "brown-light-2",
   white: "grey-light-1",
   yellow: "yellow",
@@ -9,4 +9,4 @@ export const beltToColourMap = {
   sensei: "black",
 };
 
-export const belts = Object.keys(beltToColourMap);
+export const belts = Object.keys(beltToColorMap);

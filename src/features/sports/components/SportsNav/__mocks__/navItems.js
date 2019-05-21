@@ -1,11 +1,16 @@
 // @flow
 import React from "react";
 
+const activeIndicatorSrc =
+  "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
+
 export default [
   {
-    icon: (
-      <img src="https://cms.casumo.com/wp-content/uploads/2019/02/handball.svg" />
-    ),
+    iconProps: {
+      activeIndicatorSrc,
+      iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/football.svg",
+      alt: "Football",
+    },
     text: "Football",
     path: "filter/football",
     key: "football",
@@ -31,9 +36,11 @@ export default [
     ],
   },
   {
-    icon: (
-      <img src="https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg" />
-    ),
+    iconProps: {
+      activeIndicatorSrc,
+      iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
+      alt: "Tennis",
+    },
     text: "Tennis",
     path: "filter/tennis",
     key: "tennis",
@@ -56,9 +63,12 @@ export default [
     ],
   },
   {
-    icon: (
-      <img src="https://cms.casumo.com/wp-content/uploads/2019/02/horse_racing.svg" />
-    ),
+    iconProps: {
+      activeIndicatorSrc,
+      iconSrc:
+        "https://cms.casumo.com/wp-content/uploads/2019/02/horse_racing.svg",
+      alt: "Horse Racing",
+    },
     text: "Horse Racing",
     path: "racing/horse_racing",
     key: "horse_racing",
@@ -76,9 +86,11 @@ export default [
     ],
   },
   {
-    icon: (
-      <img src="https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg" />
-    ),
+    iconProps: {
+      activeIndicatorSrc,
+      iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
+      alt: "Horse Racing",
+    },
     text: "Cricket",
     path: "filter/cricket",
     key: "cricket",

@@ -7,6 +7,10 @@ const ignoredFiles = require("react-dev-utils/ignoredFiles");
 const paths = require("./paths");
 
 module.exports = {
+  // after update dev server was pinging localhost/sockjs-node and it was
+  // causing problems with certificate. Setting host to '0.0.0.0' appears
+  // to solve it.
+  host: "0.0.0.0",
   // by default webpack dev server does host check. It's unfortunate for us
   // because we are using that on differend host via proxy. If you have
   // custom proxy config and you don't reffer to react stack as
