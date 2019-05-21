@@ -73,7 +73,6 @@ const SubscriptionRow = ({
 class Notifications extends PureComponent<Props> {
   render() {
     const {
-      setAdventurerPublicity,
       setWithdrawalNotifications,
       setContactByPost,
       setContactByPhone,
@@ -83,7 +82,6 @@ class Notifications extends PureComponent<Props> {
         details: {
           contactSettings: {
             withdrawalNotifications,
-            adventurerPublic,
             subscribedToNewsletters,
             subscribedToSMSNewsletters,
             contactByPhone,
@@ -111,14 +109,6 @@ class Notifications extends PureComponent<Props> {
         label={notificationsApprovedWithdrawalsEmailLabel}
         isEnabled={withdrawalNotifications}
         onChange={setWithdrawalNotifications}
-      />
-    );
-
-    const ToggleAdventurerPublic = () => (
-      <ToggleRow
-        label="Show my adventure and player card"
-        isEnabled={adventurerPublic}
-        onChange={setAdventurerPublicity}
       />
     );
 
@@ -198,7 +188,6 @@ class Notifications extends PureComponent<Props> {
     return (
       <>
         <ToggleWithdrawals />
-        <ToggleAdventurerPublic />
         <RealityCheck />
 
         <Row
