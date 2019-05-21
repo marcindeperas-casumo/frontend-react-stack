@@ -3,43 +3,19 @@ import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import MaskItem from "Components/MaskItem";
-import ImageLazy from "Components/Image/ImageLazy";
-import { isNilOrEmpty } from "Utils";
+import MaskImage from "Components/MaskImage";
 
 type Props = {
   id: string,
   className: string,
   imageUrl?: string,
+  blur: number,
   children: Node,
 };
 
 const headerDimensions = {
   width: 144,
   height: 80,
-};
-
-const GradientBackground = ({ ...dimensions }) => {
-  return (
-    <div
-      className="c-valuable-header__gradient-overlay u-opacity-50"
-      style={{ ...dimensions }}
-    />
-  );
-};
-
-const ImageBackground = ({ src, alt, width, height }) => {
-  return (
-    <ImageLazy
-      className="c-valuable-header__image-overlay"
-      src={src}
-      imgixOpts={{
-        w: width,
-        h: height,
-        blur: 100,
-      }}
-    />
-  );
 };
 
 const shapeOfMask = () => {
@@ -52,14 +28,9 @@ const ValuableHeaderBackground = ({
   id,
   className,
   imageUrl,
+  blur,
   children,
 }: Props) => {
-  const hasImage = !isNilOrEmpty(imageUrl);
-  const background = hasImage ? (
-    <ImageBackground src={imageUrl} {...headerDimensions} />
-  ) : (
-    <GradientBackground {...headerDimensions} />
-  );
   return (
     <Flex
       justify="center"
@@ -68,14 +39,14 @@ const ValuableHeaderBackground = ({
         className
       )}
     >
-      <MaskItem
+      <MaskImage
         id={id}
         {...headerDimensions}
         className="u-position-absolute c-valuable-card__header"
         shapeMask={shapeOfMask}
-      >
-        {background}
-      </MaskItem>
+        imageUrl={imageUrl}
+        blur={blur}
+      />
       <div className="u-margin-top--lg u-padding--sm">{children}</div>
     </Flex>
   );

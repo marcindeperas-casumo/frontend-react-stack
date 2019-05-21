@@ -27,6 +27,7 @@ type Props = {
   coinValue: number,
   game: Game,
   market: string,
+  backgroundImageUrl: string,
 };
 
 class ValuableCard extends PureComponent<Props> {
@@ -74,9 +75,10 @@ class ValuableCard extends PureComponent<Props> {
   };
 
   render() {
-    const { id, title, valuableType, game } = this.props;
+    const { id, title, valuableType, game, backgroundImageUrl } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
+    const blurAmount = 2;
 
     return (
       <Flex
@@ -87,8 +89,11 @@ class ValuableCard extends PureComponent<Props> {
         <Flex.Block>
           <ValuableHeaderBackground
             className={this.headerClassModifier}
-            imageUrl={isValuableTypeSpins ? game.gameImageUrl : ""}
+            imageUrl={
+              isValuableTypeSpins ? game.gameImageUrl : backgroundImageUrl
+            }
             id={id}
+            blur={isValuableTypeSpins ? blurAmount : 0}
           >
             <ValuableReward
               ValuableSymbol={this.valuableSymbol}

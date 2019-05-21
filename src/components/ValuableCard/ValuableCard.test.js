@@ -32,8 +32,8 @@ describe("ValuableCard", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should not pass any image url to ValuableHeader if type is not SPINS", () => {
-    const expectedValue = "";
+  test("should always have an image url to ValuableHeader if type is not SPINS", () => {
+    const { backgroundImageUrl: expectedValue } = mockValuable;
 
     const actualValue = rendered
       .find("ValuableHeaderBackground")
