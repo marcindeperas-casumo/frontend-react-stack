@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
+import { ContentReplacer } from "Components/ContentReplacer";
 import Row from "Components/Settings/Row";
 import Headline from "Components/Settings/Headline";
 import Toggle from "Components/Controls/Toggle";
@@ -101,6 +102,8 @@ class Notifications extends PureComponent<Props> {
         subscriptionsPostLabel,
         notificationsApprovedWithdrawalsEmailLabel,
         notificationsInGameSessionUpdatesLabel,
+        inGameSessionUpdatesOffLabel,
+        inGameSessionUpdatesFrequencyLabel,
       },
     } = this.props;
 
@@ -134,14 +137,17 @@ class Notifications extends PureComponent<Props> {
                     tag="span"
                     className="t-color-green u-font-weight-light"
                   >
-                    {intervalInMinutes} min
+                    <ContentReplacer
+                      value={inGameSessionUpdatesFrequencyLabel}
+                      replacements={{ amount: intervalInMinutes }}
+                    />
                   </Text>
                 ) : (
                   <Text
                     tag="span"
                     className="t-color-grey-light-1 u-font-weight-light"
                   >
-                    Off
+                    {inGameSessionUpdatesOffLabel}
                   </Text>
                 )}
                 {canChangeInterval && (
