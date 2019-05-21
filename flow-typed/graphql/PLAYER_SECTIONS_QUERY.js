@@ -1,0 +1,38 @@
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: PLAYER_SECTIONS_QUERY
+// ====================================================
+
+export type PLAYER_SECTIONS_QUERY_player_loginHistory = {
+  loginTime: any
+};
+
+export type PLAYER_SECTIONS_QUERY_player = {
+  id: string,
+  loginHistory: Array<PLAYER_SECTIONS_QUERY_player_loginHistory>,
+};
+
+export type PLAYER_SECTIONS_QUERY = {
+  player: PLAYER_SECTIONS_QUERY_player
+};/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+//==============================================================
+// START Enums and Input Objects
+//==============================================================
+
+export type ContactSettingsInput = {|
+  on: boolean
+|};
+
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
+
+//==============================================================
+// END Enums and Input Objects
+//==============================================================
