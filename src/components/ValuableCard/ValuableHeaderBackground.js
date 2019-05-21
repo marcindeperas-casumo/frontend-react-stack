@@ -64,7 +64,7 @@ const ValuableHeaderBackground = ({
     <Flex
       justify="center"
       className={classNames(
-        "t-border-r--16 c-valuable-header__background t-color-white",
+        "t-border-r--16 c-valuable-header__background t-color-white u-position-relative",
         className
       )}
     >
