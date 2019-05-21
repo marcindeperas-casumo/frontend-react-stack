@@ -7,10 +7,12 @@
   }
 }
 
-.c-valuable-card {
-  height: 204px;
+.c-valuable-card-wrapper {
   max-width: 170px;
   width: 170px;
+}
+.c-valuable-card {
+  height: 204px;
 }
 
 .c-valuable-card__content {

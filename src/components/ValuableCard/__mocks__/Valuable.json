@@ -5,7 +5,7 @@
     "title": "€50 Bonus Money",
     "magnitude": "50",
     "currency": "EUR",
-    "caveat": "terms and consitions apply",
+    "caveat": "Min dep £10. 30x wag req. T&C's apply.",
     "market": "en",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png"
   },
@@ -14,6 +14,7 @@
     "valuableType": "deposit",
     "title": "100% Deposit Bonus",
     "market": "en",
+    "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png"
   },
   {
@@ -21,6 +22,7 @@
     "valuableType": "sport",
     "title": "€5 Sport Bet",
     "market": "en",
+    "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png"
   },
   {
@@ -33,6 +35,7 @@
       "title": "Starburst",
       "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
     },
+    "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
     "market": "en"
   }

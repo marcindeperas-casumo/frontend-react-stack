@@ -28,6 +28,7 @@ type Props = {
   game: Game,
   market: string,
   backgroundImageUrl: string,
+  caveat: string,
 };
 
 class ValuableCard extends PureComponent<Props> {
@@ -75,43 +76,58 @@ class ValuableCard extends PureComponent<Props> {
   };
 
   render() {
-    const { id, title, valuableType, game, backgroundImageUrl } = this.props;
+    const {
+      id,
+      title,
+      valuableType,
+      game,
+      backgroundImageUrl,
+      caveat,
+    } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
     const blurAmount = 3;
 
     return (
-      <Flex
-        className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
-        direction="vertical"
-        gap="none"
-      >
-        <Flex.Block>
-          <ValuableHeaderBackground
-            className={this.headerClassModifier}
-            imageUrl={
-              isValuableTypeSpins ? game.backgroundImage : backgroundImageUrl
-            }
-            id={id}
-            blur={isValuableTypeSpins ? blurAmount : 0}
-          >
-            <ValuableReward
-              ValuableSymbol={this.valuableSymbol}
-              justifyCenter={isValuableTypeCash}
-            />
-          </ValuableHeaderBackground>
-        </Flex.Block>
-        <Flex.Item className="c-valuable-card__content u-text-align-center">
-          <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
-            {title}
-          </div>
-          {isValuableTypeSpins && (
-            <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-              {game.title}
+      <div className="c-valuable-card-wrapper u-text-align-center">
+        <Flex
+          className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
+          direction="vertical"
+          gap="none"
+        >
+          <Flex.Block>
+            <ValuableHeaderBackground
+              className={this.headerClassModifier}
+              imageUrl={
+                isValuableTypeSpins ? game.backgroundImage : backgroundImageUrl
+              }
+              id={id}
+              blur={isValuableTypeSpins ? blurAmount : 0}
+            >
+              <ValuableReward
+                ValuableSymbol={this.valuableSymbol}
+                justifyCenter={isValuableTypeCash}
+              />
+            </ValuableHeaderBackground>
+          </Flex.Block>
+          <Flex.Item className="c-valuable-card__content u-text-align-center">
+            <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
+              {title}
             </div>
-          )}
-        </Flex.Item>
-      </Flex>
+            {isValuableTypeSpins && (
+              <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
+                {game.title}
+              </div>
+            )}
+          </Flex.Item>
+        </Flex>
+        <div
+          id="c-valuableCard-caveat"
+          className="t-color-grey u-font-xs u-margin-top"
+        >
+          {caveat}
+        </div>
+      </div>
     );
   }
 }

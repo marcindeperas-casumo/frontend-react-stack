@@ -80,4 +80,12 @@ describe("ValuableCard", () => {
 
     expect(rendered.find("ValuableHeaderBackground").hasClass(expectedValue));
   });
+
+  test("should render caveat", () => {
+    const expectedValue = mockValuable.caveat;
+
+    expect(rendered.find("#c-valuableCard-caveat").text()).toEqual(
+      expectedValue
+    );
+  });
 });
