@@ -26,5 +26,11 @@ export const NOTIFICATIONS_LABELS_QUERY = gql`
     notificationsInGameSessionUpdatesLabel: getText(
       id: "root:player-settings-component:fields.notifications_ingame_session_updates_label"
     )
+    inGameSessionUpdatesOffLabel: getText(
+      id: "root:player-settings-component:fields.in_game_updates_off_label"
+    )
+    inGameSessionUpdatesFrequencyLabel: getText(
+      id: "root:player-settings-component:fields.in_game_updates_options_label"
+    )
   }
 `;

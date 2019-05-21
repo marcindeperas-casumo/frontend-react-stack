@@ -15,6 +15,8 @@ export type NOTIFICATIONS_LABELS_QUERY = {
   subscriptionsPostLabel: string,
   notificationsApprovedWithdrawalsEmailLabel: string,
   notificationsInGameSessionUpdatesLabel: string,
+  inGameSessionUpdatesOffLabel: string,
+  inGameSessionUpdatesFrequencyLabel: string,
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
