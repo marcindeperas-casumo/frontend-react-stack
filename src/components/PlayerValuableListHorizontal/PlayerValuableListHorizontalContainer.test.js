@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
-import MockStore from "Components/MockStore/index";
+import { MockedProvider } from "react-apollo/test-utils";
 import {
   normalQuery,
   failedQuery,
@@ -11,35 +11,19 @@ import { PlayerValuableListHorizontal } from "./index";
 describe("PlayerValuableListHorizontal", () => {
   test("renders skeleton while loading", () => {
     const rendered = mount(
-      <MockStore queryMocks={[normalQuery]}>
+      <MockedProvider mocks={[normalQuery]} addTypename={false}>
         <PlayerValuableListHorizontal />
-      </MockStore>
+      </MockedProvider>
     );
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(true);
   });
 
-  test("renders nothing when query fails", async () => {
-    const rendered = mount(
-      <MockStore queryMocks={[failedQuery]}>
-        <PlayerValuableListHorizontal />
-      </MockStore>
-    );
-
-    await wait(0);
-
-    rendered.update();
-
-    expect(rendered.find("PlayerValuablesTypedQuery").children()).toHaveLength(
-      0
-    );
-  });
-
   test("renders a number of tiles that match the number returned by query", async () => {
     const rendered = mount(
-      <MockStore queryMocks={[normalQuery]}>
+      <MockedProvider mocks={[normalQuery]} addTypename={false}>
         <PlayerValuableListHorizontal />
-      </MockStore>
+      </MockedProvider>
     );
 
     await wait(0);
@@ -48,16 +32,40 @@ describe("PlayerValuableListHorizontal", () => {
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(false);
 
-    expect(rendered.find("DummyPlayerValuableTile")).toHaveLength(5);
+    expect(rendered.find("ValuableCard")).toHaveLength(5);
+  });
+
+  test("renders '20% extra' and '44 free spins' coming from props", async () => {
+    const rendered = mount(
+      <MockedProvider mocks={[normalQuery]} addTypename={false}>
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
+    );
+
+    await wait(0);
+
+    rendered.update();
 
     const renderedText = rendered.text();
 
-    expect(renderedText).toContain(
-      "Gives you 20% extra with your next deposit (max bonus €200)"
+    expect(renderedText).toContain("20% extra");
+
+    expect(renderedText).toContain("44 free spins");
+  });
+
+  test("renders nothing when query fails", async () => {
+    const rendered = mount(
+      <MockedProvider mocks={[failedQuery]} addTypename={false}>
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
     );
 
-    expect(renderedText).toContain(
-      "Gives you 44 free spins in netent-glow_mobile_html_sw"
+    await wait(0);
+
+    rendered.update();
+
+    expect(rendered.find("PlayerValuablesTypedQuery").children()).toHaveLength(
+      0
     );
   });
 });

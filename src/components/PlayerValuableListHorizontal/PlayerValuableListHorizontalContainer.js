@@ -5,9 +5,9 @@ import { map } from "ramda";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { isNilOrEmpty } from "Utils/utils";
+import ValuableCard from "Components/ValuableCard";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
-import { DummyPlayerValuableTile } from "./DummyPlayerValuableTile";
 
 // This is far from ideal and is just temporary.
 // We need to update the list of player vauables because sometimes they come through Cometd
@@ -30,7 +30,7 @@ const withValuableData = (
     return null;
   }
 
-  return <DummyPlayerValuableTile valuable={valuable} />;
+  return <ValuableCard {...valuable} />;
 };
 
 export const PlayerValuableListHorizontalContainer = () => (
