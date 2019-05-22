@@ -20,6 +20,13 @@
   height: 80px;
 }
 
+.c-valuableCard-state {
+  top: 0;
+  border-radius: 16px 0px;
+  align-items: center;
+  display: flex;
+}
+
 .c-valuable-card--cash {
   @include valuable-reward-theme(cudl-palette(yellow), cudl-palette(brown));
 }

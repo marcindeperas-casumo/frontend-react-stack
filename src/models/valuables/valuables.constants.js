@@ -11,3 +11,8 @@ export const VALUABLE_SPIN_TYPES = {
   SUPER: "super",
   MEGA: "mega",
 };
+
+export const VALUABLE_STATES = {
+  DEFAULT: "default",
+  LOCKED: "locked",
+};
