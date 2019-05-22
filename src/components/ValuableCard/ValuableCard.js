@@ -122,7 +122,7 @@ class ValuableCard extends PureComponent<Props> {
           </Flex.Item>
         </Flex>
         <div
-          id="c-valuableCard-caveat"
+          data-test="valuableCard-caveat"
           className="t-color-grey u-font-xs u-margin-top"
         >
           {caveat}

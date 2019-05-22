@@ -84,7 +84,7 @@ describe("ValuableCard", () => {
   test("should render caveat", () => {
     const expectedValue = mockValuable.caveat;
 
-    expect(rendered.find("#c-valuableCard-caveat").text()).toEqual(
+    expect(rendered.find('[data-test="valuableCard-caveat"]').text()).toEqual(
       expectedValue
     );
   });
