@@ -2,6 +2,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { map } from "ramda";
+import Flex from "@casumo/cmp-flex";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { isNilOrEmpty } from "Utils/utils";
@@ -30,7 +31,13 @@ const withValuableData = (
     return null;
   }
 
-  return <ValuableCard {...valuable} />;
+  const { game = {}, ...rest } = valuable;
+
+  return (
+    <Flex.Item className="o-flex__item-fixed-size">
+      <ValuableCard {...rest} game={{ ...game, title: game.name }} />
+    </Flex.Item>
+  );
 };
 
 export const PlayerValuableListHorizontalContainer = () => (
