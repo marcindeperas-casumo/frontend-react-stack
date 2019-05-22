@@ -9,6 +9,7 @@ import { getSymbolForCurrency } from "Utils";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
 import { VALUABLE_ICON, CoinValueToSpinType } from "./ValuableCard.utils";
 import ValuableReward from "./ValuableReward";
+import Time from "./Icons/time.svg";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
@@ -126,6 +127,12 @@ class ValuableCard extends PureComponent<Props> {
           className="t-color-grey u-font-xs u-margin-top u-text-align-center"
         >
           {caveat}
+        </div>
+        <div className="c-valuableCard-state u-font-xs t-background-white t-color-red u-position-absolute u-padding">
+          <Time />
+          <span>
+            <strong>22h</strong>
+          </span>
         </div>
       </div>
     );
