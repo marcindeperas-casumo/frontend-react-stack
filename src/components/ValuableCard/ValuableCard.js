@@ -89,7 +89,7 @@ class ValuableCard extends PureComponent<Props> {
     const blurAmount = 3;
 
     return (
-      <div className="c-valuable-card-wrapper u-text-align-center">
+      <div className="c-valuable-card-wrapper">
         <Flex
           className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
@@ -123,7 +123,7 @@ class ValuableCard extends PureComponent<Props> {
         </Flex>
         <div
           data-test="valuableCard-caveat"
-          className="t-color-grey u-font-xs u-margin-top"
+          className="t-color-grey u-font-xs u-margin-top u-text-align-center"
         >
           {caveat}
         </div>
