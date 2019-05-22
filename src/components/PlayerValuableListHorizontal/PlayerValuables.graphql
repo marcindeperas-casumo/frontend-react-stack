@@ -20,6 +20,7 @@ query PlayerValuablesQuery {
         wageringFactor
       }
 
+      # ISS #29429 Tackle this complexity separately
       ... on PlayerValuableDepositLadder {
         itemsToAwardLadder {
           minDepositAmount {
