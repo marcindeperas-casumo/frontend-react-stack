@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import Link from "Components/Settings/Link";
-import SettingsRow from "./";
+import { SettingsRow } from "./SettingsRow";
 
 const stories = storiesOf("Settings/SettingsRow", module);
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SettingsRow from "./SettingsRow";
+import { SettingsRow } from "./SettingsRow";
 
 describe("SettingsRow", () => {
   test("should render a row with two flex items", () => {

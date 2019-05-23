@@ -14,7 +14,7 @@ const paddingValues = {
   default: "lg",
   md: "md",
 };
-class SettingsRow extends PureComponent<Props> {
+export class SettingsRow extends PureComponent<Props> {
   static defaultProps = {
     padding: "default",
   };
@@ -44,5 +44,3 @@ class SettingsRow extends PureComponent<Props> {
     );
   }
 }
-
-export default SettingsRow;
