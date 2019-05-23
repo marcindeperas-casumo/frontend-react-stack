@@ -6,4 +6,8 @@ import { SettingsRow } from "./SettingsRow";
 
 const stories = storiesOf("Settings/SettingsRow", module);
 
-stories.add("Default", () => <SettingsRow text="a label" />);
+stories.add("Default", () => (
+  <SettingsRow text="a label">
+    <Link label="Go to home" target="http://www.casumo.com" />
+  </SettingsRow>
+));
