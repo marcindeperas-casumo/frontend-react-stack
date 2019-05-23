@@ -63,7 +63,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
           }}
         >
-          {lobby.results && <CardData lobby={lobby} />}
+          <CardData lobby={lobby} />
         </Flex>
       </div>
     );

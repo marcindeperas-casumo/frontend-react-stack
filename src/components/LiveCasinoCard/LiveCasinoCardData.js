@@ -23,24 +23,25 @@ const getTextColor = (color: string) =>
 const renderResults = ({ results, type }) => (
   <>
     <div className="o-layout o-layout--gap">
-      {results.slice(0, RESULT_BADGES).map((n, i) => {
-        const color = getBadgeColor(type, n);
-        const borderColor = getBadgeBorderColor(type, n);
-        return (
-          <Badge
-            key={i}
-            tag="div"
-            bgColor={color}
-            txtColor={getTextColor(color)}
-            circle={true}
-            className={classNames(
-              borderColor && `c-card-data-badge-shadow-${borderColor}`
-            )}
-          >
-            {getResultsDisplay(type, n)}
-          </Badge>
-        );
-      })}
+      {results &&
+        results.slice(0, RESULT_BADGES).map((n, i) => {
+          const color = getBadgeColor(type, n);
+          const borderColor = getBadgeBorderColor(type, n);
+          return (
+            <Badge
+              key={i}
+              tag="div"
+              bgColor={color}
+              txtColor={getTextColor(color)}
+              circle={true}
+              className={classNames(
+                borderColor && `c-card-data-badge-shadow-${borderColor}`
+              )}
+            >
+              {getResultsDisplay(type, n)}
+            </Badge>
+          );
+        })}
     </div>
     <Text
       size="xs"

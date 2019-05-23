@@ -1,17 +1,16 @@
 {
-  "name":"Casumo Blackjack 2",
+  "name": "Casumo Blackjack 2",
   "slug": "casumo-blackjack-2",
   "lobby": {
     "tableId": "l3gual5z3tuqf22i",
     "type": "Blackjack",
     "image": "https://cms.casumo.com/wp-content/uploads/2017/09/blackjack1.png",
     "bets": {
-      "symbol":"£",
-      "min":5,
-      "max":2000
+      "symbol": "£",
+      "min": 5,
+      "max": 2000
     },
     "players": 2,
-    "results": null,
     "betBehind": true,
     "seats": 7,
     "provider": "casumo"
