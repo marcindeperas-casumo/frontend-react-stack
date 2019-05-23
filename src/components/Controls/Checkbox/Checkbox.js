@@ -11,11 +11,11 @@ type Props = {
   renderUnchecked: () => Node,
 };
 
-const defaultUnchecked = () => (
+const CheckboxUnchecked = () => (
   <div className="c-checkbox u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-grey-light-1 t-background-white" />
 );
 
-const defaultChecked = () => (
+const CheckboxChecked = () => (
   <div className="c-checkbox u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-green-light-1 t-background-green-light-1">
     <Flex
       align="center"
@@ -27,21 +27,21 @@ const defaultChecked = () => (
   </div>
 );
 
-class Checkbox extends PureComponent<Props> {
+export class Checkbox extends PureComponent<Props> {
   static defaultProps = {
     checked: false,
-    renderUnchecked: defaultUnchecked,
-    renderChecked: defaultChecked,
+    renderChecked: CheckboxChecked,
+    renderUnchecked: CheckboxUnchecked,
   };
 
   render() {
     const { renderChecked, renderUnchecked, checked, onChange } = this.props;
+    const Checked = renderChecked;
+    const Unchecked = renderUnchecked;
     return (
       <span onClick={() => onChange(!checked)}>
-        {checked ? renderChecked() : renderUnchecked()}
+        {checked ? <Checked /> : <Unchecked />}
       </span>
     );
   }
 }
-
-export default Checkbox;
