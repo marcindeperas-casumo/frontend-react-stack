@@ -4,21 +4,13 @@ import { SettingsHeadline } from "./SettingsHeadline";
 
 describe("SettingsHeadline", () => {
   test("should render title and description", () => {
+    const title = "foo";
+    const description = "bar";
+
     const rendered = shallow(
-      <SettingsHeadline title="foo" description="bar" />
+      <SettingsHeadline title={title} description={description} />
     );
-    expect(rendered.find("Text").length).toBe(2);
-    const title = rendered
-      .find("div")
-      .find("Text")
-      .first()
-      .children();
-    const description = rendered
-      .find("div")
-      .find("Text")
-      .at(1)
-      .children();
-    expect(title.text()).toBe("foo");
-    expect(description.text()).toBe("bar");
+    expect(rendered.contains(title)).toBe(true);
+    expect(rendered.contains(description)).toBe(true);
   });
 });
