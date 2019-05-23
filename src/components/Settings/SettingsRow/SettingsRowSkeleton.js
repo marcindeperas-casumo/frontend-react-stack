@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Skeleton from "@casumo/cmp-skeleton";
 
-export class RowSkeleton extends PureComponent<{}> {
+export class SettingsRowSkeleton extends PureComponent<{}> {
   render() {
     return (
       <Skeleton

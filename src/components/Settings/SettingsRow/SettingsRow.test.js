@@ -1,16 +1,16 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Row from "./Row";
+import SettingsRow from "./SettingsRow";
 
-describe("Row", () => {
+describe("SettingsRow", () => {
   test("should render a row with two flex items", () => {
-    const rendered = shallow(<Row />);
+    const rendered = shallow(<SettingsRow />);
     expect(rendered.find("Flex")).toHaveLength(1);
     expect(rendered.find("Flex").find("FlexItem")).toHaveLength(1);
   });
 
   test("should render correct props", () => {
-    const rendered = shallow(<Row text="foo" action="bar" />);
+    const rendered = shallow(<SettingsRow text="foo" action="bar" />);
     expect(rendered.find("Flex")).toHaveLength(1);
     expect(rendered.find("Flex").find("FlexItem")).toHaveLength(2);
     expect(
