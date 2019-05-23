@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import Checkbox from "Components/Controls/Checkbox";
+import { Checkbox } from "Components/Controls/Checkbox/Checkbox";
 import "./Toggle.scss";
 
 type Props = {
@@ -8,7 +8,7 @@ type Props = {
   onChange: (active: boolean) => void,
 };
 
-const renderUnchecked = () => (
+const RenderUnchecked = () => (
   <div className="c-toggle t-border-r--pill t-background-grey">
     <svg className="c-toggle-container">
       <circle
@@ -21,7 +21,7 @@ const renderUnchecked = () => (
   </div>
 );
 
-const renderChecked = () => (
+const RenderChecked = () => (
   <div className="c-toggle t-border-r--pill t-background-green-light-1">
     <svg className="c-toggle-container">
       <circle className="c-toggle-circle--active" cy="16" r="14" fill="#FFF" />
@@ -34,8 +34,8 @@ class Toggle extends PureComponent<Props> {
     return (
       <Checkbox
         {...this.props}
-        renderUnchecked={renderUnchecked}
-        renderChecked={renderChecked}
+        renderUnchecked={RenderUnchecked}
+        renderChecked={RenderChecked}
       />
     );
   }
