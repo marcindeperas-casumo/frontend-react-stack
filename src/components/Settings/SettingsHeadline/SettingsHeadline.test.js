@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import SettingsHeadline from "./SettingsHeadline";
+import { SettingsHeadline } from "./SettingsHeadline";
 
 describe("SettingsHeadline", () => {
   test("should render title and description", () => {

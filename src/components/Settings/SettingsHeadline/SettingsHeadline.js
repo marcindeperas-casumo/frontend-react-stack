@@ -8,7 +8,7 @@ type Props = {
   description: string,
 };
 
-class SettingsHeadline extends PureComponent<Props> {
+export class SettingsHeadline extends PureComponent<Props> {
   render() {
     const { title, description } = this.props;
     return (
@@ -27,5 +27,3 @@ class SettingsHeadline extends PureComponent<Props> {
     );
   }
 }
-
-export default Headline;
