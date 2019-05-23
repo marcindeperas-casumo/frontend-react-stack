@@ -1,14 +1,14 @@
 // @flow
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
-import "./Headline.scss";
+import "./SettingsHeadline.scss";
 
 type Props = {
   title: string,
   description: string,
 };
 
-class Headline extends PureComponent<Props> {
+class SettingsHeadline extends PureComponent<Props> {
   render() {
     const { title, description } = this.props;
     return (

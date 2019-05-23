@@ -1,12 +1,12 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Headline from "./";
+import SettingsHeadline from "./";
 
-const stories = storiesOf("Settings/Headline", module);
+const stories = storiesOf("Settings/SettingsHeadline", module);
 
 stories.add("Default", () => (
-  <Headline
+  <SettingsHeadline
     title="Account Details"
     description="Manage your personal and login info"
   />
