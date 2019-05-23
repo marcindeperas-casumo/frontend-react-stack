@@ -13,6 +13,6 @@ export const VALUABLE_SPIN_TYPES = {
 };
 
 export const VALUABLE_STATES = {
-  DEFAULT: "default",
-  LOCKED: "locked",
+  DEFAULT: "Default",
+  LOCKED: "Locked",
 };

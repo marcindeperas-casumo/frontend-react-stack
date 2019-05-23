@@ -4,12 +4,18 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
-import { VALUABLE_TYPES } from "Models/valuables";
-import { getSymbolForCurrency } from "Utils";
+import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import { getSymbolForCurrency, isNilOrEmpty } from "Utils";
 import ValuableHeaderBackground from "./ValuableHeaderBackground";
-import { VALUABLE_ICON, CoinValueToSpinType } from "./ValuableCard.utils";
+import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
+import {
+  VALUABLE_ICON,
+  CoinValueToSpinType,
+  ExpiryInHours,
+} from "./ValuableCard.utils";
 import ValuableReward from "./ValuableReward";
 import Time from "./Icons/time.svg";
+import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
@@ -30,6 +36,8 @@ type Props = {
   market: string,
   backgroundImageUrl: string,
   caveat: string,
+  valuableState: string,
+  expiryDate: Date,
 };
 
 class ValuableCard extends PureComponent<Props> {
@@ -60,6 +68,29 @@ class ValuableCard extends PureComponent<Props> {
     );
   }
 
+  get stateBadgeOptions(): Object {
+    const badgeOpts = (text, badgeClassModifiers, badgeIcon) => ({
+      text,
+      badgeClassModifiers,
+      badgeIcon,
+    });
+    const { valuableState, expiryDate } = this.props;
+    const expiryInHours = ExpiryInHours(expiryDate);
+    const hrs24 = 24;
+
+    if (valuableState === VALUABLE_STATES.LOCKED) {
+      const className = "t-color-black";
+      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
+    }
+
+    if (expiryInHours <= hrs24) {
+      const className = "t-color-red";
+      return badgeOpts(`${expiryInHours}h`, className, () => <Time />);
+    }
+
+    return null;
+  }
+
   // To move this to graphql
   get spinType() {
     return CoinValueToSpinType(this.props.coinValue);
@@ -84,10 +115,15 @@ class ValuableCard extends PureComponent<Props> {
       game,
       backgroundImageUrl,
       caveat,
+      valuableState,
     } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
     const blurAmount = 3;
+    const stateBadgeOptions = this.stateBadgeOptions;
+    const showStateBadge =
+      !isNilOrEmpty(stateBadgeOptions) ||
+      valuableState !== VALUABLE_STATES.DEFAULT;
 
     return (
       <div className="c-valuable-card-wrapper">
@@ -128,12 +164,15 @@ class ValuableCard extends PureComponent<Props> {
         >
           {caveat}
         </div>
-        <div className="c-valuableCard-state u-font-xs t-background-white t-color-red u-position-absolute u-padding">
-          <Time />
-          <span>
-            <strong>22h</strong>
-          </span>
-        </div>
+        {showStateBadge && (
+          <ValuableCardStateBadge
+            {...stateBadgeOptions}
+            className={classNames(
+              "c-valuable-card-state u-font-xs t-background-white t-color-red u-padding u-position-absolute",
+              stateBadgeOptions.badgeClassModifiers
+            )}
+          />
+        )}
       </div>
     );
   }
