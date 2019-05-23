@@ -74,10 +74,8 @@ export function* fetchReelRacesSaga(): * {
   yield put(fetchReelRaces({ playerId }));
 
   const {
-    response: { tournaments, tournamentChannels },
+    response: { tournaments },
   } = yield take(types.FETCH_COMPLETED);
-
-  console.log("COMETD: CHANNELS", { tournamentChannels });
 
   const providerGameNames: Array<string> = R.pipe(
     R.values,

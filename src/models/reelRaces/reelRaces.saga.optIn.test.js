@@ -1,4 +1,4 @@
-import { reelRacesUpdatesSaga } from "./reelRaces.saga.update";
+import { reelRacesUpdatesSaga } from "./reelRaces.saga.optIn";
 
 describe("Models/reelRaces/UpdateSaga", () => {
   const action = {
@@ -10,7 +10,8 @@ describe("Models/reelRaces/UpdateSaga", () => {
   generator.next();
 
   test("updates tournament and finishes after updating", () => {
-    const dispatchedAction = generator.next({}).value.PUT.action;
+    const selectedReelRaces = {};
+    const dispatchedAction = generator.next(selectedReelRaces).value.PUT.action;
 
     expect(dispatchedAction.payload).toEqual({
       reelRaces: {

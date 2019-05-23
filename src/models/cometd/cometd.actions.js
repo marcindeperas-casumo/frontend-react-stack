@@ -36,19 +36,15 @@ export const unsubscribeMustDropJackpotUpdates = () => {
   return unsubscribe({ channel: CHANNELS.MUST_DROP_JACKPOTS });
 };
 
-export const subscribeReelRacesUpdates = (id, playerId) => {
+export const subscribeReelRaceUpdates = (channelPrefix, playerId) => {
   return subscribe({
-    channel: `${
-      CHANNELS.REEL_RACES
-    }/${id}/tournaments/players/${playerId}/tournamentEvents/entered`,
+    channel: `${channelPrefix}/tournaments/players/${playerId}/tournamentEvents/entered`,
   });
 };
 
-export const unsubscribeReelRacesUpdates = (id, playerId) => {
+export const unsubscribeReelRaceUpdates = (channelPrefix, playerId) => {
   return unsubscribe({
-    channel: `${
-      CHANNELS.REEL_RACES
-    }/${id}/tournaments/players/${playerId}/tournamentEvents/entered`,
+    channel: `${channelPrefix}/tournaments/players/${playerId}/tournamentEvents/entered`,
   });
 };
 

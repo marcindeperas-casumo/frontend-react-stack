@@ -21,12 +21,10 @@ import Clock from "./Clock.svg"; // use it from @casumo/cmp-icons if we're on v2
 import "./ReelRaceCard.scss";
 
 type Props = ReelRace & {
-  launchGame: Function,
-  subscribeReelRacesUpdates: Function,
-  unsubscribeReelRacesUpdates: Function,
-  optIn: Function,
   game: GameRow_Game,
   t: ReelRacesTranslations,
+  optIn: () => void,
+  launchGame: () => void,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
@@ -47,14 +45,10 @@ export class ReelRaceCard extends React.Component<Props> {
 
   componentDidMount() {
     this.scheduleUpdate();
-
-    this.props.subscribeReelRacesUpdates();
   }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
-
-    this.props.unsubscribeReelRacesUpdates();
   }
 
   get timeRemainingBeforeStart(): number {

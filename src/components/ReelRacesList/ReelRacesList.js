@@ -8,6 +8,8 @@ type Props = {
   areTranslationsFetched: boolean,
   fetchReelRaces: () => void,
   fetchTranslations: () => void,
+  subscribeReelRacesUpdates: () => void,
+  unsubscribeReelRacesUpdates: () => void,
   t: ReelRacesTranslations & { more_link: string },
   reelRacesIds: Array<string>,
   isFetched: boolean,
@@ -22,6 +24,12 @@ export class ReelRacesList extends React.PureComponent<Props> {
     if (!this.props.areTranslationsFetched) {
       this.props.fetchTranslations();
     }
+
+    this.props.subscribeReelRacesUpdates();
+  }
+
+  componentWillUnmount() {
+    this.props.unsubscribeReelRacesUpdates();
   }
 
   render() {

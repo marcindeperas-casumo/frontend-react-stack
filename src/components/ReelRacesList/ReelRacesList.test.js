@@ -5,9 +5,11 @@ import ScrollableList from "Components/ScrollableList";
 import { ReelRacesList } from "./ReelRacesList";
 
 const props = {
-  isFetched: true,
+  isFetched: false,
   fetchReelRaces: jest.fn(),
   fetchTranslations: jest.fn(),
+  subscribeReelRacesUpdates: jest.fn(),
+  unsubscribeReelRacesUpdates: jest.fn(),
   areTranslationsFetched: true,
   reelRacesIds: ["1", "2", "3", "a"],
   t: {
@@ -28,7 +30,12 @@ const props = {
 };
 
 describe("ReelRacesList", () => {
-  const rendered = shallow(<ReelRacesList {...props} />);
+  let rendered;
+
+  beforeEach(() => {
+    jest.clearAllMocks();
+    rendered = shallow(<ReelRacesList {...props} />);
+  });
 
   test("renders a ScrollableList", () => {
     expect(rendered.find(ScrollableList)).toHaveLength(1);
@@ -44,5 +51,26 @@ describe("ReelRacesList", () => {
     const { itemIds } = rendered.find("ScrollableList").props();
 
     expect(itemIds).toBe(props.reelRacesIds);
+  });
+
+  test("only fetches reel races data once", () => {
+    const { fetchReelRaces } = props;
+
+    expect(fetchReelRaces).toBeCalledTimes(1);
+
+    // eslint-disable-next-line no-unused-vars
+    const rendered_again = shallow(<ReelRacesList {...props} isFetched />);
+
+    expect(fetchReelRaces).toBeCalledTimes(1);
+  });
+
+  test("subscription to reel race channels on mount", () => {
+    expect(props.subscribeReelRacesUpdates).toBeCalledTimes(1);
+  });
+
+  test("unsubscription to reel race channels on unmount", () => {
+    rendered.unmount();
+
+    expect(props.unsubscribeReelRacesUpdates).toBeCalledTimes(1);
   });
 });

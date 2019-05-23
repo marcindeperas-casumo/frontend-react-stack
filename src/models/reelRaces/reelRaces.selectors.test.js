@@ -1,6 +1,6 @@
 import {
   reelRacesSelector,
-  isReelRacesLoaded,
+  isReelRacesFetched,
   reelRacesByIdSelector,
   reelRacesIdsSelector,
 } from "./reelRaces.selectors";
@@ -55,13 +55,13 @@ describe("Reel Races Selectors", () => {
     });
   });
 
-  describe("isReelRacesLoaded()", () => {
+  describe("isReelRacesFetched()", () => {
     test("returns true if exists", () => {
-      expect(isReelRacesLoaded(state)).toBeTruthy();
+      expect(isReelRacesFetched(state)).toBeTruthy();
     });
     test("returns false if doesn't exists or is empty", () => {
-      expect(isReelRacesLoaded(null)).toBeFalsy();
-      expect(isReelRacesLoaded({})).toBeFalsy();
+      expect(isReelRacesFetched(null)).toBeFalsy();
+      expect(isReelRacesFetched({})).toBeFalsy();
     });
   });
 

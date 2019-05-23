@@ -11,6 +11,8 @@ const props = {
   isFetched: true,
   fetchReelRaces: () => {},
   fetchTranslations: () => {},
+  subscribeReelRacesUpdates: jest.fn(),
+  unsubscribeReelRacesUpdates: jest.fn(),
   areTranslationsFetched: true,
   reelRacesIds: [
     "edc71c70-56d6-11e9-8587-0242ac11000b",

@@ -138,3 +138,8 @@ export const localeSelector = createSelector(
   marketSelector,
   market => INTL_LOCALES[market]
 );
+
+export const tournamentChannelsSelector = createSelector(
+  playerSelector,
+  pathOr({}, ["tournamentCampaign", "tournamentChannels"])
+);

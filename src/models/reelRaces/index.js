@@ -4,4 +4,4 @@ export * from "./reelRaces.actions";
 export * from "./reelRaces.constants";
 export * from "./reelRaces.selectors";
 export * from "./reelRaces.saga";
-export { reelRacesUpdatesSaga } from "./reelRaces.saga.update";
+export * from "./reelRaces.saga.optIn";

@@ -9,7 +9,6 @@ import {
 import { types } from "./reelRaces.constants";
 
 jest.mock("Api/api.reelRaces");
-jest.mock("Models/handshake");
 
 describe("Models/reelRaces/Actions", () => {
   test("initReelRacesSaga()", () => {
@@ -36,20 +35,19 @@ describe("Models/reelRaces/Actions", () => {
   test("optInForReelRace()", async () => {
     const playerId = "23";
     const tournamentId = "13a";
+    const state = {
+      handshake: {
+        app: { "common/composition/session": { id: playerId } },
+      },
+    };
     const dispatch = jest.fn();
-    const getState = jest.fn();
+    const getState = () => state;
 
-    const { playerIdSelector } = require("Models/handshake");
-    playerIdSelector.mockImplementation(() => playerId);
     jest.fn(optInForReelRaceReq);
 
     optInForReelRace(tournamentId)(dispatch, getState);
 
-    // $FlowIgnore
-    const reqMock = optInForReelRaceReq.mock.calls;
-
-    expect(reqMock.length).toBe(1);
-    expect(reqMock[0][0].playerId).toBe(playerId);
-    expect(reqMock[0][0].tournamentId).toBe(tournamentId);
+    expect(optInForReelRaceReq).toBeCalledTimes(1);
+    expect(optInForReelRaceReq).toBeCalledWith({ playerId, tournamentId });
   });
 });

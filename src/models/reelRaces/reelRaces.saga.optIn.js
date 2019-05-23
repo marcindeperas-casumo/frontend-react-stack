@@ -1,18 +1,18 @@
 import { put, select } from "redux-saga/effects";
-import { updateEntity } from "Models/schema";
+import { mergeEntity } from "Models/schema";
 import { reelRacesByIdSelector } from "./reelRaces.selectors";
 
 export function* reelRacesUpdatesSaga(action) {
   const { data } = action;
-  const doesTournamentExist = Boolean(
+  const doesReelRaceExist = Boolean(
     yield select(reelRacesByIdSelector(data.tournamentId))
   );
 
-  if (doesTournamentExist) {
+  if (doesReelRaceExist) {
     const reelRaces = {
       [data.tournamentId]: { opted: true },
     };
 
-    yield put(updateEntity({ reelRaces }));
+    yield put(mergeEntity({ reelRaces }));
   }
 }
