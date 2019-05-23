@@ -20,37 +20,43 @@ type Props = {|
 const getTextColor = (color: string) =>
   contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
-const renderResults = ({ results, type }) => (
-  <>
-    <div className="o-layout o-layout--gap">
-      {results &&
-        results.slice(0, RESULT_BADGES).map((n, i) => {
-          const color = getBadgeColor(type, n);
-          const borderColor = getBadgeBorderColor(type, n);
-          return (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={color}
-              txtColor={getTextColor(color)}
-              circle={true}
-              className={classNames(
-                borderColor && `c-card-data-badge-shadow-${borderColor}`
-              )}
-            >
-              {getResultsDisplay(type, n)}
-            </Badge>
-          );
-        })}
-    </div>
-    <Text
-      size="xs"
-      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-    >
-      <DisplayText type={type} />
-    </Text>
-  </>
-);
+const renderResults = ({ results, type }) => {
+  if (!results) {
+    return null;
+  }
+
+  return (
+    <>
+      <div className="o-layout o-layout--gap">
+        {results &&
+          results.slice(0, RESULT_BADGES).map((n, i) => {
+            const color = getBadgeColor(type, n);
+            const borderColor = getBadgeBorderColor(type, n);
+            return (
+              <Badge
+                key={i}
+                tag="div"
+                bgColor={color}
+                txtColor={getTextColor(color)}
+                circle={true}
+                className={classNames(
+                  borderColor && `c-card-data-badge-shadow-${borderColor}`
+                )}
+              >
+                {getResultsDisplay(type, n)}
+              </Badge>
+            );
+          })}
+      </div>
+      <Text
+        size="xs"
+        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
+      >
+        <DisplayText type={type} />
+      </Text>
+    </>
+  );
+};
 
 const renderSeats = ({ seats }) => (
   <>
