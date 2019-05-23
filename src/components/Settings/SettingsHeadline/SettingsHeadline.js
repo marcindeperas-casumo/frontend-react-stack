@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
-import "./SettingsHeadline.scss";
 
 type Props = {
   title: string,
@@ -12,11 +11,11 @@ export class SettingsHeadline extends PureComponent<Props> {
   render() {
     const { title, description } = this.props;
     return (
-      <div className="c-headline">
+      <div className="u-display--block">
         <Text
           tag="h1"
           size="default"
-          className="c-headline-title t-color-grey-dark-3"
+          className="u-margin-bottom--sm t-color-grey-dark-3"
         >
           {title}
         </Text>
