@@ -46,9 +46,7 @@ const renderResults = ({ results, type }) => (
       size="xs"
       className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
     >
-      {type === TYPES.TOPCARD
-        ? getText("recent_letters")
-        : getText("recent_numbers")}
+      <DisplayText type={type} />
     </Text>
   </>
 );
@@ -83,36 +81,6 @@ const renderSeats = ({ seats }) => (
   </>
 );
 
-const renderHistory = ({ history, type }) => {
-  if (!history) {
-    return null;
-  }
-
-  return (
-    <>
-      <div className="o-layout o-layout--gap">
-        {history.slice(0, RESULT_BADGES).map((n, i) => (
-          <Badge
-            key={i}
-            tag="div"
-            bgColor={getBadgeColor(type, n)}
-            txtColor={"white"}
-            circle={true}
-          >
-            {n}
-          </Badge>
-        ))}
-      </div>
-      <Text
-        size="xs"
-        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-      >
-        {getText("recent_outcomes")}
-      </Text>
-    </>
-  );
-};
-
 const getText = field => (
   <CMSField
     slug="mobile.live-casino-cards-content"
@@ -125,15 +93,27 @@ const getText = field => (
   />
 );
 
+const DisplayText = ({ type }) =>
+  cond([
+    [equals(TYPES.TOPCARD), () => getText("recent_letters")],
+    [equals(TYPES.BACCARAT), () => getText("recent_outcomes")],
+    [T, () => getText("recent_numbers")],
+  ])(type);
+
 const isIn = flip(contains);
 const LobbyType = ({ lobby }) =>
   cond([
-    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
-    [equals(TYPES.BACCARAT), () => renderHistory(lobby)],
     [
-      isIn([TYPES.MONEYWHEEL, TYPES.ROULETTE, TYPES.TOPCARD, TYPES.MONOPOLY]),
+      isIn([
+        TYPES.MONEYWHEEL,
+        TYPES.ROULETTE,
+        TYPES.TOPCARD,
+        TYPES.MONOPOLY,
+        TYPES.BACCARAT,
+      ]),
       () => renderResults(lobby),
     ],
+    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
     [T, () => null],
   ])(lobby.type);
 
