@@ -25,7 +25,11 @@ describe("LiveCasinoCardData", () => {
 
     test("renders recent numbers text", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
-      const data = component.find("LobbyType").shallow();
+      const data = component
+        .find("LobbyType")
+        .shallow()
+        .find("DisplayText")
+        .shallow();
       const cmsField = data.find("Connect(CMSField)").props().field;
 
       expect(cmsField).toEqual("recent_numbers");
@@ -49,7 +53,11 @@ describe("LiveCasinoCardData", () => {
 
     test("should render recent letters text", () => {
       const component = shallow(<CardData lobby={topCard.lobby} />);
-      const data = component.find("LobbyType").shallow();
+      const data = component
+        .find("LobbyType")
+        .shallow()
+        .find("DisplayText")
+        .shallow();
       const cmsField = data.find("Connect(CMSField)").props().field;
 
       expect(cmsField).toEqual("recent_letters");
@@ -73,7 +81,11 @@ describe("LiveCasinoCardData", () => {
 
     test("should render recent letters text", () => {
       const component = shallow(<CardData lobby={moneyWheel.lobby} />);
-      const data = component.find("LobbyType").shallow();
+      const data = component
+        .find("LobbyType")
+        .shallow()
+        .find("DisplayText")
+        .shallow();
       const cmsField = data.find("Connect(CMSField)").props().field;
 
       expect(cmsField).toEqual("recent_numbers");
