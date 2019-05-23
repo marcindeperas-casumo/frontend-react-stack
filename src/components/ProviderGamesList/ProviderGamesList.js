@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import { nth, contains } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { GameRow } from "Components/GameRow";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -118,19 +117,11 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
 
     if (!areGamesLoaded) {
-      return <GameListSkeleton />;
+      return <GameListSkeleton hasTitle={false} />;
     }
 
     return (
       <div>
-        <Text
-          align="center"
-          size="md"
-          className="u-padding--lg t-background-grey-light-2"
-          data-test="provider-games-list-title"
-        >
-          {provider.name}
-        </Text>
         <div>
           <TrackProvider
             data={{

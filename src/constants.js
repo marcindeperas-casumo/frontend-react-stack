@@ -74,6 +74,7 @@ export const INTL_LOCALES = {
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
 };
+
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",
@@ -111,4 +112,5 @@ export const EVOLUTION_LOBBY_TYPES = {
   TOPCARD: "TopCard",
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
+  BACCARAT: "Baccarat",
 };

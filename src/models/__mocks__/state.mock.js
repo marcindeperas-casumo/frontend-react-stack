@@ -4584,6 +4584,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         fields: {
           critical_for_compliance: false,
           recent_numbers: "Tidigare nummer",
+          recent_outcomes: "Recent outcomes",
           open_seats: "Lediga platser",
           table_full: "Fullt bord",
           bet_behind: "Satsa bakom",

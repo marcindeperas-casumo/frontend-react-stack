@@ -13,6 +13,7 @@ export const CHANNELS = {
   MUST_DROP_JACKPOTS: "/public/redtiger-jackpots/*",
   REEL_RACES: "/public/tournaments",
   PLAYER: "/player",
+  ADVENTURE: "/adventurer",
 };
 
 export const MESSAGES = {

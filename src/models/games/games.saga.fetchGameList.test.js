@@ -1,10 +1,10 @@
+import { call, put, select, take } from "redux-saga/effects";
 import {
   fetchGamesHandshake,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
-import { call, put, select, take } from "redux-saga/effects";
 import { waitForSelector } from "Utils";
 import { fetchGameListSaga } from "./games.saga.fetchGameList";
 import { fetchTopLists } from "./games.actions";

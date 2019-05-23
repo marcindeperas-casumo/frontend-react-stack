@@ -55,6 +55,11 @@ import {
   fetchReelRacesSaga,
   reelRacesUpdatesSaga,
 } from "Models/reelRaces";
+import {
+  actionTypes as adventureActionTypes,
+  fetchAdventurerSaga,
+  adventureUpdatesSaga,
+} from "Models/adventure";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -142,4 +147,14 @@ export default function* rootSaga(dispatch) {
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
+  yield fork(
+    takeEvery,
+    adventureActionTypes.ADVENTURER_INIT,
+    fetchAdventurerSaga
+  );
+  yield fork(
+    takeEvery,
+    takeChannel(cometdChannels.ADVENTURE),
+    adventureUpdatesSaga
+  );
 }

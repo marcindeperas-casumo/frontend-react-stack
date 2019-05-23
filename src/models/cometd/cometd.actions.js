@@ -69,3 +69,21 @@ export const unsubscribeToPlayerUpdates = playerId => {
     channel: `${CHANNELS.PLAYER}/${playerId}`,
   });
 };
+
+export const subscribeToAdventureUpdates = (playerId, sessionId) => {
+  const isAuthenticated = playerId && sessionId;
+
+  if (!isAuthenticated) {
+    return { type: TYPES.CANCEL };
+  }
+  return subscribe({
+    channel: `${CHANNELS.ADVENTURE}/${playerId}`,
+    sessionId,
+  });
+};
+
+export const unsubscribeFromAdventureUpdates = playerId => {
+  return unsubscribe({
+    channel: `${CHANNELS.ADVENTURE}/${playerId}`,
+  });
+};

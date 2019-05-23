@@ -3,6 +3,7 @@
   this uses css vars set on the document root of the ko stack
   in order to calculate the offset of the play okay bar
   also some of the selectors are nasty but these are out of our control
+  !important is required as the kambi client pulls in dynamic classes with higher specificty
 */
 
 /* stylelint-disable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */
@@ -16,6 +17,10 @@
 #KambiBC-container {
   @include cudl-breakpoint(tablet) {
     padding: 0 map-get($cudl-spacer-sizes, 3xlg) !important;
+  }
+
+  @include cudl-breakpoint(desktop) {
+    padding: 0 !important;
   }
 }
 
@@ -36,4 +41,13 @@
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }
+
+.mod-KambiBC-betslip__header-pin-btn {
+  display: none !important;
+}
+
+.c-sports-shell--site .KambiBC-event-groups-list {
+  padding: 0 !important;
+}
+
 /* stylelint-enable selector-max-id, selector-no-id, xi/selector-pattern, declaration-no-important */

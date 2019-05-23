@@ -18,6 +18,7 @@ import {
   getCmsHash,
   hasMadeFirstDepositSelector,
   optedInReelRacesSelector,
+  adventureLevelsSelector,
   localeSelector,
 } from "./handshake.selectors";
 
@@ -335,4 +336,17 @@ describe("Handshake selectors", () => {
 
     expect(localeSelector(state)).toEqual("sv-SE");
   });
+});
+
+test("adventureLevelsSelector", () => {
+  const adventureDetails = [[1, 2, 3, 4, 5], [10, 20, 30, 40, 50]];
+  const state = {
+    handshake: {
+      app: {
+        "common/composition/Adventure": adventureDetails,
+      },
+    },
+  };
+
+  expect(adventureLevelsSelector(state)).toEqual(adventureDetails);
 });
