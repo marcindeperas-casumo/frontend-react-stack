@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
-import Checkbox from "./";
+import { Checkbox } from "./Checkbox";
 
 const stories = storiesOf("Controls/Checkbox", module);
 
