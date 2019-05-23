@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 
 type Props = {
   text: Node,
-  action?: Node,
+  children?: Node,
   className?: string,
   padding: string,
 };
@@ -20,7 +20,7 @@ export class SettingsRow extends PureComponent<Props> {
   };
 
   render() {
-    const { text, action, className, padding } = this.props;
+    const { text, children, className, padding } = this.props;
 
     return (
       <Flex
@@ -39,7 +39,7 @@ export class SettingsRow extends PureComponent<Props> {
         )}
       >
         <Flex.Item>{text}</Flex.Item>
-        {action ? <Flex.Item>{action}</Flex.Item> : ""}
+        {children ? <Flex.Item>{children}</Flex.Item> : ""}
       </Flex>
     );
   }
