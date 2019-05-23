@@ -8,7 +8,7 @@ type Props = {
   onChange: (active: boolean) => void,
 };
 
-const RenderUnchecked = () => (
+const Unchecked = () => (
   <div className="c-toggle t-border-r--pill t-background-grey">
     <svg className="c-toggle-container">
       <circle
@@ -21,7 +21,7 @@ const RenderUnchecked = () => (
   </div>
 );
 
-const RenderChecked = () => (
+const Checked = () => (
   <div className="c-toggle t-border-r--pill t-background-green-light-1">
     <svg className="c-toggle-container">
       <circle className="c-toggle-circle--active" cy="16" r="14" fill="#FFF" />
@@ -29,16 +29,14 @@ const RenderChecked = () => (
   </div>
 );
 
-class Toggle extends PureComponent<Props> {
+export class Toggle extends PureComponent<Props> {
   render() {
     return (
       <Checkbox
         {...this.props}
-        renderUnchecked={RenderUnchecked}
-        renderChecked={RenderChecked}
+        renderChecked={Checked}
+        renderUnchecked={Unchecked}
       />
     );
   }
 }
-
-export default Toggle;

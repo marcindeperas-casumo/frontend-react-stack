@@ -1,7 +1,7 @@
 // @flow
 import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
-import Toggle from "./";
+import { Toggle } from "./Toggle";
 
 const stories = storiesOf("Controls/Toggle", module);
 
