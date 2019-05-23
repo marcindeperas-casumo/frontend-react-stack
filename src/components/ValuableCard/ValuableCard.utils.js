@@ -32,5 +32,5 @@ export const CoinValueToSpinType = coinValue => {
 };
 
 export const ExpiryInHours = expiryDate => {
-  return expiryDate.diffNow(["hours"]).hours;
+  return Math.floor(expiryDate.diffNow(["hours"]).hours);
 };
