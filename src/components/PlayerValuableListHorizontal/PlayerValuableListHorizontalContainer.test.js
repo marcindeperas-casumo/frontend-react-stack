@@ -64,8 +64,8 @@ describe("PlayerValuableListHorizontal", () => {
 
     rendered.update();
 
-    expect(rendered.find("PlayerValuablesTypedQuery").children()).toHaveLength(
-      0
-    );
+    expect(
+      rendered.find("PlayerValuableListHorizontal").children()
+    ).toHaveLength(0);
   });
 });
