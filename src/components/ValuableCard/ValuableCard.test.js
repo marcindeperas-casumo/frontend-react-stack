@@ -69,7 +69,7 @@ describe("ValuableCard", () => {
     expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
   });
 
-  test("should display game title as description if valuableType is SPINS", () => {
+  test("should display game name as description if valuableType is SPINS", () => {
     mockedExpiryDate = mockExpiryDate(50);
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
     const expectedGameDetails = mockValuable.game;
@@ -79,7 +79,7 @@ describe("ValuableCard", () => {
     );
 
     expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
-      expectedGameDetails.title
+      expectedGameDetails.name
     );
   });
 

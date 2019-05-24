@@ -38,7 +38,7 @@
     "magnitude": "20",
     "coinValue": 30,
     "game": {
-      "title": "Starburst",
+      "name": "Starburst",
       "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
     },
     "caveat": "T&Cs apply",
