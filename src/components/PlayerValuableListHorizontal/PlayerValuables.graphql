@@ -10,41 +10,18 @@ query PlayerValuablesQuery {
       valuableType
       title
       caveat
-      content
 
       ... on PlayerValuableDeposit {
         currency
         maxBonusValue
         minDepositValue
         magnitude
-        wageringFactor
-      }
-
-      # ISS #29429 Tackle this complexity separately
-      ... on PlayerValuableDepositLadder {
-        itemsToAwardLadder {
-          minDepositAmount {
-            amount
-            currency
-          }
-          maxDepositAmount {
-            amount
-            currency
-          }
-          itemsToAward {
-            usables {
-              id
-            }
-          }
-        }
       }
 
       ... on PlayerValuableSpins {
-        source
         magnitude
         coinValue
         currency
-        wageringFactor
         game {
           name
         }

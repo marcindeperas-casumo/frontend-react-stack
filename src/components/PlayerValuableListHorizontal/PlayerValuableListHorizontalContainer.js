@@ -6,6 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { isNilOrEmpty } from "Utils/utils";
+import logger from "Services/logger";
 import ValuableCard from "Components/ValuableCard";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
@@ -41,7 +42,7 @@ export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
     {({ loading, error, data }) => {
       if (error) {
-        console.error(`
+        logger.error(`
           PlayerValuableListHorizontalContainer failed:
           ${error}
         `);
