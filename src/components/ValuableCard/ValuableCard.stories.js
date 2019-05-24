@@ -7,7 +7,7 @@ import {
   mockValuable as mockData,
   mockExpiryDate,
 } from "./__mocks__/Valuable.mock";
-import ValuableCard from "./";
+import { ValuableCard } from "./";
 
 const stories = storiesOf("ValuableCard", module);
 
