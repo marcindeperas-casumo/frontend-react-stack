@@ -7,11 +7,11 @@ import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 type Props = {
-  error?: any,
-  loading?: boolean,
-  valuableIds?: Array<string>,
-  ValuableCard?: ({ id: string }) => Node,
-  listTitle?: string,
+  error: any,
+  loading: boolean,
+  valuableIds: Array<string>,
+  ValuableCard: ({ id: string }) => Node,
+  listTitle: string,
 };
 
 export const PlayerValuableListHorizontal = ({
