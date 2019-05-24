@@ -1,6 +1,6 @@
 import { DICTIONARY_TERM_QUERY } from "Features/sports/components/DictionaryTerm/DictionaryTerm";
 
-export default [
+export const mocks = [
   {
     request: {
       query: DICTIONARY_TERM_QUERY,

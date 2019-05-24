@@ -2,12 +2,6 @@
 import React from "react";
 import MessagePage from "./MessagePage";
 
-type Props = {
-  headingTermKey: string,
-  messageTermKey: string,
-  image: Node,
-};
-
 // prettier-ignore
 const ComingSoonIcon = () => (
   <svg width="64" height="48" viewBox="0 0 64 48" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,4 +24,4 @@ const ComingSoonPage = () => (
   />
 );
 
-export default ComingSoonPage;
+export { ComingSoonPage };

@@ -2,12 +2,6 @@
 import React from "react";
 import MessagePage from "./MessagePage";
 
-type Props = {
-  headingTermKey: string,
-  messageTermKey: string,
-  image: Node,
-};
-
 // prettier-ignore
 const WarningIcon = () => (
   <svg width="64" height="56" viewBox="0 0 64 56" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -25,4 +19,4 @@ const MaintenancePage = () => (
   />
 );
 
-export default MaintenancePage;
+export { MaintenancePage };

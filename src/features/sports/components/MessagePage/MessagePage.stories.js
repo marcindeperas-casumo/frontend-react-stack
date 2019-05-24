@@ -1,25 +1,21 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MessagePage } from "./MessagePage";
+import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { ComingSoonPage } from "./ComingSoonPage";
+import { MaintenancePage } from "./MaintenancePage";
+import { mocks } from "./__mocks__/termMocks";
 
 const stories = storiesOf("Sports/MessagePage", module);
 
-const props = {
-  comingSoon: {
-    heading: "COMING SOON",
-    message:
-      "Sports only works on mobile and tablet devices. We’re working on adding it here, too.",
-    image: <div />,
-  },
-  maintenance: {
-    heading: `WORKS IN\nPROGRESS`,
-    message:
-      "We’re currently doing some work on Casumo Sports. Please check again soon.",
-    image: <div />,
-  },
-};
+stories.add("Coming Soon", () => (
+  <MockedProviderWithContext mocks={mocks} addTypename={false}>
+    <ComingSoonPage />
+  </MockedProviderWithContext>
+));
 
-stories.add("Coming Soon", () => <MessagePage {...props.comingSoon} />);
-
-stories.add("Maintenance", () => <MessagePage {...props.maintenance} />);
+stories.add("Maintenance", () => (
+  <MockedProviderWithContext mocks={mocks} addTypename={false}>
+    <MaintenancePage />
+  </MockedProviderWithContext>
+));
