@@ -22,7 +22,7 @@ stories.add("Default", () => {
     <ValuableCard
       {...valuableDetails}
       expiryDate={expiryDate}
-      valuableState={VALUABLE_STATES.DEFAULT}
+      valuableState={VALUABLE_STATES.FRESH}
     />
   );
 });

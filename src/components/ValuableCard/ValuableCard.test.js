@@ -2,7 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
-import ValuableCard from "./ValuableCard";
+import { ValuableCard } from "./ValuableCard";
 import {
   mockValuable as mockData,
   mockExpiryDate,
@@ -131,20 +131,20 @@ describe("ValuableCard", () => {
       <ValuableCard
         {...mockValuable}
         expiryDate={mockedExpiryDate}
-        valuableState={VALUABLE_STATES.DEFAULT}
+        valuableState={VALUABLE_STATES.FRESH}
       />
     );
 
     expect(rendered.find(valuableCardStateBadgeSelector)).toHaveLength(0);
   });
 
-  test("should show expiry in hours if state is DEFAULT and expiry date is less than 24hrs", () => {
+  test("should show expiry in hours if state is FRESH and expiry date is less than 24hrs", () => {
     mockedExpiryDate = mockExpiryDate(5);
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
         expiryDate={mockedExpiryDate}
-        valuableState={VALUABLE_STATES.DEFAULT}
+        valuableState={VALUABLE_STATES.FRESH}
       />
     );
 
