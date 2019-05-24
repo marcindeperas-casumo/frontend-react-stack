@@ -1,13 +1,12 @@
 // @flow
 import React from "react";
+import type { Node } from "react";
 import { Query } from "react-apollo";
 import { find, propEq, pluck } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import ScrollableList from "Components/ScrollableList";
-import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
-import { isNilOrEmpty } from "Utils/utils";
 import logger from "Services/logger";
 import ValuableCard from "Components/ValuableCard";
+import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 
@@ -22,7 +21,7 @@ const mapIds = pluck("id");
 
 const withValuableData = (
   valuables: Array<PlayerValuablesQuery_player_valuables>
-) => ({ id }) => {
+) => ({ id }): Node => {
   const valuable = find(propEq("id", id))(valuables);
 
   if (!valuable) {
@@ -40,32 +39,20 @@ export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
     {({ loading, error, data }) => {
       if (error) {
-        logger.error(`
-          PlayerValuableListHorizontalContainer failed:
-          ${error}
-        `);
-
-        return null;
+        return <PlayerValuableListHorizontal error={error} />;
       }
 
       if (loading) {
-        return (
-          <GameListHorizontalSkeleton key="player-valuables-list-skeleton" />
-        );
+        return <PlayerValuableListHorizontal loading={loading} />;
       }
 
       const { listTitle, player: { valuables = [] } = {} } = data;
 
-      if (isNilOrEmpty(valuables)) {
-        return null;
-      }
-
       return (
-        <ScrollableList
-          title={listTitle}
-          itemIds={mapIds(valuables)}
-          seeMoreText=""
-          Component={withValuableData(valuables)}
+        <PlayerValuableListHorizontal
+          listTitle={listTitle}
+          valuableIds={mapIds(valuables)}
+          ValuableCard={withValuableData(valuables)}
         />
       );
     }}
