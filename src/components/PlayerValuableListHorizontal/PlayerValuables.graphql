@@ -10,26 +10,13 @@ query PlayerValuablesQuery {
       valuableType
       title
       caveat
-
-      ... on PlayerValuableDeposit {
-        currency
-        maxBonusValue
-        minDepositValue
-        magnitude
-      }
+      currency
 
       ... on PlayerValuableSpins {
-        magnitude
         coinValue
-        currency
         game {
           name
         }
-      }
-
-      ... on PlayerValuableCash {
-        magnitude
-        currency
       }
     }
   }
