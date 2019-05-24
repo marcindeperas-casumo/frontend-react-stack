@@ -1,12 +1,12 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import LabelAndValue from "./";
+import { SettingsLabelAndValue } from "./SettingsLabelAndValue";
 
-const stories = storiesOf("Settings/LabelAndValue", module);
+const stories = storiesOf("Settings/SettingsLabelAndValue", module);
 
 stories.add("Default", () => (
-  <LabelAndValue
+  <SettingsLabelAndValue
     label="Address"
     value={
       <div>

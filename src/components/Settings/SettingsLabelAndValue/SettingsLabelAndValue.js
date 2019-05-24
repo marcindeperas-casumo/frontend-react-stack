@@ -7,7 +7,7 @@ type Props = {
   value?: Node,
 };
 
-class LabelAndValue extends PureComponent<Props> {
+export class SettingsLabelAndValue extends PureComponent<Props> {
   render() {
     const { label, value } = this.props;
     return (
@@ -30,5 +30,3 @@ class LabelAndValue extends PureComponent<Props> {
     );
   }
 }
-
-export default LabelAndValue;
