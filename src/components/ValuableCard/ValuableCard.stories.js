@@ -16,7 +16,7 @@ stories.add("Default", () => {
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
-  const expiryHours = text("Expire in x hours", "100");
+  const expiryHours = text("Expire in x hours", "100") || "100";
 
   const valuableDetails = mockData(valuableType);
   const expiryDate = mockExpiryDate(5);
