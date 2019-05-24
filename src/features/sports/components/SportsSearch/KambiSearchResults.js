@@ -86,7 +86,10 @@ const ResultRow = ({
   className?: string,
 }): React.Node => (
   <div
-    className={classNames("u-padding--md", className || "t-background-white")}
+    className={classNames(
+      "u-padding--md u-cursor-pointer",
+      className || "t-background-white"
+    )}
     style={{ marginBottom: 1 }}
     onClick={onClick}
   >
