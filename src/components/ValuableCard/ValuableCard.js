@@ -6,14 +6,14 @@ import classNames from "classnames";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import { getSymbolForCurrency, isNilOrEmpty } from "Utils";
-import ValuableHeaderBackground from "./ValuableHeaderBackground";
+import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
   VALUABLE_ICON,
   CoinValueToSpinType,
   ExpiryInHours,
 } from "./ValuableCard.utils";
-import ValuableReward from "./ValuableReward";
+import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
 import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
@@ -40,7 +40,7 @@ type Props = {
   expiryDate: Date,
 };
 
-class ValuableCard extends PureComponent<Props> {
+export class ValuableCard extends PureComponent<Props> {
   get valuableSymbol() {
     const { valuableType } = this.props;
 
@@ -126,7 +126,7 @@ class ValuableCard extends PureComponent<Props> {
       valuableState !== VALUABLE_STATES.DEFAULT;
 
     return (
-      <div className="c-valuable-card-wrapper">
+      <div className="c-valuable-card-wrapper u-position-relative">
         <Flex
           className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
@@ -177,5 +177,3 @@ class ValuableCard extends PureComponent<Props> {
     );
   }
 }
-
-export default ValuableCard;
