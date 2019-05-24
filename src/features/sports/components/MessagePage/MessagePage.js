@@ -38,4 +38,4 @@ const MessagePage = ({ image, headingTermKey, messageTermKey }: Props) => (
   </Flex>
 );
 
-export default MessagePage;
+export { MessagePage };

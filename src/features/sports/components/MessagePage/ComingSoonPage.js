@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import MessagePage from "./MessagePage";
+import { MessagePage } from "./MessagePage";
 import ComingSoonIcon from "./icons/coming-soon.svg";
 
 const ComingSoonPage = () => (
