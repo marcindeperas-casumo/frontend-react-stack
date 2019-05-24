@@ -1,6 +1,5 @@
 // @flow
-import React from "react";
-import type { Node } from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -9,10 +8,14 @@ import "./MessagePage.scss";
 type Props = {
   headingTermKey: string,
   messageTermKey: string,
-  image: Node,
+  image: React.Node,
 };
 
-const MessagePage = ({ image, headingTermKey, messageTermKey }: Props) => (
+export const MessagePage = ({
+  image,
+  headingTermKey,
+  messageTermKey,
+}: Props) => (
   <Flex
     direction="vertical"
     spacing="md"
@@ -37,5 +40,3 @@ const MessagePage = ({ image, headingTermKey, messageTermKey }: Props) => (
     </Flex.Item>
   </Flex>
 );
-
-export { MessagePage };
