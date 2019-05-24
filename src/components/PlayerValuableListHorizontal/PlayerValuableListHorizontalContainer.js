@@ -29,11 +29,9 @@ const withValuableData = (
     return null;
   }
 
-  const { game = {}, ...rest } = valuable;
-
   return (
     <Flex.Item className="o-flex__item-fixed-size">
-      <ValuableCard {...rest} game={{ ...game, title: game.name }} />
+      <ValuableCard {...valuable} />
     </Flex.Item>
   );
 };
