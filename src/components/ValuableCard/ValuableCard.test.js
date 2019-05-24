@@ -61,7 +61,7 @@ describe("ValuableCard", () => {
     rendered = shallow(<ValuableCard {...mockValuable} />);
 
     expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
-      expectedGameDetails.title
+      expectedGameDetails.name
     );
   });
 

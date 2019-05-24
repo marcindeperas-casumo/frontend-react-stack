@@ -15,7 +15,7 @@ type ValuableType = $Values<VALUABLE_TYPES>;
 
 type Game = {
   backgroundImage: string,
-  title: string,
+  name: string,
 };
 
 type Props = {
@@ -116,7 +116,7 @@ class ValuableCard extends PureComponent<Props> {
             </div>
             {isValuableTypeSpins && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-                {game.title}
+                {game.name}
               </div>
             )}
           </Flex.Item>
