@@ -58,8 +58,11 @@ describe("ReelRacesList", () => {
 
     expect(fetchReelRaces).toBeCalledTimes(1);
 
-    // eslint-disable-next-line no-unused-vars
     const rendered_again = shallow(<ReelRacesList {...props} isFetched />);
+    const { title } = rendered_again.find("ScrollableList").props();
+
+    // lets make sure the second rendering actually renders something
+    expect(title).toBe(props.t.title);
 
     expect(fetchReelRaces).toBeCalledTimes(1);
   });
