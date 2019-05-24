@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
-import { getSymbolForCurrency, isNilOrEmpty } from "Utils";
+import { getSymbolForCurrency } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
@@ -69,26 +69,33 @@ export class ValuableCard extends PureComponent<Props> {
   }
 
   get stateBadgeOptions(): Object {
-    const badgeOpts = (text, badgeClassModifiers, badgeIcon) => ({
+    const badgeOpts = (
+      text,
+      badgeClassModifiers,
+      badgeIcon,
+      visible = true
+    ) => ({
+      visible,
       text,
       badgeClassModifiers,
       badgeIcon,
     });
     const { valuableState, expiryDate } = this.props;
-    const expiryInHours = ExpiryInHours(expiryDate);
-    const hrs24 = 24;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
 
+    const expiryInHours = ExpiryInHours(expiryDate);
+    const hrs24 = 24;
+
     if (expiryInHours <= hrs24) {
       const className = "t-color-red";
       return badgeOpts(`${expiryInHours}h`, className, () => <Time />);
     }
 
-    return null;
+    return { ...badgeOpts, visible: false };
   }
 
   // To move this to graphql
@@ -122,8 +129,7 @@ export class ValuableCard extends PureComponent<Props> {
     const blurAmount = 3;
     const stateBadgeOptions = this.stateBadgeOptions;
     const showStateBadge =
-      !isNilOrEmpty(stateBadgeOptions) ||
-      valuableState !== VALUABLE_STATES.DEFAULT;
+      stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;
 
     return (
       <div className="c-valuable-card-wrapper u-position-relative">
