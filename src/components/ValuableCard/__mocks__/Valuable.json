@@ -7,7 +7,9 @@
     "currency": "EUR",
     "caveat": "Min dep £10. 30x wag req. T&C's apply.",
     "market": "en",
-    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png"
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
+    "expiryDate": "1558796377257",
+    "valuableState": "Fresh"
   },
   {
     "id": "111",
@@ -15,7 +17,9 @@
     "title": "100% Deposit Bonus",
     "market": "en",
     "caveat": "T&Cs apply",
-    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png"
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
+    "expiryDate": "1558435968335",
+    "valuableState": "Fresh"
   },
   {
     "id": "432",
@@ -23,7 +27,9 @@
     "title": "€5 Sport Bet",
     "market": "en",
     "caveat": "T&Cs apply",
-    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png"
+    "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
+    "expiryDate": "1558435968335",
+    "valuableState": "Fresh"
   },
   {
     "id": "654",
@@ -37,6 +43,8 @@
     },
     "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
-    "market": "en"
+    "market": "en",
+    "expiryDate": "1558435968335",
+    "valuableState": "Fresh"
   }
 ]
