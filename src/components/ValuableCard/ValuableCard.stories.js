@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { select, boolean, text } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import {
   mockValuable as mockData,
@@ -15,14 +15,21 @@ stories.add("Default", () => {
   const valuableType =
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
+  const isLocked = boolean("Locked", false);
+  const expiryHours = text("Expire in x hours", "100");
+
   const valuableDetails = mockData(valuableType);
   const expiryDate = mockExpiryDate(5);
+  const valuableState = isLocked
+    ? VALUABLE_STATES.LOCKED
+    : VALUABLE_STATES.FRESH;
 
   return (
     <ValuableCard
       {...valuableDetails}
       expiryDate={expiryDate}
-      valuableState={VALUABLE_STATES.FRESH}
+      valuableState={valuableState}
+      expiryDate={mockExpiryDate(expiryHours)}
     />
   );
 });
