@@ -38,18 +38,20 @@ const withValuableData = (
 export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
     {({ loading, error, data }) => {
-      if (error) {
-        return <PlayerValuableListHorizontal error={error} />;
-      }
+      // if (error) {
+      //   return <PlayerValuableListHorizontal error={error} />;
+      // }
 
-      if (loading) {
-        return <PlayerValuableListHorizontal loading={loading} />;
-      }
+      // if (loading) {
+      //   return <PlayerValuableListHorizontal loading={loading} />;
+      // }
 
       const { listTitle, player: { valuables = [] } = {} } = data;
 
       return (
         <PlayerValuableListHorizontal
+          error={error}
+          loading={loading}
           listTitle={listTitle}
           valuableIds={mapIds(valuables)}
           ValuableCard={withValuableData(valuables)}
