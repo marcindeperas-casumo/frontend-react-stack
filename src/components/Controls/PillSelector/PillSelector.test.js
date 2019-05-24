@@ -1,31 +1,43 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PillSelector from "./PillSelector";
+import { PillSelector } from "./PillSelector";
 import options from "./__mocks__/options.json";
 
-const findFirstPill = rendered => {
-  return rendered.find(".c-input-pill").first();
-};
+const findNthPill = (rendered, index) =>
+  rendered.find(".c-input-pill").at(index);
 
 describe("PillSelector", () => {
+  let rendered;
+  let mockFn;
+
+  beforeEach(() => {
+    mockFn = jest.fn();
+    rendered = shallow(<PillSelector options={options} onChange={mockFn} />);
+  });
+
   test("should trigger callback with correct value", () => {
-    const mockFn = jest.fn();
-    const rendered = shallow(
-      <PillSelector options={options} onChange={mockFn} />
-    );
+    const optionIndex = 0;
 
-    findFirstPill(rendered).simulate("click");
+    findNthPill(rendered, optionIndex).simulate("click");
 
-    expect(mockFn).toBeCalledWith(options[0].value);
+    expect(mockFn).toBeCalledWith(options[optionIndex].value);
+  });
+  test("should trigger callback with correct value - alternate", () => {
+    const optionIndex = 1;
+
+    findNthPill(rendered, optionIndex).simulate("click");
+
+    expect(mockFn).toBeCalledWith(options[optionIndex].value);
   });
   test("should not trigger callback if disabled", () => {
-    const mockFn = jest.fn();
-    const rendered = shallow(
+    const optionIndex = 0;
+
+    rendered = shallow(
       <PillSelector options={options} onChange={mockFn} disabled={true} />
     );
 
-    findFirstPill(rendered).simulate("click");
+    findNthPill(rendered, optionIndex).simulate("click");
 
-    expect(mockFn).not.toBeCalledWith(options[0].value);
+    expect(mockFn.mock.calls.length).toBe(0);
   });
 });

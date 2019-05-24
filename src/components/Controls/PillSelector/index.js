@@ -1,1 +1,1 @@
-export { default } from "./PillSelector";
+export * from "./PillSelector";
