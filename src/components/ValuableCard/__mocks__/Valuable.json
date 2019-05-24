@@ -9,7 +9,7 @@
     "market": "en",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
     "expiryDate": "1558796377257",
-    "valuableState": "Default"
+    "valuableState": "Fresh"
   },
   {
     "id": "111",
@@ -19,7 +19,7 @@
     "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
     "expiryDate": "1558435968335",
-    "valuableState": "Default"
+    "valuableState": "Fresh"
   },
   {
     "id": "432",
@@ -29,7 +29,7 @@
     "caveat": "T&Cs apply",
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "expiryDate": "1558435968335",
-    "valuableState": "Default"
+    "valuableState": "Fresh"
   },
   {
     "id": "654",
@@ -45,6 +45,6 @@
     "backgroundImageUrl": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
     "market": "en",
     "expiryDate": "1558435968335",
-    "valuableState": "Default"
+    "valuableState": "Fresh"
   }
 ]
