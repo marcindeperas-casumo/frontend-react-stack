@@ -10,21 +10,14 @@ query PlayerValuablesQuery {
       valuableType
       title
       caveat
+      currency
+      market
 
       ... on PlayerValuableSpins {
-        currency
         coinValue
         game {
           name
         }
-      }
-
-      ... on PlayerValuableDeposit {
-        currency
-      }
-
-      ... on PlayerValuableCash {
-        currency
       }
     }
   }
