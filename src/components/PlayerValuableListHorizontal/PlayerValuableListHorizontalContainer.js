@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { Query } from "react-apollo";
-import { map } from "ramda";
+import { map, find, propEq } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -11,21 +11,18 @@ import ValuableCard from "Components/ValuableCard";
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 
 // This is far from ideal and is just temporary.
-// We need to update the list of player vauables because sometimes they come through Cometd
+// We need to update the list of player valuables because sometimes they come through Cometd
 // channel.
 const REFRESH_INTERVAL = 15000;
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
-
-const findById = (list: Array<any>, id: string) =>
-  list.find(item => item.id === id);
 
 const mapIds = map(x => x.id);
 
 const withValuableData = (
   valuables: Array<PlayerValuablesQuery_player_valuables>
 ) => ({ id }) => {
-  const valuable = findById(valuables, id);
+  const valuable = find(propEq("id", id))(valuables);
 
   if (!valuable) {
     return null;
