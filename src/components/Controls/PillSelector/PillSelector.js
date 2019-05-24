@@ -20,7 +20,7 @@ type Props = {
 
 const noop = () => {};
 
-export default class PillSelector extends PureComponent<Props> {
+export class PillSelector extends PureComponent<Props> {
   onChange: Function;
 
   static defaultProps = {
@@ -30,12 +30,6 @@ export default class PillSelector extends PureComponent<Props> {
     onChange: noop,
     value: null,
   };
-
-  constructor(props: Props) {
-    super(props);
-
-    this.onChange = this.onChange.bind(this);
-  }
 
   getPillClassModifier(option: PillSelectorOption) {
     if (this.props.disabled) {

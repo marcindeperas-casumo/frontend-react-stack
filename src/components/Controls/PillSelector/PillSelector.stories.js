@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 import { select, boolean } from "@storybook/addon-knobs/react";
-import PillSelector from "./PillSelector";
+import { PillSelector } from "./PillSelector";
 import options from "./__mocks__/options.json";
 
 const stories = storiesOf("Controls/PillSelector", module);
@@ -49,14 +49,13 @@ class PillSelectorContainer extends Component<Props, State> {
 
   render() {
     const { value } = this.state;
+
     return (
       <>
         <PillSelector
           options={options}
           value={value}
-          onChange={newValue => {
-            this.onChange(newValue);
-          }}
+          onChange={this.onChange}
           disabled={this.props.disabled}
         />
         <div className="u-margin-top--lg">
