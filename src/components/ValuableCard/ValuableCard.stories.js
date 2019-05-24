@@ -19,7 +19,6 @@ stories.add("Default", () => {
   const expiryHours = text("Expire in x hours", "100") || "100";
 
   const valuableDetails = mockData(valuableType);
-  const expiryDate = mockExpiryDate(5);
   const valuableState = isLocked
     ? VALUABLE_STATES.LOCKED
     : VALUABLE_STATES.FRESH;
@@ -27,7 +26,6 @@ stories.add("Default", () => {
   return (
     <ValuableCard
       {...valuableDetails}
-      expiryDate={expiryDate}
       valuableState={valuableState}
       expiryDate={mockExpiryDate(expiryHours)}
     />

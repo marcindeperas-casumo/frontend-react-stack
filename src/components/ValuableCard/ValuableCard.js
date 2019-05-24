@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { DateTime } from "luxon";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
@@ -37,7 +38,7 @@ type Props = {
   backgroundImageUrl: string,
   caveat: string,
   valuableState: ValuableState,
-  expiryDate: Date,
+  expiryDate: DateTime,
 };
 
 export class ValuableCard extends PureComponent<Props> {
