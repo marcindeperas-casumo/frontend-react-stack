@@ -19,6 +19,7 @@ import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
+type ValuableState = $Values<VALUABLE_STATES>;
 
 type Game = {
   backgroundImage: string,
@@ -30,13 +31,12 @@ type Props = {
   title: string,
   valuableType: ValuableType,
   currency: string,
-  valuableType: ValuableType,
   coinValue: number,
   game: Game,
   market: string,
   backgroundImageUrl: string,
   caveat: string,
-  valuableState: string,
+  valuableState: ValuableState,
   expiryDate: Date,
 };
 
