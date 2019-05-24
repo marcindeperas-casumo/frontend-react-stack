@@ -126,7 +126,6 @@ describe("ValuableCard", () => {
 
   test("should not show anything if state expiry date is more than 24hrs", () => {
     mockedExpiryDate = mockExpiryDate(30);
-
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
