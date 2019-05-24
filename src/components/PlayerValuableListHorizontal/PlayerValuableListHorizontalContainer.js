@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { Query } from "react-apollo";
-import { map, find, propEq } from "ramda";
+import { find, propEq, pluck } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -18,7 +18,7 @@ const REFRESH_INTERVAL = 15000;
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
-const mapIds = map(x => x.id);
+const mapIds = pluck("id");
 
 const withValuableData = (
   valuables: Array<PlayerValuablesQuery_player_valuables>
