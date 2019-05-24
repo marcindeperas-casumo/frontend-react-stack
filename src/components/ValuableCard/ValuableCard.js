@@ -39,9 +39,14 @@ type Props = {
   caveat: string,
   valuableState: ValuableState,
   expiryDate: DateTime,
+  onCardClick: Function,
 };
 
 export class ValuableCard extends PureComponent<Props> {
+  static defaultProps = {
+    valuableState: VALUABLE_STATES.FRESH,
+  };
+
   get valuableSymbol() {
     const { valuableType } = this.props;
 
@@ -91,7 +96,7 @@ export class ValuableCard extends PureComponent<Props> {
     const expiryInHours = ExpiryInHours(expiryDate);
     const hrs24 = 24;
 
-    if (expiryInHours <= hrs24) {
+    if (expiryInHours > 0 && expiryInHours <= hrs24) {
       const className = "t-color-red";
       return badgeOpts(`${expiryInHours}h`, className, () => <Time />);
     }
@@ -124,6 +129,7 @@ export class ValuableCard extends PureComponent<Props> {
       backgroundImageUrl,
       caveat,
       valuableState,
+      onCardClick,
     } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
@@ -133,7 +139,10 @@ export class ValuableCard extends PureComponent<Props> {
       stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;
 
     return (
-      <div className="c-valuable-card-wrapper u-position-relative">
+      <div
+        className="c-valuable-card-wrapper u-position-relative"
+        onClick={onCardClick}
+      >
         <Flex
           className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
