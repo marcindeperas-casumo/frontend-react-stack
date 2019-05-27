@@ -49,7 +49,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
   <Modal.Header className="c-sports-modal__header u-padding">
     <DismissButton
       data-test="sports-modal-back-button"
-      className="c-sports-modal__back-button"
+      className="c-sports-modal__dismiss-button--back"
       onClick={onBack}
       isVisible={Boolean(onBack)}
     >
@@ -62,7 +62,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
 
     <DismissButton
       data-test="sports-modal-close-button"
-      className="c-sports-modal__close-button"
+      className="c-sports-modal__dismiss-button--close"
       onClick={onClose}
       isVisible={Boolean(onClose)}
     >
