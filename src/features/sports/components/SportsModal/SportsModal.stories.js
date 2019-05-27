@@ -1,13 +1,15 @@
 // @flow
 import React from "react";
+import { repeat } from "ramda";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { ModalsArea } from "Features/sports/components/Modals";
+import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";
 
 const stories = storiesOf("Sports/SportsModal", module);
 
-const content = (
+const defaultContent = (
   <div>
     <img
       alt="Bob Ross"
@@ -22,10 +24,14 @@ const content = (
   </div>
 );
 
-stories.add("Default", () => (
+const longContent = repeat(defaultContent, 4);
+
+const onClose = action("onClose");
+
+const render = (headerProps, content = defaultContent) => () => (
   <ModalsArea>
     <SportsModal>
-      <SportsModal.Header onClose={action("onClose")}>
+      <SportsModal.Header {...headerProps}>
         This is the header
       </SportsModal.Header>
 
@@ -34,47 +40,32 @@ stories.add("Default", () => (
       <SportsModal.Footer>This is the footer area</SportsModal.Footer>
     </SportsModal>
   </ModalsArea>
-));
+);
 
-stories.add("Custom Header", () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header
-        onClose={action("onClose")}
-        className="t-background-blue"
-      >
-        This header is blue. Oooh, shiny!
-      </SportsModal.Header>
+stories.add("Default (mobile)", render({ onClose }), viewports.mobile);
 
-      <SportsModal.Content>{content}</SportsModal.Content>
-    </SportsModal>
-  </ModalsArea>
-));
+stories.add("Default (desktop)", render({ onClose }), viewports.desktop);
 
-stories.add("With Back Button", () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header onClose={action("onClose")} onBack={action("onBack")}>
-        This is the header
-      </SportsModal.Header>
+stories.add(
+  "With Back Button (mobile)",
+  render({ onBack: action("onBack") }),
+  viewports.mobile
+);
 
-      <SportsModal.Content>{content}</SportsModal.Content>
+stories.add(
+  "With Back Button (desktop)",
+  render({ onBack: action("onBack") }),
+  viewports.desktop
+);
 
-      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-    </SportsModal>
-  </ModalsArea>
-));
+stories.add(
+  "Long content (mobile)",
+  render({ onClose }, longContent),
+  viewports.mobile
+);
 
-stories.add("Long content", () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header>This is the header</SportsModal.Header>
-
-      <SportsModal.Content>
-        {content} {content} {content} {content}
-      </SportsModal.Content>
-
-      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-    </SportsModal>
-  </ModalsArea>
-));
+stories.add(
+  "Long content (desktop)",
+  render({ onClose }, longContent),
+  viewports.desktop
+);
