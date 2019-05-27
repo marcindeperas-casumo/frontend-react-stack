@@ -10,13 +10,9 @@ type Props = {
   padding: string,
 };
 
-const paddingValues = {
-  default: "lg",
-  md: "md",
-};
 export class SettingsRow extends PureComponent<Props> {
   static defaultProps = {
-    padding: "default",
+    padding: "lg",
   };
 
   render() {
@@ -29,7 +25,7 @@ export class SettingsRow extends PureComponent<Props> {
         align="center"
         className={classNames(
           "u-padding",
-          `u-padding-vert--${paddingValues[padding]}`,
+          `u-padding-vert--${padding}`,
           "u-padding-horiz--md",
           "t-border-bottom",
           "t-border--current-color",
