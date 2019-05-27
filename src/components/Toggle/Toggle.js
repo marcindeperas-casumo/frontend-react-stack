@@ -9,8 +9,8 @@ type Props = {
 };
 
 const Unchecked = () => (
-  <div className="c-toggle t-border-r--pill t-background-grey">
-    <svg className="c-toggle-container">
+  <div className="c-toggle u-display--inline-block u-cursor-pointer t-border-r--pill t-background-grey">
+    <svg>
       <circle
         className="c-toggle-circle--inactive"
         cy="16"
@@ -22,8 +22,8 @@ const Unchecked = () => (
 );
 
 const Checked = () => (
-  <div className="c-toggle t-border-r--pill t-background-green-light-1">
-    <svg className="c-toggle-container">
+  <div className="c-toggle u-display--inline-block u-cursor-pointer t-border-r--pill t-background-green-light-1">
+    <svg>
       <circle className="c-toggle-circle--active" cy="16" r="14" fill="#FFF" />
     </svg>
   </div>

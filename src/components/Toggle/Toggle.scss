@@ -2,18 +2,8 @@ $width: 56px;
 $height: 32px;
 
 .c-toggle {
-  display: inline-block;
   height: $height;
   width: $width;
-}
-
-.c-toggle-container {
-  height: $height;
-  width: $width;
-}
-
-.c-toggle:hover {
-  cursor: pointer;
 }
 
 .c-toggle-circle--active {
