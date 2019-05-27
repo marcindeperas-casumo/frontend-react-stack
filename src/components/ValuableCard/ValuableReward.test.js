@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import ValuableReward from "./ValuableReward";
+import { ValuableReward } from "./ValuableReward";
 
 describe("ValuableReward", () => {
   const RewardContent = () => <div>foo</div>;

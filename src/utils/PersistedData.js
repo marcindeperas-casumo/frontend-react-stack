@@ -1,5 +1,5 @@
 /* @flow */
-import { isNil } from "ramda";
+import { get as getFromStorage, set as setInStorage } from "Lib/storage";
 
 export class PersistedData {
   key: string;
@@ -11,18 +11,10 @@ export class PersistedData {
   }
 
   get() {
-    try {
-      // $FlowIgnore: getItem can return null which *is* handled by JSON.parse
-      const persistedData = JSON.parse(localStorage.getItem(this.key));
-
-      return isNil(persistedData) ? this.defaultValue : persistedData;
-    } catch (err) {
-      //TODO: log this properly
-      return this.defaultValue;
-    }
+    return getFromStorage(this.key, this.defaultValue);
   }
 
   set(newValue: any) {
-    localStorage.setItem(this.key, JSON.stringify(newValue));
+    setInStorage(this.key, newValue);
   }
 }
