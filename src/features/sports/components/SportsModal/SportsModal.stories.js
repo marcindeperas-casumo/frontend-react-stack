@@ -36,7 +36,22 @@ stories.add("Default", () => (
   </ModalsArea>
 ));
 
-stories.add("With back", () => (
+stories.add("Custom Header", () => (
+  <ModalsArea>
+    <SportsModal>
+      <SportsModal.Header
+        onClose={action("onClose")}
+        className="t-background-blue"
+      >
+        This header is blue. Oooh, shiny!
+      </SportsModal.Header>
+
+      <SportsModal.Content>{content}</SportsModal.Content>
+    </SportsModal>
+  </ModalsArea>
+));
+
+stories.add("With Back Button", () => (
   <ModalsArea>
     <SportsModal>
       <SportsModal.Header onClose={action("onClose")} onBack={action("onBack")}>

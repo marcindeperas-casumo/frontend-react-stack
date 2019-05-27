@@ -48,6 +48,7 @@ export const DismissButton = ({
 const Header = ({ children, onClose, onBack }: HeaderProps) => (
   <Modal.Header className="c-sports-modal__header u-padding">
     <DismissButton
+      data-test="sports-modal-back-button"
       className="c-sports-modal__back-button"
       onClick={onBack}
       isVisible={Boolean(onBack)}
@@ -60,6 +61,7 @@ const Header = ({ children, onClose, onBack }: HeaderProps) => (
     </div>
 
     <DismissButton
+      data-test="sports-modal-close-button"
       className="c-sports-modal__close-button"
       onClick={onClose}
       isVisible={Boolean(onClose)}
@@ -76,10 +78,6 @@ const Content = ({ children, className }: ContentProps) => (
 );
 
 export class SportsModal extends React.Component<ModalProps> {
-  static defaultProps = {
-    dismissType: "close",
-  };
-
   static Header = Header;
   static Footer = Modal.Footer;
   static Content = Content;
