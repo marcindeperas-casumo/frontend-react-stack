@@ -1,2 +1,2 @@
 // @flow
-export { default } from "./ValuableCard";
+export { ValuableCard } from "./ValuableCard";
