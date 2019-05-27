@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { Checkbox } from "Components/Controls/Checkbox/Checkbox";
+import { Checkbox } from "Components/Checkbox/Checkbox";
 
 describe("Checkbox", () => {
   test("should trigger callback with true", () => {

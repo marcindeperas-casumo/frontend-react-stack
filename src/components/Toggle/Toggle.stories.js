@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 import { Toggle } from "./Toggle";
 
-const stories = storiesOf("Controls/Toggle", module);
+const stories = storiesOf("Toggle", module);
 
 type Props = {};
 

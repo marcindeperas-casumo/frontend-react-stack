@@ -3,7 +3,7 @@ import React, { Component } from "react";
 import { storiesOf } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
 
-const stories = storiesOf("Controls/Checkbox", module);
+const stories = storiesOf("Checkbox", module);
 
 type Props = {};
 

@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import { Checkbox } from "Components/Controls/Checkbox/Checkbox";
+import { Checkbox } from "Components/Checkbox/Checkbox";
 import "./Toggle.scss";
 
 type Props = {
