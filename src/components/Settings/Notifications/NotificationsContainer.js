@@ -2,10 +2,10 @@
 import React from "react";
 import { Mutation, Query } from "react-apollo";
 import { adopt } from "react-adopt";
-import { RowListSkeleton } from "Components/Settings/Row/RowListSkeleton";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
+import { dataIdFromObject } from "Services/apolloCacheUtils";
 import { ErrorMessage } from "Components/ErrorMessage";
 import logger from "Services/logger";
-import { dataIdFromObject } from "Services/apolloCacheUtils";
 import {
   SET_ADVENTURER_PUBLICITY,
   SET_WITHDRAWAL_NOTIFICATIONS,
@@ -97,7 +97,7 @@ export const withContainer = (Component: Function) => (
         <Query query={PLAYER_CONTACT_SETTINGS_QUERY}>
           {({ loading, data, error, refetch }) => {
             if (loading || labels.loading) {
-              return <RowListSkeleton count={8} />;
+              return <SettingsRowListSkeleton count={8} />;
             }
             if (error) {
               return <ErrorMessage retry={() => refetch()} />;

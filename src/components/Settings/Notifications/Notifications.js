@@ -2,12 +2,12 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
-import { ContentReplacer } from "Components/ContentReplacer";
-import Row from "Components/Settings/Row";
-import Headline from "Components/Settings/Headline";
-import Toggle from "Components/Controls/Toggle";
-import Checkbox from "Components/Controls/Checkbox";
+import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
+import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
+import { Toggle } from "Components/Toggle/Toggle";
+import { Checkbox } from "Components/Checkbox/Checkbox";
 import Link from "Components/Settings/Link";
+import { ContentReplacer } from "Components/ContentReplacer";
 
 type ToggleFn = (active: boolean) => void;
 type Props = {
@@ -32,7 +32,7 @@ export const ToggleRow = ({
   onChange: ToggleFn,
   className?: string,
 }) => (
-  <Row
+  <SettingsRow
     className={className}
     text={
       <Text
@@ -56,7 +56,7 @@ const SubscriptionRow = ({
   isEnabled: boolean,
   onChange: ToggleFn,
 }) => (
-  <Row
+  <SettingsRow
     padding="md"
     text={
       <Text
@@ -120,7 +120,7 @@ class Notifications extends PureComponent<Props> {
         target="/player/settings/reality-check"
         enabled={canChangeInterval}
         label={
-          <Row
+          <SettingsRow
             text={
               <Text
                 tag="p"
@@ -196,9 +196,9 @@ class Notifications extends PureComponent<Props> {
         <ToggleWithdrawals />
         <RealityCheck />
 
-        <Row
+        <SettingsRow
           text={
-            <Headline
+            <SettingsHeadline
               title={subscriptionsTitle}
               description={subscriptionsDescription}
             />
