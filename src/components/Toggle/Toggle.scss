@@ -18,10 +18,10 @@ $height: 32px;
 
 .c-toggle-circle--active {
   transform: translate3d(40px, 0, 0);
-  transition: 0.1s;
+  transition: transform 0.1s;
 }
 
 .c-toggle-circle--inactive {
   transform: translate3d(16px, 0, 0);
-  transition: 0.1s;
+  transition: transform 0.1s;
 }
