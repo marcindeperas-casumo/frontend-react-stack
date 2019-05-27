@@ -36,14 +36,13 @@ export class Checkbox extends PureComponent<Props> {
 
   render() {
     const { renderChecked, renderUnchecked, checked, onChange } = this.props;
-    const Checked = renderChecked;
-    const Unchecked = renderUnchecked;
+
     return (
       <div
         className="u-display--inline-block"
         onClick={() => onChange(!checked)}
       >
-        {checked ? <Checked /> : <Unchecked />}
+        {checked ? renderChecked() : renderUnchecked()}
       </div>
     );
   }
