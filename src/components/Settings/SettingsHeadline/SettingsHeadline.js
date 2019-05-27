@@ -11,7 +11,7 @@ export class SettingsHeadline extends PureComponent<Props> {
   render() {
     const { title, description } = this.props;
     return (
-      <div className="u-display--block">
+      <div>
         <Text
           tag="h1"
           size="default"
