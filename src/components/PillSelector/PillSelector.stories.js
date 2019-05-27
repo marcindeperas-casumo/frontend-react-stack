@@ -5,7 +5,7 @@ import { select, boolean } from "@storybook/addon-knobs/react";
 import { PillSelector } from "./PillSelector";
 import options from "./__mocks__/options.json";
 
-const stories = storiesOf("Controls/PillSelector", module);
+const stories = storiesOf("PillSelector", module);
 const optionsForSelector = options.map(option => option.value);
 
 type Props = {

@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import "./PillSelector.scss";
 
@@ -60,7 +61,7 @@ export class PillSelector extends PureComponent<Props> {
             align="center"
             direction="vertical"
             className={classNames(
-              `c-input-pill t-border-r--pill u-font-weight-bold`,
+              `c-input-pill u-cursor-pointer t-border-r--pill u-font-weight-bold`,
               this.getPillClassModifier(option)
             )}
             justify="center"
@@ -68,13 +69,19 @@ export class PillSelector extends PureComponent<Props> {
             onClick={() => this.onChange(option.value)}
           >
             {option.labelHeader ? (
-              <div className="u-font-xs u-text-transform-uppercase u-margin-top--none">
+              <Text
+                tag="div"
+                className="u-text-transform-uppercase u-margin-top--none"
+                size="xs"
+              >
                 {option.labelHeader}
-              </div>
+              </Text>
             ) : (
               ""
             )}
-            <div className="u-margin-top--none">{option.label}</div>
+            <Text tag="div" className="u-margin-top--none">
+              {option.label}
+            </Text>
           </Flex>
         ))}
       </div>
