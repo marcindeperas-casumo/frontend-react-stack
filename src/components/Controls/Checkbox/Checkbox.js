@@ -12,11 +12,11 @@ type Props = {
 };
 
 const CheckboxUnchecked = () => (
-  <div className="c-checkbox u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-grey-light-1 t-background-white" />
+  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-grey-light-1 t-background-white" />
 );
 
 const CheckboxChecked = () => (
-  <div className="c-checkbox u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-green-light-1 t-background-green-light-1">
+  <div className="c-checkbox u-cursor-pointer u-padding--md t-border-r--circle t-border-current-color o-ratio t-color-green-light-1 t-background-green-light-1">
     <Flex
       align="center"
       justify="center"
