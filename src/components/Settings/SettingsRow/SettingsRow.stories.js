@@ -1,13 +1,12 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import Link from "Components/Settings/Link";
 import { SettingsRow } from "./SettingsRow";
 
 const stories = storiesOf("Settings/SettingsRow", module);
 
 stories.add("Default", () => (
   <SettingsRow text="a label">
-    <Link label="Go to home" target="http://www.casumo.com" />
+    <a href="http://www.casumo.com">Go to home</a>
   </SettingsRow>
 ));
