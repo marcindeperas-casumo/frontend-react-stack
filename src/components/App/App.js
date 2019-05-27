@@ -139,6 +139,19 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/AdventureCard")}
           />
         </Route>
+        <Route path={["notifications"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-notifications"
+              loader={async () => {
+                const { NotificationsContainer } = await import(
+                  "Components/Settings/Notifications/NotificationsContainer"
+                );
+                return NotificationsContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }
