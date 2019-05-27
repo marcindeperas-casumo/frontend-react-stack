@@ -24,7 +24,7 @@ import {
   CONTACT_BY_POST_FRAGMENT,
 } from "./PlayerContactSettingsQuery";
 import { NOTIFICATIONS_LABELS_QUERY } from "./NotificationsLabelsQuery";
-import Notifications from "./Notifications";
+import { Notifications } from "./Notifications";
 
 const noop = () => {};
 
@@ -253,4 +253,4 @@ export const withContainer = (Component: Function) => (
   </Composed>
 );
 
-export default () => withContainer(Notifications);
+export const NotificationsContainer = () => withContainer(Notifications);

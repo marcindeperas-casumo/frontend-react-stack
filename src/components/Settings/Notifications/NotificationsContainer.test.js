@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "Components/Settings/Notifications";
+import { withContainer } from "Components/Settings/Notifications/NotificationsContainer";
 import {
   withMockQueries,
   playerContactSettingsQueryMock,

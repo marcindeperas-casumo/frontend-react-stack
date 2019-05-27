@@ -71,7 +71,7 @@ const SubscriptionRow = ({
   />
 );
 
-class Notifications extends PureComponent<Props> {
+export class Notifications extends PureComponent<Props> {
   render() {
     const {
       setWithdrawalNotifications,
@@ -214,5 +214,3 @@ class Notifications extends PureComponent<Props> {
     );
   }
 }
-
-export default Notifications;
