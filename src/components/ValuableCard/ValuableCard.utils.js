@@ -30,3 +30,7 @@ export const CoinValueToSpinType = coinValue => {
 
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
+
+export const ExpiryInHours = expiryDate => {
+  return Math.floor(expiryDate.diffNow(["hours"]).hours);
+};

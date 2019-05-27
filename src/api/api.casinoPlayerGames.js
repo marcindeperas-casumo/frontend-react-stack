@@ -1,6 +1,7 @@
 // @flow
 import { commaSeparated, isNilOrEmpty } from "Utils";
 import clientHttp from "Lib/http";
+import { getDeveloperOptions } from "Utils/developerOptions";
 
 type HTTPClient = typeof clientHttp;
 
@@ -16,14 +17,12 @@ const getHeaders = (token: string) => {
   if (!token) {
     return {};
   }
-  const showDisabledGames = localStorage.getItem("showDisabledGames");
-  const isFeatureHiddenGames =
-    showDisabledGames === "true" ? "HIDDEN_GAMES" : null;
+  const { showDisabledGames } = getDeveloperOptions();
 
   return {
     headers: {
       "X-Token": token,
-      "X-Request-Features": isFeatureHiddenGames,
+      "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
     },
   };
 };

@@ -3,9 +3,10 @@ import React from "react";
 import type { Node } from "react";
 import { Query } from "react-apollo";
 import { find, propEq, pluck } from "ramda";
+import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import logger from "Services/logger";
-import ValuableCard from "Components/ValuableCard";
+import { ValuableCard } from "Components/ValuableCard";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
@@ -28,9 +29,12 @@ const withValuableData = (
     return null;
   }
 
+  // to decide whether to move to graphql
+  const expiryDate = DateTime.local(valuable.expiryDate);
+
   return (
     <Flex.Item className="o-flex__item-fixed-size">
-      <ValuableCard {...valuable} />
+      <ValuableCard {...valuable} expiryDate={expiryDate} />
     </Flex.Item>
   );
 };

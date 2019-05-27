@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import ValuableHeaderBackground from "./ValuableHeaderBackground";
+import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 
 describe("ValubaleHeaderBackground", () => {
   let rendered;
