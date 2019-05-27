@@ -75,7 +75,7 @@ stories.add(
       "Card Type"
     );
     const headerTxt = text("Title Text", "TRY OUR <br> NEW <br>GAME", "Text");
-    const subtitle = text("Subtitle Text", "Something", "Text");
+    const subtitle = text("Subtitle Text", "The Subtitle", "Text");
     const legalText = text(
       "Legal Text",
       "Nulla aliquam dictum quam, ut euismod est ornare ac. Phasellus et ipsum sed neque sodales sollicitudin. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.",
