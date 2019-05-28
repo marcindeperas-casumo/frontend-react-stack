@@ -70,6 +70,9 @@ const Composed = adopt({
   labels: ({ render }) => (
     <Query query={NOTIFICATIONS_LABELS_QUERY}>{render}</Query>
   ),
+  playerContactSettings: ({ render }) => (
+    <Query query={PLAYER_CONTACT_SETTINGS_QUERY}>{render}</Query>
+  ),
 });
 
 const wrap = (mutation, on, optimisticResponse, getUpdatedCacheObject) =>
@@ -98,162 +101,156 @@ export const withContainer = (Component: Function) => (
       setNewsletterSubscription,
       setSMSNewsletterSubscription,
       labels,
+      playerContactSettings,
     }) => {
+      if (playerContactSettings.loading || labels.loading) {
+        return <SettingsRowListSkeleton count={8} />;
+      }
+      if (playerContactSettings.error) {
+        return <ErrorMessage retry={() => playerContactSettings.refetch()} />;
+      }
+      if (labels.error) {
+        return <ErrorMessage retry={() => labels.refetch()} />;
+      }
+
+      const {
+        player: { id },
+      } = playerContactSettings.data;
+
       return (
-        <Query query={PLAYER_CONTACT_SETTINGS_QUERY}>
-          {({ loading, data, error, refetch }) => {
-            if (loading || labels.loading) {
-              return <SettingsRowListSkeleton count={8} />;
-            }
-            if (error) {
-              return <ErrorMessage retry={() => refetch()} />;
-            }
-            if (labels.error) {
-              return <ErrorMessage retry={() => labels.refetch()} />;
-            }
-
-            const {
-              player: { id },
-            } = data;
-
-            return (
-              <Component
-                labels={labels.data}
-                player={data.player}
-                setWithdrawalNotifications={value =>
-                  wrap(
-                    setWithdrawalNotifications,
-                    value,
-                    { setWithdrawalNotifications: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: WITHDRAWAL_NOTIFICATION_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            withdrawalNotifications:
-                              result.data.setWithdrawalNotifications,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-                setAdventurerPublicity={value =>
-                  wrap(
-                    setAdventurerPublicity,
-                    value,
-                    { setAdventurerPublicity: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: ADVENTURER_PUBLIC_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            adventurerPublic:
-                              result.data.setAdventurerPublicity,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-                setNewsletterSubscription={value =>
-                  wrap(
-                    setNewsletterSubscription,
-                    value,
-                    { setNewsletterSubscription: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            subscribedToNewsletters:
-                              result.data.setNewsletterSubscription,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-                setSMSNewsletterSubscription={value =>
-                  wrap(
-                    setSMSNewsletterSubscription,
-                    value,
-                    { setSMSNewsletterSubscription: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            subscribedToSMSNewsletters:
-                              result.data.setSMSNewsletterSubscription,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-                setContactByPhone={value =>
-                  wrap(
-                    setContactByPhone,
-                    value,
-                    { setContactByPhone: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: CONTACT_BY_PHONE_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            contactByPhone: result.data.setContactByPhone,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-                setContactByPost={value =>
-                  wrap(
-                    setContactByPost,
-                    value,
-                    { setContactByPost: value },
-                    result => ({
-                      id: dataIdFromObject({ __typename: "Player", id }),
-                      fragment: CONTACT_BY_POST_FRAGMENT,
-                      data: {
-                        details: {
-                          __typename: "PlayerDetails",
-                          contactSettings: {
-                            contactByPost: result.data.setContactByPost,
-                            __typename: "PlayerContactSettings",
-                          },
-                        },
-                        __typename: "Player",
-                      },
-                    })
-                  )
-                }
-              />
-            );
-          }}
-        </Query>
+        <Component
+          labels={labels.data}
+          player={playerContactSettings.data.player}
+          setWithdrawalNotifications={value =>
+            wrap(
+              setWithdrawalNotifications,
+              value,
+              { setWithdrawalNotifications: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: WITHDRAWAL_NOTIFICATION_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      withdrawalNotifications:
+                        result.data.setWithdrawalNotifications,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+          setAdventurerPublicity={value =>
+            wrap(
+              setAdventurerPublicity,
+              value,
+              { setAdventurerPublicity: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: ADVENTURER_PUBLIC_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      adventurerPublic: result.data.setAdventurerPublicity,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+          setNewsletterSubscription={value =>
+            wrap(
+              setNewsletterSubscription,
+              value,
+              { setNewsletterSubscription: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      subscribedToNewsletters:
+                        result.data.setNewsletterSubscription,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+          setSMSNewsletterSubscription={value =>
+            wrap(
+              setSMSNewsletterSubscription,
+              value,
+              { setSMSNewsletterSubscription: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      subscribedToSMSNewsletters:
+                        result.data.setSMSNewsletterSubscription,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+          setContactByPhone={value =>
+            wrap(
+              setContactByPhone,
+              value,
+              { setContactByPhone: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: CONTACT_BY_PHONE_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      contactByPhone: result.data.setContactByPhone,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+          setContactByPost={value =>
+            wrap(
+              setContactByPost,
+              value,
+              { setContactByPost: value },
+              result => ({
+                id: dataIdFromObject({ __typename: "Player", id }),
+                fragment: CONTACT_BY_POST_FRAGMENT,
+                data: {
+                  details: {
+                    __typename: "PlayerDetails",
+                    contactSettings: {
+                      contactByPost: result.data.setContactByPost,
+                      __typename: "PlayerContactSettings",
+                    },
+                  },
+                  __typename: "Player",
+                },
+              })
+            )
+          }
+        />
       );
     }}
   </Composed>
