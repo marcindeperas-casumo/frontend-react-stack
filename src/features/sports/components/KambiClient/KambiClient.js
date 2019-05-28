@@ -4,6 +4,9 @@ import classNames from "classnames";
 import { pick } from "ramda";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
+import { showTerms } from "Services/ShowTermsService";
+import { getKambiWidgetAPI } from "Features/sports/kambi";
+import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 
 import "./KambiClient.scss";
 
@@ -40,6 +43,9 @@ export default class KambiClient extends React.Component<Props> {
       ...this.props,
     });
 
+    // pre-setup the widget api
+    getKambiWidgetAPI();
+
     window.customerSettings = {
       enableOddsFormatSelector: true,
       enableNavigationPanel: false,
@@ -52,17 +58,55 @@ export default class KambiClient extends React.Component<Props> {
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
     };
+
+    window.widgetSettings = {
+      widgets: [
+        {
+          widgetId: "de-tax-message",
+          url: deTaxMessageUrl,
+          height: 55,
+          conditions: {
+            markets: ["DE"],
+          },
+        },
+      ],
+
+      targets: {
+        betslipMain: [
+          {
+            widgetId: "de-tax-message",
+          },
+        ],
+      },
+    };
     /* eslint-enable fp/no-mutation */
 
     injectScript(this.props.bootstrapUrl);
 
     window.addEventListener("hashchange", this.handleHashChange);
     bridge.on("sports-path-updated", this.handleHashChange);
+
+    // listen to events from widget iframes
+    window.addEventListener("message", this.onWidgetMessage, false);
   }
 
   onNotification = (event: { [string]: * }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
+    }
+  };
+
+  onWidgetMessage = (message: MessageEvent) => {
+    // MessageEvent.data property is a mixed type so need to check the type here too
+    if (!message.data || typeof message.data.type !== "string") {
+      return;
+    }
+
+    if (message.data.type === "SHOW_TERMS") {
+      getKambiWidgetAPI().then(wapi => {
+        wapi.set(wapi.BETSLIP_MAXIMIZED, { maximized: false });
+        showTerms();
+      });
     }
   };
 
