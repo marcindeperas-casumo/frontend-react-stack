@@ -1,6 +1,7 @@
 import gql from "graphql-tag";
 import { REALITY_CHECK_FRAGMENT } from "Components/Settings/RealityCheck/RealityCheckQuery";
 
+//.graphql extension doesn't allow export fragments properly (for now), so they need to be in a js file
 export const WITHDRAWAL_NOTIFICATION_FRAGMENT = gql`
   fragment Contact_Settings_Player_withdrawalNotifications on Player {
     __typename

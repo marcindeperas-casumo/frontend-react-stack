@@ -1,5 +1,6 @@
 import gql from "graphql-tag";
 
+//.graphql extension doesn't allow export fragments properly (for now), so they need to be in a js file
 export const REALITY_CHECK_FRAGMENT = gql`
   fragment Contact_Settings_Player_realityCheck on Player {
     __typename
