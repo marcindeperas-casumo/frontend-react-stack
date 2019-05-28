@@ -7,13 +7,19 @@ import { dataIdFromObject } from "Services/apolloCacheUtils";
 import { ErrorMessage } from "Components/ErrorMessage";
 import logger from "Services/logger";
 import {
-  SET_ADVENTURER_PUBLICITY,
-  SET_WITHDRAWAL_NOTIFICATIONS,
-  SET_CONTACT_BY_POST,
-  SET_CONTACT_BY_PHONE,
-  SET_NEWSLETTER_SUBSCRIPTION,
-  SET_SMS_NEWSLETTER_SUBSCRIPTION,
-} from "./Mutations";
+  // $FlowIgnore
+  SetAdventurerPublicity,
+  // $FlowIgnore
+  SetWithdrawalNotifications,
+  // $FlowIgnore
+  SetContactByPost,
+  // $FlowIgnore
+  SetContactByPhone,
+  // $FlowIgnore
+  SetNewsletterSubscription,
+  // $FlowIgnore
+  SetSMSNewsletterSubscription,
+} from "./Mutations.graphql";
 import {
   PLAYER_CONTACT_SETTINGS_QUERY,
   WITHDRAWAL_NOTIFICATION_FRAGMENT,
@@ -32,32 +38,32 @@ const Composed = adopt({
   setWithdrawalNotifications: ({ render }) => (
     //TODO: implement error handling when we have notifications in place
     //if onError is unset, Apollo default handler throws and tests break
-    <Mutation mutation={SET_WITHDRAWAL_NOTIFICATIONS} onError={noop}>
+    <Mutation mutation={SetWithdrawalNotifications} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),
   setAdventurerPublicity: ({ render }) => (
-    <Mutation mutation={SET_ADVENTURER_PUBLICITY} onError={noop}>
+    <Mutation mutation={SetAdventurerPublicity} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),
   setContactByPost: ({ render }) => (
-    <Mutation mutation={SET_CONTACT_BY_POST} onError={noop}>
+    <Mutation mutation={SetContactByPost} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),
   setContactByPhone: ({ render }) => (
-    <Mutation mutation={SET_CONTACT_BY_PHONE} onError={noop}>
+    <Mutation mutation={SetContactByPhone} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),
   setNewsletterSubscription: ({ render }) => (
-    <Mutation mutation={SET_NEWSLETTER_SUBSCRIPTION} onError={noop}>
+    <Mutation mutation={SetNewsletterSubscription} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),
   setSMSNewsletterSubscription: ({ render }) => (
-    <Mutation mutation={SET_SMS_NEWSLETTER_SUBSCRIPTION} onError={noop}>
+    <Mutation mutation={SetSMSNewsletterSubscription} onError={noop}>
       {mutation => render(mutation)}
     </Mutation>
   ),

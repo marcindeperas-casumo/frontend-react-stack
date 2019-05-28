@@ -1,15 +1,15 @@
 import {
-  SET_ADVENTURER_PUBLICITY,
-  SET_WITHDRAWAL_NOTIFICATIONS,
-  SET_CONTACT_BY_POST,
-  SET_CONTACT_BY_PHONE,
-  SET_NEWSLETTER_SUBSCRIPTION,
-  SET_SMS_NEWSLETTER_SUBSCRIPTION,
-} from "../Mutations";
+  SetAdventurerPublicity,
+  SetWithdrawalNotifications,
+  SetContactByPost,
+  SetContactByPhone,
+  SetNewsletterSubscription,
+  SetSMSNewsletterSubscription,
+} from "../Mutations.graphql";
 
 export const withdrawalNotificationsMock = [true, false].map(on => ({
   request: {
-    query: SET_WITHDRAWAL_NOTIFICATIONS,
+    query: SetWithdrawalNotifications,
     variables: { input: { on } },
   },
   result: {
@@ -28,7 +28,7 @@ export const withdrawalNotificationsErrorMock = withdrawalNotificationsMock.map(
 
 export const adventurerPublicityMock = [true, false].map(on => ({
   request: {
-    query: SET_ADVENTURER_PUBLICITY,
+    query: SetAdventurerPublicity,
     variables: { input: { on } },
   },
   result: {
@@ -47,7 +47,7 @@ export const adventurerPublicityErrorMock = adventurerPublicityMock.map(
 
 export const contactByPostMock = [true, false].map(on => ({
   request: {
-    query: SET_CONTACT_BY_POST,
+    query: SetContactByPost,
     variables: { input: { on } },
   },
   result: {
@@ -64,7 +64,7 @@ export const contactByPostErrorMock = contactByPostMock.map(request => ({
 
 export const contactByPhoneMock = [true, false].map(on => ({
   request: {
-    query: SET_CONTACT_BY_PHONE,
+    query: SetContactByPhone,
     variables: { input: { on } },
   },
   result: {
@@ -81,7 +81,7 @@ export const contactByPhoneErrorMock = contactByPhoneMock.map(request => ({
 
 export const newsletterSubscriptionMock = [true, false].map(on => ({
   request: {
-    query: SET_NEWSLETTER_SUBSCRIPTION,
+    query: SetNewsletterSubscription,
     variables: { input: { on } },
   },
   result: {
@@ -100,7 +100,7 @@ export const newsletterSubscriptionErrorMock = newsletterSubscriptionMock.map(
 
 export const SMSNewsletterSubscriptionMock = [true, false].map(on => ({
   request: {
-    query: SET_SMS_NEWSLETTER_SUBSCRIPTION,
+    query: SetSMSNewsletterSubscription,
     variables: { input: { on } },
   },
   result: {
