@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "Components/Settings/RealityCheck";
+import { withContainer } from "Components/Settings/RealityCheck/RealityCheckContainer";
 import {
   withMockQueries,
   playerRealityCheckQueryWithInterval,

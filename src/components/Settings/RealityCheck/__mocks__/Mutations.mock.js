@@ -1,4 +1,4 @@
-import { UPDATE_REALITY_CHECK_INTERVAL } from "../Mutations";
+import { UPDATE_REALITY_CHECK_INTERVAL } from "../Mutations.graphql";
 
 export const updateRealityCheckIntervalMock = [0, 600, 900].map(
   intervalSeconds => ({

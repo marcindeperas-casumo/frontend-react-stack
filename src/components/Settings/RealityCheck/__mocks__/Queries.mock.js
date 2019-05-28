@@ -1,4 +1,4 @@
-import { REALITY_CHECK_LABELS_QUERY } from "../RealityCheckLabelsQuery";
+import { REALITY_CHECK_LABELS_QUERY } from "../RealityCheckLabelsQuery.graphql";
 import { PLAYER_REALITY_CHECK_QUERY } from "../RealityCheckQuery";
 
 export const playerRealityCheckQueryMock = {
