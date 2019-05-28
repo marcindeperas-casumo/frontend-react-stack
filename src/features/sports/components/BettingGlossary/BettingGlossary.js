@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SportsModal } from "Features/sports/components/SportsModal";
@@ -7,6 +7,41 @@ import { SportsModal } from "Features/sports/components/SportsModal";
 const close = () => {
   /* TODO: implement */
 };
+
+const content = [
+  [
+    "Accumulator",
+    <p>
+      See <a>Combination Bet</a>
+    </p>,
+  ],
+  [
+    "American odds",
+    <p>
+      <em>Also known as Moneyline</em> See <a>Odds format</a>.
+    </p>,
+  ],
+  [
+    "Asian handicap",
+    <p>
+      See <a>Combination Bet</a>
+    </p>,
+  ],
+];
+
+const repeatedContent = [...content, ...content, ...content];
+
+const BettingGlossaryEntry = ({ term, entry }) => (
+  <Flex.Item>
+    <span>{term}:</span>
+    <span>{entry}</span>
+  </Flex.Item>
+);
+
+const renderGlossaryEntries = () =>
+  repeatedContent.map(([term, entry]) => (
+    <BettingGlossaryEntry term={term} entry={entry} />
+  ));
 
 export const BettingGlossary = () => (
   <SportsModal>
@@ -18,9 +53,7 @@ export const BettingGlossary = () => (
       Betting Glossary
     </SportsModal.Header>
     <SportsModal.Content>
-      <Flex>
-        <Text>...List to go here</Text>
-      </Flex>
+      <Flex>{renderGlossaryEntries()}</Flex>
     </SportsModal.Content>
   </SportsModal>
 );
