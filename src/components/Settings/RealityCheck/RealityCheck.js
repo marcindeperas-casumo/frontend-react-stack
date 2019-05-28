@@ -52,7 +52,7 @@ export class RealityCheck extends PureComponent<Props> {
           </Text>
           <div className="u-margin-top--md">
             <PillSelector
-              disabled={Boolean(!enabled)}
+              disabled={!enabled}
               className="u-margin-top--md"
               options={options}
               value={interval}
