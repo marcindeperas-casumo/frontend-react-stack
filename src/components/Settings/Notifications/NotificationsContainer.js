@@ -75,13 +75,33 @@ const Composed = adopt({
   ),
 });
 
-const wrap = (mutation, on, optimisticResponse, getUpdatedCacheObject) =>
+const wrapMutation = ({
+  mutation,
+  input,
+  optimisticResponse,
+  playerId,
+  fragment,
+  getContactSettingsField,
+}) =>
   mutation({
-    variables: { input: { on } },
+    variables: { input: { on: input } },
     optimisticResponse,
     update: (cache, result) => {
       try {
-        cache.writeFragment(getUpdatedCacheObject(result));
+        cache.writeFragment({
+          id: dataIdFromObject({ __typename: "Player", id: playerId }),
+          fragment,
+          data: {
+            details: {
+              __typename: "PlayerDetails",
+              contactSettings: {
+                ...getContactSettingsField(result),
+                __typename: "PlayerContactSettings",
+              },
+            },
+            __typename: "Player",
+          },
+        });
       } catch (err) {
         logger.error(
           "Contact Settings/Notifications: Failed while writing fragment",
@@ -122,133 +142,77 @@ export const withContainer = (Component: Function) => (
           labels={labels.data}
           player={playerContactSettings.data.player}
           setWithdrawalNotifications={value =>
-            wrap(
-              setWithdrawalNotifications,
-              value,
-              { setWithdrawalNotifications: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: WITHDRAWAL_NOTIFICATION_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      withdrawalNotifications:
-                        result.data.setWithdrawalNotifications,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setWithdrawalNotifications,
+              input: value,
+              optimisticResponse: { setWithdrawalNotifications: value },
+              playerId: id,
+              fragment: WITHDRAWAL_NOTIFICATION_FRAGMENT,
+              getContactSettingsField: result => ({
+                withdrawalNotifications: result.data.setWithdrawalNotifications,
+              }),
+            })
           }
           setAdventurerPublicity={value =>
-            wrap(
-              setAdventurerPublicity,
-              value,
-              { setAdventurerPublicity: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: ADVENTURER_PUBLIC_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      adventurerPublic: result.data.setAdventurerPublicity,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setAdventurerPublicity,
+              input: value,
+              optimisticResponse: { setAdventurerPublicity: value },
+              playerId: id,
+              fragment: ADVENTURER_PUBLIC_FRAGMENT,
+              getContactSettingsField: result => ({
+                adventurerPublic: result.data.setAdventurerPublicity,
+              }),
+            })
           }
           setNewsletterSubscription={value =>
-            wrap(
-              setNewsletterSubscription,
-              value,
-              { setNewsletterSubscription: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      subscribedToNewsletters:
-                        result.data.setNewsletterSubscription,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setNewsletterSubscription,
+              input: value,
+              optimisticResponse: { setNewsletterSubscription: value },
+              playerId: id,
+              fragment: SUBSCRIBED_TO_NEWSLETTERS_FRAGMENT,
+              getContactSettingsField: result => ({
+                subscribedToNewsletters: result.data.setNewsletterSubscription,
+              }),
+            })
           }
           setSMSNewsletterSubscription={value =>
-            wrap(
-              setSMSNewsletterSubscription,
-              value,
-              { setSMSNewsletterSubscription: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      subscribedToSMSNewsletters:
-                        result.data.setSMSNewsletterSubscription,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setSMSNewsletterSubscription,
+              input: value,
+              optimisticResponse: { setSMSNewsletterSubscription: value },
+              playerId: id,
+              fragment: SUBSCRIBED_TO_SMS_NEWSLETTERS_FRAGMENT,
+              getContactSettingsField: result => ({
+                subscribedToSMSNewsletters:
+                  result.data.setSMSNewsletterSubscription,
+              }),
+            })
           }
           setContactByPhone={value =>
-            wrap(
-              setContactByPhone,
-              value,
-              { setContactByPhone: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: CONTACT_BY_PHONE_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      contactByPhone: result.data.setContactByPhone,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setContactByPhone,
+              input: value,
+              optimisticResponse: { setContactByPhone: value },
+              playerId: id,
+              fragment: CONTACT_BY_PHONE_FRAGMENT,
+              getContactSettingsField: result => ({
+                contactByPhone: result.data.setContactByPhone,
+              }),
+            })
           }
           setContactByPost={value =>
-            wrap(
-              setContactByPost,
-              value,
-              { setContactByPost: value },
-              result => ({
-                id: dataIdFromObject({ __typename: "Player", id }),
-                fragment: CONTACT_BY_POST_FRAGMENT,
-                data: {
-                  details: {
-                    __typename: "PlayerDetails",
-                    contactSettings: {
-                      contactByPost: result.data.setContactByPost,
-                      __typename: "PlayerContactSettings",
-                    },
-                  },
-                  __typename: "Player",
-                },
-              })
-            )
+            wrapMutation({
+              mutation: setContactByPost,
+              input: value,
+              optimisticResponse: { setContactByPost: value },
+              playerId: id,
+              fragment: CONTACT_BY_POST_FRAGMENT,
+              getContactSettingsField: result => ({
+                contactByPost: result.data.setContactByPost,
+              }),
+            })
           }
         />
       );
