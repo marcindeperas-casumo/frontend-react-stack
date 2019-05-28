@@ -10,7 +10,7 @@ type Props = {
   className?: string,
 };
 
-const ValuableReward = ({
+export const ValuableReward = ({
   ValuableSymbol,
   justifyCenter,
   className,
@@ -34,5 +34,3 @@ const ValuableReward = ({
     </div>
   );
 };
-
-export default ValuableReward;

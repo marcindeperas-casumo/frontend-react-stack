@@ -21,6 +21,7 @@ export const REACT_APP_EVENT_MENU_CLOSED = "REACT_APP_EVENT/menuClosed";
 export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch"; // KO_APP* events are events that the KO app will be responsible to react // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
+export const KO_APP_EVENT_SHOW_TERMS = "KO_APP_EVENT/showTerms";
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {

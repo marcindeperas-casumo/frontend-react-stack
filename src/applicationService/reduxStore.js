@@ -27,24 +27,19 @@ export const createReduxStore = (preloadedState: {}) => {
     state: storage.get(STORE_PERSISTED_STATE_KEY, {}),
   });
 
-  sagaMiddleware.run(rootSaga);
+  // for HMR
+  let currentSaga = sagaMiddleware.run(rootSaga); // eslint-disable-line fp/no-let
 
   if (module.hot) {
     // You cannot use alias here! https://github.com/gaearon/react-hot-loader/issues/560
     module.hot.accept("../models/root.reducer", () => {
-      const nextRootReducer = require("../models/root.reducer").default;
-      store.replaceReducer(nextRootReducer);
+      store.replaceReducer(rootReducer);
     });
 
-    // Why there isn't there any saga HMR?
-    //
-    // When this was implemented, every time a saga changed we where calling
-    // `store.replaceReducer(nextSaga);` which was causing the state
-    // (`store.getState()`) to become a generator function, something that is
-    // not right.
-    //
-    // Now if you are reading this and you have an idea how to improve it please
-    // go ahead and have a go.
+    module.hot.accept("../models/root.saga", () => {
+      currentSaga.cancel();
+      currentSaga = sagaMiddleware.run(rootSaga); // eslint-disable-line fp/no-mutation
+    });
   }
 
   return store;

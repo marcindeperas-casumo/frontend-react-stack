@@ -98,17 +98,12 @@ describe("API/casinoPlayerGames", () => {
       localStorage.setItem("showDisabledGames", "true");
       getCasinoPlayerGames({ sessionId, page, pageSize, providers }, http);
 
+      const requestHeaders = http.get.mock.calls[0][2].headers;
+
       expect(http.get).toHaveBeenCalledTimes(1);
-      expect(http.get).toHaveBeenCalledWith(
-        URL.GAMES,
-        { page, pageSize, providerSlugs: "" },
-        {
-          headers: {
-            "X-Request-Features": "HIDDEN_GAMES",
-            "X-Token": sessionId,
-          },
-        }
-      );
+      expect(requestHeaders).toMatchObject({
+        "X-Request-Features": "HIDDEN_GAMES",
+      });
     });
   });
 });
