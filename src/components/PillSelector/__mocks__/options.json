@@ -1,0 +1,17 @@
+[
+  {
+    "label": "£50",
+    "labelHeader": "Less than",
+    "value": "less-than-50"
+  },
+  {
+    "label": "£50-£500",
+    "labelHeader": "Between",
+    "value": "between-50-500"
+  },
+  {
+    "label": "£500",
+    "labelHeader": "More than",
+    "value": "more-than-500"
+  }
+]
