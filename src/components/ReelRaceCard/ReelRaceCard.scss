@@ -27,5 +27,5 @@ $reel-race-tile-widths: ();
 }
 
 .c-reel-race__button-icon {
-  margin: -map-get($cudl-spacer-sizes, sm);
+  margin: -(map-get($cudl-spacer-sizes, sm));
 }

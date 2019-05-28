@@ -1,0 +1,24 @@
+query PlayerValuablesQuery {
+  
+  listTitle: getText(id: "root:mobile.valuables:fields.your_valuables")
+
+  player {
+    valuables {
+      id
+      state
+      expirationTime
+      valuableType
+      title
+      caveat
+      currency
+      market
+
+      ... on PlayerValuableSpins {
+        coinValue
+        game {
+          name
+        }
+      }
+    }
+  }
+}

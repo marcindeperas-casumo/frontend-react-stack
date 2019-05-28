@@ -2,7 +2,6 @@
 import { types as fetchTypes } from "Models/fetch";
 import { getReelRacesReq, optInForReelRaceReq } from "Api/api.reelRaces";
 import { playerIdSelector } from "Models/handshake";
-import { mergeEntity } from "Models/schema";
 import { types } from "./reelRaces.constants";
 
 export function initReelRacesSaga() {
@@ -20,17 +19,9 @@ export function fetchReelRaces(asyncCallData: { playerId: string }) {
 }
 
 export function optInForReelRace(tournamentId: string) {
-  return async (dispatch: (*) => void, getState: () => {}) => {
+  return (dispatch: (*) => void, getState: () => {}) => {
     const playerId = playerIdSelector(getState());
 
-    await optInForReelRaceReq({ playerId, tournamentId });
-
-    dispatch(
-      mergeEntity({
-        reelRaces: {
-          [tournamentId]: { opted: true },
-        },
-      })
-    );
+    optInForReelRaceReq({ playerId, tournamentId });
   };
 }

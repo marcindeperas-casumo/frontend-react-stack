@@ -1,0 +1,9 @@
+.c-input-pill-selector {
+  display: grid;
+  grid-column-gap: map-get($cudl-spacer-sizes, default);
+  grid-row-gap: map-get($cudl-spacer-sizes, default);
+  grid-template-columns: repeat(auto-fit, minmax(50px, 1fr));
+}
+.c-input-pill {
+  height: 48px;
+}
