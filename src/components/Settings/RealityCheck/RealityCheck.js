@@ -9,7 +9,7 @@ import { options } from "./constants";
 type Props = {
   query: PLAYER_REALITY_CHECK_QUERY,
   labels: REALITY_CHECK_LABELS_QUERY,
-  onUpdate: (interval: number) => void,
+  onChange: (interval: number) => void,
   updateLoading: boolean,
   onSave: () => void,
   updateError: ?string,
@@ -19,7 +19,7 @@ type Props = {
 export class RealityCheck extends PureComponent<Props> {
   render() {
     const {
-      onUpdate,
+      onChange,
       onSave,
       updateLoading,
       interval,
@@ -40,7 +40,7 @@ export class RealityCheck extends PureComponent<Props> {
           className="t-border-bottom--none"
           label={inGameSessionUpdatesLabel}
           isEnabled={enabled}
-          onChange={value => onUpdate(value ? options[0].value : OFF)}
+          onChange={value => onChange(value ? options[0].value : OFF)}
         />
         <div className="u-padding--md">
           <Text
@@ -56,7 +56,7 @@ export class RealityCheck extends PureComponent<Props> {
               className="u-margin-top--md"
               options={options}
               value={interval}
-              onChange={value => onUpdate(value)}
+              onChange={onChange}
             />
           </div>
           <Button
@@ -66,7 +66,7 @@ export class RealityCheck extends PureComponent<Props> {
           >
             {save}
           </Button>
-          <a onClick={() => window.history.back()}>
+          <a onClick={window.history.back}>
             <div className="u-width--1/1 u-margin-top--lg center">{cancel}</div>
           </a>
         </div>

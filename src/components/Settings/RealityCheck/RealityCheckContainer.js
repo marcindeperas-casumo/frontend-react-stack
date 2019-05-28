@@ -116,7 +116,7 @@ export const withContainer = (Component: Function) =>
                     labels={labels.data}
                     onSave={() => this.save(mutate, realityCheck)}
                     interval={intervalMinutes}
-                    onUpdate={interval =>
+                    onChange={interval =>
                       this.setState({
                         intervalMinutes: interval,
                       })
