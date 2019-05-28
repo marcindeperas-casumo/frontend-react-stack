@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
+import List from "@casumo/cmp-list";
 import { SportsModal } from "Features/sports/components/SportsModal";
 
 const close = () => {
@@ -11,37 +11,41 @@ const close = () => {
 const content = [
   [
     "Accumulator",
-    <p>
+    <span>
       See <a>Combination Bet</a>
-    </p>,
+    </span>,
   ],
   [
     "American odds",
-    <p>
+    <span>
       <em>Also known as Moneyline</em> See <a>Odds format</a>.
-    </p>,
+    </span>,
   ],
   [
     "Asian handicap",
-    <p>
-      See <a>Combination Bet</a>
-    </p>,
+    <span>
+      A bet market that is popular in football, where one team receives a
+      “virtual head start”, leading the game by an amount of goals before the
+      game starts. The team who scores the most with the handicap applied is the
+      winner. See ‘handicap’.
+    </span>,
   ],
 ];
 
 const repeatedContent = [...content, ...content, ...content];
 
-const BettingGlossaryEntry = ({ term, entry }) => (
-  <Flex.Item>
-    <span>{term}:</span>
-    <span>{entry}</span>
+const BettingGlossaryEntry = ({ term, definition }) => (
+  <Flex.Item className="u-padding-vert--md">
+    <span>
+      <strong>{term}: </strong>
+      {definition}
+    </span>
   </Flex.Item>
 );
 
-const renderGlossaryEntries = () =>
-  repeatedContent.map(([term, entry]) => (
-    <BettingGlossaryEntry term={term} entry={entry} />
-  ));
+const renderGlossaryEntry = ([term, definition]) => (
+  <BettingGlossaryEntry term={term} definition={definition} />
+);
 
 export const BettingGlossary = () => (
   <SportsModal>
@@ -53,7 +57,7 @@ export const BettingGlossary = () => (
       Betting Glossary
     </SportsModal.Header>
     <SportsModal.Content>
-      <Flex>{renderGlossaryEntries()}</Flex>
+      <List items={repeatedContent} render={renderGlossaryEntry} />
     </SportsModal.Content>
   </SportsModal>
 );
