@@ -35,7 +35,7 @@ describe("RealityCheck", () => {
         </MockedProvider>
       );
 
-      expect(rendered.find("RowListSkeleton")).toHaveLength(1);
+      expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
     test("should pass correct initial interval to child", async () => {

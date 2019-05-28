@@ -2,8 +2,8 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import PillSelector from "Components/Controls/PillSelector/PillSelector";
-import { ToggleRow } from "Components/Settings/Notifications/Notifications";
+import { NotificationsToggleRow as ToggleRow } from "Components/Settings/Notifications/NotificationsToggleRow";
+import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
 type Props = {

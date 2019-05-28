@@ -8,7 +8,7 @@ import {
   type QueryResult,
 } from "react-apollo";
 import { adopt } from "react-adopt";
-import { RowListSkeleton } from "Components/Settings/Row/RowListSkeleton";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import RealityCheck from "Components/Settings/RealityCheck/RealityCheck";
 import { launchModal } from "Services/LaunchModalService";
@@ -79,7 +79,7 @@ export const withContainer = (Component: Function) =>
         <Composed>
           {({ query, labels }) => {
             if (query.loading || labels.loading) {
-              return <RowListSkeleton />;
+              return <SettingsRowListSkeleton />;
             }
             if (query.error) {
               return <ErrorMessage retry={() => query.refetch()} />;
