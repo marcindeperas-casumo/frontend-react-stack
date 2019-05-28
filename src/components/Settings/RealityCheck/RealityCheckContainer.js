@@ -10,7 +10,7 @@ import {
 import { adopt } from "react-adopt";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import RealityCheck from "Components/Settings/RealityCheck/RealityCheck";
+import { RealityCheck } from "Components/Settings/RealityCheck/RealityCheck";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS } from "Src/constants";
 import { REALITY_CHECK_LABELS_QUERY } from "./RealityCheckLabelsQuery";
@@ -131,4 +131,4 @@ export const withContainer = (Component: Function) =>
     }
   };
 
-export default withContainer(RealityCheck);
+export const RealityCheckContainer = () => withContainer(RealityCheck);

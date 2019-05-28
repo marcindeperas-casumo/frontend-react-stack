@@ -16,7 +16,7 @@ type Props = {
   interval: number,
 };
 
-class RealityCheck extends PureComponent<Props> {
+export class RealityCheck extends PureComponent<Props> {
   render() {
     const {
       onUpdate,
