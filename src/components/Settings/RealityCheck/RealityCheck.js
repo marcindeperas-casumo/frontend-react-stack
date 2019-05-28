@@ -10,7 +10,7 @@ type Props = {
   query: PLAYER_REALITY_CHECK_QUERY,
   labels: REALITY_CHECK_LABELS_QUERY,
   onChange: (interval: number) => void,
-  updateLoading: boolean,
+  isLoading: boolean,
   onSave: () => void,
   updateError: ?string,
   interval: number,
@@ -18,7 +18,7 @@ type Props = {
 
 export class RealityCheck extends PureComponent<Props> {
   render() {
-    const { onChange, onSave, updateLoading, interval, labels } = this.props;
+    const { onChange, onSave, isLoading, interval, labels } = this.props;
 
     const OFF = 0;
     const enabled = interval !== OFF;
@@ -49,7 +49,7 @@ export class RealityCheck extends PureComponent<Props> {
             />
           </div>
           <Button
-            loading={updateLoading}
+            loading={isLoading}
             className="u-width--1/1 u-margin-top--xlg"
             onClick={onSave}
           >

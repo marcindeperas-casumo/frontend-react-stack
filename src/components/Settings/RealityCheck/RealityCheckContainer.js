@@ -111,7 +111,7 @@ export const withContainer = (Component: Function) =>
                 }}
                 onCompleted={() => this.refresh(query)}
               >
-                {(mutate, { loading: updateLoading, error: updateError }) => (
+                {(mutate, { loading: isUpdateLoading, error: updateError }) => (
                   <Component
                     labels={labels.data}
                     onSave={() => this.save(mutate, realityCheck)}
@@ -121,7 +121,7 @@ export const withContainer = (Component: Function) =>
                         intervalMinutes: interval,
                       })
                     }
-                    updateLoading={updateLoading}
+                    isLoading={isUpdateLoading}
                     updateError={updateError}
                   />
                 )}
