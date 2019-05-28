@@ -4,8 +4,6 @@ import Text from "@casumo/cmp-text";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 
-type ToggleFn = (active: boolean) => void;
-
 export const NotificationsSubscriptionRow = ({
   label,
   isEnabled,
@@ -13,7 +11,7 @@ export const NotificationsSubscriptionRow = ({
 }: {
   label: string,
   isEnabled: boolean,
-  onChange: ToggleFn,
+  onChange: (active: boolean) => void,
 }) => (
   <SettingsRow
     padding="md"

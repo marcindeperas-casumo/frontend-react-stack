@@ -1,75 +1,21 @@
 // @flow
 import React, { PureComponent } from "react";
-import { DirectionRightIcon } from "@casumo/cmp-icons";
-import Text from "@casumo/cmp-text";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
-import { Toggle } from "Components/Toggle/Toggle";
-import { Checkbox } from "Components/Checkbox/Checkbox";
-import Link from "Components/Settings/Link";
-import { ContentReplacer } from "Components/ContentReplacer";
+import { NotificationsSubscriptionRow as SubscriptionRow } from "./NotificationsSubscriptionRow";
+import { NotificationsToggleRow as ToggleRow } from "./NotificationsToggleRow";
+import { RealityCheckField } from "./NotificationsFields";
 
-type ToggleFn = (active: boolean) => void;
 type Props = {
   player: PLAYER_CONTACT_SETTINGS_QUERY_player,
-  setAdventurerPublicity: ToggleFn,
-  setWithdrawalNotifications: ToggleFn,
-  setContactByPost: ToggleFn,
-  setContactByPhone: ToggleFn,
-  setNewsletterSubscription: ToggleFn,
-  setSMSNewsletterSubscription: ToggleFn,
+  setAdventurerPublicity: (active: boolean) => void,
+  setWithdrawalNotifications: (active: boolean) => void,
+  setContactByPost: (active: boolean) => void,
+  setContactByPhone: (active: boolean) => void,
+  setNewsletterSubscription: (active: boolean) => void,
+  setSMSNewsletterSubscription: (active: boolean) => void,
   labels: NOTIFICATIONS_LABELS_QUERY,
 };
-
-export const ToggleRow = ({
-  label,
-  isEnabled,
-  onChange,
-  className = "",
-}: {
-  label: string,
-  isEnabled: boolean,
-  onChange: ToggleFn,
-  className?: string,
-}) => (
-  <SettingsRow
-    className={className}
-    text={
-      <Text
-        tag="p"
-        size="sm"
-        className="t-color-grey-dark-3 u-font-weight-light"
-      >
-        {label}
-      </Text>
-    }
-    action={<Toggle checked={isEnabled} onChange={onChange} />}
-  />
-);
-
-const SubscriptionRow = ({
-  label,
-  isEnabled,
-  onChange,
-}: {
-  label: string,
-  isEnabled: boolean,
-  onChange: ToggleFn,
-}) => (
-  <SettingsRow
-    padding="md"
-    text={
-      <Text
-        tag="p"
-        size="sm"
-        className="t-color-grey-dark-3 u-font-weight-light"
-      >
-        {label}
-      </Text>
-    }
-    action={<Checkbox checked={isEnabled} onChange={onChange} />}
-  />
-);
 
 export class Notifications extends PureComponent<Props> {
   render() {
@@ -116,47 +62,13 @@ export class Notifications extends PureComponent<Props> {
     );
 
     const RealityCheck = () => (
-      <Link
-        target="/player/settings/reality-check"
+      <RealityCheckField
         enabled={canChangeInterval}
-        label={
-          <SettingsRow
-            text={
-              <Text
-                tag="p"
-                size="sm"
-                className="t-color-grey-dark-3 u-font-weight-light"
-              >
-                {notificationsInGameSessionUpdatesLabel}
-              </Text>
-            }
-            action={
-              <>
-                {intervalInMinutes ? (
-                  <Text
-                    tag="span"
-                    className="t-color-green u-font-weight-light"
-                  >
-                    <ContentReplacer
-                      value={inGameSessionUpdatesFrequencyLabel}
-                      replacements={{ amount: intervalInMinutes }}
-                    />
-                  </Text>
-                ) : (
-                  <Text
-                    tag="span"
-                    className="t-color-grey-light-1 u-font-weight-light"
-                  >
-                    {inGameSessionUpdatesOffLabel}
-                  </Text>
-                )}
-                {canChangeInterval && (
-                  <DirectionRightIcon className="t-color-grey-light-1" />
-                )}
-              </>
-            }
-          />
-        }
+        link="/player/settings/reality-check"
+        title={notificationsInGameSessionUpdatesLabel}
+        interval={intervalInMinutes}
+        frequencyLabel={inGameSessionUpdatesFrequencyLabel}
+        frequencyOffLabel={inGameSessionUpdatesOffLabel}
       />
     );
 

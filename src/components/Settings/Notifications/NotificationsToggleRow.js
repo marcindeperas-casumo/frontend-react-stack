@@ -4,8 +4,6 @@ import Text from "@casumo/cmp-text";
 import { Toggle } from "Components/Toggle/Toggle";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 
-type ToggleFn = (active: boolean) => void;
-
 export const NotificationsToggleRow = ({
   label,
   isEnabled,
@@ -14,7 +12,7 @@ export const NotificationsToggleRow = ({
 }: {
   label: string,
   isEnabled: boolean,
-  onChange: ToggleFn,
+  onChange: (active: boolean) => void,
   className?: string,
 }) => (
   <SettingsRow
