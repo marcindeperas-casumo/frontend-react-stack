@@ -1,6 +1,3 @@
-import gql from "graphql-tag";
-
-export const NOTIFICATIONS_LABELS_QUERY = gql`
   query NOTIFICATIONS_LABELS_QUERY {
     subscriptionsTitle: getText(
       id: "root:player-settings-component:fields.subscriptions_title"
@@ -32,5 +29,4 @@ export const NOTIFICATIONS_LABELS_QUERY = gql`
     inGameSessionUpdatesFrequencyLabel: getText(
       id: "root:player-settings-component:fields.in_game_updates_options_label"
     )
-  }
-`;
+}

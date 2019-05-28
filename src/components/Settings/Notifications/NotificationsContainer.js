@@ -23,7 +23,7 @@ import {
   CONTACT_BY_PHONE_FRAGMENT,
   CONTACT_BY_POST_FRAGMENT,
 } from "./PlayerContactSettingsQuery";
-import { NOTIFICATIONS_LABELS_QUERY } from "./NotificationsLabelsQuery";
+import NOTIFICATIONS_LABELS_QUERY from "./NotificationsLabelsQuery.graphql";
 import { Notifications } from "./Notifications";
 
 const noop = () => {};
