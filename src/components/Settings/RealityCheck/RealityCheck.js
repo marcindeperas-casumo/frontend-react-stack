@@ -18,18 +18,7 @@ type Props = {
 
 export class RealityCheck extends PureComponent<Props> {
   render() {
-    const {
-      onChange,
-      onSave,
-      updateLoading,
-      interval,
-      labels: {
-        inGameSessionUpdatesLabel,
-        inGameSessionUpdatesFrequencyLabel,
-        save,
-        cancel,
-      },
-    } = this.props;
+    const { onChange, onSave, updateLoading, interval, labels } = this.props;
 
     const OFF = 0;
     const enabled = interval !== OFF;
@@ -38,7 +27,7 @@ export class RealityCheck extends PureComponent<Props> {
       <>
         <ToggleRow
           className="t-border-bottom--none"
-          label={inGameSessionUpdatesLabel}
+          label={labels.inGameSessionUpdatesLabel}
           isEnabled={enabled}
           onChange={value => onChange(value ? options[0].value : OFF)}
         />
@@ -48,7 +37,7 @@ export class RealityCheck extends PureComponent<Props> {
             size="sm"
             className="t-color-grey-dark-3 u-font-weight-light"
           >
-            {inGameSessionUpdatesFrequencyLabel}
+            {labels.inGameSessionUpdatesFrequencyLabel}
           </Text>
           <div className="u-margin-top--md">
             <PillSelector
@@ -64,10 +53,12 @@ export class RealityCheck extends PureComponent<Props> {
             className="u-width--1/1 u-margin-top--xlg"
             onClick={onSave}
           >
-            {save}
+            {labels.save}
           </Button>
           <a onClick={window.history.back}>
-            <div className="u-width--1/1 u-margin-top--lg center">{cancel}</div>
+            <div className="u-width--1/1 u-margin-top--lg center">
+              {labels.cancel}
+            </div>
           </a>
         </div>
       </>
