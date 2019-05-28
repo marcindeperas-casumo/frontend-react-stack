@@ -105,9 +105,9 @@ describe("RealityCheck", () => {
   });
 
   describe("Actions", () => {
-    test("should change interval when onUpdate is triggered in child", async () => {
+    test("should change interval when onChange is triggered in child", async () => {
       Component = props => (
-        <input type="button" onClick={() => props.onUpdate(30)} />
+        <input type="button" onClick={() => props.onChange(30)} />
       );
       RealityCheckContainer = withContainer(Component);
       const rendered = mount(
@@ -129,7 +129,7 @@ describe("RealityCheck", () => {
     test("shouldn't call mutation when canChangeInterval is false", async () => {
       Component = props => (
         <>
-          <input type="button" onClick={() => props.onUpdate(10)} />
+          <input type="button" onClick={() => props.onChange(10)} />
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
@@ -166,7 +166,7 @@ describe("RealityCheck", () => {
     test("shouldn't call mutation when is interval is 0 and isZeroIntervalAllowed is false", async () => {
       Component = props => (
         <>
-          <input type="button" onClick={() => props.onUpdate(0)} />
+          <input type="button" onClick={() => props.onChange(0)} />
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
@@ -204,7 +204,7 @@ describe("RealityCheck", () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
         <>
-          <input type="button" onClick={() => props.onUpdate(10)} />
+          <input type="button" onClick={() => props.onChange(10)} />
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
@@ -243,7 +243,7 @@ describe("RealityCheck", () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
         <>
-          <input type="button" onClick={() => props.onUpdate(10)} />
+          <input type="button" onClick={() => props.onChange(10)} />
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
@@ -288,7 +288,7 @@ describe("RealityCheck", () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
         <>
-          <input type="button" onClick={() => props.onUpdate(10)} />
+          <input type="button" onClick={() => props.onChange(10)} />
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
