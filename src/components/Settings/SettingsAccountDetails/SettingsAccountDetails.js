@@ -2,7 +2,6 @@
 import React, { PureComponent, type Node } from "react";
 import { ExclamationMarkIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
-import Link from "Components/Settings/Link";
 import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue/SettingsLabelAndValue";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
@@ -61,33 +60,29 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     );
 
     const Email = () => (
-      <Link
-        label={
-          <RowTemplate
-            label={labels.email}
-            value={details.email}
-            action={<EditIcon className="t-color-green" />}
-          />
-        }
-        launcher={launchModal}
-        target={{ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL }}
-      />
+      <a onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}>
+        <RowTemplate
+          label={labels.email}
+          value={details.email}
+          action={<EditIcon className="t-color-green" />}
+        />
+      </a>
     );
 
     const ExtentOfGambling = () => {
       if (details.extentOfGambling.canChange) {
         return (
-          <Link
-            label={
-              <RowTemplate
-                label={labels.gamblingExtent}
-                action={<EditIcon className="t-color-green" />}
-                value={details.extentOfGambling.label}
-              />
+          <a
+            onClick={() =>
+              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING })
             }
-            launcher={launchModal}
-            target={{ modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING }}
-          />
+          >
+            <RowTemplate
+              label={labels.gamblingExtent}
+              action={<EditIcon className="t-color-green" />}
+              value={details.extentOfGambling.label}
+            />
+          </a>
         );
       }
       return null;
@@ -96,19 +91,17 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     const Password = () => {
       if (details.canChangePassword) {
         return (
-          <Link
-            label={
-              <RowTemplate
-                label={labels.password}
-                value={PASSWORD_VALUE}
-                action={<EditIcon className="t-color-green" />}
-              />
+          <a
+            onClick={() =>
+              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD })
             }
-            launcher={launchModal}
-            target={{
-              modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD,
-            }}
-          />
+          >
+            <RowTemplate
+              label={labels.password}
+              value={PASSWORD_VALUE}
+              action={<EditIcon className="t-color-green" />}
+            />
+          </a>
         );
       }
       return null;
@@ -117,43 +110,38 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     const MobileNumber = () => {
       if (details.phoneNumber.verified) {
         return (
-          <Link
-            label={
-              <RowTemplate
-                label={labels.mobileNumber}
-                value={`(${details.phoneNumber.prefix}) ${
-                  details.phoneNumber.number
-                }`}
-                action={<EditIcon className="t-color-green" />}
-              />
+          <a
+            onClick={() =>
+              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
             }
-            launcher={launchModal}
-            target={{
-              modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER,
-            }}
-          />
-        );
-      }
-      return (
-        <Link
-          label={
+          >
             <RowTemplate
               label={labels.mobileNumber}
               value={`(${details.phoneNumber.prefix}) ${
                 details.phoneNumber.number
               }`}
-              action={
-                <>
-                  <ExclamationMarkIcon className="t-color-red" />
-                  <Text tag="span" size="sm" className="t-color-red">
-                    Verify
-                  </Text>
-                </>
-              }
+              action={<EditIcon className="t-color-green" />}
             />
-          }
-          target="/player/settings/phone-number"
-        />
+          </a>
+        );
+      }
+      return (
+        <a href="/player/settings/phone-number">
+          <RowTemplate
+            label={labels.mobileNumber}
+            value={`(${details.phoneNumber.prefix}) ${
+              details.phoneNumber.number
+            }`}
+            action={
+              <>
+                <ExclamationMarkIcon className="t-color-red" />
+                <Text tag="span" size="sm" className="t-color-red">
+                  Verify
+                </Text>
+              </>
+            }
+          />
+        </a>
       );
     };
 
