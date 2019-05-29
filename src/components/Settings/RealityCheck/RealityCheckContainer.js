@@ -41,6 +41,14 @@ export const withContainer = (Component: Function) =>
   class RealityCheckContainer extends React.Component<{}, State> {
     state = {};
 
+    get intervalMinutes() {
+      return this.state.intervalMinutes;
+    }
+
+    get intervalSeconds() {
+      return Number(this.state.intervalMinutes) * 60;
+    }
+
     refresh = async (query: QueryResult) => {
       const { data } = await query.refetch();
 
@@ -65,7 +73,7 @@ export const withContainer = (Component: Function) =>
       return mutate({
         variables: {
           input: {
-            intervalSeconds: Number(this.state.intervalMinutes) * 60,
+            intervalSeconds: this.intervalSeconds,
           },
         },
       });
@@ -105,9 +113,9 @@ export const withContainer = (Component: Function) =>
               },
             } = query;
 
-            const intervalMinutes = isNil(this.state.intervalMinutes)
+            const intervalMinutes = isNil(this.intervalMinutes)
               ? realityCheck.intervalInMinutes
-              : this.state.intervalMinutes;
+              : this.intervalMinutes;
 
             return (
               <Mutation
