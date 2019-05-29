@@ -1,13 +1,9 @@
 // @flow
 import React from "react";
 import type { Node } from "react";
-import { Query } from "react-apollo";
-import { find, propEq, pluck } from "ramda";
-import { DateTime } from "luxon";
-import Flex from "@casumo/cmp-flex";
-import logger from "Services/logger";
-import { ValuableCard } from "Components/ValuableCard";
+import { Query, ApolloConsumer } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
+import { USE_VALUABLE } from "./mutations";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 
@@ -18,25 +14,14 @@ const REFRESH_INTERVAL = 15000;
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
-const mapIds = pluck("id");
-
-const withValuableData = (
-  valuables: Array<PlayerValuablesQuery_player_valuables>
-) => ({ id }): Node => {
-  const valuable = find(propEq("id", id))(valuables);
-
-  if (!valuable) {
-    return null;
-  }
-
-  // to decide whether to move to graphql
-  const expiryDate = DateTime.local(valuable.expiryDate);
-
-  return (
-    <Flex.Item className="o-flex__item-fixed-size">
-      <ValuableCard {...valuable} expiryDate={expiryDate} />
-    </Flex.Item>
-  );
+const onConsumeValuable = client => (id: string) => {
+  client.mutate({
+    mutation: USE_VALUABLE,
+    variables: {
+      id,
+      targetSource: "mobile",
+    },
+  });
 };
 
 export const PlayerValuableListHorizontalContainer = () => (
@@ -45,13 +30,17 @@ export const PlayerValuableListHorizontalContainer = () => (
       const { listTitle, player: { valuables = [] } = {} } = data || {};
 
       return (
-        <PlayerValuableListHorizontal
-          error={error}
-          loading={loading}
-          listTitle={listTitle}
-          valuableIds={mapIds(valuables)}
-          ValuableCard={withValuableData(valuables)}
-        />
+        <ApolloConsumer>
+          {client => (
+            <PlayerValuableListHorizontal
+              error={error}
+              loading={loading}
+              listTitle={listTitle}
+              onConsumeValuable={onConsumeValuable(client)}
+              valuables={valuables}
+            />
+          )}
+        </ApolloConsumer>
       );
     }}
   </PlayerValuablesTypedQuery>
