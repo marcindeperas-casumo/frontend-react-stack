@@ -29,8 +29,8 @@ import {
   CONTACT_BY_PHONE_FRAGMENT,
   CONTACT_BY_POST_FRAGMENT,
 } from "./PlayerContactSettingsQuery";
-import NOTIFICATIONS_LABELS_QUERY from "./NotificationsLabelsQuery.graphql";
-import { Notifications } from "./Notifications";
+import NOTIFICATIONS_LABELS_QUERY from "./SettingsNotificationsLabelsQuery.graphql";
+import { SettingsNotifications } from "./SettingsNotifications";
 
 const noop = () => {};
 
@@ -220,4 +220,5 @@ export const withContainer = (Component: Function) => (
   </Composed>
 );
 
-export const NotificationsContainer = () => withContainer(Notifications);
+export const SettingsNotificationsContainer = () =>
+  withContainer(SettingsNotifications);

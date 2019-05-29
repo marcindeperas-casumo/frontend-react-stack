@@ -144,10 +144,10 @@ export class App extends PureComponent<Props> {
             <LazyPortal
               hostElementId="react-host-settings-notifications"
               loader={async () => {
-                const { NotificationsContainer } = await import(
-                  "Components/Settings/Notifications/NotificationsContainer"
+                const { SettingsNotificationsContainer } = await import(
+                  "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
                 );
-                return NotificationsContainer;
+                return SettingsNotificationsContainer;
               }}
             />
           </DataProvider>

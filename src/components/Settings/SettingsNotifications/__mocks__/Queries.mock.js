@@ -1,4 +1,4 @@
-import NOTIFICATIONS_LABELS_QUERY from "../NotificationsLabelsQuery.graphql";
+import NOTIFICATIONS_LABELS_QUERY from "../SettingsNotificationsLabelsQuery.graphql";
 import { PLAYER_CONTACT_SETTINGS_QUERY } from "../PlayerContactSettingsQuery";
 
 export const playerContactSettingsQueryMock = {

@@ -4,7 +4,7 @@ import Text from "@casumo/cmp-text";
 import { Toggle } from "Components/Toggle/Toggle";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 
-export const NotificationsToggleRow = ({
+export const SettingsNotificationsToggleRow = ({
   label,
   isEnabled,
   onChange,

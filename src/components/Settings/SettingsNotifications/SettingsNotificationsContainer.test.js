@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "Components/Settings/Notifications/NotificationsContainer";
+import { withContainer } from "Components/Settings/SettingsNotifications/SettingsNotificationsContainer";
 import {
   withMockQueries,
   playerContactSettingsQueryMock,
@@ -25,12 +25,12 @@ import {
   SMSNewsletterSubscriptionErrorMock,
 } from "./__mocks__/Mutations.mock";
 
-let Component, NotificationsContainer;
+let Component, SettingsNotificationsContainer;
 describe("Notifications", () => {
   describe("Component", () => {
     beforeEach(() => {
       Component = props => <div />;
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should render loader", async () => {
@@ -38,7 +38,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
 
@@ -50,7 +50,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -65,7 +65,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -83,7 +83,7 @@ describe("Notifications", () => {
             notificationsLabelsQueryMock,
           ]}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
 
@@ -100,7 +100,7 @@ describe("Notifications", () => {
             notificationsLabelsQueryErrorMock,
           ]}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
 
@@ -118,13 +118,13 @@ describe("Notifications", () => {
           onClick={() => props.setWithdrawalNotifications(false)}
         />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(withdrawalNotificationsMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -159,7 +159,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={withMockQueries(withdrawalNotificationsErrorMock)}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -196,13 +196,13 @@ describe("Notifications", () => {
           onClick={() => props.setAdventurerPublicity(false)}
         />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(adventurerPublicityMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -235,7 +235,7 @@ describe("Notifications", () => {
     test("should revert to initial value on error", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(adventurerPublicityErrorMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -269,13 +269,13 @@ describe("Notifications", () => {
       Component = props => (
         <input type="button" onClick={() => props.setContactByPost(false)} />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPostMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -308,7 +308,7 @@ describe("Notifications", () => {
     test("should revert to initial value on error", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPostErrorMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -342,13 +342,13 @@ describe("Notifications", () => {
       Component = props => (
         <input type="button" onClick={() => props.setContactByPhone(false)} />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPhoneMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -381,7 +381,7 @@ describe("Notifications", () => {
     test("should revert to initial value on error", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(contactByPhoneErrorMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -418,13 +418,13 @@ describe("Notifications", () => {
           onClick={() => props.setNewsletterSubscription(false)}
         />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(newsletterSubscriptionMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -459,7 +459,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={withMockQueries(newsletterSubscriptionErrorMock)}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -496,13 +496,13 @@ describe("Notifications", () => {
           onClick={() => props.setSMSNewsletterSubscription(false)}
         />
       );
-      NotificationsContainer = () => withContainer(Component);
+      SettingsNotificationsContainer = () => withContainer(Component);
     });
 
     test("should toggle to false", async () => {
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(SMSNewsletterSubscriptionMock)}>
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -537,7 +537,7 @@ describe("Notifications", () => {
         <MockedProvider
           mocks={withMockQueries(SMSNewsletterSubscriptionErrorMock)}
         >
-          <NotificationsContainer />
+          <SettingsNotificationsContainer />
         </MockedProvider>
       );
       await wait(0);

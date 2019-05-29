@@ -2,9 +2,9 @@
 import React, { PureComponent } from "react";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
-import { NotificationsSubscriptionRow as SubscriptionRow } from "./NotificationsSubscriptionRow";
-import { NotificationsToggleRow as ToggleRow } from "./NotificationsToggleRow";
-import { RealityCheckField } from "./NotificationsFields";
+import { SettingsNotificationsSubscriptionRow as SubscriptionRow } from "./SettingsNotificationsSubscriptionRow";
+import { SettingsNotificationsToggleRow as ToggleRow } from "./SettingsNotificationsToggleRow";
+import { RealityCheckField } from "./SettingsNotificationsFields";
 
 type Props = {
   player: PLAYER_CONTACT_SETTINGS_QUERY_player,
@@ -17,7 +17,7 @@ type Props = {
   labels: NOTIFICATIONS_LABELS_QUERY,
 };
 
-export class Notifications extends PureComponent<Props> {
+export class SettingsNotifications extends PureComponent<Props> {
   render() {
     const {
       setWithdrawalNotifications,

@@ -1,5 +1,5 @@
 import gql from "graphql-tag";
-import { REALITY_CHECK_FRAGMENT } from "Components/Settings/RealityCheck/RealityCheckQuery";
+import { REALITY_CHECK_FRAGMENT } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckQuery";
 
 //.graphql extension doesn't allow export fragments properly (for now), so they need to be in a js file
 export const WITHDRAWAL_NOTIFICATION_FRAGMENT = gql`

@@ -4,7 +4,7 @@ import Text from "@casumo/cmp-text";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 
-export const NotificationsSubscriptionRow = ({
+export const SettingsNotificationsSubscriptionRow = ({
   label,
   isEnabled,
   onChange,
