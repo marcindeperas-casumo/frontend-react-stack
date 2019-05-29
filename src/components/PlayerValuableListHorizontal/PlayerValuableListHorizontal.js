@@ -68,7 +68,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
         <Scrollable itemSpacing="md">
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
-            const shouldUseValauble =
+            const shouldUseValuable =
               valuableType === VALUABLE_TYPES.SPINS ||
               valuableType === VALUABLE_TYPES.CASH;
 
@@ -80,7 +80,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
                 <ValuableCard
                   {...valuable}
                   onCardClick={
-                    shouldUseValauble
+                    shouldUseValuable
                       ? () => this.props.onConsumeValuable(id)
                       : noop
                   }
