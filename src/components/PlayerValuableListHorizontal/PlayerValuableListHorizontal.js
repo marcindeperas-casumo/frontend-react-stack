@@ -13,7 +13,7 @@ type Props = {
   error: any,
   loading: boolean,
   listTitle: string,
-  valuables: [], // TODO: to check type Array<PlayerValuablesQuery_player_valuables>,
+  valuables: [], // to update his with graphql type
   onConsumeValuable: string => void,
 };
 
