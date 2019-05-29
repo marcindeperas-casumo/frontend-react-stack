@@ -15,7 +15,6 @@ if (isNotChromatic) {
     return (
       <PlayerValuableListHorizontal
         loading={false}
-        error={false}
         listTitle="Player Valuables"
         valuables={valuables}
         onConsumeValuable={consumeValuable}
