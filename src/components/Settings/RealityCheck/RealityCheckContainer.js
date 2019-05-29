@@ -32,6 +32,11 @@ type State = {
   intervalMinutes: ?number,
 };
 
+type RealityCheckOptions = {
+  canChangeInterval: boolean,
+  isZeroIntervalAllowed: boolean,
+};
+
 export const withContainer = (Component: Function) =>
   class RealityCheckContainer extends React.Component<{}, State> {
     state = {};
@@ -48,10 +53,7 @@ export const withContainer = (Component: Function) =>
       mutate: (
         options?: MutationOptions
       ) => Promise<PLAYER_REALITY_CHECK_QUERY>,
-      {
-        canChangeInterval,
-        isZeroIntervalAllowed,
-      }: { canChangeInterval: boolean, isZeroIntervalAllowed: boolean }
+      { canChangeInterval, isZeroIntervalAllowed }: RealityCheckOptions
     ) => {
       if (!canChangeInterval) {
         return;
