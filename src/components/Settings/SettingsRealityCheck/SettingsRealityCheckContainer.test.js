@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "Components/Settings/RealityCheck/RealityCheckContainer";
+import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
 import {
   withMockQueries,
   playerRealityCheckQueryWithInterval,
@@ -18,12 +18,12 @@ import {
   updateRealityCheckIntervalErrorMock,
 } from "./__mocks__/Mutations.mock";
 
-let Component, RealityCheckContainer;
-describe("RealityCheck", () => {
+let Component, SettingsRealityCheckContainer;
+describe("SettingsRealityCheck", () => {
   describe("Component", () => {
     beforeEach(() => {
       Component = props => <div />;
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
     });
 
     test("should render loader", async () => {
@@ -31,7 +31,7 @@ describe("RealityCheck", () => {
         <MockedProvider
           mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
 
@@ -43,7 +43,7 @@ describe("RealityCheck", () => {
         <MockedProvider
           mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -59,7 +59,7 @@ describe("RealityCheck", () => {
         <MockedProvider
           mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -77,7 +77,7 @@ describe("RealityCheck", () => {
             realityCheckLabelsQueryMock,
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
 
@@ -94,7 +94,7 @@ describe("RealityCheck", () => {
             realityCheckLabelsQueryErrorMock,
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
 
@@ -109,10 +109,10 @@ describe("RealityCheck", () => {
       Component = props => (
         <input type="button" onClick={() => props.onChange(30)} />
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider mocks={withMockQueries(updateRealityCheckIntervalMock)}>
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -122,7 +122,7 @@ describe("RealityCheck", () => {
 
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(30);
     });
 
@@ -133,7 +133,7 @@ describe("RealityCheck", () => {
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider
           mocks={[
@@ -142,7 +142,7 @@ describe("RealityCheck", () => {
             realityCheckLabelsQueryMock,
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -154,7 +154,7 @@ describe("RealityCheck", () => {
         .simulate("click");
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
@@ -170,7 +170,7 @@ describe("RealityCheck", () => {
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider
           mocks={[
@@ -179,7 +179,7 @@ describe("RealityCheck", () => {
             realityCheckLabelsQueryMock,
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -191,7 +191,7 @@ describe("RealityCheck", () => {
         .simulate("click");
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(0);
 
       const promiseFn = rendered.find("Component").prop("onSave");
@@ -208,7 +208,7 @@ describe("RealityCheck", () => {
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider
           mocks={[
@@ -216,7 +216,7 @@ describe("RealityCheck", () => {
             playerRealityCheckQueryMock,
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -228,7 +228,7 @@ describe("RealityCheck", () => {
         .simulate("click");
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
@@ -247,7 +247,7 @@ describe("RealityCheck", () => {
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider
           mocks={[
@@ -255,7 +255,7 @@ describe("RealityCheck", () => {
             playerRealityCheckQueryWithInterval(45),
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -267,7 +267,7 @@ describe("RealityCheck", () => {
         .simulate("click");
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
@@ -280,7 +280,7 @@ describe("RealityCheck", () => {
       await wait(10);
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);
     });
 
@@ -292,7 +292,7 @@ describe("RealityCheck", () => {
           <input type="button" onClick={() => props.onSave()} />
         </>
       );
-      RealityCheckContainer = withContainer(Component);
+      SettingsRealityCheckContainer = withContainer(Component);
       const rendered = mount(
         <MockedProvider
           mocks={[
@@ -302,7 +302,7 @@ describe("RealityCheck", () => {
             playerRealityCheckQueryWithInterval(45),
           ]}
         >
-          <RealityCheckContainer />
+          <SettingsRealityCheckContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -314,7 +314,7 @@ describe("RealityCheck", () => {
         .simulate("click");
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
@@ -328,7 +328,7 @@ describe("RealityCheck", () => {
       await wait(10);
       rendered.update();
       expect(
-        rendered.find("RealityCheckContainer").state("intervalMinutes")
+        rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);
     });
   });

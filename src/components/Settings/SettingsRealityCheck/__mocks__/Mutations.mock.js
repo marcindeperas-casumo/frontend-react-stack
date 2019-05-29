@@ -1,9 +1,9 @@
-import { UPDATE_REALITY_CHECK_INTERVAL } from "../Mutations.graphql";
+import { UpdateRealityCheckInterval } from "../Mutations.graphql";
 
 export const updateRealityCheckIntervalMock = [0, 600, 900].map(
   intervalSeconds => ({
     request: {
-      query: UPDATE_REALITY_CHECK_INTERVAL,
+      query: UpdateRealityCheckInterval,
       variables: { input: { intervalSeconds } },
     },
     result: {

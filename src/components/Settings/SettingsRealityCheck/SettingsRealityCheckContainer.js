@@ -10,14 +10,14 @@ import {
 import { adopt } from "react-adopt";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { RealityCheck } from "Components/Settings/RealityCheck/RealityCheck";
+import { SettingsRealityCheck } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheck";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS } from "Src/constants";
 // $FlowIgnore
-import { REALITY_CHECK_LABELS_QUERY } from "./RealityCheckLabelsQuery.graphql";
-import { PLAYER_REALITY_CHECK_QUERY } from "./RealityCheckQuery";
+import { REALITY_CHECK_LABELS_QUERY } from "./SettingsRealityCheckLabelsQuery.graphql";
+import { PLAYER_REALITY_CHECK_QUERY } from "./SettingsRealityCheckQuery";
 // $FlowIgnore
-import { UPDATE_REALITY_CHECK_INTERVAL } from "./Mutations.graphql";
+import { UpdateRealityCheckInterval } from "./Mutations.graphql";
 
 const Composed = adopt({
   query: ({ render }) => (
@@ -38,7 +38,7 @@ type RealityCheckOptions = {
 };
 
 export const withContainer = (Component: Function) =>
-  class RealityCheckContainer extends React.Component<{}, State> {
+  class SettingsRealityCheckContainer extends React.Component<{}, State> {
     state = {};
 
     get intervalMinutes() {
@@ -119,7 +119,7 @@ export const withContainer = (Component: Function) =>
 
             return (
               <Mutation
-                mutation={UPDATE_REALITY_CHECK_INTERVAL}
+                mutation={UpdateRealityCheckInterval}
                 onError={onError}
                 onCompleted={onCompleted}
               >
@@ -141,4 +141,6 @@ export const withContainer = (Component: Function) =>
     }
   };
 
-export const RealityCheckContainer = () => withContainer(RealityCheck);
+export const SettingsRealityCheckContainer = withContainer(
+  SettingsRealityCheck
+);

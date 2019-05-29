@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { NotificationsToggleRow as ToggleRow } from "Components/Settings/Notifications/NotificationsToggleRow";
+import { SettingsNotificationsToggleRow as ToggleRow } from "Components/Settings/SettingsNotifications/SettingsNotificationsToggleRow";
 import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
@@ -16,7 +16,7 @@ type Props = {
   interval: number,
 };
 
-export class RealityCheck extends PureComponent<Props> {
+export class SettingsRealityCheck extends PureComponent<Props> {
   render() {
     const { onChange, onSave, isLoading, interval, labels } = this.props;
 
@@ -67,5 +67,3 @@ export class RealityCheck extends PureComponent<Props> {
     );
   }
 }
-
-export default RealityCheck;
