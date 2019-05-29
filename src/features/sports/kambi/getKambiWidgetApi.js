@@ -9,7 +9,7 @@ let kambiWidgetApi: KambiWidgetApi | null = null;
 
 const injectKambiWidgetAPI: () => void = once(() =>
   injectScript(
-    "https://c3-static.kambi.com/client/widget-api/1.0.0.72/kambi-widget-api.js"
+    "https://c3-static.kambi.com/client/widget-api/1.0.0.100/kambi-widget-api.js"
   )
 );
 
