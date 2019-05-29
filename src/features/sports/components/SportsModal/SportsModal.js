@@ -1,84 +1,25 @@
-/* @flow */
+// @flow
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
+import { SportsModalHeader } from "Features/sports/components/SportsModal/SportsModalHeader";
 import { Modal } from "Components/Modal";
 
 import "./SportsModal.scss";
 
-type SharedProps = {
+type Props = {
   className?: string,
   children: Node,
 };
 
-type ModalProps = SharedProps;
-
-type ContentProps = SharedProps;
-
-type DismissButtonProps = {
-  children: Node,
-  onClick?: () => void,
-  isVisible: boolean,
-  className?: string,
-};
-
-type HeaderProps = SharedProps & {
-  onClose?: () => void,
-  onBack?: () => void,
-};
-
-export const DismissButton = ({
-  children,
-  onClick,
-  isVisible,
-  className,
-}: DismissButtonProps) => (
-  <div
-    align="center"
-    justify="center"
-    className={classNames("c-sports-modal__dismiss-button", className)}
-    onClick={onClick}
-    style={{ visibility: isVisible ? "visible" : "hidden" }}
-  >
-    {children}
-  </div>
-);
-
-const Header = ({ children, onClose, onBack }: HeaderProps) => (
-  <Modal.Header className="c-sports-modal__header u-padding">
-    <DismissButton
-      data-test="sports-modal-back-button"
-      className="c-sports-modal__dismiss-button--back"
-      onClick={onBack}
-      isVisible={Boolean(onBack)}
-    >
-      <ArrowLeftIcon size="med" />
-    </DismissButton>
-
-    <div className="o-flex-justify--center o-flex--1 u-font-weight-bold">
-      {children}
-    </div>
-
-    <DismissButton
-      data-test="sports-modal-close-button"
-      className="c-sports-modal__dismiss-button--close"
-      onClick={onClose}
-      isVisible={Boolean(onClose)}
-    >
-      <CrossIcon size="med" />
-    </DismissButton>
-  </Modal.Header>
-);
-
-const Content = ({ children, className }: ContentProps) => (
+const Content = ({ children, className }: Props) => (
   <Modal.Content className={classNames("u-padding-horiz--md", className)}>
     <div className="c-sports-modal__content-inner">{children}</div>
   </Modal.Content>
 );
 
-export class SportsModal extends React.Component<ModalProps> {
-  static Header = Header;
+export class SportsModal extends React.Component<Props> {
+  static Header = SportsModalHeader;
   static Footer = Modal.Footer;
   static Content = Content;
 
