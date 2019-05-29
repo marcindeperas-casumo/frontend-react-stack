@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import type { Node } from "react";
-import { Query, ApolloConsumer } from "react-apollo";
+import { Query, Mutation } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import { USE_VALUABLE } from "./mutations";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
@@ -14,15 +14,13 @@ const REFRESH_INTERVAL = 15000;
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
-const onConsumeValuable = client => (id: string) => {
-  client.mutate({
-    mutation: USE_VALUABLE,
+const consumeValuableMutation = mutation => (id: string) =>
+  mutation({
     variables: {
       id,
       targetSource: "mobile",
     },
   });
-};
 
 export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
@@ -30,17 +28,17 @@ export const PlayerValuableListHorizontalContainer = () => (
       const { listTitle, player: { valuables = [] } = {} } = data || {};
 
       return (
-        <ApolloConsumer>
-          {client => (
+        <Mutation mutation={USE_VALUABLE}>
+          {useValuable => (
             <PlayerValuableListHorizontal
               error={error}
               loading={loading}
               listTitle={listTitle}
-              onConsumeValuable={onConsumeValuable(client)}
+              onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
             />
           )}
-        </ApolloConsumer>
+        </Mutation>
       );
     }}
   </PlayerValuablesTypedQuery>
