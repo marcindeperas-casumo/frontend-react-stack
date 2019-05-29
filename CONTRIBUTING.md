@@ -95,6 +95,8 @@ Enzyme is great at testing logic heavy components as it can manipulate the compo
 
 ### Mocks
 
+We should always try to make tests as independent and atomic as possible. This means we should avoid sharing data between tests so they don't have to rely on each other's setup. In cases where we do need big chunks of data to render complex components, it is acceptable to use mocks to avoid exhaustive duplication of data.
+
 When using mocked data that we push into components for testing purposes we should avoid hardcoding values found in the mocks within the tests themselves.
 
 _BAD_
