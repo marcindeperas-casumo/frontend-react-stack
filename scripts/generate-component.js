@@ -24,7 +24,8 @@ const COMPONENT_PATH = process.argv[2] ? path.resolve(process.argv[2]) : cwd;
 const COMPONENT_NAME = process.argv[3] || "";
 const COMPONENT_DIR = path.join(COMPONENT_PATH, capitalize(COMPONENT_NAME));
 const FILE_TEMPLATES = {
-  "index.js": '// @flow\nexport { default } from "./{{ componentName }}";\n',
+  "index.js":
+    '// @flow\nexport { {{ componentName }} } from "./{{ componentName }}";\n',
   "{{ componentName }}.js": getComponentTemplate(),
   "{{ componentName }}.test.js": getComponentTestTemplate(),
   "{{ componentName }}.stories.js": getComponentStoryTemplate(),
@@ -96,20 +97,18 @@ type Props = {
   msg: string,
 };
 
-class {{ componentName }} extends PureComponent<Props> {
+export class {{ componentName }} extends PureComponent<Props> {
   render() {
     const { msg } = this.props;
     return <div>{"{{ componentName }} says: " + msg}</div>;
   }
-}
-
-export default {{ componentName }};\n`;
+}\n`;
 }
 
 function getComponentTestTemplate() {
   return `import React from "react";
 import { shallow } from "enzyme";
-import {{ componentName }} from "Components/{{ componentName }}";
+import { {{ componentName }} } from "Components/{{ componentName }}";
 
 describe("{{ componentName }}", () => {
   test("should do something", () => {
@@ -125,7 +124,7 @@ function getComponentStoryTemplate() {
   return `// @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import {{ componentName }} from "./";
+import { {{ componentName }} } from "./";
 
 const stories = storiesOf("{{ componentName }}", module);
 
