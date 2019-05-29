@@ -92,7 +92,7 @@ export class SportsShellContainer extends React.Component<{}> {
             return <SportsShellSkeleton />;
           }
           return (
-            <>
+            <div className="u-padding-right--lg@desktop">
               <SportsHashWatcher>
                 {({ currentHash }) => (
                   <>
@@ -110,7 +110,7 @@ export class SportsShellContainer extends React.Component<{}> {
               </SportsHashWatcher>
               {data.hasSelectedFavourites ? <KambiClient /> : null}
               <Modals />
-            </>
+            </div>
           );
         }}
       </Query>

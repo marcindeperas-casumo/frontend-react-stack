@@ -1,0 +1,13 @@
+.c-message-page {
+  margin: $cudl-spacer-size-default * 5;
+
+  @include cudl-breakpoint(tablet) {
+    margin: $cudl-spacer-size-default * 10;
+  }
+}
+
+.c-message-page__heading {
+  @include cudl-breakpoint(tablet) {
+    font-size: cudl-font-size(2xlg, $cudl-font-sizes);
+  }
+}

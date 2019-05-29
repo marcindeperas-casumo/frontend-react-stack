@@ -1123,21 +1123,21 @@
     to-fast-properties "^2.0.0"
 
 "@casumo/cmp-badge@^1.2.6":
-  version "1.2.6"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.2.6.tgz#f7e205796b2db952e953edf9b271007f954a0955"
-  integrity sha512-Kk6pwrda9ZgEzkMrSJw4Rqi58dbG+frT99u4/gh58f188usFHRIN4OEC7VUjPtEPKMOMOAI5VBn4EU3hWLIFLQ==
+  version "1.2.7"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.2.7.tgz#93965b659a5a818fbe661a77bdf0f5ea4302dee9"
+  integrity sha512-RJWj/KOe3ky09jyLBnaP+eZBK6MuE/N/4wcPnBVKQ0nt9jkDx/cIbK2Ie/aSO9XY8a7JjOBr9o8GVUGO/t+Z+g==
   dependencies:
-    "@casumo/cmp-text" "^1.2.6"
-    "@casumo/cudl-react-prop-types" "^2.0.3"
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cmp-text" "^2.0.0"
+    "@casumo/cudl-react-prop-types" "^2.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
 
 "@casumo/cmp-button@^2.0.7":
-  version "2.0.7"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.7.tgz#b9ce5908af815d0a4a998bb7da37fb373d036f96"
-  integrity sha512-SNsJAThMJMf6fk3w8a/VFvDsJQYBH+y2/RkGfbo58w/bhPhbxlrCBumob+mQUjt/TpmraqFY7zc9OpmtUg1ITQ==
+  version "2.0.8"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.8.tgz#bd7034e41e4ae5e5572594d6c06df994a6d70efd"
+  integrity sha512-krA/CfVuTf4AwReyx1vf2nTbUuVDSV/ug7ZCFF8f38rP+ys3JuJ4VVgqiyO1VRGy71Q8GJDwOfoDtKqu/MlV+Q==
   dependencies:
-    "@casumo/cudl-buttons" "2.0.3"
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cudl-buttons" "2.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
 
 "@casumo/cmp-card@^2.0.6":
   version "2.0.7"
@@ -1154,41 +1154,49 @@
     "@casumo/cudl-react-prop-types" "^2.0.3"
     "@casumo/cudl-react-utils" "^1.0.4"
 
+"@casumo/cmp-flex@^3.0.0":
+  version "3.0.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-flex/-/cmp-flex-3.0.0.tgz#06d5afde1b0986edf051743a1f9d0092a732ac87"
+  integrity sha512-6FnMKwi6S8bCRzlLicX5qp61mwAcAb/2mx0ClcKZ1HHd45KsaXsXP/OJyH2gDjIAKkglbpfT8MS+E00QyIjKPw==
+  dependencies:
+    "@casumo/cudl-react-prop-types" "^2.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
+
 "@casumo/cmp-icons@^1.3.4":
   version "1.3.5"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-1.3.5.tgz#76e2af80f51754f0e66f2ad431c0e93168368294"
   integrity sha512-60A08MzRZUz1Vq0zbIkTH7zHC5L0lAf87D/wQnJR79CUpsqSfjtsweFi/7N+o0THISDlJJEpnMNtyPbETsNMCA==
 
 "@casumo/cmp-list@^1.0.5":
-  version "1.0.6"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-list/-/cmp-list-1.0.6.tgz#39875db9952610e5805f0d7aaaf185a53170ef47"
-  integrity sha512-EZpZEdJnL5687xAF3pfNRj95EVEseNkoReTDD5barqtizbiTSRdI00Yl/RnCfTyx3P0c+qWEFjvoOJNCS1vkSQ==
+  version "1.0.7"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-list/-/cmp-list-1.0.7.tgz#8a707968b175e00f382d3d96f98e7b3893699a25"
+  integrity sha512-pv/BWToIDVCL74G1IFLUhwInYqqUQd/1XDzAftZxa66FMfxD4L4xo9LavnheW7lbL94gWeePZx6nOrN9DqDrpQ==
   dependencies:
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
     ramda "^0.26.1"
 
 "@casumo/cmp-media@^1.0.3":
-  version "1.0.4"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-media/-/cmp-media-1.0.4.tgz#0c680bfeb629ac0a67e837fb05445f28e6ae63e8"
-  integrity sha512-HRvRCwhyBBamGs3Wkm2/8ie5Bw5vPo8uYBMqWFtonFVx+54ag3rfEOmY5OleRmc4/7Fe0WPU/OSzNwg77IQGXA==
+  version "1.0.5"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-media/-/cmp-media-1.0.5.tgz#0c30572a2443479b5e4586f63da573c36e5189de"
+  integrity sha512-9ghcyuJi0EQEWqd8nGCXZMXvU6CwyWL2r4fEY9hC81N+idz6kDjiVfigdOWgZ1T74aDxOdshyXDuC12s4RxyUQ==
   dependencies:
-    "@casumo/cmp-flex" "^2.2.7"
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cmp-flex" "^3.0.0"
+    "@casumo/cudl-react-utils" "^1.0.5"
     ramda "^0.26.1"
 
 "@casumo/cmp-picture@^1.0.4":
-  version "1.0.4"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-picture/-/cmp-picture-1.0.4.tgz#32cfc2142936f265864bbfe3c5a92550da6a2169"
-  integrity sha512-fEbY+PyHKICmjPMn7/zOz0EqsrljB2NQQx/xrLc7Ou2/hlLPsiUiZ3s1iZ3cQdPAHygJTyf21nvReiy/ZgWZZQ==
+  version "1.0.5"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-picture/-/cmp-picture-1.0.5.tgz#77104952f33ff7917029c878227893943d8386bc"
+  integrity sha512-STnYJBUe0eNGkYUY29vXfOp12EsZ3cWt8C1qpGjaI1fzhWpLoDEYS8H/NfdiQ/GMsz2PZ+M9pKbpTxBj8W1Sww==
   dependencies:
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
 
 "@casumo/cmp-responsive-image@^1.3.5":
-  version "1.3.5"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.3.5.tgz#2ef681e8045cf529d9587ffe77c2dc5b05b506f2"
-  integrity sha512-XueZ3ofMMAot4wpeB49ETI4o2qDdWsEIUqdcOO5L3/61HS0hOjL8XDwbScSisuonIwTNbOm6JiBt/pGHCfbsOw==
+  version "1.3.6"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-responsive-image/-/cmp-responsive-image-1.3.6.tgz#a91b7d15f13c3dfb89dc26ddbc3e0a043f75aaba"
+  integrity sha512-VtTm5x1NNW2hGVXgOUDBGWepZ/8Ci+8yxljIUAbG99UVyEeG79QOnIBZ+F1/5RC0aUo2LCcSTonxU2cQ/RwN4Q==
   dependencies:
-    "@casumo/cudl-react-utils" "^1.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
 
 "@casumo/cmp-scrollable@^2.2.6":
   version "2.2.7"
@@ -1220,6 +1228,14 @@
     "@casumo/cudl-react-prop-types" "^2.0.3"
     "@casumo/cudl-react-utils" "^1.0.4"
 
+"@casumo/cmp-text@^2.0.0":
+  version "2.0.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-2.0.0.tgz#049da774a1f2a0c21b757c350637e2f63f7d2777"
+  integrity sha512-hTbfN/ydx/l+4MlzZOfbUVI+Khu5W8PJC51l6letvBIufHOc21hgjXryzV5NuuHIiftR2aHcJBmVS/h7G+4BVA==
+  dependencies:
+    "@casumo/cudl-react-prop-types" "^2.0.4"
+    "@casumo/cudl-react-utils" "^1.0.5"
+
 "@casumo/cudl-borders@^2.1.0":
   version "2.1.0"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-borders/-/cudl-borders-2.1.0.tgz#744e9aab2060cdf7be1635cbac226362e3f36fd2"
@@ -1243,12 +1259,12 @@
     "@casumo/cudl-units" "^1.0.5"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-buttons@2.0.3", "@casumo/cudl-buttons@^2.0.3":
-  version "2.0.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-buttons/-/cudl-buttons-2.0.3.tgz#2292ff6e896f3e98318316e60f69c16ec2898623"
-  integrity sha512-wESV8fhf61kzOY+69Jr3tENzL6w0DuVTbxoSdKpeGnJKcjRY/WZt5dk1Ww41SZByDjvPkEb9jEo/cQLmOD/Opw==
+"@casumo/cudl-buttons@2.0.4", "@casumo/cudl-buttons@^2.0.3":
+  version "2.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-buttons/-/cudl-buttons-2.0.4.tgz#26b73c4e35bc115c98721149760ad991904539c6"
+  integrity sha512-g4KvYlptWBbB6/nk4vSkqg1lqLC21U1aW0YZpRi8JLgVVmGybXtFnZOvVvYJ2YPtgY071V+8lSAThxfoEWjM+A==
   dependencies:
-    "@casumo/cudl-colors" "^2.0.4"
+    "@casumo/cudl-colors" "^2.0.5"
     "@casumo/cudl-compile" "^1.0.4"
     "@casumo/cudl-mock" "^1.0.4"
     "@casumo/cudl-props" "^2.0.0"
@@ -1258,6 +1274,15 @@
   version "2.0.4"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-colors/-/cudl-colors-2.0.4.tgz#c27d7b9c7c171eee1a8dadc0a5c425d5e9857e6f"
   integrity sha1-wn17nHwXHu4aja3ApcQl1emFfm8=
+  dependencies:
+    "@casumo/cudl-compile" "^1.0.4"
+    "@casumo/cudl-mock" "^1.0.4"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-colors@^2.0.5":
+  version "2.0.5"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-colors/-/cudl-colors-2.0.5.tgz#cc19abc88619d874268ea0fcedf67d4f9ab50ed2"
+  integrity sha512-tX4IwtCHoVW8bYnDnc0xNe/vfGWBSqja2YIuODWxKVe49iYAAykqxvvWIuCS6KzPKfhNA8SNxYgOAINTS7TIWg==
   dependencies:
     "@casumo/cudl-compile" "^1.0.4"
     "@casumo/cudl-mock" "^1.0.4"
@@ -1345,15 +1370,15 @@
     "@casumo/cudl-props" "^2.0.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-react-prop-types@^2.0.3":
-  version "2.0.3"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.0.3.tgz#14e0c5b48c469ba9b10f02be27b231efdbff8c9a"
-  integrity sha512-5pUUvncwT+xNTzBEE2GR6XBUlW7xYG3NNX7aDD2xo8DvGmHmp4vN4NNrFqOX+MDS77qkxONB2ckQmc8c8HSAqw==
+"@casumo/cudl-react-prop-types@^2.0.3", "@casumo/cudl-react-prop-types@^2.0.4":
+  version "2.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.0.4.tgz#eaf2dffce3ad17aab630d7336a346156b3848cd0"
+  integrity sha512-ZEy+kCWKePaymDdXZivmxmYja6Rs1u5yIxeoZZxi332Dl78OFIbaAzeSMoBVQHvFxbLVbYuMCORk82pMCE06qw==
 
-"@casumo/cudl-react-utils@^1.0.4":
-  version "1.0.4"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-utils/-/cudl-react-utils-1.0.4.tgz#1079bb107e2aadaf8fbd352e9f4b28dd70b7a785"
-  integrity sha512-FLa97GAY7cmcORWKJj6sIn/xVwM2vSX0Bf5knW8ivWAHCAXHth2gZpycGCeLRzbpd/BgMHEY0OpiyOG4O6BS2A==
+"@casumo/cudl-react-utils@^1.0.4", "@casumo/cudl-react-utils@^1.0.5":
+  version "1.0.5"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-utils/-/cudl-react-utils-1.0.5.tgz#8662d921530264e9271dfef8b1144664aa78b820"
+  integrity sha512-Z3hnkX3f704k/LhJCmX54vfO3vHvH794qqC4GVFH8kDvFXN7jmAy5cxvkZEqH882fuQb+RCTFgpByp3OKSqLkw==
 
 "@casumo/cudl-reset@^1.0.4":
   version "1.0.4"
@@ -5215,18 +5240,18 @@ copy-to-clipboard@^3.0.8, copy-to-clipboard@^3.1.0:
     toggle-selection "^1.0.6"
 
 core-js-compat@^3.0.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.1.0.tgz#340492a001d81100812e0f6e874ee6e21639ae92"
-  integrity sha512-v8M7YAMacMOJ4T4Z9QSud3dFYASMDvK9d2RWBHRSJlO4nGboLQVtFdbDmgzxfM7XrvcvO56L0sHcqGjuk/4wTQ==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/core-js-compat/-/core-js-compat-3.1.1.tgz#a1ae7edd5b791066d6eaa969c1b62986b844fd42"
+  integrity sha512-RH3kv8NFovFRMdeTEUgu8nMquEWKEVttOY3JFi8mN75sg72zygPqWbpWNTUw4JYEU43562tlzhdWsWqXmdFAnQ==
   dependencies:
     browserslist "^4.6.0"
-    core-js-pure "3.1.0"
+    core-js-pure "3.1.1"
     semver "^6.0.0"
 
-core-js-pure@3.1.0:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.1.0.tgz#5e12e66435df4f2cc7df84cc891350aaeb66d0f0"
-  integrity sha512-9NxJBUp8p35vrBbEhQl+FvKbYY68fELWld0asAXMnfWl9xRrN472mw/n+ZvmnG0fYh4U7agPcJZ7iqcJW5R9Rg==
+core-js-pure@3.1.1:
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/core-js-pure/-/core-js-pure-3.1.1.tgz#92494ab7bae22f156ae93973a5e2738814efa7f8"
+  integrity sha512-jH3ZJ0CJ0wwDvWY0olbOComLo6tbWg4kE2x0j4+wlqYnofwF9mYm98YvADuENUzGw69IddmWFCF1FQ2S0jP96A==
 
 core-js@3.0.1:
   version "3.0.1"
@@ -5239,14 +5264,14 @@ core-js@^1.0.0:
   integrity sha1-ZSKUwUZR2yj6k70tX/KYOk8IxjY=
 
 core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7, core-js@^2.6.5:
-  version "2.6.6"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.6.tgz#00eb6d6bf815471cc16d8563edd7d38786dec50b"
-  integrity sha512-Mt/LaAym54NXnrjEMdo918cT2h70tqb/Yl7T3uPHQHRm5SxVoqlKmerUy4mL11k8saSBDWQ7ULIHxmeFyT3pfg==
+  version "2.6.7"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.6.7.tgz#c2b19af9b50ec49c356ee087d6155632a889e968"
+  integrity sha512-ydmsQxDVH7lDpYoirXft8S83ddKKfdsrsmWhtyj7xafXVLbLhKOyfD7kAi2ueFfeP7m9rNavjW59O3hLLzzC5A==
 
 core-js@^3.0.1:
-  version "3.1.0"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.0.tgz#7118f0dad99054204b6821c1f82e67b42cc21628"
-  integrity sha512-EyF8cMvUWRDWRLmC3+i50D1DqK4aFZWb/6PDPP2QfX2r0zXkgR2V9wt7jX7TRM0Qdj/3f6+JQkqfCaGkSj92iQ==
+  version "3.1.1"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.1.1.tgz#502ba6e7c15300de20a372b390f9fc9039db76f2"
+  integrity sha512-OddJJmAMN6czmPEtp1ScHFWq4RXzH1iWJFGL8CZ6UcopeBzCMjo4Slv0UoLW2hhny1/wsDowm6xCmBCWQ1azkA==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -7163,6 +7188,13 @@ find-up@^2.0.0, find-up@^2.1.0:
   integrity sha1-RdG35QbHF93UgndaK3eSCjwMV6c=
   dependencies:
     locate-path "^2.0.0"
+
+find-up@^4.0.0:
+  version "4.0.0"
+  resolved "https://registry.yarnpkg.com/find-up/-/find-up-4.0.0.tgz#c367f8024de92efb75f2d4906536d24682065c3a"
+  integrity sha512-zoH7ZWPkRdgwYCDVoQTzqjG8JSPANhtvLhh4KVUHyKnaUJJrNeFmWIkTcNuJmR3GLMEmGYEf2S2bjgx26JTF+Q==
+  dependencies:
+    locate-path "^5.0.0"
 
 find@^0.2.4:
   version "0.2.9"
@@ -9346,6 +9378,11 @@ jest-snapshot@^24.8.0:
     pretty-format "^24.8.0"
     semver "^5.5.0"
 
+jest-transform-graphql@^2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/jest-transform-graphql/-/jest-transform-graphql-2.1.0.tgz#903cb66bb27bc2772fd3e5dd4f7e9b57230f5829"
+  integrity sha1-kDy2a7J7wncv0+XdT36bVyMPWCk=
+
 jest-util@^24.8.0:
   version "24.8.0"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-24.8.0.tgz#41f0e945da11df44cc76d64ffb915d0716f46cd1"
@@ -9905,6 +9942,13 @@ locate-path@^3.0.0:
   dependencies:
     p-locate "^3.0.0"
     path-exists "^3.0.0"
+
+locate-path@^5.0.0:
+  version "5.0.0"
+  resolved "https://registry.yarnpkg.com/locate-path/-/locate-path-5.0.0.tgz#1afba396afd676a6d42504d0a67a3a7eb9f62aa0"
+  integrity sha512-t7hw9pI+WvuwNJXwk5zVHpyhIqzg2qTlklJOf0mVxGSbe3Fp2VieZcduNYjaLDoy6p9uGpQEGWG87WpMKlNq8g==
+  dependencies:
+    p-locate "^4.1.0"
 
 lodash-es@^4.17.11:
   version "4.17.11"
@@ -11395,7 +11439,7 @@ p-limit@^1.1.0:
   dependencies:
     p-try "^1.0.0"
 
-p-limit@^2.0.0:
+p-limit@^2.0.0, p-limit@^2.2.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/p-limit/-/p-limit-2.2.0.tgz#417c9941e6027a9abcba5092dd2904e255b5fbc2"
   integrity sha512-pZbTJpoUsCzV48Mc9Nh51VbwO0X9cuPFE8gYwx9BTCt9SF8/b7Zljd2fVgOxhIF/HDTKgpVzs+GPhyKfjLLFRQ==
@@ -11415,6 +11459,13 @@ p-locate@^3.0.0:
   integrity sha512-x+12w/To+4GFfgJhBEpiDcLozRJGegY+Ei7/z0tSLkMmxGZNybVMSfWj9aJn8Z5Fc7dBUNJOOVgPv2H7IwulSQ==
   dependencies:
     p-limit "^2.0.0"
+
+p-locate@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/p-locate/-/p-locate-4.1.0.tgz#a3428bb7088b3a60292f66919278b7c297ad4f07"
+  integrity sha512-R79ZZ/0wAxKGu3oYMlz8jy/kbhsNrS7SKZ7PxEHBgJ5+F2mtFW2fK2cOtBh1cHYkQsbzFV7I+EoRKe6Yt0oK7A==
+  dependencies:
+    p-limit "^2.2.0"
 
 p-map@^1.1.1:
   version "1.2.0"
@@ -11735,11 +11786,11 @@ pkg-dir@^3.0.0:
     find-up "^3.0.0"
 
 pkg-dir@^4.1.0:
-  version "4.1.0"
-  resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-4.1.0.tgz#aaeb91c0d3b9c4f74a44ad849f4de34781ae01de"
-  integrity sha512-55k9QN4saZ8q518lE6EFgYiu95u3BWkSajCifhdQjvLvmr8IpnRbhI+UGpWJQfa0KzDguHeeWT1ccO1PmkOi3A==
+  version "4.2.0"
+  resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-4.2.0.tgz#f099133df7ede422e81d1d8448270eeb3e4261f3"
+  integrity sha512-HRDzbaKjC+AOWVXxAU/x54COGeIv9eb+6CkDSQoNTt4XyWoIJvuPsXizxu/Fr23EiekbtZwmh1IcIG/l/a10GQ==
   dependencies:
-    find-up "^3.0.0"
+    find-up "^4.0.0"
 
 pkg-up@2.0.0, pkg-up@^2.0.0:
   version "2.0.0"
@@ -13135,9 +13186,9 @@ react-helmet-async@^0.2.0:
     shallowequal "^1.0.2"
 
 react-hot-loader@^4.8.4:
-  version "4.8.4"
-  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.8.4.tgz#357ba342e367fd42d6a870a9c0601c23fa0730c6"
-  integrity sha512-O98btZXcm24ZgP+aPBD0W9N+GEnkOg6vlLEy/IMZ53u3K/dGqO0I/RU4qrmQzE+wMDLpwNo5TwxaAjVw9Y+IBA==
+  version "4.8.7"
+  resolved "https://registry.yarnpkg.com/react-hot-loader/-/react-hot-loader-4.8.7.tgz#8bcec3105d4e0e3cba52aa59800568fc9fb3322d"
+  integrity sha512-ctWAu8iwp37qd4w1qhjN6neDA1e5bSmAUY46L2l5SeK+i8AfzX+7lrpaLW4TJVaiBv5MlqIzA1ClNnvlvsy5Lg==
   dependencies:
     fast-levenshtein "^2.0.6"
     global "^4.3.0"
@@ -13651,9 +13702,9 @@ regex-not@^1.0.0, regex-not@^1.0.2:
     safe-regex "^1.1.0"
 
 regexp-tree@^0.1.0:
-  version "0.1.8"
-  resolved "https://registry.yarnpkg.com/regexp-tree/-/regexp-tree-0.1.8.tgz#277e9fb98596af7fa22d8cb38627bfcf4ae2fed2"
-  integrity sha512-9ASu7tuCKzdFa2YKfJmnmlilFrIJ8HFfE6MCs4aDLUw4gTBAaNwTTx/gw8Qo97fsV+UTVQXTmz9sHByeC8sKZg==
+  version "0.1.10"
+  resolved "https://registry.yarnpkg.com/regexp-tree/-/regexp-tree-0.1.10.tgz#d837816a039c7af8a8d64d7a7c3cf6a1d93450bc"
+  integrity sha512-K1qVSbcedffwuIslMwpe6vGlj+ZXRnGkvjAtFHfDZZZuEdA/h0dxljAPu9vhUo6Rrx2U2AwJ+nSQ6hK+lrP5MQ==
 
 regexp.prototype.flags@^1.2.0:
   version "1.2.0"
@@ -15367,9 +15418,9 @@ symbol.prototype.description@^1.0.0:
     has-symbols "^1.0.0"
 
 synchronous-promise@^2.0.6:
-  version "2.0.7"
-  resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.7.tgz#3574b3d2fae86b145356a4b89103e1577f646fe3"
-  integrity sha512-16GbgwTmFMYFyQMLvtQjvNWh30dsFe1cAW5Fg1wm5+dg84L9Pe36mftsIRU95/W2YsISxsz/xq4VB23sqpgb/A==
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/synchronous-promise/-/synchronous-promise-2.0.8.tgz#01fd026fffdbf2d3d39ec06ee1a7c971578136f7"
+  integrity sha512-xYavZtFC1vKgJu0AOSYdrLeikNCsNwmUeZaV1XF9cMqEhBVVxLq6rEbYzOGrF1MV2MNPkhsJqqiXuQ4a76CEUg==
 
 synesthesia@^1.0.1:
   version "1.0.1"
@@ -15931,9 +15982,9 @@ unique-slug@^2.0.0:
     imurmurhash "^0.1.4"
 
 unist-util-find-all-after@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/unist-util-find-all-after/-/unist-util-find-all-after-1.0.2.tgz#9be49cfbae5ca1566b27536670a92836bf2f8d6d"
-  integrity sha512-nDl79mKpffXojLpCimVXnxhlH/jjaTnDuScznU9J4jjsaUtBdDbxmlc109XtcqxY4SDO0SwzngsxxW8DIISt1w==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/unist-util-find-all-after/-/unist-util-find-all-after-1.0.3.tgz#5114041df272315a36d10b15f4bd199f9d2c3652"
+  integrity sha512-FNPM5Q1AViItYvkLngkalxZ879j842VxGzlfI0gLlgDQz/Teh9CUzqpc7kgFOWO3RK5qU/wqG0UnJ6XWiHSWiA==
   dependencies:
     unist-util-is "^2.0.0"
 
@@ -16378,9 +16429,9 @@ webpack-sources@^1.1.0, webpack-sources@^1.3.0:
     source-map "~0.6.1"
 
 webpack@^4.29.0, webpack@^4.31.0:
-  version "4.31.0"
-  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.31.0.tgz#ae201d45f0571336e42d1c2b5c8ab56c4d3b0c63"
-  integrity sha512-n6RVO3X0LbbipoE62akME9K/JI7qYrwwufs20VvgNNpqUoH4860KkaxJTbGq5bgkVZF9FqyyTG/0WPLH3PVNJA==
+  version "4.32.0"
+  resolved "https://registry.yarnpkg.com/webpack/-/webpack-4.32.0.tgz#d8726fe73bb362e0e48171990f362df5e747747b"
+  integrity sha512-ofFq9jjAn4HRzlmkcZZrjijbRZcqDw+mM9KrjKd0r6lS0qxyZ7jzICzhphGafXL62dGdjP7TgMK9mZeMLUgZgw==
   dependencies:
     "@webassemblyjs/ast" "1.8.5"
     "@webassemblyjs/helper-module-context" "1.8.5"
