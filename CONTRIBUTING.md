@@ -23,6 +23,7 @@ Before you create a component please consider the following steps:
 - Check [CUDL React](http://cudl-react.at.casumotest.local:8080) in case there is a component you can reuse.
 - Check Storybook in this repo in case there is a component you can reuse.
 - Creating a new component should be done with `yarn generate-component <component_name>` to give a [good starting point](#folder-structure).
+- Components should use named exports.
 - Use [Storybook](https://storybook.js.org) when developing components. This component "playground" helps to consider the role of the component without thinking about where it lives in the app.
 - Refer to the relevant design file and/or liase with a designer to give the component a descriptive name.
 - Avoid writing custom styling in favour of using CUDL utility classes (Colors, Typography, Spacings etc). If in doubt talk to a designer to understand the components' specification.
@@ -55,7 +56,7 @@ And the same applies to the event properties.
             |-- MyComponentContainer.test.js
             |-- MyComponentInnerComponent.js
         |-- MyOtherComponent
-    |-- 🥔
+    |-- models
         |-- cms
             |-- index.js
             |-- cms.actions.js
@@ -73,7 +74,7 @@ And the same applies to the event properties.
 Consider the following piece of code:
 
 ```javascript
-export default class MyComponent extends PureComponent<Props> {
+export class MyComponent extends PureComponent<Props> {
   render() {
     return isA ? <ComponentA /> : <ComponentB />;
   }
@@ -88,9 +89,52 @@ This can be done by writing [Stories](https://github.com/storybooks/storybook) o
 
 Stories are better suited for Presentational components, especially as they are integrated with [Chromatic](https://www.chromaticqa.com/) to form a visual regression layer.
 
-_**All reusable components should have stories to facilitate component discovery in storybooks!**_
+_**All reusable components should have stories to facilitate component discovery in storybook!**_
 
 Enzyme is great at testing logic heavy components as it can manipulate the component's state with ease.
+
+### Mocks
+
+We should always try to make tests as independent and atomic as possible. This means we should avoid sharing data between tests so they don't have to rely on each other's setup. In cases where we do need big chunks of data to render complex components, it is acceptable to use mocks to avoid exhaustive duplication of data.
+
+When using mocked data that we push into components for testing purposes we should avoid hardcoding values found in the mocks within the tests themselves.
+
+_BAD_
+
+```javascript
+import { MyComponent } from "./MyComponent";
+import mockData from "Models/something/__mocks__/data.json";
+
+describe("MyComponent", () => {
+  describe("should render propA as text", () => {
+    const propAExpectedValue = "a string";
+    const rendered = shallow(<MyComponent propA={mockData.propA} />);
+    const output = rendered.find("p").text();
+
+    expect(output.length).toBe(1);
+    expect(output.text()).toBe(propAExpectedValue);
+  });
+});
+```
+
+In the above example we passed the mockData to the component but now we assert against a value defined in this test (`propAExpectedValue`). This is incredibly brittle. Should a developer update the value of `mockDate.propA` this test will fail even though the functionality hasn't changed. Rather we should assert against the mock data like so:
+
+_GOOD_
+
+```javascript
+import { MyComponent } from "./MyComponent";
+import mockData from "Models/something/__mocks__/data.json";
+
+describe("MyComponent", () => {
+  describe("should render propA as text", () => {
+    const rendered = shallow(<MyComponent propA={mockData.propA} />);
+    const output = rendered.find("p").text();
+
+    expect(output.length).toBe(1);
+    expect(output.text()).toBe(mockData.propA);
+  });
+});
+```
 
 Often times, a combination of the tools we have available will result in the best outcome.
 
