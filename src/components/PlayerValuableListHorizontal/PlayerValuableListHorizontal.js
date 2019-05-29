@@ -7,13 +7,18 @@ import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameLi
 import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import { noop } from "Utils";
+import { noop, isNilOrEmpty } from "Utils";
 
 type Props = {
-  error: any,
+  /** Error message to be log in case of error*/
+  error?: string,
+  /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
+  /** Text to be displayed as the title of the list */
   listTitle: string,
+  /** The list of valuables to be displayed as cards */
   valuables: [], // to update his with graphql type
+  /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
 };
 
@@ -42,9 +47,9 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
   };
 
   render() {
-    const { error = false, loading = false, valuables, listTitle } = this.props;
+    const { error = "", loading = false, valuables, listTitle } = this.props;
 
-    if (error) {
+    if (!isNilOrEmpty(error)) {
       logger.error(`
         PlayerValuableListHorizontal failed:
         ${error}
