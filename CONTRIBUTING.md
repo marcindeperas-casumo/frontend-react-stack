@@ -95,7 +95,9 @@ Enzyme is great at testing logic heavy components as it can manipulate the compo
 
 ### Mocks
 
-When using mocked data that we push into components for testing purposes we should avoid hardcoding values found in the mocks within the tests themselves. e.g.
+When using mocked data that we push into components for testing purposes we should avoid hardcoding values found in the mocks within the tests themselves.
+
+_BAD_
 
 ```javascript
 import { MyComponent } from "./MyComponent";
@@ -114,6 +116,8 @@ describe("MyComponent", () => {
 ```
 
 In the above example we passed the mockData to the component but now we assert against a value defined in this test (`propAExpectedValue`). This is incredibly brittle. Should a developer update the value of `mockDate.propA` this test will fail even though the functionality hasn't changed. Rather we should assert against the mock data like so:
+
+_GOOD_
 
 ```javascript
 import { MyComponent } from "./MyComponent";
