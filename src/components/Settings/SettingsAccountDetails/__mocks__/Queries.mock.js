@@ -1,5 +1,5 @@
 import { PLAYER_SETTINGS_QUERY } from "../PlayerSettingsQuery";
-import { PLAYER_SETTINGS_LABELS_QUERY } from "../PlayerSettingsLabelsQuery";
+import PLAYER_SETTINGS_LABELS_QUERY from "../PlayerSettingsLabelsQuery.graphql";
 
 export const playerSettingsQueryMock = {
   request: {

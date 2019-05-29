@@ -5,7 +5,7 @@ import { adopt } from "react-adopt";
 import { SettingsAccountDetails } from "Components/Settings/SettingsAccountDetails/SettingsAccountDetails";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { PLAYER_SETTINGS_LABELS_QUERY } from "./PlayerSettingsLabelsQuery";
+import PLAYER_SETTINGS_LABELS_QUERY from "./PlayerSettingsLabelsQuery.graphql";
 import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery";
 
 const Composed = adopt({
