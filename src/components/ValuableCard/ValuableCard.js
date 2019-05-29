@@ -28,18 +28,30 @@ type Game = {
 };
 
 type Props = {
+  /** Unique id of the valuable */
   id: string,
+  /** Title of the valuable */
   title: string,
+  /** Valuable type of the valuable */
   valuableType: ValuableType,
+  /** currency of the player */
   currency: string,
-  coinValue: number,
-  game: Game,
+  /** The coin value of each spin. Applies when valuable is type spins */
+  coinValue?: number,
+  /** The game on which the spins can be used on. Applies when valuable is type spins */
+  game?: Game,
+  /** Market of the player */
   market: string,
+  /** Background image to be displayed in the Card header */
   backgroundImageUrl: string,
+  /** Valuable caveats to be displayed */
   caveat: string,
+  /** The state of the valuable */
   valuableState: ValuableState,
+  /** The date on which the valuable will expiry */
   expiryDate: DateTime,
-  onCardClick: Function,
+  /** Function to be triggered on click of card */
+  onCardClick: () => void,
 };
 
 export class ValuableCard extends PureComponent<Props> {
@@ -151,7 +163,9 @@ export class ValuableCard extends PureComponent<Props> {
             <ValuableHeaderBackground
               className={this.headerClassModifier}
               imageUrl={
-                isValuableTypeSpins ? game.backgroundImage : backgroundImageUrl
+                isValuableTypeSpins && game
+                  ? game.backgroundImage
+                  : backgroundImageUrl
               }
               id={id}
               blur={isValuableTypeSpins ? blurAmount : 0}
@@ -166,7 +180,7 @@ export class ValuableCard extends PureComponent<Props> {
             <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
               {title}
             </div>
-            {isValuableTypeSpins && (
+            {isValuableTypeSpins && game && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
                 {game.name}
               </div>
