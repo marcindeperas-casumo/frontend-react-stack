@@ -152,6 +152,19 @@ export class App extends PureComponent<Props> {
             />
           </DataProvider>
         </Route>
+        <Route path={["account-details"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-account-details"
+              loader={async () => {
+                const { SettingsAccountDetailsContainer } = await import(
+                  "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
+                );
+                return SettingsAccountDetailsContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }
