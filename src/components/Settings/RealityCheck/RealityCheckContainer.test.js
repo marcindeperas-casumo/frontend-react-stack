@@ -163,7 +163,7 @@ describe("RealityCheck", () => {
       expect(result).toBe(undefined);
     });
 
-    test("shouldn't call mutation when is interval is 0 and isZeroIntervalAllowed is false", async () => {
+    test("shouldn't call mutation when interval is 0 and isZeroIntervalAllowed is false", async () => {
       Component = props => (
         <>
           <input type="button" onClick={() => props.onChange(0)} />
