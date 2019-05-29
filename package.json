@@ -39,6 +39,7 @@
     "qs": "^6.7.0",
     "ramda": "^0.26.1",
     "react": "^16.8.6",
+    "react-adopt": "^0.6.0",
     "react-apollo": "^2.5.5",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
