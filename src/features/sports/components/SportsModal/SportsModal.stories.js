@@ -2,14 +2,13 @@
 import React from "react";
 import { repeat } from "ramda";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { ModalsArea } from "Features/sports/components/Modals";
 import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";
 
 const stories = storiesOf("Sports/SportsModal", module);
 
-const defaultContent = (
+const shortContent = (
   <div>
     <img
       alt="Bob Ross"
@@ -24,16 +23,12 @@ const defaultContent = (
   </div>
 );
 
-const longContent = repeat(defaultContent, 4);
+const longContent = repeat(shortContent, 4);
 
-const onClose = action("onClose");
-
-const render = (headerProps, content = defaultContent) => () => (
+const render = content => () => (
   <ModalsArea>
     <SportsModal>
-      <SportsModal.Header {...headerProps}>
-        This is the header
-      </SportsModal.Header>
+      <SportsModal.Header>This is the header</SportsModal.Header>
 
       <SportsModal.Content>{content}</SportsModal.Content>
 
@@ -42,30 +37,7 @@ const render = (headerProps, content = defaultContent) => () => (
   </ModalsArea>
 );
 
-stories.add("Default (mobile)", render({ onClose }), viewports.mobile);
-
-stories.add("Default (desktop)", render({ onClose }), viewports.desktop);
-
-stories.add(
-  "With Back Button (mobile)",
-  render({ onBack: action("onBack") }),
-  viewports.mobile
-);
-
-stories.add(
-  "With Back Button (desktop)",
-  render({ onBack: action("onBack") }),
-  viewports.desktop
-);
-
-stories.add(
-  "Long content (mobile)",
-  render({ onClose }, longContent),
-  viewports.mobile
-);
-
-stories.add(
-  "Long content (desktop)",
-  render({ onClose }, longContent),
-  viewports.desktop
-);
+stories.add("Short Content (mobile)", render(shortContent), viewports.mobile);
+stories.add("Short Content (desktop)", render(shortContent), viewports.desktop);
+stories.add("Long Content (mobile)", render(longContent), viewports.mobile);
+stories.add("Long Content (desktop)", render(longContent), viewports.desktop);
