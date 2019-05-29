@@ -2,7 +2,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
-import AccountDetails from "Components/Settings/AccountDetails/AccountDetails";
+import { SettingsAccountDetails } from "Components/Settings/SettingsAccountDetails/SettingsAccountDetails";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { PLAYER_SETTINGS_LABELS_QUERY } from "./PlayerSettingsLabelsQuery";
@@ -40,4 +40,5 @@ export const withContainer = (Component: Function) => (
     }}
   </Composed>
 );
-export default () => withContainer(AccountDetails);
+export const SettingsAccountDetailsContainer = () =>
+  withContainer(SettingsAccountDetails);

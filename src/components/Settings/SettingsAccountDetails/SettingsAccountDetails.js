@@ -33,7 +33,7 @@ const RowTemplate = ({
   />
 );
 
-class AccountDetails extends PureComponent<Props> {
+export class SettingsAccountDetails extends PureComponent<Props> {
   static defaultProps = {
     labels: {},
   };
@@ -183,5 +183,3 @@ class AccountDetails extends PureComponent<Props> {
     );
   }
 }
-
-export default AccountDetails;

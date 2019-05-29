@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "./AccountDetailsContainer";
+import { withContainer } from "./SettingsAccountDetailsContainer";
 import {
   playerSettingsQueryMock,
   playerSettingsLabelsQueryMock,
@@ -10,12 +10,12 @@ import {
   playerSettingsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
-let Component, AccountDetailsContainer;
+let Component, SettingsAccountDetailsContainer;
 describe("AccountDetails", () => {
   describe("Player Settings", () => {
     beforeEach(() => {
       Component = props => <div />;
-      AccountDetailsContainer = () => withContainer(Component);
+      SettingsAccountDetailsContainer = () => withContainer(Component);
     });
 
     test("should render loader", async () => {
@@ -23,7 +23,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
         >
-          <AccountDetailsContainer />
+          <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
 
@@ -35,7 +35,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSettingsLabelsQueryMock, playerSettingsQueryErrorMock]}
         >
-          <AccountDetailsContainer />
+          <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -48,7 +48,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
         >
-          <AccountDetailsContainer />
+          <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -62,7 +62,7 @@ describe("AccountDetails", () => {
   describe("Labels", () => {
     beforeEach(() => {
       Component = props => <div />;
-      AccountDetailsContainer = () => withContainer(Component);
+      SettingsAccountDetailsContainer = () => withContainer(Component);
     });
 
     test("should show error", async () => {
@@ -70,7 +70,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSettingsLabelsQueryErrorMock, playerSettingsQueryMock]}
         >
-          <AccountDetailsContainer />
+          <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -83,7 +83,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
         >
-          <AccountDetailsContainer />
+          <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
       await wait(0);
