@@ -157,10 +157,10 @@ export class App extends PureComponent<Props> {
             <LazyPortal
               hostElementId="react-host-settings-reality-check"
               loader={async () => {
-                const { RealityCheckContainer } = await import(
-                  "Components/Settings/RealityCheck/RealityCheckContainer"
+                const { SettingsRealityCheckContainer } = await import(
+                  "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
                 );
-                return RealityCheckContainer;
+                return SettingsRealityCheckContainer;
               }}
             />
           </DataProvider>
