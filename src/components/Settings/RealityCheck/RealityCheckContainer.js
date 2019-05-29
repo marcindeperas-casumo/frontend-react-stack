@@ -37,17 +37,10 @@ export const withContainer = (Component: Function) =>
     state = {};
 
     refresh = async (query: QueryResult) => {
-      const {
-        data: {
-          player: {
-            playOk: {
-              realityCheck: { intervalInMinutes },
-            },
-          },
-        },
-      } = await query.refetch();
+      const { data } = await query.refetch();
+
       this.setState({
-        intervalMinutes: intervalInMinutes,
+        intervalMinutes: data.player.playOk.realityCheck.intervalInMinutes,
       });
     };
 
