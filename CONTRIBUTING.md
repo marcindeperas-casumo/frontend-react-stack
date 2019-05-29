@@ -113,7 +113,22 @@ describe("MyComponent", () => {
 });
 ```
 
-In the above example we passed the mockData to the component but now we assert against a value defined in this test (`propAExpectedValue`). This is incredibly brittle. Should a developer update the value of `mockDate.propA` this test will fail even though the functionality hasn't changed.
+In the above example we passed the mockData to the component but now we assert against a value defined in this test (`propAExpectedValue`). This is incredibly brittle. Should a developer update the value of `mockDate.propA` this test will fail even though the functionality hasn't changed. Rather we should assert against the mock data like so:
+
+```javascript
+import { MyComponent } from "./MyComponent";
+import mockData from "Models/something/__mocks__/data.json";
+
+describe("MyComponent", () => {
+  describe("should render propA as text", () => {
+    const rendered = shallow(<MyComponent propA={mockData.propA} />);
+    const output = rendered.find("p").text();
+
+    expect(output.length).toBe(1);
+    expect(output.text()).toBe(mockData.propA);
+  });
+});
+```
 
 Often times, a combination of the tools we have available will result in the best outcome.
 
