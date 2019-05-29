@@ -27,7 +27,7 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      expect(rendered.find("RowListSkeleton")).toHaveLength(1);
+      expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
     test("should show error", async () => {

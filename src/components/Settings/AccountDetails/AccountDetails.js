@@ -2,11 +2,11 @@
 import React, { PureComponent, type Node } from "react";
 import { ExclamationMarkIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
-import LabelAndValue from "Components/Settings/LabelAndValue";
 import Link from "Components/Settings/Link";
+import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue/SettingsLabelAndValue";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
-import Row from "Components/Settings/Row";
+import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { PASSWORD_VALUE, onKOEvent } from "./utils";
 import EditIcon from "./EditIcon.svg"; //TODO: replace on cudl v2 bump
 
@@ -27,7 +27,10 @@ const RowTemplate = ({
   value?: Node,
   action?: Node,
 }) => (
-  <Row text={<LabelAndValue label={label} value={value} />} action={action} />
+  <SettingsRow
+    text={<SettingsLabelAndValue label={label} value={value} />}
+    action={action}
+  />
 );
 
 class AccountDetails extends PureComponent<Props> {

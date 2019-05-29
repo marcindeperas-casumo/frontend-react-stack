@@ -3,7 +3,7 @@ import React from "react";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
 import AccountDetails from "Components/Settings/AccountDetails/AccountDetails";
-import { RowListSkeleton } from "Components/Settings/Row/RowListSkeleton";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { PLAYER_SETTINGS_LABELS_QUERY } from "./PlayerSettingsLabelsQuery";
 import { PLAYER_SETTINGS_QUERY } from "./PlayerSettingsQuery";
@@ -21,7 +21,7 @@ export const withContainer = (Component: Function) => (
   <Composed>
     {({ labels, settings }) => {
       if (labels.loading || settings.loading) {
-        return <RowListSkeleton count={6} />;
+        return <SettingsRowListSkeleton count={6} />;
       }
       if (settings.error) {
         return <ErrorMessage retry={() => settings.refetch()} />;
