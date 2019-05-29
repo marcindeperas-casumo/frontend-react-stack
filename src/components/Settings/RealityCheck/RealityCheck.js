@@ -23,13 +23,15 @@ export class RealityCheck extends PureComponent<Props> {
     const OFF = 0;
     const enabled = interval !== OFF;
 
+    const change = value => onChange(value ? options[0].value : OFF);
+
     return (
       <>
         <ToggleRow
           className="t-border-bottom--none"
           label={labels.inGameSessionUpdatesLabel}
           isEnabled={enabled}
-          onChange={value => onChange(value ? options[0].value : OFF)}
+          onChange={change}
         />
         <div className="u-padding--md">
           <Text

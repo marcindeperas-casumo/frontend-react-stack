@@ -76,6 +76,11 @@ export const withContainer = (Component: Function) =>
       });
     };
 
+    onChange = (interval: number) =>
+      this.setState({
+        intervalMinutes: interval,
+      });
+
     render() {
       return (
         <Composed>
@@ -89,6 +94,13 @@ export const withContainer = (Component: Function) =>
             if (labels.error) {
               return <ErrorMessage retry={() => labels.refetch()} />;
             }
+
+            const onError = () => {
+              this.refresh(query);
+              launchModal({ modal: MODALS.ERROR });
+            };
+
+            const onCompleted = () => this.refresh(query);
 
             const {
               data: {
@@ -105,22 +117,15 @@ export const withContainer = (Component: Function) =>
             return (
               <Mutation
                 mutation={UPDATE_REALITY_CHECK_INTERVAL}
-                onError={() => {
-                  this.refresh(query);
-                  launchModal({ modal: MODALS.ERROR });
-                }}
-                onCompleted={() => this.refresh(query)}
+                onError={onError}
+                onCompleted={onCompleted}
               >
                 {(mutate, { loading: isUpdateLoading, error: updateError }) => (
                   <Component
                     labels={labels.data}
                     onSave={() => this.save(mutate, realityCheck)}
                     interval={intervalMinutes}
-                    onChange={interval =>
-                      this.setState({
-                        intervalMinutes: interval,
-                      })
-                    }
+                    onChange={this.onChange}
                     isLoading={isUpdateLoading}
                     updateError={updateError}
                   />
