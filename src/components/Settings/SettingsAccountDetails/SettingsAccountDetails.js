@@ -26,10 +26,9 @@ const RowTemplate = ({
   value?: Node,
   action?: Node,
 }) => (
-  <SettingsRow
-    text={<SettingsLabelAndValue label={label} value={value} />}
-    action={action}
-  />
+  <SettingsRow text={<SettingsLabelAndValue label={label} value={value} />}>
+    {action}
+  </SettingsRow>
 );
 
 export class SettingsAccountDetails extends PureComponent<Props> {
