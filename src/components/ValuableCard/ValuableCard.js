@@ -20,7 +20,7 @@ import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
 
 type ValuableType = $Values<VALUABLE_TYPES>;
-type ValuableState = $Values<VALUABLE_STATES>;
+type ValuableState = $Values<VALUABLE_STATES>; // to use graphql types
 
 type Game = {
   backgroundImage: string,
@@ -139,11 +139,10 @@ export class ValuableCard extends PureComponent<Props> {
       stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;
 
     return (
-      <div
-        className="c-valuable-card-wrapper u-position-relative"
-        onClick={onCardClick}
-      >
+      <div className="c-valuable-card-wrapper u-position-relative">
         <Flex
+          onClick={onCardClick}
+          data-test="valuable-card"
           className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
           gap="none"

@@ -11,6 +11,7 @@ import { CoinValueToSpinType } from "./ValuableCard.utils";
 
 describe("ValuableCard", () => {
   const valuableCardStateBadgeSelector = "ValuableCardStateBadge";
+  const onCardClick = jest.fn();
   let rendered;
   let mockValuable;
   let mockedExpiryDate;
@@ -20,7 +21,11 @@ describe("ValuableCard", () => {
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        onCardClick={onCardClick}
+      />
     );
   });
 
@@ -148,5 +153,11 @@ describe("ValuableCard", () => {
     );
 
     expect(rendered.find(valuableCardStateBadgeSelector)).toHaveLength(1);
+  });
+
+  test("should call the onClick function on click of card", () => {
+    rendered.find('[data-test="valuable-card"]').simulate("click");
+
+    expect(onCardClick).toBeCalledTimes(1);
   });
 });

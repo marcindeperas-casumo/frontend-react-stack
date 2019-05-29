@@ -1,19 +1,25 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "react-apollo/test-utils";
-import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal";
+import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal/PlayerValuableListHorizontal";
 import isNotChromatic from "Storybook/isNotChromatic";
-import { normalQuery } from "./__mocks__/query.playerValuables.mock";
 
 const stories = storiesOf("PlayerValuableListHorizontal", module);
 
 if (isNotChromatic) {
   stories.add("PlayerValuableListHorizontal (Connected)", () => {
+    const valuables = mockValuables();
+    const consumeValuable = () => {};
+
     return (
-      <MockedProvider mocks={[normalQuery]} addTypename={false}>
-        <PlayerValuableListHorizontal />
-      </MockedProvider>
+      <PlayerValuableListHorizontal
+        loading={false}
+        error={false}
+        listTitle="Player Valuables"
+        valuables={valuables}
+        onConsumeValuable={consumeValuable}
+      />
     );
   });
 }
