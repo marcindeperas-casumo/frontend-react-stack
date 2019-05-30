@@ -20,38 +20,42 @@ type Props = {|
 const getTextColor = (color: string) =>
   contains(color, ["yellow", "grey-light-1"]) ? "grey-dark-3" : "white";
 
-const renderResults = ({ results, type }) => (
-  <>
-    <div className="o-layout o-layout--gap">
-      {results.slice(0, RESULT_BADGES).map((n, i) => {
-        const color = getBadgeColor(type, n);
-        const borderColor = getBadgeBorderColor(type, n);
-        return (
-          <Badge
-            key={i}
-            tag="div"
-            bgColor={color}
-            txtColor={getTextColor(color)}
-            circle={true}
-            className={classNames(
-              borderColor && `c-card-data-badge-shadow-${borderColor}`
-            )}
-          >
-            {getResultsDisplay(type, n)}
-          </Badge>
-        );
-      })}
-    </div>
-    <Text
-      size="xs"
-      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-    >
-      {type === TYPES.TOPCARD
-        ? getText("recent_letters")
-        : getText("recent_numbers")}
-    </Text>
-  </>
-);
+const renderResults = ({ results, type }) => {
+  if (!results) {
+    return null;
+  }
+
+  return (
+    <>
+      <div className="o-layout o-layout--gap">
+        {results.slice(0, RESULT_BADGES).map((n, i) => {
+          const color = getBadgeColor(type, n);
+          const borderColor = getBadgeBorderColor(type, n);
+          return (
+            <Badge
+              key={i}
+              tag="div"
+              bgColor={color}
+              txtColor={getTextColor(color)}
+              circle={true}
+              className={classNames(
+                borderColor && `c-card-data-badge-shadow-${borderColor}`
+              )}
+            >
+              {getResultsDisplay(type, n)}
+            </Badge>
+          );
+        })}
+      </div>
+      <Text
+        size="xs"
+        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
+      >
+        <DisplayText type={type} />
+      </Text>
+    </>
+  );
+};
 
 const renderSeats = ({ seats }) => (
   <>
@@ -83,36 +87,6 @@ const renderSeats = ({ seats }) => (
   </>
 );
 
-const renderHistory = ({ history, type }) => {
-  if (!history) {
-    return null;
-  }
-
-  return (
-    <>
-      <div className="o-layout o-layout--gap">
-        {history.slice(0, RESULT_BADGES).map((n, i) => (
-          <Badge
-            key={i}
-            tag="div"
-            bgColor={getBadgeColor(type, n)}
-            txtColor={"white"}
-            circle={true}
-          >
-            {n}
-          </Badge>
-        ))}
-      </div>
-      <Text
-        size="xs"
-        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-      >
-        {getText("recent_outcomes")}
-      </Text>
-    </>
-  );
-};
-
 const getText = field => (
   <CMSField
     slug="mobile.live-casino-cards-content"
@@ -125,15 +99,27 @@ const getText = field => (
   />
 );
 
+const DisplayText = ({ type }) =>
+  cond([
+    [equals(TYPES.TOPCARD), () => getText("recent_letters")],
+    [equals(TYPES.BACCARAT), () => getText("recent_outcomes")],
+    [T, () => getText("recent_numbers")],
+  ])(type);
+
 const isIn = flip(contains);
 const LobbyType = ({ lobby }) =>
   cond([
-    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
-    [equals(TYPES.BACCARAT), () => renderHistory(lobby)],
     [
-      isIn([TYPES.MONEYWHEEL, TYPES.ROULETTE, TYPES.TOPCARD, TYPES.MONOPOLY]),
+      isIn([
+        TYPES.MONEYWHEEL,
+        TYPES.ROULETTE,
+        TYPES.TOPCARD,
+        TYPES.MONOPOLY,
+        TYPES.BACCARAT,
+      ]),
       () => renderResults(lobby),
     ],
+    [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
     [T, () => null],
   ])(lobby.type);
 
