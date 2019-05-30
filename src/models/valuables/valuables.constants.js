@@ -1,10 +1,4 @@
 // @flow
-// export type ValuableType =
-//   | "cash"
-//   | "spins"
-//   | "deposit"
-//   | "sport";
-
 export const VALUABLE_TYPES = Object.freeze({
   CASH: "cash",
   SPINS: "spins",
