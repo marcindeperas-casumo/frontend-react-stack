@@ -4,9 +4,10 @@ import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import { VALUABLE_TYPES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop, isNilOrEmpty } from "Utils";
+import { GetCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 
 type Props = {
   /** Error message to be log in case of error*/
@@ -19,32 +20,6 @@ type Props = {
   valuables: [], // to update his with graphql type
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
-};
-
-type ValuableState = $Values<typeof VALUABLE_STATES>; // TO replace these types with graphql types
-type ValuableType = $Values<typeof VALUABLE_TYPES>; // TO replace these types with graphql types
-
-const VALUABLE_LOCKED_URL = "en/player/valuables";
-const VALUABLE_SPINS_URL = "en/game/";
-const VALUABLE_DEPOSIT_URL = "en/deposit";
-
-const getCardUrl = (
-  valuableState: ValuableState,
-  valuableType: ValuableType
-) => {
-  if (valuableState === VALUABLE_STATES.LOCKED) {
-    return VALUABLE_LOCKED_URL;
-  }
-
-  if (valuableType === VALUABLE_TYPES.DEPOSIT) {
-    return VALUABLE_DEPOSIT_URL;
-  }
-
-  if (valuableType === VALUABLE_TYPES.SPINS) {
-    return VALUABLE_SPINS_URL;
-  }
-
-  return null;
 };
 
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
@@ -83,7 +58,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
             return (
               <a
-                href={getCardUrl(valuableState, valuableType)}
+                href={GetCardUrl(valuableState, valuableType)}
                 key={`valuable-card-${id}`}
               >
                 <ValuableCard

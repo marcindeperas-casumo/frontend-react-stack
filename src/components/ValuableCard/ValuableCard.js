@@ -5,7 +5,12 @@ import Text from "@casumo/cmp-text";
 import { DateTime } from "luxon";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
-import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import {
+  type ValuableType,
+  type ValuableState,
+  VALUABLE_TYPES,
+  VALUABLE_STATES,
+} from "Models/valuables";
 import { getSymbolForCurrency } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
@@ -18,9 +23,6 @@ import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
 import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
-
-type ValuableType = $Values<typeof VALUABLE_TYPES>; // to be replaced with graphql types
-type ValuableState = $Values<typeof VALUABLE_STATES>; // to be replaced with graphql types
 
 type Game = {
   backgroundImage: string,

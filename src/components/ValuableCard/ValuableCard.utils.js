@@ -1,4 +1,8 @@
-import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
+import {
+  VALUABLE_TYPES,
+  VALUABLE_STATES,
+  VALUABLE_SPIN_TYPES,
+} from "Models/valuables";
 import {
   DepositIcon,
   SportIcon,
@@ -7,6 +11,17 @@ import {
   SuperSpinsIcon,
   MegaSpinsIcon,
 } from "./Valuable.icons";
+
+// To move these urls somwhere more localised
+export const VALUABLE_LOCKED_URL = "en/player/valuables";
+export const VALUABLE_SPINS_URL = "en/game/";
+export const VALUABLE_DEPOSIT_URL = "en/deposit";
+
+const VALUABLE_REDIRECT_URL = {
+  [VALUABLE_STATES.LOCKED]: VALUABLE_LOCKED_URL,
+  [VALUABLE_TYPES.DEPOSIT]: VALUABLE_DEPOSIT_URL,
+  [VALUABLE_TYPES.SPINS]: VALUABLE_SPINS_URL,
+};
 
 export const VALUABLE_ICON = {
   [VALUABLE_TYPES.DEPOSIT]: DepositIcon,
@@ -33,4 +48,12 @@ export const CoinValueToSpinType = coinValue => {
 
 export const ExpiryInHours = expiryDate => {
   return Math.floor(expiryDate.diffNow(["hours"]).hours);
+};
+
+export const GetCardUrl = (valuableState, valuableType) => {
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return VALUABLE_REDIRECT_URL[valuableState];
+  }
+
+  return VALUABLE_REDIRECT_URL[valuableType] || null;
 };
