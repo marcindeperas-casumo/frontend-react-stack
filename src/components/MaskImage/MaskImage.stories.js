@@ -20,13 +20,17 @@ const textImageUrl =
   "https://cms.casumo.com/wp-content/uploads/2019/03/push-curated_component-tablet.png";
 
 stories.add("Default", () => (
-  <MaskImage id="123" width={144} height={80} imageUrl={imageUrl}>
-    <Shape />
-  </MaskImage>
+  <div style={{ maxWidth: 144 }}>
+    <MaskImage id="123" width={144} height={80} imageUrl={imageUrl}>
+      <Shape />
+    </MaskImage>
+  </div>
 ));
 
 stories.add("Text", () => (
-  <MaskImage id="234" width={571} height={45} imageUrl={textImageUrl}>
-    <TextShape />
-  </MaskImage>
+  <div style={{ maxWidth: 571 }}>
+    <MaskImage id="234" width={571} height={45} imageUrl={textImageUrl}>
+      <TextShape />
+    </MaskImage>
+  </div>
 ));
