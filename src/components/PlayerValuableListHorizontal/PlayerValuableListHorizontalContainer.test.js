@@ -19,7 +19,7 @@ describe("PlayerValuableListHorizontal", () => {
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(true);
   });
 
-  test("renders a number of tiles that match the number returned by query", async () => {
+  xtest("renders a number of tiles that match the number returned by query", async () => {
     const rendered = mount(
       <MockedProvider mocks={[normalQuery]} addTypename={false}>
         <PlayerValuableListHorizontal />
@@ -35,7 +35,7 @@ describe("PlayerValuableListHorizontal", () => {
     expect(rendered.find("ValuableCard")).toHaveLength(5);
   });
 
-  test("renders '20% extra' and '44 free spins' coming from props", async () => {
+  xtest("renders '20% extra' and '44 free spins' coming from props", async () => {
     const rendered = mount(
       <MockedProvider mocks={[normalQuery]} addTypename={false}>
         <PlayerValuableListHorizontal />
