@@ -152,6 +152,19 @@ export class App extends PureComponent<Props> {
             />
           </DataProvider>
         </Route>
+        <Route path={["reality-check"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-reality-check"
+              loader={async () => {
+                const { SettingsRealityCheckContainer } = await import(
+                  "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
+                );
+                return SettingsRealityCheckContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }
