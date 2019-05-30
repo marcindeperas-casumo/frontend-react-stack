@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
@@ -21,8 +21,8 @@ type Props = {
   onConsumeValuable: string => void,
 };
 
-type ValuableType = $Values<VALUABLE_TYPES>;
-type ValuableState = $Values<VALUABLE_STATES>; // TO replace these types with graphql types
+type ValuableState = $Values<typeof VALUABLE_STATES>; // TO replace these types with graphql types
+type ValuableType = $Values<typeof VALUABLE_TYPES>; // TO replace these types with graphql types
 
 const VALUABLE_LOCKED_URL = "en/player/valuables";
 const VALUABLE_SPINS_URL = "en/game/";

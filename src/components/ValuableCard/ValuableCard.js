@@ -19,8 +19,8 @@ import Time from "./Icons/time.svg";
 import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
 
-type ValuableType = $Values<VALUABLE_TYPES>;
-type ValuableState = $Values<VALUABLE_STATES>; // to use graphql types
+type ValuableType = $Values<typeof VALUABLE_TYPES>; // to be replaced with graphql types
+type ValuableState = $Values<typeof VALUABLE_STATES>; // to be replaced with graphql types
 
 type Game = {
   backgroundImage: string,
