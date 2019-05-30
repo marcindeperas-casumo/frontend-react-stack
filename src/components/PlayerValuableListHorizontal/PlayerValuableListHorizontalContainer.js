@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import type { Node } from "react";
 import { Query, Mutation } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import { USE_VALUABLE } from "./mutations";

@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import type { Node } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
