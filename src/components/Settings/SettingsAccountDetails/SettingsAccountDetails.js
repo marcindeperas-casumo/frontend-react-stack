@@ -106,43 +106,47 @@ export class SettingsAccountDetails extends PureComponent<Props> {
       return null;
     };
 
-    const MobileNumber = () => {
-      if (details.phoneNumber.verified) {
-        return (
-          <a
-            onClick={() =>
-              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
-            }
-          >
-            <RowTemplate
-              label={labels.mobileNumber}
-              value={`(${details.phoneNumber.prefix}) ${
-                details.phoneNumber.number
-              }`}
-              action={<EditIcon className="t-color-green" />}
-            />
-          </a>
-        );
-      }
-      return (
-        <a href="/player/settings/phone-number">
-          <RowTemplate
-            label={labels.mobileNumber}
-            value={`(${details.phoneNumber.prefix}) ${
-              details.phoneNumber.number
-            }`}
-            action={
-              <>
-                <ExclamationMarkIcon className="t-color-red" />
-                <Text tag="span" size="sm" className="t-color-red">
-                  Verify
-                </Text>
-              </>
-            }
-          />
-        </a>
+    const VerifiedMobileNumber = () => (
+      <a
+        onClick={() =>
+          launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
+        }
+      >
+        <RowTemplate
+          label={labels.mobileNumber}
+          value={`(${details.phoneNumber.prefix}) ${
+            details.phoneNumber.number
+          }`}
+          action={<EditIcon className="t-color-green" />}
+        />
+      </a>
+    );
+
+    const UnverifiedMobileNumber = () => (
+      <a href="/player/settings/phone-number">
+        <RowTemplate
+          label={labels.mobileNumber}
+          value={`(${details.phoneNumber.prefix}) ${
+            details.phoneNumber.number
+          }`}
+          action={
+            <>
+              <ExclamationMarkIcon className="t-color-red" />
+              <Text tag="span" size="sm" className="t-color-red">
+                Verify
+              </Text>
+            </>
+          }
+        />
+      </a>
+    );
+
+    const MobileNumber = () =>
+      details.phoneNumber.verified ? (
+        <VerifiedMobileNumber />
+      ) : (
+        <UnverifiedMobileNumber />
       );
-    };
 
     const Address = () => (
       <RowTemplate
