@@ -1,15 +1,15 @@
 // @flow
 import * as React from "react";
-import type { Node } from "react";
+import { getImgixUrl } from "@casumo/cudl-react-utils";
 
 type Props = {
   id: string,
   width: number,
   height: number,
   className?: string,
-  shapeMask: () => Node,
   imageUrl: string,
-  blur?: number,
+  imgixOpts?: {},
+  children: React.Node,
 };
 
 const MaskImage = ({
@@ -21,30 +21,39 @@ const MaskImage = ({
   height,
   /** Class name to attach to the masked item */
   className,
-  /** The shape of the mask to display from the element */
-  shapeMask,
+  /** The shape of the mask to clip the image */
+  children,
   /** The url of the image to be nasked */
   imageUrl,
-  /** The amount of bluring to be applied */
-  blur = 0,
-}: Props) => (
-  <div className={className} style={{ width, height }}>
+  /** The imgix options to apply to the image */
+  imgixOpts = {
+    w: 1,
+    blur: 100,
+  },
+}: Props) => {
+  const imgixImageUrl = getImgixUrl(imageUrl, "", imgixOpts);
+
+  return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
+      className={className}
+      width="100%"
+      height="100%"
     >
       <defs>
-        <clipPath id={`__mask-image-${id}`}>{shapeMask()}</clipPath>
+        <clipPath
+          id={`__mask-image-${id}`}
+          clipPathUnits="objectBoundingBox"
+          transform={`scale(${1 / width} ${1 / height})`}
+        >
+          {children}
+        </clipPath>
       </defs>
-      <filter id={`__blur-image-${id}`}>
-        <feGaussianBlur stdDeviation={blur} />
-      </filter>
       <image
         clipPath={`url(#__mask-image-${id})`}
         filter={`url(#__blur-image-${id})`}
-        href={imageUrl}
+        href={imgixImageUrl}
         preserveAspectRatio="none"
         x="0"
         y="0"
@@ -52,7 +61,7 @@ const MaskImage = ({
         height="100%"
       />
     </svg>
-  </div>
-);
+  );
+};
 
 export default MaskImage;
