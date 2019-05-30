@@ -12,6 +12,8 @@ import {
 } from "ramda";
 // @flow
 import type { Bets } from "Types/liveCasinoLobby";
+import bridge from "Src/DurandalReactBridge";
+import { REACT_APP_EVENT_ON_CALLBACK } from "Src/constants";
 
 export const noop = () => {};
 
@@ -223,3 +225,11 @@ export const interpolate = (
   target.replace(INTERPOLATION_REGEX, (match, param) =>
     pathOr(match, [param], replacements)
   );
+
+export const onOldStackEvent = (evt: string, callback: (data: any) => void) => {
+  bridge.on(REACT_APP_EVENT_ON_CALLBACK, ({ event, data }) => {
+    if (evt === event) {
+      callback(data);
+    }
+  });
+};
