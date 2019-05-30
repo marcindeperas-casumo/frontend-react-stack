@@ -57,7 +57,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           >
             {labels.save}
           </Button>
-          <a onClick={window.history.back}>
+          <a onClick={() => window.history.back()}>
             <div className="u-width--1/1 u-margin-top--lg center">
               {labels.cancel}
             </div>
