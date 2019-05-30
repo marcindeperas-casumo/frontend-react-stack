@@ -64,6 +64,7 @@
     "dev": "npm run start",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js",
+    "pact": "jest pact/gamesApi.pact.js",
     "test:ci": "CI=yes npm run test --coverage",
     "lint": "eslint '**/*.js' && stylelint '**/*.scss'",
     "format": "eslint --fix '**/*.js' && stylelint --fix '**/*.scss'",
@@ -100,10 +101,7 @@
       "react-app-polyfill/jsdom",
       "<rootDir>/config/jest/localStorageMock.js"
     ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
+    "testMatch": [],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
@@ -146,6 +144,7 @@
     "@babel/polyfill": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "@hot-loader/react-dom": "^16.8.6",
+    "@pact-foundation/pact": "^8.2.4",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-backgrounds": "^5.0.11",
     "@storybook/addon-info": "^5.0.11",
