@@ -52,7 +52,6 @@ const MaskImage = ({
       </defs>
       <image
         clipPath={`url(#__mask-image-${id})`}
-        filter={`url(#__blur-image-${id})`}
         href={imgixImageUrl}
         preserveAspectRatio="none"
         x="0"
