@@ -2,9 +2,10 @@
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
-import { USE_VALUABLE } from "./mutations";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
+// $FlowIgnore - Flow doesn't understand the queries imported by name.
+import { UseValuable } from "./mutations.graphql";
 
 // This is far from ideal and is just temporary.
 // We need to update the list of player valuables because sometimes they come through Cometd
@@ -27,7 +28,7 @@ export const PlayerValuableListHorizontalContainer = () => (
       const { listTitle, player: { valuables = [] } = {} } = data || {};
 
       return (
-        <Mutation mutation={USE_VALUABLE}>
+        <Mutation mutation={UseValuable}>
           {useValuable => (
             <PlayerValuableListHorizontal
               error={error}

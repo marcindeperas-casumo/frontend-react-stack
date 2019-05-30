@@ -7,7 +7,6 @@ import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop, isNilOrEmpty } from "Utils";
-import { defaultClasses } from "Features/sports/components/EditPillsButton/EditPillsButton";
 
 type Props = {
   /** Error message to be log in case of error*/
