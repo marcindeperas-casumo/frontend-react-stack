@@ -7,6 +7,7 @@ import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop, isNilOrEmpty } from "Utils";
+import { defaultClasses } from "Features/sports/components/EditPillsButton/EditPillsButton";
 
 type Props = {
   /** Error message to be log in case of error*/
@@ -28,30 +29,40 @@ const VALUABLE_LOCKED_URL = "en/player/valuables";
 const VALUABLE_SPINS_URL = "en/game/";
 const VALUABLE_DEPOSIT_URL = "en/deposit";
 
+const getCardUrl = (
+  valuableState: ValuableState,
+  valuableType: ValuableType
+) => {
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return VALUABLE_LOCKED_URL;
+  }
+
+  if (valuableType === VALUABLE_TYPES.DEPOSIT) {
+    return VALUABLE_DEPOSIT_URL;
+  }
+
+  if (valuableType === VALUABLE_TYPES.SPINS) {
+    return VALUABLE_SPINS_URL;
+  }
+
+  return null;
+};
+
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
-  getCardUrl = (valuableState: ValuableState, valuableType: ValuableType) => {
-    if (valuableState === VALUABLE_STATES.LOCKED) {
-      return VALUABLE_LOCKED_URL;
-    }
-
-    if (valuableType === VALUABLE_TYPES.DEPOSIT) {
-      return VALUABLE_DEPOSIT_URL;
-    }
-
-    if (valuableType === VALUABLE_TYPES.SPINS) {
-      return VALUABLE_SPINS_URL;
-    }
-
-    return null;
+  static defaultProps = {
+    error: "",
+    loading: false,
+    valuable: [],
+    listTitle: "",
   };
 
   render() {
-    const { error = "", loading = false, valuables, listTitle } = this.props;
+    const { error, loading, valuables, listTitle } = this.props;
 
     if (!isNilOrEmpty(error)) {
       logger.error(`
         PlayerValuableListHorizontal failed:
-        ${error}
+        ${String(error)}
       `);
 
       return null;
@@ -73,7 +84,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
             return (
               <a
-                href={this.getCardUrl(valuableState, valuableType)}
+                href={getCardUrl(valuableState, valuableType)}
                 key={`valuable-card-${id}`}
               >
                 <ValuableCard
