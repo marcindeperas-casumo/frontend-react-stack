@@ -65,16 +65,18 @@ export const SportsModalHeaderWithoutDismissButtons = ({
 // mobile        -> returns mobile modal header and applies decorators if dismissType !== "none"
 // tablet and up -> returns tablet modal header and applies decorators if dismissType !== "none"
 export const SportsModalHeader = ({
-  children,
-  onClose,
-  onBack,
   dismissType = "none",
-}: HeaderProps & DecoratorProps) => (
-  <Modal.Header className="c-sports-modal__header u-padding">
-    {cond([
-      [equals("back"), () => "with back button"],
-      [equals("close"), () => "with close button"],
-      [T, () => "with no dismiss buttons"],
-    ])(dismissType)}
-  </Modal.Header>
-);
+  ...passthroughProps
+}: HeaderProps & DecoratorProps) => {
+  const HeaderVariant = cond([
+    [equals("back"), () => SportsModalHeaderWithBackButton],
+    [equals("close"), () => SportsModalHeaderWithCloseButton],
+    [T, () => SportsModalHeaderWithoutDismissButtons],
+  ])(dismissType);
+
+  return (
+    <Modal.Header className="c-sports-modal__header u-padding">
+      <HeaderVariant {...passthroughProps} />
+    </Modal.Header>
+  );
+};

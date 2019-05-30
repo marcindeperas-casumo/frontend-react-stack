@@ -1,7 +1,9 @@
 // @flow
 
 describe("SportsModalHeader", () => {
-  test("should render correctly", () => {
+  // TODO: split tests for mobile and tablet?
+
+  test("should render a title", () => {
     expect(true).toBe(false);
   });
   test("should return a header without dismiss buttons by default", () => {
