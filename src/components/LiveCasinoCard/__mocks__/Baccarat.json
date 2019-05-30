@@ -17,7 +17,7 @@
       "max": 10000
     },
     "players": 346,
-    "history": ["T", "B", "B", "T", "P"],
+    "results": ["T", "B", "B", "T", "P"],
     "provider": "evolution"
   },
   "jackpotInfo": null
