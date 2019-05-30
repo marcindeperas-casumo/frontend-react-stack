@@ -1,0 +1,23 @@
+mutation SetAdventurerPublicity($input: ContactSettingsInput) {
+  setAdventurerPublicity(input: $input)
+}
+
+mutation SetWithdrawalNotifications($input: ContactSettingsInput) {
+  setWithdrawalNotifications(input: $input)
+}
+
+mutation SetNewsletterSubscription($input: ContactSettingsInput) {
+  setNewsletterSubscription(input: $input)
+}
+
+mutation SetSMSNewsletterSubscription($input: ContactSettingsInput) {
+  setSMSNewsletterSubscription(input: $input)
+}
+
+mutation SetContactByPhone($input: ContactSettingsInput) {
+  setContactByPhone(input: $input)
+}
+
+mutation SetContactByPost($input: ContactSettingsInput) {
+  setContactByPost(input: $input)
+}
