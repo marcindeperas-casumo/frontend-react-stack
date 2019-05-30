@@ -19,52 +19,13 @@ const render = props => () => (
   </ModalsArea>
 );
 
-stories.add("Default (mobile)", render({}), viewports.mobile);
-stories.add("Default (desktop)", render({}), viewports.desktop);
+const addStory = ([name, props = {}]) => {
+  stories.add(`${name} (mobile)`, render(props), viewports.mobile);
+  stories.add(`${name} (desktop)`, render(props), viewports.desktop);
+};
 
-stories.add(
-  "Back Button (mobile)",
-  render({ dismissType: "back" }),
-  viewports.mobile
-);
-stories.add(
-  "Back Button (desktop)",
-  render({ dismissType: "back" }),
-  viewports.desktop
-);
-
-stories.add(
-  "Back Button: Custom Styles (mobile)",
-  render({ dismissType: "back", classNames: "t-background-red" }),
-  viewports.mobile
-);
-
-stories.add(
-  "Back Button: Custom Styles (desktop)",
-  render({ dismissType: "back", classNames: "t-background-red" }),
-  viewports.desktop
-);
-
-stories.add(
-  "Close Button (mobile)",
-  render({ dismissType: "close" }),
-  viewports.mobile
-);
-
-stories.add(
-  "Close Button (desktop)",
-  render({ dismissType: "close" }),
-  viewports.desktop
-);
-
-stories.add(
-  "Close Button: Custom Styles (mobile)",
-  render({ dismissType: "close", classNames: "t-background-blue" }),
-  viewports.mobile
-);
-
-stories.add(
-  "Close Button: Custom Styles (desktop)",
-  render({ dismissType: "close", classNames: "t-background-blue" }),
-  viewports.desktop
-);
+[
+  ["No Dismiss Buttons", { dismissType: "none" }],
+  ["Back Button", { dismissType: "back" }],
+  ["Close Button", { dismissType: "close" }],
+].map(addStory);
