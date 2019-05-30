@@ -21,7 +21,14 @@ describe("PlayerValuableListHorizontal", () => {
   });
 
   test("should render skeleton while loading", () => {
-    rendered = shallow(<PlayerValuableListHorizontal loading={true} />);
+    rendered = shallow(
+      <PlayerValuableListHorizontal
+        valuables={mockedValuables}
+        listTitle={mockTitle}
+        loading={true}
+        onConsumeValuable={consumeValuable}
+      />
+    );
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(true);
   });
