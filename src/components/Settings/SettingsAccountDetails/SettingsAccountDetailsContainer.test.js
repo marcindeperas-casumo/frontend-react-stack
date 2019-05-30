@@ -12,12 +12,12 @@ import {
 
 let Component, SettingsAccountDetailsContainer;
 describe("AccountDetails", () => {
-  describe("Player Settings", () => {
-    beforeEach(() => {
-      Component = props => <div />;
-      SettingsAccountDetailsContainer = () => withContainer(Component);
-    });
+  beforeEach(() => {
+    Component = props => <div />;
+    SettingsAccountDetailsContainer = () => withContainer(Component);
+  });
 
+  describe("Player Settings", () => {
     test("should render loader", async () => {
       const rendered = mount(
         <MockedProvider
@@ -60,11 +60,6 @@ describe("AccountDetails", () => {
   });
 
   describe("Labels", () => {
-    beforeEach(() => {
-      Component = props => <div />;
-      SettingsAccountDetailsContainer = () => withContainer(Component);
-    });
-
     test("should show error", async () => {
       const rendered = mount(
         <MockedProvider
