@@ -3,33 +3,30 @@ import * as React from "react";
 import { getImgixUrl } from "@casumo/cudl-react-utils";
 
 type Props = {
+  /** An id for the masked item. This should be unique all throughout the page */
   id: string,
+  /** Total width of the masked element */
   width: number,
+  /** Total height of the masked element */
   height: number,
+  /** Class name to attach to the masked item */
   className?: string,
-  imageUrl: string,
-  imgixOpts?: {},
+  /** The mask shape/s to clip the image */
   children: React.Node,
+  /** The url of the image to be nasked */
+  imageUrl: string,
+  /** The imgix options to apply to the image */
+  imgixOpts?: {},
 };
 
 const MaskImage = ({
-  /** An id for the masked item. This should be unique all throughout the page */
   id,
-  /** Total width of the masked element */
   width,
-  /** Total height of the masked element */
   height,
-  /** Class name to attach to the masked item */
   className,
-  /** The shape of the mask to clip the image */
   children,
-  /** The url of the image to be nasked */
   imageUrl,
-  /** The imgix options to apply to the image */
-  imgixOpts = {
-    w: 1,
-    blur: 100,
-  },
+  imgixOpts = {},
 }: Props) => {
   const imgixImageUrl = getImgixUrl(imageUrl, "", imgixOpts);
 
