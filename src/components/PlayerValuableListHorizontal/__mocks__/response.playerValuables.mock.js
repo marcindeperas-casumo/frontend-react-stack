@@ -8,6 +8,7 @@ export const valuables = [
     "caveat":null,
     "market":"en",
     "currency":"EUR",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "__typename":"PlayerValuableDeposit"
   },
   {
@@ -20,9 +21,10 @@ export const valuables = [
     "market":"en",
     "currency":"EUR",
     "coinValue":0.15,
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "game":{
       "name":"netent-glow_mobile_html_sw",
-      "gameImageUrl":"",
+      "backgroundImage":"",
       "__typename":"Game"
     },
     "__typename":"PlayerValuableSpins"
@@ -36,6 +38,7 @@ export const valuables = [
     "caveat":null,
     "market":"en",
     "currency":"EUR",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "__typename":"PlayerValuableCash"
   },
   {
@@ -48,9 +51,10 @@ export const valuables = [
     "market":"en",
     "currency":"EUR",
     "coinValue":0.3,
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "game":{
       "name":"Book of Dead",
-      "gameImageUrl":"https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
+      "backgroundImage":"https://cms.casumo.com/wp-content/uploads/2016/01/book-of-dead-backplate.jpg",
       "__typename":"Game"
     },
     "__typename":"PlayerValuableSpins"
@@ -65,9 +69,10 @@ export const valuables = [
     "market":"en",
     "currency":"EUR",
     "coinValue":0.15,
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
     "game":{
       "name":"netent-alien_mobile_html_sw",
-      "gameImageUrl":"",
+      "backgroundImage":"",
       "__typename":"Game"
     },
     "__typename":"PlayerValuableSpins"

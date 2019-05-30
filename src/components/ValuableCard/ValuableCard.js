@@ -35,7 +35,7 @@ type Props = {
   coinValue: number,
   game: Game,
   market: string,
-  backgroundImageUrl: string,
+  backgroundImage: string,
   caveat: string,
   valuableState: ValuableState,
   expiryDate: DateTime,
@@ -121,7 +121,7 @@ export class ValuableCard extends PureComponent<Props> {
       title,
       valuableType,
       game,
-      backgroundImageUrl,
+      backgroundImage,
       caveat,
       valuableState,
     } = this.props;
@@ -143,7 +143,7 @@ export class ValuableCard extends PureComponent<Props> {
             <ValuableHeaderBackground
               className={this.headerClassModifier}
               imageUrl={
-                isValuableTypeSpins ? game.backgroundImage : backgroundImageUrl
+                isValuableTypeSpins ? game.backgroundImage : backgroundImage
               }
               id={id}
               blur={isValuableTypeSpins ? blurAmount : 0}
