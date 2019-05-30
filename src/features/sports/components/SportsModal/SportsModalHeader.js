@@ -1,9 +1,11 @@
 // @flow
 import React from "react";
 import type { Node } from "react";
-import classNames from "classnames";
-import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
+import { cond, equals, T } from "ramda";
+// import classNames from "classnames";
+// import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
 import { Modal } from "Components/Modal";
+import { Desktop, Mobile } from "Components/ResponsiveLayout";
 
 import "./SportsModalHeader.scss";
 
@@ -12,59 +14,67 @@ type SharedProps = {
   className?: string,
 };
 
-type DismissButtonProps = SharedProps & {
-  isVisible: boolean,
-  onClick?: () => void,
-};
-
 type HeaderProps = SharedProps & {
   onBack?: () => void,
   onClose?: () => void,
 };
 
-export const DismissButton = ({
-  children,
-  onClick,
-  isVisible,
-  className,
-}: DismissButtonProps) => (
-  <div
-    align="center"
-    justify="center"
-    className={classNames("c-sports-modal__dismiss-button", className)}
-    onClick={onClick}
-    style={{ visibility: isVisible ? "visible" : "hidden" }}
-  >
-    {children}
-  </div>
-);
+type DecoratorProps = {
+  dismissType?: "none" | "back" | "close",
+};
 
-export const SportsModalHeader = ({
+// mobile        -> shows close button on the right hand side
+// tablet and up -> shows floating close button
+export const SportsModalHeaderWithCloseButton = ({
   children,
   onClose,
   onBack,
 }: HeaderProps) => (
+  <>
+    <Desktop>Desktop Header: with Close Button</Desktop>
+    <Mobile>Mobile Header: with Close Button</Mobile>
+  </>
+);
+
+// mobile        -> shows back button on the left hand side
+// tablet and up -> shows back button on the left hand side and floating close button
+export const SportsModalHeaderWithBackButton = ({
+  children,
+  onClose,
+  onBack,
+}: HeaderProps) => (
+  <>
+    <Desktop>Desktop Header: with Back Button</Desktop>
+    <Mobile>Mobile Header: with Back Button</Mobile>
+  </>
+);
+
+// mobile        -> shows header without dismiss buttons
+// tablet and up -> shows header without dismiss buttons
+export const SportsModalHeaderWithoutDismissButtons = ({
+  children,
+  onClose,
+  onBack,
+}: HeaderProps) => (
+  <>
+    <Desktop>Desktop Header: Default (without Dismiss Buttons)</Desktop>
+    <Mobile>Mobile Header: Default (without Dismiss Buttons)</Mobile>
+  </>
+);
+
+// mobile        -> returns mobile modal header and applies decorators if dismissType !== "none"
+// tablet and up -> returns tablet modal header and applies decorators if dismissType !== "none"
+export const SportsModalHeader = ({
+  children,
+  onClose,
+  onBack,
+  dismissType = "none",
+}: HeaderProps & DecoratorProps) => (
   <Modal.Header className="c-sports-modal__header u-padding">
-    <DismissButton
-      data-test="sports-modal-back-button"
-      className="c-sports-modal__dismiss-button--back"
-      onClick={onBack}
-      isVisible={Boolean(onBack)}
-    >
-      <ArrowLeftIcon size="med" />
-    </DismissButton>
-
-    <div className="o-flex-justify--center o-flex--1 u-font-weight-bold">
-      {children}
-    </div>
-
-    <DismissButton
-      data-test="sports-modal-close-button"
-      className="c-sports-modal__dismiss-button--close"
-      onClick={onClose}
-      isVisible={Boolean(onClose)}
-    >
-      <CrossIcon size="med" />
-    </DismissButton>
+    {cond([
+      [equals("back"), () => "with back button"],
+      [equals("close"), () => "with close button"],
+      [T, () => "with no dismiss buttons"],
+    ])(dismissType)}
   </Modal.Header>
 );
