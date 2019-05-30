@@ -6,8 +6,7 @@ import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
-import { onOldStackEvent } from "Src/utils";
-import { PASSWORD_PLACEHOLDER_VALUE } from "./utils";
+import { PASSWORD_PLACEHOLDER_VALUE, onKOEvent } from "./utils";
 import EditIcon from "./EditIcon.svg"; //TODO: replace on cudl v2 bump
 
 type Props = {
@@ -39,7 +38,7 @@ export class SettingsAccountDetails extends PureComponent<Props> {
 
   componentDidMount() {
     const { refetchSettings } = this.props;
-    onOldStackEvent(KO_EVENTS.ACCOUNT_SETTINGS.COMMAND_EXECUTED, data => {
+    onKOEvent(KO_EVENTS.ACCOUNT_SETTINGS.COMMAND_EXECUTED, data => {
       if (data.success) {
         refetchSettings();
       }
