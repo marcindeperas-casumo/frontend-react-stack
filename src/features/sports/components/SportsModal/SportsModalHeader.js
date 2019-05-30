@@ -2,16 +2,15 @@
 import React from "react";
 import type { Node } from "react";
 import { cond, equals, T } from "ramda";
-// import classNames from "classnames";
-// import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
+import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import { Modal } from "Components/Modal";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop } from "Components/ResponsiveLayout";
 
 import "./SportsModalHeader.scss";
 
 type SharedProps = {
   children: Node,
-  className?: string,
 };
 
 type HeaderProps = SharedProps & {
@@ -19,59 +18,101 @@ type HeaderProps = SharedProps & {
   onClose?: () => void,
 };
 
-type DecoratorProps = {
+type DismissTypeProps = {
   dismissType?: "none" | "back" | "close",
 };
 
-// mobile        -> shows close button on the right hand side
-// tablet and up -> shows floating close button
-export const SportsModalHeaderWithCloseButton = ({
+type ButtonProps = {
+  onClick: () => any,
+};
+
+type ButtonContainerProps = {
+  children?: Node,
+};
+
+const noop = () => {};
+
+const Header = Flex.Block;
+
+export const BackButton = ({ onClick }: ButtonProps) => (
+  <ButtonContainer>
+    <div
+      onClick={onClick}
+      className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back"
+    >
+      <ArrowLeftIcon size="med" />
+    </div>
+  </ButtonContainer>
+);
+
+export const CloseButton = ({ onClick }: ButtonProps) => (
+  <ButtonContainer>
+    <div
+      onClick={onClick}
+      className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--close"
+    >
+      <CrossIcon size="med" />
+    </div>
+  </ButtonContainer>
+);
+
+export const FloatingCloseButton = ({ onClick }: ButtonProps) => (
+  <div className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating">
+    <CrossIcon size="med" />
+  </div>
+);
+
+export const ButtonContainer = ({ children }: ButtonContainerProps) => (
+  <Flex.Item className="c-sports-modal__dismiss-button-container">
+    {children}
+  </Flex.Item>
+);
+
+export const WithCloseButton = ({
   children,
-  onClose,
-  onBack,
+  onClose = noop,
+  onBack = noop,
 }: HeaderProps) => (
   <>
-    <Desktop>Desktop Header: with Close Button</Desktop>
-    <Mobile>Mobile Header: with Close Button</Mobile>
+    <FloatingCloseButton onClick={onClose} />
+    {/* this should be for tablet++ not just desktop, maybe solve with classNames instead? */}
+    <Desktop>
+      <ButtonContainer />
+    </Desktop>
+    <Header>{children}</Header>
+    <ButtonContainer>
+      <CloseButton onClick={onClose} />
+    </ButtonContainer>
   </>
 );
 
-// mobile        -> shows back button on the left hand side
-// tablet and up -> shows back button on the left hand side and floating close button
-export const SportsModalHeaderWithBackButton = ({
+export const WithBackButton = ({
   children,
-  onClose,
-  onBack,
+  onClose = noop,
+  onBack = noop,
 }: HeaderProps) => (
   <>
-    <Desktop>Desktop Header: with Back Button</Desktop>
-    <Mobile>Mobile Header: with Back Button</Mobile>
+    <FloatingCloseButton onClick={onClose} />
+    <ButtonContainer>
+      <BackButton onClick={onBack} />
+    </ButtonContainer>
+    <Header>{children}</Header>
+    <ButtonContainer />
   </>
 );
 
-// mobile        -> shows header without dismiss buttons
-// tablet and up -> shows header without dismiss buttons
-export const SportsModalHeaderWithoutDismissButtons = ({
-  children,
-  onClose,
-  onBack,
-}: HeaderProps) => (
-  <>
-    <Desktop>Desktop Header: Default (without Dismiss Buttons)</Desktop>
-    <Mobile>Mobile Header: Default (without Dismiss Buttons)</Mobile>
-  </>
+export const WithoutDismissButtons = ({ children }: HeaderProps) => (
+  <Header>{children}</Header>
 );
 
-// mobile        -> returns mobile modal header and applies decorators if dismissType !== "none"
-// tablet and up -> returns tablet modal header and applies decorators if dismissType !== "none"
 export const SportsModalHeader = ({
   dismissType = "none",
   ...passthroughProps
-}: HeaderProps & DecoratorProps) => {
+}: HeaderProps & DismissTypeProps) => {
   const HeaderVariant = cond([
-    [equals("back"), () => SportsModalHeaderWithBackButton],
-    [equals("close"), () => SportsModalHeaderWithCloseButton],
-    [T, () => SportsModalHeaderWithoutDismissButtons],
+    [equals("back"), () => WithBackButton],
+    [equals("close"), () => WithCloseButton],
+    [T, () => WithoutDismissButtons],
   ])(dismissType);
 
   return (
