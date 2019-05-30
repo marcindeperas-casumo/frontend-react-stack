@@ -1,12 +1,13 @@
 // @flow
-import { map } from "ramda";
+import { map, pipe, replace } from "ramda";
+import breakpointsWithPx from "Src/styles/_settings.breakpoints.scss";
 
-const breakpoints = {
-  mobile: 420,
-  phablet: 480,
-  tablet: 768,
-  desktop: 1280,
-};
+const stripPx = pipe(
+  replace("px", ""),
+  parseInt
+);
+
+const breakpoints = map(stripPx, breakpointsWithPx);
 
 const devices = {
   [breakpoints.mobile]: "iphone6",
