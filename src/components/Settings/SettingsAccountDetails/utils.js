@@ -10,4 +10,4 @@ export const onKOEvent = (evt, callback) => {
   });
 };
 
-export const PASSWORD_VALUE = repeat(String.fromCharCode(8226), 8);
+export const PASSWORD_PLACEHOLDER_VALUE = repeat(String.fromCharCode(8226), 8);
