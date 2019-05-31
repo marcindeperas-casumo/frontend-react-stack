@@ -2,10 +2,12 @@
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
-// $FlowIgnore - Flow doesn't understand the queries imported by name.
+// $FlowIgnore
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
-// $FlowIgnore - Flow doesn't understand the queries imported by name.
+// $FlowIgnore
 import { UseValuable } from "./mutations.graphql";
+// $FlowIgnore
+// import { PlayerValuableLabels } from "./PlayerValuableLabelsQuery.graphql";
 
 // This is far from ideal and is just temporary.
 // We need to update the list of player valuables because sometimes they come through Cometd

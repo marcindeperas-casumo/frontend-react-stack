@@ -1,5 +1,5 @@
 query PlayerValuablesQuery {
-  
+
   listTitle: getText(id: "root:mobile.valuables:fields.your_valuables")
 
   player {

@@ -1,0 +1,5 @@
+query PlayerValuableLabels {
+    hoursLabel: getText(
+        id: "root:valuable-card-component:fields:..."
+    )
+}
