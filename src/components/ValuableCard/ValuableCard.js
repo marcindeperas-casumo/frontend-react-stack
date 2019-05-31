@@ -102,7 +102,7 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expiryDate } = this.props;
+    const { valuableState, expiryDate, labels } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
@@ -113,7 +113,9 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (hours > 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(`${hours}h`, className, () => <Time />);
+      return badgeOpts(`${hours}${labels.hoursLabel}`, className, () => (
+        <Time />
+      ));
     }
 
     return { ...badgeOpts, visible: false };
