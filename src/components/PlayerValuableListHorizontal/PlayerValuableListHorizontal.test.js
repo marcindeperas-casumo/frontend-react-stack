@@ -14,7 +14,7 @@ describe("PlayerValuableListHorizontal", () => {
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
         loading={false}
-        listTitle={mockTitle}
+        title={mockTitle}
         onConsumeValuable={consumeValuable}
       />
     );

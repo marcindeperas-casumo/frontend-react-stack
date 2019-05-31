@@ -6,8 +6,8 @@ import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameLi
 import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import { noop, isNilOrEmpty } from "Utils";
-import { GetCardUrl } from "Components/ValuableCard/ValuableCard.utils";
+import { noop } from "Utils";
+import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 
 type Props = {
   /** Error message to be log in case of error*/
@@ -15,7 +15,7 @@ type Props = {
   /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
   /** Text to be displayed as the title of the list */
-  listTitle: string,
+  title?: string,
   /** The list of valuables to be displayed as cards */
   valuables: [], // to update his with graphql type
   /** The function to be called to consume the valuable which will be triggered by each card click */
@@ -24,19 +24,17 @@ type Props = {
 
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
   static defaultProps = {
-    error: "",
     loading: false,
     valuable: [],
-    listTitle: "",
   };
 
   render() {
-    const { error, loading, valuables, listTitle } = this.props;
+    const { error, loading, valuables, title } = this.props;
 
-    if (!isNilOrEmpty(error)) {
+    if (error) {
       logger.error(`
         PlayerValuableListHorizontal failed:
-        ${String(error)}
+        ${error}
       `);
 
       return null;
@@ -48,7 +46,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
     return (
       <>
-        <ScrollableListTitle title={listTitle} />
+        {title && <ScrollableListTitle title={title} />}
         <Scrollable itemSpacing="md">
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
@@ -58,7 +56,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
             return (
               <a
-                href={GetCardUrl(valuableState, valuableType)}
+                href={getCardUrl(valuableState, valuableType)}
                 key={`valuable-card-${id}`}
               >
                 <ValuableCard
