@@ -135,7 +135,7 @@ export const SportsModalHeader = ({
       align="center"
       justify="center"
       spacing="none"
-      className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center"
+      className={`c-sports-modal__header--${dismissType} c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center`}
     >
       <HeaderVariant {...passthroughProps} />
     </Flex>
