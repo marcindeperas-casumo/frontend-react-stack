@@ -54,6 +54,8 @@ type Props = {
   expiryDate: DateTime,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
+  /** An array of translated labels */
+  labels: PlayerValuableLabels,
 };
 
 export class ValuableCard extends PureComponent<Props> {
