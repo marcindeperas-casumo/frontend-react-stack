@@ -108,9 +108,9 @@ export class ValuableCard extends PureComponent<Props> {
     }
 
     const hours = expiryInHours(expiryDate);
-    const hrs24 = 24;
+    const wholeDay = 24;
 
-    if (hours > 0 && hours <= hrs24) {
+    if (hours > 0 && hours <= wholeDay) {
       const className = "t-color-red";
       return badgeOpts(`${hours}h`, className, () => <Time />);
     }
