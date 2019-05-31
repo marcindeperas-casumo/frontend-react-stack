@@ -14,14 +14,22 @@ const onDismiss = action("onClose");
 const render = props => () => (
   <ModalsArea>
     <SportsModal>
-      <SportsModalHeader {...{ ...props, onDismiss }}>Header</SportsModalHeader>
+      <SportsModalHeader {...{ ...props, onDismiss }} />
     </SportsModal>
   </ModalsArea>
 );
 
 const addStory = ([name, props = {}]) => {
-  stories.add(`${name} (mobile)`, render(props), viewports.mobile);
-  stories.add(`${name} (desktop)`, render(props), viewports.desktop);
+  stories.add(
+    `${name} (mobile)`,
+    render({ ...props, children: name }),
+    viewports.mobile
+  );
+  stories.add(
+    `${name} (desktop)`,
+    render({ ...props, children: name }),
+    viewports.desktop
+  );
 };
 
 [

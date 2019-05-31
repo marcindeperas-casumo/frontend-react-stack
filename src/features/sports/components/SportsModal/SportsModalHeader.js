@@ -34,7 +34,7 @@ const noop = () => {};
 
 const Header = Flex.Block;
 
-export const BackButton = ({ onClick }: ButtonProps) => (
+const BackButton = ({ onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
       onClick={onClick}
@@ -45,7 +45,7 @@ export const BackButton = ({ onClick }: ButtonProps) => (
   </ButtonContainer>
 );
 
-export const CloseButton = ({ onClick }: ButtonProps) => (
+const CloseButton = ({ onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
       onClick={onClick}
@@ -56,19 +56,19 @@ export const CloseButton = ({ onClick }: ButtonProps) => (
   </ButtonContainer>
 );
 
-export const FloatingCloseButton = ({ onClick }: ButtonProps) => (
+const FloatingCloseButton = ({ onClick }: ButtonProps) => (
   <div className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating">
     <CrossIcon size="med" />
   </div>
 );
 
-export const ButtonContainer = ({ children }: ButtonContainerProps) => (
+const ButtonContainer = ({ children }: ButtonContainerProps) => (
   <Flex.Item className="c-sports-modal__dismiss-button-container">
     {children}
   </Flex.Item>
 );
 
-export const WithCloseButton = ({
+const WithCloseButton = ({
   children,
   onClose = noop,
   onBack = noop,
@@ -80,28 +80,24 @@ export const WithCloseButton = ({
       <ButtonContainer />
     </Desktop>
     <Header>{children}</Header>
-    <ButtonContainer>
-      <CloseButton onClick={onClose} />
-    </ButtonContainer>
+    <CloseButton onClick={onClose} />
   </>
 );
 
-export const WithBackButton = ({
+const WithBackButton = ({
   children,
   onClose = noop,
   onBack = noop,
 }: HeaderProps) => (
   <>
     <FloatingCloseButton onClick={onClose} />
-    <ButtonContainer>
-      <BackButton onClick={onBack} />
-    </ButtonContainer>
+    <BackButton onClick={onBack} />
     <Header>{children}</Header>
     <ButtonContainer />
   </>
 );
 
-export const WithoutDismissButtons = ({ children }: HeaderProps) => (
+const WithoutDismissButtons = ({ children }: HeaderProps) => (
   <Header>{children}</Header>
 );
 
@@ -120,4 +116,10 @@ export const SportsModalHeader = ({
       <HeaderVariant {...passthroughProps} />
     </Modal.Header>
   );
+};
+
+export const variants = {
+  WithBackButton,
+  WithCloseButton,
+  WithoutDismissButtons,
 };

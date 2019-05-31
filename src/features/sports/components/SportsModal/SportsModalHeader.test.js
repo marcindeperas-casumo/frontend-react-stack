@@ -1,24 +1,59 @@
 // @flow
+import React from "react";
+import { shallow } from "enzyme";
+import { SportsModalHeader, variants } from "./SportsModalHeader";
+
+const children = <span>Header Test</span>;
+const onBack = jest.fn();
+const onClose = jest.fn();
+
+const render = (props = {}) =>
+  shallow(
+    <SportsModalHeader {...{ ...props, onBack, onClose }}>
+      {children}
+    </SportsModalHeader>
+  );
+
+const findVariants = rendered => ({
+  withoutDismissButtons: rendered.find(variants.WithoutDismissButtons),
+  withBackButton: rendered.find(variants.WithBackButton),
+  withCloseButton: rendered.find(variants.WithCloseButton),
+});
 
 describe("SportsModalHeader", () => {
-  // TODO: split tests for mobile and tablet?
-
-  test("should render a title", () => {
-    expect(true).toBe(false);
-  });
-  test("should return a header without dismiss buttons by default", () => {
-    expect(true).toBe(false);
+  test("should render children in the header", () => {
+    expect(render().contains(children)).toBe(true);
   });
 
-  test("should return a header without dismiss when the dismissType is 'none'", () => {
-    expect(true).toBe(false);
+  test("should render the variant without dismiss buttons by default", () => {
+    const rendered = findVariants(render());
+
+    expect(rendered.withoutDismissButtons).toHaveLength(1);
+    expect(rendered.withBackButton).toHaveLength(0);
+    expect(rendered.withCloseButton).toHaveLength(0);
   });
 
-  test("should render a back button when the dismissType is 'back'", () => {
-    expect(true).toBe(false);
+  test("should render the variant without dismiss buttons when the dismissType is 'none'", () => {
+    const rendered = findVariants(render({ dismissType: "none" }));
+
+    expect(rendered.withoutDismissButtons).toHaveLength(1);
+    expect(rendered.withBackButton).toHaveLength(0);
+    expect(rendered.withCloseButton).toHaveLength(0);
   });
 
-  test("should render a close button when the dismissType is 'close'", () => {
-    expect(true).toBe(false);
+  test("should render the variant with a back button when the dismissType is 'back'", () => {
+    const rendered = findVariants(render({ dismissType: "back" }));
+
+    expect(rendered.withoutDismissButtons).toHaveLength(0);
+    expect(rendered.withBackButton).toHaveLength(1);
+    expect(rendered.withCloseButton).toHaveLength(0);
+  });
+
+  test("should render the variant with a close button when the dismissType is 'close'", () => {
+    const rendered = findVariants(render({ dismissType: "close" }));
+
+    expect(rendered.withoutDismissButtons).toHaveLength(0);
+    expect(rendered.withBackButton).toHaveLength(0);
+    expect(rendered.withCloseButton).toHaveLength(1);
   });
 });
