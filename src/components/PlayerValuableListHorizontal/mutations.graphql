@@ -1,6 +1,3 @@
 mutation UseValuable($id: String!, $targetSource: String) {
-  useValuable(id: $id, targetSource: $targetSource) {
-    id
-    targetSource
-  }
+  useValuable(id: $id, targetSource: $targetSource)
 }
