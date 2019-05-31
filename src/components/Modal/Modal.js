@@ -39,13 +39,9 @@ const Content = ({ children, className }: SharedProps): Node => (
   </Flex.Block>
 );
 
-export const Modal = ({ children, className }: SharedProps) => {
-  return (
-    <ModalContainer className={classNames(className)}>
-      {children}
-    </ModalContainer>
-  );
-};
+export const Modal = ({ children, className }: SharedProps) => (
+  <ModalContainer className={classNames(className)}>{children}</ModalContainer>
+);
 
 /* eslint-disable fp/no-mutation */
 Modal.Header = Header;

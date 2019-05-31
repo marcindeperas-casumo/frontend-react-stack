@@ -1,46 +1,42 @@
 .c-sports-modal__header {
-  // align-items: center;
-  // color: #fff;
-  // display: flex;
-  // flex-direction: row;
-  font-size: cudl-font-size(default, $cudl-font-sizes);
   height: var(--top-bar-height, 75px);
 
   @include cudl-breakpoint(tablet) {
-    background-color: #fff;
+    background: none;
     color: cudl-palette(grey, dark-3);
     font-size: cudl-font-size(md, $cudl-font-sizes);
     height: auto;
-    margin-right: 40px;
   }
 }
 
+$button-size: $cudl-spacer-size-default * 5;
+$button-size-mobile: $cudl-spacer-size-default * 6;
+
 .c-sports-modal__dismiss-button {
   align-items: center;
-  background-color: #1e2121;
-  border-radius: 50%;
-  color: #fff;
   display: flex;
-  height: 48px;
+  height: $button-size-mobile;
   justify-content: center;
-  width: 48px;
+  width: $button-size-mobile;
+
+  @include cudl-breakpoint(tablet) {
+    height: $button-size;
+    width: $button-size;
+  }
+}
+
+.c-sports-modal__dismiss-button--hidden {
+  visibility: hidden;
 }
 
 .c-sports-modal__dismiss-button--back {
-  background-color: cudl-palette(grey, light-2);
-  color: cudl-palette(grey, dark-3);
-  height: 40px;
-  width: 40px;
-}
-
-.c-sports-modal__dismiss-button--close {
-  background-color: cudl-palette(grey, dark-3);
-  right: 15px;
-  top: calc(var(--top-bar-offset-top, 0px) + 15px);
+  @include cudl-breakpoint(tablet) {
+    background: cudl-palette(grey, light-2);
+    color: cudl-palette(grey, dark-3);
+  }
 }
 
 .c-sports-modal__dismiss-button--floating {
-  background-color: cudl-palette(grey, dark-3);
   border-radius: 3px;
   position: fixed;
   right: 15px;

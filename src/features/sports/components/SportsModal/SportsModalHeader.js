@@ -5,7 +5,6 @@ import classNames from "classnames";
 import { cond, equals, T } from "ramda";
 import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-import { Modal } from "Components/Modal";
 
 import "./SportsModalHeader.scss";
 
@@ -23,7 +22,9 @@ type DismissTypeProps = {
 };
 
 type ButtonProps = {
-  onClick: () => any,
+  onClick?: () => any,
+  className?: string,
+  isHidden?: boolean,
 };
 
 type ButtonContainerProps = {
@@ -35,22 +36,30 @@ const noop = () => {};
 
 const Header = Flex.Block;
 
-const BackButton = ({ onClick }: ButtonProps) => (
+const BackButton = ({ className, isHidden, onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
       onClick={onClick}
-      className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back"
+      className={classNames(
+        "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back t-background-grey-dark-4 t-border-r--circle",
+        className,
+        isHidden && "c-sports-modal__dismiss-button--hidden"
+      )}
     >
       <ArrowLeftIcon size="med" />
     </div>
   </ButtonContainer>
 );
 
-const CloseButton = ({ onClick }: ButtonProps) => (
+const CloseButton = ({ className, isHidden, onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
       onClick={onClick}
-      className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--close"
+      className={classNames(
+        "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--close t-background-grey-dark-4 t-border-r--circle",
+        className,
+        isHidden && "c-sports-modal__dismiss-button--hidden"
+      )}
     >
       <CrossIcon size="med" />
     </div>
@@ -58,7 +67,10 @@ const CloseButton = ({ onClick }: ButtonProps) => (
 );
 
 const FloatingCloseButton = ({ onClick }: ButtonProps) => (
-  <div className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating">
+  <div
+    className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile"
+    onClick={onClick}
+  >
     <CrossIcon size="med" />
   </div>
 );
@@ -66,7 +78,7 @@ const FloatingCloseButton = ({ onClick }: ButtonProps) => (
 const ButtonContainer = ({ children, className }: ButtonContainerProps) => (
   <Flex.Item
     className={classNames(
-      "c-sports-modal__dismiss-button-container",
+      "c-sports-modal__dismiss-button-container t-color-grey-light-2",
       className
     )}
   >
@@ -80,10 +92,10 @@ const WithCloseButton = ({
   onBack = noop,
 }: HeaderProps) => (
   <>
+    <BackButton isHidden />
     <FloatingCloseButton onClick={onClose} />
-    <ButtonContainer className="u-display--none u-display--flex@tablet" />
     <Header>{children}</Header>
-    <CloseButton onClick={onClose} />
+    <CloseButton className="u-visibility--hidden@tablet" onClick={onClose} />
   </>
 );
 
@@ -96,12 +108,16 @@ const WithBackButton = ({
     <FloatingCloseButton onClick={onClose} />
     <BackButton onClick={onBack} />
     <Header>{children}</Header>
-    <ButtonContainer />
+    <CloseButton isHidden />
   </>
 );
 
 const WithoutDismissButtons = ({ children }: HeaderProps) => (
-  <Header>{children}</Header>
+  <>
+    <BackButton isHidden />
+    <Header>{children}</Header>
+    <CloseButton isHidden />
+  </>
 );
 
 export const SportsModalHeader = ({
@@ -119,7 +135,7 @@ export const SportsModalHeader = ({
       align="center"
       justify="center"
       spacing="none"
-      className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-padding u-text-align-center"
+      className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center"
     >
       <HeaderVariant {...passthroughProps} />
     </Flex>
