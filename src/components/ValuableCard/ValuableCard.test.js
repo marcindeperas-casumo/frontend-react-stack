@@ -45,7 +45,7 @@ describe("ValuableCard", () => {
   });
 
   test("should always have an image url to ValuableHeader if type is not SPINS", () => {
-    const { backgroundImageUrl: expectedValue } = mockValuable;
+    const { backgroundImage: expectedValue } = mockValuable;
 
     const actualValue = rendered
       .find("ValuableHeaderBackground")

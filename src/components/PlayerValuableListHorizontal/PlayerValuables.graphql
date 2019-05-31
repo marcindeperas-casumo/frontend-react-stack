@@ -12,11 +12,13 @@ query PlayerValuablesQuery {
       caveat
       currency
       market
+      backgroundImage
 
       ... on PlayerValuableSpins {
         coinValue
         game {
           name
+          backgroundImage
         }
       }
     }

@@ -139,6 +139,45 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/AdventureCard")}
           />
         </Route>
+        <Route path={["account-details"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-account-details"
+              loader={async () => {
+                const { SettingsAccountDetailsContainer } = await import(
+                  "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
+                );
+                return SettingsAccountDetailsContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
+        <Route path={["notifications"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-notifications"
+              loader={async () => {
+                const { SettingsNotificationsContainer } = await import(
+                  "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
+                );
+                return SettingsNotificationsContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
+        <Route path={["reality-check"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings-reality-check"
+              loader={async () => {
+                const { SettingsRealityCheckContainer } = await import(
+                  "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
+                );
+                return SettingsRealityCheckContainer;
+              }}
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }
