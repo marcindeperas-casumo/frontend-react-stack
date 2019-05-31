@@ -53,7 +53,7 @@ class OptInButton extends PureComponent<Props> {
             className="u-padding-y--md u-padding-x--xlg"
             disabled
           >
-            <TickIcon className={this.props.className} />
+            <TickIcon size="sm" className={this.props.className} />
             <Text tag="span" className="u-margin-left">
               {disabled.label}
             </Text>

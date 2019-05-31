@@ -24,9 +24,8 @@ export class SettingsRow extends PureComponent<Props> {
         justify="space-between"
         align="center"
         className={classNames(
-          "u-padding",
-          `u-padding-vert--${padding}`,
-          "u-padding-horiz--md",
+          `u-padding-y--${padding}`,
+          "u-padding-x--md",
           "t-border-bottom",
           "t-border--current-color",
           "t-color-grey-light-2",

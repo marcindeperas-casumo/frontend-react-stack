@@ -98,7 +98,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
         <Text
           tag="h1"
           size="lg"
-          className="u-padding-y--2xlg"
+          className="u-padding-y--3xlg"
           data-test="sports-top-bar-title"
         >
           <DictionaryTerm termKey="desktop.tab.home" />
