@@ -1,18 +1,22 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import { SportsModalHeader, variants } from "./SportsModalHeader";
+import { SportsModalHeader, buttons, variants } from "./SportsModalHeader";
 
-const children = <span>Header Test</span>;
-const onBack = jest.fn();
-const onClose = jest.fn();
+const defaultProps = {
+  children: <span>Header Test</span>,
+  onBack: jest.fn(),
+  onClose: jest.fn(),
+};
 
 const render = (props = {}) =>
-  shallow(
-    <SportsModalHeader {...{ ...props, onBack, onClose }}>
-      {children}
-    </SportsModalHeader>
-  );
+  shallow(<SportsModalHeader {...{ ...defaultProps, ...props }} />);
+
+const findButtons = rendered => ({
+  back: rendered.find(buttons.BackButton),
+  close: rendered.find(buttons.CloseButton),
+  floatingClose: rendered.find(buttons.FloatingCloseButton),
+});
 
 const findVariants = rendered => ({
   withoutDismissButtons: rendered.find(variants.WithoutDismissButtons),
@@ -22,7 +26,7 @@ const findVariants = rendered => ({
 
 describe("SportsModalHeader", () => {
   test("should render children in the header", () => {
-    expect(render().contains(children)).toBe(true);
+    expect(render().contains(defaultProps.children)).toBe(true);
   });
 
   test("should render the variant without dismiss buttons by default", () => {
@@ -55,5 +59,41 @@ describe("SportsModalHeader", () => {
     expect(rendered.withoutDismissButtons).toHaveLength(0);
     expect(rendered.withBackButton).toHaveLength(0);
     expect(rendered.withCloseButton).toHaveLength(1);
+  });
+
+  describe("WithoutDismissButtons", () => {
+    test("should render the correct components", () => {
+      const { WithoutDismissButtons } = variants;
+      const rendered = shallow(<WithoutDismissButtons {...defaultProps} />);
+      const foundButtons = findButtons(rendered);
+
+      expect(foundButtons.back).toHaveLength(0);
+      expect(foundButtons.close).toHaveLength(0);
+      expect(foundButtons.floatingClose).toHaveLength(0);
+    });
+  });
+
+  describe("WithBackButton", () => {
+    test("should render the correct components", () => {
+      const { WithBackButton } = variants;
+      const rendered = shallow(<WithBackButton {...defaultProps} />);
+      const foundButtons = findButtons(rendered);
+
+      expect(foundButtons.back).toHaveLength(1);
+      expect(foundButtons.close).toHaveLength(0);
+      expect(foundButtons.floatingClose).toHaveLength(1);
+    });
+  });
+
+  describe("WithCloseButton", () => {
+    test("should render the correct components", () => {
+      const { WithCloseButton } = variants;
+      const rendered = shallow(<WithCloseButton {...defaultProps} />);
+      const foundButtons = findButtons(rendered);
+
+      expect(foundButtons.back).toHaveLength(0);
+      expect(foundButtons.close).toHaveLength(1);
+      expect(foundButtons.floatingClose).toHaveLength(1);
+    });
   });
 });
