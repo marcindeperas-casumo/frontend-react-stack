@@ -2,8 +2,8 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
-import Sections from "Components/Settings/Sections/Sections";
-import { RowListSkeleton } from "Components/Settings/Row/RowListSkeleton";
+import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
+import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { PLAYER_SECTIONS_QUERY } from "./PlayerSectionsQuery";
 import { PLAYER_SECTIONS_LABELS_QUERY } from "./PlayerSectionsLabelsQuery";
@@ -21,7 +21,7 @@ export const withContainer = (Component: Function) => (
   <Composed>
     {({ settings, labels }) => {
       if (settings.loading || labels.loading) {
-        return <RowListSkeleton count={2} />;
+        return <SettingsRowListSkeleton count={2} />;
       }
       if (settings.error) {
         return <ErrorMessage retry={() => settings.refetch()} />;
@@ -35,4 +35,4 @@ export const withContainer = (Component: Function) => (
   </Composed>
 );
 
-export default () => withContainer(Sections);
+export const SettingsSectionsContainer = () => withContainer(SettingsSections);

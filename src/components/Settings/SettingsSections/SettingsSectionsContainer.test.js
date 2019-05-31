@@ -2,7 +2,7 @@ import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
 import { MockedProvider } from "react-apollo/test-utils";
-import { withContainer } from "./SectionsContainer";
+import { withContainer } from "./SettingsSectionsContainer";
 import {
   playerSectionsQueryMock,
   playerSectionsLabelsQueryMock,
@@ -10,12 +10,12 @@ import {
   playerSectionsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
-let Component, SectionsContainer;
-describe("AccountDetails", () => {
+let Component, SettingsSectionsContainer;
+describe("SettingsSections", () => {
   describe("Player Settings", () => {
     beforeEach(() => {
       Component = props => <div />;
-      SectionsContainer = () => withContainer(Component);
+      SettingsSectionsContainer = () => withContainer(Component);
     });
 
     test("should render loader", async () => {
@@ -23,11 +23,11 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
-          <SectionsContainer />
+          <SettingsSectionsContainer />
         </MockedProvider>
       );
 
-      expect(rendered.find("RowListSkeleton")).toHaveLength(1);
+      expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
     });
 
     test("should show error", async () => {
@@ -35,7 +35,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSectionsLabelsQueryMock, playerSectionsQueryErrorMock]}
         >
-          <SectionsContainer />
+          <SettingsSectionsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -48,7 +48,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
-          <SectionsContainer />
+          <SettingsSectionsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -64,7 +64,7 @@ describe("AccountDetails", () => {
   describe("Labels", () => {
     beforeEach(() => {
       Component = props => <div />;
-      SectionsContainer = () => withContainer(Component);
+      SettingsSectionsContainer = () => withContainer(Component);
     });
 
     test("should show error", async () => {
@@ -72,7 +72,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
         >
-          <SectionsContainer />
+          <SettingsSectionsContainer />
         </MockedProvider>
       );
       await wait(0);
@@ -85,7 +85,7 @@ describe("AccountDetails", () => {
         <MockedProvider
           mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
-          <SectionsContainer />
+          <SettingsSectionsContainer />
         </MockedProvider>
       );
       await wait(0);

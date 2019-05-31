@@ -4,10 +4,9 @@ import { DirectionRightIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
 import Timer from "Components/Timer";
 import { ContentReplacer } from "Components/ContentReplacer";
-import Row from "Components/Settings/Row";
-import Headline from "Components/Settings/Headline";
-import Link from "Components/Settings/Link";
-import "./Sections.scss";
+import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
+import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
+import "./SettingsSections.scss";
 
 type Props = {
   playerQuery: PLAYER_SECTIONS_QUERY,
@@ -41,7 +40,7 @@ const BottomBar = props => (
   </div>
 );
 
-class Sections extends PureComponent<Props> {
+export class SettingsSections extends PureComponent<Props> {
   render() {
     const {
       playerQuery: {
@@ -59,44 +58,40 @@ class Sections extends PureComponent<Props> {
       },
     } = this.props;
 
-    const AccountDetails = () => (
-      <Link
-        target="/player/settings/account-details"
-        label={
-          <Row
-            text={
-              <Headline
-                title={accountDetailsTitle}
-                description={accountDetailsDescription}
-              />
-            }
-            action={<DirectionRightIcon className="t-color-grey-light-1" />}
-          />
-        }
-      />
+    const AccountDetailsLink = () => (
+      <a href="/player/settings/account-details">
+        <SettingsRow
+          text={
+            <SettingsHeadline
+              title={accountDetailsTitle}
+              description={accountDetailsDescription}
+            />
+          }
+        >
+          <DirectionRightIcon className="t-color-grey-light-1" />
+        </SettingsRow>
+      </a>
     );
 
-    const Notifications = () => (
-      <Link
-        target="/player/settings/notifications"
-        label={
-          <Row
-            text={
-              <Headline
-                title={notificationsTitle}
-                description={notificationsDescription}
-              />
-            }
-            action={<DirectionRightIcon className="t-color-grey-light-1" />}
-          />
-        }
-      />
+    const NotificationsLink = () => (
+      <a href="/player/settings/notifications">
+        <SettingsRow
+          text={
+            <SettingsHeadline
+              title={notificationsTitle}
+              description={notificationsDescription}
+            />
+          }
+        >
+          <DirectionRightIcon className="t-color-grey-light-1" />
+        </SettingsRow>
+      </a>
     );
 
     return (
       <>
-        <AccountDetails />
-        <Notifications />
+        <AccountDetailsLink />
+        <NotificationsLink />
 
         {lastLogin && (
           <BottomBar
@@ -110,5 +105,3 @@ class Sections extends PureComponent<Props> {
     );
   }
 }
-
-export default Sections;
