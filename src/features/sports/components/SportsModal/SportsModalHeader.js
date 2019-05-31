@@ -1,11 +1,11 @@
 // @flow
 import React from "react";
 import type { Node } from "react";
+import classNames from "classnames";
 import { cond, equals, T } from "ramda";
 import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { Modal } from "Components/Modal";
-import { Desktop } from "Components/ResponsiveLayout";
 
 import "./SportsModalHeader.scss";
 
@@ -27,6 +27,7 @@ type ButtonProps = {
 };
 
 type ButtonContainerProps = {
+  className?: string,
   children?: Node,
 };
 
@@ -62,8 +63,13 @@ const FloatingCloseButton = ({ onClick }: ButtonProps) => (
   </div>
 );
 
-const ButtonContainer = ({ children }: ButtonContainerProps) => (
-  <Flex.Item className="c-sports-modal__dismiss-button-container">
+const ButtonContainer = ({ children, className }: ButtonContainerProps) => (
+  <Flex.Item
+    className={classNames(
+      "c-sports-modal__dismiss-button-container",
+      className
+    )}
+  >
     {children}
   </Flex.Item>
 );
@@ -75,10 +81,7 @@ const WithCloseButton = ({
 }: HeaderProps) => (
   <>
     <FloatingCloseButton onClick={onClose} />
-    {/* this should be for tablet++ not just desktop, maybe solve with classNames instead? */}
-    <Desktop>
-      <ButtonContainer />
-    </Desktop>
+    <ButtonContainer className="u-display--none u-display--flex@tablet" />
     <Header>{children}</Header>
     <CloseButton onClick={onClose} />
   </>
@@ -112,9 +115,14 @@ export const SportsModalHeader = ({
   ])(dismissType);
 
   return (
-    <Modal.Header className="c-sports-modal__header u-padding">
+    <Flex
+      align="center"
+      justify="center"
+      spacing="none"
+      className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-padding u-text-align-center"
+    >
       <HeaderVariant {...passthroughProps} />
-    </Modal.Header>
+    </Flex>
   );
 };
 

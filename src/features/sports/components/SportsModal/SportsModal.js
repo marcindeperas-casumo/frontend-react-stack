@@ -24,6 +24,10 @@ export class SportsModal extends React.Component<Props> {
   static Content = Content;
 
   render() {
-    return <Modal className="c-sports-modal">{this.props.children}</Modal>;
+    return (
+      <Modal className="c-sports-modal t-background-white">
+        {this.props.children}
+      </Modal>
+    );
   }
 }
