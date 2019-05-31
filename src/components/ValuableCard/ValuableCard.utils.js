@@ -34,7 +34,7 @@ export const VALUABLE_ICON = {
   [VALUABLE_TYPES.SPORT]: SportIcon,
 };
 
-export const CoinValueToSpinType = coinValue => {
+export const coinValueToSpinType = coinValue => {
   if (coinValue > 0.3 && coinValue <= 0.9) {
     return VALUABLE_SPIN_TYPES.BONUS;
   } else if (coinValue > 0.9 && coinValue <= 3) {
@@ -46,11 +46,11 @@ export const CoinValueToSpinType = coinValue => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const ExpiryInHours = expiryDate => {
+export const expiryInHours = expiryDate => {
   return Math.floor(expiryDate.diffNow(["hours"]).hours);
 };
 
-export const GetCardUrl = (valuableState, valuableType) => {
+export const getCardUrl = (valuableState, valuableType) => {
   if (valuableState === VALUABLE_STATES.LOCKED) {
     return VALUABLE_REDIRECT_URL[valuableState];
   }

@@ -33,7 +33,7 @@ export const PlayerValuableListHorizontalContainer = () => (
             <PlayerValuableListHorizontal
               error={error}
               loading={loading}
-              listTitle={listTitle}
+              title={listTitle}
               onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
             />

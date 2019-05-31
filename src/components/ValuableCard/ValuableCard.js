@@ -16,8 +16,8 @@ import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
   VALUABLE_ICON,
-  CoinValueToSpinType,
-  ExpiryInHours,
+  coinValueToSpinType,
+  expiryInHours,
 } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
@@ -107,12 +107,12 @@ export class ValuableCard extends PureComponent<Props> {
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
 
-    const expiryInHours = ExpiryInHours(expiryDate);
+    const hours = expiryInHours(expiryDate);
     const hrs24 = 24;
 
-    if (expiryInHours > 0 && expiryInHours <= hrs24) {
+    if (hours > 0 && hours <= hrs24) {
       const className = "t-color-red";
-      return badgeOpts(`${expiryInHours}h`, className, () => <Time />);
+      return badgeOpts(`${hours}h`, className, () => <Time />);
     }
 
     return { ...badgeOpts, visible: false };
@@ -120,7 +120,7 @@ export class ValuableCard extends PureComponent<Props> {
 
   // To move this to graphql
   get spinType() {
-    return CoinValueToSpinType(this.props.coinValue);
+    return coinValueToSpinType(this.props.coinValue);
   }
 
   cashSymbol = () => {

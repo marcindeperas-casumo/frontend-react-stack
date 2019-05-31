@@ -7,7 +7,7 @@ import {
   mockValuable as mockData,
   mockExpiryDate,
 } from "./__mocks__/Valuable.mock";
-import { CoinValueToSpinType } from "./ValuableCard.utils";
+import { coinValueToSpinType } from "./ValuableCard.utils";
 
 describe("ValuableCard", () => {
   const valuableCardStateBadgeSelector = "ValuableCardStateBadge";
@@ -97,7 +97,7 @@ describe("ValuableCard", () => {
 
   test("should include spinType in class if valuableType is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
-    const expectedValue = CoinValueToSpinType(mockValuable.coinValue);
+    const expectedValue = coinValueToSpinType(mockValuable.coinValue);
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
