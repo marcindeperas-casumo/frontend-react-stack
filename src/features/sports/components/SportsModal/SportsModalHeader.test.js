@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import { SportsModalHeader, buttons, variants } from "./SportsModalHeader";
+import { SportsModalHeader, variants } from "./SportsModalHeader";
 
 const defaultProps = {
   children: <span>Header Test</span>,
@@ -11,12 +11,6 @@ const defaultProps = {
 
 const render = (props = {}) =>
   shallow(<SportsModalHeader {...{ ...defaultProps, ...props }} />);
-
-const findButtons = rendered => ({
-  back: rendered.find(buttons.BackButton),
-  close: rendered.find(buttons.CloseButton),
-  floatingClose: rendered.find(buttons.FloatingCloseButton),
-});
 
 const findVariants = rendered => ({
   withoutDismissButtons: rendered.find(variants.WithoutDismissButtons),
@@ -59,41 +53,5 @@ describe("SportsModalHeader", () => {
     expect(rendered.withoutDismissButtons).toHaveLength(0);
     expect(rendered.withBackButton).toHaveLength(0);
     expect(rendered.withCloseButton).toHaveLength(1);
-  });
-
-  describe("WithoutDismissButtons", () => {
-    test("should render the correct components", () => {
-      const { WithoutDismissButtons } = variants;
-      const rendered = shallow(<WithoutDismissButtons {...defaultProps} />);
-      const foundButtons = findButtons(rendered);
-
-      expect(foundButtons.back).toHaveLength(0);
-      expect(foundButtons.close).toHaveLength(0);
-      expect(foundButtons.floatingClose).toHaveLength(0);
-    });
-  });
-
-  describe("WithBackButton", () => {
-    test("should render the correct components", () => {
-      const { WithBackButton } = variants;
-      const rendered = shallow(<WithBackButton {...defaultProps} />);
-      const foundButtons = findButtons(rendered);
-
-      expect(foundButtons.back).toHaveLength(1);
-      expect(foundButtons.close).toHaveLength(0);
-      expect(foundButtons.floatingClose).toHaveLength(1);
-    });
-  });
-
-  describe("WithCloseButton", () => {
-    test("should render the correct components", () => {
-      const { WithCloseButton } = variants;
-      const rendered = shallow(<WithCloseButton {...defaultProps} />);
-      const foundButtons = findButtons(rendered);
-
-      expect(foundButtons.back).toHaveLength(0);
-      expect(foundButtons.close).toHaveLength(1);
-      expect(foundButtons.floatingClose).toHaveLength(1);
-    });
   });
 });

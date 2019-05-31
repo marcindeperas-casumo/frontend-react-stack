@@ -147,10 +147,3 @@ export const variants = {
   WithCloseButton,
   WithoutDismissButtons,
 };
-
-export const buttons = {
-  BackButton,
-  ButtonContainer,
-  CloseButton,
-  FloatingCloseButton,
-};
