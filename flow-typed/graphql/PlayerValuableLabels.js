@@ -3,16 +3,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL mutation operation: UseValuable
+// GraphQL query operation: PlayerValuableLabels
 // ====================================================
 
-export type UseValuable = {
-  useValuable: ?boolean
-};
-
-export type UseValuableVariables = {
-  id: string,
-  source?: ?string,
+export type PlayerValuableLabels = {
+  hoursLabel: string
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

@@ -18,7 +18,7 @@ const consumeValuableMutation = mutation => (id: string) =>
   mutation({
     variables: {
       id,
-      targetSource: "mobile",
+      source: "mobile",
     },
   });
 
