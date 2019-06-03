@@ -52,7 +52,7 @@ export const ErrorMessage = ({
 
   const errorClassName = classNames(
     "u-font-weight-bold",
-    isVertical && "u-margin-y--none"
+    !isVertical && "u-margin-y--none"
   );
 
   return (
