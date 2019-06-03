@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
-import { DateTime } from "luxon";
 import { SettingsSectionsLastLogin as LastLoginBar } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
@@ -70,7 +69,6 @@ export class SettingsSections extends PureComponent<Props> {
             currentSessionMessage={currentSessionMessage}
             time={lastLogin.loginTime}
             lastSessionMessage={lastSessionMessage}
-            formatableLoginDate={DateTime.fromMillis(lastLogin.loginTime)}
           />
         )}
       </>
