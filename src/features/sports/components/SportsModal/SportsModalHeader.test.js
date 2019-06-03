@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { shallow } from "enzyme";
+import { mount, shallow } from "enzyme";
 import { SportsModalHeader, variants } from "./SportsModalHeader";
 
 const defaultProps = {
@@ -9,8 +9,8 @@ const defaultProps = {
   onClose: jest.fn(),
 };
 
-const render = (props = {}) =>
-  shallow(<SportsModalHeader {...{ ...defaultProps, ...props }} />);
+const render = (props = {}, renderMethod = shallow) =>
+  renderMethod(<SportsModalHeader {...{ ...defaultProps, ...props }} />);
 
 const findVariants = rendered => ({
   withoutDismissButtons: rendered.find(variants.WithoutDismissButtons),
@@ -31,27 +31,70 @@ describe("SportsModalHeader", () => {
     expect(rendered.withCloseButton).toHaveLength(0);
   });
 
-  test("should render the variant without dismiss buttons when the dismissType is 'none'", () => {
-    const rendered = findVariants(render({ dismissType: "none" }));
+  describe("when the dismissType is 'none'", () => {
+    test("should render the variant without dismiss buttons", () => {
+      const rendered = findVariants(render({ dismissType: "none" }));
 
-    expect(rendered.withoutDismissButtons).toHaveLength(1);
-    expect(rendered.withBackButton).toHaveLength(0);
-    expect(rendered.withCloseButton).toHaveLength(0);
+      expect(rendered.withoutDismissButtons).toHaveLength(1);
+      expect(rendered.withBackButton).toHaveLength(0);
+      expect(rendered.withCloseButton).toHaveLength(0);
+    });
   });
 
-  test("should render the variant with a back button when the dismissType is 'back'", () => {
-    const rendered = findVariants(render({ dismissType: "back" }));
+  describe("when the dismissType is 'back'", () => {
+    test("should render the variant with a back button", () => {
+      const rendered = findVariants(render({ dismissType: "back" }));
 
-    expect(rendered.withoutDismissButtons).toHaveLength(0);
-    expect(rendered.withBackButton).toHaveLength(1);
-    expect(rendered.withCloseButton).toHaveLength(0);
+      expect(rendered.withoutDismissButtons).toHaveLength(0);
+      expect(rendered.withBackButton).toHaveLength(1);
+      expect(rendered.withCloseButton).toHaveLength(0);
+    });
+
+    test("clicking the dismiss buttons fires the correct callbacks", () => {
+      const onBack = jest.fn();
+      const onClose = jest.fn();
+
+      const rendered = render({ onBack, onClose, dismissType: "back" }, mount);
+
+      rendered
+        .find("[data-test='sports-modal-header-back-button']")
+        .simulate("click");
+
+      expect(onBack).toHaveBeenCalledTimes(1);
+
+      rendered
+        .find("[data-test='sports-modal-header-floating-close-button']")
+        .simulate("click");
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+    });
   });
 
-  test("should render the variant with a close button when the dismissType is 'close'", () => {
-    const rendered = findVariants(render({ dismissType: "close" }));
+  describe("when the dismissType is 'close'", () => {
+    test("should render the variant with a close button", () => {
+      const rendered = findVariants(render({ dismissType: "close" }));
 
-    expect(rendered.withoutDismissButtons).toHaveLength(0);
-    expect(rendered.withBackButton).toHaveLength(0);
-    expect(rendered.withCloseButton).toHaveLength(1);
+      expect(rendered.withoutDismissButtons).toHaveLength(0);
+      expect(rendered.withBackButton).toHaveLength(0);
+      expect(rendered.withCloseButton).toHaveLength(1);
+    });
+
+    test("clicking the dismiss buttons fires the correct callbacks", () => {
+      const onClose = jest.fn();
+
+      const rendered = render({ onClose, dismissType: "close" }, mount);
+
+      rendered
+        .find("[data-test='sports-modal-header-floating-close-button']")
+        .simulate("click");
+
+      expect(onClose).toHaveBeenCalledTimes(1);
+
+      rendered
+        .find("[data-test='sports-modal-header-close-button']")
+        .simulate("click");
+
+      expect(onClose).toHaveBeenCalledTimes(2);
+    });
   });
 });

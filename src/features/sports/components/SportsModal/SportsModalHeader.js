@@ -39,6 +39,7 @@ const Header = Flex.Block;
 const BackButton = ({ className, isHidden, onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
+      data-test="sports-modal-header-back-button"
       onClick={onClick}
       className={classNames(
         "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back t-background-grey-dark-4 t-border-r--circle",
@@ -54,6 +55,7 @@ const BackButton = ({ className, isHidden, onClick }: ButtonProps) => (
 const CloseButton = ({ className, isHidden, onClick }: ButtonProps) => (
   <ButtonContainer>
     <div
+      data-test="sports-modal-header-close-button"
       onClick={onClick}
       className={classNames(
         "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--close t-background-grey-dark-4 t-border-r--circle",
@@ -68,6 +70,7 @@ const CloseButton = ({ className, isHidden, onClick }: ButtonProps) => (
 
 const FloatingCloseButton = ({ onClick }: ButtonProps) => (
   <div
+    data-test="sports-modal-header-floating-close-button"
     className="c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile"
     onClick={onClick}
   >
