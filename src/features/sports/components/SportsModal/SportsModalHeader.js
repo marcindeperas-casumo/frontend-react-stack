@@ -2,7 +2,6 @@
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
-import { cond, equals, T } from "ramda";
 import { ArrowLeftIcon, CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 
@@ -17,10 +16,6 @@ type HeaderProps = SharedProps & {
   onClose?: () => void,
 };
 
-type DismissTypeProps = {
-  dismissType?: "none" | "back" | "close",
-};
-
 type ButtonProps = {
   onClick?: () => any,
   className?: string,
@@ -33,8 +28,6 @@ type ButtonContainerProps = {
 };
 
 const noop = () => {};
-
-const Header = Flex.Block;
 
 const BackButton = ({ className, isHidden, onClick }: ButtonProps) => (
   <ButtonContainer>
@@ -89,64 +82,26 @@ const ButtonContainer = ({ children, className }: ButtonContainerProps) => (
   </Flex.Item>
 );
 
-const WithCloseButton = ({
-  children,
-  onClose = noop,
-  onBack = noop,
-}: HeaderProps) => (
-  <>
-    <BackButton isHidden />
-    <FloatingCloseButton onClick={onClose} />
-    <Header>{children}</Header>
-    <CloseButton className="u-visibility--hidden@tablet" onClick={onClose} />
-  </>
-);
-
-const WithBackButton = ({
-  children,
-  onClose = noop,
-  onBack = noop,
-}: HeaderProps) => (
-  <>
-    <FloatingCloseButton onClick={onClose} />
-    <BackButton onClick={onBack} />
-    <Header>{children}</Header>
-    <CloseButton isHidden />
-  </>
-);
-
-const WithoutDismissButtons = ({ children }: HeaderProps) => (
-  <>
-    <BackButton isHidden />
-    <Header>{children}</Header>
-    <CloseButton isHidden />
-  </>
-);
-
 export const SportsModalHeader = ({
-  dismissType = "none",
-  ...passthroughProps
-}: HeaderProps & DismissTypeProps) => {
-  const HeaderVariant = cond([
-    [equals("back"), () => WithBackButton],
-    [equals("close"), () => WithCloseButton],
-    [T, () => WithoutDismissButtons],
-  ])(dismissType);
+  children,
+  onBack,
+  onClose,
+}: HeaderProps) => (
+  <Flex
+    align="center"
+    justify="center"
+    spacing="none"
+    className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center"
+  >
+    <FloatingCloseButton onClick={onClose} />
+    <BackButton onBack={onBack} isHidden={Boolean(onBack)} />
+    <Flex.Block>{children}</Flex.Block>
+    <CloseButton onClick={onClose} isHidden={Boolean(onClose)} />
+  </Flex>
+);
 
-  return (
-    <Flex
-      align="center"
-      justify="center"
-      spacing="none"
-      className={`c-sports-modal__header--${dismissType} c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center`}
-    >
-      <HeaderVariant {...passthroughProps} />
-    </Flex>
-  );
-};
-
-export const variants = {
-  WithBackButton,
-  WithCloseButton,
-  WithoutDismissButtons,
+export const components = {
+  BackButton,
+  CloseButton,
+  FloatingCloseButton,
 };
