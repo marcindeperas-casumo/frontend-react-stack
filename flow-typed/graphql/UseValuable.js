@@ -3,31 +3,16 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GameRow_Game
+// GraphQL mutation operation: UseValuable
 // ====================================================
 
-export type GameRow_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
+export type UseValuable = {
+  useValuable: ?boolean
 };
 
-export type GameRow_Game_lobby = {
-  bets: ?GameRow_Game_lobby_bets
-};
-
-export type GameRow_Game_jackpotInfo = {
+export type UseValuableVariables = {
   id: string,
-  formattedJackpotAmount: ?string,
-};
-
-export type GameRow_Game = {
-  slug: string,
-  name: string,
-  logo: string,
-  logoBackground: string,
-  lobby: ?GameRow_Game_lobby,
-  jackpotInfo: ?GameRow_Game_jackpotInfo,
+  source?: ?string,
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
