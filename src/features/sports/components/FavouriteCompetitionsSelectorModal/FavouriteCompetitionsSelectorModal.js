@@ -65,6 +65,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     return (
       <SportsModal>
         <SportsModal.Header
+          dismissType="back"
           onClose={this.props.onClose}
           onBack={this.props.onBack}
         >
