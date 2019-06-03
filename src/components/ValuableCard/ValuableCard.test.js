@@ -7,10 +7,11 @@ import {
   mockValuable as mockData,
   mockExpiryDate,
 } from "./__mocks__/Valuable.mock";
-import { CoinValueToSpinType } from "./ValuableCard.utils";
+import { coinValueToSpinType } from "./ValuableCard.utils";
 
 describe("ValuableCard", () => {
   const valuableCardStateBadgeSelector = "ValuableCardStateBadge";
+  const onCardClick = jest.fn();
   let rendered;
   let mockValuable;
   let mockedExpiryDate;
@@ -20,7 +21,11 @@ describe("ValuableCard", () => {
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        onCardClick={onCardClick}
+      />
     );
   });
 
@@ -92,7 +97,7 @@ describe("ValuableCard", () => {
 
   test("should include spinType in class if valuableType is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
-    const expectedValue = CoinValueToSpinType(mockValuable.coinValue);
+    const expectedValue = coinValueToSpinType(mockValuable.coinValue);
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
@@ -148,5 +153,11 @@ describe("ValuableCard", () => {
     );
 
     expect(rendered.find(valuableCardStateBadgeSelector)).toHaveLength(1);
+  });
+
+  test("should call the onClick function on click of card", () => {
+    rendered.find('[data-test="valuable-card"]').simulate("click");
+
+    expect(onCardClick).toBeCalledTimes(1);
   });
 });

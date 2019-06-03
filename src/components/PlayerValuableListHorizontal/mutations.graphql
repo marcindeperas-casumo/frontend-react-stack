@@ -1,0 +1,3 @@
+mutation UseValuable($id: String!, $source: String) {
+  useValuable(id: $id, source: $source)
+}
