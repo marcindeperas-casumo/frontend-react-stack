@@ -2,10 +2,10 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
-import Timer from "./node_modules/Components/Timer";
-import { ContentReplacer } from "./node_modules/Components/ContentReplacer";
-import { SettingsRow } from "./node_modules/Components/Settings/SettingsRow/SettingsRow";
-import { SettingsHeadline } from "./node_modules/Components/Settings/SettingsHeadline/SettingsHeadline";
+import Timer from "Components/Timer";
+import { ContentReplacer } from "Components/ContentReplacer";
+import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
+import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 import "./SettingsSections.scss";
 
 type Props = {
