@@ -2,8 +2,7 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import { DateTime } from "luxon";
-import Timer from "Components/Timer";
-import { ContentReplacer } from "Components/ContentReplacer";
+import { SettingsSectionsLastLogin as LastLoginBar } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 import "./SettingsSections.scss";
@@ -12,33 +11,6 @@ type Props = {
   playerQuery: PLAYER_SECTIONS_QUERY,
   labels: PLAYER_SECTIONS_LABELS_QUERY,
 };
-
-const BottomBar = props => (
-  <div className="c-bottom-bar u-text-align-center u-padding--lg">
-    <div>
-      {props.currentSessionMessage}&nbsp;
-      <Timer
-        startTime={props.lastLogin.loginTime}
-        render={state => (
-          <strong>
-            {state.hours}:{state.minutes}:{state.seconds}
-          </strong>
-        )}
-      />
-    </div>
-    <ContentReplacer
-      value={props.lastSessionMessage}
-      replacements={{
-        lastLoginDate: props.formatableLoginDate.toLocaleString(
-          DateTime.DATE_FULL
-        ),
-        lastLoginTime: props.formatableLoginDate.toLocaleString(
-          DateTime.TIME_24_SIMPLE
-        ),
-      }}
-    />
-  </div>
-);
 
 export class SettingsSections extends PureComponent<Props> {
   render() {
@@ -94,9 +66,9 @@ export class SettingsSections extends PureComponent<Props> {
         <NotificationsLink />
 
         {lastLogin && (
-          <BottomBar
+          <LastLoginBar
             currentSessionMessage={currentSessionMessage}
-            lastLogin={lastLogin}
+            time={lastLogin.loginTime}
             lastSessionMessage={lastSessionMessage}
             formatableLoginDate={DateTime.fromMillis(lastLogin.loginTime)}
           />
