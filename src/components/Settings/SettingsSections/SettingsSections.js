@@ -26,6 +26,8 @@ export class SettingsSections extends PureComponent<Props> {
         accountDetailsDescription,
         notificationsTitle,
         notificationsDescription,
+        accountActivity,
+        logout,
       },
     } = this.props;
 
@@ -66,9 +68,11 @@ export class SettingsSections extends PureComponent<Props> {
 
         {lastLogin && (
           <LastLoginBar
-            currentSessionMessage={currentSessionMessage}
+            currentSessionMessageLabel={currentSessionMessage}
             time={lastLogin.loginTime}
-            lastSessionMessage={lastSessionMessage}
+            lastSessionMessageLabel={lastSessionMessage}
+            accountActivityLabel={accountActivity}
+            logoutLabel={logout}
           />
         )}
       </>

@@ -1,0 +1,8 @@
+query PLAYER_SECTIONS_QUERY {
+  player {
+    id
+    loginHistory {
+      loginTime
+    }
+  }
+}

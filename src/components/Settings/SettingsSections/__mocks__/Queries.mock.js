@@ -1,5 +1,5 @@
-import { PLAYER_SECTIONS_QUERY } from "../PlayerSectionsQuery";
-import { PLAYER_SECTIONS_LABELS_QUERY } from "../PlayerSectionsLabelsQuery";
+import PLAYER_SECTIONS_QUERY from "../PlayerSectionsQuery.graphql";
+import PLAYER_SECTIONS_LABELS_QUERY from "../PlayerSectionsLabelsQuery.graphql";
 
 export const playerSectionsQueryMock = {
   request: {
@@ -39,6 +39,8 @@ export const playerSectionsLabelsQueryMock = {
         "Your last session was on <strong>{{lastLoginDate}}</strong>, at <strong>{{lastLoginTime}}</strong>",
       notificationsDescription: "Manage your notification preferences",
       notificationsTitle: "Notifications",
+      accountActivity: "Account Activity",
+      logout: "Logout"
     },
   },
 };

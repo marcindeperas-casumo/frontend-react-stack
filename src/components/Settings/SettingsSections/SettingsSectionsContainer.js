@@ -5,8 +5,8 @@ import { adopt } from "react-adopt";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { PLAYER_SECTIONS_QUERY } from "./PlayerSectionsQuery";
-import { PLAYER_SECTIONS_LABELS_QUERY } from "./PlayerSectionsLabelsQuery";
+import PLAYER_SECTIONS_QUERY from "./PlayerSectionsQuery.graphql";
+import PLAYER_SECTIONS_LABELS_QUERY from "./PlayerSectionsLabelsQuery.graphql";
 
 const Composed = adopt({
   settings: ({ render }) => (

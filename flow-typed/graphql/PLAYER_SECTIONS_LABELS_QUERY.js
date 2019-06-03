@@ -13,6 +13,8 @@ export type PLAYER_SECTIONS_LABELS_QUERY = {
   notificationsDescription: string,
   currentSessionMessage: string,
   lastSessionMessage: string,
+  accountActivity: string,
+  logout: string,
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

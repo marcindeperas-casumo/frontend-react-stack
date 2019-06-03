@@ -1,25 +1,32 @@
 // @flow
 import React from "react";
 import { DateTime } from "luxon";
+import Text from "@casumo/cmp-text";
 import Timer from "Components/Timer";
 import { ContentReplacer } from "Components/ContentReplacer";
+import { launchModal } from "Services/LaunchModalService";
+import { MODALS } from "Src/constants";
 
 type SettingsSectionsLastLoginType = {
-  currentSessionMessage: string,
-  lastSessionMessage: string,
+  currentSessionMessageLabel: string,
+  lastSessionMessageLabel: string,
+  accountActivityLabel: string,
+  logoutLabel: string,
   time: number,
 };
 
 export const SettingsSectionsLastLogin = ({
-  currentSessionMessage,
-  lastSessionMessage,
+  currentSessionMessageLabel,
+  lastSessionMessageLabel,
+  accountActivityLabel,
+  logoutLabel,
   time,
 }: SettingsSectionsLastLoginType) => {
   const dateObject = DateTime.fromMillis(time);
   return (
-    <div className="c-bottom-bar u-text-align-center u-padding--lg">
+    <div className="c-bottom-bar u-text-align-center u-padding--lg u-line-height--15">
       <div>
-        {currentSessionMessage}&nbsp;
+        {currentSessionMessageLabel}&nbsp;
         <Timer
           startTime={time}
           render={({ hours, minutes, seconds }) => (
@@ -30,12 +37,24 @@ export const SettingsSectionsLastLogin = ({
         />
       </div>
       <ContentReplacer
-        value={lastSessionMessage}
+        value={lastSessionMessageLabel}
         replacements={{
           lastLoginDate: dateObject.toLocaleString(DateTime.DATE_FULL),
           lastLoginTime: dateObject.toLocaleString(DateTime.TIME_24_SIMPLE),
         }}
       />
+      <Text tag="p">
+        <a
+          className="u-cursor-pointer"
+          onClick={() =>
+            launchModal({
+              modal: MODALS.ACCOUNT_SETTINGS.SHOW_ACCOUNT_ACTIVITY,
+            })
+          }
+        >
+          {accountActivityLabel}
+        </a>
+      </Text>
     </div>
   );
 };
