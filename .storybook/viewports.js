@@ -2,9 +2,12 @@
 import { map, pipe, replace } from "ramda";
 import breakpointsWithPx from "Src/styles/_settings.breakpoints.scss";
 
+const CHROMATIC_MIN_VIEWPORT_WIDTH = 320;
+
 const stripPx = pipe(
   replace("px", ""),
-  parseInt
+  parseInt,
+  breakpoint => breakpoint || CHROMATIC_MIN_VIEWPORT_WIDTH
 );
 
 const breakpoints = map(stripPx, breakpointsWithPx);
