@@ -24,7 +24,7 @@ export const SettingsSectionsLastLogin = ({
 }: SettingsSectionsLastLoginType) => {
   const dateObject = DateTime.fromMillis(time);
   return (
-    <div className="c-bottom-bar u-text-align-center u-padding--lg u-line-height--15">
+    <div className="c-bottom-bar u-text-align-center u-line-height--15">
       <div>
         {currentSessionMessageLabel}&nbsp;
         <Timer
@@ -45,7 +45,7 @@ export const SettingsSectionsLastLogin = ({
       />
       <Text tag="p">
         <a
-          className="u-cursor-pointer"
+          className="u-cursor-pointer u-font-weight-bold"
           onClick={() =>
             launchModal({
               modal: MODALS.ACCOUNT_SETTINGS.SHOW_ACCOUNT_ACTIVITY,
@@ -55,6 +55,18 @@ export const SettingsSectionsLastLogin = ({
           {accountActivityLabel}
         </a>
       </Text>
+      <a
+        className="u-padding--xlg u-margin-top--md t-background-white u-cursor-pointer u-display--block"
+        onClick={() =>
+          launchModal({
+            modal: "logout",
+          })
+        }
+      >
+        <Text tag="p" className="t-color-red u-font-weight-bold">
+          {logoutLabel}
+        </Text>
+      </a>
     </div>
   );
 };
