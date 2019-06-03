@@ -9,18 +9,6 @@
   }
 }
 
-.c-sports-modal__header--close {
-  @include cudl-breakpoint(max tablet) {
-    background: cudl-palette(blue, light-1);
-
-    // stylelint-disable-next-line xi/selector-pattern
-    .c-sports-modal__dismiss-button {
-      background: none;
-      color: cudl-palette(blue, dark-1);
-    }
-  }
-}
-
 $button-size: $cudl-spacer-size-default * 5;
 $button-size-mobile: $cudl-spacer-size-default * 6;
 
@@ -35,10 +23,6 @@ $button-size-mobile: $cudl-spacer-size-default * 6;
     height: $button-size;
     width: $button-size;
   }
-}
-
-.c-sports-modal__dismiss-button--hidden {
-  visibility: hidden;
 }
 
 .c-sports-modal__dismiss-button--back {

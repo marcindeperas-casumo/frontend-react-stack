@@ -9,12 +9,13 @@ import { SportsModalHeader } from "./SportsModalHeader";
 
 const stories = storiesOf("Sports/SportsModal/SportsModalHeader", module);
 
-const onDismiss = action("onClose");
+const onBack = action("onBack");
+const onClose = action("onClose");
 
 const render = props => () => (
   <ModalsArea>
     <SportsModal>
-      <SportsModalHeader {...{ ...props, onDismiss }} />
+      <SportsModalHeader {...{ ...props }} />
     </SportsModal>
   </ModalsArea>
 );
@@ -33,7 +34,8 @@ const addStory = ([name, props = {}]) => {
 };
 
 [
-  ["No Dismiss Buttons", { dismissType: "none" }],
-  ["Back Button", { dismissType: "back" }],
-  ["Close Button", { dismissType: "close" }],
+  ["No Dismiss Buttons", {}],
+  ["Back Button", { onBack }],
+  ["Close Button", { onClose }],
+  ["Back and Close Buttons", { onBack, onClose }],
 ].map(addStory);
