@@ -113,9 +113,7 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (hours > 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(`${hours}${labels.hoursLabel}`, className, () => (
-        <Time />
-      ));
+      return badgeOpts(`${hours}h`, className, () => <Time />);
     }
 
     return { ...badgeOpts, visible: false };
