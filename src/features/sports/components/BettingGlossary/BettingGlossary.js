@@ -2,35 +2,31 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
+import { range } from "ramda";
 import { SportsModal } from "Features/sports/components/SportsModal";
 
-const close = () => {
-  /* TODO: implement */
+const linkTo = term => () => {
+  const entry = window.document.querySelector(`[data-glossary-term="${term}"]`);
+  const modalContent = window.document.querySelector(".c-modal__content");
+
+  modalContent.scrollTo(0, entry.offsetTop);
 };
 
-const content = [
-  [
-    "Accumulator",
-    <span id="acc">
-      See <a>Combination Bet</a>
-    </span>,
-  ],
-  [
-    "American odds",
-    <span id="ao">
-      <em>Also known as Moneyline</em> See <a href="ah">Odds format</a>.
-    </span>,
-  ],
-  [
-    "Asian handicap",
-    <span id="ah">
-      A bet market that is popular in football, where one team receives a
-      “virtual head start”, leading the game by an amount of goals before the
-      game starts. The team who scores the most with the handicap applied is the
-      winner. See ‘handicap’.
-    </span>,
-  ],
-];
+const content = range(0, 50).map(i => [
+  `Glossary Entry ${i}`,
+  <p data-glossary-term={`glossary.term${i}`}>
+    <span
+      onClick={linkTo(`glossary.term${i + 10}`)}
+      className="u-display--block u-border-bottom u-cursor-pointer"
+    >
+      go to entry {i + 10}
+    </span>
+    A bet market that is popular in football, where one team receives a “virtual
+    head start”, leading the game by an amount of goals before the game starts.
+    The team who scores the most with the handicap applied is the winner. See
+    ‘handicap’.
+  </p>,
+]);
 
 const repeatedContent = [...content, ...content, ...content];
 
@@ -51,10 +47,10 @@ type Props = {
   onClose: any => any,
 };
 
-export const BettingGlossary = () => (
+export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
-      onClose={close}
+      onClose={onClose}
       className="t-background-blue-light-1 t-background-blue"
       dismissButtonClassName="t-color-blue"
     >
