@@ -94,7 +94,7 @@ export const SportsModalHeader = ({
   >
     <FixedCloseButton onClick={onClose} />
     <BackButton onClick={onBack} />
-    <Flex.Block>{children}</Flex.Block>
+    <Flex.Block className="c-sports-modal__heading">{children}</Flex.Block>
     <CloseButton onClick={onClose} />
   </Flex>
 );

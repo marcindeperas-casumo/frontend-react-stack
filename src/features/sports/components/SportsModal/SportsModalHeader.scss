@@ -9,6 +9,12 @@
   }
 }
 
+.c-sports-modal__heading {
+  @include cudl-breakpoint(tablet) {
+    padding: map-get($cudl-spacer-sizes, lg);
+  }
+}
+
 $button-size: $cudl-spacer-size-default * 5;
 $button-size-mobile: $cudl-spacer-size-default * 6;
 
