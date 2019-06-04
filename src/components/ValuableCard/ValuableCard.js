@@ -102,7 +102,7 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expiryDate, labels } = this.props;
+    const { valuableState, expiryDate } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
