@@ -92,11 +92,7 @@ const renderSeats = ({ seats }) => (
 );
 
 const getText = field => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field={field}
-    view={text => text}
-  />
+  <CMSField slug="mobile.live-casino-cards-content" field={field} />
 );
 
 const DisplayText = ({ type }) =>
