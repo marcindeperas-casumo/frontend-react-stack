@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { viewports } from "Storybook/viewports";
 import { Desktop, Mobile } from "./ResponsiveLayout";
 
 const stories = storiesOf("ResponsiveLayout", module);
@@ -41,9 +42,7 @@ stories.add(
       />
     </div>
   ),
-  {
-    chromatic: { viewports: [1280] },
-  }
+  viewports.desktop
 );
 
 stories.add(
@@ -76,7 +75,5 @@ stories.add(
       />
     </div>
   ),
-  {
-    chromatic: { viewports: [768] },
-  }
+  viewports.tablet
 );

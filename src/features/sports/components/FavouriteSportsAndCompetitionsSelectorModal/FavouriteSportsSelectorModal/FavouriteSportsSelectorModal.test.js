@@ -63,6 +63,7 @@ describe("<FavouriteSportsSelectorModal />", () => {
         </StageFavouritesProvider>
       </MockedProviderWithContext>
     );
+
     const renderedNoFavourites = mount(
       <MockedProviderWithContext
         mocks={[noFavouritesMock, competitionsSuggestionsMock]}
@@ -81,15 +82,25 @@ describe("<FavouriteSportsSelectorModal />", () => {
     rendered.update();
     renderedNoFavourites.update();
 
+    const selector = {
+      backButton: "[data-test='sports-modal-back-button']",
+      closeButton: "[data-test='sports-modal-close-button']",
+    };
+
     waitForExpect(() => {
-      expect(rendered.find("Modal").props().dismissType).toBe("back");
-      expect(renderedNoFavourites.find("Modal").props().dismissType).toBe(
-        "none"
-      );
+      expect(rendered.find(selector.backButton)).toHaveLength(1);
+      expect(rendered.find(selector.backButton)).toBeVisible();
+      expect(rendered.find(selector.closeButton)).toHaveLength(1);
+      expect(rendered.find(selector.closeButton)).not.toBeVisible();
+
+      expect(renderedNoFavourites.find(selector.backButton)).toHaveLength(1);
+      expect(renderedNoFavourites.find(selector.backButton)).not.toBeVisible();
+      expect(renderedNoFavourites.find(selector.closeButton)).toHaveLength(1);
+      expect(renderedNoFavourites.find(selector.closeButton)).not.toBeVisible();
     });
   });
 
   test("should call mutation to save new favourites when clicking the save button", () => {
-    // TODO:(adampilks)- test for mutation execution when next MockedProvider  version is available, currently not possible
+    // TODO:(adampilks)- test for mutation execution when next MockedProvider version is available, currently not possible
   });
 });
