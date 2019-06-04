@@ -44,7 +44,6 @@ const ButtonContainer = ({
 const BackButton = ({ className, onClick }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
     <div
-      data-test="sports-modal-header-back-button"
       className={classNames(
         "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back t-background-grey-dark-4 t-border-r--circle",
         className,
@@ -59,7 +58,6 @@ const BackButton = ({ className, onClick }: ButtonProps) => (
 const CloseButton = ({ className, onClick }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
     <div
-      data-test="sports-modal-header-close-button"
       className={classNames(
         "c-sports-modal__dismiss-button t-background-grey-dark-4 t-border-r--circle u-visibility--hidden@tablet",
         className,
@@ -71,11 +69,10 @@ const CloseButton = ({ className, onClick }: ButtonProps) => (
   </ButtonContainer>
 );
 
-const FloatingCloseButton = ({ onClick }: ButtonProps) => (
+const FixedCloseButton = ({ onClick }: ButtonProps) => (
   <div
-    data-test="sports-modal-header-floating-close-button"
     className={classNames(
-      "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--floating t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
+      "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--fixed t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
@@ -95,7 +92,7 @@ export const SportsModalHeader = ({
     spacing="none"
     className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center"
   >
-    <FloatingCloseButton onClick={onClose} />
+    <FixedCloseButton onClick={onClose} />
     <BackButton onClick={onBack} />
     <Flex.Block>{children}</Flex.Block>
     <CloseButton onClick={onClose} />
@@ -105,5 +102,5 @@ export const SportsModalHeader = ({
 export const components = {
   BackButton,
   CloseButton,
-  FloatingCloseButton,
+  FixedCloseButton,
 };

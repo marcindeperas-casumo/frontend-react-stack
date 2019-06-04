@@ -11,7 +11,7 @@ const render = (props = {}) =>
 const findButtons = rendered => ({
   back: rendered.find(components.BackButton),
   close: rendered.find(components.CloseButton),
-  floatingClose: rendered.find(components.FloatingCloseButton),
+  fixedClose: rendered.find(components.FixedCloseButton),
 });
 
 /* eslint-disable no-unused-expressions */
@@ -25,7 +25,7 @@ describe("SportsModalHeader", () => {
 
     expect(buttons.back).not.toBeVisible;
     expect(buttons.close).not.toBeVisible;
-    expect(buttons.floatingClose).not.toBeVisible;
+    expect(buttons.fixedClose).not.toBeVisible;
   });
 
   test("should render a back button when the onBack prop is passed", () => {
@@ -34,7 +34,7 @@ describe("SportsModalHeader", () => {
 
     expect(buttons.back).toBeVisible;
     expect(buttons.close).not.toBeVisible;
-    expect(buttons.floatingClose).not.toBeVisible;
+    expect(buttons.fixedClose).not.toBeVisible;
 
     buttons.back.simulate("click");
     expect(onBack).toHaveBeenCalledTimes(1);
@@ -46,12 +46,12 @@ describe("SportsModalHeader", () => {
 
     expect(buttons.back).not.toBeVisible;
     expect(buttons.close).toBeVisible;
-    expect(buttons.floatingClose).toBeVisible;
+    expect(buttons.fixedClose).toBeVisible;
 
     buttons.close.simulate("click");
     expect(onClose).toHaveBeenCalledTimes(1);
 
-    buttons.floatingClose.simulate("click");
+    buttons.fixedClose.simulate("click");
     expect(onClose).toHaveBeenCalledTimes(2);
   });
 });
