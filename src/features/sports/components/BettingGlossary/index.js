@@ -1,2 +1,2 @@
 // @flow
-export { BettingGlossary } from "./BettingGlossary";
+export * from "./BettingGlossary";

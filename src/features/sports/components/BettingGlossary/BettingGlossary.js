@@ -11,19 +11,19 @@ const close = () => {
 const content = [
   [
     "Accumulator",
-    <span>
+    <span id="acc">
       See <a>Combination Bet</a>
     </span>,
   ],
   [
     "American odds",
-    <span>
-      <em>Also known as Moneyline</em> See <a>Odds format</a>.
+    <span id="ao">
+      <em>Also known as Moneyline</em> See <a href="ah">Odds format</a>.
     </span>,
   ],
   [
     "Asian handicap",
-    <span>
+    <span id="ah">
       A bet market that is popular in football, where one team receives a
       “virtual head start”, leading the game by an amount of goals before the
       game starts. The team who scores the most with the handicap applied is the
@@ -46,6 +46,10 @@ const BettingGlossaryEntry = ({ term, definition }) => (
 const renderGlossaryEntry = ([term, definition]) => (
   <BettingGlossaryEntry term={term} definition={definition} />
 );
+
+type Props = {
+  onClose: any => any,
+};
 
 export const BettingGlossary = () => (
   <SportsModal>
