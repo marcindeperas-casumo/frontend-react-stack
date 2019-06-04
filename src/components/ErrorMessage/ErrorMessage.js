@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import classNames from "classnames";
 import { equals, unless } from "ramda";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -49,9 +50,10 @@ export const ErrorMessage = ({
   const isVertical = direction === "vertical";
   const InnerFlex = isVertical ? Flex.Item : Flex.Block;
 
-  const errorClassName = `u-font-weight-bold ${
-    isVertical ? "" : "u-margin-vert--none"
-  }`;
+  const errorClassName = classNames(
+    "u-font-weight-bold",
+    !isVertical && "u-margin-y--none"
+  );
 
   return (
     <Flex

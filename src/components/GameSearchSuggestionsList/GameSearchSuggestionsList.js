@@ -20,7 +20,7 @@ type Props = {
 export class GameSearchSuggestionsList extends PureComponent<Props> {
   renderListSkeleton = () => (
     <GameListSkeleton
-      className="u-padding-horiz--md u-game-search-max-width"
+      className="u-padding-x--md u-game-search-max-width"
       hasTitle
       titleYOffset={20}
     />
@@ -32,7 +32,7 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
     return games && games.length && !this.props.loading ? (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: location }}>
         <SectionList
-          className={classNames("u-padding-horiz--md", this.props.className)}
+          className={classNames("u-padding-x--md", this.props.className)}
           sections={[
             {
               title,

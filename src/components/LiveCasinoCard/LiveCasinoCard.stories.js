@@ -21,84 +21,101 @@ const unsubscribeFromUpdates = () => {};
 
 if (isNotChromatic) {
   stories.add("Card (connected)", () => (
-    <MockStore>
-      <LiveCasinoCardConnected id="topwheel-treasures" />
-    </MockStore>
+    <div className="c-live-casino-card">
+      <MockStore>
+        <LiveCasinoCardConnected id="topwheel-treasures" />
+      </MockStore>
+    </div>
   ));
 }
+
 stories.add("Card MoneyWheel", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameMoneyWheel}
-      launchGame={action(gameMoneyWheel.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameMoneyWheel}
+        launchGame={action(gameMoneyWheel.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card Roulette", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameRoulette}
-      launchGame={action(gameRoulette.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameRoulette}
+        launchGame={action(gameRoulette.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card Blackjack Open Seats", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameBlackjack}
-      launchGame={action(gameBlackjack.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBlackjack}
+        launchGame={action(gameBlackjack.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card Blackjack Full", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameBlackjackFull}
-      launchGame={action(gameBlackjackFull.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBlackjackFull}
+        launchGame={action(gameBlackjackFull.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card TopCard (Football)", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameTopCard}
-      launchGame={action(gameTopCard.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameTopCard}
+        launchGame={action(gameTopCard.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card Monopoly", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameMonopoly}
-      launchGame={action(gameMonopoly.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameMonopoly}
+        launchGame={action(gameMonopoly.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));
 
 stories.add("Card Baccarat", () => (
-  <MockStore>
-    <LiveCasinoCard
-      game={gameBaccarat}
-      launchGame={action(gameBaccarat.slug)}
-      subscribeToUpdates={subscribeToUpdates}
-      unsubscribeFromUpdates={unsubscribeFromUpdates}
-    />
-  </MockStore>
+  <div className="c-live-casino-card">
+    <MockStore>
+      <LiveCasinoCard
+        game={gameBaccarat}
+        launchGame={action(gameBaccarat.slug)}
+        subscribeToUpdates={subscribeToUpdates}
+        unsubscribeFromUpdates={unsubscribeFromUpdates}
+      />
+    </MockStore>
+  </div>
 ));

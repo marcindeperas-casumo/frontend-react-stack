@@ -114,15 +114,13 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     }
 
     return (
-      <Flex.Item className="o-flex__item-fixed-size o-flex c-live-casino-card">
-        <Card
-          className="u-width--1/1"
-          spacing="md"
-          header={this.renderHeader}
-          content={this.renderContent}
-          footer={this.renderFooter}
-        />
-      </Flex.Item>
+      <Card
+        className="u-width--1/1"
+        spacing="md"
+        header={this.renderHeader}
+        content={this.renderContent}
+        footer={this.renderFooter}
+      />
     );
   }
 }

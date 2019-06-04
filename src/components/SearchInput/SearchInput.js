@@ -95,9 +95,8 @@ class SearchInput extends React.Component<Props, State> {
     return (
       <Flex align="center" className="t-background-white t-border-r--pill">
         <Flex.Block>
-          <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-vert">
+          <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-y">
             <SearchIcon
-              size="med"
               className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
             />
             <input
@@ -112,7 +111,7 @@ class SearchInput extends React.Component<Props, State> {
         </Flex.Block>
         {hasSearchTerm && (
           <div
-            className="u-padding-horiz--md u-padding-vert"
+            className="u-padding-x--md u-padding-y"
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >

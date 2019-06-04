@@ -56,7 +56,7 @@ export class GameListSkeleton extends PureComponent<Props> {
         {times(identity, numberOfItems).map(i => (
           <div
             key={`gamelist-skeleton-${i}`}
-            className="u-margin-vert"
+            className="u-margin-y"
             style={{ height: gameRowHeight }}
           >
             <GameRowSkeleton />

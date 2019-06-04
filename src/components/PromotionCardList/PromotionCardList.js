@@ -20,8 +20,8 @@ type Props = {
 
 const paddingPerDevice = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 const marginPerDevice = {
@@ -66,6 +66,7 @@ class PromotionCardList extends PureComponent<Props> {
           <Flex.Item align="right" className="u-padding-right--md">
             <a href="/promotions">
               <Text
+                size="sm"
                 tag="h3"
                 className={classNames(titleColor && `t-color-${titleColor}`)}
               >
@@ -74,7 +75,11 @@ class PromotionCardList extends PureComponent<Props> {
             </a>
           </Flex.Item>
         </Flex>
-        <Scrollable padding={paddingPerDevice} itemSpacing="md">
+        <Scrollable
+          itemClassName="c-promotion-card"
+          padding={paddingPerDevice}
+          itemSpacing="md"
+        >
           {promotionsSlugs.map(promotionSlug => (
             <PromotionCardContainer
               slug={`promotions.${promotionSlug}`}

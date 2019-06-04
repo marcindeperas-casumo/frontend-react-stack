@@ -24,7 +24,7 @@ const CompetitionPillsList = (props: CompetitionPillsListProps) => (
       return (
         <Flex.Item
           key={competition.id}
-          className="u-margin-vert--sm u-margin-left--none u-margin-right--sm"
+          className="u-margin-y--sm u-margin-left--none u-margin-right--sm"
         >
           <GroupPill
             onClick={onClick}

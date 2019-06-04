@@ -8,8 +8,8 @@ import Tile from "./Tile";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 const DEFAULT_SPACING = "default";
@@ -43,6 +43,10 @@ class TileListHorizontal extends PureComponent<Props> {
 
   render() {
     const { title, items, isLoaded } = this.props;
+    const scrollableChildren = map(
+      ({ id, ...rest }) => <Tile key={id} {...rest} />,
+      items.filter(item => item.background !== null)
+    );
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
@@ -55,13 +59,12 @@ class TileListHorizontal extends PureComponent<Props> {
     return (
       <div className="u-padding-top--xlg">
         <ScrollableListTitle title={title} />
-        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={DEFAULT_SPACING}>
-          {map(
-            ({ id, ...rest }) => (
-              <Tile key={id} {...rest} />
-            ),
-            items
-          )}
+        <Scrollable
+          itemClassName="c-tile"
+          padding={PADDING_PER_DEVICE}
+          itemSpacing={DEFAULT_SPACING}
+        >
+          {scrollableChildren}
         </Scrollable>
       </div>
     );

@@ -16,9 +16,11 @@ stories.addDecorator(withKnobs);
 if (isNotChromatic) {
   stories.add("Default (Connected)", () => {
     return (
-      <MockStore>
-        <GameTileConnected id="starburst" />
-      </MockStore>
+      <div className="c-top-game">
+        <MockStore>
+          <GameTileConnected id="starburst" />
+        </MockStore>
+      </div>
     );
   });
 }
@@ -29,7 +31,7 @@ stories.add("Default", () => {
     game.inMaintenanceMode
   );
   return (
-    <div style={{ maxWidth: "170px" }}>
+    <div className="c-top-game">
       <MockStore>
         <GameTile
           game={{ ...game, inMaintenanceMode }}
@@ -46,7 +48,7 @@ stories.add("With Jackpot", () => {
     game.inMaintenanceMode
   );
   return (
-    <div style={{ maxWidth: "170px" }}>
+    <div className="c-top-game">
       <MockStore>
         <GameTile
           game={{ ...game, jackpotInfo, inMaintenanceMode }}
