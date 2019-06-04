@@ -1,39 +1,5 @@
 .c-sports-modal {
-  background: #fff;
-}
-
-.c-sports-modal__header {
-  align-items: center;
-  background-color: cudl-palette(grey, dark-3);
-  color: #fff;
-
-  display: flex;
-  flex-direction: row;
-  font-size: cudl-font-size(default, $cudl-font-sizes);
-  height: var(--top-bar-height, 75px);
-}
-.c-sports-modal__content-inner {
-  margin: 0 auto;
-
   @include cudl-breakpoint(tablet) {
-    max-width: 370px;
-  }
-}
-
-.c-sports-modal__dismiss-button {
-  align-items: center;
-
-  background-color: #1e2121;
-  border-radius: 50%;
-  color: #fff;
-  display: flex;
-  height: 48px;
-  justify-content: center;
-  width: 48px;
-}
-
-@include cudl-breakpoint(tablet) {
-  .c-sports-modal {
     border-radius: 3px;
     bottom: 10vh;
     display: flex;
@@ -43,34 +9,10 @@
     padding: map-get($cudl-spacer-sizes, lg) map-get($cudl-spacer-sizes, 2xlg);
     right: auto;
     top: 10vh;
-
     width: calc(100vw - var(--shell-offset-left, 0vw) - 20vw);
   }
+}
 
-  .c-sports-modal__header {
-    background-color: #fff;
-    color: cudl-palette(grey, dark-3);
-    font-size: cudl-font-size(md, $cudl-font-sizes);
-    height: auto;
-    margin-right: 40px;
-  }
-
-  .c-sports-modal__content-inner {
-    max-width: none;
-  }
-
-  .c-sports-modal__close-button {
-    background-color: cudl-palette(grey, dark-3);
-    border-radius: 3px;
-    position: fixed;
-    right: 15px;
-    top: calc(var(--top-bar-offset-top, 0px) + 15px);
-  }
-
-  .c-sports-modal__back-button {
-    background-color: cudl-palette(grey, light-2);
-    color: cudl-palette(grey, dark-3);
-    height: 40px;
-    width: 40px;
-  }
+.c-sports-modal__content-inner {
+  margin: 0 auto;
 }

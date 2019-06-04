@@ -1,0 +1,9 @@
+.u-visibility--hidden\@tablet {
+  @include cudl-breakpoint(tablet) {
+    visibility: hidden;
+  }
+}
+
+.u-visibility--hidden {
+  visibility: hidden;
+}
