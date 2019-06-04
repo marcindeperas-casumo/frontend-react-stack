@@ -11,7 +11,7 @@ export type Props = {
 };
 
 const SportsIcon = ({ alt, iconSrc, activeIndicatorSrc, isActive }: Props) => (
-  <Flex.Item className="o-ratio c-sports-icon">
+  <div className="o-ratio c-sports-icon">
     {isActive && (
       <img
         alt={alt}
@@ -29,7 +29,7 @@ const SportsIcon = ({ alt, iconSrc, activeIndicatorSrc, isActive }: Props) => (
         width={32}
       />
     </Flex>
-  </Flex.Item>
+  </div>
 );
 
 export default SportsIcon;

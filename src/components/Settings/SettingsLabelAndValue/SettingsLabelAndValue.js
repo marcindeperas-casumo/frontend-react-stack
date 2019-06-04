@@ -15,7 +15,7 @@ export class SettingsLabelAndValue extends PureComponent<Props> {
         <Text
           tag="p"
           size="sm"
-          className="t-color-grey-light-1 u-font-weight-light"
+          className="t-color-grey-light-1 u-font-weight-light u-margin-bottom"
         >
           {label}
         </Text>

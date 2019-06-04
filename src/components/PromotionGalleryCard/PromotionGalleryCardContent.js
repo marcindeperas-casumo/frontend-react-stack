@@ -7,9 +7,9 @@ const PromotionGalleryCardContent = ({ title }) => {
       tag="div"
       className="c-promotion-gallery-card__content
         t-color-grey-dark-3
-        u-padding-horiz@mobile
-        u-padding-horiz@phablet
-        u-padding-horiz--md
+        u-padding-x@mobile
+        u-padding-x@phablet
+        u-padding-x--md
         u-padding-bottom
         u-font-weight-bold"
       size="lg"

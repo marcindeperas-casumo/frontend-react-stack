@@ -19,8 +19,8 @@ const defaultClassNames = `
   u-padding-top--xlg@tablet
   u-padding-top--xlg@desktop
   u-padding-left--md
-  u-padding-left--2xlg@tablet
-  u-padding-left--2xlg@desktop
+  u-padding-left--3xlg@tablet
+  u-padding-left--3xlg@desktop
 `;
 
 export default class TileListHorizontalSkeleton extends PureComponent<Props> {

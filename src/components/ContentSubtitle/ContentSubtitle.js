@@ -12,7 +12,7 @@ export class ContentSubtitle extends PureComponent<Props> {
     const { subtitle } = this.props;
 
     return (
-      <Text className="u-padding-horiz--lg u-margin-bottom--lg" tag="h2">
+      <Text className="u-padding-x--lg u-margin-bottom--lg" tag="h2">
         {subtitle}
       </Text>
     );

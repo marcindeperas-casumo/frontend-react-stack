@@ -47,7 +47,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     return (
       <>
         {title && <ScrollableListTitle title={title} />}
-        <Scrollable itemSpacing="md">
+        <Scrollable>
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
             const shouldUseValuable =

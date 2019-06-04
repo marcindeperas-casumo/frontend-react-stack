@@ -32,8 +32,8 @@ class SearchNotFound extends PureComponent<Props> {
     return (
       <Media
         className={classNames(
-          "u-padding-vert--lg",
-          "u-padding-horiz--md",
+          "u-padding-y--lg",
+          "u-padding-x--md",
           this.props.className
         )}
         renderText={() => (
@@ -41,7 +41,10 @@ class SearchNotFound extends PureComponent<Props> {
             <Text className="u-margin-bottom--sm u-font-weight-bold">
               <DangerousHtml html={title} />
             </Text>
-            <Text className="u-margin-bottom--none" size="sm">
+            <Text
+              className="u-margin-bottom--none t-color-grey-dark-1"
+              size="sm"
+            >
               <DangerousHtml html={content} />
             </Text>
           </div>

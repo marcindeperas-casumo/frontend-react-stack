@@ -52,7 +52,7 @@ const GameTileOverlay = ({
       className={classNames(
         "o-ratio__content u-text-align-center",
         getClassModifier(inMaintenanceMode, alwaysActive),
-        "u-padding-vert--lg u-padding-horiz--md t-border-r--8"
+        "u-padding-y--lg u-padding-x--md t-border-r--8"
       )}
     >
       {!alwaysActive && (
@@ -81,10 +81,7 @@ const GameTileOverlay = ({
           data={{ [EVENT_PROPS.GAME_NAME]: name }}
         >
           <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-            <MoreIcon
-              size="med"
-              className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm"
-            />
+            <MoreIcon className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm" />
           </a>
         </TrackClick>
       )}
