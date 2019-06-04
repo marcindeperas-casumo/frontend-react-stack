@@ -33,7 +33,7 @@ const ButtonContainer = ({
   <Flex.Item
     onClick={onClick}
     className={classNames(
-      "c-sports-modal__dismiss-button-container t-color-grey-light-2 t-border-r--circle",
+      "c-sports-modal__header-button-container t-color-grey-light-2 t-border-r--circle",
       className
     )}
   >
@@ -43,42 +43,48 @@ const ButtonContainer = ({
 
 const BackButton = ({ className, onClick }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
-    <div
+    <Flex
+      align="center"
+      justify="center"
       className={classNames(
-        "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back t-background-grey-dark-4 t-border-r--circle",
+        "c-sports-modal__header-button t-background-grey-dark-4 t-border-r--circle",
         className,
         onClick === noop && "u-visibility--hidden"
       )}
     >
       <ArrowLeftIcon size="med" />
-    </div>
+    </Flex>
   </ButtonContainer>
 );
 
 const CloseButton = ({ className, onClick }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
-    <div
+    <Flex
+      align="center"
+      justify="center"
       className={classNames(
-        "c-sports-modal__dismiss-button t-background-grey-dark-4 t-border-r--circle u-visibility--hidden@tablet",
+        "c-sports-modal__header-button t-background-grey-dark-4 t-border-r--circle u-visibility--hidden@tablet",
         className,
         onClick === noop && "u-visibility--hidden"
       )}
     >
       <CrossIcon size="med" />
-    </div>
+    </Flex>
   </ButtonContainer>
 );
 
 const FixedCloseButton = ({ onClick }: ButtonProps) => (
-  <div
+  <Flex
+    align="center"
+    justify="center"
     className={classNames(
-      "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--fixed t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
+      "c-sports-modal__fixed-button t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
   >
     <CrossIcon size="med" />
-  </div>
+  </Flex>
 );
 
 export const SportsModalHeader = ({
