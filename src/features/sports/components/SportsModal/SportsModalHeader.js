@@ -12,26 +12,28 @@ type SharedProps = {
 };
 
 type HeaderProps = SharedProps & {
-  onBack?: () => void,
-  onClose?: () => void,
+  onBack?: Function,
+  onClose?: Function,
 };
 
 type ButtonProps = {
   className?: string,
-  onClick: ?Function,
+  onClick?: Function,
 };
 
-type ButtonContainerProps = {
-  className?: string,
-  children?: Node,
-};
+type ButtonContainerProps = ButtonProps & SharedProps;
 
 const noop = () => {};
 
-const ButtonContainer = ({ children, className }: ButtonContainerProps) => (
+const ButtonContainer = ({
+  children,
+  className,
+  onClick,
+}: ButtonContainerProps) => (
   <Flex.Item
+    onClick={onClick}
     className={classNames(
-      "c-sports-modal__dismiss-button-container t-color-grey-light-2",
+      "c-sports-modal__dismiss-button-container t-color-grey-light-2 t-border-r--circle",
       className
     )}
   >
@@ -40,10 +42,9 @@ const ButtonContainer = ({ children, className }: ButtonContainerProps) => (
 );
 
 const BackButton = ({ className, onClick }: ButtonProps) => (
-  <ButtonContainer>
+  <ButtonContainer onClick={onClick}>
     <div
       data-test="sports-modal-header-back-button"
-      onClick={onClick}
       className={classNames(
         "c-sports-modal__dismiss-button c-sports-modal__dismiss-button--back t-background-grey-dark-4 t-border-r--circle",
         className,
@@ -56,10 +57,9 @@ const BackButton = ({ className, onClick }: ButtonProps) => (
 );
 
 const CloseButton = ({ className, onClick }: ButtonProps) => (
-  <ButtonContainer>
+  <ButtonContainer onClick={onClick}>
     <div
       data-test="sports-modal-header-close-button"
-      onClick={onClick}
       className={classNames(
         "c-sports-modal__dismiss-button t-background-grey-dark-4 t-border-r--circle u-visibility--hidden@tablet",
         className,
