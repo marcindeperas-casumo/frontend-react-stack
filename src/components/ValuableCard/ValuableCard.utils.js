@@ -1,3 +1,4 @@
+import { DateTime } from "luxon";
 import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
@@ -47,7 +48,7 @@ export const coinValueToSpinType = coinValue => {
 };
 
 export const expiryInHours = expiryDate => {
-  return Math.floor(expiryDate.diffNow(["hours"]).hours);
+  return Math.floor(expiryDate.diff(DateTime.utc(), ["hours"]).hours);
 };
 
 export const getCardUrl = (valuableState, valuableType) => {
