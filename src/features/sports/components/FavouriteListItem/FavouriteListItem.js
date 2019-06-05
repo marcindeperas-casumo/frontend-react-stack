@@ -41,10 +41,7 @@ export default class FavouriteListItem extends PureComponent<Props> {
           boxShadow: isFavourite ? "" : "inset 0px 0px 0px 2px #C9D6D6",
         }} // TODO(CPO): replace with scss class
       >
-        <TickIcon
-          size="med"
-          className={classNames(!isFavourite && "u-hidden")}
-        />
+        <TickIcon className={classNames(!isFavourite && "u-hidden")} />
       </Flex.Item>
     ) : null;
   }

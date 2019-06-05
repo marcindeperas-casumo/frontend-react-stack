@@ -1,13 +1,14 @@
 // @flow
 import React from "react";
+import { repeat } from "ramda";
 import { storiesOf } from "@storybook/react";
-import { action } from "@storybook/addon-actions";
 import { ModalsArea } from "Features/sports/components/Modals";
+import { viewports } from "Storybook/viewports";
 import { SportsModal } from "./SportsModal";
 
 const stories = storiesOf("Sports/SportsModal", module);
 
-const content = (
+const shortContent = (
   <div>
     <img
       alt="Bob Ross"
@@ -22,44 +23,21 @@ const content = (
   </div>
 );
 
-stories.add("Default", () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header onClose={action("onClose")}>
-        This is the header
-      </SportsModal.Header>
+const longContent = repeat(shortContent, 4);
 
-      <SportsModal.Content>{content}</SportsModal.Content>
-
-      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-    </SportsModal>
-  </ModalsArea>
-));
-
-stories.add("With back", () => (
-  <ModalsArea>
-    <SportsModal>
-      <SportsModal.Header onClose={action("onClose")} onBack={action("onBack")}>
-        This is the header
-      </SportsModal.Header>
-
-      <SportsModal.Content>{content}</SportsModal.Content>
-
-      <SportsModal.Footer>This is the footer area</SportsModal.Footer>
-    </SportsModal>
-  </ModalsArea>
-));
-
-stories.add("Long content", () => (
+const render = content => () => (
   <ModalsArea>
     <SportsModal>
       <SportsModal.Header>This is the header</SportsModal.Header>
 
-      <SportsModal.Content>
-        {content} {content} {content} {content}
-      </SportsModal.Content>
+      <SportsModal.Content>{content}</SportsModal.Content>
 
       <SportsModal.Footer>This is the footer area</SportsModal.Footer>
     </SportsModal>
   </ModalsArea>
-));
+);
+
+stories.add("Short Content (mobile)", render(shortContent), viewports.mobile);
+stories.add("Short Content (desktop)", render(shortContent), viewports.desktop);
+stories.add("Long Content (mobile)", render(longContent), viewports.mobile);
+stories.add("Long Content (desktop)", render(longContent), viewports.desktop);

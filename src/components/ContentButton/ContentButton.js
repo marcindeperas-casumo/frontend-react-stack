@@ -23,7 +23,7 @@ export class ContentButton extends PureComponent<Props> {
     const url = ACTION_MAP[type];
 
     return url ? (
-      <div className="u-margin-bottom--xlg u-margin-horiz--lg">
+      <div className="u-margin-bottom--xlg u-margin-x--lg">
         <Button className="u-width--1/1" href={url}>
           {text}
         </Button>

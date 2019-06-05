@@ -10,7 +10,7 @@ import TrackClick from "Components/TrackClick";
 // The following style classes are coupled to GameRowSearch. If you're thinking of moving out TrackPlayIcon
 // and TrackMoreIcon, style might not be applicable for their usage
 const iconStyle =
-  "t-background-white t-color-grey-light-1 t-border-r--circle u-padding-vert--md";
+  "t-background-white t-color-grey-light-1 t-border-r--circle u-padding-y--md";
 
 type Props = {
   /** The Game object containing name, logo, logoBackhround and slug of the game to be rendered */
@@ -29,7 +29,7 @@ const TrackPlayIcon = ({ name, onLaunchGame }) => (
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
   >
     <Flex.Item onClick={onLaunchGame}>
-      <PlayIcon size="med" className={iconStyle} />
+      <PlayIcon className={iconStyle} />
     </Flex.Item>
   </TrackClick>
 );
@@ -41,7 +41,7 @@ const TrackMoreIcon = ({ name, slug }) => (
       data={{ [EVENT_PROPS.GAME_NAME]: name }}
     >
       <a href={`/en/play/${slug}`}>
-        <MoreIcon size="med" className={iconStyle} />
+        <MoreIcon className={iconStyle} />
       </a>
     </TrackClick>
   </Flex.Item>
@@ -65,7 +65,7 @@ export class GameRowSearch extends PureComponent<Props> {
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
             <Flex align="center">
-              <Flex.Item className="o-flex__item-fixed-size">
+              <Flex.Item className="o-flex__item--no-shrink">
                 <GameThumb
                   src={logoBackground}
                   alt={name}

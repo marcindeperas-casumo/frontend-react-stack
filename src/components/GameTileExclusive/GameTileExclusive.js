@@ -1,5 +1,4 @@
 import React, { PureComponent } from "react";
-import Flex from "@casumo/cmp-flex";
 import GameTile from "Components/GameTile/GameTile";
 
 class GameTileExclusive extends PureComponent {
@@ -11,13 +10,11 @@ class GameTileExclusive extends PureComponent {
 
   render() {
     return (
-      <Flex.Item className="o-flex__item-fixed-size c-exclusive-game">
-        <GameTile
-          {...this.props}
-          ratio="game-tile-exclusive"
-          imgixOpts={this.imgixOpts}
-        />
-      </Flex.Item>
+      <GameTile
+        {...this.props}
+        ratio="game-tile-exclusive"
+        imgixOpts={this.imgixOpts}
+      />
     );
   }
 }

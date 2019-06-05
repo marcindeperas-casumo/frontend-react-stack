@@ -48,12 +48,12 @@ class PromotionGallery extends PureComponent<Props> {
           backgroundColor && `t-background-${backgroundColor}`,
           titleColor && `t-color-${titleColor}`,
           createModifierClasses("u-margin-top", marginPerDevice),
-          "u-padding-horiz@mobile u-padding-horiz--xlg u-padding-top--lg u-padding-bottom--lg"
+          "u-padding-x@mobile u-padding-x--xlg u-padding-top--lg u-padding-bottom--lg"
         )}
       >
         <Flex
           justify="space-between"
-          className="u-padding-horiz--sm@mobile u-padding-horiz u-font-weight-bold u-padding-bottom--md
+          className="u-padding-x--sm@mobile u-padding-x u-font-weight-bold u-padding-bottom--md
           u-padding-bottom--lg@tablet u-padding-bottom--lg@desktop"
         >
           <Flex.Item className="u-padding-left@tablet">

@@ -8,7 +8,7 @@ import Text from "@casumo/cmp-text";
 export function ModalHeader(props: { title: ?string, hideModal: () => void }) {
   return (
     <Flex
-      className="u-padding-left--lg u-padding-vert--lg t-background-blue-light-1"
+      className="u-padding-left--lg u-padding-y--lg t-background-blue-light-1"
       direction="horizontal"
       align="center"
       spacing="md"
@@ -18,7 +18,6 @@ export function ModalHeader(props: { title: ?string, hideModal: () => void }) {
         {props.title || <ModalTitleSkeleton />}
       </Text>
       <CrossIcon
-        size="med"
         className="u-padding-right--lg t-color-blue u-cursor-pointer"
         onClick={props.hideModal}
       />

@@ -135,7 +135,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
-          className="u-padding-horiz--md"
+          className="u-padding-x--md"
           align="center"
           key={key}
           index={index}
@@ -148,7 +148,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
 
     return (
       <div
-        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding-x--md u-padding-y t-border-bottom t-color-grey-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}

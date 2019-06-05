@@ -1,5 +1,3 @@
-
-
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -30,15 +28,28 @@ export type GameRow_Game = {
   logoBackground: string,
   lobby: ?GameRow_Game_lobby,
   jackpotInfo: ?GameRow_Game_jackpotInfo,
-};
-
-/* @flow */
+};/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 //==============================================================
 // START Enums and Input Objects
 //==============================================================
+
+/**
+ * 
+ */
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+
+/**
+ * 
+ */
+export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+
+/**
+ * 
+ */
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
 //==============================================================
 // END Enums and Input Objects

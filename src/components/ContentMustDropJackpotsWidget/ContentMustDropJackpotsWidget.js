@@ -4,7 +4,7 @@ import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 export class ContentMustDropJackpotsWidget extends PureComponent<{}> {
   render() {
     return (
-      <div className="u-padding-horiz--lg u-margin-bottom--lg">
+      <div className="u-padding-x--lg u-margin-bottom--lg">
         <MustDropJackpotsWidget />
       </div>
     );
