@@ -54,8 +54,8 @@ type Props = {
   expiryDate: DateTime,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
-  /** An array of translated labels */
-  labels: PlayerValuableLabels,
+  /** translated label for the 'hours' unit */
+  hoursUnit: string,
 };
 
 export class ValuableCard extends PureComponent<Props> {
@@ -102,7 +102,7 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expiryDate } = this.props;
+    const { valuableState, expiryDate, hoursUnit } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
@@ -113,7 +113,9 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (hours > 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(`${hours}h`, className, () => <Time />);
+      return badgeOpts(hoursUnit.replace("{{hours}}", hours), className, () => (
+        <Time />
+      ));
     }
 
     return { ...badgeOpts, visible: false };

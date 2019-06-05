@@ -3,31 +3,15 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Jackpots_Game
+// GraphQL mutation operation: SetNewsletterSubscription
 // ====================================================
 
-export type Jackpots_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
+export type SetNewsletterSubscription = {
+  setNewsletterSubscription: ?boolean
 };
 
-export type Jackpots_Game_lobby = {
-  bets: ?Jackpots_Game_lobby_bets
-};
-
-export type Jackpots_Game_jackpotInfo = {
-  id: string,
-  formattedJackpotAmount: ?string,
-};
-
-export type Jackpots_Game = {
-  slug: string,
-  name: string,
-  logo: string,
-  logoBackground: string,
-  lobby: ?Jackpots_Game_lobby,
-  jackpotInfo: ?Jackpots_Game_jackpotInfo,
+export type SetNewsletterSubscriptionVariables = {
+  input?: ?ContactSettingsInput
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

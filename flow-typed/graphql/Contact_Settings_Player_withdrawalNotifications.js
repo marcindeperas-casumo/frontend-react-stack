@@ -3,31 +3,20 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: Jackpots_Game
+// GraphQL fragment: Contact_Settings_Player_withdrawalNotifications
 // ====================================================
 
-export type Jackpots_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
+export type Contact_Settings_Player_withdrawalNotifications_details_contactSettings = {
+  withdrawalNotifications: boolean
 };
 
-export type Jackpots_Game_lobby = {
-  bets: ?Jackpots_Game_lobby_bets
+export type Contact_Settings_Player_withdrawalNotifications_details = {
+  contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings
 };
 
-export type Jackpots_Game_jackpotInfo = {
-  id: string,
-  formattedJackpotAmount: ?string,
-};
-
-export type Jackpots_Game = {
-  slug: string,
-  name: string,
-  logo: string,
-  logoBackground: string,
-  lobby: ?Jackpots_Game_lobby,
-  jackpotInfo: ?Jackpots_Game_jackpotInfo,
+export type Contact_Settings_Player_withdrawalNotifications = {
+  __typename: "Player",
+  details: Contact_Settings_Player_withdrawalNotifications_details,
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
