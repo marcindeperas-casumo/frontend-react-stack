@@ -51,6 +51,12 @@ export const expiryInHours = expiryDate => {
   return Math.floor(expiryDate.diff(DateTime.utc(), ["hours"]).hours);
 };
 
+export const formatHoursRemainig = (remainingHours, unit) => {
+  const hoursToReplace = remainingHours < 1 ? "-1" : remainingHours.toString();
+
+  return unit.replace("{{hours}}", hoursToReplace);
+};
+
 export const getCardUrl = (valuableState, valuableType) => {
   if (valuableState === VALUABLE_STATES.LOCKED) {
     return VALUABLE_REDIRECT_URL[valuableState];

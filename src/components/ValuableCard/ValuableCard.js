@@ -18,6 +18,7 @@ import {
   VALUABLE_ICON,
   coinValueToSpinType,
   expiryInHours,
+  formatHoursRemainig,
 } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
@@ -111,9 +112,9 @@ export class ValuableCard extends PureComponent<Props> {
 
     const hours = expiryInHours(expiryDate);
 
-    if (hours > 0 && hours <= 24) {
+    if (hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(hoursUnit.replace("{{hours}}", hours), className, () => (
+      return badgeOpts(formatHoursRemainig(hours, hoursUnit), className, () => (
         <Time />
       ));
     }
