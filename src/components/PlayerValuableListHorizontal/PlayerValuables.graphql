@@ -5,7 +5,7 @@ query PlayerValuablesQuery {
   player {
     valuables {
       id
-      state
+      valuableState
       expirationTime
       valuableType
       title
