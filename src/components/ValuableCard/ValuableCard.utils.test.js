@@ -9,6 +9,7 @@ import {
   VALUABLE_LOCKED_URL,
   VALUABLE_SPINS_URL,
   VALUABLE_DEPOSIT_URL,
+  formatHoursRemainig,
 } from "./ValuableCard.utils";
 
 describe("ValuableCard.utils", () => {
@@ -61,6 +62,25 @@ describe("ValuableCard.utils", () => {
   test("should return spins url when state is not locked and type is spins", () => {
     expect(getCardUrl(VALUABLE_STATES.FRESH, VALUABLE_TYPES.SPINS)).toEqual(
       VALUABLE_SPINS_URL
+    );
+  });
+
+  test("shohuld format time when hours is > 0", () => {
+    const mockedHours = 2;
+    const mockedUnit = "{{hours}}foo";
+    const expectedFormat = mockedUnit.replace("{{hours}}", mockedHours);
+
+    expect(formatHoursRemainig(mockedHours, mockedUnit)).toEqual(
+      expectedFormat
+    );
+  });
+
+  test("should display -1 if time is less than 1", () => {
+    const mockedHours = 0;
+    const mockedUnit = "{{hours}}foo";
+
+    expect(formatHoursRemainig(mockedHours, mockedUnit)).toEqual(
+      mockedUnit.replace("{{hours}}", "-1")
     );
   });
 });

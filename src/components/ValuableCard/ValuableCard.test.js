@@ -173,25 +173,4 @@ describe("ValuableCard", () => {
 
     expect(onCardClick).toBeCalledTimes(1);
   });
-
-  test("should display hours with hours unit for bonus time remaining", () => {
-    const mockedHours = 2;
-    const expectedText = translationsMock.hoursUnit.replace(
-      "{{hours}}",
-      mockedHours
-    );
-    mockedExpiryDate = mockExpiryDate(mockedHours);
-    rendered = shallow(
-      <ValuableCard
-        {...mockValuable}
-        expiryDate={mockedExpiryDate}
-        valuableState={VALUABLE_STATES.FRESH}
-        hoursUnit={translationsMock.hoursUnit}
-      />
-    );
-
-    expect(rendered.find("ValuableCardStateBadge").prop("text")).toEqual(
-      expectedText
-    );
-  });
 });
