@@ -3,20 +3,20 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: PLAYER_SECTIONS_QUERY
+// GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
 // ====================================================
 
-export type PLAYER_SECTIONS_QUERY_player_loginHistory = {
+export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
   loginTime: any
 };
 
-export type PLAYER_SECTIONS_QUERY_player = {
+export type PLAYER_LOGIN_HISTORY_QUERY_player = {
   id: string,
-  loginHistory: Array<PLAYER_SECTIONS_QUERY_player_loginHistory>,
+  loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
 };
 
-export type PLAYER_SECTIONS_QUERY = {
-  player: PLAYER_SECTIONS_QUERY_player
+export type PLAYER_LOGIN_HISTORY_QUERY = {
+  player: PLAYER_LOGIN_HISTORY_QUERY_player
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

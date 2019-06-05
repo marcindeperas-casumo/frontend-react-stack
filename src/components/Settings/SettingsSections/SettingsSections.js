@@ -7,14 +7,14 @@ import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsH
 import "./SettingsSections.scss";
 
 type Props = {
-  playerQuery: PLAYER_SECTIONS_QUERY,
+  playerLoginHistory: PLAYER_LOGIN_HISTORY_QUERY,
   labels: PLAYER_SECTIONS_LABELS_QUERY,
 };
 
 export class SettingsSections extends PureComponent<Props> {
   render() {
     const {
-      playerQuery: {
+      playerLoginHistory: {
         player: {
           loginHistory: [lastLogin],
         },

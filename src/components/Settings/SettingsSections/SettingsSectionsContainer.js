@@ -5,12 +5,12 @@ import { adopt } from "react-adopt";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
-import PLAYER_SECTIONS_QUERY from "./PlayerSectionsQuery.graphql";
+import PLAYER_LOGIN_HISTORY_QUERY from "./PlayerLoginHistoryQuery.graphql";
 import PLAYER_SECTIONS_LABELS_QUERY from "./PlayerSectionsLabelsQuery.graphql";
 
 const Composed = adopt({
-  settings: ({ render }) => (
-    <Query query={PLAYER_SECTIONS_QUERY}>{render}</Query>
+  playerLoginHistory: ({ render }) => (
+    <Query query={PLAYER_LOGIN_HISTORY_QUERY}>{render}</Query>
   ),
   labels: ({ render }) => (
     <Query query={PLAYER_SECTIONS_LABELS_QUERY}>{render}</Query>
@@ -19,18 +19,23 @@ const Composed = adopt({
 
 export const withContainer = (Component: Function) => (
   <Composed>
-    {({ settings, labels }) => {
-      if (settings.loading || labels.loading) {
+    {({ playerLoginHistory, labels }) => {
+      if (playerLoginHistory.loading || labels.loading) {
         return <SettingsRowListSkeleton count={2} />;
       }
-      if (settings.error) {
-        return <ErrorMessage retry={() => settings.refetch()} />;
+      if (playerLoginHistory.error) {
+        return <ErrorMessage retry={() => playerLoginHistory.refetch()} />;
       }
       if (labels.error) {
         return <ErrorMessage retry={() => labels.refetch()} />;
       }
 
-      return <Component playerQuery={settings.data} labels={labels.data} />;
+      return (
+        <Component
+          playerLoginHistory={playerLoginHistory.data}
+          labels={labels.data}
+        />
+      );
     }}
   </Composed>
 );

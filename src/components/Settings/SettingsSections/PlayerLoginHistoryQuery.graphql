@@ -1,4 +1,4 @@
-query PLAYER_SECTIONS_QUERY {
+query PLAYER_LOGIN_HISTORY_QUERY {
   player {
     id
     loginHistory {
