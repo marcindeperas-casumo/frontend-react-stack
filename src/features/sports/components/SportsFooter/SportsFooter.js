@@ -3,6 +3,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { showTerms } from "Services/ShowTermsService";
 import { OpenModalMutation } from "Features/sports/state";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 export const SportsFooter = () => (
   <Flex
@@ -13,7 +14,7 @@ export const SportsFooter = () => (
   >
     <Flex.Item>
       <span className="u-cursor-pointer" onClick={showTerms}>
-        Sports T&amp;Cs
+        <DictionaryTerm termKey="footer.terms" />
       </span>
     </Flex.Item>
     <Flex.Item>
@@ -23,7 +24,7 @@ export const SportsFooter = () => (
             className="u-cursor-pointer"
             onClick={openChooseFavouritesModal}
           >
-            Glossary
+            <DictionaryTerm termKey="footer.glossary" />
           </span>
         )}
       </OpenModalMutation>
