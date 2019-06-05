@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "react-apollo/test-utils";
 import { text, number, boolean } from "@storybook/addon-knobs/react";
-import PluralisableDictionaryTerm from "./PluralisableDictionaryTerm";
+import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { mocks, WORKING_TERM, REPLACEMENT_TERM } from "./__mocks__/termMocks";
 
 const stories = storiesOf(
