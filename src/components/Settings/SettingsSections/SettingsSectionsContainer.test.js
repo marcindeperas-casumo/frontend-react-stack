@@ -12,12 +12,12 @@ import {
 
 let Component, SettingsSectionsContainer;
 describe("SettingsSections", () => {
-  describe("Player Settings", () => {
-    beforeEach(() => {
-      Component = props => <div />;
-      SettingsSectionsContainer = () => withContainer(Component);
-    });
+  beforeEach(() => {
+    Component = props => <div />;
+    SettingsSectionsContainer = () => withContainer(Component);
+  });
 
+  describe("Player Settings", () => {
     test("should render loader", async () => {
       const rendered = mount(
         <MockedProvider
@@ -55,18 +55,13 @@ describe("SettingsSections", () => {
       rendered.update();
       expect(
         JSON.parse(
-          JSON.stringify(rendered.find("Component").prop("playerQuery"))
+          JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
         )
       ).toStrictEqual(playerSectionsQueryMock.result.data);
     });
   });
 
   describe("Labels", () => {
-    beforeEach(() => {
-      Component = props => <div />;
-      SettingsSectionsContainer = () => withContainer(Component);
-    });
-
     test("should show error", async () => {
       const rendered = mount(
         <MockedProvider

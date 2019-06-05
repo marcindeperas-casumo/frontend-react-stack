@@ -1,9 +1,9 @@
-import PLAYER_SECTIONS_QUERY from "../PlayerSectionsQuery.graphql";
+import PLAYER_LOGIN_HISTORY_QUERY from "../PlayerLoginHistoryQuery.graphql";
 import PLAYER_SECTIONS_LABELS_QUERY from "../PlayerSectionsLabelsQuery.graphql";
 
 export const playerSectionsQueryMock = {
   request: {
-    query: PLAYER_SECTIONS_QUERY,
+    query: PLAYER_LOGIN_HISTORY_QUERY,
   },
   result: {
     data: {
