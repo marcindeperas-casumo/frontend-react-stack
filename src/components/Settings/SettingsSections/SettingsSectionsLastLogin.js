@@ -5,14 +5,12 @@ import Text from "@casumo/cmp-text";
 import Timer from "Components/Timer";
 import { ContentReplacer } from "Components/ContentReplacer";
 import { launchModal } from "Services/LaunchModalService";
-import { logout } from "Services/Logout";
 import { MODALS } from "Src/constants";
 
 type SettingsSectionsLastLoginType = {
   currentSessionMessageLabel: string,
   lastSessionMessageLabel: string,
   accountActivityLabel: string,
-  logoutLabel: string,
   time: number,
 };
 
@@ -20,7 +18,6 @@ export const SettingsSectionsLastLogin = ({
   currentSessionMessageLabel,
   lastSessionMessageLabel,
   accountActivityLabel,
-  logoutLabel,
   time,
 }: SettingsSectionsLastLoginType) => {
   const dateObject = DateTime.fromMillis(time);
@@ -58,14 +55,6 @@ export const SettingsSectionsLastLogin = ({
           {accountActivityLabel}
         </a>
       </Text>
-      <a
-        className="u-padding--xlg u-margin-top--md t-background-white u-cursor-pointer u-display--block"
-        onClick={logout}
-      >
-        <Text tag="p" className="t-color-red u-font-weight-bold">
-          {logoutLabel}
-        </Text>
-      </a>
     </div>
   );
 };

@@ -2,9 +2,11 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import { SettingsSectionsLastLogin as LastLoginBar } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
+import { logout } from "Services/Logout";
 
 type Props = {
   playerLoginHistory: PLAYER_LOGIN_HISTORY_QUERY,
@@ -27,7 +29,7 @@ export class SettingsSections extends PureComponent<Props> {
         notificationsTitle,
         notificationsDescription,
         accountActivity,
-        logout,
+        logout: logoutLabel,
       },
     } = this.props;
 
@@ -61,6 +63,17 @@ export class SettingsSections extends PureComponent<Props> {
       </a>
     );
 
+    const LogoutButton = () => (
+      <a
+        className="u-padding--xlg u-margin-top--md u-text-align-center t-background-white u-cursor-pointer u-display--block"
+        onClick={logout}
+      >
+        <Text tag="p" className="t-color-red u-font-weight-bold">
+          {logoutLabel}
+        </Text>
+      </a>
+    );
+
     return (
       <Flex
         justify="space-between"
@@ -71,17 +84,17 @@ export class SettingsSections extends PureComponent<Props> {
           <AccountDetailsLink />
           <NotificationsLink />
         </Flex.Item>
-        {lastLogin && (
-          <Flex.Item>
+        <Flex.Item>
+          {lastLogin && (
             <LastLoginBar
               currentSessionMessageLabel={currentSessionMessage}
               time={lastLogin.loginTime}
               lastSessionMessageLabel={lastSessionMessage}
               accountActivityLabel={accountActivity}
-              logoutLabel={logout}
             />
-          </Flex.Item>
-        )}
+          )}
+          <LogoutButton />
+        </Flex.Item>
       </Flex>
     );
   }
