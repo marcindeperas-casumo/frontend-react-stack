@@ -35,7 +35,6 @@ const renderResults = ({ results, type }) => {
             <Flex.Item key={i}>
               <Badge
                 size="sm"
-                key={i}
                 tag="div"
                 bgColor={color}
                 txtColor={getTextColor(color)}
