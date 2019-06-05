@@ -92,13 +92,13 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
   return (
     <Flex
       align="center"
-      className="c-sports-top-bar u-padding-horiz--lg t-color-grey-dark-3"
+      className="c-sports-top-bar u-padding-x--lg t-color-grey-dark-3"
     >
       <Flex.Block>
         <Text
           tag="h1"
           size="lg"
-          className="u-padding-vert--2xlg"
+          className="u-padding-y--3xlg"
           data-test="sports-top-bar-title"
         >
           <DictionaryTerm termKey="desktop.tab.home" />
@@ -122,7 +122,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
               isActive={isSearchVisible}
               className="c-sports-top-bar--search"
             >
-              <SearchIcon size="med" />
+              <SearchIcon />
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>

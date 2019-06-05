@@ -29,7 +29,7 @@ export default class LiveCasinoDetailPage extends PureComponent<Props> {
 
   render() {
     return (
-      <div className="u-padding-horiz--md u-padding-bottom--md">
+      <div className="u-padding-x--md u-padding-bottom--md">
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
         >

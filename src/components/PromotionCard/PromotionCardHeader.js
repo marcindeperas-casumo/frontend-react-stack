@@ -6,7 +6,7 @@ import ImageLazy from "Components/Image/ImageLazy";
 const PromotionCardHeader = ({ badge, dates }) => {
   return (
     <Flex
-      className="u-padding-horiz--lg u-line-height--1"
+      className="u-padding-x--lg u-line-height--1"
       justify="space-between"
       align="end"
     >
@@ -14,12 +14,12 @@ const PromotionCardHeader = ({ badge, dates }) => {
         <Text
           tag="strong"
           className="t-color-red u-text-transform-uppercase"
-          size="xs"
+          size="2xs"
         >
           {dates}
         </Text>
       </Flex.Item>
-      <Flex.Item className="o-flex__item-fixed-size">
+      <Flex.Item className="o-flex__item--no-shrink">
         <ImageLazy
           className="u-display--block"
           width="40px"

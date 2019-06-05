@@ -32,7 +32,7 @@ export class CuratedCardFooter extends PureComponent<Props> {
     return (
       <Text
         className="t-color-white u-margin-bottom u-opacity-75"
-        size="sm"
+        size="xs"
         tag="div"
         dangerouslySetInnerHTML={stringToHTML(promotions_legal_text)}
       />
@@ -49,11 +49,15 @@ export class CuratedCardFooter extends PureComponent<Props> {
 
     return (
       <Flex align="center">
-        <Flex.Item className="o-flex__item-fixed-size">
+        <Flex.Item className="o-flex__item--no-shrink">
           <GameThumb src={gameData.logoBackground} mark={gameData.logo} />
         </Flex.Item>
         <Flex.Block>
-          <Text tag="span" className="u-font-weight-bold t-color-white">
+          <Text
+            tag="span"
+            size="sm"
+            className="u-font-weight-bold t-color-white"
+          >
             {decodeString(gameData.name)}
           </Text>
         </Flex.Block>
@@ -67,9 +71,9 @@ export class CuratedCardFooter extends PureComponent<Props> {
                 id="gtm-curated-play"
                 onClick={onLaunchGame}
                 variant="variant-1"
-                className="u-pointer-events-initial u-padding-horiz--xlg@phablet u-padding-horiz--2xlg@tablet u-padding-horiz--2xlg@desktop"
+                className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
               >
-                <PlayIcon size="sml" />
+                <PlayIcon size="sm" />
                 <span className="u-margin-left">{primary_action_text}</span>
               </Button>
             </TrackClick>
@@ -79,7 +83,7 @@ export class CuratedCardFooter extends PureComponent<Props> {
               variant="outline"
               className="u-pointer-events-initial u-display--none@mobile u-padding u-margin-left--lg"
             >
-              <MoreIcon size="med" />
+              <MoreIcon />
             </Button>
           </Flex>
         </Flex.Item>

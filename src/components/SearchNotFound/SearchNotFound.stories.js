@@ -24,30 +24,24 @@ const state = {
 
 stories.add("Default (Connected)", () => (
   <MockStore state={state}>
-    <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-      <SearchNotFoundContainer contentField="no_results_continue_playing" />
-    </div>
+    <SearchNotFoundContainer contentField="no_results_continue_playing" />
   </MockStore>
 ));
 
 stories.add("Default - Continue Playing", () => (
-  <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-    <SearchNotFound
-      image={noResultImage}
-      title="No results found"
-      content="Find another game or continue playing <br /> your last played"
-      startFetch={() => {}}
-    />
-  </div>
+  <SearchNotFound
+    image={noResultImage}
+    title="No results found"
+    content="Find another game or continue playing <br /> your last played"
+    startFetch={() => {}}
+  />
 ));
 
 stories.add("Default - Popular Games", () => (
-  <div style={{ maxWidth: 360, margin: "0 auto", overflow: "hidden" }}>
-    <SearchNotFound
-      image={noResultImage}
-      title="No results found"
-      content="Find another game or try something popular"
-      startFetch={() => {}}
-    />
-  </div>
+  <SearchNotFound
+    image={noResultImage}
+    title="No results found"
+    content="Find another game or try something popular"
+    startFetch={() => {}}
+  />
 ));

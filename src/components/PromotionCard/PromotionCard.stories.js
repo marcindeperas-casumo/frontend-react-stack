@@ -23,19 +23,23 @@ const promotionFields = pick(
 
 if (isNotChromatic) {
   stories.add("Default (Connected)", () => (
-    <MockStore state={state}>
-      <PromotionCardConnected slug="promotions.boosted-reelraces" />
-    </MockStore>
+    <div className="c-promotion-card">
+      <MockStore state={state}>
+        <PromotionCardConnected slug="promotions.boosted-reelraces" />
+      </MockStore>
+    </div>
   ));
 }
 
 stories.add("Default (Presentational)", () => (
-  <PromotionCard
-    badge={promotionFields.campaign_badge}
-    dates={promotionFields.dates}
-    image={promotionFields.image}
-    link={promotionFields.link}
-    title={promotionFields.title}
-    isFetched={true}
-  />
+  <div className="c-promotion-card">
+    <PromotionCard
+      badge={promotionFields.campaign_badge}
+      dates={promotionFields.dates}
+      image={promotionFields.image}
+      link={promotionFields.link}
+      title={promotionFields.title}
+      isFetched={true}
+    />
+  </div>
 ));

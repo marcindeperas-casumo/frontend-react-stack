@@ -133,7 +133,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
     if (!this.isRowLoaded({ index })) {
       return (
         <Flex
-          className="u-padding-horiz--md"
+          className="u-padding-x--md"
           align="center"
           key={key}
           index={index}
@@ -147,7 +147,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
     if (has("sectionTitle", this.props.games[index])) {
       return (
         <div
-          className="u-padding-horiz--md o-flex"
+          className="u-padding-x--md o-flex"
           key={key}
           index={index}
           style={style}
@@ -159,7 +159,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
 
     return (
       <div
-        className="u-padding-horiz--md u-padding-vert t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding-x--md u-padding-y t-border-bottom t-color-grey-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}

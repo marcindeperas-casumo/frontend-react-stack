@@ -10,8 +10,8 @@ import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 
 const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 export type Props = {
@@ -25,6 +25,15 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   render() {
     const { ids, title, seeMore } = this.props;
     const idsByColumns = generateColumns(ids);
+    const scrollableChildren = [
+      <MustDropJackpotsWidget key={"must-drop-jackpots-widget"} />,
+      ...idsByColumns.map((columnIds, i) => (
+        <JackpotsListTile
+          ids={columnIds}
+          key={`must-drop-jackpots-tile-${i}`}
+        />
+      )),
+    ];
 
     return (
       <div className="u-padding-top--xlg">
@@ -34,22 +43,18 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           </Flex.Item>
           <Flex.Item className="u-padding-right--md">
             <a href="/games/must-drop-jackpots">
-              <Text tag="h3" className="t-color-blue">
+              <Text size="xs" tag="h3" className="t-color-blue">
                 {seeMore}
               </Text>
             </a>
           </Flex.Item>
         </Flex>
-        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing="md">
-          <div className="c-jackpots-list-tile o-flex o-flex__item o-flex__item-fixed-size">
-            <MustDropJackpotsWidget />
-          </div>
-          {idsByColumns.map((columnIds, i) => (
-            <JackpotsListTile
-              ids={columnIds}
-              key={`must-drop-jackpots-tile-${i}`}
-            />
-          ))}
+        <Scrollable
+          itemClassName="c-jackpots-list-tile"
+          padding={PADDING_PER_DEVICE}
+          itemSpacing="md"
+        >
+          {scrollableChildren}
         </Scrollable>
       </div>
     );

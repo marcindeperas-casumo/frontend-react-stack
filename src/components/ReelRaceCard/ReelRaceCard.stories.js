@@ -75,12 +75,14 @@ stories.add("Default", () => {
   };
 
   return (
-    <ReelRaceCard
-      {...props}
-      promoted={promoted}
-      opted={opted}
-      color={color}
-      {...timeOptions[time]}
-    />
+    <div className="c-reel-race-card">
+      <ReelRaceCard
+        {...props}
+        promoted={promoted}
+        opted={opted}
+        color={color}
+        {...timeOptions[time]}
+      />
+    </div>
   );
 });

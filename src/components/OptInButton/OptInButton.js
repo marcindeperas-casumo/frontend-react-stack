@@ -50,10 +50,10 @@ class OptInButton extends PureComponent<Props> {
         <TrackClick eventName={disabled.eventName} data={disabled.data}>
           <Button
             variant="variant-1"
-            className="u-padding-vert--md u-padding-horiz--xlg"
+            className="u-padding-y--md u-padding-x--xlg"
             disabled
           >
-            <TickIcon className={this.props.className} />
+            <TickIcon size="sm" className={this.props.className} />
             <Text tag="span" className="u-margin-left">
               {disabled.label}
             </Text>
@@ -66,7 +66,7 @@ class OptInButton extends PureComponent<Props> {
       <TrackClick eventName={active.eventName} data={active.data}>
         <Button
           variant="variant-1"
-          className="u-padding-vert--md u-padding-horiz--xlg"
+          className="u-padding-y--md u-padding-x--xlg"
           onClick={active.onClick || noop}
         >
           <Text tag="span">{active.label}</Text>
