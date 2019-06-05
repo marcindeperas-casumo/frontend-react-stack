@@ -31,7 +31,7 @@ export const SettingsSectionsLastLogin = ({
     });
 
   return (
-    <div className="c-bottom-bar u-text-align-center u-line-height--15">
+    <div className="u-text-align-center u-line-height--15">
       <div>
         {currentSessionMessageLabel}&nbsp;
         <Timer

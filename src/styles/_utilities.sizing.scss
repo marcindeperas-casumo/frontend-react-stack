@@ -17,3 +17,9 @@
 .u-height--screen {
   height: 100vh;
 }
+
+.u-height--screen-minus-navbar {
+  height: calc(
+    100vh - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)
+  );
+}
