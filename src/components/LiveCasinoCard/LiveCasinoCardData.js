@@ -32,7 +32,7 @@ const renderResults = ({ results, type }) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
-            <Flex.Item>
+            <Flex.Item key={i}>
               <Badge
                 size="sm"
                 key={i}
