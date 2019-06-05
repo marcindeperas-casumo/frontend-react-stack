@@ -5,7 +5,7 @@ import { BettingGlossary } from "./BettingGlossary";
 
 describe("<BettingGlossary />", () => {
   test("renders correctly", () => {
-    const rendered = shallow(<BettingGlossary />);
+    const rendered = shallow(<BettingGlossary onClose={jest.fn()} />);
 
     expect(rendered.find(BettingGlossary)).toHaveLength(0);
   });

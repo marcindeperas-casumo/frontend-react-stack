@@ -4,34 +4,54 @@ import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import { range } from "ramda";
 import { SportsModal } from "Features/sports/components/SportsModal";
+import "./BettingGlossary.scss";
 
-const linkTo = term => () => {
-  const entry = window.document.querySelector(`[data-glossary-term="${term}"]`);
-  const modalContent = window.document.querySelector(".c-modal__content");
+const DATA_ATTR = "data-glossary-term";
 
-  modalContent.scrollTo(0, entry.offsetTop);
+const scrollToTerm = term => {
+  const entry = window.document.querySelector(`[${DATA_ATTR}="${term}"]`);
+
+  if (entry) {
+    window.document
+      .querySelector(".c-modal__content")
+      .scrollTo(0, entry.offsetTop);
+  }
+};
+
+const handleLinkedEntries = event => {
+  const termNode = event.currentTarget.querySelector(`[${DATA_ATTR}]`);
+
+  if (termNode) {
+    const term = termNode.getAttribute(DATA_ATTR);
+    scrollToTerm(term);
+  }
 };
 
 const content = range(0, 50).map(i => [
   `Glossary Entry ${i}`,
-  <p data-glossary-term={`glossary.term${i}`}>
+  <p data-glossary-term={`glossary-term${i}`}>
     <span
-      onClick={linkTo(`glossary.term${i + 10}`)}
+      data-glossary-term={`glossary-term${i + 10}`}
       className="u-display--block u-border-bottom u-cursor-pointer"
     >
       go to entry {i + 10}
     </span>
     A bet market that is popular in football, where one team receives a “virtual
     head start”, leading the game by an amount of goals before the game starts.
-    The team who scores the most with the handicap applied is the winner. See
-    ‘handicap’.
+    The team who scores the most with the handicap applied is the winner.{" "}
+    <strong>
+      <em>See ‘handicap’.</em>
+    </strong>
   </p>,
 ]);
 
 const repeatedContent = [...content, ...content, ...content];
 
 const BettingGlossaryEntry = ({ term, definition }) => (
-  <Flex.Item className="u-padding-vert--md">
+  <Flex.Item
+    className="c-betting-glossary-entry u-padding-vert--md u-pointer-events-none"
+    onClick={handleLinkedEntries}
+  >
     <span>
       <strong>{term}: </strong>
       {definition}
