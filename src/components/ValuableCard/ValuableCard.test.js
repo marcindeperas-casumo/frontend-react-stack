@@ -2,6 +2,7 @@ import React from "react";
 import { shallow } from "enzyme";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import translationsMock from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
 import { ValuableCard } from "./ValuableCard";
 import {
   mockValuable as mockData,
@@ -25,6 +26,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         onCardClick={onCardClick}
+        hoursUnit={translationsMock.hoursUnit}
       />
     );
   });
@@ -68,7 +70,11 @@ describe("ValuableCard", () => {
     mockValuable = mockData(VALUABLE_TYPES.DEPOSIT);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        hoursUnit={translationsMock.hoursUnit}
+      />
     );
 
     expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
@@ -80,7 +86,11 @@ describe("ValuableCard", () => {
     const expectedGameDetails = mockValuable.game;
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        hoursUnit={translationsMock.hoursUnit}
+      />
     );
 
     expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
@@ -122,6 +132,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.LOCKED}
+        hoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -136,6 +147,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
+        hoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -149,6 +161,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
+        hoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -159,5 +172,26 @@ describe("ValuableCard", () => {
     rendered.find('[data-test="valuable-card"]').simulate("click");
 
     expect(onCardClick).toBeCalledTimes(1);
+  });
+
+  test("should display hours with hours unit for bonus time remaining", () => {
+    const mockedHours = 2;
+    const expectedText = translationsMock.hoursUnit.replace(
+      "{{hours}}",
+      mockedHours
+    );
+    mockedExpiryDate = mockExpiryDate(mockedHours);
+    rendered = shallow(
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        valuableState={VALUABLE_STATES.FRESH}
+        hoursUnit={translationsMock.hoursUnit}
+      />
+    );
+
+    expect(rendered.find("ValuableCardStateBadge").prop("text")).toEqual(
+      expectedText
+    );
   });
 });
