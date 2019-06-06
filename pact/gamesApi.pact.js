@@ -22,7 +22,7 @@ afterAll(done => {
 });
 
 describe("casino-games", () => {
-  const countBody = 123;
+  const countBody = 4;
 
   beforeAll(() => {
     return provider.addInteraction({
