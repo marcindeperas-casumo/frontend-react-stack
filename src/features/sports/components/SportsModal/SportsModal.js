@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import type { Node } from "react";
 import classNames from "classnames";
+import type { Node } from "react";
 import { SportsModalHeader } from "Features/sports/components/SportsModal/SportsModalHeader";
 import { Modal } from "Components/Modal";
 

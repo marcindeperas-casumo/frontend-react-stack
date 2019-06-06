@@ -17,31 +17,30 @@ export const mocks = [
   },
   {
     request: {
+      query: DICTIONARY_TERM_QUERY,
+      variables: {
+        key: "glossary.aka",
+      },
+    },
+    result: {
+      data: {
+        dictionaryTerm: "Also known as",
+      },
+    },
+  },
+  {
+    request: {
       query: GLOSSARY_QUERY,
     },
     result: {
       data: {
         glossary: [
           {
-            id: "full_match_time_odds",
-            term: "Full-time/Match Odds",
-            aka: "",
-            definition: `
-                A popular bet market where you predict the outcome at the end of
-                the match:
-                <ul>
-                  <li>Home team wins (or the team that is listed first)</li>
-                  <li>Draw - match ends in a tie</li>
-                  <li>Away team wins (or the team that is listed second)</li>
-                </ul>
-              `,
-          },
-          {
             id: "accumulator",
             term: "Accumulator",
             aka: "",
             definition: `
-              <span data-glossary-term="combination_bet">
+              <span data-glossary-link="combination_bet">
                 See 'combination bet'.
               </span>
             `,
@@ -51,7 +50,7 @@ export const mocks = [
             term: "American Odds",
             aka: "Moneyline",
             definition: `
-              <span data-glossary-term="odds_format">See 'odds format'.</span>
+              <span data-glossary-link="odds_format">See 'odds format'.</span>
             `,
           },
           {
@@ -85,6 +84,34 @@ export const mocks = [
             aka: "Combi/Multiple/Accumulator/Acca",
             definition:
               "In a combination bet, at least two selections are combined. The overall odds result from the multiplication of the odds of the individual selections. All outcomes must be successful for you to win the bet. A combination bet on 2 selections is called a double, while 3 selections are called a treble.",
+          },
+          {
+            id: "full_match_time_odds",
+            term: "Full-time/Match Odds",
+            aka: "",
+            definition: `
+                A popular bet market where you predict the outcome at the end of
+                the match:
+                <ul>
+                  <li>Home team wins (or the team that is listed first)</li>
+                  <li>Draw - match ends in a tie</li>
+                  <li>Away team wins (or the team that is listed second)</li>
+                </ul>
+              `,
+          },
+          {
+            id: "odds_format",
+            term: "Odds Format",
+            aka: "",
+            definition: `
+                Odds are numerical depiction of probability of a particular outcome. If we use a coin toss as an example,
+                there’s a 50% chance of it being either heads or tails and we can show that in a few different ways.
+                <ul>
+                  <li>Decimal (European): 2.0</li>
+                  <li>Fractional (UK): 1/1, or even money</li>
+                  <li>American (US):  +100 <em>(<strong>+</strong>indicates the amount that would be won for every 100 bet placed. - indicates how much must be bet to win 100.)</em></li>
+                </ul>
+              `,
           },
         ],
       },

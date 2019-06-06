@@ -2,32 +2,55 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
-import { range } from "ramda";
 import gql from "graphql-tag";
+import { pipe, replace } from "ramda";
 import { Query } from "react-apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import "./BettingGlossary.scss";
 import DangerousHtml from "Components/DangerousHtml";
 
-const DATA_ATTR = "data-glossary-term";
+const stripPx = pipe(
+  replace("px", ""),
+  parseInt
+);
+
+const dataAttr = {
+  term: "data-glossary-term",
+  link: "data-glossary-link",
+};
+
+const highlightedClass = "c-betting-glossary-entry--highlight";
 
 const scrollToTerm = term => {
-  const entry = window.document.querySelector(`[${DATA_ATTR}="${term}"]`);
+  const linkedTerm = window.document.querySelector(
+    `[${dataAttr.term}="${term}"]`
+  );
 
-  if (entry) {
+  if (linkedTerm) {
+    const highlighted =
+      window.document.querySelectorAll(`.${highlightedClass}`) || [];
+
+    Array.from(highlighted).map(x => x.classList.remove(highlightedClass));
+
+    linkedTerm.classList.add(highlightedClass);
+
+    const topBarOffset = document.rootElement
+      ? document.rootElement.style.getProperty("--shell-offset-top")
+      : "0";
+
     window.document
       .querySelector(".c-modal__content")
-      .scrollTo(0, entry.offsetTop);
+      .scrollTo(0, linkedTerm.offsetTop + stripPx(topBarOffset)); // add header offset
   }
 };
 
 const handleLinkedEntries = event => {
-  const termNode = event.currentTarget.querySelector(`[${DATA_ATTR}]`);
+  const linkNode = event.currentTarget.querySelector(`[${dataAttr.link}]`);
 
-  if (termNode) {
-    const term = termNode.getAttribute(DATA_ATTR);
-    scrollToTerm(term);
+  if (linkNode) {
+    const linkTerm = linkNode.getAttribute(dataAttr.link);
+    scrollToTerm(linkTerm);
   }
 };
 
@@ -36,6 +59,7 @@ class GlossaryTypedQuery extends Query<GlossaryQuery, null> {}
 export const GLOSSARY_QUERY = gql`
   query GlossaryQuery {
     glossary {
+      id
       term
       aka
       definition
@@ -43,15 +67,23 @@ export const GLOSSARY_QUERY = gql`
   }
 `;
 
-const BettingGlossaryEntry = ({ term, definition }) => (
+const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
   <Flex.Item
     className="c-betting-glossary-entry u-padding-vert--md u-pointer-events-none"
     onClick={handleLinkedEntries}
+    data-glossary-term={id}
   >
+    <strong>{term}:</strong>
     <span>
-      <strong>{term}: </strong>
-      <DangerousHtml html={definition} />
+      {aka && (
+        <em>
+          {" "}
+          <DictionaryTerm termKey="glossary.aka" /> {aka}
+          <br />
+        </em>
+      )}
     </span>
+    <DangerousHtml html={definition} />
   </Flex.Item>
 );
 
@@ -63,12 +95,12 @@ export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
       onClose={onClose}
-      className="t-background-blue-light-1 t-background-blue"
+      className="t-background-blue-light-1 t-background-blue u-padding-horiz--none"
       dismissButtonClassName="t-color-blue"
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
-    <SportsModal.Content>
+    <SportsModal.Content className="u-padding--none">
       <GlossaryTypedQuery query={GLOSSARY_QUERY}>
         {({ data, loading }) => {
           if (loading) {

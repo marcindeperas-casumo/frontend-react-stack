@@ -1,5 +1,18 @@
+// stylelint-disable-next-line xi/selector-pattern,
+.c-betting-glossary-entry {
+  line-height: 1.3125rem;
+}
+
+.c-betting-glossary-entry ul {
+  padding: 0.5rem 1.5rem;
+}
+
+.c-betting-glossary-entry--highlight {
+  background: cudl-palette(grey, light-2);
+}
+
 // stylelint-disable-next-line xi/selector-pattern, selector-no-qualifying-type
-.c-betting-glossary-entry span[data-glossary-term] {
+.c-betting-glossary-entry span[data-glossary-link] {
   color: cudl-palette(blue, dark-2);
   cursor: pointer;
   // only allow spans with a linked entry to be clickable
