@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import { range } from "ramda";
 import { SportsModal } from "Features/sports/components/SportsModal";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import "./BettingGlossary.scss";
 
 const DATA_ATTR = "data-glossary-term";
@@ -74,7 +75,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
       className="t-background-blue-light-1 t-background-blue"
       dismissButtonClassName="t-color-blue"
     >
-      Betting Glossary
+      <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
     <SportsModal.Content>
       <List items={repeatedContent} render={renderGlossaryEntry} />
