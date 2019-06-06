@@ -1,4 +1,4 @@
-// stylelint-disable-next-line xi/selector-pattern,
+// stylelint-disable xi/selector-pattern,
 .c-betting-glossary-entry {
   line-height: 1.3125rem;
 }
@@ -9,12 +9,25 @@
 
 .c-betting-glossary-entry--highlight {
   background: cudl-palette(grey, light-2);
+
+  @include cudl-breakpoint(max tablet) {
+    left: 50%;
+    margin: -(map-get($cudl-spacer-sizes, md)) -50vw;
+    padding: map-get($cudl-spacer-sizes, lg);
+    position: relative;
+    right: 50%;
+    width: 100vw;
+  }
+
+  @include cudl-breakpoint(tablet) {
+    margin: -(map-get($cudl-spacer-sizes, md));
+    padding: map-get($cudl-spacer-sizes, md);
+  }
 }
 
-// stylelint-disable-next-line xi/selector-pattern, selector-no-qualifying-type
-.c-betting-glossary-entry span[data-glossary-link] {
+.c-betting-glossary-entry [data-glossary-link] {
   color: cudl-palette(blue, dark-2);
   cursor: pointer;
-  // only allow spans with a linked entry to be clickable
   pointer-events: initial;
 }
+// stylelint-enable xi/selector-pattern

@@ -1,16 +1,16 @@
-//@flow
+// @flow
 import {
-  either,
-  isEmpty,
-  isNil,
-  splitEvery,
-  join,
+  always,
   compose,
+  either,
   filter,
   identity,
+  isEmpty,
+  isNil,
+  join,
   pathOr,
+  splitEvery,
 } from "ramda";
-// @flow
 import type { Bets } from "Types/liveCasinoLobby";
 
 export const noop = () => {};
@@ -223,3 +223,9 @@ export const interpolate = (
   target.replace(INTERPOLATION_REGEX, (match, param) =>
     pathOr(match, [param], replacements)
   );
+
+export const getCssCustomProperty = pathOr(
+  always(undefined),
+  ["documentElement", "style", "getProperty"],
+  document
+);

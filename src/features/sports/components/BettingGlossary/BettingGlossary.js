@@ -3,17 +3,12 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
-import { pipe, replace } from "ramda";
 import { Query } from "react-apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import "./BettingGlossary.scss";
 import DangerousHtml from "Components/DangerousHtml";
-
-const stripPx = pipe(
-  replace("px", ""),
-  parseInt
-);
+import { getCssCustomProperty } from "Utils/utils";
 
 const dataAttr = {
   term: "data-glossary-term",
@@ -35,13 +30,14 @@ const scrollToTerm = term => {
 
     linkedTerm.classList.add(highlightedClass);
 
-    const topBarOffset = document.rootElement
-      ? document.rootElement.style.getProperty("--shell-offset-top")
-      : "0";
+    const topBarOffset = parseInt(
+      getCssCustomProperty("--shell-offset-top") || "75px",
+      10
+    );
 
     window.document
       .querySelector(".c-modal__content")
-      .scrollTo(0, linkedTerm.offsetTop + stripPx(topBarOffset)); // add header offset
+      .scrollTo(0, linkedTerm.offsetTop - topBarOffset);
   }
 };
 
@@ -73,11 +69,10 @@ const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
     onClick={handleLinkedEntries}
     data-glossary-term={id}
   >
-    <strong>{term}:</strong>
+    <strong>{term}: </strong>
     <span>
       {aka && (
         <em>
-          {" "}
           <DictionaryTerm termKey="glossary.aka" /> {aka}
           <br />
         </em>
@@ -100,7 +95,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
-    <SportsModal.Content className="u-padding--none">
+    <SportsModal.Content>
       <GlossaryTypedQuery query={GLOSSARY_QUERY}>
         {({ data, loading }) => {
           if (loading) {
