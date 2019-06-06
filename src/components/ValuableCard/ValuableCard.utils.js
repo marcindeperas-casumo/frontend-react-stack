@@ -52,9 +52,7 @@ export const expiryInHours = expiryDate => {
 };
 
 export const formatHoursRemainig = (remainingHours, unit) => {
-  const hoursToReplace = remainingHours < 1 ? "-1" : remainingHours.toString();
-
-  return unit.replace("{{hours}}", hoursToReplace);
+  return unit.replace("{{hours}}", remainingHours);
 };
 
 export const getCardUrl = (valuableState, valuableType) => {
