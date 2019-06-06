@@ -2019,6 +2019,28 @@
     unixify "1.0.0"
     url-join "^4.0.0"
 
+"@pact-foundation/pact-node@^8.4.1":
+  version "8.4.1"
+  resolved "https://registry.yarnpkg.com/@pact-foundation/pact-node/-/pact-node-8.4.1.tgz#be22122935b74e173cfbf9822e7c45857bdc25f5"
+  integrity sha512-Eri8K/PvHe+Abs5gWtJsmuXClUMXXgPPdcoAoOfSx8VWglY6w22vQ8kC0j8fxQMqgLlP6kn/k0hhW/rBtGUcaA==
+  dependencies:
+    "@types/q" "1.0.7"
+    bunyan "1.8.12"
+    bunyan-prettystream "0.1.3"
+    caporal "1.2.0"
+    chalk "2.3.1"
+    check-types "7.3.0"
+    decompress "4.2.0"
+    mkdirp "0.5.1"
+    q "1.5.1"
+    request "2.87.0"
+    rimraf "2.6.2"
+    sumchecker "^2.0.2"
+    tar "4.4.2"
+    underscore "1.8.3"
+    unixify "1.0.0"
+    url-join "^4.0.0"
+
 "@pact-foundation/pact@^8.2.4":
   version "8.2.4"
   resolved "https://registry.yarnpkg.com/@pact-foundation/pact/-/pact-8.2.4.tgz#42a814224c5ef179e5e2345a2cf856dcdc937757"

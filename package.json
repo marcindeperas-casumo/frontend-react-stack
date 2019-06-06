@@ -145,6 +145,7 @@
     "@babel/preset-env": "^7.4.4",
     "@hot-loader/react-dom": "^16.8.6",
     "@pact-foundation/pact": "^8.2.4",
+    "@pact-foundation/pact-node": "^8.4.1",
     "@storybook/addon-actions": "^5.0.11",
     "@storybook/addon-backgrounds": "^5.0.11",
     "@storybook/addon-info": "^5.0.11",
