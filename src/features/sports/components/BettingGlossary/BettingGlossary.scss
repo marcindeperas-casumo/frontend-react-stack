@@ -1,5 +1,7 @@
 // stylelint-disable-next-line xi/selector-pattern, selector-no-qualifying-type
 .c-betting-glossary-entry span[data-glossary-term] {
+  color: cudl-palette(blue, dark-2);
+  cursor: pointer;
   // only allow spans with a linked entry to be clickable
   pointer-events: initial;
 }

@@ -3,9 +3,12 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import { range } from "ramda";
+import gql from "graphql-tag";
+import { Query } from "react-apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import "./BettingGlossary.scss";
+import DangerousHtml from "Components/DangerousHtml";
 
 const DATA_ATTR = "data-glossary-term";
 
@@ -28,25 +31,17 @@ const handleLinkedEntries = event => {
   }
 };
 
-const content = range(0, 50).map(i => [
-  `Glossary Entry ${i}`,
-  <p data-glossary-term={`glossary-term${i}`}>
-    <span
-      data-glossary-term={`glossary-term${i + 10}`}
-      className="u-display--block u-border-bottom u-cursor-pointer"
-    >
-      go to entry {i + 10}
-    </span>
-    A bet market that is popular in football, where one team receives a “virtual
-    head start”, leading the game by an amount of goals before the game starts.
-    The team who scores the most with the handicap applied is the winner.{" "}
-    <strong>
-      <em>See ‘handicap’.</em>
-    </strong>
-  </p>,
-]);
+class GlossaryTypedQuery extends Query<GlossaryQuery, null> {}
 
-const repeatedContent = [...content, ...content, ...content];
+export const GLOSSARY_QUERY = gql`
+  query GlossaryQuery {
+    glossary {
+      term
+      aka
+      definition
+    }
+  }
+`;
 
 const BettingGlossaryEntry = ({ term, definition }) => (
   <Flex.Item
@@ -55,13 +50,9 @@ const BettingGlossaryEntry = ({ term, definition }) => (
   >
     <span>
       <strong>{term}: </strong>
-      {definition}
+      <DangerousHtml html={definition} />
     </span>
   </Flex.Item>
-);
-
-const renderGlossaryEntry = ([term, definition]) => (
-  <BettingGlossaryEntry term={term} definition={definition} />
 );
 
 type Props = {
@@ -78,7 +69,19 @@ export const BettingGlossary = ({ onClose }: Props) => (
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
     <SportsModal.Content>
-      <List items={repeatedContent} render={renderGlossaryEntry} />
+      <GlossaryTypedQuery query={GLOSSARY_QUERY}>
+        {({ data, loading }) => {
+          if (loading) {
+            return "loading";
+          }
+
+          return data && data.glossary ? (
+            <List items={data.glossary} render={BettingGlossaryEntry} />
+          ) : (
+            "show error component"
+          );
+        }}
+      </GlossaryTypedQuery>
     </SportsModal.Content>
   </SportsModal>
 );
