@@ -9,12 +9,13 @@
 
 .c-betting-glossary-entry--highlight {
   background: cudl-palette(grey, light-2);
+  position: relative;
+  top: -(map-get($cudl-spacer-sizes, default));
 
   @include cudl-breakpoint(max tablet) {
     left: 50%;
     margin: -(map-get($cudl-spacer-sizes, md)) -50vw;
     padding: map-get($cudl-spacer-sizes, lg);
-    position: relative;
     right: 50%;
     width: 100vw;
   }

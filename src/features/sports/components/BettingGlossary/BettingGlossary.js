@@ -65,7 +65,7 @@ export const GLOSSARY_QUERY = gql`
 
 const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
   <Flex.Item
-    className="c-betting-glossary-entry u-padding-vert--md u-pointer-events-none"
+    className="c-betting-glossary-entry u-padding-y--md u-pointer-events-none"
     onClick={handleLinkedEntries}
     data-glossary-term={id}
   >
@@ -90,7 +90,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
       onClose={onClose}
-      className="t-background-blue-light-1 t-background-blue u-padding-horiz--none"
+      className="t-background-blue-light-1 t-background-blue u-padding-x--none"
       dismissButtonClassName="t-color-blue"
     >
       <DictionaryTerm termKey="glossary.heading" />
