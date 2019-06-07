@@ -1,0 +1,47 @@
+// @flow
+import * as React from "react";
+import { flatten, intersperse, pipe, prepend, repeat, sum, take } from "ramda";
+import Skeleton from "@casumo/cmp-skeleton";
+
+const heights = {
+  margin: 32,
+  sm: 24,
+  md: 48,
+  lg: 96,
+};
+
+const skeletonItems = flatten(repeat([heights.sm, heights.md, heights.lg], 5));
+
+const SkeletonItem = ({ height, index }) => {
+  const offsetTop = pipe(
+    take(index),
+    intersperse(heights.margin),
+    prepend(index === 0 ? 0 : heights.margin),
+    sum
+  )(skeletonItems);
+
+  return (
+    <rect
+      key={index}
+      rx={1.5}
+      ry={1.5}
+      x={0}
+      y={offsetTop}
+      height={height}
+      width={height === heights.sm ? "75%" : "100%"}
+    />
+  );
+};
+
+export const BettingGlossarySkeleton = () => (
+  <Skeleton
+    viewBox={null}
+    width="100%"
+    height={500 || window.innerHeight}
+    className="u-padding-top--xlg u-display--none@tablet"
+  >
+    {skeletonItems.map((height, index) => (
+      <SkeletonItem {...{ height, index }} />
+    ))}
+  </Skeleton>
+);

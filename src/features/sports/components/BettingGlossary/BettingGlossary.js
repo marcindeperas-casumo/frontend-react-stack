@@ -6,6 +6,8 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import { ErrorMessage } from "Components/ErrorMessage";
+import { BettingGlossarySkeleton } from "Features/sports/components/BettingGlossary";
 import "./BettingGlossary.scss";
 import DangerousHtml from "Components/DangerousHtml";
 import { getCssCustomProperty } from "Utils/utils";
@@ -98,20 +100,30 @@ export const BettingGlossary = ({ onClose }: Props) => (
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
-    <SportsModal.Content>
-      <GlossaryTypedQuery query={GLOSSARY_QUERY}>
-        {({ data, loading }) => {
-          if (loading) {
-            return "loading";
-          }
-
-          return data && data.glossary ? (
-            <List items={data.glossary} render={BettingGlossaryEntry} />
-          ) : (
-            "show error component"
+    <GlossaryTypedQuery query={GLOSSARY_QUERY}>
+      {({ data, error, loading }) => {
+        if (error) {
+          return (
+            <ErrorMessage
+              errorMessage={<DictionaryTerm termKey="glossary.error" />}
+            />
           );
-        }}
-      </GlossaryTypedQuery>
-    </SportsModal.Content>
+        }
+
+        if (!data || !data.glossary || loading) {
+          return (
+            <SportsModal.Content>
+              <BettingGlossarySkeleton />)
+            </SportsModal.Content>
+          );
+        }
+
+        return (
+          <SportsModal.Content>
+            <List items={data.glossary} render={BettingGlossaryEntry} />;
+          </SportsModal.Content>
+        );
+      }}
+    </GlossaryTypedQuery>
   </SportsModal>
 );
