@@ -12,6 +12,8 @@ type SharedProps = {
 };
 
 type HeaderProps = SharedProps & {
+  className?: string,
+  dismissButtonClassName?: string,
   onBack?: Function,
   onClose?: Function,
 };
@@ -41,13 +43,13 @@ const ButtonContainer = ({
   </Flex.Item>
 );
 
-const BackButton = ({ className, onClick }: ButtonProps) => (
+const BackButton = ({ onClick, className }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
     <Flex
       align="center"
       justify="center"
       className={classNames(
-        "c-sports-modal__header-button t-background-grey-dark-4 t-border-r--circle",
+        "c-sports-modal-header__button c-sports-modal-header__button--back t-border-r--circle",
         className,
         onClick === noop && "u-visibility--hidden"
       )}
@@ -57,13 +59,13 @@ const BackButton = ({ className, onClick }: ButtonProps) => (
   </ButtonContainer>
 );
 
-const CloseButton = ({ className, onClick }: ButtonProps) => (
+const CloseButton = ({ onClick, className }: ButtonProps) => (
   <ButtonContainer onClick={onClick}>
     <Flex
       align="center"
       justify="center"
       className={classNames(
-        "c-sports-modal__header-button t-background-grey-dark-4 t-border-r--circle u-visibility--hidden@tablet",
+        "c-sports-modal-header__button c-sports-modal-header__button--close t-border-r--circle u-visibility--hidden@tablet",
         className,
         onClick === noop && "u-visibility--hidden"
       )}
@@ -78,7 +80,7 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     align="center"
     justify="center"
     className={classNames(
-      "c-sports-modal__fixed-button t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
+      "c-sports-modal-header__fixed-button t-color-grey-light-2 t-background-grey-dark-3 u-display--none@mobile",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
@@ -91,17 +93,24 @@ export const SportsModalHeader = ({
   children,
   onBack = noop,
   onClose = noop,
+  className = "t-background-grey-dark-3 t-color-white",
+  dismissButtonClassName = "t-background-grey-dark-4",
 }: HeaderProps) => (
   <Flex
     align="center"
     justify="center"
     spacing="none"
-    className="c-sports-modal__header t-background-grey-dark-3 t-color-white u-font-weight-bold u-padding--md u-text-align-center"
+    className={classNames(
+      "c-sports-modal-header u-font-weight-bold u-padding--md u-text-align-center",
+      className
+    )}
   >
     <FixedCloseButton onClick={onClose} />
-    <BackButton onClick={onBack} />
-    <Flex.Block className="c-sports-modal__heading">{children}</Flex.Block>
-    <CloseButton onClick={onClose} />
+    <BackButton onClick={onBack} className={dismissButtonClassName} />
+    <Flex.Block className="c-sports-modal-header__heading">
+      {children}
+    </Flex.Block>
+    <CloseButton onClick={onClose} className={dismissButtonClassName} />
   </Flex>
 );
 

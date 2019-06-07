@@ -95,8 +95,8 @@ export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
       onClose={onClose}
-      className="t-background-blue-light-1 t-background-blue u-padding-x--none"
-      dismissButtonClassName="t-color-blue"
+      className="c-sports-modal-header--left-align t-background-blue-light-1 t-color-white"
+      dismissButtonClassName="t-background-blue-light-1 t-color-blue"
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
@@ -113,7 +113,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
         if (!data || !data.glossary || loading) {
           return (
             <SportsModal.Content>
-              <BettingGlossarySkeleton />)
+              <BettingGlossarySkeleton />
             </SportsModal.Content>
           );
         }
