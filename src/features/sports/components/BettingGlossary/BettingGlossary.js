@@ -37,7 +37,10 @@ const scrollToTerm = term => {
 
     window.document
       .querySelector(".c-modal__content")
-      .scrollTo(0, linkedTerm.offsetTop - topBarOffset);
+      .scrollTo(
+        0,
+        linkedTerm.offsetTop + topBarOffset - window.innerHeight * 0.5
+      );
   }
 };
 
