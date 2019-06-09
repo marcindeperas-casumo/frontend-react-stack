@@ -120,7 +120,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
 
         return (
           <SportsModal.Content>
-            <List items={data.glossary} render={BettingGlossaryEntry} />;
+            <List items={data.glossary} render={BettingGlossaryEntry} />
           </SportsModal.Content>
         );
       }}
