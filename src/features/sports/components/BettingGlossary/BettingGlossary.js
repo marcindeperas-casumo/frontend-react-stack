@@ -75,14 +75,14 @@ const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
     data-glossary-term={id}
   >
     <strong>{term}: </strong>
-    <span>
-      {aka && (
+    {aka && (
+      <span>
         <em>
           <DictionaryTerm termKey="glossary.aka" /> {aka}
           <br />
         </em>
-      )}
-    </span>
+      </span>
+    )}
     <DangerousHtml html={definition} />
   </Flex.Item>
 );
