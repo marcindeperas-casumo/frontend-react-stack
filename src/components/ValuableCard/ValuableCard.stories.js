@@ -31,7 +31,7 @@ stories.add("Default", () => {
       valuableState={valuableState}
       expiryDate={mockExpiryDate(expiryHours)}
       onCardClick={action("click")}
-      hoursUnit={translationsMock.hoursUnit}
+      translatedHoursUnit={translationsMock.hoursUnit}
     />
   );
 });

@@ -26,7 +26,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         onCardClick={onCardClick}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
   });
@@ -73,7 +73,7 @@ describe("ValuableCard", () => {
       <ValuableCard
         {...mockValuable}
         expiryDate={mockedExpiryDate}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -89,7 +89,7 @@ describe("ValuableCard", () => {
       <ValuableCard
         {...mockValuable}
         expiryDate={mockedExpiryDate}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -132,7 +132,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.LOCKED}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -147,7 +147,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -161,7 +161,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
-        hoursUnit={translationsMock.hoursUnit}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
