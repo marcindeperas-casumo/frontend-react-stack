@@ -11,6 +11,7 @@ export const SportsFooter = () => (
     align="center"
     justify="center"
     style={{ textDecoration: "underline" }}
+    spacing="xlg"
   >
     <Flex.Item>
       <span className="u-cursor-pointer" onClick={showTerms}>
