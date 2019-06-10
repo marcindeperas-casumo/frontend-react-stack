@@ -22,7 +22,6 @@ const SkeletonItem = ({ height, index }) => {
 
   return (
     <rect
-      key={index}
       rx={1.5}
       ry={1.5}
       x={0}
@@ -41,7 +40,10 @@ export const BettingGlossarySkeleton = () => (
     className="u-padding-top--xlg u-display--none@tablet"
   >
     {skeletonItems.map((height, index) => (
-      <SkeletonItem {...{ height, index }} />
+      <SkeletonItem
+        {...{ height, index, key: `betting-glossary-skeleton-${index}` }}
+      />
     ))}
+    /> ))}
   </Skeleton>
 );
