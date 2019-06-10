@@ -2,9 +2,9 @@
 import React from "react";
 import { Query, Mutation } from "react-apollo";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
-// $FlowIgnore
+// $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
-// $FlowIgnore
+// $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { UseValuable } from "./mutations.graphql";
 
 // This is far from ideal and is just temporary.
