@@ -11,14 +11,13 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
 } from "Models/valuables";
-import { getSymbolForCurrency } from "Utils";
+import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
   VALUABLE_ICON,
   coinValueToSpinType,
   expiryInHours,
-  formatHoursRemainig,
 } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
@@ -114,7 +113,8 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(formatHoursRemainig(hours, hoursUnit), className, () => (
+
+      return badgeOpts(interpolate(hoursUnit, { hours }), className, () => (
         <Time />
       ));
     }
