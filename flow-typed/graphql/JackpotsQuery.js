@@ -60,6 +60,14 @@ export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
+export type ContactSettingsInput = {|
+  on: boolean
+|};
+
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================
