@@ -116,6 +116,7 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
+      "^.+\\.svg$": "<rootDir>/__mocks__/svgr.js",
       "^.+\\.module\\.(sass|scss)$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
