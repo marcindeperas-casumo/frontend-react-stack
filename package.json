@@ -84,7 +84,8 @@
       "__DEV__": true
     },
     "setupFilesAfterEnv": [
-      "<rootDir>/config/jest/enzyme.js"
+      "<rootDir>/config/jest/enzyme.js",
+      "<rootDir>/config/jest/matchMedia.js"
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,jsx}",
@@ -100,16 +101,13 @@
       "react-app-polyfill/jsdom",
       "<rootDir>/config/jest/localStorageMock.js"
     ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
+    "testMatch": ["**/*.test.js"],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.(gql|graphql)$": "<rootDir>/node_modules/jest-transform-graphql",
-      "^(?!.*\\.(js|jsx|mjs|json)$)": "<rootDir>/config/jest/fileTransform.js"
+      "^.+\\.(js|jsx|mjs)$": "babel-jest",
+      "^.+\\.(gql|graphql)$": "jest-transform-graphql",
+      "^(?!.*\\.(js|jsx|mjs|json|gql|graphql)$)": "<rootDir>/config/jest/fileTransform.js"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
