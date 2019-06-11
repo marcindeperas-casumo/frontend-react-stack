@@ -101,7 +101,9 @@
       "react-app-polyfill/jsdom",
       "<rootDir>/config/jest/localStorageMock.js"
     ],
-    "testMatch": ["**/*.test.js"],
+    "testMatch": [
+      "**/*.test.js"
+    ],
     "testEnvironment": "jsdom",
     "testURL": "http://localhost",
     "transform": {
@@ -211,6 +213,7 @@
     "prettier": "^1.17.1",
     "react-app-polyfill": "^1.0.1",
     "react-hot-loader": "^4.8.4",
+    "require-context.macro": "^1.0.4",
     "sass-loader": "^7.1.0",
     "sinon": "^7.3.2",
     "storybook-chromatic": "^1.3.3",

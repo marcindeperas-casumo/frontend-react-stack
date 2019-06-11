@@ -1,3 +1,4 @@
+import requireContext from "require-context.macro";
 import React from "react";
 import { configure, addDecorator, addParameters } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
@@ -7,7 +8,7 @@ import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
 
-const req = require.context("../src", true, /.stories.js$/);
+const req = requireContext("../src", true, /.stories.js$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
