@@ -66,7 +66,7 @@ export const matchingGroups = (str: string, searchTerm: string) => {
   const normalizedStr = str.toLowerCase();
   const normalizedTarget = searchTerm.toLowerCase();
 
-  const searchIdx = normalizedStr.search(normalizedTarget);
+  const searchIdx = normalizedStr.indexOf(normalizedTarget);
   const found = searchIdx >= 0;
 
   if (!found || searchTerm === "") {

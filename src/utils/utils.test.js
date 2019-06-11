@@ -67,6 +67,14 @@ describe("matchingGroups()", () => {
       { type: "matched", value: "sheep" },
     ]);
   });
+
+  test("should match also special characters like backslash", () => {
+    const result = matchingGroups("netent/\\ with special chars", "netent/\\");
+    expect(result).toEqual([
+      { type: "matched", value: "netent/\\" },
+      { type: "unmatched", value: " with special chars" },
+    ]);
+  });
 });
 
 describe("makeProtocolAwareUrl()", () => {
