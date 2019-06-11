@@ -3,31 +3,20 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: GameRow_Game
+// GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
 // ====================================================
 
-export type GameRow_Game_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
+export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
+  loginTime: any
 };
 
-export type GameRow_Game_lobby = {
-  bets: ?GameRow_Game_lobby_bets
-};
-
-export type GameRow_Game_jackpotInfo = {
+export type PLAYER_LOGIN_HISTORY_QUERY_player = {
   id: string,
-  formattedJackpotAmount: ?string,
+  loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
 };
 
-export type GameRow_Game = {
-  slug: string,
-  name: string,
-  logo: string,
-  logoBackground: string,
-  lobby: ?GameRow_Game_lobby,
-  jackpotInfo: ?GameRow_Game_jackpotInfo,
+export type PLAYER_LOGIN_HISTORY_QUERY = {
+  player: PLAYER_LOGIN_HISTORY_QUERY_player
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
