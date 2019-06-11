@@ -88,8 +88,10 @@
       "<rootDir>/config/jest/matchMedia.js"
     ],
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
-      "!src/**/*.stories.{js,jsx}"
+      "src/**/*.js",
+      "!src/**/(index|types).js",
+      "!src/**/*.(stories|types).js",
+      "!src/**/types/**"
     ],
     "coverageDirectory": "./coverage/",
     "coverageReporters": [
