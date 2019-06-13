@@ -20,9 +20,7 @@ const deTaxMessage = `
         </style>
     </head>
     <body>
-        <p class="KambiWidget-branding" onClick="parent.postMessage({type: 'SHOW_TERMS'}, '${
-          window.location.origin
-        }')">
+        <p class="KambiWidget-branding" onClick="parent.postMessage({type: 'SHOW_TERMS'}, '${window.location.origin}')">
             Bitte beachten Sie, dass wir bei einer Auszahlung 5% Ihres potenziellen Gewinns einbehalten.
         </p>
     </body>
