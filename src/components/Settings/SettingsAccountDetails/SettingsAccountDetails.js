@@ -114,9 +114,7 @@ export class SettingsAccountDetails extends PureComponent<Props> {
       >
         <RowTemplate
           label={labels.mobileNumber}
-          value={`(${details.phoneNumber.prefix}) ${
-            details.phoneNumber.number
-          }`}
+          value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
           action={<EditIcon className="t-color-green" />}
         />
       </a>
@@ -126,9 +124,7 @@ export class SettingsAccountDetails extends PureComponent<Props> {
       <a href="/player/settings/phone-number">
         <RowTemplate
           label={labels.mobileNumber}
-          value={`(${details.phoneNumber.prefix}) ${
-            details.phoneNumber.number
-          }`}
+          value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
           action={
             <>
               <ExclamationMarkIcon className="t-color-red" />
