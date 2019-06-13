@@ -1,5 +1,6 @@
 import path from "path";
 import { Pact } from "@pact-foundation/pact";
+import { like } from "@pact-foundation/pact/dsl/matchers";
 import { getCasinoPlayerGamesCount } from "../src/api/api.casinoPlayerGames.js";
 
 const provider = new Pact({
@@ -22,7 +23,7 @@ afterAll(done => {
 });
 
 describe("casino-games", () => {
-  const countBody = 4;
+  const countBody = 100;
 
   beforeAll(() => {
     return provider.addInteraction({
@@ -34,7 +35,7 @@ describe("casino-games", () => {
       },
       willRespondWith: {
         status: 200,
-        body: countBody,
+        body: like(countBody),
       },
     });
   });
