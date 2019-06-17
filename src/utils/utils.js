@@ -2,14 +2,19 @@
 import {
   always,
   compose,
+  defaultTo,
   either,
+  equals,
   filter,
   identity,
   isEmpty,
   isNil,
   join,
   pathOr,
+  pipe,
+  replace,
   splitEvery,
+  when,
 } from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
@@ -229,3 +234,10 @@ export const getCssCustomProperty = (
   element: ?HTMLElement = document.documentElement
 ) =>
   pathOr(always(undefined), ["style", "getPropertyValue"], element)(property);
+
+// handle CMS workaround using "empty" to prevent locale fallback returning wrong string
+export const isCmsEntryEmpty = pipe(
+  when(isNilOrEmpty, always("")),
+  replace(/^empty$/i, ""),
+  equals("")
+);

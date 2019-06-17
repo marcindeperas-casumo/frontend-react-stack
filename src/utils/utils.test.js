@@ -10,6 +10,7 @@ import {
   getSymbolForCurrency,
   interpolate,
   getCssCustomProperty,
+  isCmsEntryEmpty,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -283,5 +284,19 @@ describe("getCssCustomProperty()", () => {
     const result = getCssCustomProperty("--some-custom-property", {});
 
     expect(result).toEqual(undefined);
+  });
+});
+
+describe("isCmsEntryEmpty()", () => {
+  test("should return true for values that should be handled as empty", () => {
+    ["empty", "EmPtY", "", null, undefined].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(true)
+    );
+  });
+
+  test("should return false for non-empty values", () => {
+    ["not-empty", "!empty", " "].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(false)
+    );
   });
 });
