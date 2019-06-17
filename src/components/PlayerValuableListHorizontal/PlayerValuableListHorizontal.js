@@ -8,12 +8,16 @@ import { VALUABLE_TYPES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
+import { KO_EVENTS } from "Src/constants";
+import { onOldStackEvent } from "./utils";
 
 type Props = {
   /** Error message to be log in case of error*/
   error?: string,
   /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
+  /** Refetch valuables function */
+  refetch: () => void,
   /** Text to be displayed as the title of the list */
   title?: string,
   /** The list of valuables to be displayed as cards */
@@ -25,8 +29,18 @@ type Props = {
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
   static defaultProps = {
     loading: false,
+    refetch: () => {},
     valuable: [],
   };
+
+  componentDidMount() {
+    const { refetch } = this.props;
+    onOldStackEvent(KO_EVENTS.VALUABLES.ITEM_CREATED, ({ success }) => {
+      if (success) {
+        refetch();
+      }
+    });
+  }
 
   render() {
     const { error, loading, valuables, title } = this.props;
