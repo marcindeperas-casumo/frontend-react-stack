@@ -110,7 +110,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
           );
         }
 
-        if (!data || !data.glossary || loading) {
+        if (!data?.glossary || loading) {
           return (
             <SportsModal.Content>
               <BettingGlossarySkeleton />

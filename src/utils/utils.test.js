@@ -9,6 +9,7 @@ import {
   formatCurrency,
   getSymbolForCurrency,
   interpolate,
+  getCssCustomProperty,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -265,5 +266,22 @@ describe("interpolate()", () => {
   test("should not replace when param is not defined", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
+});
+
+describe("getCssCustomProperty()", () => {
+  test("should call through to getPropertyValue, if it exists", () => {
+    const getPropertyValue = jest.fn();
+    const mockElement = { style: { getPropertyValue } };
+
+    getCssCustomProperty("--some-custom-property", mockElement);
+
+    expect(getPropertyValue).toHaveBeenCalledTimes(1);
+  });
+
+  test("should return undefined without erroring, if getPropertyValue is not defined", () => {
+    const result = getCssCustomProperty("--some-custom-property", {});
+
+    expect(result).toEqual(undefined);
   });
 });

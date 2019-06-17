@@ -224,8 +224,8 @@ export const interpolate = (
     pathOr(match, [param], replacements)
   );
 
-export const getCssCustomProperty = pathOr(
-  always(undefined),
-  ["documentElement", "style", "getProperty"],
-  document
-);
+export const getCssCustomProperty = (
+  property: string,
+  element: ?HTMLElement = document.documentElement
+) =>
+  pathOr(always(undefined), ["style", "getPropertyValue"], element)(property);
