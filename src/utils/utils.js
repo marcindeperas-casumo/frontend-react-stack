@@ -2,7 +2,6 @@
 import {
   always,
   compose,
-  defaultTo,
   either,
   equals,
   filter,
@@ -229,11 +228,10 @@ export const interpolate = (
     pathOr(match, [param], replacements)
   );
 
-export const getCssCustomProperty = (
-  property: string,
-  element: ?HTMLElement = document.documentElement
-) =>
-  pathOr(always(undefined), ["style", "getPropertyValue"], element)(property);
+export const getCssCustomProperty = (property: string) =>
+  document.documentElement
+    ? document.documentElement.style.getPropertyValue(property)
+    : undefined;
 
 // handle CMS workaround using "empty" to prevent locale fallback returning wrong string
 export const isCmsEntryEmpty = pipe(

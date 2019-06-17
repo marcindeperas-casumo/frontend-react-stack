@@ -10,50 +10,14 @@ import { ErrorMessage } from "Components/ErrorMessage";
 import { BettingGlossarySkeleton } from "Features/sports/components/BettingGlossary";
 import "./BettingGlossary.scss";
 import DangerousHtml from "Components/DangerousHtml";
-import { getCssCustomProperty } from "Utils/utils";
+import { getCssCustomProperty, isCmsEntryEmpty } from "Utils/utils";
 
 const dataAttr = {
   term: "data-glossary-term",
   link: "data-glossary-link",
 };
 
-const highlightedClass = "c-betting-glossary-entry--highlight";
-
-const scrollToTerm = term => {
-  const linkedTerm = window.document.querySelector(
-    `[${dataAttr.term}="${term}"]`
-  );
-
-  if (linkedTerm) {
-    const highlighted =
-      window.document.querySelectorAll(`.${highlightedClass}`) || [];
-
-    Array.from(highlighted).forEach(x => x.classList.remove(highlightedClass));
-
-    linkedTerm.classList.add(highlightedClass);
-
-    const topBarOffset = parseInt(
-      getCssCustomProperty("--shell-offset-top") || "75px",
-      10
-    );
-
-    window.document
-      .querySelector(".c-modal__content")
-      .scrollTo(
-        0,
-        linkedTerm.offsetTop + topBarOffset - window.innerHeight * 0.5
-      );
-  }
-};
-
-const handleLinkedEntries = event => {
-  const linkNode = event.currentTarget.querySelector(`[${dataAttr.link}]`);
-
-  if (linkNode) {
-    const linkTerm = linkNode.getAttribute(dataAttr.link);
-    scrollToTerm(linkTerm);
-  }
-};
+export const highlightedClass = "c-betting-glossary-entry--highlight";
 
 class GlossaryTypedQuery extends Query<GlossaryQuery, null> {}
 
@@ -68,24 +32,79 @@ export const GLOSSARY_QUERY = gql`
   }
 `;
 
-const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
-  <Flex.Item
-    className="c-betting-glossary-entry u-padding-y--md u-pointer-events-none"
-    onClick={handleLinkedEntries}
-    data-glossary-term={id}
-  >
-    <strong>{term}: </strong>
-    {aka && (
-      <span>
-        <em>
-          <DictionaryTerm termKey="glossary.aka" /> {aka}
-          <br />
-        </em>
-      </span>
-    )}
-    <DangerousHtml html={definition} />
-  </Flex.Item>
-);
+type EntryProps = {
+  id: string,
+  term: string,
+  aka: ?string,
+  definition: string,
+};
+
+export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
+  scrollToTerm = (linkedElement: HTMLElement) => {
+    const highlighted =
+      window.document.querySelectorAll(`.${highlightedClass}`) || [];
+
+    Array.from(highlighted).forEach(x => x.classList.remove(highlightedClass));
+
+    linkedElement.classList.add(highlightedClass);
+
+    const topBarOffset = parseInt(
+      getCssCustomProperty("--shell-offset-top") || "75px",
+      10
+    );
+
+    window.document
+      .querySelector(".c-modal__content")
+      .scrollTo(
+        0,
+        linkedElement.offsetTop + topBarOffset - window.innerHeight * 0.5
+      );
+  };
+
+  handleLinkedEntries = (event: SyntheticEvent<HTMLElement>) => {
+    const linkNode = event.currentTarget.querySelector(`[${dataAttr.link}]`);
+
+    if (!linkNode) {
+      return;
+    }
+
+    const linkedTermId = linkNode.getAttribute(dataAttr.link) || "";
+    const linkedElement = document.querySelector(
+      `[${dataAttr.term}="${linkedTermId}"]`
+    );
+
+    if (linkedElement) {
+      this.scrollToTerm(linkedElement);
+    }
+  };
+
+  render() {
+    const { id, term, aka, definition } = this.props;
+
+    return (
+      <Flex.Item
+        className="c-betting-glossary-entry u-font-weight-normal u-padding-y--md u-pointer-events-none"
+        onClick={this.handleLinkedEntries}
+        data-glossary-term={id}
+      >
+        <strong>{term}: </strong>
+        {!isCmsEntryEmpty(aka) && (
+          <span>
+            <em>
+              <DictionaryTerm
+                data-test-glossary-entry-aka
+                termKey="glossary.aka"
+              />{" "}
+              {aka}
+              <br />
+            </em>
+          </span>
+        )}
+        <DangerousHtml html={definition} />
+      </Flex.Item>
+    );
+  }
+}
 
 type Props = {
   onClose: any => void,
@@ -120,7 +139,10 @@ export const BettingGlossary = ({ onClose }: Props) => (
 
         return (
           <SportsModal.Content>
-            <List items={data.glossary} render={BettingGlossaryEntry} />
+            <List
+              items={data.glossary}
+              render={props => <BettingGlossaryEntry {...props} />}
+            />
           </SportsModal.Content>
         );
       }}
