@@ -1,7 +1,6 @@
 // @flow
-import React from "react";
+import * as React from "react";
 import classNames from "classnames";
-import type { Node } from "react";
 import { SportsModalHeader } from "Features/sports/components/SportsModal/SportsModalHeader";
 import { Modal } from "Components/Modal";
 
@@ -9,7 +8,7 @@ import "./SportsModal.scss";
 
 type Props = {
   className?: string,
-  children: Node,
+  children: React.Node,
 };
 
 const Content = ({ children, className }: Props) => (

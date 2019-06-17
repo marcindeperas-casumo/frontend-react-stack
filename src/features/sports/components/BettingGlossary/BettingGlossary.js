@@ -28,7 +28,7 @@ const scrollToTerm = term => {
     const highlighted =
       window.document.querySelectorAll(`.${highlightedClass}`) || [];
 
-    Array.from(highlighted).map(x => x.classList.remove(highlightedClass));
+    Array.from(highlighted).forEach(x => x.classList.remove(highlightedClass));
 
     linkedTerm.classList.add(highlightedClass);
 
@@ -88,7 +88,7 @@ const BettingGlossaryEntry = ({ id, term, aka, definition }) => (
 );
 
 type Props = {
-  onClose: any => any,
+  onClose: any => void,
 };
 
 export const BettingGlossary = ({ onClose }: Props) => (

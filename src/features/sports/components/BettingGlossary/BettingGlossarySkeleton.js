@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { flatten, intersperse, pipe, prepend, repeat, sum, take } from "ramda";
+import * as R from "ramda";
 import Skeleton from "@casumo/cmp-skeleton";
 
 const heights = {
@@ -10,14 +10,16 @@ const heights = {
   lg: 96,
 };
 
-const skeletonItems = flatten(repeat([heights.sm, heights.md, heights.lg], 5));
+const skeletonItems = R.flatten(
+  R.repeat([heights.sm, heights.md, heights.lg], 5)
+);
 
 const SkeletonItem = ({ height, index }) => {
-  const offsetTop = pipe(
-    take(index),
-    intersperse(heights.margin),
-    prepend(index === 0 ? 0 : heights.margin),
-    sum
+  const offsetTop = R.pipe(
+    R.take(index),
+    R.intersperse(heights.margin),
+    R.prepend(index === 0 ? 0 : heights.margin),
+    R.sum
   )(skeletonItems);
 
   return (
