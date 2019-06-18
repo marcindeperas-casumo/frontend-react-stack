@@ -2,10 +2,10 @@ import React from "react";
 import { shallow } from "enzyme";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
+import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
   const mockedValuables = mockValuables();
-  const mockTitle = "foo";
   const consumeValuable = jest.fn();
   let rendered;
 
@@ -14,8 +14,8 @@ describe("PlayerValuableListHorizontal", () => {
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
         loading={false}
-        title={mockTitle}
         onConsumeValuable={consumeValuable}
+        translations={translationsMock}
       />
     );
   });
@@ -24,9 +24,9 @@ describe("PlayerValuableListHorizontal", () => {
     rendered = shallow(
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
-        listTitle={mockTitle}
         loading={true}
         onConsumeValuable={consumeValuable}
+        translations={translationsMock}
       />
     );
 
@@ -40,7 +40,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the list title", () => {
     expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
-      mockTitle
+      translationsMock.listTitle
     );
   });
 });

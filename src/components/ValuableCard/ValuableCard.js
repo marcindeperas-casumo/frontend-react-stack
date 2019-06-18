@@ -11,7 +11,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
 } from "Models/valuables";
-import { getSymbolForCurrency } from "Utils";
+import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
@@ -54,6 +54,8 @@ type Props = {
   expirationTime: DateTime | number,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
+  /** translated label for the 'hours' unit */
+  translatedHoursUnit: string,
 };
 
 export class ValuableCard extends PureComponent<Props> {
@@ -100,7 +102,7 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expirationTime } = this.props;
+    const { valuableState, expirationTime, translatedHoursUnit } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
@@ -109,9 +111,14 @@ export class ValuableCard extends PureComponent<Props> {
 
     const hours = expiryInHours(expirationTime);
 
-    if (hours > 0 && hours <= 24) {
+    if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(`${hours}h`, className, () => <Time />);
+
+      return badgeOpts(
+        interpolate(translatedHoursUnit, { hours }),
+        className,
+        () => <Time />
+      );
     }
 
     return { ...badgeOpts, visible: false };
