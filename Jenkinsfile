@@ -11,7 +11,7 @@ if (env.BRANCH_NAME=="master"){
             .customStep('Build', this.&runBuild)
             .gradleDockerPublish()
             .gradleRelease()
-            .deployToProduction('mobile-react-stack-poc')
+            .deployToProduction('frontend-react-stack')
             .build('js-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
@@ -39,7 +39,7 @@ Started by: *${env.gitAuthor}* :eyes:
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
         .gradleRelease()
-        .deployToTest('mobile-react-stack-poc')
+        .deployToTest('frontend-react-stack')
         .build('js-builder')
 }
 
