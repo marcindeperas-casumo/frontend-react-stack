@@ -1,23 +1,47 @@
 #!groovy
-
 @Library('casumo-jenkins-libraries') _
 
 import com.casumo.jenkins.PipelineBuilder
 
-new PipelineBuilder(this)
+if (env.BRANCH_NAME=="master"){
+    try {
+        new PipelineBuilder(this)
+            .checkout()
+            .customStep('Install dependencies', this.&installDependencies)
+            .customStep('Build', this.&runBuild)
+            .gradleDockerPublish()
+            .gradleRelease()
+            .deployToProduction('mobile-react-stack-poc')
+            .build('js-builder')
+
+        slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
+Deployed *mobile-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda: 
+Changes: ${RUN_CHANGES_DISPLAY_URL}
+"""         
+        } catch (ex) {
+        slackSend channel: "operations-frontend", color: '#f05e5e', message: """
+*mobile-react-stack* deployment failed - ${BUILD_URL}. 
+Started by: *${env.gitAuthor}* :eyes:
+"""
+        throw ex
+    }
+} else {
+    new PipelineBuilder(this)
         .checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .parallel([
-                "Flow": {it.customStepTask('Flow', this.&runFlow)},
-                "Lint": {it.customStepTask('Lint', this.&runLint)},
-                "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
-                "Sonar": {it.gradleSonarTask()}
+            "Flow": {it.customStepTask('Flow', this.&runFlow)},
+            "Lint": {it.customStepTask('Lint', this.&runLint)},
+            "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
+            "Sonar": {it.gradleSonarTask()}
         ])
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
         .gradleRelease()
-        .build('js-builder') // https://github.com/Casumo/jenkins-js-builder/blob/master/Dockerfile
+        .deployToTest('mobile-react-stack-poc')
+        .build('js-builder')
+}
 
 def installDependencies() {
     sh "yarn"
