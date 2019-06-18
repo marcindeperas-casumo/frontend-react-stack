@@ -199,7 +199,7 @@ export class ValuableCard extends PureComponent<Props> {
           data-test="valuableCard-caveat"
           className="t-color-grey u-font-2xs u-margin-top u-text-align-center"
         >
-          {decodeString(caveat)}
+          {caveat && decodeString(caveat)}
         </div>
         {showStateBadge && (
           <ValuableCardStateBadge
