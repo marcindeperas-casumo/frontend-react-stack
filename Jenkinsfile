@@ -13,15 +13,15 @@ if (env.BRANCH_NAME=="master"){
             .gradleRelease()
             .deployToProduction('mobile-react-stack-poc')
             .build('js-builder')
-                        
-            slackSend channel: "operations-frontend", color: '#f05e5e', message: """
-*mobile-react-stack* deployment failed - ${BUILD_URL}. 
-Started by: *${env.gitAuthor}* :eyes:
-"""
-        } catch (ex) {
-            slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
+
+        slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
 Deployed *mobile-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda: 
 Changes: ${RUN_CHANGES_DISPLAY_URL}
+"""         
+        } catch (ex) {
+        slackSend channel: "operations-frontend", color: '#f05e5e', message: """
+*mobile-react-stack* deployment failed - ${BUILD_URL}. 
+Started by: *${env.gitAuthor}* :eyes:
 """
         throw ex
     }
