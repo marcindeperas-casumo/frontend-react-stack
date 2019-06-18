@@ -72,7 +72,7 @@ export class PillSelector extends PureComponent<Props> {
               <Text
                 tag="div"
                 className="u-text-transform-uppercase u-margin-top--none"
-                size="xs"
+                size="2xs"
               >
                 {option.labelHeader}
               </Text>

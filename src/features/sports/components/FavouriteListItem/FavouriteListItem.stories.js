@@ -9,7 +9,7 @@ const stories = storiesOf("Sports/FavouriteListItem", module);
 
 stories.add("Default", () => (
   <FavouriteListItem
-    icon={<PlanetIcon size="lrg" />}
+    icon={<PlanetIcon size="lg" />}
     label="Test label"
     onClick={action("onClick")}
   />
@@ -17,7 +17,7 @@ stories.add("Default", () => (
 
 stories.add("Favourited", () => (
   <FavouriteListItem
-    icon={<PlanetIcon size="lrg" />}
+    icon={<PlanetIcon size="lg" />}
     label="Test label"
     onClick={action("onClick")}
     isFavourite={true}
@@ -26,7 +26,7 @@ stories.add("Favourited", () => (
 
 stories.add("Not favouritable", () => (
   <FavouriteListItem
-    icon={<PlanetIcon size="lrg" />}
+    icon={<PlanetIcon size="lg" />}
     label="Test label"
     onClick={action("onClick")}
     isFavouritable={false}

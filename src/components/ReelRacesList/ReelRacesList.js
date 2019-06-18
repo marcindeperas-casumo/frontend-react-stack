@@ -45,6 +45,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
         seeMoreUrl="/reel-races"
         itemIds={this.props.reelRacesIds}
         Component={ReelRaceCard}
+        itemClassName="c-reel-race-card"
       />
     );
   }

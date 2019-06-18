@@ -27,7 +27,9 @@ const MustDropJackpot = ({ jackpot }: Props) => {
           <Text className="u-margin-bottom--sm u-font-weight-bold t-color-yellow">
             {formattedAmount}
           </Text>
-          <Text className="u-margin-bottom--none t-color-grey">{label}</Text>
+          <Text size="xs" className="u-margin-bottom--none t-color-grey">
+            {label}
+          </Text>
         </>
       )}
     />

@@ -31,9 +31,7 @@ describe("OptInButton", () => {
       expect(rendered.contains(props.active.label)).toBe(true);
     });
 
-    test(`should show "${
-      props.disabled.label
-    }" button if user opted in`, () => {
+    test(`should show "${props.disabled.label}" button if user opted in`, () => {
       rendered.setProps({ isOptedIn: true });
       expect(rendered.contains(props.disabled.label)).toBe(true);
     });

@@ -28,13 +28,16 @@ const FavouriteCompetitionsSelectorRegion = ({
   onClick,
 }: Props): React.Node =>
   !group.groups || isNilOrEmpty(group.groups) ? null : (
-    <div className="u-margin-vert">
+    <div className="u-margin-y">
       <ExpandableListItem
         isExpanded={isExpanded}
         label={
           <Flex align="center">
             <Flex.Item>
-              <Text size="md" className="u-font-weight-bold">
+              <Text
+                size="md"
+                className="u-font-weight-bold u-margin-bottom--none"
+              >
                 {group.name}
               </Text>
             </Flex.Item>

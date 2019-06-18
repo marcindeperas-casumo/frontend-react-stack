@@ -197,7 +197,7 @@ export class ValuableCard extends PureComponent<Props> {
         </Flex>
         <div
           data-test="valuableCard-caveat"
-          className="t-color-grey u-font-xs u-margin-top u-text-align-center"
+          className="t-color-grey u-font-2xs u-margin-top u-text-align-center"
         >
           {caveat}
         </div>

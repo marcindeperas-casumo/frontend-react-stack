@@ -14,8 +14,8 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 export const DEFAULT_SPACING = "default";
 export const PADDING_PER_DEVICE = {
   default: "md",
-  tablet: "2xlg",
-  desktop: "2xlg",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 type Props = {
@@ -27,6 +27,7 @@ type Props = {
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
   seeMoreText: string,
+  itemClassName?: string,
 };
 
 export default class ScrollableList extends PureComponent<Props> {
@@ -44,6 +45,7 @@ export default class ScrollableList extends PureComponent<Props> {
       seeMoreUrl,
       spacing,
       title,
+      itemClassName,
     } = this.props;
 
     if (isEmpty(itemIds)) {
@@ -60,14 +62,18 @@ export default class ScrollableList extends PureComponent<Props> {
           {seeMoreUrl ? (
             <Flex.Item className="u-padding-right--md">
               <a href={seeMoreUrl}>
-                <Text tag="h3" className="t-color-blue">
+                <Text size="xs" tag="h3" className="t-color-blue">
                   {seeMoreText}
                 </Text>
               </a>
             </Flex.Item>
           ) : null}
         </Flex>
-        <Scrollable padding={PADDING_PER_DEVICE} itemSpacing={spacing}>
+        <Scrollable
+          itemClassName={itemClassName}
+          padding={PADDING_PER_DEVICE}
+          itemSpacing={spacing}
+        >
           {itemIds.map(itemId => (
             <Component key={itemId} id={itemId} />
           ))}

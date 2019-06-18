@@ -53,7 +53,7 @@ export default class AdventureProgressBar extends PureComponent<Props> {
         </Flex.Item>
         <Flex
           justify="space-between"
-          className="u-width--1/1 u-font-sm u-padding-horiz--sm"
+          className="u-width--1/1 u-font-sm u-padding-x--sm"
         >
           <Text className="t-color-grey-light-2" tag="div" size="sm">
             <DangerousHtml

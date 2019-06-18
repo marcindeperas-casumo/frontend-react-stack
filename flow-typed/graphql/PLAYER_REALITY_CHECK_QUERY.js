@@ -34,6 +34,21 @@ export type PLAYER_REALITY_CHECK_QUERY = {
 // START Enums and Input Objects
 //==============================================================
 
+/**
+ * 
+ */
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+
+/**
+ * 
+ */
+export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+
+/**
+ * 
+ */
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
 export type ContactSettingsInput = {|
   on: boolean
 |};

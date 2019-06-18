@@ -98,7 +98,7 @@ export class CuratedCard extends PureComponent<Props> {
             {...backgroundProps}
           />
           <Card
-            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--lg"
+            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg"
             justify={justify}
             spacing={spacing}
             header={this.renderHeader}
@@ -118,13 +118,13 @@ export class CuratedCard extends PureComponent<Props> {
         {!isGame && (
           <Text
             className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
-            size="xs"
+            size="2xs"
           >
             {subtitle}
           </Text>
         )}
         <Text
-          className="u-line-height--1 u-font-weight-bold t-color-white"
+          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
           size="2xlg"
           dangerouslySetInnerHTML={stringToHTML(header)}
         />
@@ -138,7 +138,7 @@ export class CuratedCard extends PureComponent<Props> {
     const { isFetched } = this.props;
 
     return (
-      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-horiz--md u-margin-horiz--2xlg@tablet u-margin-horiz--2xlg@desktop">
+      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
         <EitherOr
           either={this.renderCard}
           or={this.renderSkeleton}

@@ -27,28 +27,30 @@ const renderResults = ({ results, type }) => {
 
   return (
     <>
-      <div className="o-layout o-layout--gap">
+      <Flex spacing="sm" className="u-margin-bottom">
         {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
-            <Badge
-              key={i}
-              tag="div"
-              bgColor={color}
-              txtColor={getTextColor(color)}
-              circle={true}
-              className={classNames(
-                borderColor && `c-card-data-badge-shadow-${borderColor}`
-              )}
-            >
-              {getResultsDisplay(type, n)}
-            </Badge>
+            <Flex.Item key={i}>
+              <Badge
+                size="sm"
+                tag="div"
+                bgColor={color}
+                txtColor={getTextColor(color)}
+                circle={true}
+                className={classNames(
+                  borderColor && `c-card-data-badge-shadow-${borderColor}`
+                )}
+              >
+                {getResultsDisplay(type, n)}
+              </Badge>
+            </Flex.Item>
           );
         })}
-      </div>
+      </Flex>
       <Text
-        size="xs"
+        size="2xs"
         className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
       >
         <DisplayText type={type} />
@@ -60,7 +62,8 @@ const renderResults = ({ results, type }) => {
 const renderSeats = ({ seats }) => (
   <>
     <Badge
-      className={classNames(!seats && `u-width--3/4`)}
+      size="sm"
+      className={classNames(!seats && "u-width--3/4", "u-margin-bottom")}
       tag="div"
       bgColor="green"
       txtColor="white"
@@ -71,7 +74,7 @@ const renderSeats = ({ seats }) => (
           slug="mobile.live-casino-cards-content"
           field="bet_behind"
           view={text => (
-            <Text size="xs" tag="span" className="u-text-nowrap">
+            <Text size="sm" tag="span" className="u-text-nowrap">
               {text}
             </Text>
           )}
@@ -79,7 +82,7 @@ const renderSeats = ({ seats }) => (
       )}
     </Badge>
     <Text
-      size="xs"
+      size="2xs"
       className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
     >
       {seats ? getText("open_seats") : getText("table_full")}
@@ -88,15 +91,7 @@ const renderSeats = ({ seats }) => (
 );
 
 const getText = field => (
-  <CMSField
-    slug="mobile.live-casino-cards-content"
-    field={field}
-    view={text => (
-      <Text size="xs" tag="span">
-        {text}
-      </Text>
-    )}
-  />
+  <CMSField slug="mobile.live-casino-cards-content" field={field} />
 );
 
 const DisplayText = ({ type }) =>

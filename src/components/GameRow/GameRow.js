@@ -30,11 +30,11 @@ export class GameRow extends PureComponent<Props> {
         <Flex
           align="center"
           data-test="game-row"
-          className="u-padding-vert"
+          className="u-padding-y"
           onClick={onLaunchGame}
         >
           {/* Image */}
-          <Flex.Item className="o-flex__item-fixed-size">
+          <Flex.Item className="o-flex__item--no-shrink">
             <GameThumb
               src={logoBackground}
               alt={name}
@@ -58,10 +58,7 @@ export class GameRow extends PureComponent<Props> {
 
           {/* Play Icon */}
           <Flex.Item>
-            <PlayIcon
-              size="med"
-              className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md"
-            />
+            <PlayIcon className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md" />
           </Flex.Item>
         </Flex>
       </TrackClick>
@@ -72,7 +69,7 @@ export class GameRow extends PureComponent<Props> {
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey">
+      <Text tag="div" size="xs" className="u-padding-top--sm t-color-grey">
         {bets}
       </Text>
     );

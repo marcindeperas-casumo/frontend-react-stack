@@ -110,7 +110,7 @@ export class App extends PureComponent<Props> {
               <>
                 <SearchInputSkeleton />
                 <GameListSkeleton
-                  className="u-padding-horiz--md"
+                  className="u-padding-x--md"
                   hasTitle={false}
                   titleYOffset={20}
                 />
@@ -138,6 +138,19 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-adventure"
             loader={() => import("Components/AdventureCard")}
           />
+        </Route>
+        <Route path={["settings"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-settings"
+              loader={async () => {
+                const { SettingsSectionsContainer } = await import(
+                  "Components/Settings/SettingsSections/SettingsSectionsContainer"
+                );
+                return SettingsSectionsContainer;
+              }}
+            />
+          </DataProvider>
         </Route>
         <Route path={["account-details"]}>
           <DataProvider>

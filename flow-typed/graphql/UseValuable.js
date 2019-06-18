@@ -29,6 +29,14 @@ export type UpdateRealityCheckIntervalInput = {|
   intervalSeconds: number
 |};
 
+export type ContactSettingsInput = {|
+  on: boolean
+|};
+
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
+
 //==============================================================
 // END Enums and Input Objects
 //==============================================================

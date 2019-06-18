@@ -30,7 +30,7 @@ const PromotionGalleryCardWrapper = ({
     <div className="c-promotion-gallery-card u-width--1/2 u-padding--sm@mobile u-padding">
       <a
         href={link}
-        className="o-ratio o-ratio--promotion-card o-flex__item o-flex__item-fixed-size"
+        className="o-ratio o-ratio--promotion-card o-flex__item o-flex__item--no-shrink"
       >
         <Card
           className="o-ratio__content t-border-r--16 t-background-white u-line-height--1"
