@@ -25,7 +25,7 @@ const consumeValuableMutation = mutation => (id: string) =>
 export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
     {({ loading, error, data }) => {
-      const { listTitle, player: { valuables = [] } = {} } = data || {};
+      const { translations, player: { valuables = [] } = {} } = data || {};
 
       return (
         <Mutation mutation={UseValuable}>
@@ -33,9 +33,9 @@ export const PlayerValuableListHorizontalContainer = () => (
             <PlayerValuableListHorizontal
               error={error}
               loading={loading}
-              title={listTitle}
               onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
+              translations={translations}
             />
           )}
         </Mutation>

@@ -21,17 +21,17 @@ export type SetWithdrawalNotificationsVariables = {
 //==============================================================
 
 /**
- * 
+ *
  */
 export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
 
 /**
- * 
+ *
  */
 export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
 
 /**
- * 
+ *
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
