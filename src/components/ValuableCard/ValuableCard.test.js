@@ -5,7 +5,7 @@ import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import { ValuableCard } from "./ValuableCard";
 import {
   mockValuable as mockData,
-  mockExpiryDate,
+  mockExpirationTime,
 } from "./__mocks__/Valuable.mock";
 import { coinValueToSpinType } from "./ValuableCard.utils";
 
@@ -14,23 +14,23 @@ describe("ValuableCard", () => {
   const onCardClick = jest.fn();
   let rendered;
   let mockValuable;
-  let mockedExpiryDate;
+  let mockedExpirationTime;
 
   beforeEach(() => {
     mockValuable = mockData(VALUABLE_TYPES.CASH);
-    mockedExpiryDate = mockExpiryDate(100);
+    mockedExpirationTime = mockExpirationTime(100);
 
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
-        expiryDate={mockedExpiryDate}
+        expirationTime={mockedExpirationTime}
         onCardClick={onCardClick}
       />
     );
   });
 
   test("should pass on game image url to valuable header if type is SPINS", () => {
-    mockedExpiryDate = mockExpiryDate(100);
+    mockedExpirationTime = mockExpirationTime(100);
 
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
     const expectedValue = compose(
@@ -39,7 +39,7 @@ describe("ValuableCard", () => {
     )(mockValuable);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard {...mockValuable} expirationTime={mockedExpirationTime} />
     );
 
     const actualValue = rendered
@@ -64,23 +64,23 @@ describe("ValuableCard", () => {
   });
 
   test("should not justify reward content if type is not CASH", () => {
-    mockedExpiryDate = mockExpiryDate(50);
+    mockedExpirationTime = mockExpirationTime(50);
     mockValuable = mockData(VALUABLE_TYPES.DEPOSIT);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard {...mockValuable} expirationTime={mockedExpirationTime} />
     );
 
     expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
   });
 
   test("should display game name as description if valuableType is SPINS", () => {
-    mockedExpiryDate = mockExpiryDate(50);
+    mockedExpirationTime = mockExpirationTime(50);
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
     const expectedGameDetails = mockValuable.game;
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard {...mockValuable} expirationTime={mockedExpirationTime} />
     );
 
     expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
@@ -98,10 +98,10 @@ describe("ValuableCard", () => {
   test("should include spinType in class if valuableType is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
     const expectedValue = coinValueToSpinType(mockValuable.coinValue);
-    mockedExpiryDate = mockExpiryDate(100);
+    mockedExpirationTime = mockExpirationTime(100);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard {...mockValuable} expirationTime={mockedExpirationTime} />
     );
 
     expect(rendered.find("ValuableHeaderBackground").hasClass(expectedValue));
@@ -116,11 +116,11 @@ describe("ValuableCard", () => {
   });
 
   test("should show locked if valuable state is LOCKED", () => {
-    mockedExpiryDate = mockExpiryDate(100);
+    mockedExpirationTime = mockExpirationTime(100);
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
-        expiryDate={mockedExpiryDate}
+        expirationTime={mockedExpirationTime}
         valuableState={VALUABLE_STATES.LOCKED}
       />
     );
@@ -130,11 +130,11 @@ describe("ValuableCard", () => {
   });
 
   test("should not show anything if state expiry date is more than 24hrs", () => {
-    mockedExpiryDate = mockExpiryDate(30);
+    mockedExpirationTime = mockExpirationTime(30);
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
-        expiryDate={mockedExpiryDate}
+        expirationTime={mockedExpirationTime}
         valuableState={VALUABLE_STATES.FRESH}
       />
     );
@@ -143,11 +143,11 @@ describe("ValuableCard", () => {
   });
 
   test("should show expiry in hours if state is FRESH and expiry date is less than 24hrs", () => {
-    mockedExpiryDate = mockExpiryDate(5);
+    mockedExpirationTime = mockExpirationTime(5);
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
-        expiryDate={mockedExpiryDate}
+        expirationTime={mockedExpirationTime}
         valuableState={VALUABLE_STATES.FRESH}
       />
     );

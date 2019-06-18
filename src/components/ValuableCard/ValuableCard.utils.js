@@ -46,8 +46,8 @@ export const coinValueToSpinType = coinValue => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const expiryInHours = expiryDate => {
-  return Math.floor(expiryDate.diffNow(["hours"]).hours);
+export const expiryInHours = expirationTime => {
+  return Math.floor(expirationTime.diffNow(["hours"]).hours);
 };
 
 export const getCardUrl = (valuableState, valuableType) => {

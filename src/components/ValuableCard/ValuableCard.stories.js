@@ -6,7 +6,7 @@ import { select, boolean, text } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import {
   mockValuable as mockData,
-  mockExpiryDate,
+  mockExpirationTime,
 } from "./__mocks__/Valuable.mock";
 import { ValuableCard } from "./";
 
@@ -28,7 +28,7 @@ stories.add("Default", () => {
     <ValuableCard
       {...valuableDetails}
       valuableState={valuableState}
-      expiryDate={mockExpiryDate(expiryHours)}
+      expirationTime={mockExpirationTime(expiryHours)}
       onCardClick={action("click")}
     />
   );
