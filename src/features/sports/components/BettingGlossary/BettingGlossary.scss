@@ -8,6 +8,7 @@
 }
 
 .c-betting-glossary-entry--highlight {
+  animation: animate-highlight 0.5s ease 2s 1 normal forwards;
   background: cudl-palette(grey, light-2);
   position: relative;
   top: -(map-get($cudl-spacer-sizes, default));
@@ -30,5 +31,14 @@
   color: cudl-palette(blue, dark-2);
   cursor: pointer;
   pointer-events: initial;
+}
+
+@keyframes animate-highlight {
+  0% {
+    background: cudl-palette(grey, light-2);
+  }
+  100% {
+    background: $white;
+  }
 }
 // stylelint-enable xi/selector-pattern

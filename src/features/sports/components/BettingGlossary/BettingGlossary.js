@@ -17,6 +17,13 @@ const dataAttr = {
   link: "data-glossary-link",
 };
 
+// hack to force reanimation if the class is applied to the same node in succession
+// https://css-tricks.com/restart-css-animation/
+const retriggerAnimation = (element: HTMLElement) => {
+  // eslint-disable-next-line no-void
+  void element.offsetWidth;
+};
+
 export const highlightedClass = "c-betting-glossary-entry--highlight";
 
 class GlossaryTypedQuery extends Query<GlossaryQuery, null> {}
@@ -44,7 +51,10 @@ export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
     const highlighted =
       window.document.querySelectorAll(`.${highlightedClass}`) || [];
 
-    Array.from(highlighted).forEach(x => x.classList.remove(highlightedClass));
+    Array.from(highlighted).forEach(elem => {
+      elem.classList.remove(highlightedClass);
+      retriggerAnimation(elem);
+    });
 
     linkedElement.classList.add(highlightedClass);
 
