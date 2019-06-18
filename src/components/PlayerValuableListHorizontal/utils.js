@@ -1,10 +1,8 @@
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK } from "Src/constants";
 
-export const onOldStackEvent = (evt, callback) => {
-  bridge.on(REACT_APP_EVENT_ON_CALLBACK, ({ event, data }) => {
-    if (evt === event) {
-      callback(data);
-    }
-  });
-};
+export const onOldStackOnCallbackEvent = callback =>
+  bridge.on(REACT_APP_EVENT_ON_CALLBACK, callback);
+
+export const offOldStackOnCallbackEvent = callback =>
+  bridge.off(REACT_APP_EVENT_ON_CALLBACK, callback);

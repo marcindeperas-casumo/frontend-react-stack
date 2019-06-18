@@ -9,7 +9,7 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 import { KO_EVENTS } from "Src/constants";
-import { onOldStackEvent } from "./utils";
+import { onOldStackOnCallbackEvent, offOldStackOnCallbackEvent } from "./utils";
 
 type Props = {
   /** Error message to be log in case of error*/
@@ -26,6 +26,11 @@ type Props = {
   onConsumeValuable: string => void,
 };
 
+type OnCallbackEvent = {
+  event: string,
+  data: { success: string },
+};
+
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
   static defaultProps = {
     loading: false,
@@ -33,13 +38,18 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     valuable: [],
   };
 
+  onItemCreated = ({ event, data }: OnCallbackEvent) => {
+    if (event === KO_EVENTS.VALUABLES.ITEM_CREATED && data.success) {
+      this.props.refetch();
+    }
+  };
+
   componentDidMount() {
-    const { refetch } = this.props;
-    onOldStackEvent(KO_EVENTS.VALUABLES.ITEM_CREATED, ({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
+    onOldStackOnCallbackEvent(this.onItemCreated);
+  }
+
+  componentWillUnmount() {
+    offOldStackOnCallbackEvent(this.onItemCreated);
   }
 
   render() {
