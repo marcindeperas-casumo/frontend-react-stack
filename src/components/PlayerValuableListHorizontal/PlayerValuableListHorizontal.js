@@ -66,7 +66,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
                 key={`valuable-card-${id}`}
               >
                 <ValuableCard
-                  hoursUnit={translations.hoursUnit}
+                  translatedHoursUnit={translations.hoursUnit}
                   {...valuable}
                   onCardClick={
                     shouldUseValuable
