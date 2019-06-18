@@ -79,28 +79,26 @@ export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
   };
 
   render() {
-    const { id, term, aka, definition } = this.props;
-
     return (
       <Flex.Item
         className="c-betting-glossary-entry u-font-weight-normal u-padding-y--md u-pointer-events-none"
         onClick={this.handleLinkedEntries}
-        data-glossary-term={id}
+        data-glossary-term={this.props.id}
       >
-        <strong>{term}: </strong>
-        {!isCmsEntryEmpty(aka) && (
+        <strong>{this.props.term}: </strong>
+        {!isCmsEntryEmpty(this.props.aka) && (
           <span>
             <em>
               <DictionaryTerm
                 data-test-glossary-entry-aka
                 termKey="glossary.aka"
               />{" "}
-              {aka}
+              {this.props.aka}
               <br />
             </em>
           </span>
         )}
-        <DangerousHtml html={definition} />
+        <DangerousHtml html={this.props.definition} />
       </Flex.Item>
     );
   }
