@@ -1,16 +1,20 @@
-//@flow
+// @flow
 import {
-  either,
-  isEmpty,
-  isNil,
-  splitEvery,
-  join,
+  always,
   compose,
+  either,
+  equals,
   filter,
   identity,
+  isEmpty,
+  isNil,
+  join,
   pathOr,
+  pipe,
+  replace,
+  splitEvery,
+  when,
 } from "ramda";
-// @flow
 import type { Bets } from "Types/liveCasinoLobby";
 
 export const noop = () => {};
@@ -223,3 +227,15 @@ export const interpolate = (
   target.replace(INTERPOLATION_REGEX, (match, param) =>
     pathOr(match, [param], replacements)
   );
+
+export const getCssCustomProperty = (property: string) =>
+  document.documentElement
+    ? document.documentElement.style.getPropertyValue(property)
+    : undefined;
+
+// handle CMS workaround using "empty" to prevent locale fallback returning wrong string
+export const isCmsEntryEmpty = pipe(
+  when(isNilOrEmpty, always("")),
+  replace(/^empty$/i, ""),
+  equals("")
+);
