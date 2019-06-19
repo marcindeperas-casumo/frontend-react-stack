@@ -1,14 +1,14 @@
+import requireContext from "require-context.macro";
 import React from "react";
 import { configure, addDecorator, addParameters } from "@storybook/react";
 import { withKnobs } from "@storybook/addon-knobs";
 import { withInfo } from "@storybook/addon-info";
-import { withBackgrounds } from "@storybook/addon-backgrounds";
 import "storybook-chromatic";
 import casumoTheme, { color } from "./casumoTheme";
 import "./stories.scss";
 import "../src/styles/index.scss";
 
-const req = require.context("../src", true, /.stories.js$/);
+const req = requireContext("../src", true, /.stories.js$/);
 
 function loadStories() {
   req.keys().forEach(filename => req(filename));
@@ -16,13 +16,6 @@ function loadStories() {
 
 addDecorator(withInfo);
 addDecorator(withKnobs);
-addDecorator(
-  withBackgrounds([
-    { name: "light", value: "#ffffff", default: true },
-    { name: "colorful", value: "#0085c1" },
-    { name: "dark", value: "#444f4f" },
-  ])
-);
 
 addDecorator(Story => (
   <>
@@ -34,6 +27,11 @@ addDecorator(Story => (
 ));
 
 addParameters({
+  backgrounds: [
+    { name: "light", value: "#ffffff", default: true },
+    { name: "colorful", value: "#0085c1" },
+    { name: "dark", value: "#444f4f" },
+  ],
   options: {
     theme: casumoTheme,
   },
