@@ -11,16 +11,16 @@ if (env.BRANCH_NAME=="master"){
             .customStep('Build', this.&runBuild)
             .gradleDockerPublish()
             .gradleRelease()
-            .deployToProduction('mobile-react-stack-poc')
+            .deployToProduction('frontend-react-stack')
             .build('js-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
-Deployed *mobile-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda: 
+Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda: 
 Changes: ${RUN_CHANGES_DISPLAY_URL}
 """         
         } catch (ex) {
         slackSend channel: "operations-frontend", color: '#f05e5e', message: """
-*mobile-react-stack* deployment failed - ${BUILD_URL}. 
+*frontend-react-stack* deployment failed - ${BUILD_URL}. 
 Started by: *${env.gitAuthor}* :eyes:
 """
         throw ex
@@ -39,7 +39,7 @@ Started by: *${env.gitAuthor}* :eyes:
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
         .gradleRelease()
-        .deployToTest('mobile-react-stack-poc')
+        .deployToTest('frontend-react-stack')
         .build('js-builder')
 }
 
