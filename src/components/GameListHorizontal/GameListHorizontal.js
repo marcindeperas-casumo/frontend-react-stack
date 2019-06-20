@@ -27,12 +27,6 @@ export type Props = {
   seeMoreText: string,
 };
 
-export const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
-};
-
 export const ITEM_RENDERERS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: GameTileExclusiveContainer,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: LiveCasinoCardContainer,
