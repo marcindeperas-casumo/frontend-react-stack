@@ -5,10 +5,10 @@ import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import bridge from "Src/DurandalReactBridge";
 import {
-  REACT_APP_EVENT_MENU_OPENED,
   REACT_APP_EVENT_MENU_CLOSED,
+  REACT_APP_EVENT_MENU_OPENED,
+  REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
-  REACT_APP_EVENT_ON_OVERLAY_TOGGLE,
 } from "Src/constants";
 import {
   sessionIdSelector,
@@ -47,16 +47,17 @@ export const SPORTS_SHELL_QUERY = gql`
   }
 `;
 
+const showFavouritesSelector = client =>
+  client.query({ query: SPORTS_SHELL_QUERY }).then(({ data }) => {
+    if (!data.hasSelectedFavourites) {
+      client.mutate({
+        mutation: OPEN_MODAL_MUTATION,
+        variables: { modal: "CHOOSE_FAVOURITES" },
+      });
+    }
+  });
+
 const bridgeEventHandlers = [
-  [
-    REACT_APP_SPORTS_SHOW_SEARCH,
-    client => showSearch =>
-      client.mutate({ mutation: showSearch ? SHOW_SEARCH : HIDE_SEARCH }),
-  ],
-  [
-    REACT_APP_EVENT_ON_OVERLAY_TOGGLE,
-    client => () => client.mutate({ mutation: CLOSE_ALL_MODALS_MUTATION }),
-  ],
   [
     REACT_APP_EVENT_MENU_CLOSED,
     client => data =>
@@ -73,6 +74,23 @@ const bridgeEventHandlers = [
         variables: { isVisible: false },
       }),
   ],
+  [
+    REACT_APP_EVENT_ON_OVERLAY_CHANGE,
+    client => route => {
+      const isSports = route === undefined;
+
+      if (isSports) {
+        showFavouritesSelector(client);
+      } else {
+        client.mutate({ mutation: CLOSE_ALL_MODALS_MUTATION });
+      }
+    },
+  ],
+  [
+    REACT_APP_SPORTS_SHOW_SEARCH,
+    client => showSearch =>
+      client.mutate({ mutation: showSearch ? SHOW_SEARCH : HIDE_SEARCH }),
+  ],
 ];
 
 export class SportsShellContainer extends React.Component<{}> {
@@ -84,19 +102,7 @@ export class SportsShellContainer extends React.Component<{}> {
     );
 
     // on mount open the choose favourites modal if the user is yet to choose favourites
-    this.context.client
-      .query({ query: SPORTS_SHELL_QUERY })
-      .then(({ data }) => {
-        if (!data.hasSelectedFavourites) {
-          // bug in apollo client is making a timeout necessary here, @adampilks - remove when we can
-          setTimeout(() => {
-            this.context.client.mutate({
-              mutation: OPEN_MODAL_MUTATION,
-              variables: { modal: "CHOOSE_FAVOURITES" },
-            });
-          }, 100);
-        }
-      });
+    showFavouritesSelector(this.context.client);
   }
 
   render() {
