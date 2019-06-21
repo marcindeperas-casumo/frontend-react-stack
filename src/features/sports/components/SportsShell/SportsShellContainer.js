@@ -8,6 +8,7 @@ import {
   REACT_APP_EVENT_MENU_OPENED,
   REACT_APP_EVENT_MENU_CLOSED,
   REACT_APP_SPORTS_SHOW_SEARCH,
+  REACT_APP_EVENT_ON_OVERLAY_TOGGLE,
 } from "Src/constants";
 import {
   sessionIdSelector,
@@ -28,6 +29,7 @@ import {
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
+  CLOSE_ALL_MODALS_MUTATION,
 } from "Features/sports/state";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
@@ -45,28 +47,40 @@ export const SPORTS_SHELL_QUERY = gql`
   }
 `;
 
+const bridgeEventHandlers = [
+  [
+    REACT_APP_SPORTS_SHOW_SEARCH,
+    client => showSearch =>
+      client.mutate({ mutation: showSearch ? SHOW_SEARCH : HIDE_SEARCH }),
+  ],
+  [
+    REACT_APP_EVENT_ON_OVERLAY_TOGGLE,
+    client => () => client.mutate({ mutation: CLOSE_ALL_MODALS_MUTATION }),
+  ],
+  [
+    REACT_APP_EVENT_MENU_CLOSED,
+    client => data =>
+      client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: true },
+      }),
+  ],
+  [
+    REACT_APP_EVENT_MENU_OPENED,
+    client => data =>
+      client.mutate({
+        mutation: UPDATE_BETSLIP_STATE_MUTATION,
+        variables: { isVisible: false },
+      }),
+  ],
+];
+
 export class SportsShellContainer extends React.Component<{}> {
   static contextType = ClientContext;
 
   componentDidMount() {
-    bridge.on(REACT_APP_SPORTS_SHOW_SEARCH, showSearch => {
-      const mutation = showSearch ? SHOW_SEARCH : HIDE_SEARCH;
-
-      this.context.client.mutate({ mutation });
-    });
-
-    bridge.on(REACT_APP_EVENT_MENU_CLOSED, data =>
-      this.context.client.mutate({
-        mutation: UPDATE_BETSLIP_STATE_MUTATION,
-        variables: { isVisible: true },
-      })
-    );
-
-    bridge.on(REACT_APP_EVENT_MENU_OPENED, data =>
-      this.context.client.mutate({
-        mutation: UPDATE_BETSLIP_STATE_MUTATION,
-        variables: { isVisible: false },
-      })
+    bridgeEventHandlers.map(([event, handler]) =>
+      bridge.on(event, handler(this.context.client))
     );
 
     // on mount open the choose favourites modal if the user is yet to choose favourites
