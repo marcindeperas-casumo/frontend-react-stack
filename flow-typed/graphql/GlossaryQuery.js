@@ -3,11 +3,17 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: ActiveModals
+// GraphQL query operation: GlossaryQuery
 // ====================================================
 
-export type ActiveModals = {
-  activeModals: Array<Modal>
+export type GlossaryQuery_glossary = {
+  term: string,
+  aka: ?string,
+  definition: string,
+};
+
+export type GlossaryQuery = {
+  glossary: Array<GlossaryQuery_glossary>
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

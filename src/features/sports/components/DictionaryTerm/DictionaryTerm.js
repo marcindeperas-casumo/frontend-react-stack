@@ -42,7 +42,7 @@ const getDictionaryTerm = (
   return NOT_FOUND_STRING;
 };
 
-const DictionaryTerm = ({
+export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
@@ -57,5 +57,3 @@ const DictionaryTerm = ({
     }}
   </DictionaryTermTypedQuery>
 );
-
-export default DictionaryTerm;

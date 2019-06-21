@@ -16,6 +16,7 @@ import {
 } from "Models/handshake";
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
+import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
@@ -110,6 +111,7 @@ export class SportsShellContainer extends React.Component<{}> {
               </SportsHashWatcher>
               {data.hasSelectedFavourites ? <KambiClient /> : null}
               <Modals />
+              <SportsFooter />
             </div>
           );
         }}
