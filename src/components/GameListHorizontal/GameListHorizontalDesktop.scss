@@ -1,0 +1,28 @@
+.c-game-list-horizontal-desktop-paginated {
+  display: grid;
+  height: 100%;
+  width: 100%;
+}
+
+.c-game-list-horizontal-desktop-paginated__list {
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.c-game-list-horizontal-desktop-paginated__controls {
+  align-items: center;
+  grid-area: 1 / 1 / 2 / 2;
+  z-index: cudl-z();
+}
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-game-list-horizontal-desktop-paginated
+.c-game-list-horizontal-desktop-paginated__button {
+  opacity: 0;
+  transition: opacity 0.25s ease-in;
+}
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-game-list-horizontal-desktop-paginated:hover
+.c-game-list-horizontal-desktop-paginated__button {
+  opacity: 1;
+}

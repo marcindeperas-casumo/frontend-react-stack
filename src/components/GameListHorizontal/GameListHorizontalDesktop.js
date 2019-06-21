@@ -10,6 +10,8 @@ import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { GameListObject } from "Components/GameListHorizontal/GameListHorizontal";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
+import "./GameListHorizontalDesktop.scss";
+
 type Props = {
   tileHeight: number,
   className: string,
@@ -35,13 +37,18 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) {
+    const arrowClass = `t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer
+      c-game-list-horizontal-desktop-paginated__button`;
     return (
-      <Flex justify="space-between">
+      <Flex
+        justify="space-between"
+        className=" c-game-list-horizontal-desktop-paginated__controls"
+      >
         <Flex.Item>
           {hasPreviousPage && (
             <div
               onClick={e => scrollableClickHandler("previous")}
-              className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+              className={arrowClass}
             >
               <ArrowLeftIcon className="t-color-grey-light-3" />
             </div>
@@ -51,7 +58,7 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
           {hasNextPage && (
             <div
               onClick={e => scrollableClickHandler("next")}
-              className="t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer"
+              className={arrowClass}
             >
               <ArrowRightIcon className="t-color-grey-light-3" />
             </div>
@@ -105,6 +112,7 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
           ) : null}
         </Flex>
         <ScrollablePaginated
+          className="c-game-list-horizontal-desktop-paginated"
           columnCount={gameIds.length}
           cellRenderer={this.cellRenderer}
           buttonRenderer={this.buttonRenderer}
