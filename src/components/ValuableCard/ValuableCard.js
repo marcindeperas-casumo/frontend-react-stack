@@ -51,7 +51,7 @@ type Props = {
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
-  expirationTime: DateTime | number,
+  expirationTime: DateTime,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
   /** translated label for the 'hours' unit */
