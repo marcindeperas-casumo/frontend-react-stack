@@ -10,7 +10,7 @@ const provider = new Pact({
   dir: path.resolve(process.cwd(), "pact", "pacts"),
   log: path.resolve(process.cwd(), "pact", "logs", "pact.log"),
   pactfileWriteMode: "overwrite",
-  consumer: "mobile-react-stack",
+  consumer: "frontend-react-stack",
   provider: "casino-games",
   cors: true,
 });

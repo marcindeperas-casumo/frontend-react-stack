@@ -3,7 +3,7 @@ const { commit } = require("./utils");
 
 const checkProvider = {
   pactBroker: "http://pact-broker.casumo.cloud/",
-  participant: "mobile-react-stack",
+  participant: "frontend-react-stack",
   participantVersion: commit,
   retryWhileUnknown: 5,
   retryInterval: 10,
