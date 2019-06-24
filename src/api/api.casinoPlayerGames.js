@@ -7,8 +7,7 @@ type HTTPClient = typeof clientHttp;
 
 export const URL = {
   GAMES: "/casino-player/casino-games/api/v1/games",
-  // TODO - revert to /casino-player/casino-games/api/v1/games/count!!!!!!!!
-  GAMES_COUNT: "http://127.0.0.1:7777/casino-games/api/v1/games/count",
+  GAMES_COUNT: "/casino-player/casino-games/api/v1/games/count",
   GAME_SEARCH: "/casino-player/casino-games/api/v1/games/search",
   GAME_SEARCH_COUNT: "/casino-player/casino-games/api/v1/games/search/count",
   GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
