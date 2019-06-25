@@ -9,7 +9,7 @@ type Props = {
   style: string,
 };
 
-const classes = "s-content-html u-padding-horiz--lg u-margin-bottom--lg";
+const classes = "s-content-html u-padding-x--lg u-margin-bottom--lg";
 
 export class ContentHtml extends PureComponent<Props> {
   render() {

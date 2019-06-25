@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import isNotChromatic from "Storybook/isNotChromatic";
 import HashWatcher from "Components/HashWatcher";
 
 const stories = storiesOf("HashWatcher", module);
@@ -40,7 +41,7 @@ class HashWatcherDemo extends React.Component<{}, State> {
           )}
         </HashWatcher>
         <p
-          className="u-margin u-margin-top--lg u-font-xs"
+          className="u-margin u-margin-top--lg u-font-2xs"
           style={{ lineHeight: 1.6 }}
         >
           This is just a debug view. The HashWatcher component is providing the
@@ -53,4 +54,6 @@ class HashWatcherDemo extends React.Component<{}, State> {
   }
 }
 
-stories.add("Default View", () => <HashWatcherDemo />);
+if (isNotChromatic) {
+  stories.add("Default View", () => <HashWatcherDemo />);
+}

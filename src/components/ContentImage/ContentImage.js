@@ -18,24 +18,22 @@ export class ContentImage extends PureComponent<Props> {
     const { src, alt = "", maxWidth = MAX_CONTENT_WIDTH } = this.props;
     const className = `
       u-width--1/1
-      u-padding-horiz--lg
-      u-padding-horiz--none@mobile
-      u-margin-horiz--auto
+      u-padding-x--lg
+      u-padding-x--none@mobile
+      u-margin-x--auto
       u-margin-bottom--lg
     `;
 
     return (
-      <>
-        <ImageLazy
-          className={className}
-          src={src}
-          alt={alt}
-          dpr={3}
-          imgixOpts={{
-            w: maxWidth,
-          }}
-        />
-      </>
+      <ImageLazy
+        className={className}
+        src={src}
+        alt={alt}
+        dpr={3}
+        imgixOpts={{
+          w: maxWidth,
+        }}
+      />
     );
   }
 }

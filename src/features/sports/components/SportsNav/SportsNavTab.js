@@ -15,9 +15,9 @@ type SportsNavTabProps = {
 };
 
 const SportsNavTab = ({ navItem, isSelected, onClick }: SportsNavTabProps) => (
-  <Flex.Item
+  <div
     className={classNames(
-      "c-sports-nav-tab u-padding-horiz u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
+      "c-sports-nav-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
       isSelected && "c-sports-nav-tab--selected"
     )}
     onClick={() => onClick(navItem)}
@@ -38,7 +38,7 @@ const SportsNavTab = ({ navItem, isSelected, onClick }: SportsNavTabProps) => (
         {navItem.text}
       </Text>
     </Flex>
-  </Flex.Item>
+  </div>
 );
 
 export default SportsNavTab;

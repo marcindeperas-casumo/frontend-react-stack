@@ -5,7 +5,7 @@
 // the react-stack-poc and casumo-frontend repositories.
 //
 // react-stack-poc
-// (https://github.com/Casumo/mobile-react-stack-poc/blob/master/src/constants.js)
+// (https://github.com/Casumo/frontend-react-stack/blob/master/src/constants.js)
 //
 // casumo-frontend
 // (https://github.com/Casumo/casumo-frontend/tree/master/web/common-frontend/src/js/utils/react-stack/constants.es6)
@@ -18,10 +18,17 @@ export const REACT_APP_EVENT_ON_LOGIN = "REACT_APP_EVENT/onLogin";
 export const REACT_APP_EVENT_ROUTE_CHANGE = "REACT_APP_EVENT/routeChange";
 export const REACT_APP_EVENT_MENU_OPENED = "REACT_APP_EVENT/menuOpened";
 export const REACT_APP_EVENT_MENU_CLOSED = "REACT_APP_EVENT/menuClosed";
-export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch"; // KO_APP* events are events that the KO app will be responsible to react // to.
+export const REACT_APP_EVENT_ON_CALLBACK = "REACT_APP_EVENT/onCallback";
+export const REACT_APP_EVENT_ON_OVERLAY_CHANGE =
+  "REACT_APP_EVENT/onOverlayChange";
+export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
+
+// KO_APP* events are events that the KO app will be responsible to react
+// to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
 export const KO_APP_EVENT_SHOW_TERMS = "KO_APP_EVENT/showTerms";
+export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {
@@ -103,9 +110,13 @@ export const EVENT_LOCATIONS = {
 export const MODALS = {
   ACCOUNT_SETTINGS: {
     CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
+    CHANGE_EXTENT_OF_GAMBLING: "ACCOUNT_SETTINGS/CHANGE_EXTENT_OF_GAMBLING",
     CHANGE_PASSWORD: "ACCOUNT_SETTINGS/CHANGE_PASSWORD",
+    CHANGE_MOBILE_NUMBER: "ACCOUNT_SETTINGS/CHANGE_MOBILE_NUMBER",
+    SHOW_ACCOUNT_ACTIVITY: "ACCOUNT_SETTINGS/SHOW_ACCOUNT_ACTIVITY",
   },
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
+  ERROR: "ERROR",
 };
 export const EVOLUTION_LOBBY_TYPES = {
   MONEYWHEEL: "MoneyWheel",
@@ -114,4 +125,10 @@ export const EVOLUTION_LOBBY_TYPES = {
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
   BACCARAT: "Baccarat",
+};
+
+export const KO_EVENTS = {
+  ACCOUNT_SETTINGS: {
+    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
+  },
 };

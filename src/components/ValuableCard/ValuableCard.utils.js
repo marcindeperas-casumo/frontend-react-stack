@@ -1,4 +1,9 @@
-import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
+import { DateTime } from "luxon";
+import {
+  VALUABLE_TYPES,
+  VALUABLE_STATES,
+  VALUABLE_SPIN_TYPES,
+} from "Models/valuables";
 import {
   DepositIcon,
   SportIcon,
@@ -7,6 +12,17 @@ import {
   SuperSpinsIcon,
   MegaSpinsIcon,
 } from "./Valuable.icons";
+
+// To move these urls somwhere more localised
+export const VALUABLE_LOCKED_URL = "en/player/valuables";
+export const VALUABLE_SPINS_URL = "en/game/";
+export const VALUABLE_DEPOSIT_URL = "en/deposit";
+
+const VALUABLE_REDIRECT_URL = {
+  [VALUABLE_STATES.LOCKED]: VALUABLE_LOCKED_URL,
+  [VALUABLE_TYPES.DEPOSIT]: VALUABLE_DEPOSIT_URL,
+  [VALUABLE_TYPES.SPINS]: VALUABLE_SPINS_URL,
+};
 
 export const VALUABLE_ICON = {
   [VALUABLE_TYPES.DEPOSIT]: DepositIcon,
@@ -19,7 +35,7 @@ export const VALUABLE_ICON = {
   [VALUABLE_TYPES.SPORT]: SportIcon,
 };
 
-export const CoinValueToSpinType = coinValue => {
+export const coinValueToSpinType = coinValue => {
   if (coinValue > 0.3 && coinValue <= 0.9) {
     return VALUABLE_SPIN_TYPES.BONUS;
   } else if (coinValue > 0.9 && coinValue <= 3) {
@@ -31,6 +47,14 @@ export const CoinValueToSpinType = coinValue => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const ExpiryInHours = expiryDate => {
-  return Math.floor(expiryDate.diffNow(["hours"]).hours);
+export const expiryInHours = expiryDate => {
+  return Math.floor(expiryDate.diff(DateTime.utc(), ["hours"]).hours);
+};
+
+export const getCardUrl = (valuableState, valuableType) => {
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return VALUABLE_REDIRECT_URL[valuableState];
+  }
+
+  return VALUABLE_REDIRECT_URL[valuableType] || null;
 };

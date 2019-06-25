@@ -50,7 +50,7 @@ export class ContentMediaList extends PureComponent<Props> {
   render() {
     const { items } = this.props;
     return (
-      <div className="u-margin-bottom--lg u-padding-horiz--lg">
+      <div className="u-margin-bottom--lg u-padding-x--lg">
         <List
           itemSpacing="md"
           items={items}

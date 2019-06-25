@@ -15,9 +15,11 @@ stories.addDecorator(withKnobs);
 if (isNotChromatic) {
   stories.add("Default Tile (Connected)", () => {
     return (
-      <MockStore>
-        <GameTileExclusiveConnected id="jammin-jars" />
-      </MockStore>
+      <div className="c-exclusive-game">
+        <MockStore>
+          <GameTileExclusiveConnected id="jammin-jars" />
+        </MockStore>
+      </div>
     );
   });
 }
@@ -28,9 +30,11 @@ stories.add("Default Tile", () => {
     exclusiveGame.inMaintenanceMode
   );
   return (
-    <GameTileExclusive
-      game={{ ...exclusiveGame, inMaintenanceMode }}
-      onLaunchGame={action(exclusiveGame.name)}
-    />
+    <div className="c-exclusive-game">
+      <GameTileExclusive
+        game={{ ...exclusiveGame, inMaintenanceMode }}
+        onLaunchGame={action(exclusiveGame.name)}
+      />
+    </div>
   );
 });

@@ -20,6 +20,12 @@ export const CLOSE_MODAL_MUTATION = gql`
   }
 `;
 
+export const CLOSE_ALL_MODALS_MUTATION = gql`
+  mutation CloseAllModals {
+    closeAllModals @client
+  }
+`;
+
 export const UPDATE_KAMBI_CLIENT_STATE_MUTATION = gql`
   mutation UpdateKambiClientState($isVisible: Boolean!) {
     updateKambiClientState(isVisible: $isVisible) @client

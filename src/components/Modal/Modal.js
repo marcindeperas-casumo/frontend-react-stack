@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import type { Node } from "react";
+import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 
 import "./Modal.scss";
@@ -10,35 +11,37 @@ type SharedProps = {
   className?: string,
 };
 
-const ModalContainer = (props: SharedProps): Node => (
-  <div className={classNames("c-modal", props.className)}>{props.children}</div>
+const ModalContainer = ({ children, className }: SharedProps): Node => (
+  <Flex
+    className={classNames("c-modal", className)}
+    direction="vertical"
+    spacing="none"
+  >
+    {children}
+  </Flex>
 );
 
-const Footer = (props: SharedProps): Node => (
-  <div className={classNames("c-modal__footer", props.className)}>
-    {props.children}
-  </div>
+const Footer = ({ children, className }: SharedProps): Node => (
+  <Flex.Item className={classNames("c-modal__footer", className)}>
+    {children}
+  </Flex.Item>
 );
 
-const Header = (props: SharedProps): Node => (
-  <div className={classNames("c-modal__header", props.className)}>
-    {props.children}
-  </div>
+const Header = ({ children, className }: SharedProps): Node => (
+  <Flex.Item className={classNames("c-modal__header", className)}>
+    {children}
+  </Flex.Item>
 );
 
-const Content = (props: SharedProps): Node => (
-  <div className={classNames("c-modal__content", props.className)}>
-    {props.children}
-  </div>
+const Content = ({ children, className }: SharedProps): Node => (
+  <Flex.Block className={classNames("c-modal__content", className)}>
+    {children}
+  </Flex.Block>
 );
 
-export const Modal = (props: SharedProps) => {
-  return (
-    <ModalContainer className={classNames(props.className)}>
-      {props.children}
-    </ModalContainer>
-  );
-};
+export const Modal = ({ children, className }: SharedProps) => (
+  <ModalContainer className={classNames(className)}>{children}</ModalContainer>
+);
 
 /* eslint-disable fp/no-mutation */
 Modal.Header = Header;

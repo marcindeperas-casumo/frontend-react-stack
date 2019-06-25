@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { select } from "@storybook/addon-knobs/react";
 import { GameListHorizontal } from "Components/GameListHorizontal";
 import { GameListHorizontal as GameListHorizontalPresentational } from "Components/GameListHorizontal/GameListHorizontal";
 import MockStore from "Components/MockStore";
@@ -22,11 +23,22 @@ const list = {
   title: "Popular",
 };
 
-const GameListHorizontalStory = () => (
-  <MockStore>
-    <GameListHorizontal id={GAME_LIST_IDS.POPULAR_GAMES} />
-  </MockStore>
-);
+const GameListHorizontalStory = () => {
+  const gameListIds = [
+    GAME_LIST_IDS.POPULAR_GAMES,
+    GAME_LIST_IDS.EXCLUSIVE_GAMES,
+  ];
+  const listId = select(
+    "Game List Id",
+    gameListIds,
+    GAME_LIST_IDS.POPULAR_GAMES
+  );
+  return (
+    <MockStore>
+      <GameListHorizontal id={listId} />
+    </MockStore>
+  );
+};
 
 const GameListHorizontalPresentationalStory = () => (
   <MockStore>

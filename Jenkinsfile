@@ -2,7 +2,30 @@
 @Library('casumo-jenkins-libraries') _
 import com.casumo.jenkins.PipelineBuilder
 
-new PipelineBuilder(this)
+if (env.BRANCH_NAME=="master"){
+    try {
+        new PipelineBuilder(this)
+            .checkout()
+            .customStep('Install dependencies', this.&installDependencies)
+            .customStep('Build', this.&runBuild)
+            .gradleDockerPublish()
+            .gradleRelease()
+            .deployToProduction('frontend-react-stack')
+            .build('js-builder')
+
+        slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
+Deployed *frontend-react-stack* to production on behalf of *${env.gitAuthor}*! :dancingpanda: 
+Changes: ${RUN_CHANGES_DISPLAY_URL}
+"""         
+        } catch (ex) {
+        slackSend channel: "operations-frontend", color: '#f05e5e', message: """
+*frontend-react-stack* deployment failed - ${BUILD_URL}. 
+Started by: *${env.gitAuthor}* :eyes:
+"""
+        throw ex
+    }
+} else {
+    new PipelineBuilder(this)
         .checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
@@ -16,7 +39,9 @@ new PipelineBuilder(this)
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
         .gradleRelease()
-        .build('js-builder') // https://github.com/Casumo/jenkins-js-builder/blob/master/Dockerfile
+        .deployToTest('frontend-react-stack')
+        .build('js-builder')
+}
 
 def installDependencies() {
     sh "yarn"

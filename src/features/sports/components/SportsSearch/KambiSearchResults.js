@@ -71,7 +71,7 @@ export const SEARCH_QUERY = gql`
 `;
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
-  <Text className="t-background-white t-color-black-dark-1 u-padding-vert--md u-font-weight-bold">
+  <Text className="t-background-white t-color-black-dark-1 u-padding-y--md u-font-weight-bold">
     {children}
   </Text>
 );
@@ -195,7 +195,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
 
     return (
-      <Flex.Item className="u-margin-horiz--md t-background-grey-light-2">
+      <Flex.Item className="u-margin-x--md t-background-grey-light-2">
         {this.renderSearchHistory(noOfSearchHistoryItems)}
         {this.renderPopularSearches(noOfPopularSearchItems)}
       </Flex.Item>
@@ -328,7 +328,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
           if (res.loading || !res.data || !res.data.search) {
             return (
-              <div className="u-margin-horiz--md">
+              <div className="u-margin-x--md">
                 <KambiSearchResultsSkeleton />
               </div>
             );
@@ -343,7 +343,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           return (
-            <Flex.Item className="u-margin-horiz--md t-background-grey-light-2">
+            <Flex.Item className="u-margin-x--md t-background-grey-light-2">
               {Object.keys(groupedResults).map(typeTitle => (
                 <React.Fragment key={typeTitle}>
                   <GroupTitle>{typeTitle}</GroupTitle>
@@ -362,13 +362,13 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <ResultRow className="t-background-grey-light-2 u-padding--lg">
+        <ResultRow className="t-background-grey-light-2 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
-            <Flex.Item className="u-margin-left--md">
+            <Flex.Item>
               <NoResultsIcon />
             </Flex.Item>
             <Flex.Block>
-              <Text className="u-margin-left u-font-weight-bold">
+              <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
                 <DictionaryTerm termKey="search-results.no-results" />
               </Text>
             </Flex.Block>

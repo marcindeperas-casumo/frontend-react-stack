@@ -45,7 +45,7 @@ export class GameSearch extends React.PureComponent<Props> {
     if (loading) {
       return (
         <GameListSkeleton
-          className="u-game-search-max-width u-padding-horiz--md"
+          className="u-game-search-max-width u-padding-x--md"
           hasTitle={false}
           titleYOffset={20}
         />
@@ -57,7 +57,7 @@ export class GameSearch extends React.PureComponent<Props> {
         >
           {searchResultsCount < PAGE_SIZE ? (
             <List
-              className="u-padding-top u-padding-horiz--md u-game-search-max-width"
+              className="u-padding-top u-padding-x--md u-game-search-max-width"
               items={searchResults}
               itemSpacing="default"
               render={id => (

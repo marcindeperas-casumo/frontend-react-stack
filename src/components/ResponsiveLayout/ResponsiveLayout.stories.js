@@ -1,13 +1,14 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { viewports } from "Storybook/viewports";
 import { Desktop, Mobile } from "./ResponsiveLayout";
 
 const stories = storiesOf("ResponsiveLayout", module);
 
 /*
   Desktop and mobile are currently being tested on Chromatic as it is not trivial how to test matchMedia
-  via unit-testing https://github.com/Casumo/mobile-react-stack-poc/pull/473#discussion_r281507505
+  via unit-testing https://github.com/Casumo/frontend-react-stack/pull/473#discussion_r281507505
   Ideal scenario would be testing those with Jest and remove the following stories.
 */
 
@@ -41,9 +42,7 @@ stories.add(
       />
     </div>
   ),
-  {
-    chromatic: { viewports: [1280] },
-  }
+  viewports.desktop
 );
 
 stories.add(
@@ -76,7 +75,5 @@ stories.add(
       />
     </div>
   ),
-  {
-    chromatic: { viewports: [768] },
-  }
+  viewports.tablet
 );

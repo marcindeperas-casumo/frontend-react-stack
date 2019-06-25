@@ -5,22 +5,24 @@ import Text from "@casumo/cmp-text";
 import { DateTime } from "luxon";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
-import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
-import { getSymbolForCurrency } from "Utils";
+import {
+  type ValuableType,
+  type ValuableState,
+  VALUABLE_TYPES,
+  VALUABLE_STATES,
+} from "Models/valuables";
+import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
   VALUABLE_ICON,
-  CoinValueToSpinType,
-  ExpiryInHours,
+  coinValueToSpinType,
+  expiryInHours,
 } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
 import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
-
-type ValuableType = $Values<VALUABLE_TYPES>;
-type ValuableState = $Values<VALUABLE_STATES>;
 
 type Game = {
   backgroundImage: string,
@@ -28,20 +30,39 @@ type Game = {
 };
 
 type Props = {
+  /** Unique id of the valuable */
   id: string,
+  /** Title of the valuable */
   title: string,
+  /** Valuable type of the valuable */
   valuableType: ValuableType,
+  /** currency of the player */
   currency: string,
-  coinValue: number,
-  game: Game,
+  /** The coin value of each spin. Applies when valuable is type spins */
+  coinValue?: number,
+  /** The game on which the spins can be used on. Applies when valuable is type spins */
+  game?: Game,
+  /** Market of the player */
   market: string,
+  /** Background image to be displayed in the Card header */
   backgroundImage: string,
+  /** Valuable caveats to be displayed */
   caveat: string,
+  /** The state of the valuable */
   valuableState: ValuableState,
+  /** The date on which the valuable will expiry */
   expiryDate: DateTime,
+  /** Function to be triggered on click of card */
+  onCardClick: () => void,
+  /** translated label for the 'hours' unit */
+  translatedHoursUnit: string,
 };
 
 export class ValuableCard extends PureComponent<Props> {
+  static defaultProps = {
+    valuableState: VALUABLE_STATES.FRESH,
+  };
+
   get valuableSymbol() {
     const { valuableType } = this.props;
 
@@ -81,19 +102,23 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expiryDate } = this.props;
+    const { valuableState, expiryDate, translatedHoursUnit } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
 
-    const expiryInHours = ExpiryInHours(expiryDate);
-    const hrs24 = 24;
+    const hours = expiryInHours(expiryDate);
 
-    if (expiryInHours <= hrs24) {
+    if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
-      return badgeOpts(`${expiryInHours}h`, className, () => <Time />);
+
+      return badgeOpts(
+        interpolate(translatedHoursUnit, { hours }),
+        className,
+        () => <Time />
+      );
     }
 
     return { ...badgeOpts, visible: false };
@@ -101,7 +126,7 @@ export class ValuableCard extends PureComponent<Props> {
 
   // To move this to graphql
   get spinType() {
-    return CoinValueToSpinType(this.props.coinValue);
+    return coinValueToSpinType(this.props.coinValue);
   }
 
   cashSymbol = () => {
@@ -124,6 +149,7 @@ export class ValuableCard extends PureComponent<Props> {
       backgroundImage,
       caveat,
       valuableState,
+      onCardClick,
     } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
@@ -135,6 +161,8 @@ export class ValuableCard extends PureComponent<Props> {
     return (
       <div className="c-valuable-card-wrapper u-position-relative">
         <Flex
+          onClick={onCardClick}
+          data-test="valuable-card"
           className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
           gap="none"
@@ -143,7 +171,9 @@ export class ValuableCard extends PureComponent<Props> {
             <ValuableHeaderBackground
               className={this.headerClassModifier}
               imageUrl={
-                isValuableTypeSpins ? game.backgroundImage : backgroundImage
+                isValuableTypeSpins && game
+                  ? game.backgroundImage
+                  : backgroundImage
               }
               id={id}
               blur={isValuableTypeSpins ? blurAmount : 0}
@@ -158,7 +188,7 @@ export class ValuableCard extends PureComponent<Props> {
             <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
               {title}
             </div>
-            {isValuableTypeSpins && (
+            {isValuableTypeSpins && game && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
                 {game.name}
               </div>
@@ -167,7 +197,7 @@ export class ValuableCard extends PureComponent<Props> {
         </Flex>
         <div
           data-test="valuableCard-caveat"
-          className="t-color-grey u-font-xs u-margin-top u-text-align-center"
+          className="t-color-grey u-font-2xs u-margin-top u-text-align-center"
         >
           {caveat}
         </div>

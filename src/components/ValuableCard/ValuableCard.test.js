@@ -2,15 +2,17 @@ import React from "react";
 import { shallow } from "enzyme";
 import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import translationsMock from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
 import { ValuableCard } from "./ValuableCard";
 import {
   mockValuable as mockData,
   mockExpiryDate,
 } from "./__mocks__/Valuable.mock";
-import { CoinValueToSpinType } from "./ValuableCard.utils";
+import { coinValueToSpinType } from "./ValuableCard.utils";
 
 describe("ValuableCard", () => {
   const valuableCardStateBadgeSelector = "ValuableCardStateBadge";
+  const onCardClick = jest.fn();
   let rendered;
   let mockValuable;
   let mockedExpiryDate;
@@ -20,7 +22,12 @@ describe("ValuableCard", () => {
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        onCardClick={onCardClick}
+        translatedHoursUnit={translationsMock.hoursUnit}
+      />
     );
   });
 
@@ -63,7 +70,11 @@ describe("ValuableCard", () => {
     mockValuable = mockData(VALUABLE_TYPES.DEPOSIT);
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        translatedHoursUnit={translationsMock.hoursUnit}
+      />
     );
 
     expect(rendered.find("ValuableReward").prop("justifyCenter")).toBe(false);
@@ -75,7 +86,11 @@ describe("ValuableCard", () => {
     const expectedGameDetails = mockValuable.game;
 
     rendered = shallow(
-      <ValuableCard {...mockValuable} expiryDate={mockedExpiryDate} />
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        translatedHoursUnit={translationsMock.hoursUnit}
+      />
     );
 
     expect(rendered.find(".c-valuable-card__content-description").text()).toBe(
@@ -92,7 +107,7 @@ describe("ValuableCard", () => {
 
   test("should include spinType in class if valuableType is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
-    const expectedValue = CoinValueToSpinType(mockValuable.coinValue);
+    const expectedValue = coinValueToSpinType(mockValuable.coinValue);
     mockedExpiryDate = mockExpiryDate(100);
 
     rendered = shallow(
@@ -117,6 +132,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.LOCKED}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -131,6 +147,7 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
@@ -144,9 +161,16 @@ describe("ValuableCard", () => {
         {...mockValuable}
         expiryDate={mockedExpiryDate}
         valuableState={VALUABLE_STATES.FRESH}
+        translatedHoursUnit={translationsMock.hoursUnit}
       />
     );
 
     expect(rendered.find(valuableCardStateBadgeSelector)).toHaveLength(1);
+  });
+
+  test("should call the onClick function on click of card", () => {
+    rendered.find('[data-test="valuable-card"]').simulate("click");
+
+    expect(onCardClick).toBeCalledTimes(1);
   });
 });

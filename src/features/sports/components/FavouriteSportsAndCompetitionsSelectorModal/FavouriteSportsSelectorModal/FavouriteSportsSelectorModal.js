@@ -23,8 +23,7 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
       return (
         <SportsModal>
           <SportsModal.Header
-            onClose={api.isFirstTimeSelectingFavourites ? undefined : onClose}
-            dismissType={api.isFirstTimeSelectingFavourites ? "none" : "close"}
+            onClose={api.isFirstTimeSelectingFavourites ? null : onClose}
           >
             <DictionaryTerm termKey="favourite-sports-selector.title" />
           </SportsModal.Header>

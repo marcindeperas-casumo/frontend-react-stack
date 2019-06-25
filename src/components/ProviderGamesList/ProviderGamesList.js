@@ -84,7 +84,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
       return (
         <div
           key={key}
-          className="t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-horiz--md"
+          className="t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-x--md"
           index={index}
           style={style}
         >
@@ -94,7 +94,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
     return (
       <Flex
-        className="u-padding-horiz--md t-border-bottom"
+        className="u-padding-x--md t-border-bottom"
         align="center"
         key={key}
         index={index}

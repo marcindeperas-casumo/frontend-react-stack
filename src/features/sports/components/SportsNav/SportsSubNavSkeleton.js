@@ -69,7 +69,7 @@ const SportsSubNavSkeleton = () => (
     <Flex
       style={{ position: "absolute", top: 0, left: 0, right: 0, bottom: 0 }}
       align="center"
-      className="u-padding-horiz--lg u-padding-horix--3xlg@tablet"
+      className="u-padding-x--lg u-padding-horix--3xlg@tablet"
       spacing="default"
     >
       {PillSkeletons.all}

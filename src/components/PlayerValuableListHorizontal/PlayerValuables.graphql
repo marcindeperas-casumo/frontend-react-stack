@@ -1,11 +1,14 @@
 query PlayerValuablesQuery {
-  
-  listTitle: getText(id: "root:mobile.valuables:fields.your_valuables")
+
+  translations: {
+    listTitle: getText(id: "root:mobile.valuables:fields.your_valuables")
+    hoursUnit: getText(id: "root:units:fields.hours_abbreviated")
+  }
 
   player {
     valuables {
       id
-      state
+      valuableState
       expirationTime
       valuableType
       title

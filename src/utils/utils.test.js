@@ -9,6 +9,7 @@ import {
   formatCurrency,
   getSymbolForCurrency,
   interpolate,
+  isCmsEntryEmpty,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -65,6 +66,14 @@ describe("matchingGroups()", () => {
     expect(result).toEqual([
       { type: "unmatched", value: "foo " },
       { type: "matched", value: "sheep" },
+    ]);
+  });
+
+  test("should match also special characters like backslash", () => {
+    const result = matchingGroups("netent/\\ with special chars", "netent/\\");
+    expect(result).toEqual([
+      { type: "matched", value: "netent/\\" },
+      { type: "unmatched", value: " with special chars" },
     ]);
   });
 });
@@ -257,5 +266,19 @@ describe("interpolate()", () => {
   test("should not replace when param is not defined", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
+});
+
+describe("isCmsEntryEmpty()", () => {
+  test("should return true for values that should be handled as empty", () => {
+    ["empty", "EmPtY", "", null, undefined].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(true)
+    );
+  });
+
+  test("should return false for non-empty values", () => {
+    ["not-empty", "!empty", " "].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(false)
+    );
   });
 });
