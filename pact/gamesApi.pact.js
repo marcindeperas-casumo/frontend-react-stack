@@ -25,6 +25,7 @@ afterAll(done => {
 
 describe("casino-games", () => {
   const countBody = 100;
+  const sessionId = "my-session-id";
 
   beforeAll(() => {
     return provider.addInteraction({
@@ -33,6 +34,9 @@ describe("casino-games", () => {
       withRequest: {
         method: "GET",
         path: "/casino-player/casino-games/api/v1/games/count",
+        headers: {
+          "X-Token": like(sessionId),
+        },
       },
       willRespondWith: {
         status: 200,
@@ -41,9 +45,9 @@ describe("casino-games", () => {
     });
   });
 
-  describe("casino-games", () => {
-    it("getCasinoPlayerGamesCount()", async () => {
-      expect(await getCasinoPlayerGamesCount("xToken")).toBe(countBody);
+  describe("getCasinoPlayerGamesCount()", () => {
+    it("Should return the number of games", async () => {
+      expect(await getCasinoPlayerGamesCount({ sessionId })).toBe(countBody);
     });
   });
 });
