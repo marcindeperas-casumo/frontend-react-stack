@@ -1,5 +1,6 @@
 #!groovy
 @Library('casumo-jenkins-libraries') _
+
 import com.casumo.jenkins.PipelineBuilder
 
 if (env.BRANCH_NAME=="master"){
@@ -30,11 +31,11 @@ Started by: *${env.gitAuthor}* :eyes:
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .parallel([
-                "Flow": {it.customStepTask('Flow', this.&runFlow)},
-                "Lint": {it.customStepTask('Lint', this.&runLint)},
-                "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
-                "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
-                "Sonar": {it.gradleSonarTask()}
+            "Flow": {it.customStepTask('Flow', this.&runFlow)},
+            "Lint": {it.customStepTask('Lint', this.&runLint)},
+            "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
+            "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
+            "Sonar": {it.gradleSonarTask()}
         ])
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
