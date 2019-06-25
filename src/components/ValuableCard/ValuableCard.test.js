@@ -173,4 +173,25 @@ describe("ValuableCard", () => {
 
     expect(onCardClick).toBeCalledTimes(1);
   });
+
+  test("should render a € cash symbol when passed 'en' market and EUR currency", () => {
+    const renderedCashSymbol = shallow(rendered.instance().cashSymbol());
+
+    expect(renderedCashSymbol.prop("children")).toEqual("€");
+  });
+
+  test("should render a £ cash symbol when passed 'gb' market and GBP currency", () => {
+    rendered = shallow(
+      <ValuableCard
+        {...mockValuable}
+        expiryDate={mockedExpiryDate}
+        market="gb"
+        currency="GBP"
+        translatedHoursUnit={translationsMock.hoursUnit}
+      />
+    );
+    const renderedCashSymbol = shallow(rendered.instance().cashSymbol());
+
+    expect(renderedCashSymbol.prop("children")).toEqual("£");
+  });
 });
