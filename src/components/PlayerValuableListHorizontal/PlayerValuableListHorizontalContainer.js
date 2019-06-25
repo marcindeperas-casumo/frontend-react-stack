@@ -23,7 +23,11 @@ const consumeValuableMutation = mutation => (id: string) =>
   });
 
 export const PlayerValuableListHorizontalContainer = () => (
-  <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
+  <PlayerValuablesTypedQuery
+    query={LocalQuery}
+    pollInterval={REFRESH_INTERVAL}
+    returnPartialData
+  >
     {({ loading, error, data }) => {
       const { translations, player: { valuables = [] } = {} } = data || {};
 
