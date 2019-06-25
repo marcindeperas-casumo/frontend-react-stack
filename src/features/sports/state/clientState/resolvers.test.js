@@ -36,6 +36,9 @@ const createClientWithState = (state: {
   return client;
 };
 
+const modal1: Modal = "CHOOSE_FAVOURITES";
+const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
+
 describe("Client state resolvers", () => {
   describe("Default state", () => {
     test("Betslip should be visible by default", async () => {
@@ -81,9 +84,6 @@ describe("Client state resolvers", () => {
 
   describe("Mutation.openModal", () => {
     test("appends the modal to the list of active modals", async () => {
-      const modal1: Modal = "CHOOSE_FAVOURITES";
-      const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
-
       const client = createClientWithState({
         activeModals: [],
         isBetslipVisible: false,
@@ -134,8 +134,6 @@ describe("Client state resolvers", () => {
 
   describe("Mutation.closeModal", () => {
     test("removes the modal from the list of active modals", async () => {
-      const modal1: Modal = "CHOOSE_FAVOURITES";
-      const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
       const client = createClientWithState({
         activeModals: [modal1, modal2],
         isBetslipVisible: false,
@@ -167,8 +165,6 @@ describe("Client state resolvers", () => {
     });
 
     test("sets betslip visibility to be true when all modals are closed", async () => {
-      const modal1: Modal = "CHOOSE_FAVOURITES";
-      const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
       const client = createClientWithState({
         activeModals: [modal1, modal2],
         isBetslipVisible: false,
@@ -197,6 +193,42 @@ describe("Client state resolvers", () => {
       });
 
       expect(result2.data.isBetslipVisible).toBe(true);
+    });
+  });
+
+  describe("Mutation.closeAllModals", () => {
+    test("resets the list of active modals to an empty array", async () => {
+      const client = createClientWithState({
+        activeModals: [modal1, modal2],
+        isBetslipVisible: false,
+      });
+
+      await client.mutate({
+        mutation: mutations.CLOSE_ALL_MODALS_MUTATION,
+      });
+
+      const result = await client.query({
+        query: queries.ACTIVE_MODALS_QUERY,
+      });
+
+      expect(result.data.activeModals).toEqual([]);
+    });
+
+    test("sets betslip visibility to be true when all modals are closed", async () => {
+      const client = createClientWithState({
+        activeModals: [modal1, modal2],
+        isBetslipVisible: false,
+      });
+
+      await client.mutate({
+        mutation: mutations.CLOSE_ALL_MODALS_MUTATION,
+      });
+
+      const result = await client.query({
+        query: queries.BETSLIP_VISIBLE_QUERY,
+      });
+
+      expect(result.data.isBetslipVisible).toBe(true);
     });
   });
 
