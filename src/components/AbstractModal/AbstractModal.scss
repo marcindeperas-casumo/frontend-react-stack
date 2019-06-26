@@ -1,0 +1,83 @@
+.c-abstract-modal {
+  bottom: 0;
+  top: 0;
+  left: auto;
+  right: auto;
+  overflow: scroll;
+  position: absolute;
+  transform: scale(0.8);
+  transition: transform 150ms ease;
+}
+
+//default modal dimensions when no custom class or ResponsiveLayout component is provided
+.c-abstract-modal--default {
+  @include cudl-breakpoint(mobile) {
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+  }
+  @include cudl-breakpoint(phablet) {
+    border-radius: 3px;
+    max-height: 85vh;
+    max-width: 85vw;
+    top: 10vh;
+  }
+}
+
+.c-abstract-modal__overlay {
+  background-color: rgba(cudl-palette(grey, dark-2), 0.8);
+  bottom: 0;
+  left: 0;
+  padding-left: var(--shell-offset-left, 0);
+  position: fixed;
+  right: 0;
+  top: var(--top-bar-offset-top, 0);
+  z-index: var(--z-index-modals);
+
+  @include cudl-breakpoint(mobile) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+
+$button-size: $cudl-spacer-size-default * 5;
+$button-size-mobile: $cudl-spacer-size-default * 4;
+
+.c-abstract-modal__button-container {
+  position: fixed;
+  right: 10px;
+  top: 10px;
+  z-index: 20;
+}
+
+.c-abstract-modal__close-button {
+  height: $button-size-mobile;
+  width: $button-size-mobile;
+
+  @include cudl-breakpoint(tablet) {
+    background: cudl-palette(grey, light-2);
+    color: cudl-palette(grey, dark-3);
+    height: $button-size;
+    width: $button-size;
+  }
+}
+
+// stylelint-disable xi/selector-pattern
+// for transition animations: http://reactcommunity.org/react-modal/styles/transitions.html
+.ReactModal__Overlay {
+  &--after-open.c-abstract-modal__overlay {
+    opacity: 1;
+  }
+  &--before-close.c-abstract-modal__overlay {
+    opacity: 0;
+  }
+}
+.ReactModal__Content {
+  &--after-open.c-abstract-modal {
+    transform: scale(1);
+  }
+  &--before-close.c-abstract-modal {
+    transform: scale(0.8);
+  }
+}
