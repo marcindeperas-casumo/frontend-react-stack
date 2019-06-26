@@ -9,12 +9,9 @@
 }
 
 .c-sports-nav-paginated__controls {
+  display: none;
   grid-area: 1 / 1 / 2 / 2;
   z-index: cudl-z();
-}
-
-.c-sports-nav-paginated__controls {
-  display: none;
 }
 
 // stylelint-disable-next-line xi/selector-pattern
