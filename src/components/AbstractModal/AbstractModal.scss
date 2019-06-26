@@ -1,10 +1,10 @@
 .c-abstract-modal {
   bottom: 0;
-  top: 0;
   left: auto;
-  right: auto;
   overflow: scroll;
   position: absolute;
+  right: auto;
+  top: 0;
   transform: scale(0.8);
   transition: transform 150ms ease;
 }
