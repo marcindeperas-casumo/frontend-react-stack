@@ -2,7 +2,6 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
-import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
 import { GAME_LIST_IDS } from "Src/constants";
@@ -84,17 +83,11 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
   cellRenderer({ columnIndex, style }: CellRendererParams) {
     const { list, className, Component } = this.props;
     const { games: gameIds } = list;
-    const numberOfCells = gameIds.length;
-    const paddingClassNames = classNames(
-      columnIndex <= numberOfCells - 1 && "u-padding-right",
-      columnIndex === 0 && "u-padding-left--3xlg",
-      columnIndex === numberOfCells - 1 && "u-padding-right--3xlg"
-    );
     const gameId = gameIds[columnIndex];
 
     return (
       <div style={style}>
-        <div className={paddingClassNames}>
+        <div className="u-padding-right">
           <div className={className}>
             <Component key={gameId} id={gameId} />
           </div>

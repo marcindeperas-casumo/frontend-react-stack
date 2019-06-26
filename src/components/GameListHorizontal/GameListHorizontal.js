@@ -80,7 +80,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <>
+      <div className="o-wrapper">
         <Mobile>
           <ScrollableList
             itemClassName={className}
@@ -102,7 +102,7 @@ export class GameListHorizontal extends PureComponent<Props> {
             seeMoreText={seeMoreText}
           />
         </Desktop>
-      </>
+      </div>
     );
   }
 }
