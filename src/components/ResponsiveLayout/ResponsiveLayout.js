@@ -37,7 +37,11 @@ export const Mobile = ({
   orientation?: ORIENTATION_TYPE,
 }) => {
   return (
-    <RenderIfMatchBreakpoint breakpoint={{ ...mobileBreakpoint, orientation }}>
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation ? { ...mobileBreakpoint, orientation } : mobileBreakpoint
+      }
+    >
       {children}
     </RenderIfMatchBreakpoint>
   );
