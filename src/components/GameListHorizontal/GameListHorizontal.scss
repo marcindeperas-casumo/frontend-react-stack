@@ -1,20 +1,8 @@
-// $exclusive-game-tile-widths: ();
-// @each $breakpoint, $value in $tile-widths {
-//   $exclusive-game-tile-widths: map-merge(
-//     $exclusive-game-tile-widths,
-//     (
-//       $breakpoint: #{$value + 5%},
-//     )
-//   );
-// }
-
 .c-top-game {
-  // @include cudl-breakpoint-with($tile-widths, width);
   width: 170px;
 }
 
 .c-exclusive-game {
-  // @include cudl-breakpoint-with($exclusive-game-tile-widths, width);
   width: 188px;
 }
 
