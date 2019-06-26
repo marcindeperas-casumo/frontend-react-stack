@@ -184,7 +184,7 @@ describe("ValuableCard", () => {
     rendered = shallow(
       <ValuableCard
         {...mockValuable}
-        expiryDate={mockedExpiryDate}
+        expirationTime={mockedExpirationTime}
         market="gb"
         currency="GBP"
         translatedHoursUnit={translationsMock.hoursUnit}
