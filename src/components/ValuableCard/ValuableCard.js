@@ -11,6 +11,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
 } from "Models/valuables";
+import { INTL_LOCALES } from "Src/constants";
 import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
@@ -130,8 +131,11 @@ export class ValuableCard extends PureComponent<Props> {
   }
 
   cashSymbol = () => {
-    const { market: locale, currency } = this.props;
-    const currencySymbol = getSymbolForCurrency({ currency, locale });
+    const { market, currency } = this.props;
+    const currencySymbol = getSymbolForCurrency({
+      currency,
+      locale: INTL_LOCALES[market],
+    });
 
     return (
       <Text tag="div" size="lg">
