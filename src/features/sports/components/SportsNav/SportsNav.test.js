@@ -11,39 +11,29 @@ import {
   onNavItemSelected,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
+import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
+
+const renderMocked = children =>
+  mount(
+    <MockedProviderWithContext mocks={multipleSports} addTypename={false}>
+      {children}
+    </MockedProviderWithContext>
+  );
 
 describe("<SportsNav/>", () => {
   test("should render skeleton while loading navigation data", async () => {
-    const rendered = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#home"} />
-      </MockedProviderWithContext>
-    );
+    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
 
     expect(rendered.find(SportsNavSkeleton)).toHaveLength(1);
   });
 
   test("should not be rendered on #event, or #bethistory kambi routes", async () => {
-    const renderedOnEventPage = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#event"} />
-      </MockedProviderWithContext>
+    const renderedOnEventPage = renderMocked(
+      <SportsNav currentHash={"#event"} />
     );
-    const renderedOnBethistoryPage = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#bethistory"} />
-      </MockedProviderWithContext>
+    const renderedOnBethistoryPage = renderMocked(
+      <SportsNav currentHash={"#bethistory"} />
     );
 
     expect(renderedOnEventPage.html()).toBe(null);
@@ -51,14 +41,7 @@ describe("<SportsNav/>", () => {
   });
 
   test("should render without errors once data is resolved", async () => {
-    const rendered = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#home"} />
-      </MockedProviderWithContext>
-    );
+    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
 
     await wait(0);
     rendered.update();
