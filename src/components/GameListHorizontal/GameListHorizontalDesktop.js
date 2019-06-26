@@ -5,6 +5,7 @@ import { DirectionRightIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
+import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { GameListObject } from "Components/GameListHorizontal/GameListHorizontal";
@@ -19,6 +20,14 @@ type Props = {
   seeMoreUrl: string,
   Component: Function,
   list: GameListObject,
+};
+
+export const ITEMS_STYLING = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
+    "c-game-list-horizontal-desktop-paginated_live_casino__button",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
+    "c-game-list-horizontal-desktop-paginated_live_casino__button",
+  default: "c-game-list-horizontal-desktop-paginated__button",
 };
 
 export class GameListHorizontalDesktop extends React.PureComponent<Props> {
@@ -37,8 +46,10 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) {
-    const arrowClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
+    const { id } = this.props.list;
+    const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-game-list-horizontal-desktop-paginated__button`;
+    const itemControlClass = ITEMS_STYLING[id] || ITEMS_STYLING.default;
     return (
       <Flex
         justify="space-between"
@@ -49,7 +60,7 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
           {hasPreviousPage && (
             <div
               onClick={e => scrollableClickHandler("previous")}
-              className={`${arrowClass} c-game-list-horizontal-desktop-paginated__button--left`}
+              className={`${itemGenericClass} ${itemControlClass}--left`}
             >
               <DirectionRightIcon className="t-color-grey-dark-3 Icons-c-icon--flip-horiz" />
             </div>
@@ -59,7 +70,7 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
           {hasNextPage && (
             <div
               onClick={e => scrollableClickHandler("next")}
-              className={`${arrowClass} c-game-list-horizontal-desktop-paginated__button--right`}
+              className={`${itemGenericClass} ${itemControlClass}--right`}
             >
               <DirectionRightIcon className="t-color-grey-dark-3" />
             </div>

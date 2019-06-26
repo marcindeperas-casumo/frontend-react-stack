@@ -40,3 +40,11 @@
 .c-game-list-horizontal-desktop-paginated__button--left {
   transform: translateX(-50%);
 }
+// stylelint-disable-next-line xi/selector-pattern
+.c-game-list-horizontal-desktop-paginated_live_casino__button--right {
+  transform: translate(50%, -66%);
+}
+// stylelint-disable-next-line xi/selector-pattern
+.c-game-list-horizontal-desktop-paginated_live_casino__button--left {
+  transform: translate(-50%, -66%);
+}
