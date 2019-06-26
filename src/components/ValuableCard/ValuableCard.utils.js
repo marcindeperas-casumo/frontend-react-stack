@@ -15,7 +15,8 @@ import {
 
 // To move these urls somwhere more localised
 export const VALUABLE_LOCKED_URL = "en/player/valuables";
-export const VALUABLE_SPINS_URL = "en/game/";
+// now old valuable handling logic performs redirect, no need to double that
+export const VALUABLE_SPINS_URL = null;
 export const VALUABLE_DEPOSIT_URL = "en/deposit";
 
 const VALUABLE_REDIRECT_URL = {
