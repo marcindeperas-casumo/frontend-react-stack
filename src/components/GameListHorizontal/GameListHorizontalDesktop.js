@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
-import { ArrowRightIcon, ArrowLeftIcon } from "@casumo/cmp-icons";
+import { DirectionRightIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
@@ -37,20 +37,21 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) {
-    const arrowClass = `t-background-grey-dark-3 t-border-r--circle u-padding--md u-cursor-pointer
+    const arrowClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-game-list-horizontal-desktop-paginated__button`;
     return (
       <Flex
         justify="space-between"
+        align="center"
         className=" c-game-list-horizontal-desktop-paginated__controls"
       >
         <Flex.Item>
           {hasPreviousPage && (
             <div
               onClick={e => scrollableClickHandler("previous")}
-              className={arrowClass}
+              className={`${arrowClass} c-game-list-horizontal-desktop-paginated__button--left`}
             >
-              <ArrowLeftIcon className="t-color-grey-light-3" />
+              <DirectionRightIcon className="t-color-grey-dark-3 Icons-c-icon--flip-horiz" />
             </div>
           )}
         </Flex.Item>
@@ -58,9 +59,9 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
           {hasNextPage && (
             <div
               onClick={e => scrollableClickHandler("next")}
-              className={arrowClass}
+              className={`${arrowClass} c-game-list-horizontal-desktop-paginated__button--right`}
             >
-              <ArrowRightIcon className="t-color-grey-light-3" />
+              <DirectionRightIcon className="t-color-grey-dark-3" />
             </div>
           )}
         </Flex.Item>

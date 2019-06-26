@@ -14,6 +14,12 @@
   z-index: cudl-z();
 }
 
+.c-game-list-horizontal-desktop-paginated__button {
+  box-shadow: 0px 2px 6px rgba(48, 56, 56, 0.09);
+  height: 80px;
+  width: 40px;
+}
+
 // stylelint-disable-next-line xi/selector-pattern
 .c-game-list-horizontal-desktop-paginated
 .c-game-list-horizontal-desktop-paginated__button {
@@ -25,4 +31,12 @@
 .c-game-list-horizontal-desktop-paginated:hover
 .c-game-list-horizontal-desktop-paginated__button {
   opacity: 1;
+}
+
+.c-game-list-horizontal-desktop-paginated__button--right {
+  transform: translateX(50%);
+}
+
+.c-game-list-horizontal-desktop-paginated__button--left {
+  transform: translateX(-50%);
 }
