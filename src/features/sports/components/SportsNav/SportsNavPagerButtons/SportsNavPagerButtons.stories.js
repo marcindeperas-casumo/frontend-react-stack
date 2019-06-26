@@ -1,5 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { SportsNavPagerButtons } from "Features/sports/components/SportsNav";
 
 const stories = storiesOf("Sports/SportsNavPagerButtons", module);
@@ -7,7 +8,7 @@ const stories = storiesOf("Sports/SportsNavPagerButtons", module);
 const defaultProps = {
   hasNextPage: false,
   hasPreviousPage: false,
-  scrollableClickHandler: () => {},
+  scrollableClickHandler: action("pager button clicked"),
 };
 
 const render = (props = {}) => () => (
