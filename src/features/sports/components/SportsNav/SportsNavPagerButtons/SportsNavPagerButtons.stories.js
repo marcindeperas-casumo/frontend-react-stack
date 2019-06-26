@@ -1,8 +1,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { SportsNavPagerButton } from "Features/sports/components/SportsNav";
+import { SportsNavPagerButtons } from "Features/sports/components/SportsNav";
 
-const stories = storiesOf("Sports/SportsNavPagerButton", module);
+const stories = storiesOf("Sports/SportsNavPagerButtons", module);
 
 const defaultProps = {
   hasNextPage: false,
@@ -13,14 +13,14 @@ const defaultProps = {
 const render = (props = {}) => () => (
   <div className="c-sports-shell--site">
     <div className="t-background-grey-light-1">
-      <SportsNavPagerButton {...{ ...defaultProps, ...props }} />
+      <SportsNavPagerButtons {...{ ...defaultProps, ...props }} />
     </div>
   </div>
 );
 
 stories.add("Not Desktop (hidden)", () => (
   <div className="t-background-grey-light-1">
-    <SportsNavPagerButton {...defaultProps} />
+    <SportsNavPagerButtons {...defaultProps} />
   </div>
 ));
 
