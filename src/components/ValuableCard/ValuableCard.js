@@ -52,7 +52,7 @@ type Props = {
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
-  expiryDate: DateTime,
+  expirationTime: DateTime,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
   /** translated label for the 'hours' unit */
@@ -103,14 +103,14 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expiryDate, translatedHoursUnit } = this.props;
+    const { valuableState, expirationTime, translatedHoursUnit } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
 
-    const hours = expiryInHours(expiryDate);
+    const hours = expiryInHours(expirationTime);
 
     if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
