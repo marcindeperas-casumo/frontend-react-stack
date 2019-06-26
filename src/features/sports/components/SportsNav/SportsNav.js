@@ -10,10 +10,12 @@ import {
   ClientContext,
   OpenModalMutation,
 } from "Features/sports/state";
-import SportsMainNav from "./SportsMainNav";
-import SportsSubNav from "./SportsSubNav";
-import SportsNavSkeleton from "./SportsNavSkeleton";
-import type { SportsNavItemType } from "./types";
+import {
+  SportsMainNav,
+  SportsSubNav,
+} from "Features/sports/components/SportsNav";
+import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
+import type { SportsNavItemType } from "Features/sports/components/SportsNav";
 
 type SportsNavProps = {
   currentHash: string,
@@ -83,7 +85,7 @@ export const onNavItemSelected = (
   });
 };
 
-class SportsNav extends React.Component<SportsNavProps> {
+export class SportsNav extends React.Component<SportsNavProps> {
   static contextType = ClientContext;
 
   isNavItemSelected = (
@@ -229,5 +231,3 @@ class SportsNav extends React.Component<SportsNavProps> {
     );
   }
 }
-
-export default SportsNav;

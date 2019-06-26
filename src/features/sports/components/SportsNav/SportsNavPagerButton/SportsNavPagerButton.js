@@ -11,7 +11,7 @@ type Props = {
   scrollableClickHandler: ClickHandlerType,
 };
 
-const SportsNavPagerButton = ({
+export const SportsNavPagerButton = ({
   hasNextPage,
   hasPreviousPage,
   scrollableClickHandler,
@@ -51,8 +51,6 @@ const SportsNavPagerButton = ({
     </div>
   </Flex>
 );
-
-export default SportsNavPagerButton;
 
 export const sportsPagerButtonRenderer = (
   hasNextPage: boolean,

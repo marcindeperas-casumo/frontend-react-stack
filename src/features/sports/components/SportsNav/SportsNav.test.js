@@ -3,12 +3,16 @@ import { mount } from "enzyme";
 import wait from "waait";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state/clientState/mutations";
-import SportsNav, { isNavItemSelected, onNavItemSelected } from "./SportsNav";
-import SportsNavSkeleton from "./SportsNavSkeleton";
-import SportsMainNav from "./SportsMainNav";
-import SportsSubNav from "./SportsSubNav";
-import mocks from "./__mocks__/userNavigationQuery";
-import navItems from "./__mocks__/navItems";
+import {
+  SportsNav,
+  SportsMainNav,
+  SportsSubNav,
+  isNavItemSelected,
+  onNavItemSelected,
+} from "Features/sports/components/SportsNav";
+import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
+import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
+import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
 
 describe("<SportsNav/>", () => {
   test("should render skeleton while loading navigation data", async () => {

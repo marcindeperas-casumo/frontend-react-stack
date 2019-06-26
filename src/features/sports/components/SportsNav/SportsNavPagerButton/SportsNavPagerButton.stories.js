@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import SportsNavPagerButton from "./SportsNavPagerButton";
+import { SportsNavPagerButton } from "Features/sports/components/SportsNav";
 
 const stories = storiesOf("Sports/SportsNavPagerButton", module);
 

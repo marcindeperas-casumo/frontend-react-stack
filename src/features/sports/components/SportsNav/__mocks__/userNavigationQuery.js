@@ -2,7 +2,7 @@
 import { evolve, take } from "ramda";
 import { DICTIONARY_TERM_QUERY } from "Features/sports/components/DictionaryTerm/DictionaryTerm";
 import { USER_NAVIGATION_QUERY } from "../SportsNav";
-import mockData from "./userNavigationData";
+import { userNavigationData } from "./userNavigationData";
 
 const labels = {
   allLabel: "All",
@@ -16,7 +16,7 @@ const baseMock = {
   result: {
     data: {
       ...labels,
-      sportsNavigation: mockData,
+      sportsNavigation: userNavigationData,
     },
   },
 };
@@ -31,14 +31,7 @@ const mockWithXSports = numberOfSports =>
     },
   });
 
-const manySports = [baseMock];
-const multipleSports = [mockWithXSports(3)(baseMock)];
-const singleSport = [mockWithXSports(1)(baseMock)];
-const error = [{ ...baseMock, error: true }];
-
-export default {
-  manySports,
-  multipleSports,
-  singleSport,
-  error,
-};
+export const manySports = [baseMock];
+export const multipleSports = [mockWithXSports(3)(baseMock)];
+export const singleSport = [mockWithXSports(1)(baseMock)];
+export const error = [{ ...baseMock, error: true }];
