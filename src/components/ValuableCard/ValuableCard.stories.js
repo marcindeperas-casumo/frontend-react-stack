@@ -4,9 +4,10 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { select, boolean, text } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
+import translationsMock from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
 import {
   mockValuable as mockData,
-  mockExpiryDate,
+  mockExpirationTime,
 } from "./__mocks__/Valuable.mock";
 import { ValuableCard } from "./";
 
@@ -28,8 +29,9 @@ stories.add("Default", () => {
     <ValuableCard
       {...valuableDetails}
       valuableState={valuableState}
-      expiryDate={mockExpiryDate(expiryHours)}
+      expirationTime={mockExpirationTime(expiryHours)}
       onCardClick={action("click")}
+      translatedHoursUnit={translationsMock.hoursUnit}
     />
   );
 });

@@ -9,6 +9,7 @@ import {
   formatCurrency,
   getSymbolForCurrency,
   interpolate,
+  isCmsEntryEmpty,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -265,5 +266,19 @@ describe("interpolate()", () => {
   test("should not replace when param is not defined", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
+});
+
+describe("isCmsEntryEmpty()", () => {
+  test("should return true for values that should be handled as empty", () => {
+    ["empty", "EmPtY", "", null, undefined].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(true)
+    );
+  });
+
+  test("should return false for non-empty values", () => {
+    ["not-empty", "!empty", " "].map(value =>
+      expect(isCmsEntryEmpty(value)).toBe(false)
+    );
   });
 });

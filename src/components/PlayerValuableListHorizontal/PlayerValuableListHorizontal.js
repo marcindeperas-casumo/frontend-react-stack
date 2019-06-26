@@ -11,6 +11,11 @@ import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 import { KO_EVENTS } from "Src/constants";
 import { onOldStackOnCallbackEvent, offOldStackOnCallbackEvent } from "./utils";
 
+type Translations = {
+  listTitle: string,
+  hoursUnit: string,
+};
+
 type Props = {
   /** Error message to be log in case of error*/
   error?: string,
@@ -24,6 +29,8 @@ type Props = {
   valuables: [], // to update his with graphql type
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
+  /** An array of translated labels */
+  translations: Translations, // TODO: update type
 };
 
 type OnCallbackEvent = {
@@ -53,7 +60,8 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
   }
 
   render() {
-    const { error, loading, valuables, title } = this.props;
+    const { error, loading, valuables, translations } = this.props;
+    const { listTitle } = translations;
 
     if (error) {
       logger.error(`
@@ -70,7 +78,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
     return (
       <>
-        {title && <ScrollableListTitle title={title} />}
+        {listTitle && <ScrollableListTitle title={listTitle} />}
         <Scrollable>
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
@@ -84,6 +92,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
                 key={`valuable-card-${id}`}
               >
                 <ValuableCard
+                  translatedHoursUnit={translations.hoursUnit}
                   {...valuable}
                   onCardClick={
                     shouldUseValuable

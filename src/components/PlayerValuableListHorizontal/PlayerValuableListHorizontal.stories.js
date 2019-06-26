@@ -3,6 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal/PlayerValuableListHorizontal";
+import translationsMock from "./__mocks__/translations.mock.json";
 
 const stories = storiesOf("PlayerValuableListHorizontal", module);
 
@@ -13,9 +14,9 @@ stories.add("PlayerValuableListHorizontal (Connected)", () => {
   return (
     <PlayerValuableListHorizontal
       loading={false}
-      title={"Player Valuables"}
       valuables={valuables}
       onConsumeValuable={consumeValuable}
+      translations={translationsMock}
     />
   );
 });
