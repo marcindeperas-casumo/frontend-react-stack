@@ -21,6 +21,7 @@ extend type Mutation {
   minimizeBetslip: Boolean
   openModal(modal: Modal): Boolean
   closeModal(modal: Modal): Boolean
+  closeAllModals: Boolean
   showSearch: Boolean
   hideSearch: Boolean
 }
