@@ -4,7 +4,7 @@ import classNames from "classnames";
 import { CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import { noop } from "Utils";
-import "./AbstractModal.scss";
+import "./CloseButton.scss";
 
 type SharedProps = {
   children: Node,
@@ -25,7 +25,7 @@ const ButtonContainer = ({
   <Flex.Item
     onClick={onClick}
     className={classNames(
-      "t-color-grey-light-2 t-border-r--circle c-abstract-modal__button-container",
+      "t-color-grey-light-2 t-border-r--circle c-close-button__container",
       className
     )}
   >
@@ -39,7 +39,7 @@ export const CloseButton = ({ className, onClick }: ButtonProps) => (
       align="center"
       justify="center"
       className={classNames(
-        "c-abstract-modal__close-button t-background-grey-dark-4 t-border-r--circle",
+        "c-close-button t-background-grey-dark-4 t-border-r--circle",
         className,
         onClick === noop && "u-visibility--hidden"
       )}
