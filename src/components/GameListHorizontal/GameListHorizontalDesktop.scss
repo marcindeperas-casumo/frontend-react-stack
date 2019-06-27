@@ -22,14 +22,14 @@
 
 // stylelint-disable-next-line xi/selector-pattern
 .c-game-list-horizontal-desktop-paginated
-.c-game-list-horizontal-desktop-paginated__button {
+  .c-game-list-horizontal-desktop-paginated__button {
   opacity: 0;
   transition: opacity 0.25s ease-in;
 }
 
 // stylelint-disable-next-line xi/selector-pattern
 .c-game-list-horizontal-desktop-paginated:hover
-.c-game-list-horizontal-desktop-paginated__button {
+  .c-game-list-horizontal-desktop-paginated__button {
   opacity: 1;
 }
 
