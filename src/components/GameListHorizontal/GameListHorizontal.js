@@ -67,7 +67,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     const seeMoreUrl = SEE_MORE_URL[id];
     const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
-    const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
+    const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const tileHeight =
       ITEM_RENDERERS_HEIGHTS[id] || ITEM_RENDERERS_HEIGHTS.default;
 
@@ -89,7 +89,7 @@ export class GameListHorizontal extends PureComponent<Props> {
             seeMoreUrl={seeMoreUrl}
             itemIds={gameIds}
             Component={itemRenderer}
-            spacing={spacing}
+            spacing={itemSpacing}
           />
         </Mobile>
         <Desktop>
