@@ -4,7 +4,7 @@ import {
   GameListHorizontal,
   ITEM_SPACING,
   ITEM_RENDERERS,
-  ITEM_RENDERERS_HEIGHTS,
+  TILE_HEIGHTS,
 } from "Components/GameListHorizontal/GameListHorizontal";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -127,7 +127,7 @@ describe("GameListHorizontal Desktop", () => {
   test("uses the default tileHeight if it is not specified", () => {
     const { tileHeight } = rendered.find(GameListHorizontalDesktop).props();
 
-    expect(tileHeight).toEqual(ITEM_RENDERERS_HEIGHTS.default);
+    expect(tileHeight).toEqual(TILE_HEIGHTS.default);
   });
 
   test("passes the games list to the GameListHorizontalDesktop", () => {

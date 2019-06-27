@@ -35,7 +35,7 @@ export const ITEM_RENDERERS = {
   default: GameTileContainer,
 };
 
-export const ITEM_RENDERERS_HEIGHTS = {
+export const TILE_HEIGHTS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: 280,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: 290,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: 290,
@@ -68,8 +68,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
-    const tileHeight =
-      ITEM_RENDERERS_HEIGHTS[id] || ITEM_RENDERERS_HEIGHTS.default;
+    const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
 
     if (isLoading) {
       return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
