@@ -10,11 +10,11 @@ export const mockValuable = valuableType => {
 export const mockValuables = () => {
     return mockData.map(valuable => ({
             ...valuable,
-            expiryDate: DateTime.local(valuable.expiryDate)
+            expirationTime: DateTime.local(valuable.expirationTime)
         })
     );
 }
 
-export const mockExpiryDate = hoursFromNow => {
+export const mockExpirationTime = hoursFromNow => {
     return DateTime.local().plus({ hours: hoursFromNow });
 };
