@@ -1,7 +1,5 @@
 .c-abstract-modal {
   overflow: scroll;
-  transform: scale(0.8);
-  transition: transform 150ms ease;
 }
 
 //default modal dimensions when no custom class or ResponsiveLayout component is provided
@@ -33,24 +31,5 @@
     align-items: center;
     display: flex;
     justify-content: center;
-  }
-}
-
-// stylelint-disable xi/selector-pattern
-// for transition animations: http://reactcommunity.org/react-modal/styles/transitions.html
-.ReactModal__Overlay {
-  &--after-open.c-abstract-modal__overlay {
-    opacity: 1;
-  }
-  &--before-close.c-abstract-modal__overlay {
-    opacity: 0;
-  }
-}
-.ReactModal__Content {
-  &--after-open.c-abstract-modal {
-    transform: scale(1);
-  }
-  &--before-close.c-abstract-modal {
-    transform: scale(0.8);
   }
 }

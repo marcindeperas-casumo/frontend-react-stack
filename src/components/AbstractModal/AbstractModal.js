@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent, type Node, type Element } from "react";
+import React, { PureComponent, type Node } from "react";
 import classNames from "classnames";
 import ReactModal from "react-modal";
 import { CloseButton as CloseBtn } from "./CloseButton";
@@ -7,7 +7,7 @@ import "./AbstractModal.scss";
 
 type Props = {
   children: Node,
-  CloseButton: Element,
+  CloseButton: any => Node,
   hideModal: () => void,
   isOpen: boolean,
   className?: string,
@@ -30,7 +30,6 @@ export class AbstractModal extends PureComponent<Props> {
 
     return (
       <>
-        <CloseButton onClick={hideModal} />
         <ReactModal
           isOpen={isOpen}
           onRequestClose={hideModal}
@@ -41,6 +40,7 @@ export class AbstractModal extends PureComponent<Props> {
           overlayClassName="c-abstract-modal__overlay"
           {...rest}
         >
+          <CloseButton onClick={hideModal} />
           {children}
         </ReactModal>
       </>
