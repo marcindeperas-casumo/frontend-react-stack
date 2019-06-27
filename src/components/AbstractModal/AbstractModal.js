@@ -1,43 +1,49 @@
 // @flow
-import React, { type Node, type Element } from "react";
+import React, { PureComponent, type Node, type Element } from "react";
 import classNames from "classnames";
 import ReactModal from "react-modal";
-import { CloseButton } from "./CloseButton";
+import { CloseButton as CloseBtn } from "./CloseButton";
 import "./AbstractModal.scss";
 
 type Props = {
   children: Node,
-  closeButton?: Element,
+  CloseButton: Element,
   hideModal: () => void,
   isOpen: boolean,
   className?: string,
 };
 
-export const AbstractModal = ({
-  children,
-  closeButton,
-  hideModal,
-  isOpen,
-  className,
-  ...rest
-}: Props) => {
-  const CloseBtn = closeButton || CloseButton;
+export class AbstractModal extends PureComponent<Props> {
+  static defaultProps = {
+    CloseButton: CloseBtn,
+  };
 
-  return (
-    <>
-      <CloseBtn onClick={hideModal} />
-      <ReactModal
-        isOpen={isOpen}
-        onRequestClose={hideModal}
-        className={classNames(
-          "c-abstract-modal t-background-white",
-          className ? className : "c-abstract-modal--default"
-        )}
-        overlayClassName="c-abstract-modal__overlay"
-        {...rest}
-      >
-        {children}
-      </ReactModal>
-    </>
-  );
-};
+  render() {
+    const {
+      children,
+      CloseButton,
+      hideModal,
+      isOpen,
+      className,
+      ...rest
+    } = this.props;
+
+    return (
+      <>
+        <CloseButton onClick={hideModal} />
+        <ReactModal
+          isOpen={isOpen}
+          onRequestClose={hideModal}
+          className={classNames(
+            "c-abstract-modal t-background-white",
+            className ? className : "c-abstract-modal--default"
+          )}
+          overlayClassName="c-abstract-modal__overlay"
+          {...rest}
+        >
+          {children}
+        </ReactModal>
+      </>
+    );
+  }
+}
