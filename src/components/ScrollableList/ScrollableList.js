@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
+import classNames from "classnames";
 import { isEmpty } from "ramda";
 import type {
   spacerSizes,
@@ -56,7 +57,13 @@ export default class ScrollableList extends PureComponent<Props> {
       <div className="u-padding-top--xlg">
         {/* Copied from  MustDropJackpotsList, should be refactored at some point */}
         <Flex justify="space-between">
-          <Flex.Item>
+          <Flex.Item
+            className={classNames(
+              "u-padding-left--md",
+              "u-padding-left--3xlg@tablet",
+              "u-padding-left--3xlg@desktop"
+            )}
+          >
             <ScrollableListTitle title={title} />
           </Flex.Item>
           {seeMoreUrl ? (

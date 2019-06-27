@@ -13,9 +13,6 @@ export default function ScrollableListTitle({ title }: Props) {
         "u-padding-bottom--md",
         "u-padding-bottom--lg@tablet",
         "u-padding-bottom--lg@desktop",
-        "u-padding-left--md",
-        "u-padding-left--3xlg@tablet",
-        "u-padding-left--3xlg@desktop",
         "u-font-weight-bold"
       )}
       data-test="scrollable-list-title"
