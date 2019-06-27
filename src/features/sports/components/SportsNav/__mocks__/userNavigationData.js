@@ -14,6 +14,7 @@ export const userNavigationData = [
       activeIndicator:
         "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
       canSelectSubgroups: true,
+      // canEdit: true,
     },
     subNav: [
       {
