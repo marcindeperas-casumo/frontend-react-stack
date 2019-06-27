@@ -23,16 +23,4 @@ describe("AbstractModal", () => {
     rendered.find("CloseButton").simulate("click");
     expect(cb).toBeCalled();
   });
-
-  test("should render with default classes", () => {
-    const classes =
-      "c-abstract-modal t-background-white c-abstract-modal--default";
-    const rendered = shallow(
-      <AbstractModal isOpen={true}>
-        <div>hello</div>
-      </AbstractModal>
-    );
-
-    expect(rendered.hasClass(classes)).toBe(true);
-  });
 });
