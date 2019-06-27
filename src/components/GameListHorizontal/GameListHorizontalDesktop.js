@@ -39,7 +39,6 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
     this.buttonRenderer = this.buttonRenderer.bind(this);
   }
 
-  // move this to its own component
   buttonRenderer(
     hasNextPage: boolean,
     hasPreviousPage: boolean,
