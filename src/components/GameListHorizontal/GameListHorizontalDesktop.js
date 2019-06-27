@@ -101,7 +101,6 @@ export class GameListHorizontalDesktop extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        {/* Copied from  MustDropJackpotsList, should be refactored at some point */}
         <Flex justify="space-between">
           <Flex.Item>
             <ScrollableListTitle title={title} />
