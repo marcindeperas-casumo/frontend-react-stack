@@ -1,10 +1,10 @@
 const pact = require("@pact-foundation/pact-node");
-const { commit } = require("./utils");
+const { commitSHA } = require("./utils");
 
 const checkProvider = {
   pactBroker: "http://pact-broker.casumo.cloud/",
   participant: "frontend-react-stack",
-  participantVersion: commit,
+  participantVersion: commitSHA,
   retryWhileUnknown: 5,
   retryInterval: 10,
 };

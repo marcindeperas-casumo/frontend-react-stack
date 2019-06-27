@@ -15,13 +15,8 @@ const provider = new Pact({
   cors: true,
 });
 
-beforeAll(done => {
-  provider.setup().then(() => done());
-});
-
-afterAll(done => {
-  provider.finalize().then(() => done());
-});
+beforeAll(async () => await provider.setup());
+afterAll(async () => await provider.finalize());
 
 describe("casino-games", () => {
   const countBody = 100;
