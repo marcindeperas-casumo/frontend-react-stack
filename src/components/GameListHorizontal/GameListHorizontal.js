@@ -65,7 +65,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     const { id, title, games: gameIds } = list;
     const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
     const seeMoreUrl = SEE_MORE_URL[id];
-    const Component = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
+    const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const tileHeight =
@@ -88,14 +88,14 @@ export class GameListHorizontal extends PureComponent<Props> {
             seeMoreText={seeMoreText}
             seeMoreUrl={seeMoreUrl}
             itemIds={gameIds}
-            Component={Component}
+            Component={itemRenderer}
             spacing={spacing}
           />
         </Mobile>
         <Desktop>
           <GameListHorizontalDesktop
             list={list}
-            Component={Component}
+            Component={itemRenderer}
             className={className}
             tileHeight={tileHeight}
             seeMoreUrl={seeMoreUrl}
