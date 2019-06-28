@@ -11,7 +11,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
 } from "Models/valuables";
-import { getSymbolForCurrency, interpolate, decodeString } from "Utils";
+import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import {
@@ -186,11 +186,11 @@ export class ValuableCard extends PureComponent<Props> {
           </Flex.Block>
           <Flex.Item className="c-valuable-card__content u-text-align-center">
             <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
-              {decodeString(title)}
+              {title}
             </div>
             {isValuableTypeSpins && game && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-                {decodeString(game.name)}
+                {game.name}
               </div>
             )}
           </Flex.Item>
@@ -199,7 +199,7 @@ export class ValuableCard extends PureComponent<Props> {
           data-test="valuableCard-caveat"
           className="t-color-grey u-font-2xs u-margin-top u-text-align-center"
         >
-          {caveat && decodeString(caveat)}
+          {caveat}
         </div>
         {showStateBadge && (
           <ValuableCardStateBadge
