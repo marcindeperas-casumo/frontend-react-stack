@@ -4,8 +4,10 @@ import type { CellRendererParams } from "react-virtualized";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import { sportsPagerButtonRenderer } from "Features/sports/components/SportsNav";
-import type { SportsNavItemType } from "Features/sports/components/SportsNav";
+import {
+  sportsPagerButtonRenderer,
+  type SportsNavItemType,
+} from "Features/sports/components/SportsNav";
 
 export type SportsSubNavProps = {
   navItems: Array<SportsNavItemType>,

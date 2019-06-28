@@ -28,17 +28,17 @@ describe("<SportsNav/>", () => {
   beforeEach(jest.restoreAllMocks);
 
   test("should render skeleton while loading navigation data", async () => {
-    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     expect(rendered.find(SportsNavSkeleton)).toHaveLength(1);
   });
 
   test("should not be rendered on #event, or #bethistory kambi routes", async () => {
     const renderedOnEventPage = renderMocked(
-      <SportsNav currentHash={"#event"} />
+      <SportsNav currentHash="#event" />
     );
     const renderedOnBethistoryPage = renderMocked(
-      <SportsNav currentHash={"#bethistory"} />
+      <SportsNav currentHash="#bethistory" />
     );
 
     expect(renderedOnEventPage.html()).toBe(null);
@@ -46,7 +46,7 @@ describe("<SportsNav/>", () => {
   });
 
   test("should render without errors once data is resolved", async () => {
-    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     await wait(0);
     rendered.update();
@@ -56,7 +56,7 @@ describe("<SportsNav/>", () => {
   });
 
   test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     await wait(0);
     rendered.update();
@@ -78,7 +78,7 @@ describe("<SportsNav/>", () => {
   });
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    const rendered = renderMocked(<SportsNav currentHash={"#home"} />);
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     await wait(0);
     rendered.update();

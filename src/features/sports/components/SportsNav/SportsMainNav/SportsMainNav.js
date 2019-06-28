@@ -8,8 +8,10 @@ import {
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import { sportsPagerButtonRenderer } from "Features/sports/components/SportsNav";
-import type { SportsNavItemType } from "Features/sports/components/SportsNav";
+import {
+  sportsPagerButtonRenderer,
+  type SportsNavItemType,
+} from "Features/sports/components/SportsNav";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,

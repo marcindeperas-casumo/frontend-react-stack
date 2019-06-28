@@ -13,9 +13,9 @@ import {
 import {
   SportsMainNav,
   SportsSubNav,
+  type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import type { SportsNavItemType } from "Features/sports/components/SportsNav";
 
 type SportsNavProps = {
   currentHash: string,
