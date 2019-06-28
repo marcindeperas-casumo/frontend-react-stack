@@ -7,6 +7,7 @@ extend type Query {
 
 enum Modal {
   SEARCH
+  BETTING_GLOSSARY
   CHOOSE_FAVOURITES
   CHOOSE_FAVOURITE_COMPETITIONS
 }
@@ -20,6 +21,7 @@ extend type Mutation {
   minimizeBetslip: Boolean
   openModal(modal: Modal): Boolean
   closeModal(modal: Modal): Boolean
+  closeAllModals: Boolean
   showSearch: Boolean
   hideSearch: Boolean
 }

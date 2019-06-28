@@ -14,9 +14,9 @@ import {
 } from "./Valuable.icons";
 
 // To move these urls somwhere more localised
-export const VALUABLE_LOCKED_URL = "en/player/valuables";
+export const VALUABLE_LOCKED_URL = "/en/player/valuables";
 export const VALUABLE_SPINS_URL = "en/game/";
-export const VALUABLE_DEPOSIT_URL = "en/deposit";
+export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
 
 const VALUABLE_REDIRECT_URL = {
   [VALUABLE_STATES.LOCKED]: VALUABLE_LOCKED_URL,
@@ -47,8 +47,8 @@ export const coinValueToSpinType = coinValue => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const expiryInHours = expiryDate => {
-  return Math.floor(expiryDate.diff(DateTime.utc(), ["hours"]).hours);
+export const expiryInHours = expirationTime => {
+  return Math.floor(expirationTime.diff(DateTime.utc(), ["hours"]).hours);
 };
 
 export const getCardUrl = (valuableState, valuableType) => {

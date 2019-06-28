@@ -4,7 +4,7 @@ import React from "react";
 const activeIndicatorSrc =
   "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
 
-export default [
+export const navItems = [
   {
     iconProps: {
       activeIndicatorSrc,
