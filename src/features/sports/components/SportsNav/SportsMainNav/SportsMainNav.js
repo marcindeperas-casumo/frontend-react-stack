@@ -1,13 +1,17 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
+import {
+  SportsNavTab,
+  SportsSingleNavTab,
+} from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import type { SportsNavItemType } from "./types";
-import SportsNavTab from "./SportsNavTab";
-import SportsSingleNavTab from "./SportsSingleNavTab";
-import { sportsPagerButtonRenderer } from "./SportsNavPagerButton";
+import {
+  sportsPagerButtonRenderer,
+  type SportsNavItemType,
+} from "Features/sports/components/SportsNav";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -19,12 +23,10 @@ export type Props = {
   cacheBuster: string,
 };
 
-class SportsMainNav extends React.Component<Props> {
+export class SportsMainNav extends React.Component<Props> {
   renderEditButton = () => {
     const hasMultipleTabs = this.props.navItems.length > 1;
-
     const label = hasMultipleTabs && this.props.editLabel;
-
     const className = hasMultipleTabs
       ? "u-margin-y--lg u-margin-left--md"
       : "u-margin--xlg u-padding-top";
@@ -106,5 +108,3 @@ class SportsMainNav extends React.Component<Props> {
     );
   }
 }
-
-export default SportsMainNav;

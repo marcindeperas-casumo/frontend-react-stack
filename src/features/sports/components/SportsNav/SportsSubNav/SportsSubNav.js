@@ -4,10 +4,12 @@ import type { CellRendererParams } from "react-virtualized";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { Pill } from "Components/Pill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import type { SportsNavItemType } from "./types";
-import { sportsPagerButtonRenderer } from "./SportsNavPagerButton";
+import {
+  sportsPagerButtonRenderer,
+  type SportsNavItemType,
+} from "Features/sports/components/SportsNav";
 
-export type Props = {
+export type SportsSubNavProps = {
   navItems: Array<SportsNavItemType>,
   isSelected: (SportsNavItemType, boolean) => boolean,
   onSelected: SportsNavItemType => void,
@@ -39,7 +41,7 @@ const SportsSubNavItem = (props: SportsSubNavItemProps) => (
   </div>
 );
 
-class SportsSubNav extends React.Component<Props> {
+export class SportsSubNav extends React.Component<SportsSubNavProps> {
   renderAllNavItem = ({ style }: CellRendererParams) => {
     const allNavItem = {
       text: this.props.allLabel,
@@ -116,5 +118,3 @@ class SportsSubNav extends React.Component<Props> {
     );
   }
 }
-
-export default SportsSubNav;

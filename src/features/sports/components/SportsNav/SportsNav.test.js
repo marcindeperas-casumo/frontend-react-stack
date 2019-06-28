@@ -3,43 +3,42 @@ import { mount } from "enzyme";
 import wait from "waait";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state/clientState/mutations";
-import SportsNav, { isNavItemSelected, onNavItemSelected } from "./SportsNav";
-import SportsNavSkeleton from "./SportsNavSkeleton";
-import SportsMainNav from "./SportsMainNav";
-import SportsSubNav from "./SportsSubNav";
-import mocks from "./__mocks__/userNavigationQuery";
-import navItems from "./__mocks__/navItems";
+import {
+  SportsNav,
+  SportsMainNav,
+  SportsSubNav,
+  isNavItemSelected,
+  onNavItemSelected,
+} from "Features/sports/components/SportsNav";
+import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
+import {
+  multipleSports,
+  openModalMutationMocks,
+} from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
+import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
+
+const renderMocked = children =>
+  mount(
+    <MockedProviderWithContext mocks={multipleSports} addTypename={false}>
+      {children}
+    </MockedProviderWithContext>
+  );
 
 describe("<SportsNav/>", () => {
+  beforeEach(jest.restoreAllMocks);
+
   test("should render skeleton while loading navigation data", async () => {
-    const rendered = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#home"} />
-      </MockedProviderWithContext>
-    );
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     expect(rendered.find(SportsNavSkeleton)).toHaveLength(1);
   });
 
   test("should not be rendered on #event, or #bethistory kambi routes", async () => {
-    const renderedOnEventPage = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#event"} />
-      </MockedProviderWithContext>
+    const renderedOnEventPage = renderMocked(
+      <SportsNav currentHash="#event" />
     );
-    const renderedOnBethistoryPage = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#bethistory"} />
-      </MockedProviderWithContext>
+    const renderedOnBethistoryPage = renderMocked(
+      <SportsNav currentHash="#bethistory" />
     );
 
     expect(renderedOnEventPage.html()).toBe(null);
@@ -47,14 +46,7 @@ describe("<SportsNav/>", () => {
   });
 
   test("should render without errors once data is resolved", async () => {
-    const rendered = mount(
-      <MockedProviderWithContext
-        mocks={mocks.multipleSports}
-        addTypename={false}
-      >
-        <SportsNav currentHash={"#home"} />
-      </MockedProviderWithContext>
-    );
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     await wait(0);
     rendered.update();
@@ -64,15 +56,43 @@ describe("<SportsNav/>", () => {
   });
 
   test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    // Currently not easy to test for this until this is released https://github.com/apollographql/apollo-feature-requests/issues/84
-    // leaving these tests here as a reminder
-    // TODO:(@adampilks) - implement
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
+
+    await wait(0);
+    rendered.update();
+
+    rendered
+      .find(SportsMainNav)
+      .props()
+      .onEdit();
+
+    await wait(0);
+
+    expect(
+      openModalMutationMocks.chooseFavourites.result
+    ).toHaveBeenCalledTimes(1);
+
+    expect(
+      openModalMutationMocks.chooseFavouriteCompetitions.result
+    ).toHaveBeenCalledTimes(0);
   });
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    // Currently not easy to test for this until this is released https://github.com/apollographql/apollo-feature-requests/issues/84
-    // leaving these tests here as a reminder
-    // TODO:(@adampilks) - implement
+    const rendered = renderMocked(<SportsNav currentHash="#home" />);
+
+    await wait(0);
+    rendered.update();
+
+    rendered
+      .find(SportsSubNav)
+      .props()
+      .onEdit();
+
+    await wait(0);
+
+    expect(
+      openModalMutationMocks.chooseFavouriteCompetitions.result
+    ).toHaveBeenCalledTimes(1);
   });
 
   describe("isNavItemSelected()", () => {
@@ -138,6 +158,7 @@ describe("<SportsNav/>", () => {
   describe("onNavItemSelected()", () => {
     test("should call navigateClient mutation when an item is selected with correct path and location", () => {
       const client = { mutate: jest.fn() };
+
       onNavItemSelected("#home", navItems[0], client);
 
       expect(client.mutate).toHaveBeenCalledWith({
@@ -152,7 +173,6 @@ describe("<SportsNav/>", () => {
     test("should navigate to parent path, if navItem path is current location, if the navItem has a parentPath", () => {
       const client = { mutate: jest.fn() };
 
-      // No parentPath
       onNavItemSelected(`#${navItems[0]}`, navItems[0], client);
 
       expect(client.mutate).toHaveBeenNthCalledWith(1, {

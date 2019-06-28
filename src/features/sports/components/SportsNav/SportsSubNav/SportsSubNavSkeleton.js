@@ -53,7 +53,7 @@ const PillSkeletons = {
   ),
 };
 
-const SportsSubNavSkeleton = () => (
+export const SportsSubNavSkeleton = () => (
   <div
     className="u-margin-top--sm"
     style={{
@@ -82,5 +82,3 @@ const SportsSubNavSkeleton = () => (
     </Flex>
   </div>
 );
-
-export default SportsSubNavSkeleton;

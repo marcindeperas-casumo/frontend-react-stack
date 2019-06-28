@@ -1,8 +1,9 @@
 // @flow
 import { evolve, take } from "ramda";
 import { DICTIONARY_TERM_QUERY } from "Features/sports/components/DictionaryTerm/DictionaryTerm";
+import { OPEN_MODAL_MUTATION } from "Features/sports/state";
 import { USER_NAVIGATION_QUERY } from "../SportsNav";
-import mockData from "./userNavigationData";
+import { userNavigationData } from "./userNavigationData";
 
 const labels = {
   allLabel: "All",
@@ -16,7 +17,7 @@ const baseMock = {
   result: {
     data: {
       ...labels,
-      sportsNavigation: mockData,
+      sportsNavigation: userNavigationData,
     },
   },
 };
@@ -31,14 +32,32 @@ const mockWithXSports = numberOfSports =>
     },
   });
 
-const manySports = [baseMock];
-const multipleSports = [mockWithXSports(3)(baseMock)];
-const singleSport = [mockWithXSports(1)(baseMock)];
-const error = [{ ...baseMock, error: true }];
+const createOpenModalMockResponse: () => () => {
+  data: boolean,
+} = () => jest.fn().mockImplementation(() => ({ data: true }));
 
-export default {
-  manySports,
-  multipleSports,
-  singleSport,
-  error,
+export const openModalMutationMocks = {
+  chooseFavourites: {
+    request: {
+      query: OPEN_MODAL_MUTATION,
+      variables: { modal: "CHOOSE_FAVOURITES" },
+    },
+    result: createOpenModalMockResponse(),
+  },
+  chooseFavouriteCompetitions: {
+    request: {
+      query: OPEN_MODAL_MUTATION,
+      variables: { modal: "CHOOSE_FAVOURITE_COMPETITIONS" },
+    },
+    result: createOpenModalMockResponse(),
+  },
 };
+
+export const error = [{ ...baseMock, error: true }];
+export const singleSport = [mockWithXSports(1)(baseMock)];
+export const manySports = [baseMock];
+export const multipleSports = [
+  mockWithXSports(3)(baseMock),
+  openModalMutationMocks.chooseFavourites,
+  openModalMutationMocks.chooseFavouriteCompetitions,
+];

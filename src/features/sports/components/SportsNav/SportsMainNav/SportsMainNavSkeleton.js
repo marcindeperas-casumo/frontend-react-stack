@@ -1,8 +1,8 @@
 import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
-import NavTab from "./SportsNavTabSkeleton";
+import { SportsNavTabSkeleton as NavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTabSkeleton";
 
-const SportsMainNavSkeleton = () => (
+export const SportsMainNavSkeleton = () => (
   <div
     style={{
       height: 106,
@@ -32,5 +32,3 @@ const SportsMainNavSkeleton = () => (
     </div>
   </div>
 );
-
-export default SportsMainNavSkeleton;
