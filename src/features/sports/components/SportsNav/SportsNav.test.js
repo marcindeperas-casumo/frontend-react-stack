@@ -11,10 +11,7 @@ import {
   onNavItemSelected,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import {
-  multipleSports,
-  openModalMutationMocks,
-} from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
+import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
 
 const renderMocked = children =>
@@ -56,43 +53,11 @@ describe("<SportsNav/>", () => {
   });
 
   test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    const rendered = renderMocked(<SportsNav currentHash="#home" />);
-
-    await wait(0);
-    rendered.update();
-
-    rendered
-      .find(SportsMainNav)
-      .props()
-      .onEdit();
-
-    await wait(0);
-
-    expect(
-      openModalMutationMocks.chooseFavourites.result
-    ).toHaveBeenCalledTimes(1);
-
-    expect(
-      openModalMutationMocks.chooseFavouriteCompetitions.result
-    ).toHaveBeenCalledTimes(0);
+    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    const rendered = renderMocked(<SportsNav currentHash="#home" />);
-
-    await wait(0);
-    rendered.update();
-
-    rendered
-      .find(SportsSubNav)
-      .props()
-      .onEdit();
-
-    await wait(0);
-
-    expect(
-      openModalMutationMocks.chooseFavouriteCompetitions.result
-    ).toHaveBeenCalledTimes(1);
+    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
 
   describe("isNavItemSelected()", () => {
