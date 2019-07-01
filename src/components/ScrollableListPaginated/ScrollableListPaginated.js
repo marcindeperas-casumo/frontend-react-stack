@@ -84,7 +84,6 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
     );
   }
 
-  // move this to its own component ?!
   cellRenderer({ columnIndex, style }: CellRendererParams) {
     const { list, className, Component } = this.props;
     const { games: gameIds } = list;
