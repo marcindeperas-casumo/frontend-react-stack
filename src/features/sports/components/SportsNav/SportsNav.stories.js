@@ -2,8 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-import SportsNav from "./SportsNav";
-import mocks from "./__mocks__/userNavigationQuery";
+import { SportsNav } from "Features/sports/components/SportsNav";
+import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
 const stories = storiesOf("Sports/SportsNav", module);
 

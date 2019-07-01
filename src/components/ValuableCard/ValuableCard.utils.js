@@ -14,8 +14,8 @@ import {
 } from "./Valuable.icons";
 
 // To move these urls somwhere more localised
-export const VALUABLE_LOCKED_URL = "en/player/valuables";
-export const VALUABLE_DEPOSIT_URL = "en/deposit";
+export const VALUABLE_LOCKED_URL = "/en/player/valuables";
+export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
 
 const VALUABLE_REDIRECT_URL = {
   [VALUABLE_STATES.LOCKED]: VALUABLE_LOCKED_URL,

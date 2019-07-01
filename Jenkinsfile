@@ -34,6 +34,7 @@ Started by: *${env.gitAuthor}* :eyes:
             "Flow": {it.customStepTask('Flow', this.&runFlow)},
             "Lint": {it.customStepTask('Lint', this.&runLint)},
             "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
+            "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
             "Sonar": {it.gradleSonarTask()}
         ])
         .customStep('Build', this.&runBuild)
@@ -49,6 +50,10 @@ def installDependencies() {
 
 def runBuild() {
     sh "yarn build"
+}
+
+def pact() {
+    sh "yarn pact:ci"
 }
 
 def runTests() {

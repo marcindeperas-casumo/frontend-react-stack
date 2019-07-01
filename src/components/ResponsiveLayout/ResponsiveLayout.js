@@ -6,6 +6,7 @@ import {
   desktopBreakpoint,
   getMediaQuery,
 } from "./ResponsiveLayout.utils";
+import { type ORIENTATION_TYPE } from "./ResponsiveLayout.types";
 
 type Props = {
   /** The media queries object to fullfill to render the children */
@@ -28,9 +29,19 @@ export const Desktop = ({ children }: { children: React.Node }) => {
   );
 };
 
-export const Mobile = ({ children }: { children: React.Node }) => {
+export const Mobile = ({
+  children,
+  orientation,
+}: {
+  children: React.Node,
+  orientation?: ORIENTATION_TYPE,
+}) => {
   return (
-    <RenderIfMatchBreakpoint breakpoint={mobileBreakpoint}>
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation ? { ...mobileBreakpoint, orientation } : mobileBreakpoint
+      }
+    >
       {children}
     </RenderIfMatchBreakpoint>
   );
