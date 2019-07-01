@@ -3,7 +3,7 @@ import { range } from "ramda";
 const activeIndicator =
   "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
 
-export default [
+export const userNavigationData = [
   {
     sport: {
       name: "Football",
