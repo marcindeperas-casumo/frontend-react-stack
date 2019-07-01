@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
+import Flex from "@casumo/cmp-flex";
 import {
   SportsNavTab,
   SportsSingleNavTab,
@@ -12,6 +13,7 @@ import {
   sportsPagerButtonRenderer,
   type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
+import { SportsLiveTab } from "Features/sports/components/SportsNav/SportsLiveTab/SportsLiveTab";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -23,7 +25,26 @@ export type Props = {
   cacheBuster: string,
 };
 
-export class SportsMainNav extends React.Component<Props> {
+type State = {
+  isLiveActive: boolean,
+};
+
+export class SportsMainNav extends React.Component<Props, State> {
+  state = {
+    isLiveActive: false,
+  };
+
+  toggleLiveState = () =>
+    this.setState({ isLiveActive: !this.state.isLiveActive });
+
+  renderLiveButton = () => (
+    <SportsLiveTab
+      onClick={this.toggleLiveState}
+      label="Live"
+      isActive={this.state.isLiveActive}
+    />
+  );
+
   renderEditButton = () => {
     const hasMultipleTabs = this.props.navItems.length > 1;
     const label = hasMultipleTabs && this.props.editLabel;
@@ -89,22 +110,25 @@ export class SportsMainNav extends React.Component<Props> {
 
   render() {
     const tabCount = this.props.navItems.length;
-    const buttonCount = 1; // include edit button to append
+    const buttonCount = 1; // include Edit button
     const columnCount = tabCount + buttonCount;
 
     return (
-      <div className="t-background-grey-light-2">
-        <ScrollablePaginated
-          className="c-sports-nav-paginated"
-          columnCount={columnCount}
-          cellRenderer={
-            tabCount > 1 ? this.renderTabList : this.renderSingleNav
-          }
-          height={106}
-          buttonRenderer={sportsPagerButtonRenderer}
-          cacheBuster={this.props.cacheBuster}
-        />
-      </div>
+      <Flex className="t-background-grey-light-2">
+        <Flex.Item>{this.renderLiveButton()}</Flex.Item>
+        <Flex.Block>
+          <ScrollablePaginated
+            className="c-sports-nav-paginated"
+            columnCount={columnCount}
+            cellRenderer={
+              tabCount > 1 ? this.renderTabList : this.renderSingleNav
+            }
+            height={106}
+            buttonRenderer={sportsPagerButtonRenderer}
+            cacheBuster={this.props.cacheBuster}
+          />
+        </Flex.Block>
+      </Flex>
     );
   }
 }
