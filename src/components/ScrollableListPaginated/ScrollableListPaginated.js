@@ -10,14 +10,20 @@ import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { GameListObject } from "Components/GameListHorizontal/GameListHorizontal";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
-import "./GameListHorizontalDesktop.scss";
+import "./ScrollableListPaginated.scss";
 
 type Props = {
+  /** The item height. */
   tileHeight: number,
-  className: string,
-  seeMoreText: string,
-  seeMoreUrl: string,
+  /** The style to apply to the list items. */
+  className?: string,
+  /** The text to render on the seeMore button. */
+  seeMoreText?: string,
+  /** The link where to redirect once clicking the seeMore button. */
+  seeMoreUrl?: string,
+  /** The item renderer. */
   Component: Function,
+  /** The list of items to be rendered. */
   list: GameListObject,
 };
 
@@ -29,7 +35,7 @@ export const ITEMS_STYLING = {
   default: "c-game-list-horizontal-desktop-paginated__button",
 };
 
-export class GameListHorizontalDesktop extends React.PureComponent<Props> {
+export default class ScrollableListPaginated extends React.PureComponent<Props> {
   cellRenderer: Function;
   buttonRenderer: Function;
 

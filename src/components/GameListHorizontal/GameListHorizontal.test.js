@@ -8,7 +8,7 @@ import {
 } from "Components/GameListHorizontal/GameListHorizontal";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
-import { GameListHorizontalDesktop } from "Components/GameListHorizontal/GameListHorizontalDesktop";
+import ScrollableListPaginated from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 
 const getList = id => ({ id, title: "Title.", games: ["game-1", "game-2"] });
@@ -107,12 +107,12 @@ describe("GameListHorizontal Desktop", () => {
     ).find(Desktop);
   });
 
-  test("renders a GameListHorizontalDesktop", () => {
-    expect(rendered.find(GameListHorizontalDesktop)).toHaveLength(1);
+  test("renders a ScrollableListPaginated", () => {
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
   });
 
   test("uses the default renderer if it is not specified", () => {
-    const { Component } = rendered.find(GameListHorizontalDesktop).props();
+    const { Component } = rendered.find(ScrollableListPaginated).props();
 
     expect(Component).toEqual(ITEM_RENDERERS.default);
   });
@@ -121,26 +121,26 @@ describe("GameListHorizontal Desktop", () => {
     rendered = shallow(<GameListHorizontal list={list} isLoading={true} />);
 
     expect(rendered.find(GameListHorizontalSkeleton)).toHaveLength(1);
-    expect(rendered.find(GameListHorizontalDesktop)).toHaveLength(0);
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);
   });
 
   test("uses the default tileHeight if it is not specified", () => {
-    const { tileHeight } = rendered.find(GameListHorizontalDesktop).props();
+    const { tileHeight } = rendered.find(ScrollableListPaginated).props();
 
     expect(tileHeight).toEqual(TILE_HEIGHTS.default);
   });
 
-  test("passes the games list to the GameListHorizontalDesktop", () => {
-    const { list: listProp } = rendered.find(GameListHorizontalDesktop).props();
+  test("passes the games list to the ScrollableListPaginated", () => {
+    const { list: listProp } = rendered.find(ScrollableListPaginated).props();
 
     expect(listProp).toBe(list);
   });
 
-  test("passes seeMoreText to the GameListHorizontalDesktop", () => {
+  test("passes seeMoreText to the ScrollableListPaginated", () => {
     const { seeMoreText: seeMoreTextProp } = shallow(
       <GameListHorizontal list={list} seeMoreText={seeMoreText} />
     )
-      .find(GameListHorizontalDesktop)
+      .find(ScrollableListPaginated)
       .props();
 
     expect(seeMoreTextProp).toBe(seeMoreText);

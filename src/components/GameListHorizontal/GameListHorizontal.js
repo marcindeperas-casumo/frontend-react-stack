@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
+import ScrollableListPaginated from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
@@ -9,7 +10,6 @@ import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
 import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
-import { GameListHorizontalDesktop } from "Components/GameListHorizontal/GameListHorizontalDesktop";
 
 import "./GameListHorizontal.scss";
 
@@ -92,7 +92,7 @@ export class GameListHorizontal extends PureComponent<Props> {
           />
         </Mobile>
         <Desktop>
-          <GameListHorizontalDesktop
+          <ScrollableListPaginated
             list={list}
             Component={itemRenderer}
             className={className}
