@@ -32,24 +32,7 @@ const mockWithXSports = numberOfSports =>
     },
   });
 
-export const makeOpenModalMutationMocks = (jest: any) => [
-  {
-    request: {
-      query: OPEN_MODAL_MUTATION,
-      variables: { modal: "CHOOSE_FAVOURITES" },
-    },
-    result: jest.fn().mockImplementation(() => ({ data: true })),
-  },
-  {
-    request: {
-      query: OPEN_MODAL_MUTATION,
-      variables: { modal: "CHOOSE_FAVOURITE_COMPETITIONS" },
-    },
-    result: jest.fn().mockImplementation(() => ({ data: true })),
-  },
-];
-
 export const error = [{ ...baseMock, error: true }];
 export const singleSport = [mockWithXSports(1)(baseMock)];
-export const manySports = [baseMock];
 export const multipleSports = [mockWithXSports(3)(baseMock)];
+export const manySports = [baseMock];
