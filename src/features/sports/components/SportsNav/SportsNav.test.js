@@ -12,14 +12,17 @@ import {
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import {
+  makeOpenModalMutationMocks,
   multipleSports,
-  openModalMutationMocks,
 } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
 
+const mutationMocks = makeOpenModalMutationMocks(jest);
+const mocks = [...multipleSports, ...mutationMocks];
+
 const renderMocked = children =>
   mount(
-    <MockedProviderWithContext mocks={multipleSports} addTypename={false}>
+    <MockedProviderWithContext mocks={mocks} addTypename={false}>
       {children}
     </MockedProviderWithContext>
   );
@@ -68,13 +71,7 @@ describe("<SportsNav/>", () => {
 
     await wait(0);
 
-    expect(
-      openModalMutationMocks.chooseFavourites.result
-    ).toHaveBeenCalledTimes(1);
-
-    expect(
-      openModalMutationMocks.chooseFavouriteCompetitions.result
-    ).toHaveBeenCalledTimes(0);
+    expect(mutationMocks[0].result).toHaveBeenCalledTimes(1);
   });
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
@@ -90,9 +87,7 @@ describe("<SportsNav/>", () => {
 
     await wait(0);
 
-    expect(
-      openModalMutationMocks.chooseFavouriteCompetitions.result
-    ).toHaveBeenCalledTimes(1);
+    expect(mutationMocks[1].result).toHaveBeenCalledTimes(1);
   });
 
   describe("isNavItemSelected()", () => {
