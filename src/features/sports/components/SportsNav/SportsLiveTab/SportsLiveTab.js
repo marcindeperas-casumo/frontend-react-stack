@@ -7,30 +7,39 @@ import { CrossIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import LiveIconActive from "./icons/live-icon-active.svg";
 import LiveIconInactive from "./icons/live-icon-inactive.svg";
-
 import "./SportsLiveTab.scss";
 
 type Props = {
   isActive?: boolean,
 };
 
-const LiveIconCountBadge = ({ count = 11 }: { count: number }) => (
-  <div className="t-background-grey-dark-3 t-border-r--circle u-font-weight-bold">
-    {count}
-  </div>
+const LiveIconCountBadge = ({ count }: { count: number }) => (
+  <Flex
+    align="center"
+    justify="center"
+    direction="vertical"
+    className="c-sports-live-tab__badge t-background-grey-dark-1 t-color-white t-border-r--circle u-font-weight-bold"
+    spacing="none"
+  >
+    <Flex.Item>{count}</Flex.Item>
+  </Flex>
 );
 
 const LiveIconCloseBadge = () => (
-  <Badge className="t-background-red-dark-1">
-    <CrossIcon />
-  </Badge>
+  <Flex
+    align="center"
+    justify="center"
+    direction="vertical"
+    className="c-sports-live-tab__badge t-background-red-dark-1 t-color-white t-border-r--circle u-font-weight-bold"
+    spacing="none"
+  >
+    <CrossIcon size="sm" />
+  </Flex>
 );
 
 const LiveIcon = ({ isActive }: Props) => (
-  <div className="o-ratio c-sports-icon">
-    {isActive && (
-      <div className="o-ratio__content t-background-red" width={16} />
-    )}
+  <div className="o-ratio c-sports-icon u-margin-x">
+    {isActive ? <LiveIconCloseBadge /> : <LiveIconCountBadge count={11} />}
     <Flex justify="center" align="center" className="o-ratio__content">
       {isActive ? (
         <LiveIconActive className="t-border-r--circle u-drop-shadow" />
@@ -55,7 +64,7 @@ export const SportsLiveTab = ({
   <div
     className={classNames(
       "c-sports-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
-      isActive && "c-sports-live-tab--active"
+      isActive && "t-background-red t-color-white"
     )}
     onClick={onClick}
   >
