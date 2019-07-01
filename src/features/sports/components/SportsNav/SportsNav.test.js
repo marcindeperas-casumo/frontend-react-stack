@@ -53,11 +53,11 @@ describe("<SportsNav/>", () => {
   });
 
   test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
-    // TODO: handle as part of ISS30372 Strategy for Testing Mutations and Apollo Components
+    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
-    // TODO: handle as part of ISS30372 Strategy for Testing Mutations and Apollo Components
+    // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
 
   describe("isNavItemSelected()", () => {
