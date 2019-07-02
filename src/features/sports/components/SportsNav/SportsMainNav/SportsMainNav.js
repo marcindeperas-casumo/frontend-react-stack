@@ -81,10 +81,14 @@ export const renderTabList = (props: Props, state: State) => ({
   const { navItems } = props;
   const offsetIndex = columnIndex - LIVE_BUTTON_OFFSET;
 
+  const isFirstItem = equals(-1);
+  const isLastItem = equals(navItems.length - 1);
+
+  // prettier-ignore
   const renderedTab = cond([
-    [equals(-1), () => renderLiveButton(state)],
-    [equals(navItems.length - 1), () => renderEditButton(props)],
-    [T, () => renderTab(navItems[offsetIndex], props)],
+    [isFirstItem, () => renderLiveButton(state)],
+    [isLastItem,  () => renderEditButton(props)],
+    [T,           () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
 
   const className = classNames(
