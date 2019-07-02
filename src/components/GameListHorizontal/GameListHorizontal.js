@@ -62,8 +62,8 @@ export const ITEM_SPACING = {
 export class GameListHorizontal extends PureComponent<Props> {
   render() {
     const { list, isLoading, seeMoreText } = this.props;
-    const { id, title, games: gameIds } = list;
-    const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
+    const { id, title, games: itemIds } = list;
+    const hasNoGames = isEmpty(itemIds) || isNil(itemIds);
     const seeMoreUrl = SEE_MORE_URL[id];
     const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
@@ -86,14 +86,18 @@ export class GameListHorizontal extends PureComponent<Props> {
             title={title}
             seeMoreText={seeMoreText}
             seeMoreUrl={seeMoreUrl}
-            itemIds={gameIds}
+            itemIds={itemIds}
             Component={itemRenderer}
             spacing={itemSpacing}
           />
         </Mobile>
         <Desktop>
           <ScrollableListPaginated
-            list={list}
+            list={{
+              id,
+              title,
+              itemIds,
+            }}
             Component={itemRenderer}
             className={className}
             tileHeight={tileHeight}

@@ -7,10 +7,15 @@ import type { CellRendererParams } from "react-virtualized";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import ScrollablePaginated from "Components/ScrollablePaginated";
-import type { GameListObject } from "Components/GameListHorizontal/GameListHorizontal";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 import "./ScrollableListPaginated.scss";
+
+type ListObject = {
+  id: string,
+  title: string,
+  itemIds: Array<string>,
+};
 
 type SeeMoreProps = {
   /** The link where to redirect once clicking the seeMore button. */
@@ -29,7 +34,7 @@ type Props = {
   /** The item renderer. */
   Component: Function,
   /** The list of items to be rendered. */
-  list: GameListObject,
+  list: ListObject,
 };
 
 export const ITEMS_STYLING = {
@@ -82,14 +87,14 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
 
   cellRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const { list, className, Component } = this.props;
-    const { games: gameIds } = list;
-    const gameId = gameIds[columnIndex];
+    const { itemIds } = list;
+    const itemId = itemIds[columnIndex];
 
     return (
       <div style={style}>
         <div className="u-padding-right">
           <div className={className}>
-            <Component key={gameId} id={gameId} />
+            <Component key={itemId} id={itemId} />
           </div>
         </div>
       </div>
@@ -97,7 +102,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
   };
   render() {
     const { list, tileHeight, seeMore } = this.props;
-    const { title, games: gameIds } = list;
+    const { title, itemIds } = list;
 
     return (
       <div className="u-padding-top--xlg">
@@ -117,7 +122,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
         </Flex>
         <ScrollablePaginated
           className="c-game-list-horizontal-desktop-paginated"
-          columnCount={gameIds.length}
+          columnCount={itemIds.length}
           cellRenderer={this.cellRenderer}
           buttonRenderer={this.buttonRenderer}
           height={tileHeight}

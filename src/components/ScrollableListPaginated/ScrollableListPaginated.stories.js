@@ -24,7 +24,11 @@ const ScrollableListPaginatedStory = () => {
   return (
     <MockStore>
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         tileHeight={204}
         className="c-top-game"
         seeMore={{
