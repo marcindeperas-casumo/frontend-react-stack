@@ -33,7 +33,7 @@ class PromotionHeaderImage extends PureComponent<Props> {
   render() {
     const { image, badge = "" } = this.props;
     return (
-      <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg">
+      <div className="o-ratio o-ratio--promotion-header-image u-margin-bottom--xlg c-promotion-header-image">
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"
           src={image}
