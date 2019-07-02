@@ -55,6 +55,9 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
     const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-game-list-horizontal-desktop-paginated__button`;
     const itemControlClass = ITEMS_STYLING[id] || ITEMS_STYLING.default;
+    const previousClickHandler = () => scrollableClickHandler("previous");
+    const nextClickHandler = () => scrollableClickHandler("next");
+
     return (
       <Flex
         justify="space-between"
@@ -64,7 +67,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
         <Flex.Item>
           {hasPreviousPage && (
             <div
-              onClick={e => scrollableClickHandler("previous")}
+              onClick={previousClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--left`}
             >
               <DirectionRightIcon className="t-color-grey-dark-3 Icons-c-icon--flip-horiz" />
@@ -74,7 +77,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
         <Flex.Item>
           {hasNextPage && (
             <div
-              onClick={e => scrollableClickHandler("next")}
+              onClick={nextClickHandler}
               className={`${itemGenericClass} ${itemControlClass}--right`}
             >
               <DirectionRightIcon className="t-color-grey-dark-3" />
