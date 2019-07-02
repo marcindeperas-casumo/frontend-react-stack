@@ -15,13 +15,11 @@ import {
 
 // To move these urls somwhere more localised
 export const VALUABLE_LOCKED_URL = "/en/player/valuables";
-export const VALUABLE_SPINS_URL = "en/game/";
 export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
 
 const VALUABLE_REDIRECT_URL = {
   [VALUABLE_STATES.LOCKED]: VALUABLE_LOCKED_URL,
   [VALUABLE_TYPES.DEPOSIT]: VALUABLE_DEPOSIT_URL,
-  [VALUABLE_TYPES.SPINS]: VALUABLE_SPINS_URL,
 };
 
 export const VALUABLE_ICON = {
