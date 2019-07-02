@@ -2,7 +2,11 @@ import React from "react";
 import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import { SportsMainNav } from "Features/sports/components/SportsNav";
+import {
+  SportsMainNav,
+  renderTabList,
+  renderEditButton,
+} from "Features/sports/components/SportsNav";
 import { SportTab } from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
@@ -15,38 +19,34 @@ const props = {
   editLabel: "edit",
 };
 
-const render = overrideProps =>
-  shallow(<SportsMainNav {...props} {...overrideProps} />);
-
 describe("<SportsMainNav />", () => {
   test("passes the correct props to the ScrollablePaginated when a multiple nav items exist", () => {
-    const rendered = render();
+    const rendered = shallow(<SportsMainNav {...props} />);
     const sp = rendered.find(ScrollablePaginated);
 
     expect(sp).toHaveLength(1);
     expect(sp.props()).toMatchObject({
       columnCount: 5,
-      cellRenderer: rendered.instance().renderTabList,
+      // TODO(cpoliver): match fn but not instance
+      // cellRenderer: renderTabList(props),
       height: 106,
     });
   });
 
   describe("renderTabList", () => {
     test("returns a SportTab and no EditButton when rendering a non-last item", () => {
-      const instance = render().instance();
-      const renderedFirst = shallow(instance.renderTabList({ columnIndex: 0 }));
+      const renderedFirst = shallow(renderTabList(props)({ columnIndex: 0 }));
 
       expect(renderedFirst.find(SportTab)).toHaveLength(1);
       expect(renderedFirst.find(EditPillsButton)).toHaveLength(0);
 
-      const renderedThird = shallow(instance.renderTabList({ columnIndex: 2 }));
+      const renderedThird = shallow(renderTabList(props)({ columnIndex: 2 }));
       expect(renderedThird.find(SportTab)).toHaveLength(1);
       expect(renderedThird.find(EditPillsButton)).toHaveLength(0);
     });
 
     test("returns an EditPillsButton and no SportTab when rendering the last item", () => {
-      const instance = render().instance();
-      const rendered = shallow(instance.renderTabList({ columnIndex: 5 }));
+      const rendered = shallow(renderTabList(props)({ columnIndex: 5 }));
 
       expect(rendered.find(SportTab)).toHaveLength(0);
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
@@ -55,15 +55,13 @@ describe("<SportsMainNav />", () => {
 
   describe("renderEditButton", () => {
     test("renders a button when canEdit is true", () => {
-      const instance = render({ canEdit: true }).instance();
-      const rendered = shallow(instance.renderEditButton());
+      const rendered = shallow(renderEditButton(props));
 
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
 
     test("returns null when canEdit is false", () => {
-      const instance = render({ canEdit: false }).instance();
-      const rendered = shallow(instance.renderEditButton());
+      const rendered = shallow(renderEditButton({ ...props, canEdit: false }));
 
       expect(rendered.find(EditPillsButton)).toHaveLength(0);
     });

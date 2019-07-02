@@ -24,91 +24,91 @@ export type Props = {
   cacheBuster: string,
 };
 
-type State = {
+export const renderLiveButton = (
   isLiveActive: boolean,
+  setIsLiveActive: boolean => void
+) => (
+  <LiveTab
+    onClick={() => setIsLiveActive(!isLiveActive)}
+    label="Live"
+    isActive={isLiveActive}
+  />
+);
+
+export const renderEditButton = ({
+  navItems,
+  editLabel,
+  canEdit,
+  onEdit,
+}: Props) => {
+  const hasMultipleTabs = navItems.length > 1;
+  const label = hasMultipleTabs && editLabel;
+  const className = hasMultipleTabs
+    ? "u-margin-y--lg u-margin-left--md"
+    : "u-margin--xlg u-padding-top";
+
+  return (
+    <div className={className}>
+      {canEdit && (
+        <EditPillsButton
+          onClick={onEdit}
+          className="t-background-white t-color-grey u-drop-shadow"
+          label={label}
+        />
+      )}
+    </div>
+  );
 };
 
-export class SportsMainNav extends React.Component<Props, State> {
-  state = {
-    isLiveActive: false,
-  };
+export const renderTabList = (props: Props) => ({
+  columnIndex,
+  style,
+}: CellRendererParams) => {
+  const navItem = props.navItems[columnIndex];
 
-  toggleLiveState = () =>
-    this.setState({ isLiveActive: !this.state.isLiveActive });
-
-  renderLiveButton = () => (
-    <LiveTab
-      onClick={this.toggleLiveState}
-      label="Live"
-      isActive={this.state.isLiveActive}
-    />
+  const className = classNames(
+    columnIndex === 0 && "u-margin-left--md",
+    columnIndex === props.navItems.length && "u-margin-right--xlg"
   );
 
-  renderEditButton = () => {
-    const hasMultipleTabs = this.props.navItems.length > 1;
-    const label = hasMultipleTabs && this.props.editLabel;
-    const className = hasMultipleTabs
-      ? "u-margin-y--lg u-margin-left--md"
-      : "u-margin--xlg u-padding-top";
-
-    return (
+  return (
+    <div style={style}>
       <div className={className}>
-        {this.props.canEdit && (
-          <EditPillsButton
-            onClick={this.props.onEdit}
-            className="t-background-white t-color-grey u-drop-shadow"
-            label={label}
+        {navItem ? (
+          <SportTab
+            key={navItem.path}
+            navItem={navItem}
+            isSelected={props.isSelected(navItem)}
+            onClick={() => props.onSelected(navItem)}
           />
+        ) : (
+          renderEditButton(props)
         )}
       </div>
-    );
-  };
+    </div>
+  );
+};
 
-  renderTabList = ({ columnIndex, style }: CellRendererParams) => {
-    const navItem = this.props.navItems[columnIndex];
+export const SportsMainNav = (props: Props) => {
+  const [isLiveActive, setIsLiveActive] = React.useState(false);
 
-    const className = classNames(
-      columnIndex === 0 && "u-margin-left--md",
-      columnIndex === this.props.navItems.length && "u-margin-right--xlg"
-    );
+  const tabCount = props.navItems.length;
+  const buttonCount = 1; // include Edit button
+  const columnCount = tabCount + buttonCount;
 
-    return (
-      <div style={style}>
-        <div className={className}>
-          {navItem ? (
-            <SportTab
-              key={navItem.path}
-              navItem={navItem}
-              isSelected={this.props.isSelected(navItem)}
-              onClick={() => this.props.onSelected(navItem)}
-            />
-          ) : (
-            this.renderEditButton()
-          )}
-        </div>
-      </div>
-    );
-  };
-
-  render() {
-    const tabCount = this.props.navItems.length;
-    const buttonCount = 1; // include Edit button
-    const columnCount = tabCount + buttonCount;
-
-    return (
-      <Flex className="t-background-grey-light-2">
-        <Flex.Item>{this.renderLiveButton()}</Flex.Item>
-        <Flex.Block>
-          <ScrollablePaginated
-            className="c-sports-nav-paginated"
-            columnCount={columnCount}
-            cellRenderer={this.renderTabList}
-            height={106}
-            buttonRenderer={sportsPagerButtonRenderer}
-            cacheBuster={this.props.cacheBuster}
-          />
-        </Flex.Block>
-      </Flex>
-    );
-  }
-}
+  return (
+    <Flex className="t-background-grey-light-2">
+      <Flex.Item>{renderLiveButton(isLiveActive, setIsLiveActive)}</Flex.Item>
+      <Flex.Block>
+        <ScrollablePaginated
+          className="c-sports-nav-paginated"
+          columnCount={columnCount}
+          cellRenderer={renderTabList(props)}
+          height={106}
+          buttonRenderer={sportsPagerButtonRenderer}
+          cacheBuster={props.cacheBuster}
+        />
+      </Flex.Block>
+    </Flex>
+  );
+};
