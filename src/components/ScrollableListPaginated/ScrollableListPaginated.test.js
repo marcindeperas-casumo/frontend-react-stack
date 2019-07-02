@@ -28,7 +28,11 @@ describe("ScrollableListPaginated", () => {
   test("render the title of the list", () => {
     const rendered = shallow(
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         className={className}
         seeMore={{
           url: seeMore.url,
@@ -47,7 +51,11 @@ describe("ScrollableListPaginated", () => {
   test("render a ScrollablePaginated component", () => {
     const rendered = shallow(
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         className={className}
         seeMore={{
           url: seeMore.url,
@@ -64,7 +72,11 @@ describe("ScrollableListPaginated", () => {
   test("render seeMore.text and an seeMore.url on an <a> tag if seeMore is set", () => {
     const rendered = shallow(
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         className={className}
         seeMore={{
           url: seeMore.url,
@@ -88,7 +100,11 @@ describe("ScrollableListPaginated", () => {
   test("not render seeMore text and url on an <a> tag if seeMore is not set", () => {
     const rendered = shallow(
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         className={className}
         Component={Component}
         tileHeight={tileHeight}
@@ -102,7 +118,11 @@ describe("ScrollableListPaginated", () => {
   test("pass tileHeight to ScrollablePaginated", () => {
     const rendered = shallow(
       <ScrollableListPaginated
-        list={list}
+        list={{
+          id: list.id,
+          title: list.title,
+          itemIds: list.games,
+        }}
         className={className}
         seeMore={{
           url: seeMore.url,
