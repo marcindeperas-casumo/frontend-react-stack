@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import ScrollableListPaginated from "Components/ScrollableListPaginated";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import MockStore from "Components/MockStore";
 import GameTileContainer from "Components/GameTile";
 

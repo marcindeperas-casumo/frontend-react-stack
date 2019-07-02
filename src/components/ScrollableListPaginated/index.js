@@ -1,1 +1,1 @@
-export { default } from "./ScrollableListPaginated";
+export { ScrollableListPaginated } from "./ScrollableListPaginated";
