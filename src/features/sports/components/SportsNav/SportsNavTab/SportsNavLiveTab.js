@@ -1,13 +1,12 @@
 // @flow
 import * as React from "react";
 import classNames from "classnames";
-import Badge from "@casumo/cmp-badge";
 import Flex from "@casumo/cmp-flex";
 import { CrossIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import LiveIconActive from "./icons/live-icon-active.svg";
 import LiveIconInactive from "./icons/live-icon-inactive.svg";
-import "./SportsLiveTab.scss";
+import "./SportsNavTab.scss";
 
 type Props = {
   isActive?: boolean,
@@ -56,7 +55,7 @@ type SportsLiveTabProps = Props & {
   isActive?: boolean,
 };
 
-export const SportsLiveTab = ({
+export const SportsNavLiveTab = ({
   isActive,
   label,
   onClick,

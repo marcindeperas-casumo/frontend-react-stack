@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { SportsMainNav } from "Features/sports/components/SportsNav";
-import { SportsNavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
+import { SportTab } from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
 const props = {
@@ -32,23 +32,23 @@ describe("<SportsMainNav />", () => {
   });
 
   describe("renderTabList", () => {
-    test("returns a SportsNavTab and no EditButton when rendering a non-last item", () => {
+    test("returns a SportTab and no EditButton when rendering a non-last item", () => {
       const instance = render().instance();
       const renderedFirst = shallow(instance.renderTabList({ columnIndex: 0 }));
 
-      expect(renderedFirst.find(SportsNavTab)).toHaveLength(1);
+      expect(renderedFirst.find(SportTab)).toHaveLength(1);
       expect(renderedFirst.find(EditPillsButton)).toHaveLength(0);
 
       const renderedThird = shallow(instance.renderTabList({ columnIndex: 2 }));
-      expect(renderedThird.find(SportsNavTab)).toHaveLength(1);
+      expect(renderedThird.find(SportTab)).toHaveLength(1);
       expect(renderedThird.find(EditPillsButton)).toHaveLength(0);
     });
 
-    test("returns an EditPillsButton and no SportsNavTab when rendering the last item", () => {
+    test("returns an EditPillsButton and no SportTab when rendering the last item", () => {
       const instance = render().instance();
       const rendered = shallow(instance.renderTabList({ columnIndex: 5 }));
 
-      expect(rendered.find(SportsNavTab)).toHaveLength(0);
+      expect(rendered.find(SportTab)).toHaveLength(0);
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
   });

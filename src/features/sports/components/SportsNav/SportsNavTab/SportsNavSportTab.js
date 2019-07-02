@@ -8,17 +8,13 @@ import type { SportsNavItemType } from "Features/sports/components/SportsNav/typ
 
 import "./SportsNavTab.scss";
 
-type SportsNavTabProps = {
+type Props = {
   navItem: SportsNavItemType,
   isSelected: boolean,
   onClick: SportsNavItemType => *,
 };
 
-export const SportsNavTab = ({
-  navItem,
-  isSelected,
-  onClick,
-}: SportsNavTabProps) => (
+export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
   <div
     className={classNames(
       "c-sports-nav-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",

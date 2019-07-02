@@ -2,7 +2,6 @@
 import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import { SportsNavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
@@ -10,7 +9,10 @@ import {
   sportsPagerButtonRenderer,
   type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
-import { SportsLiveTab } from "Features/sports/components/SportsNav/SportsLiveTab/SportsLiveTab";
+import {
+  SportTab,
+  LiveTab,
+} from "Features/sports/components/SportsNav/SportsNavTab";
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -35,7 +37,7 @@ export class SportsMainNav extends React.Component<Props, State> {
     this.setState({ isLiveActive: !this.state.isLiveActive });
 
   renderLiveButton = () => (
-    <SportsLiveTab
+    <LiveTab
       onClick={this.toggleLiveState}
       label="Live"
       isActive={this.state.isLiveActive}
@@ -74,7 +76,7 @@ export class SportsMainNav extends React.Component<Props, State> {
       <div style={style}>
         <div className={className}>
           {navItem ? (
-            <SportsNavTab
+            <SportTab
               key={navItem.path}
               navItem={navItem}
               isSelected={this.props.isSelected(navItem)}
