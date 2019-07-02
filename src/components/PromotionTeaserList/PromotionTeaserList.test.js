@@ -24,7 +24,7 @@ describe("PromotionTeaserList", () => {
     expect(fetchCampaign).toHaveBeenCalledTimes(1);
   });
 
-  test("should not render any PromotionCardTeaser component if promotionSlugs is empty", () => {
+  test("should not render any PromotionTeaserRow component if promotionSlugs is empty", () => {
     const rendered = shallow(
       <PromotionTeaserList
         slug="foo"
@@ -34,6 +34,6 @@ describe("PromotionTeaserList", () => {
       />
     );
 
-    expect(rendered.find("PromotionCardTeaser").exists()).toBe(false);
+    expect(rendered.find("PromotionTeaserRow").exists()).toBe(false);
   });
 });

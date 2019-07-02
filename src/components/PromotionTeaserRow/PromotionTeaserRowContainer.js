@@ -12,7 +12,7 @@ type Props = {
 const promotionDatesField = "dates";
 const promotionTitleBadge = "title";
 
-const PromotionCardTeaserConnected = connect(
+const PromotionTeaserRowConnected = connect(
   (state, { slug }) => ({
     isFetched: isPageFetchedSelector(slug)(state),
     dates: getField({ slug, field: promotionDatesField })(state),
@@ -24,7 +24,7 @@ const PromotionCardTeaserConnected = connect(
 )(PromotionTeaserRow);
 
 const PromotionTeaserRowContainer = (props: Props) => (
-  <PromotionCardTeaserConnected {...props} />
+  <PromotionTeaserRowConnected {...props} />
 );
 
 export default PromotionTeaserRowContainer;

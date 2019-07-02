@@ -13,11 +13,11 @@ const state = {
   },
 };
 
-const stories = storiesOf("PromotionCardTeaser", module);
+const stories = storiesOf("PromotionTeaserRow", module);
 
 if (isNotChromatic) {
   stories.add(
-    "PromotionCardTeaser (Connected)",
+    "PromotionTeaserRow (Connected)",
     () => (
       <MockStore state={state}>
         <div style={{ maxWidth: 350 }}>
@@ -32,7 +32,7 @@ if (isNotChromatic) {
 }
 
 stories.add(
-  "PromotionCardTeaser (Presentational)",
+  "PromotionTeaserRow (Presentational)",
   () => (
     <MockStore state={state}>
       <div style={{ maxWidth: 350 }}>
