@@ -91,13 +91,13 @@ export const renderTabList = (props: Props, state: State) => ({
     [T,           () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
 
-  const className = classNames(
-    columnIndex === navItems.length && "u-margin-right--xlg"
-  );
-
   return (
     <div style={style}>
-      <div className={className}>{renderedTab}</div>
+      <div
+        className={classNames(isLastItem(offsetIndex) && "u-margin-right--xlg")}
+      >
+        {renderedTab}
+      </div>
     </div>
   );
 };
