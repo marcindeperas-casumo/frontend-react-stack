@@ -36,20 +36,11 @@ export const ITEMS_STYLING = {
 };
 
 export default class ScrollableListPaginated extends React.PureComponent<Props> {
-  cellRenderer: Function;
-  buttonRenderer: Function;
-
-  constructor(props: Props) {
-    super(props);
-    this.cellRenderer = this.cellRenderer.bind(this);
-    this.buttonRenderer = this.buttonRenderer.bind(this);
-  }
-
-  buttonRenderer(
+  buttonRenderer = (
     hasNextPage: boolean,
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
-  ) {
+  ) => {
     const { id } = this.props.list;
     const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-game-list-horizontal-desktop-paginated__button`;
@@ -82,9 +73,9 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
         </Flex.Item>
       </Flex>
     );
-  }
+  };
 
-  cellRenderer({ columnIndex, style }: CellRendererParams) {
+  cellRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const { list, className, Component } = this.props;
     const { games: gameIds } = list;
     const gameId = gameIds[columnIndex];
@@ -98,7 +89,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
         </div>
       </div>
     );
-  }
+  };
   render() {
     const { list, tileHeight, seeMoreUrl, seeMoreText } = this.props;
     const { title, games: gameIds } = list;
