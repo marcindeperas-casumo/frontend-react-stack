@@ -92,7 +92,6 @@ export const renderTabList = (props: Props, state: State) => ({
   ])(offsetIndex);
 
   const className = classNames(
-    columnIndex === 0 && "u-margin-left--md",
     columnIndex === navItems.length && "u-margin-right--xlg"
   );
 
@@ -112,7 +111,10 @@ export const SportsMainNav = (props: Props) => {
 
   return (
     <ScrollablePaginated
-      className="c-sports-nav-paginated"
+      className={classNames(
+        isLiveActive && "t-background-orange-light-3", // TODO: check with Jack how to make this order-agnostic
+        "c-sports-nav-paginated"
+      )}
       columnCount={columnCount}
       cellRenderer={renderTabList(props, [isLiveActive, setIsLiveActive])}
       height={106}
