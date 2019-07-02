@@ -8,61 +8,63 @@ import LiveIconActive from "./icons/live-icon-active.svg";
 import LiveIconInactive from "./icons/live-icon-inactive.svg";
 import "./SportsNavTab.scss";
 
-type Props = {
+type BadgeProps = {
+  className: string,
+  children: React.Node,
+};
+
+const Badge = ({ className, children }: BadgeProps) => (
+  <Flex
+    align="center"
+    justify="center"
+    direction="vertical"
+    className={classNames(
+      "c-sports-nav-live-tab__badge t-border-r--circle u-font-weight-bold u-position-absolute",
+      className
+    )}
+    spacing="none"
+  >
+    <Flex.Item>{children}</Flex.Item>
+  </Flex>
+);
+
+const CountBadge = ({ count }: { count: number }) => (
+  <Badge className="t-background-grey-dark-1 t-color-white">{count}</Badge>
+);
+
+const CloseBadge = () => (
+  <Badge className="t-background-red-dark-1 t-color-white">
+    <CrossIcon size="sm" />
+  </Badge>
+);
+
+type LiveIconProps = {
   isActive?: boolean,
 };
 
-const LiveIconCountBadge = ({ count }: { count: number }) => (
-  <Flex
-    align="center"
-    justify="center"
-    direction="vertical"
-    className="c-sports-live-tab__badge t-background-grey-dark-1 t-color-white t-border-r--circle u-font-weight-bold"
-    spacing="none"
-  >
-    <Flex.Item>{count}</Flex.Item>
-  </Flex>
-);
+const LiveIcon = ({ isActive }: LiveIconProps) => {
+  const Icon = isActive ? LiveIconActive : LiveIconInactive;
 
-const LiveIconCloseBadge = () => (
-  <Flex
-    align="center"
-    justify="center"
-    direction="vertical"
-    className="c-sports-live-tab__badge t-background-red-dark-1 t-color-white t-border-r--circle u-font-weight-bold"
-    spacing="none"
-  >
-    <CrossIcon size="sm" />
-  </Flex>
-);
+  return (
+    <div className="o-ratio c-sports-icon u-margin-x">
+      {isActive ? <CloseBadge /> : <CountBadge count={11} />}
+      <Flex justify="center" align="center" className="o-ratio__content">
+        <Icon className="t-border-r--circle u-drop-shadow" />
+      </Flex>
+    </div>
+  );
+};
 
-const LiveIcon = ({ isActive }: Props) => (
-  <div className="o-ratio c-sports-icon u-margin-x">
-    {isActive ? <LiveIconCloseBadge /> : <LiveIconCountBadge count={11} />}
-    <Flex justify="center" align="center" className="o-ratio__content">
-      {isActive ? (
-        <LiveIconActive className="t-border-r--circle u-drop-shadow" />
-      ) : (
-        <LiveIconInactive className="t-border-r--circle u-drop-shadow" />
-      )}
-    </Flex>
-  </div>
-);
-
-type SportsLiveTabProps = Props & {
+type Props = LiveIconProps & {
   label: React.Node,
   onClick: () => void,
   isActive?: boolean,
 };
 
-export const SportsNavLiveTab = ({
-  isActive,
-  label,
-  onClick,
-}: SportsLiveTabProps) => (
+export const SportsNavLiveTab = ({ isActive, label, onClick }: Props) => (
   <div
     className={classNames(
-      "c-sports-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
+      "c-sports-nav-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
       isActive && "t-background-red t-color-white"
     )}
     onClick={onClick}

@@ -17,8 +17,8 @@ type Props = {
 export const SportsNavSportTab = ({ navItem, isSelected, onClick }: Props) => (
   <div
     className={classNames(
-      "c-sports-nav-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
-      isSelected && "c-sports-nav-tab--selected"
+      "c-sports-nav-sport-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
+      isSelected && "c-sports-nav-sports-tab--selected"
     )}
     onClick={() => onClick(navItem)}
   >
