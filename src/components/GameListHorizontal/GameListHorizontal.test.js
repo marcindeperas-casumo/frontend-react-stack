@@ -8,7 +8,7 @@ import {
 } from "Components/GameListHorizontal/GameListHorizontal";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
-import ScrollableListPaginated from "Components/ScrollableListPaginated";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 
 const getList = id => ({ id, title: "Title.", games: ["game-1", "game-2"] });

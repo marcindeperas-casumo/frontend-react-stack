@@ -45,7 +45,7 @@ export const ITEMS_STYLING = {
   default: "c-game-list-horizontal-desktop-paginated__button",
 };
 
-export default class ScrollableListPaginated extends React.PureComponent<Props> {
+export class ScrollableListPaginated extends React.PureComponent<Props> {
   buttonRenderer = (
     hasNextPage: boolean,
     hasPreviousPage: boolean,

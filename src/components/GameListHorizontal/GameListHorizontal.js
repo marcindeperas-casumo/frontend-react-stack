@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
-import ScrollableListPaginated from "Components/ScrollableListPaginated";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
