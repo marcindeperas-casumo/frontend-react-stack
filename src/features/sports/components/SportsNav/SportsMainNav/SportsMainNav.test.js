@@ -3,13 +3,8 @@ import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { SportsMainNav } from "Features/sports/components/SportsNav";
-import {
-  SportsNavTab,
-  SportsSingleNavTab,
-} from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
+import { SportsNavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
-
-const navItem = [navItems[0]];
 
 const props = {
   navItems,
@@ -24,49 +19,15 @@ const render = overrideProps =>
   shallow(<SportsMainNav {...props} {...overrideProps} />);
 
 describe("<SportsMainNav />", () => {
-  describe("with a single nav item", () => {
-    test("passes the correct props to the ScrollablePaginated", () => {
-      const rendered = render({ navItems: navItem });
-      const sp = rendered.find(ScrollablePaginated);
+  test("passes the correct props to the ScrollablePaginated when a multiple nav items exist", () => {
+    const rendered = render();
+    const sp = rendered.find(ScrollablePaginated);
 
-      expect(sp).toHaveLength(1);
-      expect(sp.props()).toMatchObject({
-        columnCount: 2,
-        cellRenderer: rendered.instance().renderSingleNav,
-        height: 106,
-      });
-    });
-  });
-
-  describe("with multiple nav items", () => {
-    test("passes the correct props to the ScrollablePaginated when a multiple nav items exist", () => {
-      const rendered = render();
-      const sp = rendered.find(ScrollablePaginated);
-
-      expect(sp).toHaveLength(1);
-      expect(sp.props()).toMatchObject({
-        columnCount: 5,
-        cellRenderer: rendered.instance().renderTabList,
-        height: 106,
-      });
-    });
-  });
-
-  describe("renderSingleNav", () => {
-    test("returns a SportsSingleNavTab and no EditButton when rendering the first item", () => {
-      const instance = render({ navItems: navItem }).instance();
-      const rendered = shallow(instance.renderSingleNav({ columnIndex: 0 }));
-
-      expect(rendered.find(SportsSingleNavTab)).toHaveLength(1);
-      expect(rendered.find(EditPillsButton)).toHaveLength(0);
-    });
-
-    test("returns an EditPillsButton and no SportsSingleNavTab when rendering the last item", () => {
-      const instance = render({ navItems: navItem }).instance();
-      const rendered = shallow(instance.renderSingleNav({ columnIndex: 1 }));
-
-      expect(rendered.find(SportsSingleNavTab)).toHaveLength(0);
-      expect(rendered.find(EditPillsButton)).toHaveLength(1);
+    expect(sp).toHaveLength(1);
+    expect(sp.props()).toMatchObject({
+      columnCount: 5,
+      cellRenderer: rendered.instance().renderTabList,
+      height: 106,
     });
   });
 

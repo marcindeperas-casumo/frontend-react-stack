@@ -2,10 +2,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
-import {
-  SportsNavTab,
-  SportsSingleNavTab,
-} from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
+import { SportsNavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
@@ -65,23 +62,6 @@ export class SportsMainNav extends React.Component<Props, State> {
     );
   };
 
-  renderSingleNav = ({ columnIndex, style }: CellRendererParams) => {
-    const navItem = this.props.navItems[columnIndex];
-
-    return (
-      <div style={style}>
-        {navItem ? (
-          <SportsSingleNavTab
-            onClick={() => this.props.onSelected(navItem)}
-            navItem={navItem}
-          />
-        ) : (
-          this.renderEditButton()
-        )}
-      </div>
-    );
-  };
-
   renderTabList = ({ columnIndex, style }: CellRendererParams) => {
     const navItem = this.props.navItems[columnIndex];
 
@@ -120,9 +100,7 @@ export class SportsMainNav extends React.Component<Props, State> {
           <ScrollablePaginated
             className="c-sports-nav-paginated"
             columnCount={columnCount}
-            cellRenderer={
-              tabCount > 1 ? this.renderTabList : this.renderSingleNav
-            }
+            cellRenderer={this.renderTabList}
             height={106}
             buttonRenderer={sportsPagerButtonRenderer}
             cacheBuster={this.props.cacheBuster}
