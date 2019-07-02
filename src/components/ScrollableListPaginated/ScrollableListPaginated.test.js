@@ -4,40 +4,36 @@ import ScrollableListPaginated from "Components/ScrollableListPaginated";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 
 describe("ScrollableListPaginated", () => {
-  let list;
-  let className;
-  let seeMoreText;
-  let seeMoreUrl;
-  let Component;
-  let tileHeight;
+  const list = {
+    games: [
+      "book-of-ra-deluxe",
+      "diamond-mine",
+      "raging-rhino",
+      "jammin-jars",
+      "legacy-of-egypt",
+      "big-bad-wolf",
+      "starburst",
+    ],
+    id: "popularGames",
+    title: "Popular",
+  };
+  const className = "whatever";
+  const seeMore = {
+    text: "foo",
+    url: "bar",
+  };
+  const Component = () => <p>I'm a beautiful little component</p>;
+  const tileHeight = 204;
 
-  beforeEach(() => {
-    list = {
-      games: [
-        "book-of-ra-deluxe",
-        "diamond-mine",
-        "raging-rhino",
-        "jammin-jars",
-        "legacy-of-egypt",
-        "big-bad-wolf",
-        "starburst",
-      ],
-      id: "popularGames",
-      title: "Popular",
-    };
-    className = "whatever";
-    seeMoreText = "foo";
-    seeMoreUrl = "bar";
-    Component = () => <p>I'm a beautiful little component</p>;
-    tileHeight = 204;
-  });
   test("render the title of the list", () => {
     const rendered = shallow(
       <ScrollableListPaginated
         list={list}
         className={className}
-        seeMoreText={seeMoreText}
-        seeMoreUrl={seeMoreUrl}
+        seeMore={{
+          url: seeMore.url,
+          text: seeMore.text,
+        }}
         Component={Component}
         tileHeight={tileHeight}
       />
@@ -53,8 +49,10 @@ describe("ScrollableListPaginated", () => {
       <ScrollableListPaginated
         list={list}
         className={className}
-        seeMoreText={seeMoreText}
-        seeMoreUrl={seeMoreUrl}
+        seeMore={{
+          url: seeMore.url,
+          text: seeMore.text,
+        }}
         Component={Component}
         tileHeight={tileHeight}
       />
@@ -63,13 +61,15 @@ describe("ScrollableListPaginated", () => {
     expect(rendered.find(ScrollablePaginated).length).toBe(1);
   });
 
-  test("render seeMoreText and an <a> tag if seeMoreUrl is set", () => {
+  test("render seeMore.text and an seeMore.url on an <a> tag if seeMore is set", () => {
     const rendered = shallow(
       <ScrollableListPaginated
         list={list}
         className={className}
-        seeMoreText={seeMoreText}
-        seeMoreUrl={seeMoreUrl}
+        seeMore={{
+          url: seeMore.url,
+          text: seeMore.text,
+        }}
         Component={Component}
         tileHeight={tileHeight}
       />
@@ -80,24 +80,22 @@ describe("ScrollableListPaginated", () => {
         .find("Text")
         .dive()
         .text()
-    ).toMatch(seeMoreText);
+    ).toMatch(seeMore.text);
 
-    expect(rendered.find("a").prop("href")).toEqual(seeMoreUrl);
+    expect(rendered.find("a").prop("href")).toEqual(seeMore.url);
   });
 
-  test("not render seeMoreText and an <a> tag if seeMoreUrl is not set", () => {
+  test("not render seeMore text and url on an <a> tag if seeMore is not set", () => {
     const rendered = shallow(
       <ScrollableListPaginated
         list={list}
         className={className}
-        seeMoreText={seeMoreText}
         Component={Component}
         tileHeight={tileHeight}
       />
     );
 
     expect(rendered.find("Text")).toHaveLength(0);
-
     expect(rendered.find("a")).toHaveLength(0);
   });
 
@@ -106,8 +104,10 @@ describe("ScrollableListPaginated", () => {
       <ScrollableListPaginated
         list={list}
         className={className}
-        seeMoreText={seeMoreText}
-        seeMoreUrl={seeMoreUrl}
+        seeMore={{
+          url: seeMore.url,
+          text: seeMore.text,
+        }}
         Component={Component}
         tileHeight={tileHeight}
       />

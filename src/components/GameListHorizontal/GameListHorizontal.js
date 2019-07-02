@@ -97,8 +97,10 @@ export class GameListHorizontal extends PureComponent<Props> {
             Component={itemRenderer}
             className={className}
             tileHeight={tileHeight}
-            seeMoreUrl={seeMoreUrl}
-            seeMoreText={seeMoreText}
+            seeMore={{
+              text: seeMoreText,
+              url: seeMoreUrl,
+            }}
           />
         </Desktop>
       </div>

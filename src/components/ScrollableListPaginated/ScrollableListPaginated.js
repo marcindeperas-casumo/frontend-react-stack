@@ -12,15 +12,20 @@ import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 import "./ScrollableListPaginated.scss";
 
+type SeeMoreProps = {
+  /** The link where to redirect once clicking the seeMore button. */
+  text: string,
+  /** The text to render on the seeMore button. */
+  url: string,
+};
+
 type Props = {
   /** The item height. */
   tileHeight: number,
   /** The style to apply to the list items. */
-  className?: string,
-  /** The text to render on the seeMore button. */
-  seeMoreText?: string,
-  /** The link where to redirect once clicking the seeMore button. */
-  seeMoreUrl?: string,
+  className: string,
+  /** The text and url to render on the seeMore button. */
+  seeMore?: SeeMoreProps,
   /** The item renderer. */
   Component: Function,
   /** The list of items to be rendered. */
@@ -91,7 +96,7 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
     );
   };
   render() {
-    const { list, tileHeight, seeMoreUrl, seeMoreText } = this.props;
+    const { list, tileHeight, seeMore } = this.props;
     const { title, games: gameIds } = list;
 
     return (
@@ -100,15 +105,15 @@ export default class ScrollableListPaginated extends React.PureComponent<Props> 
           <Flex.Item>
             <ScrollableListTitle title={title} />
           </Flex.Item>
-          {seeMoreUrl ? (
+          {seeMore && (
             <Flex.Item className="u-padding-right--md">
-              <a href={seeMoreUrl}>
+              <a href={seeMore.url}>
                 <Text size="xs" tag="h3" className="t-color-blue">
-                  {seeMoreText}
+                  {seeMore.text}
                 </Text>
               </a>
             </Flex.Item>
-          ) : null}
+          )}
         </Flex>
         <ScrollablePaginated
           className="c-game-list-horizontal-desktop-paginated"

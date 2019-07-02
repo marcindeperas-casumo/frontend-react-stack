@@ -20,19 +20,21 @@ const list = {
   title: "Popular",
 };
 
-const ScrollablePaginatedStory = () => {
+const ScrollableListPaginatedStory = () => {
   return (
     <MockStore>
       <ScrollableListPaginated
         list={list}
         tileHeight={204}
         className="c-top-game"
-        seeMoreText="Aw gidi"
-        seeMoreUrl="whatever"
+        seeMore={{
+          url: "whatever",
+          text: "Aw gidi",
+        }}
         Component={GameTileContainer}
       />
     </MockStore>
   );
 };
 
-stories.add("ScrollablePaginated", ScrollablePaginatedStory);
+stories.add("ScrollableListPaginated", ScrollableListPaginatedStory);
