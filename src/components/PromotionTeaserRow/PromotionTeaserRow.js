@@ -37,12 +37,16 @@ export class PromotionTeaserRow extends PureComponent<Props> {
         >
           <Flex.Block>
             <Text
+              data-test="promotion-dates"
               size="2xs"
               className="t-color-red u-margin-bottom u-text-transform-uppercase u-font-weight-bold"
             >
               {dates}
             </Text>
-            <Text className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3">
+            <Text
+              data-test="promotion-title"
+              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3"
+            >
               {title}
             </Text>
           </Flex.Block>
