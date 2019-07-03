@@ -22,6 +22,7 @@ export type GameListObject = {
 export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
+  /** The game list object is being loaded. */
   isLoading: boolean,
   /** "see more" link translation */
   seeMoreText: string,
