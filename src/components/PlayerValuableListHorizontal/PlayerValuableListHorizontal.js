@@ -26,8 +26,6 @@ type Props = {
   loading: boolean,
   /** Refetch valuables function */
   refetch: () => void,
-  /** Text to be displayed as the title of the list */
-  title?: string,
   /** The list of valuables to be displayed as cards */
   valuables: [], // to update his with graphql type
   /** The function to be called to consume the valuable which will be triggered by each card click */
