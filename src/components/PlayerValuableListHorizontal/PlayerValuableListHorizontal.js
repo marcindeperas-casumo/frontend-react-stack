@@ -8,8 +8,11 @@ import { VALUABLE_TYPES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
-import { KO_EVENTS } from "Src/constants";
-import { onOldStackOnCallbackEvent, offOldStackOnCallbackEvent } from "./utils";
+import {
+  subscribeToCallbackEvent,
+  unsubscribeFromCallbackEvent,
+  itemCreatedEventWrapper,
+} from "./utils";
 
 type Translations = {
   listTitle: string,
@@ -30,12 +33,7 @@ type Props = {
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
   /** An array of translated labels */
-  translations: Translations, // TODO: update type
-};
-
-type OnCallbackEvent = {
-  event: string,
-  data: { success: string },
+  translations: Translations, // TODO: update type,
 };
 
 export class PlayerValuableListHorizontal extends PureComponent<Props> {
@@ -45,18 +43,15 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     valuable: [],
   };
 
-  onItemCreated = ({ event, data }: OnCallbackEvent) => {
-    if (event === KO_EVENTS.VALUABLES.ITEM_CREATED && data.success) {
-      this.props.refetch();
-    }
-  };
+  onItemCreated: any => void;
 
   componentDidMount() {
-    onOldStackOnCallbackEvent(this.onItemCreated);
+    this.onItemCreated = itemCreatedEventWrapper(this.props.refetch);
+    subscribeToCallbackEvent(this.onItemCreated);
   }
 
   componentWillUnmount() {
-    offOldStackOnCallbackEvent(this.onItemCreated);
+    unsubscribeFromCallbackEvent(this.onItemCreated);
   }
 
   render() {
