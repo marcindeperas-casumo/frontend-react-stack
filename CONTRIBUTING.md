@@ -69,7 +69,9 @@ And the same applies to the event properties.
         |-- other-model-domain
 ```
 
-## Test strategy
+## Testing
+
+### Unit testing
 
 Consider the following piece of code:
 
@@ -92,6 +94,17 @@ Stories are better suited for Presentational components, especially as they are 
 _**All reusable components should have stories to facilitate component discovery in storybook!**_
 
 Enzyme is great at testing logic heavy components as it can manipulate the component's state with ease.
+
+### Contract testing
+
+We should always try to add contract tests for any internal service that we rely on. They will help make sure any breaking changes to our APIs are flagged before they reach production, and also provide a map of all the dependencies the project has.
+
+Before adding a new contract, make sure you are aligned with the team providing (or consuming) your APIs. Good communication is fundamental to making sure we have solid contracts that are not flaky and won't disrupt any builds.
+
+_NOTE_: Be very careful when publishing contracts, as they can break other teams' builds if you are have set up the wrong interactions! That's why talking and making sure providers and consumers are working in harmony is key here.
+
+For more information on best practices, please read the [Effective Pact Guide](https://docs.pact.io/best_practices/pact_nirvana#what-are-the-steps-for-reaching-pact-nirvana).
+If you want to take a look at our current published Pacts, check out our [Broker](http://pact-broker.casumo.cloud/).
 
 ### Mocks
 

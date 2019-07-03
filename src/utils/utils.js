@@ -56,7 +56,7 @@ export const bridgeFactory = () => {
 export const composePromises = (...fns: Array<*>) => (iv: Promise<*>) =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
-export const decodeString = (s: string) =>
+export const convertHTMLToString = (s: string) =>
   new DOMParser().parseFromString(`<div>${s}</div>`, "text/html").childNodes[0]
     .textContent;
 
