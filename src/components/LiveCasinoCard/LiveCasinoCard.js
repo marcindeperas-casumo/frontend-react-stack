@@ -5,7 +5,7 @@ import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { compose, prop } from "ramda";
-import { decodeString, renderBets } from "Utils";
+import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import { CMSField } from "Components/CMSField";
@@ -79,7 +79,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             tag="h3"
             className="u-font-weight-black u-margin-bottom--sm u-text-clamp t-color-grey-dark-2"
           >
-            {decodeString(game.name)}
+            {convertHTMLToString(game.name)}
           </Text>
           <Text tag="span">{renderBets(game.lobby.bets)}</Text>
         </Flex.Block>
