@@ -1,4 +1,4 @@
-Related issue: Casumo/Home#ISSUE_NUMBER.
+Related issue: Casumo/Home#ISSUE_NUMBER
 
 <!--A short description about the initial problem and how this solution will solve it. -->
 
