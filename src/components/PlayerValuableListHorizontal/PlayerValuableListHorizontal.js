@@ -43,15 +43,15 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     valuable: [],
   };
 
-  onItemCreated: any => void;
+  onItemCreatedHandler: any => void;
 
   componentDidMount() {
-    this.onItemCreated = itemCreatedEventWrapper(this.props.refetch);
-    subscribeToCallbackEvent(this.onItemCreated);
+    this.onItemCreatedHandler = itemCreatedEventWrapper(this.props.refetch);
+    subscribeToCallbackEvent(this.onItemCreatedHandler);
   }
 
   componentWillUnmount() {
-    unsubscribeFromCallbackEvent(this.onItemCreated);
+    unsubscribeFromCallbackEvent(this.onItemCreatedHandler);
   }
 
   render() {
