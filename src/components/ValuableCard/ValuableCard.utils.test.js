@@ -7,7 +7,6 @@ import {
   coinValueToSpinType,
   getCardUrl,
   VALUABLE_LOCKED_URL,
-  VALUABLE_SPINS_URL,
   VALUABLE_DEPOSIT_URL,
 } from "./ValuableCard.utils";
 
@@ -58,9 +57,9 @@ describe("ValuableCard.utils", () => {
     );
   });
 
-  test("should return spins url when state is not locked and type is spins", () => {
+  test("should return null when state is not locked and type is spins", () => {
     expect(getCardUrl(VALUABLE_STATES.FRESH, VALUABLE_TYPES.SPINS)).toEqual(
-      VALUABLE_SPINS_URL
+      null
     );
   });
 });
