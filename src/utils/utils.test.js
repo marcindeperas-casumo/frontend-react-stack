@@ -13,11 +13,39 @@ import {
 } from "./utils";
 
 describe("bridgeFactory()", () => {
-  test("should return a bridge instance", () => {
-    const bridge = bridgeFactory();
+  let bridge, mock, event, payload;
+  beforeEach(() => {
+    bridge = bridgeFactory();
+    mock = jest.fn();
+    event = "FOOBAR";
+    payload = "content";
+  });
 
+  test("should return a bridge instance", () => {
     expect(bridge.on).toBeInstanceOf(Function);
     expect(bridge.emit).toBeInstanceOf(Function);
+  });
+
+  test("bridge instance should receive callback and call it when event is emitted", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledWith(payload);
+  });
+
+  test("bridge instance should unregister handler", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    bridge.off(event, mock);
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledTimes(1);
+  });
+
+  test("bridge instance shouldn't unregister handler if it doesn't exist", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    bridge.off(event, () => {});
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledTimes(2);
   });
 });
 
