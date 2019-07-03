@@ -37,8 +37,10 @@ export const bridgeFactory = () => {
     off: (ev: string, cb: any => void) => {
       if (obj[ev]) {
         const index = findIndex(fn => fn === cb)(obj[ev]);
-        // eslint-disable-next-line fp/no-mutating-methods
-        obj[ev].splice(index, 1);
+        if (index !== -1) {
+          // eslint-disable-next-line fp/no-mutating-methods
+          obj[ev].splice(index, 1);
+        }
       }
     },
     emit: (ev: string, data: any) => {
