@@ -60,7 +60,7 @@ class PromotionCardList extends PureComponent<Props> {
         )}
       >
         <Flex justify="space-between">
-          <Flex.Item>
+          <Flex.Item className="u-padding-left--md u-padding-left--3xlg@tablet u-padding-left--3xlg@desktop">
             {title ? <ScrollableListTitle title={title} /> : null}
           </Flex.Item>
           <Flex.Item align="right" className="u-padding-right--md">
