@@ -1,24 +1,18 @@
 // @flow
-import React from "react";
 import { connect } from "react-redux";
 import { fetchPageBySlug, getField } from "Models/cms";
-import PromotionTeaserList from "./PromotionTeaserList";
-
-type Props = {
-  /** The slug of the page in the CMS which has all the promotions available */
-  slug: string,
-};
+import { PromotionTeaserList } from "./PromotionTeaserList";
 
 const promotionsField = "promotions";
-const defaultValue = [];
+const promotionsFieldDefaultValue = [];
 const getSlug = slug => `${slug}.*`;
 
-const PromotionTeaserListConnected = connect(
-  (state, { slug }) => ({
+export const PromotionTeaserListContainer = connect(
+  (state, { slug }: { slug: string }) => ({
     promotionsSlugs: getField({
       slug,
       field: promotionsField,
-      defaultValue,
+      defaultValue: promotionsFieldDefaultValue,
     })(state),
   }),
   (dispatch, { slug }) => ({
@@ -26,9 +20,3 @@ const PromotionTeaserListConnected = connect(
     fetchPromotions: () => dispatch(fetchPageBySlug("promotions.*")),
   })
 )(PromotionTeaserList);
-
-const PromotionTeaserListContainer = (props: Props) => (
-  <PromotionTeaserListConnected {...props} />
-);
-
-export default PromotionTeaserListContainer;

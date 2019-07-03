@@ -17,7 +17,7 @@ type Props = {
   title: string,
 };
 
-class PromotionTeaserRow extends PureComponent<Props> {
+export class PromotionTeaserRow extends PureComponent<Props> {
   componentDidMount() {
     const { isFetched, startFetch } = this.props;
 
@@ -52,5 +52,3 @@ class PromotionTeaserRow extends PureComponent<Props> {
     );
   }
 }
-
-export default PromotionTeaserRow;

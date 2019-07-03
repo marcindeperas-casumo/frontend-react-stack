@@ -10,7 +10,7 @@ import { ContentSeparator } from "Components/ContentSeparator";
 import { ContentSubtitle } from "Components/ContentSubtitle";
 import { ContentButton } from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
-import PromotionTeaserList from "Components/PromotionTeaserList";
+import { PromotionTeaserList } from "Components/PromotionTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
 import PromotionGallery from "Components/PromotionGallery";
 import { ContentMediaList } from "Components/ContentMediaList";

@@ -1,3 +1,5 @@
 // @flow
-export type * from "./PromotionTeaserListContainer"; // eslint-disable-line import/export
-export { default } from "./PromotionTeaserListContainer";
+export type * from "./PromotionTeaserListContainer";
+export {
+  PromotionTeaserListContainer as PromotionTeaserList,
+} from "./PromotionTeaserListContainer";

@@ -1,19 +1,13 @@
 // @flow
-import React from "react";
 import { connect } from "react-redux";
 import { isPageFetchedSelector, fetchPageBySlug, getField } from "Models/cms";
-import PromotionTeaserRow from "./PromotionTeaserRow";
-
-type Props = {
-  /** The slug of the page in the CMS which has the promotion info */
-  slug: string,
-};
+import { PromotionTeaserRow } from "./PromotionTeaserRow";
 
 const promotionDatesField = "dates";
 const promotionTitleBadge = "title";
 
-const PromotionTeaserRowConnected = connect(
-  (state, { slug }) => ({
+export const PromotionTeaserRowContainer = connect(
+  (state, { slug }: { slug: string }) => ({
     isFetched: isPageFetchedSelector(slug)(state),
     dates: getField({ slug, field: promotionDatesField })(state),
     title: getField({ slug, field: promotionTitleBadge })(state),
@@ -22,9 +16,3 @@ const PromotionTeaserRowConnected = connect(
     startFetch: () => dispatch(fetchPageBySlug(slug)),
   })
 )(PromotionTeaserRow);
-
-const PromotionTeaserRowContainer = (props: Props) => (
-  <PromotionTeaserRowConnected {...props} />
-);
-
-export default PromotionTeaserRowContainer;

@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import PromotionTeaserRow from "Components/PromotionTeaserRow";
-import PromotionTeaserRowPresentational from "Components/PromotionTeaserRow/PromotionTeaserRow";
+import { PromotionTeaserRow } from "Components/PromotionTeaserRow";
+import { PromotionTeaserRow as PromotionTeaserRowPresentational } from "Components/PromotionTeaserRow/PromotionTeaserRow";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";

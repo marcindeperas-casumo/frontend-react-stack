@@ -1,6 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
-import PromotionTeaserRow from "Components/PromotionTeaserRow";
+import { PromotionTeaserRow } from "Components/PromotionTeaserRow";
 
 type Props = {
   promotionsSlugs: Array<string>,
@@ -8,7 +8,7 @@ type Props = {
   fetchPromotions: () => void,
 };
 
-class PromotionTeaserList extends PureComponent<Props> {
+export class PromotionTeaserList extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchCampaign();
     this.props.fetchPromotions();
@@ -38,5 +38,3 @@ class PromotionTeaserList extends PureComponent<Props> {
     );
   }
 }
-
-export default PromotionTeaserList;

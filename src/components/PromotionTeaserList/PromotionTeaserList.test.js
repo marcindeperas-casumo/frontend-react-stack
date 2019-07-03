@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PromotionTeaserList from "./PromotionTeaserList";
+import { PromotionTeaserList } from "./PromotionTeaserList";
 
 describe("PromotionTeaserList", () => {
   let fetchCampaign;
