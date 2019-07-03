@@ -2,7 +2,7 @@
 import { evolve, take } from "ramda";
 import { DICTIONARY_TERM_QUERY } from "Features/sports/components/DictionaryTerm/DictionaryTerm";
 import { OPEN_MODAL_MUTATION } from "Features/sports/state";
-import { USER_NAVIGATION_QUERY } from "../SportsNav";
+import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { userNavigationData } from "./userNavigationData";
 
 const labels = {
