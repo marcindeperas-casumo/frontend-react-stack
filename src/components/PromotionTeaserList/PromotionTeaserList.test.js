@@ -11,7 +11,7 @@ describe("PromotionTeaserList", () => {
     fetchPromotions = jest.fn();
   });
 
-  test("should initiate the fetching if page is not available", () => {
+  test("should fetch campaigns and promotions", () => {
     shallow(
       <PromotionTeaserList
         slug="foo"
@@ -22,6 +22,7 @@ describe("PromotionTeaserList", () => {
     );
 
     expect(fetchCampaign).toHaveBeenCalledTimes(1);
+    expect(fetchPromotions).toHaveBeenCalledTimes(1);
   });
 
   test("should not render any PromotionTeaserRow component if promotionSlugs is empty", () => {
