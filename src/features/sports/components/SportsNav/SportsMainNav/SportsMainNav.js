@@ -18,6 +18,7 @@ import {
 const LIVE_BUTTON_OFFSET = 1;
 
 export type Props = {
+  // @cpoliver: speak with levi about data handling
   navItems: Array<SportsNavItemType>,
   isSelected: SportsNavItemType => boolean,
   onSelected: SportsNavItemType => void,
@@ -74,11 +75,11 @@ const renderTab = (
   />
 );
 
-export const renderTabList = (props: Props, state: State) => ({
-  columnIndex,
-  style,
-}: CellRendererParams) => {
-  const { navItems } = props;
+export const renderTabList = (
+  navItems: Array<SportsNavItemType>,
+  props: Props,
+  state: State
+) => ({ columnIndex, style }: CellRendererParams) => {
   const offsetIndex = columnIndex - LIVE_BUTTON_OFFSET;
 
   const isFirstItem = equals(-1);
@@ -105,21 +106,33 @@ export const renderTabList = (props: Props, state: State) => ({
 export const SportsMainNav = (props: Props) => {
   const [isLiveActive, setIsLiveActive] = React.useState(false);
 
-  const tabCount = props.navItems.length;
+  // TODO: get real data and use real predicate or separate lists
+  const filterNavItems = ni =>
+    // $FlowIgnore
+    isLiveActive ? !ni.text.includes("ball") : true; // filter live vs non-live when we have data
+  const navItems = props.navItems.filter(filterNavItems);
+
+  const tabCount = navItems.length;
   const buttonCount = 1; // include Edit button
   const columnCount = tabCount + buttonCount;
+
+  const cacheBuster = `${props.cacheBuster}-${isLiveActive ? "live" : ""}`;
 
   return (
     <ScrollablePaginated
       className={classNames(
-        isLiveActive && "t-background-orange-light-3", // TODO: check with Jack how to make this order-agnostic
+        isLiveActive &&
+          "c-sports-nav-paginated--live t-background-orange-light-3", // TODO: check with Jack how to make this order-agnostic
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
-      cellRenderer={renderTabList(props, [isLiveActive, setIsLiveActive])}
+      cellRenderer={renderTabList(navItems, props, [
+        isLiveActive,
+        setIsLiveActive,
+      ])}
       height={106}
       buttonRenderer={sportsPagerButtonRenderer}
-      cacheBuster={props.cacheBuster}
+      cacheBuster={cacheBuster}
     />
   );
 };

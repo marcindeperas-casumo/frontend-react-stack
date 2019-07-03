@@ -9,6 +9,11 @@
   border-color: cudl-palette(green);
 }
 
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-nav-paginated--live .c-sports-nav-sport-tab--selected {
+  border-color: cudl-palette(red);
+}
+
 $badge-size: $cudl-spacer-size-default * 2.5;
 
 .c-sports-nav-live-tab__badge {

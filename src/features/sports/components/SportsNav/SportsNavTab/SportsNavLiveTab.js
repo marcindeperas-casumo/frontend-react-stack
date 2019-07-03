@@ -65,7 +65,7 @@ export const SportsNavLiveTab = ({ isActive, label, onClick }: Props) => (
   <div
     className={classNames(
       "c-sports-nav-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
-      isActive && "t-background-red t-color-white"
+      isActive && "c-sports-live-tab--selected t-background-red t-color-white"
     )}
     onClick={onClick}
   >
