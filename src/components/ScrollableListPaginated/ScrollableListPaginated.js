@@ -129,6 +129,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
           cellRenderer={this.cellRenderer}
           buttonRenderer={this.buttonRenderer}
           height={tileHeight}
+          overlappingItemCount={0}
         />
       </div>
     );
