@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { PromotionTeaserRow } from "Components/PromotionTeaserRow";
+import { PromotionTeaserRow } from "Components/PromotionTeaserRow/PromotionTeaserRow";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 
 const promotion = promotions["promotions.boosted-reelraces"];
