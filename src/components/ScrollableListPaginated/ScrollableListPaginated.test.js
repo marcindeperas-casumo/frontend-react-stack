@@ -24,9 +24,10 @@ describe("ScrollableListPaginated", () => {
   };
   const Component = () => <p>I'm a beautiful little component</p>;
   const tileHeight = 204;
+  let rendered;
 
-  test("render the title of the list", () => {
-    const rendered = shallow(
+  beforeEach(() => {
+    rendered = shallow(
       <ScrollableListPaginated
         list={{
           id: list.id,
@@ -42,51 +43,19 @@ describe("ScrollableListPaginated", () => {
         tileHeight={tileHeight}
       />
     );
+  });
 
+  test("render the title of the list", () => {
     const titleComponent = rendered.find("ScrollableListTitle");
     expect(titleComponent.length).toBe(1);
     expect(titleComponent.props().title).toEqual(list.title);
   });
 
   test("render a ScrollablePaginated component", () => {
-    const rendered = shallow(
-      <ScrollableListPaginated
-        list={{
-          id: list.id,
-          title: list.title,
-          itemIds: list.games,
-        }}
-        className={className}
-        seeMore={{
-          url: seeMore.url,
-          text: seeMore.text,
-        }}
-        Component={Component}
-        tileHeight={tileHeight}
-      />
-    );
-
     expect(rendered.find(ScrollablePaginated).length).toBe(1);
   });
 
   test("render seeMore.text and an seeMore.url on an <a> tag if seeMore is set", () => {
-    const rendered = shallow(
-      <ScrollableListPaginated
-        list={{
-          id: list.id,
-          title: list.title,
-          itemIds: list.games,
-        }}
-        className={className}
-        seeMore={{
-          url: seeMore.url,
-          text: seeMore.text,
-        }}
-        Component={Component}
-        tileHeight={tileHeight}
-      />
-    );
-
     expect(
       rendered
         .find("Text")
@@ -98,7 +67,7 @@ describe("ScrollableListPaginated", () => {
   });
 
   test("not render seeMore text and url on an <a> tag if seeMore is not set", () => {
-    const rendered = shallow(
+    rendered = shallow(
       <ScrollableListPaginated
         list={{
           id: list.id,
@@ -116,23 +85,6 @@ describe("ScrollableListPaginated", () => {
   });
 
   test("pass tileHeight to ScrollablePaginated", () => {
-    const rendered = shallow(
-      <ScrollableListPaginated
-        list={{
-          id: list.id,
-          title: list.title,
-          itemIds: list.games,
-        }}
-        className={className}
-        seeMore={{
-          url: seeMore.url,
-          text: seeMore.text,
-        }}
-        Component={Component}
-        tileHeight={tileHeight}
-      />
-    );
-
     expect(rendered.find(ScrollablePaginated).prop("height")).toEqual(
       tileHeight
     );
