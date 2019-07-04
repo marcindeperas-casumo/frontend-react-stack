@@ -15,7 +15,9 @@ type YearSelectorProps = {
 };
 
 function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
-  const onChangeYear = e => setYear(Number.parseInt(e.target.value));
+  const onChangeYear = useCallback(e =>
+    setYear(Number.parseInt(e.target.value))
+  );
 
   return (
     <select id={YEAR_SELECT_ID} value={selectedYear} onChange={onChangeYear}>
@@ -26,9 +28,11 @@ function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
   );
 }
 
-type Props = {};
+type Props = {
+  fetchYearOverview: number => Promise<Object>,
+};
 
-export function TransactionsAnnualYearSelector(props: Props) {
+export function TransactionsAnnualYearSelector({ fetchYearOverview }: Props) {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(CURRENT_YEAR);
   const [isTriggeredFetch, triggerFetch] = useState(false);
@@ -42,13 +46,11 @@ export function TransactionsAnnualYearSelector(props: Props) {
     }
 
     setLoading(true);
-
-    // ACTUAL FETCH
-
+    fetchYearOverview(year);
     triggerFetch(false);
 
     setTimeout(() => setLoading(false), 3000);
-  }, [isTriggeredFetch]);
+  }, [fetchYearOverview, isTriggeredFetch, year]);
 
   return (
     <div className="u-padding-top--lg u-padding-bottom--lg u-padding-left--md u-padding-right--md t-background-white">

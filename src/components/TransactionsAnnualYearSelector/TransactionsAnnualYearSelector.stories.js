@@ -7,6 +7,10 @@ import { TransactionsAnnualYearSelector } from "./TransactionsAnnualYearSelector
 
 const stories = storiesOf("TransactionsAnnualYearSelector", module);
 
+const props = {
+  fetchYearOverview: () => new Promise(() => {}),
+};
+
 stories.add("Default", () => {
-  return <TransactionsAnnualYearSelector />;
+  return <TransactionsAnnualYearSelector {...props} />;
 });
