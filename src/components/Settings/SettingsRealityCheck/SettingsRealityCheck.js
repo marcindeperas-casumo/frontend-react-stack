@@ -14,11 +14,19 @@ type Props = {
   onSave: () => void,
   updateError: ?string,
   interval: number,
+  canDisableInterval: boolean,
 };
 
 export class SettingsRealityCheck extends PureComponent<Props> {
   render() {
-    const { onChange, onSave, isLoading, interval, labels } = this.props;
+    const {
+      onChange,
+      onSave,
+      isLoading,
+      interval,
+      labels,
+      canDisableInterval,
+    } = this.props;
 
     const OFF = 0;
     const enabled = interval !== OFF;
@@ -27,12 +35,14 @@ export class SettingsRealityCheck extends PureComponent<Props> {
 
     return (
       <>
-        <ToggleRow
-          className="t-border-bottom--none"
-          label={labels.inGameSessionUpdatesLabel}
-          isEnabled={enabled}
-          onChange={change}
-        />
+        {canDisableInterval && (
+          <ToggleRow
+            className="t-border-bottom--none"
+            label={labels.inGameSessionUpdatesLabel}
+            isEnabled={enabled}
+            onChange={change}
+          />
+        )}
         <div className="u-padding--md">
           <Text
             tag="p"

@@ -131,6 +131,7 @@ export const withContainer = (Component: Function) =>
                     onChange={this.onChange}
                     isLoading={isUpdateLoading}
                     updateError={updateError}
+                    canDisableInterval={realityCheck.isZeroIntervalAllowed}
                   />
                 )}
               </Mutation>
