@@ -4,9 +4,13 @@ import { range } from "ramda";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import logger from "Services/logger";
 
 const CURRENT_YEAR = new Date().getFullYear();
-const AVAILABLE_YEARS = range(2016, CURRENT_YEAR + 1);
+/**
+ * Start from 2019. This will probably be moved to a service.
+ */
+const AVAILABLE_YEARS = range(2019, CURRENT_YEAR + 1);
 const YEAR_SELECT_ID = "transactions-annual-year-selector";
 
 type YearSelectorProps = {
@@ -29,7 +33,7 @@ function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
 }
 
 type Props = {
-  fetchYearOverview: number => Promise<Object>,
+  fetchYearOverview: number => any,
 };
 
 export function TransactionsAnnualYearSelector({ fetchYearOverview }: Props) {
@@ -46,10 +50,17 @@ export function TransactionsAnnualYearSelector({ fetchYearOverview }: Props) {
     }
 
     setLoading(true);
-    fetchYearOverview(year);
     triggerFetch(false);
 
-    setTimeout(() => setLoading(false), 3000);
+    (async () => {
+      try {
+        await fetchYearOverview(year);
+      } catch (e) {
+        logger.error(e);
+      } finally {
+        setLoading(false);
+      }
+    })();
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
   return (

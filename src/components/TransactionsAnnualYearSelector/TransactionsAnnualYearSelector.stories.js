@@ -8,7 +8,10 @@ import { TransactionsAnnualYearSelector } from "./TransactionsAnnualYearSelector
 const stories = storiesOf("TransactionsAnnualYearSelector", module);
 
 const props = {
-  fetchYearOverview: () => new Promise(() => {}),
+  fetchYearOverview: () =>
+    new Promise(resolve => {
+      setTimeout(resolve, 3000);
+    }),
 };
 
 stories.add("Default", () => {
