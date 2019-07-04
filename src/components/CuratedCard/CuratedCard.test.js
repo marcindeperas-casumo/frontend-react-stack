@@ -2,6 +2,7 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import { dissoc } from "ramda";
 import { CuratedCard } from "Components/CuratedCard/CuratedCard";
+import { CuratedCardFooterGame } from "Components/CuratedCard/CuratedCardFooter";
 import curatedData from "Models/curated/__mocks__/curated.json";
 import { CURATED_TYPE } from "Models/curated";
 
@@ -87,15 +88,17 @@ describe("CuratedCard", () => {
   });
 
   test("should render CuratedCardFooter if there is a game", () => {
-    const component = mount(
+    const component = shallow(
       <CuratedCard
         {...curatedData}
         fetchCurated={fetchCurated}
         isFetched={true}
       />
-    );
+    )
+      .find("Card")
+      .dive();
 
-    expect(component.find("CuratedCardFooter").exists()).toBe(true);
+    expect(component.find(CuratedCardFooterGame).exists()).toBe(true);
   });
 
   test("should render promotions_legal_text if no game", () => {
@@ -288,7 +291,7 @@ describe("CuratedCard", () => {
 
     const rendered = mount(
       <CuratedCard
-        gameData={null}
+        {...curatedData}
         promotion=""
         fetchCurated={fetchCurated}
         isFetched={true}
@@ -346,7 +349,11 @@ describe("Curated card - tracking", () => {
   });
 
   test("should track card click with promo data when curated type is promotion", () => {
-    const promotionMock = dissoc("gameData", curatedData);
+    const promotionMock = {
+      ...curatedData,
+      gameData: null,
+      typeOfCurated: CURATED_TYPE.PROMOTION,
+    };
     rendered = render(promotionMock);
     const trackClick = rendered.find("TrackClick").first();
 
@@ -355,7 +362,7 @@ describe("Curated card - tracking", () => {
 
   test("should track play button with game data when curated ", () => {
     const playTrackClick = rendered
-      .find("CuratedCardFooter")
+      .find(CuratedCardFooterGame)
       .find("TrackClick")
       .first();
 
