@@ -5,10 +5,6 @@ import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
 
 type Props = {
-  /** The boolean that states if the promotion page has been fetched */
-  isFetched: boolean,
-  /** The function that fetches the promotion page if not fetched yet */
-  startFetch: () => void,
   /** The link to the right promotion detailed view */
   link: string,
   /** The date range the promotion will run for. */
@@ -18,14 +14,6 @@ type Props = {
 };
 
 export class PromotionTeaserRow extends PureComponent<Props> {
-  componentDidMount() {
-    const { isFetched, startFetch } = this.props;
-
-    if (!isFetched) {
-      startFetch();
-    }
-  }
-
   render() {
     const { dates, title, link } = this.props;
 

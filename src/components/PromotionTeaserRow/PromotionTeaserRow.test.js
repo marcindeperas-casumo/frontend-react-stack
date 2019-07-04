@@ -10,7 +10,6 @@ describe("PromotionTeaserRow", () => {
     const rendered = shallow(
       <PromotionTeaserRow
         slug="promotions.boosted-reelraces"
-        isFetched
         dates={promotion.fields.dates}
         title={promotion.fields.title}
       />
@@ -27,7 +26,6 @@ describe("PromotionTeaserRow", () => {
     const rendered = shallow(
       <PromotionTeaserRow
         slug="promotions.boosted-reelraces"
-        isFetched
         dates={promotion.fields.dates}
         title={promotion.fields.title}
       />

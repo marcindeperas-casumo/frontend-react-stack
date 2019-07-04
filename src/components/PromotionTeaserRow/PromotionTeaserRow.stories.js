@@ -39,8 +39,6 @@ stories.add(
         <PromotionTeaserRowPresentational
           slug="promotions.boosted-reelraces"
           link="promotions/boosted-reelraces"
-          isFetched={true}
-          startFetch={() => {}}
           dates={state.schema.cms["promotions.boosted-reelraces"].fields.dates}
           title={state.schema.cms["promotions.boosted-reelraces"].fields.title}
         />
