@@ -9,9 +9,7 @@ const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
 ) => {
   const isCurrentHash = currentHash === `#${navItem.path}`;
-
   const isParentPath = currentHash.includes(`${navItem.path}/`);
-
   const isDrillDown = currentHash.includes(
     navItem.path.replace(/racing|filter/, "drill-down")
   );
