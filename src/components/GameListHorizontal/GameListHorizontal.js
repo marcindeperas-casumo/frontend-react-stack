@@ -60,6 +60,14 @@ export const ITEM_SPACING = {
   default: "default",
 };
 
+export const ITEMS_STYLING = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
+    "c-game-list-horizontal-desktop-paginated_live_casino__button",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
+    "c-game-list-horizontal-desktop-paginated_live_casino__button",
+  default: "c-game-list-horizontal-desktop-paginated__button",
+};
+
 export class GameListHorizontal extends PureComponent<Props> {
   render() {
     const { list, isLoading, seeMoreText } = this.props;
@@ -70,6 +78,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
+    const itemControlClass = ITEMS_STYLING[id] || ITEMS_STYLING.default;
 
     if (isLoading) {
       return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
@@ -101,6 +110,7 @@ export class GameListHorizontal extends PureComponent<Props> {
             }}
             Component={itemRenderer}
             className={className}
+            itemControlClass={itemControlClass}
             tileHeight={tileHeight}
             seeMore={{
               text: seeMoreText,
