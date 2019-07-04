@@ -51,7 +51,7 @@ export class CuratedCard extends PureComponent<Props> {
     const { typeOfCurated, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
 
-    const url = CARD_CLICK_URL[typeOfCurated];
+    const url = CARD_CLICK_URL[typeOfCurated] || null;
 
     if (typeOfCurated === CURATED_TYPE.PROMOTION) {
       return replace("#promotionSlug", promotionSlug, url);
@@ -113,9 +113,12 @@ export class CuratedCard extends PureComponent<Props> {
 
   renderHeader = () =>
     this.isGame ? (
-      <CuratedCardHeader {...this.props} />
+      <CuratedCardHeader header={this.props.header} />
     ) : (
-      <CuratedCardHeaderWithSubtitle {...this.props} />
+      <CuratedCardHeaderWithSubtitle
+        header={this.props.header}
+        subtitle={this.props.subtitle}
+      />
     );
 
   renderFooter = () =>
@@ -124,7 +127,6 @@ export class CuratedCard extends PureComponent<Props> {
         gameData={this.props.gameData}
         buttonText={this.props.primary_action_text}
         onLaunchGame={this.props.onLaunchGame}
-        {...this.props}
       />
     ) : (
       <CuratedCardFooterText text={this.props.promotions_legal_text} />
