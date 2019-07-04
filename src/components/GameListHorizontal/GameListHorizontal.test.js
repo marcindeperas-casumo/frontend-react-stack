@@ -5,7 +5,7 @@ import {
   ITEM_SPACING,
   ITEM_RENDERERS,
   TILE_HEIGHTS,
-  ITEMS_STYLING,
+  ITEMS_CONTROL_STYLING,
 } from "Components/GameListHorizontal/GameListHorizontal";
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -149,9 +149,9 @@ describe("GameListHorizontal Desktop", () => {
     expect(seeMoreProp.text).toBe(seeMoreText);
   });
 
-  test("uses the default ITEMS_STYLING if it is not specified", () => {
+  test("uses the default ITEMS_CONTROL_STYLING if it is not specified", () => {
     const { itemControlClass } = rendered.find(ScrollableListPaginated).props();
 
-    expect(itemControlClass).toEqual(ITEMS_STYLING.default);
+    expect(itemControlClass).toEqual(ITEMS_CONTROL_STYLING.default);
   });
 });

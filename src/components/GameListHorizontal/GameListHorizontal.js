@@ -60,7 +60,7 @@ export const ITEM_SPACING = {
   default: "default",
 };
 
-export const ITEMS_STYLING = {
+export const ITEMS_CONTROL_STYLING = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
     "c-game-list-horizontal-desktop-paginated_live_casino__button",
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
@@ -78,7 +78,8 @@ export class GameListHorizontal extends PureComponent<Props> {
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
-    const itemControlClass = ITEMS_STYLING[id] || ITEMS_STYLING.default;
+    const itemControlClass =
+      ITEMS_CONTROL_STYLING[id] || ITEMS_CONTROL_STYLING.default;
 
     if (isLoading) {
       return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;

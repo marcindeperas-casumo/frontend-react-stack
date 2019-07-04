@@ -24,7 +24,6 @@ describe("ScrollableListPaginated", () => {
   };
   const Component = () => <p>I'm a beautiful little component</p>;
   const tileHeight = 204;
-  const itemControlClass = "I'm-a-cute-css-class";
   let rendered;
 
   beforeEach(() => {
