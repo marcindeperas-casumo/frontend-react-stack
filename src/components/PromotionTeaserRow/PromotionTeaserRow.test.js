@@ -10,15 +10,15 @@ describe("PromotionTeaserRow", () => {
     const rendered = shallow(
       <PromotionTeaserRow
         slug="promotions.boosted-reelraces"
-        isFetched={true}
+        isFetched
         dates={promotion.fields.dates}
         title={promotion.fields.title}
       />
     );
     expect(
       rendered
-        .find('[data-test="promotion-dates"]')
-        .render()
+        .find({ "data-test": "promotion-dates" })
+        .dive()
         .text()
     ).toBe(promotion.fields.dates);
   });
@@ -27,15 +27,15 @@ describe("PromotionTeaserRow", () => {
     const rendered = shallow(
       <PromotionTeaserRow
         slug="promotions.boosted-reelraces"
-        isFetched={true}
+        isFetched
         dates={promotion.fields.dates}
         title={promotion.fields.title}
       />
     );
     expect(
       rendered
-        .find('[data-test="promotion-title"]')
-        .render()
+        .find({ "data-test": "promotion-title" })
+        .dive()
         .text()
     ).toBe(promotion.fields.title);
   });

@@ -25,13 +25,11 @@ export class PromotionTeaserList extends PureComponent<Props> {
       <div className="u-padding-bottom--xlg">
         <div className="u-padding-x--lg u-padding-y">
           {promotionsSlugs.map(promotionSlug => (
-            <div key={promotionSlug}>
-              <PromotionTeaserRow
-                slug={`promotions.${promotionSlug}`}
-                link={`promotions/${promotionSlug}`}
-                key={promotionSlug}
-              />
-            </div>
+            <PromotionTeaserRow
+              slug={`promotions.${promotionSlug}`}
+              link={`promotions/${promotionSlug}`}
+              key={promotionSlug}
+            />
           ))}
         </div>
       </div>

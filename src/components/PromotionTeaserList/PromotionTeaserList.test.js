@@ -3,15 +3,9 @@ import { shallow } from "enzyme";
 import { PromotionTeaserList } from "./PromotionTeaserList";
 
 describe("PromotionTeaserList", () => {
-  let fetchCampaign;
-  let fetchPromotions;
-
-  beforeEach(() => {
-    fetchCampaign = jest.fn();
-    fetchPromotions = jest.fn();
-  });
-
   test("should fetch campaigns and promotions", () => {
+    const fetchCampaign = jest.fn();
+    const fetchPromotions = jest.fn();
     shallow(
       <PromotionTeaserList
         slug="foo"
@@ -29,8 +23,8 @@ describe("PromotionTeaserList", () => {
     const rendered = shallow(
       <PromotionTeaserList
         slug="foo"
-        fetchCampaign={fetchCampaign}
-        fetchPromotions={fetchPromotions}
+        fetchCampaign={() => {}}
+        fetchPromotions={() => {}}
         promotionsSlugs={[]}
       />
     );
