@@ -38,8 +38,8 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     return (
       <div className="u-padding-top--xlg">
         <Flex justify="space-between">
-          <Flex.Item className="u-padding-left--md u-padding-left--3xlg@tablet u-padding-left--3xlg@desktop">
-            <ScrollableListTitle title={title} />
+          <Flex.Item>
+            <ScrollableListTitle paddingLeft={true} title={title} />
           </Flex.Item>
           <Flex.Item className="u-padding-right--md">
             <a href="/games/must-drop-jackpots">
