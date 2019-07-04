@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
-import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
@@ -29,6 +28,8 @@ type Props = {
   tileHeight: number,
   /** The style to apply to the list items. */
   className: string,
+  /** The style to apply to the list control buttons. */
+  itemControlClass: string,
   /** The text and url to render on the seeMore button. */
   seeMore?: SeeMoreProps,
   /** The item renderer. */
@@ -37,24 +38,15 @@ type Props = {
   list: ListObject,
 };
 
-export const ITEMS_STYLING = {
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
-    "c-game-list-horizontal-desktop-paginated_live_casino__button",
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
-    "c-game-list-horizontal-desktop-paginated_live_casino__button",
-  default: "c-game-list-horizontal-desktop-paginated__button",
-};
-
 export class ScrollableListPaginated extends React.PureComponent<Props> {
   buttonRenderer = (
     hasNextPage: boolean,
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) => {
-    const { id } = this.props.list;
+    const { itemControlClass } = this.props;
     const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-game-list-horizontal-desktop-paginated__button`;
-    const itemControlClass = ITEMS_STYLING[id] || ITEMS_STYLING.default;
     const previousClickHandler = () => scrollableClickHandler("previous");
     const nextClickHandler = () => scrollableClickHandler("next");
 
