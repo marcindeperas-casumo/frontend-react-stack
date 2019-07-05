@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { ValuableDetailsLabels as LocalQuery } from "./ValuableDetailsLabels.graphql";
+import { ValuableDetailsLabelsQuery as LocalQuery } from "./ValuableDetailsLabels.graphql";
 import { ValuableDetails } from "./ValuableDetails";
 
 class ValuableDetailsLabelsTypedQuery extends Query<
