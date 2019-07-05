@@ -8,6 +8,8 @@ import EditPillsButton from "Features/sports/components/EditPillsButton";
 import {
   sportsPagerButtonRenderer,
   type SportsNavItemType,
+  type LiveState,
+  type Labels,
 } from "Features/sports/components/SportsNav";
 import {
   SportTab,
@@ -18,34 +20,37 @@ import {
 const LIVE_BUTTON_OFFSET = 1;
 
 export type Props = {
-  // @cpoliver: speak with levi about data handling
   navItems: Array<SportsNavItemType>,
   isSelected: SportsNavItemType => boolean,
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
-  editLabel: string,
   cacheBuster: string,
+  liveState: LiveState,
+  labels: Labels,
 };
 
 type State = [boolean, (boolean) => *];
 
-export const renderLiveButton = ([isLiveActive, setIsLiveActive]: State) => (
+export const renderLiveButton = (
+  label: string,
+  [isLiveActive, setIsLiveActive]: LiveState
+) => (
   <LiveTab
     onClick={() => setIsLiveActive(!isLiveActive)}
-    label="Live"
+    label={label}
     isActive={isLiveActive}
   />
 );
 
 export const renderEditButton = ({
   navItems,
-  editLabel,
+  labels,
   canEdit,
   onEdit,
 }: Props) => {
   const hasMultipleTabs = navItems.length > 1;
-  const label = hasMultipleTabs && editLabel;
+  const label = hasMultipleTabs && labels.edit;
   const className = hasMultipleTabs
     ? "u-margin-y--lg u-margin-left--md"
     : "u-margin--xlg u-padding-top";
@@ -87,7 +92,7 @@ export const renderTabList = (
 
   // prettier-ignore
   const renderedTab = cond([
-    [isFirstItem, () => renderLiveButton(state)],
+    [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
     [isLastItem,  () => renderEditButton(props)],
     [T,           () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
@@ -104,7 +109,7 @@ export const renderTabList = (
 };
 
 export const SportsMainNav = (props: Props) => {
-  const [isLiveActive, setIsLiveActive] = React.useState(false);
+  const [isLiveActive, setIsLiveActive] = props.liveState;
 
   // TODO: get real data and use real predicate or separate lists
   const filterNavItems = ni =>

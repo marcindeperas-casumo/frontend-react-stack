@@ -6,6 +6,7 @@ export const USER_NAVIGATION_QUERY = gql`
   query UserNavigation {
     allLabel: dictionaryTerm(key: "navigation.all")
     editLabel: dictionaryTerm(key: "navigation.edit")
+    liveLabel: dictionaryTerm(key: "navigation.live")
 
     sportsNavigation {
       sport {

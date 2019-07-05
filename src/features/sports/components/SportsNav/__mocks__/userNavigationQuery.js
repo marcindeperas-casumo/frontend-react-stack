@@ -8,6 +8,7 @@ import { userNavigationData } from "./userNavigationData";
 const labels = {
   allLabel: "All",
   editLabel: "Edit",
+  liveLabel: "Live",
 };
 
 const baseMock = {
