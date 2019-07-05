@@ -126,8 +126,9 @@ export const SportsMainNav = (props: Props) => {
   return (
     <ScrollablePaginated
       className={classNames(
-        isLiveActive &&
-          "c-sports-nav-paginated--live t-background-orange-light-3", // TODO: check with Jack how to make this order-agnostic
+        isLiveActive
+          ? "c-sports-nav-paginated--live t-background-orange-light-3"
+          : "t-background-grey-light-2", // TODO: check with Jack how to make this order-agnostic
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
