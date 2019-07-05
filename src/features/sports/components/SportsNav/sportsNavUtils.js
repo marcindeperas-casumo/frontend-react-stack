@@ -64,7 +64,7 @@ const toNavItem = ({
   key: sport.termKey,
   iconProps: {
     iconSrc: sport.icon,
-    activeIndicatorSrc: sport.activeIndicator,
+    activeIndicator: sport.activeIndicator,
     alt: sport.name,
   },
   canEdit: sport.canSelectSubgroups,
