@@ -14,6 +14,19 @@ type YearSelectorProps = {
   setYear: number => void,
 };
 
+type Content = {
+  [string]: string,
+};
+
+type Props = {
+  fetchContent: () => void,
+  isContentFetched: boolean,
+  content: Content,
+  fetchYearOverview: number => any,
+  yearOptions: Array<number>,
+  selectedYear: number,
+};
+
 function YearSelector({
   selectedYear,
   yearOptions,
@@ -34,17 +47,10 @@ function YearSelector({
   );
 }
 
-type Content = {
-  [string]: string,
-};
-
-type Props = {
-  fetchContent: () => Promise<any>,
-  isContentFetched: boolean,
-  content: Content,
-  fetchYearOverview: number => any,
-  yearOptions: Array<number>,
-  selectedYear: number,
+const fallbackContent = {
+  year_selector_heading: "Annual Transactions Overview",
+  year_selector_label: "Year",
+  year_selector_button: "Show Annual Overview",
 };
 
 export function TransactionsBetsHistoryYearSelector({
@@ -61,6 +67,10 @@ export function TransactionsBetsHistoryYearSelector({
   const onClick = useCallback(() => {
     triggerFetch(true);
   });
+  const fullContent = {
+    ...fallbackContent,
+    ...content,
+  };
 
   useEffect(() => {
     if (!isTriggeredFetch) {
@@ -88,11 +98,7 @@ export function TransactionsBetsHistoryYearSelector({
   return (
     <div className="u-padding-top--lg u-padding-bottom--lg u-padding-left--md u-padding-right--md t-background-white">
       <Text tag="h3" size="sm">
-        {propOr(
-          "Annual Transactions Overview",
-          "year_selector_heading",
-          content
-        )}
+        {fullContent.year_selector_heading}
       </Text>
       <Flex
         spacing="md"
@@ -102,7 +108,7 @@ export function TransactionsBetsHistoryYearSelector({
       >
         <Flex.Item>
           <Text tag="label" size="sm" htmlFor={YEAR_SELECT_ID}>
-            {propOr("Year", "year_selector_label", content)}
+            {fullContent.year_selector_label}
           </Text>
         </Flex.Item>
         <Flex.Item>
@@ -119,7 +125,7 @@ export function TransactionsBetsHistoryYearSelector({
         loading={loading}
         onClick={onClick}
       >
-        {propOr("Show Annual Overview", "year_selector_button", content)}
+        {fullContent.year_selector_button}
       </Button>
     </div>
   );

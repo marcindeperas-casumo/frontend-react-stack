@@ -18,7 +18,7 @@ const props = {
     year_selector_heading: "Annual Transactions Overview",
   },
   isContentFetched: true,
-  fetchContent: () => Promise.resolve(),
+  fetchContent: () => {},
 };
 
 stories.add("Default", () => {
