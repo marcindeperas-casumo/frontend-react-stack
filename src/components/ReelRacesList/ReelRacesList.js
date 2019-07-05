@@ -3,6 +3,8 @@ import * as React from "react";
 import type { ReelRacesTranslations } from "Models/reelRaces";
 import ScrollableList from "Components/ScrollableList";
 import ReelRaceCard from "Components/ReelRaceCard";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import { Desktop, Mobile } from "Components/ResponsiveLayout";
 
 type Props = {
   areTranslationsFetched: boolean,
@@ -37,16 +39,38 @@ export class ReelRacesList extends React.PureComponent<Props> {
       return null;
     }
     const { t } = this.props;
+    const seeMoreUrl = "/reel-races";
+    const itemClassName = "c-reel-race-card";
 
     return (
-      <ScrollableList
-        title={t.title}
-        seeMoreText={t.more_link}
-        seeMoreUrl="/reel-races"
-        itemIds={this.props.reelRacesIds}
-        Component={ReelRaceCard}
-        itemClassName="c-reel-race-card"
-      />
+      <div className="o-wrapper">
+        <Mobile>
+          <ScrollableList
+            title={t.title}
+            seeMoreText={t.more_link}
+            seeMoreUrl={seeMoreUrl}
+            itemIds={this.props.reelRacesIds}
+            Component={ReelRaceCard}
+            itemClassName={itemClassName}
+          />
+        </Mobile>
+        <Desktop>
+          <ScrollableListPaginated
+            list={{
+              title: t.title,
+              itemIds: this.props.reelRacesIds,
+            }}
+            Component={ReelRaceCard}
+            className={itemClassName}
+            itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+            tileHeight={240}
+            seeMore={{
+              text: t.more_link,
+              url: seeMoreUrl,
+            }}
+          />
+        </Desktop>
+      </div>
     );
   }
 }
