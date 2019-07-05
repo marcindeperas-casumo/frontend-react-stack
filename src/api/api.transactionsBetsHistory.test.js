@@ -4,6 +4,7 @@ import {
   getWalletTotalsReq,
   getGameroundsTotalsUrl,
   getGameroundsTotalsReq,
+  getTotalsReq,
 } from "./api.transactionsBetsHistory";
 
 describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
@@ -13,19 +14,19 @@ describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
 
   describe("getWalletTotalsUrl()", () => {
     test("returns correctly built url", () => {
-      const playerId = "player-id-1234";
+      const walletId = "wallet-id-1234";
       const startTime = DateTime.local(2018);
       const startTimeInUrl = encodeURIComponent(startTime.toISO());
       const endTime = DateTime.local();
       const endTimeInUrl = encodeURIComponent(endTime.toISO());
       const url = getWalletTotalsUrl({
-        playerId,
+        walletId,
         startTime,
         endTime,
       });
 
       expect(url).toEqual(
-        `/api/common/query/wallet/${playerId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
+        `/api/common/query/wallet/${walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
       );
     });
   });
@@ -33,7 +34,7 @@ describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
   describe("getWalletTotalsReq()", () => {
     test("is passed correctly formatted url", async () => {
       const props = {
-        playerId: "player-id-123456",
+        walletId: "wallet-id-123456",
         startTime: DateTime.local(2018),
         endTime: DateTime.local(2019),
       };
@@ -42,7 +43,7 @@ describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
       const data = await getWalletTotalsReq(props, http);
 
       expect(http.get).toHaveBeenCalledWith(
-        `/api/common/query/wallet/${props.playerId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
+        `/api/common/query/wallet/${props.walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
       );
     });
   });
@@ -83,6 +84,48 @@ describe("/api/common/query/gamerounds/totals", () => {
       expect(http.get).toHaveBeenCalledWith(
         `/api/common/query/gamerounds/totals?from=${startTimeInUrl}&to=${endTimeInUrl}`
       );
+    });
+  });
+});
+
+describe("getTotalsReq()", () => {
+  const currency = "GBP";
+  const get = jest
+    .fn()
+    .mockReturnValueOnce([
+      {
+        currency,
+        bonuses: { amount: 24 },
+        withdrawals: { amount: 11 },
+        deposits: { amount: 55.7 },
+      },
+    ])
+    .mockReturnValueOnce([
+      {
+        currency,
+        betsAmount: 89.3,
+        winningsAmount: 124,
+      },
+    ]);
+  const http = {
+    get,
+  };
+  const props = {
+    walletId: "wallet-id-789",
+    startTime: DateTime.utc(2017),
+    endTime: DateTime.utc(2018),
+  };
+
+  test("returns data in expected shape", async () => {
+    const data = await getTotalsReq(props, http);
+
+    expect(data).toEqual({
+      currency,
+      bonusesAmount: 24,
+      withdrawalsAmount: 11,
+      depositsAmount: 55.7,
+      betsAmount: 89.3,
+      winningsAmount: 124,
     });
   });
 });

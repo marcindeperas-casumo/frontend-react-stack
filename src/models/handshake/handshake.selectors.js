@@ -143,3 +143,11 @@ export const tournamentChannelsSelector = createSelector(
   playerSelector,
   pathOr({}, ["tournamentCampaign", "tournamentChannels"])
 );
+
+export const walletIdSelector = createSelector(
+  playerSelector,
+  compose(
+    prop("id"),
+    prop("wallet")
+  )
+);

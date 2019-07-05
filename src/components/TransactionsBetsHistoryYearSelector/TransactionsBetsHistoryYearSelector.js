@@ -6,26 +6,26 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import logger from "Services/logger";
 
-const CURRENT_YEAR = new Date().getFullYear();
-/**
- * Start from 2019. This will probably be moved to a service.
- */
-const AVAILABLE_YEARS = range(2019, CURRENT_YEAR + 1);
 const YEAR_SELECT_ID = "transactions-annual-year-selector";
 
 type YearSelectorProps = {
   selectedYear: number,
+  yearOptions: Array<number>,
   setYear: number => void,
 };
 
-function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
+function YearSelector({
+  selectedYear,
+  yearOptions,
+  setYear,
+}: YearSelectorProps) {
   const onChangeYear = useCallback(e =>
     setYear(Number.parseInt(e.target.value))
   );
 
   return (
     <select id={YEAR_SELECT_ID} value={selectedYear} onChange={onChangeYear}>
-      {AVAILABLE_YEARS.map(year => (
+      {yearOptions.map(year => (
         <option key={`key_${year}`} value={year}>
           {year}
         </option>
@@ -36,13 +36,17 @@ function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
 
 type Props = {
   fetchYearOverview: number => any,
+  yearOptions: Array<number>,
+  selectedYear: number,
 };
 
 export function TransactionsBetsHistoryYearSelector({
   fetchYearOverview,
+  yearOptions,
+  selectedYear,
 }: Props) {
   const [loading, setLoading] = useState(false);
-  const [year, setYear] = useState(CURRENT_YEAR);
+  const [year, setYear] = useState(selectedYear);
   const [isTriggeredFetch, triggerFetch] = useState(false);
   const onClick = useCallback(() => {
     triggerFetch(true);
@@ -84,7 +88,11 @@ export function TransactionsBetsHistoryYearSelector({
           </Text>
         </Flex.Item>
         <Flex.Item>
-          <YearSelector selectedYear={year} setYear={setYear} />
+          <YearSelector
+            yearOptions={yearOptions}
+            selectedYear={year}
+            setYear={setYear}
+          />
         </Flex.Item>
       </Flex>
       <Button

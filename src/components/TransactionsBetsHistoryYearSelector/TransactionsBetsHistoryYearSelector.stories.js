@@ -8,6 +8,8 @@ import { TransactionsBetsHistoryYearSelector } from "./TransactionsBetsHistoryYe
 const stories = storiesOf("TransactionsBetsHistoryYearSelector", module);
 
 const props = {
+  selectedYear: 2019,
+  yearOptions: [2017, 2018, 2019],
   fetchYearOverview: () =>
     new Promise(resolve => {
       setTimeout(resolve, 3000);

@@ -6,7 +6,7 @@ import clientHttp from "Lib/http";
 type HTTPClient = typeof clientHttp;
 
 type WalletTotalsProps = {
-  playerId: string,
+  walletId: string,
   startTime: DateTime,
   endTime: DateTime,
 };
@@ -46,11 +46,11 @@ type TotalsResponse = {
 };
 
 export const getWalletTotalsUrl = ({
-  playerId,
+  walletId,
   startTime,
   endTime,
 }: WalletTotalsProps): string => {
-  const baseUrl = `/api/common/query/wallet/${playerId}/totals`;
+  const baseUrl = `/api/common/query/wallet/${walletId}/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("startTime", startTime.toISO());
