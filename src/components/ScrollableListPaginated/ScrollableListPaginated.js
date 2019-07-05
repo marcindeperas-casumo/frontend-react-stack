@@ -11,7 +11,6 @@ import type { ClickHandlerType } from "Components/ScrollablePaginated";
 import "./ScrollableListPaginated.scss";
 
 type ListObject = {
-  id: string,
   title: string,
   itemIds: Array<string>,
 };
