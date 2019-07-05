@@ -13,6 +13,7 @@ type HeaderSubtitleProps = {
 
 export const CuratedCardHeader = ({ header }: HeaderProps) => (
   <Text
+    data-test="curated-card-header"
     className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
     size="2xlg"
     dangerouslySetInnerHTML={stringToHTML(header)}
@@ -25,6 +26,7 @@ export const CuratedCardHeaderWithSubtitle = ({
 }: HeaderProps & HeaderSubtitleProps) => (
   <>
     <Text
+      data-test="curated-card-header-subtitle"
       className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
       size="2xs"
     >
