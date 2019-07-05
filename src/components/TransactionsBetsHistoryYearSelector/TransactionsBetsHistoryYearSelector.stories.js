@@ -14,6 +14,11 @@ const props = {
     new Promise(resolve => {
       setTimeout(resolve, 3000);
     }),
+  content: {
+    year_selector_heading: "Annual Transactions Overview",
+  },
+  isContentFetched: true,
+  fetchContent: () => Promise.resolve(),
 };
 
 stories.add("Default", () => {

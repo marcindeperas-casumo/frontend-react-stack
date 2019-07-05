@@ -1,6 +1,6 @@
 // @flow
 import React, { useState, useEffect, useCallback } from "react";
-import { range } from "ramda";
+import { range, propOr } from "ramda";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -34,13 +34,23 @@ function YearSelector({
   );
 }
 
+type Content = {
+  [string]: string,
+};
+
 type Props = {
+  fetchContent: () => Promise<any>,
+  isContentFetched: boolean,
+  content: Content,
   fetchYearOverview: number => any,
   yearOptions: Array<number>,
   selectedYear: number,
 };
 
 export function TransactionsBetsHistoryYearSelector({
+  fetchContent,
+  isContentFetched,
+  content,
   fetchYearOverview,
   yearOptions,
   selectedYear,
@@ -71,10 +81,18 @@ export function TransactionsBetsHistoryYearSelector({
     })();
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
+  useEffect(() => {
+    isContentFetched || fetchContent();
+  }, [fetchContent, isContentFetched]);
+
   return (
     <div className="u-padding-top--lg u-padding-bottom--lg u-padding-left--md u-padding-right--md t-background-white">
       <Text tag="h3" size="sm">
-        Annual Transactions Overview
+        {propOr(
+          "Annual Transactions Overview",
+          "year_selector_heading",
+          content
+        )}
       </Text>
       <Flex
         spacing="md"
@@ -84,7 +102,7 @@ export function TransactionsBetsHistoryYearSelector({
       >
         <Flex.Item>
           <Text tag="label" size="sm" htmlFor={YEAR_SELECT_ID}>
-            Year
+            {propOr("Year", "year_selector_label", content)}
           </Text>
         </Flex.Item>
         <Flex.Item>
@@ -101,7 +119,7 @@ export function TransactionsBetsHistoryYearSelector({
         loading={loading}
         onClick={onClick}
       >
-        Show Annual Overview
+        {propOr("Show Annual Overview", "year_selector_button", content)}
       </Button>
     </div>
   );
