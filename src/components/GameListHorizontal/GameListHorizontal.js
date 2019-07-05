@@ -105,7 +105,6 @@ export class GameListHorizontal extends PureComponent<Props> {
         <Desktop>
           <ScrollableListPaginated
             list={{
-              id,
               title,
               itemIds,
             }}
