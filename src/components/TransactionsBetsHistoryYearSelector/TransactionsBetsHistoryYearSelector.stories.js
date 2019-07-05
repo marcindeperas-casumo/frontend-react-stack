@@ -3,9 +3,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { select, boolean, text } from "@storybook/addon-knobs/react";
-import { TransactionsAnnualYearSelector } from "./TransactionsAnnualYearSelector";
+import { TransactionsBetsHistoryYearSelector } from "./TransactionsBetsHistoryYearSelector";
 
-const stories = storiesOf("TransactionsAnnualYearSelector", module);
+const stories = storiesOf("TransactionsBetsHistoryYearSelector", module);
 
 const props = {
   fetchYearOverview: () =>
@@ -15,5 +15,5 @@ const props = {
 };
 
 stories.add("Default", () => {
-  return <TransactionsAnnualYearSelector {...props} />;
+  return <TransactionsBetsHistoryYearSelector {...props} />;
 });

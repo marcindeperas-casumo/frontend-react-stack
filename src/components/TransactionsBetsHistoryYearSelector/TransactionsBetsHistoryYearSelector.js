@@ -26,7 +26,9 @@ function YearSelector({ selectedYear, setYear }: YearSelectorProps) {
   return (
     <select id={YEAR_SELECT_ID} value={selectedYear} onChange={onChangeYear}>
       {AVAILABLE_YEARS.map(year => (
-        <option value={year}>{year}</option>
+        <option key={`key_${year}`} value={year}>
+          {year}
+        </option>
       ))}
     </select>
   );
@@ -36,7 +38,9 @@ type Props = {
   fetchYearOverview: number => any,
 };
 
-export function TransactionsAnnualYearSelector({ fetchYearOverview }: Props) {
+export function TransactionsBetsHistoryYearSelector({
+  fetchYearOverview,
+}: Props) {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(CURRENT_YEAR);
   const [isTriggeredFetch, triggerFetch] = useState(false);
