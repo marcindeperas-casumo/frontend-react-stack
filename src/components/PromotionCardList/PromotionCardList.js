@@ -8,7 +8,6 @@ import Text from "@casumo/cmp-text";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import PromotionCardContainer from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import ScrollableList from "Components/ScrollableList";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 
 type Props = {
@@ -48,6 +47,15 @@ class PromotionCardList extends PureComponent<Props> {
       seeMore,
     } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
+    const seeMoreUrl = "/promotions";
+    const itemClassName = "c-promotion-card u-margin-right";
+    const PromotionCardContainerRenderer = ({ id }) => (
+      <PromotionCardContainer
+        slug={`promotions.${id}`}
+        link={`promotions/${id}`}
+        key={id}
+      />
+    );
 
     if (hasNoPromotionSlugs) {
       return null;
@@ -59,64 +67,60 @@ class PromotionCardList extends PureComponent<Props> {
           backgroundColor && `t-background-${backgroundColor}`,
           titleColor && `t-color-${titleColor}`,
           createModifierClasses("u-margin-top", marginPerDevice),
-          "u-padding-top--lg u-padding-bottom--lg"
+          "u-padding-bottom--lg"
         )}
       >
-        <Mobile>
-          <Flex justify="space-between">
-            <Flex.Item>
-              {title ? (
-                <ScrollableListTitle paddingLeft={true} title={title} />
-              ) : null}
-            </Flex.Item>
-            <Flex.Item align="right" className="u-padding-right--md">
-              <a href="/promotions">
-                <Text
-                  size="sm"
-                  tag="h3"
-                  className={classNames(titleColor && `t-color-${titleColor}`)}
-                >
-                  {seeMore}
-                </Text>
-              </a>
-            </Flex.Item>
-          </Flex>
-          <Scrollable
-            itemClassName="c-promotion-card"
-            padding={paddingPerDevice}
-            itemSpacing="md"
-          >
-            {promotionsSlugs.map(promotionSlug => (
-              <PromotionCardContainer
-                slug={`promotions.${promotionSlug}`}
-                link={`promotions/${promotionSlug}`}
-                key={promotionSlug}
-              />
-            ))}
-          </Scrollable>
-        </Mobile>
-        <Desktop>
-          <ScrollableListPaginated
-            list={{
-              title: title,
-              itemIds: promotionsSlugs,
-            }}
-            Component={(id: promotionSlug) => (
-              <PromotionCardContainer
-                slug={`promotions.${promotionSlug}`}
-                link={`promotions/${promotionSlug}`}
-                key={promotionSlug}
-              />
-            )}
-            className="c-promotion-card"
-            itemControlClass="c-game-list-horizontal-desktop-paginated__button"
-            tileHeight={240}
-            seeMore={{
-              text: title,
-              url: "/promotions",
-            }}
-          />
-        </Desktop>
+        <div className="o-wrapper">
+          <Mobile>
+            <div className="u-padding-top--lg">
+              <Flex justify="space-between">
+                <Flex.Item>
+                  {title ? (
+                    <ScrollableListTitle paddingLeft={true} title={title} />
+                  ) : null}
+                </Flex.Item>
+                <Flex.Item align="right" className="u-padding-right--md">
+                  <a href={seeMoreUrl}>
+                    <Text
+                      size="sm"
+                      tag="h3"
+                      className={classNames(
+                        titleColor && `t-color-${titleColor}`
+                      )}
+                    >
+                      {seeMore}
+                    </Text>
+                  </a>
+                </Flex.Item>
+              </Flex>
+            </div>
+            <Scrollable
+              itemClassName={itemClassName}
+              padding={paddingPerDevice}
+            >
+              {promotionsSlugs.map(id =>
+                PromotionCardContainerRenderer({ id })
+              )}
+            </Scrollable>
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title: title,
+                itemIds: promotionsSlugs,
+              }}
+              Component={PromotionCardContainerRenderer}
+              className={itemClassName}
+              itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+              tileHeight={308}
+              seeMore={{
+                text: seeMore,
+                url: seeMoreUrl,
+                color: classNames(titleColor && `t-color-${titleColor}`),
+              }}
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }

@@ -15,12 +15,14 @@ const state = {
 
 const PromotionCardsStories = () => (
   <MockStore state={state}>
-    <PromotionCardList
-      slug="campaigns.winter_games"
-      title="This Sexy AF campaign"
-      titleColor="white"
-      backgroundColor="blue"
-    />
+    <div style={{ width: "1200px" }}>
+      <PromotionCardList
+        slug="campaigns.winter_games"
+        title="This Sexy AF campaign"
+        titleColor="white"
+        backgroundColor="blue"
+      />
+    </div>
   </MockStore>
 );
 
