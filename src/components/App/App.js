@@ -61,6 +61,7 @@ export class App extends PureComponent<Props> {
               hostElementId="react-host-games-lists"
               loader={() => import("Components/TopLists")}
               fallback={<TopListsSkeleton />}
+              namedExport="TopLists"
             />
           </DataProvider>
         </Route>
@@ -69,6 +70,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpotList")}
             fallback={<GameListSkeleton hasTitle={false} />}
+            namedExport="MustDropJackpotList"
           />
         </Route>
         <Route path={["live-casino-details"]}>
@@ -76,6 +78,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-live-casino-details"
             loader={() => import("Components/LiveCasinoDetailPage")}
             fallback={<GameListSkeleton />}
+            namedExport="LiveCasinoDetailPage"
           />
         </Route>
         {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
@@ -85,6 +88,7 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: `promotions.${routeParams[0]}` }}
+            namedExport="ComponentBuilder"
           />
         </Route>
         {/* TODO: Change the route to "campaign/:slug" instead of "promotions" */}
@@ -100,6 +104,7 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: "campaigns.winter-games" }}
+            namedExport="ComponentBuilder"
           />
         </Route>
         <Route path={["games-search"]}>
@@ -116,6 +121,7 @@ export class App extends PureComponent<Props> {
                 />
               </>
             }
+            namedExport="GamesSearch"
           />
         </Route>
         <Route path={["sports"]}>
@@ -123,6 +129,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-sports-shell"
             loader={() => import("Features/sports/components/SportsShell")}
             fallback={<SportsShellSkeleton />}
+            namedExport="SportsShell"
           />
         </Route>
         <Route path={["games-provider"]}>
@@ -131,12 +138,14 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ProviderGamesList")}
             fallback={<GameListSkeleton hasTitle={false} />}
             props={{ provider: routeParams[0] }}
+            namedExport="ProverGamesList"
           />
         </Route>
         <Route path={["player"]}>
           <LazyPortal
             hostElementId="react-host-adventure"
             loader={() => import("Components/AdventureCard")}
+            namedExport="AdventureCard"
           />
         </Route>
         <Route path={["settings"]}>
@@ -149,6 +158,7 @@ export class App extends PureComponent<Props> {
                 );
                 return SettingsSectionsContainer;
               }}
+              namedExport="SettingsSectionsContainer"
             />
           </DataProvider>
         </Route>
@@ -162,6 +172,7 @@ export class App extends PureComponent<Props> {
                 );
                 return SettingsAccountDetailsContainer;
               }}
+              namedExport="SettingsAccountDetailsContainer"
             />
           </DataProvider>
         </Route>
@@ -175,6 +186,7 @@ export class App extends PureComponent<Props> {
                 );
                 return SettingsNotificationsContainer;
               }}
+              namedExport="SettingsAccountDetailsContainer"
             />
           </DataProvider>
         </Route>
@@ -188,6 +200,7 @@ export class App extends PureComponent<Props> {
                 );
                 return SettingsRealityCheckContainer;
               }}
+              namedExport="SettingsRealityCheckContainer"
             />
           </DataProvider>
         </Route>
