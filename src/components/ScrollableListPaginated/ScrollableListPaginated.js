@@ -4,6 +4,9 @@ import Flex from "@casumo/cmp-flex";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
+import classNames from "classnames";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
+import type { responsiveSpacerSizes } from "@casumo/cudl-react-prop-types";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
@@ -21,7 +24,7 @@ type SeeMoreProps = {
   /** The text to render on the seeMore button. */
   url: string,
   /** The seeMore text color */
-  color?: string,
+  color: string,
 };
 
 type Props = {
@@ -32,14 +35,22 @@ type Props = {
   /** The style to apply to the list control buttons. */
   itemControlClass: string,
   /** The text and url to render on the seeMore button. */
-  seeMore?: SeeMoreProps,
+  seeMore: SeeMoreProps,
   /** The item renderer. */
   Component: Function,
   /** The list of items to be rendered. */
   list: ListObject,
+  /** Apply margins to the scrollable items */
+  itemSpacing: responsiveSpacerSizes,
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
+  static defaultProps = {
+    seeMore: {
+      color: "t-color-blue",
+    },
+  };
+
   buttonRenderer = (
     hasNextPage: boolean,
     hasPreviousPage: boolean,
@@ -82,13 +93,18 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
   };
 
   cellRenderer = ({ columnIndex, style }: CellRendererParams) => {
-    const { list, className, Component } = this.props;
+    const { list, className, Component, itemSpacing = "default" } = this.props;
     const { itemIds } = list;
     const itemId = itemIds[columnIndex];
 
     return (
       <div style={style}>
-        <div className="u-padding-right">
+        <div
+          className={classNames(
+            columnIndex < itemIds.length - 1 &&
+              createModifierClasses("u-margin-right", itemSpacing)
+          )}
+        >
           <div className={className}>
             <Component key={itemId} id={itemId} />
           </div>
@@ -96,10 +112,10 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       </div>
     );
   };
+
   render() {
     const { list, tileHeight, seeMore } = this.props;
     const { title, itemIds } = list;
-    const seeMoreFontColor = seeMore.color || "t-color-blue";
 
     return (
       <div className="u-padding-top--xlg">
@@ -110,7 +126,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
           {seeMore.url && (
             <Flex.Item className="u-padding-right--md">
               <a href={seeMore.url}>
-                <Text size="xs" tag="h3" className={seeMoreFontColor}>
+                <Text size="xs" tag="h3" className={seeMore.color}>
                   {seeMore.text}
                 </Text>
               </a>
