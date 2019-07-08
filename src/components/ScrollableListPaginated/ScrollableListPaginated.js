@@ -20,6 +20,8 @@ type SeeMoreProps = {
   text: string,
   /** The text to render on the seeMore button. */
   url: string,
+  /** The seeMore text color */
+  color?: string,
 };
 
 type Props = {
@@ -97,6 +99,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
   render() {
     const { list, tileHeight, seeMore } = this.props;
     const { title, itemIds } = list;
+    const seeMoreFontColor = seeMore.color || "t-color-blue";
 
     return (
       <div className="u-padding-top--xlg">
@@ -104,10 +107,10 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
           <Flex.Item>
             <ScrollableListTitle title={title} />
           </Flex.Item>
-          {seeMore && (
+          {seeMore.url && (
             <Flex.Item className="u-padding-right--md">
               <a href={seeMore.url}>
-                <Text size="xs" tag="h3" className="t-color-blue">
+                <Text size="xs" tag="h3" className={seeMoreFontColor}>
                   {seeMore.text}
                 </Text>
               </a>
