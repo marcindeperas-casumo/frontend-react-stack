@@ -47,7 +47,7 @@ const LiveIconColoured = ({ isActive }: LiveIconProps) => (
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
-          isActive ? "red" : "grey-dark-2"
+          isActive ? "red" : "grey-dark-1"
         } u-drop-shadow`}
       />
     </Flex>
