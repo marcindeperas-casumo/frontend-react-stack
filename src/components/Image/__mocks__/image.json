@@ -1,0 +1,16 @@
+{
+  "images": [
+    {
+      "mediaQuery": "(max-width: 767px)",
+      "src": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
+    },
+    {
+      "mediaQuery": "(max-width: 1023px)",
+      "src": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-medium-starburst.png"
+    },
+    {
+      "mediaQuery": "(min-width: 1024px)",
+      "src": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-large-starburst.png"
+    }
+  ]
+}
