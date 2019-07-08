@@ -1402,6 +1402,11 @@
   resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.0.tgz#67932610cc705eaa2ec1b6e9eb40c80bf7072b94"
   integrity sha512-uiBZWaBZJdoNhwm2rYkWbgd5JuESZ2JA/ObSbATh8odmoWY2zItVC+zmli2HUFYR7aqzOLf0gPZPj+kEYNZwNw==
 
+"@casumo/cudl-react-prop-types@^2.1.0":
+  version "2.1.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.0.tgz#67932610cc705eaa2ec1b6e9eb40c80bf7072b94"
+  integrity sha512-uiBZWaBZJdoNhwm2rYkWbgd5JuESZ2JA/ObSbATh8odmoWY2zItVC+zmli2HUFYR7aqzOLf0gPZPj+kEYNZwNw==
+
 "@casumo/cudl-react-utils@^1.0.6":
   version "1.0.6"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-react-utils/-/cudl-react-utils-1.0.6.tgz#f97f5b3f968c28c34d62f0e6629fa4114559a160"
