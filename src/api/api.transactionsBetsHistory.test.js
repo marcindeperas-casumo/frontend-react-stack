@@ -40,7 +40,7 @@ describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
       };
       const startTimeInUrl = encodeURIComponent(props.startTime.toISO());
       const endTimeInUrl = encodeURIComponent(props.endTime.toISO());
-      const data = await getWalletTotalsReq(props, http);
+      await getWalletTotalsReq(props, http);
 
       expect(http.get).toHaveBeenCalledWith(
         `/api/common/query/wallet/${props.walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
@@ -79,7 +79,7 @@ describe("/api/common/query/gamerounds/totals", () => {
       };
       const startTimeInUrl = encodeURIComponent(props.startTime.toMillis());
       const endTimeInUrl = encodeURIComponent(props.endTime.toMillis());
-      const data = await getGameroundsTotalsReq(props, http);
+      await getGameroundsTotalsReq(props, http);
 
       expect(http.get).toHaveBeenCalledWith(
         `/api/common/query/gamerounds/totals?from=${startTimeInUrl}&to=${endTimeInUrl}`
