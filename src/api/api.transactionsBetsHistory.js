@@ -45,12 +45,14 @@ type TotalsResponse = {
   depositsAmount: number,
 };
 
+const BASE_URL = "/api/common/query";
+
 export const getWalletTotalsUrl = ({
   walletId,
   startTime,
   endTime,
 }: WalletTotalsProps): string => {
-  const baseUrl = `/api/common/query/wallet/${walletId}/totals`;
+  const baseUrl = `${BASE_URL}/wallet/${walletId}/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("startTime", startTime.toISO());
@@ -63,7 +65,7 @@ export const getGameroundsTotalsUrl = ({
   startTime,
   endTime,
 }: GameroundsTotalsProps): string => {
-  const baseUrl = `/api/common/query/gamerounds/totals`;
+  const baseUrl = `${BASE_URL}/gamerounds/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("from", startTime.toMillis());

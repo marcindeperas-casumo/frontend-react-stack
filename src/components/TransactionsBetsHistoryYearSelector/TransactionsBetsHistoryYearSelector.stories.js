@@ -8,6 +8,7 @@ import { TransactionsBetsHistoryYearSelector } from "./TransactionsBetsHistoryYe
 const stories = storiesOf("TransactionsBetsHistoryYearSelector", module);
 
 const props = {
+  selectorHtmlId: "year-selector-id",
   selectedYear: 2019,
   yearOptions: [2017, 2018, 2019],
   fetchYearOverview: () =>
@@ -16,6 +17,8 @@ const props = {
     }),
   content: {
     year_selector_heading: "Annual Transactions Overview",
+    year_selector_label: "Year",
+    year_selector_button: "Show Annual Overview",
   },
   isContentFetched: true,
   fetchContent: () => {},

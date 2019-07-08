@@ -12,6 +12,7 @@ type YearSelectorProps = {
   selectedYear: number,
   yearOptions: Array<number>,
   setYear: number => void,
+  htmlId: string,
 };
 
 type Content = {
@@ -25,19 +26,21 @@ type Props = {
   fetchYearOverview: number => any,
   yearOptions: Array<number>,
   selectedYear: number,
+  selectorHtmlId: string,
 };
 
 function YearSelector({
   selectedYear,
   yearOptions,
   setYear,
+  htmlId,
 }: YearSelectorProps) {
   const onChangeYear = useCallback(e =>
-    setYear(Number.parseInt(e.target.value))
+    setYear(Number.parseInt(e.target.value, 10))
   );
 
   return (
-    <select id={YEAR_SELECT_ID} value={selectedYear} onChange={onChangeYear}>
+    <select id={htmlId} value={selectedYear} onChange={onChangeYear}>
       {yearOptions.map(year => (
         <option key={`key_${year}`} value={year}>
           {year}
@@ -47,12 +50,6 @@ function YearSelector({
   );
 }
 
-const fallbackContent = {
-  year_selector_heading: "Annual Transactions Overview",
-  year_selector_label: "Year",
-  year_selector_button: "Show Annual Overview",
-};
-
 export function TransactionsBetsHistoryYearSelector({
   fetchContent,
   isContentFetched,
@@ -60,6 +57,7 @@ export function TransactionsBetsHistoryYearSelector({
   fetchYearOverview,
   yearOptions,
   selectedYear,
+  selectorHtmlId,
 }: Props) {
   const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(selectedYear);
@@ -67,10 +65,6 @@ export function TransactionsBetsHistoryYearSelector({
   const onClick = useCallback(() => {
     triggerFetch(true);
   });
-  const fullContent = {
-    ...fallbackContent,
-    ...content,
-  };
 
   useEffect(() => {
     if (!isTriggeredFetch) {
@@ -96,19 +90,19 @@ export function TransactionsBetsHistoryYearSelector({
   }, [fetchContent, isContentFetched]);
 
   return (
-    <div className="u-padding-top--lg u-padding-bottom--lg u-padding-left--md u-padding-right--md t-background-white">
+    <div className="u-padding-y--lg u-padding-x--md t-background-white">
       <Text tag="h3" size="sm">
-        {fullContent.year_selector_heading}
+        {content.year_selector_heading}
       </Text>
       <Flex
         spacing="md"
         justify="space-between"
         align="center"
-        className="u-margin-top--lg u-margin-bottom--lg"
+        className="u-margin-y--lg"
       >
         <Flex.Item>
-          <Text tag="label" size="sm" htmlFor={YEAR_SELECT_ID}>
-            {fullContent.year_selector_label}
+          <Text tag="label" size="sm" htmlFor={selectorHtmlId}>
+            {content.year_selector_label}
           </Text>
         </Flex.Item>
         <Flex.Item>
@@ -116,6 +110,7 @@ export function TransactionsBetsHistoryYearSelector({
             yearOptions={yearOptions}
             selectedYear={year}
             setYear={setYear}
+            htmlId={selectorHtmlId}
           />
         </Flex.Item>
       </Flex>
@@ -125,7 +120,7 @@ export function TransactionsBetsHistoryYearSelector({
         loading={loading}
         onClick={onClick}
       >
-        {fullContent.year_selector_button}
+        {content.year_selector_button}
       </Button>
     </div>
   );
