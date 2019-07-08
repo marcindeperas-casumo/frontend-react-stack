@@ -15,7 +15,7 @@ const SportsIcon = ({ alt, iconSrc, activeIndicator, isActive }: Props) => (
   <div className="o-ratio c-sports-icon">
     {isActive && (
       <div
-        className="o-ratio__content"
+        className="o-ratio__content c-sports-icon__active-indicator"
         data-test="sports-icon-active-indicator"
       >
         <DangerousHtml html={activeIndicator} element="div" />
