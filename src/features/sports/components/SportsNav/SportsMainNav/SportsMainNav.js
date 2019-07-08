@@ -30,8 +30,6 @@ export type Props = {
   labels: Labels,
 };
 
-type State = [boolean, (boolean) => *];
-
 export const renderLiveButton = (
   label: string,
   [isLiveActive, setIsLiveActive]: LiveState
@@ -82,8 +80,7 @@ const renderTab = (
 
 export const renderTabList = (
   navItems: Array<SportsNavItemType>,
-  props: Props,
-  state: State
+  props: Props
 ) => ({ columnIndex, style }: CellRendererParams) => {
   const offsetIndex = columnIndex - LIVE_BUTTON_OFFSET;
 
@@ -109,7 +106,7 @@ export const renderTabList = (
 };
 
 export const SportsMainNav = (props: Props) => {
-  const [isLiveActive, setIsLiveActive] = props.liveState;
+  const [isLiveActive] = props.liveState;
 
   // TODO: get real data and use real predicate or separate lists
   const filterNavItems = ni =>
@@ -132,10 +129,7 @@ export const SportsMainNav = (props: Props) => {
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
-      cellRenderer={renderTabList(navItems, props, [
-        isLiveActive,
-        setIsLiveActive,
-      ])}
+      cellRenderer={renderTabList(navItems, props)}
       height={106}
       buttonRenderer={sportsPagerButtonRenderer}
       cacheBuster={cacheBuster}

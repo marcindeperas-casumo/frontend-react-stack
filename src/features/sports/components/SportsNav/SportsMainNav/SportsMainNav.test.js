@@ -7,7 +7,10 @@ import {
   renderTabList,
   renderEditButton,
 } from "Features/sports/components/SportsNav";
-import { SportTab } from "Features/sports/components/SportsNav/SportsNavTab";
+import {
+  SportTab,
+  LiveTab,
+} from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
 const props = {
@@ -16,7 +19,13 @@ const props = {
   onEdit: jest.fn(),
   isSelected: jest.fn(),
   onSelected: jest.fn(),
-  editLabel: "edit",
+  cacheBuster: "hey brother",
+  liveState: [false, () => {}],
+  labels: {
+    all: "all",
+    live: "live",
+    edit: "edit",
+  },
 };
 
 describe("<SportsMainNav />", () => {
@@ -27,28 +36,38 @@ describe("<SportsMainNav />", () => {
     expect(sp).toHaveLength(1);
     expect(sp.props()).toMatchObject({
       columnCount: 5,
-      // TODO(cpoliver): match fn but not instance
-      // cellRenderer: renderTabList(props),
       height: 106,
     });
   });
 
   describe("renderTabList", () => {
-    test("returns a SportTab and no EditButton when rendering a non-last item", () => {
-      const renderedFirst = shallow(renderTabList(props)({ columnIndex: 0 }));
-
-      expect(renderedFirst.find(SportTab)).toHaveLength(1);
-      expect(renderedFirst.find(EditPillsButton)).toHaveLength(0);
-
-      const renderedThird = shallow(renderTabList(props)({ columnIndex: 2 }));
-      expect(renderedThird.find(SportTab)).toHaveLength(1);
-      expect(renderedThird.find(EditPillsButton)).toHaveLength(0);
+    test("renders a live button for the 1st position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: 0 })
+      );
+      expect(rendered.find(LiveTab)).toHaveLength(1);
     });
 
-    test("returns an EditPillsButton and no SportTab when rendering the last item", () => {
-      const rendered = shallow(renderTabList(props)({ columnIndex: 5 }));
+    test("renders an sports tab for the 2nd position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: 1 })
+      );
+      expect(rendered.find(SportTab)).toHaveLength(1);
+    });
 
-      expect(rendered.find(SportTab)).toHaveLength(0);
+    test("renders an sports tab for 2nd-to-last position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: navItems.length - 1 })
+      );
+
+      expect(rendered.find(SportTab)).toHaveLength(1);
+    });
+
+    test("returns an EditPillsButton when rendering the last item", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: navItems.length })
+      );
+
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
   });
