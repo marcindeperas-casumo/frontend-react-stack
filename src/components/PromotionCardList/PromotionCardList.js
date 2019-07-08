@@ -48,7 +48,7 @@ class PromotionCardList extends PureComponent<Props> {
     } = this.props;
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
     const seeMoreUrl = "/promotions";
-    const itemClassName = "c-promotion-card u-margin-right";
+    const itemClassName = "c-promotion-card";
     const PromotionCardContainerRenderer = ({ id }) => (
       <PromotionCardContainer
         slug={`promotions.${id}`}
@@ -97,6 +97,7 @@ class PromotionCardList extends PureComponent<Props> {
             <Scrollable
               itemClassName={itemClassName}
               padding={paddingPerDevice}
+              itemSpacing="md"
             >
               {promotionsSlugs.map(id =>
                 PromotionCardContainerRenderer({ id })
@@ -118,6 +119,7 @@ class PromotionCardList extends PureComponent<Props> {
                 url: seeMoreUrl,
                 color: classNames(titleColor && `t-color-${titleColor}`),
               }}
+              itemSpacing="md"
             />
           </Desktop>
         </div>
