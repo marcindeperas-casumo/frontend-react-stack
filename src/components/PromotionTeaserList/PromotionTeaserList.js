@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { PureComponent } from "react";
 import { PromotionTeaserRow } from "Components/PromotionTeaserRow";
 
 type Props = {
@@ -8,28 +8,31 @@ type Props = {
   fetchPromotions: () => void,
 };
 
-export function PromotionTeaserList(props: Props) {
-  React.useEffect(() => {
-    props.fetchCampaign();
-    props.fetchPromotions();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  if (!props.promotionsSlugs.length) {
-    return null;
+export class PromotionTeaserList extends PureComponent<Props> {
+  componentDidMount() {
+    this.props.fetchCampaign();
+    this.props.fetchPromotions();
   }
 
-  return (
-    <div className="u-padding-bottom--xlg">
-      <div className="u-padding-x--lg u-padding-y">
-        {props.promotionsSlugs.map(promotionSlug => (
-          <PromotionTeaserRow
-            slug={`promotions.${promotionSlug}`}
-            link={`promotions/${promotionSlug}`}
-            key={promotionSlug}
-          />
-        ))}
+  render() {
+    const { promotionsSlugs } = this.props;
+
+    if (!promotionsSlugs.length) {
+      return null;
+    }
+
+    return (
+      <div className="u-padding-bottom--xlg">
+        <div className="u-padding-x--lg u-padding-y">
+          {promotionsSlugs.map(promotionSlug => (
+            <PromotionTeaserRow
+              slug={`promotions.${promotionSlug}`}
+              link={`promotions/${promotionSlug}`}
+              key={promotionSlug}
+            />
+          ))}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
