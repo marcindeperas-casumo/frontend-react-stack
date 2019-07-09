@@ -242,6 +242,6 @@
     "webpack-manifest-plugin": "^2.0.4"
   },
   "resolutions": {
-    "graphql": "14.3.0"
+    "graphql": "^14.3.1"
   }
 }
