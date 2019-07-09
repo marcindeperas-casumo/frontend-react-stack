@@ -104,7 +104,7 @@ export class SportsNav extends React.Component<SportsNavProps> {
     key: item.sport.termKey,
     iconProps: {
       iconSrc: item.sport.icon,
-      activeIndicatorSrc: item.sport.activeIndicator,
+      activeIndicator: item.sport.activeIndicator,
       alt: item.sport.name,
     },
     canEdit: item.sport.canSelectSubgroups,
