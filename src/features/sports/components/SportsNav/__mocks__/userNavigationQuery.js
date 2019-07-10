@@ -14,6 +14,9 @@ const labels = {
 const baseMock = {
   request: {
     query: USER_NAVIGATION_QUERY,
+    variables: {
+      live: false,
+    },
   },
   result: {
     data: {
