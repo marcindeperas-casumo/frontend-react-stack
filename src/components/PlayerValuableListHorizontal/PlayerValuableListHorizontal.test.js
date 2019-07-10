@@ -40,7 +40,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the list title", () => {
     expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
-      translationsMock.listTitle
+      translationsMock.listTitleLabel
     );
   });
 });
