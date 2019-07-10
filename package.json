@@ -240,8 +240,5 @@
     "webpack": "^4.34.0",
     "webpack-dev-server": "^3.7.1",
     "webpack-manifest-plugin": "^2.0.4"
-  },
-  "resolutions": {
-    "graphql": "^14.3.1"
   }
 }
