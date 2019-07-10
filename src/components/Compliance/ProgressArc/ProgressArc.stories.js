@@ -2,9 +2,9 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { number } from "@storybook/addon-knobs";
-import { Progress } from "./Progress";
+import { ProgressArc } from "./ProgressArc";
 
-const stories = storiesOf("Progress", module);
+const stories = storiesOf("ProgressArc", module);
 
 stories.add("Default", () => {
   const value = number("Percentage value", 33, {
@@ -14,5 +14,5 @@ stories.add("Default", () => {
     step: 1,
   });
 
-  return <Progress value={value} />;
+  return <ProgressArc value={value} />;
 });

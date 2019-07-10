@@ -8,7 +8,7 @@ type Props = {
 // total length of svg path, taken from .getTotalLength()
 const PATH_LENGTH = 55.96251678466797;
 
-export function Progress(props: Props) {
+export function ProgressArc(props: Props) {
   /**
    * I couldn't find matching progress component, it looked simple enough to implement.
    * If you don't know this trick and it looks like magic read that:
