@@ -108,12 +108,7 @@ export const renderTabList = (
 export const SportsMainNav = (props: Props) => {
   const [isLiveActive] = props.liveState;
 
-  // TODO: get real data and use real predicate or separate lists
-  const filterNavItems = ni =>
-    // $FlowIgnore
-    isLiveActive ? !ni.text.includes("ball") : true; // filter live vs non-live when we have data
-  const navItems = props.navItems.filter(filterNavItems);
-
+  const { navItems } = props;
   const tabCount = navItems.length;
   const buttonCount = 1; // include Edit button
   const columnCount = tabCount + buttonCount;

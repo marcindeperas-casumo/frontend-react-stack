@@ -3,12 +3,12 @@ import { Query } from "react-apollo";
 import gql from "graphql-tag";
 
 export const USER_NAVIGATION_QUERY = gql`
-  query UserNavigation {
+  query UserNavigation($live: Boolean!) {
     allLabel: dictionaryTerm(key: "navigation.all")
     editLabel: dictionaryTerm(key: "navigation.edit")
     liveLabel: dictionaryTerm(key: "navigation.live")
 
-    sportsNavigation {
+    sportsNavigation(live: $live) {
       sport {
         name
         id

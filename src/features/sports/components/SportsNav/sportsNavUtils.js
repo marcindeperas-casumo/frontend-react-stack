@@ -17,10 +17,9 @@ const isNavItemSelected = (currentHash: string = "") => (
   return isCurrentHash || isParentPath || isDrillDown;
 };
 
-const onNavItemSelected = (currentHash: string) => (
+const onNavItemSelected = (currentHash: string, client) => (
   navItem: SportsNavItemType
 ) => {
-  const client = useContext(ClientContext);
   const isPathUnchanged = `#${navItem.path}` === currentHash;
   const hasParentPath = has("parentPath", navItem);
   const path =

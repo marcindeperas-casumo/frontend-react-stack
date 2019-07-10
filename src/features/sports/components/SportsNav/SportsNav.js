@@ -5,7 +5,7 @@ import {
   UserNavigationTypedQuery,
 } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { OpenModalMutation } from "Features/sports/state";
+import { OpenModalMutation, ClientContext } from "Features/sports/state";
 import {
   SportsMainNav,
   SportsSubNav,
@@ -22,9 +22,14 @@ export type Labels = {
   live: string,
 };
 
-const renderSportsNav = (currentHash: string, liveState: LiveState, data) => {
+const renderSportsNav = (
+  currentHash: string,
+  liveState: LiveState,
+  data,
+  client
+) => {
   const isNavItemSelected = navItemUtils.isNavItemSelected(currentHash);
-  const onNavItemSelected = navItemUtils.onNavItemSelected(currentHash);
+  const onNavItemSelected = navItemUtils.onNavItemSelected(currentHash, client);
 
   const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
     navItemUtils.toNavItem
@@ -101,6 +106,7 @@ const renderSportsNav = (currentHash: string, liveState: LiveState, data) => {
 };
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
+  const { client } = React.useContext(ClientContext);
   const [isLiveActive, setIsLiveActive] = React.useState(false);
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
@@ -110,7 +116,10 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   return (
-    <UserNavigationTypedQuery query={USER_NAVIGATION_QUERY}>
+    <UserNavigationTypedQuery
+      query={USER_NAVIGATION_QUERY}
+      variables={{ live: isLiveActive }}
+    >
       {({ loading, error, data }) => {
         if (loading) {
           return <SportsNavSkeleton />;
@@ -133,7 +142,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
         return renderSportsNav(
           currentHash,
           [isLiveActive, setIsLiveActive],
-          data
+          data,
+          client
         );
       }}
     </UserNavigationTypedQuery>
