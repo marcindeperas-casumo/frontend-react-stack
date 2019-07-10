@@ -66,7 +66,7 @@ const renderSportsNav = (
   const labels = {
     edit: data.editLabel,
     live: data.liveLabel,
-    all: data.liveLabel,
+    all: data.allLabel,
   };
 
   const commonProps = {
