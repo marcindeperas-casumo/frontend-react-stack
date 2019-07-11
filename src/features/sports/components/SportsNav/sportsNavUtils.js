@@ -1,8 +1,8 @@
 // @flow
-import React, { useContext } from "react";
+import React from "react";
 import { has } from "ramda";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
-import { ClientContext, NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
+import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
 const isNavItemSelected = (currentHash: string = "") => (
