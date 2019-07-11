@@ -30,6 +30,14 @@ export const bridgeFactory = () => {
   };
 };
 
+const findOrUncurried = (
+  defaultValue: any,
+  predicate: (*) => boolean,
+  items: any[]
+) => R.find(predicate, items) || defaultValue;
+
+export const findOr = R.curry(findOrUncurried);
+
 export const composePromises = (...fns: Array<*>) => (iv: Promise<*>) =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
 
