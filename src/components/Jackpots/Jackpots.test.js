@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import Jackpots from "Components/Jackpots/Jackpots";
 import jackpotsMock from "./__mocks__/response.games.mock";
 
