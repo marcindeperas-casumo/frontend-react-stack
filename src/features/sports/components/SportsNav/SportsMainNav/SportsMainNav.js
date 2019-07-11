@@ -16,9 +16,6 @@ import {
   LiveTab,
 } from "Features/sports/components/SportsNav/SportsNavTab";
 
-// to calculate indices for cellRenderer, as we're rendering extra buttons as well as sport tabs for navItems
-const LIVE_BUTTON_OFFSET = 1;
-
 export type Props = {
   navItems: Array<SportsNavItemType>,
   isSelected: SportsNavItemType => boolean,
@@ -82,7 +79,9 @@ export const renderTabList = (
   navItems: Array<SportsNavItemType>,
   props: Props
 ) => ({ columnIndex, style }: CellRendererParams) => {
-  const offsetIndex = columnIndex - LIVE_BUTTON_OFFSET;
+  // to calculate indices for cellRenderer, as we're rendering extra buttons as well as sport tabs for navItems
+  const liveButtonCount = 1;
+  const offsetIndex = columnIndex - liveButtonCount;
 
   const isFirstItem = equals(-1);
   const isLastItem = equals(navItems.length - 1);
