@@ -1,25 +1,10 @@
 // @flow
-import {
-  always,
-  compose,
-  either,
-  equals,
-  filter,
-  identity,
-  isEmpty,
-  isNil,
-  join,
-  pathOr,
-  pipe,
-  replace,
-  splitEvery,
-  when,
-} from "ramda";
+import * as R from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
 export const noop = () => {};
 
-export const isNilOrEmpty = either(isNil, isEmpty);
+export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
 export const bridgeFactory = () => {
   const obj = {};
@@ -124,7 +109,7 @@ export function generateColumns<T>(
   items: Array<T>,
   numberByColumns: number = 3
 ): Array<Array<T>> {
-  return splitEvery(numberByColumns, items);
+  return R.splitEvery(numberByColumns, items);
 }
 
 // TODO: make this a component
@@ -152,9 +137,9 @@ export const injectScript = (url: string) =>
     }
   });
 
-export const commaSeparated = compose(
-  join(","),
-  filter(identity)
+export const commaSeparated = R.compose(
+  R.join(","),
+  R.filter(R.identity)
 );
 type Handlers = {
   [type: string]: (state: Object, action: Object) => any,
@@ -225,7 +210,7 @@ export const interpolate = (
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
-    pathOr(match, [param], replacements)
+    R.pathOr(match, [param], replacements)
   );
 
 export const getCssCustomProperty = (property: string) =>
@@ -234,8 +219,8 @@ export const getCssCustomProperty = (property: string) =>
     : undefined;
 
 // handle CMS workaround using "empty" to prevent locale fallback returning wrong string
-export const isCmsEntryEmpty = pipe(
-  when(isNilOrEmpty, always("")),
-  replace(/^empty$/i, ""),
-  equals("")
+export const isCmsEntryEmpty = R.pipe(
+  R.when(isNilOrEmpty, R.always("")),
+  R.replace(/^empty$/i, ""),
+  R.equals("")
 );
