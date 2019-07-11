@@ -1,9 +1,11 @@
 // @flow
 import React, { PureComponent } from "react";
-import { isEmpty, map } from "ramda";
+import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import Tile from "./Tile";
 
 const PADDING_PER_DEVICE = {
@@ -43,9 +45,10 @@ class TileListHorizontal extends PureComponent<Props> {
 
   render() {
     const { title, items, isLoaded } = this.props;
-    const scrollableChildren = map(
-      ({ id, ...rest }) => <Tile key={id} {...rest} />,
-      items.filter(item => item.background !== null)
+    const itemsNoBackground = items.filter(item => item.background !== null);
+    const itemRenderer = ({ id, rest }) => <Tile key={id} {...rest} />;
+    const scrollableChildren = itemsNoBackground.map(({ id, ...rest }) =>
+      itemRenderer({ id, rest })
     );
 
     if (!isLoaded) {
@@ -58,14 +61,31 @@ class TileListHorizontal extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitle paddingLeft={true} title={title} />
-        <Scrollable
-          itemClassName="c-tile"
-          padding={PADDING_PER_DEVICE}
-          itemSpacing={DEFAULT_SPACING}
-        >
-          {scrollableChildren}
-        </Scrollable>
+        <div className="o-wrapper">
+          <Mobile>
+            <ScrollableListTitle paddingLeft={true} title={title} />
+            <Scrollable
+              itemClassName="c-tile"
+              padding={PADDING_PER_DEVICE}
+              itemSpacing={DEFAULT_SPACING}
+            >
+              {scrollableChildren}
+            </Scrollable>
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title: title,
+                itemIds: itemsNoBackground,
+              }}
+              Component={({ id }) => <Tile {...id} />}
+              className="c-tile"
+              itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+              tileHeight={160}
+              itemSpacing="md"
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }

@@ -13,7 +13,7 @@ type Props = {
   url: string,
   logo?: string,
   background?: string,
-  imgixOpts: imgixOptsObject,
+  imgixOpts?: imgixOptsObject,
 };
 
 const Tile = ({
