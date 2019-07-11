@@ -16,10 +16,4 @@ describe("<Jackpots />", () => {
 
     expect(rendered.find("JackpotsColumn").length).toBe(numberOfColumns);
   });
-
-  test("renders all the jackpot rows", () => {
-    const rendered = mount(<Jackpots jackpots={jackpotsMock} />);
-
-    expect(rendered.find("GameRow")).toHaveLength(jackpotsMock.length);
-  });
 });
