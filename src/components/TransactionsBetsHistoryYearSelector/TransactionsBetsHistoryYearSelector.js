@@ -74,19 +74,15 @@ export function TransactionsBetsHistoryYearSelector({
     setLoading(true);
     triggerFetch(false);
 
-    (async () => {
-      try {
-        await fetchYearOverview(year);
-      } catch (e) {
-        logger.error(e);
-      } finally {
-        setLoading(false);
-      }
-    })();
+    fetchYearOverview(year)
+      .catch(e => logger.error(e))
+      .finally(() => setLoading(false));
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
   useEffect(() => {
-    isContentFetched || fetchContent();
+    if (!isContentFetched) {
+      fetchContent();
+    }
   }, [fetchContent, isContentFetched]);
 
   return (
