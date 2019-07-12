@@ -86,6 +86,15 @@ export const currencySelector = createSelector(
   )
 );
 
+// Test for this selector are already added in another PR: https://github.com/Casumo/frontend-react-stack/pull/561
+export const walletIdSelector = createSelector(
+  playerSelector,
+  compose(
+    prop("id"),
+    prop("wallet")
+  )
+);
+
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")

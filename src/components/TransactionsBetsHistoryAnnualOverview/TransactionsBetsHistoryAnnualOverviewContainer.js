@@ -11,7 +11,7 @@ export const TransactionsBetsHistoryAnnualOverviewContainer = connect(
     return {
       locale: localeSelector(state),
       currency: currencySelector(state),
-      content: {},
+      content: {}, // this is cooking in another PR: https://github.com/Casumo/frontend-react-stack/pull/561
       data: transactionsBetsHistoryAnnualOverviewSelector(selectedYear)(state),
     };
   }

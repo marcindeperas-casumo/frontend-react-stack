@@ -10,10 +10,8 @@ describe("Transactions/Bets History Selectors", () => {
   };
   const state = {
     schema: {
-      transactionsBetsHistory: {
-        annualOverview: {
-          2019: overview2019,
-        },
+      transactionsBetsHistoryAnnualOverview: {
+        2019: overview2019,
       },
     },
   };
