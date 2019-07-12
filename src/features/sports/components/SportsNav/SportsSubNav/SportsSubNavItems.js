@@ -8,7 +8,7 @@ import {
 } from "Features/sports/components/SportsNav";
 
 type FilterItemProps = {
-  isSelected: SportsNavItemType => boolean,
+  isSelected: (SportsNavItemType, ?boolean) => boolean,
   onSelected: SportsNavItemType => void,
   isLiveActive: boolean,
 };
@@ -48,7 +48,7 @@ export const AllItem = (props: AllItemProps) => {
       <NavItem
         navItem={allNavItem}
         onSelected={() => props.onSelected(allNavItem)}
-        isSelected={() => props.isSelected(allNavItem)}
+        isSelected={() => props.isSelected(allNavItem, true)}
         isLiveActive={props.isLiveActive}
       />
     </div>

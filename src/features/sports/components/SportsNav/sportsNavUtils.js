@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { has } from "ramda";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
@@ -18,10 +17,12 @@ const isNavItemSelected = (currentHash: string = "") => (
 };
 
 const onNavItemSelected = (currentHash: string, client: *) => (
-  navItem: SportsNavItemType
+  navItem: SportsNavItemType,
+  ignoreSubpathMatching?: boolean
 ) => {
   const isPathUnchanged = `#${navItem.path}` === currentHash;
-  const hasParentPath = has("parentPath", navItem);
+  const hasParentPath =
+    !ignoreSubpathMatching && currentHash.includes(`${navItem.path}/`);
   const path =
     isPathUnchanged && hasParentPath ? navItem.parentPath : navItem.path;
 
