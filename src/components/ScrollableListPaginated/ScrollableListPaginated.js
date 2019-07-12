@@ -118,7 +118,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     const { title, itemIds } = list;
 
     return (
-      <div className="u-padding-top--xlg">
+      <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
         <Flex justify="space-between">
           <Flex.Item>
             <ScrollableListTitle title={title} />

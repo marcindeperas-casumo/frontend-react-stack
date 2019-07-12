@@ -48,6 +48,7 @@ export default class Jackpots extends PureComponent<Props> {
   render() {
     const { jackpots, title } = this.props;
     const columns = generateColumns(jackpots);
+    const itemClassName = "c-jackpots-list-tile";
 
     return (
       <div className="o-wrapper">
@@ -55,7 +56,7 @@ export default class Jackpots extends PureComponent<Props> {
           <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
             <ScrollableListTitle paddingLeft={true} title={title} />
             <Scrollable
-              itemClassName="c-jackpots-list-tile"
+              itemClassName={itemClassName}
               padding={PADDING_PER_DEVICE}
               itemSpacing="md"
             >
@@ -70,7 +71,7 @@ export default class Jackpots extends PureComponent<Props> {
               itemIds: columns,
             }}
             Component={JackpotColumnRenderer}
-            className="c-jackpots-list-tile"
+            className={itemClassName}
             itemSpacing="md"
             itemControlClass="c-game-list-horizontal-desktop-paginated__button"
             tileHeight={291}
