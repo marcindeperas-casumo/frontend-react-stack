@@ -43,25 +43,17 @@ export const renderEditButton = ({
   labels,
   canEdit,
   onEdit,
-}: Props) => {
-  const hasMultipleTabs = navItems.length > 1;
-  const label = hasMultipleTabs && labels.edit;
-  const className = hasMultipleTabs
-    ? "u-margin-y--lg u-margin-left--md"
-    : "u-margin--xlg u-padding-top";
-
-  return (
-    <div className={className}>
-      {canEdit && (
-        <EditPillsButton
-          onClick={onEdit}
-          className="t-background-white t-color-grey u-drop-shadow"
-          label={label}
-        />
-      )}
-    </div>
-  );
-};
+}: Props) => (
+  <div className="u-margin-y--lg u-margin-left--md">
+    {canEdit && (
+      <EditPillsButton
+        onClick={onEdit}
+        className="t-background-white t-color-grey u-drop-shadow"
+        label={labels.edit}
+      />
+    )}
+  </div>
+);
 
 const renderTab = (
   navItem: SportsNavItemType,
