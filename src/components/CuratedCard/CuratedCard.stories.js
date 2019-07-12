@@ -29,12 +29,7 @@ const state = {
 stories.add("Default", () => {
   return (
     <MockStore state={state}>
-      <div
-        className="u-margin-left--auto u-margin-right--auto"
-        style={{ maxWidth: "686px" }}
-      >
-        <CuratedCard card={"curated-gb_en"} />
-      </div>
+      <CuratedCard card={"curated-gb_en"} />
     </MockStore>
   );
 });
@@ -42,12 +37,7 @@ stories.add("Default", () => {
 stories.add("Promotion", () => {
   return (
     <MockStore>
-      <div
-        className="u-margin-left--auto u-margin-right--auto"
-        style={{ maxWidth: "686px" }}
-      >
-        <CuratedCard card={"curated-gb_en"} />
-      </div>
+      <CuratedCard card={"curated-gb_en"} />
     </MockStore>
   );
 });
@@ -55,12 +45,7 @@ stories.add("Promotion", () => {
 stories.add("Welcome offer", () => {
   return (
     <MockStore state={state}>
-      <div
-        className="u-margin-left--auto u-margin-right--auto"
-        style={{ maxWidth: "686px" }}
-      >
-        <CuratedCard card={"welcome-offer-test"} />
-      </div>
+      <CuratedCard card={"welcome-offer-test"} />
     </MockStore>
   );
 });

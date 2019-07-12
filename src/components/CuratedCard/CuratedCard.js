@@ -2,13 +2,16 @@
 import React, { PureComponent } from "react";
 import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
+import { Mobile, Desktop } from "Components/ResponsiveLayout";
 import {
   CuratedCardFooterText,
   CuratedCardFooterGame,
+  CuratedCardFooterGameDesktop,
 } from "Components/CuratedCard/CuratedCardFooter";
 import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import {
   CuratedCardHeader,
+  CuratedCardHeaderDesktop,
   CuratedCardHeaderWithSubtitle,
 } from "Components/CuratedCard/CuratedCardHeader";
 import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
@@ -19,12 +22,13 @@ import TrackView from "Components/TrackView";
 import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
 
 const justify = {
-  mobile: "end",
-  default: "space-between",
+  phablet: "space-between",
+  default: "end",
 };
 
 const spacing = {
   mobile: "xlg",
+  desktop: "5xlg",
   default: "lg",
 };
 
@@ -89,7 +93,7 @@ export class CuratedCard extends PureComponent<Props> {
     };
 
     return (
-      <div className="c-curated-card o-ratio o-ratio--curated-card t-border-r--8">
+      <div className="c-curated-card o-ratio o-ratio--curated-card">
         <TrackView
           eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
           data={this.trackData}
@@ -113,7 +117,14 @@ export class CuratedCard extends PureComponent<Props> {
 
   renderHeader = () =>
     this.isGame ? (
-      <CuratedCardHeader header={this.props.header} />
+      <>
+        <Mobile>
+          <CuratedCardHeader header={this.props.header} />
+        </Mobile>
+        <Desktop>
+          <CuratedCardHeaderDesktop header={this.props.header} />
+        </Desktop>
+      </>
     ) : (
       <CuratedCardHeaderWithSubtitle
         header={this.props.header}
@@ -123,20 +134,29 @@ export class CuratedCard extends PureComponent<Props> {
 
   renderFooter = () =>
     this.isGame ? (
-      <CuratedCardFooterGame
-        gameData={this.props.gameData}
-        buttonText={this.props.primary_action_text}
-        onLaunchGame={this.props.onLaunchGame}
-      />
+      <>
+        <Mobile>
+          <CuratedCardFooterGame
+            gameData={this.props.gameData}
+            buttonText={this.props.primary_action_text}
+            onLaunchGame={this.props.onLaunchGame}
+          />
+        </Mobile>
+        <Desktop>
+          <CuratedCardFooterGameDesktop
+            gameData={this.props.gameData}
+            buttonText={this.props.primary_action_text}
+            onLaunchGame={this.props.onLaunchGame}
+          />
+        </Desktop>
+      </>
     ) : (
       <CuratedCardFooterText text={this.props.promotions_legal_text} />
     );
 
   render() {
-    return (
-      <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
-        {this.props.isFetched ? this.renderCard() : <CuratedCardSkeleton />}
-      </div>
-    );
+    return this.props.isFetched ? this.renderCard() : <CuratedCardSkeleton />;
+    // <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
+    // </div>
   }
 }

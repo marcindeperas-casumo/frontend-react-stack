@@ -87,3 +87,62 @@ export const CuratedCardFooterGame = ({
     </Flex>
   );
 };
+
+export const CuratedCardFooterGameDesktop = ({
+  gameData,
+  buttonText,
+  onLaunchGame,
+}: GameProps) => {
+  const trackClickGamePlayData = {
+    [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
+    [EVENT_PROPS.CURATED_SLUG]: gameData.slug,
+  };
+
+  return (
+    <div class="o-wrapper">
+      <div class="u-width--2/3">
+        <Flex align="center">
+          <Flex.Item className="o-flex__item--no-shrink">
+            <GameThumb
+              width={80}
+              height={80}
+              src={gameData.logoBackground}
+              mark={gameData.logo}
+            />
+          </Flex.Item>
+          <Flex.Block>
+            <Text tag="span" className="u-font-weight-bold t-color-white">
+              {convertHTMLToString(gameData.name)}
+            </Text>
+          </Flex.Block>
+          <Flex.Item>
+            <Flex justify="center">
+              <TrackClick
+                eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
+                data={trackClickGamePlayData}
+              >
+                <Button
+                  id="gtm-curated-play"
+                  onClick={onLaunchGame}
+                  variant="variant-1"
+                  className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--md@desktop"
+                >
+                  <PlayIcon />
+                  <span className="u-margin-left">{buttonText}</span>
+                </Button>
+              </TrackClick>
+              <Button
+                id="gtm-curated-more"
+                href={`/en/play/${gameData.slug}`}
+                variant="outline"
+                className="u-pointer-events-initial u-display--none@mobile u-padding u-padding--md@desktop u-margin-left--lg"
+              >
+                <MoreIcon />
+              </Button>
+            </Flex>
+          </Flex.Item>
+        </Flex>
+      </div>
+    </div>
+  );
+};

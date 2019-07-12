@@ -20,6 +20,17 @@ export const CuratedCardHeader = ({ header }: HeaderProps) => (
   />
 );
 
+export const CuratedCardHeaderDesktop = ({ header }: HeaderProps) => (
+  <div class="o-wrapper">
+    <Text
+      data-test="curated-card-header"
+      className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+      size="3xlg"
+      dangerouslySetInnerHTML={stringToHTML(header)}
+    />
+  </div>
+);
+
 export const CuratedCardHeaderWithSubtitle = ({
   header,
   subtitle,

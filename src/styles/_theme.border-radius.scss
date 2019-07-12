@@ -1,0 +1,5 @@
+.t-border-r--none\@desktop {
+  @include cudl-breakpoint(desktop) {
+    border-radius: 0;
+  }
+}
