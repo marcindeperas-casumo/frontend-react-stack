@@ -16,6 +16,8 @@ import {
   LiveTab,
 } from "Features/sports/components/SportsNav/SportsNavTab";
 
+const SPORTS_NAV_HEIGHT = 106;
+
 export type Props = {
   navItems: Array<SportsNavItemType>,
   isSelected: SportsNavItemType => boolean,
@@ -71,18 +73,16 @@ export const renderTabList = (
   navItems: Array<SportsNavItemType>,
   props: Props
 ) => ({ columnIndex, style }: CellRendererParams) => {
-  // to calculate indices for cellRenderer, as we're rendering extra buttons as well as sport tabs for navItems
-  const liveButtonCount = 1;
-  const offsetIndex = columnIndex - liveButtonCount;
+  const buttonsBeforeNav = ["live"];
+  const offsetIndex = columnIndex - buttonsBeforeNav.length;
 
   const isFirstItem = equals(-1);
   const isLastItem = equals(navItems.length - 1);
 
-  // prettier-ignore
   const renderedTab = cond([
     [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
-    [isLastItem,  () => renderEditButton(props)],
-    [T,           () => renderTab(navItems[offsetIndex], props)],
+    [isLastItem, () => renderEditButton(props)],
+    [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
 
   return (
@@ -101,8 +101,8 @@ export const SportsMainNav = (props: Props) => {
 
   const { navItems } = props;
   const tabCount = navItems.length;
-  const buttonCount = 1; // include Edit button
-  const columnCount = tabCount + buttonCount;
+  const buttonsAfterNav = ["edit"];
+  const columnCount = tabCount + buttonsAfterNav.length;
 
   const cacheBuster = `${props.cacheBuster}-${isLiveActive ? "live" : ""}`;
 
@@ -111,12 +111,12 @@ export const SportsMainNav = (props: Props) => {
       className={classNames(
         isLiveActive
           ? "c-sports-nav-paginated--live t-background-orange-light-3"
-          : "t-background-grey-light-2", // TODO: check with Jack how to make this order-agnostic
+          : "t-background-grey-light-2",
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
       cellRenderer={renderTabList(navItems, props)}
-      height={106}
+      height={SPORTS_NAV_HEIGHT}
       buttonRenderer={sportsPagerButtonRenderer}
       cacheBuster={cacheBuster}
     />
