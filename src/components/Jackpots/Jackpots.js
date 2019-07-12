@@ -52,7 +52,7 @@ export default class Jackpots extends PureComponent<Props> {
     return (
       <div className="o-wrapper">
         <Mobile>
-          <div className="u-padding-top--xlg">
+          <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
             <ScrollableListTitle paddingLeft={true} title={title} />
             <Scrollable
               itemClassName="c-jackpots-list-tile"
