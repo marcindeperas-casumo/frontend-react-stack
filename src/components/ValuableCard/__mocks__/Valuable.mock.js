@@ -8,13 +8,14 @@ export const mockValuable = valuableType => {
 };
 
 export const mockValuables = () => {
-    return mockData.map(valuable => ({
-            ...valuable,
-            expirationTime: DateTime.local(valuable.expirationTime)
-        })
-    );
+    return mockData;
+    // return mockData.map(valuable => ({
+    //         ...valuable,
+    //         expirationTime: DateTime.local(valuable.expirationTime)
+    //     })
+    // );
 }
 
-export const mockExpirationTime = hoursFromNow => {
-    return DateTime.local().plus({ hours: hoursFromNow });
-};
+// export const mockExpirationTime = hoursFromNow => {
+//     return DateTime.local().plus({ hours: hoursFromNow });
+// };
