@@ -2,7 +2,11 @@
 import * as R from "ramda";
 import { createReducer } from "Utils";
 import { depositLimitsTypes } from "./depositLimits.constants";
-import type { DepositLimitsReduxStore } from "./depositLimits.types";
+import type {
+  DepositLimitsReduxStore,
+  DepositLimit,
+} from "./depositLimits.types";
+import { kindEq } from "./depositLimits.selectors";
 
 export const DEFAULT_STATE = {
   limits: undefined,
@@ -12,12 +16,19 @@ export const DEFAULT_STATE = {
 };
 
 const handlers = {
-  [depositLimitsTypes.FETCH_ALL_DONE]: (state, { response }) => ({
-    ...state,
-    limits: R.path([1, "limit", "value"], response),
-    undoable: R.path([1, "undoable"], response),
-    lock: R.path([1, "lock"], response),
-  }),
+  [depositLimitsTypes.FETCH_ALL_DONE]: (
+    state,
+    { response }: { response: DepositLimit[] }
+  ) => {
+    const LimitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
+
+    return {
+      ...state,
+      limits: R.path(["limit", "value"], LimitDGOJ),
+      undoable: R.prop(["undoable"], LimitDGOJ),
+      lock: R.prop(["lock"], LimitDGOJ),
+    };
+  },
   [depositLimitsTypes.ADJUST_DONE]: (state, { response }) => ({
     ...state,
     limits: R.pathOr(state.limits, ["limit", "value"], response),
