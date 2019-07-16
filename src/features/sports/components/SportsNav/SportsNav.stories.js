@@ -38,7 +38,7 @@ stories.add(
   "Multiple sports",
   () => (
     <MockedProviderWithContext mocks={mocks.multipleSports} addTypename={false}>
-      <SportsNav currentHash="#filter/football/champions_league" />
+      <SportsNav currentHash="#filter/football/england/premier_league" />
     </MockedProviderWithContext>
   ),
   waitForScrollablePaginated
@@ -46,7 +46,7 @@ stories.add(
 
 stories.add("Single sport", () => (
   <MockedProviderWithContext mocks={mocks.singleSport} addTypename={false}>
-    <SportsNav currentHash="#filter/tennis/wta" />
+    <SportsNav currentHash="#filter/football" />
   </MockedProviderWithContext>
 ));
 
