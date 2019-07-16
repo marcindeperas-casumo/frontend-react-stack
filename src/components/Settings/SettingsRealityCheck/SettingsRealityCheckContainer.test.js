@@ -19,7 +19,7 @@ import {
 } from "./__mocks__/Mutations.mock";
 
 let Component, SettingsRealityCheckContainer;
-describe("SettingsRealityCheck", () => {
+describe("SettingsRealityCheckContainer", () => {
   describe("Component", () => {
     beforeEach(() => {
       Component = props => <div />;
