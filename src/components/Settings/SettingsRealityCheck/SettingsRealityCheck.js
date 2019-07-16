@@ -7,17 +7,20 @@ import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
 type Props = {
-  query: PLAYER_REALITY_CHECK_QUERY,
   labels: REALITY_CHECK_LABELS_QUERY,
   onChange: (interval: number) => void,
   isLoading: boolean,
   onSave: () => void,
-  updateError: ?string,
   interval: number,
   canToggleInterval: boolean,
 };
 
 export class SettingsRealityCheck extends PureComponent<Props> {
+  static defaultProps = {
+    onChange: () => {},
+    onSave: () => {},
+  };
+
   render() {
     const {
       onChange,
