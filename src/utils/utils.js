@@ -155,8 +155,11 @@ type Handlers<S> = {
 
 // This can be used as suggested in the Redux docs:
 // https://redux.js.org/recipes/reducing-boilerplate#generating-reducers
-export function createReducer<S>(initialState: S, handlers: Handlers<S>) {
-  return function reducer(state: S = initialState, action: Object) {
+export function createReducer<S>(
+  initialState: S,
+  handlers: Handlers<S>
+): (state: S, action: any) => S {
+  return function reducer(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     } else {
