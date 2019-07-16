@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import isNotChromatic from "Storybook/isNotChromatic";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
@@ -9,27 +10,29 @@ const stories = storiesOf("Sports/SportsNav", module);
 
 const waitForScrollablePaginated = { chromatic: { delay: 200 } };
 
-stories.add(
-  "Many sports (desktop)",
-  () => (
-    <div className="c-sports-shell--site">
+if (isNotChromatic) {
+  stories.add(
+    "Many sports (desktop)",
+    () => (
+      <div className="c-sports-shell--site">
+        <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
+          <SportsNav currentHash="#filter/tennis/wta" />
+        </MockedProviderWithContext>
+      </div>
+    ),
+    waitForScrollablePaginated
+  );
+
+  stories.add(
+    "Many sports",
+    () => (
       <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
         <SportsNav currentHash="#filter/tennis/wta" />
       </MockedProviderWithContext>
-    </div>
-  ),
-  waitForScrollablePaginated
-);
-
-stories.add(
-  "Many sports",
-  () => (
-    <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
-      <SportsNav currentHash="#filter/tennis/wta" />
-    </MockedProviderWithContext>
-  ),
-  waitForScrollablePaginated
-);
+    ),
+    waitForScrollablePaginated
+  );
+}
 
 stories.add(
   "Multiple sports",

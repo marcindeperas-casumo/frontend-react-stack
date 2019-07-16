@@ -1,13 +1,12 @@
 // @flow
 import React from "react";
 
-const activeIndicatorSrc =
-  "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
+const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
 
 export const navItems = [
   {
     iconProps: {
-      activeIndicatorSrc,
+      activeIndicator,
       iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/football.svg",
       alt: "Football",
     },
@@ -37,7 +36,7 @@ export const navItems = [
   },
   {
     iconProps: {
-      activeIndicatorSrc,
+      activeIndicator,
       iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
       alt: "Tennis",
     },
@@ -64,7 +63,7 @@ export const navItems = [
   },
   {
     iconProps: {
-      activeIndicatorSrc,
+      activeIndicator,
       iconSrc:
         "https://cms.casumo.com/wp-content/uploads/2019/02/horse_racing.svg",
       alt: "Horse Racing",
@@ -87,7 +86,7 @@ export const navItems = [
   },
   {
     iconProps: {
-      activeIndicatorSrc,
+      activeIndicator,
       iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
       alt: "Horse Racing",
     },
