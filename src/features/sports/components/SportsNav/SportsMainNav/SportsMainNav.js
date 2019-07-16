@@ -86,7 +86,7 @@ export const renderTabList = (
   const offsetIndex = columnIndex - buttonsBeforeNav.length;
 
   const isFirstItem = equals(-1);
-  const isLastItem = equals(navItems.length - 1);
+  const isLastItem = equals(navItems.length);
 
   const renderedTab = cond([
     [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
@@ -110,8 +110,10 @@ export const SportsMainNav = (props: Props) => {
 
   const { navItems } = props;
   const tabCount = navItems.length;
+  const buttonsBeforeNav = ["live"];
   const buttonsAfterNav = ["edit"];
-  const columnCount = tabCount + buttonsAfterNav.length;
+  const columnCount =
+    buttonsBeforeNav.length + tabCount + buttonsAfterNav.length;
 
   const cacheBuster = `${props.cacheBuster}-${isLiveActive ? "live" : ""}`;
 
