@@ -101,7 +101,9 @@ export const EVENT_PROPS = {
   CURATED_TYPE: "type",
   CURATED_SLUG: "slug",
   OPTED_IN: "opted in",
-  STATE: "State",
+  SPORTS_STATE: "State",
+  SPORTS_SELECTED_NAV: "Sports",
+  SPORTS_IS_LIVE_ACTIVE: "Is Live",
 };
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",

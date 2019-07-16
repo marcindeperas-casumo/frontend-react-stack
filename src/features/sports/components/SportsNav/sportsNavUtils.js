@@ -1,5 +1,7 @@
 // @flow
 import React from "react";
+import tracker from "Services/tracker";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
@@ -16,15 +18,21 @@ const isNavItemSelected = (currentHash: string = "") => (
   return isCurrentHash || isParentPath || isDrillDown;
 };
 
-const onNavItemSelected = (currentHash: string, client: *) => (
-  navItem: SportsNavItemType,
-  ignoreSubpathMatching?: boolean
-) => {
+const onNavItemSelected = (
+  currentHash: string,
+  client: *,
+  isLiveActive: boolean = false
+) => (navItem: SportsNavItemType, ignoreSubpathMatching?: boolean) => {
   const isPathUnchanged = `#${navItem.path}` === currentHash;
   const hasParentPath =
     !ignoreSubpathMatching && currentHash.includes(`${navItem.path}/`);
   const path =
     isPathUnchanged && hasParentPath ? navItem.parentPath : navItem.path;
+
+  tracker.track(EVENTS.MIXPANEL_SPORTS_NAV_SELECTED, {
+    [EVENT_PROPS.SPORTS_SELECTED_NAV]: path,
+    [EVENT_PROPS.SPORTS_IS_LIVE_ACTIVE]: isLiveActive,
+  });
 
   client.mutate<NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,

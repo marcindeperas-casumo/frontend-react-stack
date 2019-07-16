@@ -28,8 +28,13 @@ const renderSportsNav = (
   data,
   client
 ) => {
+  const [isLiveActive] = liveState;
   const isNavItemSelected = navItemUtils.isNavItemSelected(currentHash);
-  const onNavItemSelected = navItemUtils.onNavItemSelected(currentHash, client);
+  const onNavItemSelected = navItemUtils.onNavItemSelected(
+    currentHash,
+    client,
+    isLiveActive
+  );
 
   const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
     navItemUtils.toNavItem

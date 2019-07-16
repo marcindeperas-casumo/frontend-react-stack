@@ -40,7 +40,7 @@ export const renderLiveButton = (
       const newState = !isLiveActive;
 
       tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
-        [EVENT_PROPS.STATE]: newState,
+        [EVENT_PROPS.SPORTS_STATE]: newState,
       });
       setIsLiveActive(newState);
     }}
