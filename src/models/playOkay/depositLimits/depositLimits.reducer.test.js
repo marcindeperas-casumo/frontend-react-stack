@@ -8,8 +8,8 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       limit: {
         value: "1.limit.value",
       },
-      undoable: "undoable?",
-      lock: "lock?",
+      undoable: true,
+      lock: false,
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
@@ -18,8 +18,8 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
 
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       limits: "1.limit.value",
-      undoable: "undoable?",
-      lock: "lock?",
+      undoable: true,
+      lock: false,
       preadjust: undefined,
     });
   });
