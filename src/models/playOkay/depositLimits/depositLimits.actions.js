@@ -20,7 +20,7 @@ export const limitPreadjust = () => ({
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: (any | void) => any | void) => {
-    // when this request is processing we re showing loader
+    // when this request is processing we are showing loader
     // using our fetch action would make it really awkward.
     return api
       .limitAdjust(limitAdjustement)
