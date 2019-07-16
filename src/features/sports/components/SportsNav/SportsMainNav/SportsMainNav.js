@@ -2,6 +2,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import { cond, equals, T } from "ramda";
+import tracker from "Services/tracker";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
@@ -34,7 +35,12 @@ export const renderLiveButton = (
   [isLiveActive, setIsLiveActive]: LiveState
 ) => (
   <LiveTab
-    onClick={() => setIsLiveActive(!isLiveActive)}
+    onClick={() => {
+      const newState = !isLiveActive;
+
+      tracker.track("Live Nav Toggled", { State: newState });
+      setIsLiveActive(newState);
+    }}
     label={label}
     isActive={isLiveActive}
   />
