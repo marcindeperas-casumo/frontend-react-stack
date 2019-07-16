@@ -149,21 +149,21 @@ export const commaSeparated = R.compose(
   R.join(","),
   R.filter(R.identity)
 );
-type Handlers = {
-  [type: string]: (state: Object, action: Object) => any,
+type Handlers<S> = {
+  [type: string]: (state: S, action: Object) => S,
 };
 
 // This can be used as suggested in the Redux docs:
 // https://redux.js.org/recipes/reducing-boilerplate#generating-reducers
-export const createReducer = (initialState: Object, handlers: Handlers) => {
-  return function reducer(state: Object = initialState, action: Object) {
+export function createReducer<S>(initialState: S, handlers: Handlers<S>) {
+  return function reducer(state: S = initialState, action: Object) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     } else {
       return state;
     }
   };
-};
+}
 
 export function formatCurrency({
   locale,
