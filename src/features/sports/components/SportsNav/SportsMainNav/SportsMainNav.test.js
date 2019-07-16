@@ -29,13 +29,13 @@ const props = {
 };
 
 describe("<SportsMainNav />", () => {
-  test("passes the correct props to the ScrollablePaginated when a multiple nav items exist", () => {
+  test("passes the correct props to the ScrollablePaginated when multiple nav items exist", () => {
     const rendered = shallow(<SportsMainNav {...props} />);
     const sp = rendered.find(ScrollablePaginated);
 
     expect(sp).toHaveLength(1);
     expect(sp.props()).toMatchObject({
-      columnCount: 5,
+      columnCount: 6,
       height: 106,
     });
   });
@@ -57,7 +57,7 @@ describe("<SportsMainNav />", () => {
 
     test("renders an sports tab for 2nd-to-last position", () => {
       const rendered = shallow(
-        renderTabList(navItems, props)({ columnIndex: navItems.length - 1 })
+        renderTabList(navItems, props)({ columnIndex: navItems.length })
       );
 
       expect(rendered.find(SportTab)).toHaveLength(1);
@@ -65,7 +65,7 @@ describe("<SportsMainNav />", () => {
 
     test("returns an EditPillsButton when rendering the last item", () => {
       const rendered = shallow(
-        renderTabList(navItems, props)({ columnIndex: navItems.length })
+        renderTabList(navItems, props)({ columnIndex: navItems.length + 1 })
       );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
