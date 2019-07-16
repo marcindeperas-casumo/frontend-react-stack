@@ -11,7 +11,22 @@ const labels = {
   liveLabel: "Live",
 };
 
-const baseMock = {
+const liveMock = {
+  request: {
+    query: USER_NAVIGATION_QUERY,
+    variables: {
+      live: true,
+    },
+  },
+  result: {
+    data: {
+      ...labels,
+      sportsNavigation: take(3, userNavigationData),
+    },
+  },
+};
+
+const nonLiveMock = {
   request: {
     query: USER_NAVIGATION_QUERY,
     variables: {
@@ -36,7 +51,7 @@ const mockWithXSports = numberOfSports =>
     },
   });
 
-export const error = [{ ...baseMock, error: true }];
-export const singleSport = [mockWithXSports(1)(baseMock)];
-export const multipleSports = [mockWithXSports(3)(baseMock)];
-export const manySports = [baseMock];
+export const error = [{ ...nonLiveMock, error: true }];
+export const singleSport = [mockWithXSports(1)(nonLiveMock), liveMock];
+export const multipleSports = [mockWithXSports(3)(nonLiveMock), liveMock];
+export const manySports = [nonLiveMock, liveMock];
