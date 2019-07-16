@@ -22,14 +22,11 @@ export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: (any | void) => any | void) => {
     // when this request is processing we are showing loader
     // using our fetch action would make it really awkward.
-    return api
-      .limitAdjust(limitAdjustement)
-      .then(response => {
-        dispatch({
-          type: depositLimitsTypes.ADJUST_DONE,
-          response,
-        });
+    return api.limitAdjust(limitAdjustement).then(response =>
+      dispatch({
+        type: depositLimitsTypes.ADJUST_DONE,
+        response,
       })
-      .catch(() => {});
+    );
   };
 }
