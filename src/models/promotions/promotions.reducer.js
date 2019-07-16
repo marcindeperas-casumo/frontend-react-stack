@@ -1,4 +1,3 @@
-// @flow
 import { createReducer } from "Utils";
 import { STORE_REHYDRATE } from "Src/constants";
 import { types } from "./promotions.constants";
