@@ -10,7 +10,22 @@ describe("isNavItemSelected()", () => {
     expect(isNavItemSelected(`#${navItems[0].path}`)(navItems[1])).toBe(false);
   });
 
-  test("should check if the navItem is a parent of the current location if sub path matching is enabled", () => {
+  test("should handle when the 'All' filter is enabled in the subnav", () => {
+    const allNavItem = {
+      text: "All",
+      path: "filter/football",
+      parentPath: "filter/football",
+      key: "all",
+      canEdit: false,
+    };
+
+    expect(isNavItemSelected(`#filter/football`)(allNavItem)).toBe(true);
+    expect(
+      isNavItemSelected(`#filter/football/norway/eliteserien`)(allNavItem)
+    ).toBe(false);
+  });
+
+  test("should check if the navItem is a parent of the current location", () => {
     expect(
       isNavItemSelected(`#${navItems[0].subNav[0].path}`)(navItems[0])
     ).toBe(true);

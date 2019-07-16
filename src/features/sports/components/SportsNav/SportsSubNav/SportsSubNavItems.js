@@ -43,6 +43,7 @@ export const AllItem = (props: AllItemProps) => {
   const allNavItem = {
     text: props.labels.all,
     path: props.navItems[0].parentPath || "",
+    parentPath: props.navItems[0].parentPath || "",
     key: "all",
     canEdit: false,
   };
@@ -51,7 +52,7 @@ export const AllItem = (props: AllItemProps) => {
       <NavItem
         navItem={allNavItem}
         onSelected={() => props.onSelected(allNavItem)}
-        isSelected={() => props.isSelected(allNavItem, true)}
+        isSelected={() => props.isSelected(allNavItem)}
         isLiveActive={props.isLiveActive}
       />
     </div>

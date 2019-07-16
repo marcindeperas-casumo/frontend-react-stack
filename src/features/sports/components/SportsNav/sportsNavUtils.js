@@ -9,23 +9,24 @@ import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
 ) => {
-  const isCurrentHash = currentHash === `#${navItem.path}`;
-  const isParentPath = currentHash.includes(`${navItem.path}/`);
+  const isSubNavItem = Boolean(navItem.parentPath);
+  const isCurrentHash = isSubNavItem
+    ? currentHash === `#${navItem.path}`
+    : currentHash.startsWith(`#${navItem.path}`);
   const isDrillDown = currentHash.includes(
     navItem.path.replace(/racing|filter/, "drill-down")
   );
 
-  return isCurrentHash || isParentPath || isDrillDown;
+  return isCurrentHash || isDrillDown;
 };
 
 const onNavItemSelected = (
   currentHash: string,
   client: *,
   isLiveActive: boolean = false
-) => (navItem: SportsNavItemType, ignoreSubpathMatching?: boolean) => {
+) => (navItem: SportsNavItemType) => {
   const isPathUnchanged = `#${navItem.path}` === currentHash;
-  const hasParentPath =
-    !ignoreSubpathMatching && currentHash.includes(`${navItem.path}/`);
+  const hasParentPath = currentHash.includes(`${navItem.path}/`);
   const path =
     isPathUnchanged && hasParentPath ? navItem.parentPath : navItem.path;
 
