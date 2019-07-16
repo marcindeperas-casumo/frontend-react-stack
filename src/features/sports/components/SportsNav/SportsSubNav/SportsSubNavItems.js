@@ -18,7 +18,10 @@ type NavItemProps = FilterItemProps & {
 };
 
 export const NavItem = (props: NavItemProps) => (
-  <div onClick={props.onSelected} className="u-margin-y--md u-margin-x--sm">
+  <div
+    onClick={() => props.onSelected(props.navItem)}
+    className="u-margin-y--md u-margin-x--sm"
+  >
     <Pill
       inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"
       activeClassNames={`u-drop-shadow t-background-${
