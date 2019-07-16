@@ -2,13 +2,12 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
-import Text from "@casumo/cmp-text";
 import type { CellRendererParams } from "react-virtualized";
 import classNames from "classnames";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import type { responsiveSpacerSizes } from "@casumo/cudl-react-prop-types";
-import ScrollableListTitle from "Components/ScrollableListTitle";
 import ScrollablePaginated from "Components/ScrollablePaginated";
+import { ScrollableListTopBar } from "Components/ScrollableListTopBar";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 import "./ScrollableListPaginated.scss";
@@ -18,7 +17,7 @@ type ListObject = {
   itemIds: Array<string>,
 };
 
-type SeeMoreProps = {
+export type SeeMoreProps = {
   /** The link where to redirect once clicking the seeMore button. */
   text: string,
   /** The text to render on the seeMore button. */
@@ -119,20 +118,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle title={title} />
-          </Flex.Item>
-          {seeMore.url && (
-            <Flex.Item className="u-padding-right--md">
-              <a href={seeMore.url}>
-                <Text size="xs" tag="h3" className={seeMore.color}>
-                  {seeMore.text}
-                </Text>
-              </a>
-            </Flex.Item>
-          )}
-        </Flex>
+        <ScrollableListTopBar title={title} seeMore={seeMore} />
         <ScrollablePaginated
           className="c-game-list-horizontal-desktop-paginated"
           columnCount={itemIds.length}
