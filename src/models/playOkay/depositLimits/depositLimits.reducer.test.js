@@ -5,6 +5,7 @@ import { DEFAULT_STATE, depositLimitsReducer } from "./depositLimits.reducer";
 describe("Models/playOkay/depositLimits/.reducer", () => {
   test("FETCH_ALL_DONE", () => {
     const allLimits = {
+      kind: "DGOJ_DEPOSIT_LIMIT",
       limit: {
         value: "1.limit.value",
       },
@@ -13,7 +14,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
-      response: [null, allLimits],
+      response: [allLimits],
     };
 
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
