@@ -14,7 +14,7 @@ type Props = {
   onSave: () => void,
   updateError: ?string,
   interval: number,
-  canDisableInterval: boolean,
+  canToggleInterval: boolean,
 };
 
 export class SettingsRealityCheck extends PureComponent<Props> {
@@ -25,7 +25,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
       isLoading,
       interval,
       labels,
-      canDisableInterval,
+      canToggleInterval,
     } = this.props;
 
     const OFF = 0;
@@ -35,7 +35,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
 
     return (
       <>
-        {canDisableInterval && (
+        {canToggleInterval && (
           <ToggleRow
             className="t-border-bottom--none"
             label={labels.inGameSessionUpdatesLabel}
