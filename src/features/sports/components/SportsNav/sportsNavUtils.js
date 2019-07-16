@@ -6,6 +6,16 @@ import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
+const selectPath = (client: *, path: string) => {
+  client.mutate<NavigateClient>({
+    mutation: NAVIGATE_CLIENT_MUTATION,
+    variables: {
+      path,
+      trackingLocation: "SportsNav",
+    },
+  });
+};
+
 const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
 ) => {
@@ -81,6 +91,7 @@ const toNavItem = ({
 });
 
 export const navItemUtils = {
+  selectPath,
   isNavItemSelected,
   onNavItemSelected,
   toSubNavItem,

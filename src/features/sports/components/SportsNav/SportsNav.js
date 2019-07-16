@@ -144,9 +144,20 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
           return null;
         }
 
+        const setIsLiveActiveAndUpdateSelectedNavItem = (
+          liveActive: boolean
+        ) => {
+          setIsLiveActive(liveActive);
+
+          navItemUtils.selectPath(
+            client,
+            data.sportsNavigation[0].sport.clientPath
+          );
+        };
+
         return renderSportsNav(
           currentHash,
-          [isLiveActive, setIsLiveActive],
+          [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
           data,
           client
         );
