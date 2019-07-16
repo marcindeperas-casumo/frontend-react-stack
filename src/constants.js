@@ -92,6 +92,8 @@ export const EVENTS = {
   MIXPANEL_CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
   MIXPANEL_REEL_RACE_CLICKED: "Reel Race Card Clicked",
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
+  MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
+  MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
 };
 export const EVENT_PROPS = {
   LOCATION: "location",
@@ -99,6 +101,7 @@ export const EVENT_PROPS = {
   CURATED_TYPE: "type",
   CURATED_SLUG: "slug",
   OPTED_IN: "opted in",
+  STATE: "State",
 };
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",

@@ -3,6 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import { cond, equals, T } from "ramda";
 import tracker from "Services/tracker";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import type { CellRendererParams } from "Src/types/ReactVirtualized/Grid";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
@@ -38,7 +39,9 @@ export const renderLiveButton = (
     onClick={() => {
       const newState = !isLiveActive;
 
-      tracker.track("Live Nav Toggled", { State: newState });
+      tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
+        [EVENT_PROPS.STATE]: newState,
+      });
       setIsLiveActive(newState);
     }}
     label={label}
