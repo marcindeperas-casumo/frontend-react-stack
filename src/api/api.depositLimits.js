@@ -9,7 +9,10 @@ import type {
 
 // See swagger: limits.at.casumotest.local:8080/swagger-ui.html
 export const BASE_URL = "/casino-player/limits/api/limits";
-export const getAllLimits = (): Promise<DepositLimit[]> => http.get(BASE_URL);
+
+export function getAllLimits(): Promise<DepositLimit[]> {
+  return http.get(BASE_URL);
+}
 
 export function limitAdjust(data: AllLimits): Promise<DepositLimit> {
   return http.post(`${BASE_URL}/DGOJ_DEPOSIT_LIMIT/adjust`, data);
