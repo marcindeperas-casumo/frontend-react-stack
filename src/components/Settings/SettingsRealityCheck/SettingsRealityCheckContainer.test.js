@@ -321,12 +321,6 @@ describe("SettingsRealityCheckContainer", () => {
       promiseFn();
       await wait(10);
       rendered.update();
-
-      expect(
-        rendered.find("Component").prop("updateError").graphQLErrors
-      ).toEqual([{ foo: "bar" }]);
-      await wait(10);
-      rendered.update();
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);
