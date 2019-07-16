@@ -52,7 +52,9 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
     return (
       <>
-        {listTitle && <ScrollableListTitle title={listTitle} />}
+        {listTitle && (
+          <ScrollableListTitle paddingLeft={true} title={listTitle} />
+        )}
         <Scrollable>
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
