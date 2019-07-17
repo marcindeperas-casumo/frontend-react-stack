@@ -20,7 +20,7 @@ type Props = {
   /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
   /** The list of valuables to be displayed as cards */
-  valuables: [], // to update his with graphql type
+  valuables: Array<PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
   /** An array of translated labels */

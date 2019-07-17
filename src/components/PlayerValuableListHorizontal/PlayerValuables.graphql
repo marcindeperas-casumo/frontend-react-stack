@@ -15,15 +15,29 @@ query PlayerValuablesQuery {
       caveat
       currency
       market
-      backgroundImage
-
+      ... on PlayerValuableCash {
+        backgroundImage
+        magnitude
+      }
       ... on PlayerValuableSpins {
         coinValue
+        magnitude
         game {
-          name
+          title
           backgroundImage
         }
       }
+      ... on PlayerValuableDeposit {
+        magnitude
+        backgroundImage
+      }
+      ... on PlayerValuableSport {
+        backgroundImage
+      }
     }
   }
+}
+
+fragment PlayerValuableList_PlayerValuable on PlayerValuable {
+  ...ValuableCard_Valuable
 }
