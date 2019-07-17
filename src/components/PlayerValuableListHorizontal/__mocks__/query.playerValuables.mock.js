@@ -1,10 +1,7 @@
 
 import { PlayerValuablesQuery } from "../PlayerValuables.graphql";
-// import { valuables } from "./response.playerValuables.mock";
-import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import valuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import playerValuableTranslations from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
-
-const valuables = mockValuables();
 
 export const normalQuery = {
   request: {

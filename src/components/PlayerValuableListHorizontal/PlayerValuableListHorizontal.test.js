@@ -1,11 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
-  const mockedValuables = mockValuables();
   const consumeValuable = jest.fn();
   let rendered;
 
