@@ -1,18 +1,11 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
+import t from "./__mocks__/cms.json";
 
 const props = {
   currencySign: "£",
-  t: {
-    daily_short: "daily_short",
-    weekly_short: "weekly_short",
-    monthly_short: "monthly_short",
-    deposit_limits: "deposit_limits",
-    change_in_future: "change_in_future",
-    remove_all: "remove_all",
-    remaining_limit: "remaining_limit",
-  },
+  t,
   limits: {
     daily: 10,
     weekly: 30,

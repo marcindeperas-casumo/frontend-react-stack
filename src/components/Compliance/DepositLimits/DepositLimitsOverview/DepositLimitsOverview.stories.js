@@ -2,18 +2,10 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
+import t from "./__mocks__/cms.json";
 
 const stories = storiesOf("DepositLimitsOverview", module);
 
-const t = {
-  daily_short: "Daily",
-  weekly_short: "Weekly",
-  monthly_short: "Monthly",
-  deposit_limits: "Deposit limits",
-  change_in_future: "Becomes {newLimitValue} on {limitChangeDate}",
-  remove_all: "Remove All",
-  remaining_limit: "{value} remaining",
-};
 stories.add("Default", () => (
   <DepositLimitsOverview
     currencySign="€"
