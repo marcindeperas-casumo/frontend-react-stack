@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
@@ -48,9 +48,9 @@ describe("PlayerValuableListHorizontal", () => {
     );
   });
 
-  test("should refetch when onCallback event is received for VALUABLES/ITEM_CREATED sub-event", () => {
+  test("should refetch when VALUABLES/ITEM_CREATED event is received", async () => {
     const mock = jest.fn();
-    rendered = shallow(
+    rendered = mount(
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
         loading={false}
@@ -70,7 +70,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should not refetch when component is unmounted", () => {
     const mock = jest.fn();
-    rendered = shallow(
+    rendered = mount(
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
         loading={false}
