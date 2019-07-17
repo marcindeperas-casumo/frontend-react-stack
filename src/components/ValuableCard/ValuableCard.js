@@ -109,8 +109,6 @@ export class ValuableCard extends PureComponent<Props> {
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
 
-    // const hours = expiryInHours(expirationTime);
-
     if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
 

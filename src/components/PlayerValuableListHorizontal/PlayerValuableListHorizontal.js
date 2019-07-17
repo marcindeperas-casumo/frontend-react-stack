@@ -51,7 +51,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <>
+      <div className="u-padding-top--xlg">
         {listTitleLabel && <ScrollableListTitle title={listTitleLabel} />}
         <Scrollable>
           {valuables.map(valuable => {
@@ -78,7 +78,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
             );
           })}
         </Scrollable>
-      </>
+      </div>
     );
   }
 }
