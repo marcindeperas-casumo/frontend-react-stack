@@ -1,10 +1,17 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
+import { action } from "@storybook/addon-actions";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 import t from "./__mocks__/cms.json";
 
 const stories = storiesOf("DepositLimitsOverview", module);
+
+const actions = {
+  add: action("add clicked"),
+  edit: action("edit clicked"),
+  removeAll: action("removeAll clicked"),
+};
 
 stories.add("Default", () => (
   <DepositLimitsOverview
@@ -25,9 +32,7 @@ stories.add("Default", () => (
       weekly: 80,
       monthly: 33,
     }}
-    edit={() => {}}
-    add={() => {}}
-    removeAll={() => {}}
+    {...actions}
   />
 ));
 
@@ -43,8 +48,6 @@ stories.add("No limits", () => (
       previouslyIncreased: false,
     }}
     pendingLimitChanges={{}}
-    edit={() => {}}
-    add={() => {}}
-    removeAll={() => {}}
+    {...actions}
   />
 ));
