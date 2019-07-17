@@ -21,13 +21,8 @@ import "./CuratedCard.scss";
 import TrackView from "Components/TrackView";
 import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
 
-const justify = {
-  phablet: "space-between",
-  default: "end",
-};
-
 const spacing = {
-  mobile: "xlg",
+  mobile: "md",
   desktop: "5xlg",
   default: "lg",
 };
@@ -105,7 +100,7 @@ export class CuratedCard extends PureComponent<Props> {
           <CuratedCardBackground {...backgroundProps} />
           <Card
             className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg"
-            justify={justify}
+            justify="end"
             spacing={spacing}
             header={this.renderHeader}
             footer={this.renderFooter}
@@ -156,7 +151,5 @@ export class CuratedCard extends PureComponent<Props> {
 
   render() {
     return this.props.isFetched ? this.renderCard() : <CuratedCardSkeleton />;
-    // <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
-    // </div>
   }
 }
