@@ -1,3 +1,4 @@
+//@flow
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
@@ -48,7 +49,7 @@ describe("PlayerValuableListHorizontal", () => {
     );
   });
 
-  test("should refetch when VALUABLES/ITEM_CREATED event is received", async () => {
+  test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
     const mock = jest.fn();
     rendered = mount(
       <PlayerValuableListHorizontal
