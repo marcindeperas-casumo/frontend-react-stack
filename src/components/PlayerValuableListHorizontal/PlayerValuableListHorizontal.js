@@ -31,13 +31,13 @@ type Props = {
 };
 
 export function PlayerValuableListHorizontal(props: Props) {
-  const { error, loading, valuables, translations } = props;
+  const { error, loading, valuables, translations, refetch } = props;
   const { listTitle } = translations;
 
   useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
-        this.props.refetch();
+        refetch();
       }
     });
 
