@@ -60,8 +60,11 @@ export function HeaderButton(props: {
   }
 
   return (
-    <Flex className="c-deposit-limits__container" onClick={props.add}>
-      <CrossIcon className="t-color-grey-light-1 c-deposit-limits" />
+    <Flex
+      className="c-deposit-limits__container u-cursor-pointer u-padding--md"
+      onClick={props.add}
+    >
+      <CrossIcon className="t-color-grey-light-1 c-deposit-limits__x-icon" />
     </Flex>
   );
 }
