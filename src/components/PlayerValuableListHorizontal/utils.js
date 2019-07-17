@@ -7,18 +7,22 @@ type OnCallbackEvent = {
   data: { success: string },
 };
 
-export type ItemCreatedEventWrapperType = OnCallbackEvent => void;
+export type ItemCreatedEventHandler = {
+  unsubscribe: () => void,
+};
 
-export const subscribeToCallbackEvent = (callback: any => void) =>
-  bridge.on(REACT_APP_EVENT_ON_CALLBACK, callback);
+export const subscribeToItemCreatedEvent = (
+  callback: ({ success: string }) => void
+): ItemCreatedEventHandler => {
+  const eventWrapper = ({ event, data }: OnCallbackEvent) => {
+    if (event === KO_EVENTS.VALUABLES.ITEM_CREATED) {
+      callback(data);
+    }
+  };
 
-export const unsubscribeFromCallbackEvent = (callback: any => void) =>
-  bridge.off(REACT_APP_EVENT_ON_CALLBACK, callback);
+  bridge.on(REACT_APP_EVENT_ON_CALLBACK, eventWrapper);
 
-export const itemCreatedEventWrapper = (
-  callback: () => void
-): ItemCreatedEventWrapperType => ({ event, data }: OnCallbackEvent) => {
-  if (event === KO_EVENTS.VALUABLES.ITEM_CREATED && data.success) {
-    callback();
-  }
+  return {
+    unsubscribe: () => bridge.off(REACT_APP_EVENT_ON_CALLBACK, eventWrapper),
+  };
 };

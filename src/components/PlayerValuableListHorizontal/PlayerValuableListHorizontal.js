@@ -1,5 +1,5 @@
 /* @flow */
-import React, { PureComponent } from "react";
+import React, { useEffect } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -8,11 +8,7 @@ import { VALUABLE_TYPES } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
-import {
-  subscribeToCallbackEvent,
-  unsubscribeFromCallbackEvent,
-  itemCreatedEventWrapper,
-} from "./utils";
+import { subscribeToItemCreatedEvent } from "./utils";
 
 type Translations = {
   listTitle: string,
@@ -34,70 +30,70 @@ type Props = {
   translations: Translations, // TODO: update type,
 };
 
-export class PlayerValuableListHorizontal extends PureComponent<Props> {
-  static defaultProps = {
-    loading: false,
-    refetch: () => {},
-    valuable: [],
-  };
+export function PlayerValuableListHorizontal(props: Props) {
+  const { error, loading, valuables, translations } = props;
+  const { listTitle } = translations;
 
-  onItemCreatedHandler: any => void;
+  useEffect(() => {
+    const handler = subscribeToItemCreatedEvent(({ success }) => {
+      if (success) {
+        this.props.refetch();
+      }
+    });
 
-  componentDidMount() {
-    this.onItemCreatedHandler = itemCreatedEventWrapper(this.props.refetch);
-    subscribeToCallbackEvent(this.onItemCreatedHandler);
+    return function cleanup() {
+      handler.unsubscribe();
+    };
+  });
+
+  if (error) {
+    logger.error(`
+      PlayerValuableListHorizontal failed:
+      ${error}
+    `);
+
+    return null;
   }
 
-  componentWillUnmount() {
-    unsubscribeFromCallbackEvent(this.onItemCreatedHandler);
+  if (loading) {
+    return <GameListHorizontalSkeleton />;
   }
 
-  render() {
-    const { error, loading, valuables, translations } = this.props;
-    const { listTitle } = translations;
+  return (
+    <>
+      {listTitle && <ScrollableListTitle title={listTitle} />}
+      <Scrollable>
+        {valuables.map(valuable => {
+          const { id, valuableState, valuableType } = valuable;
+          const shouldUseValuable =
+            valuableType === VALUABLE_TYPES.SPINS ||
+            valuableType === VALUABLE_TYPES.CASH;
 
-    if (error) {
-      logger.error(`
-        PlayerValuableListHorizontal failed:
-        ${error}
-      `);
-
-      return null;
-    }
-
-    if (loading) {
-      return <GameListHorizontalSkeleton />;
-    }
-
-    return (
-      <>
-        {listTitle && <ScrollableListTitle title={listTitle} />}
-        <Scrollable>
-          {valuables.map(valuable => {
-            const { id, valuableState, valuableType } = valuable;
-            const shouldUseValuable =
-              valuableType === VALUABLE_TYPES.SPINS ||
-              valuableType === VALUABLE_TYPES.CASH;
-
-            return (
-              <a
-                href={getCardUrl(valuableState, valuableType)}
-                key={`valuable-card-${id}`}
-              >
-                <ValuableCard
-                  translatedHoursUnit={translations.hoursUnit}
-                  {...valuable}
-                  onCardClick={
-                    shouldUseValuable
-                      ? () => this.props.onConsumeValuable(id)
-                      : noop
-                  }
-                />
-              </a>
-            );
-          })}
-        </Scrollable>
-      </>
-    );
-  }
+          return (
+            <a
+              href={getCardUrl(valuableState, valuableType)}
+              key={`valuable-card-${id}`}
+            >
+              <ValuableCard
+                translatedHoursUnit={translations.hoursUnit}
+                {...valuable}
+                onCardClick={
+                  shouldUseValuable
+                    ? () => this.props.onConsumeValuable(id)
+                    : noop
+                }
+              />
+            </a>
+          );
+        })}
+      </Scrollable>
+    </>
+  );
 }
+
+// eslint-disable-next-line fp/no-mutation
+PlayerValuableListHorizontal.defaultProps = {
+  loading: false,
+  refetch: () => {},
+  valuable: [],
+};
