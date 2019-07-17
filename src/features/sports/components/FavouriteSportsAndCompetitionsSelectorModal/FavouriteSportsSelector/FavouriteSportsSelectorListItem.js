@@ -43,7 +43,7 @@ const FavouriteSportsSelectorListItem = ({
         <SportsIcon
           alt={group.name}
           iconSrc={group.icon}
-          activeIndicatorSrc={group.activeIndicator}
+          activeIndicator={group.activeIndicator}
           isActive={isFavourite}
         />
       }

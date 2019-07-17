@@ -16,6 +16,8 @@ type Props = {
   fallback?: Node,
   /** The props to pass down to the lazy-loaded component. */
   props?: Object,
+  /** Named export of the component to load */
+  namedExport: string,
 };
 
 export default class LazyPortal extends React.PureComponent<Props> {
@@ -25,6 +27,7 @@ export default class LazyPortal extends React.PureComponent<Props> {
       loader,
       hostElementId,
       props,
+      namedExport,
     } = this.props;
 
     return (
@@ -33,7 +36,12 @@ export default class LazyPortal extends React.PureComponent<Props> {
         {/* Show a fallback until the content is ready. (I don't think this is needed tbh) */}
         <Portal hostElementId={hostElementId}>
           {/* Show a fallback until the bundle is loaded, then load the bundle. */}
-          <Lazy loader={loader} fallback={fallback} props={props} />
+          <Lazy
+            loader={loader}
+            fallback={fallback}
+            props={props}
+            namedExport={namedExport}
+          />
         </Portal>
       </WaitForHostElement>
     );
