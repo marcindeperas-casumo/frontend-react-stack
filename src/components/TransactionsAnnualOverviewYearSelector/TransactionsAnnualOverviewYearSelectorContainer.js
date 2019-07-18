@@ -9,7 +9,7 @@ import {
   CMS_CONTENT_SLUG,
   transactionsBetsHistoryContentSelector,
 } from "Models/transactionsBetsHistory";
-import { TransactionsBetsHistoryYearSelector } from "./TransactionsBetsHistoryYearSelector";
+import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
 const CURRENT_YEAR = new Date().getFullYear();
 /**
@@ -17,7 +17,7 @@ const CURRENT_YEAR = new Date().getFullYear();
  */
 const AVAILABLE_YEARS = range(CURRENT_YEAR - 1, CURRENT_YEAR + 1);
 
-export const TransactionsBetsHistoryYearSelectorContainer = connect(
+export const TransactionsAnnualOverviewYearSelectorContainer = connect(
   state => ({
     walletId: walletIdSelector(state),
     yearOptions: AVAILABLE_YEARS,
@@ -44,4 +44,4 @@ export const TransactionsBetsHistoryYearSelectorContainer = connect(
       });
     },
   })
-)(TransactionsBetsHistoryYearSelector);
+)(TransactionsAnnualOverviewYearSelector);

@@ -218,7 +218,7 @@ export class App extends PureComponent<Props> {
             <LazyPortal
               hostElementId="react-host-transactions-annual-overview-year"
               loader={transactionsAnnualOverviewYearSelectorLoader}
-              namedExport="TransactionsBetsHistoryYearSelector"
+              namedExport="TransactionsAnnualOverviewYearSelector"
             />
           </DataProvider>
         </Route>
@@ -228,9 +228,9 @@ export class App extends PureComponent<Props> {
 }
 
 async function transactionsAnnualOverviewYearSelectorLoader() {
-  const { TransactionsBetsHistoryYearSelector } = await import(
-    "Components/TransactionsBetsHistoryYearSelector"
+  const { TransactionsAnnualOverviewYearSelector } = await import(
+    "Components/TransactionsAnnualOverviewYearSelector"
   );
 
-  return TransactionsBetsHistoryYearSelector;
+  return TransactionsAnnualOverviewYearSelector;
 }

@@ -47,7 +47,7 @@ function YearSelector({
   );
 }
 
-export function TransactionsBetsHistoryYearSelector({
+export function TransactionsAnnualOverviewYearSelector({
   fetchContent,
   isContentFetched,
   content,
