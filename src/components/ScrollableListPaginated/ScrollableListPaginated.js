@@ -40,7 +40,7 @@ type Props = {
   /** The list of items to be rendered. */
   list: ListObject,
   /** Apply margins to the scrollable items */
-  itemSpacing: responsiveSpacerSizes,
+  itemSpacing?: responsiveSpacerSizes,
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
