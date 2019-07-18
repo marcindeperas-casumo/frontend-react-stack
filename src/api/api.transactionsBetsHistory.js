@@ -22,7 +22,8 @@ type AmountWithCodeResponseRaw = {
 
 type WalletTotalsResponseRaw = Array<{
   currency: string,
-  bonuses: AmountWithCodeResponseRaw,
+  awardedBonuses: AmountWithCodeResponseRaw,
+  convertedBonuses: AmountWithCodeResponseRaw,
   withdrawals: AmountWithCodeResponseRaw,
   deposits: AmountWithCodeResponseRaw,
 }>;
@@ -82,7 +83,11 @@ export const getTotalsReq = async (
 
   return {
     currency: path([0, 0, "currency"], responses),
-    bonusesAmount: path([0, 0, "bonuses", "amount"], responses),
+    awardedBonusesAmount: path([0, 0, "awardedBonuses", "amount"], responses),
+    convertedBonusesAmount: path(
+      [0, 0, "convertedBonuses", "amount"],
+      responses
+    ),
     withdrawalsAmount: path([0, 0, "withdrawals", "amount"], responses),
     depositsAmount: path([0, 0, "deposits", "amount"], responses),
     betsAmount: path([1, 0, "betsAmount"], responses),

@@ -7,7 +7,8 @@ export type AnnualOverview = {
   winningsAmount: number,
   depositsAmount: number,
   withdrawalsAmount: number,
-  bonusesAmount: number,
+  awardedBonusesAmount: number,
+  convertedBonusesAmount: number,
 };
 
 export type WalletTotalsProps = {

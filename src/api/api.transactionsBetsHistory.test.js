@@ -57,7 +57,8 @@ describe("getTotalsReq()", () => {
     .mockReturnValueOnce([
       {
         currency,
-        bonuses: { amount: 24 },
+        awardedBonuses: { amount: 24 },
+        convertedBonuses: { amount: 12 },
         withdrawals: { amount: 11 },
         deposits: { amount: 55.7 },
       },
@@ -83,7 +84,8 @@ describe("getTotalsReq()", () => {
 
     expect(data).toEqual({
       currency,
-      bonusesAmount: 24,
+      awardedBonusesAmount: 24,
+      convertedBonusesAmount: 12,
       withdrawalsAmount: 11,
       depositsAmount: 55.7,
       betsAmount: 89.3,
