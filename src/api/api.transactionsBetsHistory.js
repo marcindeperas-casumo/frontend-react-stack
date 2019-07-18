@@ -2,6 +2,7 @@
 import { DateTime } from "luxon";
 import { pick, path } from "ramda";
 import clientHttp from "Lib/http";
+import { URLS } from "Api/api.common";
 
 type HTTPClient = typeof clientHttp;
 
@@ -45,14 +46,12 @@ type TotalsResponse = {
   depositsAmount: number,
 };
 
-const BASE_URL = "/api/common/query";
-
 export const getWalletTotalsUrl = ({
   walletId,
   startTime,
   endTime,
 }: WalletTotalsProps): string => {
-  const baseUrl = `${BASE_URL}/wallet/${walletId}/totals`;
+  const baseUrl = `${URLS.QUERY}/wallet/${walletId}/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("startTime", startTime.toISO());
@@ -65,7 +64,7 @@ export const getGameroundsTotalsUrl = ({
   startTime,
   endTime,
 }: GameroundsTotalsProps): string => {
-  const baseUrl = `${BASE_URL}/gamerounds/totals`;
+  const baseUrl = `${URLS.QUERY}/gamerounds/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("from", startTime.toMillis());
