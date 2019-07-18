@@ -9,7 +9,7 @@ query PlayerValuablesQuery {
     valuables {
       id
       valuableState
-      expirationTime
+      expirationTimeInHours
       valuableType
       title
       caveat

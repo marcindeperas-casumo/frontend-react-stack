@@ -29,7 +29,14 @@ export const PlayerValuableListHorizontalContainer = () => (
     returnPartialData
   >
     {({ loading, error, data }) => {
-      const { translations, player: { valuables = [] } = {} } = data || {};
+      if (loading) {
+        return null;
+      }
+
+      const {
+        translations: { playerValuableTranslations } = {},
+        player: { valuables = [] } = {},
+      } = data || {};
 
       return (
         <Mutation mutation={UseValuable}>
@@ -39,7 +46,7 @@ export const PlayerValuableListHorizontalContainer = () => (
               loading={loading}
               onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
-              translations={translations}
+              translations={playerValuableTranslations}
             />
           )}
         </Mutation>
