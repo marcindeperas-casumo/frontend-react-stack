@@ -227,10 +227,6 @@ export class App extends PureComponent<Props> {
   }
 }
 
-async function transactionsAnnualOverviewYearSelectorLoader() {
-  const { TransactionsAnnualOverviewYearSelector } = await import(
-    "Components/TransactionsAnnualOverviewYearSelector"
-  );
-
-  return TransactionsAnnualOverviewYearSelector;
+function transactionsAnnualOverviewYearSelectorLoader() {
+  return import("Components/TransactionsAnnualOverviewYearSelector");
 }
