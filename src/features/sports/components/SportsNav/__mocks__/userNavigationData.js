@@ -825,6 +825,64 @@ export const userNavigationData = [
     subNav: [
       {
         competition: {
+          name: "International Friendly Matches (W)",
+          id: 1000316395,
+          clientPath: "filter/handball/international_friendly_matches__w_",
+          termKey: "international_friendly_matches__w_",
+          regionCode: null,
+        },
+      },
+      {
+        competition: {
+          name: "2. Bundesliga",
+          id: 2000055957,
+          clientPath: "filter/handball/germany/2__bundesliga",
+          termKey: "2__bundesliga",
+          regionCode: "DE",
+        },
+      },
+      {
+        competition: {
+          name: "1. Division Men",
+          id: 1000444999,
+          clientPath: "filter/handball/denmark/1__division_men",
+          termKey: "1__division_men",
+          regionCode: "DK",
+        },
+      },
+      {
+        competition: {
+          name: "Champions League",
+          id: 1000093380,
+          clientPath: "filter/handball/champions_league",
+          termKey: "champions_league",
+          regionCode: "EU",
+        },
+      },
+      {
+        competition: {
+          name: "EHF Cup",
+          id: 1000093434,
+          clientPath: "filter/handball/ehf_cup",
+          termKey: "ehf_cup",
+          regionCode: null,
+        },
+      },
+    ],
+  },
+  {
+    sport: {
+      name: "Ice Hockey",
+      id: 1000093191,
+      clientPath: "filter/ice_hockey",
+      termKey: "ice_hockey",
+      icon: "https://cms.casumo.com/wp-content/uploads/2019/02/ice_hockey.svg",
+      activeIndicator,
+      canSelectSubgroups: false,
+    },
+    subNav: [
+      {
+        competition: {
           name: "SHL",
           id: 1000094968,
           clientPath: "filter/ice_hockey/sweden/shl",

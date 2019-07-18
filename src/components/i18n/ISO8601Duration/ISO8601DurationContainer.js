@@ -6,7 +6,7 @@ import { ISO8601Duration } from "./ISO8601Duration";
 const slug = "i18n.durations";
 export const ISO8601DurationContainer = connect(
   (state, ownProps) => ({
-    t: getPage(slug)(state),
+    t: getPage(slug)(state).fields,
   }),
   dispatch => ({
     fetchTranslations: () => {
