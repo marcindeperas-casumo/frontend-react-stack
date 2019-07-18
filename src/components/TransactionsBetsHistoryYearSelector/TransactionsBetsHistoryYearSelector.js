@@ -1,12 +1,9 @@
 // @flow
 import React, { useState, useEffect, useCallback } from "react";
-import { range, propOr } from "ramda";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import logger from "Services/logger";
-
-const YEAR_SELECT_ID = "transactions-annual-year-selector";
 
 type YearSelectorProps = {
   selectedYear: number,
@@ -74,9 +71,10 @@ export function TransactionsBetsHistoryYearSelector({
     setLoading(true);
     triggerFetch(false);
 
-    fetchYearOverview(year)
-      .catch(e => logger.error(e))
-      .finally(() => setLoading(false));
+    fetchYearOverview(year).catch(e => {
+      logger.error(e);
+      setLoading(false);
+    });
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
   useEffect(() => {
@@ -88,7 +86,7 @@ export function TransactionsBetsHistoryYearSelector({
   return (
     <div className="u-padding-y--lg u-padding-x--md t-background-white">
       <Text tag="h3" size="sm">
-        {content.year_selector_heading}
+        {content.annual_overview_year_selector_heading}
       </Text>
       <Flex
         spacing="md"
@@ -98,7 +96,7 @@ export function TransactionsBetsHistoryYearSelector({
       >
         <Flex.Item>
           <Text tag="label" size="sm" htmlFor={selectorHtmlId}>
-            {content.year_selector_label}
+            {content.annual_overview_year_selector_label}
           </Text>
         </Flex.Item>
         <Flex.Item>
@@ -116,7 +114,7 @@ export function TransactionsBetsHistoryYearSelector({
         loading={loading}
         onClick={onClick}
       >
-        {content.year_selector_button}
+        {content.annual_overview_year_selector_button}
       </Button>
     </div>
   );

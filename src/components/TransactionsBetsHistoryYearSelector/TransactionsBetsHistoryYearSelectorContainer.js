@@ -13,9 +13,9 @@ import { TransactionsBetsHistoryYearSelector } from "./TransactionsBetsHistoryYe
 
 const CURRENT_YEAR = new Date().getFullYear();
 /**
- * Start from 2019. This will probably be moved to a service.
+ * Hardcoded for audit to 2018-2019.
  */
-const AVAILABLE_YEARS = range(2019, CURRENT_YEAR + 1);
+const AVAILABLE_YEARS = range(CURRENT_YEAR - 1, CURRENT_YEAR + 1);
 
 export const TransactionsBetsHistoryYearSelectorContainer = connect(
   state => ({

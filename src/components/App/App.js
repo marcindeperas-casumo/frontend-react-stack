@@ -213,7 +213,24 @@ export class App extends PureComponent<Props> {
             />
           </DataProvider>
         </Route>
+        <Route path={["history"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview-year"
+              loader={transactionsAnnualOverviewYearSelectorLoader}
+              namedExport="TransactionsBetsHistoryYearSelector"
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }
+}
+
+async function transactionsAnnualOverviewYearSelectorLoader() {
+  const { TransactionsBetsHistoryYearSelector } = await import(
+    "Components/TransactionsBetsHistoryYearSelector"
+  );
+
+  return TransactionsBetsHistoryYearSelector;
 }
