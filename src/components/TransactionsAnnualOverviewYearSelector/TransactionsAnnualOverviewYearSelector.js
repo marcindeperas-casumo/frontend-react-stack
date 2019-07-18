@@ -37,7 +37,12 @@ function YearSelector({
   );
 
   return (
-    <select id={htmlId} value={selectedYear} onChange={onChangeYear}>
+    <select
+      id={htmlId}
+      data-test-id="annual-overview-year-selector"
+      value={selectedYear}
+      onChange={onChangeYear}
+    >
       {yearOptions.map(year => (
         <option key={`key_${year}`} value={year}>
           {year}
@@ -110,6 +115,7 @@ export function TransactionsAnnualOverviewYearSelector({
       </Flex>
       <Button
         className="u-width--1/1"
+        data-test-id="annual-overview-year-selector-button"
         disabled={loading}
         loading={loading}
         onClick={onClick}
