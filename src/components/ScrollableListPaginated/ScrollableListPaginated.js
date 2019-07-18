@@ -23,7 +23,7 @@ export type SeeMoreProps = {
   /** The text to render on the seeMore button. */
   url: string,
   /** The seeMore text color */
-  color: string,
+  color?: string,
 };
 
 type Props = {

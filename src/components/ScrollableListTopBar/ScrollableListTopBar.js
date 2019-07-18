@@ -21,7 +21,7 @@ export class ScrollableListTopBar extends PureComponent<Props> {
         <Flex.Item>
           <ScrollableListTitle title={title} />
         </Flex.Item>
-        {seeMore && seeMore.url && (
+        {seeMore && (
           <Flex.Item className="u-padding-right--md">
             <a href={seeMore.url}>
               <Text size="xs" tag="h3" className={seeMore.color}>
