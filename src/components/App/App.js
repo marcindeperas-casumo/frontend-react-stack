@@ -93,7 +93,7 @@ export class App extends PureComponent<Props> {
         </Route>
         {/* TODO: Change the route to "campaign/:slug" instead of "promotions" */}
         {/*
-          Right now we are showing a campaign detail
+          Right now we are showing a campaign detail 
           page (Winter Games) for the collective promotions page.
           It is going to change in the future, as the /promotions
           page will have a separate content.
