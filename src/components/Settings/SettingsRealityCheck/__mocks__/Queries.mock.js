@@ -1,6 +1,14 @@
 import { REALITY_CHECK_LABELS_QUERY } from "../SettingsRealityCheckLabelsQuery.graphql";
 import { PLAYER_REALITY_CHECK_QUERY } from "../SettingsRealityCheckQuery";
 
+export const labels = {
+  cancel: "Cancel",
+  inGameSessionUpdatesFrequencyLabel:
+    "How frequently would you like to receive them?",
+  inGameSessionUpdatesLabel: "In-game session updates",
+  save: "Save",
+};
+
 export const playerRealityCheckQueryMock = {
   request: {
     query: PLAYER_REALITY_CHECK_QUERY,
@@ -82,13 +90,7 @@ export const realityCheckLabelsQueryMock = {
     query: REALITY_CHECK_LABELS_QUERY,
   },
   result: {
-    data: {
-      cancel: "Cancel",
-      inGameSessionUpdatesFrequencyLabel:
-        "How frequently would you like to receive them?",
-      inGameSessionUpdatesLabel: "In-game session updates",
-      save: "Save",
-    },
+    data: labels,
   },
 };
 
