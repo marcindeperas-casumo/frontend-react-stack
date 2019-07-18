@@ -20,7 +20,9 @@ addDecorator(withKnobs);
 addDecorator(Story => (
   <>
     <div id="portal-host-element" />
-    <Story />
+    <div className="o-wrapper u-padding">
+      <Story />
+    </div>
   </>
 ));
 
