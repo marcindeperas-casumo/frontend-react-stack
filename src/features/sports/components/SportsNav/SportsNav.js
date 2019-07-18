@@ -95,7 +95,7 @@ const renderSportsNav = (
         )}
       </OpenModalMutation>
 
-      {/* TODO: This is only temporary until we fix the sub-navigation for live. Working on it currently. */}
+      {/* TODO: This is only temporary until we fix the sub-navigation for live. Working on it currently.  */}
       {/* https://casumo.slack.com/archives/C6PBKKX5J/p1563435870398000 */}
       {!isLiveActive && (
         <OpenModalMutation
