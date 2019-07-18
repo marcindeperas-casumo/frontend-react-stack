@@ -2,17 +2,36 @@
 import { evolve, take } from "ramda";
 import { DICTIONARY_TERM_QUERY } from "Features/sports/components/DictionaryTerm/DictionaryTerm";
 import { OPEN_MODAL_MUTATION } from "Features/sports/state";
-import { USER_NAVIGATION_QUERY } from "../SportsNav";
+import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { userNavigationData } from "./userNavigationData";
 
 const labels = {
   allLabel: "All",
   editLabel: "Edit",
+  liveLabel: "Live",
 };
 
-const baseMock = {
+const liveMock = {
   request: {
     query: USER_NAVIGATION_QUERY,
+    variables: {
+      live: true,
+    },
+  },
+  result: {
+    data: {
+      ...labels,
+      sportsNavigation: take(3, userNavigationData),
+    },
+  },
+};
+
+const nonLiveMock = {
+  request: {
+    query: USER_NAVIGATION_QUERY,
+    variables: {
+      live: false,
+    },
   },
   result: {
     data: {
@@ -32,7 +51,7 @@ const mockWithXSports = numberOfSports =>
     },
   });
 
-export const error = [{ ...baseMock, error: true }];
-export const singleSport = [mockWithXSports(1)(baseMock)];
-export const multipleSports = [mockWithXSports(3)(baseMock)];
-export const manySports = [baseMock];
+export const error = [{ ...nonLiveMock, error: true }];
+export const singleSport = [mockWithXSports(1)(nonLiveMock), liveMock];
+export const multipleSports = [mockWithXSports(3)(nonLiveMock), liveMock];
+export const manySports = [nonLiveMock, liveMock];

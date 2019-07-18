@@ -1,6 +1,28 @@
 import React from "react";
 import Skeleton from "@casumo/cmp-skeleton";
-import { SportsNavTabSkeleton as NavTab } from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTabSkeleton";
+
+const TabSkeleton = () => (
+  <div style={{ marginLeft: 32 }}>
+    <div
+      style={{
+        backgroundColor: "#FFF",
+        height: 32,
+        width: 32,
+        borderRadius: 16,
+        margin: "0 auto",
+      }}
+    />
+    <div
+      style={{
+        backgroundColor: "#FFF",
+        width: 50,
+        height: 8,
+        borderRadius: 3,
+        marginTop: 12,
+      }}
+    />
+  </div>
+);
 
 export const SportsMainNavSkeleton = () => (
   <div
@@ -24,11 +46,11 @@ export const SportsMainNavSkeleton = () => (
         alignItems: "center",
       }}
     >
-      <NavTab />
-      <NavTab />
-      <NavTab />
-      <NavTab />
-      <NavTab />
+      <TabSkeleton />
+      <TabSkeleton />
+      <TabSkeleton />
+      <TabSkeleton />
+      <TabSkeleton />
     </div>
   </div>
 );

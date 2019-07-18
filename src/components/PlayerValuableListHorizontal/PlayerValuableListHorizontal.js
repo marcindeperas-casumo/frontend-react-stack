@@ -10,7 +10,7 @@ import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 
 type Translations = {
-  listTitle: string,
+  listTitleLabel: string,
   hoursUnit: string,
 };
 
@@ -35,7 +35,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
   render() {
     const { error, loading, valuables, translations } = this.props;
-    const { listTitle } = translations;
+    const { listTitleLabel } = translations;
 
     if (error) {
       logger.error(`
@@ -51,8 +51,8 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <>
-        {listTitle && <ScrollableListTitle title={listTitle} />}
+      <div className="u-padding-top--xlg">
+        {listTitleLabel && <ScrollableListTitle title={listTitleLabel} />}
         <Scrollable>
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
@@ -78,7 +78,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
             );
           })}
         </Scrollable>
-      </>
+      </div>
     );
   }
 }
