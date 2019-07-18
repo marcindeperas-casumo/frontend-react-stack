@@ -3,21 +3,17 @@ import { DateTime } from "luxon";
 import { pick, path } from "ramda";
 import clientHttp from "Lib/http";
 import { URLS } from "Api/api.common";
+import type {
+  AnnualOverview,
+  WalletTotalsProps,
+} from "Models/transactionsBetsHistory";
 
 type HTTPClient = typeof clientHttp;
-
-type WalletTotalsProps = {
-  walletId: string,
-  startTime: DateTime,
-  endTime: DateTime,
-};
 
 type GameroundsTotalsProps = {
   startTime: DateTime,
   endTime: DateTime,
 };
-
-type TotalsProps = WalletTotalsProps;
 
 type AmountWithCodeResponseRaw = {
   amount: number,
@@ -36,15 +32,6 @@ type GameroundsTotalsResponseRaw = Array<{
   betsAmount: number,
   winningsAmount: number,
 }>;
-
-type TotalsResponse = {
-  currency: string,
-  betsAmount: number,
-  winningsAmount: number,
-  bonusesAmount: number,
-  withdrawalsAmount: number,
-  depositsAmount: number,
-};
 
 export const getWalletTotalsUrl = ({
   walletId,
@@ -85,9 +72,9 @@ export const getGameroundsTotalsReq = (
   http.get(getGameroundsTotalsUrl(props));
 
 export const getTotalsReq = async (
-  props: TotalsProps,
+  props: WalletTotalsProps,
   http: HTTPClient = clientHttp
-): Promise<TotalsResponse> => {
+): Promise<AnnualOverview> => {
   const responses = await Promise.all([
     getWalletTotalsReq(props, http),
     getGameroundsTotalsReq(pick(["startTime", "endTime"], props), http),
