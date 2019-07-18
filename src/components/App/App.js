@@ -161,12 +161,11 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings"
-              loader={async () => {
-                const { SettingsSectionsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsSections/SettingsSectionsContainer"
-                );
-                return SettingsSectionsContainer;
-              }}
+                )
+              }
               namedExport="SettingsSectionsContainer"
             />
           </DataProvider>
@@ -175,12 +174,11 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-account-details"
-              loader={async () => {
-                const { SettingsAccountDetailsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
-                );
-                return SettingsAccountDetailsContainer;
-              }}
+                )
+              }
               namedExport="SettingsAccountDetailsContainer"
             />
           </DataProvider>
@@ -189,13 +187,12 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-notifications"
-              loader={async () => {
-                const { SettingsNotificationsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
-                );
-                return SettingsNotificationsContainer;
-              }}
-              namedExport="SettingsAccountDetailsContainer"
+                )
+              }
+              namedExport="SettingsNotificationsContainer"
             />
           </DataProvider>
         </Route>
@@ -203,12 +200,11 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-reality-check"
-              loader={async () => {
-                const { SettingsRealityCheckContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
-                );
-                return SettingsRealityCheckContainer;
-              }}
+                )
+              }
               namedExport="SettingsRealityCheckContainer"
             />
           </DataProvider>
