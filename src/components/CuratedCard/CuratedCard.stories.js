@@ -16,7 +16,7 @@ const state = {
   ...defaultState,
   schema: {
     cms: {
-      "curated.curated-gb_en": {
+      "curated.curated-game-gb_en": {
         fields: curated,
       },
       "curated.welcome-offer-test": {
@@ -29,7 +29,7 @@ const state = {
 stories.add("Default", () => {
   return (
     <MockStore state={state}>
-      <CuratedCard card={"curated-gb_en"} />
+      <CuratedCard card={"curated-game-gb_en"} />
     </MockStore>
   );
 });
