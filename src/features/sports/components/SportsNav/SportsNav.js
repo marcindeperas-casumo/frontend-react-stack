@@ -95,17 +95,23 @@ const renderSportsNav = (
         )}
       </OpenModalMutation>
 
-      <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
-        {openChooseFavouriteLeaguesModal => (
-          <SportsSubNav
-            {...commonProps}
-            navItems={selectedNavItem.subNav || []}
-            canEdit={selectedNavItem.canEdit}
-            onEdit={openChooseFavouriteLeaguesModal}
-            cacheBuster={subNavCacheBuster}
-          />
-        )}
-      </OpenModalMutation>
+      {/* TODO: This is only temporary until we fix the sub-navigation for live. Working on it currently. */}
+      {/* https://casumo.slack.com/archives/C6PBKKX5J/p1563435870398000 */}
+      {!isLiveActive && (
+        <OpenModalMutation
+          variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}
+        >
+          {openChooseFavouriteLeaguesModal => (
+            <SportsSubNav
+              {...commonProps}
+              navItems={selectedNavItem.subNav || []}
+              canEdit={selectedNavItem.canEdit}
+              onEdit={openChooseFavouriteLeaguesModal}
+              cacheBuster={subNavCacheBuster}
+            />
+          )}
+        </OpenModalMutation>
+      )}
     </>
   );
 };
