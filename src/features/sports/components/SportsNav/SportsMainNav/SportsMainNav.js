@@ -49,14 +49,12 @@ export const renderLiveButton = (
   />
 );
 
-export const renderEditButton = ({
-  navItems,
-  labels,
-  canEdit,
-  onEdit,
-}: Props) => (
+export const renderEditButton = (
+  { navItems, labels, canEdit, onEdit }: Props,
+  [isLiveActive]: LiveState
+) => (
   <div className="u-margin-y--lg u-margin-left--md">
-    {canEdit && (
+    {canEdit && !isLiveActive && (
       <EditPillsButton
         onClick={onEdit}
         className="t-background-white t-color-grey u-drop-shadow"
@@ -90,7 +88,7 @@ export const renderTabList = (
 
   const renderedTab = cond([
     [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
-    [isLastItem, () => renderEditButton(props)],
+    [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
 

@@ -62,11 +62,12 @@ export const AllItem = (props: AllItemProps) => {
 type EditItemProps = {
   canEdit: boolean,
   onEdit: any => any,
+  isLiveActive: boolean,
 };
 
-export const EditItem = ({ canEdit, onEdit }: EditItemProps) => (
+export const EditItem = ({ canEdit, onEdit, isLiveActive }: EditItemProps) => (
   <div className="u-margin--md u-margin-left--sm">
-    {canEdit && (
+    {canEdit && !isLiveActive && (
       <EditPillsButton
         onClick={onEdit}
         className="t-background-grey-light-3 t-color-grey u-drop-shadow"
