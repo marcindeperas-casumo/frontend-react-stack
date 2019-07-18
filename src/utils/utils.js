@@ -18,6 +18,15 @@ export const bridgeFactory = () => {
       // eslint-disable-next-line fp/no-mutating-methods
       obj[ev].push(cb);
     },
+    off: (ev: string, cb: any => void) => {
+      if (obj[ev]) {
+        const index = R.findIndex(fn => fn === cb)(obj[ev]);
+        if (index !== -1) {
+          // eslint-disable-next-line fp/no-mutating-methods
+          obj[ev].splice(index, 1);
+        }
+      }
+    },
     emit: (ev: string, data: any) => {
       console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
 
