@@ -16,9 +16,9 @@ const props = {
       setTimeout(resolve, 3000);
     }),
   content: {
-    year_selector_heading: "Annual Transactions Overview",
-    year_selector_label: "Year",
-    year_selector_button: "Show Annual Overview",
+    annual_overview_year_selector_heading: "Annual Transactions Overview",
+    annual_overview_year_selector_label: "Year",
+    annual_overview_year_selector_button: "Show Annual Overview",
   },
   isContentFetched: true,
   fetchContent: () => {},

@@ -13,7 +13,9 @@ type YearSelectorProps = {
 };
 
 type Content = {
-  [string]: string,
+  annual_overview_year_selector_heading: string,
+  annual_overview_year_selector_label: string,
+  annual_overview_year_selector_button: string,
 };
 
 type Props = {
