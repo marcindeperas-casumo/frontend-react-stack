@@ -45,7 +45,7 @@ const renderItem = ({ props, navItemTypes, isLiveActive }: RenderItemArgs) => ({
   const renderedComponent = R.cond([
     [R.equals("all"), () => <AllItem {...itemProps} />],
     [R.equals("nav"), () => <NavItem {...itemProps} />],
-    [R.equals("edit"), () => <EditItem {...props} />],
+    [R.equals("edit"), () => <EditItem {...itemProps} />],
     [R.T, () => "null"],
   ])(navItemType);
 

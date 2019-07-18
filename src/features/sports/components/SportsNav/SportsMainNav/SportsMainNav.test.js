@@ -1,4 +1,5 @@
 import React from "react";
+import * as R from "ramda";
 import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
@@ -13,6 +14,11 @@ import {
 } from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
+const liveState = {
+  active: [true, () => {}],
+  inactive: [false, () => {}],
+};
+
 const props = {
   navItems,
   canEdit: true,
@@ -20,7 +26,7 @@ const props = {
   isSelected: jest.fn(),
   onSelected: jest.fn(),
   cacheBuster: "hey brother",
-  liveState: [false, () => {}],
+  liveState: liveState.inactive,
   labels: {
     all: "all",
     live: "live",
@@ -73,14 +79,31 @@ describe("<SportsMainNav />", () => {
   });
 
   describe("renderEditButton", () => {
-    test("renders a button when canEdit is true", () => {
-      const rendered = shallow(renderEditButton(props));
+    const editButtonProps = R.pick(
+      ["navItems", "labels", "canEdit", "onEdit"],
+      props
+    );
+
+    test("renders a button when canEdit is true and isLiveActive is false", () => {
+      const rendered = shallow(
+        renderEditButton(editButtonProps, liveState.inactive)
+      );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
 
+    test("returns null when isLiveActive is true", () => {
+      const rendered = shallow(
+        renderEditButton(editButtonProps, liveState.active)
+      );
+
+      expect(rendered.find(EditPillsButton)).toHaveLength(0);
+    });
+
     test("returns null when canEdit is false", () => {
-      const rendered = shallow(renderEditButton({ ...props, canEdit: false }));
+      const rendered = shallow(
+        renderEditButton({ ...props, canEdit: false }, liveState.inactive)
+      );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(0);
     });
