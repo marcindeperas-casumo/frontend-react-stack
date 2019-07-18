@@ -43,7 +43,7 @@ type Props = {
   /** Background image to be displayed in the Card header */
   backgroundImage: string,
   /** Valuable caveats to be displayed */
-  caveat: string,
+  caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
