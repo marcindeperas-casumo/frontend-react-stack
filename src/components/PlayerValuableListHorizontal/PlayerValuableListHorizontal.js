@@ -10,7 +10,7 @@ import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 
 type Translations = {
-  listTitle: string,
+  listTitleLabel: string,
   hoursUnit: string,
 };
 
@@ -20,7 +20,7 @@ type Props = {
   /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
   /** The list of valuables to be displayed as cards */
-  valuables: [], // to update his with graphql type
+  valuables: Array<PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
   /** An array of translated labels */
@@ -35,7 +35,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
 
   render() {
     const { error, loading, valuables, translations } = this.props;
-    const { listTitle } = translations;
+    const { listTitleLabel } = translations;
 
     if (error) {
       logger.error(`
@@ -51,8 +51,8 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <>
-        {listTitle && <ScrollableListTitle title={listTitle} />}
+      <div className="u-padding-top--xlg">
+        {listTitleLabel && <ScrollableListTitle title={listTitleLabel} />}
         <Scrollable>
           {valuables.map(valuable => {
             const { id, valuableState, valuableType } = valuable;
@@ -78,7 +78,7 @@ export class PlayerValuableListHorizontal extends PureComponent<Props> {
             );
           })}
         </Scrollable>
-      </>
+      </div>
     );
   }
 }
