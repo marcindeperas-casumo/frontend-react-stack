@@ -1,8 +1,6 @@
 import { DateTime } from "luxon";
 import {
-  getWalletTotalsUrl,
   getWalletTotalsReq,
-  getGameroundsTotalsUrl,
   getGameroundsTotalsReq,
   getTotalsReq,
 } from "./api.transactionsBetsHistory";
@@ -11,25 +9,6 @@ describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
   const http = {
     get: jest.fn(),
   };
-
-  describe("getWalletTotalsUrl()", () => {
-    test("returns correctly built url", () => {
-      const walletId = "wallet-id-1234";
-      const startTime = DateTime.local(2018);
-      const startTimeInUrl = encodeURIComponent(startTime.toISO());
-      const endTime = DateTime.local();
-      const endTimeInUrl = encodeURIComponent(endTime.toISO());
-      const url = getWalletTotalsUrl({
-        walletId,
-        startTime,
-        endTime,
-      });
-
-      expect(url).toEqual(
-        `/api/common/query/wallet/${walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
-      );
-    });
-  });
 
   describe("getWalletTotalsReq()", () => {
     test("is passed correctly formatted url", async () => {
@@ -53,23 +32,6 @@ describe("/api/common/query/gamerounds/totals", () => {
   const http = {
     get: jest.fn(),
   };
-
-  describe("getGameroundsTotalsUrl()", () => {
-    test("returns correctly built url", () => {
-      const startTime = DateTime.local(2018);
-      const startTimeInUrl = encodeURIComponent(startTime.toMillis());
-      const endTime = DateTime.local();
-      const endTimeInUrl = encodeURIComponent(endTime.toMillis());
-      const url = getGameroundsTotalsUrl({
-        startTime,
-        endTime,
-      });
-
-      expect(url).toEqual(
-        `/api/common/query/gamerounds/totals?from=${startTimeInUrl}&to=${endTimeInUrl}`
-      );
-    });
-  });
 
   describe("getGameroundsTotalsReq()", () => {
     test("is passed correctly formatted url", async () => {

@@ -1,3 +1,4 @@
+// @flow
 import { TransactionsAnnualOverviewYearSelectorContainer } from "./TransactionsAnnualOverviewYearSelectorContainer";
 
 export {

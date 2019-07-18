@@ -33,7 +33,7 @@ type GameroundsTotalsResponseRaw = Array<{
   winningsAmount: number,
 }>;
 
-export const getWalletTotalsUrl = ({
+const getWalletTotalsUrl = ({
   walletId,
   startTime,
   endTime,
@@ -47,7 +47,7 @@ export const getWalletTotalsUrl = ({
   return `${baseUrl}?${urlParams.toString()}`;
 };
 
-export const getGameroundsTotalsUrl = ({
+const getGameroundsTotalsUrl = ({
   startTime,
   endTime,
 }: GameroundsTotalsProps): string => {
