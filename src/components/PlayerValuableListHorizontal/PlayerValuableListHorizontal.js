@@ -11,7 +11,7 @@ import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 import { subscribeToItemCreatedEvent } from "./utils";
 
 type Translations = {
-  listTitle: string,
+  listTitleLabel: string,
   hoursUnit: string,
 };
 
@@ -23,7 +23,7 @@ type Props = {
   /** Refetch valuables function */
   refetch: () => void,
   /** The list of valuables to be displayed as cards */
-  valuables: [], // to update his with graphql type
+  valuables: Array<PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => void,
   /** An array of translated labels */
@@ -32,7 +32,7 @@ type Props = {
 
 export function PlayerValuableListHorizontal(props: Props) {
   const { error, loading, valuables, translations, refetch } = props;
-  const { listTitle } = translations;
+  const { listTitleLabel } = translations;
 
   useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
@@ -51,7 +51,6 @@ export function PlayerValuableListHorizontal(props: Props) {
       PlayerValuableListHorizontal failed:
       ${error}
     `);
-
     return null;
   }
 
@@ -60,8 +59,8 @@ export function PlayerValuableListHorizontal(props: Props) {
   }
 
   return (
-    <>
-      {listTitle && <ScrollableListTitle title={listTitle} />}
+    <div className="u-padding-top--xlg">
+      {listTitleLabel && <ScrollableListTitle title={listTitleLabel} />}
       <Scrollable>
         {valuables.map(valuable => {
           const { id, valuableState, valuableType } = valuable;
@@ -87,7 +86,7 @@ export function PlayerValuableListHorizontal(props: Props) {
           );
         })}
       </Scrollable>
-    </>
+    </div>
   );
 }
 

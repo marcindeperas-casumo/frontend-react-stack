@@ -1,14 +1,13 @@
 //@flow
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
-  const mockedValuables = mockValuables();
   const consumeValuable = jest.fn();
   const refetchMock = jest.fn();
   let rendered;
@@ -45,7 +44,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the list title", () => {
     expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
-      translationsMock.listTitle
+      translationsMock.listTitleLabel
     );
   });
 

@@ -20,7 +20,14 @@ const consumeValuableMutation = mutation => (id: string) =>
 export const PlayerValuableListHorizontalContainer = () => (
   <PlayerValuablesTypedQuery query={LocalQuery} returnPartialData>
     {({ loading, error, refetch, data }) => {
-      const { translations, player: { valuables = [] } = {} } = data || {};
+      if (loading) {
+        return null;
+      }
+
+      const {
+        translations: { playerValuableTranslations } = {},
+        player: { valuables = [] } = {},
+      } = data || {};
 
       return (
         <Mutation mutation={UseValuable}>
@@ -31,7 +38,7 @@ export const PlayerValuableListHorizontalContainer = () => (
               refetch={refetch}
               onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
-              translations={translations}
+              translations={playerValuableTranslations}
             />
           )}
         </Mutation>
