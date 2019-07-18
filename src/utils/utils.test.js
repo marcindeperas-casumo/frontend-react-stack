@@ -1,3 +1,4 @@
+import { F } from "ramda";
 import {
   bridgeFactory,
   generateColumns,
@@ -10,6 +11,7 @@ import {
   getSymbolForCurrency,
   interpolate,
   isCmsEntryEmpty,
+  findOr,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -18,6 +20,33 @@ describe("bridgeFactory()", () => {
 
     expect(bridge.on).toBeInstanceOf(Function);
     expect(bridge.emit).toBeInstanceOf(Function);
+  });
+});
+
+describe("findOr()", () => {
+  const defaultValue = { x: 64 };
+  const items = [{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 }];
+
+  test("should return the first item that satisfies the predicate", () => {
+    const predicate = x => x.c === 3;
+    const result1 = findOr(defaultValue, predicate, items);
+    const result2 = findOr(defaultValue, predicate)(items);
+    const result3 = findOr(defaultValue)(predicate)(items);
+
+    [result1, result2, result3].forEach(result =>
+      expect(result).toEqual({ c: 3 })
+    );
+  });
+
+  test("should return the default item if no items satisfy the predicate", () => {
+    const predicate = F;
+    const result1 = findOr(defaultValue, predicate, items);
+    const result2 = findOr(defaultValue, predicate)(items);
+    const result3 = findOr(defaultValue)(predicate)(items);
+
+    [result1, result2, result3].forEach(result =>
+      expect(result).toEqual(defaultValue)
+    );
   });
 });
 
