@@ -34,20 +34,7 @@ export type Props = {
 export const renderLiveButton = (
   label: string,
   [isLiveActive, setIsLiveActive]: LiveState
-) => (
-  <LiveTab
-    onClick={() => {
-      const newState = !isLiveActive;
-
-      tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
-        [EVENT_PROPS.SPORTS_STATE]: newState,
-      });
-      setIsLiveActive(newState);
-    }}
-    label={label}
-    isActive={isLiveActive}
-  />
-);
+) => null;
 
 export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
