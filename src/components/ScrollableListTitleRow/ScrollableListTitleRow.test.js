@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { ScrollableListTopBar } from "Components/ScrollableListTopBar";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
-describe("ScrollableListTopBar", () => {
+describe("ScrollableListTitleRow", () => {
   const seeMore = {
     text: "foo",
     url: "bar",
@@ -11,7 +11,7 @@ describe("ScrollableListTopBar", () => {
 
   beforeEach(() => {
     rendered = shallow(
-      <ScrollableListTopBar title="Whatever" seeMore={seeMore} />
+      <ScrollableListTitleRow title="Whatever" seeMore={seeMore} />
     );
   });
 
@@ -27,7 +27,7 @@ describe("ScrollableListTopBar", () => {
   });
 
   test("not render seeMore text and url on an <a> tag if seeMore is not set", () => {
-    rendered = shallow(<ScrollableListTopBar title="Whatever" />);
+    rendered = shallow(<ScrollableListTitleRow title="Whatever" />);
 
     expect(rendered.find("Text")).toHaveLength(0);
     expect(rendered.find("a")).toHaveLength(0);

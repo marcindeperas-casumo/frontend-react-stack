@@ -7,7 +7,7 @@ import classNames from "classnames";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
 import type { responsiveSpacerSizes } from "@casumo/cudl-react-prop-types";
 import ScrollablePaginated from "Components/ScrollablePaginated";
-import { ScrollableListTopBar } from "Components/ScrollableListTopBar";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
 
 import "./ScrollableListPaginated.scss";
@@ -118,7 +118,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
-        <ScrollableListTopBar title={title} seeMore={seeMore} />
+        <ScrollableListTitleRow title={title} seeMore={seeMore} />
         <ScrollablePaginated
           className="c-game-list-horizontal-desktop-paginated"
           columnCount={itemIds.length}

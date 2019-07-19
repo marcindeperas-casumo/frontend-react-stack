@@ -46,7 +46,7 @@ describe("ScrollableListPaginated", () => {
   });
 
   test("render the list top bar (title and seeMore url)", () => {
-    const titleComponent = rendered.find("ScrollableListTopBar");
+    const titleComponent = rendered.find("ScrollableListTitleRow");
     expect(titleComponent.length).toBe(1);
     expect(titleComponent.props().title).toEqual(list.title);
   });

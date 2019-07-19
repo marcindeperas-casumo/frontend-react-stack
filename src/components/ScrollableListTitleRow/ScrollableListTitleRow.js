@@ -12,7 +12,7 @@ type Props = {
   seeMore?: SeeMoreProps,
 };
 
-export class ScrollableListTopBar extends PureComponent<Props> {
+export class ScrollableListTitleRow extends PureComponent<Props> {
   render() {
     const { title, seeMore } = this.props;
 

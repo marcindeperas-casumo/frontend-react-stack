@@ -1,12 +1,12 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { ScrollableListTopBar } from "./";
+import { ScrollableListTitleRow } from "./";
 
-const stories = storiesOf("ScrollableListTopBar", module);
+const stories = storiesOf("ScrollableListTitleRow", module);
 
 stories.add("Default", () => (
-  <ScrollableListTopBar
+  <ScrollableListTitleRow
     title="howdy! 🤠"
     seeMore={{ text: "This is a pretty link 💅🏼", url: "#" }}
   />
