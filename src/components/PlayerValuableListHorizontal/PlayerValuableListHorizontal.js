@@ -60,7 +60,9 @@ export function PlayerValuableListHorizontal(props: Props) {
 
   return (
     <div className="u-padding-top--xlg">
-      {listTitleLabel && <ScrollableListTitle title={listTitleLabel} />}
+      {listTitleLabel && (
+        <ScrollableListTitle paddingLeft title={listTitleLabel} />
+      )}
       <Scrollable>
         {valuables.map(valuable => {
           const { id, valuableState, valuableType } = valuable;
