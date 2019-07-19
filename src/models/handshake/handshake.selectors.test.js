@@ -20,6 +20,7 @@ import {
   optedInReelRacesSelector,
   adventureLevelsSelector,
   localeSelector,
+  walletIdSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -335,6 +336,29 @@ describe("Handshake selectors", () => {
     };
 
     expect(localeSelector(state)).toEqual("sv-SE");
+  });
+
+  test("walletIdSelector", () => {
+    const walletId = "wallet-id-1";
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p2" },
+          "common/composition/players": {
+            players: {
+              p2: {
+                id: "p2",
+                wallet: {
+                  id: walletId,
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(walletIdSelector(state)).toEqual(walletId);
   });
 });
 

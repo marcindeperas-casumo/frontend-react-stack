@@ -92,6 +92,8 @@ export const EVENTS = {
   MIXPANEL_CURATED_COMPONENT_VIEWED: "Curated Component Viewed",
   MIXPANEL_REEL_RACE_CLICKED: "Reel Race Card Clicked",
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
+  MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
+  MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
 };
 export const EVENT_PROPS = {
   LOCATION: "location",
@@ -99,6 +101,9 @@ export const EVENT_PROPS = {
   CURATED_TYPE: "type",
   CURATED_SLUG: "slug",
   OPTED_IN: "opted in",
+  SPORTS_STATE: "State",
+  SPORTS_SELECTED_NAV: "Sports",
+  SPORTS_IS_LIVE_ACTIVE: "Is Live",
 };
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
@@ -130,5 +135,8 @@ export const EVOLUTION_LOBBY_TYPES = {
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {
     COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
+  },
+  VALUABLES: {
+    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
   },
 };

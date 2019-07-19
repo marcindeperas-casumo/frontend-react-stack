@@ -1,0 +1,7 @@
+.c-deposit-limits__x-icon {
+  transform: rotate(45deg);
+}
+
+.c-deposit-limits__container {
+  margin: -(map-get($cudl-spacer-sizes, md));
+}
