@@ -25,7 +25,10 @@ stories.add("Default", () => (
       previouslyIncreased: false,
     }}
     pendingLimitChanges={{
-      daily: { date: Date.now() + 48 * 60 * 60 * 100, value: 750 },
+      daily: {
+        date: new Date("2012-12-12").valueOf(),
+        value: 750,
+      },
     }}
     limitsUsage={{
       daily: 1,
