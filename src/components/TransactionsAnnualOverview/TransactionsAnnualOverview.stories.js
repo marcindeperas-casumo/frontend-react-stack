@@ -2,9 +2,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
-import { TransactionsBetsHistoryAnnualOverview } from "./TransactionsBetsHistoryAnnualOverview";
+import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 
-const stories = storiesOf("TransactionsBetsHistoryAnnualOverview", module);
+const stories = storiesOf("TransactionsAnnualOverview", module);
 const props = {
   content: {
     annual_transactions_list_heading: "Heading",
@@ -32,8 +32,8 @@ const props = {
   navigateToHistory: () => {},
 };
 
-const Stories = () => <TransactionsBetsHistoryAnnualOverview {...props} />;
+const Stories = () => <TransactionsAnnualOverview {...props} />;
 
 if (isNotChromatic) {
-  stories.add("TransactionsBetsHistoryAnnualOverview", Stories);
+  stories.add("TransactionsAnnualOverview", Stories);
 }

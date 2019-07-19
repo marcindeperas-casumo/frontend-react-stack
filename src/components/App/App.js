@@ -223,10 +223,8 @@ export class App extends PureComponent<Props> {
             <LazyPortal
               hostElementId="react-host-transactions-annual-overview"
               props={{ selectedYear: routeParams[0] }}
-              loader={() =>
-                import("Components/TransactionsBetsHistoryAnnualOverview")
-              }
-              namedExport="TransactionsBetsHistoryAnnualOverview"
+              loader={() => import("Components/TransactionsAnnualOverview")}
+              namedExport="TransactionsAnnualOverview"
             />
             {/* Had to put same portal here because adding another path above didn't work sometimes */}
             <LazyPortal

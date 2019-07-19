@@ -8,9 +8,9 @@ import {
   transactionsBetsHistoryContentSelector,
   transactionsBetsHistoryAnnualOverviewSelector,
 } from "Models/transactionsBetsHistory";
-import { TransactionsBetsHistoryAnnualOverview } from "./TransactionsBetsHistoryAnnualOverview";
+import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 
-export const TransactionsBetsHistoryAnnualOverviewContainer = connect(
+export const TransactionsAnnualOverviewContainer = connect(
   (state, { selectedYear }) => ({
     locale: localeSelector(state),
     currency: currencySelector(state),
@@ -23,4 +23,4 @@ export const TransactionsBetsHistoryAnnualOverviewContainer = connect(
         routeId: "history",
       }),
   })
-)(TransactionsBetsHistoryAnnualOverview);
+)(TransactionsAnnualOverview);

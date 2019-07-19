@@ -48,7 +48,7 @@ function ListItem({ label, amount, currency, locale }: ListItemProps) {
   );
 }
 
-export function TransactionsBetsHistoryAnnualOverview({
+export function TransactionsAnnualOverview({
   locale,
   currency,
   content,
