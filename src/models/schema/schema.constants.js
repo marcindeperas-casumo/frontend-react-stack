@@ -16,6 +16,5 @@ export const ENTITY_KEYS = {
   PLAYER_GAMES: "playerGames",
   REEL_RACES: "reelRaces",
   ADVENTURER: "adventurer",
-  TRANSACTIONS_BETS_HISTORY_ANNUAL_OVERVIEW:
-    "transactionsBetsHistoryAnnualOverview",
+  TRANSACTIONS_ANNUAL_OVERVIEW: "transactionsBetsHistoryAnnualOverview",
 };

@@ -10,7 +10,12 @@ describe("fetchAnnualOverviewSaga()", () => {
     const walletId = "wallet-id-34";
     const annualOverview = {
       betsAmount: 23.4,
-      bonusesAmount: 34.4,
+      awardedBonusesAmount: 34.4,
+      convertedBonusesAmount: 10,
+      currency: "GBP",
+      winningsAmount: 11,
+      depositsAmount: 13.4,
+      withdrawalsAmount: 76,
     };
     const action = {
       year: 2018,
@@ -34,10 +39,11 @@ describe("fetchAnnualOverviewSaga()", () => {
       types.ANNUAL_OVERVIEW_FETCH_COMPLETED
     );
 
-    const mergeEntityEffect = generator.next(annualOverview).value;
+    const mergeEntityEffect = generator.next({ response: annualOverview })
+      .value;
 
     expect(mergeEntityEffect.PUT.action.payload).toEqual({
-      [ENTITY_KEYS.TRANSACTIONS_BETS_HISTORY_ANNUAL_OVERVIEW]: {
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [action.year]: annualOverview,
       },
     });

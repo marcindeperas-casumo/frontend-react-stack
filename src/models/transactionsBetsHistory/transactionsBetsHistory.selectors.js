@@ -10,11 +10,7 @@ type ContentSelectorResult = Object => { [string]: string };
 
 export const transactionsBetsHistoryAnnualOverviewSelector: number => any => AnnualOverview = year =>
   createSelector(
-    pathOr({}, [
-      "schema",
-      ENTITY_KEYS.TRANSACTIONS_BETS_HISTORY_ANNUAL_OVERVIEW,
-      year,
-    ]),
+    pathOr({}, ["schema", ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW, year]),
     identity
   );
 

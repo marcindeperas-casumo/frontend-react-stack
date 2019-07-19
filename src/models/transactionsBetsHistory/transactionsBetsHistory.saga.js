@@ -25,7 +25,7 @@ export function* fetchAnnualOverviewSaga(
 
   yield put(
     mergeEntity({
-      [ENTITY_KEYS.TRANSACTIONS_BETS_HISTORY_ANNUAL_OVERVIEW]: {
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [year]: response,
       },
     })
