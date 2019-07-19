@@ -29,6 +29,7 @@ const props = {
   },
   currency: "GBP",
   locale: "en-GB",
+  navigateToHistory: () => {},
 };
 
 const Stories = () => <TransactionsBetsHistoryAnnualOverview {...props} />;

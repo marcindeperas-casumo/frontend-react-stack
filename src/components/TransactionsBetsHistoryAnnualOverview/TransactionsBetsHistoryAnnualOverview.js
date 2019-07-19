@@ -16,6 +16,7 @@ type Props = {
   currency: string,
   content: Content,
   data: AnnualOverview,
+  navigateToHistory: () => void,
 };
 
 type ListItemProps = {
@@ -52,8 +53,14 @@ export function TransactionsBetsHistoryAnnualOverview({
   currency,
   content,
   data,
+  navigateToHistory,
 }: Props) {
   const passedProps = { currency, locale };
+
+  if (!data) {
+    navigateToHistory();
+    return null;
+  }
 
   return (
     <div className="u-padding-y--md u-padding-x--sm t-background-white">
