@@ -77,7 +77,7 @@ export function TransactionsAnnualOverview({
   }
 
   return (
-    <div className="u-padding-y--md u-padding-x--sm t-background-white">
+    <div className="u-padding--md t-background-white">
       <Text tag="h3" size="md" className="u-margin-bottom--md">
         {content.annual_transactions_list_heading}
       </Text>

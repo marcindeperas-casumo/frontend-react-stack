@@ -2,12 +2,15 @@
 import { connect } from "react-redux";
 import { range } from "ramda";
 import { DateTime } from "luxon";
+import DurandalReactBridge from "Src/DurandalReactBridge";
+import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
 import { walletIdSelector } from "Models/handshake";
 import { getTotalsReq } from "Api/api.transactionsBetsHistory";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
   CMS_CONTENT_SLUG,
   transactionsBetsHistoryContentSelector,
+  initFetchAnnualOverview,
 } from "Models/transactionsBetsHistory";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
@@ -25,23 +28,22 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
     content: transactionsBetsHistoryContentSelector(state),
     isContentFetched: isPageFetchedSelector(CMS_CONTENT_SLUG)(state),
   }),
-  dispatch => ({
+  (dispatch, ownProps) => ({
     fetchContent: () => dispatch(fetchPageBySlug(CMS_CONTENT_SLUG)),
-  }),
-  (stateProps, dispatchProps, ownProps) => ({
-    ...stateProps,
-    ...ownProps,
-    ...dispatchProps,
-    fetchYearOverview: year => {
-      const { walletId } = stateProps;
-      const startTime = DateTime.utc(year);
-      const endTime = DateTime.utc(year + 1);
-
-      return getTotalsReq({
-        walletId,
-        startTime,
-        endTime,
-      });
-    },
+    fetchYearOverview: year =>
+      new Promise((resolve, reject) =>
+        dispatch(
+          initFetchAnnualOverview({
+            year,
+            meta: { resolve, reject },
+          })
+        )
+      ).then(() =>
+        // Need to pack it as a router model function and hide bridge dependency
+        DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
+          routeId: "history-transactions-annual-overview",
+          params: { year },
+        })
+      ),
   })
 )(TransactionsAnnualOverviewYearSelector);

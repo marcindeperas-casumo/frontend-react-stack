@@ -18,6 +18,7 @@ export const TransactionsAnnualOverviewContainer = connect(
     data: transactionsBetsHistoryAnnualOverviewSelector(selectedYear)(state),
   }),
   () => ({
+    // Need to pack it as a router model function and hide bridge dependency
     navigateToHistory: () =>
       DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
         routeId: "history",
