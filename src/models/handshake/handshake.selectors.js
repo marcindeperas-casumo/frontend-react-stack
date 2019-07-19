@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 import {
   compose,
   prop,
+  path,
   pathOr,
   isNil,
   isEmpty,
@@ -86,15 +87,6 @@ export const currencySelector = createSelector(
   )
 );
 
-// Test for this selector are already added in another PR: https://github.com/Casumo/frontend-react-stack/pull/561
-export const walletIdSelector = createSelector(
-  playerSelector,
-  compose(
-    prop("id"),
-    prop("wallet")
-  )
-);
-
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")
@@ -151,4 +143,9 @@ export const localeSelector = createSelector(
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
   pathOr({}, ["tournamentCampaign", "tournamentChannels"])
+);
+
+export const walletIdSelector = createSelector(
+  playerSelector,
+  path(["wallet", "id"])
 );

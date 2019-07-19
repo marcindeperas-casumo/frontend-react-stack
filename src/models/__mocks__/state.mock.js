@@ -1,3 +1,5 @@
+import AdventurerMock from "Components/AdventureCard/__mocks__/Adventure.json";
+
 const now = Date.now();
 const THIRTY_MINUTES = 30 * 60 * 1000;
 export const getStateMock = ({ firstDepositDate = null } = {}) => ({
@@ -2514,6 +2516,9 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
     },
   },
   schema: {
+    adventurer: {
+        ...AdventurerMock,
+    },
     gameProvider: {
       "casumo-services-ltd-nyx": {
         id: "0c900240-4904-11e6-a7a2-005056a975b1",
@@ -4927,6 +4932,24 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         },
         children: [],
         childSlugs: [],
+      },
+      "adventure-vocas": {
+        "id": "101226",
+        "slug": "adventure-vocas",
+        "title": "Adventure vocas",
+        "content": "",
+        "attachments": [],
+        "custom_fields": {},
+        "fields": {
+          "critical_for_compliance": false,
+          "progression_label_standard": "<strong>{{progression}}% completed</strong> to next level",
+          "progression_label_bonus": "<strong>{{progression}}% completed</strong>",
+          "level_label": "Level {{level}}",
+          "bonus_mode_label": "Bonus mode",
+          "max_level_label": "Max level"
+        },
+        "children": [],
+        "childSlugs": []
       },
     },
     reelRaces: {

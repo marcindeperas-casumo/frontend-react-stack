@@ -7,3 +7,5 @@ export const types = {
   ANNUAL_OVERVIEW_FETCH_COMPLETED:
     "TRANSACTIONS_BETS_HISTORY/ANNUAL_OVERVIEW/FETCH_COMPLETED",
 };
+
+export const CMS_CONTENT_SLUG = "features.transactions";

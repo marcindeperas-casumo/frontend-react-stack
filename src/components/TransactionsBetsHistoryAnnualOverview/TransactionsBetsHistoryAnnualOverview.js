@@ -87,12 +87,12 @@ export function TransactionsBetsHistoryAnnualOverview({
       />
       <ListItem
         label={content.annual_transactions_total_bonus_awarded}
-        amount={data.bonusesAmount}
+        amount={data.awardedBonusesAmount}
         {...passedProps}
       />
       <ListItem
         label={content.annual_transactions_total_bonus_converted}
-        amount={0}
+        amount={data.convertedBonusesAmount}
         {...passedProps}
       />
       <ListItem
