@@ -13,10 +13,11 @@ jest.mock("Api/api.transactionsBetsHistory");
 describe("Models/transactionsBetsHistory/Actions", () => {
   test("initFetchAnnualOverview()", () => {
     const year = 2010;
-    const action = initFetchAnnualOverview(year);
+    const action = initFetchAnnualOverview({ year });
 
     expect(action).toEqual({
       year,
+      meta: {},
       type: types.ANNUAL_OVERVIEW_FETCH_INIT,
     });
   });
