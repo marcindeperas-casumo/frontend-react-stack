@@ -8,7 +8,16 @@ import { formatCurrency } from "Utils";
 import type { AnnualOverview } from "Models/transactionsBetsHistory";
 
 type Content = {
-  [string]: string,
+  annual_transactions_list_heading: string,
+  annual_transactions_starting_balance: string,
+  annual_transactions_total_deposits: string,
+  annual_transactions_total_withdrawals: string,
+  annual_transactions_total_wagers: string,
+  annual_transactions_total_wins: string,
+  annual_transactions_total_bonus_awarded: string,
+  annual_transactions_total_bonus_converted: string,
+  annual_transactions_end_balance: string,
+  annual_transactions_download_pdf: string,
 };
 
 type Props = {
@@ -33,7 +42,12 @@ function ListItem({ label, amount, currency, locale }: ListItemProps) {
   );
 
   return (
-    <Flex align="center" justify="space-between" className="u-padding-y">
+    <Flex
+      align="center"
+      justify="space-between"
+      className="u-padding-y"
+      data-test-id="annual-overview-row"
+    >
       <Flex.Item>
         <Text tag="div" size="sm">
           {label}
