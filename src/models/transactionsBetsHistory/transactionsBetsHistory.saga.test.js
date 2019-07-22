@@ -1,25 +1,15 @@
-import { put, call, select } from "redux-saga/effects";
 import { DateTime } from "luxon";
 import { ENTITY_KEYS } from "Models/schema";
-import * as actions from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
 import {
   fetchAnnualOverviewSaga,
   isFailedRequestTakePattern,
 } from "./transactionsBetsHistory.saga";
+import annualOverview from "./__mocks__/annualOverview.json";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
     const walletId = "wallet-id-34";
-    const annualOverview = {
-      betsAmount: 23.4,
-      awardedBonusesAmount: 34.4,
-      convertedBonusesAmount: 10,
-      currency: "GBP",
-      winningsAmount: 11,
-      depositsAmount: 13.4,
-      withdrawalsAmount: 76,
-    };
     const action = {
       year: 2018,
       meta: {

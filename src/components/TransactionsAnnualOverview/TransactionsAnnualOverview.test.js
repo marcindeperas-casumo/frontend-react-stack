@@ -1,30 +1,14 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
+import cmsMocks from "./__mocks__/cms.json";
 
 describe("TransactionsAnnualOverview", () => {
   const props = {
     locale: "en-GB",
-    t: {
-      annual_transactions_starting_balance: "Label #1",
-      annual_transactions_total_deposits: "Label #2",
-      annual_transactions_total_withdrawals: "Label #3",
-      annual_transactions_total_wagers: "Label #4",
-      annual_transactions_total_wins: "Label #5",
-      annual_transactions_total_bonus_awarded: "Label #6",
-      annual_transactions_total_bonus_converted: "Label #7",
-      annual_transactions_end_balance: "Label #8",
-      annual_transactions_download_pdf: "Label #9",
-    },
-    data: {
-      betsAmount: 34.6,
-      depositsAmount: 12.4,
-      withdrawalsAmount: 55.5,
-      winningsAmount: 34.5,
-      awardedBonusesAmount: 11.2,
-      convertedBonusesAmount: 2,
-      currency: "GBP",
-    },
+    t: cmsMocks,
+    data: annualOverviewMock,
     navigateToHistory: () => {},
   };
 

@@ -1,38 +1,18 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import isNotChromatic from "Storybook/isNotChromatic";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
+import cmsMocks from "./__mocks__/cms.json";
 
 const stories = storiesOf("TransactionsAnnualOverview", module);
 const props = {
-  t: {
-    annual_transactions_list_heading: "Heading",
-    annual_transactions_starting_balance: "Starting Balance",
-    annual_transactions_total_deposits: "Total Deposits",
-    annual_transactions_total_withdrawals: "Total Withdrawals",
-    annual_transactions_total_wagers: "Total Wagers",
-    annual_transactions_total_wins: "Total Wins",
-    annual_transactions_total_bonus_awarded: "Total Bonus Awarded",
-    annual_transactions_total_bonus_converted: "Total Bonus Converted",
-    annual_transactions_end_balance: "End Balance",
-    annual_transactions_download_pdf: "Download PDF",
-  },
-  data: {
-    betsAmount: 34.6,
-    depositsAmount: 12.4,
-    withdrawalsAmount: 55.5,
-    winningsAmount: 34.5,
-    awardedBonusesAmount: 11.2,
-    convertedBonusesAmount: 2,
-    currency: "GBP",
-  },
+  t: cmsMocks,
+  data: annualOverviewMock,
   locale: "en-GB",
   navigateToHistory: () => {},
 };
 
 const Stories = () => <TransactionsAnnualOverview {...props} />;
 
-if (isNotChromatic) {
-  stories.add("TransactionsAnnualOverview", Stories);
-}
+stories.add("TransactionsAnnualOverview", Stories);
