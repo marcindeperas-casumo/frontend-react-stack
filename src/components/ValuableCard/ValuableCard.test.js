@@ -1,6 +1,5 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import translationsMock from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
 import { ValuableCard } from "./ValuableCard";
