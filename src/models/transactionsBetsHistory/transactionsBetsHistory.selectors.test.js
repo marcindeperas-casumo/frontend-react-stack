@@ -27,10 +27,10 @@ describe("Transactions/Bets History Selectors", () => {
       ).toEqual(overview2019);
     });
 
-    test("returns {} if overview for a year does not exist", () => {
+    test("returns null if overview for a year does not exist", () => {
       expect(
         transactionsBetsHistoryAnnualOverviewSelector(2010)(state)
-      ).toEqual({});
+      ).toEqual(null);
     });
   });
 
