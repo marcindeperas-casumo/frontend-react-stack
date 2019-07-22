@@ -134,7 +134,6 @@ describe("GameListHorizontal Desktop", () => {
   test("passes the games list to the ScrollableListPaginated", () => {
     const { list: listProp } = rendered.find(ScrollableListPaginated).props();
 
-    expect(listProp.id).toBe(list.id);
     expect(listProp.title).toBe(list.title);
     expect(listProp.itemIds).toBe(list.games);
   });
