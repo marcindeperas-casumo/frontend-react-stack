@@ -19,9 +19,7 @@ export type ValuableCard_Valuable_PlayerValuableCash = {
 };
 
 export type ValuableCard_Valuable_PlayerValuableSpins_game = {
-  slug: string,
-  title: string,
-  backgroundImage: string,
+  slug: string
 };
 
 export type ValuableCard_Valuable_PlayerValuableSpins = {
@@ -33,35 +31,13 @@ export type ValuableCard_Valuable_PlayerValuableSpins = {
   currency: Currency,
   market: string,
   caveat: ?string,
+  backgroundImage: string,
   coinValue: number,
   game: ValuableCard_Valuable_PlayerValuableSpins_game,
+  description: string,
 };
 
-export type ValuableCard_Valuable_PlayerValuableDeposit = {
-  id: string,
-  title: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  backgroundImage: string,
-};
-
-export type ValuableCard_Valuable_PlayerValuableSport = {
-  id: string,
-  title: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  backgroundImage: string,
-};
-
-export type ValuableCard_Valuable = ValuableCard_Valuable_PlayerValuableCash | ValuableCard_Valuable_PlayerValuableSpins | ValuableCard_Valuable_PlayerValuableDeposit | ValuableCard_Valuable_PlayerValuableSport;/* @flow */
+export type ValuableCard_Valuable = ValuableCard_Valuable_PlayerValuableCash | ValuableCard_Valuable_PlayerValuableSpins;/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 

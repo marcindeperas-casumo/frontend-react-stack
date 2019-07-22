@@ -19,10 +19,6 @@ query PlayerValuablesQuery {
       ... on PlayerValuableSpins {
         description
         coinValue
-        game {
-          title
-          backgroundImage
-        }
       }
     }
   }
