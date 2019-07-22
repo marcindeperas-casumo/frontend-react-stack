@@ -17,18 +17,17 @@ query PlayerValuablesQuery {
       market
       ... on PlayerValuableCash {
         backgroundImage
-        magnitude
       }
       ... on PlayerValuableSpins {
+        backgroundImage
+        description
         coinValue
-        magnitude
         game {
           title
           backgroundImage
         }
       }
       ... on PlayerValuableDeposit {
-        magnitude
         backgroundImage
       }
       ... on PlayerValuableSport {

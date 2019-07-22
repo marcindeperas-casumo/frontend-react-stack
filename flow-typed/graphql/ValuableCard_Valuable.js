@@ -15,7 +15,6 @@ export type ValuableCard_Valuable_PlayerValuableCash = {
   currency: Currency,
   market: string,
   caveat: ?string,
-  magnitude: number,
   backgroundImage: string,
 };
 
@@ -35,7 +34,6 @@ export type ValuableCard_Valuable_PlayerValuableSpins = {
   market: string,
   caveat: ?string,
   coinValue: number,
-  magnitude: number,
   game: ValuableCard_Valuable_PlayerValuableSpins_game,
 };
 
@@ -48,7 +46,6 @@ export type ValuableCard_Valuable_PlayerValuableDeposit = {
   currency: Currency,
   market: string,
   caveat: ?string,
-  magnitude: number,
   backgroundImage: string,
 };
 
