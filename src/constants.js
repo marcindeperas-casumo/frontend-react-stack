@@ -29,6 +29,7 @@ export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
 export const KO_APP_EVENT_SHOW_TERMS = "KO_APP_EVENT/showTerms";
 export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
+export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {

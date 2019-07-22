@@ -37,6 +37,9 @@ const schemaReducer = combineReducers({
   [ENTITY_KEYS.GAME_PROVIDER]: entityReducerFactory(ENTITY_KEYS.GAME_PROVIDER),
   [ENTITY_KEYS.REEL_RACES]: entityReducerFactory(ENTITY_KEYS.REEL_RACES),
   [ENTITY_KEYS.ADVENTURER]: entityReducerFactory(ENTITY_KEYS.ADVENTURER),
+  [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: entityReducerFactory(
+    ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW
+  ),
 });
 
 export default schemaReducer;
