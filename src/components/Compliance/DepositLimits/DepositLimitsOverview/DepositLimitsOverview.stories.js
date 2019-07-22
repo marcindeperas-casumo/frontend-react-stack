@@ -15,7 +15,7 @@ const actions = {
 
 stories.add("Default", () => (
   <DepositLimitsOverview
-    currencySign="€"
+    locale="en-GB"
     t={t}
     limits={{
       daily: 600,
@@ -41,7 +41,7 @@ stories.add("Default", () => (
 
 stories.add("No limits", () => (
   <DepositLimitsOverview
-    currencySign="€"
+    locale="en-GB"
     t={t}
     limits={{
       daily: null,
