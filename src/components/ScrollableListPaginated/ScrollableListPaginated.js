@@ -44,12 +44,6 @@ type Props = {
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
-  static defaultProps = {
-    seeMore: {
-      color: "t-color-blue",
-    },
-  };
-
   buttonRenderer = (
     hasNextPage: boolean,
     hasPreviousPage: boolean,
