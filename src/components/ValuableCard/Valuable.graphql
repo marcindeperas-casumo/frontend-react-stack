@@ -7,20 +7,12 @@ fragment ValuableCard_Valuable on PlayerValuable {
   currency
   market
   caveat
-  ... on PlayerValuableCash {
-    backgroundImage
-  }
+  backgroundImage
   ... on PlayerValuableSpins {
     coinValue
     game {
       slug
     }
     description
-  }
-  ... on PlayerValuableDeposit {
-    backgroundImage
-  }
-  ... on PlayerValuableSport {
-    backgroundImage
   }
 }
