@@ -111,6 +111,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       </div>
     );
   };
+
   render() {
     const { list, tileHeight, seeMore } = this.props;
     const { title, itemIds } = list;
