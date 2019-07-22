@@ -23,7 +23,7 @@ type Content = {
 type Props = {
   locale: string,
   currency: string,
-  content: Content,
+  t: Content,
   data: AnnualOverview,
   navigateToHistory: () => void,
 };
@@ -65,7 +65,7 @@ function ListItem({ label, amount, currency, locale }: ListItemProps) {
 export function TransactionsAnnualOverview({
   locale,
   currency,
-  content,
+  t,
   data,
   navigateToHistory,
 }: Props) {
@@ -79,51 +79,51 @@ export function TransactionsAnnualOverview({
   return (
     <div className="u-padding--md t-background-white">
       <Text tag="h3" size="md" className="u-margin-bottom--md">
-        {content.annual_transactions_list_heading}
+        {t.annual_transactions_list_heading}
       </Text>
       <ListItem
-        label={content.annual_transactions_starting_balance}
+        label={t.annual_transactions_starting_balance}
         amount={0}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_deposits}
+        label={t.annual_transactions_total_deposits}
         amount={data.depositsAmount}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_withdrawals}
+        label={t.annual_transactions_total_withdrawals}
         amount={data.withdrawalsAmount}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_wagers}
+        label={t.annual_transactions_total_wagers}
         amount={0}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_wins}
+        label={t.annual_transactions_total_wins}
         amount={data.winningsAmount}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_bonus_awarded}
+        label={t.annual_transactions_total_bonus_awarded}
         amount={data.awardedBonusesAmount}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_total_bonus_converted}
+        label={t.annual_transactions_total_bonus_converted}
         amount={data.convertedBonusesAmount}
         {...passedProps}
       />
       <ListItem
-        label={content.annual_transactions_end_balance}
+        label={t.annual_transactions_end_balance}
         amount={0}
         {...passedProps}
       />
       <Button className="u-margin-top--lg u-margin-bottom--md" disabled>
         <DownloadIcon />
-        {content.annual_transactions_download_pdf}
+        {t.annual_transactions_download_pdf}
       </Button>
     </div>
   );

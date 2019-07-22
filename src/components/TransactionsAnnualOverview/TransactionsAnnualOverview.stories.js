@@ -6,7 +6,7 @@ import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 
 const stories = storiesOf("TransactionsAnnualOverview", module);
 const props = {
-  content: {
+  t: {
     annual_transactions_list_heading: "Heading",
     annual_transactions_starting_balance: "Starting Balance",
     annual_transactions_total_deposits: "Total Deposits",
