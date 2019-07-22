@@ -12,9 +12,9 @@ import {
 import "./ValuableDetails.scss";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { isFreeSpinsValuable } from "Components/ValuableCard/ValuableCard.utils";
-import { ValuableDetailsHeaderBackground as HeaderBackground } from "./ValuableDetailsHeaderBackground";
-import { ValuableDetailsCard as ValuableCard } from "./ValuableDetailsCard";
-import { ValuableDetailsBody as Body } from "./ValuableDetailsBody";
+import { ValuableDetailsHeaderBackground } from "./ValuableDetailsHeaderBackground";
+import { ValuableDetailsCard } from "./ValuableDetailsCard";
+import { ValuableDetailsBody } from "./ValuableDetailsBody";
 import { ValuableDetailsActionButton as ActionButton } from "./ValuableDetailsActionButton";
 import { ValuableDetailsModal } from "./ValuableDetailsModal";
 
@@ -108,17 +108,13 @@ export const ValuableDetails = ({
         />
       )}
     >
-      <HeaderBackground
+      <ValuableDetailsHeaderBackground
         id={id}
-        imageUrl={
-          isFreeSpinsValuable(valuableType) && game
-            ? game.backgroundImage
-            : backgroundImage
-        }
+        imageUrl={backgroundImage}
         blur={isFreeSpinsValuable(valuableType) ? defaultBlurAmount : 0}
       />
-      <ValuableCard />
-      <Body
+      <ValuableDetailsCard />
+      <ValuableDetailsBody
         title={title}
         expirationTime={expirationTime}
         caveat={caveat}
