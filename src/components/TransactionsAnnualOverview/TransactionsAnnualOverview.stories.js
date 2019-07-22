@@ -27,7 +27,6 @@ const props = {
     convertedBonusesAmount: 2,
     currency: "GBP",
   },
-  currency: "GBP",
   locale: "en-GB",
   navigateToHistory: () => {},
 };

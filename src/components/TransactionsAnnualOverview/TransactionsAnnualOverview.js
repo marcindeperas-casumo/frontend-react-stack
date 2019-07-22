@@ -22,7 +22,6 @@ type Content = {
 
 type Props = {
   locale: string,
-  currency: string,
   t: Content,
   data: AnnualOverview,
   navigateToHistory: () => void,
@@ -64,12 +63,11 @@ function ListItem({ label, amount, currency, locale }: ListItemProps) {
 
 export function TransactionsAnnualOverview({
   locale,
-  currency,
   t,
   data,
   navigateToHistory,
 }: Props) {
-  const passedProps = { currency, locale };
+  const passedProps = { currency: data.currency, locale };
 
   if (!data) {
     navigateToHistory();

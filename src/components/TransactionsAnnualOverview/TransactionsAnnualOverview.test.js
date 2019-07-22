@@ -5,7 +5,6 @@ import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 describe("TransactionsAnnualOverview", () => {
   const props = {
     locale: "en-GB",
-    currency: "GBP",
     t: {
       annual_transactions_starting_balance: "Label #1",
       annual_transactions_total_deposits: "Label #2",
