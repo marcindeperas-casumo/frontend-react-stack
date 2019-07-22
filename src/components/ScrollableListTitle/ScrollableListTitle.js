@@ -20,7 +20,7 @@ export default function ScrollableListTitle({ title, paddingLeft }: Props) {
         "u-padding-bottom--lg@tablet",
         "u-padding-bottom--lg@desktop",
         "u-font-weight-bold",
-        paddingLeft && paddingLeftClasses
+        { [paddingLeftClasses]: paddingLeft }
       )}
       data-test="scrollable-list-title"
       tag="h3"

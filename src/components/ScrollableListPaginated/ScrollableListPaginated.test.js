@@ -45,43 +45,14 @@ describe("ScrollableListPaginated", () => {
     );
   });
 
-  test("render the title of the list", () => {
-    const titleComponent = rendered.find("ScrollableListTitle");
+  test("render the list top bar (title and seeMore url)", () => {
+    const titleComponent = rendered.find("ScrollableListTitleRow");
     expect(titleComponent.length).toBe(1);
     expect(titleComponent.props().title).toEqual(list.title);
   });
 
   test("render a ScrollablePaginated component", () => {
     expect(rendered.find(ScrollablePaginated).length).toBe(1);
-  });
-
-  test("render seeMore.text and an seeMore.url on an <a> tag if seeMore is set", () => {
-    expect(
-      rendered
-        .find("Text")
-        .dive()
-        .text()
-    ).toMatch(seeMore.text);
-
-    expect(rendered.find("a").prop("href")).toEqual(seeMore.url);
-  });
-
-  test("not render seeMore text and url on an <a> tag if seeMore is not set", () => {
-    rendered = shallow(
-      <ScrollableListPaginated
-        list={{
-          id: list.id,
-          title: list.title,
-          itemIds: list.games,
-        }}
-        className={className}
-        Component={Component}
-        tileHeight={tileHeight}
-      />
-    );
-
-    expect(rendered.find("Text")).toHaveLength(0);
-    expect(rendered.find("a")).toHaveLength(0);
   });
 
   test("pass tileHeight to ScrollablePaginated", () => {

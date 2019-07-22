@@ -1,50 +1,48 @@
-.c-game-list-horizontal-desktop-paginated {
+.c-scrollable-list-paginated {
   display: grid;
   height: 100%;
   width: 100%;
 }
 
-.c-game-list-horizontal-desktop-paginated__list {
+.c-scrollable-list-paginated__list {
   grid-area: 1 / 1 / 2 / 2;
 }
 
-.c-game-list-horizontal-desktop-paginated__controls {
+.c-scrollable-list-paginated__controls {
   align-items: center;
   grid-area: 1 / 1 / 2 / 2;
   z-index: cudl-z();
 }
 
-.c-game-list-horizontal-desktop-paginated__button {
+.c-scrollable-list-paginated__button {
   box-shadow: 0px 2px 6px rgba(48, 56, 56, 0.09);
   height: 80px;
   width: 40px;
 }
 
 // stylelint-disable-next-line xi/selector-pattern
-.c-game-list-horizontal-desktop-paginated
-  .c-game-list-horizontal-desktop-paginated__button {
+.c-scrollable-list-paginated .c-scrollable-list-paginated__button {
   opacity: 0;
   transition: opacity 0.25s ease-in;
 }
 
 // stylelint-disable-next-line xi/selector-pattern
-.c-game-list-horizontal-desktop-paginated:hover
-  .c-game-list-horizontal-desktop-paginated__button {
+.c-scrollable-list-paginated:hover .c-scrollable-list-paginated__button {
   opacity: 1;
 }
 
-.c-game-list-horizontal-desktop-paginated__button--right {
+.c-scrollable-list-paginated__button--right {
   transform: translateX(50%);
 }
 
-.c-game-list-horizontal-desktop-paginated__button--left {
+.c-scrollable-list-paginated__button--left {
   transform: translateX(-50%);
 }
 // stylelint-disable-next-line xi/selector-pattern
-.c-game-list-horizontal-desktop-paginated_live_casino__button--right {
+.c-scrollable-list-paginated__live_casino-button--right {
   transform: translate(50%, -66%);
 }
 // stylelint-disable-next-line xi/selector-pattern
-.c-game-list-horizontal-desktop-paginated_live_casino__button--left {
+.c-scrollable-list-paginated__live_casino-button--left {
   transform: translate(-50%, -66%);
 }

@@ -62,10 +62,10 @@ export const ITEM_SPACING = {
 
 export const ITEMS_CONTROL_STYLING = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
-    "c-game-list-horizontal-desktop-paginated_live_casino__button",
+    "c-scrollable-list-paginated__live_casino-button",
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
-    "c-game-list-horizontal-desktop-paginated_live_casino__button",
-  default: "c-game-list-horizontal-desktop-paginated__button",
+    "c-scrollable-list-paginated__live_casino-button",
+  default: "c-scrollable-list-paginated__button",
 };
 
 export class GameListHorizontal extends PureComponent<Props> {
