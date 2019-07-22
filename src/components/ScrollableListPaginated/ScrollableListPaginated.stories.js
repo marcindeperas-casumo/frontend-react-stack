@@ -31,7 +31,7 @@ const ScrollableListPaginatedStory = () => {
         }}
         tileHeight={204}
         className="c-top-game"
-        itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+        itemControlClass="c-scrollable-list-paginated__button"
         seeMore={{
           url: "whatever",
           text: "Aw gidi",
