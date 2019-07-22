@@ -6,6 +6,7 @@ import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
 import type { AllLimits, DepositKinds } from "Models/playOkay/depositLimits";
+import { formatCurrency, interpolate } from "Utils";
 import { Header, HeaderButton } from "./Header";
 import { limitTypes } from "..";
 import "./styles.scss";
@@ -15,7 +16,7 @@ type LimitChange = {
   value: number,
 };
 type Props = {
-  currencySign: string,
+  locale: string,
   t: {
     daily_short: string,
     weekly_short: string,
@@ -87,14 +88,21 @@ export function DepositLimitsOverview(props: Props) {
                 <ProgressArc value={props.limitsUsage[x]} />
                 <Flex className="u-margin-left o-flex--1" direction="vertical">
                   <Text tag="span">
-                    {props.currencySign}
-                    {props.limits?.[x]} {t[`${x}_short`]}
+                    {formatCurrency({
+                      locale: props.locale,
+                      currency: props.limits.currency,
+                      value: parseInt(props.limits[x]),
+                    })}{" "}
+                    {t[`${x}_short`]}
                   </Text>
                   <Text tag="span" size="sm" style={{ color: "#7967BB" }}>
-                    {t.remaining_limit.replace(
-                      "{value}",
-                      `${props.currencySign}${remainingLimitValue}`
-                    )}
+                    {interpolate(t.remaining_limit, {
+                      value: formatCurrency({
+                        locale: props.locale,
+                        currency: props.limits.currency,
+                        value: remainingLimitValue,
+                      }),
+                    })}
                   </Text>
                 </Flex>
                 <MoreIcon className="t-color-grey-light-1" />
@@ -105,17 +113,16 @@ export function DepositLimitsOverview(props: Props) {
                   size="sm"
                   className="u-margin-left--xlg t-color-grey-light-1"
                 >
-                  {t.change_in_future
-                    .replace(
-                      "{newLimitValue}",
-                      `${props.currencySign}${props.pendingLimitChanges[x]?.value}`
-                    )
-                    .replace(
-                      "{limitChangeDate}",
-                      DateTime.fromMillis(
-                        props.pendingLimitChanges[x]?.date
-                      ).toLocaleString()
-                    )}
+                  {interpolate(t.change_in_future, {
+                    newLimitValue: formatCurrency({
+                      locale: props.locale,
+                      currency: props.limits.currency,
+                      value: props.pendingLimitChanges[x]?.value,
+                    }),
+                    limitChangeDate: DateTime.fromMillis(
+                      props.pendingLimitChanges[x]?.date
+                    ).toLocaleString(),
+                  })}
                 </Text>
               )}
             </Flex>
