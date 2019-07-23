@@ -1,11 +1,16 @@
 // @flow
 import React from "react";
 import AdventureCard from "Components/AdventureCard";
-import { PlayerValuableListHorizontal } from "Components/PlayerValuableListHorizontal";
+import {
+  PlayerValuableList,
+  PlayerValuableListHorizontal,
+} from "Components/PlayerValuableList";
 
 export const AccountPage = () => (
   <>
     <AdventureCard />
-    <PlayerValuableListHorizontal />
+    <PlayerValuableList>
+      {props => <PlayerValuableListHorizontal {...props} />}
+    </PlayerValuableList>
   </>
 );
