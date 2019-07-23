@@ -54,9 +54,10 @@ const onNavItemSelected = (
   });
 };
 
-const toSubNavItem = (sport: UserNavigation_sportsNavigation_sport) => (
-  subNav: UserNavigation_sportsNavigation_subNav
-) => ({
+const toSubNavItem = (
+  isLiveActive: boolean,
+  sport: UserNavigation_sportsNavigation_sport
+) => (subNav: UserNavigation_sportsNavigation_subNav) => ({
   text: (
     <>
       {subNav.competition.regionCode && (
@@ -68,18 +69,20 @@ const toSubNavItem = (sport: UserNavigation_sportsNavigation_sport) => (
       {subNav.competition.name}
     </>
   ),
-  path: subNav.competition.clientPath,
-  parentPath: sport.clientPath,
+  path: isLiveActive
+    ? subNav.competition.clientPathLive
+    : subNav.competition.clientPath,
+  parentPath: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,
   canEdit: false,
 });
 
-const toNavItem = ({
+const toNavItem = (isLiveActive: boolean) => ({
   sport,
   subNav,
 }: UserNavigation_sportsNavigation): SportsNavItemType => ({
   text: sport.name,
-  path: sport.clientPath,
+  path: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,
   iconProps: {
     iconSrc: sport.icon,
@@ -87,7 +90,7 @@ const toNavItem = ({
     alt: sport.name,
   },
   canEdit: sport.canSelectSubgroups,
-  subNav: subNav.map(toSubNavItem(sport)),
+  subNav: subNav.map(toSubNavItem(isLiveActive, sport)),
 });
 
 export const navItemUtils = {

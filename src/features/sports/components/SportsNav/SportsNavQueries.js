@@ -13,6 +13,7 @@ export const USER_NAVIGATION_QUERY = gql`
         name
         id
         clientPath
+        clientPathLive
         termKey
         icon
         activeIndicator
@@ -24,6 +25,7 @@ export const USER_NAVIGATION_QUERY = gql`
           name
           id
           clientPath
+          clientPathLive
           termKey
           regionCode
         }

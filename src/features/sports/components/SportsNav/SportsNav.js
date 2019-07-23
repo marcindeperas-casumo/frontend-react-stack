@@ -37,7 +37,7 @@ const renderSportsNav = (
   );
 
   const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
-    navItemUtils.toNavItem
+    navItemUtils.toNavItem(isLiveActive)
   );
 
   if (navItems.length === 0) {
