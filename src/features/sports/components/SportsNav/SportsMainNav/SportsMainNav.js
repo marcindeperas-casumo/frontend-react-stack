@@ -19,6 +19,7 @@ import {
 } from "Features/sports/components/SportsNav/SportsNavTab";
 
 const SPORTS_NAV_HEIGHT = 106;
+const buttonsBeforeNav = ["live"];
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -32,10 +33,14 @@ export type Props = {
 };
 
 export const renderLiveButton = (
-  label: string,
-  [isLiveActive, setIsLiveActive]: LiveState
+  { navItems, labels, canEdit, onEdit }: Props,
+  [isLiveActive, setIsLiveActive]: LiveState,
+  sportCount: number
 ) => (
   <LiveTab
+    count={sportCount}
+    label={labels.live}
+    isActive={isLiveActive}
     onClick={() => {
       const newState = !isLiveActive;
 
@@ -44,8 +49,6 @@ export const renderLiveButton = (
       });
       setIsLiveActive(newState);
     }}
-    label={label}
-    isActive={isLiveActive}
   />
 );
 
@@ -80,14 +83,14 @@ export const renderTabList = (
   navItems: Array<SportsNavItemType>,
   props: Props
 ) => ({ columnIndex, style }: CellRendererParams) => {
-  const buttonsBeforeNav = ["live"];
   const offsetIndex = columnIndex - buttonsBeforeNav.length;
+  const sportsCount = navItems.length - buttonsBeforeNav.length;
 
   const isFirstItem = equals(-1);
   const isLastItem = equals(navItems.length);
 
   const renderedTab = cond([
-    [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
+    [isFirstItem, () => renderLiveButton(props, props.liveState, sportsCount)],
     [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
@@ -108,7 +111,6 @@ export const SportsMainNav = (props: Props) => {
 
   const { navItems } = props;
   const tabCount = navItems.length;
-  const buttonsBeforeNav = ["live"];
   const buttonsAfterNav = ["edit"];
   const columnCount =
     buttonsBeforeNav.length + tabCount + buttonsAfterNav.length;

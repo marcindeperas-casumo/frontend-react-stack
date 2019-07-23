@@ -38,12 +38,13 @@ const CloseBadge = () => (
 );
 
 type LiveIconColoredProps = {
+  count: number,
   isActive?: boolean,
 };
 
-const LiveIconColored = ({ isActive }: LiveIconColoredProps) => (
+const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
   <div className="o-ratio c-sports-icon u-margin-x">
-    {isActive ? <CloseBadge /> : <CountBadge count={11} />}
+    {isActive ? <CloseBadge /> : <CountBadge count={count} />}
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
@@ -55,12 +56,18 @@ const LiveIconColored = ({ isActive }: LiveIconColoredProps) => (
 );
 
 type Props = LiveIconColoredProps & {
+  count: number,
   label: React.Node,
   onClick: () => void,
   isActive?: boolean,
 };
 
-export const SportsNavLiveTab = ({ isActive, label, onClick }: Props) => (
+export const SportsNavLiveTab = ({
+  count,
+  isActive,
+  label,
+  onClick,
+}: Props) => (
   <div
     className={classNames(
       "c-sports-nav-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
@@ -75,7 +82,7 @@ export const SportsNavLiveTab = ({ isActive, label, onClick }: Props) => (
       className="o-flex--1"
       spacing="none"
     >
-      <LiveIconColored isActive={isActive} />
+      <LiveIconColored count={count} isActive={isActive} />
       <Text
         tag="span"
         size="sm"
