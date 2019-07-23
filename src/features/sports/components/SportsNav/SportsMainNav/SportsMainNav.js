@@ -86,8 +86,8 @@ export const renderTabList = (
   const isFirstItem = equals(-1);
   const isLastItem = equals(navItems.length);
 
-  // eslint-disable-next-line ramda/cond-simplification
   const renderedTab = cond([
+    [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
     [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
