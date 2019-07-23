@@ -9,13 +9,9 @@ const stories = storiesOf(
 );
 
 stories.add("Default", () => {
-  const expirationText = "2 Hours";
-  const translations = { expiresIn: "Expires in" };
+  const text = "Expires In 2 Hours";
 
   return (
-    <ValuableDetailsExpirationLabel
-      translations={translations}
-      expirationText={expirationText}
-    />
+    <ValuableDetailsExpirationLabel text={text} className="t-background-red" />
   );
 });
