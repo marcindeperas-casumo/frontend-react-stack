@@ -12,7 +12,7 @@ import { subscribeToItemCreatedEvent } from "./utils";
 
 type Translations = {
   listTitleLabel: string,
-  hoursUnit: string,
+  hoursLabel: string,
 };
 
 type Props = {
@@ -32,7 +32,7 @@ type Props = {
 
 export function PlayerValuableListHorizontal(props: Props) {
   const { error, loading, valuables, translations, refetch } = props;
-  const { listTitleLabel } = translations;
+  const { listTitleLabel, hoursLabel } = translations;
 
   useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
@@ -76,7 +76,7 @@ export function PlayerValuableListHorizontal(props: Props) {
               key={`valuable-card-${id}`}
             >
               <ValuableCard
-                translatedHoursUnit={translations.hoursUnit}
+                translatedHoursUnit={hoursLabel}
                 {...valuable}
                 onCardClick={
                   shouldUseValuable
