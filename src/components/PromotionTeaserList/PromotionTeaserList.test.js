@@ -6,7 +6,7 @@ describe("PromotionTeaserList", () => {
   test("should fetch campaigns and promotions", () => {
     const fetchCampaign = jest.fn();
     const fetchPromotions = jest.fn();
-    shallow(
+    const rendered = shallow(
       <PromotionTeaserList
         slug="foo"
         fetchCampaign={fetchCampaign}
@@ -15,6 +15,7 @@ describe("PromotionTeaserList", () => {
       />
     );
 
+    expect(rendered.find("Connect(PromotionTeaserRow)").length).toBe(2);
     expect(fetchCampaign).toHaveBeenCalledTimes(1);
     expect(fetchPromotions).toHaveBeenCalledTimes(1);
   });
@@ -29,6 +30,6 @@ describe("PromotionTeaserList", () => {
       />
     );
 
-    expect(rendered.find("PromotionTeaserRow").exists()).toBe(false);
+    expect(rendered.find("Connect(PromotionTeaserRow)").length).toBe(0);
   });
 });
