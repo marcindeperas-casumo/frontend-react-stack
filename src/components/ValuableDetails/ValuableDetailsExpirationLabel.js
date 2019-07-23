@@ -9,14 +9,23 @@ type Translations = {
 };
 
 type Props = {
+  /* Free text expiration time to be displayed */
   expirationText: string,
+  /* Translations of the component */
   translations: Translations,
+  /* The classnames for background and font colors. by default red and white respectively */
+  colorClassNames?: string,
+  /* Any additional classnames */
   className?: string,
 };
+
+export const defaultColor = "t-color-white";
+export const defaultBackground = "t-background-red";
 
 export const ValuableDetailsExpirationLabel = ({
   expirationText,
   translations,
+  colorClassNames,
   className,
 }: Props) => {
   const { expiresIn } = translations;
@@ -24,11 +33,11 @@ export const ValuableDetailsExpirationLabel = ({
   return (
     <div
       className={classNames(
-        "u-display--inline-block u-text-transform-uppercase t-background-red u-padding-x--md u-padding-y--sm c-valuable-details__pill",
-        className
+        "u-display--inline-block u-text-transform-uppercase u-padding-x--md u-padding-y--sm c-valuable-details__expiration-label",
+        colorClassNames || `${defaultColor} ${defaultBackground}`
       )}
     >
-      <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
+      <Text tag="span" size="sm" className="u-font-weight-bold">
         {expiresIn} {expirationText}
       </Text>
     </div>
