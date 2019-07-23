@@ -1,3 +1,6 @@
+// @flow
+import * as React from "react";
+import { mount } from "enzyme";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -10,6 +13,7 @@ import {
   formatCurrency,
   getSymbolForCurrency,
   interpolate,
+  interpolateWithJSX,
   isCmsEntryEmpty,
   findOr,
 } from "./utils";
@@ -323,6 +327,19 @@ describe("interpolate()", () => {
   test("should not replace when param is not defined", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
+});
+
+describe("interpolateWithJSX()", () => {
+  test("should replace with components", () => {
+    const input = "i hope it works for {{foo }}";
+    const output = "i hope it works for react components";
+    const Component = () => "react components";
+    expect(
+      mount(
+        <div>{interpolateWithJSX({ foo: <Component /> }, input)}</div>
+      ).text()
+    ).toBe(output);
   });
 });
 

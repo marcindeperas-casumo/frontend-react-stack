@@ -1,4 +1,5 @@
 // @flow
+import * as React from "react";
 import * as R from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
@@ -230,8 +231,24 @@ export const interpolate = (
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
-    R.pathOr(match, [param], replacements)
+    R.propOr(match, param, replacements)
   );
+
+export const interpolateWithJSX = R.curry(
+  (replacements: { [string]: React.Node }, target: string) =>
+    R.pipe(
+      R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
+      R.addIndex(R.map)((x, i) => (
+        <React.Fragment key={i}>
+          {R.pipe(
+            R.match(/{{2,3}\s*(\w+)\s*}{2,3}/),
+            R.prop(1),
+            R.propOr(x, R.__, replacements)
+          )(x)}
+        </React.Fragment>
+      ))
+    )(target)
+);
 
 export const getCssCustomProperty = (property: string) =>
   document.documentElement
