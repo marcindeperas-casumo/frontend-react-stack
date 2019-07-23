@@ -34,7 +34,20 @@ export type Props = {
 export const renderLiveButton = (
   label: string,
   [isLiveActive, setIsLiveActive]: LiveState
-) => null;
+) => (
+  <LiveTab
+    onClick={() => {
+      const newState = !isLiveActive;
+
+      tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
+        [EVENT_PROPS.SPORTS_STATE]: newState,
+      });
+      setIsLiveActive(newState);
+    }}
+    label={label}
+    isActive={isLiveActive}
+  />
+);
 
 export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
@@ -73,8 +86,8 @@ export const renderTabList = (
   const isFirstItem = equals(-1);
   const isLastItem = equals(navItems.length);
 
+  // eslint-disable-next-line ramda/cond-simplification
   const renderedTab = cond([
-    [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
     [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);

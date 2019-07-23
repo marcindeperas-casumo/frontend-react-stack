@@ -47,6 +47,13 @@ describe("<SportsMainNav />", () => {
   });
 
   describe("renderTabList", () => {
+    test("renders a live button for the 1st position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: 0 })
+      );
+      expect(rendered.find(LiveTab)).toHaveLength(1);
+    });
+
     test("renders an sports tab for the 2nd position", () => {
       const rendered = shallow(
         renderTabList(navItems, props)({ columnIndex: 1 })
