@@ -58,7 +58,7 @@ class TileListHorizontal extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitle title={title} />
+        <ScrollableListTitle paddingLeft title={title} />
         <Scrollable
           itemClassName="c-tile"
           padding={PADDING_PER_DEVICE}

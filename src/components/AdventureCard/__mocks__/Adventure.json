@@ -1,0 +1,11 @@
+{
+  "belt": "rope",
+  "inTravelMode": false,
+  "level": 1,
+  "name": "bodgebodgie",
+  "points": 80,
+  "pointsRequiredForNextSpaceCrystal": 0,
+  "spaceCrystals": [],
+  "pointsVersion": 1,
+  "levels": [115, 205, 340]
+}
