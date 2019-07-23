@@ -9,29 +9,17 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
 import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 import { subscribeToItemCreatedEvent } from "./utils";
+import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
-type Translations = {
-  listTitleLabel: string,
-  hoursLabel: string,
-};
-
-type Props = {
-  /** Error message to be log in case of error*/
-  error?: string,
-  /** Indicates whether the data has loaded or still being retrieved */
-  loading: boolean,
-  /** Refetch valuables function */
-  refetch: () => void,
-  /** The list of valuables to be displayed as cards */
-  valuables: Array<PlayerValuableList_PlayerValuable>,
-  /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: string => void,
-  /** An array of translated labels */
-  translations: Translations, // TODO: update type,
-};
-
-export function PlayerValuableListHorizontal(props: Props) {
-  const { error, loading, valuables, translations, refetch } = props;
+export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
+  const {
+    error,
+    loading,
+    valuables,
+    translations,
+    refetch,
+    onConsumeValuable,
+  } = props;
   const { listTitleLabel, hoursLabel } = translations;
 
   useEffect(() => {
@@ -79,9 +67,7 @@ export function PlayerValuableListHorizontal(props: Props) {
                 translatedHoursUnit={hoursLabel}
                 {...valuable}
                 onCardClick={
-                  shouldUseValuable
-                    ? () => this.props.onConsumeValuable(id)
-                    : noop
+                  shouldUseValuable ? () => onConsumeValuable(id) : noop
                 }
               />
             </a>
