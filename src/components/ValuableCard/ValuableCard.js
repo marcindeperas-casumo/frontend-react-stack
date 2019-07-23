@@ -154,7 +154,7 @@ export class ValuableCard extends PureComponent<Props> {
     } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
-    const blurAmount = 3;
+    const blurAmount = 100;
     const stateBadgeOptions = this.stateBadgeOptions;
     const showStateBadge =
       stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;

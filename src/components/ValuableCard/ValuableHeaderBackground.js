@@ -9,6 +9,7 @@ type Props = {
   id: string,
   className: string,
   imageUrl?: string,
+  blur: number,
   children: Node,
 };
 
@@ -25,6 +26,7 @@ export const ValuableHeaderBackground = ({
   id,
   className,
   imageUrl,
+  blur,
   children,
 }: Props) => {
   return (
@@ -40,6 +42,7 @@ export const ValuableHeaderBackground = ({
         {...headerDimensions}
         className="u-position-absolute c-valuable-card__header"
         imageUrl={imageUrl}
+        imgixOpts={{ blur }}
       >
         <ImgMask />
       </MaskImage>
