@@ -68,12 +68,12 @@ export type PLAYER_SETTINGS_QUERY = {
 /**
  * 
  */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
  * 
  */
-export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
  * 

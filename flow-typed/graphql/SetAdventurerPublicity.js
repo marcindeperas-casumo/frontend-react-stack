@@ -21,17 +21,17 @@ export type SetAdventurerPublicityVariables = {
 //==============================================================
 
 /**
- *
+ * 
  */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
- *
+ * 
  */
-export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
- *
+ * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
