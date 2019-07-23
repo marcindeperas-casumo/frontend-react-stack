@@ -3,7 +3,10 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
-const stories = storiesOf("ValuableCardDetailsExpirationLabel", module);
+const stories = storiesOf(
+  "ValuableCardDetails/ValuableCardDetailsExpirationLabel",
+  module
+);
 
 stories.add("Default", () => {
   const expirationText = "2 Hours";
