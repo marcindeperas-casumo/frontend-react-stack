@@ -1,36 +1,35 @@
 //@flow
-import React, { type Node } from "react";
+import React from "react";
 import Text from "@casumo/cmp-text";
-import { DateTime } from "luxon";
 import classNames from "classnames";
+import "./ValuableDetails.scss";
+
+type Translations = {
+  expiresIn: string,
+};
 
 type Props = {
-  time: DateTime,
-  children: string => Node,
+  expirationText: string,
+  translations: Translations,
   className?: string,
 };
+
 export const ValuableDetailsExpirationLabel = ({
-  time,
-  children,
+  expirationText,
+  translations,
   className,
 }: Props) => {
-  const readableExpiration = DateTime.utc()
-    .plus({ hours: 3 })
-    .toRelative();
+  const { expiresIn } = translations;
 
   return (
     <div
       className={classNames(
-        "u-display--inline-block u-text-transform-uppercase t-color-red-light-1 u-padding-x--md u-padding-y--sm c-valuable-details__pill",
+        "u-display--inline-block u-text-transform-uppercase t-background-red u-padding-x--md u-padding-y--sm c-valuable-details__pill",
         className
       )}
     >
-      <Text
-        tag="span"
-        size="sm"
-        className="t-color-red-light-1 u-font-weight-bold"
-      >
-        {children(readableExpiration)}
+      <Text tag="span" size="sm" className="t-color-white u-font-weight-bold">
+        {expiresIn} {expirationText}
       </Text>
     </div>
   );
