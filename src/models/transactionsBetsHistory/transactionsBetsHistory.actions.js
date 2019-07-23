@@ -1,7 +1,6 @@
 // @flow
 import { types as fetchTypes } from "Models/fetch";
 import { getTotalsReq } from "Api/api.transactionsBetsHistory";
-import { playerIdSelector } from "Models/handshake";
 import { types } from "./transactionsBetsHistory.constants";
 import type {
   WalletTotalsProps,

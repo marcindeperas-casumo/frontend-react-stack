@@ -1,11 +1,9 @@
 // @flow
 import { connect } from "react-redux";
 import { range } from "ramda";
-import { DateTime } from "luxon";
 import DurandalReactBridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
 import { walletIdSelector } from "Models/handshake";
-import { getTotalsReq } from "Api/api.transactionsBetsHistory";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
   CMS_CONTENT_SLUG,

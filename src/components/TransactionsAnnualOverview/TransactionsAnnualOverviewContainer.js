@@ -1,5 +1,4 @@
 // @flow
-import React from "react";
 import { connect } from "react-redux";
 import DurandalReactBridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
