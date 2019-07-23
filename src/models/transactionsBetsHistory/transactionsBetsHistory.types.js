@@ -16,3 +16,11 @@ export type WalletTotalsProps = {
   startTime: DateTime,
   endTime: DateTime,
 };
+
+export type FetchAnnualOverviewProps = {
+  year: number,
+  meta?: {
+    resolve?: () => void,
+    reject?: () => void,
+  },
+};
