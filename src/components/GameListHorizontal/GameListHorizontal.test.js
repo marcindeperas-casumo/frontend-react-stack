@@ -56,7 +56,7 @@ describe("GameListHorizontal Mobile", () => {
   test("speficies spacing by list id", () => {
     Object.keys(ITEM_SPACING).forEach(listId => {
       rendered = shallow(<GameListHorizontal list={getList(listId)} />).find(
-        "Mobile"
+        Mobile
       );
       const { spacing } = rendered.find(ScrollableList).props();
 
