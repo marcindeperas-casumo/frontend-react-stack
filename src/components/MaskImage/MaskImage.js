@@ -1,50 +1,53 @@
 // @flow
 import * as React from "react";
-import type { Node } from "react";
+import { getImgixUrl } from "@casumo/cudl-react-utils";
 
 type Props = {
+  /** An id for the masked item. This should be unique all throughout the page */
   id: string,
+  /** Total width of the masked element */
   width: number,
+  /** Total height of the masked element */
   height: number,
+  /** Class name to attach to the masked item */
   className?: string,
-  shapeMask: () => Node,
+  /** The mask shape/s to clip the image */
+  children: React.Node,
+  /** The url of the image to be nasked */
   imageUrl: string,
-  blur?: number,
+  /** The imgix options to apply to the image */
+  imgixOpts?: {},
 };
 
 const MaskImage = ({
-  /** An id for the masked item. This should be unique all throughout the page */
   id,
-  /** Total width of the masked element */
   width,
-  /** Total height of the masked element */
   height,
-  /** Class name to attach to the masked item */
   className,
-  /** The shape of the mask to display from the element */
-  shapeMask,
-  /** The url of the image to be nasked */
+  children,
   imageUrl,
-  /** The amount of bluring to be applied */
-  blur = 0,
-}: Props) => (
-  <div className={className} style={{ width, height }}>
+  imgixOpts = {},
+}: Props) => {
+  const imgixImageUrl = getImgixUrl(imageUrl, "", imgixOpts);
+
+  return (
     <svg
       viewBox={`0 0 ${width} ${height}`}
       xmlns="http://www.w3.org/2000/svg"
-      width={width}
-      height={height}
+      className={className}
     >
       <defs>
-        <clipPath id={`__mask-image-${id}`}>{shapeMask()}</clipPath>
+        <clipPath
+          id={`__mask-image-${id}`}
+          clipPathUnits="objectBoundingBox"
+          transform={`scale(${1 / width} ${1 / height})`}
+        >
+          {children}
+        </clipPath>
       </defs>
-      <filter id={`__blur-image-${id}`}>
-        <feGaussianBlur stdDeviation={blur} />
-      </filter>
       <image
         clipPath={`url(#__mask-image-${id})`}
-        filter={`url(#__blur-image-${id})`}
-        href={imageUrl}
+        href={imgixImageUrl}
         preserveAspectRatio="none"
         x="0"
         y="0"
@@ -52,7 +55,7 @@ const MaskImage = ({
         height="100%"
       />
     </svg>
-  </div>
-);
+  );
+};
 
 export default MaskImage;
