@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { DateTime } from "luxon";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import {
@@ -15,11 +14,7 @@ import { INTL_LOCALES } from "Src/constants";
 import { getSymbolForCurrency, interpolate } from "Utils";
 import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
-import {
-  VALUABLE_ICON,
-  coinValueToSpinType,
-  expiryInHours,
-} from "./ValuableCard.utils";
+import { VALUABLE_ICON, coinValueToSpinType } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import Time from "./Icons/time.svg";
 import Padlock from "./Icons/padlock.svg";
@@ -48,11 +43,11 @@ type Props = {
   /** Background image to be displayed in the Card header */
   backgroundImage: string,
   /** Valuable caveats to be displayed */
-  caveat: string,
+  caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
-  expirationTime: DateTime,
+  expirationTimeInHours: number,
   /** Function to be triggered on click of card */
   onCardClick: () => void,
   /** translated label for the 'hours' unit */
@@ -103,14 +98,16 @@ export class ValuableCard extends PureComponent<Props> {
       badgeClassModifiers,
       badgeIcon,
     });
-    const { valuableState, expirationTime, translatedHoursUnit } = this.props;
+    const {
+      valuableState,
+      expirationTimeInHours: hours,
+      translatedHoursUnit,
+    } = this.props;
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
       return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
     }
-
-    const hours = expiryInHours(expirationTime);
 
     if (hours >= 0 && hours <= 24) {
       const className = "t-color-red";
@@ -167,7 +164,7 @@ export class ValuableCard extends PureComponent<Props> {
         <Flex
           onClick={onCardClick}
           data-test="valuable-card"
-          className="c-valuable-card u-drop-shadow t-background-white t-border-r--16 u-padding-top"
+          className="c-valuable-card u-drop-shadow--sm t-background-white t-border-r--16 u-padding-top"
           direction="vertical"
           gap="none"
         >

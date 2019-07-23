@@ -2,6 +2,7 @@ import { createSelector } from "reselect";
 import {
   compose,
   prop,
+  path,
   pathOr,
   isNil,
   isEmpty,
@@ -142,4 +143,9 @@ export const localeSelector = createSelector(
 export const tournamentChannelsSelector = createSelector(
   playerSelector,
   pathOr({}, ["tournamentCampaign", "tournamentChannels"])
+);
+
+export const walletIdSelector = createSelector(
+  playerSelector,
+  path(["wallet", "id"])
 );

@@ -1,15 +1,23 @@
 import React from "react";
+import * as R from "ramda";
 import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
-import { SportsMainNav } from "Features/sports/components/SportsNav";
 import {
-  SportsNavTab,
-  SportsSingleNavTab,
-} from "Features/sports/components/SportsNav/SportsNavTab/SportsNavTab";
+  SportsMainNav,
+  renderTabList,
+  renderEditButton,
+} from "Features/sports/components/SportsNav";
+import {
+  SportTab,
+  LiveTab,
+} from "Features/sports/components/SportsNav/SportsNavTab";
 import { navItems } from "../__mocks__/navItems";
 
-const navItem = [navItems[0]];
+const liveState = {
+  active: [true, () => {}],
+  inactive: [false, () => {}],
+};
 
 const props = {
   navItems,
@@ -17,92 +25,78 @@ const props = {
   onEdit: jest.fn(),
   isSelected: jest.fn(),
   onSelected: jest.fn(),
-  editLabel: "edit",
+  cacheBuster: "hey brother",
+  liveState: liveState.inactive,
+  labels: {
+    all: "all",
+    live: "live",
+    edit: "edit",
+  },
 };
 
-const render = overrideProps =>
-  shallow(<SportsMainNav {...props} {...overrideProps} />);
-
 describe("<SportsMainNav />", () => {
-  describe("with a single nav item", () => {
-    test("passes the correct props to the ScrollablePaginated", () => {
-      const rendered = render({ navItems: navItem });
-      const sp = rendered.find(ScrollablePaginated);
+  test("passes the correct props to the ScrollablePaginated when multiple nav items exist", () => {
+    const rendered = shallow(<SportsMainNav {...props} />);
+    const sp = rendered.find(ScrollablePaginated);
 
-      expect(sp).toHaveLength(1);
-      expect(sp.props()).toMatchObject({
-        columnCount: 2,
-        cellRenderer: rendered.instance().renderSingleNav,
-        height: 106,
-      });
-    });
-  });
-
-  describe("with multiple nav items", () => {
-    test("passes the correct props to the ScrollablePaginated when a multiple nav items exist", () => {
-      const rendered = render();
-      const sp = rendered.find(ScrollablePaginated);
-
-      expect(sp).toHaveLength(1);
-      expect(sp.props()).toMatchObject({
-        columnCount: 5,
-        cellRenderer: rendered.instance().renderTabList,
-        height: 106,
-      });
-    });
-  });
-
-  describe("renderSingleNav", () => {
-    test("returns a SportsSingleNavTab and no EditButton when rendering the first item", () => {
-      const instance = render({ navItems: navItem }).instance();
-      const rendered = shallow(instance.renderSingleNav({ columnIndex: 0 }));
-
-      expect(rendered.find(SportsSingleNavTab)).toHaveLength(1);
-      expect(rendered.find(EditPillsButton)).toHaveLength(0);
-    });
-
-    test("returns an EditPillsButton and no SportsSingleNavTab when rendering the last item", () => {
-      const instance = render({ navItems: navItem }).instance();
-      const rendered = shallow(instance.renderSingleNav({ columnIndex: 1 }));
-
-      expect(rendered.find(SportsSingleNavTab)).toHaveLength(0);
-      expect(rendered.find(EditPillsButton)).toHaveLength(1);
+    expect(sp).toHaveLength(1);
+    expect(sp.props()).toMatchObject({
+      columnCount: 6,
+      height: 106,
     });
   });
 
   describe("renderTabList", () => {
-    test("returns a SportsNavTab and no EditButton when rendering a non-last item", () => {
-      const instance = render().instance();
-      const renderedFirst = shallow(instance.renderTabList({ columnIndex: 0 }));
-
-      expect(renderedFirst.find(SportsNavTab)).toHaveLength(1);
-      expect(renderedFirst.find(EditPillsButton)).toHaveLength(0);
-
-      const renderedThird = shallow(instance.renderTabList({ columnIndex: 2 }));
-      expect(renderedThird.find(SportsNavTab)).toHaveLength(1);
-      expect(renderedThird.find(EditPillsButton)).toHaveLength(0);
+    test("renders an sports tab for the 2nd position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: 1 })
+      );
+      expect(rendered.find(SportTab)).toHaveLength(1);
     });
 
-    test("returns an EditPillsButton and no SportsNavTab when rendering the last item", () => {
-      const instance = render().instance();
-      const rendered = shallow(instance.renderTabList({ columnIndex: 5 }));
+    test("renders an sports tab for 2nd-to-last position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: navItems.length })
+      );
 
-      expect(rendered.find(SportsNavTab)).toHaveLength(0);
+      expect(rendered.find(SportTab)).toHaveLength(1);
+    });
+
+    test("returns an EditPillsButton when rendering the last item", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: navItems.length + 1 })
+      );
+
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
   });
 
   describe("renderEditButton", () => {
-    test("renders a button when canEdit is true", () => {
-      const instance = render({ canEdit: true }).instance();
-      const rendered = shallow(instance.renderEditButton());
+    const editButtonProps = R.pick(
+      ["navItems", "labels", "canEdit", "onEdit"],
+      props
+    );
+
+    test("renders a button when canEdit is true and isLiveActive is false", () => {
+      const rendered = shallow(
+        renderEditButton(editButtonProps, liveState.inactive)
+      );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
     });
 
+    test("returns null when isLiveActive is true", () => {
+      const rendered = shallow(
+        renderEditButton(editButtonProps, liveState.active)
+      );
+
+      expect(rendered.find(EditPillsButton)).toHaveLength(0);
+    });
+
     test("returns null when canEdit is false", () => {
-      const instance = render({ canEdit: false }).instance();
-      const rendered = shallow(instance.renderEditButton());
+      const rendered = shallow(
+        renderEditButton({ ...props, canEdit: false }, liveState.inactive)
+      );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(0);
     });

@@ -40,7 +40,7 @@ class PromotionCardList extends PureComponent<Props> {
 
   render() {
     const {
-      title,
+      title = "",
       titleColor,
       backgroundColor,
       promotionsSlugs,
@@ -76,7 +76,7 @@ class PromotionCardList extends PureComponent<Props> {
               <Flex justify="space-between">
                 <Flex.Item>
                   {title ? (
-                    <ScrollableListTitle paddingLeft={true} title={title} />
+                    <ScrollableListTitle paddingLeft title={title} />
                   ) : null}
                 </Flex.Item>
                 <Flex.Item align="right" className="u-padding-right--md">
@@ -107,7 +107,7 @@ class PromotionCardList extends PureComponent<Props> {
           <Desktop>
             <ScrollableListPaginated
               list={{
-                title: title,
+                title: title || "",
                 itemIds: promotionsSlugs,
               }}
               Component={PromotionCardContainerRenderer}
