@@ -1,5 +1,9 @@
 // @flow
 import { call, put, select, take, race } from "redux-saga/effects";
+import {
+  playerNameSelector,
+  socialSecurityNumberSelector,
+} from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { types as fetchTypes } from "Models/fetch";
 import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBetsHistory.selectors";
@@ -29,13 +33,16 @@ export function* fetchAnnualOverviewPdfUrlSaga(
     return;
   }
 
+  const { firstName, lastName } = yield select(playerNameSelector);
+  const dni = yield select(socialSecurityNumberSelector);
+
   yield put(
     fetchAnnualOverviewPdfUrl(
       prepareFetchAnnualOverviewPdfUrlProps({
         annualOverview,
         year,
-        name: "bla",
-        dni: "xxx-xxx",
+        name: `${firstName} ${lastName}`,
+        dni,
       })
     )
   );
