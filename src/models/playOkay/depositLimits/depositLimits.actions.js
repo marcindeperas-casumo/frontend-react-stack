@@ -4,19 +4,32 @@ import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
 import type { AllLimits } from "./depositLimits.types";
 
-export const getAllLimits = () => ({
+export const init = () => (dispatch: ThunkDispatch) => {
+  dispatch(getAllLimits);
+  dispatch(limitPreadjust);
+  dispatch(getRemainingLimits);
+};
+
+export const getAllLimits = {
   type: fetchTypes.FETCH,
   name: depositLimitsTypes.FETCH_ALL,
   postFetch: depositLimitsTypes.FETCH_ALL_DONE,
   asyncCall: api.getAllLimits,
-});
+};
 
-export const limitPreadjust = () => ({
+export const getRemainingLimits = {
+  type: fetchTypes.FETCH,
+  name: depositLimitsTypes.REMAINING_LIMITS,
+  postFetch: depositLimitsTypes.REMAINING_LIMITS_DONE,
+  asyncCall: api.remainingLimits,
+};
+
+export const limitPreadjust = {
   type: fetchTypes.FETCH,
   name: depositLimitsTypes.PREADJUST,
   postFetch: depositLimitsTypes.PREADJUST_DONE,
   asyncCall: api.limitPreadjust,
-});
+};
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {

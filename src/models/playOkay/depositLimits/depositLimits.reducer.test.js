@@ -53,6 +53,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           undoable: false,
           lock: undefined,
           preadjust: undefined,
+          remaining: undefined,
         },
         action
       )
@@ -77,6 +78,18 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     };
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       preadjust: "preadjust response",
+    });
+  });
+
+  test("REMAINING_LIMITS_DONE", () => {
+    const action = {
+      type: depositLimitsTypes.REMAINING_LIMITS_DONE,
+      response: {
+        value: "remaining limits",
+      },
+    };
+    expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
+      remaining: "remaining limits",
     });
   });
 });

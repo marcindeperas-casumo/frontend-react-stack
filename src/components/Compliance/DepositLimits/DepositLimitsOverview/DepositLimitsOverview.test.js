@@ -15,7 +15,7 @@ const props = {
     previouslyIncreased: false,
   },
   pendingLimitChanges: {},
-  limitsUsage: {
+  remainingLimitValue: {
     daily: 0,
     weekly: 0,
     monthly: 0,

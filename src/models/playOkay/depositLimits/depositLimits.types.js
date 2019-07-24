@@ -62,4 +62,5 @@ export type DepositLimitsReduxStore = {|
   preadjust: ?DepositLimitPreadjust,
   lock: ?LimitLock,
   undoable: ?boolean,
+  remaining: ?AllLimitsOnlyValues,
 |};

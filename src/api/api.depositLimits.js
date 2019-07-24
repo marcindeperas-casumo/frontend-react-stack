@@ -2,6 +2,7 @@
 import http from "Lib/http";
 import type {
   AllLimits,
+  AllLimitsOnlyValues,
   DepositKinds,
   DepositLimit,
   DepositLimitPreadjust,
@@ -12,6 +13,10 @@ export const BASE_URL = "/casino-player/limits/api/limits";
 
 export function getAllLimits(): Promise<DepositLimit[]> {
   return http.get(BASE_URL);
+}
+
+export function remainingLimits(): Promise<AllLimitsOnlyValues> {
+  return http.get(`${BASE_URL}/DGOJ_DEPOSIT_LIMIT/remaining`);
 }
 
 export function limitAdjust(data: AllLimits): Promise<DepositLimit> {
