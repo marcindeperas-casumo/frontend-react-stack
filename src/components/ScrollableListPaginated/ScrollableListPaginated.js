@@ -21,7 +21,7 @@ export type SeeMoreProps = {
   /** The link where to redirect once clicking the seeMore button. */
   text: string,
   /** The text to render on the seeMore button. */
-  url: string,
+  url: string | void,
   /** The seeMore text color */
   color?: string,
 };
