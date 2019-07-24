@@ -1,12 +1,14 @@
 import React from "react";
 import { mount } from "enzyme";
-import { getImgixUrl } from "@casumo/cudl-react-utils";
+import { head } from "ramda";
+import { getImgixUrl, getSrcSet } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
-import curatedData from "Models/curated/__mocks__/curated.json";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
+import imageData from "./__mocks__/image.json";
 
 describe("ImageAdaptive", () => {
-  const images = curatedData;
+  const images = imageData.images;
+  const defaultImgixOpts = { w: 1 };
 
   describe("isIntersecting true", () => {
     test("should render Picture component", () => {
@@ -20,7 +22,7 @@ describe("ImageAdaptive", () => {
       const component = mount(
         <ImageAdaptive isIntersecting={true} images={images} />
       );
-      const img = getImgixUrl(curatedData.small_image, null, { w: 1.0 });
+      const img = getImgixUrl(head(images).src, null, defaultImgixOpts);
       const expected = component
         .find("img")
         .at(1)
@@ -36,8 +38,7 @@ describe("ImageAdaptive", () => {
         .find("source")
         .at(0)
         .prop("srcSet");
-      const expected =
-        "https://images.casumo.com/2018/09/cc-small-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=1 1x, https://images.casumo.com/2018/09/cc-small-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=2 2x, https://images.casumo.com/2018/09/cc-small-starburst.png?w=1&fit=clamp&markscale=95&auto=compress&fm=jpg&markalign=top%2Ccenter&markfit=max&dpr=3 3x";
+      const expected = getSrcSet(3, head(images).src, null, defaultImgixOpts);
       expect(srcSet).toEqual(expected);
     });
 
@@ -81,7 +82,7 @@ describe("ImageAdaptive", () => {
         <ImageAdaptive isIntersecting={false} images={images} />
       );
       const { imgixOpts } = LOW_RES_IMAGE_SETTINGS;
-      const img = getImgixUrl(curatedData.small_image, null, imgixOpts);
+      const img = getImgixUrl(head(images).src, null, imgixOpts);
       const expected = component.find("img").prop("src");
       expect(img).toEqual(expected);
     });
