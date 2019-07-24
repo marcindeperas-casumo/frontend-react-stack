@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { fetchPageBySlug, getField } from "Models/cms";
-import { marketSelector } from "Models/handshake";
+import { marketSelector, isSuspiciousAccount } from "Models/handshake";
 import PromotionCardList from "./PromotionCardList";
 
 type Props = {
@@ -16,11 +16,13 @@ const getSlug = slug => `${slug}.*`;
 
 const PromotionCardListConnected = connect(
   (state, { slug }) => ({
-    promotionsSlugs: getField({
-      slug,
-      field,
-      defaultValue,
-    })(state),
+    promotionsSlugs:
+      !isSuspiciousAccount(state) &&
+      getField({
+        slug,
+        field,
+        defaultValue,
+      })(state),
     seeMore: getField({
       slug: `built-pages.top-lists-${marketSelector(state)}`,
       field: "more_link",

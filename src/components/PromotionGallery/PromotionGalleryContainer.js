@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import { take } from "ramda";
 import { fetchPageBySlug, getField } from "Models/cms";
-import { marketSelector } from "Models/handshake";
+import { marketSelector, isSuspiciousAccount } from "Models/handshake";
 import PromotionCardGallery from "./PromotionGallery";
 
 const field = "promotions";
@@ -13,11 +13,12 @@ export default connect(
   (state, { slug }) => ({
     promotionsSlugs: take(
       4,
-      getField({
-        slug,
-        field,
-        defaultValue,
-      })(state)
+      !isSuspiciousAccount(state) &&
+        getField({
+          slug,
+          field,
+          defaultValue,
+        })(state)
     ),
     seeMore: getField({
       slug: `built-pages.top-lists-${marketSelector(state)}`,
