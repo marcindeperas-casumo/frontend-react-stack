@@ -9,6 +9,7 @@ const stories = storiesOf("TransactionsAnnualOverview", module);
 const props = {
   t: cmsMocks,
   data: annualOverviewMock,
+  selectedYear: 2001,
   locale: "en-GB",
   navigateToHistory: () => {},
 };

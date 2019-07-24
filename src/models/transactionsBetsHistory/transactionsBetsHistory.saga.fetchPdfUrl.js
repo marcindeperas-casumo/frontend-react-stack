@@ -1,39 +1,48 @@
 // @flow
 import { call, put, select, take, race } from "redux-saga/effects";
-import { DateTime } from "luxon";
-import { walletIdSelector } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { types as fetchTypes } from "Models/fetch";
 import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBetsHistory.selectors";
-import { fetchAnnualOverview } from "./transactionsBetsHistory.actions";
+import { fetchAnnualOverviewPdfUrl } from "./transactionsBetsHistory.actions";
+import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 import { types } from "./transactionsBetsHistory.constants";
 import type {
   FetchAnnualOverviewProps,
   Action,
 } from "./transactionsBetsHistory.types";
 
-export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
+export function* fetchAnnualOverviewPdfUrlSaga(
+  action: FetchAnnualOverviewProps
+): * {
   const { year, meta = {} } = action;
-  const startTime = DateTime.utc(year);
-  const endTime = DateTime.utc(year + 1);
 
-  const walletId = yield select(walletIdSelector);
   const annualOverview = yield select(
     transactionsBetsHistoryAnnualOverviewSelector(year)
   );
 
-  if (annualOverview) {
-    if (meta.resolve) {
-      yield call(meta.resolve);
+  // it's short-circuited because right now this saga can only run when
+  // annual overview for a specific year is already fetched.
+  if (!annualOverview) {
+    if (meta.reject) {
+      yield call(meta.reject);
     }
     return;
   }
 
-  yield put(fetchAnnualOverview({ walletId, startTime, endTime }));
+  yield put(
+    fetchAnnualOverviewPdfUrl(
+      prepareFetchAnnualOverviewPdfUrlProps({
+        annualOverview,
+        year,
+        name: "bla",
+        dni: "xxx-xxx",
+      })
+    )
+  );
 
   const [fetchCompleted, fetchFailed] = yield race([
-    take(types.ANNUAL_OVERVIEW_FETCH_COMPLETED),
-    take(isFailedAnnualOverviewRequestTakePattern),
+    take(types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED),
+    take(isFailedPdfUrlRequestTakePattern),
   ]);
 
   if (fetchFailed) {
@@ -46,7 +55,9 @@ export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   yield put(
     mergeEntity({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
-        [year]: fetchCompleted.response,
+        [year]: {
+          pdfUrl: fetchCompleted.response.downloadUrl,
+        },
       },
     })
   );
@@ -56,11 +67,9 @@ export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   }
 }
 
-export function isFailedAnnualOverviewRequestTakePattern(
-  action: Action
-): boolean {
+export function isFailedPdfUrlRequestTakePattern(action: Action): boolean {
   return (
     action.type === fetchTypes.REQUEST_ERROR &&
-    action.name === types.ANNUAL_OVERVIEW_FETCH_START
+    action.name === types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
   );
 }

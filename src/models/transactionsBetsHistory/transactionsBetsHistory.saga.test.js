@@ -3,7 +3,7 @@ import { ENTITY_KEYS } from "Models/schema";
 import { types } from "./transactionsBetsHistory.constants";
 import {
   fetchAnnualOverviewSaga,
-  isFailedRequestTakePattern,
+  isFailedAnnualOverviewRequestTakePattern,
 } from "./transactionsBetsHistory.saga";
 import annualOverview from "./__mocks__/annualOverview.json";
 
@@ -39,7 +39,9 @@ describe("fetchAnnualOverviewSaga()", () => {
     expect(raceEffect.RACE[0].TAKE.pattern).toEqual(
       types.ANNUAL_OVERVIEW_FETCH_COMPLETED
     );
-    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(isFailedRequestTakePattern);
+    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(
+      isFailedAnnualOverviewRequestTakePattern
+    );
 
     const mergeEntityEffect = generator.next([
       { response: annualOverview },
@@ -90,7 +92,9 @@ describe("fetchAnnualOverviewSaga()", () => {
     expect(raceEffect.RACE[0].TAKE.pattern).toEqual(
       types.ANNUAL_OVERVIEW_FETCH_COMPLETED
     );
-    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(isFailedRequestTakePattern);
+    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(
+      isFailedAnnualOverviewRequestTakePattern
+    );
 
     const rejectCallEffects = generator.next([
       null,

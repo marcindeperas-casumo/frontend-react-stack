@@ -3,6 +3,7 @@ import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
   getTotalsReq,
+  getAnnualOverviewPdfUrlReq,
 } from "./api.transactionsBetsHistory";
 
 describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
@@ -91,5 +92,30 @@ describe("getTotalsReq()", () => {
       betsAmount: 89.3,
       winningsAmount: 124,
     });
+  });
+});
+
+describe("getAnnualOverviewPdfUrlReq()", () => {
+  const post = jest.fn();
+  const http = {
+    post,
+  };
+  const props = {
+    name: "John Doe",
+    dni: "234234-sdfs-34243",
+    year: 2000,
+    startingBalance: 44,
+    endingBalance: 80,
+    totalDeposits: 78,
+    totalWithdrawals: 66,
+    totalWagers: 2,
+    totalWins: 45,
+    totalBonusesConverted: 23,
+  };
+
+  test("should issue post with the props passed to the req body", () => {
+    getAnnualOverviewPdfUrlReq(props, http);
+
+    expect(post).toHaveBeenCalledWith(expect.any(String), props);
   });
 });

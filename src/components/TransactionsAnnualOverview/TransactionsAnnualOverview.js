@@ -2,9 +2,8 @@
 import React, { useCallback } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
-import { DownloadIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
+import { TransactionsAnnualOverviewPdfButton } from "Components/PdfButton";
 import type { AnnualOverview } from "Models/transactionsBetsHistory";
 
 type Content = {
@@ -21,6 +20,7 @@ type Content = {
 };
 
 type Props = {
+  selectedYear: number,
   locale: string,
   t: Content,
   data: AnnualOverview,
@@ -66,6 +66,7 @@ export function TransactionsAnnualOverview({
   t,
   data,
   navigateToHistory,
+  selectedYear,
 }: Props) {
   const passedProps = { currency: data.currency, locale };
 
@@ -119,10 +120,10 @@ export function TransactionsAnnualOverview({
         amount={0}
         {...passedProps}
       />
-      <Button className="u-margin-top--lg u-margin-bottom--md" disabled>
-        <DownloadIcon />
-        {t.annual_transactions_download_pdf}
-      </Button>
+      <TransactionsAnnualOverviewPdfButton
+        year={selectedYear}
+        label={t.annual_transactions_download_pdf}
+      />
     </div>
   );
 }
