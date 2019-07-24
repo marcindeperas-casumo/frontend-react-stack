@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Observer from "@researchgate/react-intersection-observer";
-import type { Images } from "Components/Image/ImageAdaptive";
+import type { Pictures } from "@casumo/cudl-react-prop-types";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import ImageResponsive from "Components/Image/ImageResponsive";
 // Add intersection observer polyfill since this feature is experimental and
@@ -10,7 +10,7 @@ import ImageResponsive from "Components/Image/ImageResponsive";
 import "intersection-observer";
 
 type Props = {
-  images?: Images,
+  images?: Pictures,
 };
 
 type State = {

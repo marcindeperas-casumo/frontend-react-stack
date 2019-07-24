@@ -1213,7 +1213,7 @@
     "@casumo/cudl-react-utils" "^1.0.6"
     ramda "^0.26.1"
 
-"@casumo/cmp-picture@^1.0.6":
+"@casumo/cmp-picture@^1.1.0":
   version "1.1.0"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-picture/-/cmp-picture-1.1.0.tgz#a3561b56c449ae1b9192d48234899135a91c1f44"
   integrity sha512-LeSpYyBN01FJyaUvQQ8eChqMpxuqntJ7M5S8nWOPoXCheX1s57H7v6ZLDXcAiP/xuRHtK6H9eSBT+3o3T4DjcA==
@@ -1391,6 +1391,11 @@
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-props" "^2.0.2"
     sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-react-prop-types@^2.1.0":
+  version "2.1.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.0.tgz#67932610cc705eaa2ec1b6e9eb40c80bf7072b94"
+  integrity sha512-uiBZWaBZJdoNhwm2rYkWbgd5JuESZ2JA/ObSbATh8odmoWY2zItVC+zmli2HUFYR7aqzOLf0gPZPj+kEYNZwNw==
 
 "@casumo/cudl-react-prop-types@^2.1.0":
   version "2.1.0"
