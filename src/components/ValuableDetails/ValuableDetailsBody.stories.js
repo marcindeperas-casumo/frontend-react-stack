@@ -12,11 +12,12 @@ const stories = storiesOf(
 
 stories.add("Default", () => {
   const { details, expirationTimeInHours, caveat, termsContent } = mock[0];
+  const expirationTextValue = `${expirationTimeInHours} hours`;
 
   return (
     <ValuableDetailsBody
       details={details}
-      expirationTimeInHours={expirationTimeInHours}
+      expirationValueText={expirationTextValue}
       caveat={caveat}
       termsContent={termsContent}
       translations={translations}

@@ -1,7 +1,5 @@
 //@flow
 import React from "react";
-import { DateTime } from "luxon";
-import { pick } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
@@ -15,7 +13,8 @@ type Translations = {
 type Props = {
   /* Details description of the valuable */
   details: string,
-  expirationTime: DateTime,
+  /* Expiration vaue for the valuable to expire */
+  expirationValueText: string,
   /* Valuable caveat */
   caveat: string,
   /* Content for terms and conditions */
@@ -26,13 +25,13 @@ type Props = {
 
 export const ValuableDetailsBody = ({
   details,
-  expirationTime,
+  expirationValueText,
   caveat,
   termsContent,
   translations,
 }: Props) => {
-  const { termsAndConditionLabel } = translations;
-  const expirationLabelTranslation = pick(["expiresIn"], translations);
+  const { termsAndConditionLabel, expiresIn } = translations;
+  const expirationLabel = `${expiresIn} ${expirationValueText}`;
 
   return (
     <Flex.Item className="u-text-align-center u-padding-top--lg u-margin-top--none">
@@ -45,9 +44,8 @@ export const ValuableDetailsBody = ({
           {details}
         </Text>
         <ValuableDetailsExpirationLabel
-          translations={expirationLabelTranslation}
-          expirationText={expirationTime}
-          className="u-margin-top--sm u-margin-bottom--md"
+          text={expirationLabel}
+          className="t-background-red" // u-margin-top--sm u-margin-bottom--md
         />
         <Text
           tag="p"
