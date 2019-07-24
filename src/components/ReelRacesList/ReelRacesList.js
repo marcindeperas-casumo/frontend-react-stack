@@ -62,7 +62,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
             }}
             Component={ReelRaceCard}
             className={itemClassName}
-            itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+            itemControlClass="c-scrollable-list-paginated__button"
             tileHeight={240}
             seeMore={{
               text: t.more_link,

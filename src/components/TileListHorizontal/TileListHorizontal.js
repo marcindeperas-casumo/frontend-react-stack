@@ -80,7 +80,7 @@ class TileListHorizontal extends PureComponent<Props> {
               }}
               Component={({ id }) => <Tile {...id} />}
               className="c-tile"
-              itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+              itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
               itemSpacing="md"
             />

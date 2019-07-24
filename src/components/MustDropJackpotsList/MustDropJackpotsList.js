@@ -76,7 +76,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
             Component={mustDropJackpotRenderer}
             className="c-jackpots-list-tile"
             itemSpacing="md"
-            itemControlClass="c-game-list-horizontal-desktop-paginated__button"
+            itemControlClass="c-scrollable-list-paginated__button"
             tileHeight={291}
             seeMore={{
               text: seeMore,
