@@ -22,7 +22,6 @@ stories.add("Default", () => (
       weekly: 1500,
       monthly: 3000,
       currency: "EUR",
-      previouslyIncreased: false,
     }}
     pendingLimitChanges={{
       daily: {
@@ -48,7 +47,6 @@ stories.add("No limits", () => (
       weekly: null,
       monthly: null,
       currency: "EUR",
-      previouslyIncreased: false,
     }}
     remainingLimitValue={{
       daily: null,

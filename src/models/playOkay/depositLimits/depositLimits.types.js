@@ -7,7 +7,6 @@ export type AllLimitsOnlyValues = {
 };
 export type AllLimits = {
   currency: string,
-  previouslyIncreased: boolean,
   daily: ?number,
   monthly: ?number,
   weekly: ?number,

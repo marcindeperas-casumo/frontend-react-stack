@@ -35,7 +35,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             weekly: 0,
             monthly: 1, // <-- change
             currency: "EUR",
-            previouslyIncreased: false,
           },
         },
       },
@@ -48,7 +47,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             weekly: 0,
             monthly: 0,
             currency: "EUR",
-            previouslyIncreased: false,
           },
           undoable: false,
           lock: undefined,
@@ -63,7 +61,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         weekly: 0,
         monthly: 1,
         currency: "EUR",
-        previouslyIncreased: false,
       },
       undoable: false,
       lock: undefined,

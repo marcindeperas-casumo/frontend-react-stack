@@ -38,12 +38,10 @@ stories.add("Default", () => {
       newLimits={{
         ...newLimits,
         currency: "EUR",
-        previouslyIncreased: false,
       }}
       currentLimits={{
         ...currentLimits,
         currency: "EUR",
-        previouslyIncreased: false,
       }}
       preadjust={preadjust}
       {...actions}

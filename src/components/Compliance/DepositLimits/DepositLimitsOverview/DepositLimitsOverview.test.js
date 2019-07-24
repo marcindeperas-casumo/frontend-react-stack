@@ -12,7 +12,6 @@ const props = {
     weekly: 30,
     monthly: 100,
     currency: "EUR",
-    previouslyIncreased: false,
   },
   pendingLimitChanges: {},
   remainingLimitValue: {
@@ -41,7 +40,6 @@ describe("DepositLimitsOverview", () => {
         {...props}
         limits={{
           currency: "EUR",
-          previouslyIncreased: false,
           daily: 10,
           weekly: null,
           monthly: null,

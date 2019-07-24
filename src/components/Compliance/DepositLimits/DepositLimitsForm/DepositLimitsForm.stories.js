@@ -16,7 +16,6 @@ stories.add("Default", () => (
       weekly: 1500,
       monthly: 3000,
       currency: "EUR",
-      previouslyIncreased: false,
     }}
     locale="en-GB"
   />
