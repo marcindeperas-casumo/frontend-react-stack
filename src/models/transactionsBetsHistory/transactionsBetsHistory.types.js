@@ -38,11 +38,12 @@ export type FetchAnnualOverviewPdfUrlProps = {
   dni: string,
   /** The year for which to generate the pdf */
   year: number,
-  startingBalance: number,
-  endingBalance: number,
-  totalDeposits: number,
-  totalWithdrawals: number,
-  totalWagers: number,
-  totalWins: number,
-  totalBonusesConverted: number,
+  /** All the properties below are sent as formatted amounts with currency */
+  startingBalance: string,
+  endingBalance: string,
+  totalDeposits: string,
+  totalWithdrawals: string,
+  totalWagers: string,
+  totalWins: string,
+  totalBonusesConverted: string,
 };

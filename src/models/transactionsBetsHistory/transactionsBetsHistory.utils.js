@@ -1,4 +1,5 @@
 // @flow
+import { formatCurrency } from "Utils";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
@@ -6,6 +7,7 @@ import type {
 
 type Props = {
   annualOverview: AnnualOverview,
+  locale: string,
   year: number,
   name: string,
   dni: string,
@@ -13,20 +15,27 @@ type Props = {
 
 export function prepareFetchAnnualOverviewPdfUrlProps({
   annualOverview,
+  locale,
   year,
   name,
   dni,
 }: Props): FetchAnnualOverviewPdfUrlProps {
+  const { currency } = annualOverview;
+  const formatCurrencyBound = value =>
+    formatCurrency({ locale, currency, value });
+
   return {
     year,
     name,
     dni,
-    startingBalance: 0,
-    endingBalance: 0,
-    totalDeposits: annualOverview.depositsAmount,
-    totalWithdrawals: annualOverview.withdrawalsAmount,
-    totalWagers: 0,
-    totalWins: annualOverview.winningsAmount,
-    totalBonusesConverted: annualOverview.convertedBonusesAmount,
+    startingBalance: formatCurrencyBound(0),
+    endingBalance: formatCurrencyBound(0),
+    totalDeposits: formatCurrencyBound(annualOverview.depositsAmount),
+    totalWithdrawals: formatCurrencyBound(annualOverview.withdrawalsAmount),
+    totalWagers: formatCurrencyBound(0),
+    totalWins: formatCurrencyBound(annualOverview.winningsAmount),
+    totalBonusesConverted: formatCurrencyBound(
+      annualOverview.convertedBonusesAmount
+    ),
   };
 }

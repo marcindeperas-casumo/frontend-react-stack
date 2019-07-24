@@ -1,6 +1,7 @@
 // @flow
 import { call, put, select, take, race } from "redux-saga/effects";
 import {
+  localeSelector,
   playerNameSelector,
   socialSecurityNumberSelector,
 } from "Models/handshake";
@@ -35,10 +36,12 @@ export function* fetchAnnualOverviewPdfUrlSaga(
 
   const { firstName, lastName } = yield select(playerNameSelector);
   const dni = yield select(socialSecurityNumberSelector);
+  const locale = yield select(localeSelector);
 
   yield put(
     fetchAnnualOverviewPdfUrl(
       prepareFetchAnnualOverviewPdfUrlProps({
+        locale,
         annualOverview,
         year,
         name: `${firstName} ${lastName}`,
