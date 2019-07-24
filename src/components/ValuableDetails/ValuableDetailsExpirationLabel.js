@@ -10,16 +10,14 @@ type Props = {
   className?: string,
 };
 
-export const defaultColor = "t-color-white";
-export const defaultBackground = "t-background-red";
-
 export const ValuableDetailsExpirationLabel = ({ text, className }: Props) => {
   return (
     <Text
       tag="div"
       size="sm"
+      data-test="expiration-label"
       className={classNames(
-        "u-display--inline-block t-border-r--2 u-text-transform-uppercase u-padding-x--md u-padding-y--sm c-valuable-details__expiration-label t-color-white",
+        "u-display--inline-block t-border-r--2 u-text-transform-uppercase u-padding-x--md u-padding-y--sm t-color-white",
         "u-font-weight-bold",
         className
       )}

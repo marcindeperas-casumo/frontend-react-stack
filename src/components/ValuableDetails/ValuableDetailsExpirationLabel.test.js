@@ -3,7 +3,6 @@ import { mount, shallow } from "enzyme";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
 describe("ValuableDetailsExpirationLabel", () => {
-  const labelWrapperSelector = ".c-valuable-details__expiration-label";
   const text = "foo";
   let rendered;
 
@@ -11,7 +10,7 @@ describe("ValuableDetailsExpirationLabel", () => {
     rendered = mount(<ValuableDetailsExpirationLabel text={text} />);
 
     const renderedText = rendered
-      .find(labelWrapperSelector)
+      .find("[data-test='expiration-label']")
       .find("Text")
       .text();
 
