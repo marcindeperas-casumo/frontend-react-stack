@@ -1,6 +1,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
 import ImageLazy from "Components/Image/ImageLazy";
 
 const PromotionCardHeader = ({ badge, dates }) => {
@@ -19,7 +20,12 @@ const PromotionCardHeader = ({ badge, dates }) => {
           {dates}
         </Text>
       </Flex.Item>
-      <Flex.Item className="o-flex__item--no-shrink">
+      <Flex.Item
+        className={classNames(
+          "o-flex__item--no-shrink",
+          !badge && "u-padding-top--2xlg"
+        )}
+      >
         {badge && (
           <ImageLazy
             className="u-display--block"
