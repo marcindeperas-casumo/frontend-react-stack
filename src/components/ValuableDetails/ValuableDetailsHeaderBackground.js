@@ -12,18 +12,21 @@ const Path = () => (
 
 type Props = {
   id: string,
+  /* Url of the image to be displayed as the background */
   imageUrl: string,
 };
 
-export const ValuableDetailsHeaderBackground = ({ id, imageUrl }: Props) => (
-  <Flex.Item>
-    <MaskImage
-      className="c-valuable-details__header"
-      id={`${id}-detail`}
-      shapeMask={Path}
-      imageUrl={imageUrl}
-      width={WIDTH}
-      height={HEIGHT}
-    />
-  </Flex.Item>
-);
+export const ValuableDetailsHeaderBackground = ({ id, imageUrl }: Props) => {
+  return (
+    <Flex.Item>
+      <MaskImage
+        className="c-valuable-details__header"
+        id={`${id}-detail`}
+        shapeMask={Path}
+        imageUrl={imageUrl}
+        width={WIDTH}
+        height={HEIGHT}
+      />
+    </Flex.Item>
+  );
+};

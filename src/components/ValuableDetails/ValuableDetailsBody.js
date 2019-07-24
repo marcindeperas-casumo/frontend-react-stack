@@ -4,10 +4,9 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
-// TODO: to go back to naming
 type Translations = {
   termsAndConditionLabel: string,
-  expiresIn: string,
+  expiresInLabel: string,
 };
 
 type Props = {
@@ -30,8 +29,8 @@ export const ValuableDetailsBody = ({
   termsContent,
   translations,
 }: Props) => {
-  const { termsAndConditionLabel, expiresIn } = translations;
-  const expirationLabel = `${expiresIn} ${expirationValueText}`;
+  const { termsAndConditionLabel, expiresInLabel } = translations;
+  const expirationLabel = `${expiresInLabel} ${expirationValueText}`;
 
   return (
     <Flex.Item className="u-text-align-center u-padding-top--lg u-margin-top--none">
@@ -45,7 +44,7 @@ export const ValuableDetailsBody = ({
         </Text>
         <ValuableDetailsExpirationLabel
           text={expirationLabel}
-          className="t-background-red" // u-margin-top--sm u-margin-bottom--md
+          className="t-background-red"
         />
         <Text
           tag="p"

@@ -1,4 +1,4 @@
 {
-    "expiresIn": "Expires in",
-    "termsAndConditionLabel": "Terms & Conditions"
+  "expiresInLabel": "Expires in",
+  "termsAndConditionLabel": "Terms & Conditions"
 }
