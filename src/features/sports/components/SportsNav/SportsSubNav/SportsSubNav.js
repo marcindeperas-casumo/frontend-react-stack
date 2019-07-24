@@ -1,120 +1,76 @@
 // @flow
 import React from "react";
+import * as R from "ramda";
 import type { CellRendererParams } from "react-virtualized";
+import {
+  AllItem,
+  NavItem,
+  EditItem,
+} from "Features/sports/components/SportsNav/SportsSubNav/SportsSubNavItems";
 import ScrollablePaginated from "Components/ScrollablePaginated";
-import { Pill } from "Components/Pill";
-import EditPillsButton from "Features/sports/components/EditPillsButton";
 import {
   sportsPagerButtonRenderer,
   type SportsNavItemType,
+  type LiveState,
+  type Labels,
 } from "Features/sports/components/SportsNav";
 
 export type SportsSubNavProps = {
-  navItems: Array<SportsNavItemType>,
-  isSelected: (SportsNavItemType, boolean) => boolean,
+  navItems: SportsNavItemType[],
+  isSelected: SportsNavItemType => boolean,
   onSelected: SportsNavItemType => void,
   canEdit: boolean,
   onEdit: () => void,
-  allLabel: string,
   cacheBuster: string,
+  labels: Labels,
+  liveState: LiveState,
 };
 
-type SportsSubNavItemProps = {
-  navItem: SportsNavItemType,
-  isSelected: boolean,
-  onSelected: () => void,
+type ItemType = "all" | "nav" | "edit";
+
+type RenderItemArgs = {
+  navItemTypes: ItemType[],
+  props: SportsSubNavProps,
+  isLiveActive: boolean,
 };
 
-const SportsSubNavItem = (props: SportsSubNavItemProps) => (
-  <div
-    key={props.navItem.path}
-    onClick={props.onSelected}
-    className="u-margin-y--md u-margin-x--sm"
-  >
-    <Pill
-      inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"
-      activeClassNames="u-drop-shadow t-background-green t-color-white"
-      isActive={props.isSelected}
-    >
-      {props.navItem.text}
-    </Pill>
-  </div>
-);
+const renderItem = ({ props, navItemTypes, isLiveActive }: RenderItemArgs) => ({
+  columnIndex,
+  style,
+}: CellRendererParams) => {
+  const navItem = props.navItems[columnIndex - 1];
+  const navItemType = navItemTypes[columnIndex];
+  const itemProps = { ...props, isLiveActive, navItem };
 
-export class SportsSubNav extends React.Component<SportsSubNavProps> {
-  renderAllNavItem = ({ style }: CellRendererParams) => {
-    const allNavItem = {
-      text: this.props.allLabel,
-      path: this.props.navItems[0].parentPath || "",
-      key: "all",
-      canEdit: false,
-    };
+  const renderedComponent = R.cond([
+    [R.equals("all"), () => <AllItem {...itemProps} />],
+    [R.equals("nav"), () => <NavItem {...itemProps} />],
+    [R.equals("edit"), () => <EditItem {...itemProps} />],
+    [R.T, () => "null"],
+  ])(navItemType);
 
-    return (
-      <div style={style}>
-        <div className="u-margin-left--md u-margin-y--md">
-          <SportsSubNavItem
-            navItem={allNavItem}
-            onSelected={() => this.props.onSelected(allNavItem)}
-            isSelected={this.props.isSelected(allNavItem, false)}
-          />
-        </div>
-      </div>
-    );
-  };
-
-  renderEditButton = ({ style }: CellRendererParams) => (
-    <div style={style}>
-      <div className="u-margin--md u-margin-left--sm">
-        {this.props.canEdit && (
-          <EditPillsButton
-            onClick={this.props.onEdit}
-            className="t-background-grey-light-3 t-color-grey u-drop-shadow"
-          />
-        )}
-      </div>
+  return (
+    <div key={columnIndex} style={style}>
+      {renderedComponent}
     </div>
   );
+};
 
-  renderItem = ({ columnIndex, style }: CellRendererParams) => {
-    if (columnIndex === 0) {
-      return this.renderAllNavItem({ style });
-    }
+export const SportsSubNav = (props: SportsSubNavProps) => {
+  const [isLiveActive] = props.liveState;
+  const navItemTypes = ["all", ...props.navItems.map(() => "nav"), "edit"];
+  const backgroundColor = isLiveActive ? "orange-light-3" : "grey-light-2";
 
-    const navItem = this.props.navItems[columnIndex - 1];
-
-    if (!navItem) {
-      return this.renderEditButton({ style });
-    }
-
-    return (
-      <div style={style}>
-        <SportsSubNavItem
-          key={navItem.path}
-          navItem={navItem}
-          onSelected={() => this.props.onSelected(navItem)}
-          isSelected={this.props.isSelected(navItem, false)}
-        />
-      </div>
-    );
-  };
-
-  render() {
-    const tabCount = this.props.navItems.length;
-    const buttonCount = 2; // include "all" pill to prepend, edit button to append
-    const columnCount = tabCount + buttonCount;
-
-    return (
-      <div className="t-background-grey-light-2 u-margin-top--sm">
-        <ScrollablePaginated
-          className="c-sports-nav-paginated"
-          columnCount={columnCount}
-          cellRenderer={this.renderItem}
-          height={64}
-          buttonRenderer={sportsPagerButtonRenderer}
-          cacheBuster={this.props.cacheBuster}
-        />
-      </div>
-    );
-  }
-}
+  return (
+    <div className={`u-margin-top--sm t-background-${backgroundColor}`}>
+      <ScrollablePaginated
+        className="c-sports-nav-paginated"
+        columnCount={navItemTypes.length}
+        cellRenderer={renderItem({ props, navItemTypes, isLiveActive })}
+        height={64}
+        buttonRenderer={sportsPagerButtonRenderer}
+        cacheBuster={props.cacheBuster}
+      />
+    </div>
+  );
+};

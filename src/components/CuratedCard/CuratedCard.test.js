@@ -1,196 +1,120 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { dissoc } from "ramda";
+import { omit } from "ramda";
+import Card from "@casumo/cmp-card";
+import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import { CuratedCard } from "Components/CuratedCard/CuratedCard";
+import {
+  CuratedCardFooterGame,
+  CuratedCardFooterText,
+} from "Components/CuratedCard/CuratedCardFooter";
+import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
 import curatedData from "Models/curated/__mocks__/curated.json";
-import { CURATED_TYPE } from "Models/curated";
+import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
 
 describe("CuratedCard", () => {
-  const PROMO_TYPE = CURATED_TYPE.PROMOTION;
   let fetchCurated;
+  let onLaunchGame;
+  let curatedCardDataGame;
+  let curatedCardDataPromotion;
+  let curatedCardDataWelcomeOffer;
+  const promotion = ["boosted-reel-races"];
 
   beforeEach(() => {
     fetchCurated = jest.fn();
-  });
-
-  test("should render component", () => {
-    const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
-
-    expect(component.find("CuratedCard").exists()).toBe(true);
+    onLaunchGame = jest.fn();
+    curatedCardDataGame = { ...curatedData, fetchCurated };
+    curatedCardDataPromotion = {
+      ...omit(["gameData", "gameId"], curatedData),
+      promotion,
+      fetchCurated,
+      typeOfCurated: CURATED_TYPE.PROMOTION,
+    };
+    curatedCardDataWelcomeOffer = {
+      ...omit(["gameData", "gameId"], curatedData),
+      fetchCurated,
+      typeOfCurated: CURATED_TYPE.WELCOME_OFFER,
+    };
   });
 
   test("should render CuratedCardSkeleton when isFetched is false", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={false}
-      />
+      <CuratedCard {...curatedCardDataGame} isFetched={false} />
     );
 
-    expect(component.find("CuratedCardSkeleton").exists()).toBe(true);
+    expect(component.find(CuratedCardSkeleton).exists()).toBe(true);
   });
 
-  test("should render CuratedCard when isFetched", () => {
+  test("should not render CuratedCardSkeleton when isFetched is true", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
+      <CuratedCard {...curatedCardDataGame} isFetched={true} />
     );
 
-    expect(component.find("CuratedCardBackground").exists()).toBe(true);
-    expect(component.find("Card").exists()).toBe(true);
+    expect(component.find(CuratedCardSkeleton).exists()).toBe(false);
   });
 
-  test("should render component", () => {
+  test("should render CuratedCardBackground and Card when isFetched is true", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={false}
-      />
+      <CuratedCard {...curatedCardDataGame} isFetched={true} />
     );
-
-    expect(component.find("CuratedCard").exists()).toBe(true);
+    expect(component.find(CuratedCardBackground).exists()).toBe(true);
+    expect(component.find(Card).exists()).toBe(true);
   });
 
-  test("should render ImageLazy background", () => {
+  test("should render CuratedCardFooterGame if there is a game", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
+      <CuratedCard {...curatedCardDataGame} isFetched={true} />
     );
 
-    expect(component.find("ImageLazy").exists()).toBe(true);
+    expect(component.find(CuratedCardFooterGame).exists()).toBe(true);
   });
 
-  test("should render Card", () => {
+  test("should render CuratedCardFooterText if there isn't a game", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
+      <CuratedCard {...curatedCardDataPromotion} isFetched={true} />
     );
 
-    expect(component.find("Card").exists()).toBe(true);
-  });
-
-  test("should render CuratedCardFooter if there is a game", () => {
-    const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
-
-    expect(component.find("CuratedCardFooter").exists()).toBe(true);
-  });
-
-  test("should render promotions_legal_text if no game", () => {
-    const data = dissoc("gameData", curatedData);
-    const component = mount(
-      <CuratedCard
-        {...data}
-        typeOfCurated={PROMO_TYPE}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
-
-    const text = component
-      .find("Card")
-      .find("Text")
-      .last()
-      .text();
-
-    expect(text).toBe(data.promotions_legal_text);
+    expect(component.find(CuratedCardFooterText).exists()).toBe(true);
   });
 
   test("should render subtitle html", () => {
-    const data = dissoc("gameData", curatedData);
-    const promoData = dissoc("gameId", data);
     const component = mount(
-      <CuratedCard
-        {...promoData}
-        typeOfCurated={PROMO_TYPE}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
+      <CuratedCard {...curatedCardDataPromotion} isFetched={true} />
+    ).render();
     const text = component
-      .find("Card")
-      .find("Text")
-      .at(0)
-      .render()
+      .find("[data-test='curated-card-header-subtitle']")
       .text();
 
-    expect(text).toBe("PROMOTIONS");
+    expect(text).toBe(curatedCardDataPromotion.subtitle);
   });
 
   test("should render header html", () => {
     const component = mount(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-        typeOfCurated={CURATED_TYPE.GAME}
-      />
-    );
-    const html = component
-      .find("Card")
-      .find("Text")
-      .at(0)
-      .render()
-      .html();
+      <CuratedCard {...curatedCardDataGame} isFetched={true} />
+    ).render();
+    const html = component.find("[data-test='curated-card-header']").html();
 
-    expect(html).toBe("TRY OUR<br> NEW<br> GAME");
+    expect(html).toBe(curatedCardDataGame.header);
   });
 
   test("init fetch if not isFetched", () => {
-    shallow(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={false}
-      />
-    );
+    shallow(<CuratedCard {...curatedCardDataGame} isFetched={false} />);
 
     expect(fetchCurated).toHaveBeenCalledTimes(1);
   });
 
-  test("not init fetch if isFetched", () => {
-    shallow(
-      <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-      />
-    );
+  test("do not initiate fetch if isFetched", () => {
+    shallow(<CuratedCard {...curatedCardDataGame} isFetched={true} />);
 
     expect(fetchCurated).toHaveBeenCalledTimes(0);
   });
 
   test("should not link to anywhere if it is displaying a game", () => {
-    const onLaunchGame = jest.fn();
     const rendered = mount(
       <CuratedCard
-        {...curatedData}
-        fetchCurated={fetchCurated}
+        {...curatedCardDataGame}
         isFetched={true}
         onLaunchGame={onLaunchGame}
-        typeOfCurated={CURATED_TYPE.GAME}
       />
     );
     const { href } = rendered
@@ -201,16 +125,12 @@ describe("CuratedCard", () => {
     expect(href).toBeNull();
   });
 
-  test("should link to deposit page if there are no promotions and game set", () => {
-    const onLaunchGame = jest.fn();
+  test("should link to deposit page if is type welcome offer", () => {
     const rendered = mount(
       <CuratedCard
-        {...curatedData}
-        gameData={null}
-        fetchCurated={fetchCurated}
+        {...curatedCardDataWelcomeOffer}
         isFetched={true}
         onLaunchGame={onLaunchGame}
-        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
       />
     );
     const { href } = rendered
@@ -218,21 +138,15 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe("/en/cash/deposit");
+    expect(href).toBe(CARD_CLICK_URL[CURATED_TYPE.WELCOME_OFFER]);
   });
 
   test("should link to a specific promotion if curated type is promotion", () => {
-    const promotion = "boosted-reel-races";
-    const onLaunchGame = jest.fn();
     const rendered = mount(
       <CuratedCard
-        {...curatedData}
-        gameData={null}
-        promotion={[promotion]}
-        fetchCurated={fetchCurated}
+        {...curatedCardDataPromotion}
         isFetched={true}
         onLaunchGame={onLaunchGame}
-        typeOfCurated={CURATED_TYPE.PROMOTION}
       />
     );
     const { href } = rendered
@@ -240,20 +154,15 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe(`/en/promotions/${promotion}`);
+    expect(href).toBe(`/en/promotions/${curatedCardDataPromotion.promotion}`);
   });
 
-  test("should not break if the `promotion` prop is an empty string", () => {
-    const onLaunchGame = jest.fn();
+  test("should not break if the `promotion` is an empty string", () => {
     const rendered = mount(
       <CuratedCard
-        {...curatedData}
-        gameData={null}
-        promotion=""
-        fetchCurated={fetchCurated}
+        {...curatedCardDataWelcomeOffer}
+        promotion={[""]}
         isFetched={true}
-        onLaunchGame={onLaunchGame}
-        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
       />
     );
     const { href } = rendered
@@ -261,39 +170,31 @@ describe("CuratedCard", () => {
       .first()
       .props();
 
-    expect(href).toBe(`/en/cash/deposit`);
+    expect(href).toBe(CARD_CLICK_URL[CURATED_TYPE.WELCOME_OFFER]);
   });
 
   test("should not call onLaunchGame if not game", () => {
-    const gameLaunch = jest.fn();
     const rendered = mount(
       <CuratedCard
-        gameData={null}
-        promotion=""
-        fetchCurated={fetchCurated}
+        {...curatedCardDataPromotion}
         isFetched={true}
-        onLaunchGame={gameLaunch}
-        typeOfCurated={CURATED_TYPE.WELCOME_OFFER}
+        onLaunchGame={onLaunchGame}
       />
     );
     const cardBackground = rendered.find("CuratedCardBackground");
 
     cardBackground.simulate("click");
 
-    expect(gameLaunch).toHaveBeenCalledTimes(0);
+    expect(onLaunchGame).toHaveBeenCalledTimes(0);
   });
 
   test("should call onLaunchGame if curated type is game", () => {
     const gameLaunch = jest.fn();
-
     const rendered = mount(
       <CuratedCard
-        gameData={null}
-        promotion=""
-        fetchCurated={fetchCurated}
+        {...curatedCardDataGame}
         isFetched={true}
         onLaunchGame={gameLaunch}
-        typeOfCurated={CURATED_TYPE.GAME}
       />
     );
     const cardBackground = rendered.find("CuratedCardBackground");
@@ -307,7 +208,6 @@ describe("CuratedCard", () => {
 describe("Curated card - tracking", () => {
   const curatedSlug = "CURATED";
   const contentSlug = "topwheel-treasures";
-
   const render = curatedMock => {
     return mount(
       <CuratedCard
@@ -318,13 +218,11 @@ describe("Curated card - tracking", () => {
       />
     );
   };
-
   const assertTrackClickData = (trackComponent, type, slug) => {
     const expectedTrackData = {
       type,
       slug,
     };
-
     const actualTrackData = trackComponent.prop("data");
 
     expect(expectedTrackData).toEqual(actualTrackData);
@@ -335,18 +233,21 @@ describe("Curated card - tracking", () => {
 
   beforeEach(() => {
     fetchCurated = jest.fn();
-
     rendered = render(curatedData);
   });
 
-  test("should track card click with gane data when curated type is game", () => {
+  test("should track card click with game data when curated type is game", () => {
     const trackClick = rendered.find("TrackClick").first();
 
     assertTrackClickData(trackClick, curatedData.typeOfCurated, contentSlug);
   });
 
   test("should track card click with promo data when curated type is promotion", () => {
-    const promotionMock = dissoc("gameData", curatedData);
+    const promotionMock = {
+      ...curatedData,
+      gameData: null,
+      typeOfCurated: CURATED_TYPE.PROMOTION,
+    };
     rendered = render(promotionMock);
     const trackClick = rendered.find("TrackClick").first();
 
@@ -355,7 +256,7 @@ describe("Curated card - tracking", () => {
 
   test("should track play button with game data when curated ", () => {
     const playTrackClick = rendered
-      .find("CuratedCardFooter")
+      .find(CuratedCardFooterGame)
       .find("TrackClick")
       .first();
 

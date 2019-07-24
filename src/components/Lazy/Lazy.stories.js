@@ -12,6 +12,7 @@ stories.add(
       <Lazy
         loader={() => import("Components/DangerousHtml")}
         props={{ html: "<div>Sample lazy-loaded html.</div>" }}
+        namedExport="DangerousHtml"
       />
     </>
   ),

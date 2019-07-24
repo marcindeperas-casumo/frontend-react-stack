@@ -19,7 +19,7 @@ import {
 } from "./__mocks__/Mutations.mock";
 
 let Component, SettingsRealityCheckContainer;
-describe("SettingsRealityCheck", () => {
+describe("SettingsRealityCheckContainer", () => {
   describe("Component", () => {
     beforeEach(() => {
       Component = props => <div />;
@@ -319,12 +319,6 @@ describe("SettingsRealityCheck", () => {
 
       const promiseFn = rendered.find("Component").prop("onSave");
       promiseFn();
-      await wait(10);
-      rendered.update();
-
-      expect(
-        rendered.find("Component").prop("updateError").graphQLErrors
-      ).toEqual([{ foo: "bar" }]);
       await wait(10);
       rendered.update();
       expect(

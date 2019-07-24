@@ -1,25 +1,11 @@
 // @flow
-import {
-  always,
-  compose,
-  either,
-  equals,
-  filter,
-  identity,
-  isEmpty,
-  isNil,
-  join,
-  pathOr,
-  pipe,
-  replace,
-  splitEvery,
-  when,
-} from "ramda";
+import * as React from "react";
+import * as R from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
 export const noop = () => {};
 
-export const isNilOrEmpty = either(isNil, isEmpty);
+export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
 export const bridgeFactory = () => {
   const obj = {};
@@ -33,6 +19,15 @@ export const bridgeFactory = () => {
       // eslint-disable-next-line fp/no-mutating-methods
       obj[ev].push(cb);
     },
+    off: (ev: string, cb: any => void) => {
+      if (obj[ev]) {
+        const index = R.findIndex(fn => fn === cb)(obj[ev]);
+        if (index !== -1) {
+          // eslint-disable-next-line fp/no-mutating-methods
+          obj[ev].splice(index, 1);
+        }
+      }
+    },
     emit: (ev: string, data: any) => {
       console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
 
@@ -44,6 +39,14 @@ export const bridgeFactory = () => {
     },
   };
 };
+
+const findOrUncurried = (
+  defaultValue: any,
+  predicate: (*) => boolean,
+  items: any[]
+) => R.find(predicate, items) || defaultValue;
+
+export const findOr = R.curry(findOrUncurried);
 
 export const composePromises = (...fns: Array<*>) => (iv: Promise<*>) =>
   fns.reduceRight(async (acc, curr) => curr(await acc), iv);
@@ -124,7 +127,7 @@ export function generateColumns<T>(
   items: Array<T>,
   numberByColumns: number = 3
 ): Array<Array<T>> {
-  return splitEvery(numberByColumns, items);
+  return R.splitEvery(numberByColumns, items);
 }
 
 // TODO: make this a component
@@ -152,25 +155,28 @@ export const injectScript = (url: string) =>
     }
   });
 
-export const commaSeparated = compose(
-  join(","),
-  filter(identity)
+export const commaSeparated = R.compose(
+  R.join(","),
+  R.filter(R.identity)
 );
-type Handlers = {
-  [type: string]: (state: Object, action: Object) => any,
+type Handlers<S> = {
+  [type: string]: (state: S, action: Object) => S,
 };
 
 // This can be used as suggested in the Redux docs:
 // https://redux.js.org/recipes/reducing-boilerplate#generating-reducers
-export const createReducer = (initialState: Object, handlers: Handlers) => {
-  return function reducer(state: Object = initialState, action: Object) {
+export function createReducer<S>(
+  initialState: S,
+  handlers: Handlers<S>
+): (state: S, action: any) => S {
+  return function reducer(state = initialState, action) {
     if (handlers.hasOwnProperty(action.type)) {
       return handlers[action.type](state, action);
     } else {
       return state;
     }
   };
-};
+}
 
 export function formatCurrency({
   locale,
@@ -179,7 +185,7 @@ export function formatCurrency({
 }: {
   locale: string,
   currency: string,
-  value: number,
+  value: ?number,
 }): string {
   /**
    * Hack? if modulo 1 returns something other than 0 we have fractions and
@@ -188,13 +194,13 @@ export function formatCurrency({
    * rather than €50.00). I'm pretty sure that latter should never happened
    * https://github.com/search?q=This+should+never+happen&type=Code&utf8=✓
    */
-  const minimumFractionDigits = value % 1 === 0 ? 0 : 2;
+  const minimumFractionDigits = (value || 0) % 1 === 0 ? 0 : 2;
 
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
     minimumFractionDigits,
-  }).format(value);
+  }).format(value || 0);
 }
 
 export function getSymbolForCurrency({
@@ -225,8 +231,24 @@ export const interpolate = (
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
-    pathOr(match, [param], replacements)
+    R.propOr(match, param, replacements)
   );
+
+export const interpolateWithJSX = R.curry(
+  (replacements: { [string]: React.Node }, target: string) =>
+    R.pipe(
+      R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
+      R.addIndex(R.map)((x, i) => (
+        <React.Fragment key={i}>
+          {R.pipe(
+            R.match(/{{2,3}\s*(\w+)\s*}{2,3}/),
+            R.prop(1),
+            R.propOr(x, R.__, replacements)
+          )(x)}
+        </React.Fragment>
+      ))
+    )(target)
+);
 
 export const getCssCustomProperty = (property: string) =>
   document.documentElement
@@ -234,8 +256,8 @@ export const getCssCustomProperty = (property: string) =>
     : undefined;
 
 // handle CMS workaround using "empty" to prevent locale fallback returning wrong string
-export const isCmsEntryEmpty = pipe(
-  when(isNilOrEmpty, always("")),
-  replace(/^empty$/i, ""),
-  equals("")
+export const isCmsEntryEmpty = R.pipe(
+  R.when(isNilOrEmpty, R.always("")),
+  R.replace(/^empty$/i, ""),
+  R.equals("")
 );

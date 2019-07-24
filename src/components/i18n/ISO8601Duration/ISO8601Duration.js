@@ -41,6 +41,10 @@ type LuxonDurationKey =
 export function ISO8601Duration(props: Props): string {
   React.useEffect(props.fetchTranslations, []);
 
+  if (!props.t) {
+    return "";
+  }
+
   const duration = Duration.fromISO(props.duration).toObject();
 
   return R.pipe(

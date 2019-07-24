@@ -1,8 +1,26 @@
-.c-sports-nav-tab {
+.c-sports-nav-live-tab,
+.c-sports-nav-sport-tab {
   border-bottom: 2px solid transparent;
   height: 106px;
+  position: relative;
 }
 
-.c-sports-nav-tab--selected {
+.c-sports-nav-sport-tab--selected {
   border-color: cudl-palette(green);
+}
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-nav-paginated--live .c-sports-nav-sport-tab--selected {
+  border-color: cudl-palette(red);
+}
+
+$badge-size: $cudl-spacer-size-default * 2.5;
+
+.c-sports-nav-live-tab__badge {
+  font-size: 14px;
+  height: $badge-size;
+  right: 0;
+  top: 0;
+  width: $badge-size;
+  z-index: 1;
 }

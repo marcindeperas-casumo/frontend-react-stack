@@ -1,7 +1,6 @@
 import { range } from "ramda";
 
-const activeIndicator =
-  "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg";
+const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
 
 export const userNavigationData = [
   {
@@ -11,8 +10,7 @@ export const userNavigationData = [
       clientPath: "filter/football",
       termKey: "football",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: true,
     },
     subNav: [
@@ -70,8 +68,7 @@ export const userNavigationData = [
       clientPath: "filter/basketball",
       termKey: "basketball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/basketball1.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -129,8 +126,7 @@ export const userNavigationData = [
       clientPath: "filter/golf",
       termKey: "golf",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/golf.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -188,8 +184,7 @@ export const userNavigationData = [
       clientPath: "filter/tennis",
       termKey: "tennis",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -257,8 +252,7 @@ export const userNavigationData = [
       termKey: "american_football",
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/american-football.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -298,8 +292,7 @@ export const userNavigationData = [
       clientPath: "filter/athletics",
       termKey: "athletics",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/athletics.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -330,8 +323,7 @@ export const userNavigationData = [
       clientPath: "filter/australian_rules",
       termKey: "australian_rules",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -362,8 +354,7 @@ export const userNavigationData = [
       clientPath: "filter/badminton",
       termKey: "badminton",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -385,8 +376,7 @@ export const userNavigationData = [
       clientPath: "filter/bandy",
       termKey: "bandy",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/bandy.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -417,8 +407,7 @@ export const userNavigationData = [
       clientPath: "filter/baseball",
       termKey: "baseball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/baseball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -449,8 +438,7 @@ export const userNavigationData = [
       clientPath: "filter/boxing",
       termKey: "boxing",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/boxing.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -481,8 +469,7 @@ export const userNavigationData = [
       clientPath: "filter/chess",
       termKey: "chess",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/chess.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -513,8 +500,7 @@ export const userNavigationData = [
       clientPath: "filter/cricket",
       termKey: "cricket",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -536,8 +522,7 @@ export const userNavigationData = [
       clientPath: "filter/cycling",
       termKey: "cycling",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cycling.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -595,8 +580,7 @@ export const userNavigationData = [
       clientPath: "filter/darts",
       termKey: "darts",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/darts.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -636,8 +620,7 @@ export const userNavigationData = [
       clientPath: "filter/esports",
       termKey: "esports",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/e-sports.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -695,8 +678,7 @@ export const userNavigationData = [
       clientPath: "filter/floorball",
       termKey: "floorball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/floorball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -754,8 +736,7 @@ export const userNavigationData = [
       clientPath: "filter/futsal",
       termKey: "futsal",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -777,8 +758,7 @@ export const userNavigationData = [
       clientPath: "filter/gaelic_sports",
       termKey: "gaelic_sports",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/gaelic.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -839,8 +819,7 @@ export const userNavigationData = [
       clientPath: "filter/handball",
       termKey: "handball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/handball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -898,8 +877,7 @@ export const userNavigationData = [
       clientPath: "filter/ice_hockey",
       termKey: "ice_hockey",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/ice_hockey.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -957,8 +935,7 @@ export const userNavigationData = [
       clientPath: "filter/motorsports",
       termKey: "motorsports",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/motorsports.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1016,8 +993,7 @@ export const userNavigationData = [
       clientPath: "filter/netball",
       termKey: "netball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/netball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1058,8 +1034,7 @@ export const userNavigationData = [
       termKey: "olympic_games",
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1081,8 +1056,7 @@ export const userNavigationData = [
       clientPath: "filter/politics",
       termKey: "politics",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/politics.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1140,8 +1114,7 @@ export const userNavigationData = [
       clientPath: "filter/rugby_league",
       termKey: "rugby_league",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1199,8 +1172,7 @@ export const userNavigationData = [
       clientPath: "filter/rugby_union",
       termKey: "rugby_union",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1258,8 +1230,7 @@ export const userNavigationData = [
       clientPath: "filter/snooker",
       termKey: "snooker",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/snooker.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1290,8 +1261,7 @@ export const userNavigationData = [
       clientPath: "filter/surfing",
       termKey: "surfing",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/surfing.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1322,8 +1292,7 @@ export const userNavigationData = [
       clientPath: "filter/trotting",
       termKey: "trotting",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/trotting.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1381,8 +1350,7 @@ export const userNavigationData = [
       clientPath: "filter/tv___novelty",
       termKey: "tv___novelty",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tv_novelty.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1440,8 +1408,7 @@ export const userNavigationData = [
       clientPath: "filter/ufc_mma",
       termKey: "ufc_mma",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/mma.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1490,8 +1457,7 @@ export const userNavigationData = [
       clientPath: "filter/volleyball",
       termKey: "volleyball",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1550,8 +1516,7 @@ export const userNavigationData = [
       termKey: "winter_olympic_games",
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1574,8 +1539,7 @@ export const userNavigationData = [
       termKey: "winter_sports",
       icon:
         "https://cms.casumo.com/wp-content/uploads/2019/02/wintersports.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [
@@ -1606,8 +1570,7 @@ export const userNavigationData = [
       clientPath: "filter/wwe_pro_wrestling",
       termKey: "wwe_pro_wrestling",
       icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-      activeIndicator:
-        "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+      activeIndicator,
       canSelectSubgroups: false,
     },
     subNav: [

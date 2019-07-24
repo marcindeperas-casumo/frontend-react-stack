@@ -1,3 +1,7 @@
+// @flow
+import * as React from "react";
+import { mount } from "enzyme";
+import { F } from "ramda";
 import {
   bridgeFactory,
   generateColumns,
@@ -9,15 +13,72 @@ import {
   formatCurrency,
   getSymbolForCurrency,
   interpolate,
+  interpolateWithJSX,
   isCmsEntryEmpty,
+  findOr,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
-  test("should return a bridge instance", () => {
-    const bridge = bridgeFactory();
+  let bridge, mock, event, payload;
+  beforeEach(() => {
+    bridge = bridgeFactory();
+    mock = jest.fn();
+    event = "FOOBAR";
+    payload = "content";
+  });
 
+  test("should return a bridge instance", () => {
     expect(bridge.on).toBeInstanceOf(Function);
     expect(bridge.emit).toBeInstanceOf(Function);
+  });
+
+  test("bridge instance should receive callback and call it when event is emitted", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledWith(payload);
+  });
+
+  test("bridge instance should unregister handler", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    bridge.off(event, mock);
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledTimes(1);
+  });
+
+  test("bridge instance shouldn't unregister handler if it doesn't exist", () => {
+    bridge.on(event, mock);
+    bridge.emit(event, payload);
+    bridge.off(event, () => {});
+    bridge.emit(event, payload);
+    expect(mock).toBeCalledTimes(2);
+  });
+});
+
+describe("findOr()", () => {
+  const defaultValue = { x: 64 };
+  const items = [{ a: 1 }, { b: 2 }, { c: 3 }, { d: 4 }];
+
+  test("should return the first item that satisfies the predicate", () => {
+    const predicate = x => x.c === 3;
+    const result1 = findOr(defaultValue, predicate, items);
+    const result2 = findOr(defaultValue, predicate)(items);
+    const result3 = findOr(defaultValue)(predicate)(items);
+
+    [result1, result2, result3].forEach(result =>
+      expect(result).toEqual({ c: 3 })
+    );
+  });
+
+  test("should return the default item if no items satisfy the predicate", () => {
+    const predicate = F;
+    const result1 = findOr(defaultValue, predicate, items);
+    const result2 = findOr(defaultValue, predicate)(items);
+    const result3 = findOr(defaultValue)(predicate)(items);
+
+    [result1, result2, result3].forEach(result =>
+      expect(result).toEqual(defaultValue)
+    );
   });
 });
 
@@ -266,6 +327,19 @@ describe("interpolate()", () => {
   test("should not replace when param is not defined", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
+  });
+});
+
+describe("interpolateWithJSX()", () => {
+  test("should replace with components", () => {
+    const input = "i hope it works for {{foo }}";
+    const output = "i hope it works for react components";
+    const Component = () => "react components";
+    expect(
+      mount(
+        <div>{interpolateWithJSX({ foo: <Component /> }, input)}</div>
+      ).text()
+    ).toBe(output);
   });
 });
 
