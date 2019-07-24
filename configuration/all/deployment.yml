@@ -2,7 +2,7 @@ deploy_as: on-site-docker-container
 
 docker_image: "{{aws_docker_registry}}/{{service}}"
 
-service_port: 8407
+service_port: 8633
 
 register_with_consul:
   - name: "{{ service }}"

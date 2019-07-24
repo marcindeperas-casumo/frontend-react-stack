@@ -52,7 +52,7 @@ export type TournamentPrizeRaw = {
     {
       usableClassName: "FreeMoneyUsableUsedEvent", // other?
       usableJSON: string, // always "{}"?
-    },
+    }
   ],
   templateParameterValues: {|
     amountGiven: string, // stringified JSON, "{\"amount\":5.0000,\"iso4217CurrencyCode\":\"EUR\"}"?

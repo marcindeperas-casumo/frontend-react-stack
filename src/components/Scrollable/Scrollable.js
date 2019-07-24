@@ -65,36 +65,6 @@ export class Scrollable extends React.Component<Props> {
     return !equals(this.props, nextProps);
   }
 
-  cellRenderer = ({
-    columnIndex,
-    isScrolling,
-    isVisible,
-    key,
-    parent,
-    rowIndex,
-    style,
-  }: CellRenderer) => {
-    return (
-      <CellMeasurer
-        key={key}
-        columnIndex={columnIndex}
-        cache={this.cellSizeCache}
-        parent={parent}
-        rowIndex={rowIndex}
-      >
-        {this.props.cellRenderer({
-          columnIndex,
-          isScrolling,
-          isVisible,
-          key,
-          parent,
-          rowIndex,
-          style,
-        })}
-      </CellMeasurer>
-    );
-  };
-
   render() {
     const {
       columnCount,

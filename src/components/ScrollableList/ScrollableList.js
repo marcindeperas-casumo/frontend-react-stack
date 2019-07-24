@@ -57,7 +57,7 @@ export default class ScrollableList extends PureComponent<Props> {
         {/* Copied from  MustDropJackpotsList, should be refactored at some point */}
         <Flex justify="space-between">
           <Flex.Item>
-            <ScrollableListTitle title={title} />
+            <ScrollableListTitle paddingLeft title={title} />
           </Flex.Item>
           {seeMoreUrl ? (
             <Flex.Item className="u-padding-right--md">

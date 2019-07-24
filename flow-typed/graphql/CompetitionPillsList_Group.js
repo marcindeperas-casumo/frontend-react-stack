@@ -1,5 +1,3 @@
-
-
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -25,9 +23,7 @@ export type CompetitionPillsList_Group = {
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-};
-
-/* @flow */
+};/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
@@ -43,7 +39,7 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 /**
  * 
  */
-export type Modal = "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 //==============================================================
 // END Enums and Input Objects

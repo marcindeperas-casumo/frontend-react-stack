@@ -66,6 +66,24 @@ const resolvers = {
       return null;
     },
 
+    closeAllModals: async (_: null, __: null, context: Context) => {
+      // all modals will be closed, so allow betslip to be visible
+      await resolvers.Mutation.updateBetslipState(
+        _,
+        { isVisible: true },
+        context
+      );
+
+      await context.cache.writeQuery({
+        query: ACTIVE_MODALS_QUERY,
+        data: {
+          activeModals: [],
+        },
+      });
+
+      return null;
+    },
+
     navigateClient: (
       _: null,
       { path, trackingLocation }: { path: string, trackingLocation: string },

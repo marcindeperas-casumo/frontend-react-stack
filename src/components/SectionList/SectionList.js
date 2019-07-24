@@ -1,8 +1,9 @@
 /* @flow */
-import React, { PureComponent, type Node } from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
+import type { spacerSizes } from "@casumo/cudl-react-prop-types";
 
 export type Section = {
   data: any[],
@@ -11,17 +12,17 @@ export type Section = {
 
 type Props<T> = {|
   sections: Section[],
-  renderItem: T => Node,
-  renderSectionHeader: (title: string) => Node,
+  renderItem: T => React.Node,
+  renderSectionHeader: (title: string) => React.Node,
   keyExtractor?: T => string,
   direction: "vertical" | "horizontal",
   style?: { [string]: mixed },
   className: string,
-  itemSpacing: string,
+  itemSpacing: spacerSizes,
   sectionSpacing: string,
 |};
 
-export default class SectionList extends PureComponent<Props<*>> {
+export default class SectionList extends React.PureComponent<Props<*>> {
   static defaultProps = {
     direction: "vertical",
     className: "",
@@ -44,7 +45,7 @@ export default class SectionList extends PureComponent<Props<*>> {
       <Flex.Item key={key}>
         <Flex direction={this.props.direction} spacing="none">
           {section.title && this.props.renderSectionHeader(section.title)}
-          {section.data && section.data.length && (
+          {section.data?.length && (
             <List
               items={section.data}
               itemSpacing={this.props.itemSpacing}

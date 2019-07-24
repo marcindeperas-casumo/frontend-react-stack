@@ -12,7 +12,7 @@ import {
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
-import { decodeString } from "Utils";
+import { convertHTMLToString } from "Utils";
 
 const getLatestPlayedGame = async latestPlayedGamesPromise => {
   const latestPlayedGamesResolved = await latestPlayedGamesPromise;
@@ -67,7 +67,7 @@ export const fetchSuggestedGames = async ({
     // different purposes we need to be able to choose between different string
     // https://github.com/Casumo/Home/issues/27736
     // eslint-disable-next-line no-template-curly-in-string
-    title: title.replace("${GAME_NAME}", decodeString(game.name)),
+    title: title.replace("${GAME_NAME}", convertHTMLToString(game.name)),
   };
 };
 

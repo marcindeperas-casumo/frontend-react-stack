@@ -1,26 +1,29 @@
 query PlayerValuablesQuery {
-  
-  listTitle: getText(id: "root:mobile.valuables:fields.your_valuables")
-
+  translations {
+    playerValuableTranslations {
+      hoursLabel
+      listTitleLabel
+    }
+  }
   player {
     valuables {
       id
-      state
-      expirationTime
+      valuableState
+      expirationTimeInHours
       valuableType
       title
       caveat
       currency
       market
       backgroundImage
-
       ... on PlayerValuableSpins {
+        description
         coinValue
-        game {
-          name
-          backgroundImage
-        }
       }
     }
   }
+}
+
+fragment PlayerValuableList_PlayerValuable on PlayerValuable {
+  ...ValuableCard_Valuable
 }

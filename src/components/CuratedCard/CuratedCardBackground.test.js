@@ -3,7 +3,7 @@ import { shallow } from "enzyme";
 import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import curatedData from "Models/curated/__mocks__/curated.json";
 
-describe("CuratedCard", () => {
+describe("CuratedCardBackground", () => {
   test("should link to promotions", () => {
     const component = shallow(
       <CuratedCardBackground link="/promotions" {...curatedData} />

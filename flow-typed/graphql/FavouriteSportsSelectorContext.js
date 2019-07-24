@@ -1,5 +1,3 @@
-
-
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -67,9 +65,7 @@ export type FavouriteSportsSelectorContext = {
    * Get list of available event groups from the root level
    */
   groups: Array<FavouriteSportsSelectorContext_groups>
-};
-
-/* @flow */
+};/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
@@ -85,7 +81,7 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 /**
  * 
  */
-export type Modal = "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 //==============================================================
 // END Enums and Input Objects

@@ -36,6 +36,14 @@ const addStory = ([name, props = {}]) => {
 [
   ["No Dismiss Buttons", {}],
   ["Back Button", { onBack }],
-  ["Close Button", { onClose }],
+  [
+    "Close Button",
+    {
+      onClose,
+      className:
+        "c-sports-modal-header--left-align t-background-blue-light-1 t-color-white",
+      dismissButtonClassName: "t-background-blue-light-1 t-color-blue",
+    },
+  ],
   ["Back and Close Buttons", { onBack, onClose }],
 ].map(addStory);

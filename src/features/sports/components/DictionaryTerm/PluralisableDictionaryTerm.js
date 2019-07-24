@@ -59,7 +59,7 @@ const getPluralisableDictionaryTerm = (
   return NOT_FOUND_STRING;
 };
 
-const PluralisableDictionaryTerm = ({
+export const PluralisableDictionaryTerm = ({
   termKey,
   replacements,
   isPlural = false,
@@ -84,5 +84,3 @@ const PluralisableDictionaryTerm = ({
     }}
   </PluralisableDictionaryTermTypedQuery>
 );
-
-export default PluralisableDictionaryTerm;

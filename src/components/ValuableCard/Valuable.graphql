@@ -1,0 +1,18 @@
+fragment ValuableCard_Valuable on PlayerValuable {
+  id
+  title
+  valuableState
+  valuableType
+  expirationTimeInHours
+  currency
+  market
+  caveat
+  backgroundImage
+  ... on PlayerValuableSpins {
+    coinValue
+    game {
+      slug
+    }
+    description
+  }
+}

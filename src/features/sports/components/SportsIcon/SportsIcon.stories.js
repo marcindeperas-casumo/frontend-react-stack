@@ -5,10 +5,13 @@ import SportsIcon from "./SportsIcon";
 
 const stories = storiesOf("Sports/SportsIcon", module);
 
+const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
+const activeIndicatorCustom = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
+
 const footballProps = {
   alt: "Football",
   iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg",
-  activeIndicatorSrc: `https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg`,
+  activeIndicator,
 };
 
 stories.add("Football (active)", () => (
@@ -21,7 +24,7 @@ const americanFootballProps = {
   alt: "Yankee soccer",
   iconSrc:
     "https://cms.casumo.com/wp-content/uploads/2019/02/american-football.svg",
-  activeIndicatorSrc: `https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-custom.svg`,
+  activeIndicator: activeIndicatorCustom,
 };
 
 stories.add("American Football (active)", () => (

@@ -1,0 +1,44 @@
+// stylelint-disable xi/selector-pattern,
+.c-betting-glossary-entry {
+  line-height: 1.3125rem;
+}
+
+.c-betting-glossary-entry ul {
+  padding: 0.5rem 1.5rem;
+}
+
+.c-betting-glossary-entry--highlight {
+  animation: animate-highlight 0.5s ease 2s 1 normal forwards;
+  background: cudl-palette(grey, light-2);
+  position: relative;
+  top: -(map-get($cudl-spacer-sizes, default));
+
+  @include cudl-breakpoint(max tablet) {
+    left: 50%;
+    margin: -(map-get($cudl-spacer-sizes, md)) -50vw;
+    padding: map-get($cudl-spacer-sizes, lg);
+    right: 50%;
+    width: 100vw;
+  }
+
+  @include cudl-breakpoint(tablet) {
+    margin: -(map-get($cudl-spacer-sizes, md));
+    padding: map-get($cudl-spacer-sizes, md);
+  }
+}
+
+.c-betting-glossary-entry [data-glossary-link] {
+  color: cudl-palette(blue, dark-2);
+  cursor: pointer;
+  pointer-events: initial;
+}
+
+@keyframes animate-highlight {
+  0% {
+    background: cudl-palette(grey, light-2);
+  }
+  100% {
+    background: $white;
+  }
+}
+// stylelint-enable xi/selector-pattern

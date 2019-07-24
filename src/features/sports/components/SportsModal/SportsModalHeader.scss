@@ -1,4 +1,4 @@
-.c-sports-modal__header {
+.c-sports-modal-header {
   height: var(--top-bar-height, 75px);
 
   @include cudl-breakpoint(tablet) {
@@ -9,16 +9,31 @@
   }
 }
 
-.c-sports-modal__heading {
+// stylelint-disable xi/selector-pattern
+.c-sports-modal-header--left-align {
+  @include cudl-breakpoint(max tablet) {
+    .c-sports-modal-header__button--back {
+      display: none;
+    }
+
+    .c-sports-modal-header__heading {
+      padding-left: map-get($cudl-spacer-sizes, md);
+      text-align: left;
+    }
+  }
+}
+
+.c-sports-modal-header__heading {
   @include cudl-breakpoint(tablet) {
     padding: map-get($cudl-spacer-sizes, lg);
   }
 }
+// stylelint-enable xi/selector-pattern
 
 $button-size: $cudl-spacer-size-default * 5;
 $button-size-mobile: $cudl-spacer-size-default * 6;
 
-.c-sports-modal__header-button {
+.c-sports-modal-header__button {
   height: $button-size-mobile;
   width: $button-size-mobile;
 
@@ -30,7 +45,7 @@ $button-size-mobile: $cudl-spacer-size-default * 6;
   }
 }
 
-.c-sports-modal__fixed-button {
+.c-sports-modal-header__fixed-button {
   border-radius: 3px;
   height: $button-size-mobile;
   position: fixed;

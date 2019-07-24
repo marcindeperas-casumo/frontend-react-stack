@@ -1,12 +1,12 @@
 // @flow
-import React, { Component, useState } from "react";
+import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { Checkbox } from "./Checkbox";
 
 const stories = storiesOf("Checkbox", module);
 
 stories.add("Default", () => {
-  const [checked, setChecked] = useState(false);
+  const [checked, setChecked] = React.useState(false);
 
   return (
     <>

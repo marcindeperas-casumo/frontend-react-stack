@@ -54,18 +54,18 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
   - `casumo-proxy use local` in order to proxy to your local environment.
   - `casumo-proxy start` to start paused proxy, or create it if it does not exist.
   - `yarn mobile gulp dev` to run the mobile build
-- Within the `mobile-react-stack-poc` repository run `yarn start`.
+- Within the `frontend-react-stack` repository run `yarn start`.
 - Go to [https://mobile.dev](https://mobile.dev)
 - Make sure to login. The react-stack is only available when logged in.
 
 #### Developing with Storybook
 
-- Within the `mobile-react-stack-poc` respository run `yarn storybook`
+- Within the `frontend-react-stack` repository run `yarn storybook`
 - Go to [https://localhost:6006](https://localhost:6006)
 
 #### Testing
 
-- Within the `mobile-react-stack-poc` respository run `yarn test`
+- Within the `frontend-react-stack` repository run `yarn test`
 - TDD is heavily encouraged!
 
 ### Deploy to test
@@ -73,7 +73,7 @@ Please read the [contributing guidelines](CONTRIBUTING.md).
 ```sh
 ssh <assigned-ssh-username>@test-release
 
-deploy-service mobile-react-stack-poc <branch-name>
+deploy-service frontend-react-stack <branch-name>
 ```
 
 ### Deploy to production
@@ -81,7 +81,7 @@ deploy-service mobile-react-stack-poc <branch-name>
 ```sh
 ssh <assigned-ssh-username>@live-release
 
-deploy-service mobile-react-stack-poc master
+deploy-service frontend-react-stack master
 ```
 
 ## FAQ

@@ -21,8 +21,11 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-.vscode
+.vscode/settings.json
 .project
 .cache
 .history
 .out
+.gradle
+pact/pacts/
+pact/logs/

@@ -17,3 +17,5 @@ REMINDERS!! 🦉 If this is your first PR please READ! 🦉
 - ☝️ Assign the PR to yourself
 - 🏓 Tag anyone who you would like to participate in this PR
 -->
+
+<!-- Pull Request Guidelines: https://confluence.casumocave.com/display/XFE/Casumo+Frontend+Culture#CasumoFrontendCulture-PullRequests -->

@@ -69,7 +69,9 @@ And the same applies to the event properties.
         |-- other-model-domain
 ```
 
-## Test strategy
+## Testing
+
+### Unit testing
 
 Consider the following piece of code:
 
@@ -92,6 +94,17 @@ Stories are better suited for Presentational components, especially as they are 
 _**All reusable components should have stories to facilitate component discovery in storybook!**_
 
 Enzyme is great at testing logic heavy components as it can manipulate the component's state with ease.
+
+### Contract testing
+
+We should always try to add contract tests for any internal service that we rely on. They will help make sure any breaking changes to our APIs are flagged before they reach production, and also provide a map of all the dependencies the project has.
+
+Before adding a new contract, make sure you are aligned with the team providing (or consuming) your APIs. Good communication is fundamental to making sure we have solid contracts that are not flaky and won't disrupt any builds.
+
+_NOTE_: Be very careful when publishing contracts, as they can break other teams' builds if you are have set up the wrong interactions! That's why talking and making sure providers and consumers are working in harmony is key here.
+
+For more information on best practices, please read the [Effective Pact Guide](https://docs.pact.io/best_practices/pact_nirvana#what-are-the-steps-for-reaching-pact-nirvana).
+If you want to take a look at our current published Pacts, check out our [Broker](http://pact-broker.casumo.cloud/).
 
 ### Mocks
 
@@ -160,7 +173,7 @@ Writing tests is an even better way of documenting your code!
 
 [SonarQube](https://www.sonarqube.org/) is a Continuous Inspection tool capable of showing the current health of an application and highlighting newly introduced issues.
 
-The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=mobile-react-stack-poc).
+The Casumo Sonar dashboard for this project can be found [**here**](http://sonar.casumo.cloud/dashboard?id=frontend-react-stack).
 
 It is advised that all issues raised by Sonar be solved prior to any code merge. To help with that, using [SonarLint's VSCode extension](https://www.sonarlint.org/vscode/) is recommended. Instructions on setting up the extension can be found on the [Configuring SonarLint](#configuring-sonarlint-with-vscode) session below.
 
@@ -189,6 +202,6 @@ For more information on how to configure Sonar itself, please refer to the [jenk
 ```
     "sonarlint.connectedMode.project": {
         "serverId": "<key>", //http://sonar.casumo.cloud/admin/settings -> System -> System -> Server ID
-        "projectKey": "mobile-react-stack-poc"
+        "projectKey": "frontend-react-stack"
       }
 ```

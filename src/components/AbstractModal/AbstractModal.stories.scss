@@ -1,0 +1,13 @@
+.c-abstract-modal--desktop,
+.c-abstract-modal--mobile-landscape {
+  border-radius: 3px;
+  height: 85vh;
+  top: 10vh;
+  width: 85vw;
+}
+
+.c-abstract-modal--mobile-portrait {
+  border-radius: 0;
+  height: 100%;
+  width: 100%;
+}

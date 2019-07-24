@@ -7,11 +7,6 @@ import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { UseValuable } from "./mutations.graphql";
 
-// This is far from ideal and is just temporary.
-// We need to update the list of player valuables because sometimes they come through Cometd
-// channel.
-const REFRESH_INTERVAL = 15000;
-
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
 
 const consumeValuableMutation = mutation => (id: string) =>
@@ -23,9 +18,16 @@ const consumeValuableMutation = mutation => (id: string) =>
   });
 
 export const PlayerValuableListHorizontalContainer = () => (
-  <PlayerValuablesTypedQuery query={LocalQuery} pollInterval={REFRESH_INTERVAL}>
-    {({ loading, error, data }) => {
-      const { listTitle, player: { valuables = [] } = {} } = data || {};
+  <PlayerValuablesTypedQuery query={LocalQuery} returnPartialData>
+    {({ loading, error, refetch, data }) => {
+      if (loading) {
+        return null;
+      }
+
+      const {
+        translations: { playerValuableTranslations } = {},
+        player: { valuables = [] } = {},
+      } = data || {};
 
       return (
         <Mutation mutation={UseValuable}>
@@ -33,9 +35,10 @@ export const PlayerValuableListHorizontalContainer = () => (
             <PlayerValuableListHorizontal
               error={error}
               loading={loading}
-              title={listTitle}
+              refetch={refetch}
               onConsumeValuable={consumeValuableMutation(useValuable)}
               valuables={valuables}
+              translations={playerValuableTranslations}
             />
           )}
         </Mutation>

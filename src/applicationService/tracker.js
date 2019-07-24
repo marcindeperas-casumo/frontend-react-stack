@@ -14,6 +14,10 @@ export function getTracker() {
 }
 
 function getAdaptersDev() {
+  if (process.env.NODE_ENV === "test") {
+    return [];
+  }
+
   const adapterLog = createAdapterLog(logger);
 
   return [adapterLog];

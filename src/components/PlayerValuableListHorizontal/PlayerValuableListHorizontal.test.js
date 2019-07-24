@@ -1,12 +1,15 @@
+//@flow
 import React from "react";
-import { shallow } from "enzyme";
-import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import { shallow, mount } from "enzyme";
+import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
+import bridge from "Src/DurandalReactBridge";
+import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
+import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
-  const mockedValuables = mockValuables();
-  const mockTitle = "foo";
   const consumeValuable = jest.fn();
+  const refetchMock = jest.fn();
   let rendered;
 
   beforeEach(() => {
@@ -14,8 +17,9 @@ describe("PlayerValuableListHorizontal", () => {
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
         loading={false}
-        title={mockTitle}
         onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={refetchMock}
       />
     );
   });
@@ -24,9 +28,9 @@ describe("PlayerValuableListHorizontal", () => {
     rendered = shallow(
       <PlayerValuableListHorizontal
         valuables={mockedValuables}
-        listTitle={mockTitle}
         loading={true}
         onConsumeValuable={consumeValuable}
+        translations={translationsMock}
       />
     );
 
@@ -40,7 +44,48 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the list title", () => {
     expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
-      mockTitle
+      translationsMock.listTitleLabel
     );
+  });
+
+  test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
+    const mock = jest.fn();
+    rendered = mount(
+      <PlayerValuableListHorizontal
+        valuables={mockedValuables}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={mock}
+      />
+    );
+    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
+      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
+      data: {
+        success: true,
+      },
+    });
+    expect(mock).toHaveBeenCalledTimes(1);
+  });
+
+  test("should not refetch when component is unmounted", () => {
+    const mock = jest.fn();
+    rendered = mount(
+      <PlayerValuableListHorizontal
+        valuables={mockedValuables}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={mock}
+      />
+    );
+    rendered.unmount();
+    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
+      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
+      data: {
+        success: true,
+      },
+    });
+    expect(mock).toHaveBeenCalledTimes(0);
   });
 });

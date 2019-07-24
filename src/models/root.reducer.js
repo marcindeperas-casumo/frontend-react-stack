@@ -8,6 +8,7 @@ import { reducer as playerGames } from "Models/playerGames";
 import { reducer as promotions } from "Models/promotions";
 import { reducer as schema } from "Models/schema";
 import { modalReducer as modal } from "Models/modal";
+import { playOkayReducer } from "./playOkay/playOkay.reducer";
 
 const rootReducer = combineReducers({
   router,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
   promotions,
   schema,
   modal,
+  playOkay: playOkayReducer,
 });
 
 export default rootReducer;

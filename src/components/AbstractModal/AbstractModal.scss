@@ -1,0 +1,35 @@
+.c-abstract-modal {
+  overflow: scroll;
+}
+
+//default modal dimensions when no custom class or ResponsiveLayout component is provided
+.c-abstract-modal--default {
+  @include cudl-breakpoint(mobile) {
+    border-radius: 0;
+    height: 100%;
+    width: 100%;
+  }
+  @include cudl-breakpoint(phablet) {
+    border-radius: 3px;
+    max-height: 85vh;
+    max-width: 85vw;
+    top: 10vh;
+  }
+}
+
+.c-abstract-modal__overlay {
+  background-color: rgba(cudl-palette(grey, dark-2), 0.8);
+  bottom: 0;
+  left: 0;
+  padding-left: var(--shell-offset-left, 0);
+  position: fixed;
+  right: 0;
+  top: var(--top-bar-offset-top, 0);
+  z-index: var(--z-index-modals);
+
+  @include cudl-breakpoint(mobile) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}

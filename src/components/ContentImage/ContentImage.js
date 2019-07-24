@@ -25,17 +25,15 @@ export class ContentImage extends PureComponent<Props> {
     `;
 
     return (
-      <>
-        <ImageLazy
-          className={className}
-          src={src}
-          alt={alt}
-          dpr={3}
-          imgixOpts={{
-            w: maxWidth,
-          }}
-        />
-      </>
+      <ImageLazy
+        className={className}
+        src={src}
+        alt={alt}
+        dpr={3}
+        imgixOpts={{
+          w: maxWidth,
+        }}
+      />
     );
   }
 }

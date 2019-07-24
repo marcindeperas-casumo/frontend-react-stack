@@ -1,6 +1,6 @@
 # Path Mapping
 
-We have few aliases that are making import cleaner. You can check list of current aliases in [.babelrc](https://github.com/Casumo/mobile-react-stack-poc/blob/master/.babelrc). You should treat that file as source of truth.
+We have few aliases that are making import cleaner. You can check list of current aliases in [.babelrc](https://github.com/Casumo/frontend-react-stack/blob/master/.babelrc). You should treat that file as source of truth.
 
 **IMPORTANT!** - if you are implementing hot reloading for something you cannot use aliases inside `module.hot.accept`! You have to always use relative path there. See: https://github.com/gaearon/react-hot-loader/issues/560
 

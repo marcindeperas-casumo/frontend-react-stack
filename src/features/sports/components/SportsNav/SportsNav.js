@@ -1,233 +1,167 @@
 // @flow
-import React from "react";
-import { Query } from "react-apollo";
-import gql from "graphql-tag";
-import { has } from "ramda";
-import { ErrorMessage } from "Components/ErrorMessage";
-import { RegionFlag } from "Features/sports/components/RegionFlag";
+import * as React from "react";
 import {
-  NAVIGATE_CLIENT_MUTATION,
-  ClientContext,
-  OpenModalMutation,
-} from "Features/sports/state";
-import SportsMainNav from "./SportsMainNav";
-import SportsSubNav from "./SportsSubNav";
-import SportsNavSkeleton from "./SportsNavSkeleton";
-import type { SportsNavItemType } from "./types";
+  USER_NAVIGATION_QUERY,
+  UserNavigationTypedQuery,
+} from "Features/sports/components/SportsNav/SportsNavQueries";
+import { ErrorMessage } from "Components/ErrorMessage";
+import { OpenModalMutation, ClientContext } from "Features/sports/state";
+import {
+  SportsMainNav,
+  SportsSubNav,
+  type SportsNavItemType,
+} from "Features/sports/components/SportsNav";
+import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
+import { navItemUtils } from "Features/sports/components/SportsNav/sportsNavUtils";
 
-type SportsNavProps = {
-  currentHash: string,
+export type LiveState = [boolean, (boolean) => void];
+
+export type Labels = {
+  all: string,
+  edit: string,
+  live: string,
 };
 
-export const USER_NAVIGATION_QUERY = gql`
-  query UserNavigation {
-    allLabel: dictionaryTerm(key: "navigation.all")
-    editLabel: dictionaryTerm(key: "navigation.edit")
-
-    sportsNavigation {
-      sport {
-        name
-        id
-        clientPath
-        termKey
-        icon
-        activeIndicator
-        canSelectSubgroups
-      }
-
-      subNav {
-        competition {
-          name
-          id
-          clientPath
-          termKey
-          regionCode
-        }
-      }
-    }
-  }
-`;
-
-class UserNavigationTypedQuery extends Query<UserNavigation, null> {}
-
-export const isNavItemSelected = (
-  currentHash: string = "",
-  navItem: SportsNavItemType,
-  allowSubPathMatching: boolean
+const renderSportsNav = (
+  currentHash: string,
+  liveState: LiveState,
+  data,
+  client
 ) => {
-  const isCurrentHash = currentHash === `#${navItem.path}`;
-  const isParentPath =
-    allowSubPathMatching && currentHash.includes(`${navItem.path}/`);
-  const isDrillDown = currentHash.includes(
-    navItem.path.replace(/racing|filter/, "drill-down")
+  const [isLiveActive] = liveState;
+  const isNavItemSelected = navItemUtils.isNavItemSelected(currentHash);
+  const onNavItemSelected = navItemUtils.onNavItemSelected(
+    currentHash,
+    client,
+    isLiveActive
   );
 
-  return isCurrentHash || isParentPath || isDrillDown;
-};
+  const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
+    navItemUtils.toNavItem
+  );
 
-export const onNavItemSelected = (
-  currentHash: string,
-  navItem: SportsNavItemType,
-  client: *
-) => {
-  const isPathUnchanged = `#${navItem.path}` === currentHash;
-  const hasParentPath = has("parentPath", navItem);
-
-  client.mutate<NavigateClient>({
-    mutation: NAVIGATE_CLIENT_MUTATION,
-    variables: {
-      path:
-        isPathUnchanged && hasParentPath ? navItem.parentPath : navItem.path,
-      trackingLocation: "SportsNav",
-    },
-  });
-};
-
-class SportsNav extends React.Component<SportsNavProps> {
-  static contextType = ClientContext;
-
-  isNavItemSelected = (
-    navItem: SportsNavItemType,
-    allowSubPathMatching?: boolean = true
-  ) => isNavItemSelected(this.props.currentHash, navItem, allowSubPathMatching);
-
-  onNavItemSelected = (navItem: SportsNavItemType) =>
-    onNavItemSelected(this.props.currentHash, navItem, this.context.client);
-
-  mapToNavItem = (
-    item: UserNavigation_sportsNavigation
-  ): SportsNavItemType => ({
-    text: item.sport.name,
-    path: item.sport.clientPath,
-    key: item.sport.termKey,
-    iconProps: {
-      iconSrc: item.sport.icon,
-      activeIndicatorSrc: item.sport.activeIndicator,
-      alt: item.sport.name,
-    },
-    canEdit: item.sport.canSelectSubgroups,
-    subNav: item.subNav.map(subgroup => ({
-      text: (
-        <>
-          {subgroup.competition.regionCode && (
-            <RegionFlag
-              regionCode={subgroup.competition.regionCode}
-              className="u-margin-right"
-            />
-          )}
-          {subgroup.competition.name}
-        </>
-      ),
-      path: subgroup.competition.clientPath,
-      parentPath: item.sport.clientPath,
-      key: item.sport.termKey,
-      canEdit: false,
-    })),
-  });
-
-  // eslint-disable-next-line sonarjs/cognitive-complexity
-  render() {
-    // Decision was made that our nav doesn't add any benefit on the following kambi routes
-    // and take too much focus away from what is happening
-    if (/#event|#bethistory/.test(this.props.currentHash)) {
-      return null;
-    }
-
-    return (
-      <UserNavigationTypedQuery query={USER_NAVIGATION_QUERY}>
-        {({ loading, error, data }) => {
-          // show skeleton if loading or refetching after updating favourites
-          if (loading) {
-            return <SportsNavSkeleton />;
-          }
-
-          if (error) {
-            return <ErrorMessage direction="horizontal" />;
-          }
-
-          if (
-            data &&
-            data.sportsNavigation &&
-            data.allLabel &&
-            data.editLabel
-          ) {
-            const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
-              this.mapToNavItem
-            );
-
-            if (navItems.length === 0) {
-              return <SportsNavSkeleton />;
-            }
-
-            const selectedNavItem =
-              navItems.find(navItem => this.isNavItemSelected(navItem)) ||
-              navItems[0];
-
-            const { subNav = [] } = selectedNavItem;
-
-            const selectedSubNavItem = subNav.find(subNavItem =>
-              this.isNavItemSelected(subNavItem)
-            );
-
-            const mainNavCacheBuster = [
-              selectedNavItem.path,
-              ...navItems.map(navItem => navItem.path),
-              this.props.currentHash,
-            ].join();
-
-            const subNavCacheBuster = subNav
-              .map(navItem => {
-                const isActive =
-                  selectedSubNavItem &&
-                  selectedSubNavItem.path === navItem.path;
-                return [
-                  isActive ? `${navItem.path}:active` : navItem.path,
-                  this.props.currentHash,
-                ].join();
-              })
-              .join();
-
-            return (
-              <>
-                <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
-                  {openChooseFavouritesModal => (
-                    <SportsMainNav
-                      navItems={navItems}
-                      onSelected={this.onNavItemSelected}
-                      isSelected={this.isNavItemSelected}
-                      canEdit={true}
-                      onEdit={openChooseFavouritesModal}
-                      editLabel={data.editLabel}
-                      cacheBuster={mainNavCacheBuster}
-                    />
-                  )}
-                </OpenModalMutation>
-
-                <OpenModalMutation
-                  variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}
-                >
-                  {openChooseFavouriteLeaguesModal => (
-                    <SportsSubNav
-                      navItems={selectedNavItem.subNav || []}
-                      onSelected={this.onNavItemSelected}
-                      isSelected={this.isNavItemSelected}
-                      canEdit={selectedNavItem.canEdit}
-                      onEdit={openChooseFavouriteLeaguesModal}
-                      allLabel={data.allLabel}
-                      editLabel={data.editLabel}
-                      cacheBuster={subNavCacheBuster}
-                    />
-                  )}
-                </OpenModalMutation>
-              </>
-            );
-          }
-
-          return null;
-        }}
-      </UserNavigationTypedQuery>
-    );
+  if (navItems.length === 0) {
+    return <SportsNavSkeleton />;
   }
-}
 
-export default SportsNav;
+  const selectedNavItem =
+    navItems.find(navItem => isNavItemSelected(navItem)) || navItems[0];
+
+  const { subNav = [] } = selectedNavItem;
+
+  const selectedSubNavItem = subNav.find(subNavItem =>
+    isNavItemSelected(subNavItem)
+  );
+
+  const mainNavCacheBuster = [
+    selectedNavItem.path,
+    ...navItems.map(navItem => navItem.path),
+    currentHash,
+  ].join();
+
+  const subNavCacheBuster = subNav
+    .map(navItem => {
+      const isActive =
+        selectedSubNavItem && selectedSubNavItem.path === navItem.path;
+
+      return `${currentHash}/${navItem.path}/${isActive ? `:active` : ""}`;
+    })
+    .join();
+
+  const labels = {
+    edit: data.editLabel,
+    live: data.liveLabel,
+    all: data.allLabel,
+  };
+
+  const commonProps = {
+    labels,
+    liveState,
+    isSelected: isNavItemSelected,
+    onSelected: onNavItemSelected,
+  };
+
+  return (
+    <>
+      <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
+        {openChooseFavouritesModal => (
+          <SportsMainNav
+            {...commonProps}
+            navItems={navItems}
+            canEdit={true}
+            onEdit={openChooseFavouritesModal}
+            cacheBuster={mainNavCacheBuster}
+          />
+        )}
+      </OpenModalMutation>
+
+      <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
+        {openChooseFavouriteLeaguesModal => (
+          <SportsSubNav
+            {...commonProps}
+            navItems={selectedNavItem.subNav || []}
+            canEdit={selectedNavItem.canEdit}
+            onEdit={openChooseFavouriteLeaguesModal}
+            cacheBuster={subNavCacheBuster}
+          />
+        )}
+      </OpenModalMutation>
+    </>
+  );
+};
+
+export const SportsNav = ({ currentHash }: { currentHash: string }) => {
+  const { client } = React.useContext(ClientContext);
+  const [isLiveActive, setIsLiveActive] = React.useState(false);
+
+  // Decision was made that our nav doesn't add any benefit on the following kambi routes
+  // and take too much focus away from what is happening
+  if (/#event|#bethistory/.test(currentHash)) {
+    return null;
+  }
+
+  return (
+    <UserNavigationTypedQuery
+      query={USER_NAVIGATION_QUERY}
+      variables={{ live: isLiveActive }}
+    >
+      {({ loading, error, data }) => {
+        if (loading) {
+          return <SportsNavSkeleton />;
+        }
+
+        if (error) {
+          return <ErrorMessage direction="horizontal" />;
+        }
+
+        if (
+          !data ||
+          !data.sportsNavigation ||
+          !data.allLabel ||
+          !data.editLabel ||
+          !data.liveLabel
+        ) {
+          return null;
+        }
+
+        const setIsLiveActiveAndUpdateSelectedNavItem = (
+          liveActive: boolean
+        ) => {
+          setIsLiveActive(liveActive);
+
+          navItemUtils.selectPath(
+            client,
+            data.sportsNavigation[0].sport.clientPath
+          );
+        };
+
+        return renderSportsNav(
+          currentHash,
+          [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
+          data,
+          client
+        );
+      }}
+    </UserNavigationTypedQuery>
+  );
+};

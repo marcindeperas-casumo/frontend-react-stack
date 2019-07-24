@@ -7,7 +7,8 @@
 // ====================================================
 
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  name: string
+  name: string,
+  backgroundImage: string,
 };
 
 export type PlayerValuablesQuery_player_valuables = {
@@ -19,6 +20,7 @@ export type PlayerValuablesQuery_player_valuables = {
   caveat: ?string,
   currency: Currency,
   market: string,
+  backgroundImage: string,
 } | {
   id: string,
   state: PlayerValuableState,
@@ -28,6 +30,7 @@ export type PlayerValuablesQuery_player_valuables = {
   caveat: ?string,
   currency: Currency,
   market: string,
+  backgroundImage: string,
   coinValue: number,
   game: PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
 };
@@ -61,6 +64,14 @@ export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
  * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
+export type ContactSettingsInput = {|
+  on: boolean
+|};
+
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
 
 //==============================================================
 // END Enums and Input Objects

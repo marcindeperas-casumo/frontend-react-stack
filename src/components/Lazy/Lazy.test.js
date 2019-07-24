@@ -4,6 +4,7 @@ import Lazy from "Components/Lazy";
 
 describe("<Lazy />", () => {
   const html = "<span>Foo bar.</span>";
+  const component = "DangerousHtml";
 
   test("renders the lazy-loaded component", done => {
     const rendered = mount(
@@ -12,6 +13,7 @@ describe("<Lazy />", () => {
         props={{
           html,
         }}
+        namedExport={component}
       />
     );
 
@@ -31,6 +33,7 @@ describe("<Lazy />", () => {
         props={{
           html,
         }}
+        namedExport="UnknownComponent"
       />
     );
 

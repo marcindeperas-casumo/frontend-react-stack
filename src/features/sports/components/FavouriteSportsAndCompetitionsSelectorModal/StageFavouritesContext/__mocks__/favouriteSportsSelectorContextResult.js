@@ -1,3 +1,5 @@
+const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
+
 const sports = [
   {
     __typename: "EventGroup",
@@ -7,8 +9,7 @@ const sports = [
     name: "Football",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/01/football1.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [
       {
         userFavourite: true,
@@ -139,8 +140,7 @@ const sports = [
     name: "Tennis",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tennis.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -151,8 +151,7 @@ const sports = [
     name: "Golf",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/golf.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -164,8 +163,7 @@ const sports = [
     popular: false,
     icon:
       "https://cms.casumo.com/wp-content/uploads/2019/02/american-football.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -176,8 +174,7 @@ const sports = [
     name: "Athletics",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/athletics.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -188,8 +185,7 @@ const sports = [
     name: "Australian Rules",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -200,8 +196,7 @@ const sports = [
     name: "Badminton",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -212,8 +207,7 @@ const sports = [
     name: "Bandy",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/bandy.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -224,8 +218,7 @@ const sports = [
     name: "Baseball",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/baseball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -236,8 +229,7 @@ const sports = [
     name: "Basketball",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/basketball1.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -248,8 +240,7 @@ const sports = [
     name: "Boxing",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/boxing.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -260,8 +251,7 @@ const sports = [
     name: "Chess",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/chess.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -272,8 +262,7 @@ const sports = [
     name: "Cricket",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cricket.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -284,8 +273,7 @@ const sports = [
     name: "Curling",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -296,8 +284,7 @@ const sports = [
     name: "Cycling",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/cycling.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -308,8 +295,7 @@ const sports = [
     name: "Darts",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/darts.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -320,8 +306,7 @@ const sports = [
     name: "Esports",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/e-sports.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -332,8 +317,7 @@ const sports = [
     name: "Floorball",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/floorball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -344,8 +328,7 @@ const sports = [
     name: "Futsal",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -356,8 +339,7 @@ const sports = [
     name: "Gaelic Sports",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/gaelic.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -368,8 +350,7 @@ const sports = [
     name: "Handball",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/handball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -380,8 +361,7 @@ const sports = [
     name: "Ice Hockey",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/ice_hockey.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -392,8 +372,7 @@ const sports = [
     name: "Motorsports",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/motorsports.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -404,8 +383,7 @@ const sports = [
     name: "Netball",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/netball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -417,8 +395,7 @@ const sports = [
     popular: false,
     icon:
       "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -429,8 +406,7 @@ const sports = [
     name: "Politics",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/politics.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -441,8 +417,7 @@ const sports = [
     name: "Rugby League",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -453,8 +428,7 @@ const sports = [
     name: "Rugby Union",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/rugby.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -465,8 +439,7 @@ const sports = [
     name: "Snooker",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/snooker.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -477,8 +450,7 @@ const sports = [
     name: "Surfing",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/surfing.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -489,8 +461,7 @@ const sports = [
     name: "Trotting",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/trotting.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -501,8 +472,7 @@ const sports = [
     name: "TV & Novelty",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/tv_novelty.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -513,8 +483,7 @@ const sports = [
     name: "UFC/MMA",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/mma.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -525,8 +494,7 @@ const sports = [
     name: "Volleyball",
     popular: true,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/volleyball.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -537,8 +505,7 @@ const sports = [
     name: "Water Polo",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -550,8 +517,7 @@ const sports = [
     popular: false,
     icon:
       "https://cms.casumo.com/wp-content/uploads/2019/02/games-olympics.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -562,8 +528,7 @@ const sports = [
     name: "Winter Sports",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/wintersports.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
   {
@@ -574,8 +539,7 @@ const sports = [
     name: "WWE/Pro Wrestling",
     popular: false,
     icon: "https://cms.casumo.com/wp-content/uploads/2019/02/misc_badge.svg",
-    activeIndicator:
-      "https://cms.casumo.com/wp-content/uploads/2019/03/sports-active-indicator-default.svg",
+    activeIndicator,
     favouriteCompetitions: [],
   },
 ];

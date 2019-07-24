@@ -5,3 +5,5 @@ declare var module: {
         accept(path:string, callback:() => void): void;
     };
 };
+
+declare type ThunkDispatch = (action: { type: string }) => any;

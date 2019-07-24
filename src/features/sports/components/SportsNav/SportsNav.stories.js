@@ -1,35 +1,52 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import isNotChromatic from "Storybook/isNotChromatic";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-import SportsNav from "./SportsNav";
-import mocks from "./__mocks__/userNavigationQuery";
+import { SportsNav } from "Features/sports/components/SportsNav";
+import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
 const stories = storiesOf("Sports/SportsNav", module);
 
-stories.add("Many sports (desktop)", () => (
-  <div className="c-sports-shell--site">
-    <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
-      <SportsNav currentHash="#filter/tennis/wta" />
+const waitForScrollablePaginated = { chromatic: { delay: 200 } };
+
+if (isNotChromatic) {
+  stories.add(
+    "Many sports (desktop)",
+    () => (
+      <div className="c-sports-shell--site">
+        <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
+          <SportsNav currentHash="#filter/tennis/wta" />
+        </MockedProviderWithContext>
+      </div>
+    ),
+    waitForScrollablePaginated
+  );
+
+  stories.add(
+    "Many sports",
+    () => (
+      <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
+        <SportsNav currentHash="#filter/tennis/wta" />
+      </MockedProviderWithContext>
+    ),
+    waitForScrollablePaginated
+  );
+}
+
+stories.add(
+  "Multiple sports",
+  () => (
+    <MockedProviderWithContext mocks={mocks.multipleSports} addTypename={false}>
+      <SportsNav currentHash="#filter/football/england/premier_league" />
     </MockedProviderWithContext>
-  </div>
-));
-
-stories.add("Many sports", () => (
-  <MockedProviderWithContext mocks={mocks.manySports} addTypename={false}>
-    <SportsNav currentHash="#filter/tennis/wta" />
-  </MockedProviderWithContext>
-));
-
-stories.add("Multiple sports", () => (
-  <MockedProviderWithContext mocks={mocks.multipleSports} addTypename={false}>
-    <SportsNav currentHash="#filter/football/champions_league" />
-  </MockedProviderWithContext>
-));
+  ),
+  waitForScrollablePaginated
+);
 
 stories.add("Single sport", () => (
   <MockedProviderWithContext mocks={mocks.singleSport} addTypename={false}>
-    <SportsNav currentHash="#filter/tennis/wta" />
+    <SportsNav currentHash="#filter/football" />
   </MockedProviderWithContext>
 ));
 

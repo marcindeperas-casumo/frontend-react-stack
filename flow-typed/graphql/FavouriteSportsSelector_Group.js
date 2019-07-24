@@ -1,5 +1,3 @@
-
-
 /* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
@@ -56,9 +54,7 @@ export type FavouriteSportsSelector_Group = {
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
-};
-
-/* @flow */
+};/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
@@ -74,7 +70,7 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 /**
  * 
  */
-export type Modal = "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 //==============================================================
 // END Enums and Input Objects

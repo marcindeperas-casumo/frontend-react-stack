@@ -32,7 +32,7 @@ module.exports = {
               const reduxStore = store.getState();
               const { dispatch } = store;
 
-              const stateProps = mapStateToProps(reduxStore, ownProps);
+              const stateProps = mapStateToProps?.(reduxStore, ownProps);
               const dispatchProps = (() => {
                 if (typeof mapDispatchToProps === 'function') {
                   return mapDispatchToProps(dispatch, ownProps);
