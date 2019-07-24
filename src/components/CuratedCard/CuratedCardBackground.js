@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
+import breakpoints from "Src/styles/_settings.breakpoints.scss";
 import ImageLazy from "Components/Image/ImageLazy";
-
 type Props = {
   small_image: string,
   medium_image: string,
@@ -9,6 +9,12 @@ type Props = {
   onLaunchGame: ?Function,
   link: ?string,
 };
+
+const curatedCardBreakpoints = [
+  `(max-width: ${parseInt(breakpoints.phablet) - 1}px)`,
+  `(max-width: ${parseInt(breakpoints.tablet) - 1}px)`,
+  `(min-width: ${breakpoints.tablet})`,
+];
 
 export class CuratedCardBackground extends PureComponent<Props> {
   render() {
@@ -20,6 +26,13 @@ export class CuratedCardBackground extends PureComponent<Props> {
       link,
     } = this.props;
 
+    const imgSrcs = [small_image, medium_image, large_image].map(
+      (image, i) => ({
+        mediaQuery: curatedCardBreakpoints[i],
+        src: image,
+      })
+    );
+
     return (
       <a
         className="o-ratio__content u-cursor-pointer"
@@ -28,7 +41,7 @@ export class CuratedCardBackground extends PureComponent<Props> {
       >
         <ImageLazy
           className="o-ratio__content u-object-fit-cover"
-          images={{ small_image, medium_image, large_image }}
+          images={imgSrcs}
         />
       </a>
     );

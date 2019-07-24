@@ -218,6 +218,22 @@ export class App extends PureComponent<Props> {
             />
           </DataProvider>
         </Route>
+        <Route path={["history-transactions-annual-overview"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview"
+              props={{ selectedYear: routeParams[0] }}
+              loader={() => import("Components/TransactionsAnnualOverview")}
+              namedExport="TransactionsAnnualOverview"
+            />
+            {/* Had to put same portal here because adding another path above didn't work sometimes */}
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview-year"
+              loader={transactionsAnnualOverviewYearSelectorLoader}
+              namedExport="TransactionsAnnualOverviewYearSelector"
+            />
+          </DataProvider>
+        </Route>
       </Router>
     );
   }

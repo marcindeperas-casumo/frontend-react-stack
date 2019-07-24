@@ -1,4 +1,5 @@
 // @flow
+import * as React from "react";
 import * as R from "ramda";
 import type { Bets } from "Types/liveCasinoLobby";
 
@@ -184,7 +185,7 @@ export function formatCurrency({
 }: {
   locale: string,
   currency: string,
-  value: number,
+  value: ?number,
 }): string {
   /**
    * Hack? if modulo 1 returns something other than 0 we have fractions and
@@ -193,13 +194,13 @@ export function formatCurrency({
    * rather than €50.00). I'm pretty sure that latter should never happened
    * https://github.com/search?q=This+should+never+happen&type=Code&utf8=✓
    */
-  const minimumFractionDigits = value % 1 === 0 ? 0 : 2;
+  const minimumFractionDigits = (value || 0) % 1 === 0 ? 0 : 2;
 
   return new Intl.NumberFormat(locale, {
     style: "currency",
     currency,
     minimumFractionDigits,
-  }).format(value);
+  }).format(value || 0);
 }
 
 export function getSymbolForCurrency({
@@ -230,8 +231,24 @@ export const interpolate = (
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
-    R.pathOr(match, [param], replacements)
+    R.propOr(match, param, replacements)
   );
+
+export const interpolateWithJSX = R.curry(
+  (replacements: { [string]: React.Node }, target: string) =>
+    R.pipe(
+      R.split(/({{2,3}\s*\w+\s*}{2,3})/gm),
+      R.addIndex(R.map)((x, i) => (
+        <React.Fragment key={i}>
+          {R.pipe(
+            R.match(/{{2,3}\s*(\w+)\s*}{2,3}/),
+            R.prop(1),
+            R.propOr(x, R.__, replacements)
+          )(x)}
+        </React.Fragment>
+      ))
+    )(target)
+);
 
 export const getCssCustomProperty = (property: string) =>
   document.documentElement

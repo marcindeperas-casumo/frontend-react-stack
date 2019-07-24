@@ -16,6 +16,7 @@ import { Pill } from "Components/Pill";
 import { TextInput } from "Components/Compliance/TextInput";
 import { useDepositLimitInputs } from "./DepositLimitsForm.hooks";
 import { limitTypes } from "..";
+import "./styles.scss";
 
 type Props = {
   locale: string,
@@ -106,8 +107,8 @@ export function DepositLimitsForm(props: Props) {
             key={limitName}
             onClick={() => setVisible(limitName)}
             isActive={visible === limitName}
-            inactiveClassNames="t-background-grey-light-2 o-flex--1 c-chips__container"
-            activeClassNames="t-background-grey-light-2 o-flex--1 c-chips__container c-chips__container--active"
+            inactiveClassNames="o-flex--1 t-background-grey-light-2 c-deposit-limits-form-pill__container"
+            activeClassNames="o-flex--1 c-deposit-limits-form-pill__container c-deposit-limits-form-pill--active"
           >
             <Flex
               align="center"

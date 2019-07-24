@@ -60,6 +60,10 @@ import {
   fetchAdventurerSaga,
   adventureUpdatesSaga,
 } from "Models/adventure";
+import {
+  types as transactionsBetsHistoryTypes,
+  fetchAnnualOverviewSaga,
+} from "Models/transactionsBetsHistory";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -156,5 +160,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     takeChannel(cometdChannels.ADVENTURE),
     adventureUpdatesSaga
+  );
+  yield fork(
+    takeEvery,
+    transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_INIT,
+    fetchAnnualOverviewSaga
   );
 }

@@ -5008,6 +5008,26 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         "color": "yellow-light-1",
         "promoted": true
       }
+    },
+    transactionsBetsHistoryAnnualOverview: {
+      2018: {
+        currency: "GBP",
+        betsAmount: 11.4,
+        winningsAmount: 33,
+        depositsAmount: 4.5,
+        withdrawalsAmount: 78,
+        awardedBonusesAmount: 99,
+        convertedBonusesAmount: 20.2,
+      },
+      2017: {
+        currency: "GBP",
+        betsAmount: 9.4,
+        winningsAmount: 1,
+        depositsAmount: 76,
+        withdrawalsAmount: 9,
+        awardedBonusesAmount: 100,
+        convertedBonusesAmount: 100,
+      }
     }
   },
 });

@@ -5,7 +5,12 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
-import type { AllLimits, DepositKinds } from "Models/playOkay/depositLimits";
+import type {
+  AllLimits,
+  AllLimitsOnlyValues,
+  DepositKinds,
+} from "Models/playOkay/depositLimits";
+import { formatCurrency, interpolate } from "Utils";
 import { Header, HeaderButton } from "./Header";
 import { limitTypes } from "..";
 import "./styles.scss";
@@ -15,7 +20,7 @@ type LimitChange = {
   value: number,
 };
 type Props = {
-  currencySign: string,
+  locale: string,
   t: {
     daily_short: string,
     weekly_short: string,
@@ -31,24 +36,12 @@ type Props = {
     weekly?: LimitChange,
     monthly?: LimitChange,
   },
-  limitsUsage: {
-    daily: number,
-    weekly: number,
-    monthly: number,
-  },
+  remainingLimitValue: AllLimitsOnlyValues,
   edit: DepositKinds => void,
   add: () => void,
   removeAll: () => void,
 };
 
-// eslint-disable-next-line fp/no-mutation
-DepositLimitsOverview.defaultProps = {
-  limitsUsage: {
-    daily: 0,
-    weekly: 0,
-    monthly: 0,
-  },
-};
 export function DepositLimitsOverview(props: Props) {
   const { t } = props;
 
@@ -71,8 +64,10 @@ export function DepositLimitsOverview(props: Props) {
       {limitTypes
         .filter(x => props.limits[x])
         .map(x => {
-          const remainingLimitValue = // $FlowIgnore: props.limits[x] is not null, it got filtered out above
-            props.limits[x] - (props.limits[x] / 100) * props.limitsUsage[x];
+          const progressPercentage =
+            100 -
+            ((props.remainingLimitValue[x] || 0) / (props.limits[x] || 0)) *
+              100;
 
           return (
             <Flex
@@ -84,17 +79,24 @@ export function DepositLimitsOverview(props: Props) {
               onClick={() => props.edit(x)}
             >
               <Flex align="center" justify="space-between" spacing="none">
-                <ProgressArc value={props.limitsUsage[x]} />
+                <ProgressArc value={progressPercentage} />
                 <Flex className="u-margin-left o-flex--1" direction="vertical">
                   <Text tag="span">
-                    {props.currencySign}
-                    {props.limits?.[x]} {t[`${x}_short`]}
+                    {formatCurrency({
+                      locale: props.locale,
+                      currency: props.limits.currency,
+                      value: parseInt(props.limits[x]),
+                    })}{" "}
+                    {t[`${x}_short`]}
                   </Text>
                   <Text tag="span" size="sm" style={{ color: "#7967BB" }}>
-                    {t.remaining_limit.replace(
-                      "{value}",
-                      `${props.currencySign}${remainingLimitValue}`
-                    )}
+                    {interpolate(t.remaining_limit, {
+                      value: formatCurrency({
+                        locale: props.locale,
+                        currency: props.limits.currency,
+                        value: props.remainingLimitValue[x],
+                      }),
+                    })}
                   </Text>
                 </Flex>
                 <MoreIcon className="t-color-grey-light-1" />
@@ -105,17 +107,16 @@ export function DepositLimitsOverview(props: Props) {
                   size="sm"
                   className="u-margin-left--xlg t-color-grey-light-1"
                 >
-                  {t.change_in_future
-                    .replace(
-                      "{newLimitValue}",
-                      `${props.currencySign}${props.pendingLimitChanges[x]?.value}`
-                    )
-                    .replace(
-                      "{limitChangeDate}",
-                      DateTime.fromMillis(
-                        props.pendingLimitChanges[x]?.date
-                      ).toLocaleString()
-                    )}
+                  {interpolate(t.change_in_future, {
+                    newLimitValue: formatCurrency({
+                      locale: props.locale,
+                      currency: props.limits.currency,
+                      value: props.pendingLimitChanges[x]?.value,
+                    }),
+                    limitChangeDate: DateTime.fromMillis(
+                      props.pendingLimitChanges[x]?.date
+                    ).toLocaleString(),
+                  })}
                 </Text>
               )}
             </Flex>

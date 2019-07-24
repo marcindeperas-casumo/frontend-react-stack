@@ -3,7 +3,7 @@
   "weekly_short": "Weekly",
   "monthly_short": "Monthly",
   "deposit_limits": "Deposit limits",
-  "change_in_future": "Becomes {newLimitValue} on {limitChangeDate}",
+  "change_in_future": "Becomes {{newLimitValue}} on {{limitChangeDate}}",
   "remove_all": "Remove All",
-  "remaining_limit": "{value} remaining"
+  "remaining_limit": "{{value}} remaining"
 }

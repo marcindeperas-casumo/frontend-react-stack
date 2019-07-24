@@ -13,6 +13,7 @@ export const DEFAULT_STATE = {
   preadjust: undefined,
   undoable: undefined,
   lock: undefined,
+  remaining: undefined,
 };
 
 const handlers = {
@@ -38,6 +39,10 @@ const handlers = {
   [depositLimitsTypes.PREADJUST_DONE]: (state, { response }) => ({
     ...state,
     preadjust: response,
+  }),
+  [depositLimitsTypes.REMAINING_LIMITS_DONE]: (state, { response }) => ({
+    ...state,
+    remaining: response?.value,
   }),
 };
 

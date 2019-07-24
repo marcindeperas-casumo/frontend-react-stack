@@ -1,18 +1,20 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 import t from "./__mocks__/cms.json";
 
 const props = {
-  currencySign: "£",
   t,
+  locale: "en-GB",
   limits: {
     daily: 10,
     weekly: 30,
     monthly: 100,
+    currency: "EUR",
   },
   pendingLimitChanges: {},
-  limitsUsage: {
+  remainingLimitValue: {
     daily: 0,
     weekly: 0,
     monthly: 0,
@@ -37,7 +39,10 @@ describe("DepositLimitsOverview", () => {
       <DepositLimitsOverview
         {...props}
         limits={{
+          currency: "EUR",
           daily: 10,
+          weekly: null,
+          monthly: null,
         }}
       />
     );

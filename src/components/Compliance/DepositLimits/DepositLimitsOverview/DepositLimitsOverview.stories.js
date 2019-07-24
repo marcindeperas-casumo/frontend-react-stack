@@ -15,22 +15,24 @@ const actions = {
 
 stories.add("Default", () => (
   <DepositLimitsOverview
-    currencySign="€"
+    locale="en-GB"
     t={t}
     limits={{
       daily: 600,
       weekly: 1500,
       monthly: 3000,
       currency: "EUR",
-      previouslyIncreased: false,
     }}
     pendingLimitChanges={{
-      daily: { date: Date.now() + 48 * 60 * 60 * 100, value: 750 },
+      daily: {
+        date: new Date("2012-12-12").valueOf(),
+        value: 750,
+      },
     }}
-    limitsUsage={{
-      daily: 1,
-      weekly: 80,
-      monthly: 33,
+    remainingLimitValue={{
+      daily: 30,
+      weekly: 400,
+      monthly: 800,
     }}
     {...actions}
   />
@@ -38,14 +40,18 @@ stories.add("Default", () => (
 
 stories.add("No limits", () => (
   <DepositLimitsOverview
-    currencySign="€"
+    locale="en-GB"
     t={t}
     limits={{
       daily: null,
       weekly: null,
       monthly: null,
       currency: "EUR",
-      previouslyIncreased: false,
+    }}
+    remainingLimitValue={{
+      daily: null,
+      weekly: null,
+      monthly: null,
     }}
     pendingLimitChanges={{}}
     {...actions}

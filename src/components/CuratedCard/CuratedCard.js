@@ -2,12 +2,16 @@
 import React, { PureComponent } from "react";
 import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
-import Text from "@casumo/cmp-text";
-import { CuratedCardFooter } from "Components/CuratedCard/CuratedCardFooter";
+import {
+  CuratedCardFooterText,
+  CuratedCardFooterGame,
+} from "Components/CuratedCard/CuratedCardFooter";
 import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
+import {
+  CuratedCardHeader,
+  CuratedCardHeaderWithSubtitle,
+} from "Components/CuratedCard/CuratedCardHeader";
 import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
-import { stringToHTML } from "Utils";
-import { EitherOr } from "Components/EitherOr";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
@@ -47,7 +51,7 @@ export class CuratedCard extends PureComponent<Props> {
     const { typeOfCurated, promotion = [] } = this.props;
     const [promotionSlug = ""] = promotion;
 
-    const url = CARD_CLICK_URL[typeOfCurated];
+    const url = CARD_CLICK_URL[typeOfCurated] || null;
 
     if (typeOfCurated === CURATED_TYPE.PROMOTION) {
       return replace("#promotionSlug", promotionSlug, url);
@@ -65,6 +69,10 @@ export class CuratedCard extends PureComponent<Props> {
     };
   }
 
+  get isGame() {
+    return this.props.typeOfCurated === CURATED_TYPE.GAME;
+  }
+
   componentDidMount() {
     const { isFetched, fetchCurated } = this.props;
 
@@ -73,14 +81,11 @@ export class CuratedCard extends PureComponent<Props> {
     }
   }
 
-  renderSkeleton = () => <CuratedCardSkeleton />;
-
   renderCard = () => {
-    const { onLaunchGame, typeOfCurated } = this.props;
-    const isGame = typeOfCurated === CURATED_TYPE.GAME;
     const backgroundProps = {
       ...this.props,
-      onLaunchGame: isGame ? onLaunchGame : null,
+      onLaunchGame: this.isGame ? this.props.onLaunchGame : null,
+      link: this.cardClickUrl,
     };
 
     return (
@@ -93,10 +98,7 @@ export class CuratedCard extends PureComponent<Props> {
           eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_CLICKED}
           data={this.trackData}
         >
-          <CuratedCardBackground
-            link={this.cardClickUrl}
-            {...backgroundProps}
-          />
+          <CuratedCardBackground {...backgroundProps} />
           <Card
             className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg"
             justify={justify}
@@ -109,41 +111,31 @@ export class CuratedCard extends PureComponent<Props> {
     );
   };
 
-  renderHeader = () => {
-    const { subtitle, header, typeOfCurated } = this.props;
-    const isGame = typeOfCurated === CURATED_TYPE.GAME;
-
-    return (
-      <React.Fragment>
-        {!isGame && (
-          <Text
-            className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
-            size="2xs"
-          >
-            {subtitle}
-          </Text>
-        )}
-        <Text
-          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
-          size="2xlg"
-          dangerouslySetInnerHTML={stringToHTML(header)}
-        />
-      </React.Fragment>
+  renderHeader = () =>
+    this.isGame ? (
+      <CuratedCardHeader header={this.props.header} />
+    ) : (
+      <CuratedCardHeaderWithSubtitle
+        header={this.props.header}
+        subtitle={this.props.subtitle}
+      />
     );
-  };
 
-  renderFooter = () => <CuratedCardFooter {...this.props} />;
+  renderFooter = () =>
+    this.isGame ? (
+      <CuratedCardFooterGame
+        gameData={this.props.gameData}
+        buttonText={this.props.primary_action_text}
+        onLaunchGame={this.props.onLaunchGame}
+      />
+    ) : (
+      <CuratedCardFooterText text={this.props.promotions_legal_text} />
+    );
 
   render() {
-    const { isFetched } = this.props;
-
     return (
       <div className="u-margin-top--md u-margin-top--lg@tablet u-margin-top--lg@desktop u-margin-x--md u-margin-x--3xlg@tablet u-margin-x--3xlg@desktop">
-        <EitherOr
-          either={this.renderCard}
-          or={this.renderSkeleton}
-          condition={() => isFetched}
-        />
+        {this.props.isFetched ? this.renderCard() : <CuratedCardSkeleton />}
       </div>
     );
   }
