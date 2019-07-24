@@ -27,9 +27,9 @@ const Badge = ({ className, children }: BadgeProps) => (
   </Flex>
 );
 
-const CountBadge = ({ count }: { count: number }) => (
-  <Badge className="t-background-grey-dark-1 t-color-white">{count}</Badge>
-);
+// temporarily disable this until we have a solid way of getting the correct number
+const CountBadge = ({ count }: { count: number }) => null;
+// <Badge className="t-background-grey-dark-1 t-color-white">{count}</Badge>;
 
 const CloseBadge = () => (
   <Badge className="t-background-red-dark-1 t-color-white">
