@@ -4,7 +4,7 @@ import Scrollable from "@casumo/cmp-scrollable";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { generateColumns } from "Utils";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import JackpotsListTile from "Components/JackpotsListTile";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
@@ -47,18 +47,11 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
         <div className="o-wrapper">
           <Mobile>
             <div className="u-padding-top--xlg">
-              <Flex justify="space-between">
-                <Flex.Item>
-                  <ScrollableListTitle paddingLeft title={title} />
-                </Flex.Item>
-                <Flex.Item className="u-padding-right--md">
-                  <a href={seeMoreUrl}>
-                    <Text size="xs" tag="h3" className="t-color-blue">
-                      {seeMore}
-                    </Text>
-                  </a>
-                </Flex.Item>
-              </Flex>
+              <ScrollableListTitleRow
+                paddingLeft
+                seeMore={{ text: seeMore, url: seeMoreUrl }}
+                title={title}
+              />
               <Scrollable
                 itemClassName="c-jackpots-list-tile"
                 padding={PADDING_PER_DEVICE}

@@ -10,16 +10,18 @@ type Props = {
   title: string,
   /** The seeMore text, url, and color */
   seeMore?: SeeMoreProps,
+  /** Whether applying padding left or not */
+  paddingLeft?: boolean,
 };
 
 export class ScrollableListTitleRow extends PureComponent<Props> {
   render() {
-    const { title, seeMore } = this.props;
+    const { title, seeMore, paddingLeft = false } = this.props;
 
     return (
       <Flex justify="space-between">
         <Flex.Item>
-          <ScrollableListTitle title={title} />
+          <ScrollableListTitle paddingLeft={paddingLeft} title={title} />
         </Flex.Item>
         {seeMore?.url && (
           <Flex.Item className="u-padding-right--md">
