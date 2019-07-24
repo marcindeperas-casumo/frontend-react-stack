@@ -318,9 +318,8 @@ describe("SettingsRealityCheckContainer", () => {
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
-      promiseFn();
-      await wait(10);
-      rendered.update();
+      await promiseFn();
+      await wait(0);
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);

@@ -26,15 +26,15 @@ const handlers = {
     return {
       ...state,
       limits: R.path(["limit", "value"], LimitDGOJ),
-      undoable: R.prop(["undoable"], LimitDGOJ),
-      lock: R.prop(["lock"], LimitDGOJ),
+      undoable: R.prop("undoable", LimitDGOJ),
+      lock: R.prop("lock", LimitDGOJ),
     };
   },
   [depositLimitsTypes.ADJUST_DONE]: (state, { response }) => ({
     ...state,
     limits: R.pathOr(state.limits, ["limit", "value"], response),
-    undoable: R.propOr(state.undoable, ["undoable"], response),
-    lock: R.propOr(state.lock, ["lock"], response),
+    undoable: R.propOr(state.undoable, "undoable", response),
+    lock: R.propOr(state.lock, "lock", response),
   }),
   [depositLimitsTypes.PREADJUST_DONE]: (state, { response }) => ({
     ...state,
