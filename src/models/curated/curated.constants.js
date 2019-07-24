@@ -14,7 +14,6 @@ export const CURATED_TYPE = {
 };
 
 export const CARD_CLICK_URL = {
-  [CURATED_TYPE.GAME]: null,
   [CURATED_TYPE.PROMOTION]: "/en/promotions/#promotionSlug",
   [CURATED_TYPE.WELCOME_OFFER]: "/en/cash/deposit",
 };
