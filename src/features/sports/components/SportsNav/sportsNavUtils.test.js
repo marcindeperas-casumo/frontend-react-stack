@@ -1,28 +1,65 @@
 import { navItemUtils } from "Features/sports/components/SportsNav/sportsNavUtils";
-import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
+import {
+  liveNavItem,
+  navItems,
+} from "Features/sports/components/SportsNav/__mocks__/navItems";
 
-const { isNavItemSelected } = navItemUtils;
+const { isNavItemSelected, doSportsMatch } = navItemUtils;
+
+describe("doSportsMatch()", () => {
+  test("should check if the first part of two paths matches", () => {
+    expect(
+      doSportsMatch(
+        "filter/cheeserolling/uk/gloucester",
+        "filter/cheeserolling/france"
+      )
+    ).toBe(true);
+    expect(
+      doSportsMatch(
+        "filter/bogsnorkeling/uk/gloucester",
+        "filter/threeleggedrace/uk/gloucester"
+      )
+    ).toBe(false);
+  });
+});
 
 describe("isNavItemSelected()", () => {
   test("should check if navItem's path matches the current location", () => {
     expect(isNavItemSelected(`#${navItems[0].path}`)(navItems[0])).toBe(true);
-
     expect(isNavItemSelected(`#${navItems[0].path}`)(navItems[1])).toBe(false);
   });
 
   test("should handle when the 'All' filter is enabled in the subnav", () => {
-    const allNavItem = {
-      text: "All",
-      path: "filter/football",
-      parentPath: "filter/football",
-      key: "all",
-      canEdit: false,
-    };
-
-    expect(isNavItemSelected(`#filter/football`)(allNavItem)).toBe(true);
+    expect(isNavItemSelected(`#filter/football`)(navItems[0])).toBe(true);
     expect(
-      isNavItemSelected(`#filter/football/norway/eliteserien`)(allNavItem)
+      isNavItemSelected("#filter/football/norway/eliteserien")(navItems[0])
+    ).toBe(true);
+  });
+
+  test("should check if a live nav item is selected", () => {
+    expect(
+      isNavItemSelected("#filter/football/all/all/all/in-play")(liveNavItem)
+    ).toBe(true);
+
+    expect(
+      isNavItemSelected("#filter/football/australia/state_cups/all/in-play")(
+        liveNavItem
+      )
+    ).toBe(true);
+  });
+
+  test("should check if a live subnav item is selected", () => {
+    expect(
+      isNavItemSelected("#filter/football/all/all/all/in-play")(
+        liveNavItem.subNav[0]
+      )
     ).toBe(false);
+
+    expect(
+      isNavItemSelected("#filter/football/australia/state_cups/all/in-play")(
+        liveNavItem.subNav[0]
+      )
+    ).toBe(true);
   });
 
   test("should check if the navItem is a parent of the current location", () => {

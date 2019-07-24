@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import * as R from "ramda";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
@@ -16,18 +17,45 @@ const selectPath = (client: *, path: string) => {
   });
 };
 
+type IsSelectedPredicateArgs = {
+  currentHash: string,
+  navItem: SportsNavItemType,
+};
+
+const doSportsMatch = (path1: string, path2: string) => {
+  const trimSport = R.pipe(
+    R.split("/"),
+    R.take(2),
+    R.join("")
+  );
+  return R.eqBy(trimSport, path1, path2);
+};
+
+const isDrilldown = ({ currentHash, navItem }: IsSelectedPredicateArgs) =>
+  currentHash.includes(navItem.path.replace(/racing|filter/, "drill-down"));
+
+const isMainNavItemSelected = ({
+  currentHash,
+  navItem,
+}: IsSelectedPredicateArgs) => {
+  const path = navItem.path.replace(/\/all\/.+in-play/gi, "");
+  return !navItem.parentPath && currentHash.startsWith(`#${path}`);
+};
+
+const isSubnavItemSelected = ({
+  currentHash,
+  navItem,
+}: IsSelectedPredicateArgs) => {
+  return navItem.parentPath && currentHash === `#${navItem.path}`;
+};
+
 const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
 ) => {
-  const isSubNavItem = Boolean(navItem.parentPath);
-  const isCurrentHash = isSubNavItem
-    ? currentHash === `#${navItem.path}`
-    : currentHash.startsWith(`#${navItem.path}`);
-  const isDrillDown = currentHash.includes(
-    navItem.path.replace(/racing|filter/, "drill-down")
-  );
-
-  return isCurrentHash || isDrillDown;
+  return R.anyPass([isDrilldown, isMainNavItemSelected, isSubnavItemSelected])({
+    currentHash,
+    navItem,
+  });
 };
 
 const onNavItemSelected = (
@@ -94,6 +122,7 @@ const toNavItem = (isLiveActive: boolean) => ({
 });
 
 export const navItemUtils = {
+  doSportsMatch,
   selectPath,
   isNavItemSelected,
   onNavItemSelected,
