@@ -97,8 +97,8 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       <div style={style}>
         <div
           className={classNames(
-            columnIndex < itemIds.length - 1 &&
-              createModifierClasses("u-margin-right", itemSpacing)
+            columnIndex > 0 &&
+              createModifierClasses("u-margin-left", itemSpacing)
           )}
         >
           <div className={className}>
