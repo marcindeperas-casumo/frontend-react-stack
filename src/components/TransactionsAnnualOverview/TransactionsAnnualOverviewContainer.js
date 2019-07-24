@@ -7,6 +7,7 @@ import {
   transactionsBetsHistoryContentSelector,
   transactionsBetsHistoryAnnualOverviewSelector,
 } from "Models/transactionsBetsHistory";
+import { TransactionsAnnualOverviewPdfButton } from "Components/PdfButton";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 
 export const TransactionsAnnualOverviewContainer = connect(
@@ -14,6 +15,7 @@ export const TransactionsAnnualOverviewContainer = connect(
     locale: localeSelector(state),
     t: transactionsBetsHistoryContentSelector(state),
     data: transactionsBetsHistoryAnnualOverviewSelector(selectedYear)(state),
+    PdfButton: TransactionsAnnualOverviewPdfButton,
   }),
   () => ({
     // Need to pack it as a router model function and hide bridge dependency

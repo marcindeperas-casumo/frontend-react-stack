@@ -10,6 +10,7 @@ describe("TransactionsAnnualOverview", () => {
     t: cmsMocks,
     data: annualOverviewMock,
     navigateToHistory: () => {},
+    PdfButton: () => null,
   };
 
   test("should display a list of rows with a label and a value with currency", () => {
