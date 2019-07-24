@@ -1,5 +1,6 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
+import Text from "@casumo/cmp-text";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
 describe("ValuableDetailsExpirationLabel", () => {
@@ -11,7 +12,7 @@ describe("ValuableDetailsExpirationLabel", () => {
 
     const renderedText = rendered
       .find("[data-test='expiration-label']")
-      .find("Text")
+      .find(Text)
       .text();
 
     expect(renderedText).toEqual(text);
