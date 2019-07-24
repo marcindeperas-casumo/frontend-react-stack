@@ -1,6 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
@@ -20,6 +22,7 @@ export type GameListObject = {
 export type Props = {
   /** The game list object got from the store. */
   list: GameListObject,
+  /** The game list object is being loaded. */
   isLoading: boolean,
   /** "see more" link translation */
   seeMoreText: string,
@@ -31,6 +34,14 @@ export const ITEM_RENDERERS = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: LiveCasinoCardContainer,
   [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: GameTileWithActiveOverlay,
   default: GameTileContainer,
+};
+
+export const TILE_HEIGHTS = {
+  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: 280,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: 290,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: 290,
+  [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: 204,
+  default: 204,
 };
 
 const GAME_LIST_CLASS_NAME = {
@@ -49,15 +60,26 @@ export const ITEM_SPACING = {
   default: "default",
 };
 
+export const ITEMS_CONTROL_STYLING = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
+    "c-scrollable-list-paginated__live_casino-button",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]:
+    "c-scrollable-list-paginated__live_casino-button",
+  default: "c-scrollable-list-paginated__button",
+};
+
 export class GameListHorizontal extends PureComponent<Props> {
   render() {
     const { list, isLoading, seeMoreText } = this.props;
-    const { id, title, games: gameIds } = list;
-    const spacing = ITEM_SPACING[id] || ITEM_SPACING.default;
-    const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
-    const Component = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
-    const hasNoGames = isEmpty(gameIds) || isNil(gameIds);
+    const { id, title, games: itemIds } = list;
+    const hasNoGames = isEmpty(itemIds) || isNil(itemIds);
     const seeMoreUrl = SEE_MORE_URL[id];
+    const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
+    const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
+    const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
+    const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
+    const itemControlClass =
+      ITEMS_CONTROL_STYLING[id] || ITEMS_CONTROL_STYLING.default;
 
     if (isLoading) {
       return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
@@ -68,15 +90,35 @@ export class GameListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <ScrollableList
-        itemClassName={className}
-        title={title}
-        seeMoreText={seeMoreText}
-        seeMoreUrl={seeMoreUrl}
-        itemIds={gameIds}
-        Component={Component}
-        spacing={spacing}
-      />
+      <div className="o-wrapper">
+        <Mobile>
+          <ScrollableList
+            itemClassName={className}
+            title={title}
+            seeMoreText={seeMoreText}
+            seeMoreUrl={seeMoreUrl}
+            itemIds={itemIds}
+            Component={itemRenderer}
+            spacing={itemSpacing}
+          />
+        </Mobile>
+        <Desktop>
+          <ScrollableListPaginated
+            list={{
+              title,
+              itemIds,
+            }}
+            Component={itemRenderer}
+            className={className}
+            itemControlClass={itemControlClass}
+            tileHeight={tileHeight}
+            seeMore={{
+              text: seeMoreText,
+              url: seeMoreUrl,
+            }}
+          />
+        </Desktop>
+      </div>
     );
   }
 }
