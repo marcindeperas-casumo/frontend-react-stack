@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { mount } from "enzyme";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import Jackpots from "Components/Jackpots/Jackpots";
 import jackpotsMock from "./__mocks__/response.games.mock";
