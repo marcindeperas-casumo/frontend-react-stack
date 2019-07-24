@@ -61,6 +61,11 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   const navItemTypes = ["all", ...props.navItems.map(() => "nav"), "edit"];
   const backgroundColor = isLiveActive ? "orange-light-3" : "grey-light-2";
 
+  // handle edge case - most like caused by dodgy test data
+  if (!props.navItems || props.navItems.length === 0) {
+    return null;
+  }
+
   return (
     <div className={`u-margin-top--sm t-background-${backgroundColor}`}>
       <ScrollablePaginated
