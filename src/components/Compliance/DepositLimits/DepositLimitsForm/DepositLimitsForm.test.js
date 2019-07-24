@@ -6,7 +6,6 @@ import t from "./__mocks__/cms.json";
 
 const limitsDefault = {
   currency: "EUR",
-  previouslyIncreased: false,
 };
 const props = {
   t,

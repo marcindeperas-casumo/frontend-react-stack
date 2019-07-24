@@ -1,24 +1,11 @@
-$exclusive-game-tile-widths: ();
-@each $breakpoint, $value in $tile-widths {
-  $exclusive-game-tile-widths: map-merge(
-    $exclusive-game-tile-widths,
-    (
-      $breakpoint: #{$value + 5%},
-    )
-  );
-}
-
 .c-top-game {
-  @include cudl-breakpoint-with($tile-widths, width);
-  max-width: 170px;
+  width: 170px;
 }
 
 .c-exclusive-game {
-  @include cudl-breakpoint-with($exclusive-game-tile-widths, width);
-  max-width: 188px;
+  width: 188px;
 }
 
 .c-live-casino-card {
-  max-width: 320px;
-  width: 86%;
+  width: 320px;
 }
