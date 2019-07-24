@@ -43,47 +43,49 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     ];
 
     return (
-      <div className="o-wrapper">
-        <Mobile>
-          <div className="u-padding-top--xlg">
-            <Flex justify="space-between">
-              <Flex.Item>
-                <ScrollableListTitle paddingLeft title={title} />
-              </Flex.Item>
-              <Flex.Item className="u-padding-right--md">
-                <a href={seeMoreUrl}>
-                  <Text size="xs" tag="h3" className="t-color-blue">
-                    {seeMore}
-                  </Text>
-                </a>
-              </Flex.Item>
-            </Flex>
-            <Scrollable
-              itemClassName="c-jackpots-list-tile"
-              padding={PADDING_PER_DEVICE}
+      <div className="u-margin-x--3xlg@desktop">
+        <div className="o-wrapper">
+          <Mobile>
+            <div className="u-padding-top--xlg">
+              <Flex justify="space-between">
+                <Flex.Item>
+                  <ScrollableListTitle paddingLeft title={title} />
+                </Flex.Item>
+                <Flex.Item className="u-padding-right--md">
+                  <a href={seeMoreUrl}>
+                    <Text size="xs" tag="h3" className="t-color-blue">
+                      {seeMore}
+                    </Text>
+                  </a>
+                </Flex.Item>
+              </Flex>
+              <Scrollable
+                itemClassName="c-jackpots-list-tile"
+                padding={PADDING_PER_DEVICE}
+                itemSpacing="md"
+              >
+                {scrollableChildren}
+              </Scrollable>
+            </div>
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title,
+                itemIds: [[mustDropWidgetId], ...idsByColumns],
+              }}
+              Component={mustDropJackpotRenderer}
+              className="c-jackpots-list-tile"
               itemSpacing="md"
-            >
-              {scrollableChildren}
-            </Scrollable>
-          </div>
-        </Mobile>
-        <Desktop>
-          <ScrollableListPaginated
-            list={{
-              title,
-              itemIds: [[mustDropWidgetId], ...idsByColumns],
-            }}
-            Component={mustDropJackpotRenderer}
-            className="c-jackpots-list-tile"
-            itemSpacing="md"
-            itemControlClass="c-scrollable-list-paginated__button"
-            tileHeight={291}
-            seeMore={{
-              text: seeMore,
-              url: seeMoreUrl,
-            }}
-          />
-        </Desktop>
+              itemControlClass="c-scrollable-list-paginated__button"
+              tileHeight={291}
+              seeMore={{
+                text: seeMore,
+                url: seeMoreUrl,
+              }}
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }

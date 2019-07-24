@@ -70,58 +70,60 @@ class PromotionCardList extends PureComponent<Props> {
           "u-padding-bottom--lg"
         )}
       >
-        <div className="o-wrapper">
-          <Mobile>
-            <div className="u-padding-top--lg">
-              <Flex justify="space-between">
-                <Flex.Item>
-                  {title ? (
-                    <ScrollableListTitle paddingLeft title={title} />
-                  ) : null}
-                </Flex.Item>
-                <Flex.Item align="right" className="u-padding-right--md">
-                  <a href={seeMoreUrl}>
-                    <Text
-                      size="sm"
-                      tag="h3"
-                      className={classNames(
-                        titleColor && `t-color-${titleColor}`
-                      )}
-                    >
-                      {seeMore}
-                    </Text>
-                  </a>
-                </Flex.Item>
-              </Flex>
-            </div>
-            <Scrollable
-              itemClassName={itemClassName}
-              padding={paddingPerDevice}
-              itemSpacing="md"
-            >
-              {promotionsSlugs.map(id =>
-                PromotionCardContainerRenderer({ id })
-              )}
-            </Scrollable>
-          </Mobile>
-          <Desktop>
-            <ScrollableListPaginated
-              list={{
-                title: title || "",
-                itemIds: promotionsSlugs,
-              }}
-              Component={PromotionCardContainerRenderer}
-              className={itemClassName}
-              itemControlClass="c-scrollable-list-paginated__button"
-              tileHeight={308}
-              seeMore={{
-                text: seeMore,
-                url: seeMoreUrl,
-                color: classNames(titleColor && `t-color-${titleColor}`),
-              }}
-              itemSpacing="md"
-            />
-          </Desktop>
+        <div className="u-margin-x--3xlg@desktop">
+          <div className="o-wrapper">
+            <Mobile>
+              <div className="u-padding-top--lg">
+                <Flex justify="space-between">
+                  <Flex.Item>
+                    {title ? (
+                      <ScrollableListTitle paddingLeft title={title} />
+                    ) : null}
+                  </Flex.Item>
+                  <Flex.Item align="right" className="u-padding-right--md">
+                    <a href={seeMoreUrl}>
+                      <Text
+                        size="sm"
+                        tag="h3"
+                        className={classNames(
+                          titleColor && `t-color-${titleColor}`
+                        )}
+                      >
+                        {seeMore}
+                      </Text>
+                    </a>
+                  </Flex.Item>
+                </Flex>
+              </div>
+              <Scrollable
+                itemClassName={itemClassName}
+                padding={paddingPerDevice}
+                itemSpacing="md"
+              >
+                {promotionsSlugs.map(id =>
+                  PromotionCardContainerRenderer({ id })
+                )}
+              </Scrollable>
+            </Mobile>
+            <Desktop>
+              <ScrollableListPaginated
+                list={{
+                  title: title || "",
+                  itemIds: promotionsSlugs,
+                }}
+                Component={PromotionCardContainerRenderer}
+                className={itemClassName}
+                itemControlClass="c-scrollable-list-paginated__button"
+                tileHeight={308}
+                seeMore={{
+                  text: seeMore,
+                  url: seeMoreUrl,
+                  color: classNames(titleColor && `t-color-${titleColor}`),
+                }}
+                itemSpacing="md"
+              />
+            </Desktop>
+          </div>
         </div>
       </div>
     );

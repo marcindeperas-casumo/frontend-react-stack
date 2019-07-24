@@ -43,33 +43,35 @@ export class ReelRacesList extends React.PureComponent<Props> {
     const itemClassName = "c-reel-race-card";
 
     return (
-      <div className="o-wrapper">
-        <Mobile>
-          <ScrollableList
-            title={t.title}
-            seeMoreText={t.more_link}
-            seeMoreUrl={seeMoreUrl}
-            itemIds={this.props.reelRacesIds}
-            Component={ReelRaceCard}
-            itemClassName={itemClassName}
-          />
-        </Mobile>
-        <Desktop>
-          <ScrollableListPaginated
-            list={{
-              title: t.title,
-              itemIds: this.props.reelRacesIds,
-            }}
-            Component={ReelRaceCard}
-            className={itemClassName}
-            itemControlClass="c-scrollable-list-paginated__button"
-            tileHeight={240}
-            seeMore={{
-              text: t.more_link,
-              url: seeMoreUrl,
-            }}
-          />
-        </Desktop>
+      <div className="u-margin-x--3xlg@desktop">
+        <div className="o-wrapper">
+          <Mobile>
+            <ScrollableList
+              title={t.title}
+              seeMoreText={t.more_link}
+              seeMoreUrl={seeMoreUrl}
+              itemIds={this.props.reelRacesIds}
+              Component={ReelRaceCard}
+              itemClassName={itemClassName}
+            />
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title: t.title,
+                itemIds: this.props.reelRacesIds,
+              }}
+              Component={ReelRaceCard}
+              className={itemClassName}
+              itemControlClass="c-scrollable-list-paginated__button"
+              tileHeight={240}
+              seeMore={{
+                text: t.more_link,
+                url: seeMoreUrl,
+              }}
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }
