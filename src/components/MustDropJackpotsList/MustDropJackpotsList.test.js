@@ -5,9 +5,10 @@ import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 
+const ids = ["1", "2", "3", "4", "5", "6", "7"];
+
 describe("<MustDropJackpotsList /> - Mobile", () => {
   setMobileViewport();
-  const ids = ["1", "2", "3", "4", "5", "6", "7"];
   const rendered = mount(
     <MockStore state={defaultState}>
       <MustDropJackpotsList ids={ids} seeMore="👀" />
@@ -39,7 +40,6 @@ describe("<MustDropJackpotsList /> - Mobile", () => {
 
 describe("<MustDropJackpotsList /> - Desktop", () => {
   setDesktopViewport();
-  const ids = ["1", "2", "3", "4", "5", "6", "7"];
   const rendered = mount(
     <MockStore state={defaultState}>
       <MustDropJackpotsList ids={ids} seeMore="👀" />
