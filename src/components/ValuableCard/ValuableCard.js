@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { ClockIcon, LockIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import {
@@ -16,8 +17,6 @@ import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import { VALUABLE_ICON, coinValueToSpinType } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
-import Time from "./Icons/time.svg";
-import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
 
 type Game = {
@@ -106,7 +105,9 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
-      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
+      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => (
+        <LockIcon size="sm" />
+      ));
     }
 
     if (hours >= 0 && hours <= 24) {
@@ -115,7 +116,7 @@ export class ValuableCard extends PureComponent<Props> {
       return badgeOpts(
         interpolate(translatedHoursUnit, { hours }),
         className,
-        () => <Time />
+        () => <ClockIcon size="sm" />
       );
     }
 
