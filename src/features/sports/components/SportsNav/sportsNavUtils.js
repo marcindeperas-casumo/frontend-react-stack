@@ -22,15 +22,6 @@ type IsSelectedPredicateArgs = {
   navItem: SportsNavItemType,
 };
 
-const doSportsMatch = (path1: string, path2: string) => {
-  const trimSport = R.pipe(
-    R.split("/"),
-    R.take(2),
-    R.join("")
-  );
-  return R.eqBy(trimSport, path1, path2);
-};
-
 const isDrilldown = ({ currentHash, navItem }: IsSelectedPredicateArgs) =>
   currentHash.includes(navItem.path.replace(/racing|filter/, "drill-down"));
 
@@ -45,18 +36,16 @@ const isMainNavItemSelected = ({
 const isSubnavItemSelected = ({
   currentHash,
   navItem,
-}: IsSelectedPredicateArgs) => {
-  return navItem.parentPath && currentHash === `#${navItem.path}`;
-};
+}: IsSelectedPredicateArgs) =>
+  navItem.parentPath && currentHash === `#${navItem.path}`;
 
 const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
-) => {
-  return R.anyPass([isDrilldown, isMainNavItemSelected, isSubnavItemSelected])({
+) =>
+  R.anyPass([isDrilldown, isMainNavItemSelected, isSubnavItemSelected])({
     currentHash,
     navItem,
   });
-};
 
 const onNavItemSelected = (
   currentHash: string,
@@ -122,7 +111,6 @@ const toNavItem = (isLiveActive: boolean) => ({
 });
 
 export const navItemUtils = {
-  doSportsMatch,
   selectPath,
   isNavItemSelected,
   onNavItemSelected,

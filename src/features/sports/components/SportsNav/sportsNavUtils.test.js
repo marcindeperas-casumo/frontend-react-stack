@@ -4,24 +4,7 @@ import {
   navItems,
 } from "Features/sports/components/SportsNav/__mocks__/navItems";
 
-const { isNavItemSelected, doSportsMatch } = navItemUtils;
-
-describe("doSportsMatch()", () => {
-  test("should check if the first part of two paths matches", () => {
-    expect(
-      doSportsMatch(
-        "filter/cheeserolling/uk/gloucester",
-        "filter/cheeserolling/france"
-      )
-    ).toBe(true);
-    expect(
-      doSportsMatch(
-        "filter/bogsnorkeling/uk/gloucester",
-        "filter/threeleggedrace/uk/gloucester"
-      )
-    ).toBe(false);
-  });
-});
+const { isNavItemSelected } = navItemUtils;
 
 describe("isNavItemSelected()", () => {
   test("should check if navItem's path matches the current location", () => {
