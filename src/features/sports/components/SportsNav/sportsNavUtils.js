@@ -29,8 +29,13 @@ const isMainNavItemSelected = ({
   currentHash,
   navItem,
 }: IsSelectedPredicateArgs) => {
-  const path = navItem.path.replace(/\/all\/.+in-play/gi, "");
-  return !navItem.parentPath && currentHash.startsWith(`#${path}`);
+  const sportOnlyPath = R.pipe(
+    R.split("/"),
+    R.take(2),
+    R.join("/")
+  )(navItem.path);
+
+  return !navItem.parentPath && currentHash.startsWith(`#${sportOnlyPath}`);
 };
 
 const isSubnavItemSelected = ({

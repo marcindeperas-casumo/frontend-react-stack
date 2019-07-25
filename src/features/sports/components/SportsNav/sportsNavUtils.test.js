@@ -1,4 +1,7 @@
-import { navItemUtils } from "Features/sports/components/SportsNav/sportsNavUtils";
+import {
+  navItemUtils,
+  makeAllSportsNavItem,
+} from "Features/sports/components/SportsNav/sportsNavUtils";
 import {
   liveNavItem,
   navItems,
@@ -10,6 +13,15 @@ describe("isNavItemSelected()", () => {
   test("should check if navItem's path matches the current location", () => {
     expect(isNavItemSelected(`#${navItems[0].path}`)(navItems[0])).toBe(true);
     expect(isNavItemSelected(`#${navItems[0].path}`)(navItems[1])).toBe(false);
+  });
+
+  test("should handle when the 'All Sports' tab is enabled in the live main nav", () => {
+    const navItem = makeAllSportsNavItem("All Sports");
+
+    expect(isNavItemSelected(`#filter/all/all/all/all/in-play`)(navItem)).toBe(
+      true
+    );
+    expect(isNavItemSelected("#filter/football")(navItem)).toBe(false);
   });
 
   test("should handle when the 'All' filter is enabled in the subnav", () => {
