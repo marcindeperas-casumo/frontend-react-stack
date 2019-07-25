@@ -6,7 +6,7 @@ import {
   socialSecurityNumberSelector,
 } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { types as fetchTypes } from "Models/fetch";
+import { isFailedFetchTakePatternCreator } from "Models/fetch";
 import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import { fetchAnnualOverviewPdfUrl } from "./transactionsBetsHistory.actions";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
@@ -15,6 +15,10 @@ import type {
   FetchAnnualOverviewProps,
   Action,
 } from "./transactionsBetsHistory.types";
+
+export const isFailedPdfUrlRequestTakePattern = isFailedFetchTakePatternCreator(
+  types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
+);
 
 export function* fetchAnnualOverviewPdfUrlSaga(
   action: FetchAnnualOverviewProps
@@ -75,11 +79,4 @@ export function* fetchAnnualOverviewPdfUrlSaga(
   if (meta.resolve) {
     yield call(meta.resolve);
   }
-}
-
-export function isFailedPdfUrlRequestTakePattern(action: Action): boolean {
-  return (
-    action.type === fetchTypes.REQUEST_ERROR &&
-    action.name === types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
-  );
 }

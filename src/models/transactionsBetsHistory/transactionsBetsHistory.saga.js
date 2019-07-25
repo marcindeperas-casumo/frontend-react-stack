@@ -3,7 +3,7 @@ import { call, put, select, take, race } from "redux-saga/effects";
 import { DateTime } from "luxon";
 import { walletIdSelector } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { types as fetchTypes } from "Models/fetch";
+import { isFailedFetchTakePatternCreator } from "Models/fetch";
 import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import { fetchAnnualOverview } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
@@ -11,6 +11,10 @@ import type {
   FetchAnnualOverviewProps,
   Action,
 } from "./transactionsBetsHistory.types";
+
+export const isFailedAnnualOverviewRequestTakePattern = isFailedFetchTakePatternCreator(
+  types.ANNUAL_OVERVIEW_FETCH_START
+);
 
 export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   const { year, meta = {} } = action;
@@ -54,13 +58,4 @@ export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   if (meta.resolve) {
     yield call(meta.resolve);
   }
-}
-
-export function isFailedAnnualOverviewRequestTakePattern(
-  action: Action
-): boolean {
-  return (
-    action.type === fetchTypes.REQUEST_ERROR &&
-    action.name === types.ANNUAL_OVERVIEW_FETCH_START
-  );
 }
