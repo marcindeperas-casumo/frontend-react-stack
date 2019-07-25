@@ -125,14 +125,15 @@ export const navItemUtils = {
 
 export const ALL_SPORTS_PATH = "filter/all/all/all/all/in-play";
 
+export const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
+
 export const makeAllSportsNavItem = (label: string) => ({
   text: label,
   path: ALL_SPORTS_PATH,
   key: "all",
   canEdit: false,
   iconProps: {
-    // TODO: get from CMS
-    activeIndicator: `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`,
+    activeIndicator,
     iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
     alt: label,
   },

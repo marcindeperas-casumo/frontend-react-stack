@@ -1,11 +1,10 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { activeIndicator } from "Features/sports/components/SportsNav/sportsNavUtils";
 import SportsIcon from "./SportsIcon";
 
 const stories = storiesOf("Sports/SportsIcon", module);
-
-const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
 const activeIndicatorCustom = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
 
 const footballProps = {
