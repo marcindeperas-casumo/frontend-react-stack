@@ -3,14 +3,17 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import MaskImage from "Components/MaskImage";
 
-const WIDTH = 450;
-const HEIGHT = 280;
+const dimensions = {
+  width: 379,
+  height: 271,
+};
 
-const Path = () => (
-  <ellipse cx={WIDTH / 2} cy="0" rx={WIDTH + 300} ry={HEIGHT} fill="#F2F8F8" />
+const ImgMask = () => (
+  <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
 type Props = {
+  /* id of the valuable */
   id: string,
   /* Url of the image to be displayed as the background */
   imageUrl: string,
@@ -22,11 +25,11 @@ export const ValuableDetailsHeaderBackground = ({ id, imageUrl }: Props) => {
       <MaskImage
         className="c-valuable-details__header"
         id={`${id}-detail`}
-        shapeMask={Path}
         imageUrl={imageUrl}
-        width={WIDTH}
-        height={HEIGHT}
-      />
+        {...dimensions}
+      >
+        <ImgMask />
+      </MaskImage>
     </Flex.Item>
   );
 };
