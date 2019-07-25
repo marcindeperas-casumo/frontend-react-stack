@@ -7,9 +7,9 @@ import MaskImage from "Components/MaskImage";
 
 type Props = {
   id: string,
+  blur: number,
   className: string,
   imageUrl?: string,
-  blur: number,
   children: Node,
 };
 
@@ -24,9 +24,9 @@ const ImgMask = () => (
 
 export const ValuableHeaderBackground = ({
   id,
+  blur,
   className,
   imageUrl,
-  blur,
   children,
 }: Props) => {
   return (

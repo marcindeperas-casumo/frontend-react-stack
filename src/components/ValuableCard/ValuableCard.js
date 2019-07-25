@@ -19,24 +19,19 @@ import { VALUABLE_ICON, coinValueToSpinType } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
 import "./ValuableCard.scss";
 
-type Game = {
-  backgroundImage: string,
-  name: string,
-};
-
 type Props = {
   /** Unique id of the valuable */
   id: string,
   /** Title of the valuable */
   title: string,
+  /** Description of the valuable. Ex: title of a game etc.*/
+  description?: string,
   /** Valuable type of the valuable */
   valuableType: ValuableType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
   coinValue?: number,
-  /** The game on which the spins can be used on. Applies when valuable is type spins */
-  game?: Game,
   /** Market of the player */
   market: string,
   /** Background image to be displayed in the Card header */
@@ -146,8 +141,8 @@ export class ValuableCard extends PureComponent<Props> {
     const {
       id,
       title,
+      description,
       valuableType,
-      game,
       backgroundImage,
       caveat,
       valuableState,
@@ -172,11 +167,7 @@ export class ValuableCard extends PureComponent<Props> {
           <Flex.Block>
             <ValuableHeaderBackground
               className={this.headerClassModifier}
-              imageUrl={
-                isValuableTypeSpins && game
-                  ? game.backgroundImage
-                  : backgroundImage
-              }
+              imageUrl={backgroundImage}
               id={id}
               blur={isValuableTypeSpins ? blurAmount : 0}
             >
@@ -190,9 +181,9 @@ export class ValuableCard extends PureComponent<Props> {
             <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
               {title}
             </div>
-            {isValuableTypeSpins && game && (
+            {isValuableTypeSpins && description && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-                {game.name}
+                {description}
               </div>
             )}
           </Flex.Item>
