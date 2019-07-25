@@ -2,17 +2,13 @@ import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
 import { MockedProviderWithContext } from "Features/sports/state/testUtils";
-import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state/clientState/mutations";
 import {
   SportsNav,
   SportsMainNav,
   SportsSubNav,
-  isNavItemSelected,
-  onNavItemSelected,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
-import { navItems } from "Features/sports/components/SportsNav/__mocks__/navItems";
 
 const renderMocked = children =>
   mount(
@@ -58,109 +54,5 @@ describe("<SportsNav/>", () => {
 
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
     // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
-  });
-
-  describe("isNavItemSelected()", () => {
-    test("should check if navItem's path matches the current location", () => {
-      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[0], true)).toBe(
-        true
-      );
-
-      expect(isNavItemSelected(`#${navItems[0].path}`, navItems[1], true)).toBe(
-        false
-      );
-    });
-
-    test("should check if the navItem is a parent of the current location if sub path matching is enabled", () => {
-      expect(
-        isNavItemSelected(`#${navItems[0].subNav[0].path}`, navItems[0], true)
-      ).toBe(true);
-
-      expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[1], true)
-      ).toBe(true);
-
-      expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[0], true)
-      ).toBe(false);
-    });
-
-    test("should not check if the navItem is a parent of the current location if sub path matching is disabled", () => {
-      expect(
-        isNavItemSelected(`#${navItems[0].subNav[0].path}`, navItems[0], false)
-      ).toBe(false);
-
-      expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[1], false)
-      ).toBe(false);
-
-      expect(
-        isNavItemSelected(`#${navItems[1].subNav[2].path}`, navItems[0], false)
-      ).toBe(false);
-    });
-
-    test("should test against the drill-down version of the path", () => {
-      expect(
-        isNavItemSelected(`#drill-down/football/test`, {
-          path: "filter/football/test",
-        })
-      ).toBe(true);
-
-      expect(
-        isNavItemSelected(`#drill-down/uk/test`, {
-          path: "racing/uk/test",
-        })
-      ).toBe(true);
-
-      expect(
-        isNavItemSelected(`#drill-down/uk/test`, {
-          path: "racing/football/test",
-        })
-      ).toBe(false);
-    });
-  });
-
-  describe("onNavItemSelected()", () => {
-    test("should call navigateClient mutation when an item is selected with correct path and location", () => {
-      const client = { mutate: jest.fn() };
-
-      onNavItemSelected("#home", navItems[0], client);
-
-      expect(client.mutate).toHaveBeenCalledWith({
-        mutation: NAVIGATE_CLIENT_MUTATION,
-        variables: {
-          path: navItems[0].path,
-          trackingLocation: "SportsNav",
-        },
-      });
-    });
-
-    test("should navigate to parent path, if navItem path is current location, if the navItem has a parentPath", () => {
-      const client = { mutate: jest.fn() };
-
-      onNavItemSelected(`#${navItems[0]}`, navItems[0], client);
-
-      expect(client.mutate).toHaveBeenNthCalledWith(1, {
-        mutation: NAVIGATE_CLIENT_MUTATION,
-        variables: {
-          path: navItems[0].path,
-          trackingLocation: "SportsNav",
-        },
-      });
-
-      onNavItemSelected(
-        `#${navItems[0].subNav[1].path}`,
-        navItems[0].subNav[1],
-        client
-      );
-
-      expect(client.mutate).toHaveBeenNthCalledWith(2, {
-        mutation: NAVIGATE_CLIENT_MUTATION,
-        variables: {
-          path: navItems[0].path,
-          trackingLocation: "SportsNav",
-        },
-      });
-    });
   });
 });

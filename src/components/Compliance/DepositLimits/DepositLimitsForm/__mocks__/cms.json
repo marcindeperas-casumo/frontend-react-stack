@@ -1,0 +1,15 @@
+{
+  "daily_short": "Daily",
+  "daily": "Daily limit",
+  "weekly_short": "Weekly",
+  "weekly": "Weekly limit",
+  "monthly_short": "Monthly",
+  "monthly": "Monthly limit",
+  "remove_selected": "Remove Limit",
+  "input_validation_lock": "input_validation_lock",
+  "input_validation_lowest_limit": "input_validation_lowest_limit",
+  "input_validation_highest_limit": "input_validation_highest_limit",
+  "input_validation_cant_be_higher": "input_validation_cant_be_higher",
+  "input_validation_cant_be_lower": "input_validation_cant_be_lower",
+  "input_validation_has_to_be_lower_while_locked": "input_validation_has_to_be_lower_while_locked"
+}

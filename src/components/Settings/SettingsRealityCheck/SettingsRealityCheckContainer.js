@@ -123,14 +123,14 @@ export const withContainer = (Component: Function) =>
                 onError={onError}
                 onCompleted={onCompleted}
               >
-                {(mutate, { loading: isUpdateLoading, error: updateError }) => (
+                {(mutate, { loading: isUpdateLoading }) => (
                   <Component
                     labels={labels.data}
                     onSave={() => this.save(mutate, realityCheck)}
                     interval={intervalMinutes}
                     onChange={this.onChange}
                     isLoading={isUpdateLoading}
-                    updateError={updateError}
+                    canToggleInterval={realityCheck.isZeroIntervalAllowed}
                   />
                 )}
               </Mutation>

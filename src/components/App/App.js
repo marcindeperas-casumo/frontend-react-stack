@@ -61,6 +61,7 @@ export class App extends PureComponent<Props> {
               hostElementId="react-host-games-lists"
               loader={() => import("Components/TopLists")}
               fallback={<TopListsSkeleton />}
+              namedExport="TopLists"
             />
           </DataProvider>
         </Route>
@@ -69,6 +70,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-must-drop-jackpots"
             loader={() => import("Components/MustDropJackpotList")}
             fallback={<GameListSkeleton hasTitle={false} />}
+            namedExport="MustDropJackpotList"
           />
         </Route>
         <Route path={["live-casino-details"]}>
@@ -76,6 +78,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-live-casino-details"
             loader={() => import("Components/LiveCasinoDetailPage")}
             fallback={<GameListSkeleton />}
+            namedExport="LiveCasinoDetailPage"
           />
         </Route>
         {/* TODO: Change "promotions-detail" to "promotion-detail"  */}
@@ -85,11 +88,12 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: `promotions.${routeParams[0]}` }}
+            namedExport="ComponentBuilder"
           />
         </Route>
         {/* TODO: Change the route to "campaign/:slug" instead of "promotions" */}
         {/*
-          Right now we are showing a campaign detail
+          Right now we are showing a campaign detail 
           page (Winter Games) for the collective promotions page.
           It is going to change in the future, as the /promotions
           page will have a separate content.
@@ -100,6 +104,7 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ComponentBuilder")}
             fallback={<PromotionPageSkeleton />}
             props={{ slug: "campaigns.winter-games" }}
+            namedExport="ComponentBuilder"
           />
         </Route>
         <Route path={["games-search"]}>
@@ -116,6 +121,7 @@ export class App extends PureComponent<Props> {
                 />
               </>
             }
+            namedExport="GamesSearch"
           />
         </Route>
         <Route path={["sports"]}>
@@ -123,6 +129,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-sports-shell"
             loader={() => import("Features/sports/components/SportsShell")}
             fallback={<SportsShellSkeleton />}
+            namedExport="SportsShell"
           />
         </Route>
         <Route path={["games-provider"]}>
@@ -131,24 +138,35 @@ export class App extends PureComponent<Props> {
             loader={() => import("Components/ProviderGamesList")}
             fallback={<GameListSkeleton hasTitle={false} />}
             props={{ provider: routeParams[0] }}
+            namedExport="ProverGamesList"
           />
         </Route>
         <Route path={["player"]}>
           <LazyPortal
             hostElementId="react-host-adventure"
             loader={() => import("Components/AdventureCard")}
+            namedExport="AdventureCard"
           />
+        </Route>
+        <Route path={["playerV2"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-player-v2"
+              loader={() => import("Components/AccountPage")}
+              namedExport="AccountPage"
+            />
+          </DataProvider>
         </Route>
         <Route path={["settings"]}>
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings"
-              loader={async () => {
-                const { SettingsSectionsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsSections/SettingsSectionsContainer"
-                );
-                return SettingsSectionsContainer;
-              }}
+                )
+              }
+              namedExport="SettingsSectionsContainer"
             />
           </DataProvider>
         </Route>
@@ -156,12 +174,12 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-account-details"
-              loader={async () => {
-                const { SettingsAccountDetailsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
-                );
-                return SettingsAccountDetailsContainer;
-              }}
+                )
+              }
+              namedExport="SettingsAccountDetailsContainer"
             />
           </DataProvider>
         </Route>
@@ -169,12 +187,12 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-notifications"
-              loader={async () => {
-                const { SettingsNotificationsContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
-                );
-                return SettingsNotificationsContainer;
-              }}
+                )
+              }
+              namedExport="SettingsNotificationsContainer"
             />
           </DataProvider>
         </Route>
@@ -182,16 +200,45 @@ export class App extends PureComponent<Props> {
           <DataProvider>
             <LazyPortal
               hostElementId="react-host-settings-reality-check"
-              loader={async () => {
-                const { SettingsRealityCheckContainer } = await import(
+              loader={() =>
+                import(
                   "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
-                );
-                return SettingsRealityCheckContainer;
-              }}
+                )
+              }
+              namedExport="SettingsRealityCheckContainer"
+            />
+          </DataProvider>
+        </Route>
+        <Route path={["history"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview-year"
+              loader={transactionsAnnualOverviewYearSelectorLoader}
+              namedExport="TransactionsAnnualOverviewYearSelector"
+            />
+          </DataProvider>
+        </Route>
+        <Route path={["history-transactions-annual-overview"]}>
+          <DataProvider>
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview"
+              props={{ selectedYear: routeParams[0] }}
+              loader={() => import("Components/TransactionsAnnualOverview")}
+              namedExport="TransactionsAnnualOverview"
+            />
+            {/* Had to put same portal here because adding another path above didn't work sometimes */}
+            <LazyPortal
+              hostElementId="react-host-transactions-annual-overview-year"
+              loader={transactionsAnnualOverviewYearSelectorLoader}
+              namedExport="TransactionsAnnualOverviewYearSelector"
             />
           </DataProvider>
         </Route>
       </Router>
     );
   }
+}
+
+function transactionsAnnualOverviewYearSelectorLoader() {
+  return import("Components/TransactionsAnnualOverviewYearSelector");
 }

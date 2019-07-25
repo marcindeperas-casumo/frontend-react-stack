@@ -1,0 +1,12 @@
+{
+  "annual_transactions_list_heading": "Heading",
+  "annual_transactions_starting_balance": "Label #1",
+  "annual_transactions_total_deposits": "Label #2",
+  "annual_transactions_total_withdrawals": "Label #3",
+  "annual_transactions_total_wagers": "Label #4",
+  "annual_transactions_total_wins": "Label #5",
+  "annual_transactions_total_bonus_awarded": "Label #6",
+  "annual_transactions_total_bonus_converted": "Label #7",
+  "annual_transactions_end_balance": "Label #8",
+  "annual_transactions_download_pdf": "Label #9"
+}

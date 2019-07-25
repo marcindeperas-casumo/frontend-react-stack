@@ -35,7 +35,12 @@ export const Pill = ({
   );
 
   return (
-    <Flex onClick={onClick} className={className} align="center">
+    <Flex
+      onClick={onClick}
+      className={className}
+      align="center"
+      justify="center"
+    >
       <div className="u-padding--sm">
         <div className="u-text-nowrap o-flex-align--center u-line-height--1 u-font-sm">
           {children}

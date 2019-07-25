@@ -1,0 +1,9 @@
+.c-compliance-input {
+  background: none;
+  border: 0;
+  width: 100%;
+
+  &:focus {
+    outline: none;
+  }
+}

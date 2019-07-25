@@ -8,7 +8,7 @@
     "caveat": "Min dep £10. 30x wag req. T&C's apply.",
     "market": "en",
     "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
-    "expirationTime": "1558796377257",
+    "expirationTimeInHours": "100",
     "valuableState": "Fresh"
   },
   {
@@ -18,7 +18,7 @@
     "market": "en",
     "caveat": "T&Cs apply",
     "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
-    "expirationTime": "1558435968335",
+    "expirationTimeInHours": "100",
     "valuableState": "Fresh"
   },
   {
@@ -28,7 +28,7 @@
     "market": "en",
     "caveat": "T&Cs apply",
     "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
-    "expirationTime": "1558435968335",
+    "expirationTimeInHours": "100",
     "valuableState": "Fresh"
   },
   {
@@ -41,10 +41,11 @@
       "name": "Starburst",
       "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
     },
+    "description": "Starburst",
     "caveat": "T&Cs apply",
     "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
     "market": "en",
-    "expirationTime": "1558435968335",
+    "expirationTimeInHours": "100",
     "valuableState": "Fresh"
   }
 ]
