@@ -12,7 +12,10 @@ import {
   type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import { navItemUtils } from "Features/sports/components/SportsNav/sportsNavUtils";
+import {
+  ALL_SPORTS_PATH,
+  navItemUtils,
+} from "Features/sports/components/SportsNav/sportsNavUtils";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -81,6 +84,8 @@ const renderSportsNav = (
     onSelected: onNavItemSelected,
   };
 
+  const hideSubNav = currentHash === `#${ALL_SPORTS_PATH}`;
+
   return (
     <>
       <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
@@ -96,15 +101,17 @@ const renderSportsNav = (
       </OpenModalMutation>
 
       <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
-        {openChooseFavouriteLeaguesModal => (
-          <SportsSubNav
-            {...commonProps}
-            navItems={selectedNavItem.subNav || []}
-            canEdit={selectedNavItem.canEdit}
-            onEdit={openChooseFavouriteLeaguesModal}
-            cacheBuster={subNavCacheBuster}
-          />
-        )}
+        {openChooseFavouriteLeaguesModal =>
+          !hideSubNav && (
+            <SportsSubNav
+              {...commonProps}
+              navItems={selectedNavItem.subNav || []}
+              canEdit={selectedNavItem.canEdit}
+              onEdit={openChooseFavouriteLeaguesModal}
+              cacheBuster={subNavCacheBuster}
+            />
+          )
+        }
       </OpenModalMutation>
     </>
   );

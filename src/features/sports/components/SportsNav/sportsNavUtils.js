@@ -123,9 +123,11 @@ export const navItemUtils = {
   toNavItem,
 };
 
+export const ALL_SPORTS_PATH = "filter/all/all/all/all/in-play";
+
 export const makeAllSportsNavItem = (label: string) => ({
   text: label,
-  path: "filter/all/all/all/all/in-play",
+  path: ALL_SPORTS_PATH,
   key: "all",
   canEdit: false,
   iconProps: {
