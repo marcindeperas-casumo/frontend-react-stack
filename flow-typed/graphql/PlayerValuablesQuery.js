@@ -15,11 +15,6 @@ export type PlayerValuablesQuery_translations = {
   playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
 };
 
-export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  title: string,
-  backgroundImage: string,
-};
-
 export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
@@ -30,7 +25,6 @@ export type PlayerValuablesQuery_player_valuables = {
   currency: Currency,
   market: string,
   backgroundImage: string,
-  magnitude: number,
 } | {
   id: string,
   valuableState: PlayerValuableState,
@@ -40,30 +34,9 @@ export type PlayerValuablesQuery_player_valuables = {
   caveat: ?string,
   currency: Currency,
   market: string,
+  backgroundImage: string,
+  description: string,
   coinValue: number,
-  magnitude: number,
-  game: PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
-} | {
-  id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  magnitude: number,
-  backgroundImage: string,
-} | {
-  id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
 };
 
 export type PlayerValuablesQuery_player = {
