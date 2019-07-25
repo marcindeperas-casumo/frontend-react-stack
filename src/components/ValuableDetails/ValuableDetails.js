@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import { pick } from "ramda";
 import MaskImage from "Components/MaskImage";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
+import "./ValuableDetails.scss";
 
 type Translations = {
   /* Label for the expration badge */
@@ -56,7 +57,7 @@ export const ValuableDetails = ({
   );
 
   return (
-    <>
+    <div>
       <Flex.Block>
         <MaskImage
           className="c-valuable-details__header"
@@ -67,13 +68,16 @@ export const ValuableDetails = ({
           <HeaderImgMask />
         </MaskImage>
       </Flex.Block>
-      <ValuableDetailsBody
-        details={details}
-        expirationValueText="2 Hours"
-        caveat={caveat}
-        termsContent={termsContent}
-        translations={bodyTranslations}
-      />
-    </>
+      <Flex.Item align="center">
+        <div className="u-drop-shadow--md u-text-align-center c-valuable-details__card-container"></div>
+        <ValuableDetailsBody
+          details={details}
+          expirationValueText="2 Hours"
+          caveat={caveat}
+          termsContent={termsContent}
+          translations={bodyTranslations}
+        />
+      </Flex.Item>
+    </div>
   );
 };
