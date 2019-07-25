@@ -119,7 +119,9 @@ const renderSportsNav = (
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const { client } = React.useContext(ClientContext);
-  const [isLiveActive, setIsLiveActive] = React.useState(false);
+  const [isLiveActive, setIsLiveActive] = React.useState(
+    currentHash.includes("in-play")
+  );
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -156,10 +158,11 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
         ) => {
           setIsLiveActive(liveActive);
 
-          navItemUtils.selectPath(
-            client,
-            data.sportsNavigation[0].sport.clientPath
-          );
+          const path = liveActive
+            ? ALL_SPORTS_PATH
+            : data.sportsNavigation[0].sport.clientPath;
+
+          navItemUtils.selectPath(client, path);
         };
 
         return renderSportsNav(
