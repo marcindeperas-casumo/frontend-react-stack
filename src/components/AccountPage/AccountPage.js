@@ -12,6 +12,8 @@ import {
 export const AccountPage = () => (
   <>
     <AdventureCard />
-    <PlayerValuableListContainer renderList={PlayerValuableListHorizontal} />
+    <PlayerValuableListContainer
+      renderList={props => <PlayerValuableListHorizontal {...props} />}
+    />
   </>
 );

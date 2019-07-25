@@ -26,7 +26,7 @@ export const PlayerValuableListContainer = (props: Props) => {
   return (
     <PlayerValuablesTypedQuery query={LocalQuery} returnPartialData>
       {({ loading, error, refetch, data }) => {
-        if (loading) {
+        if (loading || error) {
           return null;
         }
 
