@@ -1,7 +1,7 @@
 
 import { PlayerValuablesQuery } from "../PlayerValuables.graphql";
 import valuables from "Components/ValuableCard/__mocks__/Valuable.json";
-import playerValuableTranslations from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
+import playerValuableTranslations from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 
 export const normalQuery = {
   request: {

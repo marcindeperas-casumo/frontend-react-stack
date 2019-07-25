@@ -7,7 +7,6 @@ export type AllLimitsOnlyValues = {
 };
 export type AllLimits = {
   currency: string,
-  previouslyIncreased: boolean,
   daily: ?number,
   monthly: ?number,
   weekly: ?number,
@@ -62,4 +61,5 @@ export type DepositLimitsReduxStore = {|
   preadjust: ?DepositLimitPreadjust,
   lock: ?LimitLock,
   undoable: ?boolean,
+  remaining: ?AllLimitsOnlyValues,
 |};
