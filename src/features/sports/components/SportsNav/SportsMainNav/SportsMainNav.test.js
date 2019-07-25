@@ -3,6 +3,7 @@ import * as R from "ramda";
 import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import {
   SportsMainNav,
   renderTabList,
@@ -41,7 +42,7 @@ describe("<SportsMainNav />", () => {
 
     expect(sp).toHaveLength(1);
     expect(sp.props()).toMatchObject({
-      columnCount: 6,
+      columnCount: 7,
       height: 106,
     });
   });
@@ -54,9 +55,27 @@ describe("<SportsMainNav />", () => {
       expect(rendered.find(LiveTab)).toHaveLength(1);
     });
 
-    test("renders an sports tab for the 2nd position", () => {
+    test("renders no sports tab for the 2nd position - when live mode is disabled", () => {
       const rendered = shallow(
         renderTabList(navItems, props)({ columnIndex: 1 })
+      );
+
+      expect(rendered.find(DictionaryTerm)).toHaveLength(0);
+      expect(rendered.find(SportTab)).toHaveLength(0);
+    });
+
+    test("renders an all sports tab for the 2nd position - when live mode is enabled", () => {
+      const liveProps = { ...props, liveState: liveState.active };
+      const rendered = shallow(
+        renderTabList(navItems, liveProps)({ columnIndex: 1 })
+      );
+
+      expect(rendered.find(DictionaryTerm)).toHaveLength(1);
+    });
+
+    test("renders an sports tab for the 3rd position", () => {
+      const rendered = shallow(
+        renderTabList(navItems, props)({ columnIndex: 2 })
       );
       expect(rendered.find(SportTab)).toHaveLength(1);
     });
@@ -71,7 +90,7 @@ describe("<SportsMainNav />", () => {
 
     test("returns an EditPillsButton when rendering the last item", () => {
       const rendered = shallow(
-        renderTabList(navItems, props)({ columnIndex: navItems.length + 1 })
+        renderTabList(navItems, props)({ columnIndex: navItems.length + 2 })
       );
 
       expect(rendered.find(EditPillsButton)).toHaveLength(1);
