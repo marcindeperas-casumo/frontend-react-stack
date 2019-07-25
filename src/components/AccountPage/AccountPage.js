@@ -13,7 +13,7 @@ export const AccountPage = () => (
   <>
     <AdventureCard />
     <PlayerValuableListContainer
-      renderList={props => <PlayerValuableListHorizontal {...props} />}
+      renderList={PlayerValuableListHorizontal}
     ></PlayerValuableListContainer>
   </>
 );
