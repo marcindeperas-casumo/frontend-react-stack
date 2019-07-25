@@ -86,7 +86,7 @@ const renderAllSportsTab = (
   [isLiveActive]: LiveState
 ) =>
   isLiveActive && (
-    <DictionaryTerm termKey="favourite-sports-selector.selectall">
+    <DictionaryTerm termKey="navigation.all">
       {allSportsGroupTitle => {
         const navItem = makeAllSportsNavItem(allSportsGroupTitle);
         return (
