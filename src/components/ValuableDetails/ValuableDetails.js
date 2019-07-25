@@ -13,20 +13,28 @@ import "./ValuableDetails.scss";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { isFreeSpinsValuable } from "Components/ValuableCard/ValuableCard.utils";
 import { ValuableDetailsHeaderBackground } from "./ValuableDetailsHeaderBackground";
-import { ValuableDetailsCard } from "./ValuableDetailsCard";
+// import { ValuableDetailsCard } from "./ValuableDetailsCard";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
 import { ValuableDetailsActionButton as ActionButton } from "./ValuableDetailsActionButton";
 import { ValuableDetailsModal } from "./ValuableDetailsModal";
 
+type Translations = {
+  termsAndConditionLabel,
+  expiresInLabel,
+  playNowLabel
+};
+
 type Props = {
+  /** Unique id of the valuable */
+  id: string,
+  /** Description of the valuable */
+  details: string,
+  /** Background image to be displayed in the Card header */
+  backgroundImageUrl: string,
   /** Should this view be displayed? */
   isOpen: boolean,
   /** Close button callback */
   onClose: () => void,
-  /** Unique id of the valuable */
-  id: string,
-  /** Title of the valuable */
-  title: string,
   /** Valuable type of the valuable */
   valuableType: ValuableType,
   /** currency of the player */
@@ -37,8 +45,6 @@ type Props = {
   game?: Game,
   /** Market of the player */
   market: string,
-  /** Background image to be displayed in the Card header */
-  backgroundImage: string,
   /** Valuable caveats to be displayed */
   caveat: string,
   /** The state of the valuable */
@@ -51,8 +57,6 @@ type Props = {
   parentSelector?: () => void,
   /** Close modal delay  (used in stories)*/
   closeTimeoutMS?: number,
-  /** Translated labels */
-  labels: ValuableDetailsLabelsQuery,
   /** Are labels loading? */
   loading: boolean,
   /** Error message when labels query fails */
@@ -62,26 +66,26 @@ type Props = {
 };
 
 export const ValuableDetails = ({
-  isOpen,
-  onClose,
   id,
-  backgroundImage,
+  details,
+  backgroundImageUrl,
+
   valuableType,
   valuableState,
   expirationTime,
-  title,
   caveat,
   game,
   onConsumeValuable,
   parentSelector,
   closeTimeoutMS,
-  labels,
+  isOpen,
+  onClose,
   loading,
   error,
   refetch,
 }: Props) => {
   const isValuableLocked = valuableState === VALUABLE_STATES.LOCKED;
-  const defaultBlurAmount = 3;
+  // const defaultBlurAmount = 3;
   const hasLoadedWithError = !loading && error;
 
   const modalProps = { isOpen, onClose, parentSelector, closeTimeoutMS };
@@ -108,17 +112,12 @@ export const ValuableDetails = ({
         />
       )}
     >
-      <ValuableDetailsHeaderBackground
-        id={id}
-        imageUrl={backgroundImage}
-        blur={isFreeSpinsValuable(valuableType) ? defaultBlurAmount : 0}
-      />
-      <ValuableDetailsCard />
+      <ValuableDetailsHeaderBackground id={id} imageUrl={backgroundImageUrl} />
+      {/* <ValuableDetailsCard /> */}
       <ValuableDetailsBody
-        title={title}
-        expirationTime={expirationTime}
+        details={details}
+        expirationValueText="2 Hours"
         caveat={caveat}
-        termsTitle={labels.termsAndConditionsTitle}
         termsContent={labels.termsAndConditionsContent}
       />
     </ValuableDetailsModal>
