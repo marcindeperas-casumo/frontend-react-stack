@@ -8,7 +8,7 @@ import { UseValuable } from "./mutations.graphql";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
 export type Props = {
-  renderList: PlayerValuableListProps => Node, //set to Function to keep flow happy
+  renderList: PlayerValuableListProps => Node,
 };
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
