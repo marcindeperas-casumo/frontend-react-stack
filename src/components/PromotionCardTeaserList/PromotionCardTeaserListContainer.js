@@ -1,8 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { fetchPageBySlug, getField } from "Models/cms";
-import { isSuspiciousAccount } from "Models/handshake";
+import { fetchPageBySlug, getFieldIfNotSuspicious } from "Models/cms";
 import PromotionCardTeaserList from "./PromotionCardTeaserList";
 
 type Props = {
@@ -16,13 +15,11 @@ const getSlug = slug => `${slug}.*`;
 
 const PromotionCardTeaserListConnected = connect(
   (state, { slug }) => ({
-    promotionsSlugs:
-      !isSuspiciousAccount(state) &&
-      getField({
-        slug,
-        field: promotionsField,
-        defaultValue,
-      })(state),
+    promotionsSlugs: getFieldIfNotSuspicious({
+      slug,
+      field: promotionsField,
+      defaultValue,
+    })(state),
   }),
   (dispatch, { slug }) => ({
     fetchCampaign: () => dispatch(fetchPageBySlug(getSlug(slug))),

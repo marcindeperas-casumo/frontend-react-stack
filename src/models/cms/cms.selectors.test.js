@@ -3,6 +3,7 @@ import {
   getCms,
   getPage,
   getField,
+  getFieldIfNotSuspicious,
   getFieldWithReplacements,
   isPageFetchedSelector,
   shouldFetchPage,
@@ -124,6 +125,68 @@ describe("CMS Selectors", () => {
       const field = "foobar";
       const defaultValue = "Alaska";
       const selector = getField({ slug, field, defaultValue });
+
+      expect(selector(state)).toEqual(defaultValue);
+    });
+  });
+
+  describe("getFieldIfNotSuspicious()", () => {
+    test("returns a field by the page-slug and the field-name if not suspicious", () => {
+      const pageObject = { slug: "foo", fields: { foobar: "bar" } };
+      const state = {
+        schema: { cms: { [pageObject.slug]: pageObject } },
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", suspiciousAccount: false } },
+            },
+          },
+        },
+      };
+      const { slug } = pageObject;
+      const selector = getFieldIfNotSuspicious({ slug, field: "foobar" });
+
+      expect(selector(state)).toEqual("bar");
+    });
+
+    test("returns NULL if suspicious account is flagged", () => {
+      const pageObject = { slug: "foo", fields: { foobar: "bar" } };
+      const state = {
+        schema: { cms: { [pageObject.slug]: pageObject } },
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", suspiciousAccount: true } },
+            },
+          },
+        },
+      };
+      const slug = "foo";
+      const field = "foobar";
+      const selector = getFieldIfNotSuspicious({ slug, field });
+
+      expect(selector(state)).toEqual(null);
+    });
+
+    test("returns the defaultValue if specified and if suspicious account", () => {
+      const pageObject = { slug: "foo", fields: { foobar: "bar" } };
+      const state = {
+        schema: { cms: { [pageObject.slug]: pageObject } },
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", suspiciousAccount: true } },
+            },
+          },
+        },
+      };
+      const slug = "foo";
+      const field = "foobar";
+      const defaultValue = "Alaska";
+      const selector = getFieldIfNotSuspicious({ slug, field, defaultValue });
 
       expect(selector(state)).toEqual(defaultValue);
     });
