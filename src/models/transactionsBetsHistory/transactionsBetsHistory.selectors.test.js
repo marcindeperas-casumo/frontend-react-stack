@@ -3,20 +3,14 @@ import {
   transactionsBetsHistoryContentSelector,
   transactionsBetsHistoryAnnualOverviewSelector,
 } from "./transactionsBetsHistory.selectors";
+import annualOverview from "./__mocks__/annualOverview.json";
 
 describe("Transactions/Bets History Selectors", () => {
   describe("transactionsBetsHistoryAnnualOverviewSelector()", () => {
-    const overview2019 = {
-      betsAmount: 123.4,
-      winningsAmount: 67.8,
-      withdrawalsAmount: 11.3,
-      bonusesAmount: 33.2,
-      depositsAmount: 19.6,
-    };
     const state = {
       schema: {
         transactionsBetsHistoryAnnualOverview: {
-          2019: overview2019,
+          2019: annualOverview,
         },
       },
     };
@@ -24,7 +18,7 @@ describe("Transactions/Bets History Selectors", () => {
     test("returns year overview if it exists", () => {
       expect(
         transactionsBetsHistoryAnnualOverviewSelector(2019)(state)
-      ).toEqual(overview2019);
+      ).toEqual(annualOverview);
     });
 
     test("returns null if overview for a year does not exist", () => {
