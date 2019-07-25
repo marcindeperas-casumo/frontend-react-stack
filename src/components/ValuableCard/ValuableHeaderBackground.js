@@ -7,6 +7,7 @@ import MaskImage from "Components/MaskImage";
 
 type Props = {
   id: string,
+  blur: number,
   className: string,
   imageUrl?: string,
   children: Node,
@@ -23,6 +24,7 @@ const ImgMask = () => (
 
 export const ValuableHeaderBackground = ({
   id,
+  blur,
   className,
   imageUrl,
   children,
@@ -40,6 +42,7 @@ export const ValuableHeaderBackground = ({
         {...headerDimensions}
         className="u-position-absolute c-valuable-card__header"
         imageUrl={imageUrl}
+        imgixOpts={{ blur }}
       >
         <ImgMask />
       </MaskImage>

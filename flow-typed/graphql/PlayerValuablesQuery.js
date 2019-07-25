@@ -6,16 +6,20 @@
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  name: string,
-  backgroundImage: string,
+export type PlayerValuablesQuery_translations_playerValuableTranslations = {
+  hoursLabel: string,
+  listTitleLabel: string,
+};
+
+export type PlayerValuablesQuery_translations = {
+  playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
 };
 
 export type PlayerValuablesQuery_player_valuables = {
   id: string,
-  state: PlayerValuableState,
-  expirationTime: any,
-  valuableType: SimplePlayerValuableType,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
   title: string,
   caveat: ?string,
   currency: Currency,
@@ -23,16 +27,16 @@ export type PlayerValuablesQuery_player_valuables = {
   backgroundImage: string,
 } | {
   id: string,
-  state: PlayerValuableState,
-  expirationTime: any,
-  valuableType: SimplePlayerValuableType,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
   title: string,
   caveat: ?string,
   currency: Currency,
   market: string,
   backgroundImage: string,
+  description: string,
   coinValue: number,
-  game: PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
 };
 
 export type PlayerValuablesQuery_player = {
@@ -40,7 +44,7 @@ export type PlayerValuablesQuery_player = {
 };
 
 export type PlayerValuablesQuery = {
-  listTitle: string,
+  translations: PlayerValuablesQuery_translations,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */
@@ -53,12 +57,12 @@ export type PlayerValuablesQuery = {
 /**
  * 
  */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
  * 
  */
-export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
  * 
