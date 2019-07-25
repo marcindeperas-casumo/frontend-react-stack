@@ -1,13 +1,14 @@
 // @flow
-import React from "react";
+import React, { type Node } from "react";
 import { Query, Mutation } from "react-apollo";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { UseValuable } from "./mutations.graphql";
+import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
 export type Props = {
-  children?: Function, //set to Function to keep flow happy
+  renderList: PlayerValuableListProps => Node, //set to Function to keep flow happy
 };
 
 class PlayerValuablesTypedQuery extends Query<PlayerValuablesQuery, null> {}
@@ -21,7 +22,7 @@ const consumeValuableMutation = mutation => (id: string) =>
   });
 
 export const PlayerValuableListContainer = (props: Props) => {
-  const { children } = props;
+  const { renderList } = props;
   return (
     <PlayerValuablesTypedQuery query={LocalQuery} returnPartialData>
       {({ loading, error, refetch, data }) => {
@@ -37,8 +38,7 @@ export const PlayerValuableListContainer = (props: Props) => {
         return (
           <Mutation mutation={UseValuable}>
             {useValuable =>
-              children &&
-              children({
+              renderList({
                 error,
                 loading,
                 onConsumeValuable: consumeValuableMutation(useValuable),

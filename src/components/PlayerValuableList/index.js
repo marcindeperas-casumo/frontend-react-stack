@@ -1,6 +1,4 @@
 // @flow
-export type * from "./PlayerValuableListContainer";
-export {
-  PlayerValuableListContainer as PlayerValuableList,
-} from "./PlayerValuableListContainer";
+export type { Props } from "./PlayerValuableListContainer";
+export { PlayerValuableListContainer } from "./PlayerValuableListContainer";
 export { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";

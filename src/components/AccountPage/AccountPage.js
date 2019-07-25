@@ -5,15 +5,15 @@
 import React from "react";
 import AdventureCard from "Components/AdventureCard";
 import {
-  PlayerValuableList,
+  PlayerValuableListContainer,
   PlayerValuableListHorizontal,
 } from "Components/PlayerValuableList";
 
 export const AccountPage = () => (
   <>
     <AdventureCard />
-    <PlayerValuableList>
-      {props => <PlayerValuableListHorizontal {...props} />}
-    </PlayerValuableList>
+    <PlayerValuableListContainer
+      renderList={props => <PlayerValuableListHorizontal {...props} />}
+    ></PlayerValuableListContainer>
   </>
 );
