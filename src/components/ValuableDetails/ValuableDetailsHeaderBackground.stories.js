@@ -11,8 +11,16 @@ const stories = storiesOf(
 
 stories.add("Default", () => {
   const { id, backgroundImageUrl } = mock[0];
+  const dimensions = {
+    width: 379,
+    height: 271,
+  };
 
   return (
-    <ValuableDetailsHeaderBackground imageUrl={backgroundImageUrl} id={id} />
+    <ValuableDetailsHeaderBackground
+      imageUrl={backgroundImageUrl}
+      id={id}
+      {...dimensions}
+    />
   );
 });
