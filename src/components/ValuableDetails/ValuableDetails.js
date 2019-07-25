@@ -1,125 +1,79 @@
 // @flow
 import React from "react";
-import { DateTime } from "luxon";
-import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
-import {
-  type ValuableType,
-  type ValuableState,
-  type Game,
-  type ConsumeValuableType,
-  VALUABLE_STATES,
-} from "Models/valuables";
-import "./ValuableDetails.scss";
-import { ErrorMessage } from "Components/ErrorMessage";
-import { isFreeSpinsValuable } from "Components/ValuableCard/ValuableCard.utils";
-import { ValuableDetailsHeaderBackground } from "./ValuableDetailsHeaderBackground";
-// import { ValuableDetailsCard } from "./ValuableDetailsCard";
+import Flex from "@casumo/cmp-flex";
+import { pick } from "ramda";
+import MaskImage from "Components/MaskImage";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
-import { ValuableDetailsActionButton as ActionButton } from "./ValuableDetailsActionButton";
-import { ValuableDetailsModal } from "./ValuableDetailsModal";
 
 type Translations = {
-  termsAndConditionLabel,
-  expiresInLabel,
-  playNowLabel
+  /* Label for the expration badge */
+  expiresInLabel: string,
+  /* Label for the Play Now button */
+  playNowLabel: string,
+  /* Label for the Play to unlock button */
+  playToUnlockLabel: string,
+  /* Label for the deposit now button */
+  deopsitToUnlockLabel: string,
+  /* Label for the terms and condition */
+  termsAndConditionLabel: string,
 };
 
 type Props = {
-  /** Unique id of the valuable */
+  /* Unique id of valuable */
   id: string,
-  /** Description of the valuable */
-  details: string,
-  /** Background image to be displayed in the Card header */
+  /* Url of the background image to be used in the header */
   backgroundImageUrl: string,
-  /** Should this view be displayed? */
-  isOpen: boolean,
-  /** Close button callback */
-  onClose: () => void,
-  /** Valuable type of the valuable */
-  valuableType: ValuableType,
-  /** currency of the player */
-  currency: string,
-  /** The coin value of each spin. Applies when valuable is type spins */
-  coinValue?: number,
-  /** The game on which the spins can be used on. Applies when valuable is type spins */
-  game?: Game,
-  /** Market of the player */
-  market: string,
-  /** Valuable caveats to be displayed */
+  /* Details description of the Valuable */
+  details: string,
+  /* Caveat for the valuable */
   caveat: string,
-  /** The state of the valuable */
-  valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTime: DateTime,
-  /** Mutation function that consumes valuable  */
-  onConsumeValuable: ConsumeValuableType,
-  /** Host container for modal (used in stories) */
-  parentSelector?: () => void,
-  /** Close modal delay  (used in stories)*/
-  closeTimeoutMS?: number,
-  /** Are labels loading? */
-  loading: boolean,
-  /** Error message when labels query fails */
-  error?: string,
-  /** Refetch labels function */
-  refetch: () => void,
+  /* Content for Terms and conditions */
+  termsContent: string,
+  /* Translations for the Valuable Details compoinent */
+  translations: Translations,
 };
+
+const dimensions = {
+  width: 379,
+  height: 271,
+};
+
+const HeaderImgMask = () => (
+  <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
+);
 
 export const ValuableDetails = ({
   id,
-  details,
   backgroundImageUrl,
-
-  valuableType,
-  valuableState,
-  expirationTime,
+  details,
   caveat,
-  game,
-  onConsumeValuable,
-  parentSelector,
-  closeTimeoutMS,
-  isOpen,
-  onClose,
-  loading,
-  error,
-  refetch,
+  termsContent,
+  translations,
 }: Props) => {
-  const isValuableLocked = valuableState === VALUABLE_STATES.LOCKED;
-  // const defaultBlurAmount = 3;
-  const hasLoadedWithError = !loading && error;
-
-  const modalProps = { isOpen, onClose, parentSelector, closeTimeoutMS };
-
-  if (loading || hasLoadedWithError) {
-    return (
-      <ValuableDetailsModal {...modalProps}>
-        {loading && <ParagraphSkeleton size="default" />}
-        {hasLoadedWithError && <ErrorMessage retry={refetch} />}
-      </ValuableDetailsModal>
-    );
-  }
+  const bodyTranslations = pick(
+    ["expiresInLabel", "termsAndConditionLabel"],
+    translations
+  );
 
   return (
-    <ValuableDetailsModal
-      {...modalProps}
-      renderButton={() => (
-        <ActionButton
-          locked={isValuableLocked}
-          valuableType={valuableType}
-          game={game}
-          onConsumeValuable={onConsumeValuable}
-          labels={labels}
-        />
-      )}
-    >
-      <ValuableDetailsHeaderBackground id={id} imageUrl={backgroundImageUrl} />
-      {/* <ValuableDetailsCard /> */}
+    <>
+      <Flex.Block>
+        <MaskImage
+          className="c-valuable-details__header"
+          id={`${id}-detail`}
+          imageUrl={backgroundImageUrl}
+          {...dimensions}
+        >
+          <HeaderImgMask />
+        </MaskImage>
+      </Flex.Block>
       <ValuableDetailsBody
         details={details}
         expirationValueText="2 Hours"
         caveat={caveat}
-        termsContent={labels.termsAndConditionsContent}
+        termsContent={termsContent}
+        translations={bodyTranslations}
       />
-    </ValuableDetailsModal>
+    </>
   );
 };

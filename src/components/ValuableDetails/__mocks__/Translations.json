@@ -1,4 +1,7 @@
 {
   "expiresInLabel": "Expires in",
-  "termsAndConditionLabel": "Terms & Conditions"
+  "termsAndConditionLabel": "Terms & Conditions",
+  "playNowLabel": "Play now",
+  "playToUnlockLabel": "Play to unlock",
+  "deopsitToUnlockLabel": "Deposit to unlock"
 }

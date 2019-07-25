@@ -18,7 +18,7 @@ stories.add("Default", () => {
 
   return (
     <ValuableDetailsHeaderBackground
-      imageUrl={backgroundImageUrl}
+      backgroundImageUrl={backgroundImageUrl}
       id={id}
       {...dimensions}
     />

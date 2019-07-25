@@ -11,7 +11,7 @@ type Props = {
   /* id of the valuable */
   id: string,
   /* Url of the image to be displayed as the background */
-  imageUrl: string,
+  backgroundImageUrl: string,
   /* width of background */
   width: number,
   /* height of background */
@@ -20,7 +20,7 @@ type Props = {
 
 export const ValuableDetailsHeaderBackground = ({
   id,
-  imageUrl,
+  backgroundImageUrl,
   ...dimensions
 }: Props) => {
   return (
@@ -28,7 +28,7 @@ export const ValuableDetailsHeaderBackground = ({
       <MaskImage
         className="c-valuable-details__header"
         id={`${id}-detail`}
-        imageUrl={imageUrl}
+        ImageUrl={backgroundImageUrl}
         {...dimensions}
       >
         <ImgMask />
