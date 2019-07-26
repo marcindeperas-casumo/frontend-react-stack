@@ -3,6 +3,7 @@ import { prop, compose, defaultTo, not, isNil } from "ramda";
 import { interpolate } from "Utils/";
 import { getFetchTypeBySlug } from "Models/cms";
 import { isNotFetchedSelector, isFetchingStarted } from "Models/fetch";
+import { isSuspiciousAccount } from "Models/handshake";
 
 export const getCms = compose(
   defaultTo({}),
@@ -27,6 +28,13 @@ export const getField = ({ slug, field, defaultValue = null }) =>
       prop(field),
       prop("fields")
     )
+  );
+
+export const getFieldIfNotSuspicious = ({ slug, field, defaultValue = null }) =>
+  createSelector(
+    isSuspiciousAccount,
+    getField({ slug, field, defaultValue }),
+    (isSuspicious, fieldData) => (!isSuspicious ? fieldData : defaultValue)
   );
 
 export const getFieldWithReplacements = ({
