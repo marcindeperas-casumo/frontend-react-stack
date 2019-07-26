@@ -16,36 +16,22 @@ const state = {
 const stories = storiesOf("PromotionTeaserRow", module);
 
 if (isNotChromatic) {
-  stories.add(
-    "PromotionTeaserRow (Connected)",
-    () => (
+  stories.add("PromotionTeaserRow (Connected)", () => (
+    <div style={{ maxWidth: 350 }}>
       <MockStore state={state}>
-        <div style={{ maxWidth: 350 }}>
-          <PromotionTeaserRow slug="promotions.boosted-reelraces" />
-        </div>
+        <PromotionTeaserRow slug="promotions.boosted-reelraces" />
       </MockStore>
-    ),
-    {
-      backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-    }
-  );
+    </div>
+  ));
 }
 
-stories.add(
-  "PromotionTeaserRow (Presentational)",
-  () => (
-    <MockStore state={state}>
-      <div style={{ maxWidth: 350 }}>
-        <PromotionTeaserRowPresentational
-          slug="promotions.boosted-reelraces"
-          link="promotions/boosted-reelraces"
-          dates={state.schema.cms["promotions.boosted-reelraces"].fields.dates}
-          title={state.schema.cms["promotions.boosted-reelraces"].fields.title}
-        />
-      </div>
-    </MockStore>
-  ),
-  {
-    backgrounds: [{ name: "colorful", value: "#0085c1", default: true }],
-  }
-);
+stories.add("PromotionTeaserRow (Presentational)", () => (
+  <div style={{ maxWidth: 350 }}>
+    <PromotionTeaserRowPresentational
+      slug="promotions.boosted-reelraces"
+      link="promotions/boosted-reelraces"
+      dates={state.schema.cms["promotions.boosted-reelraces"].fields.dates}
+      title={state.schema.cms["promotions.boosted-reelraces"].fields.title}
+    />
+  </div>
+));

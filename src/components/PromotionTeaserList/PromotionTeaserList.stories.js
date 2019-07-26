@@ -1,9 +1,10 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { PromotionTeaserList as PromotionTeaserListPresentational } from "Components/PromotionTeaserList/PromotionTeaserList";
+import { PromotionTeaserList } from "Components/PromotionTeaserList";
 import promotions from "Components/PromotionCard/__mocks__/promotions.json";
 import MockStore from "Components/MockStore";
+import isNotChromatic from "Storybook/isNotChromatic";
 
 const state = {
   schema: {
@@ -13,22 +14,12 @@ const state = {
 
 const stories = storiesOf("PromotionTeaserList", module);
 
-stories.add("PromotionTeaserList (Presentational)", () => (
-  <MockStore state={state}>
+if (isNotChromatic) {
+  stories.add("PromotionTeaserList (Connected)", () => (
     <div style={{ maxWidth: 350 }}>
-      <PromotionTeaserListPresentational
-        slug="promotions.boosted-reelraces"
-        isFetched={true}
-        fetchCampaign={() => {}}
-        fetchPromotions={() => {}}
-        promotionsSlugs={[
-          "boosted-reelraces",
-          "must-drop-jackpots",
-          "big-giveaway",
-          "mystery-prizes",
-          "christmas-countdown",
-        ]}
-      />
+      <MockStore state={state}>
+        <PromotionTeaserList slug="promotions" />
+      </MockStore>
     </div>
-  </MockStore>
-));
+  ));
+}

@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import { fetchPageBySlug, getField } from "Models/cms";
+import { fetchPageBySlug, getFieldIfNotSuspicious } from "Models/cms";
 import { PromotionTeaserList } from "./PromotionTeaserList";
 
 const promotionsField = "promotions";
@@ -9,7 +9,7 @@ const getSlug = slug => `${slug}.*`;
 
 export const PromotionTeaserListContainer = connect(
   (state, { slug }: { slug: string }) => ({
-    promotionsSlugs: getField({
+    promotionsSlugs: getFieldIfNotSuspicious({
       slug,
       field: promotionsField,
       defaultValue: promotionsFieldDefaultValue,
