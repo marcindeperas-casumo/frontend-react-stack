@@ -81,7 +81,7 @@ const renderTab = (
   />
 );
 
-const renderAllSportsTab = (
+export const renderAllSportsTab = (
   { isSelected, onSelected }: Props,
   [isLiveActive]: LiveState
 ) =>

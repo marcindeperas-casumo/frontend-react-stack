@@ -1,6 +1,6 @@
 import React from "react";
 import * as R from "ramda";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -8,6 +8,7 @@ import {
   SportsMainNav,
   renderTabList,
   renderEditButton,
+  renderAllSportsTab,
 } from "Features/sports/components/SportsNav";
 import {
   SportTab,
@@ -44,6 +45,30 @@ describe("<SportsMainNav />", () => {
     expect(sp.props()).toMatchObject({
       columnCount: 7,
       height: 106,
+    });
+  });
+
+  describe("renderAllSportsTab", () => {
+    test("returns with nothing - when live mode is disabled", () => {
+      const isSelected = false;
+      const onSelected = jest.fn();
+      const isLiveActive = false;
+      const result = renderAllSportsTab({ isSelected, onSelected }, [
+        isLiveActive,
+      ]);
+
+      expect(result).toBeFalsy();
+    });
+
+    test("renders a DictionaryTerm - when live mode is enabled", () => {
+      const isSelected = false;
+      const onSelected = jest.fn();
+      const isLiveActive = true;
+      const rendered = shallow(
+        renderAllSportsTab({ isSelected, onSelected }, [isLiveActive])
+      );
+
+      expect(rendered.find("DictionaryTermTypedQuery")).toHaveLength(1);
     });
   });
 
