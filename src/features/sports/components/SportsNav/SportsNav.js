@@ -81,7 +81,7 @@ const renderSportsNav = (
     onSelected: onNavItemSelected,
   };
 
-  const hideSubNav = currentHash === `#${navItemUtils.ALL_SPORTS_PATH}`;
+  const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
 
   return (
     <>
@@ -99,7 +99,7 @@ const renderSportsNav = (
 
       <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
         {openChooseFavouriteLeaguesModal =>
-          !hideSubNav && (
+          isNotAllSports && (
             <SportsSubNav
               {...commonProps}
               navItems={selectedNavItem.subNav || []}
