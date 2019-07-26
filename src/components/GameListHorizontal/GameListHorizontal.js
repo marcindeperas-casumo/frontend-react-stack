@@ -82,7 +82,11 @@ export class GameListHorizontal extends PureComponent<Props> {
       ITEMS_CONTROL_STYLING[id] || ITEMS_CONTROL_STYLING.default;
 
     if (isLoading) {
-      return <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />;
+      return (
+        <div className="o-wrapper">
+          <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+        </div>
+      );
     }
 
     if (hasNoGames) {

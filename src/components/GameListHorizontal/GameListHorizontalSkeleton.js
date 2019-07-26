@@ -9,7 +9,6 @@ const defaultClassNames = `
   u-padding-top--xlg@desktop
   u-padding-left--md
   u-padding-left--3xlg@tablet
-  u-padding-left--3xlg@desktop
 `;
 
 type Props = {
@@ -26,7 +25,7 @@ type Props = {
 export class GameListHorizontalSkeleton extends React.Component<Props> {
   static defaultProps = {
     itemWidth: 170,
-    items: 8,
+    items: 7,
     itemRatio: 120 / 100,
     itemGap: 8,
     cornerRadius: 8,
