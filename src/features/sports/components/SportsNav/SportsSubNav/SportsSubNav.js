@@ -60,9 +60,9 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   const [isLiveActive] = props.liveState;
   const navItemTypes = ["all", ...props.navItems.map(() => "nav"), "edit"];
   const backgroundColor = isLiveActive ? "orange-light-3" : "grey-light-2";
+  const isNavEmpty = !props.navItems || props.navItems.length === 0;
 
-  // handle edge case - most like caused by dodgy test data
-  if (!props.navItems || props.navItems.length === 0) {
+  if (isNavEmpty) {
     return null;
   }
 
