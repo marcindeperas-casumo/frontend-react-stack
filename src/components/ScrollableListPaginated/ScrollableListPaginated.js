@@ -17,7 +17,7 @@ import "./ScrollableListPaginated.scss";
 
 type ListObject = {
   title: string,
-  itemIds: Array<*>,
+  itemIds: Array<Object>,
 };
 
 export type SeeMoreProps = {
