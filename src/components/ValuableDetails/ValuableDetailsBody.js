@@ -33,8 +33,8 @@ export const ValuableDetailsBody = ({
   const expirationLabel = `${expiresInLabel} ${expirationValueText}`;
 
   return (
-    <Flex.Item className="u-text-align-center u-padding-top--lg u-margin-top--none">
-      <div className="u-padding-x--lg">
+    <Flex.Item className="u-text-align-center">
+      <div>
         <Text
           tag="p"
           size="md"

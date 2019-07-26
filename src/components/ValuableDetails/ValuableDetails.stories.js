@@ -5,7 +5,6 @@ import { WaitForHostElement } from "Components/WaitForHostElement";
 import translations from "./__mocks__/Translations.json";
 import mock from "./__mocks__/Valuables.json";
 import { ValuableDetails } from "./ValuableDetails";
-// import { mockValuable as getValuableByType } from "Components/ValuableCard/__mocks__/Valuable.mock";
 
 const hostElementId = "portal-host-element";
 const stories = storiesOf("ValuableCardDetails/ValuableDetails", module);

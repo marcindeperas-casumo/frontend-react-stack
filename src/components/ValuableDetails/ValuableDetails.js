@@ -34,7 +34,7 @@ type Props = {
   translations: Translations,
 };
 
-const dimensions = {
+const headerDimensions = {
   width: 379,
   height: 271,
 };
@@ -57,27 +57,26 @@ export const ValuableDetails = ({
   );
 
   return (
-    <div>
-      <Flex.Block>
+    <div className="o-ratio o-ratio--valuable-details-header">
+      <div className="o-ratio__content valuable-details-header">
         <MaskImage
-          className="c-valuable-details__header"
           id={`${id}-detail`}
           imageUrl={backgroundImageUrl}
-          {...dimensions}
+          {...headerDimensions}
         >
           <HeaderImgMask />
         </MaskImage>
-      </Flex.Block>
-      <Flex.Item align="center">
-        <div className="u-drop-shadow--md u-text-align-center c-valuable-details__card-container"></div>
-        <ValuableDetailsBody
-          details={details}
-          expirationValueText="2 Hours"
-          caveat={caveat}
-          termsContent={termsContent}
-          translations={bodyTranslations}
-        />
-      </Flex.Item>
+        <Flex className="o-ratio__content" justify="center">
+          <div className="u-drop-shadow--md c-valuable-details__card-container"></div>
+        </Flex>
+      </div>
+      <ValuableDetailsBody
+        details={details}
+        expirationValueText="2 Hours"
+        caveat={caveat}
+        termsContent={termsContent}
+        translations={bodyTranslations}
+      />
     </div>
   );
 };
