@@ -1,6 +1,6 @@
 import React from "react";
 import * as R from "ramda";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -9,6 +9,7 @@ import {
   renderTabList,
   renderEditButton,
   renderAllSportsTab,
+  renderLiveButton,
 } from "Features/sports/components/SportsNav";
 import {
   SportTab,
@@ -69,6 +70,35 @@ describe("<SportsMainNav />", () => {
       );
 
       expect(rendered.find("DictionaryTermTypedQuery")).toHaveLength(1);
+    });
+  });
+
+  describe("renderLiveButton", () => {
+    test("returns a <LiveTab> component and passes the necessary props", () => {
+      const buttonProps = {
+        navItems: "...",
+        labels: { live: "..." },
+        canEdit: "...",
+        onEdit: "...",
+      };
+      const sportCount = 1;
+      const isLiveActive = false;
+      const setIsLiveActive = () => {};
+      const rendered = shallow(
+        <div>
+          {renderLiveButton(
+            buttonProps,
+            [isLiveActive, setIsLiveActive],
+            sportCount
+          )}
+        </div>
+      );
+      const renderedProps = rendered.find("SportsNavLiveTab").props();
+
+      expect(renderedProps.count).toBe(sportCount);
+      expect(renderedProps.label).toBe(buttonProps.labels.live);
+      expect(renderedProps.isActive).toBe(isLiveActive);
+      expect(renderedProps.onClick).toBeDefined();
     });
   });
 
