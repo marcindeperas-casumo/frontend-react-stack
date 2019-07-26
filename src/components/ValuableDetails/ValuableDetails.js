@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import { pick } from "ramda";
 import MaskImage from "Components/MaskImage";
@@ -32,11 +32,13 @@ type Props = {
   termsContent: string,
   /* Translations for the Valuable Details compoinent */
   translations: Translations,
+  /* A component to render to be displayed in the header*/
+  valuableRenderer: Node,
 };
 
 const headerDimensions = {
-  width: 379,
-  height: 271,
+  width: 375,
+  height: 334,
 };
 
 const HeaderImgMask = () => (
@@ -50,6 +52,7 @@ export const ValuableDetails = ({
   caveat,
   termsContent,
   translations,
+  valuableRenderer,
 }: Props) => {
   const bodyTranslations = pick(
     ["expiresInLabel", "termsAndConditionLabel"],
@@ -57,26 +60,40 @@ export const ValuableDetails = ({
   );
 
   return (
-    <div className="o-ratio o-ratio--valuable-details-header">
-      <div className="o-ratio__content valuable-details-header">
-        <MaskImage
-          id={`${id}-detail`}
-          imageUrl={backgroundImageUrl}
-          {...headerDimensions}
+    <>
+      <div className="o-ratio o-ratio--valuable-details">
+        <div className="o-ratio__content c-valuable-details__header">
+          <MaskImage
+            id={`${id}-detail`}
+            imageUrl={backgroundImageUrl}
+            {...headerDimensions}
+          >
+            <HeaderImgMask />
+          </MaskImage>
+        </div>
+        <Flex
+          className="o-ratio__content"
+          justify="end"
+          align="center"
+          direction="vertical"
         >
-          <HeaderImgMask />
-        </MaskImage>
-        <Flex className="o-ratio__content" justify="center">
-          <div className="u-drop-shadow--md c-valuable-details__card-container"></div>
+          <div
+            className="u-drop-shadow--md c-valuable-details__card"
+            data-test-id="valuable-renderer-wrapper"
+          >
+            {valuableRenderer}
+          </div>
         </Flex>
       </div>
-      <ValuableDetailsBody
-        details={details}
-        expirationValueText="2 Hours"
-        caveat={caveat}
-        termsContent={termsContent}
-        translations={bodyTranslations}
-      />
-    </div>
+      <div className="u-margin-top--2xlg">
+        <ValuableDetailsBody
+          details={details}
+          expirationValueText="2 Hours"
+          caveat={caveat}
+          termsContent={termsContent}
+          translations={bodyTranslations}
+        />
+      </div>
+    </>
   );
 };

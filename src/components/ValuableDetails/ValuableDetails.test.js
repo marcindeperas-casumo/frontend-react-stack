@@ -1,34 +1,34 @@
 import React from "react";
-import { mount } from "enzyme";
-import ReactModal from "react-modal";
+import { shallow } from "enzyme";
 import { ValuableDetails } from "./ValuableDetails";
+import mock from "./__mocks__/Valuables.json";
+import translations from "./__mocks__/Translations.json";
 
 describe("ValuableDetails", () => {
-  ReactModal.setAppElement(document.createElement("div"));
+  let rendered;
+  const baz = "baz";
+  const Foo = ({ foobar }) => <div>{foobar}</div>;
 
-  test("should render skeleton on loading", () => {
-    const rendered = mount(
-      <ValuableDetails isOpen={true} onClose={() => {}} loading={true} />
-    );
-    expect(rendered.find("ParagraphSkeleton")).toHaveLength(1);
-  });
+  beforeEach(() => {
+    const mockValuable = mock[0];
 
-  test("should render ErrorMessage on error and it should refetch when clicked", () => {
-    const mock = jest.fn();
-    const rendered = mount(
+    rendered = shallow(
       <ValuableDetails
-        isOpen={true}
-        onClose={() => {}}
-        loading={false}
-        error={true}
-        refetch={mock}
+        {...mockValuable}
+        translations={translations}
+        valuableRenderer={<Foo foobar={baz} />}
       />
     );
-    expect(rendered.find("ErrorMessage")).toHaveLength(1);
-    rendered
-      .find("ErrorMessage")
-      .find("Button")
-      .simulate("click");
-    expect(mock).toHaveBeenCalled();
+  });
+
+  test("should render a given component with it's props in the header", () => {
+    const foo = rendered.find(Foo);
+
+    expect(foo).toHaveLength(1);
+    expect(foo.prop("foobar")).toEqual(baz);
+  });
+
+  test("should render a valuabledetails body", () => {
+    expect(rendered.find("ValuableDetailsBody")).toHaveLength(1);
   });
 });
