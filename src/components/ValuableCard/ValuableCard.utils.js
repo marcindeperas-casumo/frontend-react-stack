@@ -1,3 +1,4 @@
+import { CouponIcon } from "@casumo/cmp-icons";
 import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
@@ -5,7 +6,6 @@ import {
 } from "Models/valuables";
 import {
   DepositIcon,
-  SportIcon,
   BasicSpinsIcon,
   BonusSpinsIcon,
   SuperSpinsIcon,
@@ -29,7 +29,7 @@ export const VALUABLE_ICON = {
     [VALUABLE_SPIN_TYPES.SUPER]: SuperSpinsIcon,
     [VALUABLE_SPIN_TYPES.MEGA]: MegaSpinsIcon,
   },
-  [VALUABLE_TYPES.SPORT]: SportIcon,
+  [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
 
 export const coinValueToSpinType = coinValue => {

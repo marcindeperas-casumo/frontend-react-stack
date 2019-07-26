@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { ClockIcon, LockIcon } from "@casumo/cmp-icons";
 import classNames from "classnames";
 import { compose, prop } from "ramda";
 import {
@@ -16,28 +17,21 @@ import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
 import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
 import { VALUABLE_ICON, coinValueToSpinType } from "./ValuableCard.utils";
 import { ValuableReward } from "./ValuableReward";
-import Time from "./Icons/time.svg";
-import Padlock from "./Icons/padlock.svg";
 import "./ValuableCard.scss";
-
-type Game = {
-  backgroundImage: string,
-  name: string,
-};
 
 type Props = {
   /** Unique id of the valuable */
   id: string,
   /** Title of the valuable */
   title: string,
+  /** Description of the valuable. Ex: title of a game etc.*/
+  description?: string,
   /** Valuable type of the valuable */
   valuableType: ValuableType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
   coinValue?: number,
-  /** The game on which the spins can be used on. Applies when valuable is type spins */
-  game?: Game,
   /** Market of the player */
   market: string,
   /** Background image to be displayed in the Card header */
@@ -106,7 +100,9 @@ export class ValuableCard extends PureComponent<Props> {
 
     if (valuableState === VALUABLE_STATES.LOCKED) {
       const className = "t-color-black";
-      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => <Padlock />);
+      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => (
+        <LockIcon size="sm" />
+      ));
     }
 
     if (hours >= 0 && hours <= 24) {
@@ -115,7 +111,7 @@ export class ValuableCard extends PureComponent<Props> {
       return badgeOpts(
         interpolate(translatedHoursUnit, { hours }),
         className,
-        () => <Time />
+        () => <ClockIcon size="sm" />
       );
     }
 
@@ -145,8 +141,8 @@ export class ValuableCard extends PureComponent<Props> {
     const {
       id,
       title,
+      description,
       valuableType,
-      game,
       backgroundImage,
       caveat,
       valuableState,
@@ -154,7 +150,7 @@ export class ValuableCard extends PureComponent<Props> {
     } = this.props;
     const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
     const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
-    const blurAmount = 3;
+    const blurAmount = 100;
     const stateBadgeOptions = this.stateBadgeOptions;
     const showStateBadge =
       stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;
@@ -171,11 +167,7 @@ export class ValuableCard extends PureComponent<Props> {
           <Flex.Block>
             <ValuableHeaderBackground
               className={this.headerClassModifier}
-              imageUrl={
-                isValuableTypeSpins && game
-                  ? game.backgroundImage
-                  : backgroundImage
-              }
+              imageUrl={backgroundImage}
               id={id}
               blur={isValuableTypeSpins ? blurAmount : 0}
             >
@@ -189,9 +181,9 @@ export class ValuableCard extends PureComponent<Props> {
             <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
               {title}
             </div>
-            {isValuableTypeSpins && game && (
+            {isValuableTypeSpins && description && (
               <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-                {game.name}
+                {description}
               </div>
             )}
           </Flex.Item>
