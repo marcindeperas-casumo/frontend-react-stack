@@ -27,10 +27,6 @@ const Badge = ({ className, children }: BadgeProps) => (
   </Flex>
 );
 
-// temporarily disable this until we have a solid way of getting the correct number
-const CountBadge = ({ count }: { count: number }) => null;
-// <Badge className="t-background-grey-dark-1 t-color-white">{count}</Badge>;
-
 const CloseBadge = () => (
   <Badge className="t-background-red-dark-1 t-color-white">
     <CrossIcon size="sm" />
@@ -44,7 +40,7 @@ type LiveIconColoredProps = {
 
 const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
   <div className="o-ratio c-sports-icon u-margin-x">
-    {isActive ? <CloseBadge /> : <CountBadge count={count} />}
+    {isActive && <CloseBadge />}
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
