@@ -19,7 +19,7 @@ export const PADDING_PER_DEVICE = {
 type Props = {
   title: string,
   /** url to "see more" page, if null will not render "see more" button */
-  seeMoreUrl?: string,
+  seeMoreUrl: string,
   itemIds: Array<string>,
   Component: Function,
   spacing: spacerSizes | responsiveSpacerSizes,
