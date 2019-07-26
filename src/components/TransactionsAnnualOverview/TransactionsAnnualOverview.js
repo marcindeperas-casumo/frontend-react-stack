@@ -22,7 +22,7 @@ type Props = {
   selectedYear: number,
   locale: string,
   t: Content,
-  data: AnnualOverview,
+  data?: AnnualOverview,
   navigateToHistory: () => void,
   PdfButton: any => React.Node,
 };
@@ -71,12 +71,12 @@ export function TransactionsAnnualOverview({
   selectedYear,
   PdfButton,
 }: Props) {
-  const passedProps = { currency: data.currency, locale };
-
   if (!data) {
     navigateToHistory();
     return null;
   }
+
+  const passedProps = { currency: data.currency, locale };
 
   return (
     <div className="u-padding--md t-background-white">

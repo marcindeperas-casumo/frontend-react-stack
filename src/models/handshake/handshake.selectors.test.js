@@ -23,6 +23,7 @@ import {
   walletIdSelector,
   playerNameSelector,
   socialSecurityNumberSelector,
+  isSuspiciousAccount,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -423,5 +424,20 @@ describe("Handshake selectors", () => {
     };
 
     expect(socialSecurityNumberSelector(state)).toEqual(socialSecurityNumber);
+  });
+
+  test("isSuspiciousAccount", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: { p1: { id: "p1", suspiciousAccount: true } },
+          },
+        },
+      },
+    };
+
+    expect(isSuspiciousAccount(state)).toEqual(true);
   });
 });

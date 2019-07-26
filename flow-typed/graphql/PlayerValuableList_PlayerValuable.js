@@ -15,14 +15,11 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   currency: Currency,
   market: string,
   caveat: ?string,
-  magnitude: number,
   backgroundImage: string,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string,
-  title: string,
-  backgroundImage: string,
+  slug: string
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
@@ -34,37 +31,13 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   currency: Currency,
   market: string,
   caveat: ?string,
+  backgroundImage: string,
   coinValue: number,
-  magnitude: number,
   game: PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
+  description: string,
 };
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  id: string,
-  title: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  magnitude: number,
-  backgroundImage: string,
-};
-
-export type PlayerValuableList_PlayerValuable_PlayerValuableSport = {
-  id: string,
-  title: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
-  currency: Currency,
-  market: string,
-  caveat: ?string,
-  backgroundImage: string,
-};
-
-export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableCash | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSport;/* @flow */
+export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableCash | PlayerValuableList_PlayerValuable_PlayerValuableSpins;/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 

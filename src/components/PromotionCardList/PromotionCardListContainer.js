@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { fetchPageBySlug, getField } from "Models/cms";
+import { fetchPageBySlug, getField, getFieldIfNotSuspicious } from "Models/cms";
 import { marketSelector } from "Models/handshake";
 import PromotionCardList from "./PromotionCardList";
 
@@ -16,7 +16,7 @@ const getSlug = slug => `${slug}.*`;
 
 const PromotionCardListConnected = connect(
   (state, { slug }) => ({
-    promotionsSlugs: getField({
+    promotionsSlugs: getFieldIfNotSuspicious({
       slug,
       field,
       defaultValue,
