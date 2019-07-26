@@ -1,12 +1,13 @@
 // @flow
 import React from "react";
+import * as R from "ramda";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
-const selectPath = (client: *, path: string) => {
+export const selectPath = (client: *, path: string) => {
   client.mutate<NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
@@ -16,21 +17,42 @@ const selectPath = (client: *, path: string) => {
   });
 };
 
-const isNavItemSelected = (currentHash: string = "") => (
-  navItem: SportsNavItemType
-) => {
-  const isSubNavItem = Boolean(navItem.parentPath);
-  const isCurrentHash = isSubNavItem
-    ? currentHash === `#${navItem.path}`
-    : currentHash.startsWith(`#${navItem.path}`);
-  const isDrillDown = currentHash.includes(
-    navItem.path.replace(/racing|filter/, "drill-down")
-  );
-
-  return isCurrentHash || isDrillDown;
+type IsSelectedPredicateArgs = {
+  currentHash: string,
+  navItem: SportsNavItemType,
 };
 
-const onNavItemSelected = (
+const isDrilldown = ({ currentHash, navItem }: IsSelectedPredicateArgs) =>
+  currentHash.includes(navItem.path.replace(/racing|filter/, "drill-down"));
+
+const isMainNavItemSelected = ({
+  currentHash,
+  navItem,
+}: IsSelectedPredicateArgs) => {
+  const sportOnlyPath = R.pipe(
+    R.split("/"),
+    R.take(2),
+    R.join("/")
+  )(navItem.path);
+
+  return !navItem.parentPath && currentHash.startsWith(`#${sportOnlyPath}`);
+};
+
+const isSubnavItemSelected = ({
+  currentHash,
+  navItem,
+}: IsSelectedPredicateArgs) =>
+  navItem.parentPath && currentHash === `#${navItem.path}`;
+
+export const isNavItemSelected = (currentHash: string = "") => (
+  navItem: SportsNavItemType
+) =>
+  R.anyPass([isDrilldown, isMainNavItemSelected, isSubnavItemSelected])({
+    currentHash,
+    navItem,
+  });
+
+export const onNavItemSelected = (
   currentHash: string,
   client: *,
   isLiveActive: boolean = false
@@ -54,9 +76,10 @@ const onNavItemSelected = (
   });
 };
 
-const toSubNavItem = (sport: UserNavigation_sportsNavigation_sport) => (
-  subNav: UserNavigation_sportsNavigation_subNav
-) => ({
+const toSubNavItem = (
+  isLiveActive: boolean,
+  sport: UserNavigation_sportsNavigation_sport
+) => (subNav: UserNavigation_sportsNavigation_subNav) => ({
   text: (
     <>
       {subNav.competition.regionCode && (
@@ -68,18 +91,20 @@ const toSubNavItem = (sport: UserNavigation_sportsNavigation_sport) => (
       {subNav.competition.name}
     </>
   ),
-  path: subNav.competition.clientPath,
-  parentPath: sport.clientPath,
+  path: isLiveActive
+    ? subNav.competition.clientPathLive
+    : subNav.competition.clientPath,
+  parentPath: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,
   canEdit: false,
 });
 
-const toNavItem = ({
+export const toNavItem = (isLiveActive: boolean) => ({
   sport,
   subNav,
 }: UserNavigation_sportsNavigation): SportsNavItemType => ({
   text: sport.name,
-  path: sport.clientPath,
+  path: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,
   iconProps: {
     iconSrc: sport.icon,
@@ -87,13 +112,23 @@ const toNavItem = ({
     alt: sport.name,
   },
   canEdit: sport.canSelectSubgroups,
-  subNav: subNav.map(toSubNavItem(sport)),
+  subNav: subNav.map(toSubNavItem(isLiveActive, sport)),
 });
 
-export const navItemUtils = {
-  selectPath,
-  isNavItemSelected,
-  onNavItemSelected,
-  toSubNavItem,
-  toNavItem,
-};
+export const IN_PLAY_URL_PART = "in-play";
+export const ALL_SPORTS_PATH = `filter/all/all/all/all/${IN_PLAY_URL_PART}`;
+export const isInPlayHash = (hash: string) => hash.includes(IN_PLAY_URL_PART);
+
+export const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
+
+export const makeAllSportsNavItem = (label: string) => ({
+  text: label,
+  path: ALL_SPORTS_PATH,
+  key: "all",
+  canEdit: false,
+  iconProps: {
+    activeIndicator,
+    iconSrc: "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",
+    alt: label,
+  },
+});

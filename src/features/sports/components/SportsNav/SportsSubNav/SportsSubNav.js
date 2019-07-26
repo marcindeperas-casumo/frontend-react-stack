@@ -60,6 +60,11 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   const [isLiveActive] = props.liveState;
   const navItemTypes = ["all", ...props.navItems.map(() => "nav"), "edit"];
   const backgroundColor = isLiveActive ? "orange-light-3" : "grey-light-2";
+  const isNavEmpty = !props.navItems || props.navItems.length === 0;
+
+  if (isNavEmpty) {
+    return null;
+  }
 
   return (
     <div className={`u-margin-top--sm t-background-${backgroundColor}`}>
