@@ -12,10 +12,7 @@ import {
   type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import {
-  ALL_SPORTS_PATH,
-  navItemUtils,
-} from "Features/sports/components/SportsNav/sportsNavUtils";
+import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -84,7 +81,7 @@ const renderSportsNav = (
     onSelected: onNavItemSelected,
   };
 
-  const hideSubNav = currentHash === `#${ALL_SPORTS_PATH}`;
+  const hideSubNav = currentHash === `#${navItemUtils.ALL_SPORTS_PATH}`;
 
   return (
     <>
@@ -120,7 +117,7 @@ const renderSportsNav = (
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const { client } = React.useContext(ClientContext);
   const [isLiveActive, setIsLiveActive] = React.useState(
-    currentHash.includes("in-play")
+    navItemUtils.isInPlayHash(currentHash)
   );
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
@@ -159,7 +156,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
           setIsLiveActive(liveActive);
 
           const path = liveActive
-            ? ALL_SPORTS_PATH
+            ? navItemUtils.ALL_SPORTS_PATH
             : data.sportsNavigation[0].sport.clientPath;
 
           navItemUtils.selectPath(client, path);

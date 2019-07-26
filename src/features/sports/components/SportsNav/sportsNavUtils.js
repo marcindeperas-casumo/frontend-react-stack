@@ -7,7 +7,7 @@ import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
-const selectPath = (client: *, path: string) => {
+export const selectPath = (client: *, path: string) => {
   client.mutate<NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
@@ -44,7 +44,7 @@ const isSubnavItemSelected = ({
 }: IsSelectedPredicateArgs) =>
   navItem.parentPath && currentHash === `#${navItem.path}`;
 
-const isNavItemSelected = (currentHash: string = "") => (
+export const isNavItemSelected = (currentHash: string = "") => (
   navItem: SportsNavItemType
 ) =>
   R.anyPass([isDrilldown, isMainNavItemSelected, isSubnavItemSelected])({
@@ -52,7 +52,7 @@ const isNavItemSelected = (currentHash: string = "") => (
     navItem,
   });
 
-const onNavItemSelected = (
+export const onNavItemSelected = (
   currentHash: string,
   client: *,
   isLiveActive: boolean = false
@@ -99,7 +99,7 @@ const toSubNavItem = (
   canEdit: false,
 });
 
-const toNavItem = (isLiveActive: boolean) => ({
+export const toNavItem = (isLiveActive: boolean) => ({
   sport,
   subNav,
 }: UserNavigation_sportsNavigation): SportsNavItemType => ({
@@ -115,15 +115,9 @@ const toNavItem = (isLiveActive: boolean) => ({
   subNav: subNav.map(toSubNavItem(isLiveActive, sport)),
 });
 
-export const navItemUtils = {
-  selectPath,
-  isNavItemSelected,
-  onNavItemSelected,
-  toSubNavItem,
-  toNavItem,
-};
-
-export const ALL_SPORTS_PATH = "filter/all/all/all/all/in-play";
+export const IN_PLAY_URL_PART = "in-play";
+export const ALL_SPORTS_PATH = `filter/all/all/all/all/${IN_PLAY_URL_PART}`;
+export const isInPlayHash = (hash: string) => hash.includes(IN_PLAY_URL_PART);
 
 export const activeIndicator = `<?xml version="1.0" encoding="UTF-8"?> <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48" fill="none"> <g style="mix-blend-mode:multiply"> <rect x="20" y="19" width="22" height="22" rx="11" fill="currentColor"></rect> </g> </svg>`;
 
