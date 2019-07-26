@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
+import { prop } from "ramda";
 import {
   transactionsBetsHistoryAnnualOverviewSelector,
   initFetchAnnualOverviewPdfUrl,
@@ -21,7 +22,7 @@ export const TransactionsAnnualOverviewPdfButtonContainer = ({
       const annualOverview = transactionsBetsHistoryAnnualOverviewSelector(
         year
       )(state);
-      const href = annualOverview && annualOverview.pdfUrl;
+      const href = prop("pdfUrl", annualOverview);
 
       return {
         href,

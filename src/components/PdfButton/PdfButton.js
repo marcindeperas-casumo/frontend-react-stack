@@ -10,7 +10,7 @@ export type PdfButtonProps = {
 };
 
 export function PdfButton({ href, fetchHref, label }: PdfButtonProps) {
-  const isDisabled = Boolean(!href);
+  const isDisabled = !href;
 
   useEffect(() => {
     if (href) {
