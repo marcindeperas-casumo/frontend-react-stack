@@ -108,7 +108,7 @@ class PromotionCardList extends PureComponent<Props> {
             <Desktop>
               <ScrollableListPaginated
                 list={{
-                  title: title || "",
+                  title: title,
                   itemIds: promotionsSlugs,
                 }}
                 Component={PromotionCardContainerRenderer}
