@@ -33,38 +33,36 @@ export const ValuableDetailsBody = ({
   const expirationLabel = `${expiresInLabel} ${expirationValueText}`;
 
   return (
-    <Flex.Item className="u-text-align-center">
-      <div>
-        <Text
-          tag="p"
-          size="md"
-          className="u-padding-y--md u-margin-bottom--none"
-        >
+    <Flex direction="vertical" align="center" className="u-padding-x--md">
+      <Flex.Item>
+        <Text tag="p" size="md">
           {details}
         </Text>
+      </Flex.Item>
+      <Flex.Item className="u-margin-top--lg">
         <ValuableDetailsExpirationLabel
           text={expirationLabel}
           className="t-background-red"
         />
-        <Text
-          tag="p"
-          className="u-margin-top--md u-margin-bottom--none t-color-grey"
-          size="sm"
-        >
+      </Flex.Item>
+      <Flex.Item className="u-margin-top--lg">
+        <Text tag="p" className="t-color-grey" size="sm">
           {caveat}
         </Text>
-        <hr className="u-margin-y--xlg u-width--1/3 u-opacity-28" />
+      </Flex.Item>
+      <Flex.Item className="u-width--1/3 u-margin-y--xlg">
+        <hr className="t-color-grey-light-2 u-ruler-sm" />
+      </Flex.Item>
+      <Flex.Item>
         <Text tag="strong" className="t-color-grey" size="sm">
           {termsAndConditionLabel}
         </Text>
-      </div>
-      <Text
-        tag="p"
-        className="t-color-grey u-margin-top--md u-padding-x--md u-text-align-left"
-        size="sm"
-      >
-        {termsContent}
-      </Text>
-    </Flex.Item>
+      </Flex.Item>
+      <Flex.Item>
+        <Text tag="p" className="t-color-grey u-text-align-left" size="sm">
+          {termsContent}
+        </Text>
+      </Flex.Item>
+    </Flex>
   );
 };

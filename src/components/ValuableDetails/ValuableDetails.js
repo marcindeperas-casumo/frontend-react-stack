@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import { pick } from "ramda";
 import MaskImage from "Components/MaskImage";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
-import "./ValuableDetails.scss";
 
 type Translations = {
   /* Label for the expration badge */
@@ -77,12 +76,7 @@ export const ValuableDetails = ({
           align="center"
           direction="vertical"
         >
-          <div
-            className="u-drop-shadow--md c-valuable-details__card"
-            data-test-id="valuable-renderer-wrapper"
-          >
-            {valuableRenderer}
-          </div>
+          <div data-test-id="valuable-renderer-wrapper">{valuableRenderer}</div>
         </Flex>
       </div>
       <div className="u-margin-top--2xlg">

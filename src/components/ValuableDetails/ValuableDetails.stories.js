@@ -15,12 +15,11 @@ stories.add("Default", () => {
 
   const ValuableCard = () => (
     <div
-      className="u-drop-shadow--md"
       style={{
         height: "218px",
         width: "160px",
         background: "white",
-        "box-shadow": "0px 10px 8px 0px rgba(201, 214, 214, 0.4)", // TODO: to check key
+        "box-shadow": "0px 10px 8px 0px rgba(201, 214, 214, 0.4)",
       }}
     ></div>
   );
