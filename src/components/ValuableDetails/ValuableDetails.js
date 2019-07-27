@@ -29,6 +29,8 @@ type Props = {
   caveat: string,
   /* Content for Terms and conditions */
   termsContent: string,
+  /* Expiration Text to display in the expiration badge */
+  expirationValueText: string,
   /* Translations for the Valuable Details compoinent */
   translations: Translations,
   /* A component to render to be displayed in the header*/
@@ -50,6 +52,7 @@ export const ValuableDetails = ({
   details,
   caveat,
   termsContent,
+  expirationValueText,
   translations,
   valuableRenderer,
 }: Props) => {
@@ -82,7 +85,7 @@ export const ValuableDetails = ({
       <div className="u-margin-top--2xlg">
         <ValuableDetailsBody
           details={details}
-          expirationValueText="2 Hours"
+          expirationValueText={expirationValueText}
           caveat={caveat}
           termsContent={termsContent}
           translations={bodyTranslations}
