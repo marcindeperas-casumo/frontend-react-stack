@@ -2,16 +2,13 @@
 import React, { PureComponent } from "react";
 import { replace } from "ramda";
 import Card from "@casumo/cmp-card";
-import { Mobile, Desktop } from "Components/ResponsiveLayout";
 import {
   CuratedCardFooterText,
   CuratedCardFooterGame,
-  CuratedCardFooterGameDesktop,
 } from "Components/CuratedCard/CuratedCardFooter";
 import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import {
   CuratedCardHeader,
-  CuratedCardHeaderDesktop,
   CuratedCardHeaderWithSubtitle,
 } from "Components/CuratedCard/CuratedCardHeader";
 import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
@@ -112,14 +109,7 @@ export class CuratedCard extends PureComponent<Props> {
 
   renderHeader = () =>
     this.isGame ? (
-      <>
-        <Mobile>
-          <CuratedCardHeader header={this.props.header} />
-        </Mobile>
-        <Desktop>
-          <CuratedCardHeaderDesktop header={this.props.header} />
-        </Desktop>
-      </>
+      <CuratedCardHeader header={this.props.header} />
     ) : (
       <CuratedCardHeaderWithSubtitle
         header={this.props.header}
@@ -129,22 +119,11 @@ export class CuratedCard extends PureComponent<Props> {
 
   renderFooter = () =>
     this.isGame ? (
-      <>
-        <Mobile>
-          <CuratedCardFooterGame
-            gameData={this.props.gameData}
-            buttonText={this.props.primary_action_text}
-            onLaunchGame={this.props.onLaunchGame}
-          />
-        </Mobile>
-        <Desktop>
-          <CuratedCardFooterGameDesktop
-            gameData={this.props.gameData}
-            buttonText={this.props.primary_action_text}
-            onLaunchGame={this.props.onLaunchGame}
-          />
-        </Desktop>
-      </>
+      <CuratedCardFooterGame
+        gameData={this.props.gameData}
+        buttonText={this.props.primary_action_text}
+        onLaunchGame={this.props.onLaunchGame}
+      />
     ) : (
       <CuratedCardFooterText text={this.props.promotions_legal_text} />
     );
