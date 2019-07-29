@@ -123,8 +123,8 @@ export const CuratedCardFooterGameDesktop = ({
   };
 
   return (
-    <div class="o-wrapper">
-      <div class="u-width--2/3">
+    <div className="o-wrapper">
+      <div className="u-width--2/3">
         <Flex align="center">
           <Flex.Item className="o-flex__item--no-shrink">
             <GameThumb

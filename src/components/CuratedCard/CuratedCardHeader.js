@@ -23,7 +23,7 @@ export const CuratedCardHeader = ({ header }: HeaderProps) => (
       />
     </Mobile>
     <Desktop>
-      <div class="o-wrapper">
+      <div className="o-wrapper">
         <Text
           data-test="curated-card-header"
           className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
