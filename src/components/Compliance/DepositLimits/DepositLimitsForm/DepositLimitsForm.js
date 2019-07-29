@@ -10,6 +10,7 @@ import type {
   AllLimitsOnlyValues,
   LimitLock,
   DepositKinds,
+  ResponsibleGamblingTest,
 } from "Models/playOkay/depositLimits";
 import { formatCurrency, interpolate, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
@@ -35,12 +36,14 @@ type Props = {
     input_validation_cant_be_higher: string,
     input_validation_cant_be_lower: string,
     input_validation_has_to_be_lower_while_locked: string,
+    input_validation_has_to_be_lower_after_responsible_gambling_test_failed: string,
   },
   limits: AllLimits,
   limitChanges: AllLimitsOnlyValues,
   initiallyVisible: DepositKinds,
   applyLimitsChanges: AllLimitsOnlyValues => void,
   lock: ?LimitLock,
+  responsibleGamblingTest: ResponsibleGamblingTest,
 };
 
 // eslint-disable-next-line fp/no-mutation
@@ -73,7 +76,7 @@ export function DepositLimitsForm(props: Props) {
         props.applyLimitsChanges(R.pluck("value", limitInputs));
       }
     }
-  }, [visible]); //eslint-disable-line react-hooks/exhaustive-deps
+  }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <Flex direction="vertical" className="u-padding--md u-height--1/1">
@@ -172,16 +175,31 @@ export function DepositLimitsForm(props: Props) {
     if (R.gt(currentLimitValue, 20000)) {
       return t.input_validation_highest_limit;
     }
-    if (props.lock) {
-      const limitBeforeChange = props.limits[currentLimit];
-      if (R.gt(currentLimitValue, limitBeforeChange)) {
-        return interpolate(t.input_validation_has_to_be_lower_while_locked, {
-          currentLimit: formatCurrency({
-            locale: props.locale,
-            currency: props.limits.currency,
-            value: limitBeforeChange,
-          }),
-        });
+
+    const limitBeforeChange = props.limits[currentLimit];
+    if (R.gt(currentLimitValue, limitBeforeChange)) {
+      const replacements = {
+        currentLimit: formatCurrency({
+          locale: props.locale,
+          currency: props.limits.currency,
+          value: limitBeforeChange,
+        }),
+      };
+
+      if (props.lock) {
+        return interpolate(
+          t.input_validation_has_to_be_lower_while_locked,
+          replacements
+        );
+      }
+      if (
+        !props.responsibleGamblingTest
+          .responsibleGamblingQuestionnaireAttemptAllowed
+      ) {
+        return interpolate(
+          t.input_validation_has_to_be_lower_after_responsible_gambling_test_failed,
+          replacements
+        );
       }
     }
 

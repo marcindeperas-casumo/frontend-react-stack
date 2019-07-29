@@ -1,5 +1,5 @@
 // @flow
-import { checkIfConditionsApply, diffLimits } from "./utils";
+import { checkIfConditionsApply, diffLimits, getSpecificKinds } from "./utils";
 
 describe("checkIfConditionsApply", () => {
   test("returns true if at least 1 increase or removal was found", () => {
@@ -219,5 +219,79 @@ describe("diffLimits", () => {
       weekly: "decrease",
       monthly: "decrease",
     });
+  });
+});
+
+describe("getSpecificKinds", () => {
+  test("unchanged", () => {
+    const getUnchanged = getSpecificKinds("unchanged");
+    expect(
+      getUnchanged({
+        daily: "unchanged",
+        weekly: "increase",
+        monthly: "decrease",
+      })
+    ).toMatchObject(["daily"]);
+    expect(
+      getUnchanged({
+        daily: "unchanged",
+        weekly: "increase",
+        monthly: "unchanged",
+      })
+    ).toMatchObject(["daily", "monthly"]);
+  });
+
+  test("increase", () => {
+    const getIncreased = getSpecificKinds("increase");
+    expect(
+      getIncreased({
+        daily: "removed",
+        weekly: "removed",
+        monthly: "increase",
+      })
+    ).toMatchObject(["monthly"]);
+    expect(
+      getIncreased({
+        daily: "increase",
+        weekly: "increase",
+        monthly: "unchanged",
+      })
+    ).toMatchObject(["daily", "weekly"]);
+  });
+
+  test("decrease", () => {
+    const getDecreased = getSpecificKinds("decrease");
+    expect(
+      getDecreased({
+        daily: "removed",
+        weekly: "decrease",
+        monthly: "increase",
+      })
+    ).toMatchObject(["weekly"]);
+    expect(
+      getDecreased({
+        daily: "increase",
+        weekly: "decrease",
+        monthly: "decrease",
+      })
+    ).toMatchObject(["weekly", "monthly"]);
+  });
+
+  test("removed", () => {
+    const getRemoved = getSpecificKinds("removed");
+    expect(
+      getRemoved({
+        daily: "removed",
+        weekly: "decrease",
+        monthly: "increase",
+      })
+    ).toMatchObject(["daily"]);
+    expect(
+      getRemoved({
+        daily: "removed",
+        weekly: "removed",
+        monthly: "removed",
+      })
+    ).toMatchObject(["daily", "weekly", "monthly"]);
   });
 });

@@ -6,13 +6,16 @@
     "content": "",
     "attachments": [],
     "custom_fields": {},
-    "fields": { "critical_for_compliance": false, "promotions": [
-      "boosted-reelraces",
-      "must-drop-jackpots",
-      "big-giveaway",
-      "mystery-prizes",
-      "christmas-countdown"
-    ] },
+    "fields": {
+      "critical_for_compliance": false,
+      "promotions": [
+        "boosted-reelraces",
+        "must-drop-jackpots",
+        "big-giveaway",
+        "mystery-prizes",
+        "christmas-countdown"
+      ]
+    },
     "children": [],
     "childSlugs": [
       "boosted-reelraces",
@@ -248,5 +251,18 @@
     },
     "children": [],
     "childSlugs": []
+  },
+  "promotions": {
+    "id": "86853",
+    "slug": "promotions",
+    "fields": {
+      "promotions": [
+        "boosted-reelraces",
+        "must-drop-jackpots",
+        "big-giveaway",
+        "mystery-prizes",
+        "christmas-countdown"
+      ]
+    }
   }
 }

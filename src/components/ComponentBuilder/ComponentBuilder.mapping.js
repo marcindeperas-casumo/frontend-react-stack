@@ -10,6 +10,7 @@ import { ContentSeparator } from "Components/ContentSeparator";
 import { ContentSubtitle } from "Components/ContentSubtitle";
 import { ContentButton } from "Components/ContentButton";
 import PromotionCardTeaserList from "Components/PromotionCardTeaserList";
+import { PromotionTeaserList } from "Components/PromotionTeaserList";
 import PromotionCardList from "Components/PromotionCardList";
 import PromotionGallery from "Components/PromotionGallery";
 import { ContentMediaList } from "Components/ContentMediaList";
@@ -36,6 +37,7 @@ export const COMPONENT_MAPPING = {
   PROMOTION_OPT_IN_BUTTON: PromotionOptInButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
   PROMOTION_CARDS_VERTICAL: PromotionCardTeaserList,
+  PROMOTION_LIST_VERTICAL: PromotionTeaserList,
   PROMOTION_CARDS_GALLERY: PromotionGallery,
   THUMBNAIL_LIST: ContentMediaList,
   PROMOTION_HEADER_IMAGE: PromotionHeaderImage,
