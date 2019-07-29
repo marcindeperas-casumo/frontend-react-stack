@@ -1,6 +1,6 @@
 // @flow
 import { DateTime } from "luxon";
-import { pick, path } from "ramda";
+import { pick, path, head, last, sortBy } from "ramda";
 import clientHttp from "Lib/http";
 import { URLS } from "Api/api.common";
 import type {
@@ -55,6 +55,13 @@ type TransactionResponseRaw = {
   withdrawalLocked: boolean,
 };
 
+type TotalsResponse = $Diff<AnnualOverview, StartingEndBalanceResponse>;
+
+type StartingEndBalanceResponse = {
+  startingBalanceAmount: number,
+  endBalanceAmount: number,
+};
+
 const getWalletTotalsUrl = ({
   walletId,
   startTime,
@@ -96,7 +103,7 @@ export const getGameroundsTotalsReq = (
 export const getTotalsReq = async (
   props: WalletTotalsProps,
   http: HTTPClient = clientHttp
-): Promise<AnnualOverview> => {
+): Promise<TotalsResponse> => {
   const responses = await Promise.all([
     getWalletTotalsReq(props, http),
     getGameroundsTotalsReq(pick(["startTime", "endTime"], props), http),
@@ -132,3 +139,43 @@ export const getTransactionsReq = (
   http: HTTPClient = clientHttp
 ): Promise<Array<TransactionResponseRaw>> =>
   http.get(getTransactionsUrl(props));
+
+/**
+ * This method uses transactions endpoint and is short-term, intended for Spain audit.
+ * It would not be feasible to fetch all transactions in previous years just to get
+ * wallet balance at some point in time.
+ * After Aug 19 2019 a proper solution will be delivered.
+ *
+ */
+export const getStartingEndBalanceReq = async (
+  props: WalletTotalsProps,
+  http: HTTPClient = clientHttp
+): Promise<StartingEndBalanceResponse> => {
+  const transactionsResp = await getTransactionsReq(
+    { ...props, perPage: 10000 },
+    http
+  );
+  // API returns a sorted list, from the latest transaction to the oldest
+  return {
+    startingBalanceAmount: path(
+      ["balanceBefore", "amount"],
+      last(transactionsResp)
+    ),
+    endBalanceAmount: path(["balanceAfter", "amount"], head(transactionsResp)),
+  };
+};
+
+export const getOverviewReq = async (
+  props: WalletTotalsProps,
+  http: HTTPClient = clientHttp
+): Promise<AnnualOverview> => {
+  const [totalsResp, startingEndBalanceResp] = await Promise.all([
+    getTotalsReq(props, http),
+    getStartingEndBalanceReq(props, http),
+  ]);
+
+  return {
+    ...totalsResp,
+    ...startingEndBalanceResp,
+  };
+};

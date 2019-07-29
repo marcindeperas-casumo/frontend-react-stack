@@ -9,6 +9,8 @@ export type AnnualOverview = {
   withdrawalsAmount: number,
   awardedBonusesAmount: number,
   convertedBonusesAmount: number,
+  startingBalanceAmount: number,
+  endBalanceAmount: number,
 };
 
 export type WalletTotalsProps = {

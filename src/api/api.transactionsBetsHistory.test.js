@@ -4,7 +4,9 @@ import {
   getGameroundsTotalsReq,
   getTotalsReq,
   getTransactionsReq,
+  getStartingEndBalanceReq,
 } from "./api.transactionsBetsHistory";
+import { transactions as transactionsMock } from "./__mocks__/api.transactionsBetsHistory.mock";
 
 describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
   const http = {
@@ -113,5 +115,26 @@ describe("getTransactionsReq()", () => {
     expect(http.get).toHaveBeenCalledWith(
       `/api/common/query/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
     );
+  });
+});
+
+describe("getStartingEndBalanceReq()", () => {
+  const http = {
+    get: jest.fn().mockReturnValueOnce(transactionsMock),
+  };
+
+  test("returns data correctly calculated based on fetched data", async () => {
+    const props = {
+      walletId: "wallet-id-123456",
+      startTime: DateTime.utc(2019),
+      endTime: DateTime.utc(2020),
+    };
+
+    const resp = await getStartingEndBalanceReq(props, http);
+
+    expect(resp).toEqual({
+      startingBalanceAmount: 249.2855,
+      endBalanceAmount: 289.2855,
+    });
   });
 });
