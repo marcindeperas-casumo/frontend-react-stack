@@ -15,6 +15,10 @@ type GameroundsTotalsProps = {
   endTime: DateTime,
 };
 
+type TransactionsProps = WalletTotalsProps & {
+  perPage?: number,
+};
+
 type AmountWithCodeResponseRaw = {
   amount: number,
   iso4217CurrencyCode: string,
@@ -33,6 +37,23 @@ type GameroundsTotalsResponseRaw = Array<{
   betsAmount: number,
   winningsAmount: number,
 }>;
+
+type TransactionResponseRaw = {
+  balanceBefore: AmountWithCodeResponseRaw,
+  balanceAfter: AmountWithCodeResponseRaw,
+  delta: AmountWithCodeResponseRaw,
+  details: Object,
+  fee: AmountWithCodeResponseRaw,
+  id: string,
+  paymentMethodId: string,
+  reason: string,
+  sequenceNumber: number,
+  state: string,
+  timestamp: number,
+  walletId: string,
+  walletUpdateSource: string,
+  withdrawalLocked: boolean,
+};
 
 const getWalletTotalsUrl = ({
   walletId,
@@ -94,3 +115,20 @@ export const getTotalsReq = async (
     winningsAmount: path([1, 0, "winningsAmount"], responses),
   };
 };
+
+const getTransactionsUrl = ({
+  startTime,
+  endTime,
+  walletId,
+  perPage = 50,
+}: TransactionsProps): string => {
+  return `${
+    URLS.QUERY
+  }/wallet/${walletId}/transaction/${startTime.toISO()}/${endTime.toISO()}/${perPage}`;
+};
+
+export const getTransactionsReq = (
+  props: TransactionsProps,
+  http: HTTPClient = clientHttp
+): Promise<Array<TransactionResponseRaw>> =>
+  http.get(getTransactionsUrl(props));

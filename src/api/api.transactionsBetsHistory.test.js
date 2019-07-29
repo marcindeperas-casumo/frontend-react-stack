@@ -3,6 +3,7 @@ import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
   getTotalsReq,
+  getTransactionsReq,
 } from "./api.transactionsBetsHistory";
 
 describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
@@ -91,5 +92,26 @@ describe("getTotalsReq()", () => {
       betsAmount: 89.3,
       winningsAmount: 124,
     });
+  });
+});
+
+describe("getTransactionsReq()", () => {
+  const http = {
+    get: jest.fn(),
+  };
+
+  test("is called with correctly formatted url", async () => {
+    const props = {
+      walletId: "wallet-id-123456",
+      startTime: DateTime.utc(2018),
+      endTime: DateTime.utc(2019),
+    };
+    const startTimeInUrl = props.startTime.toISO();
+    const endTimeInUrl = props.endTime.toISO();
+    await getTransactionsReq(props, http);
+
+    expect(http.get).toHaveBeenCalledWith(
+      `/api/common/query/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
+    );
   });
 });
