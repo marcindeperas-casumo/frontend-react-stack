@@ -2,8 +2,13 @@ import React from "react";
 import { mount, shallow } from "enzyme";
 import { omit } from "ramda";
 import Card from "@casumo/cmp-card";
+import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
 import { CuratedCard } from "Components/CuratedCard/CuratedCard";
+import {
+  CuratedCardHeader,
+  CuratedCardHeaderWithSubtitle,
+} from "Components/CuratedCard/CuratedCardHeader";
 import {
   CuratedCardFooterGame,
   CuratedCardFooterText,
@@ -80,21 +85,17 @@ describe("CuratedCard", () => {
   test("should render subtitle html", () => {
     const component = mount(
       <CuratedCard {...curatedCardDataPromotion} isFetched={true} />
-    ).render();
-    const text = component
-      .find("[data-test='curated-card-header-subtitle']")
-      .text();
+    );
 
-    expect(text).toBe(curatedCardDataPromotion.subtitle);
+    expect(component.find(CuratedCardHeaderWithSubtitle).length).toBe(1);
   });
 
   test("should render header html", () => {
     const component = mount(
       <CuratedCard {...curatedCardDataGame} isFetched={true} />
-    ).render();
-    const html = component.find("[data-test='curated-card-header']").html();
+    );
 
-    expect(html).toBe(curatedCardDataGame.header);
+    expect(component.find(CuratedCardHeader).length).toBe(1);
   });
 
   test("init fetch if not isFetched", () => {
@@ -208,16 +209,7 @@ describe("CuratedCard", () => {
 describe("Curated card - tracking", () => {
   const curatedSlug = "CURATED";
   const contentSlug = "topwheel-treasures";
-  const render = curatedMock => {
-    return mount(
-      <CuratedCard
-        {...curatedMock}
-        fetchCurated={fetchCurated}
-        isFetched={true}
-        curatedSlug={`${curatedSlug}.${contentSlug}`}
-      />
-    );
-  };
+
   const assertTrackClickData = (trackComponent, type, slug) => {
     const expectedTrackData = {
       type,
@@ -229,15 +221,25 @@ describe("Curated card - tracking", () => {
   };
 
   let fetchCurated;
-  let rendered;
+  let onLaunchGame;
 
   beforeEach(() => {
+    onLaunchGame = jest.fn();
     fetchCurated = jest.fn();
-    rendered = render(curatedData);
   });
 
   test("should track card click with game data when curated type is game", () => {
-    const trackClick = rendered.find("TrackClick").first();
+    const trackClick = mount(
+      <CuratedCard
+        {...curatedData}
+        fetchCurated={fetchCurated}
+        onLaunchGame={onLaunchGame}
+        isFetched={true}
+        curatedSlug={`${curatedSlug}.${contentSlug}`}
+      />
+    )
+      .find("TrackClick")
+      .first();
 
     assertTrackClickData(trackClick, curatedData.typeOfCurated, contentSlug);
   });
@@ -248,22 +250,53 @@ describe("Curated card - tracking", () => {
       gameData: null,
       typeOfCurated: CURATED_TYPE.PROMOTION,
     };
-    rendered = render(promotionMock);
-    const trackClick = rendered.find("TrackClick").first();
+    const trackClick = mount(
+      <CuratedCard
+        {...promotionMock}
+        fetchCurated={fetchCurated}
+        onLaunchGame={onLaunchGame}
+        isFetched={true}
+        curatedSlug={`${curatedSlug}.${contentSlug}`}
+      />
+    )
+      .find("TrackClick")
+      .first();
 
     assertTrackClickData(trackClick, promotionMock.typeOfCurated, contentSlug);
   });
 
-  test("should track play button with game data when curated ", () => {
-    const playTrackClick = rendered
-      .find(CuratedCardFooterGame)
-      .find("TrackClick")
-      .first();
+  const responsiveMap = {
+    mobile: setMobileViewport,
+    desktop: setDesktopViewport,
+  };
 
-    assertTrackClickData(
-      playTrackClick,
-      curatedData.typeOfCurated,
-      contentSlug
-    );
+  describe("responsive", () => {
+    beforeEach(() => {
+      jest.resetAllMocks();
+    });
+
+    Object.keys(responsiveMap).forEach(viewportName => {
+      test(`should track ${viewportName} footer play button with game data`, () => {
+        responsiveMap[viewportName]();
+        const playTrackClick = mount(
+          <CuratedCard
+            {...curatedData}
+            fetchCurated={fetchCurated}
+            onLaunchGame={onLaunchGame}
+            isFetched={true}
+            curatedSlug={`${curatedSlug}.${contentSlug}`}
+          />
+        )
+          .find(CuratedCardFooterGame)
+          .find("TrackClick")
+          .first();
+
+        assertTrackClickData(
+          playTrackClick,
+          curatedData.typeOfCurated,
+          contentSlug
+        );
+      });
+    });
   });
 });
