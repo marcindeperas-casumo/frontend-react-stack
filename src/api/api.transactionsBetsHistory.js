@@ -152,7 +152,7 @@ export const getStartingEndBalanceReq = async (
   http: HTTPClient = clientHttp
 ): Promise<StartingEndBalanceResponse> => {
   const transactionsResp = await getTransactionsReq(
-    { ...props, perPage: 10000 },
+    { ...props, perPage: 1000 },
     http
   );
   // API returns a sorted list, from the latest transaction to the oldest

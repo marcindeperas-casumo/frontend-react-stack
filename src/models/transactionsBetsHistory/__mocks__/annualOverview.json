@@ -5,5 +5,7 @@
   "winningsAmount": 98.8,
   "awardedBonusesAmount": 13,
   "convertedBonusesAmount": 45,
+  "startingBalanceAmount": 1000,
+  "endBalanceAmount": 1111,
   "currency": "GBP"
 }

@@ -81,7 +81,7 @@ export function TransactionsAnnualOverview({
       </Text>
       <ListItem
         label={t.annual_transactions_starting_balance}
-        amount={0}
+        amount={data.startingBalanceAmount}
         {...passedProps}
       />
       <ListItem
@@ -116,7 +116,7 @@ export function TransactionsAnnualOverview({
       />
       <ListItem
         label={t.annual_transactions_end_balance}
-        amount={0}
+        amount={data.endBalanceAmount}
         {...passedProps}
       />
       <Button className="u-margin-top--lg u-margin-bottom--md" disabled>

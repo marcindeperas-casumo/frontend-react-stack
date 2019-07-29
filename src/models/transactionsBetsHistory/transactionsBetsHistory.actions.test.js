@@ -1,7 +1,7 @@
 // @flow
 import { DateTime } from "luxon";
 import { types as fetchTypes } from "Models/fetch";
-import { getTotalsReq } from "Api/api.transactionsBetsHistory";
+import { getOverviewReq } from "Api/api.transactionsBetsHistory";
 import {
   initFetchAnnualOverview,
   fetchAnnualOverview,
@@ -33,7 +33,7 @@ describe("Models/transactionsBetsHistory/Actions", () => {
       type: fetchTypes.FETCH,
       name: types.ANNUAL_OVERVIEW_FETCH_START,
       asyncCallData,
-      asyncCall: getTotalsReq,
+      asyncCall: getOverviewReq,
       postFetch: types.ANNUAL_OVERVIEW_FETCH_COMPLETED,
     });
   });
