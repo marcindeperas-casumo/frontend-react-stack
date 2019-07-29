@@ -134,7 +134,7 @@ export function DepositLimitsForm(props: Props) {
           </Pill>
         ))}
       </Flex>
-      <Flex style={{ flexGrow: 2 }} />
+      <Flex.Block />
       <Button
         variant="variant-2"
         className="u-padding-y--md"
