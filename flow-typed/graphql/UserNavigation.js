@@ -20,6 +20,10 @@ export type UserNavigation_sportsNavigation_sport = {
    */
   clientPath: string,
   /**
+   * The full path in the kambi client to navigate to the in-play bets for this group
+   */
+  clientPathLive: string,
+  /**
    * Normalized name of the group
    */
   termKey: string,
@@ -51,6 +55,10 @@ export type UserNavigation_sportsNavigation_subNav_competition = {
    */
   clientPath: string,
   /**
+   * The full path in the kambi client to navigate to the in-play bets for this group
+   */
+  clientPathLive: string,
+  /**
    * Normalized name of the group
    */
   termKey: string,
@@ -72,7 +80,12 @@ export type UserNavigation_sportsNavigation = {
 export type UserNavigation = {
   allLabel: string,
   editLabel: string,
+  liveLabel: string,
   sportsNavigation: Array<UserNavigation_sportsNavigation>,
+};
+
+export type UserNavigationVariables = {
+  live: boolean
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

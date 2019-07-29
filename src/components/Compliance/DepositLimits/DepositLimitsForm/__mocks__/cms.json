@@ -11,5 +11,6 @@
   "input_validation_highest_limit": "input_validation_highest_limit",
   "input_validation_cant_be_higher": "input_validation_cant_be_higher",
   "input_validation_cant_be_lower": "input_validation_cant_be_lower",
-  "input_validation_has_to_be_lower_while_locked": "input_validation_has_to_be_lower_while_locked"
+  "input_validation_has_to_be_lower_while_locked": "input_validation_has_to_be_lower_while_locked",
+  "input_validation_has_to_be_lower_after_responsible_gambling_test_failed": "New limit must be less than {currentLimit}"
 }
