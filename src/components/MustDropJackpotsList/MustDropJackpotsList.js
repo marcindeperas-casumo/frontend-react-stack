@@ -24,10 +24,13 @@ export type Props = {
 const mustDropWidgetId = "mustDropWidg";
 
 const mustDropJackpotRenderer = ({ id, i }) => {
-  if (id.indexOf(mustDropWidgetId) !== -1) {
-    return <MustDropJackpotsWidget key={"must-drop-jackpots-widget"} />;
-  }
-  return <JackpotsListTile ids={id} key={`must-drop-jackpots-tile-${i}`} />;
+  const isIdMustDropWidgetId = id.indexOf(mustDropWidgetId) !== -1;
+
+  return isIdMustDropWidgetId ? (
+    <MustDropJackpotsWidget key={"must-drop-jackpots-widget"} />
+  ) : (
+    <JackpotsListTile ids={id} key={`must-drop-jackpots-tile-${i}`} />
+  );
 };
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
