@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
+import { Mobile, Desktop } from "Components/ResponsiveLayout";
 import { stringToHTML } from "Utils";
 
 type HeaderProps = {
@@ -12,23 +13,26 @@ type HeaderSubtitleProps = {
 };
 
 export const CuratedCardHeader = ({ header }: HeaderProps) => (
-  <Text
-    data-test="curated-card-header"
-    className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
-    size="2xlg"
-    dangerouslySetInnerHTML={stringToHTML(header)}
-  />
-);
-
-export const CuratedCardHeaderDesktop = ({ header }: HeaderProps) => (
-  <div class="o-wrapper">
-    <Text
-      data-test="curated-card-header"
-      className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
-      size="3xlg"
-      dangerouslySetInnerHTML={stringToHTML(header)}
-    />
-  </div>
+  <>
+    <Mobile>
+      <Text
+        data-test="curated-card-header"
+        className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+        size="2xlg"
+        dangerouslySetInnerHTML={stringToHTML(header)}
+      />
+    </Mobile>
+    <Desktop>
+      <div class="o-wrapper">
+        <Text
+          data-test="curated-card-header"
+          className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
+          size="3xlg"
+          dangerouslySetInnerHTML={stringToHTML(header)}
+        />
+      </div>
+    </Desktop>
+  </>
 );
 
 export const CuratedCardHeaderWithSubtitle = ({
