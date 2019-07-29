@@ -62,7 +62,7 @@ describe("<GameListHorizontal /> - Mobile", () => {
     expect(Component).toEqual(ITEM_RENDERERS.default);
   });
 
-  test("speficies spacing by list id", () => {
+  test("specifies spacing by list id", () => {
     Object.keys(ITEM_SPACING).forEach(listId => {
       rendered = mount(
         <MockStore state={defaultState}>
