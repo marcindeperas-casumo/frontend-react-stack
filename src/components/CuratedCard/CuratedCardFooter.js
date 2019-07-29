@@ -5,6 +5,7 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import { stringToHTML, convertHTMLToString } from "Utils";
+import { Mobile, Desktop } from "Components/ResponsiveLayout";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -39,6 +40,29 @@ export const CuratedCardFooterText = ({ text }: PromotionProps) => {
 };
 
 export const CuratedCardFooterGame = ({
+  gameData,
+  buttonText,
+  onLaunchGame,
+}: GameProps) => (
+  <>
+    <Mobile>
+      <CuratedCardFooterGameMobile
+        gameData={gameData}
+        buttonText={buttonText}
+        onLaunchGame={onLaunchGame}
+      />
+    </Mobile>
+    <Desktop>
+      <CuratedCardFooterGameDesktop
+        gameData={gameData}
+        buttonText={buttonText}
+        onLaunchGame={onLaunchGame}
+      />
+    </Desktop>
+  </>
+);
+
+export const CuratedCardFooterGameMobile = ({
   gameData,
   buttonText,
   onLaunchGame,
