@@ -7,21 +7,11 @@ import ScrollableList, {
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
     const title = "hi";
-    const rendered = shallow(
-      <ScrollableList itemIds={[1]} title={title} seeMoreUrl="ciao" />
-    );
+    const rendered = shallow(<ScrollableList itemIds={[1]} title={title} />);
     const titleComponent = rendered.find("ScrollableListTitleRow");
 
     expect(titleComponent.length).toBe(1);
     expect(titleComponent.props()).toMatchObject({ title });
-  });
-
-  test("not render the title of the list", () => {
-    const title = "hi";
-    const rendered = shallow(<ScrollableList itemIds={[1]} title={title} />);
-    const titleComponent = rendered.find("ScrollableListTitleRow");
-
-    expect(titleComponent.length).toBe(0);
   });
 
   test("do not render anything if the items are empty", () => {

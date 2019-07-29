@@ -52,13 +52,11 @@ export default class ScrollableList extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        {seeMoreUrl && (
-          <ScrollableListTitleRow
-            paddingLeft
-            seeMore={{ text: seeMoreText, url: seeMoreUrl }}
-            title={title}
-          />
-        )}
+        <ScrollableListTitleRow
+          paddingLeft
+          seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+          title={title}
+        />
         <Scrollable
           itemClassName={itemClassName}
           padding={PADDING_PER_DEVICE}
