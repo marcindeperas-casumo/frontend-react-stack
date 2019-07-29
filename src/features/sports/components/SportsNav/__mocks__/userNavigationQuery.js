@@ -21,7 +21,7 @@ const liveMock = {
   result: {
     data: {
       ...labels,
-      sportsNavigation: take(3, userNavigationData),
+      sportsNavigation: take(2, userNavigationData),
     },
   },
 };
