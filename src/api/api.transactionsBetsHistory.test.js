@@ -1,12 +1,18 @@
 import { DateTime } from "luxon";
+import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
 import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
   getTotalsReq,
   getTransactionsReq,
   getStartingEndBalanceReq,
+  getOverviewReq,
 } from "./api.transactionsBetsHistory";
-import { transactions as transactionsMock } from "./__mocks__/api.transactionsBetsHistory.mock";
+import {
+  transactions,
+  walletTotals,
+  gameroundTotals,
+} from "./__mocks__/api.transactionsBetsHistory.mock";
 
 describe("/api/common/query/wallet/xx-xx-xx-xx-xx/totals", () => {
   const http = {
@@ -120,7 +126,7 @@ describe("getTransactionsReq()", () => {
 
 describe("getStartingEndBalanceReq()", () => {
   const http = {
-    get: jest.fn().mockReturnValueOnce(transactionsMock),
+    get: jest.fn().mockReturnValueOnce(transactions),
   };
 
   test("returns data correctly calculated based on fetched data", async () => {
@@ -135,6 +141,37 @@ describe("getStartingEndBalanceReq()", () => {
     expect(resp).toEqual({
       startingBalanceAmount: 249.2855,
       endBalanceAmount: 289.2855,
+    });
+  });
+});
+
+describe("getOverviewReq()", () => {
+  const startingEndBalances = {
+    startingBalanceAmount: 249.2855,
+    endBalanceAmount: 289.2855,
+  };
+  const http = {
+    get: jest
+      .fn()
+      // these are for getTotalsReq
+      .mockReturnValueOnce(walletTotals)
+      .mockReturnValueOnce(gameroundTotals)
+      // this is for getStartingEndBalanceReq
+      .mockReturnValueOnce(transactions),
+  };
+
+  test("returns data correctly calculated based on fetched data", async () => {
+    const props = {
+      walletId: "wallet-id-123456",
+      startTime: DateTime.utc(2019),
+      endTime: DateTime.utc(2020),
+    };
+
+    const resp = await getOverviewReq(props, http);
+
+    expect(resp).toEqual({
+      ...annualOverview,
+      ...startingEndBalances,
     });
   });
 });
