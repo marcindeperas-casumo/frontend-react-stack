@@ -1,11 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
+import * as R from "ramda";
 import MustDropJackpotsList from "Components/MustDropJackpotsList/MustDropJackpotsList";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 
-const ids = ["1", "2", "3", "4", "5", "6", "7"];
+const ids = R.map(R.toString, R.range(0, 8));
 
 describe("<MustDropJackpotsList /> - Mobile", () => {
   setMobileViewport();
@@ -22,7 +23,7 @@ describe("<MustDropJackpotsList /> - Mobile", () => {
   test("passes down jackpot-ids to the tiles", () => {
     const firstTile = rendered.find("JackpotsListTile").first();
 
-    expect(firstTile.props().ids).toEqual(["1", "2", "3"]);
+    expect(firstTile.props().ids).toEqual(["0", "1", "2"]);
   });
 
   test("Should render a ScrollableListTitle component", () => {
