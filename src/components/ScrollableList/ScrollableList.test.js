@@ -1,14 +1,17 @@
 import React from "react";
 import { shallow } from "enzyme";
+import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableList, {
   DEFAULT_SPACING,
 } from "Components/ScrollableList/ScrollableList";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
+import GameTile from "Components/GameTile";
 
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
     const title = "hi";
     const rendered = shallow(<ScrollableList itemIds={[1]} title={title} />);
-    const titleComponent = rendered.find("ScrollableListTitleRow");
+    const titleComponent = rendered.find(ScrollableListTitleRow);
 
     expect(titleComponent.length).toBe(1);
     expect(titleComponent.props()).toMatchObject({ title });
@@ -23,7 +26,7 @@ describe("ScrollableList", () => {
   test("renders with the GameTileContainer by default", () => {
     const rendered = shallow(<ScrollableList itemIds={[1, 2]} title="hi" />);
 
-    expect(rendered.find("GameTileContainer")).toHaveLength(2);
+    expect(rendered.find(GameTile)).toHaveLength(2);
   });
 
   test("renders with the custom component if passed", () => {
@@ -45,7 +48,7 @@ describe("ScrollableList", () => {
 
   test("has default spacing", () => {
     const rendered = shallow(<ScrollableList itemIds={[1]} title="hi" />);
-    const scrollable = rendered.find("Scrollable");
+    const scrollable = rendered.find(Scrollable);
 
     expect(scrollable.props()).toMatchObject({ itemSpacing: DEFAULT_SPACING });
   });
@@ -55,7 +58,7 @@ describe("ScrollableList", () => {
     const rendered = shallow(
       <ScrollableList itemIds={[1]} title="hi" spacing={spacing} />
     );
-    const scrollable = rendered.find("Scrollable");
+    const scrollable = rendered.find(Scrollable);
 
     expect(scrollable.props()).toMatchObject({ itemSpacing: spacing });
   });
