@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import {
   GameListHorizontal,
   ITEM_SPACING,
@@ -10,22 +10,31 @@ import {
 import ScrollableList from "Components/ScrollableList";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
+import MockStore from "Components/MockStore/index";
+import defaultState from "Models/__mocks__/state.mock";
+import { Mobile } from "Components/ResponsiveLayout";
 
 const getList = id => ({ id, title: "Title.", games: ["game-1", "game-2"] });
 const list = getList("id-1");
 const seeMoreText = "whatever";
 
-describe("GameListHorizontal Mobile", () => {
+describe("<GameListHorizontal /> - Mobile", () => {
   let rendered;
-
   beforeEach(() => {
-    rendered = shallow(
-      <GameListHorizontal list={list} isLoading={false} />
-    ).find(Mobile);
+    setMobileViewport();
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} isLoading={false} />
+      </MockStore>
+    );
   });
 
-  test("renders a ScrollableList", () => {
+  test("should not render ScrollableListPaginated component", () => {
+    expect(rendered.find("ScrollableListPaginated")).toHaveLength(0);
+  });
+
+  test("should render a ScrollableList component", () => {
     expect(rendered.find(ScrollableList)).toHaveLength(1);
   });
 
@@ -53,31 +62,24 @@ describe("GameListHorizontal Mobile", () => {
     expect(Component).toEqual(ITEM_RENDERERS.default);
   });
 
-  test("speficies spacing by list id", () => {
+  test("specifies spacing by list id", () => {
     Object.keys(ITEM_SPACING).forEach(listId => {
-      rendered = shallow(<GameListHorizontal list={getList(listId)} />).find(
-        Mobile
-      );
+      rendered = mount(
+        <MockStore state={defaultState}>
+          <GameListHorizontal list={getList(listId)} isLoading={false} />
+        </MockStore>
+      ).find(Mobile);
       const { spacing } = rendered.find(ScrollableList).props();
 
       expect(spacing).toBe(ITEM_SPACING[listId]);
     });
   });
 
-  test("speficies renderer by list id", () => {
-    Object.keys(ITEM_RENDERERS).forEach(listId => {
-      rendered = shallow(<GameListHorizontal list={getList(listId)} />).find(
-        ScrollableList
-      );
-      const { Component } = rendered.props();
-
-      expect(Component).toEqual(ITEM_RENDERERS[listId]);
-    });
-  });
-
   test("passes seeMoreText to the ScrollableList", () => {
-    const { seeMoreText: seeMoreTextProp } = shallow(
-      <GameListHorizontal list={list} seeMoreText={seeMoreText} />
+    const { seeMoreText: seeMoreTextProp } = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} seeMoreText={seeMoreText} />
+      </MockStore>
     )
       .find(ScrollableList)
       .props();
@@ -86,30 +88,44 @@ describe("GameListHorizontal Mobile", () => {
   });
 
   test("displays a skeleton if the game-list is still loading", () => {
-    rendered = shallow(<GameListHorizontal list={list} isLoading={true} />);
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} isLoading={true} />
+      </MockStore>
+    );
 
     expect(rendered.find(GameListHorizontalSkeleton)).toHaveLength(1);
     expect(rendered.find(ScrollableList)).toHaveLength(0);
   });
 
   test("does not render anything if it is loaded but has no games", () => {
-    rendered = shallow(<GameListHorizontal list={{}} isLoading={false} />);
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={{}} isLoading={false} />
+      </MockStore>
+    );
 
     expect(rendered.html()).toBeNull();
   });
 });
 
-describe("GameListHorizontal Desktop", () => {
+describe("<GameListHorizontal /> - Desktop", () => {
   let rendered;
-
   beforeEach(() => {
-    rendered = shallow(
-      <GameListHorizontal list={list} isLoading={false} />
-    ).find(Desktop);
+    setDesktopViewport();
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} isLoading={false} />
+      </MockStore>
+    );
   });
 
-  test("renders a ScrollableListPaginated", () => {
-    expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
+  test("should render ScrollableListPaginated component", () => {
+    expect(rendered.find("ScrollableListPaginated")).toHaveLength(1);
+  });
+
+  test("should not render a ScrollableList component", () => {
+    expect(rendered.find(ScrollableList)).toHaveLength(0);
   });
 
   test("uses the default renderer if it is not specified", () => {
@@ -119,7 +135,11 @@ describe("GameListHorizontal Desktop", () => {
   });
 
   test("displays a skeleton if the game-list is still loading", () => {
-    rendered = shallow(<GameListHorizontal list={list} isLoading={true} />);
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} isLoading={true} />
+      </MockStore>
+    );
 
     expect(rendered.find(GameListHorizontalSkeleton)).toHaveLength(1);
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);
@@ -139,8 +159,10 @@ describe("GameListHorizontal Desktop", () => {
   });
 
   test("passes seeMoreText to the ScrollableListPaginated", () => {
-    const { seeMore: seeMoreProp } = shallow(
-      <GameListHorizontal list={list} seeMoreText={seeMoreText} />
+    const { seeMore: seeMoreProp } = mount(
+      <MockStore state={defaultState}>
+        <GameListHorizontal list={list} seeMoreText={seeMoreText} />
+      </MockStore>
     )
       .find(ScrollableListPaginated)
       .props();
