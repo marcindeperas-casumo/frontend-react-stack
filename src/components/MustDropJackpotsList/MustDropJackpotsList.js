@@ -1,8 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import { generateColumns } from "Utils";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import JackpotsListTile from "Components/JackpotsListTile";
