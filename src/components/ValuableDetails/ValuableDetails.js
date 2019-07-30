@@ -5,8 +5,6 @@ import MaskImage from "Components/MaskImage";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
 
 type Translations = {
-  /* Label for the expration badge */
-  expirationLabel: string,
   /* Label for the Play Now button */
   playNowLabel: string,
   /* Label for the Play to unlock button */
