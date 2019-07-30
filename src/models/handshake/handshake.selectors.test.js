@@ -21,6 +21,8 @@ import {
   adventureLevelsSelector,
   localeSelector,
   walletIdSelector,
+  playerNameSelector,
+  socialSecurityNumberSelector,
   isSuspiciousAccount,
 } from "./handshake.selectors";
 
@@ -373,6 +375,55 @@ describe("Handshake selectors", () => {
     };
 
     expect(adventureLevelsSelector(state)).toEqual(adventureDetails);
+  });
+
+  test("playerNameSelector", () => {
+    const name = {
+      firstName: "John",
+      lastName: "Doe",
+    };
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p2" },
+          "common/composition/players": {
+            players: {
+              p2: {
+                id: "p2",
+                contactInfo: {
+                  name,
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(playerNameSelector(state)).toEqual(name);
+  });
+
+  test("socialSecurityNumberSelector", () => {
+    const socialSecurityNumber = "xxx-xxx-xxx";
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p2" },
+          "common/composition/players": {
+            players: {
+              p2: {
+                id: "p2",
+                contactInfo: {
+                  socialSecurityNumber,
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(socialSecurityNumberSelector(state)).toEqual(socialSecurityNumber);
   });
 
   test("isSuspiciousAccount", () => {
