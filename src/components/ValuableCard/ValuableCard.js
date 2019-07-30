@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ValuableShowcase } from "Components/ValuableShowcase";
+import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";
 import {
@@ -96,7 +96,7 @@ export class ValuableCard extends PureComponent<Props> {
           onClick={this.props.onCardClick}
         >
           <Flex.Item>
-            <ValuableShowcase
+            <ValuableThumbnail
               backgroundImage={this.maskedImage}
               coinValue={coinValue}
               currency={currency}

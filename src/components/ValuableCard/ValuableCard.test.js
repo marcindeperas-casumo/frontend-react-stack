@@ -1,23 +1,22 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import { compose, prop } from "ramda";
+import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import { VALUABLE_TYPES } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
-import { ValuableShowcase } from "Components/ValuableShowcase";
 import { ValuableCard } from "./ValuableCard";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 
 const onCardClick = jest.fn();
 
 describe("ValuableCard", () => {
-  test("should always pass an image url to ValuableShowcase if type is not SPINS", () => {
+  test("should always pass an image url to ValuableThumbnail if type is not SPINS", () => {
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     const { backgroundImage: expectedValue } = mockValuable;
     const rendered = mount(
       <ValuableCard {...mockValuable} onCardClick={onCardClick} />
     );
     const actualValue = rendered
-      .find(ValuableShowcase)
+      .find(ValuableThumbnail)
       .find(MaskImage)
       .prop("imageUrl");
 

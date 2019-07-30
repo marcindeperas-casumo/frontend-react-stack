@@ -12,7 +12,7 @@ import {
   coinValueToSpinType,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
-import "./ValuableShowcase.scss";
+import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 
 type Props = {
@@ -34,7 +34,7 @@ type Props = {
   translatedHoursUnit: string,
 };
 
-export const ValuableShowcase = ({
+export const ValuableThumbnail = ({
   backgroundImage,
   coinValue,
   currency,
