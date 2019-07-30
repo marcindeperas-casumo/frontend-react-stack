@@ -8,11 +8,6 @@ import { ValuableDetails } from "./ValuableDetails";
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
-  const dimensions = {
-    width: 379,
-    height: 271,
-  };
-
   const ValuableCard = () => (
     <div
       style={{
@@ -29,7 +24,8 @@ stories.add("Default", () => {
     <ValuableDetails
       {...valuableMock}
       translations={translations}
-      {...dimensions}
+      width={379}
+      height={271}
       valuableRenderer={<ValuableCard />}
     />
   );
