@@ -10,7 +10,7 @@ type Translations = {
   /* Label for the Play to unlock button */
   playToUnlockLabel: string,
   /* Label for the deposit now button */
-  deopsitToUnlockLabel: string,
+  depositToUnlockLabel: string,
   /* Label for the terms and condition */
   termsAndConditionLabel: string,
 };
