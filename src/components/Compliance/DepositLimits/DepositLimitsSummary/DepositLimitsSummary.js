@@ -115,7 +115,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"
-          className="t-border-r--8 u-padding-y--lg u-padding-x--md"
+          className="t-border-r u-padding-y--lg u-padding-x--md"
           style={{ backgroundColor: "#f2f2f2" }}
         >
           <AdditionalConditions {...props.preadjust} t={t} />

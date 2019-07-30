@@ -50,7 +50,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <div
-        className="o-ratio o-ratio--live-casino-card t-border-r--8"
+        className="o-ratio o-ratio--live-casino-card t-border-r"
         onClick={this.props.launchGame}
       >
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />

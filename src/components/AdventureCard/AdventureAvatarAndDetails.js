@@ -43,7 +43,7 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className="t-border-r--8 u-width--1/1 u-margin-bottom--lg"
+        className="t-border-r u-width--1/1 u-margin-bottom--lg"
       >
         <Flex.Item className="c-adventure-card__avatar o-flex__item-fixed-size">
           <CasumoAvatar belt={belt} level={level} inBonusMode={inBonusMode} />

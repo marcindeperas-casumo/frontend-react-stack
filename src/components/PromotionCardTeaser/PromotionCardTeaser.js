@@ -35,7 +35,7 @@ class PromotionCardTeaser extends PureComponent<Props> {
       <a href={link}>
         <Flex
           spacing="md"
-          className="t-background-white t-border-r--16 u-padding--lg u-line-height--1"
+          className="t-background-white t-border-r--md u-padding--lg u-line-height--1"
         >
           <Flex.Block>
             <Text

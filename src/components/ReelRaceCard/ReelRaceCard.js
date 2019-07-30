@@ -219,7 +219,7 @@ export class ReelRaceCard extends React.Component<Props> {
           className={[
             "o-flex__item",
             "o-flex__item-fixed-size",
-            "t-border-r--16",
+            "t-border-r--md",
             "o-ratio",
             "o-ratio--reel-race-card",
             `t-color-${this.props.color}`,
