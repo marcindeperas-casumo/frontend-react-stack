@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { ValuableDetails } from "./ValuableDetails";
-import mock from "./__mocks__/Valuables.json";
+import mockValuables from "./__mocks__/Valuables.json";
 import translations from "./__mocks__/Translations.json";
 
 describe("ValuableDetails", () => {
@@ -10,7 +10,7 @@ describe("ValuableDetails", () => {
   const Foo = ({ foobar }) => <div>{foobar}</div>;
 
   beforeEach(() => {
-    const mockValuable = mock[0];
+    const mockValuable = mockValuables[0];
 
     rendered = shallow(
       <ValuableDetails
