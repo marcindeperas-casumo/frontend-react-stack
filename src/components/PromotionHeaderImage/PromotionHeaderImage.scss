@@ -20,3 +20,12 @@ $promotion-image-ratios: (
   height: 75%;
   max-height: 135px;
 }
+
+@include cudl-breakpoint(tablet) {
+  .c-promotion-header-image {
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    margin-top: map-get($cudl-spacer-sizes, lg);
+    overflow: hidden;
+  }
+}

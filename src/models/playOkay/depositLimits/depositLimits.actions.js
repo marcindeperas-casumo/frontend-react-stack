@@ -8,6 +8,7 @@ export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
   dispatch(limitPreadjust);
   dispatch(getRemainingLimits);
+  dispatch(checkResponsibleGamblingTest);
 };
 
 export const getAllLimits = {
@@ -24,12 +25,30 @@ export const getRemainingLimits = {
   asyncCall: api.remainingLimits,
 };
 
+export const checkResponsibleGamblingTest = {
+  type: fetchTypes.FETCH,
+  name: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST,
+  postFetch: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
+  asyncCall: api.checkResponsibleGamblingTest,
+};
+
 export const limitPreadjust = {
   type: fetchTypes.FETCH,
   name: depositLimitsTypes.PREADJUST,
   postFetch: depositLimitsTypes.PREADJUST_DONE,
   asyncCall: api.limitPreadjust,
 };
+
+export function sendResponsibleGamblingTest(passed: boolean) {
+  return (dispatch: ThunkDispatch) => {
+    api.sendResponsibleGamblingTest(passed).then(response => {
+      dispatch({
+        type: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
+        response,
+      });
+    });
+  };
+}
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {

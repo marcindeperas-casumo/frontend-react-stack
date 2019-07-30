@@ -60,8 +60,10 @@ export const MARKETS = {
   dk_da: "dk_da",
   fi_fi: "fi_fi",
   gb_en: "gb_en",
+  in_en: "in_en",
   no_no: "no_no",
   se_sv: "se_sv",
+  es_es: "es_es",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -70,8 +72,10 @@ export const LANGUAGES = {
   [MARKETS.dk_da]: "dk",
   [MARKETS.fi_fi]: "fi",
   [MARKETS.gb_en]: "gb",
+  [MARKETS.in_en]: "in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
+  [MARKETS.es_es]: "es",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -80,8 +84,10 @@ export const INTL_LOCALES = {
   [MARKETS.dk_da]: "da-DK",
   [MARKETS.fi_fi]: "fi-FI",
   [MARKETS.gb_en]: "en-GB",
+  [MARKETS.in_en]: "en-IN",
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
+  [MARKETS.es_es]: "es-ES",
 };
 
 export const EVENTS = {

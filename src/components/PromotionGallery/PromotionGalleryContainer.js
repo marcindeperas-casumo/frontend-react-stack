@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 import { take } from "ramda";
-import { fetchPageBySlug, getField } from "Models/cms";
+import { fetchPageBySlug, getField, getFieldIfNotSuspicious } from "Models/cms";
 import { marketSelector } from "Models/handshake";
 import PromotionCardGallery from "./PromotionGallery";
 
@@ -13,7 +13,7 @@ export default connect(
   (state, { slug }) => ({
     promotionsSlugs: take(
       4,
-      getField({
+      getFieldIfNotSuspicious({
         slug,
         field,
         defaultValue,
