@@ -8,6 +8,7 @@ import JackpotsListTile from "Components/JackpotsListTile";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 
 const ids = R.map(R.toString, R.range(0, 8));
 
@@ -33,8 +34,8 @@ describe("<MustDropJackpotsList /> - Mobile", () => {
     expect(rendered.find(ScrollableListTitleRow)).toHaveLength(1);
   });
 
-  test("Should render a MustDropJackpotsWidgetContainer component", () => {
-    expect(rendered.find("MustDropJackpotsWidgetContainer")).toHaveLength(1);
+  test("Should render a MustDropJackpotsWidget component if must-drop-jackpots-widget is amongst the ids", () => {
+    expect(rendered.find(MustDropJackpotsWidget)).toHaveLength(1);
   });
 
   test("renders tiles for every 3 game", () => {
