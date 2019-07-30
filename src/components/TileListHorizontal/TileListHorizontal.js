@@ -46,10 +46,8 @@ class TileListHorizontal extends PureComponent<Props> {
   render() {
     const { title, items, isLoaded } = this.props;
     const itemsWithBackground = items.filter(item => item.background !== null);
-    const itemRenderer = ({ id, rest }) => <Tile key={id} {...rest} />;
-    const scrollableChildren = itemsWithBackground.map(({ id, ...rest }) =>
-      itemRenderer({ id, rest })
-    );
+    const itemRenderer = ({ id, ...props }) => <Tile key={id} {...props} />;
+    const scrollableChildren = itemsWithBackground.map(itemRenderer);
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
