@@ -1,5 +1,9 @@
 import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
-import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
+import { types } from "./transactionsBetsHistory.constants";
+import {
+  prepareFetchAnnualOverviewPdfUrlProps,
+  getFetchTypeByYear,
+} from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
   describe("prepareFetchAnnualOverviewPdfUrlProps()", () => {
@@ -29,6 +33,15 @@ describe("transactionsBetsHistory.utils", () => {
         totalWins: "£34.50",
         totalBonusesConverted: "£2",
       });
+    });
+  });
+
+  describe("getFetchTypeByYear()", () => {
+    test("should return a properly formatted string", () => {
+      const type = types.ANNUAL_OVERVIEW_FETCH_INIT;
+      const year = 2010;
+
+      expect(getFetchTypeByYear(type, year)).toEqual(`${type}-${year}`);
     });
   });
 });

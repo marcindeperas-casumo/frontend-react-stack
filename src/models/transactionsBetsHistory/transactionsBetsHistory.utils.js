@@ -1,5 +1,6 @@
 // @flow
 import { formatCurrency } from "Utils";
+import { types } from "./transactionsBetsHistory.constants";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
@@ -38,4 +39,8 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
       annualOverview.convertedBonusesAmount
     ),
   };
+}
+
+export function getFetchTypeByYear(type: string, year: number): string {
+  return `${type}-${year}`;
 }
