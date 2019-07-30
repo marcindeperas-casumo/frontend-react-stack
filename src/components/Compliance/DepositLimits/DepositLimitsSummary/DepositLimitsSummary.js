@@ -106,7 +106,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
           </Flex>
         </Flex>
       ))}
-      <Flex style={{ flexGrow: 2 }} />
+      <Flex.Block />
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"

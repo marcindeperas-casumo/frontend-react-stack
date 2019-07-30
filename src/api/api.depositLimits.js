@@ -10,6 +10,8 @@ import type {
 
 // See swagger: limits.at.casumotest.local:8080/swagger-ui.html
 export const BASE_URL = "/casino-player/limits/api/limits";
+export const ES_PLAYER_LIFECYCLE =
+  "/casino-player/es-player-lifecycle/api/player";
 
 export function getAllLimits(): Promise<DepositLimit[]> {
   return http.get(BASE_URL);
@@ -33,4 +35,12 @@ export function limitCancel(kind: DepositKinds) {
 
 export function limitRevoke(kind: DepositKinds) {
   return http.post(`${BASE_URL}/${kind}/revoke`);
+}
+
+export function checkResponsibleGamblingTest() {
+  return http.get(ES_PLAYER_LIFECYCLE);
+}
+
+export function sendResponsibleGamblingTest(passed: boolean) {
+  return http.post(`${ES_PLAYER_LIFECYCLE}/questionnaire`, { passed });
 }

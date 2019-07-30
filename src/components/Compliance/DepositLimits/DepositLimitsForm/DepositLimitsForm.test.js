@@ -10,12 +10,6 @@ const limitsDefault = {
 const props = {
   t,
   locale: "en-GB",
-  pendingLimitChanges: {},
-  limitsUsage: {
-    daily: 0,
-    weekly: 0,
-    monthly: 0,
-  },
   limits: {
     ...limitsDefault,
     daily: 10,
@@ -23,6 +17,11 @@ const props = {
     monthly: 100,
   },
   applyLimitsChanges: () => {},
+  responsibleGamblingTest: {
+    responsibleGamblingQuestionnaireStatus: "SUCCESS",
+    responsibleGamblingQuestionnaireLastAttempt: null,
+    responsibleGamblingQuestionnaireAttemptAllowed: false,
+  },
 };
 
 function setUpDepositLimitsForm(override = {}) {

@@ -7,6 +7,7 @@
 // ====================================================
 
 export type GlossaryQuery_glossary = {
+  id: string,
   term: string,
   aka: ?string,
   definition: string,

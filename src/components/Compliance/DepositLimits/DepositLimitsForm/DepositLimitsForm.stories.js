@@ -18,5 +18,10 @@ stories.add("Default", () => (
       currency: "EUR",
     }}
     locale="en-GB"
+    responsibleGamblingTest={{
+      responsibleGamblingQuestionnaireStatus: "SUCCESS",
+      responsibleGamblingQuestionnaireLastAttempt: null,
+      responsibleGamblingQuestionnaireAttemptAllowed: true,
+    }}
   />
 ));
