@@ -17,8 +17,11 @@ import {
   SportTab,
   LiveTab,
 } from "Features/sports/components/SportsNav/SportsNavTab";
+import { makeAllSportsNavItem } from "Features/sports/components/SportsNav/sportsNavUtils";
+import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 const SPORTS_NAV_HEIGHT = 106;
+const buttonsBeforeNav = ["live", "all"];
 
 export type Props = {
   navItems: Array<SportsNavItemType>,
@@ -32,9 +35,24 @@ export type Props = {
 };
 
 export const renderLiveButton = (
-  label: string,
-  [isLiveActive, setIsLiveActive]: LiveState
-) => null;
+  { navItems, labels, canEdit, onEdit }: Props,
+  [isLiveActive, setIsLiveActive]: LiveState,
+  sportCount: number
+) => (
+  <LiveTab
+    count={sportCount}
+    label={labels.live}
+    isActive={isLiveActive}
+    onClick={() => {
+      const newState = !isLiveActive;
+
+      tracker.track(EVENTS.MIXPANEL_SPORTS_LIVE_NAV_TOGGLE, {
+        [EVENT_PROPS.SPORTS_STATE]: newState,
+      });
+      setIsLiveActive(newState);
+    }}
+  />
+);
 
 export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
@@ -63,18 +81,40 @@ const renderTab = (
   />
 );
 
+export const renderAllSportsTab = (
+  { isSelected, onSelected }: Props,
+  [isLiveActive]: LiveState
+) =>
+  isLiveActive && (
+    <DictionaryTerm termKey="navigation.all">
+      {allSportsGroupTitle => {
+        const navItem = makeAllSportsNavItem(allSportsGroupTitle);
+        return (
+          <SportTab
+            isSelected={isSelected(navItem)}
+            onClick={() => onSelected(navItem)}
+            navItem={navItem}
+          />
+        );
+      }}
+    </DictionaryTerm>
+  );
+
 export const renderTabList = (
   navItems: Array<SportsNavItemType>,
   props: Props
 ) => ({ columnIndex, style }: CellRendererParams) => {
-  const buttonsBeforeNav = ["live"];
-  const offsetIndex = columnIndex - buttonsBeforeNav.length;
+  const offset = buttonsBeforeNav.length;
+  const offsetIndex = columnIndex - offset;
+  const sportsCount = navItems.length - offset;
 
-  const isFirstItem = equals(-1);
+  const isFirstItem = equals(-offset);
+  const isSecondItem = equals(-offset + 1);
   const isLastItem = equals(navItems.length);
 
   const renderedTab = cond([
-    [isFirstItem, () => renderLiveButton(props.labels.live, props.liveState)],
+    [isFirstItem, () => renderLiveButton(props, props.liveState, sportsCount)],
+    [isSecondItem, () => renderAllSportsTab(props, props.liveState)],
     [isLastItem, () => renderEditButton(props, props.liveState)],
     [T, () => renderTab(navItems[offsetIndex], props)],
   ])(offsetIndex);
@@ -93,9 +133,7 @@ export const renderTabList = (
 export const SportsMainNav = (props: Props) => {
   const [isLiveActive] = props.liveState;
 
-  const { navItems } = props;
-  const tabCount = navItems.length;
-  const buttonsBeforeNav = ["live"];
+  const tabCount = props.navItems.length;
   const buttonsAfterNav = ["edit"];
   const columnCount =
     buttonsBeforeNav.length + tabCount + buttonsAfterNav.length;
@@ -111,7 +149,7 @@ export const SportsMainNav = (props: Props) => {
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
-      cellRenderer={renderTabList(navItems, props)}
+      cellRenderer={renderTabList(props.navItems, props)}
       height={SPORTS_NAV_HEIGHT}
       buttonRenderer={sportsPagerButtonRenderer}
       cacheBuster={cacheBuster}
