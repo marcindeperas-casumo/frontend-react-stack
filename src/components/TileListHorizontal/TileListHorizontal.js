@@ -45,9 +45,9 @@ class TileListHorizontal extends PureComponent<Props> {
 
   render() {
     const { title, items, isLoaded } = this.props;
-    const itemsNoBackground = items.filter(item => item.background !== null);
+    const itemsWithBackground = items.filter(item => item.background !== null);
     const itemRenderer = ({ id, rest }) => <Tile key={id} {...rest} />;
-    const scrollableChildren = itemsNoBackground.map(({ id, ...rest }) =>
+    const scrollableChildren = itemsWithBackground.map(({ id, ...rest }) =>
       itemRenderer({ id, rest })
     );
 
@@ -76,7 +76,7 @@ class TileListHorizontal extends PureComponent<Props> {
             <ScrollableListPaginated
               list={{
                 title: title,
-                itemIds: itemsNoBackground,
+                itemIds: itemsWithBackground,
               }}
               Component={({ id }) => <Tile {...id} />}
               className="c-tile"
