@@ -55,9 +55,7 @@ export const ValuableThumbnail = ({
 
   return (
     <div className="o-ratio o-ratio--valuable-card-header">
-      <div className="o-ratio__content t-border-r--10">
-        {backgroundRenderer}
-      </div>
+      <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
       <Flex
         align="center"
         className="o-ratio__content"
@@ -93,7 +91,7 @@ export const ValuableThumbnail = ({
       </Flex>
       {showStateBadge && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card-state u-display--inline-block t-background-white u-padding-bottom u-padding-right">
+          <div className="c-valuable-card__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
             <Flex
               align="center"
               className={stateBadgeProperties.classModifiers}
