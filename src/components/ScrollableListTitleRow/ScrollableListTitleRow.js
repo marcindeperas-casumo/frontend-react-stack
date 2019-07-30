@@ -15,8 +15,12 @@ type Props = {
 };
 
 export class ScrollableListTitleRow extends PureComponent<Props> {
+  static defaultProps = {
+    paddingLeft: false,
+  };
+
   render() {
-    const { title, seeMore, paddingLeft = false } = this.props;
+    const { title, seeMore, paddingLeft } = this.props;
 
     return (
       <Flex justify="space-between">
