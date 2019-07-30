@@ -21,13 +21,13 @@ export type Props = {
   seeMore: string,
 };
 
-const mustDropWidgetId = "mustDropWidg";
+const mustDropWidgetId = "must-drop-jackpots-widget";
 
 const mustDropJackpotRenderer = ({ id, i }) => {
   const isIdMustDropWidgetId = id.indexOf(mustDropWidgetId) !== -1;
 
   return isIdMustDropWidgetId ? (
-    <MustDropJackpotsWidget key={"must-drop-jackpots-widget"} />
+    <MustDropJackpotsWidget key={mustDropWidgetId} />
   ) : (
     <JackpotsListTile ids={id} key={`must-drop-jackpots-tile-${i}`} />
   );
