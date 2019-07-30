@@ -76,7 +76,8 @@ class TileListHorizontal extends PureComponent<Props> {
                 title: title,
                 itemIds: itemsWithBackground,
               }}
-              Component={({ id }) => <Tile {...id} />}
+              // we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
+              Component={({ id: item }) => <Tile {...item} />}
               className="c-tile"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
