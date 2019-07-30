@@ -35,8 +35,9 @@ const JackpotsColumn = ({ column }) => {
   );
 };
 
-const JackpotColumnRenderer = ({ id, i }) => (
-  <JackpotsColumn key={`jackpots-column-${i}`} column={id} />
+// we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
+const JackpotColumnRenderer = ({ id: idsInColumn, i }) => (
+  <JackpotsColumn key={`jackpots-column-${i}`} column={idsInColumn} />
 );
 
 export default class Jackpots extends PureComponent<Props> {

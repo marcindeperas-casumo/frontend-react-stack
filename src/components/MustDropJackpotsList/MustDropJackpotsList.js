@@ -23,13 +23,14 @@ export type Props = {
 
 const mustDropWidgetId = "must-drop-jackpots-widget";
 
-const mustDropJackpotRenderer = ({ id, i }) => {
-  const isIdMustDropWidgetId = id.indexOf(mustDropWidgetId) !== -1;
+// we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
+const mustDropJackpotRenderer = ({ id: idsInColumn, i }) => {
+  const isIdMustDropWidgetId = idsInColumn.indexOf(mustDropWidgetId) !== -1;
 
   return isIdMustDropWidgetId ? (
     <MustDropJackpotsWidget key={mustDropWidgetId} />
   ) : (
-    <JackpotsListTile ids={id} key={`must-drop-jackpots-tile-${i}`} />
+    <JackpotsListTile ids={idsInColumn} key={`must-drop-jackpots-tile-${i}`} />
   );
 };
 
