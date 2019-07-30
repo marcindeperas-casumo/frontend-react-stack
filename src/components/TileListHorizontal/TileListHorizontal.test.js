@@ -1,10 +1,15 @@
 import React from "react";
 import { mount } from "enzyme";
 import * as R from "ramda";
+import Scrollable from "@casumo/cmp-scrollable";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 import TileListHorizontal from "Components/TileListHorizontal/TileListHorizontal";
+import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import Tile from "./Tile";
 
 const items = R.map(R.toString, R.range(0, 4));
 
@@ -21,7 +26,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
   });
 
   test("should not render ScrollableListPaginated component", () => {
-    expect(rendered.find("ScrollableListPaginated")).toHaveLength(0);
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);
   });
 
   test("should render skeleton while loading", () => {
@@ -31,7 +36,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
       </MockStore>
     );
 
-    expect(rendered.find("TileListHorizontalSkeleton")).toHaveLength(1);
+    expect(rendered.find(TileListHorizontalSkeleton)).toHaveLength(1);
   });
 
   test("shouldn't render unless there are items", () => {
@@ -66,13 +71,13 @@ describe("<TileListHorizontal /> - Mobile", () => {
       </MockStore>
     );
 
-    expect(rendered.find("ScrollableListTitle")).toHaveLength(1);
-    expect(rendered.find("ScrollableListTitle").prop("title")).toBe(title);
-    expect(rendered.find("Scrollable").find("Tile")).toHaveLength(1);
+    expect(rendered.find(ScrollableListTitle)).toHaveLength(1);
+    expect(rendered.find(ScrollableListTitle).prop("title")).toBe(title);
+    expect(rendered.find(Scrollable).find(Tile)).toHaveLength(1);
 
     const tile = rendered
-      .find("Scrollable")
-      .find("Tile")
+      .find(Scrollable)
+      .find(Tile)
       .first();
 
     expect(tile.prop("url")).toBe(item.url);
@@ -94,7 +99,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
   });
 
   test("should not render ScrollableListPaginated component", () => {
-    expect(rendered.find("ScrollableListPaginated")).toHaveLength(1);
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
   });
 
   //eslint-disable-next-line sonarjs/no-identical-functions
@@ -105,7 +110,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
       </MockStore>
     );
 
-    expect(rendered.find("TileListHorizontalSkeleton")).toHaveLength(1);
+    expect(rendered.find(TileListHorizontalSkeleton)).toHaveLength(1);
   });
 
   //eslint-disable-next-line sonarjs/no-identical-functions
