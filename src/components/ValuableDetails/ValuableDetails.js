@@ -16,7 +16,7 @@ type Translations = {
 };
 
 type Props = {
-  /* Unique id of valuable */
+  /* Unique id of the valuable */
   id: string,
   /* Url of the background image to be used in the header */
   backgroundImageUrl: string,
