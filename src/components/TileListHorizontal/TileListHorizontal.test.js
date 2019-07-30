@@ -98,7 +98,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
     );
   });
 
-  test("should not render ScrollableListPaginated component", () => {
+  test("should render ScrollableListPaginated component", () => {
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
   });
 
