@@ -1,9 +1,7 @@
 // @flow
-import React, { useEffect, useCallback } from "react";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import Button from "@casumo/cmp-button";
-import { DownloadIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
 import type { AnnualOverview } from "Models/transactionsBetsHistory";
 
@@ -21,10 +19,12 @@ type Content = {
 };
 
 type Props = {
+  selectedYear: number,
   locale: string,
   t: Content,
-  data: AnnualOverview,
+  data?: AnnualOverview,
   navigateToHistory: () => void,
+  PdfButton: any => React.Node,
 };
 
 type ListItemProps = {
@@ -33,6 +33,8 @@ type ListItemProps = {
   currency: string,
   locale: string,
 };
+
+const { useCallback } = React;
 
 function ListItem({ label, amount, currency, locale }: ListItemProps) {
   const formatCurrencyBound = useCallback(
@@ -66,13 +68,15 @@ export function TransactionsAnnualOverview({
   t,
   data,
   navigateToHistory,
+  selectedYear,
+  PdfButton,
 }: Props) {
-  const passedProps = { currency: data.currency, locale };
-
   if (!data) {
     navigateToHistory();
     return null;
   }
+
+  const passedProps = { currency: data.currency, locale };
 
   return (
     <div className="u-padding--md t-background-white">
@@ -119,10 +123,10 @@ export function TransactionsAnnualOverview({
         amount={0}
         {...passedProps}
       />
-      <Button className="u-margin-top--lg u-margin-bottom--md" disabled>
-        <DownloadIcon />
-        {t.annual_transactions_download_pdf}
-      </Button>
+      <PdfButton
+        year={selectedYear}
+        label={t.annual_transactions_download_pdf}
+      />
     </div>
   );
 }

@@ -38,6 +38,11 @@
   }
 }
 
+// Hide Kambi's sports filter when on all live events view
+.KambiBC-filter-events__container {
+  display: none !important;
+}
+
 #mod-KambiBC-betslip-container .mod-KambiBC-betslip {
   max-height: calc(100% - var(--play-okay-bar-height, 0)) !important;
 }

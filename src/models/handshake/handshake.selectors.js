@@ -66,6 +66,11 @@ export const adventureLevelsSelector = createSelector(
   prop("common/composition/Adventure")
 );
 
+export const isSuspiciousAccount = createSelector(
+  playerSelector,
+  prop("suspiciousAccount")
+);
+
 // TODO: check if we need to fallback on the country guesser. Another option
 // would be to set the guesser values in the application state, so it will be
 // available for everyone
@@ -148,4 +153,14 @@ export const tournamentChannelsSelector = createSelector(
 export const walletIdSelector = createSelector(
   playerSelector,
   path(["wallet", "id"])
+);
+
+export const playerNameSelector = createSelector(
+  playerSelector,
+  path(["contactInfo", "name"])
+);
+
+export const socialSecurityNumberSelector = createSelector(
+  playerSelector,
+  path(["contactInfo", "socialSecurityNumber"])
 );

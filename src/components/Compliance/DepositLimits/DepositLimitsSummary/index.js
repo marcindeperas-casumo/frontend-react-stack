@@ -1,2 +1,2 @@
 // @flow
-export { DepositLimitsSummary } from "./DepositLimitsSummary";
+export { DepositLimitsSummaryContainer } from "./DepositLimitsSummaryContainer";

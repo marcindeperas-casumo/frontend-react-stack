@@ -26,7 +26,7 @@ type Props = {
     weekly_short: string,
     monthly_short: string,
     deposit_limits: string,
-    change_in_future: string,
+    pending_change: string,
     remove_all: string,
     remaining_limit: string,
   },
@@ -42,9 +42,7 @@ type Props = {
   removeAll: () => void,
 };
 
-export function DepositLimitsOverview(props: Props) {
-  const { t } = props;
-
+export function DepositLimitsOverview({ t, ...props }: Props) {
   return (
     <Flex
       direction="vertical"
@@ -101,13 +99,13 @@ export function DepositLimitsOverview(props: Props) {
                 </Flex>
                 <MoreIcon className="t-color-grey-light-1" />
               </Flex>
-              {props.pendingLimitChanges[x] && (
+              {props.pendingLimitChanges?.[x] && (
                 <Text
                   tag="span"
                   size="sm"
                   className="u-margin-left--xlg t-color-grey-light-1"
                 >
-                  {interpolate(t.change_in_future, {
+                  {interpolate(t.pending_change, {
                     newLimitValue: formatCurrency({
                       locale: props.locale,
                       currency: props.limits.currency,

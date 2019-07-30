@@ -11,6 +11,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       },
       undoable: true,
       lock: false,
+      responsibleGamblingTest: undefined,
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
@@ -51,6 +52,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           undoable: false,
           lock: undefined,
           preadjust: undefined,
+          responsibleGamblingTest: undefined,
           remaining: undefined,
         },
         action

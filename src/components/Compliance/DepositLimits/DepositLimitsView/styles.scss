@@ -1,0 +1,7 @@
+// stylelint-disable xi/selector-pattern, selector-max-id
+.page,
+.router,
+#react-host-deposit-limits,
+#react-host-deposit-limits > div {
+  height: 100%;
+}
