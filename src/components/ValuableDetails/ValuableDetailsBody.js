@@ -43,7 +43,7 @@ export const ValuableDetailsBody = ({
         </Text>
       </Flex.Item>
       <Flex.Item className="u-width--1/3 u-margin-y--xlg">
-        <hr className="t-color-grey-light-2 u-ruler-sm" />
+        <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
       </Flex.Item>
       <Flex.Item>
         <Text tag="strong" className="t-color-grey" size="sm">
