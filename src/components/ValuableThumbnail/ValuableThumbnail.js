@@ -25,7 +25,7 @@ type Props = {
   /** Market of the player */
   market: string,
   /** Background image to be displayed in the Card header */
-  backgroundImage: Node,
+  backgroundRenderer: Node,
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
@@ -35,7 +35,7 @@ type Props = {
 };
 
 export const ValuableThumbnail = ({
-  backgroundImage,
+  backgroundRenderer,
   coinValue,
   currency,
   expirationTimeInHours,
@@ -55,10 +55,12 @@ export const ValuableThumbnail = ({
 
   return (
     <div className="o-ratio o-ratio--valuable-card-header">
-      <div className="o-ratio__content t-border-r--10">{backgroundImage}</div>
+      <div className="o-ratio__content t-border-r--10">
+        {backgroundRenderer}
+      </div>
       <Flex
         align="center"
-        className="o-ratio__content c-valuable-card-heade"
+        className="o-ratio__content"
         data-test="valuable-card-header-coin"
         direction="vertical"
         justify="end"
@@ -146,17 +148,16 @@ function getCoinTextClassModifier(valuableType, spinType) {
 }
 
 function getStateBadgeProperties(valuableState, hours, translatedHoursUnit) {
-  // eslint-disable-next-line fp/no-let
-  let badgeProperties = {
+  const badgeProperties = {
     visible: false,
     text: "",
     classModifiers: "",
     icon: null,
   };
+  const isAboutToExpire = hours > 0 && hours <= 24;
 
   if (valuableState === VALUABLE_STATES.LOCKED) {
-    // eslint-disable-next-line fp/no-mutation
-    badgeProperties = {
+    return {
       ...badgeProperties,
       icon: (
         <LockIcon
@@ -169,9 +170,8 @@ function getStateBadgeProperties(valuableState, hours, translatedHoursUnit) {
       text: VALUABLE_STATES.LOCKED,
       visible: true,
     };
-  } else if (hours > 0 && hours <= 24) {
-    // eslint-disable-next-line fp/no-mutation
-    badgeProperties = {
+  } else if (isAboutToExpire) {
+    return {
       ...badgeProperties,
       icon: (
         <ClockIcon

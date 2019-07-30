@@ -97,7 +97,7 @@ export class ValuableCard extends PureComponent<Props> {
         >
           <Flex.Item>
             <ValuableThumbnail
-              backgroundImage={this.maskedImage}
+              backgroundRenderer={this.maskedImage}
               coinValue={coinValue}
               currency={currency}
               expirationTimeInHours={expirationTimeInHours}
