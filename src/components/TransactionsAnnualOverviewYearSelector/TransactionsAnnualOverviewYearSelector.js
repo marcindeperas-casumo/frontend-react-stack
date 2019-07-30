@@ -1,5 +1,6 @@
 // @flow
 import React, { useState, useEffect, useCallback } from "react";
+import { usePromise } from "react-use";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -69,6 +70,7 @@ export function TransactionsAnnualOverviewYearSelector({
   const onClick = useCallback(() => {
     triggerFetch(true);
   });
+  const mounted = usePromise();
 
   useEffect(() => {
     if (!isTriggeredFetch) {
@@ -78,11 +80,14 @@ export function TransactionsAnnualOverviewYearSelector({
     setLoading(true);
     triggerFetch(false);
 
-    fetchYearOverview(year).catch(e => {
-      logger.error(e);
-      setLoading(false);
-    });
-  }, [fetchYearOverview, isTriggeredFetch, year]);
+    mounted(fetchYearOverview(year))
+      .catch(e => {
+        logger.error(e);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }, [fetchYearOverview, isTriggeredFetch, mounted, year]);
 
   useEffect(() => {
     if (!isContentFetched) {

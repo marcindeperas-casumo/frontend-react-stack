@@ -4,6 +4,7 @@ import { createSelector } from "reselect";
 import type {
   DepositLimitsReduxStore,
   DepositLimitKind,
+  DepositLimitPreadjustRules,
 } from "./depositLimits.types";
 
 export const getDepositLimitsSelector: any => DepositLimitsReduxStore = createSelector(
@@ -12,3 +13,12 @@ export const getDepositLimitsSelector: any => DepositLimitsReduxStore = createSe
 );
 
 export const kindEq: DepositLimitKind => boolean = R.propEq("kind");
+
+export const hasRule = (
+  rule: DepositLimitPreadjustRules,
+  rules: Array<DepositLimitPreadjustRules>
+): boolean =>
+  R.pipe(
+    R.find(R.equals(rule)),
+    Boolean
+  )(rules);

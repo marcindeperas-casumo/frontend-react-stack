@@ -12,6 +12,7 @@ const stories = storiesOf("DepositLimitsSummary", module);
 const actions = {
   confirmLimitsAdjust: action("confirmLimitsAdjust clicked"),
   edit: action("edit clicked"),
+  fetchTranslations: action("fetchTranslations"),
 };
 const range = {
   range: true,

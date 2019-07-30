@@ -1,14 +1,13 @@
 // @flow
 import * as R from "ramda";
-import type { AllLimitsOnlyValues } from "Models/playOkay/depositLimits";
+import type {
+  AllLimitsOnlyValues,
+  DepositKinds,
+} from "Models/playOkay/depositLimits";
 import { limitTypes } from "..";
 
 export type LimitChange = "unchanged" | "increase" | "decrease" | "removed";
-export type LimitsDiff = {
-  daily: LimitChange,
-  weekly: LimitChange,
-  monthly: LimitChange,
-};
+export type LimitsDiff = { [DepositKinds]: LimitChange };
 
 export function diffLimits({
   before,
@@ -46,4 +45,14 @@ export const checkIfConditionsApply: LimitsDiff => Boolean = R.pipe(
       R.equals(("removed": LimitChange)),
     ])
   )
+);
+
+type getSpecificKinds1 = (LimitChange, LimitsDiff) => Array<DepositKinds>;
+type getSpecificKinds2 = LimitChange => LimitsDiff => Array<DepositKinds>;
+export const getSpecificKinds: getSpecificKinds1 & getSpecificKinds2 = R.curry(
+  (kind, diff) =>
+    R.pipe(
+      R.pickBy(R.equals(kind)),
+      R.keys
+    )(diff)
 );
