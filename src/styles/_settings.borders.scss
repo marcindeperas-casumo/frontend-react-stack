@@ -7,3 +7,8 @@ $cudl-border-radii: (
   circle: 50%,
   pill: 100em,
 );
+
+.u-ruler-sm {
+  border: 2px solid;
+  border-radius: 100px;
+}
