@@ -28,7 +28,7 @@ const Tile = ({
   }
 
   return (
-    <a href={url} className="o-ratio t-border-r--circle">
+    <a href={url} className="o-ratio t-border-r--circle u-overflow-hidden">
       <ImageLazy
         className="o-ratio__content"
         mark={logo}
