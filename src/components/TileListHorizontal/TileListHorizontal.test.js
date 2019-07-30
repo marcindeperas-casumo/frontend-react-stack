@@ -1,11 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
+import * as R from "ramda";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 import TileListHorizontal from "Components/TileListHorizontal/TileListHorizontal";
 
-const items = ["1", "2"];
+const items = R.map(R.toString, R.range(0, 4));
 
 describe("<TileListHorizontal /> - Mobile", () => {
   let rendered;
