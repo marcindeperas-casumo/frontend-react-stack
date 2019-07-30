@@ -3,6 +3,7 @@ import { shallow } from "enzyme";
 import { ValuableDetails } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import translations from "./__mocks__/Translations.json";
+import { ValuableDetailsBody } from "./ValuableDetailsBody";
 
 describe("ValuableDetails", () => {
   let rendered;
@@ -29,6 +30,6 @@ describe("ValuableDetails", () => {
   });
 
   test("should render a valuabledetails body", () => {
-    expect(rendered.find("ValuableDetailsBody")).toHaveLength(1);
+    expect(rendered.find(ValuableDetailsBody)).toHaveLength(1);
   });
 });
