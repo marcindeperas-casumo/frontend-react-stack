@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
 import { connect } from "react-redux";
-import { prop } from "ramda";
 import {
-  transactionsBetsHistoryAnnualOverviewSelector,
+  transactionsAnnualOverviewPdfUrlSelector,
   initFetchAnnualOverviewPdfUrl,
 } from "Models/transactionsBetsHistory";
 import { PdfButton } from "./PdfButton";
@@ -18,16 +17,9 @@ export const TransactionsAnnualOverviewPdfButtonContainer = ({
   label,
 }: Props) => {
   const Connected = connect(
-    state => {
-      const annualOverview = transactionsBetsHistoryAnnualOverviewSelector(
-        year
-      )(state);
-      const href = prop("pdfUrl", annualOverview);
-
-      return {
-        href,
-      };
-    },
+    state => ({
+      href: transactionsAnnualOverviewPdfUrlSelector(year)(state),
+    }),
     dispatch => ({
       fetchHref: () => dispatch(initFetchAnnualOverviewPdfUrl({ year })),
     })
