@@ -4,34 +4,26 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
-type Translations = {
-  termsAndConditionLabel: string,
-  expiresInLabel: string,
-};
-
 type Props = {
   /* Details description of the valuable */
   details: string,
   /* Expiration vaue for the valuable to expire */
-  expirationValueText: string,
+  expirationText: string,
   /* Valuable caveat */
   caveat: string,
   /* Content for terms and conditions */
   termsContent: string,
-  /* Translations of the component */
-  translations: Translations,
+  /* Translated label for terms and conditions */
+  termsAndConditionLabel: string,
 };
 
 export const ValuableDetailsBody = ({
   details,
-  expirationValueText,
+  expirationText,
   caveat,
   termsContent,
-  translations,
+  termsAndConditionLabel,
 }: Props) => {
-  const { termsAndConditionLabel, expiresInLabel } = translations;
-  const expirationLabel = `${expiresInLabel} ${expirationValueText}`;
-
   return (
     <Flex direction="vertical" align="center" className="u-padding-x--md">
       <Flex.Item>
@@ -41,7 +33,7 @@ export const ValuableDetailsBody = ({
       </Flex.Item>
       <Flex.Item className="u-margin-top--lg">
         <ValuableDetailsExpirationLabel
-          text={expirationLabel}
+          text={expirationText}
           className="t-background-red"
         />
       </Flex.Item>

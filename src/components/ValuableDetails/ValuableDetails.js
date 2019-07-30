@@ -1,13 +1,12 @@
 // @flow
 import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
-import { pick } from "ramda";
 import MaskImage from "Components/MaskImage";
 import { ValuableDetailsBody } from "./ValuableDetailsBody";
 
 type Translations = {
   /* Label for the expration badge */
-  expiresInLabel: string,
+  expirationLabel: string,
   /* Label for the Play Now button */
   playNowLabel: string,
   /* Label for the Play to unlock button */
@@ -30,7 +29,7 @@ type Props = {
   /* Content for Terms and conditions */
   termsContent: string,
   /* Expiration Text to display in the expiration badge */
-  expirationValueText: string,
+  expirationText: string,
   /* Translations for the Valuable Details compoinent */
   translations: Translations,
   /* A component to render to be displayed in the header*/
@@ -52,14 +51,11 @@ export const ValuableDetails = ({
   details,
   caveat,
   termsContent,
-  expirationValueText,
+  expirationText,
   translations,
   valuableRenderer,
 }: Props) => {
-  const bodyTranslations = pick(
-    ["expiresInLabel", "termsAndConditionLabel"],
-    translations
-  );
+  const { termsAndConditionLabel } = translations;
 
   return (
     <>
@@ -85,10 +81,10 @@ export const ValuableDetails = ({
       <div className="u-margin-top--2xlg">
         <ValuableDetailsBody
           details={details}
-          expirationValueText={expirationValueText}
+          expirationText={expirationText}
           caveat={caveat}
           termsContent={termsContent}
-          translations={bodyTranslations}
+          termsAndConditionLabel={termsAndConditionLabel}
         />
       </div>
     </>
