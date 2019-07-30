@@ -49,7 +49,7 @@ class PromotionCardList extends PureComponent<Props> {
     const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
     const seeMoreUrl = "/promotions";
     const itemClassName = "c-promotion-card";
-    const PromotionCardContainerRenderer = ({ id }) => (
+    const promotionCardContainerRenderer = ({ id }) => (
       <PromotionCardContainer
         slug={`promotions.${id}`}
         link={`promotions/${id}`}
@@ -101,7 +101,7 @@ class PromotionCardList extends PureComponent<Props> {
                 itemSpacing="md"
               >
                 {promotionsSlugs.map(id =>
-                  PromotionCardContainerRenderer({ id })
+                  promotionCardContainerRenderer({ id })
                 )}
               </Scrollable>
             </Mobile>
@@ -111,7 +111,7 @@ class PromotionCardList extends PureComponent<Props> {
                   title: title,
                   itemIds: promotionsSlugs,
                 }}
-                Component={PromotionCardContainerRenderer}
+                Component={promotionCardContainerRenderer}
                 className={itemClassName}
                 itemControlClass="c-scrollable-list-paginated__button"
                 tileHeight={308}
