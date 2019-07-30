@@ -5,9 +5,9 @@ import {
   diffLimits,
   getSpecificKinds,
 } from "Components/Compliance/DepositLimits/DepositLimitsSummary/utils";
-import { DepositLimitsSummary } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
+import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
-import { DepositLimitsForm } from "Components/Compliance/DepositLimits/DepositLimitsForm";
+import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
 import {
   DepositLimitsConfirmationsContainer,
   type ConfirmationPage,
@@ -22,6 +22,7 @@ import type {
 } from "Models/playOkay/depositLimits";
 import { hasRule } from "Models/playOkay/depositLimits";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
+import "./styles.scss";
 
 type LimitChange = {
   date: number,
@@ -44,9 +45,8 @@ type Props = {
     monthly_short: string,
     monthly: string,
     deposit_limits: string,
-    change_in_future: string,
+    pending_change: string,
     remove_all: string,
-
     remove_selected: string,
     summary_title: string,
     save_limits_button_conditions: string,
@@ -55,20 +55,6 @@ type Props = {
     daily_removed: string,
     weekly_removed: string,
     monthly_removed: string,
-
-    approval_required_for_subsequent_increases: string,
-    approval_required_for_increase: string,
-    responsible_gambling_test_required: string,
-    decrease_effective_immediately: string,
-    revocation_allowed: string,
-
-    input_validation_lock: string,
-    input_validation_lowest_limit: string,
-    input_validation_highest_limit: string,
-    input_validation_cant_be_lower: string,
-    input_validation_cant_be_higher: string,
-    input_validation_has_to_be_lower_while_locked: string,
-    input_validation_has_to_be_lower_after_responsible_gambling_test_failed: string,
   },
   pendingLimitChanges: {
     daily?: LimitChange,
@@ -76,6 +62,7 @@ type Props = {
     monthly?: LimitChange,
   },
   init: () => void,
+  fetchTranslations: () => void,
   limitAdjust: AllLimits => void,
   sendResponsibleGamblingTest: boolean => Promise<any>,
 };
@@ -91,11 +78,12 @@ type DepositLimitsRoute =
 export function DepositLimitsView(props: Props) {
   React.useEffect(() => {
     props.init();
+    props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [{ route, depositKind, limitChanges, pages }, navigate] = useRouting();
 
-  if (!props.limits || !props.remaining) {
+  if (!props.t || !props.limits || !props.remaining) {
     return "loading";
   }
   const newLimits = { ...props.limits, ...limitChanges };
@@ -124,10 +112,14 @@ export function DepositLimitsView(props: Props) {
       />
     ),
     form: (
-      <DepositLimitsForm
+      <DepositLimitsFormContainer
         t={props.t}
         lock={props.lock}
         locale={props.locale}
+        responsibleGamblingTestRequired={hasRule(
+          "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
+          props.preadjust.rules
+        )}
         responsibleGamblingTest={props.responsibleGamblingTest}
         limitChanges={limitChanges}
         limits={props.limits}
@@ -138,7 +130,7 @@ export function DepositLimitsView(props: Props) {
       />
     ),
     summary: (
-      <DepositLimitsSummary
+      <DepositLimitsSummaryContainer
         t={props.t}
         locale={props.locale}
         responsibleGamblingTest={props.responsibleGamblingTest}

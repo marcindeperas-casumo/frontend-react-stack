@@ -23,5 +23,6 @@ stories.add("Default", () => (
       responsibleGamblingQuestionnaireLastAttempt: null,
       responsibleGamblingQuestionnaireAttemptAllowed: true,
     }}
+    fetchTranslations={() => {}}
   />
 ));

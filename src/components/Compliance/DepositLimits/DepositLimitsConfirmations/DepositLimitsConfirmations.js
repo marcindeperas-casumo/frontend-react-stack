@@ -66,6 +66,9 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const [pageNumber, setPageNumber] = React.useState<number>(0);
+  if (!t) {
+    return null;
+  }
   const numberOfPages = props.pages.length;
   const translationKeys =
     confirmationPageToTranslation[props.pages[pageNumber]];

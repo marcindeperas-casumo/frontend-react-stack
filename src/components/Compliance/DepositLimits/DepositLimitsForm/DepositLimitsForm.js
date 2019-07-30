@@ -29,21 +29,24 @@ type Props = {
     monthly_short: string,
     monthly: string,
     remove_selected: string,
-
-    input_validation_lock: string,
-    input_validation_lowest_limit: string,
-    input_validation_highest_limit: string,
-    input_validation_cant_be_higher: string,
-    input_validation_cant_be_lower: string,
-    input_validation_has_to_be_lower_while_locked: string,
-    input_validation_has_to_be_lower_after_responsible_gambling_test_failed: string,
+    inputValidation: {
+      lock: string,
+      lowest_limit: string,
+      highest_limit: string,
+      cant_be_higher: string,
+      cant_be_lower: string,
+      has_to_be_lower_while_locked: string,
+      has_to_be_lower_after_responsible_gambling_test_failed: string,
+    },
   },
+  responsibleGamblingTestRequired?: boolean,
+  responsibleGamblingTest: ResponsibleGamblingTest,
   limits: AllLimits,
   limitChanges: AllLimitsOnlyValues,
   initiallyVisible: DepositKinds,
   applyLimitsChanges: AllLimitsOnlyValues => void,
   lock: ?LimitLock,
-  responsibleGamblingTest: ResponsibleGamblingTest,
+  fetchTranslations: () => void,
 };
 
 // eslint-disable-next-line fp/no-mutation
@@ -52,8 +55,11 @@ DepositLimitsForm.defaultProps = {
   lock: undefined,
   limitChanges: {},
 };
-export function DepositLimitsForm(props: Props) {
-  const { t } = props;
+export function DepositLimitsForm({ t, ...props }: Props) {
+  React.useEffect(() => {
+    props.fetchTranslations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const [visible, setVisible] = React.useState<DepositKinds>(
     props.initiallyVisible
   );
@@ -155,8 +161,8 @@ export function DepositLimitsForm(props: Props) {
       const i = limitTypes.indexOf(currentLimit) - 1;
       const previousLimitValue = limitInputs[limitTypes[i]].value;
       if (R.gt(previousLimitValue, currentLimitValue)) {
-        return interpolate(t.input_validation_cant_be_lower, {
-          affectedLimitType: limitTypes[i],
+        return interpolate(t.input_validation.cant_be_lower, {
+          affectedLimitType: t[`${limitTypes[i]}_short`],
         });
       }
     }
@@ -164,16 +170,16 @@ export function DepositLimitsForm(props: Props) {
       const i = limitTypes.indexOf(currentLimit) + 1;
       const nextLimitValue = limitInputs[limitTypes[i]].value;
       if (R.lt(nextLimitValue, currentLimitValue)) {
-        return interpolate(t.input_validation_cant_be_higher, {
-          affectedLimitType: limitTypes[i],
+        return interpolate(t.input_validation.cant_be_higher, {
+          affectedLimitType: t[`${limitTypes[i]}_short`],
         });
       }
     }
     if (R.lt(currentLimitValue, 10)) {
-      return t.input_validation_lowest_limit;
+      return t.input_validation.lowest_limit;
     }
     if (R.gt(currentLimitValue, 20000)) {
-      return t.input_validation_highest_limit;
+      return t.input_validation.highest_limit;
     }
 
     const limitBeforeChange = props.limits[currentLimit];
@@ -188,16 +194,18 @@ export function DepositLimitsForm(props: Props) {
 
       if (props.lock) {
         return interpolate(
-          t.input_validation_has_to_be_lower_while_locked,
+          t.input_validation.has_to_be_lower_while_locked,
           replacements
         );
       }
       if (
+        props.responsibleGamblingTestRequired &&
         !props.responsibleGamblingTest
           .responsibleGamblingQuestionnaireAttemptAllowed
       ) {
         return interpolate(
-          t.input_validation_has_to_be_lower_after_responsible_gambling_test_failed,
+          t.input_validation
+            .has_to_be_lower_after_responsible_gambling_test_failed,
           replacements
         );
       }
