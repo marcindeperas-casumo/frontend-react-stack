@@ -5,7 +5,7 @@ import translations from "./__mocks__/Translations.json";
 import mock from "./__mocks__/Valuables.json";
 import { ValuableDetails } from "./ValuableDetails";
 
-const stories = storiesOf("ValuableCardDetails/ValuableDetails", module);
+const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
   const dimensions = {

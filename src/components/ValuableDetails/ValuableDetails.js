@@ -34,11 +34,6 @@ type Props = {
   valuableRenderer: Node,
 };
 
-const headerDimensions = {
-  width: 375,
-  height: 334,
-};
-
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
@@ -62,7 +57,8 @@ export const ValuableDetails = ({
           <MaskImage
             id={`${id}-detail`}
             imageUrl={backgroundImageUrl}
-            {...headerDimensions}
+            width={375}
+            height={334}
           >
             <HeaderImgMask />
           </MaskImage>
