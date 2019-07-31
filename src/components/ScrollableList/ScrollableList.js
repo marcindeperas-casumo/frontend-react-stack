@@ -6,10 +6,8 @@ import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import GameTile from "Components/GameTile";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
 export const DEFAULT_SPACING = "default";
 export const PADDING_PER_DEVICE = {
@@ -54,21 +52,11 @@ export default class ScrollableList extends PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        {/* Copied from  MustDropJackpotsList, should be refactored at some point */}
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle paddingLeft title={title} />
-          </Flex.Item>
-          {seeMoreUrl ? (
-            <Flex.Item className="u-padding-right--md">
-              <a href={seeMoreUrl}>
-                <Text size="xs" tag="h3" className="t-color-blue">
-                  {seeMoreText}
-                </Text>
-              </a>
-            </Flex.Item>
-          ) : null}
-        </Flex>
+        <ScrollableListTitleRow
+          paddingLeft
+          seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+          title={title}
+        />
         <Scrollable
           itemClassName={itemClassName}
           padding={PADDING_PER_DEVICE}

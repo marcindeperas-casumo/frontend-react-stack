@@ -1,9 +1,11 @@
 // @flow
 import React, { PureComponent } from "react";
-import { isEmpty, map } from "ramda";
+import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import Tile from "./Tile";
 
 const PADDING_PER_DEVICE = {
@@ -43,10 +45,9 @@ class TileListHorizontal extends PureComponent<Props> {
 
   render() {
     const { title, items, isLoaded } = this.props;
-    const scrollableChildren = map(
-      ({ id, ...rest }) => <Tile key={id} {...rest} />,
-      items.filter(item => item.background !== null)
-    );
+    const itemsWithBackground = items.filter(item => item.background !== null);
+    const itemRenderer = ({ id, ...props }) => <Tile key={id} {...props} />;
+    const scrollableChildren = itemsWithBackground.map(itemRenderer);
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
@@ -57,15 +58,33 @@ class TileListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <div className="u-padding-top--xlg">
-        <ScrollableListTitle paddingLeft title={title} />
-        <Scrollable
-          itemClassName="c-tile"
-          padding={PADDING_PER_DEVICE}
-          itemSpacing={DEFAULT_SPACING}
-        >
-          {scrollableChildren}
-        </Scrollable>
+      <div className="u-padding-top--xlg u-margin-x--3xlg@desktop">
+        <div className="o-wrapper">
+          <Mobile>
+            <ScrollableListTitle paddingLeft title={title} />
+            <Scrollable
+              itemClassName="c-tile"
+              padding={PADDING_PER_DEVICE}
+              itemSpacing={DEFAULT_SPACING}
+            >
+              {scrollableChildren}
+            </Scrollable>
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title: title,
+                itemIds: itemsWithBackground,
+              }}
+              // we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
+              Component={({ id: item }) => <Tile {...item} />}
+              className="c-tile"
+              itemControlClass="c-scrollable-list-paginated__button"
+              tileHeight={160}
+              itemSpacing="md"
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }
