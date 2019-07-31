@@ -96,7 +96,7 @@ export class CuratedCard extends PureComponent<Props> {
         >
           <CuratedCardBackground {...backgroundProps} />
           <Card
-            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg"
+            className="o-ratio__content u-pointer-events-none u-padding--md@mobile u-padding--md@phablet u-padding--lg u-padding-x--3xlg@desktop"
             justify="end"
             spacing={spacing}
             header={this.renderHeader}
