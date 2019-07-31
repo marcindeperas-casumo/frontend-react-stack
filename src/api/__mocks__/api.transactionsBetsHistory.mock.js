@@ -1,3 +1,4 @@
+// @flow
 export const walletTotals = [
   {
     currency: "GBP",

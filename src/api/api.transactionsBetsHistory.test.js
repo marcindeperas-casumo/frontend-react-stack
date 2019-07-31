@@ -1,6 +1,6 @@
 // @flow
 import { DateTime } from "luxon";
-import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
@@ -133,7 +133,7 @@ describe("api.transactionsBetsHistory", () => {
     test("returns data correctly calculated based on fetched data", async () => {
       http = {
         ...http,
-        get: jest.fn().mockReturnValueOnce(transactions),
+        get: jest.fn().mockResolvedValueOnce(transactions),
       };
 
       const props = {
@@ -169,10 +169,10 @@ describe("api.transactionsBetsHistory", () => {
         get: jest
           .fn()
           // these are for getTotalsReq
-          .mockReturnValueOnce(walletTotals)
-          .mockReturnValueOnce(gameroundTotals)
+          .mockResolvedValueOnce(walletTotals)
+          .mockReturnValueOnce(Promise.resolve(gameroundTotals))
           // this is for getStartingEndBalanceReq
-          .mockReturnValueOnce(transactions),
+          .mockReturnValueOnce(Promise.resolve(transactions)),
       };
 
       const resp = await getOverviewReq(props, http);

@@ -1,4 +1,4 @@
-import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {

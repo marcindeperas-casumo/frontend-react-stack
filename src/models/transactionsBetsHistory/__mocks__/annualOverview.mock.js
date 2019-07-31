@@ -1,4 +1,5 @@
-{
+// @flow
+export default {
   "betsAmount": 66,
   "depositsAmount": 72,
   "withdrawalsAmount": 39,
@@ -8,4 +9,4 @@
   "startingBalanceAmount": 1000,
   "endBalanceAmount": 1111,
   "currency": "GBP"
-}
+};
