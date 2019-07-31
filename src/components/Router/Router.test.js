@@ -17,6 +17,19 @@ describe("Router", () => {
     expect(component.contains(barComponent)).toBe(false);
   });
 
+  test("always renders routes that have wildcard", () => {
+    const fooComponent = <Route path="*" />;
+    const component1 = shallow(
+      <Router activePaths={["foo"]}>{fooComponent}</Router>
+    );
+    const component2 = shallow(
+      <Router activePaths={["bar"]}>{fooComponent}</Router>
+    );
+
+    expect(component1.contains(fooComponent)).toBe(true);
+    expect(component2.contains(fooComponent)).toBe(true);
+  });
+
   test("accepts multiple active paths for a single route", () => {
     const fooComponent = <Route path={["foo", "baz"]} />;
     const barComponent = <Route path="bar" />;
