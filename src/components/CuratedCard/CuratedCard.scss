@@ -1,23 +1,54 @@
 @import "cudl-breakpoints";
 @import "~Styles/settings.breakpoints";
 
+$curated-twerkpoints: (
+  map-merge(
+    $cudl-breakpoints,
+    (
+      desktoplg: 1920px,
+    )
+  )
+);
+
 //prettier-ignore
 $curated-card-ratios: (
-  mobile: (
-    352/343
-  ) * 100%,
+  mobile: 100%,
   phablet: (
     264/496
+  ) * 100%,
+  tablet: (
+    254/545
+  ) * 100%,
+  desktop: (
+    512/1181
+  ) * 100%,
+  desktoplg: (
+    616/1661
   ) * 100%
 );
 
 .c-curated-card {
-  @include cudl-breakpoint(phablet) {
-    max-height: 264px;
-  }
+  margin-left: auto;
+  margin-right: auto;
+  max-height: 616px;
+  max-width: 1920px;
 }
 
 // stylelint-disable-next-line
 .o-ratio--curated-card.o-ratio--curated-card::before {
-  @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
+  @include cudl-breakpoint-with(
+    $curated-card-ratios,
+    padding-bottom,
+    $curated-twerkpoints
+  );
 }
+
+/* stylelint-disable */
+:export {
+  desktop: cudl-strip-unit(map-get($curated-twerkpoints, desktop));
+  desktopLg: cudl-strip-unit(map-get($curated-twerkpoints, desktoplg));
+  mobile: cudl-strip-unit(map-get($curated-twerkpoints, mobile));
+  phablet: cudl-strip-unit(map-get($curated-twerkpoints, phablet));
+  tablet: cudl-strip-unit(map-get($curated-twerkpoints, tablet));
+}
+/* stylelint-enable */
