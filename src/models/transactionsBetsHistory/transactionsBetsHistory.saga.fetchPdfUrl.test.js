@@ -6,7 +6,7 @@ import {
   isFailedPdfUrlRequestTakePattern,
 } from "./transactionsBetsHistory.saga.fetchPdfUrl";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import annualOverview from "./__mocks__/annualOverview.json";
+import annualOverview from "./__mocks__/annualOverview.mock";
 
 describe("fetchAnnualOverviewPdfUrlSaga()", () => {
   const year = 2001;

@@ -3,7 +3,7 @@ import {
   transactionsBetsHistoryContentSelector,
   transactionsBetsHistoryAnnualOverviewSelector,
 } from "./transactionsBetsHistory.selectors";
-import annualOverview from "./__mocks__/annualOverview.json";
+import annualOverview from "./__mocks__/annualOverview.mock";
 
 describe("Transactions/Bets History Selectors", () => {
   describe("transactionsBetsHistoryAnnualOverviewSelector()", () => {

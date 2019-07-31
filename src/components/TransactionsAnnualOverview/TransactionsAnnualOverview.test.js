@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 import cmsMocks from "./__mocks__/cms.json";
 
