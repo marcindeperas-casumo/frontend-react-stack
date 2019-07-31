@@ -23,11 +23,11 @@ describe("transactionsBetsHistory.utils", () => {
         dni,
         startingBalance: "£0",
         endingBalance: "£0",
-        totalDeposits: "£12.40",
-        totalWithdrawals: "£55.50",
+        totalDeposits: "£72",
+        totalWithdrawals: "£39",
         totalWagers: "£0",
-        totalWins: "£34.50",
-        totalBonusesConverted: "£2",
+        totalWins: "£98.80",
+        totalBonusesConverted: "£45",
       });
     });
   });
