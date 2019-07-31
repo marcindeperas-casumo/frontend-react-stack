@@ -4499,6 +4499,24 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
       },
     },
     cms: {
+      "reel-races.reel-race-templates": {
+        slug: "reel-races.reel-race-templates",
+        fields: {
+          "spins": "Spins",
+          "duration": "Duration",
+          "duration_template": "{{{duration}}} min",
+          "min_bet": "Min Bet",
+          "starting_in": "Starting in",
+          "ending_in": "Ending in",
+          "opt_in": "Opt In",
+          "opted_in": "Opted In",
+          "opted_in_cta_single_game_short": "Play",
+          "compete_for": "Compete for {{prize}}",
+          "title": "Reel Races",
+          "caveat_short": "false",
+          "prize": "20€",
+        }
+      },
       "curated.curated-gb_en": {
         id: "87759",
         slug: "curated.curated-gb_en",

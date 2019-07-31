@@ -1,17 +1,7 @@
 $separator: map-get($cudl-spacer-sizes, default);
-$reel-race-tile-widths: ();
-@each $breakpoint, $value in $tile-widths {
-  $reel-race-tile-widths: map-merge(
-    $reel-race-tile-widths,
-    (
-      $breakpoint: calc(#{$value * 2} + #{$separator}),
-    )
-  );
-}
 
 .c-reel-race-card {
-  @include cudl-breakpoint-with($reel-race-tile-widths, width);
-  max-width: 348px;
+  width: 348px;
 }
 
 .c-reel-race__separator {
