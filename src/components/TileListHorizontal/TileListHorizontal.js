@@ -58,17 +58,19 @@ class TileListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <div className="u-padding-top--xlg u-margin-x--3xlg@desktop">
+      <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
           <Mobile>
-            <ScrollableListTitle paddingLeft title={title} />
-            <Scrollable
-              itemClassName="c-tile"
-              padding={PADDING_PER_DEVICE}
-              itemSpacing={DEFAULT_SPACING}
-            >
-              {scrollableChildren}
-            </Scrollable>
+            <div className="u-padding-top--xlg ">
+              <ScrollableListTitle paddingLeft title={title} />
+              <Scrollable
+                itemClassName="c-tile"
+                padding={PADDING_PER_DEVICE}
+                itemSpacing={DEFAULT_SPACING}
+              >
+                {scrollableChildren}
+              </Scrollable>
+            </div>
           </Mobile>
           <Desktop>
             <ScrollableListPaginated
