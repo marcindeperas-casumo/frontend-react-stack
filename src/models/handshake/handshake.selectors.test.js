@@ -21,6 +21,9 @@ import {
   adventureLevelsSelector,
   localeSelector,
   walletIdSelector,
+  playerNameSelector,
+  socialSecurityNumberSelector,
+  isSuspiciousAccount,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -360,17 +363,81 @@ describe("Handshake selectors", () => {
 
     expect(walletIdSelector(state)).toEqual(walletId);
   });
-});
 
-test("adventureLevelsSelector", () => {
-  const adventureDetails = [[1, 2, 3, 4, 5], [10, 20, 30, 40, 50]];
-  const state = {
-    handshake: {
-      app: {
-        "common/composition/Adventure": adventureDetails,
+  test("adventureLevelsSelector", () => {
+    const adventureDetails = [[1, 2, 3, 4, 5], [10, 20, 30, 40, 50]];
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/Adventure": adventureDetails,
+        },
       },
-    },
-  };
+    };
 
-  expect(adventureLevelsSelector(state)).toEqual(adventureDetails);
+    expect(adventureLevelsSelector(state)).toEqual(adventureDetails);
+  });
+
+  test("playerNameSelector", () => {
+    const name = {
+      firstName: "John",
+      lastName: "Doe",
+    };
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p2" },
+          "common/composition/players": {
+            players: {
+              p2: {
+                id: "p2",
+                contactInfo: {
+                  name,
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(playerNameSelector(state)).toEqual(name);
+  });
+
+  test("socialSecurityNumberSelector", () => {
+    const socialSecurityNumber = "xxx-xxx-xxx";
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p2" },
+          "common/composition/players": {
+            players: {
+              p2: {
+                id: "p2",
+                contactInfo: {
+                  socialSecurityNumber,
+                },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(socialSecurityNumberSelector(state)).toEqual(socialSecurityNumber);
+  });
+
+  test("isSuspiciousAccount", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: { p1: { id: "p1", suspiciousAccount: true } },
+          },
+        },
+      },
+    };
+
+    expect(isSuspiciousAccount(state)).toEqual(true);
+  });
 });

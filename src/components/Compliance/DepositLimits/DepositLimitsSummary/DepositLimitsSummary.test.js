@@ -23,6 +23,7 @@ const props = {
   },
   edit: () => {},
   confirmLimitsAdjust: () => {},
+  fetchTranslations: () => {},
 };
 
 describe("DepositLimitsSummary", () => {

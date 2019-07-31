@@ -10,12 +10,6 @@ const limitsDefault = {
 const props = {
   t,
   locale: "en-GB",
-  pendingLimitChanges: {},
-  limitsUsage: {
-    daily: 0,
-    weekly: 0,
-    monthly: 0,
-  },
   limits: {
     ...limitsDefault,
     daily: 10,
@@ -23,6 +17,12 @@ const props = {
     monthly: 100,
   },
   applyLimitsChanges: () => {},
+  responsibleGamblingTest: {
+    responsibleGamblingQuestionnaireStatus: "SUCCESS",
+    responsibleGamblingQuestionnaireLastAttempt: null,
+    responsibleGamblingQuestionnaireAttemptAllowed: false,
+  },
+  fetchTranslations: () => {},
 };
 
 function setUpDepositLimitsForm(override = {}) {
@@ -58,8 +58,8 @@ describe("DepositLimitsForm", () => {
         },
         initiallyVisible: "weekly",
       });
-      expect(dailyTooHigh).toBe("input_validation_cant_be_higher");
-      expect(weeklyTooHigh).toBe("input_validation_cant_be_higher");
+      expect(dailyTooHigh).toBe("cant_be_higher");
+      expect(weeklyTooHigh).toBe("cant_be_higher");
     });
 
     test("warns if can't be lower", () => {
@@ -82,8 +82,8 @@ describe("DepositLimitsForm", () => {
         },
         initiallyVisible: "monthly",
       });
-      expect(weeklyTooLow).toBe("input_validation_cant_be_lower");
-      expect(monthlyTooLow).toBe("input_validation_cant_be_lower");
+      expect(weeklyTooLow).toBe("cant_be_lower");
+      expect(monthlyTooLow).toBe("cant_be_lower");
     });
 
     test("warns if can't be lower than 10", () => {
@@ -96,7 +96,7 @@ describe("DepositLimitsForm", () => {
         },
         initiallyVisible: "daily",
       });
-      expect(underMinimum).toBe("input_validation_lowest_limit");
+      expect(underMinimum).toBe("lowest_limit");
     });
 
     test("warns if can't be higher than 20.000", () => {
@@ -109,7 +109,7 @@ describe("DepositLimitsForm", () => {
         },
         initiallyVisible: "monthly",
       });
-      expect(aboveMaximum).toBe("input_validation_highest_limit");
+      expect(aboveMaximum).toBe("highest_limit");
     });
 
     test("warns if user tries to increase limit during lock", () => {
@@ -126,9 +126,7 @@ describe("DepositLimitsForm", () => {
         initiallyVisible: "daily",
         lock: true,
       });
-      expect(aboveMaximum).toBe(
-        "input_validation_has_to_be_lower_while_locked"
-      );
+      expect(aboveMaximum).toBe("has_to_be_lower_while_locked");
     });
   });
 });

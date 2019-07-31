@@ -12,7 +12,7 @@ import {
   type SportsNavItemType,
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
-import { navItemUtils } from "Features/sports/components/SportsNav/sportsNavUtils";
+import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -37,7 +37,7 @@ const renderSportsNav = (
   );
 
   const navItems: Array<SportsNavItemType> = data.sportsNavigation.map(
-    navItemUtils.toNavItem
+    navItemUtils.toNavItem(isLiveActive)
   );
 
   if (navItems.length === 0) {
@@ -81,6 +81,8 @@ const renderSportsNav = (
     onSelected: onNavItemSelected,
   };
 
+  const isNotAllSports = currentHash !== `#${navItemUtils.ALL_SPORTS_PATH}`;
+
   return (
     <>
       <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
@@ -96,15 +98,17 @@ const renderSportsNav = (
       </OpenModalMutation>
 
       <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
-        {openChooseFavouriteLeaguesModal => (
-          <SportsSubNav
-            {...commonProps}
-            navItems={selectedNavItem.subNav || []}
-            canEdit={selectedNavItem.canEdit}
-            onEdit={openChooseFavouriteLeaguesModal}
-            cacheBuster={subNavCacheBuster}
-          />
-        )}
+        {openChooseFavouriteLeaguesModal =>
+          isNotAllSports && (
+            <SportsSubNav
+              {...commonProps}
+              navItems={selectedNavItem.subNav || []}
+              canEdit={selectedNavItem.canEdit}
+              onEdit={openChooseFavouriteLeaguesModal}
+              cacheBuster={subNavCacheBuster}
+            />
+          )
+        }
       </OpenModalMutation>
     </>
   );
@@ -112,7 +116,9 @@ const renderSportsNav = (
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const { client } = React.useContext(ClientContext);
-  const [isLiveActive, setIsLiveActive] = React.useState(false);
+  const [isLiveActive, setIsLiveActive] = React.useState(
+    navItemUtils.isInPlayHash(currentHash)
+  );
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -149,10 +155,11 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
         ) => {
           setIsLiveActive(liveActive);
 
-          navItemUtils.selectPath(
-            client,
-            data.sportsNavigation[0].sport.clientPath
-          );
+          const path = liveActive
+            ? navItemUtils.ALL_SPORTS_PATH
+            : data.sportsNavigation[0].sport.clientPath;
+
+          navItemUtils.selectPath(client, path);
         };
 
         return renderSportsNav(

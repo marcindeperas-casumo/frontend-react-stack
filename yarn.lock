@@ -1269,14 +1269,14 @@
     "@casumo/cudl-props" "^2.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-breakpoints@^1.1.2":
-  version "1.1.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-breakpoints/-/cudl-breakpoints-1.1.2.tgz#2b94ed43f55f2db2ba4ff2b4e792e13186928e18"
-  integrity sha512-gmRmtq5R53Upsj/O42BW/gEHe+NyMdbZWfOJRWZPLWkkTrPIvucko06itwkUc1cLvduPTgNS8C020BjT6UUwgA==
+"@casumo/cudl-breakpoints@^1.1.3", "@casumo/cudl-breakpoints@^1.1.4":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-breakpoints/-/cudl-breakpoints-1.1.4.tgz#cf9329b56cadcb88d19d228fccb056530c9b4b01"
+  integrity sha512-rSro5WSjlwAqy4bZ7ZtkjHDl7NP3155/tXD6WrBUJsAobm9NVLA3VvlDsHFO9A4bi5oPqms15kNU/OrYklXnIA==
   dependencies:
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-mock" "^1.0.6"
-    "@casumo/cudl-props" "^2.0.2"
+    "@casumo/cudl-props" "^2.1.0"
     "@casumo/cudl-types" "^1.0.6"
     "@casumo/cudl-units" "^1.0.7"
     sass-pathfinder "^0.0.5"
@@ -1320,22 +1320,22 @@
     "@casumo/cudl-mock" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-display@^1.1.2":
-  version "1.1.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-display/-/cudl-display-1.1.2.tgz#70f99a6a078e05dabaebdacbaf553b5efa8fbed0"
-  integrity sha512-0LPltLfVd/iH/yuRKKEdcWNvoYxvZGDkzt4hrivIKrAh7Q3XoRFBztXjf+aw8KF3hytoyTsJVXHvN6fmc7BnvA==
+"@casumo/cudl-display@^1.1.3":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-display/-/cudl-display-1.1.4.tgz#701f2d9326d4f71af214915dca3e27269f33a30c"
+  integrity sha512-SKkGqa9OybSHP+WZr8aFJEOPHIUcq+jagjeijbRfHSu9oZcyrUhAmUDLGXHUitJB21IHHTjbV2xgKX9LIHRKIg==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-utils" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-flex@^5.0.2":
-  version "5.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-flex/-/cudl-flex-5.0.2.tgz#6e2f4ebbdbd51e133ac63c57c08d993dc099ef0d"
-  integrity sha512-O+ZKGo/+OwthPvtHZ1T4Jq2NylqMnux/I8ZSz5VObM747f3nTMZtLvYFDR5VGFHY/VQWXvIpjM4TszzXNAH/3Q==
+"@casumo/cudl-flex@^5.0.3":
+  version "5.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-flex/-/cudl-flex-5.0.4.tgz#ae46c524701d9ff0924cb995051c528660957281"
+  integrity sha512-A9TDnnZjt5xO77udS7YxEFxTsHIH8Hxe2QHlHpY2AgeSwu56IbQGItOJlIv1b6p2zrk4WmDG3UD6+XAtO8zkTQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
@@ -1348,15 +1348,15 @@
     "@casumo/cudl-props" "^2.0.2"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-layout@^4.0.2":
-  version "4.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-layout/-/cudl-layout-4.0.2.tgz#e5a4a82280ce5f25cb80823112b4fa6c63b9d4a9"
-  integrity sha512-68TwcqkRdh+DXY2szBpsmdd5TMRqCmoZzY4Au/4mP4HUV1VQrwliPFMsT4KXHtJCkus79KlifF6shAY6kQ2lZA==
+"@casumo/cudl-layout@^4.0.3":
+  version "4.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-layout/-/cudl-layout-4.0.4.tgz#24edb1717e4ccfffbf35bfb45af22bdafc4ca4af"
+  integrity sha512-YYK+JYzYbsKA5/frf4OYjtYxZ41syEQs1mlO/p6ErU/GpiULqEV96fAsIoXkYETo0E3RWzoXvuZoaTLY5sK/SQ==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-mock" "^1.0.6"
-    "@casumo/cudl-props" "^2.0.2"
+    "@casumo/cudl-props" "^2.1.0"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-mock@^1.0.4", "@casumo/cudl-mock@^1.0.6":
@@ -1366,19 +1366,27 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-offsets@^1.1.2":
-  version "1.1.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-offsets/-/cudl-offsets-1.1.2.tgz#666f68cc46f78070f5b0eeecd8caf1763dbbc6be"
-  integrity sha512-ijuWNxoBFlQfn1xstPV2i31uzz4Qhz3yXcgfygAc24crE49n5f/g9jIyd/OLQxiZN/OjRFrsQNgwmBmc9DQkxg==
+"@casumo/cudl-offsets@^1.1.3":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-offsets/-/cudl-offsets-1.1.4.tgz#8bdcacd520e10a376dbde32f3b2e6bd3269503cc"
+  integrity sha512-nbAtvmjvA7pC0tE83FKwuwiYz6W6A74ukAP2A3zSzLHiNFMpFWAVvDFYrJmuM7+cU6L46GefjP2c1cXVKvOtmg==
   dependencies:
     "@casumo/cudl-compile" "^1.0.6"
-    "@casumo/cudl-widths" "^1.1.2"
+    "@casumo/cudl-widths" "^1.1.4"
     sass-pathfinder "^0.0.5"
 
 "@casumo/cudl-props@^2.0.0", "@casumo/cudl-props@^2.0.2":
   version "2.0.2"
   resolved "http://npm.casumotest.local/@casumo%2fcudl-props/-/cudl-props-2.0.2.tgz#dbbab0575188d802b6cc37192dc2eeaaf1c911bb"
   integrity sha512-SQUz8mxyAjcr/wFHuXJlsPvIdRy/WbVcDssxCnuU/6oVzV+Mr9StgrshBXOlAk/5sy2O8a7jDPEet1gqbkItEQ==
+  dependencies:
+    "@casumo/cudl-mock" "^1.0.6"
+    sass-pathfinder "^0.0.5"
+
+"@casumo/cudl-props@^2.1.0":
+  version "2.1.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-props/-/cudl-props-2.1.0.tgz#3d708852a8ec11b7fc195048c2166aaa8a7231b5"
+  integrity sha512-mW6WqSuQpv99YP2lK/YvlzgLgnhmT6zi6VUGYC8RJNt2OlHVLMk+x0ATvnmKAMG4gO/9f2+mhohzt76E0zpVLQ==
   dependencies:
     "@casumo/cudl-mock" "^1.0.6"
     sass-pathfinder "^0.0.5"
@@ -1391,11 +1399,6 @@
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-props" "^2.0.2"
     sass-pathfinder "^0.0.5"
-
-"@casumo/cudl-react-prop-types@^2.1.0":
-  version "2.1.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.0.tgz#67932610cc705eaa2ec1b6e9eb40c80bf7072b94"
-  integrity sha512-uiBZWaBZJdoNhwm2rYkWbgd5JuESZ2JA/ObSbATh8odmoWY2zItVC+zmli2HUFYR7aqzOLf0gPZPj+kEYNZwNw==
 
 "@casumo/cudl-react-prop-types@^2.1.0":
   version "2.1.0"
@@ -1415,22 +1418,22 @@
     "@casumo/cudl-compile" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-scrollable@^4.0.2":
-  version "4.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-scrollable/-/cudl-scrollable-4.0.2.tgz#16a5f5c0b26597f0df8f25fc1edbd077f88ffb09"
-  integrity sha512-O5eu9IAaiyoNi7Pph/KcJASXs1A6qZmRmx6GepKj+7sgbQcKfVFEJMVSg+F8o68VZbtYKSWlXyXxhp2kyk5ugg==
+"@casumo/cudl-scrollable@^4.0.4":
+  version "4.0.5"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-scrollable/-/cudl-scrollable-4.0.5.tgz#9c95c612e2c98bfd6039ae6046fe375d79303203"
+  integrity sha512-KgGUFi8AgGg2CoExL/yRgNDWgqSQ39MUFe9Gz5IWh0wnzDCqlhyRxU5pc7FRrV2Oqxf0xR43kcRsAhFrs0f5/Q==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
-    "@casumo/cudl-spacers" "^4.0.2"
+    "@casumo/cudl-spacers" "^4.0.4"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-spacers@^4.0.2":
-  version "4.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-spacers/-/cudl-spacers-4.0.2.tgz#39887c26e3d6791e895d6cd665799713d7947c07"
-  integrity sha512-bvRN/2Ugt/lADBjDGg8qhbpcrUsvi6JZKPzx/vAqJcszTCkTwt5FFD2EsXMPKoe16PfSsMoDWNGvTg6O7gCd+g==
+"@casumo/cudl-spacers@^4.0.3", "@casumo/cudl-spacers@^4.0.4":
+  version "4.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-spacers/-/cudl-spacers-4.0.4.tgz#2c7d79f4a78f6b9e982831903068b92a49331298"
+  integrity sha512-eDNOAhaaYEUrpjE2ivr+k+7NWDf9Mf7L3uX4VCiwSU+PdG9sm8k6Uue9is1TOaeC+zPo7/PjsVoUmcIhvn9xWA==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-mock" "^1.0.6"
     "@casumo/cudl-utils" "^1.0.6"
@@ -1471,12 +1474,12 @@
   dependencies:
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-widths@^1.1.2":
-  version "1.1.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-widths/-/cudl-widths-1.1.2.tgz#59c121bb19d8991b3045d57ea3faec800e3bbb31"
-  integrity sha512-898YuDKJJobwU96PHlMhnfYvH4MsOQUW8ldJVqChBG72UBqRG4mpx/+mV8idOWPwJTDc8kXEubbVafQeCD2MLg==
+"@casumo/cudl-widths@^1.1.3", "@casumo/cudl-widths@^1.1.4":
+  version "1.1.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-widths/-/cudl-widths-1.1.4.tgz#2ecbe014107cfdd0c1cda7d13513b7e8b7ac4c9c"
+  integrity sha512-yUN2MHcBmdP55RMwOO+iTfs0uxWUAikGWQ5iTesWBArn+RigHJ6JCcFL9HgxS56Evh2zc1BaK8nJVrAYVvkgMA==
   dependencies:
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-mock" "^1.0.6"
     "@casumo/cudl-utils" "^1.0.6"
@@ -1491,32 +1494,32 @@
     "@casumo/cudl-utils" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@^7.0.0":
-  version "7.0.2"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-7.0.2.tgz#df637787645461897e4182da031d16e0adee2227"
-  integrity sha512-+htZASjp+WDGYjXxh32XtiB6rEYHK56tXACRQD1OJEFxyMIhBmj9JncFC0bEUp23mSrsOkxyPWZrbW9RGB+NtA==
+"@casumo/cudl@7.0.4":
+  version "7.0.4"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-7.0.4.tgz#c5a1b43422c0d8758778d506b1a28ef3828a28de"
+  integrity sha512-zrLb2k3DTBTP9bPnFV+UrYabjUEOf67HDo46qZmb6lSPs6uYonUsbzDS6Ubbum+N7kYDeCVOlD96TX+nm0uGBA==
   dependencies:
     "@casumo/cudl-borders" "^3.0.2"
-    "@casumo/cudl-breakpoints" "^1.1.2"
+    "@casumo/cudl-breakpoints" "^1.1.3"
     "@casumo/cudl-buttons" "^2.0.6"
     "@casumo/cudl-colors" "^2.0.7"
     "@casumo/cudl-compile" "^1.0.6"
-    "@casumo/cudl-display" "^1.1.2"
-    "@casumo/cudl-flex" "^5.0.2"
+    "@casumo/cudl-display" "^1.1.3"
+    "@casumo/cudl-flex" "^5.0.3"
     "@casumo/cudl-icons" "^3.0.2"
-    "@casumo/cudl-layout" "^4.0.2"
+    "@casumo/cudl-layout" "^4.0.3"
     "@casumo/cudl-mock" "^1.0.6"
-    "@casumo/cudl-offsets" "^1.1.2"
+    "@casumo/cudl-offsets" "^1.1.3"
     "@casumo/cudl-props" "^2.0.2"
     "@casumo/cudl-ratio" "^1.1.2"
     "@casumo/cudl-reset" "^1.0.6"
-    "@casumo/cudl-scrollable" "^4.0.2"
-    "@casumo/cudl-spacers" "^4.0.2"
+    "@casumo/cudl-scrollable" "^4.0.4"
+    "@casumo/cudl-spacers" "^4.0.3"
     "@casumo/cudl-types" "^1.0.6"
     "@casumo/cudl-typography" "^4.0.2"
     "@casumo/cudl-units" "^1.0.7"
     "@casumo/cudl-utils" "^1.0.6"
-    "@casumo/cudl-widths" "^1.1.2"
+    "@casumo/cudl-widths" "^1.1.3"
     "@casumo/cudl-zindex" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
@@ -2786,6 +2789,11 @@
   resolved "https://registry.yarnpkg.com/@types/normalize-package-data/-/normalize-package-data-2.4.0.tgz#e486d0d97396d79beedd0a6e33f4534ff6b4973e"
   integrity sha512-f5j5b/Gf71L+dbqxIpQ4Z2WlmI/mPJ0fOkGGmFgtb6sAu97EPczzbS3/tJKxmcYDj55OX6ssqwDAWOHIYDRDGA==
 
+"@types/prop-types@*":
+  version "15.7.1"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.1.tgz#f1a11e7babb0c3cad68100be381d1e064c68f1f6"
+  integrity sha512-CFzn9idOEpHrgdw8JsoTkaDDyRWk1jrzIV8djzcgpq0y9tG4B4lFT+Nxh52DVpDXV+n4+NPNv7M1Dj5uMp6XFg==
+
 "@types/q@1.0.7":
   version "1.0.7"
   resolved "https://registry.yarnpkg.com/@types/q/-/q-1.0.7.tgz#afd4c610f16f6386d320e0738ec38ba7d3431917"
@@ -2800,6 +2808,21 @@
   version "1.2.3"
   resolved "https://registry.yarnpkg.com/@types/range-parser/-/range-parser-1.2.3.tgz#7ee330ba7caafb98090bece86a5ee44115904c2c"
   integrity sha512-ewFXqrQHlFsgc09MK5jP5iR7vumV/BYayNC6PgJO2LPe8vrnNFyjQjSppfEngITi0qvfKtzFvgKymGheFM9UOA==
+
+"@types/react-wait@^0.3.0":
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/@types/react-wait/-/react-wait-0.3.0.tgz#6f7ef17571a17e72c7864ede8cf7d3aa525a005e"
+  integrity sha512-5jIfDcHRjqeE7QfZG7kCqOpfrPSvOM1E3/nlKuJ/NZrG/WrhLo/AFr0i72jhTWzyNRo4ex0pshBaiCHksZXH3A==
+  dependencies:
+    "@types/react" "*"
+
+"@types/react@*":
+  version "16.8.23"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.23.tgz#ec6be3ceed6353a20948169b6cb4c97b65b97ad2"
+  integrity sha512-abkEOIeljniUN9qB5onp++g0EY38h7atnDHxwKUFz1r3VH1+yG1OKi2sNPTyObL40goBmfKFpdii2lEzwLX1cA==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
 
 "@types/serve-static@*":
   version "1.13.2"
@@ -6026,7 +6049,7 @@ cssstyle@^1.0.0:
   dependencies:
     cssom "~0.3.6"
 
-csstype@^2.5.2, csstype@^2.5.5, csstype@^2.5.7:
+csstype@^2.2.0, csstype@^2.5.2, csstype@^2.5.5, csstype@^2.5.7:
   version "2.6.6"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-2.6.6.tgz#c34f8226a94bbb10c32cc0d714afdf942291fc41"
   integrity sha512-RpFbQGUE74iyPgvr46U9t1xoQBM8T4BL8SxrN66Le2xYAPSaDJJKeztV3awugusb3g3G9iL8StmkBBXhcbbXhg==
@@ -14288,11 +14311,12 @@ react-transition-group@^2.2.1:
     prop-types "^15.6.2"
     react-lifecycles-compat "^3.0.4"
 
-react-use@^9.4.1:
-  version "9.8.2"
-  resolved "https://registry.yarnpkg.com/react-use/-/react-use-9.8.2.tgz#f305d72d8718be81b040657954becd258385bcc9"
-  integrity sha512-xF/FezWSJ+K5DjJbI3wpovBKg0s1gpHrdSA8FxGLXn7eJG3nBkye8cP9OGvtj12hzXcPn4RJZmRd6IcmpZbW/A==
+react-use@^10.0.0:
+  version "10.1.2"
+  resolved "https://registry.yarnpkg.com/react-use/-/react-use-10.1.2.tgz#9d42cecce77531b2cf764bc013b2284ac7623b57"
+  integrity sha512-Y80ix2tqD5Fn0sTvJMOC8V03dMgiXzZeHxNl4ZXbVKC8ymtAL+zrEsxq5c+f82An6k8IaChjRai3fc4csDy+mQ==
   dependencies:
+    "@types/react-wait" "^0.3.0"
     copy-to-clipboard "^3.1.0"
     nano-css "^5.1.0"
     react-fast-compare "^2.0.4"
