@@ -1,6 +1,5 @@
 // TODO: Make these components lazy-loaded
 import { ContentHtml } from "Components/ContentHtml";
-import { CuratedCard } from "Components/CuratedCard";
 import Jackpots from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
 import { GameListHorizontal } from "Components/GameListHorizontal";
@@ -21,6 +20,7 @@ import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpot
 import TileListHorizontal from "Components/TileListHorizontal";
 import ReelRacesList from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
+import { TopListCuratedCard } from "Components/TopListCuratedCard";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
@@ -28,7 +28,7 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,
   GROUPED_LIST_HORIZONTAL: TileListHorizontal,
-  CURATED_CARD: CuratedCard,
+  CURATED_CARD: TopListCuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,
   CONTENT_SEPARATOR: ContentSeparator,
