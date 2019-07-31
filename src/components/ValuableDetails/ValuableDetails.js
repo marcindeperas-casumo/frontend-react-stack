@@ -12,11 +12,10 @@ type Translations = {
 };
 
 type Props = {
-  /* Unique id of the valuable */
   id: string,
   /* Url of the background image to be used in the header */
   backgroundImageUrl: string,
-  /* Details description of the Valuable */
+  /* Detailed description of the Valuable */
   details: string,
   /* Caveat for the valuable */
   caveat: string,
@@ -24,10 +23,9 @@ type Props = {
   termsContent: string,
   /* Expiration Text to display in the expiration badge */
   expirationText: string,
-  /* Translations for the Valuable Details compoinent */
   translations: Translations,
   /* A component to render to be displayed in the header*/
-  valuableRenderer: Node,
+  children: Node,
 };
 
 const HeaderImgMask = () => (
@@ -42,7 +40,7 @@ export const ValuableDetails = ({
   termsContent,
   expirationText,
   translations,
-  valuableRenderer,
+  children,
 }: Props) => {
   const { termsAndConditionLabel } = translations;
 
@@ -65,7 +63,7 @@ export const ValuableDetails = ({
           align="center"
           direction="vertical"
         >
-          <div data-test-id="valuable-renderer-wrapper">{valuableRenderer}</div>
+          <div data-test-id="valuable-renderer-wrapper">{children}</div>
         </Flex>
       </div>
       <div className="u-margin-top--2xlg">

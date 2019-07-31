@@ -14,11 +14,9 @@ describe("ValuableDetails", () => {
     const mockValuable = mockValuables[0];
 
     rendered = shallow(
-      <ValuableDetails
-        {...mockValuable}
-        translations={translations}
-        valuableRenderer={<Foo foobar={baz} />}
-      />
+      <ValuableDetails {...mockValuable} translations={translations}>
+        <Foo foobar={baz} />
+      </ValuableDetails>
     );
   });
 

@@ -10,15 +10,16 @@ import { ValuableDetails } from "./ValuableDetails";
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
-  const valuableMock = mock[0];
+  const valuableDetailsMock = mock[0];
 
   return (
     <ValuableDetails
-      {...valuableMock}
+      {...valuableDetailsMock}
       translations={translations}
       width={379}
       height={271}
-      valuableRenderer={<ValuableCard {...mockValuable[0]} />}
-    />
+    >
+      <ValuableCard {...mockValuable[0]} />
+    </ValuableDetails>
   );
 });
