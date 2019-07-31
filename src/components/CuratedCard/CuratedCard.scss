@@ -12,9 +12,7 @@ $curated-twerkpoints: (
 
 //prettier-ignore
 $curated-card-ratios: (
-  mobile: (
-    352/352
-  ) * 100%,
+  mobile: 100%,
   phablet: (
     264/496
   ) * 100%,
@@ -47,8 +45,8 @@ $curated-card-ratios: (
 
 /* stylelint-disable */
 :export {
-  desktopLg: cudl-strip-unit(map-get($curated-twerkpoints, desktoplg));
   desktop: cudl-strip-unit(map-get($curated-twerkpoints, desktop));
+  desktopLg: cudl-strip-unit(map-get($curated-twerkpoints, desktoplg));
   mobile: cudl-strip-unit(map-get($curated-twerkpoints, mobile));
   phablet: cudl-strip-unit(map-get($curated-twerkpoints, phablet));
   tablet: cudl-strip-unit(map-get($curated-twerkpoints, tablet));

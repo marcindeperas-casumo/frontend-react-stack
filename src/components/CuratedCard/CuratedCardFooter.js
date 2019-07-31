@@ -125,11 +125,11 @@ export const CuratedCardFooterGameDesktop = ({
   return (
     <div className="o-wrapper">
       <div className="u-width--2/3">
-        <Flex align="center">
+        <Flex align="center" spacing="md">
           <Flex.Item className="o-flex__item--no-shrink">
             <GameThumb
-              width={80}
-              height={80}
+              width={64}
+              height={64}
               src={gameData.logoBackground}
               mark={gameData.logo}
             />
