@@ -1,2 +1,2 @@
 // @flow
-export { DepositLimitsForm } from "./DepositLimitsForm";
+export { DepositLimitsFormContainer } from "./DepositLimitsFormContainer";

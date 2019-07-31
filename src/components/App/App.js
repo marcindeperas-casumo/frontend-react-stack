@@ -73,6 +73,15 @@ export class App extends PureComponent<Props> {
             namedExport="MustDropJackpotList"
           />
         </Route>
+        <Route path={["play-okay-settings/deposit-limits"]}>
+          <LazyPortal
+            hostElementId="react-host-deposit-limits"
+            loader={() =>
+              import("Components/Compliance/DepositLimits/DepositLimitsView")
+            }
+            namedExport="DepositLimitsViewContainer"
+          />
+        </Route>
         <Route path={["live-casino-details"]}>
           <LazyPortal
             hostElementId="react-host-live-casino-details"

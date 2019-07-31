@@ -40,13 +40,14 @@ export const limitPreadjust = {
 };
 
 export function sendResponsibleGamblingTest(passed: boolean) {
-  return (dispatch: ThunkDispatch) =>
-    api.sendResponsibleGamblingTest(passed).then(response =>
+  return (dispatch: ThunkDispatch) => {
+    api.sendResponsibleGamblingTest(passed).then(response => {
       dispatch({
         type: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
         response,
-      })
-    );
+      });
+    });
+  };
 }
 
 export function limitAdjust(limitAdjustement: AllLimits) {

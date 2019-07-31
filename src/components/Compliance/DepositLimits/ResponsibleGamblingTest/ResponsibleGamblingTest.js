@@ -25,7 +25,8 @@ export function ResponsibleGamblingTest({
   const [{ answers, page }, next] = usePaging();
   React.useEffect(() => {
     props.fetchQuestions();
-  });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   React.useEffect(() => {
     if (page === numberOfQuestions) {
       const allResponsesEqualNo = !R.find(R.equals(1), answers);

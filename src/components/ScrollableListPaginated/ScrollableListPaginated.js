@@ -5,7 +5,10 @@ import { DirectionRightIcon } from "@casumo/cmp-icons";
 import type { CellRendererParams } from "react-virtualized";
 import classNames from "classnames";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
-import type { responsiveSpacerSizes } from "@casumo/cudl-react-prop-types";
+import type {
+  spacerSizes,
+  responsiveSpacerSizes,
+} from "@casumo/cudl-react-prop-types";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import type { ClickHandlerType } from "Components/ScrollablePaginated";
@@ -14,7 +17,7 @@ import "./ScrollableListPaginated.scss";
 
 type ListObject = {
   title: string,
-  itemIds: Array<string>,
+  itemIds: Array<Object>,
 };
 
 export type SeeMoreProps = {
@@ -34,13 +37,13 @@ type Props = {
   /** The style to apply to the list control buttons. */
   itemControlClass: string,
   /** The text and url to render on the seeMore button. */
-  seeMore: SeeMoreProps,
+  seeMore?: SeeMoreProps,
   /** The item renderer. */
   Component: Function,
   /** The list of items to be rendered. */
   list: ListObject,
   /** Apply margins to the scrollable items */
-  itemSpacing?: responsiveSpacerSizes,
+  itemSpacing?: spacerSizes | responsiveSpacerSizes,
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {
@@ -89,15 +92,14 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     const { list, className, Component, itemSpacing = "default" } = this.props;
     const { itemIds } = list;
     const itemId = itemIds[columnIndex];
+    const isNotFirstElement = columnIndex > 0;
+    const elementMarginClass = classNames(
+      isNotFirstElement && createModifierClasses("u-margin-left", itemSpacing)
+    );
 
     return (
       <div style={style}>
-        <div
-          className={classNames(
-            columnIndex < itemIds.length - 1 &&
-              createModifierClasses("u-margin-right", itemSpacing)
-          )}
-        >
+        <div className={elementMarginClass}>
           <div className={className}>
             <Component key={itemId} id={itemId} />
           </div>
