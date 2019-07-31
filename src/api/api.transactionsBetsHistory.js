@@ -6,6 +6,7 @@ import { URLS } from "Api/api.common";
 import type {
   AnnualOverview,
   WalletTotalsProps,
+  FetchAnnualOverviewPdfUrlProps,
 } from "Models/transactionsBetsHistory";
 
 type HTTPClient = typeof clientHttp;
@@ -60,6 +61,10 @@ type TotalsResponse = $Diff<AnnualOverview, StartingEndBalanceResponse>;
 type StartingEndBalanceResponse = {
   startingBalanceAmount: number,
   endBalanceAmount: number,
+};
+
+type AnnualOverviewPdfUrlResponseRaw = {
+  downloadUrl: string,
 };
 
 const getWalletTotalsUrl = ({
@@ -179,3 +184,9 @@ export const getOverviewReq = async (
     ...startingEndBalanceResp,
   };
 };
+
+export const getAnnualOverviewPdfUrlReq = (
+  props: FetchAnnualOverviewPdfUrlProps,
+  http: HTTPClient = clientHttp
+): Promise<AnnualOverviewPdfUrlResponseRaw> =>
+  http.post(`${URLS.QUERY}/annual-summary-print`, props);

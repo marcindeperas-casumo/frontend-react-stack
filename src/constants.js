@@ -63,6 +63,7 @@ export const MARKETS = {
   in_en: "in_en",
   no_no: "no_no",
   se_sv: "se_sv",
+  es_es: "es_es",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -74,6 +75,7 @@ export const LANGUAGES = {
   [MARKETS.in_en]: "in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
+  [MARKETS.es_es]: "es",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -85,6 +87,7 @@ export const INTL_LOCALES = {
   [MARKETS.in_en]: "en-IN",
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
+  [MARKETS.es_es]: "es-ES",
 };
 
 export const EVENTS = {

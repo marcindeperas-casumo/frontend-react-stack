@@ -63,6 +63,7 @@ import {
 import {
   types as transactionsBetsHistoryTypes,
   fetchAnnualOverviewSaga,
+  fetchAnnualOverviewPdfUrlSaga,
 } from "Models/transactionsBetsHistory";
 
 export default function* rootSaga(dispatch) {
@@ -165,5 +166,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_INIT,
     fetchAnnualOverviewSaga
+  );
+  yield fork(
+    takeEvery,
+    transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
+    fetchAnnualOverviewPdfUrlSaga
   );
 }

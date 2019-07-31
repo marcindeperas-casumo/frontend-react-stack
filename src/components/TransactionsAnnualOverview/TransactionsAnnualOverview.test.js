@@ -1,5 +1,5 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
+import { shallow } from "enzyme";
 import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 import cmsMocks from "./__mocks__/cms.json";
@@ -10,6 +10,7 @@ describe("TransactionsAnnualOverview", () => {
     t: cmsMocks,
     data: annualOverviewMock,
     navigateToHistory: () => {},
+    PdfButton: () => null,
   };
 
   test("should display a list of rows with a label and a value with currency", () => {

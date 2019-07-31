@@ -1,18 +1,26 @@
 // @flow
 import { DateTime } from "luxon";
 import { types as fetchTypes } from "Models/fetch";
-import { getOverviewReq } from "Api/api.transactionsBetsHistory";
+import {
+  getOverviewReq,
+  getAnnualOverviewPdfUrlReq,
+} from "Api/api.transactionsBetsHistory";
 import {
   initFetchAnnualOverview,
   fetchAnnualOverview,
+  initFetchAnnualOverviewPdfUrl,
+  fetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
+import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
+import annualOverview from "./__mocks__/annualOverview.json";
 
 jest.mock("Api/api.transactionsBetsHistory");
 
 describe("Models/transactionsBetsHistory/Actions", () => {
+  const year = 2010;
+
   test("initFetchAnnualOverview()", () => {
-    const year = 2010;
     const action = initFetchAnnualOverview({ year });
 
     expect(action).toEqual({
@@ -23,7 +31,6 @@ describe("Models/transactionsBetsHistory/Actions", () => {
   });
 
   test("fetchAnnualOverview()", () => {
-    const year = 2010;
     const startTime = DateTime.utc(year);
     const endTime = DateTime.utc(year + 1);
     const asyncCallData = { walletId: "wallet-23", startTime, endTime };
@@ -35,6 +42,35 @@ describe("Models/transactionsBetsHistory/Actions", () => {
       asyncCallData,
       asyncCall: getOverviewReq,
       postFetch: types.ANNUAL_OVERVIEW_FETCH_COMPLETED,
+    });
+  });
+
+  test("initFetchAnnualOverviewPdfUrl()", () => {
+    const action = initFetchAnnualOverviewPdfUrl({ year });
+
+    expect(action).toEqual({
+      year,
+      meta: {},
+      type: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
+    });
+  });
+
+  test("fetchAnnualOverviewPdfUrl()", () => {
+    const asyncCallData = prepareFetchAnnualOverviewPdfUrlProps({
+      annualOverview,
+      year,
+      name: "SOME NAME",
+      dni: "SOME DNI",
+      locale: "en-GB",
+    });
+    const action = fetchAnnualOverviewPdfUrl(asyncCallData);
+
+    expect(action).toEqual({
+      type: fetchTypes.FETCH,
+      name: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START,
+      asyncCallData,
+      asyncCall: getAnnualOverviewPdfUrlReq,
+      postFetch: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED,
     });
   });
 });

@@ -154,3 +154,13 @@ export const walletIdSelector = createSelector(
   playerSelector,
   path(["wallet", "id"])
 );
+
+export const playerNameSelector = createSelector(
+  playerSelector,
+  path(["contactInfo", "name"])
+);
+
+export const socialSecurityNumberSelector = createSelector(
+  playerSelector,
+  path(["contactInfo", "socialSecurityNumber"])
+);
