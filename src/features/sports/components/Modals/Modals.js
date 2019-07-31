@@ -2,15 +2,15 @@
 import React from "react";
 import type { Node } from "react";
 import { ActiveModalsQuery, CloseModalMutation } from "Features/sports/state";
-import ChooseFavouritesOverlay from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
-import ChooseFavouriteCompetitionsOverlay from "Features/sports/components/EditFavouriteCompetitionsModal";
+import FavouriteSportsAndCompetitionsSelectorModal from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
+import EditFavouriteCompetitionsModal from "Features/sports/components/EditFavouriteCompetitionsModal";
 import { BettingGlossary } from "Features/sports/components/BettingGlossary";
 import "./Modals.scss";
 
 const modalsMap: { [Modal]: any } = {
   BETTING_GLOSSARY: BettingGlossary,
-  CHOOSE_FAVOURITES: ChooseFavouritesOverlay,
-  CHOOSE_FAVOURITE_COMPETITIONS: ChooseFavouriteCompetitionsOverlay,
+  CHOOSE_FAVOURITES: FavouriteSportsAndCompetitionsSelectorModal,
+  CHOOSE_FAVOURITE_COMPETITIONS: EditFavouriteCompetitionsModal,
 };
 
 export const ModalsArea = ({ children }: { children: Node }) => (
