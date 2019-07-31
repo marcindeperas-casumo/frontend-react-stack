@@ -7,15 +7,14 @@ import { ValuableDetailsBody } from "./ValuableDetailsBody";
 
 describe("ValuableDetails", () => {
   let rendered;
-  const baz = "baz";
-  const Foo = ({ foobar }) => <div>{foobar}</div>;
+  const Foo = () => <div>baz</div>;
 
   beforeEach(() => {
     const mockValuable = mockValuables[0];
 
     rendered = shallow(
       <ValuableDetails {...mockValuable} translations={translations}>
-        <Foo foobar={baz} />
+        <Foo />
       </ValuableDetails>
     );
   });
@@ -24,7 +23,6 @@ describe("ValuableDetails", () => {
     const foo = rendered.find(Foo);
 
     expect(foo).toHaveLength(1);
-    expect(foo.prop("foobar")).toEqual(baz);
   });
 
   test("should render a valuabledetails body", () => {
