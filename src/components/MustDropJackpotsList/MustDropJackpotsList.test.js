@@ -1,40 +1,66 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
+import * as R from "ramda";
 import MustDropJackpotsList from "Components/MustDropJackpotsList/MustDropJackpotsList";
+import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
+import JackpotsListTile from "Components/JackpotsListTile";
+import MockStore from "Components/MockStore/index";
+import defaultState from "Models/__mocks__/state.mock";
+import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
+import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 
-describe("<MustDropJackpotsList />", () => {
-  let rendered;
-  let ids;
+const ids = R.map(R.toString, R.range(0, 8));
 
-  beforeEach(() => {
-    ids = ["1", "2", "3", "4", "5", "6", "7"];
-    rendered = shallow(<MustDropJackpotsList ids={ids} />);
-  });
+describe("<MustDropJackpotsList /> - Mobile", () => {
+  setMobileViewport();
+  const rendered = mount(
+    <MockStore state={defaultState}>
+      <MustDropJackpotsList ids={ids} seeMore="👀" />
+    </MockStore>
+  );
 
-  test("renders a <ScrollableListTitle /> component", () => {
-    expect(rendered.find("ScrollableListTitle").length).toBe(1);
-  });
-
-  test("renders a see more link", () => {
-    rendered = shallow(<MustDropJackpotsList ids={ids} seeMore="👀" />);
-
-    expect(rendered.find("a").prop("href")).toBe("/games/must-drop-jackpots");
-    expect(rendered.find("a").html()).toContain("👀");
-  });
-
-  test("renders tiles for every 3 game", () => {
-    expect(rendered.find("JackpotsListTile").length).toBe(3);
+  test("should not render ScrollableListPaginated component", () => {
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);
   });
 
   test("passes down jackpot-ids to the tiles", () => {
-    const firstTile = rendered.find("JackpotsListTile").first();
+    const firstTile = rendered.find(JackpotsListTile).first();
 
-    expect(firstTile.props().ids).toEqual(["1", "2", "3"]);
+    expect(firstTile.props().ids).toEqual(["0", "1", "2"]);
   });
 
-  test("renders the MustDropJackpotsWidget", () => {
-    const widget = rendered.find("MustDropJackpotsWidgetContainer");
+  test("Should render a ScrollableListTitleRow component", () => {
+    expect(rendered.find(ScrollableListTitleRow)).toHaveLength(1);
+  });
 
-    expect(widget.length).toBe(1);
+  test("Should render a MustDropJackpotsWidget component if must-drop-jackpots-widget is amongst the ids", () => {
+    expect(rendered.find(MustDropJackpotsWidget)).toHaveLength(1);
+  });
+
+  test("renders tiles for every 3 game", () => {
+    expect(rendered.find(JackpotsListTile).length).toBe(3);
+  });
+});
+
+describe("<MustDropJackpotsList /> - Desktop", () => {
+  setDesktopViewport();
+  const rendered = mount(
+    <MockStore state={defaultState}>
+      <MustDropJackpotsList ids={ids} seeMore="👀" />
+    </MockStore>
+  );
+
+  test("Should render a ScrollableListPaginated component", () => {
+    expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
+  });
+
+  test("Should render a ScrollableListTitleRow component", () => {
+    expect(rendered.find(ScrollableListTitleRow)).toHaveLength(1);
+  });
+
+  test("Should render a link to must-drop-jackpots pages with the right URL and text", () => {
+    expect(rendered.find("a").prop("href")).toBe("/games/must-drop-jackpots");
+    expect(rendered.find("a").html()).toContain("👀");
   });
 });

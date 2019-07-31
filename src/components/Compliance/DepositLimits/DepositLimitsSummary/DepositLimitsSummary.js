@@ -37,10 +37,15 @@ type Props = {
   currentLimits: AllLimits,
   edit: DepositKinds => void,
   confirmLimitsAdjust: () => void,
+  fetchTranslations: () => void,
   preadjust: DepositLimitPreadjust,
 };
 
 export function DepositLimitsSummary({ t, ...props }: Props) {
+  React.useEffect(() => {
+    props.fetchTranslations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   const limitsDiff = diffLimits({
     before: props.currentLimits,
     after: props.newLimits,
@@ -106,7 +111,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
           </Flex>
         </Flex>
       ))}
-      <Flex style={{ flexGrow: 2 }} />
+      <Flex.Block />
       {checkIfConditionsApply(limitsDiff) ? (
         <Flex
           direction="vertical"

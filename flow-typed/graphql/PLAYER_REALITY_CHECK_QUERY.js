@@ -37,12 +37,12 @@ export type PLAYER_REALITY_CHECK_QUERY = {
 /**
  * 
  */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Used";
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
  * 
  */
-export type SimplePlayerValuableType = "cash" | "deposit" | "spins";
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
  * 

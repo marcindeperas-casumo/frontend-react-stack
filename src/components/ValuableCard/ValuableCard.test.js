@@ -1,8 +1,7 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { compose, prop } from "ramda";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
-import translationsMock from "Components/PlayerValuableListHorizontal/__mocks__/translations.mock.json";
+import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 import { ValuableCard } from "./ValuableCard";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 import { coinValueToSpinType } from "./ValuableCard.utils";
@@ -27,10 +26,7 @@ describe("ValuableCard", () => {
 
   test("should pass on game image url to valuable header if type is SPINS", () => {
     mockValuable = mockData(VALUABLE_TYPES.SPINS);
-    const expectedValue = compose(
-      prop("backgroundImage"),
-      prop("game")
-    )(mockValuable);
+    const { backgroundImage: expectedValue } = mockValuable;
 
     rendered = shallow(<ValuableCard {...mockValuable} />);
 

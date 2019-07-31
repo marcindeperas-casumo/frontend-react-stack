@@ -11,6 +11,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       },
       undoable: true,
       lock: false,
+      responsibleGamblingTest: undefined,
     };
     const action = {
       type: depositLimitsTypes.FETCH_ALL_DONE,
@@ -35,7 +36,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             weekly: 0,
             monthly: 1, // <-- change
             currency: "EUR",
-            previouslyIncreased: false,
           },
         },
       },
@@ -48,11 +48,12 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
             weekly: 0,
             monthly: 0,
             currency: "EUR",
-            previouslyIncreased: false,
           },
           undoable: false,
           lock: undefined,
           preadjust: undefined,
+          responsibleGamblingTest: undefined,
+          remaining: undefined,
         },
         action
       )
@@ -62,7 +63,6 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         weekly: 0,
         monthly: 1,
         currency: "EUR",
-        previouslyIncreased: false,
       },
       undoable: false,
       lock: undefined,
@@ -77,6 +77,18 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     };
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       preadjust: "preadjust response",
+    });
+  });
+
+  test("REMAINING_LIMITS_DONE", () => {
+    const action = {
+      type: depositLimitsTypes.REMAINING_LIMITS_DONE,
+      response: {
+        value: "remaining limits",
+      },
+    };
+    expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
+      remaining: "remaining limits",
     });
   });
 });

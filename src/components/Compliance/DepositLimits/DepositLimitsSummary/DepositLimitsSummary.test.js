@@ -14,17 +14,16 @@ const props = {
     weekly: 1212,
     monthly: 3333,
     currency: "EUR",
-    previouslyIncreased: false,
   },
   currentLimits: {
     daily: 600,
     weekly: 1500,
     monthly: 3000,
     currency: "EUR",
-    previouslyIncreased: false,
   },
   edit: () => {},
   confirmLimitsAdjust: () => {},
+  fetchTranslations: () => {},
 };
 
 describe("DepositLimitsSummary", () => {

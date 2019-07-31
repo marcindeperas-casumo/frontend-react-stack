@@ -12,6 +12,7 @@ const stories = storiesOf("DepositLimitsSummary", module);
 const actions = {
   confirmLimitsAdjust: action("confirmLimitsAdjust clicked"),
   edit: action("edit clicked"),
+  fetchTranslations: action("fetchTranslations"),
 };
 const range = {
   range: true,
@@ -38,12 +39,10 @@ stories.add("Default", () => {
       newLimits={{
         ...newLimits,
         currency: "EUR",
-        previouslyIncreased: false,
       }}
       currentLimits={{
         ...currentLimits,
         currency: "EUR",
-        previouslyIncreased: false,
       }}
       preadjust={preadjust}
       {...actions}

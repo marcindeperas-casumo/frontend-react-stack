@@ -7,7 +7,6 @@ export type AllLimitsOnlyValues = {
 };
 export type AllLimits = {
   currency: string,
-  previouslyIncreased: boolean,
   daily: ?number,
   monthly: ?number,
   weekly: ?number,
@@ -57,9 +56,18 @@ export type DepositLimitPreadjust = {
   rules: Array<DepositLimitPreadjustRules>,
 };
 
+type ISO8601DateTime = string; // with milliseconds and retrofit
+export type ResponsibleGamblingTest = {|
+  responsibleGamblingQuestionnaireStatus: "SUCCESS" | "FAILED" | "NONE", // NONE if player hasn't attempted test yet
+  responsibleGamblingQuestionnaireLastAttempt: ?ISO8601DateTime, // null if there was no previous attempt
+  responsibleGamblingQuestionnaireAttemptAllowed: boolean,
+|};
+
 export type DepositLimitsReduxStore = {|
   limits: ?AllLimits,
   preadjust: ?DepositLimitPreadjust,
   lock: ?LimitLock,
   undoable: ?boolean,
+  remaining: ?AllLimitsOnlyValues,
+  responsibleGamblingTest: ?ResponsibleGamblingTest,
 |};
