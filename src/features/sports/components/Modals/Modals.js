@@ -2,16 +2,8 @@
 import React from "react";
 import type { Node } from "react";
 import { ActiveModalsQuery, CloseModalMutation } from "Features/sports/state";
-import FavouriteSportsAndCompetitionsSelectorModal from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
-import EditFavouriteCompetitionsModal from "Features/sports/components/EditFavouriteCompetitionsModal";
-import { BettingGlossary } from "Features/sports/components/BettingGlossary";
+import { MODAL_MAPPING } from "./Modals.config";
 import "./Modals.scss";
-
-const modalsMap: { [Modal]: any } = {
-  BETTING_GLOSSARY: BettingGlossary,
-  CHOOSE_FAVOURITES: FavouriteSportsAndCompetitionsSelectorModal,
-  CHOOSE_FAVOURITE_COMPETITIONS: EditFavouriteCompetitionsModal,
-};
 
 export const ModalsArea = ({ children }: { children: Node }) => (
   <div className="c-modals">
@@ -54,7 +46,7 @@ class Modals extends React.Component<{}> {
           return (
             <ModalsArea>
               {activeModals.map(activeModal => {
-                const ModalComponent = modalsMap[activeModal];
+                const ModalComponent = MODAL_MAPPING[activeModal];
 
                 return (
                   <CloseModalMutation
