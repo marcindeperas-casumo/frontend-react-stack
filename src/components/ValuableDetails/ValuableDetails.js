@@ -24,7 +24,7 @@ type Props = {
   /* Expiration Text to display in the expiration badge */
   expirationText: string,
   translations: Translations,
-  /* A component to render to be displayed in the header*/
+  /* Valuable component to be displayed in the header*/
   children: Node,
 };
 
