@@ -13,12 +13,7 @@ stories.add("Default", () => {
   const valuableDetailsMock = mock[0];
 
   return (
-    <ValuableDetails
-      {...valuableDetailsMock}
-      translations={translations}
-      width={379}
-      height={271}
-    >
+    <ValuableDetails {...valuableDetailsMock} translations={translations}>
       <ValuableCard {...mockValuable[0]} />
     </ValuableDetails>
   );
