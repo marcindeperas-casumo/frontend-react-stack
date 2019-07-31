@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
 const stories = storiesOf(
-  "ValuableCardDetails/ValuableCardDetailsExpirationLabel",
+  "ValuableDetails/ValuableCardDetailsExpirationLabel",
   module
 );
 
