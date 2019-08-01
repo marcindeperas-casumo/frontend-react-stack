@@ -117,6 +117,7 @@ export class GameListHorizontal extends PureComponent<Props> {
               className={className}
               itemControlClass={itemControlClass}
               tileHeight={tileHeight}
+              itemSpacing={itemSpacing}
               seeMore={{
                 text: seeMoreText,
                 url: seeMoreUrl,

@@ -32,26 +32,29 @@ if (isNotChromatic) {
     ),
     waitForScrollablePaginated
   );
-}
 
-stories.add(
-  "Multiple sports",
-  () => (
-    <MockedProviderWithContext mocks={mocks.multipleSports} addTypename={false}>
-      <SportsNav currentHash="#filter/football/england/premier_league" />
+  stories.add(
+    "Multiple sports",
+    () => (
+      <MockedProviderWithContext
+        mocks={mocks.multipleSports}
+        addTypename={false}
+      >
+        <SportsNav currentHash="#filter/football/england/premier_league" />
+      </MockedProviderWithContext>
+    ),
+    waitForScrollablePaginated
+  );
+
+  stories.add("Single sport", () => (
+    <MockedProviderWithContext mocks={mocks.singleSport} addTypename={false}>
+      <SportsNav currentHash="#filter/football" />
     </MockedProviderWithContext>
-  ),
-  waitForScrollablePaginated
-);
+  ));
 
-stories.add("Single sport", () => (
-  <MockedProviderWithContext mocks={mocks.singleSport} addTypename={false}>
-    <SportsNav currentHash="#filter/football" />
-  </MockedProviderWithContext>
-));
-
-stories.add("Error", () => (
-  <MockedProviderWithContext mocks={mocks.error} addTypename={false}>
-    <SportsNav currentHash="#filter/tennis/wta" />
-  </MockedProviderWithContext>
-));
+  stories.add("Error", () => (
+    <MockedProviderWithContext mocks={mocks.error} addTypename={false}>
+      <SportsNav currentHash="#filter/tennis/wta" />
+    </MockedProviderWithContext>
+  ));
+}

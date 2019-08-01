@@ -5,7 +5,7 @@ import {
   fetchAnnualOverviewSaga,
   isFailedAnnualOverviewRequestTakePattern,
 } from "./transactionsBetsHistory.saga";
-import annualOverview from "./__mocks__/annualOverview.json";
+import annualOverview from "./__mocks__/annualOverview.mock";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
