@@ -1,4 +1,5 @@
 import { DateTime } from "luxon";
+import { path } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
 import { types } from "./transactionsBetsHistory.constants";
 import {
@@ -6,7 +7,7 @@ import {
   isFailedPdfUrlRequestTakePattern,
 } from "./transactionsBetsHistory.saga.fetchPdfUrl";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import annualOverview from "./__mocks__/annualOverview.json";
+import annualOverview from "./__mocks__/annualOverview.mock";
 
 describe("fetchAnnualOverviewPdfUrlSaga()", () => {
   const year = 2001;
@@ -28,7 +29,7 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
     generator.next();
 
     // there is no annual overview
-    generator.next(null);
+    generator.next();
 
     expect(generator.next().done).toEqual(true);
   });
@@ -50,11 +51,11 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
 
     const fetchPdfUrlEffect = generator.next(locale).value;
 
-    expect(fetchPdfUrlEffect.PUT.action.name).toEqual(
+    expect(path(["PUT", "action", "name"], fetchPdfUrlEffect)).toEqual(
       types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
     );
 
-    expect(fetchPdfUrlEffect.PUT.action.asyncCallData).toEqual(
+    expect(path(["PUT", "action", "asyncCallData"], fetchPdfUrlEffect)).toEqual(
       prepareFetchAnnualOverviewPdfUrlProps({
         annualOverview,
         locale,
@@ -66,11 +67,11 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
 
     const fetchFailRaceEffect = generator.next().value;
 
-    expect(fetchFailRaceEffect.RACE[0].TAKE.pattern).toEqual(
+    expect(path(["RACE", 0, "TAKE", "pattern"], fetchFailRaceEffect)).toEqual(
       types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED
     );
 
-    expect(fetchFailRaceEffect.RACE[1].TAKE.pattern).toEqual(
+    expect(path(["RACE", 1, "TAKE", "pattern"], fetchFailRaceEffect)).toEqual(
       isFailedPdfUrlRequestTakePattern
     );
 
@@ -80,7 +81,7 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
       null,
     ]).value;
 
-    expect(mergeEntityEffect.PUT.action.payload).toEqual({
+    expect(path(["PUT", "action", "payload"], mergeEntityEffect)).toEqual({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [year]: {
           pdfUrl: pdfUrlResponse.downloadUrl,
@@ -112,7 +113,7 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
 
     const fetchPdfUrlEffect = generator.next(locale).value;
 
-    expect(fetchPdfUrlEffect.PUT.action.name).toEqual(
+    expect(path(["PUT", "action", "name"], fetchPdfUrlEffect)).toEqual(
       types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
     );
 
@@ -125,7 +126,7 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
       { error: "something wrong" },
     ]).value;
 
-    expect(rejectCallEffects.CALL.fn).toEqual(reject);
+    expect(path(["CALL", "fn"], rejectCallEffects)).toEqual(reject);
 
     expect(generator.next().done).toEqual(true);
   });
