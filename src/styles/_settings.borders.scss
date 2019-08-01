@@ -1,6 +1,6 @@
 @import "cudl-compile";
 @include cudl-prevent-compile(cudl-sass-border-radius);
-@import "~@casumo/cudl-border-radius/styles/cudl-border-radius";
+@import "cudl-border-radius";
 @include cudl-reset-compile(cudl-sass-border-radius);
 
 $cudl-border-radii: map-merge(
