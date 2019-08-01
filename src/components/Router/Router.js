@@ -18,6 +18,10 @@ export class Router extends PureComponent<Props> {
           props: { path },
         } = child;
 
+        if (path === "*") {
+          return child;
+        }
+
         if (Array.isArray(path)) {
           const intersectionKeys = intersection(path, activePaths);
           return intersectionKeys.length > 0 ? child : null;
