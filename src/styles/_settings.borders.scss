@@ -1,6 +1,6 @@
 @import "cudl-compile";
 @include cudl-prevent-compile(cudl-sass-border-radius);
-@import "cudl-border-radius";
+@import "~@casumo/cudl-border-radius/styles/cudl-border-radius";
 @include cudl-reset-compile(cudl-sass-border-radius);
 
 $cudl-border-radii: map-merge(
@@ -9,8 +9,3 @@ $cudl-border-radii: map-merge(
   ),
   $cudl-border-radii
 );
-
-.t-border-width--md {
-  border-style: solid;
-  border-width: 2px;
-}
