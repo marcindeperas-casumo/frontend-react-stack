@@ -1,14 +1,10 @@
 $cudl-border-radii: (
-  0: 0,
-  2: 2px,
-  4: 4px,
-  8: 8px,
-  16: 16px,
+  xs: 2px,
+  sm: 4px,
+  default: 8px,
+  md: 16px,
+  lg: 24px,
   circle: 50%,
   pill: 100em,
+  none: 0,
 );
-
-.t-border-width--md {
-  border-style: solid;
-  border-width: 2px;
-}
