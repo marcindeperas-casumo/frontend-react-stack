@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { PdfButton } from "Components/PdfButton";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 import cmsMocks from "./__mocks__/cms.json";

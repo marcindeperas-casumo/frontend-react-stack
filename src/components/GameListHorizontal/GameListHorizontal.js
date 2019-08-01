@@ -94,34 +94,37 @@ export class GameListHorizontal extends PureComponent<Props> {
     }
 
     return (
-      <div className="o-wrapper">
-        <Mobile>
-          <ScrollableList
-            itemClassName={className}
-            title={title}
-            seeMoreText={seeMoreText}
-            seeMoreUrl={seeMoreUrl}
-            itemIds={itemIds}
-            Component={itemRenderer}
-            spacing={itemSpacing}
-          />
-        </Mobile>
-        <Desktop>
-          <ScrollableListPaginated
-            list={{
-              title,
-              itemIds,
-            }}
-            Component={itemRenderer}
-            className={className}
-            itemControlClass={itemControlClass}
-            tileHeight={tileHeight}
-            seeMore={{
-              text: seeMoreText,
-              url: seeMoreUrl,
-            }}
-          />
-        </Desktop>
+      <div className="u-margin-x--3xlg@desktop">
+        <div className="o-wrapper">
+          <Mobile>
+            <ScrollableList
+              itemClassName={className}
+              title={title}
+              seeMoreText={seeMoreText}
+              seeMoreUrl={seeMoreUrl}
+              itemIds={itemIds}
+              Component={itemRenderer}
+              spacing={itemSpacing}
+            />
+          </Mobile>
+          <Desktop>
+            <ScrollableListPaginated
+              list={{
+                title,
+                itemIds,
+              }}
+              Component={itemRenderer}
+              className={className}
+              itemControlClass={itemControlClass}
+              tileHeight={tileHeight}
+              itemSpacing={itemSpacing}
+              seeMore={{
+                text: seeMoreText,
+                url: seeMoreUrl,
+              }}
+            />
+          </Desktop>
+        </div>
       </div>
     );
   }
