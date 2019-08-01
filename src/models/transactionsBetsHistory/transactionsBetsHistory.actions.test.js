@@ -13,7 +13,7 @@ import {
 } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import annualOverview from "./__mocks__/annualOverview.json";
+import annualOverview from "./__mocks__/annualOverview.mock";
 
 jest.mock("Api/api.transactionsBetsHistory");
 

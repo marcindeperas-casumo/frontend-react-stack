@@ -1,4 +1,4 @@
-import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
@@ -25,7 +25,7 @@ describe("transactionsBetsHistory.utils", () => {
         endingBalance: "£0",
         totalDeposits: "£12.40",
         totalWithdrawals: "£55.50",
-        totalWagers: "£0",
+        totalWagers: "£34.60",
         totalWins: "£34.50",
         totalBonusesConverted: "£2",
       });
