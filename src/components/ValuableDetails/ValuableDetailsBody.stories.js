@@ -1,16 +1,16 @@
-// @flow
-import React from "react";
-import { storiesOf } from "@storybook/react";
-import { ValuableDetailsBody } from "./ValuableDetailsBody";
-import mock from "./__mocks__/Valuables.json";
-import translations from "./__mocks__/Translations.json";
+// // @flow
+// import React from "react";
+// import { storiesOf } from "@storybook/react";
+// import { ValuableDetailsBody } from "./ValuableDetailsBody";
+// import mock from "./__mocks__/Valuables.json";
+// import translations from "./__mocks__/Translations.json";
 
-const stories = storiesOf("ValuableDetails/ValuableCardDetailsBody", module);
+// const stories = storiesOf("ValuableDetails/ValuableCardDetailsBody", module);
 
-stories.add("Default", () => {
-  const mockValuableDetail = mock[0];
+// stories.add("Default", () => {
+//   const mockValuableDetail = mock[0];
 
-  return (
-    <ValuableDetailsBody {...mockValuableDetail} translations={translations} />
-  );
-});
+//   return (
+//     <ValuableDetailsBody {...mockValuableDetail} translations={translations} />
+//   );
+// });

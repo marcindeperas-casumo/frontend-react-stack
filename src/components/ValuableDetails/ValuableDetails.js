@@ -1,8 +1,10 @@
 // @flow
 import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
+import Badge from "@casumo/cmp-badge";
+import Text from "@casumo/cmp-text";
+import classNames from "classnames";
 import MaskImage from "Components/MaskImage";
-import { ValuableDetailsBody } from "./ValuableDetailsBody";
 
 type Translations = {
   playNowLabel: string,
@@ -21,8 +23,8 @@ type Props = {
   caveat: string,
   /* Content for Terms and conditions */
   termsContent: string,
-  /* Expiration Text to display in the expiration badge */
-  expirationText: string,
+  /* Hours left for the bonus to expire */
+  expirationTimeInHours: number,
   translations: Translations,
   /* Valuable component to be displayed in the header*/
   children: Node,
@@ -38,7 +40,7 @@ export const ValuableDetails = ({
   details,
   caveat,
   termsContent,
-  expirationText,
+  expirationTimeInHours,
   translations,
   children,
 }: Props) => {
@@ -67,13 +69,43 @@ export const ValuableDetails = ({
         </Flex>
       </div>
       <div className="u-margin-top--2xlg">
-        <ValuableDetailsBody
-          details={details}
-          expirationText={expirationText}
-          caveat={caveat}
-          termsContent={termsContent}
-          termsAndConditionLabel={termsAndConditionLabel}
-        />
+        <Flex direction="vertical" align="center" className="u-padding-x--md">
+          <Flex.Item>
+            <Text tag="p" size="md">
+              {details}
+            </Text>
+          </Flex.Item>
+          <Flex.Item className="u-margin-top--lg">
+            <Badge
+              tag="p"
+              size="sm"
+              className={classNames(
+                "u-text-transform-uppercase u-font-weight-bold",
+                expirationTimeInHours > 24 && "t-background-grey-light-1"
+              )}
+            >
+              Expires In {expirationTimeInHours} HOURS
+            </Badge>
+          </Flex.Item>
+          <Flex.Item className="u-margin-top--lg">
+            <Text tag="p" className="t-color-grey" size="sm">
+              {caveat}
+            </Text>
+          </Flex.Item>
+          <Flex.Item className="u-width--1/3 u-margin-y--xlg">
+            <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
+          </Flex.Item>
+          <Flex.Item>
+            <Text tag="strong" className="t-color-grey" size="sm">
+              {termsAndConditionLabel}
+            </Text>
+          </Flex.Item>
+          <Flex.Item>
+            <Text tag="p" className="t-color-grey u-text-align-left" size="sm">
+              {termsContent}
+            </Text>
+          </Flex.Item>
+        </Flex>
       </div>
     </>
   );
