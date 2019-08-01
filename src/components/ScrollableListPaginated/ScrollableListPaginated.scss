@@ -46,3 +46,12 @@
 .c-scrollable-list-paginated__live_casino-button--left {
   transform: translate(-50%, -66%);
 }
+
+// stylelint-disable-next-line xi/selector-pattern
+.c-scrollable-list-paginated__reel_races-button--right {
+  transform: translate(50%, -8%);
+}
+// stylelint-disable-next-line xi/selector-pattern
+.c-scrollable-list-paginated__reel_races-button--left {
+  transform: translate(-50%, -8%);
+}

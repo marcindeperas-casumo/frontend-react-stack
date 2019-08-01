@@ -25,7 +25,7 @@ describe("transactionsBetsHistory.utils", () => {
         endingBalance: "£1,111",
         totalDeposits: "£72",
         totalWithdrawals: "£39",
-        totalWagers: "£0",
+        totalWagers: "£66",
         totalWins: "£98.80",
         totalBonusesConverted: "£45",
       });

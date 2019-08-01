@@ -32,7 +32,7 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
     endingBalance: formatCurrencyBound(annualOverview.endBalanceAmount),
     totalDeposits: formatCurrencyBound(annualOverview.depositsAmount),
     totalWithdrawals: formatCurrencyBound(annualOverview.withdrawalsAmount),
-    totalWagers: formatCurrencyBound(0),
+    totalWagers: formatCurrencyBound(annualOverview.betsAmount),
     totalWins: formatCurrencyBound(annualOverview.winningsAmount),
     totalBonusesConverted: formatCurrencyBound(
       annualOverview.convertedBonusesAmount

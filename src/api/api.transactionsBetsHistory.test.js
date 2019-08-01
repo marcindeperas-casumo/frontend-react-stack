@@ -169,7 +169,7 @@ describe("api.transactionsBetsHistory", () => {
         get: jest
           .fn()
           // these are for getTotalsReq
-          .mockResolvedValueOnce(walletTotals)
+          .mockReturnValueOnce(Promise.resolve(walletTotals))
           .mockReturnValueOnce(Promise.resolve(gameroundTotals))
           // this is for getStartingEndBalanceReq
           .mockReturnValueOnce(Promise.resolve(transactions)),

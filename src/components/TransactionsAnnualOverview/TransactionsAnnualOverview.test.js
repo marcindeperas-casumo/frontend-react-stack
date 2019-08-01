@@ -37,7 +37,7 @@ describe("TransactionsAnnualOverview", () => {
     expect(rows.at(3).prop("label")).toEqual(
       props.t.annual_transactions_total_wagers
     );
-    expect(rows.at(3).prop("amount")).toEqual(0);
+    expect(rows.at(3).prop("amount")).toEqual(props.data.betsAmount);
 
     expect(rows.at(4).prop("label")).toEqual(
       props.t.annual_transactions_total_wins

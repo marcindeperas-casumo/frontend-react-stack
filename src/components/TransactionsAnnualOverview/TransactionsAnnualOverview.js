@@ -100,7 +100,7 @@ export function TransactionsAnnualOverview({
       />
       <ListItem
         label={t.annual_transactions_total_wagers}
-        amount={0}
+        amount={data.betsAmount}
         {...passedProps}
       />
       <ListItem

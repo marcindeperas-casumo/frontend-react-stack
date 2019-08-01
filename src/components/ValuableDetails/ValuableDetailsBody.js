@@ -4,67 +4,57 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableDetailsExpirationLabel } from "./ValuableDetailsExpirationLabel";
 
-type Translations = {
-  termsAndConditionLabel: string,
-  expiresInLabel: string,
-};
-
 type Props = {
   /* Details description of the valuable */
   details: string,
   /* Expiration vaue for the valuable to expire */
-  expirationValueText: string,
+  expirationText: string,
   /* Valuable caveat */
   caveat: string,
   /* Content for terms and conditions */
   termsContent: string,
-  /* Translations of the component */
-  translations: Translations,
+  /* Translated label for terms and conditions */
+  termsAndConditionLabel: string,
 };
 
 export const ValuableDetailsBody = ({
   details,
-  expirationValueText,
+  expirationText,
   caveat,
   termsContent,
-  translations,
+  termsAndConditionLabel,
 }: Props) => {
-  const { termsAndConditionLabel, expiresInLabel } = translations;
-  const expirationLabel = `${expiresInLabel} ${expirationValueText}`;
-
   return (
-    <Flex.Item className="u-text-align-center u-padding-top--lg u-margin-top--none">
-      <div className="u-padding-x--lg">
-        <Text
-          tag="p"
-          size="md"
-          className="u-padding-y--md u-margin-bottom--none"
-        >
+    <Flex direction="vertical" align="center" className="u-padding-x--md">
+      <Flex.Item>
+        <Text tag="p" size="md">
           {details}
         </Text>
+      </Flex.Item>
+      <Flex.Item className="u-margin-top--lg">
         <ValuableDetailsExpirationLabel
-          text={expirationLabel}
+          text={expirationText}
           className="t-background-red"
         />
-        <Text
-          tag="p"
-          className="u-margin-top--md u-margin-bottom--none t-color-grey"
-          size="sm"
-        >
+      </Flex.Item>
+      <Flex.Item className="u-margin-top--lg">
+        <Text tag="p" className="t-color-grey" size="sm">
           {caveat}
         </Text>
-        <hr className="u-margin-y--xlg u-width--1/3 u-opacity-28" />
+      </Flex.Item>
+      <Flex.Item className="u-width--1/3 u-margin-y--xlg">
+        <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
+      </Flex.Item>
+      <Flex.Item>
         <Text tag="strong" className="t-color-grey" size="sm">
           {termsAndConditionLabel}
         </Text>
-      </div>
-      <Text
-        tag="p"
-        className="t-color-grey u-margin-top--md u-padding-x--md u-text-align-left"
-        size="sm"
-      >
-        {termsContent}
-      </Text>
-    </Flex.Item>
+      </Flex.Item>
+      <Flex.Item>
+        <Text tag="p" className="t-color-grey u-text-align-left" size="sm">
+          {termsContent}
+        </Text>
+      </Flex.Item>
+    </Flex>
   );
 };
