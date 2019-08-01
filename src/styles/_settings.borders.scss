@@ -1,11 +1,10 @@
-@import "cudl-compile";
-@include cudl-prevent-compile(cudl-sass-border-radius);
-@import "~@casumo/cudl-border-radius/styles/cudl-border-radius";
-@include cudl-reset-compile(cudl-sass-border-radius);
-
-$cudl-border-radii: map-merge(
-  (
-    xs: 2px,
-  ),
-  $cudl-border-radii
+$cudl-border-radii: (
+  xs: 2px,
+  sm: 4px,
+  default: 8px,
+  md: 16px,
+  lg: 24px,
+  circle: 50%,
+  pill: 100em,
+  none: 0,
 );
