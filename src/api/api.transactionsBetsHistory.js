@@ -43,7 +43,6 @@ type TransactionResponseRaw = {
   balanceBefore: AmountWithCodeResponseRaw,
   balanceAfter: AmountWithCodeResponseRaw,
   delta: AmountWithCodeResponseRaw,
-  details: Object,
   fee: AmountWithCodeResponseRaw,
   id: string,
   paymentMethodId: string,
