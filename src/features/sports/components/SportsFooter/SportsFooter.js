@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import { showTerms } from "Services/ShowTermsService";
 import { OpenModalMutation } from "Features/sports/state";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
+import { MODAL } from "Features/sports/components/Modals";
 
 export const SportsFooter = () => (
   <Flex
@@ -19,7 +20,7 @@ export const SportsFooter = () => (
       </span>
     </Flex.Item>
     <Flex.Item>
-      <OpenModalMutation variables={{ modal: "BETTING_GLOSSARY" }}>
+      <OpenModalMutation variables={{ modal: MODAL.BETTING_GLOSSARY }}>
         {openChooseFavouritesModal => (
           <span
             className="u-cursor-pointer"
