@@ -6,7 +6,7 @@ import { select, boolean, text } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
-import { ValuableCardWithCaveats } from "./ValuableCardWithCaveats";
+import { ValuableCard } from "./ValuableCard";
 
 const stories = storiesOf("ValuableCard", module);
 
@@ -24,7 +24,7 @@ stories.add("Default", () => {
 
   return (
     <div style={{ width: "160px" }}>
-      <ValuableCardWithCaveats
+      <ValuableCard
         {...valuableDetails}
         valuableState={valuableState}
         expirationTimeInHours={expiryHours}

@@ -30,6 +30,8 @@ type Props = {
   market: string,
   /** URL of background image to be displayed in the Card header */
   backgroundImage: string,
+  /** Valuable caveats to be displayed */
+  caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
   /** The date on which the valuable will expiry */
@@ -77,6 +79,7 @@ export class ValuableCard extends PureComponent<Props> {
 
   render() {
     const {
+      caveat,
       coinValue,
       currency,
       description,
@@ -88,39 +91,53 @@ export class ValuableCard extends PureComponent<Props> {
       valuableType,
     } = this.props;
     return (
-      <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--16">
-        <Flex
-          className="o-ratio__content u-padding"
-          data-test="valuable-card"
-          direction="vertical"
-          onClick={this.props.onCardClick}
-        >
-          <Flex.Item>
-            <ValuableThumbnail
-              backgroundRenderer={this.maskedImage}
-              coinValue={coinValue}
-              currency={currency}
-              expirationTimeInHours={expirationTimeInHours}
-              market={market}
-              translatedHoursUnit={translatedHoursUnit}
-              valuableState={valuableState}
-              valuableType={valuableType}
-            />
-          </Flex.Item>
-          <Flex.Item className="o-flex--1 u-text-align-center u-padding-x u-margin-top--md">
-            <Text className="t-color-grey-dark-2 u-font-weight-bold" tag="div">
-              <DangerousHtml data-test="valuable-card-title" html={title} />
-            </Text>
-            {description && (
-              <Text className="t-color-grey u-margin-top" size="xs" tag="div">
-                <DangerousHtml
-                  data-test="valuable-card-description"
-                  html={description}
-                />
+      <div>
+        <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--16">
+          <Flex
+            className="o-ratio__content u-padding"
+            data-test="valuable-card"
+            direction="vertical"
+            onClick={this.props.onCardClick}
+          >
+            <Flex.Item>
+              <ValuableThumbnail
+                backgroundRenderer={this.maskedImage}
+                coinValue={coinValue}
+                currency={currency}
+                expirationTimeInHours={expirationTimeInHours}
+                market={market}
+                translatedHoursUnit={translatedHoursUnit}
+                valuableState={valuableState}
+                valuableType={valuableType}
+              />
+            </Flex.Item>
+            <Flex.Item className="o-flex--1 u-text-align-center u-padding-x u-margin-top--md">
+              <Text
+                className="t-color-grey-dark-2 u-font-weight-bold"
+                tag="div"
+              >
+                <DangerousHtml data-test="valuable-card-title" html={title} />
               </Text>
-            )}
-          </Flex.Item>
-        </Flex>
+              {description && (
+                <Text className="t-color-grey u-margin-top" size="xs" tag="div">
+                  <DangerousHtml
+                    data-test="valuable-card-description"
+                    html={description}
+                  />
+                </Text>
+              )}
+            </Flex.Item>
+          </Flex>
+        </div>
+        {caveat && (
+          <Text
+            size="2xs"
+            className="t-color-grey-light-1 u-text-align-center u-margin-top u-padding-x"
+            tag="div"
+          >
+            <DangerousHtml html={caveat} />
+          </Text>
+        )}
       </div>
     );
   }
