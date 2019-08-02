@@ -88,12 +88,15 @@ class SearchInput extends React.Component<Props, State> {
     );
 
     const clearButtonClassName = classNames(
-      "c-search-input__clear-button t-color-white t-border-r--circle",
+      "c-search-input__clear-button t-color-white t-border-r--circle u-overflow-hidden",
       noResults ? "t-background-black" : "t-background-grey"
     );
 
     return (
-      <Flex align="center" className="t-background-white t-border-r--pill">
+      <Flex
+        align="center"
+        className="t-background-white t-border-r--pill u-overflow-hidden"
+      >
         <Flex.Block>
           <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-y">
             <SearchIcon

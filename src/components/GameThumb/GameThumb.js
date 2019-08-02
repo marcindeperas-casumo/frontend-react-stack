@@ -20,7 +20,7 @@ export class GameThumb extends PureComponent<Props> {
 
     return (
       <ImageLazy
-        className="u-display--block t-border-r--16"
+        className="u-display--block t-border-r--md"
         width={width}
         height={height}
         src={src}

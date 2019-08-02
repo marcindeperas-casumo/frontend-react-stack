@@ -29,7 +29,7 @@ export class CasumoAvatar extends PureComponent<Props> {
     return (
       <div
         className={classNames(
-          `c-casumo-avatar t-border-r--16 o-ratio t-background-${backgroundColor}`,
+          `c-casumo-avatar t-border-r--md o-ratio t-background-${backgroundColor}`,
           getClassModifierByBelt(belt)
         )}
       >

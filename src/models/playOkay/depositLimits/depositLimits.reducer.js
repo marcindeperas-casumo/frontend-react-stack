@@ -3,6 +3,8 @@ import * as R from "ramda";
 import { createReducer } from "Utils";
 import { depositLimitsTypes } from "./depositLimits.constants";
 import type {
+  AllLimitsOnlyValues,
+  DepositKinds,
   DepositLimitsReduxStore,
   DepositLimit,
   ResponsibleGamblingTest,
@@ -16,22 +18,51 @@ export const DEFAULT_STATE = {
   lock: undefined,
   remaining: undefined,
   responsibleGamblingTest: undefined,
+  pendingLimitChanges: undefined,
 };
 
-const handlers = {
-  [depositLimitsTypes.FETCH_ALL_DONE]: (
-    state,
-    { response }: { response: DepositLimit[] }
-  ) => {
-    const LimitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
+type diffLimitsValuesFn1 = (
+  AllLimitsOnlyValues,
+  AllLimitsOnlyValues
+) => AllLimitsOnlyValues;
+type diffLimitsValuesFn2 = AllLimitsOnlyValues => AllLimitsOnlyValues => AllLimitsOnlyValues;
+type diffLimitsValuesCurried = diffLimitsValuesFn1 & diffLimitsValuesFn2;
+// diff limits values returns object with only keys that changed
+const diffLimitsValues: diffLimitsValuesCurried = R.curry(
+  (limitsBefore, limitsAfter) =>
+    R.pipe(
+      R.filter(
+        (depositType: DepositKinds) =>
+          limitsBefore[depositType] !== limitsAfter[depositType]
+      ),
+      R.pick(R.__, limitsAfter)
+    )((["daily", "weekly", "monthly"]: DepositKinds[]))
+);
 
-    return {
-      ...state,
-      limits: R.path(["limit", "value"], LimitDGOJ),
-      undoable: R.prop("undoable", LimitDGOJ),
-      lock: R.prop("lock", LimitDGOJ),
-    };
-  },
+function allLimitsHandler(state, { response }: { response: DepositLimit[] }) {
+  const LimitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
+  const limits = R.path(["limit", "value"], LimitDGOJ);
+  const rawAdjustments = R.prop("adjustment", LimitDGOJ);
+
+  return {
+    ...state,
+    pendingLimitChanges:
+      rawAdjustments &&
+      R.evolve(
+        {
+          value: diffLimitsValues(limits),
+        },
+        rawAdjustments
+      ),
+    limits,
+    undoable: R.prop("undoable", LimitDGOJ),
+    lock: R.prop("lock", LimitDGOJ),
+  };
+}
+
+const handlers = {
+  [depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE]: allLimitsHandler,
+  [depositLimitsTypes.FETCH_ALL_DONE]: allLimitsHandler,
   [depositLimitsTypes.ADJUST_DONE]: (state, { response }) => ({
     ...state,
     limits: R.pathOr(state.limits, ["limit", "value"], response),

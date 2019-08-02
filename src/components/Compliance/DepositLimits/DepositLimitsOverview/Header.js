@@ -13,7 +13,7 @@ export function Header(props: { title: string, children?: ?React.Node }) {
       align="center"
       justify="space-between"
       spacing="none"
-      className="u-padding-y--md"
+      className="u-padding--md"
     >
       <Flex
         justify="center"

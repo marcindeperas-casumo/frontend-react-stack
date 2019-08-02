@@ -19,14 +19,14 @@ export const ProgressBarFiller = (props: Props) => {
   return (
     <div
       className={classNames(
-        `c-progress-bar__filler t-border-r--pill`,
+        `c-progress-bar__filler t-border-r--pill u-overflow-hidden`,
         `t-background-${props.foregroundColor}`
       )}
       style={{ width: `${props.progress}%` }}
     >
       <div
         className={classNames(
-          `c-progress-bar__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill`,
+          `c-progress-bar__highlight u-padding-bottom--sm u-margin-bottom--sm t-border-r--pill u-overflow-hidden`,
           `t-background-${props.foregroundColor}-light-2`
         )}
       />
