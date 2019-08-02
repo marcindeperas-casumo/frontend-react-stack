@@ -2,5 +2,14 @@
   "termsAndConditionLabel": "Terms & Conditions",
   "playNowLabel": "Play now",
   "playToUnlockLabel": "Play to unlock",
-  "deopsitToUnlockLabel": "Deposit to unlock"
+  "depositToUnlockLabel": "Deposit to unlock",
+  "expirationTimeLabel": "Expires in",
+  "hours": {
+    "singular": "{{value}} Hour",
+    "plural": "{{value}} Hours"
+  },
+  "days": {
+    "singular": "{{value}} Day",
+    "plural": "{{value}} Days"
+  }
 }
