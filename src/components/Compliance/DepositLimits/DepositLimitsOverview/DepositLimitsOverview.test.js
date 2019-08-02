@@ -2,7 +2,7 @@
 import * as React from "react";
 import { shallow } from "enzyme";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
-import t from "./__mocks__/cms.json";
+import t from "./__mocks__/cms";
 
 const props = {
   t,
@@ -13,7 +13,6 @@ const props = {
     monthly: 100,
     currency: "EUR",
   },
-  pendingLimitChanges: {},
   remainingLimitValue: {
     daily: 0,
     weekly: 0,
@@ -22,6 +21,7 @@ const props = {
   edit: () => {},
   add: () => {},
   removeAll: () => {},
+  limitCancel: () => {},
 };
 describe("DepositLimitsOverview", () => {
   test("has daily, weekly, monthly limits that can be edited", () => {
@@ -50,5 +50,28 @@ describe("DepositLimitsOverview", () => {
     expect(rendered.find({ "data-test-id": "limit-daily" })).toHaveLength(1);
     expect(rendered.find({ "data-test-id": "limit-weekly" })).toHaveLength(0);
     expect(rendered.find({ "data-test-id": "limit-monthly" })).toHaveLength(0);
+  });
+
+  test("can cancel pending limit changes", () => {
+    const limitCancel = jest.fn();
+    const rendered = shallow(
+      <DepositLimitsOverview
+        {...props}
+        limitCancel={limitCancel}
+        pendingLimitChanges={{
+          approvalRequired: false,
+          confirmationRequired: false,
+          effectiveFrom: "2012-12-12T12:12:12Z",
+          reviewerApproved: false,
+          value: { monthly: 666 },
+        }}
+      />
+    );
+
+    expect(limitCancel).toHaveBeenCalledTimes(0);
+    rendered
+      .find({ "data-test-id": "pending-limit-monthly" })
+      .simulate("click");
+    expect(limitCancel).toHaveBeenCalledTimes(1);
   });
 });

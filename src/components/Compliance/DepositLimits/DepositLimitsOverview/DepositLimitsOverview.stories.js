@@ -3,13 +3,14 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
-import t from "./__mocks__/cms.json";
+import t from "./__mocks__/cms";
 
 const stories = storiesOf("DepositLimitsOverview", module);
 
 const actions = {
   add: action("add clicked"),
   edit: action("edit clicked"),
+  limitCancel: action("limitCancel clicked"),
   removeAll: action("removeAll clicked"),
 };
 
@@ -24,10 +25,13 @@ stories.add("Default", () => (
       currency: "EUR",
     }}
     pendingLimitChanges={{
-      daily: {
-        date: new Date("2012-12-12").valueOf(),
-        value: 750,
+      effectiveFrom: "2012-12-12T12:12:12Z",
+      value: {
+        daily: 750,
       },
+      approvalRequired: false,
+      confirmationRequired: false,
+      reviewerApproved: false,
     }}
     remainingLimitValue={{
       daily: 30,
@@ -53,7 +57,6 @@ stories.add("No limits", () => (
       weekly: null,
       monthly: null,
     }}
-    pendingLimitChanges={{}}
     {...actions}
   />
 ));

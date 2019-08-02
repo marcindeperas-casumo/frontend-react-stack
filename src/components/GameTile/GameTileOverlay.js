@@ -52,7 +52,7 @@ const GameTileOverlay = ({
       className={classNames(
         "o-ratio__content u-text-align-center",
         getClassModifier(inMaintenanceMode, alwaysActive),
-        "u-padding-y--lg u-padding-x--md t-border-r--8"
+        "u-padding-y--lg u-padding-x--md t-border-r"
       )}
     >
       {!alwaysActive && (

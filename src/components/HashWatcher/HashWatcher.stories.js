@@ -21,7 +21,7 @@ class HashWatcherDemo extends React.Component<{}, State> {
 
   render() {
     return (
-      <div className="u-padding t-background-grey-light-1 t-border-r--4">
+      <div className="u-padding t-background-grey-light-1 t-border-r--sm">
         <input
           className="u-margin u-padding"
           value={this.state.newHash}
@@ -34,7 +34,7 @@ class HashWatcherDemo extends React.Component<{}, State> {
         </button>
         <HashWatcher>
           {({ currentHash }) => (
-            <div className="u-margin u-padding t-border-r--4 t-background-grey-light-2">
+            <div className="u-margin u-padding t-border-r--sm t-background-grey-light-2">
               <strong>window.location.hash:&nbsp;</strong>
               {currentHash || "<empty>"}
             </div>

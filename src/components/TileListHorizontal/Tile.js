@@ -13,7 +13,7 @@ type Props = {
   url: string,
   logo?: string,
   background?: string,
-  imgixOpts: imgixOptsObject,
+  imgixOpts?: imgixOptsObject,
 };
 
 const Tile = ({
@@ -28,9 +28,9 @@ const Tile = ({
   }
 
   return (
-    <a href={url} className="o-ratio t-border-r--circle">
+    <a href={url} className="o-ratio">
       <ImageLazy
-        className="o-ratio__content"
+        className="o-ratio__content t-border-r--circle"
         mark={logo}
         src={background}
         imgixOpts={imgixOpts}

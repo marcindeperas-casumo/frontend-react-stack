@@ -1,11 +1,13 @@
+// @flow
 import React from "react";
 import { shallow } from "enzyme";
-import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
 import cmsMocks from "./__mocks__/cms.json";
 
 describe("TransactionsAnnualOverview", () => {
   const props = {
+    selectedYear: 2000,
     locale: "en-GB",
     t: cmsMocks,
     data: annualOverviewMock,
@@ -35,7 +37,7 @@ describe("TransactionsAnnualOverview", () => {
     expect(rows.at(3).prop("label")).toEqual(
       props.t.annual_transactions_total_wagers
     );
-    expect(rows.at(3).prop("amount")).toEqual(0);
+    expect(rows.at(3).prop("amount")).toEqual(props.data.betsAmount);
 
     expect(rows.at(4).prop("label")).toEqual(
       props.t.annual_transactions_total_wins

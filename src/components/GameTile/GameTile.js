@@ -85,7 +85,7 @@ export default class GameTile extends PureComponent<Props, State> {
         className={classNames(
           inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
           `o-ratio--${ratio}`,
-          "c-game-tile o-ratio t-border-r--8 t-color-white",
+          "c-game-tile o-ratio t-border-r t-color-white",
           className
         )}
         onClick={this.handleOnClick}

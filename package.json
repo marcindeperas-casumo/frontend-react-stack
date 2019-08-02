@@ -20,7 +20,7 @@
     "@casumo/cmp-skeleton": "^1.2.5",
     "@casumo/cmp-table": "^2.0.2",
     "@casumo/cmp-text": "^2.0.1",
-    "@casumo/cudl": "^7.0.0",
+    "@casumo/cudl": "^7.3.0",
     "@researchgate/react-intersection-observer": "^1.0.1",
     "apollo-cache-inmemory": "^1.6.2",
     "apollo-client": "^2.6.2",
