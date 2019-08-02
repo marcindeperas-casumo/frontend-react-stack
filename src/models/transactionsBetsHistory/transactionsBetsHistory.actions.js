@@ -1,12 +1,14 @@
 // @flow
 import { types as fetchTypes } from "Models/fetch";
 import {
-  getOverviewReq,
+  getTotalsReq,
+  getTransactionsReq,
   getAnnualOverviewPdfUrlReq,
 } from "Api/api.transactionsBetsHistory";
 import { types } from "./transactionsBetsHistory.constants";
 import type {
   WalletTotalsProps,
+  WalletTransactionsProps,
   FetchAnnualOverviewProps,
   FetchAnnualOverviewPdfUrlProps,
 } from "./transactionsBetsHistory.types";
@@ -22,13 +24,25 @@ export function initFetchAnnualOverview({
   };
 }
 
-export function fetchAnnualOverview(asyncCallData: WalletTotalsProps) {
+export function fetchWalletTotals(asyncCallData: WalletTotalsProps) {
   return {
     type: fetchTypes.FETCH,
-    name: types.ANNUAL_OVERVIEW_FETCH_START,
+    name: types.WALLET_TOTALS_FETCH_START,
     asyncCallData,
-    asyncCall: getOverviewReq,
-    postFetch: types.ANNUAL_OVERVIEW_FETCH_COMPLETED,
+    asyncCall: getTotalsReq,
+    postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
+  };
+}
+
+export function fetchWalletTransactions(
+  asyncCallData: WalletTransactionsProps
+) {
+  return {
+    type: fetchTypes.FETCH,
+    name: types.WALLET_TRANSACTIONS_FETCH_START,
+    asyncCallData,
+    asyncCall: getTransactionsReq,
+    postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,
   };
 }
 

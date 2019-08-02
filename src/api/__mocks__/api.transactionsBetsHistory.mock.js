@@ -16,6 +16,16 @@ export const gameroundTotals = [
   }
 ];
 
+export const totalsResponse = {
+  betsAmount: 66,
+  winningsAmount: 98.8,
+  currency: "GBP",
+  awardedBonusesAmount: 13,
+  convertedBonusesAmount: 45,
+  withdrawalsAmount: 39,
+  depositsAmount: 72
+};
+
 export const transactions = [
   {
     "id": "d324ac10-98d6-11e9-9751-0242ac110002",

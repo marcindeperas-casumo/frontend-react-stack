@@ -1,5 +1,10 @@
+// @flow
+import { transactions } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
-import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
+import {
+  prepareFetchAnnualOverviewPdfUrlProps,
+  getStartingEndBalanceFromTransactions,
+} from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
   describe("prepareFetchAnnualOverviewPdfUrlProps()", () => {
@@ -28,6 +33,17 @@ describe("transactionsBetsHistory.utils", () => {
         totalWagers: "£66",
         totalWins: "£98.80",
         totalBonusesConverted: "£45",
+      });
+    });
+  });
+
+  describe("getStartingEndBalanceFromTransactions()", () => {
+    test("should an object with startingBalanceAmount and endBalanceAmount calculated from input", () => {
+      const balances = getStartingEndBalanceFromTransactions(transactions);
+
+      expect(balances).toEqual({
+        startingBalanceAmount: 249.2855,
+        endBalanceAmount: 289.2855,
       });
     });
   });

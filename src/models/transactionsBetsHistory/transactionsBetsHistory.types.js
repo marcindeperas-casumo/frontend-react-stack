@@ -20,6 +20,10 @@ export type WalletTotalsProps = {
   endTime: DateTime,
 };
 
+export type WalletTransactionsProps = WalletTotalsProps & {
+  perPage?: number,
+};
+
 export type FetchAnnualOverviewProps = {
   year: number,
   meta?: {
@@ -48,4 +52,30 @@ export type FetchAnnualOverviewPdfUrlProps = {
   totalWagers: string,
   totalWins: string,
   totalBonusesConverted: string,
+};
+
+export type AmountWithCodeResponseRaw = {
+  amount: number,
+  iso4217CurrencyCode: string,
+};
+
+export type TransactionResponseRaw = {
+  balanceBefore: AmountWithCodeResponseRaw,
+  balanceAfter: AmountWithCodeResponseRaw,
+  delta: AmountWithCodeResponseRaw,
+  fee: ?AmountWithCodeResponseRaw,
+  id: string,
+  paymentMethodId: ?string,
+  reason: ?string,
+  sequenceNumber: number,
+  state: ?string,
+  timestamp: number,
+  walletId: string,
+  walletUpdateSource: string,
+  withdrawalLocked: boolean,
+};
+
+export type StartingEndBalance = {
+  startingBalanceAmount: number,
+  endBalanceAmount: number,
 };

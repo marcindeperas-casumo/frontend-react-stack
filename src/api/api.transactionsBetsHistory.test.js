@@ -1,20 +1,12 @@
 // @flow
 import { DateTime } from "luxon";
-import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
   getTotalsReq,
   getTransactionsReq,
-  getStartingEndBalanceReq,
-  getOverviewReq,
   getAnnualOverviewPdfUrlReq,
 } from "./api.transactionsBetsHistory";
-import {
-  transactions,
-  walletTotals,
-  gameroundTotals,
-} from "./__mocks__/api.transactionsBetsHistory.mock";
 
 describe("api.transactionsBetsHistory", () => {
   let http;
@@ -126,61 +118,6 @@ describe("api.transactionsBetsHistory", () => {
       expect(http.get).toHaveBeenCalledWith(
         `/api/common/query/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
       );
-    });
-  });
-
-  describe("getStartingEndBalanceReq()", () => {
-    test("returns data correctly calculated based on fetched data", async () => {
-      http = {
-        ...http,
-        get: jest.fn().mockResolvedValueOnce(transactions),
-      };
-
-      const props = {
-        walletId: "wallet-id-123456",
-        startTime: DateTime.utc(2019),
-        endTime: DateTime.utc(2020),
-      };
-
-      const resp = await getStartingEndBalanceReq(props, http);
-
-      expect(resp).toEqual({
-        startingBalanceAmount: 249.2855,
-        endBalanceAmount: 289.2855,
-      });
-    });
-  });
-
-  describe("getOverviewReq()", () => {
-    const startingEndBalances = {
-      startingBalanceAmount: 249.2855,
-      endBalanceAmount: 289.2855,
-    };
-
-    test("returns data correctly calculated based on fetched data", async () => {
-      const props = {
-        walletId: "wallet-id-123456",
-        startTime: DateTime.utc(2019),
-        endTime: DateTime.utc(2020),
-      };
-
-      http = {
-        ...http,
-        get: jest
-          .fn()
-          // these are for getTotalsReq
-          .mockReturnValueOnce(Promise.resolve(walletTotals))
-          .mockReturnValueOnce(Promise.resolve(gameroundTotals))
-          // this is for getStartingEndBalanceReq
-          .mockReturnValueOnce(Promise.resolve(transactions)),
-      };
-
-      const resp = await getOverviewReq(props, http);
-
-      expect(resp).toEqual({
-        ...annualOverview,
-        ...startingEndBalances,
-      });
     });
   });
 

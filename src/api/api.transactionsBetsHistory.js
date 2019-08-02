@@ -1,12 +1,16 @@
 // @flow
 import { DateTime } from "luxon";
-import { pick, path, head, last, sortBy } from "ramda";
+import { pick, path } from "ramda";
 import clientHttp from "Lib/http";
 import { URLS } from "Api/api.common";
 import type {
   AnnualOverview,
   WalletTotalsProps,
+  WalletTransactionsProps,
   FetchAnnualOverviewPdfUrlProps,
+  TransactionResponseRaw,
+  AmountWithCodeResponseRaw,
+  StartingEndBalance,
 } from "Models/transactionsBetsHistory";
 
 type HTTPClient = typeof clientHttp;
@@ -14,15 +18,6 @@ type HTTPClient = typeof clientHttp;
 type GameroundsTotalsProps = {
   startTime: DateTime,
   endTime: DateTime,
-};
-
-type TransactionsProps = WalletTotalsProps & {
-  perPage?: number,
-};
-
-type AmountWithCodeResponseRaw = {
-  amount: number,
-  iso4217CurrencyCode: string,
 };
 
 type WalletTotalsResponseRaw = Array<{
@@ -39,28 +34,7 @@ type GameroundsTotalsResponseRaw = Array<{
   winningsAmount: number,
 }>;
 
-type TransactionResponseRaw = {
-  balanceBefore: AmountWithCodeResponseRaw,
-  balanceAfter: AmountWithCodeResponseRaw,
-  delta: AmountWithCodeResponseRaw,
-  fee: AmountWithCodeResponseRaw,
-  id: string,
-  paymentMethodId: string,
-  reason: string,
-  sequenceNumber: number,
-  state: string,
-  timestamp: number,
-  walletId: string,
-  walletUpdateSource: string,
-  withdrawalLocked: boolean,
-};
-
-type TotalsResponse = $Diff<AnnualOverview, StartingEndBalanceResponse>;
-
-type StartingEndBalanceResponse = {
-  startingBalanceAmount: number,
-  endBalanceAmount: number,
-};
+type TotalsResponse = $Diff<AnnualOverview, StartingEndBalance>;
 
 type AnnualOverviewPdfUrlResponseRaw = {
   downloadUrl: string,
@@ -132,57 +106,17 @@ const getTransactionsUrl = ({
   endTime,
   walletId,
   perPage = 50,
-}: TransactionsProps): string => {
+}: WalletTransactionsProps): string => {
   return `${
     URLS.QUERY
   }/wallet/${walletId}/transaction/${startTime.toISO()}/${endTime.toISO()}/${perPage}`;
 };
 
 export const getTransactionsReq = (
-  props: TransactionsProps,
+  props: WalletTransactionsProps,
   http: HTTPClient = clientHttp
 ): Promise<Array<TransactionResponseRaw>> =>
   http.get(getTransactionsUrl(props));
-
-/**
- * This method uses transactions endpoint and is short-term, intended for Spain audit.
- * It would not be feasible to fetch all transactions in previous years just to get
- * wallet balance at some point in time.
- * After Aug 19 2019 a proper solution will be delivered.
- *
- */
-export const getStartingEndBalanceReq = async (
-  props: WalletTotalsProps,
-  http: HTTPClient = clientHttp
-): Promise<StartingEndBalanceResponse> => {
-  const transactionsResp = await getTransactionsReq(
-    { ...props, perPage: 10000 },
-    http
-  );
-  // API returns a sorted list, from the latest transaction to the oldest
-  return {
-    startingBalanceAmount: path(
-      ["balanceBefore", "amount"],
-      last(transactionsResp)
-    ),
-    endBalanceAmount: path(["balanceAfter", "amount"], head(transactionsResp)),
-  };
-};
-
-export const getOverviewReq = async (
-  props: WalletTotalsProps,
-  http: HTTPClient = clientHttp
-): Promise<AnnualOverview> => {
-  const [totalsResp, startingEndBalanceResp] = await Promise.all([
-    getTotalsReq(props, http),
-    getStartingEndBalanceReq(props, http),
-  ]);
-
-  return {
-    ...totalsResp,
-    ...startingEndBalanceResp,
-  };
-};
 
 export const getAnnualOverviewPdfUrlReq = (
   props: FetchAnnualOverviewPdfUrlProps,

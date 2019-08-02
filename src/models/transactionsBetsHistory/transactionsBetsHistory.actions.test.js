@@ -2,12 +2,14 @@
 import { DateTime } from "luxon";
 import { types as fetchTypes } from "Models/fetch";
 import {
-  getOverviewReq,
+  getTotalsReq,
   getAnnualOverviewPdfUrlReq,
+  getTransactionsReq,
 } from "Api/api.transactionsBetsHistory";
 import {
   initFetchAnnualOverview,
-  fetchAnnualOverview,
+  fetchWalletTotals,
+  fetchWalletTransactions,
   initFetchAnnualOverviewPdfUrl,
   fetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
@@ -30,18 +32,38 @@ describe("Models/transactionsBetsHistory/Actions", () => {
     });
   });
 
-  test("fetchAnnualOverview()", () => {
+  test("fetchWalletTotals()", () => {
     const startTime = DateTime.utc(year);
     const endTime = DateTime.utc(year + 1);
     const asyncCallData = { walletId: "wallet-23", startTime, endTime };
-    const action = fetchAnnualOverview(asyncCallData);
+    const action = fetchWalletTotals(asyncCallData);
 
     expect(action).toEqual({
       type: fetchTypes.FETCH,
-      name: types.ANNUAL_OVERVIEW_FETCH_START,
+      name: types.WALLET_TOTALS_FETCH_START,
       asyncCallData,
-      asyncCall: getOverviewReq,
-      postFetch: types.ANNUAL_OVERVIEW_FETCH_COMPLETED,
+      asyncCall: getTotalsReq,
+      postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
+    });
+  });
+
+  test("fetchWalletTransactions()", () => {
+    const startTime = DateTime.utc(year);
+    const endTime = DateTime.utc(year + 1);
+    const asyncCallData = {
+      walletId: "wallet-23",
+      startTime,
+      endTime,
+      perPage: 10,
+    };
+    const action = fetchWalletTransactions(asyncCallData);
+
+    expect(action).toEqual({
+      type: fetchTypes.FETCH,
+      name: types.WALLET_TRANSACTIONS_FETCH_START,
+      asyncCallData,
+      asyncCall: getTransactionsReq,
+      postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,
     });
   });
 
