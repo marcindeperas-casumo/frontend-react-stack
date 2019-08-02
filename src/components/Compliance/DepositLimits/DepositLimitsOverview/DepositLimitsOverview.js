@@ -49,7 +49,6 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding-x--md"
     >
       <Header title={t.deposit_limits}>
         <HeaderButton
@@ -72,7 +71,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
               key={x}
               direction="vertical"
               spacing="none"
-              className="u-padding-y"
+              className="u-padding-y t-background-white u-padding-x--md"
               data-test-id={`limit-${x}`}
               onClick={() => props.edit(x)}
             >

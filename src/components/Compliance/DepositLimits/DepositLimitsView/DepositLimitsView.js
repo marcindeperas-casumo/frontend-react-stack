@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import Flex from "@casumo/cmp-flex";
+import { DepositLimitsSuspendAccountContainer } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import {
   diffLimits,
   getSpecificKinds,
@@ -20,8 +22,11 @@ import type {
   LimitLock,
   ResponsibleGamblingTest,
 } from "Models/playOkay/depositLimits";
+import bridge from "Src/DurandalReactBridge";
+import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
 import { hasRule } from "Models/playOkay/depositLimits";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
+import { GoBack } from "./GoBack";
 import "./styles.scss";
 
 type LimitChange = {
@@ -72,7 +77,8 @@ type DepositLimitsRoute =
   | "form"
   | "summary"
   | "responsibleGamblingTest"
-  | "confirmations";
+  | "confirmations"
+  | "suspendAccount";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DepositLimitsView(props: Props) {
@@ -81,9 +87,21 @@ export function DepositLimitsView(props: Props) {
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+  React.useEffect(() => {
+    // it handles suspendAccount view. On site there's old view for that
+    // when it's shown we are rendering null from this component, and
+    // when event comes we are showing back overview
+    const goBackToOverview = () => navigate({ route: "overview" });
+
+    bridge.on(REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED, goBackToOverview);
+
+    return function cleanup() {
+      bridge.off(REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED, goBackToOverview);
+    };
+  });
   const [{ route, depositKind, limitChanges, pages }, navigate] = useRouting();
 
-  if (!props.t || !props.limits || !props.remaining) {
+  if (!props.t || !props.limits || !props.remaining || !props.preadjust) {
     return "loading";
   }
   const newLimits = { ...props.limits, ...limitChanges };
@@ -93,7 +111,7 @@ export function DepositLimitsView(props: Props) {
   });
   const decreases = getSpecificKinds("decrease", limitsDiff);
 
-  return {
+  const routes = {
     overview: (
       <DepositLimitsOverview
         t={props.t}
@@ -205,7 +223,28 @@ export function DepositLimitsView(props: Props) {
         }}
       />
     ),
-  }[route];
+  };
+
+  if (route === "suspendAccount") {
+    // it uses view from old codebase
+    return null;
+  }
+
+  return (
+    <Flex direction="vertical" spacing="none" className="u-margin-bottom--3xlg">
+      {route !== "overview" && (
+        <GoBack t={props.t} goBack={() => navigate({ route: "overview" })} />
+      )}
+      {routes[route]}
+      {route === "overview" && (
+        <DepositLimitsSuspendAccountContainer
+          showOldSuspendAccountView={() =>
+            navigate({ route: "suspendAccount" })
+          }
+        />
+      )}
+    </Flex>
+  );
 }
 
 export function useRouting(initialRoute: DepositLimitsRoute = "overview") {

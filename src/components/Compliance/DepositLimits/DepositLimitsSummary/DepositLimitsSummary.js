@@ -76,7 +76,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding--md u-height--1/1"
+      className="u-padding--md u-height--1/1 t-background-white c-deposit-limits-container"
     >
       <Text className="u-font-weight-bold">{t.summary_title}</Text>
       {limitTypes.map(x => (
