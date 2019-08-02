@@ -93,64 +93,6 @@ describe("<PromotionCardList /> - Mobile", () => {
         .props().className
     ).not.toMatch("t-background-");
   });
-
-  test("should set a font color if titleColor is coming down as a prop", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-          titleColor="white"
-        />
-      </MockStore>
-    );
-
-    expect(
-      rendered
-        .find("PromotionCardList")
-        .childAt(0)
-        .hasClass("t-color-white")
-    ).toBe(true);
-  });
-
-  test("should not set a font color if titleColor is not coming down as a prop", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-        />
-      </MockStore>
-    );
-
-    expect(
-      rendered
-        .find("PromotionCardList")
-        .childAt(0)
-        .props().className
-    ).not.toMatch("t-color-");
-  });
-
-  test("should render a see more link", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-          seeMore="👀"
-        />
-      </MockStore>
-    );
-
-    expect(rendered.find("a").prop("href")).toBe("/promotions");
-    expect(rendered.find("a").html()).toContain("👀");
-  });
 });
 
 describe("<PromotionCardList /> - Desktop", () => {
@@ -176,22 +118,5 @@ describe("<PromotionCardList /> - Desktop", () => {
 
   test("should fetch the page on component mount", () => {
     expect(fetchCampaign).toHaveBeenCalled();
-  });
-
-  test("should render a see more link", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-          seeMore="👀👀"
-        />
-      </MockStore>
-    );
-
-    expect(rendered.find("a").prop("href")).toBe("/promotions");
-    expect(rendered.find("a").html()).toContain("👀👀");
   });
 });
