@@ -4,6 +4,7 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
+import { INTL_LOCALES } from "Src/constants";
 import { interpolate } from "Utils";
 import {
   type ValuableState,
@@ -52,6 +53,7 @@ export const ValuableThumbnail = ({
   );
   const showStateBadge =
     stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH;
+  const locale = INTL_LOCALES[market];
 
   return (
     <div className="o-ratio o-ratio--valuable-card-header">
@@ -67,7 +69,7 @@ export const ValuableThumbnail = ({
           <div
             className={classNames(
               "o-ratio__content",
-              getCoinClassModifier(valuableType, spinType)
+              getCoinClassModifier(valuableType)
             )}
           >
             <Coin className="u-width--1/1" />
@@ -77,12 +79,12 @@ export const ValuableThumbnail = ({
             justify="center"
             className={classNames(
               "o-ratio__content",
-              getCoinTextClassModifier(valuableType, spinType)
+              getCoinTextClassModifier(valuableType)
             )}
           >
             <ValuableSymbol
               currency={currency}
-              locale={market}
+              locale={locale}
               spinType={spinType}
               valuableType={valuableType}
             />
@@ -113,7 +115,7 @@ export const ValuableThumbnail = ({
   );
 };
 
-function getCoinClassModifier(valuableType, spinType) {
+function getCoinClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
@@ -129,7 +131,7 @@ function getCoinClassModifier(valuableType, spinType) {
   }
 }
 
-function getCoinTextClassModifier(valuableType, spinType) {
+function getCoinTextClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
@@ -145,7 +147,11 @@ function getCoinTextClassModifier(valuableType, spinType) {
   }
 }
 
-function getStateBadgeProperties(valuableState, hours, translatedHoursUnit) {
+function getStateBadgeProperties(
+  valuableState: ValuableState,
+  hours: number,
+  translatedHoursUnit: string
+) {
   const badgeProperties = {
     visible: false,
     text: "",

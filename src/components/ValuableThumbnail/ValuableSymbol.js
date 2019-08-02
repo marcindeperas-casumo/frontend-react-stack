@@ -24,10 +24,10 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
 
-const CashSymbol = ({ market, currency }) => {
+const CashSymbol = ({ locale, currency }) => {
   const currencySymbol = getSymbolForCurrency({
     currency,
-    locale: INTL_LOCALES[market],
+    locale,
   });
 
   return (
