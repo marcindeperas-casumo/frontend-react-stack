@@ -1,5 +1,6 @@
 // @flow
 import { DateTime } from "luxon";
+import { URLS } from "./api.common";
 import {
   getWalletTotalsReq,
   getGameroundsTotalsReq,
@@ -31,7 +32,7 @@ describe("api.transactionsBetsHistory", () => {
         await getWalletTotalsReq(props, http);
 
         expect(http.get).toHaveBeenCalledWith(
-          `/api/common/query/wallet/${props.walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
+          `${URLS.QUERY}/wallet/${props.walletId}/totals?startTime=${startTimeInUrl}&endTime=${endTimeInUrl}`
         );
       });
     });
@@ -49,7 +50,7 @@ describe("api.transactionsBetsHistory", () => {
         await getGameroundsTotalsReq(props, http);
 
         expect(http.get).toHaveBeenCalledWith(
-          `/api/common/query/gamerounds/totals?from=${startTimeInUrl}&to=${endTimeInUrl}`
+          `${URLS.QUERY}/gamerounds/totals?from=${startTimeInUrl}&to=${endTimeInUrl}`
         );
       });
     });
@@ -116,7 +117,7 @@ describe("api.transactionsBetsHistory", () => {
       await getTransactionsReq(props, http);
 
       expect(http.get).toHaveBeenCalledWith(
-        `/api/common/query/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
+        `${URLS.QUERY}/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
       );
     });
   });
