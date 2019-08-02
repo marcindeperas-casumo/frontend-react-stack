@@ -13,6 +13,7 @@ import {
 } from "Features/sports/components/SportsNav";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import * as navItemUtils from "Features/sports/components/SportsNav/sportsNavUtils";
+import { MODAL } from "Features/sports/components/Modals";
 
 export type LiveState = [boolean, (boolean) => void];
 
@@ -85,7 +86,7 @@ const renderSportsNav = (
 
   return (
     <>
-      <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITES" }}>
+      <OpenModalMutation variables={{ modal: MODAL.CHOOSE_FAVOURITES }}>
         {openChooseFavouritesModal => (
           <SportsMainNav
             {...commonProps}
@@ -97,7 +98,9 @@ const renderSportsNav = (
         )}
       </OpenModalMutation>
 
-      <OpenModalMutation variables={{ modal: "CHOOSE_FAVOURITE_COMPETITIONS" }}>
+      <OpenModalMutation
+        variables={{ modal: MODAL.CHOOSE_FAVOURITE_COMPETITIONS }}
+      >
         {openChooseFavouriteLeaguesModal =>
           isNotAllSports && (
             <SportsSubNav

@@ -21,7 +21,7 @@ import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
-import Modals from "Features/sports/components/Modals";
+import Modals, { MODAL } from "Features/sports/components/Modals";
 import {
   SportsStateProvider,
   ClientContext,
@@ -52,7 +52,7 @@ const showFavouritesSelector = client =>
     if (!data.hasSelectedFavourites) {
       client.mutate({
         mutation: OPEN_MODAL_MUTATION,
-        variables: { modal: "CHOOSE_FAVOURITES" },
+        variables: { modal: MODAL.CHOOSE_FAVOURITES },
       });
     }
   });
