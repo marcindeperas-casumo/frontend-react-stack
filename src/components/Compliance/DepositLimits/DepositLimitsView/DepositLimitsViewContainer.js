@@ -9,6 +9,7 @@ import {
   getDepositLimitsSelector,
   sendResponsibleGamblingTest,
   limitAdjust,
+  limitCancel,
 } from "Models/playOkay/depositLimits";
 import { DepositLimitsView } from "./DepositLimitsView";
 
@@ -22,6 +23,7 @@ export const DepositLimitsViewContainer = connect(
   {
     init,
     limitAdjust,
+    limitCancel,
     sendResponsibleGamblingTest,
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }

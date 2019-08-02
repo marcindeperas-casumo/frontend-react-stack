@@ -21,6 +21,7 @@ import type {
   DepositLimitPreadjust,
   LimitLock,
   ResponsibleGamblingTest,
+  DepositLimitsAdjustement,
 } from "Models/playOkay/depositLimits";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
@@ -29,10 +30,6 @@ import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
 import { GoBack } from "./GoBack";
 import "./styles.scss";
 
-type LimitChange = {
-  date: number,
-  value: number,
-};
 type Props = {
   limits: AllLimits,
   preadjust: DepositLimitPreadjust,
@@ -40,6 +37,7 @@ type Props = {
   lock: ?LimitLock,
   undoable: ?boolean,
   remaining: AllLimitsOnlyValues,
+  pendingLimitChanges?: DepositLimitsAdjustement,
 
   locale: string,
   t: {
@@ -51,6 +49,7 @@ type Props = {
     monthly: string,
     deposit_limits: string,
     pending_change: string,
+    pending_change_known_deadline: string,
     remove_all: string,
     remove_selected: string,
     summary_title: string,
@@ -60,15 +59,12 @@ type Props = {
     daily_removed: string,
     weekly_removed: string,
     monthly_removed: string,
-  },
-  pendingLimitChanges: {
-    daily?: LimitChange,
-    weekly?: LimitChange,
-    monthly?: LimitChange,
+    cancel: string,
   },
   init: () => void,
   fetchTranslations: () => void,
   limitAdjust: AllLimits => void,
+  limitCancel: DepositKinds => void,
   sendResponsibleGamblingTest: boolean => Promise<any>,
 };
 
@@ -119,6 +115,7 @@ export function DepositLimitsView(props: Props) {
         limits={props.limits}
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
+        limitCancel={props.limitCancel}
         edit={x => navigate({ route: "form", depositKind: x })}
         add={() => navigate({ route: "form" })}
         removeAll={() => {
