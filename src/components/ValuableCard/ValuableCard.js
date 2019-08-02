@@ -92,7 +92,7 @@ export class ValuableCard extends PureComponent<Props> {
     } = this.props;
     return (
       <div>
-        <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--16">
+        <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--md">
           <Flex
             className="o-ratio__content u-padding"
             data-test="valuable-card"

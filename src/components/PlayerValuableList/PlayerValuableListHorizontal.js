@@ -58,18 +58,20 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             valuableType === VALUABLE_TYPES.CASH;
 
           return (
-            <a
-              href={getCardUrl(valuableState, valuableType)}
-              key={`valuable-card-${id}`}
-            >
-              <ValuableCard
-                translatedHoursUnit={hoursLabel}
-                {...valuable}
-                onCardClick={
-                  shouldUseValuable ? () => onConsumeValuable(id) : noop
-                }
-              />
-            </a>
+            <div style={{ width: "160px" }}>
+              <a
+                href={getCardUrl(valuableState, valuableType)}
+                key={`valuable-card-${id}`}
+              >
+                <ValuableCard
+                  translatedHoursUnit={hoursLabel}
+                  {...valuable}
+                  onCardClick={
+                    shouldUseValuable ? () => onConsumeValuable(id) : noop
+                  }
+                />
+              </a>
+            </div>
           );
         })}
       </Scrollable>
