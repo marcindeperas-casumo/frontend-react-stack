@@ -261,3 +261,7 @@ export const isCmsEntryEmpty = R.pipe(
   R.replace(/^empty$/i, ""),
   R.equals("")
 );
+
+export const convertHoursToDays = (hours: number) => {
+  return Math.floor(hours / 24);
+};

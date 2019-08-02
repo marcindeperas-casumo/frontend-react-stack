@@ -5,7 +5,7 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import MaskImage from "Components/MaskImage";
-import { interpolate } from "Utils";
+import { interpolate, convertHoursToDays } from "Utils";
 
 export const expirationBadgeClasses = {
   red: "t-background-red",
@@ -57,13 +57,9 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-// TODO to move this to utils
-const convertHoursToDays = hours => {
-  return Math.floor(hours / 24);
-};
-
 // TODO: to move this to somewhere more localised
 // TODO: add other formats
+// Issue: https://jira.casumocave.com/browse/PRR-65
 const getDurationTranslation = (
   expiration: badgeInfoType,
   translations: DurationTranslations
