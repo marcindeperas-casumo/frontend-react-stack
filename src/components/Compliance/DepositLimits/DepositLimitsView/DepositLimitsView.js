@@ -246,7 +246,7 @@ export function DepositLimitsView(props: Props) {
         <DepositLimitsHistoryContainer
           t={props.t}
           locale={props.locale}
-          currency={props.limits.currency}
+          currency={props.currency}
         />
       )}
     </Flex>
