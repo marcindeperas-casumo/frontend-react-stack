@@ -17,7 +17,7 @@ export const ValuableDetailsExpirationLabel = ({ text, className }: Props) => {
       size="sm"
       data-test="expiration-label"
       className={classNames(
-        "u-display--inline-block t-border-r--2 u-text-transform-uppercase u-padding-x--md u-padding-y--sm t-color-white",
+        "u-display--inline-block t-border-r--xs u-overflow-hidden u-text-transform-uppercase u-padding-x--md u-padding-y--sm t-color-white",
         "u-font-weight-bold",
         className
       )}

@@ -6,7 +6,11 @@ import { URLS } from "Api/api.common";
 import type {
   AnnualOverview,
   WalletTotalsProps,
+  WalletTransactionsProps,
   FetchAnnualOverviewPdfUrlProps,
+  TransactionResponseRaw,
+  AmountWithCodeResponseRaw,
+  StartingEndBalance,
 } from "Models/transactionsBetsHistory";
 
 type HTTPClient = typeof clientHttp;
@@ -14,11 +18,6 @@ type HTTPClient = typeof clientHttp;
 type GameroundsTotalsProps = {
   startTime: DateTime,
   endTime: DateTime,
-};
-
-type AmountWithCodeResponseRaw = {
-  amount: number,
-  iso4217CurrencyCode: string,
 };
 
 type WalletTotalsResponseRaw = Array<{
@@ -34,6 +33,8 @@ type GameroundsTotalsResponseRaw = Array<{
   betsAmount: number,
   winningsAmount: number,
 }>;
+
+type TotalsResponse = $Diff<AnnualOverview, StartingEndBalance>;
 
 type AnnualOverviewPdfUrlResponseRaw = {
   downloadUrl: string,
@@ -80,7 +81,7 @@ export const getGameroundsTotalsReq = (
 export const getTotalsReq = async (
   props: WalletTotalsProps,
   http: HTTPClient = clientHttp
-): Promise<AnnualOverview> => {
+): Promise<TotalsResponse> => {
   const responses = await Promise.all([
     getWalletTotalsReq(props, http),
     getGameroundsTotalsReq(pick(["startTime", "endTime"], props), http),
@@ -99,6 +100,23 @@ export const getTotalsReq = async (
     winningsAmount: path([1, 0, "winningsAmount"], responses),
   };
 };
+
+const getTransactionsUrl = ({
+  startTime,
+  endTime,
+  walletId,
+  perPage = 50,
+}: WalletTransactionsProps): string => {
+  return `${
+    URLS.QUERY
+  }/wallet/${walletId}/transaction/${startTime.toISO()}/${endTime.toISO()}/${perPage}`;
+};
+
+export const getTransactionsReq = (
+  props: WalletTransactionsProps,
+  http: HTTPClient = clientHttp
+): Promise<Array<TransactionResponseRaw>> =>
+  http.get(getTransactionsUrl(props));
 
 export const getAnnualOverviewPdfUrlReq = (
   props: FetchAnnualOverviewPdfUrlProps,

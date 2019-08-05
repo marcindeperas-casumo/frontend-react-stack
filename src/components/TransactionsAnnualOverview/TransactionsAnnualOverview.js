@@ -85,7 +85,7 @@ export function TransactionsAnnualOverview({
       </Text>
       <ListItem
         label={t.annual_transactions_starting_balance}
-        amount={0}
+        amount={data.startingBalanceAmount}
         {...passedProps}
       />
       <ListItem
@@ -100,7 +100,7 @@ export function TransactionsAnnualOverview({
       />
       <ListItem
         label={t.annual_transactions_total_wagers}
-        amount={0}
+        amount={data.betsAmount}
         {...passedProps}
       />
       <ListItem
@@ -120,7 +120,7 @@ export function TransactionsAnnualOverview({
       />
       <ListItem
         label={t.annual_transactions_end_balance}
-        amount={0}
+        amount={data.endBalanceAmount}
         {...passedProps}
       />
       <PdfButton

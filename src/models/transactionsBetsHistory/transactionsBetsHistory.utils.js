@@ -1,9 +1,13 @@
 // @flow
+import { DateTime } from "luxon";
+import { head, last, path } from "ramda";
 import { formatCurrency } from "Utils";
 import { types } from "./transactionsBetsHistory.constants";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
+  TransactionResponseRaw,
+  StartingEndBalance,
 } from "./transactionsBetsHistory.types";
 
 type Props = {
@@ -12,6 +16,12 @@ type Props = {
   year: number,
   name: string,
   dni: string,
+};
+
+type FetchTypeByDatesProps = {
+  type: string,
+  startDate: DateTime,
+  endDate: DateTime,
 };
 
 export function prepareFetchAnnualOverviewPdfUrlProps({
@@ -29,11 +39,11 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
     year,
     name,
     dni,
-    startingBalance: formatCurrencyBound(0),
-    endingBalance: formatCurrencyBound(0),
+    startingBalance: formatCurrencyBound(annualOverview.startingBalanceAmount),
+    endingBalance: formatCurrencyBound(annualOverview.endBalanceAmount),
     totalDeposits: formatCurrencyBound(annualOverview.depositsAmount),
     totalWithdrawals: formatCurrencyBound(annualOverview.withdrawalsAmount),
-    totalWagers: formatCurrencyBound(0),
+    totalWagers: formatCurrencyBound(annualOverview.betsAmount),
     totalWins: formatCurrencyBound(annualOverview.winningsAmount),
     totalBonusesConverted: formatCurrencyBound(
       annualOverview.convertedBonusesAmount
@@ -41,6 +51,23 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
   };
 }
 
-export function getFetchTypeByYear(type: string, year: number): string {
-  return `${type}-${year}`;
+export function getFetchTypeByDates({
+  type,
+  startDate,
+  endDate,
+}: FetchTypeByDatesProps): string {
+  return `${type}-${startDate.toISO()}-${endDate.toISO()}`;
+}
+
+export function getStartingEndBalanceFromTransactions(
+  transactions: Array<TransactionResponseRaw>
+): StartingEndBalance {
+  // API returns a sorted list, from the latest transaction to the oldest
+  return {
+    startingBalanceAmount: path(
+      ["balanceBefore", "amount"],
+      last(transactions)
+    ),
+    endBalanceAmount: path(["balanceAfter", "amount"], head(transactions)),
+  };
 }

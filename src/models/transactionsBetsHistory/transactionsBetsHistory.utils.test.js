@@ -1,8 +1,12 @@
-import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.json";
+// @flow
+import { DateTime } from "luxon";
+import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
+import { transactions } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import { types } from "./transactionsBetsHistory.constants";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
-  getFetchTypeByYear,
+  getStartingEndBalanceFromTransactions,
+  getFetchTypeByDates,
 } from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
@@ -25,23 +29,37 @@ describe("transactionsBetsHistory.utils", () => {
         year,
         name,
         dni,
-        startingBalance: "£0",
-        endingBalance: "£0",
-        totalDeposits: "£12.40",
-        totalWithdrawals: "£55.50",
-        totalWagers: "£0",
-        totalWins: "£34.50",
-        totalBonusesConverted: "£2",
+        startingBalance: "£1,000",
+        endingBalance: "£1,111",
+        totalDeposits: "£72",
+        totalWithdrawals: "£39",
+        totalWagers: "£66",
+        totalWins: "£98.80",
+        totalBonusesConverted: "£45",
       });
     });
   });
 
-  describe("getFetchTypeByYear()", () => {
+  describe("getStartingEndBalanceFromTransactions()", () => {
+    test("should an object with startingBalanceAmount and endBalanceAmount calculated from input", () => {
+      const balances = getStartingEndBalanceFromTransactions(transactions);
+
+      expect(balances).toEqual({
+        startingBalanceAmount: 249.2855,
+        endBalanceAmount: 289.2855,
+      });
+    });
+  });
+
+  describe("getFetchTypeByDates()", () => {
     test("should return a properly formatted string", () => {
       const type = types.ANNUAL_OVERVIEW_FETCH_INIT;
-      const year = 2010;
+      const startDate = DateTime.utc(2001, 2, 11);
+      const endDate = DateTime.utc(2001, 6, 1);
 
-      expect(getFetchTypeByYear(type, year)).toEqual(`${type}-${year}`);
+      expect(getFetchTypeByDates({ type, startDate, endDate })).toEqual(
+        `${type}-${startDate.toISO()}-${endDate.toISO()}`
+      );
     });
   });
 });

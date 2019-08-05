@@ -1,3 +1,4 @@
+// @flow
 import { createSelector } from "reselect";
 import {
   compose,
@@ -15,7 +16,7 @@ import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
 
-export const handshakeSelector = state => state.handshake;
+export const handshakeSelector = (state: Object) => state.handshake;
 
 export const applicationHandshakeSelector = createSelector(
   handshakeSelector,
@@ -155,7 +156,9 @@ export const walletIdSelector = createSelector(
   path(["wallet", "id"])
 );
 
-export const playerNameSelector = createSelector(
+type PlayerNameSelector = Object => { firstName: string, lastName: string };
+
+export const playerNameSelector: PlayerNameSelector = createSelector(
   playerSelector,
   path(["contactInfo", "name"])
 );

@@ -38,7 +38,7 @@
     background: cudl-palette(grey, light-2);
   }
   100% {
-    background: $white;
+    background: cudl-palette(white);
   }
 }
 // stylelint-enable xi/selector-pattern

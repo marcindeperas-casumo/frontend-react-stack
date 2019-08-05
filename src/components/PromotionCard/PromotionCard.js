@@ -29,7 +29,7 @@ const PromotionCardWrapper = ({
   return (
     <a href={link} className="o-ratio o-ratio--promotion-card">
       <Card
-        className="o-ratio__content t-border-r--16 t-background-white"
+        className="o-ratio__content t-border-r--md t-background-white"
         spacing="none"
         header={() => <PromotionCardHeader badge={badge} dates={dates} />}
         content={() => <PromotionCardContent title={title} />}

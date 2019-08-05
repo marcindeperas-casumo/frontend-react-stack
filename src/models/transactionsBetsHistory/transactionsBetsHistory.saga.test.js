@@ -1,11 +1,11 @@
 import { DateTime } from "luxon";
 import { ENTITY_KEYS } from "Models/schema";
-import { types } from "./transactionsBetsHistory.constants";
 import {
-  fetchAnnualOverviewSaga,
-  isFailedAnnualOverviewRequestTakePattern,
-} from "./transactionsBetsHistory.saga";
-import annualOverview from "./__mocks__/annualOverview.json";
+  totalsResponse,
+  transactions,
+} from "Api/__mocks__/api.transactionsBetsHistory.mock";
+import { types } from "./transactionsBetsHistory.constants";
+import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
@@ -24,33 +24,56 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
-    const fetchTotalsAction = generator.next(null).value.PUT.action;
+    const fetchAllEffect = generator.next(null).value;
+    const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
+    const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
 
-    expect(fetchTotalsAction.name).toEqual(types.ANNUAL_OVERVIEW_FETCH_START);
+    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
     expect(fetchTotalsAction.asyncCallData).toEqual({
       walletId,
       startTime: DateTime.utc(action.year),
       endTime: DateTime.utc(action.year + 1),
     });
 
-    // a RACE effect takes place - either a fetch succeeds or an error is found
-    const raceEffect = generator.next().value;
-
-    expect(raceEffect.RACE[0].TAKE.pattern).toEqual(
-      types.ANNUAL_OVERVIEW_FETCH_COMPLETED
+    expect(fetchTransactionsAction.name).toEqual(
+      types.WALLET_TRANSACTIONS_FETCH_START
     );
-    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(
-      isFailedAnnualOverviewRequestTakePattern
+    expect(fetchTransactionsAction.asyncCallData).toEqual({
+      walletId,
+      startTime: DateTime.utc(action.year),
+      endTime: DateTime.utc(action.year + 1),
+      perPage: 10000,
+    });
+
+    generator.next();
+
+    const fetchStateObject = { isFetching: false, error: null };
+    // feed select for totals fetch state
+    generator.next(fetchStateObject);
+    // feed select for transactions fetch state
+    const walletTotalsTakeEffect = generator.next().value;
+
+    expect(walletTotalsTakeEffect.TAKE.pattern).toEqual(
+      types.WALLET_TOTALS_FETCH_COMPLETED
     );
 
-    const mergeEntityEffect = generator.next([
-      { response: annualOverview },
-      null,
-    ]).value;
+    const walletTransactionsTakeEffect = generator.next({
+      response: totalsResponse,
+    }).value;
+
+    expect(walletTransactionsTakeEffect.TAKE.pattern).toEqual(
+      types.WALLET_TRANSACTIONS_FETCH_COMPLETED
+    );
+
+    const mergeEntityEffect = generator.next({ response: transactions }).value;
 
     expect(mergeEntityEffect.PUT.action.payload).toEqual({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
-        [action.year]: annualOverview,
+        [action.year]: {
+          ...totalsResponse,
+          startingBalanceAmount: 249.2855,
+          endBalanceAmount: 289.2855,
+        },
       },
     });
 
@@ -77,29 +100,39 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
-    const fetchTotalsAction = generator.next(null).value.PUT.action;
+    const fetchAllEffect = generator.next(null).value;
 
-    expect(fetchTotalsAction.name).toEqual(types.ANNUAL_OVERVIEW_FETCH_START);
+    const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
+    const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
+
+    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
     expect(fetchTotalsAction.asyncCallData).toEqual({
       walletId,
       startTime: DateTime.utc(action.year),
       endTime: DateTime.utc(action.year + 1),
     });
 
-    // a RACE effect takes place - either a fetch succeeds or an error is found
-    const raceEffect = generator.next().value;
-
-    expect(raceEffect.RACE[0].TAKE.pattern).toEqual(
-      types.ANNUAL_OVERVIEW_FETCH_COMPLETED
+    expect(fetchTransactionsAction.name).toEqual(
+      types.WALLET_TRANSACTIONS_FETCH_START
     );
-    expect(raceEffect.RACE[1].TAKE.pattern).toEqual(
-      isFailedAnnualOverviewRequestTakePattern
-    );
+    expect(fetchTransactionsAction.asyncCallData).toEqual({
+      walletId,
+      startTime: DateTime.utc(action.year),
+      endTime: DateTime.utc(action.year + 1),
+      perPage: 10000,
+    });
 
-    const rejectCallEffects = generator.next([
-      null,
-      { error: "error happened" },
-    ]).value;
+    // feed select for totals fetch state
+    generator.next({ isFetching: false, error: null });
+
+    const fetchTransactionsStateObject = {
+      isFetching: false,
+      error: new Error("error happened"),
+    };
+    // feed select for transactions fetch state
+    generator.next(fetchTransactionsStateObject);
+
+    const rejectCallEffects = generator.next().value;
 
     expect(rejectCallEffects.CALL.fn).toEqual(action.meta.reject);
 

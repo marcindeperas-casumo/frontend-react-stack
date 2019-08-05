@@ -160,7 +160,7 @@ export class ValuableCard extends PureComponent<Props> {
         <Flex
           onClick={onCardClick}
           data-test="valuable-card"
-          className="c-valuable-card u-drop-shadow--sm t-background-white t-border-r--16 u-padding-top"
+          className="c-valuable-card u-drop-shadow--sm t-background-white t-border-r--md u-padding-top"
           direction="vertical"
           gap="none"
         >

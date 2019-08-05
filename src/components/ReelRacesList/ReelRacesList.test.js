@@ -1,7 +1,10 @@
 // @flow
 import React from "react";
-import { shallow } from "enzyme";
+import { mount } from "enzyme";
 import ScrollableList from "Components/ScrollableList";
+import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
+import MockStore from "Components/MockStore/index";
+import defaultState from "Models/__mocks__/state.mock";
 import { ReelRacesList } from "./ReelRacesList";
 
 const props = {
@@ -11,7 +14,10 @@ const props = {
   subscribeReelRacesUpdates: jest.fn(),
   unsubscribeReelRacesUpdates: jest.fn(),
   areTranslationsFetched: true,
-  reelRacesIds: ["1", "2", "3", "a"],
+  reelRacesIds: [
+    "edc71c70-56d6-11e9-8587-0242ac11000b",
+    "c21ee900-560d-11e9-8587-0242ac11000b",
+  ],
   t: {
     more_link: "more_link",
     spins: "spins",
@@ -29,12 +35,21 @@ const props = {
   },
 };
 
-describe("ReelRacesList", () => {
+describe("<ReelRacesList /> - Mobile", () => {
   let rendered;
 
   beforeEach(() => {
     jest.clearAllMocks();
-    rendered = shallow(<ReelRacesList {...props} />);
+    setMobileViewport();
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <ReelRacesList {...props} />
+      </MockStore>
+    );
+  });
+
+  test("should not render ScrollableListPaginated component", () => {
+    expect(rendered.find("ScrollableListPaginated")).toHaveLength(0);
   });
 
   test("renders a ScrollableList", () => {
@@ -58,7 +73,11 @@ describe("ReelRacesList", () => {
 
     expect(fetchReelRaces).toBeCalledTimes(1);
 
-    const rendered_again = shallow(<ReelRacesList {...props} isFetched />);
+    const rendered_again = mount(
+      <MockStore state={defaultState}>
+        <ReelRacesList {...props} isFetched />
+      </MockStore>
+    );
     const { title } = rendered_again.find("ScrollableList").props();
 
     // lets make sure the second rendering actually renders something
@@ -75,5 +94,26 @@ describe("ReelRacesList", () => {
     rendered.unmount();
 
     expect(props.unsubscribeReelRacesUpdates).toBeCalledTimes(1);
+  });
+});
+
+describe("<ReelRacesList /> - Desktop", () => {
+  let rendered;
+
+  beforeEach(() => {
+    setDesktopViewport();
+    rendered = mount(
+      <MockStore state={defaultState}>
+        <ReelRacesList {...props} />
+      </MockStore>
+    );
+  });
+
+  test("should render ScrollableListPaginated component", () => {
+    expect(rendered.find("ScrollableListPaginated")).toHaveLength(1);
+  });
+
+  test("doesn't render a ScrollableList", () => {
+    expect(rendered.find(ScrollableList)).toHaveLength(0);
   });
 });
