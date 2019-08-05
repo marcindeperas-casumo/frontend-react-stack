@@ -55,6 +55,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           pendingLimitChanges: undefined,
           responsibleGamblingTest: undefined,
           remaining: undefined,
+          history: undefined,
         },
         action
       )
@@ -149,6 +150,140 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       remaining: undefined,
       responsibleGamblingTest: undefined,
       undoable: false,
+    });
+  });
+
+  test("GET_HISTORY_DONE", () => {
+    const action = {
+      type: depositLimitsTypes.GET_HISTORY_DONE,
+      response: [
+        {
+          id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
+          request: {
+            timestamp: "2019-08-05T14:25:20Z",
+          },
+          stateBefore: { undoable: false },
+          stateAfter: {
+            undoable: false,
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 5e2,
+                monthly: 1e4,
+                currency: "EUR",
+                weekly: 2.5e3,
+              },
+            },
+          },
+        },
+        {
+          id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
+          request: {
+            timestamp: "2019-08-02T16:19:26Z",
+          },
+          stateBefore: {
+            undoable: false,
+            adjustment: {
+              approvalRequired: true,
+              reviewerApproved: false,
+              confirmationRequired: false,
+            },
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+          },
+          stateAfter: {
+            undoable: false,
+            lock: { expiresOn: "2019-10-31T17:19:25.565001Z" },
+          },
+        },
+        {
+          id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
+          request: {
+            timestamp: "2019-08-02T14:31:07Z",
+          },
+          stateBefore: {
+            undoable: false,
+            adjustment: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+              approvalRequired: true,
+              reviewerApproved: false,
+              confirmationRequired: false,
+            },
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 595,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+          },
+          stateAfter: {
+            undoable: false,
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+            lock: { expiresOn: "2019-10-31T15:31:07.391976Z" },
+          },
+        },
+      ],
+    };
+
+    expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
+      history: [
+        {
+          diff: {
+            daily: 500,
+            monthly: 10000,
+            weekly: 2500,
+          },
+          id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
+          timestamp: "2019-08-05T14:25:20Z",
+        },
+        {
+          diff: {
+            daily: null,
+            monthly: null,
+            weekly: null,
+          },
+          id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
+          timestamp: "2019-08-02T16:19:26Z",
+        },
+        {
+          diff: {
+            daily: 666,
+          },
+          id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
+          timestamp: "2019-08-02T14:31:07Z",
+        },
+      ],
+      limits: undefined,
+      lock: undefined,
+      pendingLimitChanges: undefined,
+      preadjust: undefined,
+      remaining: undefined,
+      responsibleGamblingTest: undefined,
+      undoable: undefined,
     });
   });
 });

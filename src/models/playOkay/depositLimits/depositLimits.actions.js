@@ -2,7 +2,7 @@
 import * as api from "Api/api.depositLimits";
 import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
-import type { AllLimits, DepositKinds } from "./depositLimits.types";
+import type { AllLimits } from "./depositLimits.types";
 
 export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
@@ -38,6 +38,13 @@ export const limitPreadjust = {
   postFetch: depositLimitsTypes.PREADJUST_DONE,
   asyncCall: api.limitPreadjust,
 };
+
+export const getLimitsHistory = () => ({
+  type: fetchTypes.FETCH,
+  name: depositLimitsTypes.GET_HISTORY,
+  postFetch: depositLimitsTypes.GET_HISTORY_DONE,
+  asyncCall: api.getLimitsHistory,
+});
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {
