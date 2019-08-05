@@ -69,9 +69,7 @@ const PromotionOptInButtonConnected = connect(
 )(OptInButton);
 
 const PromotionOptInButtonContainer = (props: Props) => (
-  <div className="u-padding-x--lg u-margin-bottom--lg u-text-align-center">
-    <PromotionOptInButtonConnected {...props} />
-  </div>
+  <PromotionOptInButtonConnected {...props} />
 );
 
 export default PromotionOptInButtonContainer;
