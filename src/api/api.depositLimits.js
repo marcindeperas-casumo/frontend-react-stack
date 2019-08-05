@@ -29,8 +29,8 @@ export function limitPreadjust(): Promise<DepositLimitPreadjust> {
   return http.post(`${BASE_URL}/DGOJ_DEPOSIT_LIMIT/preadjust`);
 }
 
-export function limitCancel(kind: DepositKinds) {
-  return http.post(`${BASE_URL}/${kind}/cancelAdjustment`);
+export function limitCancel() {
+  return http.post(`${BASE_URL}/DGOJ_DEPOSIT_LIMIT/cancelAdjustment`);
 }
 
 export function limitRevoke(kind: DepositKinds) {

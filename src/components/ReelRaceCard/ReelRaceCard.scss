@@ -1,12 +1,12 @@
 $separator: map-get($cudl-spacer-sizes, default);
 
 .c-reel-race-card {
-  width: 348px;
+  width: 328px;
 }
 
 .c-reel-race__separator {
   align-self: stretch;
-  background-color: rgba($white, 0.15);
+  background-color: rgba(cudl-palette(white), 0.15);
   width: 1px;
 }
 

@@ -11,7 +11,7 @@ type Props = {
 const GameTileImage = ({ logoBackground, logo, name, ...rest }: Props) => {
   return (
     <ImageLazy
-      className="o-ratio__content t-border-r--8"
+      className="o-ratio__content t-border-r"
       src={logoBackground}
       mark={logo}
       alt={name}

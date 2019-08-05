@@ -85,7 +85,10 @@ export function DepositLimitsForm({ t, ...props }: Props) {
   }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <Flex direction="vertical" className="u-padding--md u-height--1/1">
+    <Flex
+      direction="vertical"
+      className="u-padding--md u-height--1/1 t-background-white"
+    >
       <Flex align="center" justify="space-between">
         <Text className="u-font-weight-bold" style={{ color: "#181c1c" }}>
           {t[visible]}
