@@ -71,14 +71,14 @@ export const getDurationTranslation = (
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get isLessThan24Hours() {
+  get expiresWithin24Hours() {
     return this.props.expirationTimeInHours <= 24;
   }
 
   get expirationBadgeInfo(): badgeInfoType {
     const { expirationTimeInHours } = this.props;
 
-    return this.isLessThan24Hours
+    return this.expiresWithin24Hours
       ? { key: "hours", value: expirationTimeInHours }
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
