@@ -52,6 +52,7 @@ type Props = {
     monthly: string,
     deposit_limits: string,
     pending_change: string,
+    pending_remove_all: string,
     pending_change_known_deadline: string,
     remove_all: string,
     remove_selected: string,

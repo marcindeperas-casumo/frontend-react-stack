@@ -1,4 +1,5 @@
 // @flow
+import * as R from "ramda";
 import * as api from "Api/api.depositLimits";
 import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
@@ -48,14 +49,20 @@ export const getLimitsHistory = () => ({
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {
-    // when this request is processing we are showing loader
-    // using our fetch action would make it really awkward.
-    return api.limitAdjust(limitAdjustement).then(response =>
+    const shouldRemove = R.pipe(
+      R.toPairs,
+      R.find(([limit, value]) => R.equals(value, null))
+    )(limitAdjustement);
+    const limitChangeHandler = response =>
       dispatch({
         type: depositLimitsTypes.ADJUST_DONE,
         response,
-      })
-    );
+      });
+
+    if (shouldRemove) {
+      return api.limitRevoke().then(limitChangeHandler);
+    }
+    return api.limitAdjust(limitAdjustement).then(limitChangeHandler);
   };
 }
 
