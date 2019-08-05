@@ -10,6 +10,7 @@ const stories = storiesOf("DepositLimitsForm", module);
 stories.add("Default", () => (
   <DepositLimitsForm
     t={t}
+    currency="EUR"
     applyLimitsChanges={action("applyLimitsChanges click")}
     limits={{
       daily: 600,

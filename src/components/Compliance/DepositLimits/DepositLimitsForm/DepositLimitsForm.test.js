@@ -9,6 +9,7 @@ const limitsDefault = {
 };
 const props = {
   t,
+  currency: "EUR",
   locale: "en-GB",
   limits: {
     ...limitsDefault,

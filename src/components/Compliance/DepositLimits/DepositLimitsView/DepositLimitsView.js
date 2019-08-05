@@ -42,6 +42,7 @@ type Props = {
   remaining: AllLimitsOnlyValues,
   pendingLimitChanges?: DepositLimitsAdjustement,
 
+  currency: string,
   locale: string,
   t: {
     daily_short: string,
@@ -115,6 +116,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsOverview
         t={props.t}
         locale={props.locale}
+        currency={props.currency}
         limits={props.limits}
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
@@ -136,6 +138,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsFormContainer
         t={props.t}
         lock={props.lock}
+        currency={props.currency}
         locale={props.locale}
         responsibleGamblingTestRequired={hasRule(
           "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
@@ -153,6 +156,7 @@ export function DepositLimitsView(props: Props) {
     summary: (
       <DepositLimitsSummaryContainer
         t={props.t}
+        currency={props.currency}
         locale={props.locale}
         responsibleGamblingTest={props.responsibleGamblingTest}
         preadjust={props.preadjust}

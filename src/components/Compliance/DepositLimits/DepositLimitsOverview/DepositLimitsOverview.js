@@ -19,6 +19,7 @@ import { limitTypes } from "..";
 import "./styles.scss";
 
 type Props = {
+  currency: string,
   locale: string,
   t: {
     daily_short: string,
@@ -90,7 +91,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                   <Text tag="span">
                     {formatCurrency({
                       locale: props.locale,
-                      currency: props.limits.currency,
+                      currency: props.currency,
                       value: parseInt(props.limits[x]),
                     })}{" "}
                     {t[`${x}_short`]}
@@ -99,7 +100,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                     {interpolate(t.remaining_limit, {
                       value: formatCurrency({
                         locale: props.locale,
-                        currency: props.limits.currency,
+                        currency: props.currency,
                         value: props.remainingLimitValue[x],
                       }),
                     })}
@@ -124,7 +125,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                       interpolate(t.pending_change_known_deadline, {
                         newLimitValue: formatCurrency({
                           locale: props.locale,
-                          currency: props.limits.currency,
+                          currency: props.currency,
                           value: props.pendingLimitChanges?.value[x],
                         }),
                         limitChangeDate: DateTime.fromISO(
@@ -138,7 +139,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                         html={interpolate(t.pending_change, {
                           newLimitValue: formatCurrency({
                             locale: props.locale,
-                            currency: props.limits.currency,
+                            currency: props.currency,
                             value: props.pendingLimitChanges?.value[x],
                           }),
                         })}

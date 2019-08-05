@@ -35,6 +35,7 @@ stories.add("Default", () => {
   return (
     <DepositLimitsSummary
       locale="en-GB"
+      currency="EUR"
       t={t}
       newLimits={{
         ...newLimits,
