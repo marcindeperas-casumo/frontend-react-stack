@@ -60,7 +60,7 @@ const HeaderImgMask = () => (
 // TODO: to move this to somewhere more localised
 // TODO: add other formats
 // Issue: https://jira.casumocave.com/browse/PRR-65
-const getDurationTranslation = (
+export const getDurationTranslation = (
   expiration: badgeInfoType,
   translations: DurationTranslations
 ): $Keys<DurationTranslations> => {

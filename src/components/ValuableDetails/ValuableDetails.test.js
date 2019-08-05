@@ -1,6 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
+import { pipe, prop } from "ramda";
+import { interpolate } from "Utils";
+import {
+  ValuableDetails,
+  expirationBadgeClasses,
+  getDurationTranslation,
+} from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import mockTranslations from "./__mocks__/Translations.json";
 
@@ -75,5 +81,39 @@ describe("ValuableDetails", () => {
         .find("span")
         .text()
     ).toEqual(expectedExpirationText);
+  });
+
+  test("should return the singular translation of the correct duration", () => {
+    const expiration = 1;
+    const key = "hours";
+    const expectedTranslation = pipe(
+      prop(key),
+      prop("singular")
+    )(mockTranslations);
+    const expectedValue = interpolate(expectedTranslation);
+
+    const actualValue = getDurationTranslation(
+      { key, value: expiration },
+      mockTranslations
+    );
+
+    expect(actualValue).toEqual(expectedValue);
+  });
+
+  test("should return the plural translation of the correct duration", () => {
+    const expiration = 5;
+    const key = "hours";
+    const expectedTranslation = pipe(
+      prop(key),
+      prop("plural")
+    )(mockTranslations);
+    const expectedValue = interpolate(expectedTranslation);
+
+    const actualValue = getDurationTranslation(
+      { key, value: expiration },
+      mockTranslations
+    );
+
+    expect(actualValue).toEqual(expectedValue);
   });
 });
