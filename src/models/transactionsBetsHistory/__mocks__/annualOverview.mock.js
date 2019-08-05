@@ -1,10 +1,12 @@
 // @flow
 export default {
-  "betsAmount": 34.6,
-  "depositsAmount": 12.4,
-  "withdrawalsAmount": 55.5,
-  "winningsAmount": 34.5,
-  "awardedBonusesAmount": 11.2,
-  "convertedBonusesAmount": 2,
+  "startingBalanceAmount": 1000,
+  "endBalanceAmount": 1111,
+  "betsAmount": 66,
+  "depositsAmount": 72,
+  "withdrawalsAmount": 39,
+  "winningsAmount": 98.8,
+  "awardedBonusesAmount": 13,
+  "convertedBonusesAmount": 45,
   "currency": "GBP"
 };
