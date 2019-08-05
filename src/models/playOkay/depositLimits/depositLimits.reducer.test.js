@@ -52,6 +52,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           undoable: false,
           lock: undefined,
           preadjust: undefined,
+          pendingLimitChanges: undefined,
           responsibleGamblingTest: undefined,
           remaining: undefined,
         },
@@ -89,6 +90,65 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     };
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       remaining: "remaining limits",
+    });
+  });
+
+  test("CANCEL_PENDING_LIMIT_CHANGE_DONE", () => {
+    const action = {
+      type: depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE,
+      response: [
+        {
+          playerId: "5580cee8-3bf9-42ce-b605-5a9062e03520",
+          kind: "DGOJ_DEPOSIT_LIMIT",
+          schema: "MONETARY_AMOUNT_PERIODS_AND_INCREASED",
+          undoable: false,
+          adjustment: {
+            approvalRequired: false,
+            confirmationRequired: false,
+            reviewerApproved: false,
+            effectiveFrom: "2019-08-07T13:41:58+02:00",
+            value: {
+              previouslyIncreased: true,
+              daily: 666,
+              monthly: 3000,
+              currency: "EUR",
+              weekly: 1499,
+            },
+          },
+          limit: {
+            value: {
+              previouslyIncreased: true,
+              daily: 600,
+              monthly: 3000,
+              currency: "EUR",
+              weekly: 1499,
+            },
+          },
+        },
+      ],
+    };
+    expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
+      pendingLimitChanges: {
+        approvalRequired: false,
+        confirmationRequired: false,
+        reviewerApproved: false,
+        effectiveFrom: "2019-08-07T13:41:58+02:00",
+        value: {
+          daily: 666,
+        },
+      },
+      limits: {
+        currency: "EUR",
+        daily: 600,
+        monthly: 3000,
+        previouslyIncreased: true,
+        weekly: 1499,
+      },
+      lock: undefined,
+      preadjust: undefined,
+      remaining: undefined,
+      responsibleGamblingTest: undefined,
+      undoable: false,
     });
   });
 });

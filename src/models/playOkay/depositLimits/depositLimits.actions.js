@@ -2,7 +2,7 @@
 import * as api from "Api/api.depositLimits";
 import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
-import type { AllLimits } from "./depositLimits.types";
+import type { AllLimits, DepositKinds } from "./depositLimits.types";
 
 export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
@@ -60,5 +60,14 @@ export function limitAdjust(limitAdjustement: AllLimits) {
         response,
       })
     );
+  };
+}
+
+export function limitCancel() {
+  return {
+    type: fetchTypes.FETCH,
+    name: depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE,
+    postFetch: depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE,
+    asyncCall: api.limitCancel,
   };
 }

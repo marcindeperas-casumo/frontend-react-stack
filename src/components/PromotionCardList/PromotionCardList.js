@@ -3,9 +3,7 @@ import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
 import { createModifierClasses } from "@casumo/cudl-react-utils";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import { PromotionCardListTitleRow } from "Components/PromotionCardList/PromotionCardListTitleRow";
 import PromotionCardContainer from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
@@ -73,28 +71,12 @@ class PromotionCardList extends PureComponent<Props> {
         <div className="u-margin-x--3xlg@desktop">
           <div className="o-wrapper">
             <Mobile>
-              <div className="u-padding-top--lg">
-                <Flex justify="space-between">
-                  <Flex.Item>
-                    {title ? (
-                      <ScrollableListTitle paddingLeft title={title} />
-                    ) : null}
-                  </Flex.Item>
-                  <Flex.Item align="right" className="u-padding-right--md">
-                    <a href={seeMoreUrl}>
-                      <Text
-                        size="sm"
-                        tag="h3"
-                        className={classNames(
-                          titleColor && `t-color-${titleColor}`
-                        )}
-                      >
-                        {seeMore}
-                      </Text>
-                    </a>
-                  </Flex.Item>
-                </Flex>
-              </div>
+              <PromotionCardListTitleRow
+                title={title}
+                seeMoreUrl={seeMoreUrl}
+                titleColor={titleColor}
+                seeMoreText={seeMore}
+              />
               <Scrollable
                 itemClassName={itemClassName}
                 padding={paddingPerDevice}

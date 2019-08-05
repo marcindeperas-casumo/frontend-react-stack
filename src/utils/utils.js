@@ -25,6 +25,8 @@ export const bridgeFactory = () => {
         if (index !== -1) {
           // eslint-disable-next-line fp/no-mutating-methods
           obj[ev].splice(index, 1);
+        } else if (__DEV__) {
+          console.error(`trying to unsubscribe non-existing callback on ${ev}`);
         }
       }
     },

@@ -1,5 +1,6 @@
 // @flow
 import { InMemoryCache } from "apollo-cache-inmemory";
+import { MODAL } from "Features/sports/components/Modals";
 import resolvers from "./resolvers";
 import * as queries from "./queries";
 
@@ -20,8 +21,8 @@ describe("Client state resolvers", () => {
     beforeEach(() => {});
 
     test("appends the modal to the list of active modals", () => {
-      const modal1: Modal = "CHOOSE_FAVOURITES";
-      const modal2: Modal = "CHOOSE_FAVOURITE_COMPETITIONS";
+      const modal1: Modal = MODAL.CHOOSE_FAVOURITES;
+      const modal2: Modal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
       const cache = new InMemoryCache();
 
       mockReadQuery
