@@ -109,7 +109,7 @@ export class ValuableCard extends PureComponent<Props> {
       const className = "t-color-red";
 
       return badgeOpts(
-        interpolate(translatedHoursUnit, { hours }),
+        interpolate(translatedHoursUnit, { value: hours }),
         className,
         () => <ClockIcon size="sm" />
       );
