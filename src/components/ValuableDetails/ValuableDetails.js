@@ -61,7 +61,7 @@ const HeaderImgMask = () => (
 
 const depositUrl = "/en/cash/deposit"; // TODO: set a wallet flow
 const gameBrowserUrl = "/en/games/top";
-const gameUrl = "";
+const gameUrl = ""; // TODO: set game url
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get actionButtonProps(): {
@@ -203,11 +203,16 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {termsContent}
               </Text>
             </Flex.Item>
-            <Flex.Item>
+            {/*
+              This will be moved out when valuable details modal is in place
+              https://jira.casumocave.com/browse/PRR-50
+            */}
+            <Flex.Item className="u-width--1/1">
               <ValuableDetailsActionButton
                 text={actionButtonProps.text}
                 redirectionUrl={actionButtonProps.url}
                 action={() => onConsumeValuable(id)}
+                className="u-width--1/1"
               />
             </Flex.Item>
           </Flex>

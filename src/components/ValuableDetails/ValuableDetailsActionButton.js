@@ -6,19 +6,17 @@ type Props = {
   text: string,
   redirectionUrl: string,
   action: () => void,
+  className: string,
 };
 
 export const ValuableDetailsActionButton = ({
   text,
   redirectionUrl,
   action,
+  className,
 }: Props) => {
   return (
-    <Button
-      className="u-width--1/1"
-      onClick={() => action}
-      href={redirectionUrl}
-    >
+    <Button onClick={() => action} href={redirectionUrl} className={className}>
       {text}
     </Button>
   );
