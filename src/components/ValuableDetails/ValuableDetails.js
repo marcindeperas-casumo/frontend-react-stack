@@ -5,7 +5,6 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import { equals, anyPass } from "ramda";
 import classNames from "classnames";
-import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
 import {
@@ -18,6 +17,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
 } from "Models/valuables";
+import { ValuableDetailsActionButton } from "./ValuableDetailsActionButton";
 
 export const expirationBadgeClasses = {
   red: "t-background-red",
@@ -47,6 +47,9 @@ type Props = {
   valuableType: ValuableType,
   /* The valuable's current state */
   valuableState: ValuableState,
+  /* Function to call when to consume valuable */
+  onConsumeValuable: string => void,
+  /* Translated labels of the component */
   translations: Translations,
   /* Valuable component to be displayed in the header*/
   children: Node,
@@ -56,21 +59,15 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-const ActionButton = ({ text, action }: { text: string, action: Function }) => {
-  return (
-    <Button className="u-width--1/1" onClick={() => action}>
-      {text}
-    </Button>
-  );
-};
-
 const depositUrl = "/en/cash/deposit"; // TODO: set a wallet flow
 const gameBrowserUrl = "/en/games/top";
 const gameUrl = "";
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  // TODO: set prop type
-  get actionButtonProps() {
+  get actionButtonProps(): {
+    text: string,
+    url: string,
+  } {
     const {
       valuableType,
       valuableState,
@@ -125,6 +122,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       caveat,
       termsContent,
       expirationTimeInHours,
+      onConsumeValuable,
       translations,
       children,
     } = this.props;
@@ -206,7 +204,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
             <Flex.Item>
-              <ActionButton />
+              <ValuableDetailsActionButton
+                text={actionButtonProps.text}
+                redirectionUrl={actionButtonProps.url}
+                action={() => onConsumeValuable(id)}
+              />
             </Flex.Item>
           </Flex>
         </div>
