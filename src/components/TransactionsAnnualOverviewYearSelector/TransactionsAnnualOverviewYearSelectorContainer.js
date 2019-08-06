@@ -8,7 +8,9 @@ import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
   CMS_CONTENT_SLUG,
   transactionsBetsHistoryContentSelector,
+  isAnnualOverviewFetchLoadingSelector,
   initFetchAnnualOverview,
+  types,
 } from "Models/transactionsBetsHistory";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
@@ -25,6 +27,8 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
     selectedYear: CURRENT_YEAR,
     content: transactionsBetsHistoryContentSelector(state),
     isContentFetched: isPageFetchedSelector(CMS_CONTENT_SLUG)(state),
+    isAnnualOverviewLoading: year =>
+      isAnnualOverviewFetchLoadingSelector(year)(state),
   }),
   (dispatch, ownProps) => ({
     fetchContent: () => dispatch(fetchPageBySlug(CMS_CONTENT_SLUG)),

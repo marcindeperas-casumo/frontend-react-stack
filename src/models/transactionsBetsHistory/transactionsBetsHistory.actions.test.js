@@ -14,7 +14,10 @@ import {
   fetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
-import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
+import {
+  prepareFetchAnnualOverviewPdfUrlProps,
+  getFetchTypeByPeriod,
+} from "./transactionsBetsHistory.utils";
 import annualOverview from "./__mocks__/annualOverview.mock";
 
 jest.mock("Api/api.transactionsBetsHistory");
@@ -40,7 +43,11 @@ describe("Models/transactionsBetsHistory/Actions", () => {
 
     expect(action).toEqual({
       type: fetchTypes.FETCH,
-      name: types.WALLET_TOTALS_FETCH_START,
+      name: getFetchTypeByPeriod({
+        type: types.WALLET_TOTALS_FETCH_START,
+        startTime,
+        endTime,
+      }),
       asyncCallData,
       asyncCall: getTotalsReq,
       postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
@@ -60,7 +67,11 @@ describe("Models/transactionsBetsHistory/Actions", () => {
 
     expect(action).toEqual({
       type: fetchTypes.FETCH,
-      name: types.WALLET_TRANSACTIONS_FETCH_START,
+      name: getFetchTypeByPeriod({
+        type: types.WALLET_TRANSACTIONS_FETCH_START,
+        startTime,
+        endTime,
+      }),
       asyncCallData,
       asyncCall: getTransactionsReq,
       postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,

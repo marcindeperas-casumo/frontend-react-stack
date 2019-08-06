@@ -6,6 +6,7 @@ import {
 } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import { types } from "./transactionsBetsHistory.constants";
 import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
+import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
@@ -27,21 +28,33 @@ describe("fetchAnnualOverviewSaga()", () => {
     const fetchAllEffect = generator.next(null).value;
     const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
     const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
+    const startTime = DateTime.utc(action.year);
+    const endTime = DateTime.utc(action.year + 1);
 
-    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
+    expect(fetchTotalsAction.name).toEqual(
+      getFetchTypeByPeriod({
+        type: types.WALLET_TOTALS_FETCH_START,
+        startTime,
+        endTime,
+      })
+    );
     expect(fetchTotalsAction.asyncCallData).toEqual({
       walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
+      startTime,
+      endTime,
     });
 
     expect(fetchTransactionsAction.name).toEqual(
-      types.WALLET_TRANSACTIONS_FETCH_START
+      getFetchTypeByPeriod({
+        type: types.WALLET_TRANSACTIONS_FETCH_START,
+        startTime,
+        endTime,
+      })
     );
     expect(fetchTransactionsAction.asyncCallData).toEqual({
       walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
+      startTime,
+      endTime,
       perPage: 10000,
     });
 
@@ -104,8 +117,16 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
     const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
+    const startTime = DateTime.utc(action.year);
+    const endTime = DateTime.utc(action.year + 1);
 
-    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
+    expect(fetchTotalsAction.name).toEqual(
+      getFetchTypeByPeriod({
+        type: types.WALLET_TOTALS_FETCH_START,
+        startTime,
+        endTime,
+      })
+    );
     expect(fetchTotalsAction.asyncCallData).toEqual({
       walletId,
       startTime: DateTime.utc(action.year),
@@ -113,7 +134,11 @@ describe("fetchAnnualOverviewSaga()", () => {
     });
 
     expect(fetchTransactionsAction.name).toEqual(
-      types.WALLET_TRANSACTIONS_FETCH_START
+      getFetchTypeByPeriod({
+        type: types.WALLET_TRANSACTIONS_FETCH_START,
+        startTime,
+        endTime,
+      })
     );
     expect(fetchTransactionsAction.asyncCallData).toEqual({
       walletId,

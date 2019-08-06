@@ -6,7 +6,7 @@ import { types } from "./transactionsBetsHistory.constants";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
   getStartingEndBalanceFromTransactions,
-  getFetchTypeByDates,
+  getFetchTypeByPeriod,
 } from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
@@ -51,14 +51,14 @@ describe("transactionsBetsHistory.utils", () => {
     });
   });
 
-  describe("getFetchTypeByDates()", () => {
+  describe("getFetchTypeByPeriod()", () => {
     test("should return a properly formatted string", () => {
       const type = types.ANNUAL_OVERVIEW_FETCH_INIT;
-      const startDate = DateTime.utc(2001, 2, 11);
-      const endDate = DateTime.utc(2001, 6, 1);
+      const startTime = DateTime.utc(2001, 2, 11);
+      const endTime = DateTime.utc(2001, 6, 1);
 
-      expect(getFetchTypeByDates({ type, startDate, endDate })).toEqual(
-        `${type}-${startDate.toISO()}-${endDate.toISO()}`
+      expect(getFetchTypeByPeriod({ type, startTime, endTime })).toEqual(
+        `${type}--${startTime.toISO()}--${endTime.toISO()}`
       );
     });
   });

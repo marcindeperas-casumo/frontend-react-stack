@@ -18,10 +18,10 @@ type Props = {
   dni: string,
 };
 
-type FetchTypeByDatesProps = {
+type FetchTypeByPeriodProps = {
   type: string,
-  startDate: DateTime,
-  endDate: DateTime,
+  startTime: DateTime,
+  endTime: DateTime,
 };
 
 export function prepareFetchAnnualOverviewPdfUrlProps({
@@ -51,12 +51,12 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
   };
 }
 
-export function getFetchTypeByDates({
+export function getFetchTypeByPeriod({
   type,
-  startDate,
-  endDate,
-}: FetchTypeByDatesProps): string {
-  return `${type}-${startDate.toISO()}-${endDate.toISO()}`;
+  startTime,
+  endTime,
+}: FetchTypeByPeriodProps): string {
+  return `${type}--${startTime.toISO()}--${endTime.toISO()}`;
 }
 
 export function getStartingEndBalanceFromTransactions(

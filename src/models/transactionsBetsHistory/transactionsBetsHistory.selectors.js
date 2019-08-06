@@ -1,14 +1,18 @@
 // @flow
+import { DateTime } from "luxon";
 import { createSelector } from "reselect";
-import { pathOr, identity, reduce, pipe, prop } from "ramda";
+import { pathOr, identity, reduce, pipe, prop, or } from "ramda";
 import { getPage } from "Models/cms";
 import { ENTITY_KEYS } from "Models/schema";
-import { CMS_CONTENT_SLUG } from "./transactionsBetsHistory.constants";
+import { getFetch } from "Models/fetch";
+import { CMS_CONTENT_SLUG, types } from "./transactionsBetsHistory.constants";
+import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
 import type { AnnualOverview } from "./transactionsBetsHistory.types";
 
 type ContentSelector = Object => { [string]: string };
 type AnnualOverviewSelector = number => Object => AnnualOverview;
 type AnnualOverviewPdfUrlSelector = number => Object => string;
+type AnnualOverviewFetchLoadingSelector = number => Object => boolean;
 
 export const transactionsBetsHistoryAnnualOverviewSelector: AnnualOverviewSelector = year =>
   createSelector(
@@ -35,3 +39,29 @@ export const transactionsAnnualOverviewPdfUrlSelector: AnnualOverviewPdfUrlSelec
     transactionsBetsHistoryAnnualOverviewSelector(year),
     prop("pdfUrl")
   );
+
+export const isAnnualOverviewFetchLoadingSelector: AnnualOverviewFetchLoadingSelector = year => {
+  const dates = {
+    startTime: DateTime.utc(year),
+    endTime: DateTime.utc(year + 1),
+  };
+
+  return createSelector(
+    getFetch(
+      getFetchTypeByPeriod({
+        type: types.WALLET_TOTALS_FETCH_START,
+        ...dates,
+      })
+    ),
+    getFetch(
+      getFetchTypeByPeriod({
+        type: types.WALLET_TRANSACTIONS_FETCH_START,
+        ...dates,
+      })
+    ),
+    (walletTotalsFetch, walletTransactionsFetch) =>
+      Boolean(
+        walletTotalsFetch?.isFetching || walletTransactionsFetch?.isFetching
+      )
+  );
+};

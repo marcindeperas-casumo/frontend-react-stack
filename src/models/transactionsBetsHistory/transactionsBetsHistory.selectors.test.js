@@ -3,6 +3,7 @@ import {
   transactionsBetsHistoryContentSelector,
   transactionsBetsHistoryAnnualOverviewSelector,
   transactionsAnnualOverviewPdfUrlSelector,
+  isAnnualOverviewFetchLoadingSelector,
 } from "./transactionsBetsHistory.selectors";
 import annualOverview from "./__mocks__/annualOverview.mock";
 
@@ -73,6 +74,25 @@ describe("Transactions/Bets History Selectors", () => {
       expect(transactionsAnnualOverviewPdfUrlSelector(year)(state)).toEqual(
         pdfUrl
       );
+    });
+  });
+
+  describe("isAnnualOverviewFetchLoadingSelector()", () => {
+    test("returns true if fetch for wallet totals or transactions isFetching", () => {
+      const state = {
+        fetch: {
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: true,
+          },
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: false,
+          },
+        },
+      };
+
+      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(true);
     });
   });
 });

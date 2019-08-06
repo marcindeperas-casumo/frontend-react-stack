@@ -1,4 +1,5 @@
 import React from "react";
+import { F } from "ramda";
 import { mount } from "enzyme";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
@@ -8,6 +9,7 @@ describe("TransactionsAnnualOverviewYearSelector", () => {
     isContentFetched: true,
     yearOptions: [1990, 1991],
     selectedYear: 1990,
+    isAnnualOverviewLoading: F,
   };
 
   test("should render a select element together with a button", () => {

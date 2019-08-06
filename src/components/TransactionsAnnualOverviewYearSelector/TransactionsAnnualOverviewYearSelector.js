@@ -24,6 +24,7 @@ type Props = {
   isContentFetched: boolean,
   content: Content,
   fetchYearOverview: number => any,
+  isAnnualOverviewLoading: number => boolean,
   yearOptions: Array<number>,
   selectedYear: number,
   selectorHtmlId: string,
@@ -63,31 +64,23 @@ export function TransactionsAnnualOverviewYearSelector({
   yearOptions,
   selectedYear,
   selectorHtmlId,
+  isAnnualOverviewLoading,
 }: Props) {
-  const [loading, setLoading] = useState(false);
   const [year, setYear] = useState(selectedYear);
   const [isTriggeredFetch, triggerFetch] = useState(false);
+  const loading = isAnnualOverviewLoading(year);
   const onClick = useCallback(() => {
     triggerFetch(true);
   });
-  const mounted = usePromise();
 
   useEffect(() => {
     if (!isTriggeredFetch) {
       return;
     }
 
-    setLoading(true);
     triggerFetch(false);
-
-    mounted(fetchYearOverview(year))
-      .catch(e => {
-        logger.error(e);
-      })
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [fetchYearOverview, isTriggeredFetch, mounted, year]);
+    fetchYearOverview(year);
+  }, [fetchYearOverview, isTriggeredFetch, year]);
 
   useEffect(() => {
     if (!isContentFetched) {

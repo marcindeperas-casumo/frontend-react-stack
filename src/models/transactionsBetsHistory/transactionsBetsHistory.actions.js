@@ -1,4 +1,5 @@
 // @flow
+import { pick } from "ramda";
 import { types as fetchTypes } from "Models/fetch";
 import {
   getTotalsReq,
@@ -6,6 +7,7 @@ import {
   getAnnualOverviewPdfUrlReq,
 } from "Api/api.transactionsBetsHistory";
 import { types } from "./transactionsBetsHistory.constants";
+import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
 import type {
   WalletTotalsProps,
   WalletTransactionsProps,
@@ -27,7 +29,10 @@ export function initFetchAnnualOverview({
 export function fetchWalletTotals(asyncCallData: WalletTotalsProps) {
   return {
     type: fetchTypes.FETCH,
-    name: types.WALLET_TOTALS_FETCH_START,
+    name: getFetchTypeByPeriod({
+      type: types.WALLET_TOTALS_FETCH_START,
+      ...pick(["startTime", "endTime"], asyncCallData),
+    }),
     asyncCallData,
     asyncCall: getTotalsReq,
     postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
@@ -39,7 +44,10 @@ export function fetchWalletTransactions(
 ) {
   return {
     type: fetchTypes.FETCH,
-    name: types.WALLET_TRANSACTIONS_FETCH_START,
+    name: getFetchTypeByPeriod({
+      type: types.WALLET_TRANSACTIONS_FETCH_START,
+      ...pick(["startTime", "endTime"], asyncCallData),
+    }),
     asyncCallData,
     asyncCall: getTransactionsReq,
     postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,
