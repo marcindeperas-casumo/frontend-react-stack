@@ -17,3 +17,9 @@ export const VALUABLE_SPIN_TYPES = Object.freeze({
   SUPER: "super",
   MEGA: "mega",
 });
+
+// TODO: replace with graphql types
+export const VALUABLE_REQUIREMENT_TYPES = Object.freeze({
+  WAGER: "wager",
+  DEPOSIT: "deposit",
+});

@@ -3,37 +3,35 @@ import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
+import { equals } from "ramda";
 import classNames from "classnames";
+import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
+import {
+  type DurationTranslations,
+  type ValuableDetailsTranslations as Translations,
+  type ValuableRequirementType,
+  type ValuableType,
+  type ValuableState,
+  unlockedValuableActionText,
+  lockedValuableActionText,
+  VALUABLE_STATES,
+} from "Models/valuables";
 
 export const expirationBadgeClasses = {
   red: "t-background-red",
   grey: "t-background-grey-light-1",
 };
 
-type badgeInfoType = {
+type BadgeInfoType = {
   key: string,
   value: number,
 };
 
-type DurationTranslations = {
-  hours: {
-    plural: string,
-    singular: string,
-  },
-  days: {
-    plural: string,
-    singular: string,
-  },
-};
-
-type Translations = DurationTranslations & {
-  playNowLabel: string,
-  playToUnlockLabel: string,
-  depositToUnlockLabel: string,
-  termsAndConditionLabel: string,
-  expirationTimeLabel: string,
+type ActionButtonProps = {
+  text: string,
+  action?: Function,
 };
 
 type Props = {
@@ -48,6 +46,12 @@ type Props = {
   termsContent: string,
   /* Hours left for the bonus to expire */
   expirationTimeInHours: number,
+  /* Requirement type to unlock */
+  requirementType?: ValuableRequirementType,
+  /* Type of Valuable */
+  valuableType: ValuableType,
+  /* The valuable's current state */
+  valuableState: ValuableState,
   translations: Translations,
   /* Valuable component to be displayed in the header*/
   children: Node,
@@ -57,11 +61,19 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
+const ActionButton = ({ text, action }: { text: string, action: Function }) => {
+  return (
+    <Button className="u-width--1/1" onClick={() => action}>
+      {text}
+    </Button>
+  );
+};
+
 // TODO: to move this to somewhere more localised
 // TODO: add other formats
 // Issue: https://jira.casumocave.com/browse/PRR-65
 export const getDurationTranslation = (
-  expiration: badgeInfoType,
+  expiration: BadgeInfoType, // TODO: remove badgeInfoType type
   translations: DurationTranslations
 ): $Keys<DurationTranslations> => {
   const { key, value } = expiration;
@@ -75,12 +87,34 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return this.props.expirationTimeInHours <= 24;
   }
 
-  get expirationBadgeInfo(): badgeInfoType {
+  get expirationBadgeInfo(): BadgeInfoType {
     const { expirationTimeInHours } = this.props;
 
     return this.expiresWithin24Hours
       ? { key: "hours", value: expirationTimeInHours }
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
+  }
+
+  get actionButtonProps(): ActionButtonProps {
+    const {
+      valuableType,
+      valuableState,
+      requirementType,
+      translations,
+    } = this.props;
+
+    if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
+      const text =
+        requirementType &&
+        lockedValuableActionText(valuableType, translations)[requirementType];
+
+      return { text, action: null };
+    }
+
+    return {
+      text: unlockedValuableActionText(valuableType, translations),
+      action: null,
+    };
   }
 
   render() {
@@ -168,6 +202,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
               >
                 {termsContent}
               </Text>
+            </Flex.Item>
+            <Flex.Item>
+              <ActionButton />
             </Flex.Item>
           </Flex>
         </div>
