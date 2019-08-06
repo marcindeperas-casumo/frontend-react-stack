@@ -185,7 +185,7 @@ function getStateBadgeProperties(
         />
       ),
       classModifiers: "t-color-red",
-      text: interpolate(translatedHoursUnit, { hours: hours }),
+      text: interpolate(translatedHoursUnit, { value: hours }),
       visible: true,
     };
   }

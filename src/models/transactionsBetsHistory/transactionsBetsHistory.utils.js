@@ -1,8 +1,11 @@
 // @flow
+import { head, last, path } from "ramda";
 import { formatCurrency } from "Utils";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
+  TransactionResponseRaw,
+  StartingEndBalance,
 } from "./transactionsBetsHistory.types";
 
 type Props = {
@@ -28,8 +31,8 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
     year,
     name,
     dni,
-    startingBalance: formatCurrencyBound(0),
-    endingBalance: formatCurrencyBound(0),
+    startingBalance: formatCurrencyBound(annualOverview.startingBalanceAmount),
+    endingBalance: formatCurrencyBound(annualOverview.endBalanceAmount),
     totalDeposits: formatCurrencyBound(annualOverview.depositsAmount),
     totalWithdrawals: formatCurrencyBound(annualOverview.withdrawalsAmount),
     totalWagers: formatCurrencyBound(annualOverview.betsAmount),
@@ -37,5 +40,18 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
     totalBonusesConverted: formatCurrencyBound(
       annualOverview.convertedBonusesAmount
     ),
+  };
+}
+
+export function getStartingEndBalanceFromTransactions(
+  transactions: Array<TransactionResponseRaw>
+): StartingEndBalance {
+  // API returns a sorted list, from the latest transaction to the oldest
+  return {
+    startingBalanceAmount: path(
+      ["balanceBefore", "amount"],
+      last(transactions)
+    ),
+    endBalanceAmount: path(["balanceAfter", "amount"], head(transactions)),
   };
 }

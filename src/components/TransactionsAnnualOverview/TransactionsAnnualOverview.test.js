@@ -22,7 +22,7 @@ describe("TransactionsAnnualOverview", () => {
     expect(rows.at(0).prop("label")).toEqual(
       props.t.annual_transactions_starting_balance
     );
-    expect(rows.at(0).prop("amount")).toEqual(0);
+    expect(rows.at(0).prop("amount")).toEqual(props.data.startingBalanceAmount);
 
     expect(rows.at(1).prop("label")).toEqual(
       props.t.annual_transactions_total_deposits
@@ -59,6 +59,6 @@ describe("TransactionsAnnualOverview", () => {
     expect(rows.at(7).prop("label")).toEqual(
       props.t.annual_transactions_end_balance
     );
-    expect(rows.at(7).prop("amount")).toEqual(0);
+    expect(rows.at(7).prop("amount")).toEqual(props.data.endBalanceAmount);
   });
 });
