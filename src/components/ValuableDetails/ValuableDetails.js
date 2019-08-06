@@ -3,7 +3,7 @@ import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import { equals } from "ramda";
+import { equals, anyPass } from "ramda";
 import classNames from "classnames";
 import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
@@ -14,9 +14,9 @@ import {
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
-  unlockedValuableActionText,
-  lockedValuableActionText,
   VALUABLE_STATES,
+  VALUABLE_TYPES,
+  VALUABLE_REQUIREMENT_TYPES,
 } from "Models/valuables";
 
 export const expirationBadgeClasses = {
@@ -27,11 +27,6 @@ export const expirationBadgeClasses = {
 type BadgeInfoType = {
   key: string,
   value: number,
-};
-
-type ActionButtonProps = {
-  text: string,
-  action?: Function,
 };
 
 type Props = {
@@ -69,20 +64,47 @@ const ActionButton = ({ text, action }: { text: string, action: Function }) => {
   );
 };
 
-// TODO: to move this to somewhere more localised
-// TODO: add other formats
-// Issue: https://jira.casumocave.com/browse/PRR-65
-export const getDurationTranslation = (
-  expiration: BadgeInfoType, // TODO: remove badgeInfoType type
-  translations: DurationTranslations
-): $Keys<DurationTranslations> => {
-  const { key, value } = expiration;
-  const { singular, plural } = translations[key];
-
-  return value > 1 ? plural : singular;
-};
+const depositUrl = "/en/cash/deposit"; // TODO: set a wallet flow
+const gameBrowserUrl = "/en/games/top";
+const gameUrl = "";
 
 export class ValuableDetails extends React.PureComponent<Props> {
+  // TODO: set prop type
+  get actionButtonProps() {
+    const {
+      valuableType,
+      valuableState,
+      requirementType,
+      translations,
+    } = this.props;
+    const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
+    const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
+    const setActionProps = (text = "", url = "") => ({
+      text,
+      url,
+    });
+
+    if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
+      return setActionProps(translations.depositNowLabel, depositUrl);
+    }
+
+    if (anyPass(isSpins, isCash)) {
+      if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
+        if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
+          return setActionProps(translations.depositToUnlockLabel, depositUrl);
+        }
+
+        return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
+      }
+
+      return isSpins
+        ? setActionProps(translations.playNowLabel, gameUrl)
+        : setActionProps(translations.playNowLabel, gameBrowserUrl);
+    }
+
+    return setActionProps();
+  }
+
   get expiresWithin24Hours() {
     return this.props.expirationTimeInHours <= 24;
   }
@@ -93,28 +115,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return this.expiresWithin24Hours
       ? { key: "hours", value: expirationTimeInHours }
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
-  }
-
-  get actionButtonProps(): ActionButtonProps {
-    const {
-      valuableType,
-      valuableState,
-      requirementType,
-      translations,
-    } = this.props;
-
-    if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-      const text =
-        requirementType &&
-        lockedValuableActionText(valuableType, translations)[requirementType];
-
-      return { text, action: null };
-    }
-
-    return {
-      text: unlockedValuableActionText(valuableType, translations),
-      action: null,
-    };
   }
 
   render() {
@@ -138,6 +138,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const expirationValueText = interpolate(translatedDuration, {
       value: expirationInfo.value,
     });
+
+    const actionButtonProps = this.actionButtonProps;
 
     return (
       <>
@@ -212,3 +214,16 @@ export class ValuableDetails extends React.PureComponent<Props> {
     );
   }
 }
+
+// TODO: to move this to somewhere more localised
+// TODO: add other formats
+// Issue: https://jira.casumocave.com/browse/PRR-65
+export const getDurationTranslation = (
+  expiration: BadgeInfoType, // TODO: remove badgeInfoType type
+  translations: DurationTranslations
+): $Keys<DurationTranslations> => {
+  const { key, value } = expiration;
+  const { singular, plural } = translations[key];
+
+  return value > 1 ? plural : singular;
+};
