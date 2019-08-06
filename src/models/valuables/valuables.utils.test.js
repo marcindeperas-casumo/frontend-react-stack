@@ -1,16 +1,15 @@
+// @flow
+
 import {
   VALUABLE_SPIN_TYPES,
   VALUABLE_TYPES,
   VALUABLE_STATES,
-} from "Models/valuables";
-import {
-  coinValueToSpinType,
-  getCardUrl,
   VALUABLE_LOCKED_URL,
   VALUABLE_DEPOSIT_URL,
-} from "./ValuableCard.utils";
+} from "./valuables.constants";
+import { coinValueToSpinType, getCardUrl } from "./valuables.utils";
 
-describe("ValuableCard.utils", () => {
+describe("valuables.utils", () => {
   test("should return BASIC spinType when coinValue < 0.3", () => {
     const coinValue = 0.2;
     const expectedValue = VALUABLE_SPIN_TYPES.BASIC_SPINS;

@@ -2,22 +2,16 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ClockIcon, LockIcon } from "@casumo/cmp-icons";
-import classNames from "classnames";
-import { compose, prop } from "ramda";
+import { ValuableThumbnail } from "Components/ValuableThumbnail";
+import DangerousHtml from "Components/DangerousHtml";
+import MaskImage from "Components/MaskImage";
 import {
   type ValuableType,
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
+  coinValueToSpinType,
 } from "Models/valuables";
-import { INTL_LOCALES } from "Src/constants";
-import { getSymbolForCurrency, interpolate } from "Utils";
-import { ValuableHeaderBackground } from "./ValuableHeaderBackground";
-import { ValuableCardStateBadge } from "./ValuableCardStateBadge";
-import { VALUABLE_ICON, coinValueToSpinType } from "./ValuableCard.utils";
-import { ValuableReward } from "./ValuableReward";
-import "./ValuableCard.scss";
 
 type Props = {
   /** Unique id of the valuable */
@@ -34,7 +28,7 @@ type Props = {
   coinValue?: number,
   /** Market of the player */
   market: string,
-  /** Background image to be displayed in the Card header */
+  /** URL of background image to be displayed in the Card header */
   backgroundImage: string,
   /** Valuable caveats to be displayed */
   caveat: ?string,
@@ -48,160 +42,101 @@ type Props = {
   translatedHoursUnit: string,
 };
 
+const headerDimensions = {
+  width: 144,
+  height: 80,
+};
+
 export class ValuableCard extends PureComponent<Props> {
   static defaultProps = {
     valuableState: VALUABLE_STATES.FRESH,
   };
 
-  get valuableSymbol() {
-    const { valuableType } = this.props;
-
-    if (valuableType === VALUABLE_TYPES.CASH) {
-      return this.cashSymbol;
-    }
-
-    if (valuableType === VALUABLE_TYPES.SPINS) {
-      return compose(
-        prop(this.spinType),
-        prop(valuableType)
-      )(VALUABLE_ICON);
-    }
-
-    return VALUABLE_ICON[valuableType];
+  get isValuableTypeSpins() {
+    return this.props.valuableType === VALUABLE_TYPES.SPINS;
   }
 
-  get headerClassModifier(): string {
-    const { valuableType } = this.props;
-    const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
+  get maskedImage() {
+    const { id, backgroundImage } = this.props;
 
-    return classNames(
-      `c-valuable-card--${valuableType}`,
-      isValuableTypeSpins && this.spinType
+    return (
+      <MaskImage
+        {...headerDimensions}
+        id={id}
+        imageUrl={backgroundImage}
+        imgixOpts={{
+          blur: this.isValuableTypeSpins ? 100 : 0,
+        }}
+      >
+        <path d="M46.0199 66.5099C26.5859 66.9646 8.11145 67.6742 2.06447 67.916C0.927926 67.9615 0 67.0518 0 65.9144V10C0 4.47715 4.47715 0 10 0H134C139.523 0 144 4.47715 144 10V65.9011C144 67.0435 143.062 67.9553 141.921 67.9034C135.889 67.6291 117.575 66.8374 98.0838 66.4039C97.9959 66.4949 97.9063 66.5846 97.8149 66.6729L87.1967 76.9244C85.158 78.8931 82.3919 80 79.507 80H64.4921C61.6081 80 58.842 78.8931 56.8024 76.9244L46.1851 66.6729C46.1294 66.6191 46.0743 66.5648 46.0199 66.5099Z" />
+      </MaskImage>
     );
   }
 
-  get stateBadgeOptions(): Object {
-    const badgeOpts = (
-      text,
-      badgeClassModifiers,
-      badgeIcon,
-      visible = true
-    ) => ({
-      visible,
-      text,
-      badgeClassModifiers,
-      badgeIcon,
-    });
-    const {
-      valuableState,
-      expirationTimeInHours: hours,
-      translatedHoursUnit,
-    } = this.props;
-
-    if (valuableState === VALUABLE_STATES.LOCKED) {
-      const className = "t-color-black";
-      return badgeOpts(VALUABLE_STATES.LOCKED, className, () => (
-        <LockIcon size="sm" />
-      ));
-    }
-
-    if (hours >= 0 && hours <= 24) {
-      const className = "t-color-red";
-
-      return badgeOpts(
-        interpolate(translatedHoursUnit, { value: hours }),
-        className,
-        () => <ClockIcon size="sm" />
-      );
-    }
-
-    return { ...badgeOpts, visible: false };
-  }
-
-  // To move this to graphql
   get spinType() {
     return coinValueToSpinType(this.props.coinValue);
   }
 
-  cashSymbol = () => {
-    const { market, currency } = this.props;
-    const currencySymbol = getSymbolForCurrency({
-      currency,
-      locale: INTL_LOCALES[market],
-    });
-
-    return (
-      <Text tag="div" size="lg">
-        {currencySymbol}
-      </Text>
-    );
-  };
-
   render() {
     const {
-      id,
-      title,
-      description,
-      valuableType,
-      backgroundImage,
       caveat,
+      coinValue,
+      currency,
+      description,
+      expirationTimeInHours,
+      market,
+      title,
+      translatedHoursUnit,
       valuableState,
-      onCardClick,
+      valuableType,
     } = this.props;
-    const isValuableTypeSpins = valuableType === VALUABLE_TYPES.SPINS;
-    const isValuableTypeCash = valuableType === VALUABLE_TYPES.CASH;
-    const blurAmount = 100;
-    const stateBadgeOptions = this.stateBadgeOptions;
-    const showStateBadge =
-      stateBadgeOptions.visible || valuableState !== VALUABLE_STATES.FRESH;
-
     return (
-      <div className="c-valuable-card-wrapper u-position-relative">
-        <Flex
-          onClick={onCardClick}
-          data-test="valuable-card"
-          className="c-valuable-card u-drop-shadow--sm t-background-white t-border-r--md u-padding-top"
-          direction="vertical"
-          gap="none"
-        >
-          <Flex.Block>
-            <ValuableHeaderBackground
-              className={this.headerClassModifier}
-              imageUrl={backgroundImage}
-              id={id}
-              blur={isValuableTypeSpins ? blurAmount : 0}
-            >
-              <ValuableReward
-                ValuableSymbol={this.valuableSymbol}
-                justifyCenter={isValuableTypeCash}
+      <div>
+        <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--md">
+          <Flex
+            className="o-ratio__content u-padding"
+            data-test="valuable-card"
+            direction="vertical"
+            onClick={this.props.onCardClick}
+          >
+            <Flex.Item>
+              <ValuableThumbnail
+                backgroundRenderer={this.maskedImage}
+                coinValue={coinValue}
+                currency={currency}
+                expirationTimeInHours={expirationTimeInHours}
+                market={market}
+                translatedHoursUnit={translatedHoursUnit}
+                valuableState={valuableState}
+                valuableType={valuableType}
               />
-            </ValuableHeaderBackground>
-          </Flex.Block>
-          <Flex.Item className="c-valuable-card__content u-text-align-center">
-            <div className="t-color-grey-dark-2 u-font-weight-bold u-font">
-              {title}
-            </div>
-            {isValuableTypeSpins && description && (
-              <div className="c-valuable-card__content-description t-color-grey u-font-xs u-margin-top">
-                {description}
-              </div>
-            )}
-          </Flex.Item>
-        </Flex>
-        <div
-          data-test="valuableCard-caveat"
-          className="t-color-grey u-font-2xs u-margin-top u-text-align-center"
-        >
-          {caveat}
+            </Flex.Item>
+            <Flex.Item className="o-flex--1 u-text-align-center u-padding-x u-margin-top--md">
+              <Text
+                className="t-color-grey-dark-2 u-font-weight-bold"
+                tag="div"
+              >
+                <DangerousHtml data-test="valuable-card-title" html={title} />
+              </Text>
+              {description && (
+                <Text className="t-color-grey u-margin-top" size="xs" tag="div">
+                  <DangerousHtml
+                    data-test="valuable-card-description"
+                    html={description}
+                  />
+                </Text>
+              )}
+            </Flex.Item>
+          </Flex>
         </div>
-        {showStateBadge && (
-          <ValuableCardStateBadge
-            {...stateBadgeOptions}
-            className={classNames(
-              "c-valuable-card-state u-font-xs t-background-white t-color-red u-padding u-position-absolute",
-              stateBadgeOptions.badgeClassModifiers
-            )}
-          />
+        {caveat && (
+          <Text
+            size="2xs"
+            className="t-color-grey-light-1 u-text-align-center u-margin-top u-padding-x"
+            tag="div"
+          >
+            <DangerousHtml html={caveat} />
+          </Text>
         )}
       </div>
     );

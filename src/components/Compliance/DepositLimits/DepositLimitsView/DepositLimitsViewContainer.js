@@ -7,7 +7,6 @@ import { fetchPageBySlug, getPage } from "Models/cms";
 import {
   init,
   getDepositLimitsSelector,
-  sendResponsibleGamblingTest,
   limitAdjust,
   limitCancel,
 } from "Models/playOkay/depositLimits";
@@ -24,7 +23,6 @@ export const DepositLimitsViewContainer = connect(
     init,
     limitAdjust,
     limitCancel,
-    sendResponsibleGamblingTest,
     fetchTranslations: () => fetchPageBySlug(cmsKey),
   }
 )(DepositLimitsView);

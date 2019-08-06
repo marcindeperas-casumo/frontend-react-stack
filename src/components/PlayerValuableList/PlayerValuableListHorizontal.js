@@ -4,10 +4,9 @@ import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import { VALUABLE_TYPES } from "Models/valuables";
+import { VALUABLE_TYPES, getCardUrl } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { noop } from "Utils";
-import { getCardUrl } from "Components/ValuableCard/ValuableCard.utils";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
@@ -59,18 +58,20 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             valuableType === VALUABLE_TYPES.CASH;
 
           return (
-            <a
-              href={getCardUrl(valuableState, valuableType)}
-              key={`valuable-card-${id}`}
-            >
-              <ValuableCard
-                translatedHoursUnit={hoursLabel}
-                {...valuable}
-                onCardClick={
-                  shouldUseValuable ? () => onConsumeValuable(id) : noop
-                }
-              />
-            </a>
+            <div style={{ width: "160px" }}>
+              <a
+                href={getCardUrl(valuableState, valuableType)}
+                key={`valuable-card-${id}`}
+              >
+                <ValuableCard
+                  translatedHoursUnit={hoursLabel}
+                  {...valuable}
+                  onCardClick={
+                    shouldUseValuable ? () => onConsumeValuable(id) : noop
+                  }
+                />
+              </a>
+            </div>
           );
         })}
       </Scrollable>
