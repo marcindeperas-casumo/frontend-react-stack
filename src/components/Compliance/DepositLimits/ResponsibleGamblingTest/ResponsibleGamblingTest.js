@@ -50,7 +50,7 @@ export function ResponsibleGamblingTest({
       <Flex direction="vertical" justify="space-between">
         <ProgressBar progress={progress} />
         <Text size="xlg" data-test-id="txt">
-          {t[page]}
+          {t[page + 1]}
         </Text>
       </Flex>
       <Flex align="stretch" justify="space-between">

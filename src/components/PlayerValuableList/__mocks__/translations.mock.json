@@ -1,4 +1,4 @@
 {
-  "hoursUnit": "{{hours}}h",
+  "hoursUnit": "{{value}}h",
   "listTitleLabel": "Your Valuables"
 }
