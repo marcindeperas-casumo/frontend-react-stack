@@ -30,12 +30,14 @@ type GameProps = {
 
 export const CuratedCardFooterText = ({ text }: PromotionProps) => {
   return (
-    <Text
-      className="t-color-white u-margin-bottom u-opacity-75"
-      size="xs"
-      tag="div"
-      dangerouslySetInnerHTML={stringToHTML(text)}
-    />
+    <div className="o-wrapper">
+      <Text
+        className="t-color-white u-margin-bottom u-opacity-75"
+        size="xs"
+        tag="div"
+        dangerouslySetInnerHTML={stringToHTML(text)}
+      />
+    </div>
   );
 };
 
