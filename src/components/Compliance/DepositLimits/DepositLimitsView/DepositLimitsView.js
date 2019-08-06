@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
+import { sendResponsibleGamblingTest } from "Api/api.depositLimits";
 import { DepositLimitsSuspendAccountContainer } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import {
   diffLimits,
@@ -28,6 +29,7 @@ import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
 import { hasRule } from "Models/playOkay/depositLimits";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
 import { GoBack } from "./GoBack";
+import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
 import "./styles.scss";
 
 type Props = {
@@ -65,7 +67,6 @@ type Props = {
   fetchTranslations: () => void,
   limitAdjust: AllLimits => void,
   limitCancel: DepositKinds => void,
-  sendResponsibleGamblingTest: boolean => Promise<any>,
 };
 
 type DepositLimitsRoute =
@@ -119,6 +120,9 @@ export function DepositLimitsView(props: Props) {
         edit={x => navigate({ route: "form", depositKind: x })}
         add={() => navigate({ route: "form" })}
         removeAll={() => {
+          if (props.lock) {
+            return; // can't remove limits during lock
+          }
           navigate({
             route: "summary",
             limitChanges: { daily: null, weekly: null, monthly: null },
@@ -153,39 +157,16 @@ export function DepositLimitsView(props: Props) {
         currentLimits={props.limits}
         newLimits={newLimits}
         edit={x => navigate({ route: "form", depositKind: x })}
-        confirmLimitsAdjust={() => {
-          if (
-            hasRule("RESPONSIBLE_GAMBLING_TEST_REQUIRED", props.preadjust.rules)
-          ) {
-            if (!R.isEmpty(decreases)) {
-              // we are required to make all decreases instantly
-              props.limitAdjust({
-                ...props.limits,
-                ...R.pick(decreases, newLimits),
-              });
-              navigate({
-                route: "confirmations",
-                pages: ["SAVED_RIGHT_AWAY", "RG_REQUIRED"],
-              });
-            } else {
-              navigate({
-                route: "confirmations",
-                pages: ["RG_REQUIRED"],
-              });
-            }
-          } else {
-            props.limitAdjust({
-              ...props.limits,
-              ...limitChanges,
-            });
-            navigate({
-              route: "confirmations",
-              pages: R.isEmpty(decreases)
-                ? ["BEING_REVIEWED"]
-                : ["SAVED_RIGHT_AWAY", "BEING_REVIEWED"],
-            });
-          }
-        }}
+        confirmLimitsAdjust={() =>
+          adjustLimitsAndNavigate({
+            limitsDiff,
+            decreases,
+            rules: props.preadjust.rules,
+            navigate,
+            newLimits,
+            limitAdjust: props.limitAdjust,
+          })
+        }
       />
     ),
     confirmations: (
@@ -208,14 +189,20 @@ export function DepositLimitsView(props: Props) {
     ),
     responsibleGamblingTest: (
       <ResponsibleGamblingTestContainer
-        sendRGTestResult={async passed => {
-          await props.sendResponsibleGamblingTest(passed);
-          if (passed) {
-            await props.limitAdjust({ ...props.limits, ...limitChanges });
-          }
-          navigate({
-            route: "confirmations",
-            pages: [passed ? "RG_SUCCESS" : "RG_FAIL"],
+        sendRGTestResult={passed => {
+          sendResponsibleGamblingTest(passed).then(() => {
+            if (passed) {
+              props.limitAdjust({ ...props.limits, ...limitChanges });
+            } else {
+              props.limitAdjust({
+                ...props.limits,
+                ...R.pick(decreases, newLimits),
+              });
+            }
+            navigate({
+              route: "confirmations",
+              pages: [passed ? "RG_SUCCESS" : "RG_FAIL"],
+            });
           });
         }}
       />
@@ -244,28 +231,29 @@ export function DepositLimitsView(props: Props) {
   );
 }
 
+export type Navigate = ({
+  route: DepositLimitsRoute,
+  depositKind?: DepositKinds,
+  limitChanges?: AllLimitsOnlyValues,
+  pages?: ConfirmationPage[],
+}) => void;
 export function useRouting(initialRoute: DepositLimitsRoute = "overview") {
   const [routeI, setRoute] = React.useState<DepositLimitsRoute>(initialRoute);
   const [depositKindI, setDepositKind] = React.useState<DepositKinds>("daily");
   const [limitChangesI, setChanges] = React.useState();
   const [pagesI, setPages] = React.useState<ConfirmationPage[]>([]);
 
-  function navigate({
+  const navigate: Navigate = ({
     route,
     depositKind = "daily",
     limitChanges,
     pages,
-  }: {
-    route: DepositLimitsRoute,
-    depositKind?: DepositKinds,
-    limitChanges?: AllLimitsOnlyValues,
-    pages?: ConfirmationPage[],
-  }) {
+  }) => {
     setRoute(route);
     setDepositKind(depositKind);
     limitChanges && setChanges(limitChanges);
     pages && setPages(pages);
-  }
+  };
 
   return [
     {

@@ -39,17 +39,6 @@ export const limitPreadjust = {
   asyncCall: api.limitPreadjust,
 };
 
-export function sendResponsibleGamblingTest(passed: boolean) {
-  return (dispatch: ThunkDispatch) => {
-    api.sendResponsibleGamblingTest(passed).then(response => {
-      dispatch({
-        type: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
-        response,
-      });
-    });
-  };
-}
-
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {
     // when this request is processing we are showing loader
