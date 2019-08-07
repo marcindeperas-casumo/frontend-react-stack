@@ -101,10 +101,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const { termsAndConditionLabel, expirationTimeLabel } = translations;
 
     const expirationInfo = this.expirationBadgeInfo;
-    // const translatedDuration = getDurationTranslation(
-    //   expirationInfo,
-    //   translations
-    // );
     const durationKey = durationToTranslationKey(
       expirationInfo.key,
       expirationInfo.value
