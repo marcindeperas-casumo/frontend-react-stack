@@ -126,6 +126,9 @@ export function DepositLimitsView(props: Props) {
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
         limitCancel={props.limitCancel}
+        hideRemoveAll={
+          Boolean(props.lock) || Boolean(props.pendingLimitChanges)
+        }
         edit={x => navigate({ route: "form", depositKind: x })}
         add={() => navigate({ route: "form" })}
         removeAll={() => {

@@ -33,6 +33,7 @@ type Props = {
     remaining_limit: string,
     cancel: string,
   },
+  hideRemoveAll: boolean,
   limits: AllLimits,
   pendingLimitChanges?: DepositLimitsAdjustement,
   remainingLimitValue: AllLimitsOnlyValues,
@@ -67,6 +68,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
           add={props.add}
           removeAll={props.removeAll}
           t={{ remove_all: t.remove_all }}
+          hideRemoveAll={props.hideRemoveAll}
         />
       </Header>
       {limitTypes

@@ -45,8 +45,12 @@ export function HeaderButton(props: {
   t: {
     remove_all: string,
   },
+  hideRemoveAll: boolean,
 }) {
   if (areAllLimitsSet(props.limits)) {
+    if (props.hideRemoveAll) {
+      return null;
+    }
     return (
       <Text
         onClick={props.removeAll}
