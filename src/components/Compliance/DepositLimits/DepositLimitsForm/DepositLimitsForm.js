@@ -71,17 +71,12 @@ export function DepositLimitsForm({ t, ...props }: Props) {
   const inputError = validate(visible);
 
   const handleNextButton = React.useCallback(() => {
-    const i = limitTypes.indexOf(visible);
-    if (i < 2) {
-      setVisible(limitTypes[i + 1]);
+    // if any limit is invalid it should be fixed before we can proceed
+    const invalid = limitTypes.find(limit => validate(limit));
+    if (invalid) {
+      setVisible(invalid);
     } else {
-      // if any limit is invalid it should be fixed before we can proceed
-      const invalid = limitTypes.find(limit => validate(limit));
-      if (invalid) {
-        setVisible(invalid);
-      } else {
-        props.applyLimitsChanges(R.pluck("value", limitInputs));
-      }
+      props.applyLimitsChanges(R.pluck("value", limitInputs));
     }
   }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
 
