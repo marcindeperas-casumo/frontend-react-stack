@@ -1,15 +1,42 @@
 // @flow
-import { getDepositLimitsSelector, hasRule } from "./depositLimits.selectors";
+import {
+  getDepositLimitsSelector,
+  getDepositLimitsHistorySelector,
+  hasRule,
+} from "./depositLimits.selectors";
 
 describe("Models/playOkay/depositLimits/.selectors", () => {
   test("getDepositLimitsSelector", () => {
     expect(
       getDepositLimitsSelector({
         playOkay: {
-          depositLimits: "object is here",
+          depositLimits: {
+            everything: "everything",
+            else: "else",
+            will: "will",
+            be: "returned",
+            history: "won't be in returned value",
+          },
         },
       })
-    ).toEqual("object is here");
+    ).toEqual({
+      everything: "everything",
+      else: "else",
+      will: "will",
+      be: "returned",
+    });
+  });
+
+  test("getDepositLimitsHistorySelector", () => {
+    expect(
+      getDepositLimitsHistorySelector({
+        playOkay: {
+          depositLimits: {
+            history: "history goes here",
+          },
+        },
+      })
+    ).toEqual("history goes here");
   });
 
   test("hasRule", () => {

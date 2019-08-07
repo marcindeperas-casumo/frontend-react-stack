@@ -16,6 +16,7 @@ import {
   interpolateWithJSX,
   isCmsEntryEmpty,
   findOr,
+  convertHoursToDays,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -354,5 +355,14 @@ describe("isCmsEntryEmpty()", () => {
     ["not-empty", "!empty", " "].map(value =>
       expect(isCmsEntryEmpty(value)).toBe(false)
     );
+  });
+});
+
+describe("convertHoursToDays()", () => {
+  test("should convert hours to days", () => {
+    const hours = 26;
+    const expectedValue = 1;
+
+    expect(convertHoursToDays(hours)).toEqual(expectedValue);
   });
 });

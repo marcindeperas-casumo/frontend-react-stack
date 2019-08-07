@@ -12,7 +12,7 @@ type LimitInput = {
   onChange: (event: SyntheticInputEvent<HTMLInputElement>) => void,
 };
 
-function useInput(initialValue: ?number): LimitInput {
+function useInput(initialValue: ?number = null): LimitInput {
   const [value, setValue] = React.useState(initialValue);
 
   return {

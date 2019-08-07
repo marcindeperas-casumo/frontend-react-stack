@@ -7,6 +7,7 @@ import t from "./__mocks__/cms";
 const props = {
   t,
   locale: "en-GB",
+  currency: "EUR",
   limits: {
     daily: 10,
     weekly: 30,

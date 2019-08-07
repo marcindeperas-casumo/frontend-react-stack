@@ -17,3 +17,6 @@ export const VALUABLE_SPIN_TYPES = Object.freeze({
   SUPER: "super",
   MEGA: "mega",
 });
+
+export const VALUABLE_LOCKED_URL = "/en/player/valuables";
+export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
