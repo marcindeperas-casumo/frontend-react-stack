@@ -7,7 +7,7 @@ import {
   getAnnualOverviewPdfUrlReq,
 } from "Api/api.transactionsBetsHistory";
 import { types } from "./transactionsBetsHistory.constants";
-import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
+import { getUniqueFetchName } from "./transactionsBetsHistory.utils";
 import type {
   WalletTotalsProps,
   WalletTransactionsProps,
@@ -29,7 +29,7 @@ export function initFetchAnnualOverview({
 export function fetchWalletTotals(asyncCallData: WalletTotalsProps) {
   return {
     type: fetchTypes.FETCH,
-    name: getFetchTypeByPeriod({
+    name: getUniqueFetchName({
       type: types.WALLET_TOTALS_FETCH_START,
       ...pick(["startTime", "endTime"], asyncCallData),
     }),
@@ -44,7 +44,7 @@ export function fetchWalletTransactions(
 ) {
   return {
     type: fetchTypes.FETCH,
-    name: getFetchTypeByPeriod({
+    name: getUniqueFetchName({
       type: types.WALLET_TRANSACTIONS_FETCH_START,
       ...pick(["startTime", "endTime"], asyncCallData),
     }),

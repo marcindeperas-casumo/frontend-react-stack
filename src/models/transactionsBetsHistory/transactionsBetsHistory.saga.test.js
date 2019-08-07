@@ -6,7 +6,7 @@ import {
 } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import { types } from "./transactionsBetsHistory.constants";
 import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
-import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
+import { getUniqueFetchName } from "./transactionsBetsHistory.utils";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
@@ -32,7 +32,7 @@ describe("fetchAnnualOverviewSaga()", () => {
     const endTime = DateTime.utc(action.year + 1);
 
     expect(fetchTotalsAction.name).toEqual(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TOTALS_FETCH_START,
         startTime,
         endTime,
@@ -45,7 +45,7 @@ describe("fetchAnnualOverviewSaga()", () => {
     });
 
     expect(fetchTransactionsAction.name).toEqual(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TRANSACTIONS_FETCH_START,
         startTime,
         endTime,
@@ -121,7 +121,7 @@ describe("fetchAnnualOverviewSaga()", () => {
     const endTime = DateTime.utc(action.year + 1);
 
     expect(fetchTotalsAction.name).toEqual(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TOTALS_FETCH_START,
         startTime,
         endTime,
@@ -134,7 +134,7 @@ describe("fetchAnnualOverviewSaga()", () => {
     });
 
     expect(fetchTransactionsAction.name).toEqual(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TRANSACTIONS_FETCH_START,
         startTime,
         endTime,

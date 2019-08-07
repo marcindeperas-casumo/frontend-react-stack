@@ -6,7 +6,7 @@ import { getPage } from "Models/cms";
 import { ENTITY_KEYS } from "Models/schema";
 import { getFetch } from "Models/fetch";
 import { CMS_CONTENT_SLUG, types } from "./transactionsBetsHistory.constants";
-import { getFetchTypeByPeriod } from "./transactionsBetsHistory.utils";
+import { getUniqueFetchName } from "./transactionsBetsHistory.utils";
 import type { AnnualOverview } from "./transactionsBetsHistory.types";
 
 type ContentSelector = Object => { [string]: string };
@@ -48,13 +48,13 @@ export const isAnnualOverviewFetchLoadingSelector: AnnualOverviewFetchLoadingSel
 
   return createSelector(
     getFetch(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TOTALS_FETCH_START,
         ...dates,
       })
     ),
     getFetch(
-      getFetchTypeByPeriod({
+      getUniqueFetchName({
         type: types.WALLET_TRANSACTIONS_FETCH_START,
         ...dates,
       })

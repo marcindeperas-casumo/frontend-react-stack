@@ -16,7 +16,7 @@ import {
 import { types } from "./transactionsBetsHistory.constants";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
-  getFetchTypeByPeriod,
+  getUniqueFetchName,
 } from "./transactionsBetsHistory.utils";
 import annualOverview from "./__mocks__/annualOverview.mock";
 
@@ -43,7 +43,7 @@ describe("Models/transactionsBetsHistory/Actions", () => {
 
     expect(action).toEqual({
       type: fetchTypes.FETCH,
-      name: getFetchTypeByPeriod({
+      name: getUniqueFetchName({
         type: types.WALLET_TOTALS_FETCH_START,
         startTime,
         endTime,
@@ -67,7 +67,7 @@ describe("Models/transactionsBetsHistory/Actions", () => {
 
     expect(action).toEqual({
       type: fetchTypes.FETCH,
-      name: getFetchTypeByPeriod({
+      name: getUniqueFetchName({
         type: types.WALLET_TRANSACTIONS_FETCH_START,
         startTime,
         endTime,

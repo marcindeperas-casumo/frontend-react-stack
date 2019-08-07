@@ -51,7 +51,7 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
   };
 }
 
-export function getFetchTypeByPeriod({
+export function getUniqueFetchName({
   type,
   startTime,
   endTime,
