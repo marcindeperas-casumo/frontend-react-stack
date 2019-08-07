@@ -9,13 +9,13 @@ import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
 import {
-  type DurationTranslations,
   type ValuableDetailsTranslations as Translations,
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
   VALUABLE_STATES,
   getValuableDetailsAction,
+  durationToTranslationKey,
 } from "Models/valuables";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
@@ -101,11 +101,16 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const { termsAndConditionLabel, expirationTimeLabel } = translations;
 
     const expirationInfo = this.expirationBadgeInfo;
-    const translatedDuration = getDurationTranslation(
-      expirationInfo,
-      translations
+    // const translatedDuration = getDurationTranslation(
+    //   expirationInfo,
+    //   translations
+    // );
+    const durationKey = durationToTranslationKey(
+      expirationInfo.key,
+      expirationInfo.value
     );
-    const expirationValueText = interpolate(translatedDuration, {
+
+    const expirationValueText = interpolate(translations[durationKey], {
       value: expirationInfo.value,
     });
 
@@ -201,15 +206,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
   }
 }
 
-// TODO: to move this to somewhere more localised
-// Add other formats and make it more generic
-// Issue: https://jira.casumocave.com/browse/PRR-65
-export const getDurationTranslation = (
-  expiration: BadgeInfoType,
-  translations: DurationTranslations
-): $Keys<DurationTranslations> => {
-  const { key, value } = expiration;
-  const { singular, plural } = translations[key];
+// export const getDurationTranslationKey = (
+//   expiration: BadgeInfoType
+// ): $Keys<DurationTranslations> => {
+//   const { key, value } = expiration;
 
-  return value > 1 ? plural : singular;
-};
+//   return {
+//     hours: value > 1 ? "hour_plural" : "hour_singular",
+//     days: value > 1 ? "day_plural" : "day_singular",
+//   }[key];
+// };

@@ -1,14 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { pipe, prop } from "ramda";
-import { interpolate } from "Utils";
 import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { VALUABLE_STATES } from "Models/valuables";
-import {
-  ValuableDetails,
-  expirationBadgeClasses,
-  getDurationTranslation,
-} from "./ValuableDetails";
+import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
 
@@ -83,40 +77,6 @@ describe("ValuableDetails", () => {
         .find("span")
         .text()
     ).toEqual(expectedExpirationText);
-  });
-
-  test("should return the singular translation of the correct duration", () => {
-    const expiration = 1;
-    const key = "hours";
-    const expectedTranslation = pipe(
-      prop(key),
-      prop("singular")
-    )(mockTranslations);
-    const expectedValue = interpolate(expectedTranslation);
-
-    const actualValue = getDurationTranslation(
-      { key, value: expiration },
-      mockTranslations
-    );
-
-    expect(actualValue).toEqual(expectedValue);
-  });
-
-  test("should return the plural translation of the correct duration", () => {
-    const expiration = 5;
-    const key = "hours";
-    const expectedTranslation = pipe(
-      prop(key),
-      prop("plural")
-    )(mockTranslations);
-    const expectedValue = interpolate(expectedTranslation);
-
-    const actualValue = getDurationTranslation(
-      { key, value: expiration },
-      mockTranslations
-    );
-
-    expect(actualValue).toEqual(expectedValue);
   });
 
   test("should display open padlock icon when valuable is LOCKED", () => {

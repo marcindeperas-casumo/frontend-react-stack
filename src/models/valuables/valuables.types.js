@@ -11,14 +11,10 @@ export type ValuableState = $Values<typeof VALUABLE_STATES>;
 export type ValuableRequirementType = $Values<typeof VALUABLE_REQUIREMENT_TYPES>;
 
 export type DurationTranslations = {
-  hours: {
-    plural: string,
-    singular: string,
-  },
-  days: {
-    plural: string,
-    singular: string,
-  },
+  hour_singular: string,
+  hour_plural: string,
+  day_singular: string,
+  day_plural: string,
 };
 
 export type ValuableDetailsTranslations = DurationTranslations & {

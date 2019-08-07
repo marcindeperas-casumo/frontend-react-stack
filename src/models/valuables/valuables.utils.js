@@ -8,6 +8,7 @@ import {
   VALUABLE_STATES,
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
+  type DurationTranslations,
 } from "Models/valuables";
 
 export const depositUrl = "/en/cash/deposit";
@@ -55,3 +56,16 @@ export const getValuableDetailsAction = ({
 
   return setActionProps();
 };
+
+// TODO: either move this to somewhere more localised
+// or refactor to use ISO8601Duration component
+// Issue: https://jira.casumocave.com/browse/PRR-65
+export function durationToTranslationKey(
+  durationKey: $Values<DurationTranslations>,
+  value: number
+): $Keys<DurationTranslations> {
+  return {
+    days: value > 1 ? "day_plural" : "day_singular",
+    hours: value > 1 ? "hour_plural" : "hour_singular",
+  }[durationKey];
+}
