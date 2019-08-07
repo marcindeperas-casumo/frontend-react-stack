@@ -46,26 +46,40 @@ const diffLimitsValues: diffLimitsValuesCurried = R.curry(
     )((["daily", "weekly", "monthly"]: DepositKinds[]))
 );
 
-function allLimitsHandler(state, { response }: { response: DepositLimit[] }) {
-  const LimitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
-  const limits = R.pathOr({}, ["limit", "value"], LimitDGOJ);
-  const rawAdjustments = R.prop("adjustment", LimitDGOJ);
+function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
+  const limits = R.pathOr({}, ["limit", "value"], limitDGOJ);
+  const rawAdjustments = R.prop("adjustment", limitDGOJ);
 
   return {
-    ...state,
     pendingLimitChanges: rawAdjustments && {
       ...rawAdjustments,
       value: diffLimitsValues(limits, rawAdjustments.value),
     },
     limits,
-    undoable: R.prop("undoable", LimitDGOJ),
-    lock: R.prop("lock", LimitDGOJ),
+    undoable: R.prop("undoable", limitDGOJ),
+    lock: R.prop("lock", limitDGOJ),
   };
 }
 
 const handlers = {
-  [depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE]: allLimitsHandler,
-  [depositLimitsTypes.FETCH_ALL_DONE]: allLimitsHandler,
+  [depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE]: (
+    state,
+    { response }
+  ) => ({
+    ...state,
+    ...handleDGOJLimitChange(response),
+  }),
+  [depositLimitsTypes.FETCH_ALL_DONE]: (
+    state,
+    { response }: { response: DepositLimit[] }
+  ) => {
+    const limitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
+
+    return {
+      ...state,
+      ...handleDGOJLimitChange(limitDGOJ),
+    };
+  },
   [depositLimitsTypes.ADJUST_DONE]: (state, { response }) => ({
     ...state,
     limits: R.pathOr(state.limits, ["limit", "value"], response),
