@@ -202,10 +202,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
 }
 
 // TODO: to move this to somewhere more localised
-// TODO: add other formats
+// Add other formats and make it more generic
 // Issue: https://jira.casumocave.com/browse/PRR-65
 export const getDurationTranslation = (
-  expiration: BadgeInfoType, // TODO: remove badgeInfoType type
+  expiration: BadgeInfoType,
   translations: DurationTranslations
 ): $Keys<DurationTranslations> => {
   const { key, value } = expiration;
