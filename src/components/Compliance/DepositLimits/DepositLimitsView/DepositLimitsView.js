@@ -146,6 +146,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsFormContainer
         t={props.t}
         lock={props.lock}
+        pendingLimitChanges={props.pendingLimitChanges}
         currency={props.currency}
         locale={props.locale}
         responsibleGamblingTestRequired={hasRule(

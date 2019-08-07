@@ -11,6 +11,7 @@ import type {
   LimitLock,
   DepositKinds,
   ResponsibleGamblingTest,
+  DepositLimitsAdjustement,
 } from "Models/playOkay/depositLimits";
 import { formatCurrency, interpolate, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
@@ -36,6 +37,7 @@ type Props = {
       highest_limit: string,
       cant_be_higher: string,
       cant_be_lower: string,
+      has_to_be_lower_than_pending_adjustemen: string,
       has_to_be_lower_while_locked: string,
       has_to_be_lower_after_responsible_gambling_test_failed: string,
     },
@@ -47,6 +49,7 @@ type Props = {
   initiallyVisible: DepositKinds,
   applyLimitsChanges: AllLimitsOnlyValues => void,
   lock: ?LimitLock,
+  pendingLimitChanges: ?DepositLimitsAdjustement,
   fetchTranslations: () => void,
 };
 
@@ -151,6 +154,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     </Flex>
   );
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   function validate(currentLimit: DepositKinds): ?string {
     const currentLimitNotEqual: DepositKinds => Boolean = R.complement(
       R.equals(currentLimit)
@@ -190,7 +194,6 @@ export function DepositLimitsForm({ t, ...props }: Props) {
           value: limitBeforeChange,
         }),
       };
-
       if (props.lock) {
         return interpolate(
           t.input_validation.has_to_be_lower_while_locked,
@@ -206,6 +209,22 @@ export function DepositLimitsForm({ t, ...props }: Props) {
           t.input_validation
             .has_to_be_lower_after_responsible_gambling_test_failed,
           replacements
+        );
+      }
+    }
+
+    if (props.pendingLimitChanges?.value) {
+      const pendingChange = props.pendingLimitChanges.value[currentLimit];
+      if (R.gt(currentLimitValue, pendingChange)) {
+        return interpolate(
+          t.input_validation.has_to_be_lower_than_pending_adjustemen,
+          {
+            pendingChange: formatCurrency({
+              locale: props.locale,
+              currency: props.currency,
+              value: pendingChange,
+            }),
+          }
         );
       }
     }

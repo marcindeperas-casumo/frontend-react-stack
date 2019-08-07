@@ -17,6 +17,7 @@ const props = {
     weekly: 30,
     monthly: 100,
   },
+  pendingLimitChanges: undefined,
   applyLimitsChanges: () => {},
   responsibleGamblingTest: {
     responsibleGamblingQuestionnaireStatus: "SUCCESS",
