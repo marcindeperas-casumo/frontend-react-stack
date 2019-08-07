@@ -121,8 +121,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <div data-test-id="valuable-renderer-wrapper">{children}</div>
           </Flex>
         </div>
-        <div className="u-margin-top--2xlg">
-          <Flex direction="vertical" align="center" className="u-padding-x--md">
+        <div className="u-margin-top--2xlg u-padding-x--md">
+          <Flex direction="vertical" align="center">
             <Flex.Item>
               <Text tag="p" size="md">
                 {details}
@@ -168,14 +168,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
               This will be moved out when valuable details modal is in place
               https://jira.casumocave.com/browse/PRR-50
             */}
-            <Flex.Item className="u-width--1/1">
-              <ValuableDetailsActionButton
-                text={actionButtonProps.text}
-                redirectionUrl={actionButtonProps.url}
-                className="u-width--1/1"
-              />
-            </Flex.Item>
           </Flex>
+        </div>
+        <div className="c-valuable-details__footer">
+          <ValuableDetailsActionButton
+            text={actionButtonProps.text}
+            redirectionUrl={actionButtonProps.url}
+            className="u-width--1/1"
+          />
         </div>
       </>
     );
