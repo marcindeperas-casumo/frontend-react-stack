@@ -7,6 +7,6 @@ type Props = {
   children: React.Node,
 };
 
-export const DataProvider = ({ children }: Props) => (
+export const GraphQLProvider = ({ children }: Props) => (
   <ApolloProvider client={apolloClient}>{children}</ApolloProvider>
 );
