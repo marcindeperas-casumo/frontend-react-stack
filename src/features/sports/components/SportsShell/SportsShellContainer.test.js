@@ -7,12 +7,12 @@ import {
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import {
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
-} from "Features/sports/state";
+} from "Models/apollo/mutations";
 import KambiClient from "Features/sports/components/KambiClient";
 import SportsSearch from "Features/sports/components/SportsSearch";
 import { SportsNav } from "Features/sports/components/SportsNav";

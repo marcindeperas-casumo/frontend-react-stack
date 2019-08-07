@@ -3,7 +3,7 @@ import React from "react";
 import { shallow, mount } from "enzyme";
 import wait from "waait";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import favouriteCompetitionsSelectorMocks from "Features/sports/components/FavouriteCompetitionsSelectorModal/FavouriteCompetitionsSelector/__mocks__/favouriteCompetitionsSelectorQuery.js";
 import FavouriteSportsAndCompetitionsSelectorModal from "./FavouriteSportsAndCompetitionsSelectorModal";

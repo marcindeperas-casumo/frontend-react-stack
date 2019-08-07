@@ -23,22 +23,14 @@ import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals, { MODAL } from "Features/sports/components/Modals";
 import {
-  SportsStateProvider,
-  ClientContext,
   OPEN_MODAL_MUTATION,
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
   CLOSE_ALL_MODALS_MUTATION,
-} from "Features/sports/state";
+} from "Models/apollo/mutations";
+import { GraphQLClientContext } from "Components/GraphQLProvider";
 import SportsShellSkeleton from "./SportsShellSkeleton";
-
-// hook up SportsStateClient to redux data until we can do a proper graphql solution
-const ConnectedSportsStateProvider = connect(state => ({
-  locale: languageSelector(state).toUpperCase(),
-  market: countrySelector(state).toUpperCase(),
-  sessionId: sessionIdSelector(state),
-}))(SportsStateProvider);
 
 export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
@@ -94,7 +86,7 @@ const bridgeEventHandlers = [
 ];
 
 export class SportsShellContainer extends React.Component<{}> {
-  static contextType = ClientContext;
+  static contextType = GraphQLClientContext;
 
   componentDidMount() {
     bridgeEventHandlers.map(([event, handler]) =>
@@ -140,8 +132,9 @@ export class SportsShellContainer extends React.Component<{}> {
   }
 }
 
-export default () => (
-  <ConnectedSportsStateProvider>
-    <SportsShellContainer />
-  </ConnectedSportsStateProvider>
-);
+// hook up SportsStateClient to redux data until we can do a proper graphql solution
+export const ConnectedSportsShellContainer = connect(state => ({
+  locale: languageSelector(state).toUpperCase(),
+  market: countrySelector(state).toUpperCase(),
+  sessionId: sessionIdSelector(state),
+}))(SportsShellContainer);

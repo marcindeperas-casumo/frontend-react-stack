@@ -10,11 +10,9 @@ import {
   countrySelector,
   languageSelector,
 } from "Models/handshake";
-import {
-  MutateOnMount,
-  ClientContext,
-  SESSION_TOUCH,
-} from "Features/sports/state";
+import { SESSION_TOUCH } from "Models/apollo/mutations";
+import { MutateOnMount } from "Features/sports/components/GraphQL";
+import { GraphQLClientContext } from "Components/GraphQLProvider";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -53,7 +51,7 @@ class LaunchableKambiClientQuery extends Query<
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 export class LaunchableKambiClient extends React.Component<Props, State> {
-  static contextType = ClientContext;
+  static contextType = GraphQLClientContext;
 
   state = {
     firstLoadCompleted: false,

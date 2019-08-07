@@ -5,7 +5,8 @@ import {
   UserNavigationTypedQuery,
 } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { OpenModalMutation, ClientContext } from "Features/sports/state";
+import { OpenModalMutation } from "Features/sports/components/GraphQL";
+import { GraphQLClientContext } from "Components/GraphQLProvider";
 import {
   SportsMainNav,
   SportsSubNav,
@@ -118,7 +119,7 @@ const renderSportsNav = (
 };
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
-  const { client } = React.useContext(ClientContext);
+  const { client } = React.useContext(GraphQLClientContext);
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );

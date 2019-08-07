@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import wait from "waait";
 import waitForExpect from "wait-for-expect";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import {
   withFavouritesMock,
   noFavouritesMock,
