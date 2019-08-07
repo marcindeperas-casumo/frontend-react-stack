@@ -49,6 +49,8 @@ type Props = {
   valuableState: ValuableState,
   /* Function to call when to consume valuable */
   onConsumeValuable: string => void,
+  /* Function to launch game */
+  onLaunchGame: string => void,
   /* Translated labels of the component */
   translations: Translations,
   /* Valuable component to be displayed in the header*/
@@ -59,11 +61,15 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-const depositUrl = "/en/cash/deposit"; // TODO: set a wallet flow
+const depositUrl = "/en/cash/deposit";
 const gameBrowserUrl = "/en/games/top";
-const gameUrl = ""; // TODO: set game url
+const gameUrl = ""; // TODO: launch game
 
 export class ValuableDetails extends React.PureComponent<Props> {
+  get isSpins() {
+    return equals(this.props.valuableType, VALUABLE_TYPES.SPINS);
+  }
+
   get actionButtonProps(): {
     text: string,
     url: string,
@@ -74,7 +80,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
       requirementType,
       translations,
     } = this.props;
-    const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
     const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
     const setActionProps = (text = "", url = "") => ({
       text,
@@ -85,7 +90,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       return setActionProps(translations.depositNowLabel, depositUrl);
     }
 
-    if (anyPass(isSpins, isCash)) {
+    if (anyPass(this.isSpins, isCash)) {
       if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
         if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
           return setActionProps(translations.depositToUnlockLabel, depositUrl);
@@ -94,7 +99,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
         return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
       }
 
-      return isSpins
+      return this.isSpins
         ? setActionProps(translations.playNowLabel, gameUrl)
         : setActionProps(translations.playNowLabel, gameBrowserUrl);
     }
@@ -123,6 +128,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       termsContent,
       expirationTimeInHours,
       onConsumeValuable,
+      onLaunchGame,
       translations,
       children,
     } = this.props;
@@ -177,6 +183,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                   "u-text-transform-uppercase u-font-weight-bold",
                   expirationTimeInHours > 24 && expirationBadgeClasses.grey
                 )}
+                radius="sm"
               >
                 {`${expirationTimeLabel} ${expirationValueText}`}
               </Badge>
@@ -211,7 +218,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <ValuableDetailsActionButton
                 text={actionButtonProps.text}
                 redirectionUrl={actionButtonProps.url}
-                action={() => onConsumeValuable(id)}
+                action={() => onConsumeValuable}
                 className="u-width--1/1"
               />
             </Flex.Item>
