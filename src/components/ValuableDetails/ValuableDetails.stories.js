@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import mockValuable from "Components/ValuableCard/__mocks__/Valuable.json";
 import { ValuableCard } from "Components/ValuableCard";
-import translations from "./__mocks__/Translations.json";
 import mock from "./__mocks__/Valuables.json";
 import { ValuableDetails } from "./ValuableDetails";
 

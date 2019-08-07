@@ -3,7 +3,6 @@ import React, { type Node } from "react";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import { equals, anyPass } from "ramda";
 import classNames from "classnames";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
@@ -13,9 +12,7 @@ import {
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
-  VALUABLE_STATES,
-  VALUABLE_TYPES,
-  VALUABLE_REQUIREMENT_TYPES,
+  getValuableDetailsAction,
 } from "Models/valuables";
 import { ValuableDetailsActionButton } from "./ValuableDetailsActionButton";
 
@@ -47,10 +44,6 @@ type Props = {
   valuableType: ValuableType,
   /* The valuable's current state */
   valuableState: ValuableState,
-  /* Function to call when to consume valuable */
-  onConsumeValuable: string => void,
-  /* Function to launch game */
-  onLaunchGame: string => void,
   /* Translated labels of the component */
   translations: Translations,
   /* Valuable component to be displayed in the header*/
@@ -61,51 +54,43 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-const depositUrl = "/en/cash/deposit";
-const gameBrowserUrl = "/en/games/top";
-const gameUrl = ""; // TODO: launch game
-
 export class ValuableDetails extends React.PureComponent<Props> {
-  get isSpins() {
-    return equals(this.props.valuableType, VALUABLE_TYPES.SPINS);
-  }
+  // get actionButtonProps(): {
+  //   text: string,
+  //   url: string,
+  // } {
+  //   const {
+  //     valuableType,
+  //     valuableState,
+  //     requirementType,
+  //     translations,
+  //   } = this.props;
+  //   const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
+  //   const setActionProps = (text = "", url = "") => ({
+  //     text,
+  //     url,
+  //   });
 
-  get actionButtonProps(): {
-    text: string,
-    url: string,
-  } {
-    const {
-      valuableType,
-      valuableState,
-      requirementType,
-      translations,
-    } = this.props;
-    const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
-    const setActionProps = (text = "", url = "") => ({
-      text,
-      url,
-    });
+  //   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
+  //     return setActionProps(translations.depositNowLabel, depositUrl);
+  //   }
 
-    if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-      return setActionProps(translations.depositNowLabel, depositUrl);
-    }
+  //   if (anyPass(this.isSpins, isCash)) {
+  //     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
+  //       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
+  //         return setActionProps(translations.depositToUnlockLabel, depositUrl);
+  //       }
 
-    if (anyPass(this.isSpins, isCash)) {
-      if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-        if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-          return setActionProps(translations.depositToUnlockLabel, depositUrl);
-        }
+  //       return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
+  //     }
 
-        return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
-      }
+  //     return this.isSpins
+  //       ? setActionProps(translations.playNowLabel)
+  //       : setActionProps(translations.playNowLabel, gameBrowserUrl);
+  //   }
 
-      return this.isSpins
-        ? setActionProps(translations.playNowLabel, gameUrl)
-        : setActionProps(translations.playNowLabel, gameBrowserUrl);
-    }
-
-    return setActionProps();
-  }
+  //   return setActionProps();
+  // }
 
   get expiresWithin24Hours() {
     return this.props.expirationTimeInHours <= 24;
@@ -127,8 +112,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
       caveat,
       termsContent,
       expirationTimeInHours,
-      onConsumeValuable,
-      onLaunchGame,
+      valuableType,
+      valuableState,
+      requirementType,
       translations,
       children,
     } = this.props;
@@ -143,7 +129,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
       value: expirationInfo.value,
     });
 
-    const actionButtonProps = this.actionButtonProps;
+    const actionButtonProps = getValuableDetailsAction({
+      valuableType,
+      valuableState,
+      requirementType,
+      translations,
+    });
 
     return (
       <>
@@ -218,7 +209,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <ValuableDetailsActionButton
                 text={actionButtonProps.text}
                 redirectionUrl={actionButtonProps.url}
-                action={() => onConsumeValuable}
                 className="u-width--1/1"
               />
             </Flex.Item>
