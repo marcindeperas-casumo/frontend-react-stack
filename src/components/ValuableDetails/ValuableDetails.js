@@ -55,43 +55,6 @@ const HeaderImgMask = () => (
 );
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  // get actionButtonProps(): {
-  //   text: string,
-  //   url: string,
-  // } {
-  //   const {
-  //     valuableType,
-  //     valuableState,
-  //     requirementType,
-  //     translations,
-  //   } = this.props;
-  //   const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
-  //   const setActionProps = (text = "", url = "") => ({
-  //     text,
-  //     url,
-  //   });
-
-  //   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-  //     return setActionProps(translations.depositNowLabel, depositUrl);
-  //   }
-
-  //   if (anyPass(this.isSpins, isCash)) {
-  //     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-  //       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-  //         return setActionProps(translations.depositToUnlockLabel, depositUrl);
-  //       }
-
-  //       return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
-  //     }
-
-  //     return this.isSpins
-  //       ? setActionProps(translations.playNowLabel)
-  //       : setActionProps(translations.playNowLabel, gameBrowserUrl);
-  //   }
-
-  //   return setActionProps();
-  // }
-
   get expiresWithin24Hours() {
     return this.props.expirationTimeInHours <= 24;
   }
