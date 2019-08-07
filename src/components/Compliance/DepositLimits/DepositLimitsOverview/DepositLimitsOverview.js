@@ -43,11 +43,16 @@ type Props = {
 };
 
 export function DepositLimitsOverview({ t, ...props }: Props) {
-  const allRemoved = R.allPass([
-    R.propEq("daily", null),
-    R.propEq("weekly", null),
-    R.propEq("monthly", null),
-  ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
+  const allRemoved =
+    !R.isNil(props.pendingLimitChanges) &&
+    R.anyPass([
+      R.allPass([
+        R.propEq("daily", null),
+        R.propEq("weekly", null),
+        R.propEq("monthly", null),
+      ]),
+      R.isEmpty,
+    ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
 
   return (
     <Flex
@@ -173,7 +178,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
             size="sm"
             className="u-margin-left--md t-color-grey-light-1 o-flex--1"
           >
-            {t.pending_remove_all}
+            <DangerousHtml html={t.pending_remove_all} />
           </Text>
           <Text
             tag="span"

@@ -170,7 +170,16 @@ export function DepositLimitsView(props: Props) {
             rules: props.preadjust.rules,
             navigate,
             newLimits,
-            limitAdjust: props.limitAdjust,
+            limitAdjust: (x: AllLimits) => {
+              if (R.has("currency", x)) {
+                props.limitAdjust(x);
+              } else {
+                props.limitAdjust({
+                  currency: props.currency,
+                  ...x,
+                });
+              }
+            },
           })
         }
       />
