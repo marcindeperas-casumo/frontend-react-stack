@@ -91,7 +91,7 @@ const handlers = {
     state,
     { response }: { response: LimitAdjustmentHistory[] }
   ) => {
-    // we're gettiong a lot of 💩 in that response...
+    // we're getting a lot of 💩 in that response...
     const history = R.map(x => {
       const before = R.path(["stateBefore", "limit", "value"], x);
       const after = R.path(["stateAfter", "limit", "value"], x);

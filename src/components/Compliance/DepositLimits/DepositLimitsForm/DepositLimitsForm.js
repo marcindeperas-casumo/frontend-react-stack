@@ -20,6 +20,7 @@ import { limitTypes } from "..";
 import "./styles.scss";
 
 type Props = {
+  currency: string,
   locale: string,
   t: {
     daily_short: string,
@@ -97,7 +98,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       <TextInput
         currencySign={getSymbolForCurrency({
           locale: props.locale,
-          currency: props.limits.currency,
+          currency: props.currency,
         })}
         {...limitInputs[visible]}
       />
@@ -134,7 +135,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
                 {limitInputs[limitName].value
                   ? formatCurrency({
                       locale: props.locale,
-                      currency: props.limits.currency,
+                      currency: props.currency,
                       value: parseInt(limitInputs[limitName].value),
                     })
                   : "+"}
@@ -190,7 +191,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       const replacements = {
         currentLimit: formatCurrency({
           locale: props.locale,
-          currency: props.limits.currency,
+          currency: props.currency,
           value: limitBeforeChange,
         }),
       };

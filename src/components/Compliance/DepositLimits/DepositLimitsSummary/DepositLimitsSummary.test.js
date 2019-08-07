@@ -7,6 +7,7 @@ import preadjust from "./__mocks__/preadjust";
 
 const props = {
   locale: "en-GB",
+  currency: "EUR",
   t,
   preadjust,
   newLimits: {

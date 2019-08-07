@@ -6,6 +6,7 @@ export default {
   "deposit_limits": "Deposit limits",
   "pending_change": "<b>Pending:</b> {{newLimitValue}}",
   "pending_change_known_deadline": "Becomes {{newLimitValue}} on {{limitChangeDate}}",
+  "pending_remove_all": "<b>Pending:</b> Removing all limits",
   "remove_all": "Remove All",
   "remaining_limit": "{{value}} remaining",
   "cancel": "cancel",
