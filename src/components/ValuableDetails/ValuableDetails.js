@@ -205,14 +205,3 @@ export class ValuableDetails extends React.PureComponent<Props> {
     );
   }
 }
-
-// export const getDurationTranslationKey = (
-//   expiration: BadgeInfoType
-// ): $Keys<DurationTranslations> => {
-//   const { key, value } = expiration;
-
-//   return {
-//     hours: value > 1 ? "hour_plural" : "hour_singular",
-//     days: value > 1 ? "day_plural" : "day_singular",
-//   }[key];
-// };
