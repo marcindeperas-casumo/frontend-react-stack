@@ -91,7 +91,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       className="u-padding--md u-height--1/1 t-background-white"
     >
       <Flex align="center" justify="space-between">
-        <Text className="u-font-weight-bold" style={{ color: "#181c1c" }}>
+        <Text className="u-font-weight-bold t-color-chrome-dark-3">
           {t[visible]}
         </Text>
       </Flex>
@@ -105,7 +105,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       <Text
         data-test-id="inputValidation"
         size="sm"
-        style={{ color: "#FC484C" }}
+        className="t-color-negative"
       >
         {inputError}
       </Text>
