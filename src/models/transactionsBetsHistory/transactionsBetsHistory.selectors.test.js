@@ -78,7 +78,7 @@ describe("Transactions/Bets History Selectors", () => {
   });
 
   describe("isAnnualOverviewFetchLoadingSelector()", () => {
-    test("returns true if fetch for wallet totals or transactions isFetching", () => {
+    test("returns true if fetch for wallet totals isFetching", () => {
       const state = {
         fetch: {
           "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
@@ -93,6 +93,40 @@ describe("Transactions/Bets History Selectors", () => {
       };
 
       expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(true);
+    });
+
+    test("returns true if fetch for wallet transactions isFetching", () => {
+      const state = {
+        fetch: {
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: false,
+          },
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: true,
+          },
+        },
+      };
+
+      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(true);
+    });
+
+    test("returns false if there is no active fetch for wallet totals and transactions", () => {
+      const state = {
+        fetch: {
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: false,
+          },
+          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
+            error: null,
+            isFetching: false,
+          },
+        },
+      };
+
+      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(false);
     });
   });
 });
