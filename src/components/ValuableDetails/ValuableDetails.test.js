@@ -3,12 +3,14 @@ import { shallow } from "enzyme";
 import { pipe, prop } from "ramda";
 import { interpolate } from "Utils";
 import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
+import { VALUABLE_STATES } from "Models/valuables";
 import {
   ValuableDetails,
   expirationBadgeClasses,
   getDurationTranslation,
 } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
+import OpenPadlock from "./open-padlock.svg";
 
 describe("ValuableDetails", () => {
   let rendered;
@@ -115,5 +117,33 @@ describe("ValuableDetails", () => {
     );
 
     expect(actualValue).toEqual(expectedValue);
+  });
+
+  test("should display open padlock icon when valuable is LOCKED", () => {
+    rendered = shallow(
+      <ValuableDetails
+        {...mockValuable}
+        valuableState={VALUABLE_STATES.LOCKED}
+        translations={mockTranslations}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    expect(
+      rendered
+        .find("[data-test='expiration-badge-content']")
+        .dive()
+        .find(OpenPadlock)
+    ).toHaveLength(1);
+  });
+
+  test("should not display open padlock icon if valuable is NOT LOCKED", () => {
+    expect(
+      rendered
+        .find("[data-test='expiration-badge-content']")
+        .dive()
+        .find(OpenPadlock)
+    ).toHaveLength(0);
   });
 });

@@ -1,9 +1,11 @@
 // @flow
 import React, { type Node } from "react";
+import { equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
+import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
 import {
@@ -12,9 +14,11 @@ import {
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
+  VALUABLE_STATES,
   getValuableDetailsAction,
 } from "Models/valuables";
-import { ValuableDetailsActionButton } from "./ValuableDetailsActionButton";
+import OpenPadlock from "./open-padlock.svg";
+import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
   red: "t-background-red",
@@ -53,6 +57,19 @@ type Props = {
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
+
+const ExpirationBadgeContent = ({ isLocked, text }) => {
+  return (
+    <>
+      {isLocked && (
+        <span className="u-margin-right">
+          <OpenPadlock />
+        </span>
+      )}
+      {text}
+    </>
+  );
+};
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get expiresWithin24Hours() {
@@ -171,11 +188,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
         </div>
         <div className="c-valuable-details__footer">
-          <ValuableDetailsActionButton
-            text={actionButtonProps.text}
-            redirectionUrl={actionButtonProps.url}
-            className="u-width--1/1"
-          />
+          <Button href={actionButtonProps.url} className="u-width--1/1">
+            <ExpirationBadgeContent
+              text={actionButtonProps.text}
+              isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
+              data-test="expiration-badge-content"
+            />
+          </Button>
         </div>
       </>
     );
