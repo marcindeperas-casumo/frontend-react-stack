@@ -11,6 +11,7 @@ import {
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
+import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import {
   DepositLimitsConfirmationsContainer,
   type ConfirmationPage,
@@ -225,6 +226,13 @@ export function DepositLimitsView(props: Props) {
           showOldSuspendAccountView={() =>
             navigate({ route: "suspendAccount" })
           }
+        />
+      )}
+      {route === "overview" && (
+        <DepositLimitsHistoryContainer
+          t={props.t}
+          locale={props.locale}
+          currency={props.limits.currency}
         />
       )}
     </Flex>
