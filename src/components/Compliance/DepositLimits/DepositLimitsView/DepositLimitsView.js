@@ -83,7 +83,6 @@ type DepositLimitsRoute =
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DepositLimitsView(props: Props) {
   React.useEffect(() => {
-    props.init();
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -100,6 +99,12 @@ export function DepositLimitsView(props: Props) {
     };
   });
   const [{ route, depositKind, limitChanges, pages }, navigate] = useRouting();
+  React.useEffect(() => {
+    if (route === "overview") {
+      props.init();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route]);
 
   if (!props.t || !props.limits || !props.remaining || !props.preadjust) {
     return "loading";
