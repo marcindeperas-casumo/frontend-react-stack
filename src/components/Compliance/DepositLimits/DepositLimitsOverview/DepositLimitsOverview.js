@@ -61,6 +61,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
+      className="t-background-white"
     >
       <Header title={t.deposit_limits}>
         <HeaderButton
