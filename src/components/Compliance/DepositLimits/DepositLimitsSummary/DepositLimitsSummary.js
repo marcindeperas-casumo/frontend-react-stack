@@ -56,7 +56,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
   const SubmitButton = (
     <Button
       data-test-id="submit-button"
-      variant="variant-2"
+      variant="primary"
       className="u-padding-y--md"
       disabled={req}
       loading={req}
