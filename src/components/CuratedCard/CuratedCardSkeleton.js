@@ -6,6 +6,8 @@ export class CuratedCardSkeleton extends PureComponent {
     return (
       <div className="c-curated-card o-ratio o-ratio--curated-card">
         <Skeleton
+          colorHi="#d3d8e1"
+          colorLow="#e5eaed"
           viewBox={null}
           className="o-ratio__content"
           width="100%"

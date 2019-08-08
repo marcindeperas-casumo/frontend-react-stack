@@ -138,8 +138,8 @@ export class GameListHorizontalSkeleton extends React.Component<Props> {
         width={skeletonWidth}
         height={skeletonHeight}
         preserveAspectRatio="xMinYMin"
-        colorLow="#eff6f6"
-        colorHi="#ffffff"
+        colorHi="#d3d8e1"
+        colorLow="#e5eaed"
         className={this.props.className}
       >
         {this.props.title && (
