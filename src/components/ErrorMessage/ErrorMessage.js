@@ -30,7 +30,7 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
   <Flex.Item>
     <Button
       data-test="error-message-retry-button"
-      variant="outline-positive"
+      variant="primary"
       onClick={retry}
     >
       {retryMessage}

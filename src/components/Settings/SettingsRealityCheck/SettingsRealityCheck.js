@@ -64,6 +64,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
             />
           </div>
           <Button
+            variant="primary"
             loading={isLoading}
             className="u-width--1/1 u-margin-top--xlg"
             onClick={onSave}

@@ -88,7 +88,10 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: game.name }}
           >
-            <Button className="u-text-nowrap u-text-transform-capitalize">
+            <Button
+              variant="primary"
+              className="u-text-nowrap u-text-transform-capitalize"
+            >
               <CMSField
                 slug="mobile.live-casino-cards-content"
                 field="play_now"

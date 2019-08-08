@@ -1165,10 +1165,10 @@
     "@casumo/cudl-react-prop-types" "^2.1.0"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-button@^2.0.9":
-  version "2.0.9"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.9.tgz#70339ed55f14f3e19078e23946eadcb4f23de51e"
-  integrity sha512-JdYzwToGV+FXFnhr/8L6DBN8cwrbNLmvfEiSjRNcl9WUND8Ynmiu+TW9GsABvqCNzAI8ELL+4VirC5kCxo/4tQ==
+"@casumo/cmp-button@^2.1.0":
+  version "2.1.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.1.0.tgz#f09521d6ba1cd5d1e8cf0edd3a4caf76f8b07548"
+  integrity sha512-t74GimcvV4y1cPQzef9mEN/vyeWGAGAU2gE+LqQ0GSORnpIdJ4KQTZrsAmTlNFNLucK+sWcILwxEcfd952dClA==
   dependencies:
     "@casumo/cudl-buttons" "2.0.4"
     "@casumo/cudl-react-utils" "^1.0.6"
