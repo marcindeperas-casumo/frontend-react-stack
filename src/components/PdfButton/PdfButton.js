@@ -23,6 +23,7 @@ export function PdfButton({ href, fetchHref, label }: PdfButtonProps) {
   return (
     <Button
       href={href}
+      variant="primary"
       className="u-margin-top--lg u-margin-bottom--md"
       disabled={isDisabled}
       loading={isDisabled}
