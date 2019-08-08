@@ -16,6 +16,7 @@ import { AdditionalConditions } from "./AdditionalConditions";
 import { limitTypes } from "..";
 
 type Props = {
+  currency: string,
   locale: string,
   t: {
     summary_title: string,
@@ -98,7 +99,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
                 <Text tag="span" className="u-font-weight-bold">
                   {formatCurrency({
                     locale: props.locale,
-                    currency: props.currentLimits.currency,
+                    currency: props.currency,
                     value: props.newLimits[x],
                   })}
                 </Text>

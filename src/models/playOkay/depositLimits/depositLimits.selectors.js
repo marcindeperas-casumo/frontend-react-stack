@@ -9,6 +9,11 @@ import type {
 
 export const getDepositLimitsSelector: any => DepositLimitsReduxStore = createSelector(
   R.path(["playOkay", "depositLimits"]),
+  R.omit(["history"])
+);
+
+export const getDepositLimitsHistorySelector: any => DepositLimitsReduxStore = createSelector(
+  R.path(["playOkay", "depositLimits", "history"]),
   R.identity
 );
 

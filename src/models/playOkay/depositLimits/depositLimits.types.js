@@ -56,10 +56,10 @@ export type DepositLimitPreadjust = {
   rules: Array<DepositLimitPreadjustRules>,
 };
 
-type ISO8601DateTime = string; // with milliseconds and retrofit
+type ISO8601DateTime = string;
 export type ResponsibleGamblingTest = {|
   responsibleGamblingQuestionnaireStatus: "SUCCESS" | "FAILED" | "NONE", // NONE if player hasn't attempted test yet
-  responsibleGamblingQuestionnaireLastAttempt: ?ISO8601DateTime, // null if there was no previous attempt
+  responsibleGamblingQuestionnaireLastAttempt: ?ISO8601DateTime, // null if there was no previous attempt, with milliseconds and retrofit
   responsibleGamblingQuestionnaireAttemptAllowed: boolean,
 |};
 
@@ -75,6 +75,16 @@ export type DepositLimitsAdjustement = {
   },
 };
 
+export type DepositLimitsHistoryType = Array<{
+  id: string,
+  timestamp: ISO8601DateTime,
+  diff: {
+    daily?: ?number,
+    monthly?: ?number,
+    weekly?: ?number,
+  },
+}>;
+
 export type DepositLimitsReduxStore = {|
   limits: ?AllLimits,
   preadjust: ?DepositLimitPreadjust,
@@ -83,4 +93,33 @@ export type DepositLimitsReduxStore = {|
   remaining: ?AllLimitsOnlyValues,
   responsibleGamblingTest: ?ResponsibleGamblingTest,
   pendingLimitChanges: ?DepositLimitsAdjustement,
+  history: ?DepositLimitsHistoryType,
 |};
+
+type LimitAdjustmentState = {
+  undoable: boolean,
+  limit?: {
+    value: AllLimits,
+  },
+  lock?: { expiresOn: ISO8601DateTime },
+};
+export type LimitAdjustmentHistory = {
+  id: string,
+  kind: "DGOJ_DEPOSIT_LIMIT",
+  playerId: string,
+  schema: "MONETARY_AMOUNT_PERIODS_AND_INCREASED",
+  request: {
+    type:
+      | "PLAYER_REGISTERED" // initial, last on the list. Shouldn't be shown?
+      | "ADJUST"
+      | "ADJUSTMENT_EFFECTIVE", // shows up after approved adjustment takes efect
+    value: AllLimits,
+    id: string,
+    timestamp: ISO8601DateTime,
+    initiator: {
+      id: string, // starts with "PID:"
+    },
+  },
+  stateBefore: LimitAdjustmentState,
+  stateAfter: LimitAdjustmentState,
+};

@@ -11,6 +11,7 @@ import {
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
+import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import {
   DepositLimitsConfirmationsContainer,
   type ConfirmationPage,
@@ -41,6 +42,7 @@ type Props = {
   remaining: AllLimitsOnlyValues,
   pendingLimitChanges?: DepositLimitsAdjustement,
 
+  currency: string,
   locale: string,
   t: {
     daily_short: string,
@@ -51,6 +53,7 @@ type Props = {
     monthly: string,
     deposit_limits: string,
     pending_change: string,
+    pending_remove_all: string,
     pending_change_known_deadline: string,
     remove_all: string,
     remove_selected: string,
@@ -113,6 +116,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsOverview
         t={props.t}
         locale={props.locale}
+        currency={props.currency}
         limits={props.limits}
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
@@ -134,6 +138,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsFormContainer
         t={props.t}
         lock={props.lock}
+        currency={props.currency}
         locale={props.locale}
         responsibleGamblingTestRequired={hasRule(
           "RESPONSIBLE_GAMBLING_TEST_REQUIRED",
@@ -151,6 +156,7 @@ export function DepositLimitsView(props: Props) {
     summary: (
       <DepositLimitsSummaryContainer
         t={props.t}
+        currency={props.currency}
         locale={props.locale}
         responsibleGamblingTest={props.responsibleGamblingTest}
         preadjust={props.preadjust}
@@ -164,7 +170,16 @@ export function DepositLimitsView(props: Props) {
             rules: props.preadjust.rules,
             navigate,
             newLimits,
-            limitAdjust: props.limitAdjust,
+            limitAdjust: (x: AllLimits) => {
+              if (R.has("currency", x)) {
+                props.limitAdjust(x);
+              } else {
+                props.limitAdjust({
+                  currency: props.currency,
+                  ...x,
+                });
+              }
+            },
           })
         }
       />
@@ -225,6 +240,13 @@ export function DepositLimitsView(props: Props) {
           showOldSuspendAccountView={() =>
             navigate({ route: "suspendAccount" })
           }
+        />
+      )}
+      {route === "overview" && (
+        <DepositLimitsHistoryContainer
+          t={props.t}
+          locale={props.locale}
+          currency={props.limits.currency}
         />
       )}
     </Flex>

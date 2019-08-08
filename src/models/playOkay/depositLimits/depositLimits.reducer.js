@@ -8,6 +8,7 @@ import type {
   DepositLimitsReduxStore,
   DepositLimit,
   ResponsibleGamblingTest,
+  LimitAdjustmentHistory,
 } from "./depositLimits.types";
 import { kindEq } from "./depositLimits.selectors";
 
@@ -19,8 +20,14 @@ export const DEFAULT_STATE = {
   remaining: undefined,
   responsibleGamblingTest: undefined,
   pendingLimitChanges: undefined,
+  history: undefined,
 };
 
+const defaultLimit: AllLimitsOnlyValues = {
+  daily: null,
+  weekly: null,
+  monthly: null,
+};
 type diffLimitsValuesFn1 = (
   AllLimitsOnlyValues,
   AllLimitsOnlyValues
@@ -29,11 +36,11 @@ type diffLimitsValuesFn2 = AllLimitsOnlyValues => AllLimitsOnlyValues => AllLimi
 type diffLimitsValuesCurried = diffLimitsValuesFn1 & diffLimitsValuesFn2;
 // diff limits values returns object with only keys that changed
 const diffLimitsValues: diffLimitsValuesCurried = R.curry(
-  (limitsBefore, limitsAfter) =>
+  (limitsBefore = defaultLimit, limitsAfter = defaultLimit) =>
     R.pipe(
       R.filter(
         (depositType: DepositKinds) =>
-          limitsBefore[depositType] !== limitsAfter[depositType]
+          limitsBefore?.[depositType] !== limitsAfter?.[depositType]
       ),
       R.pick(R.__, limitsAfter)
     )((["daily", "weekly", "monthly"]: DepositKinds[]))
@@ -41,19 +48,15 @@ const diffLimitsValues: diffLimitsValuesCurried = R.curry(
 
 function allLimitsHandler(state, { response }: { response: DepositLimit[] }) {
   const LimitDGOJ = R.find(kindEq("DGOJ_DEPOSIT_LIMIT"), response);
-  const limits = R.path(["limit", "value"], LimitDGOJ);
+  const limits = R.pathOr({}, ["limit", "value"], LimitDGOJ);
   const rawAdjustments = R.prop("adjustment", LimitDGOJ);
 
   return {
     ...state,
-    pendingLimitChanges:
-      rawAdjustments &&
-      R.evolve(
-        {
-          value: diffLimitsValues(limits),
-        },
-        rawAdjustments
-      ),
+    pendingLimitChanges: rawAdjustments && {
+      ...rawAdjustments,
+      value: diffLimitsValues(limits, rawAdjustments.value),
+    },
     limits,
     undoable: R.prop("undoable", LimitDGOJ),
     lock: R.prop("lock", LimitDGOJ),
@@ -84,6 +87,28 @@ const handlers = {
     ...state,
     responsibleGamblingTest: response,
   }),
+  [depositLimitsTypes.GET_HISTORY_DONE]: (
+    state,
+    { response }: { response: LimitAdjustmentHistory[] }
+  ) => {
+    // we're getting a lot of 💩 in that response...
+    const history = R.map(x => {
+      const before = R.path(["stateBefore", "limit", "value"], x);
+      const after = R.path(["stateAfter", "limit", "value"], x);
+      const diff = diffLimitsValues(before, after);
+
+      return {
+        id: x.id,
+        timestamp: R.path(["request", "timestamp"], x),
+        diff,
+      };
+    }, response);
+
+    return {
+      ...state,
+      history,
+    };
+  },
 };
 
 export const depositLimitsReducer = createReducer<DepositLimitsReduxStore>(
