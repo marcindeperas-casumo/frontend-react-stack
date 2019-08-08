@@ -93,6 +93,15 @@ export const currencySelector = createSelector(
   )
 );
 
+export const walletAmountSelector = createSelector(
+  playerSelector,
+  compose(
+    prop("amount"),
+    prop("balance"),
+    prop("wallet")
+  )
+);
+
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")

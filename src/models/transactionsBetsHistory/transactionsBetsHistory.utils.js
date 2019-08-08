@@ -1,6 +1,6 @@
 // @flow
 import { head, last, path } from "ramda";
-import { formatCurrency } from "Utils";
+import { formatCurrency, isNilOrEmpty } from "Utils";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
@@ -44,8 +44,15 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
 }
 
 export function getStartingEndBalanceFromTransactions(
-  transactions: Array<TransactionResponseRaw>
+  transactions: Array<TransactionResponseRaw>,
+  walletAmountFallback: number = 0
 ): StartingEndBalance {
+  if (isNilOrEmpty(transactions)) {
+    return {
+      startingBalanceAmount: walletAmountFallback,
+      endBalanceAmount: walletAmountFallback,
+    };
+  }
   // API returns a sorted list, from the latest transaction to the oldest
   return {
     startingBalanceAmount: path(
