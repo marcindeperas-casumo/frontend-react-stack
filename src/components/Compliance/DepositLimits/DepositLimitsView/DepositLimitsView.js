@@ -7,7 +7,8 @@ import { DepositLimitsSuspendAccountContainer } from "Components/Compliance/Depo
 import {
   diffLimits,
   getSpecificKinds,
-} from "Components/Compliance/DepositLimits/DepositLimitsSummary/utils";
+  hasRule,
+} from "Models/playOkay/depositLimits";
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
@@ -27,7 +28,6 @@ import type {
 } from "Models/playOkay/depositLimits";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
-import { hasRule } from "Models/playOkay/depositLimits";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
 import { GoBack } from "./GoBack";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";

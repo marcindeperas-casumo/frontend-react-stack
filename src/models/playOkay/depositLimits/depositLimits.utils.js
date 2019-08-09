@@ -4,7 +4,14 @@ import type {
   AllLimitsOnlyValues,
   DepositKinds,
 } from "Models/playOkay/depositLimits";
-import { limitTypes } from "..";
+
+export const limitTypes: ["daily", "weekly", "monthly"] = [
+  "daily",
+  "weekly",
+  "monthly",
+];
+// flow magic to ensure no typos in daily, weekly, monthly
+/*:: (limitTypes[0]: DepositKinds), (limitTypes[1]: DepositKinds), (limitTypes[2]: DepositKinds) */
 
 export type LimitChange = "unchanged" | "increase" | "decrease" | "removed";
 export type LimitsDiff = { [DepositKinds]: LimitChange };
