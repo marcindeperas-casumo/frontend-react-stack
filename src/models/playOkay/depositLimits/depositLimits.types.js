@@ -63,7 +63,7 @@ export type ResponsibleGamblingTest = {|
   responsibleGamblingQuestionnaireAttemptAllowed: boolean,
 |};
 
-export type DepositLimitsAdjustement = {
+export type DepositLimitsAdjustment = {
   approvalRequired: boolean,
   confirmationRequired: boolean,
   effectiveFrom: ISO8601DateTime,
@@ -92,7 +92,7 @@ export type DepositLimitsReduxStore = {|
   undoable: ?boolean,
   remaining: ?AllLimitsOnlyValues,
   responsibleGamblingTest: ?ResponsibleGamblingTest,
-  pendingLimitChanges: ?DepositLimitsAdjustement,
+  pendingLimitChanges: ?DepositLimitsAdjustment,
   history: ?DepositLimitsHistoryType,
 |};
 

@@ -11,7 +11,7 @@ import type {
   AllLimits,
   AllLimitsOnlyValues,
   DepositKinds,
-  DepositLimitsAdjustement,
+  DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import { formatCurrency, interpolate } from "Utils";
 import { Header, HeaderButton } from "./Header";
@@ -35,7 +35,7 @@ type Props = {
   },
   hideRemoveAll: boolean,
   limits: AllLimits,
-  pendingLimitChanges?: DepositLimitsAdjustement,
+  pendingLimitChanges?: DepositLimitsAdjustment,
   remainingLimitValue: AllLimitsOnlyValues,
   edit: DepositKinds => void,
   limitCancel: DepositKinds => void,

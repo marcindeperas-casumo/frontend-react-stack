@@ -30,7 +30,7 @@ export function diffLimits({
         [R.equals(before[x]), R.always(("unchanged": LimitChange))],
         [R.isNil, R.always(("removed": LimitChange))],
         /**
-         * This one might be suprising at first. Think of nil in limit as of infinity.
+         * This one might be surprising at first. Think of nil in limit as of infinity.
          * Every time you set new limit you are decreasing it from infinity so it
          * falls into the flow of decreasing limits.
          */
