@@ -159,11 +159,11 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     const currentLimitNotEqual: DepositKinds => Boolean = R.complement(
       R.equals(currentLimit)
     );
-    const currentLimitValue = limitInputs[currentLimit].value;
+    const currentLimitValue = limitInputs[currentLimit].value || 0;
     if (currentLimitNotEqual("daily")) {
       const i = limitTypes.indexOf(currentLimit) - 1;
-      const previousLimitValue = limitInputs[limitTypes[i]].value;
-      if (R.gt(previousLimitValue, currentLimitValue)) {
+      const previousLimitValue = limitInputs[limitTypes[i]].value || 0;
+      if (previousLimitValue > currentLimitValue) {
         return interpolate(t.input_validation.cant_be_lower, {
           affectedLimitType: t[`${limitTypes[i]}_short`],
         });
@@ -171,22 +171,22 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     }
     if (currentLimitNotEqual("monthly")) {
       const i = limitTypes.indexOf(currentLimit) + 1;
-      const nextLimitValue = limitInputs[limitTypes[i]].value;
-      if (R.lt(nextLimitValue, currentLimitValue)) {
+      const nextLimitValue = limitInputs[limitTypes[i]].value || 0;
+      if (nextLimitValue < currentLimitValue) {
         return interpolate(t.input_validation.cant_be_higher, {
           affectedLimitType: t[`${limitTypes[i]}_short`],
         });
       }
     }
-    if (R.lt(currentLimitValue, 10)) {
+    if (currentLimitValue < 10) {
       return t.input_validation.lowest_limit;
     }
-    if (R.gt(currentLimitValue, 20000)) {
+    if (currentLimitValue > 20000) {
       return t.input_validation.highest_limit;
     }
 
     const limitBeforeChange = props.limits[currentLimit];
-    if (R.gt(currentLimitValue, limitBeforeChange)) {
+    if (currentLimitValue > limitBeforeChange) {
       const replacements = {
         currentLimit: formatCurrency({
           locale: props.locale,
@@ -215,7 +215,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
 
     if (props.pendingLimitChanges?.value) {
       const pendingChange = props.pendingLimitChanges.value[currentLimit];
-      if (R.gt(currentLimitValue, pendingChange)) {
+      if (currentLimitValue > pendingChange) {
         return interpolate(
           t.input_validation.has_to_be_lower_than_pending_adjustment,
           {
