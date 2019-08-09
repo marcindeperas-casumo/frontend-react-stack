@@ -4,13 +4,14 @@ import { createReducer } from "Utils";
 import { depositLimitsTypes } from "./depositLimits.constants";
 import type {
   AllLimitsOnlyValues,
-  DepositKinds,
   DepositLimitsReduxStore,
+  LimitChangeType,
   DepositLimit,
   ResponsibleGamblingTest,
   LimitAdjustmentHistory,
 } from "./depositLimits.types";
 import { kindEq } from "./depositLimits.selectors";
+import { getChangedLimitsValues, diffLimits } from "./depositLimits.utils";
 
 export const DEFAULT_STATE = {
   limits: undefined,
@@ -23,29 +24,6 @@ export const DEFAULT_STATE = {
   history: undefined,
 };
 
-const defaultLimit: AllLimitsOnlyValues = {
-  daily: null,
-  weekly: null,
-  monthly: null,
-};
-type diffLimitsValuesFn1 = (
-  AllLimitsOnlyValues,
-  AllLimitsOnlyValues
-) => AllLimitsOnlyValues;
-type diffLimitsValuesFn2 = AllLimitsOnlyValues => AllLimitsOnlyValues => AllLimitsOnlyValues;
-type diffLimitsValuesCurried = diffLimitsValuesFn1 & diffLimitsValuesFn2;
-// diff limits values returns object with only keys that changed
-const diffLimitsValues: diffLimitsValuesCurried = R.curry(
-  (limitsBefore = defaultLimit, limitsAfter = defaultLimit) =>
-    R.pipe(
-      R.filter(
-        (depositType: DepositKinds) =>
-          limitsBefore?.[depositType] !== limitsAfter?.[depositType]
-      ),
-      R.pick(R.__, limitsAfter)
-    )((["daily", "weekly", "monthly"]: DepositKinds[]))
-);
-
 function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
   const limits = R.pathOr({}, ["limit", "value"], limitDGOJ);
   const rawAdjustments = R.prop("adjustment", limitDGOJ);
@@ -53,7 +31,10 @@ function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
   return {
     pendingLimitChanges: rawAdjustments && {
       ...rawAdjustments,
-      value: diffLimitsValues(limits, rawAdjustments.value),
+      value: getChangedLimitsValues({
+        before: limits,
+        after: rawAdjustments.value,
+      }),
     },
     limits,
     undoable: R.prop("undoable", limitDGOJ),
@@ -105,16 +86,31 @@ const handlers = {
     state,
     { response }: { response: LimitAdjustmentHistory[] }
   ) => {
+    const defaultLimit: AllLimitsOnlyValues = {
+      daily: null,
+      weekly: null,
+      monthly: null,
+    };
     // we're getting a lot of 💩 in that response...
     const history = R.map(x => {
-      const before = R.path(["stateBefore", "limit", "value"], x);
-      const after = R.path(["stateAfter", "limit", "value"], x);
-      const diff = diffLimitsValues(before, after);
+      const before = R.pathOr(
+        defaultLimit,
+        ["stateBefore", "limit", "value"],
+        x
+      );
+      const after = R.pathOr(defaultLimit, ["stateAfter", "limit", "value"], x);
+      const changes = getChangedLimitsValues({ before, after });
+      const type: LimitChangeType = R.pipe(
+        R.keys,
+        R.head,
+        R.prop(R.__, diffLimits({ before, after }))
+      )(changes);
 
       return {
         id: x.id,
         timestamp: R.path(["request", "timestamp"], x),
-        diff,
+        type,
+        changes,
       };
     }, response);
 

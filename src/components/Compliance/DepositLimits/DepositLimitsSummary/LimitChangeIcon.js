@@ -1,10 +1,10 @@
 // @flow
 import * as React from "react";
 import { ArrowDownIcon } from "@casumo/cmp-icons";
-import type { LimitChange } from "Models/playOkay/depositLimits";
+import type { LimitChangeType } from "Models/playOkay/depositLimits";
 
-export function LimitChangeIcon(props: { change: LimitChange }) {
-  const possibilities: { [LimitChange]: React.Node } = {
+export function LimitChangeIcon(props: { change: LimitChangeType }) {
+  const possibilities: { [LimitChangeType]: React.Node } = {
     increase: (
       <ArrowDownIcon className="u-margin-right Icons-c-icon-rotate--180 t-color-positive" />
     ),

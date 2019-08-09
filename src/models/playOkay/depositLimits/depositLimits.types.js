@@ -1,5 +1,6 @@
 // @flow
 export type DepositKinds = "daily" | "weekly" | "monthly";
+export type LimitChangeType = "unchanged" | "increase" | "decrease" | "removed";
 export type AllLimitsOnlyValues = {
   daily: ?number,
   monthly: ?number,
@@ -78,7 +79,8 @@ export type DepositLimitsAdjustment = {
 export type DepositLimitsHistoryType = Array<{
   id: string,
   timestamp: ISO8601DateTime,
-  diff: {
+  type: LimitChangeType,
+  changes: {
     daily?: ?number,
     monthly?: ?number,
     weekly?: ?number,
@@ -112,7 +114,7 @@ export type LimitAdjustmentHistory = {
     type:
       | "PLAYER_REGISTERED" // initial, last on the list. Shouldn't be shown?
       | "ADJUST"
-      | "ADJUSTMENT_EFFECTIVE", // shows up after approved adjustment takes efect
+      | "ADJUSTMENT_EFFECTIVE", // shows up after approved adjustment takes effect
     value: AllLimits,
     id: string,
     timestamp: ISO8601DateTime,

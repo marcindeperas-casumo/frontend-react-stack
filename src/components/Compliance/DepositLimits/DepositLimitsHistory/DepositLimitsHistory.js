@@ -6,6 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { formatCurrency, interpolate } from "Utils";
 import type { DepositLimitsHistoryType } from "Models/playOkay/depositLimits";
+import { LimitChangeIcon } from "../DepositLimitsSummary/LimitChangeIcon";
 import "./depositLimitsHistory.scss";
 
 type Props = {
@@ -17,6 +18,7 @@ type Props = {
     weekly_removed: string,
     monthly_removed: string,
     title: string,
+    history: string,
   },
   locale: string,
   currency: string,
@@ -43,57 +45,80 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
       spacing="none"
       className="u-padding--md u-height--1/1 t-background-white"
     >
-      {props.history.map(historyItem => {
-        const limitsValues = R.pipe(
-          R.toPairs,
-          R.map(([limit, value], i) => (
-            <Text
-              tag="span"
-              key={limit}
-              className="u-padding-top u-padding-x--md"
-            >
-              {interpolate(
-                t[value ? `${limit}_adjusted` : `${limit}_removed`],
-                {
-                  value: formatCurrency({
-                    locale: props.locale,
-                    currency: props.currency,
-                    value,
-                  }),
-                }
-              )}
-            </Text>
-          ))
-        )(historyItem.diff);
+      <Flex
+        align="center"
+        justify="space-between"
+        spacing="none"
+        className="u-padding--md"
+      >
+        <Text tag="span" className="u-font-weight-bold o-flex--1">
+          {t.history}
+        </Text>
+      </Flex>
 
-        return (
-          <Flex key={historyItem.id} direction="vertical" spacing="none">
-            <Text
-              tag="span"
-              size="sm"
-              className="o-flex__item-align--end t-color-grey-light-1"
-            >
-              {DateTime.fromISO(historyItem.timestamp)
-                .setLocale(props.locale)
-                .toLocaleString(DateTime.DATETIME_SHORT)}
-            </Text>
+      <Flex direction="vertical" align="center">
+        {props.history.map(historyItem => {
+          const limitsValues = R.pipe(
+            R.toPairs,
+            R.map(([limit, value], i) => (
+              <Text
+                tag="span"
+                key={limit}
+                className="u-padding-top u-padding-x--md"
+              >
+                {interpolate(
+                  t[value ? `${limit}_adjusted` : `${limit}_removed`],
+                  {
+                    value: formatCurrency({
+                      locale: props.locale,
+                      currency: props.currency,
+                      value,
+                    }),
+                  }
+                )}
+              </Text>
+            ))
+          )(historyItem.changes);
 
+          return (
             <Flex
+              key={historyItem.id}
               direction="vertical"
               spacing="none"
-              className="t-background-grey-light-2 u-padding-y--md c-deposit-limits-history__container"
+              align="stretch"
+              className="c-deposit-limits-history__container u-width--1/1 u-margin-bottom--md"
             >
               <Text
                 tag="span"
-                className="u-font-weight-black u-padding-bottom u-padding-x--md c-deposit-limits-history__separator"
+                size="sm"
+                className="o-flex__item-align--end t-color-grey-light-1"
               >
-                {t.title}
+                {DateTime.fromISO(historyItem.timestamp)
+                  .setLocale(props.locale)
+                  .toLocaleString(DateTime.DATETIME_SHORT)}
               </Text>
-              {limitsValues}
+
+              <Flex
+                direction="vertical"
+                spacing="none"
+                className="t-background-grey-light-2 u-padding-y--md c-deposit-limits-history__limit"
+              >
+                <Flex
+                  justify="space-between"
+                  align="center"
+                  className="u-padding-bottom u-padding-x--md c-deposit-limits-history__separator"
+                >
+                  <Text tag="span" className="u-font-weight-black">
+                    {t.title}
+                  </Text>
+                  <LimitChangeIcon change={historyItem.type} />
+                </Flex>
+                {limitsValues}
+              </Flex>
             </Flex>
-          </Flex>
-        );
-      })}
+          );
+        })}
+      </Flex>
     </Flex>
   );
 }
