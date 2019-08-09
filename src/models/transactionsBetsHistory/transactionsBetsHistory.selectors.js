@@ -1,7 +1,7 @@
 // @flow
 import { DateTime } from "luxon";
 import { createSelector } from "reselect";
-import { pathOr, identity, reduce, pipe, prop, or } from "ramda";
+import { pathOr, identity, reduce, pipe, prop } from "ramda";
 import { getPage } from "Models/cms";
 import { ENTITY_KEYS } from "Models/schema";
 import { getFetch } from "Models/fetch";

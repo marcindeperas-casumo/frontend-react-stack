@@ -11,10 +11,7 @@ import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBet
 import { fetchAnnualOverviewPdfUrl } from "./transactionsBetsHistory.actions";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 import { types } from "./transactionsBetsHistory.constants";
-import type {
-  FetchAnnualOverviewProps,
-  Action,
-} from "./transactionsBetsHistory.types";
+import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export const isFailedPdfUrlRequestTakePattern = isFailedFetchTakePatternCreator(
   types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START

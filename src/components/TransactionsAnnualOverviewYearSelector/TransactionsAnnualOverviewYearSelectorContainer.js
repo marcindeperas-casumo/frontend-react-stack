@@ -10,7 +10,6 @@ import {
   transactionsBetsHistoryContentSelector,
   isAnnualOverviewFetchLoadingSelector,
   initFetchAnnualOverview,
-  types,
 } from "Models/transactionsBetsHistory";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 

@@ -1,4 +1,3 @@
-import { DateTime } from "luxon";
 import { path } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
 import { types } from "./transactionsBetsHistory.constants";

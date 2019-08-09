@@ -2,7 +2,6 @@
 import { DateTime } from "luxon";
 import { head, last, path } from "ramda";
 import { formatCurrency } from "Utils";
-import { types } from "./transactionsBetsHistory.constants";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,

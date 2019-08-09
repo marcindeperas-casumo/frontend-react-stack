@@ -1,10 +1,8 @@
 // @flow
 import React, { useState, useEffect, useCallback } from "react";
-import { usePromise } from "react-use";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import logger from "Services/logger";
 
 type YearSelectorProps = {
   selectedYear: number,
