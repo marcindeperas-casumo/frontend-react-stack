@@ -20,9 +20,9 @@ export const TransactionsAnnualOverviewPdfButtonContainer = ({
     state => ({
       href: transactionsAnnualOverviewPdfUrlSelector(year)(state),
     }),
-    dispatch => ({
-      fetchHref: () => dispatch(initFetchAnnualOverviewPdfUrl({ year })),
-    })
+    {
+      fetchHref: () => initFetchAnnualOverviewPdfUrl({ year }),
+    }
   )(PdfButton);
 
   return <Connected label={label} />;
