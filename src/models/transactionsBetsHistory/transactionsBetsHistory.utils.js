@@ -1,6 +1,6 @@
 // @flow
-import { head, last, path } from "ramda";
-import { formatCurrency, isNilOrEmpty } from "Utils";
+import { head, last, path, isEmpty } from "ramda";
+import { formatCurrency } from "Utils";
 import type {
   AnnualOverview,
   FetchAnnualOverviewPdfUrlProps,
@@ -47,7 +47,7 @@ export function getStartingEndBalanceFromTransactions(
   transactions: Array<TransactionResponseRaw>,
   walletAmountFallback: number = 0
 ): StartingEndBalance {
-  if (isNilOrEmpty(transactions)) {
+  if (isEmpty(transactions)) {
     return {
       startingBalanceAmount: walletAmountFallback,
       endBalanceAmount: walletAmountFallback,
