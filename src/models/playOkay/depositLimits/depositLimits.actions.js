@@ -1,8 +1,9 @@
 // @flow
+import * as R from "ramda";
 import * as api from "Api/api.depositLimits";
 import { types as fetchTypes } from "Models/fetch";
 import { depositLimitsTypes } from "./depositLimits.constants";
-import type { AllLimits, DepositKinds } from "./depositLimits.types";
+import type { AllLimits } from "./depositLimits.types";
 
 export const init = () => (dispatch: ThunkDispatch) => {
   dispatch(getAllLimits);
@@ -39,27 +40,29 @@ export const limitPreadjust = {
   asyncCall: api.limitPreadjust,
 };
 
-export function sendResponsibleGamblingTest(passed: boolean) {
-  return (dispatch: ThunkDispatch) => {
-    api.sendResponsibleGamblingTest(passed).then(response => {
-      dispatch({
-        type: depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE,
-        response,
-      });
-    });
-  };
-}
+export const getLimitsHistory = () => ({
+  type: fetchTypes.FETCH,
+  name: depositLimitsTypes.GET_HISTORY,
+  postFetch: depositLimitsTypes.GET_HISTORY_DONE,
+  asyncCall: api.getLimitsHistory,
+});
 
 export function limitAdjust(limitAdjustement: AllLimits) {
   return (dispatch: ThunkDispatch) => {
-    // when this request is processing we are showing loader
-    // using our fetch action would make it really awkward.
-    return api.limitAdjust(limitAdjustement).then(response =>
+    const shouldRemove = R.pipe(
+      R.toPairs,
+      R.find(([limit, value]) => R.equals(value, null))
+    )(limitAdjustement);
+    const limitChangeHandler = response =>
       dispatch({
         type: depositLimitsTypes.ADJUST_DONE,
         response,
-      })
-    );
+      });
+
+    if (shouldRemove) {
+      return api.limitRevoke().then(limitChangeHandler);
+    }
+    return api.limitAdjust(limitAdjustement).then(limitChangeHandler);
   };
 }
 

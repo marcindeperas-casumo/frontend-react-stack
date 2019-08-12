@@ -17,6 +17,8 @@ const actions = {
 stories.add("Default", () => (
   <DepositLimitsOverview
     locale="en-GB"
+    currency="EUR"
+    hideRemoveAll={false}
     t={t}
     limits={{
       daily: 600,
@@ -45,6 +47,8 @@ stories.add("Default", () => (
 stories.add("No limits", () => (
   <DepositLimitsOverview
     locale="en-GB"
+    currency="EUR"
+    hideRemoveAll={false}
     t={t}
     limits={{
       daily: null,
@@ -56,6 +60,34 @@ stories.add("No limits", () => (
       daily: null,
       weekly: null,
       monthly: null,
+    }}
+    {...actions}
+  />
+));
+
+stories.add("Removing all", () => (
+  <DepositLimitsOverview
+    locale="en-GB"
+    currency="EUR"
+    t={t}
+    hideRemoveAll={false}
+    limits={{
+      daily: 600,
+      weekly: 1500,
+      monthly: 3000,
+      currency: "EUR",
+    }}
+    pendingLimitChanges={{
+      effectiveFrom: "2012-12-12T12:12:12Z",
+      value: {},
+      approvalRequired: false,
+      confirmationRequired: false,
+      reviewerApproved: false,
+    }}
+    remainingLimitValue={{
+      daily: 30,
+      weekly: 400,
+      monthly: 800,
     }}
     {...actions}
   />

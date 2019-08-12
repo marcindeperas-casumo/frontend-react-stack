@@ -55,6 +55,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           pendingLimitChanges: undefined,
           responsibleGamblingTest: undefined,
           remaining: undefined,
+          history: undefined,
         },
         action
       )
@@ -96,59 +97,197 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
   test("CANCEL_PENDING_LIMIT_CHANGE_DONE", () => {
     const action = {
       type: depositLimitsTypes.CANCEL_PENDING_LIMIT_CHANGE_DONE,
-      response: [
+      response: {
+        kind: "DGOJ_DEPOSIT_LIMIT",
+        limit: {
+          value: {
+            currency: "EUR",
+            daily: 600,
+            weekly: 1500,
+            monthly: 3000,
+          },
+        },
+        undoable: false,
+        lock: false,
+        responsibleGamblingTest: undefined,
+      },
+    };
+    expect(
+      depositLimitsReducer(
         {
-          playerId: "5580cee8-3bf9-42ce-b605-5a9062e03520",
-          kind: "DGOJ_DEPOSIT_LIMIT",
-          schema: "MONETARY_AMOUNT_PERIODS_AND_INCREASED",
+          ...DEFAULT_STATE,
+          limits: {
+            currency: "EUR",
+            daily: 600,
+            weekly: 1500,
+            monthly: 3000,
+          },
           undoable: false,
-          adjustment: {
+          pendingLimitChanges: {
             approvalRequired: false,
             confirmationRequired: false,
+            effectiveFrom: "2012-12-12T12:12:12Z",
             reviewerApproved: false,
-            effectiveFrom: "2019-08-07T13:41:58+02:00",
             value: {
-              previouslyIncreased: true,
-              daily: 666,
-              monthly: 3000,
               currency: "EUR",
-              weekly: 1499,
+              daily: 666,
+              weekly: 1500,
+              monthly: 3000,
             },
           },
-          limit: {
-            value: {
-              previouslyIncreased: true,
-              daily: 600,
-              monthly: 3000,
-              currency: "EUR",
-              weekly: 1499,
+        },
+        action
+      )
+    ).toEqual({
+      limits: {
+        currency: "EUR",
+        daily: 600,
+        weekly: 1500,
+        monthly: 3000,
+      },
+      lock: false,
+      preadjust: undefined,
+      remaining: undefined,
+      responsibleGamblingTest: undefined,
+      pendingLimitChanges: undefined,
+      undoable: false,
+    });
+  });
+
+  test("GET_HISTORY_DONE", () => {
+    const action = {
+      type: depositLimitsTypes.GET_HISTORY_DONE,
+      response: [
+        {
+          id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
+          request: {
+            timestamp: "2019-08-05T14:25:20Z",
+          },
+          stateBefore: { undoable: false },
+          stateAfter: {
+            undoable: false,
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 5e2,
+                monthly: 1e4,
+                currency: "EUR",
+                weekly: 2.5e3,
+              },
             },
+          },
+        },
+        {
+          id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
+          request: {
+            timestamp: "2019-08-02T16:19:26Z",
+          },
+          stateBefore: {
+            undoable: false,
+            adjustment: {
+              approvalRequired: true,
+              reviewerApproved: false,
+              confirmationRequired: false,
+            },
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+          },
+          stateAfter: {
+            undoable: false,
+            lock: { expiresOn: "2019-10-31T17:19:25.565001Z" },
+          },
+        },
+        {
+          id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
+          request: {
+            timestamp: "2019-08-02T14:31:07Z",
+          },
+          stateBefore: {
+            undoable: false,
+            adjustment: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+              approvalRequired: true,
+              reviewerApproved: false,
+              confirmationRequired: false,
+            },
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 595,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+          },
+          stateAfter: {
+            undoable: false,
+            limit: {
+              value: {
+                previouslyIncreased: true,
+                daily: 666,
+                monthly: 3e3,
+                currency: "EUR",
+                weekly: 1.5e3,
+              },
+            },
+            lock: { expiresOn: "2019-10-31T15:31:07.391976Z" },
           },
         },
       ],
     };
+
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
-      pendingLimitChanges: {
-        approvalRequired: false,
-        confirmationRequired: false,
-        reviewerApproved: false,
-        effectiveFrom: "2019-08-07T13:41:58+02:00",
-        value: {
-          daily: 666,
+      history: [
+        {
+          changes: {
+            daily: 500,
+            monthly: 10000,
+            weekly: 2500,
+          },
+          id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
+          timestamp: "2019-08-05T14:25:20Z",
+          type: "decrease",
         },
-      },
-      limits: {
-        currency: "EUR",
-        daily: 600,
-        monthly: 3000,
-        previouslyIncreased: true,
-        weekly: 1499,
-      },
+        {
+          changes: {
+            daily: null,
+            monthly: null,
+            weekly: null,
+          },
+          id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
+          timestamp: "2019-08-02T16:19:26Z",
+          type: "removed",
+        },
+        {
+          changes: {
+            daily: 666,
+          },
+          id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
+          timestamp: "2019-08-02T14:31:07Z",
+          type: "increase",
+        },
+      ],
+      limits: undefined,
       lock: undefined,
+      pendingLimitChanges: undefined,
       preadjust: undefined,
       remaining: undefined,
       responsibleGamblingTest: undefined,
-      undoable: false,
+      undoable: undefined,
     });
   });
 });

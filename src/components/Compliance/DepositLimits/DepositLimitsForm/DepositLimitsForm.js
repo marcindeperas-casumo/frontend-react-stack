@@ -11,6 +11,7 @@ import type {
   LimitLock,
   DepositKinds,
   ResponsibleGamblingTest,
+  DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import { formatCurrency, interpolate, getSymbolForCurrency } from "Utils";
 import { Pill } from "Components/Pill";
@@ -20,6 +21,7 @@ import { limitTypes } from "..";
 import "./styles.scss";
 
 type Props = {
+  currency: string,
   locale: string,
   t: {
     daily_short: string,
@@ -35,6 +37,7 @@ type Props = {
       highest_limit: string,
       cant_be_higher: string,
       cant_be_lower: string,
+      has_to_be_lower_than_pending_adjustment: string,
       has_to_be_lower_while_locked: string,
       has_to_be_lower_after_responsible_gambling_test_failed: string,
     },
@@ -46,6 +49,7 @@ type Props = {
   initiallyVisible: DepositKinds,
   applyLimitsChanges: AllLimitsOnlyValues => void,
   lock: ?LimitLock,
+  pendingLimitChanges: ?DepositLimitsAdjustment,
   fetchTranslations: () => void,
 };
 
@@ -70,17 +74,12 @@ export function DepositLimitsForm({ t, ...props }: Props) {
   const inputError = validate(visible);
 
   const handleNextButton = React.useCallback(() => {
-    const i = limitTypes.indexOf(visible);
-    if (i < 2) {
-      setVisible(limitTypes[i + 1]);
+    // if any limit is invalid it should be fixed before we can proceed
+    const invalid = limitTypes.find(limit => validate(limit));
+    if (invalid) {
+      setVisible(invalid);
     } else {
-      // if any limit is invalid it should be fixed before we can proceed
-      const invalid = limitTypes.find(limit => validate(limit));
-      if (invalid) {
-        setVisible(invalid);
-      } else {
-        props.applyLimitsChanges(R.pluck("value", limitInputs));
-      }
+      props.applyLimitsChanges(R.pluck("value", limitInputs));
     }
   }, [limitInputs, visible]); //eslint-disable-line react-hooks/exhaustive-deps
 
@@ -90,21 +89,21 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       className="u-padding--md u-height--1/1 t-background-white"
     >
       <Flex align="center" justify="space-between">
-        <Text className="u-font-weight-bold" style={{ color: "#181c1c" }}>
+        <Text className="u-font-weight-bold t-color-chrome-dark-3">
           {t[visible]}
         </Text>
       </Flex>
       <TextInput
         currencySign={getSymbolForCurrency({
           locale: props.locale,
-          currency: props.limits.currency,
+          currency: props.currency,
         })}
         {...limitInputs[visible]}
       />
       <Text
         data-test-id="inputValidation"
         size="sm"
-        style={{ color: "#FC484C" }}
+        className="t-color-negative"
       >
         {inputError}
       </Text>
@@ -134,7 +133,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
                 {limitInputs[limitName].value
                   ? formatCurrency({
                       locale: props.locale,
-                      currency: props.limits.currency,
+                      currency: props.currency,
                       value: parseInt(limitInputs[limitName].value),
                     })
                   : "+"}
@@ -155,15 +154,16 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     </Flex>
   );
 
+  // eslint-disable-next-line sonarjs/cognitive-complexity
   function validate(currentLimit: DepositKinds): ?string {
     const currentLimitNotEqual: DepositKinds => Boolean = R.complement(
       R.equals(currentLimit)
     );
-    const currentLimitValue = limitInputs[currentLimit].value;
+    const currentLimitValue = limitInputs[currentLimit].value || 0;
     if (currentLimitNotEqual("daily")) {
       const i = limitTypes.indexOf(currentLimit) - 1;
-      const previousLimitValue = limitInputs[limitTypes[i]].value;
-      if (R.gt(previousLimitValue, currentLimitValue)) {
+      const previousLimitValue = limitInputs[limitTypes[i]].value || 0;
+      if (previousLimitValue > currentLimitValue) {
         return interpolate(t.input_validation.cant_be_lower, {
           affectedLimitType: t[`${limitTypes[i]}_short`],
         });
@@ -171,30 +171,29 @@ export function DepositLimitsForm({ t, ...props }: Props) {
     }
     if (currentLimitNotEqual("monthly")) {
       const i = limitTypes.indexOf(currentLimit) + 1;
-      const nextLimitValue = limitInputs[limitTypes[i]].value;
-      if (R.lt(nextLimitValue, currentLimitValue)) {
+      const nextLimitValue = limitInputs[limitTypes[i]].value || 0;
+      if (nextLimitValue < currentLimitValue) {
         return interpolate(t.input_validation.cant_be_higher, {
           affectedLimitType: t[`${limitTypes[i]}_short`],
         });
       }
     }
-    if (R.lt(currentLimitValue, 10)) {
+    if (currentLimitValue < 10) {
       return t.input_validation.lowest_limit;
     }
-    if (R.gt(currentLimitValue, 20000)) {
+    if (currentLimitValue > 20000) {
       return t.input_validation.highest_limit;
     }
 
     const limitBeforeChange = props.limits[currentLimit];
-    if (R.gt(currentLimitValue, limitBeforeChange)) {
+    if (currentLimitValue > limitBeforeChange) {
       const replacements = {
         currentLimit: formatCurrency({
           locale: props.locale,
-          currency: props.limits.currency,
+          currency: props.currency,
           value: limitBeforeChange,
         }),
       };
-
       if (props.lock) {
         return interpolate(
           t.input_validation.has_to_be_lower_while_locked,
@@ -210,6 +209,22 @@ export function DepositLimitsForm({ t, ...props }: Props) {
           t.input_validation
             .has_to_be_lower_after_responsible_gambling_test_failed,
           replacements
+        );
+      }
+    }
+
+    if (props.pendingLimitChanges?.value) {
+      const pendingChange = props.pendingLimitChanges.value[currentLimit];
+      if (currentLimitValue > pendingChange) {
+        return interpolate(
+          t.input_validation.has_to_be_lower_than_pending_adjustment,
+          {
+            pendingChange: formatCurrency({
+              locale: props.locale,
+              currency: props.currency,
+              value: pendingChange,
+            }),
+          }
         );
       }
     }

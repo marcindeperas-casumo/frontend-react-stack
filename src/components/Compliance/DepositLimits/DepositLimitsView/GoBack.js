@@ -21,11 +21,11 @@ export function GoBack({ t, ...props }: Props) {
       <Flex
         align="center"
         justify="center"
-        className="t-border-r--circle u-padding--md t-background-indigo u-margin-x--lg"
+        className="t-border-r--circle u-padding--md t-background-plum-dark-1 u-margin-x--lg"
       >
         <ArrowLeftIcon size="sm" className="t-color-white" />
       </Flex>
-      <Text size="md" className="t-color-indigo u-font-weight-black">
+      <Text size="md" className="t-color-plum-dark-1 u-font-weight-black">
         {t.deposit_limits}
       </Text>
     </Flex>

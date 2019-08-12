@@ -45,14 +45,17 @@ export function HeaderButton(props: {
   t: {
     remove_all: string,
   },
+  hideRemoveAll: boolean,
 }) {
   if (areAllLimitsSet(props.limits)) {
+    if (props.hideRemoveAll) {
+      return null;
+    }
     return (
       <Text
         onClick={props.removeAll}
         size="sm"
-        className="u-font-weight-bold"
-        style={{ color: "#0cd0cd" }}
+        className="u-font-weight-bold t-color-turquoise"
       >
         {props.t.remove_all}
       </Text>

@@ -23,3 +23,6 @@ export const VALUABLE_REQUIREMENT_TYPES = Object.freeze({
   WAGER: "wager",
   DEPOSIT: "deposit",
 });
+
+export const VALUABLE_LOCKED_URL = "/en/player/valuables";
+export const VALUABLE_DEPOSIT_URL = "/en/cash/deposit";
