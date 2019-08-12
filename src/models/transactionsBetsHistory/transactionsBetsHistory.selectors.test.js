@@ -1,32 +1,30 @@
 import { CMS_CONTENT_SLUG } from "./transactionsBetsHistory.constants";
 import {
   transactionsBetsHistoryContentSelector,
-  transactionsBetsHistoryAnnualOverviewSelector,
+  annualOverviewSelector,
   transactionsAnnualOverviewPdfUrlSelector,
-  isAnnualOverviewFetchLoadingSelector,
+  isAnnualOverviewFetchingSelector,
 } from "./transactionsBetsHistory.selectors";
 import annualOverview from "./__mocks__/annualOverview.mock";
 
 describe("Transactions/Bets History Selectors", () => {
-  describe("transactionsBetsHistoryAnnualOverviewSelector()", () => {
+  describe("annualOverviewSelector()", () => {
     const state = {
       schema: {
         transactionsBetsHistoryAnnualOverview: {
-          2019: annualOverview,
+          2019: {
+            data: annualOverview,
+          },
         },
       },
     };
 
     test("returns year overview if it exists", () => {
-      expect(
-        transactionsBetsHistoryAnnualOverviewSelector(2019)(state)
-      ).toEqual(annualOverview);
+      expect(annualOverviewSelector(2019)(state)).toEqual(annualOverview);
     });
 
     test("returns null if overview for a year does not exist", () => {
-      expect(
-        transactionsBetsHistoryAnnualOverviewSelector(2010)(state)
-      ).toEqual(null);
+      expect(annualOverviewSelector(2010)(state)).toEqual(null);
     });
   });
 
@@ -65,7 +63,9 @@ describe("Transactions/Bets History Selectors", () => {
     const state = {
       schema: {
         transactionsBetsHistoryAnnualOverview: {
-          [year]: overview2019,
+          [year]: {
+            data: overview2019,
+          },
         },
       },
     };
@@ -77,56 +77,22 @@ describe("Transactions/Bets History Selectors", () => {
     });
   });
 
-  describe("isAnnualOverviewFetchLoadingSelector()", () => {
-    test("returns true if fetch for wallet totals isFetching", () => {
+  describe("isAnnualOverviewFetchingSelector()", () => {
+    test("returns true if isFetching flag is true", () => {
+      const year = 2011;
       const state = {
-        fetch: {
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: true,
-          },
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: false,
+        schema: {
+          transactionsBetsHistoryAnnualOverview: {
+            [year]: {
+              meta: {
+                isFetching: true,
+              },
+            },
           },
         },
       };
 
-      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(true);
-    });
-
-    test("returns true if fetch for wallet transactions isFetching", () => {
-      const state = {
-        fetch: {
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: false,
-          },
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: true,
-          },
-        },
-      };
-
-      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(true);
-    });
-
-    test("returns false if there is no active fetch for wallet totals and transactions", () => {
-      const state = {
-        fetch: {
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TOTALS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: false,
-          },
-          "TRANSACTIONS_BETS_HISTORY/WALLET_TRANSACTIONS/FETCH_START--2019-01-01T00:00:00.000Z--2020-01-01T00:00:00.000Z": {
-            error: null,
-            isFetching: false,
-          },
-        },
-      };
-
-      expect(isAnnualOverviewFetchLoadingSelector(2019)(state)).toEqual(false);
+      expect(isAnnualOverviewFetchingSelector(year)(state)).toEqual(true);
     });
   });
 });

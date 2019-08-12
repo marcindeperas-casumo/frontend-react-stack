@@ -8,8 +8,6 @@ import {
 } from "Api/api.transactionsBetsHistory";
 import {
   initFetchAnnualOverview,
-  fetchWalletTotals,
-  fetchWalletTransactions,
   initFetchAnnualOverviewPdfUrl,
   fetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
@@ -32,49 +30,6 @@ describe("Models/transactionsBetsHistory/Actions", () => {
       year,
       meta: {},
       type: types.ANNUAL_OVERVIEW_FETCH_INIT,
-    });
-  });
-
-  test("fetchWalletTotals()", () => {
-    const startTime = DateTime.utc(year);
-    const endTime = DateTime.utc(year + 1);
-    const asyncCallData = { walletId: "wallet-23", startTime, endTime };
-    const action = fetchWalletTotals(asyncCallData);
-
-    expect(action).toEqual({
-      type: fetchTypes.FETCH,
-      name: getUniqueFetchName({
-        type: types.WALLET_TOTALS_FETCH_START,
-        startTime,
-        endTime,
-      }),
-      asyncCallData,
-      asyncCall: getTotalsReq,
-      postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
-    });
-  });
-
-  test("fetchWalletTransactions()", () => {
-    const startTime = DateTime.utc(year);
-    const endTime = DateTime.utc(year + 1);
-    const asyncCallData = {
-      walletId: "wallet-23",
-      startTime,
-      endTime,
-      perPage: 10,
-    };
-    const action = fetchWalletTransactions(asyncCallData);
-
-    expect(action).toEqual({
-      type: fetchTypes.FETCH,
-      name: getUniqueFetchName({
-        type: types.WALLET_TRANSACTIONS_FETCH_START,
-        startTime,
-        endTime,
-      }),
-      asyncCallData,
-      asyncCall: getTransactionsReq,
-      postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,
     });
   });
 

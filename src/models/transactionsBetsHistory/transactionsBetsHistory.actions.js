@@ -26,34 +26,6 @@ export function initFetchAnnualOverview({
   };
 }
 
-export function fetchWalletTotals(asyncCallData: WalletTotalsProps) {
-  return {
-    type: fetchTypes.FETCH,
-    name: getUniqueFetchName({
-      type: types.WALLET_TOTALS_FETCH_START,
-      ...pick(["startTime", "endTime"], asyncCallData),
-    }),
-    asyncCallData,
-    asyncCall: getTotalsReq,
-    postFetch: types.WALLET_TOTALS_FETCH_COMPLETED,
-  };
-}
-
-export function fetchWalletTransactions(
-  asyncCallData: WalletTransactionsProps
-) {
-  return {
-    type: fetchTypes.FETCH,
-    name: getUniqueFetchName({
-      type: types.WALLET_TRANSACTIONS_FETCH_START,
-      ...pick(["startTime", "endTime"], asyncCallData),
-    }),
-    asyncCallData,
-    asyncCall: getTransactionsReq,
-    postFetch: types.WALLET_TRANSACTIONS_FETCH_COMPLETED,
-  };
-}
-
 export function initFetchAnnualOverviewPdfUrl({
   year,
   meta = {},
