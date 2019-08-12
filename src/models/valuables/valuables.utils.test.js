@@ -166,7 +166,7 @@ describe("Valuables.utils", () => {
 
     expect(actualValue).toEqual(expectedValue);
   });
-  
+
   test("should return BASIC spinType when coinValue < 0.3", () => {
     const coinValue = 0.2;
     const expectedValue = VALUABLE_SPIN_TYPES.BASIC_SPINS;

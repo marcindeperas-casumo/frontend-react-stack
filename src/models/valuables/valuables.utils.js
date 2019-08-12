@@ -13,7 +13,6 @@ import {
   VALUABLE_LOCKED_URL,
   VALUABLE_DEPOSIT_URL,
 } from "Models/valuables";
-import type { ValuableState } from "./valuables.types";
 
 export const depositUrl = "/en/cash/deposit";
 export const gameBrowserUrl = "/en/games/top";
