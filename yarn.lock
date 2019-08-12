@@ -1157,12 +1157,12 @@
     to-fast-properties "^2.0.0"
 
 "@casumo/cmp-badge@^1.2.8":
-  version "1.2.9"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.2.9.tgz#b8b934cd92fcf7e212b1fc82cb66d773413779aa"
-  integrity sha512-/zDf2cyhygyF5F6hTv9c4D3o2XW2Z0F4LJlFdvp64NHb7na0iMuO9hW5OxcpZ2JTxucDI9K/uVGd2P23n0dusQ==
+  version "1.3.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-badge/-/cmp-badge-1.3.0.tgz#6caaf40ac373bb45eac2d1f6cfa2cad37e310447"
+  integrity sha512-WiJhtOyB4P28D+nHepLynDxOmnrAhlWs3rZyPS/NrbTEpKMoE5jvO6Wnj63O1EZiNrhXt1Q5KkTIeDgrqvXTGQ==
   dependencies:
-    "@casumo/cmp-text" "^2.0.2"
-    "@casumo/cudl-react-prop-types" "^2.1.0"
+    "@casumo/cmp-text" "^2.0.3"
+    "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
 "@casumo/cmp-button@^2.0.9":
@@ -1250,12 +1250,20 @@
     "@casumo/cudl-react-prop-types" "^2.1.0"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-text@^2.0.1", "@casumo/cmp-text@^2.0.2":
+"@casumo/cmp-text@^2.0.1":
   version "2.0.2"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-2.0.2.tgz#633e64eb16baf987a0131dff80f5086ddc5c88e6"
   integrity sha512-TMXn20nP7yObIWQxXlrpnz9p4QEHdCd+q1v0GmaDXMftlxC3I3bsHbo0ZjgRqiXJim3U95Ej+nL1HhTAj1+qKQ==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.1.0"
+    "@casumo/cudl-react-utils" "^1.0.6"
+
+"@casumo/cmp-text@^2.0.3":
+  version "2.0.3"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-text/-/cmp-text-2.0.3.tgz#4660f4e74d16f217b9eb8f33079748c59c977d32"
+  integrity sha512-/4kSlq3H1E/y6HJGcx8vDK6n20FbrEi6g6kAqTJs2ONXVEP/j+Rm+2aLWR4XzKpAqsg6zzkJSBO1aGSyIffr6A==
+  dependencies:
+    "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
 "@casumo/cudl-border-radius@^1.0.1":
@@ -1451,10 +1459,10 @@
     "@casumo/cudl-props" "^2.1.0"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-react-prop-types@^2.1.0":
-  version "2.1.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.0.tgz#67932610cc705eaa2ec1b6e9eb40c80bf7072b94"
-  integrity sha512-uiBZWaBZJdoNhwm2rYkWbgd5JuESZ2JA/ObSbATh8odmoWY2zItVC+zmli2HUFYR7aqzOLf0gPZPj+kEYNZwNw==
+"@casumo/cudl-react-prop-types@^2.1.0", "@casumo/cudl-react-prop-types@^2.1.1":
+  version "2.1.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-react-prop-types/-/cudl-react-prop-types-2.1.1.tgz#e8a42bf0fc8f24fd9261007d6f068baeb8395618"
+  integrity sha512-QVdHFTunpqBjq1eLm/7nyvj/ZFQKcuP1n3HrhllD4sYqNFW3iM037O/j5p56CQP2AqbZYoTJ4hjujMZX9e0v+w==
 
 "@casumo/cudl-react-utils@^1.0.6":
   version "1.0.6"
