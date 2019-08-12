@@ -182,20 +182,16 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {termsContent}
               </Text>
             </Flex.Item>
-            {/*
-              This will be moved out when valuable details modal is in place
-              https://jira.casumocave.com/browse/PRR-50
-            */}
           </Flex>
-        </div>
-        <div className="c-valuable-details__footer">
-          <Button href={actionButtonProps.url} className="u-width--1/1">
-            <ExpirationBadgeContent
-              text={actionButtonProps.text}
-              isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
-              data-test="expiration-badge-content"
-            />
-          </Button>
+          <div className="c-valuable-details__footer">
+            <Button href={actionButtonProps.url} className="u-width--1/1">
+              <ExpirationBadgeContent
+                text={actionButtonProps.text}
+                isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
+                data-test="expiration-badge-content"
+              />
+            </Button>
+          </div>
         </div>
       </>
     );
