@@ -1,5 +1,4 @@
 // @flow
-import { DateTime } from "luxon";
 import { head, last, path } from "ramda";
 import { formatCurrency } from "Utils";
 import type {
@@ -15,12 +14,6 @@ type Props = {
   year: number,
   name: string,
   dni: string,
-};
-
-type FetchTypeByPeriodProps = {
-  type: string,
-  startTime: DateTime,
-  endTime: DateTime,
 };
 
 export function prepareFetchAnnualOverviewPdfUrlProps({

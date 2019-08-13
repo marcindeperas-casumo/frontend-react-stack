@@ -8,7 +8,6 @@ import {
   getTotalsReq,
   getTransactionsReq,
 } from "Api/api.transactionsBetsHistory";
-import { types } from "./transactionsBetsHistory.constants";
 import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
 
 describe("fetchAnnualOverviewSaga()", () => {

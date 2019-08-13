@@ -1,11 +1,7 @@
 import { path } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
 import { getAnnualOverviewPdfUrlReq } from "Api/api.transactionsBetsHistory";
-import { types } from "./transactionsBetsHistory.constants";
-import {
-  fetchAnnualOverviewPdfUrlSaga,
-  isFailedPdfUrlRequestTakePattern,
-} from "./transactionsBetsHistory.saga.fetchPdfUrl";
+import { fetchAnnualOverviewPdfUrlSaga } from "./transactionsBetsHistory.saga.fetchPdfUrl";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 import annualOverview from "./__mocks__/annualOverview.mock";
 

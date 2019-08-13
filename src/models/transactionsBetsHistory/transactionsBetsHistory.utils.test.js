@@ -1,8 +1,6 @@
 // @flow
-import { DateTime } from "luxon";
 import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { transactions } from "Api/__mocks__/api.transactionsBetsHistory.mock";
-import { types } from "./transactionsBetsHistory.constants";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
   getStartingEndBalanceFromTransactions,

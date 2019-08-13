@@ -1,18 +1,9 @@
 // @flow
-import { DateTime } from "luxon";
-import { types as fetchTypes } from "Models/fetch";
-import {
-  getTotalsReq,
-  getAnnualOverviewPdfUrlReq,
-  getTransactionsReq,
-} from "Api/api.transactionsBetsHistory";
 import {
   initFetchAnnualOverview,
   initFetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
-import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import annualOverview from "./__mocks__/annualOverview.mock";
 
 jest.mock("Api/api.transactionsBetsHistory");
 

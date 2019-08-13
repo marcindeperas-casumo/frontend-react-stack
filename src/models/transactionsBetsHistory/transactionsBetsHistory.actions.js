@@ -1,18 +1,6 @@
 // @flow
-import { pick } from "ramda";
-import { types as fetchTypes } from "Models/fetch";
-import {
-  getTotalsReq,
-  getTransactionsReq,
-  getAnnualOverviewPdfUrlReq,
-} from "Api/api.transactionsBetsHistory";
 import { types } from "./transactionsBetsHistory.constants";
-import type {
-  WalletTotalsProps,
-  WalletTransactionsProps,
-  FetchAnnualOverviewProps,
-  FetchAnnualOverviewPdfUrlProps,
-} from "./transactionsBetsHistory.types";
+import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export function initFetchAnnualOverview({
   year,

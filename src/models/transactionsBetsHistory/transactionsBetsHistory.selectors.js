@@ -1,11 +1,9 @@
 // @flow
-import { DateTime } from "luxon";
 import { createSelector } from "reselect";
-import { pathOr, identity, reduce, pipe, prop, propOr } from "ramda";
+import { pathOr, identity, reduce, pipe, prop } from "ramda";
 import { getPage } from "Models/cms";
 import { ENTITY_KEYS } from "Models/schema";
-import { getFetch } from "Models/fetch";
-import { CMS_CONTENT_SLUG, types } from "./transactionsBetsHistory.constants";
+import { CMS_CONTENT_SLUG } from "./transactionsBetsHistory.constants";
 import type { AnnualOverview } from "./transactionsBetsHistory.types";
 
 type ContentSelector = Object => { [string]: string };

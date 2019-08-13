@@ -1,19 +1,14 @@
 // @flow
-import { call, put, select, take, all } from "redux-saga/effects";
+import { call, put, select, all } from "redux-saga/effects";
 import { DateTime } from "luxon";
 import { walletIdSelector } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { getFetch } from "Models/fetch";
 import {
   getTotalsReq,
   getTransactionsReq,
 } from "Api/api.transactionsBetsHistory";
-import {
-  annualOverviewSelector,
-  isAnnualOverviewFetchingSelector,
-} from "./transactionsBetsHistory.selectors";
+import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import { getStartingEndBalanceFromTransactions } from "./transactionsBetsHistory.utils";
-import { types } from "./transactionsBetsHistory.constants";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {

@@ -1,16 +1,14 @@
 // @flow
-import { call, put, select, take, race } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import {
   localeSelector,
   playerNameSelector,
   socialSecurityNumberSelector,
 } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { isFailedFetchTakePatternCreator } from "Models/fetch";
 import { getAnnualOverviewPdfUrlReq } from "Api/api.transactionsBetsHistory";
 import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import { types } from "./transactionsBetsHistory.constants";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export function* fetchAnnualOverviewPdfUrlSaga(
