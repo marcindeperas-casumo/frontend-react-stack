@@ -27,7 +27,7 @@ export const openModal = async (
     query: ACTIVE_MODALS_QUERY,
   }).activeModals;
 
-  await updateBetslipState(_, { isVisible: false }, context);
+  updateBetslipState(_, { isVisible: false }, context);
 
   await context.cache.writeQuery({
     query: ACTIVE_MODALS_QUERY,
@@ -52,7 +52,7 @@ export const closeModal = async (
 
   // if all modals are closed, then allow betslip to be visible
   if (newActiveModals.length === 0) {
-    await updateBetslipState(_, { isVisible: true }, context);
+    updateBetslipState(_, { isVisible: true }, context);
   }
 
   await context.cache.writeQuery({
@@ -67,7 +67,7 @@ export const closeModal = async (
 
 export const closeAllModals = async (_: null, __: null, context: Context) => {
   // all modals will be closed, so allow betslip to be visible
-  await updateBetslipState(_, { isVisible: true }, context);
+  updateBetslipState(_, { isVisible: true }, context);
 
   await context.cache.writeQuery({
     query: ACTIVE_MODALS_QUERY,
