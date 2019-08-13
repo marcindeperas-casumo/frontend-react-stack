@@ -81,7 +81,7 @@ function getLinks(store) {
 }
 
 // Adding these variables to the URL and using GET requests can help with edge caching
-// in CDN, e.g. in CloudFlare.
+// in CDN, for example in CloudFlare.
 function getFetchExtendedWithMarketAndLocale(market, locale) {
   return (uri, options) => {
     const url = new URL(uri, window.location.origin);
