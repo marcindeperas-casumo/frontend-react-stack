@@ -11,7 +11,7 @@ import type {
   AllLimits,
   AllLimitsOnlyValues,
   DepositKinds,
-  DepositLimitsAdjustement,
+  DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import { formatCurrency, interpolate } from "Utils";
 import { Header, HeaderButton } from "./Header";
@@ -33,8 +33,9 @@ type Props = {
     remaining_limit: string,
     cancel: string,
   },
+  hideRemoveAll: boolean,
   limits: AllLimits,
-  pendingLimitChanges?: DepositLimitsAdjustement,
+  pendingLimitChanges?: DepositLimitsAdjustment,
   remainingLimitValue: AllLimitsOnlyValues,
   edit: DepositKinds => void,
   limitCancel: DepositKinds => void,
@@ -60,6 +61,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
+      className="t-background-white"
     >
       <Header title={t.deposit_limits}>
         <HeaderButton
@@ -67,6 +69,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
           add={props.add}
           removeAll={props.removeAll}
           t={{ remove_all: t.remove_all }}
+          hideRemoveAll={props.hideRemoveAll}
         />
       </Header>
       {limitTypes
@@ -120,7 +123,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                   spacing="none"
                   className="u-padding-left--sm"
                 >
-                  <ClockIcon size="sm" style={{ color: "#FFCA30" }} />
+                  <ClockIcon size="sm" className="t-color-caution" />
                   <Text
                     tag="span"
                     size="sm"
@@ -154,7 +157,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                   <Text
                     tag="span"
                     size="sm"
-                    style={{ color: "#0CD0CD" }}
+                    className="t-color-turquoise"
                     onClick={props.limitCancel}
                     data-test-id={`pending-limit-${x}`}
                   >
@@ -172,7 +175,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
           spacing="none"
           className="u-padding-x--md"
         >
-          <ClockIcon size="sm" style={{ color: "#FFCA30" }} />
+          <ClockIcon size="sm" className="t-color-caution" />
           <Text
             tag="span"
             size="sm"
@@ -183,7 +186,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
           <Text
             tag="span"
             size="sm"
-            style={{ color: "#0CD0CD" }}
+            className="t-color-turquoise"
             onClick={props.limitCancel}
           >
             {t.cancel}

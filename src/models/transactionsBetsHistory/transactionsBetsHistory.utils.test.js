@@ -1,6 +1,6 @@
 // @flow
-import { transactions } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import annualOverview from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
+import { transactions } from "Api/__mocks__/api.transactionsBetsHistory.mock";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
   getStartingEndBalanceFromTransactions,

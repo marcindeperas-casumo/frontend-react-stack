@@ -46,6 +46,7 @@ export class App extends PureComponent<Props> {
     this.props.subscribeToPlayerUpdates();
   };
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
 
@@ -80,6 +81,13 @@ export class App extends PureComponent<Props> {
               import("Components/Compliance/DepositLimits/DepositLimitsView")
             }
             namedExport="DepositLimitsViewContainer"
+          />
+        </Route>
+        <Route path="*">
+          <LazyPortal
+            hostElementId="react-host-dgoj-terms"
+            loader={() => import("Components/RSModal/TermsAndConditions")}
+            namedExport="TermsAndConditionsContainer"
           />
         </Route>
         <Route path={["live-casino-details"]}>
