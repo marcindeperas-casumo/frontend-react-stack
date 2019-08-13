@@ -79,7 +79,7 @@ export const closeAllModals = async (_: null, __: null, context: Context) => {
   return null;
 };
 
-export const navigateClient = (
+export const navigateClient = async (
   _: null,
   { path, trackingLocation }: { path: string, trackingLocation: string },
   context: Context
@@ -93,9 +93,10 @@ export const navigateClient = (
     },
   });
 
-  updateBetslipState(_, { isVisible: true }, context);
+  const wapi = await getKambiWidgetAPI();
 
-  getKambiWidgetAPI().then(wapi => wapi.navigateClient(path, trackingLocation));
+  updateBetslipState(_, { isVisible: true }, context);
+  wapi.navigateClient(path, trackingLocation);
 
   return null;
 };
