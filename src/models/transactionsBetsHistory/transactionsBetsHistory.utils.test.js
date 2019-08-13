@@ -6,7 +6,6 @@ import { types } from "./transactionsBetsHistory.constants";
 import {
   prepareFetchAnnualOverviewPdfUrlProps,
   getStartingEndBalanceFromTransactions,
-  getUniqueFetchName,
 } from "./transactionsBetsHistory.utils";
 
 describe("transactionsBetsHistory.utils", () => {
@@ -48,18 +47,6 @@ describe("transactionsBetsHistory.utils", () => {
         startingBalanceAmount: 249.2855,
         endBalanceAmount: 289.2855,
       });
-    });
-  });
-
-  describe("getUniqueFetchName()", () => {
-    test("should return a properly formatted string", () => {
-      const type = types.ANNUAL_OVERVIEW_FETCH_INIT;
-      const startTime = DateTime.utc(2001, 2, 11);
-      const endTime = DateTime.utc(2001, 6, 1);
-
-      expect(getUniqueFetchName({ type, startTime, endTime })).toEqual(
-        `${type}--${startTime.toISO()}--${endTime.toISO()}`
-      );
     });
   });
 });

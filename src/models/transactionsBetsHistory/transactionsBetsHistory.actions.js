@@ -7,7 +7,6 @@ import {
   getAnnualOverviewPdfUrlReq,
 } from "Api/api.transactionsBetsHistory";
 import { types } from "./transactionsBetsHistory.constants";
-import { getUniqueFetchName } from "./transactionsBetsHistory.utils";
 import type {
   WalletTotalsProps,
   WalletTransactionsProps,

@@ -50,14 +50,6 @@ export function prepareFetchAnnualOverviewPdfUrlProps({
   };
 }
 
-export function getUniqueFetchName({
-  type,
-  startTime,
-  endTime,
-}: FetchTypeByPeriodProps): string {
-  return `${type}--${startTime.toISO()}--${endTime.toISO()}`;
-}
-
 export function getStartingEndBalanceFromTransactions(
   transactions: Array<TransactionResponseRaw>
 ): StartingEndBalance {
