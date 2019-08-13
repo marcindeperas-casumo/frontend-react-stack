@@ -1,4 +1,5 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
+import { types as tocTypes, fetchTACListSaga } from "Models/tac";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
@@ -75,6 +76,7 @@ export default function* rootSaga(dispatch) {
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
   yield fork(takeEvery, jackpotsMustDropTypes.FETCH, fetchJackpotsMustDropSaga);
+  yield fork(takeEvery, tocTypes.fetchTACAcknowledgements, fetchTACListSaga);
   yield fork(
     takeEvery,
     takeChannel(cometdChannels.JACKPOTS),

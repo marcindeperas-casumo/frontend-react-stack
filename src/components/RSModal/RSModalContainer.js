@@ -11,6 +11,7 @@ export default connect(
     const mapping = mappings[modalType];
     const {
       slug,
+      customContent,
       titleGetter = R.propOr("", "title"),
       contentGetter = R.propOr("", "content"),
     } = mapping || {};
@@ -18,6 +19,7 @@ export default connect(
 
     return {
       slug,
+      customContent,
       modalType,
       t: R.isEmpty(page)
         ? null
