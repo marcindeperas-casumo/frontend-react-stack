@@ -1,6 +1,9 @@
 // @flow
+import * as React from "react";
 import * as R from "ramda";
 import type { ModalKind } from "Models/modal";
+import { cmsSlugs } from "Models/tac";
+import { TermsAndConditionsContainer } from "./TermsAndConditions";
 
 type Mapping = {
   [ModalKind]: {
@@ -10,6 +13,8 @@ type Mapping = {
     titleGetter?: Object => string,
     // gets object returned from fetching cms page, Defaults to: R.prop('content')
     contentGetter?: Object => string,
+    // for cases when your modal is to complex
+    customContent?: React.Node,
   },
 };
 
@@ -25,6 +30,10 @@ export const mappings: Mapping = {
   },
   TERMS_AND_CONDITIONS: {
     slug: "toc",
+  },
+  TERMS_AND_CONDITIONS_SPAIN: {
+    slug: cmsSlugs.main,
+    customContent: <TermsAndConditionsContainer />,
   },
   PRIVACY_NOTICE: {
     slug: "toc.privacy-cookie-policy",

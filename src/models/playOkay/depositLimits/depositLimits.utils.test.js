@@ -1,5 +1,9 @@
 // @flow
-import { checkIfConditionsApply, diffLimits, getSpecificKinds } from "./utils";
+import {
+  checkIfConditionsApply,
+  diffLimits,
+  getSpecificKinds,
+} from "./depositLimits.utils";
 
 describe("checkIfConditionsApply", () => {
   test("returns true if at least 1 increase or removal was found", () => {

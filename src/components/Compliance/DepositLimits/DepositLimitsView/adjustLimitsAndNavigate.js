@@ -1,13 +1,13 @@
 // @flow
 import * as R from "ramda";
-import type {
-  AllLimits,
-  DepositKinds,
-  DepositLimitPreadjustRules,
+import {
+  type AllLimits,
+  type LimitsDiff,
+  type DepositKinds,
+  type DepositLimitPreadjustRules,
+  getSpecificKinds,
+  hasRule,
 } from "Models/playOkay/depositLimits";
-import type { LimitsDiff } from "Components/Compliance/DepositLimits/DepositLimitsSummary/utils";
-import { getSpecificKinds } from "Components/Compliance/DepositLimits/DepositLimitsSummary/utils";
-import { hasRule } from "Models/playOkay/depositLimits";
 import type { Navigate } from "./DepositLimitsView";
 
 export const adjustLimitsAndNavigate = ({

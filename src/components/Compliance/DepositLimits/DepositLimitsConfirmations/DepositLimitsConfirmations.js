@@ -83,8 +83,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
     >
       <Text
         size="xlg"
-        className="u-font-weight-black"
-        style={{ color: "#3B058F" }}
+        className="u-font-weight-black t-color-plum-dark-1"
         data-test-id="txt"
       >
         {t[translationKeys.title]}

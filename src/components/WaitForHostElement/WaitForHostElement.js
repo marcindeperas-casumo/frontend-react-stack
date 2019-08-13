@@ -1,47 +1,45 @@
 // @flow
-import React, { type ElementProps } from "react";
-// Using `wait-by-timer` implementation because of the following issue:
-//
-// *Change WaitForElement to use timer wait implementation* -
-// (https://github.com/Casumo/Home/issues/23708)
-import waitForElement from "wait-for-element/lib/wait-by-timer";
+import * as React from "react";
 
 type Props = {
+  /** The id of the DOM element to render into */
   hostElementId: string,
-} & ElementProps<any>;
-type State = {
-  error: ?Error,
-  el: ?HTMLElement,
+  /** The children to render */
+  children: React.Node,
 };
+
 // We need this component so we can wait for the host element to be available.
 // This could happen when the route is active, but the view is not bound yet.
-export class WaitForHostElement extends React.PureComponent<Props, State> {
-  static waitTimeout = 30000;
-  state = { el: null, error: null };
+export const WaitForHostElement = ({ hostElementId, children }: Props) => {
+  const [hasElement, setHasElement] = React.useState(false);
 
-  async componentDidMount() {
-    const { hostElementId } = this.props;
-    try {
-      const el = await waitForElement(
-        `#${hostElementId}`,
-        WaitForHostElement.waitTimeout
-      );
-
-      this.setState({ el });
-    } catch (e) {
-      console.error(e.message);
-      this.setState({ el: null, error: e });
-    }
-  }
-
-  render() {
-    const { el } = this.state;
-    const { children } = this.props;
-
-    if (el) {
-      return children;
+  React.useEffect(() => {
+    if (document.getElementById(hostElementId)) {
+      setHasElement(true);
     }
 
-    return null;
+    if (!document.body) {
+      return;
+    }
+
+    const observer = new MutationObserver(() => {
+      const hasDesiredElement = Boolean(document.getElementById(hostElementId));
+      setHasElement(hasDesiredElement);
+    });
+
+    observer.observe(document.body, {
+      childList: true,
+      subtree: true,
+    });
+
+    return function cleanup() {
+      observer.disconnect();
+    };
+  }, [hostElementId]);
+
+  if (hasElement) {
+    return children;
   }
-}
+
+  return null;
+};

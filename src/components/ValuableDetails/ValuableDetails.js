@@ -1,39 +1,33 @@
 // @flow
 import React, { type Node } from "react";
+import { equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
+import Button from "@casumo/cmp-button";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
+import {
+  type ValuableDetailsTranslations as Translations,
+  type ValuableRequirementType,
+  type ValuableType,
+  type ValuableState,
+  VALUABLE_STATES,
+  getValuableDetailsAction,
+  durationToTranslationKey,
+} from "Models/valuables";
+import OpenPadlock from "./open-padlock.svg";
+import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
   red: "t-background-red",
   grey: "t-background-grey-light-1",
 };
 
-type badgeInfoType = {
+type BadgeInfoType = {
   key: string,
   value: number,
-};
-
-type DurationTranslations = {
-  hours: {
-    plural: string,
-    singular: string,
-  },
-  days: {
-    plural: string,
-    singular: string,
-  },
-};
-
-type Translations = DurationTranslations & {
-  playNowLabel: string,
-  playToUnlockLabel: string,
-  depositToUnlockLabel: string,
-  termsAndConditionLabel: string,
-  expirationTimeLabel: string,
 };
 
 type Props = {
@@ -48,6 +42,13 @@ type Props = {
   termsContent: string,
   /* Hours left for the bonus to expire */
   expirationTimeInHours: number,
+  /* Requirement type to unlock */
+  requirementType?: ValuableRequirementType,
+  /* Type of Valuable */
+  valuableType: ValuableType,
+  /* The valuable's current state */
+  valuableState: ValuableState,
+  /* Translated labels of the component */
   translations: Translations,
   /* Valuable component to be displayed in the header*/
   children: Node,
@@ -57,17 +58,17 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-// TODO: to move this to somewhere more localised
-// TODO: add other formats
-// Issue: https://jira.casumocave.com/browse/PRR-65
-export const getDurationTranslation = (
-  expiration: badgeInfoType,
-  translations: DurationTranslations
-): $Keys<DurationTranslations> => {
-  const { key, value } = expiration;
-  const { singular, plural } = translations[key];
-
-  return value > 1 ? plural : singular;
+const ExpirationBadgeContent = ({ isLocked, text }) => {
+  return (
+    <>
+      {isLocked && (
+        <span className="u-margin-right">
+          <OpenPadlock />
+        </span>
+      )}
+      {text}
+    </>
+  );
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
@@ -75,7 +76,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return this.props.expirationTimeInHours <= 24;
   }
 
-  get expirationBadgeInfo(): badgeInfoType {
+  get expirationBadgeInfo(): BadgeInfoType {
     const { expirationTimeInHours } = this.props;
 
     return this.expiresWithin24Hours
@@ -91,18 +92,29 @@ export class ValuableDetails extends React.PureComponent<Props> {
       caveat,
       termsContent,
       expirationTimeInHours,
+      valuableType,
+      valuableState,
+      requirementType,
       translations,
       children,
     } = this.props;
     const { termsAndConditionLabel, expirationTimeLabel } = translations;
 
     const expirationInfo = this.expirationBadgeInfo;
-    const translatedDuration = getDurationTranslation(
-      expirationInfo,
-      translations
+    const durationKey = durationToTranslationKey(
+      expirationInfo.key,
+      expirationInfo.value
     );
-    const expirationValueText = interpolate(translatedDuration, {
+
+    const expirationValueText = interpolate(translations[durationKey], {
       value: expirationInfo.value,
+    });
+
+    const actionButtonProps = getValuableDetailsAction({
+      valuableType,
+      valuableState,
+      requirementType,
+      translations,
     });
 
     return (
@@ -127,8 +139,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <div data-test-id="valuable-renderer-wrapper">{children}</div>
           </Flex>
         </div>
-        <div className="u-margin-top--2xlg">
-          <Flex direction="vertical" align="center" className="u-padding-x--md">
+        <div className="u-margin-top--2xlg u-padding-x--md">
+          <Flex direction="vertical" align="center">
             <Flex.Item>
               <Text tag="p" size="md">
                 {details}
@@ -143,6 +155,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                   "u-text-transform-uppercase u-font-weight-bold",
                   expirationTimeInHours > 24 && expirationBadgeClasses.grey
                 )}
+                radius="sm"
               >
                 {`${expirationTimeLabel} ${expirationValueText}`}
               </Badge>
@@ -170,6 +183,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
+          <div className="c-valuable-details__footer">
+            <Button href={actionButtonProps.url} className="u-width--1/1">
+              <ExpirationBadgeContent
+                text={actionButtonProps.text}
+                isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
+                data-test="expiration-badge-content"
+              />
+            </Button>
+          </div>
         </div>
       </>
     );

@@ -17,6 +17,8 @@ type Props = {
   hideModal: () => void,
   /* translated text */
   t: ?TextProp,
+  /* custom content renderer */
+  customContent?: React.Node,
 };
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
@@ -33,7 +35,7 @@ export function Modal(props: Props) {
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
       <ModalHeader title={text && text.title} hideModal={props.hideModal} />
-      <ModalContent content={text && text.content} />
+      {props.customContent || <ModalContent content={text && text.content} />}
     </ReactModal>
   );
 }

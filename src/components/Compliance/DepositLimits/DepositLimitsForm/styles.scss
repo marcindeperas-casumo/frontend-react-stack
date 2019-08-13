@@ -1,7 +1,5 @@
-$deposit-limits-form-pill-blue: #3b058f;
-
 .c-deposit-limits-form-pill__container {
-  color: $deposit-limits-form-pill-blue;
+  color: cudl-palette(plum, dark-1);
   margin: 0 3px;
 
   &:first-child {
@@ -14,6 +12,6 @@ $deposit-limits-form-pill-blue: #3b058f;
 }
 
 .c-deposit-limits-form-pill--active {
-  background-color: $deposit-limits-form-pill-blue;
+  background-color: cudl-palette(plum, dark-1);
   color: cudl-palette(white);
 }
