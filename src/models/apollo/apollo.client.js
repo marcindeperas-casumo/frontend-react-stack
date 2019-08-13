@@ -11,7 +11,7 @@ import {
   languageSelector,
 } from "Models/handshake";
 import reduxStore from "Services/reduxStore";
-import { resolvers } from "./resolvers";
+import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
 import { defaultState } from "./apollo.client.defaultState";
 
@@ -27,7 +27,7 @@ export function getApolloClient(store: any): ApolloClientType {
     link: getLinks(store),
     cache: getCache(),
     typeDefs,
-    resolvers,
+    resolvers: clientResolvers,
   });
 }
 

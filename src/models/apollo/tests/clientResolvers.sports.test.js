@@ -6,7 +6,7 @@ import { MODAL } from "Features/sports/components/Modals";
 import * as queries from "../queries.sports";
 import * as mutations from "../mutations.sports";
 import { defaultState } from "../apollo.client.defaultState";
-import { resolvers } from "../resolvers";
+import { clientResolvers } from "../clientResolvers";
 
 const widgetApiMock = {
   set: jest.fn(),
@@ -27,7 +27,7 @@ const createClientWithState = (state: {
 
   const client = new ApolloClient({
     cache,
-    resolvers,
+    resolvers: clientResolvers,
   });
 
   cache.writeData({

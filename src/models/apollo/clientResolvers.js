@@ -7,9 +7,9 @@ import {
   updateKambiClientState,
   hideSearch,
   showSearch,
-} from "./resolvers.sports";
+} from "./clientResolvers.sports";
 
-export const resolvers = {
+export const clientResolvers = {
   Mutation: {
     updateBetslipState,
     openModal,
