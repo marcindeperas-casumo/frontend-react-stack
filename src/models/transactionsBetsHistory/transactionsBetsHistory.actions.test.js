@@ -9,7 +9,6 @@ import {
 import {
   initFetchAnnualOverview,
   initFetchAnnualOverviewPdfUrl,
-  fetchAnnualOverviewPdfUrl,
 } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
 import {
@@ -40,25 +39,6 @@ describe("Models/transactionsBetsHistory/Actions", () => {
       year,
       meta: {},
       type: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
-    });
-  });
-
-  test("fetchAnnualOverviewPdfUrl()", () => {
-    const asyncCallData = prepareFetchAnnualOverviewPdfUrlProps({
-      annualOverview,
-      year,
-      name: "SOME NAME",
-      dni: "SOME DNI",
-      locale: "en-GB",
-    });
-    const action = fetchAnnualOverviewPdfUrl(asyncCallData);
-
-    expect(action).toEqual({
-      type: fetchTypes.FETCH,
-      name: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START,
-      asyncCallData,
-      asyncCall: getAnnualOverviewPdfUrlReq,
-      postFetch: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED,
     });
   });
 });

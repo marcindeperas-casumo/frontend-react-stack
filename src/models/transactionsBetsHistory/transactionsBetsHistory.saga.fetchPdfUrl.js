@@ -9,14 +9,9 @@ import { mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { isFailedFetchTakePatternCreator } from "Models/fetch";
 import { getAnnualOverviewPdfUrlReq } from "Api/api.transactionsBetsHistory";
 import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
-import { fetchAnnualOverviewPdfUrl } from "./transactionsBetsHistory.actions";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 import { types } from "./transactionsBetsHistory.constants";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
-
-export const isFailedPdfUrlRequestTakePattern = isFailedFetchTakePatternCreator(
-  types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
-);
 
 export function* fetchAnnualOverviewPdfUrlSaga(
   action: FetchAnnualOverviewProps
