@@ -58,11 +58,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             valuableType === VALUABLE_TYPES.CASH;
 
           return (
-            <div style={{ width: "160px" }}>
-              <a
-                href={getCardUrl(valuableState, valuableType)}
-                key={`valuable-card-${id}`}
-              >
+            <div style={{ width: "160px" }} key={`valuable-card-${id}`}>
+              <a href={getCardUrl(valuableState, valuableType)}>
                 <ValuableCard
                   translatedHoursUnit={hoursLabel}
                   {...valuable}

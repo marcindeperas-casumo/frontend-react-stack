@@ -7,11 +7,14 @@ class ValuableDetailsTypedQuery extends Query<ValuableDetailsQuery, null> {}
 
 export const ValuableDetailsContainer = props => (
   <ValuableDetailsTypedQuery query={ValuableDetailsQuery}>
-    {({ data }) => {
-      return <ValuableDetails {...props} translations={data} />;
+    {({ loading, data }) => {
+      if (loading) {
+        return null;
+      }
+
+      return (
+        <ValuableDetails loading={loading} {...props} translations={data} />
+      );
     }}
   </ValuableDetailsTypedQuery>
 );
-
-// loading={loading}
-// error={error && error.message}

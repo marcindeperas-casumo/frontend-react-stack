@@ -106,9 +106,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationInfo.value
     );
 
-    const expirationValueText = interpolate(translations[durationKey], {
-      value: expirationInfo.value,
-    });
+    const expirationValueText =
+      translations[durationKey] &&
+      interpolate(translations[durationKey], {
+        value: expirationInfo.value,
+      });
 
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
@@ -153,7 +155,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 data-test="valuable-expiration-badge"
                 className={classNames(
                   "u-text-transform-uppercase u-font-weight-bold",
-                  expirationTimeInHours > 24 && expirationBadgeClasses.grey
+                  expirationTimeInHours >= 24 && expirationBadgeClasses.grey
                 )}
                 radius="sm"
               >

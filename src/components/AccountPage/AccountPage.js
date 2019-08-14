@@ -3,7 +3,6 @@
 // Route is only available to those who know about it
 
 import React from "react";
-import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import AdventureCard from "Components/AdventureCard";
 import {
   PlayerValuableListContainer,
@@ -11,13 +10,11 @@ import {
 } from "Components/PlayerValuableList";
 
 // TODO: TEMP
-
 export const AccountPage = () => (
   <>
     <AdventureCard />
     <PlayerValuableListContainer
       renderList={props => <PlayerValuableListHorizontal {...props} />}
     />
-    <ValuableDetailsContainer />
   </>
 );

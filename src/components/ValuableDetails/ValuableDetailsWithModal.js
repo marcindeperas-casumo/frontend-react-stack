@@ -21,7 +21,6 @@ const getParent = () => document.querySelector(`#${hostElementId}`);
 export const ValuableDetailsWithModal = ({
   isOpen,
   onClose,
-  // parentSelector,
   closeTimeoutMS,
   renderValuableDetails,
 }: Props) => (
