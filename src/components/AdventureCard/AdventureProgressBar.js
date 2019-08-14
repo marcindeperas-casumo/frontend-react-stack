@@ -43,17 +43,17 @@ export default class AdventureProgressBar extends PureComponent<Props> {
         <Flex.Item className="u-width--1/1 u-margin-top--none">
           <ProgressBar
             progress={progressPercentage}
-            backgroundColor="grey-dark-4"
-            foregroundColor={
+            fillerClassNames="t-background-grey-dark-4"
+            trackClassNames={
               inBonusMode && !isMaxLevel(level, inBonusMode)
-                ? "violet"
-                : "yellow"
+                ? "t-background-violet"
+                : "t-background-yellow"
             }
           />
         </Flex.Item>
         <Flex
           justify="space-between"
-          className="u-width--1/1 u-font-sm u-padding-x--sm"
+          className="u-width--1/1 u-font-sm u-padding-x--sm u-padding-top"
         >
           <Text className="t-color-grey-light-2" tag="div" size="sm">
             <DangerousHtml

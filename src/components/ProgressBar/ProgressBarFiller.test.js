@@ -12,22 +12,20 @@ describe("ProgressBarFiller", () => {
 
   test("Default colour applied if no props given", () => {
     const progress = 50;
-    const defaultForegroundColor = ProgressBar.defaultProps.foregroundColor;
+    const defaultTrackClassNames = ProgressBar.defaultProps.trackClassNames;
     const rendered = mount(<ProgressBar progress={progress} />);
-    expect(
-      rendered.find(`.t-background-${defaultForegroundColor}`).length
-    ).toEqual(1);
+    expect(rendered.find(`.${defaultTrackClassNames}`).length).toEqual(1);
   });
 
   test("Correct colour applied if passed in through props", () => {
     const progress = 50;
-    const foregroundColor = "green";
+    const trackClassNames = "t-background-green";
     const rendered = shallow(
       <ProgressBarFiller
         progress={progress}
-        foregroundColor={foregroundColor}
+        trackClassNames={trackClassNames}
       />
     );
-    expect(rendered.hasClass(`t-background-${foregroundColor}`)).toBe(true);
+    expect(rendered.hasClass(trackClassNames)).toBe(true);
   });
 });
