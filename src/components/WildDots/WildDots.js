@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const WildDots = ({
-  activeDotClassNames = "t-background-indigo",
+  activeDotClassNames = "t-background-plum-dark-1",
   inactiveDotClassNames = "t-background-gainsboro",
   ...props
 }: Props) =>

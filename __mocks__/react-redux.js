@@ -38,7 +38,7 @@ module.exports = {
                   return mapDispatchToProps(dispatch, ownProps);
                 } else {
                   return Object.entries(mapDispatchToProps)
-                    .map(([key, val]) => [key, dispatch(val)])
+                    .map(([key, val]) => [key, (...args) => dispatch(val(...args))])
                     .reduce((acc, [key, val]) => ({ ...acc, [key]: val }))
                 }
               })();

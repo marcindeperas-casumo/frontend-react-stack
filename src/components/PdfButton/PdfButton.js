@@ -13,11 +13,9 @@ export function PdfButton({ href, fetchHref, label }: PdfButtonProps) {
   const isDisabled = !href;
 
   useEffect(() => {
-    if (href) {
-      return;
+    if (!href) {
+      fetchHref();
     }
-
-    fetchHref();
   });
 
   return (

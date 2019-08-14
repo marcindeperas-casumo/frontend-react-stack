@@ -1,33 +1,22 @@
 // @flow
-import { call, put, select, take, race } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import {
   localeSelector,
   playerNameSelector,
   socialSecurityNumberSelector,
 } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import { isFailedFetchTakePatternCreator } from "Models/fetch";
-import { transactionsBetsHistoryAnnualOverviewSelector } from "./transactionsBetsHistory.selectors";
-import { fetchAnnualOverviewPdfUrl } from "./transactionsBetsHistory.actions";
+import { getAnnualOverviewPdfUrlReq } from "Api/api.transactionsBetsHistory";
+import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
-import { types } from "./transactionsBetsHistory.constants";
-import type {
-  FetchAnnualOverviewProps,
-  Action,
-} from "./transactionsBetsHistory.types";
-
-export const isFailedPdfUrlRequestTakePattern = isFailedFetchTakePatternCreator(
-  types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
-);
+import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export function* fetchAnnualOverviewPdfUrlSaga(
   action: FetchAnnualOverviewProps
 ): * {
   const { year, meta = {} } = action;
 
-  const annualOverview = yield select(
-    transactionsBetsHistoryAnnualOverviewSelector(year)
-  );
+  const annualOverview = yield select(annualOverviewSelector(year));
 
   // it's short-circuited because right now this saga can only run when
   // annual overview for a specific year is already fetched.
@@ -43,7 +32,21 @@ export function* fetchAnnualOverviewPdfUrlSaga(
   const locale = yield select(localeSelector);
 
   yield put(
-    fetchAnnualOverviewPdfUrl(
+    mergeEntity({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [year]: {
+          meta: {
+            isPdfUrlFetching: true,
+            error: null,
+          },
+        },
+      },
+    })
+  );
+
+  try {
+    const response = yield call(
+      getAnnualOverviewPdfUrlReq,
       prepareFetchAnnualOverviewPdfUrlProps({
         locale,
         annualOverview,
@@ -51,32 +54,43 @@ export function* fetchAnnualOverviewPdfUrlSaga(
         name: `${firstName} ${lastName}`,
         dni,
       })
-    )
-  );
+    );
 
-  const [fetchCompleted, fetchFailed] = yield race([
-    take(types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED),
-    take(isFailedPdfUrlRequestTakePattern),
-  ]);
-
-  if (fetchFailed) {
-    if (meta.reject) {
-      yield call(meta.reject);
-    }
-    return;
-  }
-
-  yield put(
-    mergeEntity({
-      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
-        [year]: {
-          pdfUrl: fetchCompleted.response.downloadUrl,
+    yield put(
+      mergeEntity({
+        [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+          [year]: {
+            data: {
+              ...annualOverview,
+              pdfUrl: response.downloadUrl,
+            },
+            meta: {
+              isPdfUrlFetching: false,
+            },
+          },
         },
-      },
-    })
-  );
+      })
+    );
 
-  if (meta.resolve) {
-    yield call(meta.resolve);
+    if (meta.resolve) {
+      yield call(meta.resolve);
+    }
+  } catch (e) {
+    yield put(
+      mergeEntity({
+        [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+          [year]: {
+            meta: {
+              isPdfUrlFetching: false,
+              error: String(e),
+            },
+          },
+        },
+      })
+    );
+
+    if (meta.reject) {
+      yield call(meta.reject, e);
+    }
   }
 }

@@ -7,4 +7,5 @@ export default {
   "weekly_removed": "Weekly removed",
   "monthly_removed": "Monthly removed",
   "title": "Deposit limits",
+  "history": "History",
 }

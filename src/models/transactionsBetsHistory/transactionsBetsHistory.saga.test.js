@@ -4,7 +4,10 @@ import {
   totalsResponse,
   transactions,
 } from "Api/__mocks__/api.transactionsBetsHistory.mock";
-import { types } from "./transactionsBetsHistory.constants";
+import {
+  getTotalsReq,
+  getTransactionsReq,
+} from "Api/api.transactionsBetsHistory";
 import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
 
 describe("fetchAnnualOverviewSaga()", () => {
@@ -22,57 +25,52 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     generator.next(walletId);
 
+    const isFetchingEffect = generator.next(null).value;
+
+    expect(isFetchingEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isFetching: true,
+            error: null,
+          },
+        },
+      },
+    });
+
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
     const fetchAllEffect = generator.next(null).value;
-    const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
-    const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
+    const fetchTotalsEffect = fetchAllEffect.ALL[0].CALL;
+    const fetchTransactionsEffect = fetchAllEffect.ALL[1].CALL;
+    const startTime = DateTime.utc(action.year);
+    const endTime = DateTime.utc(action.year + 1);
 
-    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
-    expect(fetchTotalsAction.asyncCallData).toEqual({
-      walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
-    });
+    expect(fetchTotalsEffect.fn).toEqual(getTotalsReq);
+    expect(fetchTotalsEffect.args[0]).toEqual({ startTime, endTime, walletId });
 
-    expect(fetchTransactionsAction.name).toEqual(
-      types.WALLET_TRANSACTIONS_FETCH_START
-    );
-    expect(fetchTransactionsAction.asyncCallData).toEqual({
+    expect(fetchTransactionsEffect.fn).toEqual(getTransactionsReq);
+    expect(fetchTransactionsEffect.args[0]).toEqual({
       walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
+      startTime,
+      endTime,
       perPage: 10000,
     });
 
-    generator.next();
-
-    const fetchStateObject = { isFetching: false, error: null };
-    // feed select for totals fetch state
-    generator.next(fetchStateObject);
-    // feed select for transactions fetch state
-    const walletTotalsTakeEffect = generator.next().value;
-
-    expect(walletTotalsTakeEffect.TAKE.pattern).toEqual(
-      types.WALLET_TOTALS_FETCH_COMPLETED
-    );
-
-    const walletTransactionsTakeEffect = generator.next({
-      response: totalsResponse,
-    }).value;
-
-    expect(walletTransactionsTakeEffect.TAKE.pattern).toEqual(
-      types.WALLET_TRANSACTIONS_FETCH_COMPLETED
-    );
-
-    const mergeEntityEffect = generator.next({ response: transactions }).value;
+    const mergeEntityEffect = generator.next([totalsResponse, transactions])
+      .value;
 
     expect(mergeEntityEffect.PUT.action.payload).toEqual({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [action.year]: {
-          ...totalsResponse,
-          startingBalanceAmount: 249.2855,
-          endBalanceAmount: 289.2855,
+          data: {
+            ...totalsResponse,
+            startingBalanceAmount: 249.2855,
+            endBalanceAmount: 289.2855,
+          },
+          meta: {
+            isFetching: false,
+          },
         },
       },
     });
@@ -98,39 +96,51 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     generator.next(walletId);
 
+    const isFetchingEffect = generator.next(null).value;
+
+    expect(isFetchingEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isFetching: true,
+            error: null,
+          },
+        },
+      },
+    });
+
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
     const fetchAllEffect = generator.next(null).value;
+    const fetchTotalsEffect = fetchAllEffect.ALL[0].CALL;
+    const fetchTransactionsEffect = fetchAllEffect.ALL[1].CALL;
+    const startTime = DateTime.utc(action.year);
+    const endTime = DateTime.utc(action.year + 1);
 
-    const fetchTotalsAction = fetchAllEffect.ALL[0].PUT.action;
-    const fetchTransactionsAction = fetchAllEffect.ALL[1].PUT.action;
+    expect(fetchTotalsEffect.fn).toEqual(getTotalsReq);
+    expect(fetchTotalsEffect.args[0]).toEqual({ startTime, endTime, walletId });
 
-    expect(fetchTotalsAction.name).toEqual(types.WALLET_TOTALS_FETCH_START);
-    expect(fetchTotalsAction.asyncCallData).toEqual({
+    expect(fetchTransactionsEffect.fn).toEqual(getTransactionsReq);
+    expect(fetchTransactionsEffect.args[0]).toEqual({
       walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
-    });
-
-    expect(fetchTransactionsAction.name).toEqual(
-      types.WALLET_TRANSACTIONS_FETCH_START
-    );
-    expect(fetchTransactionsAction.asyncCallData).toEqual({
-      walletId,
-      startTime: DateTime.utc(action.year),
-      endTime: DateTime.utc(action.year + 1),
+      startTime,
+      endTime,
       perPage: 10000,
     });
 
-    // feed select for totals fetch state
-    generator.next({ isFetching: false, error: null });
+    const errorMsg = "smthg happened";
+    const errorEffect = generator.throw(new Error(errorMsg)).value;
 
-    const fetchTransactionsStateObject = {
-      isFetching: false,
-      error: new Error("error happened"),
-    };
-    // feed select for transactions fetch state
-    generator.next(fetchTransactionsStateObject);
+    expect(errorEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isFetching: false,
+            error: `Error: ${errorMsg}`,
+          },
+        },
+      },
+    });
 
     const rejectCallEffects = generator.next().value;
 

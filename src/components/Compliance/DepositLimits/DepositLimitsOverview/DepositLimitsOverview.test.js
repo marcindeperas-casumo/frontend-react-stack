@@ -19,6 +19,7 @@ const props = {
     weekly: 0,
     monthly: 0,
   },
+  hideRemoveAll: false,
   edit: () => {},
   add: () => {},
   removeAll: () => {},
