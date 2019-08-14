@@ -9,7 +9,6 @@ import {
   PlayerValuableListHorizontal,
 } from "Components/PlayerValuableList";
 
-// TODO: TEMP
 export const AccountPage = () => (
   <>
     <AdventureCard />
