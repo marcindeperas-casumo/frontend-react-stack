@@ -1,0 +1,19 @@
+query ValuableDetailsQuery {
+    termsAndConditionLabel: getText(
+      id: "root:valuable-details-component:fields.terms_and_conditions_title"
+    )
+    playNowLabel: getText(id: "root:valuable-details-component:fields.play_now")
+    playToUnlockLabel: getText(
+      id: "root:valuable-details-component:fields.play_to_unlock"
+    )
+    depositToUnlock: getText(
+      id: "root:valuable-details-component:fields.deposit_to_unlock"
+    )
+    expirationTimeLabel: getText(
+        id: "root:valuable-details-component:fields.expires_in"
+    )
+    hour_singular: getText(id: "root:units:fields.hour")
+    hour_plural: getText(id: "root:units:fields.hours")
+    day_singular: getText(id: "root:units:fields.day")
+    day_plural: getText(id: "root:units:fields.days")
+}

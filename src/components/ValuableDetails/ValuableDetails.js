@@ -58,7 +58,7 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-const ExpirationBadgeContent = ({ isLocked, text }) => {
+const ActionButtonContent = ({ isLocked, text }) => {
   return (
     <>
       {isLocked && (
@@ -118,7 +118,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     });
 
     return (
-      <>
+      <div>
         <div className="o-ratio o-ratio--valuable-details">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
@@ -185,7 +185,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
           <div className="c-valuable-details__footer">
             <Button href={actionButtonProps.url} className="u-width--1/1">
-              <ExpirationBadgeContent
+              <ActionButtonContent
                 text={actionButtonProps.text}
                 isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
                 data-test="expiration-badge-content"
@@ -193,7 +193,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Button>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }

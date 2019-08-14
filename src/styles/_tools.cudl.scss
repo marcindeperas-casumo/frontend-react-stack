@@ -1,4 +1,4 @@
-/** 
+/**
     This file is injected into every sass file courtesy of sass-resources-loader
     to allow developers to easily access cudl tools and variables without the
     need for importing any of the framework.
@@ -24,3 +24,5 @@
 @include cudl-prevent-compile(cudl-sass-spacers);
 @import "~@casumo/cudl-spacers/styles/cudl-spacers";
 @include cudl-reset-compile(cudl-sass-spacers);
+@import "~@casumo/cudl-scrollable/styles/cudl-scrollable";
+@include cudl-reset-compile(cudl-scrollable);

@@ -1,2 +1,2 @@
 // @flow
-export { ValuableDetails } from "./ValuableDetails";
+export { ValuableDetailsContainer } from "./ValuableDetailsContainer";
