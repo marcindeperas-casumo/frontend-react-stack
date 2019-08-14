@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { number, select } from "@storybook/addon-knobs/react";
-import { ProgressBar, colorOptions } from "./ProgressBar";
+import { ProgressBar } from "./ProgressBar";
 
 const stories = storiesOf("ProgressBar", module);
 
@@ -13,22 +13,22 @@ const DefaultStory = () => {
     max: 100,
     step: 1,
   });
-  const backgroundColor = select(
+  const fillerClassNames = select(
     "Background color",
-    colorOptions.background,
-    colorOptions.background[0]
+    ["t-background-grey", "t-background-grey-light-1"],
+    "t-background-grey"
   );
-  const foregroundColor = select(
+  const trackClassNames = select(
     "Foreground color",
-    colorOptions.foreground,
-    colorOptions.foreground[0]
+    ["t-background-yellow", "t-background-green"],
+    "t-background-yellow"
   );
 
   return (
     <ProgressBar
       progress={progress}
-      foregroundColor={foregroundColor}
-      backgroundColor={backgroundColor}
+      trackClassNames={trackClassNames}
+      fillerClassNames={fillerClassNames}
     />
   );
 };
