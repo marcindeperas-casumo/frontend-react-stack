@@ -27,7 +27,7 @@ export const ValuableDetailsWithModal = ({
   <AbstractModal
     isOpen={isOpen}
     hideModal={onClose}
-    className="c-valuable-details-modal"
+    className="c-valuable-details-modal c-abstract-modal--mobile-portrait"
     parentSelector={() => getParent()}
     closeTimeoutMS={closeTimeoutMS}
   >
