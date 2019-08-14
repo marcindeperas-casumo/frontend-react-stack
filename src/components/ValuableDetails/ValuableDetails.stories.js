@@ -38,6 +38,7 @@ stories.add("Default - With modal", () => {
         isOpen={true}
         renderValuableDetails={valuableDetailsRender}
         onClose={() => {}}
+        closeTimeoutMS={100}
       />
     </MockStore>
   );
