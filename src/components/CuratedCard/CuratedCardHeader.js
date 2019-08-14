@@ -39,7 +39,7 @@ export const CuratedCardHeaderWithSubtitle = ({
   header,
   subtitle,
 }: HeaderProps & HeaderSubtitleProps) => (
-  <>
+  <div className="o-wrapper">
     <Text
       data-test="curated-card-header-subtitle"
       className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
@@ -48,5 +48,5 @@ export const CuratedCardHeaderWithSubtitle = ({
       {subtitle}
     </Text>
     <CuratedCardHeader header={header} />
-  </>
+  </div>
 );

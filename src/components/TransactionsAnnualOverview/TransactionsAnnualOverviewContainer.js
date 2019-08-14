@@ -5,7 +5,7 @@ import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
 import { localeSelector } from "Models/handshake";
 import {
   transactionsBetsHistoryContentSelector,
-  transactionsBetsHistoryAnnualOverviewSelector,
+  annualOverviewSelector,
 } from "Models/transactionsBetsHistory";
 import { TransactionsAnnualOverviewPdfButton } from "Components/PdfButton";
 import { TransactionsAnnualOverview } from "./TransactionsAnnualOverview";
@@ -14,7 +14,7 @@ export const TransactionsAnnualOverviewContainer = connect(
   (state, { selectedYear }) => ({
     locale: localeSelector(state),
     t: transactionsBetsHistoryContentSelector(state),
-    data: transactionsBetsHistoryAnnualOverviewSelector(selectedYear)(state),
+    data: annualOverviewSelector(selectedYear)(state),
     PdfButton: TransactionsAnnualOverviewPdfButton,
   }),
   () => ({

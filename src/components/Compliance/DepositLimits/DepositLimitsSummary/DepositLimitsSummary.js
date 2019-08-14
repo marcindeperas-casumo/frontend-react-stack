@@ -5,17 +5,19 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
-import type {
-  AllLimits,
-  DepositKinds,
-  DepositLimitPreadjust,
+import {
+  diffLimits,
+  checkIfConditionsApply,
+  type AllLimits,
+  type DepositKinds,
+  type DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
-import { diffLimits, checkIfConditionsApply } from "./utils";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 import { AdditionalConditions } from "./AdditionalConditions";
 import { limitTypes } from "..";
 
 type Props = {
+  currency: string,
   locale: string,
   t: {
     summary_title: string,
@@ -98,7 +100,7 @@ export function DepositLimitsSummary({ t, ...props }: Props) {
                 <Text tag="span" className="u-font-weight-bold">
                   {formatCurrency({
                     locale: props.locale,
-                    currency: props.currentLimits.currency,
+                    currency: props.currency,
                     value: props.newLimits[x],
                   })}
                 </Text>

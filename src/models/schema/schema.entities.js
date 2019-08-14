@@ -8,6 +8,8 @@ export const jackpot = new schema.Entity(
   { idAttribute: "gameId" }
 );
 
+export const acknowledgements = new schema.Entity(ENTITY_KEYS.ACKNOWLEDGEMENTS);
+
 export const liveTable = new schema.Entity(
   ENTITY_KEYS.LIVE_TABLE,
   {},
@@ -69,6 +71,7 @@ export const schemaEntities = {
   [`${ENTITY_KEYS.CMS}s`]: [cms],
   [ENTITY_KEYS.GAME_PROVIDER]: gameProvider,
   [`${ENTITY_KEYS.GAME_PROVIDER}s`]: [gameProvider],
+  [ENTITY_KEYS.ACKNOWLEDGEMENTS]: acknowledgements,
 };
 
 export const normalizeData = (data: any) => normalize(data, schemaEntities);

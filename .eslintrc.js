@@ -98,6 +98,7 @@ module.exports = {
     "sonarjs/no-duplicate-string": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
+    "flowtype/space-after-type-colon": "off",
   },
   overrides: [
     {

@@ -51,9 +51,11 @@ class PromotionCardTeaser extends PureComponent<Props> {
               {title}
             </Text>
           </Flex.Block>
-          <Flex.Item className="o-flex__item--no-shrink">
-            <ImageLazy src={badge} width="80" height="80" />
-          </Flex.Item>
+          {badge && (
+            <Flex.Item className="o-flex__item--no-shrink">
+              <ImageLazy src={badge} width="80" height="80" />
+            </Flex.Item>
+          )}
         </Flex>
       </a>
     );

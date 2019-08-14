@@ -2,12 +2,14 @@
 import { connect } from "react-redux";
 import { range } from "ramda";
 import DurandalReactBridge from "Src/DurandalReactBridge";
+import logger from "Services/logger";
 import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
 import { walletIdSelector } from "Models/handshake";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
   CMS_CONTENT_SLUG,
   transactionsBetsHistoryContentSelector,
+  isAnnualOverviewFetchingSelector,
   initFetchAnnualOverview,
 } from "Models/transactionsBetsHistory";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
@@ -25,6 +27,8 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
     selectedYear: CURRENT_YEAR,
     content: transactionsBetsHistoryContentSelector(state),
     isContentFetched: isPageFetchedSelector(CMS_CONTENT_SLUG)(state),
+    isAnnualOverviewLoading: year =>
+      isAnnualOverviewFetchingSelector(year)(state),
   }),
   (dispatch, ownProps) => ({
     fetchContent: () => dispatch(fetchPageBySlug(CMS_CONTENT_SLUG)),
@@ -36,12 +40,14 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
             meta: { resolve, reject },
           })
         )
-      ).then(() =>
-        // Need to pack it as a router model function and hide bridge dependency
-        DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
-          routeId: "history-transactions-annual-overview",
-          params: { year },
-        })
-      ),
+      )
+        .catch(e => logger.error(`Silenced error: ${e}`))
+        .then(() =>
+          // Need to pack it as a router model function and hide bridge dependency
+          DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
+            routeId: "history-transactions-annual-overview",
+            params: { year },
+          })
+        ),
   })
 )(TransactionsAnnualOverviewYearSelector);

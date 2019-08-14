@@ -1,13 +1,23 @@
+// @flow
 import React from "react";
+import { F } from "ramda";
 import { mount } from "enzyme";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
 describe("TransactionsAnnualOverviewYearSelector", () => {
   const props = {
-    content: {},
+    content: {
+      annual_overview_year_selector_button: "button",
+      annual_overview_year_selector_heading: "heading",
+      annual_overview_year_selector_label: "label",
+    },
+    fetchContent: () => {},
     isContentFetched: true,
     yearOptions: [1990, 1991],
     selectedYear: 1990,
+    selectorHtmlId: "year-selector-id",
+    isAnnualOverviewLoading: F,
+    fetchYearOverview: () => {},
   };
 
   test("should render a select element together with a button", () => {
