@@ -78,7 +78,7 @@ const curatedCardOptions = [
     imgixOpts: {
       w: 1661,
       h: 616,
-      "fp-y": 0.9,
+      "fp-y": 0.52,
       "fp-z": 1,
       fit: "crop",
       crop: "focalpoint",
