@@ -65,7 +65,7 @@ const curatedCardOptions = [
     mediaQuery: `(max-width: ${twerkpoints.desktopLg - 1}px)`,
     imgixOpts: {
       w: 1181,
-      h: 512,
+      h: 432,
       "fp-x": 0.5,
       "fp-y": 0.517,
       "fp-z": 1.2,
@@ -77,7 +77,7 @@ const curatedCardOptions = [
     mediaQuery: `(min-width: ${twerkpoints.desktopLg}px)`,
     imgixOpts: {
       w: 1661,
-      h: 432,
+      h: 616,
       "fp-y": 0.9,
       "fp-z": 1,
       fit: "crop",
