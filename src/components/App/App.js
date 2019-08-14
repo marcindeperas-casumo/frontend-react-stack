@@ -7,7 +7,7 @@ import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsSh
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
-import { DataProvider } from "Components/DataProvider";
+import { GraphQLProvider } from "Components/GraphQLProvider";
 
 type Props = {
   onAppStarted: () => void,
@@ -57,14 +57,14 @@ export class App extends PureComponent<Props> {
     return (
       <Router activePaths={activeComponents}>
         <Route path={["games-top", "games"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-games-lists"
               loader={() => import("Components/TopLists")}
               fallback={<TopListsSkeleton />}
               namedExport="TopLists"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["must-drop-jackpots"]}>
           <LazyPortal
@@ -166,16 +166,16 @@ export class App extends PureComponent<Props> {
           />
         </Route>
         <Route path={["playerV2"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-player-v2"
               loader={() => import("Components/AccountPage")}
               namedExport="AccountPage"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["settings"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-settings"
               loader={() =>
@@ -185,10 +185,10 @@ export class App extends PureComponent<Props> {
               }
               namedExport="SettingsSectionsContainer"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["account-details"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-settings-account-details"
               loader={() =>
@@ -198,10 +198,10 @@ export class App extends PureComponent<Props> {
               }
               namedExport="SettingsAccountDetailsContainer"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["notifications"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-settings-notifications"
               loader={() =>
@@ -211,10 +211,10 @@ export class App extends PureComponent<Props> {
               }
               namedExport="SettingsNotificationsContainer"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["reality-check"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-settings-reality-check"
               loader={() =>
@@ -224,19 +224,19 @@ export class App extends PureComponent<Props> {
               }
               namedExport="SettingsRealityCheckContainer"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["history"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-transactions-annual-overview-year"
               loader={transactionsAnnualOverviewYearSelectorLoader}
               namedExport="TransactionsAnnualOverviewYearSelector"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
         <Route path={["history-transactions-annual-overview"]}>
-          <DataProvider>
+          <GraphQLProvider>
             <LazyPortal
               hostElementId="react-host-transactions-annual-overview"
               props={{ selectedYear: routeParams[0] }}
@@ -249,7 +249,7 @@ export class App extends PureComponent<Props> {
               loader={transactionsAnnualOverviewYearSelectorLoader}
               namedExport="TransactionsAnnualOverviewYearSelector"
             />
-          </DataProvider>
+          </GraphQLProvider>
         </Route>
       </Router>
     );
