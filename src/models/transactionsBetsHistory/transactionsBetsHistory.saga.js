@@ -1,7 +1,7 @@
 // @flow
 import { call, put, select, all } from "redux-saga/effects";
 import { DateTime } from "luxon";
-import { walletIdSelector } from "Models/handshake";
+import { walletIdSelector, walletAmountSelector } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
 import {
   getTotalsReq,
@@ -47,13 +47,23 @@ export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
       call(getTransactionsReq, { ...asyncCallData, perPage: 10000 }),
     ]);
 
+    /* 
+     Provide a fallback value for Spain audit for 2019 till new API is not developed
+     PCC-140
+    */
+    const walletAmountFallback =
+      year === 2019 ? yield select(walletAmountSelector) : 0;
+
     yield put(
       mergeEntity({
         [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
           [year]: {
             data: {
               ...responses[0],
-              ...getStartingEndBalanceFromTransactions(responses[1]),
+              ...getStartingEndBalanceFromTransactions(
+                responses[1],
+                walletAmountFallback
+              ),
             },
             meta: {
               isFetching: false,

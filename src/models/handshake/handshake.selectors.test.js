@@ -11,6 +11,7 @@ import {
   playerSelector,
   countrySelector,
   currencySelector,
+  walletAmountSelector,
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
@@ -202,6 +203,26 @@ describe("Handshake selectors", () => {
     };
 
     expect(currencySelector(state)).toEqual("EUR");
+  });
+
+  test("walletAmountSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p3" },
+          "common/composition/players": {
+            players: {
+              p3: {
+                id: "p3",
+                wallet: { balance: { amount: 777 } },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(walletAmountSelector(state)).toEqual(777);
   });
 
   test("marketSelector", () => {
