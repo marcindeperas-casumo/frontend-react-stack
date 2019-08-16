@@ -10,12 +10,13 @@ import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
 import {
   type ValuableDetailsTranslations as Translations,
-  type ValuableRequirementType,
-  type ValuableType,
-  type ValuableState,
+  // type ValuableRequirementType,
+  // type ValuableType,
+  // type ValuableState,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
+  type ValuableDetailsProps,
 } from "Models/valuables";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
@@ -30,29 +31,36 @@ type BadgeInfoType = {
   value: number,
 };
 
-type Props = {
-  id: string,
-  /* Url of the background image to be used in the header */
-  backgroundImageUrl: string,
-  /* Detailed description of the Valuable */
-  details: string,
-  /* Caveat for the valuable */
-  caveat: string,
-  /* Content for Terms and conditions */
-  termsContent: string,
-  /* Hours left for the bonus to expire */
-  expirationTimeInHours: number,
-  /* Requirement type to unlock */
-  requirementType?: ValuableRequirementType,
-  /* Type of Valuable */
-  valuableType: ValuableType,
-  /* The valuable's current state */
-  valuableState: ValuableState,
+type Props = ValuableDetailsProps & {
   /* Translated labels of the component */
   translations: Translations,
   /* Valuable component to be displayed in the header*/
   children: Node,
 };
+
+// type Props = {
+//   id: string,
+//   /* Url of the background image to be used in the header */
+//   backgroundImageUrl: string,
+//   /* Detailed description of the Valuable */
+//   content: string,
+//   /* Caveat for the valuable */
+//   caveat: string,
+//   /* Content for Terms and conditions */
+//   termsContent: string,
+//   /* Hours left for the bonus to expire */
+//   expirationTimeInHours: number,
+//   /* Requirement type to unlock */
+//   requirementType?: ValuableRequirementType,
+//   /* Type of Valuable */
+//   valuableType: ValuableType,
+//   /* The valuable's current state */
+//   valuableState: ValuableState,
+//   /* Translated labels of the component */
+//   translations: Translations,
+//   /* Valuable component to be displayed in the header*/
+//   children: Node,
+// };
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -87,10 +95,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
   render() {
     const {
       id,
-      backgroundImageUrl,
-      details,
+      backgroundImage,
+      content,
       caveat,
-      termsContent,
       expirationTimeInHours,
       valuableType,
       valuableState,
@@ -98,7 +105,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
       translations,
       children,
     } = this.props;
-    const { termsAndConditionLabel, expirationTimeLabel } = translations;
+    const {
+      termsAndConditionLabel,
+      expirationTimeLabel,
+      termsAndConditionContent,
+    } = translations;
 
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
@@ -125,7 +136,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
-              imageUrl={backgroundImageUrl}
+              imageUrl={backgroundImage}
               width={375}
               height={334}
             >
@@ -145,7 +156,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <Flex direction="vertical" align="center">
             <Flex.Item>
               <Text tag="p" size="md">
-                {details}
+                {content}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
@@ -164,7 +175,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               <Text tag="p" className="t-color-grey" size="sm">
-                {caveat}
+                {caveat != null && caveat}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
@@ -181,7 +192,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 className="t-color-grey u-text-align-left"
                 size="sm"
               >
-                {termsContent}
+                {termsAndConditionContent}
               </Text>
             </Flex.Item>
           </Flex>

@@ -24,4 +24,23 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   depositNowLabel: string,
   termsAndConditionLabel: string,
   expirationTimeLabel: string,
+  termsAndConditionContent: string,
+};
+
+export type ValuableDetailsProps = {
+  id: string,
+  /* Url of the background image to be used in the header */
+  backgroundImage: string,
+  /* Detailed description of the Valuable */
+  content: string,
+  /* Caveat for the valuable */
+  caveat?: string,
+  /* Hours left for the bonus to expire */
+  expirationTimeInHours: number,
+  /* Requirement type to unlock */
+  requirementType?: ValuableRequirementType,
+  /* Type of Valuable */
+  valuableType: ValuableType,
+  /* The valuable's current state */
+  valuableState: ValuableState,
 };

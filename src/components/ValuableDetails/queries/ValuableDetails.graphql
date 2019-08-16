@@ -12,6 +12,7 @@ query ValuableDetailsQuery {
     expirationTimeLabel: getText(
         id: "root:valuable-details-component:fields.expires_in"
     )
+    termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
     hour_singular: getText(id: "root:units:fields.hour")
     hour_plural: getText(id: "root:units:fields.hours")
     day_singular: getText(id: "root:units:fields.day")

@@ -1,6 +1,7 @@
 fragment ValuableCard_Valuable on PlayerValuable {
   id
   title
+  content
   valuableState
   valuableType
   expirationTimeInHours

@@ -26,20 +26,17 @@ stories.add("Default", () => {
 
 stories.add("Default - With modal", () => {
   const valuableDetailsMock = mock[0];
-  const valuableDetailsRender = () => (
-    <ValuableDetails {...valuableDetailsMock} translations={translations}>
-      <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
-    </ValuableDetails>
-  );
 
   return (
     <MockStore state={defaultState} queryMocks={[ValuableDetailsMockQuery]}>
       <ValuableDetailsWithModal
         isOpen={true}
-        renderValuableDetails={valuableDetailsRender}
         onClose={() => {}}
         closeTimeoutMS={100}
-      />
+        {...valuableDetailsMock}
+      >
+        <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
+      </ValuableDetailsWithModal>
     </MockStore>
   );
 });
