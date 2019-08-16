@@ -93,20 +93,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   );
 }
 
-// const DetailsModal = ({ hoursLabel, isOpen, ...valuable }) => (
-//   <ValuableDetailsWithModal
-//     isOpen={open}
-//     onClose={() => {}}
-//     {...valuable} // TODO: pick only detail related
-//   >
-//     <ValuableCard
-//       translatedHoursUnit={hoursLabel}
-//       {...valuable}
-//       // onCardClick={shouldUseValuable ? () => onConsumeValuable(id) : noop}
-//     />
-//   </ValuableDetailsWithModal>
-// );
-
 // eslint-disable-next-line fp/no-mutation
 PlayerValuableListHorizontal.defaultProps = {
   loading: false,
