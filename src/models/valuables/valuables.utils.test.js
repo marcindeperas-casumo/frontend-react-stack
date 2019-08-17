@@ -4,8 +4,6 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
   VALUABLE_SPIN_TYPES,
-  VALUABLE_LOCKED_URL,
-  VALUABLE_DEPOSIT_URL,
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
@@ -13,7 +11,6 @@ import {
   gameBrowserUrl,
   durationToTranslationKey,
   coinValueToSpinType,
-  getCardUrl,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 

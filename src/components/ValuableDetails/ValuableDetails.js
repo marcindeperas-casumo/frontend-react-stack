@@ -10,6 +10,7 @@ import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
   VALUABLE_STATES,
+  VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableDetailsProps,
@@ -77,11 +78,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
     } = this.props;
     const slug = "starburst";
     if (shouldUseValuable(valuableType, valuableState)) {
+      console.log("valuable consumed");
       onConsumeValuable(id);
-      onLaunchGame(slug);
     }
 
-    onLaunchGame(slug);
+    console.log("valuable WON'T be consumed");
+
+    if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
+      onLaunchGame(slug);
+    }
   };
 
   render() {

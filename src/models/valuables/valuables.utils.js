@@ -10,8 +10,6 @@ import {
   VALUABLE_REQUIREMENT_TYPES,
   type DurationTranslations,
   VALUABLE_SPIN_TYPES,
-  VALUABLE_LOCKED_URL,
-  VALUABLE_DEPOSIT_URL,
 } from "Models/valuables";
 
 export const depositUrl = "/en/cash/deposit";
@@ -90,9 +88,8 @@ export const shouldUseValuable = (
   valuableState: ValuableState
 ) => {
   return (
-    anyPass(
-      equals(valuableType, VALUABLE_TYPES.SPINS),
-      equals(valuableType, VALUABLE_TYPES.CASH)
-    ) && !equals(valuableState, VALUABLE_STATES.LOCKED)
+    equals(valuableType, VALUABLE_TYPES.SPINS) ||
+    (equals(valuableType, VALUABLE_TYPES.CASH) &&
+      !equals(valuableState, VALUABLE_STATES.LOCKED))
   );
 };
