@@ -6,8 +6,11 @@ query ValuableDetailsQuery {
     playToUnlockLabel: getText(
       id: "root:valuable-details-component:fields.play_to_unlock"
     )
-    depositToUnlock: getText(
+    depositToUnlockLabel: getText(
       id: "root:valuable-details-component:fields.deposit_to_unlock"
+    )
+    depositNowLabel: getText(
+      id: "root:valuable-details-component:fields.deposit_now"
     )
     expirationTimeLabel: getText(
         id: "root:valuable-details-component:fields.expiration_time_label"

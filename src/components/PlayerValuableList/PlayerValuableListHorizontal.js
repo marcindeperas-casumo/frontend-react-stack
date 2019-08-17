@@ -4,11 +4,7 @@ import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import {
-  VALUABLE_TYPES,
-  getCardUrl,
-  type ValuableDetailsProps,
-} from "Models/valuables";
+// import { VALUABLE_TYPES, type ValuableDetailsProps } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { subscribeToItemCreatedEvent } from "./utils";
@@ -22,6 +18,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     translations,
     refetch,
     onConsumeValuable,
+    onLaunchGame,
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
   const [open, setOpen] = useState(false);
@@ -63,12 +60,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       )}
       <Scrollable>
         {valuables.map(valuable => {
-          const { id, valuableState, valuableType } = valuable;
-          const shouldUseValuable =
-            valuableType === VALUABLE_TYPES.SPINS ||
-            valuableType === VALUABLE_TYPES.CASH;
-
-          // href={getCardUrl(valuableState, valuableType)}
+          const { id } = valuable;
 
           return (
             <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
@@ -89,13 +81,14 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       <ValuableDetailsWithModal
         isOpen={open}
         onClose={() => setOpen(false)}
+        onConsumeValuable={onConsumeValuable}
+        onLaunchGame={onLaunchGame}
         {...selectedValuable} // TODO: pick only detail related
       >
-        <div style={{ width: "160px" }} p>
+        <div style={{ width: "160px" }}>
           <ValuableCard
             translatedHoursUnit={hoursLabel}
             {...selectedValuable}
-            // onCardClick={shouldUseValuable ? () => onConsumeValuable(id) : noop}
           />
         </div>
       </ValuableDetailsWithModal>

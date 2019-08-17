@@ -40,7 +40,7 @@ export const getValuableDetailsAction = ({
   });
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-    return setActionProps(translations.depositToUnlockLabel, depositUrl);
+    return setActionProps(translations.depositNowLabel, depositUrl);
   }
 
   if (anyPass(isSpins, isCash)) {
@@ -85,16 +85,14 @@ export const coinValueToSpinType = (coinValue: number = 0) => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const getCardUrl = (
-  valuableState: ValuableState,
-  valuableType: ValuableType
+export const shouldUseValuable = (
+  valuableType: ValuableType,
+  valuableState: ValuableState
 ) => {
-  if (valuableState === VALUABLE_STATES.LOCKED) {
-    return VALUABLE_LOCKED_URL;
-  }
-  if (valuableType === VALUABLE_TYPES.DEPOSIT) {
-    return VALUABLE_DEPOSIT_URL;
-  }
-
-  return null;
+  return (
+    anyPass(
+      equals(valuableType, VALUABLE_TYPES.SPINS),
+      equals(valuableType, VALUABLE_TYPES.CASH)
+    ) && !equals(valuableState, VALUABLE_STATES.LOCKED)
+  );
 };

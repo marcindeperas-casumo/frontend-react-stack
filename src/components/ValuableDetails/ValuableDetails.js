@@ -6,15 +6,16 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import Button from "@casumo/cmp-button";
-import MaskImage from "Components/MaskImage";
-import { interpolate, convertHoursToDays } from "Utils";
 import {
+  shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableDetailsProps,
 } from "Models/valuables";
+import MaskImage from "Components/MaskImage";
+import { interpolate, convertHoursToDays } from "Utils";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
@@ -64,6 +65,24 @@ export class ValuableDetails extends React.PureComponent<Props> {
       ? { key: "hours", value: expirationTimeInHours }
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
+
+  // TODO: to check what happens unable to consume.
+  handleAction = () => {
+    const {
+      valuableType,
+      valuableState,
+      id,
+      onConsumeValuable,
+      onLaunchGame,
+    } = this.props;
+    const slug = "starburst";
+    if (shouldUseValuable(valuableType, valuableState)) {
+      onConsumeValuable(id);
+      onLaunchGame(slug);
+    }
+
+    onLaunchGame(slug);
+  };
 
   render() {
     const {
@@ -170,7 +189,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
           </Flex>
           <div className="c-valuable-details__footer">
-            <Button href={actionButtonProps.url} className="u-width--1/1">
+            <Button
+              href={actionButtonProps.url}
+              className="u-width--1/1"
+              onClick={this.handleAction}
+            >
               <ActionButtonContent
                 text={actionButtonProps.text}
                 isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
