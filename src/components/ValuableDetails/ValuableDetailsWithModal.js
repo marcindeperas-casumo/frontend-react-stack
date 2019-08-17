@@ -10,15 +10,10 @@ type Props = ValuableDetailsProps & {
   isOpen: boolean,
   /** Close button callback */
   onClose: () => void,
-  /** Host container for modal (used in stories) */
-  // parentSelector?: () => void,
   /** Close modal delay  (used in stories)*/
   closeTimeoutMS?: number,
   children: Node,
 };
-
-const hostElementId = "portal-host-element";
-const getParent = () => document.querySelector(`.root`);
 
 export const ValuableDetailsWithModal = ({
   isOpen,
@@ -32,7 +27,6 @@ export const ValuableDetailsWithModal = ({
       isOpen={isOpen}
       hideModal={onClose}
       className="c-valuable-details-modal c-valuable-details-modal--mobile-landscape"
-      arentSelector={() => getParent()}
       closeTimeoutMS={closeTimeoutMS}
     >
       <ValuableDetailsContainer {...props}>{children}</ValuableDetailsContainer>

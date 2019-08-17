@@ -24,7 +24,7 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   depositNowLabel: string,
   termsAndConditionLabel: string,
   expirationTimeLabel: string,
-  termsAndConditionContent: string,
+  termsAndConditionsContent: string,
 };
 
 export type ValuableDetailsProps = {

@@ -10,9 +10,6 @@ import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
 import {
   type ValuableDetailsTranslations as Translations,
-  // type ValuableRequirementType,
-  // type ValuableType,
-  // type ValuableState,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
@@ -37,30 +34,6 @@ type Props = ValuableDetailsProps & {
   /* Valuable component to be displayed in the header*/
   children: Node,
 };
-
-// type Props = {
-//   id: string,
-//   /* Url of the background image to be used in the header */
-//   backgroundImageUrl: string,
-//   /* Detailed description of the Valuable */
-//   content: string,
-//   /* Caveat for the valuable */
-//   caveat: string,
-//   /* Content for Terms and conditions */
-//   termsContent: string,
-//   /* Hours left for the bonus to expire */
-//   expirationTimeInHours: number,
-//   /* Requirement type to unlock */
-//   requirementType?: ValuableRequirementType,
-//   /* Type of Valuable */
-//   valuableType: ValuableType,
-//   /* The valuable's current state */
-//   valuableState: ValuableState,
-//   /* Translated labels of the component */
-//   translations: Translations,
-//   /* Valuable component to be displayed in the header*/
-//   children: Node,
-// };
 
 const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
@@ -108,7 +81,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const {
       termsAndConditionLabel,
       expirationTimeLabel,
-      termsAndConditionContent,
+      termsAndConditionsContent,
     } = translations;
 
     const expirationInfo = this.expirationBadgeInfo;
@@ -155,7 +128,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
         <div className="u-margin-top--2xlg u-padding-x--md">
           <Flex direction="vertical" align="center">
             <Flex.Item>
-              <Text tag="p" size="md">
+              <Text className="center" tag="p" size="md">
                 {content}
               </Text>
             </Flex.Item>
@@ -192,7 +165,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 className="t-color-grey u-text-align-left"
                 size="sm"
               >
-                {termsAndConditionContent}
+                {termsAndConditionsContent}
               </Text>
             </Flex.Item>
           </Flex>

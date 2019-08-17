@@ -12,6 +12,7 @@ query PlayerValuablesQuery {
       expirationTimeInHours
       valuableType
       title
+      content
       caveat
       currency
       market

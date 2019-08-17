@@ -4,9 +4,12 @@ import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import { VALUABLE_TYPES, getCardUrl } from "Models/valuables";
+import {
+  VALUABLE_TYPES,
+  getCardUrl,
+  type ValuableDetailsProps,
+} from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import { noop } from "Utils";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
@@ -22,6 +25,12 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
   const [open, setOpen] = useState(false);
+  const [selectedValuable, setSelectedValuable] = useState(valuables[0]);
+
+  const showModal = valuable => {
+    setSelectedValuable(valuable);
+    setOpen(true);
+  };
 
   useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
@@ -68,27 +77,28 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
                   <ValuableCard
                     translatedHoursUnit={hoursLabel}
                     {...valuable}
-                    onCardClick={() => setOpen(true)}
+                    onCardClick={() => showModal(valuable)}
                   />
                 </div>
               </div>
-              <ValuableDetailsWithModal
-                isOpen={open}
-                onClose={() => setOpen(false)}
-                {...valuable} // TODO: pick only detail related
-              >
-                <div style={{ width: "160px" }}>
-                  <ValuableCard
-                    translatedHoursUnit={hoursLabel}
-                    {...valuable}
-                    // onCardClick={shouldUseValuable ? () => onConsumeValuable(id) : noop}
-                  />
-                </div>
-              </ValuableDetailsWithModal>
             </div>
           );
         })}
       </Scrollable>
+
+      <ValuableDetailsWithModal
+        isOpen={open}
+        onClose={() => setOpen(false)}
+        {...selectedValuable} // TODO: pick only detail related
+      >
+        <div style={{ width: "160px" }} p>
+          <ValuableCard
+            translatedHoursUnit={hoursLabel}
+            {...selectedValuable}
+            // onCardClick={shouldUseValuable ? () => onConsumeValuable(id) : noop}
+          />
+        </div>
+      </ValuableDetailsWithModal>
     </div>
   );
 }

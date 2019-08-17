@@ -1,3 +1,7 @@
+.c-abstract-modal {
+  overflow: scroll;
+}
+
 //default modal dimensions when no custom class or ResponsiveLayout component is provided
 .c-abstract-modal--default {
   @include cudl-breakpoint(mobile) {
@@ -17,7 +21,6 @@
   background-color: rgba(cudl-palette(grey, dark-2), 0.8);
   bottom: 0;
   left: 0;
-  overflow: auto;
   padding-left: var(--shell-offset-left, 0);
   position: fixed;
   right: 0;
