@@ -3,6 +3,7 @@
   "playNowLabel": "Play now",
   "playToUnlockLabel": "Play to unlock",
   "depositToUnlockLabel": "Deposit to unlock",
+  "depositNowLabel": "Deposit now",
   "expirationTimeLabel": "Expires in",
   "hour_singular": "{{value}} Hour",
   "hour_plural": "{{value}} Hours",

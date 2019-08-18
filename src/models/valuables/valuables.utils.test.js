@@ -27,7 +27,7 @@ describe("Valuables.utils", () => {
 
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(
-      translations.depositNow,
+      translations.depositNowLabel,
       depositUrl
     );
     const actualValue = getValuableDetailsAction({

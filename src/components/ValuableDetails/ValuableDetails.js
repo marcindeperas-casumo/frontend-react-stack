@@ -77,12 +77,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
       onLaunchGame,
     } = this.props;
     const slug = "starburst";
+
     if (shouldUseValuable(valuableType, valuableState)) {
-      console.log("valuable consumed");
       onConsumeValuable(id);
     }
-
-    console.log("valuable WON'T be consumed");
 
     if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
       onLaunchGame(slug);
@@ -198,6 +196,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               href={actionButtonProps.url}
               className="u-width--1/1"
               onClick={this.handleAction}
+              data-test="valuable-action-button"
             >
               <ActionButtonContent
                 text={actionButtonProps.text}

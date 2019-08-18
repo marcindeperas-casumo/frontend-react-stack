@@ -38,12 +38,11 @@
     "magnitude": "20",
     "coinValue": 30,
     "game": {
-      "name": "Starburst",
-      "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png"
+      "name": "Starburst"
     },
     "description": "Starburst",
     "caveat": "T&Cs apply",
-    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-spins.png",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
     "market": "en",
     "expirationTimeInHours": "100",
     "valuableState": "Fresh"

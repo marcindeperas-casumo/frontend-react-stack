@@ -4,7 +4,6 @@ import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-// import { VALUABLE_TYPES, type ValuableDetailsProps } from "Models/valuables";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { subscribeToItemCreatedEvent } from "./utils";

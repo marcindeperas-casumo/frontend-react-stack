@@ -2,18 +2,30 @@ import React from "react";
 import { shallow } from "enzyme";
 import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { VALUABLE_STATES } from "Models/valuables";
+import { shouldUseValuable } from "Models/valuables/valuables.utils";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
+// jest.mock("Models/valuables/valuables.utils");
 
 describe("ValuableDetails", () => {
   let rendered;
-  const mockValuable = mockValuables[0];
+  let mockValuable = mockValuables[0];
   const Foo = () => <div>baz</div>;
+  let onConsume;
+  let onLaunch;
 
   beforeEach(() => {
+    onConsume = jest.fn();
+    onLaunch = jest.fn();
+
     rendered = shallow(
-      <ValuableDetails {...mockValuable} translations={mockTranslations}>
+      <ValuableDetails
+        {...mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+        onLaunchGame={onLaunch}
+      >
         <Foo />
       </ValuableDetails>
     );
@@ -105,5 +117,68 @@ describe("ValuableDetails", () => {
         .dive()
         .find(OpenPadlock)
     ).toHaveLength(0);
+  });
+
+  test("should call the onConsume and onlaunch if type is spins and unlocked", () => {
+    mockValuable = mockValuables[2];
+
+    rendered = shallow(
+      <ValuableDetails
+        {...mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+        onLaunchGame={onLaunch}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    expect(onConsume).toHaveBeenCalledTimes(1);
+    expect(onLaunch).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call not neither onConsume and onlaunch if type is deposit", () => {
+    mockValuable = mockValuables[1];
+
+    rendered = shallow(
+      <ValuableDetails
+        {...mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+        onLaunchGame={onLaunch}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    expect(onConsume).toHaveBeenCalledTimes(0);
+    expect(onLaunch).toHaveBeenCalledTimes(0);
+  });
+
+  test("should only call on consume if type is cash", () => {
+    mockValuable = mockValuables[0];
+
+    rendered = shallow(
+      <ValuableDetails
+        {...mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+        onLaunchGame={onLaunch}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    expect(onConsume).toHaveBeenCalledTimes(1);
+    expect(onLaunch).toHaveBeenCalledTimes(0);
   });
 });
