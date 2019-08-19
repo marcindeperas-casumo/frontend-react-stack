@@ -58,7 +58,7 @@ class PromotionCardList extends PureComponent<Props> {
         <div className="o-wrapper">
           <Mobile>
             <ScrollableListTitleRow
-              seeMore={seeMore}
+              seeMore={{ text: seeMore, url: seeMoreUrl }}
               title={title}
               paddingLeft
             />
@@ -77,7 +77,10 @@ class PromotionCardList extends PureComponent<Props> {
             </div>
           </Mobile>
           <Desktop>
-            <ScrollableListTitleRow seeMore={seeMore} title={title} />
+            <ScrollableListTitleRow
+              seeMore={{ text: seeMore, url: seeMoreUrl }}
+              title={title}
+            />
             <div className={parentClassName}>
               <ScrollableListPaginated
                 list={{
