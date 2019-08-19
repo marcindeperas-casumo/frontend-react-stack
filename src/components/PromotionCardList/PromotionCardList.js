@@ -67,7 +67,7 @@ class PromotionCardList extends PureComponent<Props> {
                 <Scrollable
                   itemClassName={itemClassName}
                   itemSpacing="md"
-                  className=" u-padding-top--lg"
+                  className="u-padding-top--lg"
                 >
                   {promotionsSlugs.map(id =>
                     promotionCardContainerRenderer({ id })
