@@ -1,4 +1,5 @@
-Related issue: Casumo/Home#ISSUE_NUMBER
+<!--i.e. Related task: https://jira.casumocave.com/browse/PRCA-107-->
+Related task: https://jira.casumocave.com/browse/TASK_CODE
 
 <!--A short description about the initial problem and how this solution will solve it. -->
 
