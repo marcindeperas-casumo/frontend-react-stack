@@ -2,7 +2,6 @@ import React from "react";
 import { shallow } from "enzyme";
 import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { VALUABLE_STATES } from "Models/valuables";
-import { shouldUseValuable } from "Models/valuables/valuables.utils";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";

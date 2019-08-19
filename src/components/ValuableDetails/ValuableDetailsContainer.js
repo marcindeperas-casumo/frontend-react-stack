@@ -1,6 +1,6 @@
 import React from "react";
 import { Query } from "react-apollo";
-import { ValuableDetailsQuery } from "./queries/ValuableDetails.graphql";
+import { ValuableDetailsQuery } from "./ValuableDetails.graphql";
 import { ValuableDetails } from "./ValuableDetails";
 
 class ValuableDetailsTypedQuery extends Query<ValuableDetailsQuery, null> {}

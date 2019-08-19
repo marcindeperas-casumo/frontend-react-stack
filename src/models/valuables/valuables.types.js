@@ -39,6 +39,8 @@ export type ValuableDetailsProps = {
   expirationTimeInHours: number,
   /* Requirement type to unlock */
   requirementType?: ValuableRequirementType,
+  /*Game to the valuable can be wagered on if locked */
+  gameSlug?: string,
   /* Type of Valuable */
   valuableType: ValuableType,
   /* The valuable's current state */

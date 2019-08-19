@@ -67,7 +67,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
 
-  // TODO: to check what happens unable to consume.
   handleAction = () => {
     const {
       valuableType,
@@ -75,15 +74,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
       id,
       onConsumeValuable,
       onLaunchGame,
+      gameSlug,
     } = this.props;
-    const slug = "starburst";
 
     if (shouldUseValuable(valuableType, valuableState)) {
-      onConsumeValuable(id);
-    }
-
-    if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
-      onLaunchGame(slug);
+      onConsumeValuable(id).then(() => {
+        if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
+          onLaunchGame(gameSlug);
+        }
+      });
     }
   };
 

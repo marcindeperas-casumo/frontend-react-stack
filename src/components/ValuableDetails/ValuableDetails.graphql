@@ -21,3 +21,20 @@ query ValuableDetailsQuery {
     day_singular: getText(id: "root:units:fields.day")
     day_plural: getText(id: "root:units:fields.days")
 }
+
+fragment ValuableDetails_Valuable on PlayerValuable {
+  id
+  backgroundImage
+  content
+  caveat
+  expirationTimeInHours
+  gameSlug
+  valuableType
+  valuableState
+  ... on PlayerValuableSpins {
+    requirementType
+  }
+  ... on PlayerValuableCash {
+    requirementType
+  }
+}
