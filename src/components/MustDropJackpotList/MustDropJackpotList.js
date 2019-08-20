@@ -24,7 +24,7 @@ export default class MustDropJackpotList extends PureComponent<Props> {
       <GameListSkeleton className="u-padding--md" hasTitle={false} />
     ) : (
       <div>
-        <div className="u-padding-x--md u-padding-bottom--md">
+        <div className="u-padding-x--md u-padding-bottom--md c-list-wrapper">
           <List
             items={ids}
             data-test="must-drop-jackpots-list"
