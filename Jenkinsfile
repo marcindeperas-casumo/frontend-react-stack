@@ -75,7 +75,7 @@ def runChromatic () {
 
 def rollbarDeployTracking () {
     def data = """
-    {"access_token":"${ROLLBAR_LOS2}","environment":"production","revision":"${GIT_COMMIT}", "local_username":"${env.gitAuthor}"}
+    {"access_token":"${ROLLBAR_REACT_STACK}","environment":"production","revision":"${GIT_COMMIT}", "local_username":"${env.gitAuthor}"}
     """
 
     sh "curl --request POST \
