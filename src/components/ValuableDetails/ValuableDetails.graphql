@@ -23,6 +23,7 @@ query ValuableDetailsQuery {
 }
 
 fragment ValuableDetails_PlayerValuable on PlayerValuable {
+  __typename
   id
   backgroundImage
   content

@@ -13,6 +13,7 @@ import {
   VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
+  type ValuableRequirementType,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
@@ -69,6 +70,18 @@ export class ValuableDetails extends React.PureComponent<Props> {
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
 
+  get requirementType(): ?ValuableRequirementType {
+    const { valuableDetails } = this.props;
+    if (
+      valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableSpins"
+    ) {
+      return valuableDetails.requirementType;
+    }
+
+    return null;
+  }
+
   handleAction = () => {
     const { valuableDetails } = this.props;
     const { valuableType, valuableState, id } = valuableDetails;
@@ -93,8 +106,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationTimeInHours,
       valuableType,
       valuableState,
-      // $FlowIgnore - temp
-      requirementType,
     } = valuableDetails;
     const { translations, children } = this.props;
     const {
@@ -117,7 +128,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
       valuableState,
-      requirementType,
+      requirementType: this.requirementType,
       translations,
     });
 
