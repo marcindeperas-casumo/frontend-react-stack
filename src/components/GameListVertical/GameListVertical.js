@@ -22,7 +22,13 @@ export class GameListVertical extends PureComponent<Props> {
     // in all the components.
     const ids = this.props.ids || [];
     return (
-      <List itemSpacing="none" items={ids} render={id => <GameRow id={id} />} />
+      <div className="o-list-wrapper">
+        <List
+          itemSpacing="none"
+          items={ids}
+          render={id => <GameRow id={id} />}
+        />
+      </div>
     );
   }
 }
