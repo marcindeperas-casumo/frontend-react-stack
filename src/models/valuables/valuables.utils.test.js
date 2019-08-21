@@ -25,48 +25,49 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
   });
 
-  // test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
-  //   const expectedValue = getExpectedActionValue(
-  //     translations.depositNowLabel,
-  //     depositUrl
-  //   );
-  //   const actualValue = getValuableDetailsAction({
-  //     valuableType,
-  //     valuableState,
-  //     translations,
-  //   });
+  test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
+    const expectedValue = getExpectedActionValue(
+      translations.depositNowLabel,
+      depositUrl
+    );
 
-  //   expect(actualValue).toEqual(expectedValue);
-  // });
+    const actualValue = getValuableDetailsAction({
+      valuableType,
+      valuableState,
+      translations,
+    });
 
-  // test("should return gamebrowser url and play now translation when type is CASH unclocked", () => {
-  //   valuableType = VALUABLE_TYPES.CASH;
+    expect(actualValue).toEqual(expectedValue);
+  });
 
-  //   const expectedValue = getExpectedActionValue(
-  //     translations.playNowLabel,
-  //     gameBrowserUrl
-  //   );
-  //   const actualValue = getValuableDetailsAction({
-  //     valuableType,
-  //     valuableState,
-  //     translations,
-  //   });
+  test("should return gamebrowser url and play now translation when type is CASH unclocked", () => {
+    valuableType = VALUABLE_TYPES.CASH;
 
-  //   expect(actualValue).toEqual(expectedValue);
-  // });
+    const expectedValue = getExpectedActionValue(
+      translations.playNowLabel,
+      gameBrowserUrl
+    );
+    const actualValue = getValuableDetailsAction({
+      valuableType,
+      valuableState,
+      translations,
+    });
 
-  // test("should return gamebrowser url and play now translation when type is SPINS unclocked", () => {
-  //   valuableType = VALUABLE_TYPES.SPINS;
+    expect(actualValue).toEqual(expectedValue);
+  });
 
-  //   const expectedValue = getExpectedActionValue(translations.playNowLabel, "");
-  //   const actualValue = getValuableDetailsAction({
-  //     valuableType,
-  //     valuableState,
-  //     translations,
-  //   });
+  test("should return gamebrowser url and play now translation when type is SPINS unclocked", () => {
+    valuableType = VALUABLE_TYPES.SPINS;
 
-  //   expect(actualValue).toEqual(expectedValue);
-  // });
+    const expectedValue = getExpectedActionValue(translations.playNowLabel, "");
+    const actualValue = getValuableDetailsAction({
+      valuableType,
+      valuableState,
+      translations,
+    });
+
+    expect(actualValue).toEqual(expectedValue);
+  });
 
   test("should return deposit url and depositToUnlock label when CASH, locked with deposit req.", () => {
     valuableType = VALUABLE_TYPES.CASH;

@@ -23,7 +23,7 @@ export const getValuableDetailsAction = ({
 }: {
   valuableType: ValuableType,
   valuableState: ValuableState,
-  requirementType: ?ValuableRequirementType,
+  requirementType?: ?ValuableRequirementType,
   translations: ValuableDetailsTranslations,
 }): {
   text: string,
