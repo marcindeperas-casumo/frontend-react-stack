@@ -39,7 +39,6 @@ stories.add("Default - With modal", () => {
         isOpen={true}
         onClose={() => {}}
         closeTimeoutMS={100}
-        translations={translations}
         valuableDetails={valuableDetailsMock}
       >
         <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />

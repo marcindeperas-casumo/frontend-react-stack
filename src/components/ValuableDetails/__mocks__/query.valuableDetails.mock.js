@@ -1,5 +1,5 @@
 import { ValuableDetailsQuery } from "../ValuableDetails.graphql";
-import { labels } from "./mocks";
+import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 
 export default {
   request: {
@@ -8,7 +8,7 @@ export default {
   },
   result: {
     data: {
-      ...labels
+      ...translations
     },
   },
 };
