@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import { F } from "ramda";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { mockValuable } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { ValuableCard } from "Components/ValuableCard";
@@ -18,7 +19,12 @@ stories.add("Default", () => {
   const valuableDetailsMock = mock[0];
 
   return (
-    <ValuableDetails {...valuableDetailsMock} translations={translations}>
+    <ValuableDetails
+      valuableDetails={valuableDetailsMock}
+      translations={translations}
+      onConsumeValuable={F}
+      onLaunchGame={() => {}}
+    >
       <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
     </ValuableDetails>
   );
@@ -33,7 +39,8 @@ stories.add("Default - With modal", () => {
         isOpen={true}
         onClose={() => {}}
         closeTimeoutMS={100}
-        {...valuableDetailsMock}
+        translations={translations}
+        valuableDetails={valuableDetailsMock}
       >
         <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
       </ValuableDetailsWithModal>
@@ -45,7 +52,12 @@ stories.add("Deposit - Locked", () => {
   const valuableDetailsMock = mock[1];
 
   return (
-    <ValuableDetails {...valuableDetailsMock} translations={translations}>
+    <ValuableDetails
+      valuableDetails={valuableDetailsMock}
+      translations={translations}
+      onConsumeValuable={F}
+      onLaunchGame={() => {}}
+    >
       <ValuableCard {...mockValuable(VALUABLE_TYPES.DEPOSIT)} />
     </ValuableDetails>
   );
