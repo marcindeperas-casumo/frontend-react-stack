@@ -33,7 +33,7 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: string => Promise<any>,
+  onConsumeValuable: string => Promise<boolean>,
   /** The function to be called to launch game which will be triggered after consuming the valuable */
   onLaunchGame: () => void,
   translations: Translations,
