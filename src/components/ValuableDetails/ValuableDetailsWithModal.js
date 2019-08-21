@@ -2,16 +2,17 @@
 import React, { type Node } from "react";
 import { AbstractModal } from "Components/AbstractModal";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
-import type { ValuableDetailsProps } from "Models/valuables";
+// import { type ValuableDetailsProps } from "Models/valuables";
 import "./ValuableDetails.scss";
 
-type Props = ValuableDetailsProps & {
+type Props = {
   /** Should this view be displayed? */
   isOpen: boolean,
   /** Close button callback */
   onClose: () => void,
   /** Close modal delay  (used in stories)*/
   closeTimeoutMS?: number,
+  valuableDetails: ValuableDetails_PlayerValuable,
   children: Node,
 };
 

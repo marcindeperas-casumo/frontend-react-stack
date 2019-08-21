@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import { equals, anyPass } from "ramda";
 import {
   type ValuableDetailsTranslations,
@@ -23,7 +23,7 @@ export const getValuableDetailsAction = ({
 }: {
   valuableType: ValuableType,
   valuableState: ValuableState,
-  requirementType?: ValuableRequirementType,
+  requirementType: ?ValuableRequirementType,
   translations: ValuableDetailsTranslations,
 }): {
   text: string,
@@ -43,7 +43,10 @@ export const getValuableDetailsAction = ({
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-      if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
+      if (
+        requirementType &&
+        equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)
+      ) {
         return setActionProps(translations.depositToUnlockLabel, depositUrl);
       }
 

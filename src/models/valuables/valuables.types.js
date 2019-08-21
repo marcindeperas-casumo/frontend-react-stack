@@ -1,4 +1,5 @@
 // @flow
+import type { Game } from "Types/game";
 import {
   VALUABLE_STATES,
   VALUABLE_TYPES,
@@ -38,9 +39,9 @@ export type ValuableDetailsProps = {
   /* Hours left for the bonus to expire */
   expirationTimeInHours: number,
   /* Requirement type to unlock */
-  requirementType?: ValuableRequirementType,
-  /*Game to the valuable can be wagered on if locked */
-  gameSlug?: string,
+  requirementType: ?ValuableRequirementType,
+  /*Game to launch on click of button */
+  game?: Game,
   /* Type of Valuable */
   valuableType: ValuableType,
   /* The valuable's current state */

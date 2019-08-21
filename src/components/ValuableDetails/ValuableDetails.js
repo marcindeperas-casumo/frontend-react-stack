@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import React, { type Node } from "react";
 import { equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
@@ -13,7 +13,6 @@ import {
   VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
-  type ValuableDetailsProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { interpolate, convertHoursToDays } from "Utils";
@@ -30,10 +29,13 @@ type BadgeInfoType = {
   value: number,
 };
 
-type Props = ValuableDetailsProps & {
-  /* Translated labels of the component */
+export type Props = {
+  valuableDetails: ValuableDetails_PlayerValuable,
+  /** The function to be called to consume the valuable which will be triggered by each card click */
+  onConsumeValuable: string => Promise<any>,
+  /** The function to be called to launch game which will be triggered after consuming the valuable */
+  onLaunchGame: () => void,
   translations: Translations,
-  /* Valuable component to be displayed in the header*/
   children: Node,
 };
 
@@ -56,11 +58,11 @@ const ActionButtonContent = ({ isLocked, text }) => {
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get expiresWithin24Hours() {
-    return this.props.expirationTimeInHours <= 24;
+    return this.props.valuableDetails.expirationTimeInHours <= 24;
   }
 
   get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props;
+    const { expirationTimeInHours } = this.props.valuableDetails;
 
     return this.expiresWithin24Hours
       ? { key: "hours", value: expirationTimeInHours }
@@ -68,25 +70,21 @@ export class ValuableDetails extends React.PureComponent<Props> {
   }
 
   handleAction = () => {
-    const {
-      valuableType,
-      valuableState,
-      id,
-      onConsumeValuable,
-      onLaunchGame,
-      gameSlug,
-    } = this.props;
+    const { valuableDetails } = this.props;
+    const { valuableType, valuableState, id } = valuableDetails;
+    const { onConsumeValuable, onLaunchGame } = this.props;
 
     if (shouldUseValuable(valuableType, valuableState)) {
       onConsumeValuable(id).then(() => {
-        if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
-          onLaunchGame(gameSlug);
+        if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
+          onLaunchGame();
         }
       });
     }
   };
 
   render() {
+    const { valuableDetails } = this.props;
     const {
       id,
       backgroundImage,
@@ -95,16 +93,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationTimeInHours,
       valuableType,
       valuableState,
+      // $FlowIgnore - temp
       requirementType,
-      translations,
-      children,
-    } = this.props;
+    } = valuableDetails;
+    const { translations, children } = this.props;
     const {
       termsAndConditionLabel,
       expirationTimeLabel,
       termsAndConditionsContent,
     } = translations;
-
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
       expirationInfo.key,
@@ -138,7 +135,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </MaskImage>
           </div>
           <Flex
-            className="o-ratio__content"
+            className="o-ratio__content u-margin-bottom--md"
             justify="end"
             align="center"
             direction="vertical"

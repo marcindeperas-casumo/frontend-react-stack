@@ -1,4 +1,5 @@
-fragment ValuableCard_Valuable on PlayerValuable {
+fragment ValuableCard_PlayerValuable on PlayerValuable {
+  __typename
   id
   title
   content
@@ -11,13 +12,6 @@ fragment ValuableCard_Valuable on PlayerValuable {
   backgroundImage
   ... on PlayerValuableSpins {
     coinValue
-    game {
-      slug
-    }
-    requirementType,
     description
-  }
-  ... on PlayerValuableCash {
-    requirementType
   }
 }

@@ -1,5 +1,4 @@
 // @flow
-
 type Translations = {
   listTitleLabel: string,
   hoursLabel: string,
@@ -16,8 +15,6 @@ export type PlayerValuableListProps = {
   valuables: Array<PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => Promise<any>,
-  /** The function to be called to launch game which will be triggered after consuming the valuable */
-  onLaunchGame: string => void,
   /** An array of translated labels */
   translations: Translations, // TODO: update type,
 };

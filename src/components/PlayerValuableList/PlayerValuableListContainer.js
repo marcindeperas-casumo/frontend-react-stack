@@ -1,7 +1,6 @@
 // @flow
 import React, { type Node } from "react";
 import { Query, Mutation } from "react-apollo";
-import { launchGame } from "Models/games";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { PlayerValuablesQuery as LocalQuery } from "./PlayerValuables.graphql";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
@@ -43,7 +42,6 @@ export const PlayerValuableListContainer = (props: Props) => {
                 error,
                 loading,
                 onConsumeValuable: consumeValuableMutation(useValuable),
-                onLaunchGame: launchGame,
                 refetch,
                 translations: playerValuableTranslations,
                 valuables,

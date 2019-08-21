@@ -17,7 +17,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     translations,
     refetch,
     onConsumeValuable,
-    onLaunchGame,
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
   const [open, setOpen] = useState(false);
@@ -81,8 +80,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         isOpen={open}
         onClose={() => setOpen(false)}
         onConsumeValuable={onConsumeValuable}
-        onLaunchGame={onLaunchGame}
-        {...selectedValuable} // TODO: pick only detail related
+        valuableDetails={selectedValuable}
       >
         <div style={{ width: "160px" }}>
           <ValuableCard

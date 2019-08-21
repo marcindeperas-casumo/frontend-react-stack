@@ -5,25 +5,25 @@ import { VALUABLE_STATES } from "Models/valuables";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
-// jest.mock("Models/valuables/valuables.utils");
 
 describe("ValuableDetails", () => {
   let rendered;
   let mockValuable = mockValuables[0];
   const Foo = () => <div>baz</div>;
+  const gameSlug = "starburst";
   let onConsume;
   let onLaunch;
 
   beforeEach(() => {
-    onConsume = jest.fn();
+    onConsume = jest.fn().mockResolvedValue(true);
     onLaunch = jest.fn();
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={onLaunch}
+        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -49,7 +49,10 @@ describe("ValuableDetails", () => {
     const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${expirationHours} Hours`;
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={{
+          ...mockValuable,
+          expirationTimeInHours: expirationHours,
+        }}
         expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
@@ -73,7 +76,10 @@ describe("ValuableDetails", () => {
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={{
+          ...mockValuable,
+          expirationTimeInHours: expirationHours,
+        }}
         expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
@@ -93,8 +99,10 @@ describe("ValuableDetails", () => {
   test("should display open padlock icon when valuable is LOCKED", () => {
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
-        valuableState={VALUABLE_STATES.LOCKED}
+        valuableDetails={{
+          ...mockValuable,
+          valuableState: VALUABLE_STATES.LOCKED,
+        }}
         translations={mockTranslations}
       >
         <Foo />
@@ -118,15 +126,15 @@ describe("ValuableDetails", () => {
     ).toHaveLength(0);
   });
 
-  test("should call the onConsume and onlaunch if type is spins and unlocked", () => {
+  test("should call the onConsume and onlaunch if type is spins and unlocked", async () => {
     mockValuable = mockValuables[2];
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={onLaunch}
+        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -135,7 +143,7 @@ describe("ValuableDetails", () => {
     const actionButton = rendered.find("[data-test='valuable-action-button']");
     actionButton.simulate("click");
 
-    expect(onConsume).toHaveBeenCalledTimes(1);
+    await expect(onConsume).toHaveBeenCalledTimes(1);
     expect(onLaunch).toHaveBeenCalledTimes(1);
   });
 
@@ -144,10 +152,10 @@ describe("ValuableDetails", () => {
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={onLaunch}
+        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -165,10 +173,10 @@ describe("ValuableDetails", () => {
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={onLaunch}
+        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
