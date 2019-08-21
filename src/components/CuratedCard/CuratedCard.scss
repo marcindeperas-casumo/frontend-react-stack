@@ -10,6 +10,8 @@ $curated-twerkpoints: (
   )
 );
 
+// There is a link between those values and curatedCardOptions 'w' and 'h' in CuratedCardBackground.js
+// Ratio here needs to be reflected in `w`/`h` imgixOpts params
 //prettier-ignore
 $curated-card-ratios: (
   mobile: 100%,
@@ -20,7 +22,7 @@ $curated-card-ratios: (
     254/545
   ) * 100%,
   desktop: (
-    512/1181
+    432/1181
   ) * 100%,
   desktoplg: (
     616/1661

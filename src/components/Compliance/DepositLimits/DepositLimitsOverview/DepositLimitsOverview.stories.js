@@ -18,6 +18,7 @@ stories.add("Default", () => (
   <DepositLimitsOverview
     locale="en-GB"
     currency="EUR"
+    hideRemoveAll={false}
     t={t}
     limits={{
       daily: 600,
@@ -47,6 +48,7 @@ stories.add("No limits", () => (
   <DepositLimitsOverview
     locale="en-GB"
     currency="EUR"
+    hideRemoveAll={false}
     t={t}
     limits={{
       daily: null,
@@ -68,6 +70,7 @@ stories.add("Removing all", () => (
     locale="en-GB"
     currency="EUR"
     t={t}
+    hideRemoveAll={false}
     limits={{
       daily: 600,
       weekly: 1500,

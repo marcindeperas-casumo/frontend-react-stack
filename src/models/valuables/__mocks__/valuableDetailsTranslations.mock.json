@@ -4,12 +4,8 @@
   "playToUnlockLabel": "Play to unlock",
   "depositToUnlockLabel": "Deposit to unlock",
   "expirationTimeLabel": "Expires in",
-  "hours": {
-    "singular": "{{value}} Hour",
-    "plural": "{{value}} Hours"
-  },
-  "days": {
-    "singular": "{{value}} Day",
-    "plural": "{{value}} Days"
-  }
+  "hour_singular": "{{value}} Hour",
+  "hour_plural": "{{value}} Hours",
+  "day_singular": "{{value}} Day",
+  "day_plural": "{{value}} Days"
 }

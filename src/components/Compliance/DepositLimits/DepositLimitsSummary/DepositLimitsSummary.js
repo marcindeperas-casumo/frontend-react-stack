@@ -5,12 +5,13 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { formatCurrency } from "Utils";
-import type {
-  AllLimits,
-  DepositKinds,
-  DepositLimitPreadjust,
+import {
+  diffLimits,
+  checkIfConditionsApply,
+  type AllLimits,
+  type DepositKinds,
+  type DepositLimitPreadjust,
 } from "Models/playOkay/depositLimits";
-import { diffLimits, checkIfConditionsApply } from "./utils";
 import { LimitChangeIcon } from "./LimitChangeIcon";
 import { AdditionalConditions } from "./AdditionalConditions";
 import { limitTypes } from "..";

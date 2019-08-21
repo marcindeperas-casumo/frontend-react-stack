@@ -7,7 +7,8 @@ import { DepositLimitsSuspendAccountContainer } from "Components/Compliance/Depo
 import {
   diffLimits,
   getSpecificKinds,
-} from "Components/Compliance/DepositLimits/DepositLimitsSummary/utils";
+  hasRule,
+} from "Models/playOkay/depositLimits";
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
@@ -23,11 +24,10 @@ import type {
   DepositLimitPreadjust,
   LimitLock,
   ResponsibleGamblingTest,
-  DepositLimitsAdjustement,
+  DepositLimitsAdjustment,
 } from "Models/playOkay/depositLimits";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED } from "Src/constants";
-import { hasRule } from "Models/playOkay/depositLimits";
 import { ResponsibleGamblingTestContainer } from "../ResponsibleGamblingTest";
 import { GoBack } from "./GoBack";
 import { adjustLimitsAndNavigate } from "./adjustLimitsAndNavigate";
@@ -40,7 +40,7 @@ type Props = {
   lock: ?LimitLock,
   undoable: ?boolean,
   remaining: AllLimitsOnlyValues,
-  pendingLimitChanges?: DepositLimitsAdjustement,
+  pendingLimitChanges?: DepositLimitsAdjustment,
 
   currency: string,
   locale: string,
@@ -83,7 +83,6 @@ type DepositLimitsRoute =
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function DepositLimitsView(props: Props) {
   React.useEffect(() => {
-    props.init();
     props.fetchTranslations();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -100,6 +99,12 @@ export function DepositLimitsView(props: Props) {
     };
   });
   const [{ route, depositKind, limitChanges, pages }, navigate] = useRouting();
+  React.useEffect(() => {
+    if (route === "overview") {
+      props.init();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [route]);
 
   if (!props.t || !props.limits || !props.remaining || !props.preadjust) {
     return "loading";
@@ -121,6 +126,9 @@ export function DepositLimitsView(props: Props) {
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
         limitCancel={props.limitCancel}
+        hideRemoveAll={
+          Boolean(props.lock) || Boolean(props.pendingLimitChanges)
+        }
         edit={x => navigate({ route: "form", depositKind: x })}
         add={() => navigate({ route: "form" })}
         removeAll={() => {
@@ -138,6 +146,7 @@ export function DepositLimitsView(props: Props) {
       <DepositLimitsFormContainer
         t={props.t}
         lock={props.lock}
+        pendingLimitChanges={props.pendingLimitChanges}
         currency={props.currency}
         locale={props.locale}
         responsibleGamblingTestRequired={hasRule(
@@ -246,7 +255,7 @@ export function DepositLimitsView(props: Props) {
         <DepositLimitsHistoryContainer
           t={props.t}
           locale={props.locale}
-          currency={props.limits.currency}
+          currency={props.currency}
         />
       )}
     </Flex>

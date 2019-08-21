@@ -22,6 +22,9 @@ export function* fetchPageBySlugSaga(action) {
   yield call(delay, 0);
 
   const { slug } = action;
+  if (!slug) {
+    return;
+  }
   const shouldFetch = yield select(shouldFetchPage(slug));
 
   // Instantiate a fetch only if the page is not in the store yet.

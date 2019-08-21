@@ -14,6 +14,14 @@ export type AnnualOverview = {
   pdfUrl?: string,
 };
 
+export type AnnualOverviewWrapper = {
+  data?: AnnualOverview,
+  meta: {
+    isFetching?: boolean,
+    isPdfUrlFetching?: boolean,
+  },
+};
+
 export type WalletTotalsProps = {
   walletId: string,
   startTime: DateTime,
