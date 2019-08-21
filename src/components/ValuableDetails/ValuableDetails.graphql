@@ -13,7 +13,7 @@ query ValuableDetailsQuery {
       id: "root:valuable-details-component:fields.deposit_now"
     )
     expirationTimeLabel: getText(
-        id: "root:valuable-details-component:fields.expiration_time_label"
+        id: "root:valuable-details-component:fields.expirationTimeLabel"
     )
     termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
     hour_singular: getText(id: "root:units:fields.hour")
