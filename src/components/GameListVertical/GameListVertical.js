@@ -22,7 +22,7 @@ export class GameListVertical extends PureComponent<Props> {
     // in all the components.
     const ids = this.props.ids || [];
     return (
-      <div className="c-list-wrapper">
+      <div className="o-list-wrapper">
         <List
           itemSpacing="none"
           items={ids}
