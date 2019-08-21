@@ -12,6 +12,7 @@ if (env.BRANCH_NAME=="master"){
             .gradleDockerPublish()
             .gradleRelease()
             .deployToProduction('frontend-react-stack')
+            .customStep('Rollbar Deploy Tracking', this.&rollbarDeployTracking)
             .build('js-builder')
 
         slackSend channel: "operations-frontend", color: '#ADFF2F', message:  """
@@ -70,4 +71,15 @@ def runLint() {
 
 def runChromatic () {
     sh "yarn chromatic"
+}
+
+def rollbarDeployTracking () {
+    def data = """
+    {"access_token":"${ROLLBAR_REACT_STACK}","environment":"production","revision":"${GIT_COMMIT}", "local_username":"${env.gitAuthor}"}
+    """
+
+    sh "curl --request POST \
+        --url https://api.rollbar.com/api/1/deploy/ \
+        --header 'content-type: application/json' \
+        --data '${data}'"
 }
