@@ -6,7 +6,6 @@ import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";
 import {
-  // type ValuableType,
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,

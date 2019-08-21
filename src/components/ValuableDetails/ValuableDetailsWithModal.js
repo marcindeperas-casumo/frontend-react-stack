@@ -2,7 +2,6 @@
 import React, { type Node } from "react";
 import { AbstractModal } from "Components/AbstractModal";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
-// import { type ValuableDetailsProps } from "Models/valuables";
 import "./ValuableDetails.scss";
 
 type Props = {
