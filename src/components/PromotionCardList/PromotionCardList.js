@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import PromotionCardContainer from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
@@ -16,6 +17,12 @@ type Props = {
   titleColor?: string,
   backgroundColor?: string,
   seeMore: string,
+};
+
+const marginPerDevice = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "3xlg",
 };
 
 class PromotionCardList extends PureComponent<Props> {
@@ -62,7 +69,11 @@ class PromotionCardList extends PureComponent<Props> {
               title={title}
               paddingLeft
             />
-            <div className="u-margin-x--3xlg@desktop u-margin-x--3xlg@tablet u-margin-x--md">
+            <div
+              className={classNames(
+                createModifierClasses("u-margin-x", marginPerDevice)
+              )}
+            >
               <div className={parentClassName}>
                 <Scrollable
                   itemClassName={itemClassName}
