@@ -1,4 +1,4 @@
-import { ValuableDetailsQuery } from "../queries/ValuableDetails.graphql";
+import { ValuableDetailsQuery } from "../ValuableDetails.graphql";
 import { labels } from "./mocks";
 
 export default {
