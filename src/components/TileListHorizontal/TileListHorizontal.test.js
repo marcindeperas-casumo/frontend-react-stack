@@ -106,24 +106,22 @@ describe("<TileListHorizontal /> - Desktop", () => {
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
   });
 
+  //eslint-disable-next-line sonarjs/no-identical-functions
   test("should render skeleton while loading", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={false} title="I'm a cute title" />
+        <TileListHorizontal isLoaded={false} title={title} />
       </MockStore>
     );
 
     expect(rendered.find(TileListHorizontalSkeleton)).toHaveLength(1);
   });
 
+  //eslint-disable-next-line sonarjs/no-identical-functions
   test("shouldn't render unless there are items", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal
-          isLoaded={true}
-          items={[]}
-          title="I'm a cute title"
-        />
+        <TileListHorizontal isLoaded={true} items={[]} title={title} />
       </MockStore>
     );
     expect(rendered.isEmptyRender()).toBe(true);
