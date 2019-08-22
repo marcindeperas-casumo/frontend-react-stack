@@ -16,7 +16,7 @@ import type { ClickHandlerType } from "Components/ScrollablePaginated";
 import "./ScrollableListPaginated.scss";
 
 type ListObject = {
-  title: string,
+  title?: string,
   itemIds: Array<Object>,
 };
 
@@ -114,7 +114,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
-        <ScrollableListTitleRow title={title} seeMore={seeMore} />
+        {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
         <ScrollablePaginated
           className="c-scrollable-list-paginated"
           columnCount={itemIds.length}

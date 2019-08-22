@@ -16,7 +16,7 @@ describe("<MustDropJackpotsList /> - Mobile", () => {
   setMobileViewport();
   const rendered = mount(
     <MockStore state={defaultState}>
-      <MustDropJackpotsList ids={ids} seeMore="👀" />
+      <MustDropJackpotsList ids={ids} seeMore="👀" title="This cute list!" />
     </MockStore>
   );
 
@@ -47,7 +47,7 @@ describe("<MustDropJackpotsList /> - Desktop", () => {
   setDesktopViewport();
   const rendered = mount(
     <MockStore state={defaultState}>
-      <MustDropJackpotsList ids={ids} seeMore="👀" />
+      <MustDropJackpotsList ids={ids} seeMore="👀" title="This cute list!" />
     </MockStore>
   );
 

@@ -11,6 +11,7 @@ import {
 } from "Models/playOkay/depositLimits";
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
 import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
+import { DepositLimitsCancelAdjustment } from "Components/Compliance/DepositLimits/DepositLimitsCancelAdjustment";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import {
@@ -45,31 +46,35 @@ type Props = {
   currency: string,
   locale: string,
   t: {
+    button_no: string,
+    button_yes: string,
+    cancel_adjustment_content: string,
+    cancel_adjustment_title: string,
+    cancel_pending_increases: string,
+    cancel_pending_remove_all: string,
+    daily_removed: string,
     daily_short: string,
     daily: string,
-    weekly_short: string,
-    weekly: string,
+    deposit_limits: string,
+    monthly_removed: string,
     monthly_short: string,
     monthly: string,
-    deposit_limits: string,
-    pending_change: string,
+    pending_increase: string,
     pending_remove_all: string,
-    pending_change_known_deadline: string,
+    remaining_limit: string,
     remove_all: string,
     remove_selected: string,
-    summary_title: string,
     save_limits_button_conditions: string,
     save_limits_button: string,
-    remaining_limit: string,
-    daily_removed: string,
+    summary_title: string,
     weekly_removed: string,
-    monthly_removed: string,
-    cancel: string,
+    weekly_short: string,
+    weekly: string,
   },
   init: () => void,
   fetchTranslations: () => void,
   limitAdjust: AllLimits => void,
-  limitCancel: DepositKinds => void,
+  limitCancel: () => void,
 };
 
 type DepositLimitsRoute =
@@ -78,6 +83,7 @@ type DepositLimitsRoute =
   | "summary"
   | "responsibleGamblingTest"
   | "confirmations"
+  | "cancelAdjustment"
   | "suspendAccount";
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
@@ -125,7 +131,9 @@ export function DepositLimitsView(props: Props) {
         limits={props.limits}
         pendingLimitChanges={props.pendingLimitChanges}
         remainingLimitValue={props.remaining}
-        limitCancel={props.limitCancel}
+        limitCancel={() => {
+          navigate({ route: "cancelAdjustment" });
+        }}
         hideRemoveAll={
           Boolean(props.lock) || Boolean(props.pendingLimitChanges)
         }
@@ -229,6 +237,16 @@ export function DepositLimitsView(props: Props) {
             });
           });
         }}
+      />
+    ),
+    cancelAdjustment: (
+      <DepositLimitsCancelAdjustment
+        t={props.t}
+        handleButtonYes={() => {
+          props.limitCancel();
+          navigate({ route: "overview" });
+        }}
+        handleButtonNo={() => navigate({ route: "overview" })}
       />
     ),
   };

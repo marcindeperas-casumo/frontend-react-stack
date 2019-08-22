@@ -13,16 +13,10 @@ type Props = {
   },
   locale: string,
   changelog: string,
-  ackTimestamp: number,
+  ackTimestamp: ?number,
 };
 
 export function Changelog({ t, ...props }: Props) {
-  const changesAcceptedHTML = formatWithDateMedium(
-    t.date_changes_accepted,
-    props.ackTimestamp,
-    props.locale
-  );
-
   return (
     <Flex
       direction="vertical"
@@ -30,13 +24,21 @@ export function Changelog({ t, ...props }: Props) {
     >
       <Text className="u-font-weight-bold">{t.changelog_title}</Text>
       <DangerousHtml className="u-padding-y--md" html={props.changelog} />
-      <Flex className="t-color-chrome-dark-1" align="center">
-        <TickIcon
-          className="c-tac-changelog-approved u-margin-right"
-          size="sm"
-        />
-        <DangerousHtml html={changesAcceptedHTML} />
-      </Flex>
+      {props.ackTimestamp && (
+        <Flex className="t-color-chrome-dark-1" align="center">
+          <TickIcon
+            className="c-tac-changelog-approved u-margin-right"
+            size="sm"
+          />
+          <DangerousHtml
+            html={formatWithDateMedium(
+              t.date_changes_accepted,
+              props.ackTimestamp,
+              props.locale
+            )}
+          />
+        </Flex>
+      )}
     </Flex>
   );
 }
