@@ -104,7 +104,7 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
                   })}{" "}
                   {t[`${x}_short`]}
                 </Text>
-                <Text tag="span" size="sm" style={{ color: "#7967BB" }}>
+                <Text tag="span" size="sm" className="t-color-turquoise">
                   {interpolate(t.remaining_limit, {
                     value: formatCurrency({
                       locale: props.locale,
