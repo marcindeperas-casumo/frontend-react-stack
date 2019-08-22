@@ -72,7 +72,7 @@ describe("DepositLimitsOverview", () => {
 
     expect(limitCancel).toHaveBeenCalledTimes(0);
     rendered
-      .find({ "data-test-id": "pending-limit-monthly" })
+      .find({ "data-test-id": "cancel-pending-limit-change" })
       .simulate("click");
     expect(limitCancel).toHaveBeenCalledTimes(1);
   });

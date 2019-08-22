@@ -228,8 +228,9 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
+const defaultTranslation = "[MISSING TRANSLATION]";
 export const interpolate = (
-  target: string,
+  target: string = defaultTranslation,
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
@@ -249,7 +250,7 @@ export const interpolateWithJSX = R.curry(
           )(x)}
         </React.Fragment>
       ))
-    )(target)
+    )(target || defaultTranslation)
 );
 
 export const getCssCustomProperty = (property: string) =>
