@@ -9,7 +9,9 @@ import jackpotsMock from "./__mocks__/response.games.mock";
 describe("<Jackpots />", () => {
   test("Should render ScrollableListPaginated and a title on Desktop", () => {
     setDesktopViewport();
-    const rendered = mount(<Jackpots jackpots={jackpotsMock} />);
+    const rendered = mount(
+      <Jackpots jackpots={jackpotsMock} title="All them jackpots" />
+    );
 
     expect(rendered.find(ScrollableListPaginated)).toHaveLength(1);
     expect(rendered.find(ScrollableListTitle)).toHaveLength(1);
