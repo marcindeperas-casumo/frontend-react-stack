@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import type { Bets } from "Types/liveCasinoLobby";
 
 export const noop = () => {};
 
@@ -133,14 +132,16 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-// TODO2: decide which type is correct, see: Casumo/Home#27723
-export const renderBets = (bet: ?(Bets | GameRow_Game_lobby_bets)) => {
-  if (!bet) {
-    return "";
+export const renderBets = (bet: ?GameRow_Game_lobby_bets) => {
+  if (!bet || !bet.min || !bet.max || !bet.symbol) {
+    return null;
   }
 
-  return `${bet.symbol || ""}${bet.min || 0} - ${bet.symbol || ""}${bet.max ||
-    0}`;
+  if (bet.symbol === "kr" || bet.symbol === "kr.") {
+    return `${bet.min} ${bet.symbol} - ${bet.max} ${bet.symbol}`;
+  }
+
+  return `${bet.symbol}${bet.min} - ${bet.symbol}${bet.max}`;
 };
 
 export const injectScript = (url: string) =>
