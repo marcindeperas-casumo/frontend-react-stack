@@ -36,7 +36,7 @@ export const COMPONENT_MAPPING = {
   CTA: ContentButton,
   PROMOTION_OPT_IN_BUTTON: PromotionOptInButton,
   PROMOTION_CARDS_HORIZONTAL: PromotionCardList,
-  // PROMOTION_CARDS_VERTICA is getting deprecated; use PROMOTION_LIST_VERTICAL instead
+  // PROMOTION_CARDS_VERTICAL is getting deprecated; use PROMOTION_LIST_VERTICAL instead
   PROMOTION_CARDS_VERTICAL: PromotionTeaserList,
   PROMOTION_LIST_VERTICAL: PromotionTeaserList,
   PROMOTION_CARDS_GALLERY: PromotionGallery,
