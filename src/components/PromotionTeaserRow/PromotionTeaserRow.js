@@ -33,7 +33,7 @@ export class PromotionTeaserRow extends PureComponent<Props> {
             </Text>
             <Text
               data-test="promotion-title"
-              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-3"
+              className="u-font-weight-bold u-margin-bottom--none t-color-grey-dark-2"
             >
               {title}
             </Text>
