@@ -6,6 +6,7 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import SadSumo from "./sad-sumo.svg";
+import "./ErrorMessage.scss";
 
 type Direction = "horizontal" | "vertical";
 
@@ -52,6 +53,7 @@ export const ErrorMessage = ({
 
   const errorClassName = classNames(
     "u-font-weight-bold",
+    "t-color-chrome-dark-1",
     !isVertical && "u-margin-y--none"
   );
 
@@ -65,7 +67,10 @@ export const ErrorMessage = ({
       data-test="error-message-container"
     >
       <Flex.Item>
-        <SadSumo data-test="error-message-sumo" className="u-display--block" />
+        <SadSumo
+          data-test="error-message-sumo"
+          className="c-error-message__icon u-display--block"
+        />
       </Flex.Item>
       <InnerFlex>
         <Text
