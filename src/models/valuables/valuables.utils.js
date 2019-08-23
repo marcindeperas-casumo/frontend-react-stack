@@ -43,10 +43,7 @@ export const getValuableDetailsAction = ({
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
-      if (
-        requirementType &&
-        equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)
-      ) {
+      if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
         return setActionProps(translations.depositToUnlockLabel, depositUrl);
       }
 
