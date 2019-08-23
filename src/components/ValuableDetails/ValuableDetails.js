@@ -177,7 +177,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               <Text tag="p" className="t-color-grey" size="sm">
-                {caveat != null && caveat}
+                {caveat}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
