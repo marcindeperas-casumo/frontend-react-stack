@@ -7,15 +7,16 @@
 // ====================================================
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
+  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
   title: string,
   content: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
+  caveat: ?string,
   currency: Currency,
   market: string,
-  caveat: ?string,
   backgroundImage: string,
 };
 
@@ -24,34 +25,36 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
+  __typename: "PlayerValuableSpins",
   id: string,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
   title: string,
   content: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
+  caveat: ?string,
   currency: Currency,
   market: string,
-  caveat: ?string,
   backgroundImage: string,
-  coinValue: number,
-  game: PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
-  requirementType: ?string,
   description: string,
+  coinValue: number,
+  requirementType: ?RequirementType,
+  game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
+  __typename: "PlayerValuableCash",
   id: string,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
   title: string,
   content: string,
-  valuableState: PlayerValuableState,
-  valuableType: ValuableType,
-  expirationTimeInHours: number,
+  caveat: ?string,
   currency: Currency,
   market: string,
-  caveat: ?string,
   backgroundImage: string,
-  requirementType: ?string,
+  requirementType: ?RequirementType,
 };
 
 export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash;/* @flow */
@@ -76,6 +79,11 @@ export type ValuableType = "cash" | "deposit" | "spins" | "sport";
  * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
+/**
+ * 
+ */
+export type RequirementType = "deposit" | "wager";
 
 export type ContactSettingsInput = {|
   on: boolean

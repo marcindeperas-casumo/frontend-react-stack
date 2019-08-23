@@ -15,7 +15,12 @@ export type PlayerValuablesQuery_translations = {
   playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
 };
 
+export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
+  slug: string
+};
+
 export type PlayerValuablesQuery_player_valuables = {
+  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
@@ -27,6 +32,7 @@ export type PlayerValuablesQuery_player_valuables = {
   market: string,
   backgroundImage: string,
 } | {
+  __typename: "PlayerValuableSpins",
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
@@ -39,6 +45,21 @@ export type PlayerValuablesQuery_player_valuables = {
   backgroundImage: string,
   description: string,
   coinValue: number,
+  requirementType: ?RequirementType,
+  game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
+} | {
+  __typename: "PlayerValuableCash",
+  id: string,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  requirementType: ?RequirementType,
 };
 
 export type PlayerValuablesQuery_player = {
@@ -70,6 +91,11 @@ export type ValuableType = "cash" | "deposit" | "spins" | "sport";
  * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
+/**
+ * 
+ */
+export type RequirementType = "deposit" | "wager";
 
 export type ContactSettingsInput = {|
   on: boolean
