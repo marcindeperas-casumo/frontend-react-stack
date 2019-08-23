@@ -134,16 +134,22 @@ export function generateColumns<T>(
 
 // TODO: make this a component
 export const renderBets = (bet: ?GameRow_Game_lobby_bets) =>
-  R.ifElse(
-    R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) ||
-      R.pathEq(["symbol"], CURRENCY_SYMBOLS.DKK),
-    o =>
-      `${R.path(["min"])(o)} ${R.path(["symbol"])(o)} -
-        ${R.path(["max"])(o)} ${R.path(["symbol"])(o)}`,
-    o =>
-      `${R.path(["symbol"])(o)}${R.path(["min"])(o)} -
-        ${R.path(["symbol"])(o)}${R.path(["max"])(o)}`
-  )(bet);
+  R.cond([
+    [R.isNil, R.always(null)],
+    [
+      R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) ||
+        R.pathEq(["symbol"], CURRENCY_SYMBOLS.DKK),
+      o =>
+        `${R.path(["min"])(o)} ${R.path(["symbol"])(o)} - ` +
+        `${R.path(["max"])(o)} ${R.path(["symbol"])(o)}`,
+    ],
+    [
+      R.T,
+      o =>
+        `${R.path(["symbol"])(o)}${R.path(["min"])(o)} - ` +
+        `${R.path(["symbol"])(o)}${R.path(["max"])(o)}`,
+    ],
+  ])(bet);
 
 export const injectScript = (url: string) =>
   new Promise<void>((resolve, reject) => {
