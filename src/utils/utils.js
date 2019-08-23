@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};
 
@@ -132,17 +133,17 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-export const renderBets = (bet: ?GameRow_Game_lobby_bets) => {
-  if (!bet || !bet.min || !bet.max || !bet.symbol) {
-    return null;
-  }
-
-  if (bet.symbol === "kr" || bet.symbol === "kr.") {
-    return `${bet.min} ${bet.symbol} - ${bet.max} ${bet.symbol}`;
-  }
-
-  return `${bet.symbol}${bet.min} - ${bet.symbol}${bet.max}`;
-};
+export const renderBets = (bet: ?GameRow_Game_lobby_bets) =>
+  R.ifElse(
+    R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) ||
+      R.pathEq(["symbol"], CURRENCY_SYMBOLS.DKK),
+    o =>
+      `${R.path(["min"])(o)} ${R.path(["symbol"])(o)} -
+        ${R.path(["max"])(o)} ${R.path(["symbol"])(o)}`,
+    o =>
+      `${R.path(["symbol"])(o)}${R.path(["min"])(o)} -
+        ${R.path(["symbol"])(o)}${R.path(["max"])(o)}`
+  )(bet);
 
 export const injectScript = (url: string) =>
   new Promise<void>((resolve, reject) => {
