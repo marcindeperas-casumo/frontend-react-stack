@@ -16,16 +16,7 @@ export const ValuableDetailsContainer = props => (
       }
 
       return (
-        <ValuableDetails
-          onLaunchGame={
-            props.valuableDetails.slug
-              ? () => launchGame(props.valuableDetails.slug)
-              : noop
-          }
-          loading={loading}
-          {...props}
-          translations={data}
-        />
+        <ValuableDetails loading={loading} {...props} translations={data} />
       );
     }}
   </ValuableDetailsTypedQuery>

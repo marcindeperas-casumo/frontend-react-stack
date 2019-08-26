@@ -10,20 +10,16 @@ describe("ValuableDetails", () => {
   let rendered;
   let mockValuable = mockValuables[0];
   const Foo = () => <div>baz</div>;
-  const gameSlug = "starburst";
   let onConsume;
-  let onLaunch;
 
   beforeEach(() => {
     onConsume = jest.fn().mockResolvedValue(true);
-    onLaunch = jest.fn();
 
     rendered = shallow(
       <ValuableDetails
         valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -134,7 +130,6 @@ describe("ValuableDetails", () => {
         valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -144,7 +139,6 @@ describe("ValuableDetails", () => {
     actionButton.simulate("click");
 
     await expect(onConsume).toHaveBeenCalledTimes(1);
-    expect(onLaunch).toHaveBeenCalledTimes(1);
   });
 
   test("should call not neither onConsume and onlaunch if type is deposit", () => {
@@ -155,7 +149,6 @@ describe("ValuableDetails", () => {
         valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -165,7 +158,6 @@ describe("ValuableDetails", () => {
     actionButton.simulate("click");
 
     expect(onConsume).toHaveBeenCalledTimes(0);
-    expect(onLaunch).toHaveBeenCalledTimes(0);
   });
 
   test("should only call on consume if type is cash", () => {
@@ -176,7 +168,6 @@ describe("ValuableDetails", () => {
         valuableDetails={mockValuable}
         translations={mockTranslations}
         onConsumeValuable={onConsume}
-        onLaunchGame={() => onLaunch(gameSlug)}
       >
         <Foo />
       </ValuableDetails>
@@ -186,6 +177,5 @@ describe("ValuableDetails", () => {
     actionButton.simulate("click");
 
     expect(onConsume).toHaveBeenCalledTimes(1);
-    expect(onLaunch).toHaveBeenCalledTimes(0);
   });
 });

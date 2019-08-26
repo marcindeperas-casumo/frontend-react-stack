@@ -1,11 +1,14 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
+import { equals } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
+import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
+import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
@@ -25,6 +28,22 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const showModal = valuable => {
     setSelectedValuable(valuable);
     setOpen(true);
+  };
+
+  const consumeValuable = ({
+    id,
+    valuableType,
+    gameSlug,
+  }: {
+    id: string,
+    valuableType: ValuableType,
+    gameSlug: ?string,
+  }) => {
+    return onConsumeValuable(id).then(() => {
+      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
+        launchGame(gameSlug);
+      }
+    });
   };
 
   useEffect(() => {
@@ -79,7 +98,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       <ValuableDetailsWithModal
         isOpen={open}
         onClose={() => setOpen(false)}
-        onConsumeValuable={onConsumeValuable}
+        onConsumeValuable={consumeValuable}
         valuableDetails={selectedValuable}
       >
         <div style={{ width: "160px" }}>

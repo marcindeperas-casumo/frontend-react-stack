@@ -17,6 +17,10 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   valuableState: PlayerValuableState,
 };
 
+export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
+  slug: string
+};
+
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -27,6 +31,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   requirementType: ?RequirementType,
+  game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
 
 export type ValuableDetails_PlayerValuable_PlayerValuableCash = {

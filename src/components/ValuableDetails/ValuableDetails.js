@@ -10,7 +10,6 @@ import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
   VALUABLE_STATES,
-  VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
@@ -25,6 +24,10 @@ export const expirationBadgeClasses = {
   grey: "t-background-grey-light-1",
 };
 
+type Game = {
+  slug: string,
+};
+
 type BadgeInfoType = {
   key: string,
   value: number,
@@ -33,9 +36,11 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: string => Promise<boolean>,
-  /** The function to be called to launch game which will be triggered after consuming the valuable */
-  onLaunchGame: () => void,
+  onConsumeValuable: ({
+    id: string,
+    valuableType: ValuableType,
+    gameSlug: ?string,
+  }) => Promise<boolean>,
   translations: Translations,
   children: Node,
 };
@@ -72,6 +77,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
   get requirementType(): ?ValuableRequirementType {
     const { valuableDetails } = this.props;
+
     if (
       valuableDetails.__typename === "PlayerValuableCash" ||
       valuableDetails.__typename === "PlayerValuableSpins"
@@ -82,17 +88,26 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
+  get game(): ?Game {
+    const { valuableDetails } = this.props;
+
+    if (valuableDetails.__typename === "PlayerValuableSpins") {
+      return valuableDetails.game;
+    }
+
+    return null;
+  }
+
   handleAction = () => {
     const { valuableDetails } = this.props;
     const { valuableType, valuableState, id } = valuableDetails;
-    const { onConsumeValuable, onLaunchGame } = this.props;
+    const { onConsumeValuable } = this.props;
+    const game = this.game;
 
     if (shouldUseValuable(valuableType, valuableState)) {
-      onConsumeValuable(id).then(() => {
-        if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
-          onLaunchGame();
-        }
-      });
+      const gameSlug = game ? game.slug : null;
+
+      onConsumeValuable({ id, valuableType, gameSlug });
     }
   };
 

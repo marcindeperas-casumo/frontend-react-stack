@@ -33,6 +33,9 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   valuableState
   ... on PlayerValuableSpins {
     requirementType
+    game {
+      slug
+    }
   }
   ... on PlayerValuableCash {
     requirementType
