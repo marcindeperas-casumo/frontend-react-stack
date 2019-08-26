@@ -9,8 +9,6 @@ type Props = {
   isOpen: boolean,
   /** Close button callback */
   onClose: () => void,
-  /** Close modal delay  (used in stories)*/
-  closeTimeoutMS?: number,
   valuableDetails: ValuableDetails_PlayerValuable,
   children: Node,
 };
@@ -18,7 +16,6 @@ type Props = {
 export const ValuableDetailsWithModal = ({
   isOpen,
   onClose,
-  closeTimeoutMS,
   children,
   ...props
 }: Props) => {
@@ -27,7 +24,7 @@ export const ValuableDetailsWithModal = ({
       isOpen={isOpen}
       hideModal={onClose}
       className="c-valuable-details-modal c-valuable-details-modal--mobile-landscape"
-      closeTimeoutMS={closeTimeoutMS}
+      closeTimeoutMS={100}
     >
       <ValuableDetailsContainer {...props}>{children}</ValuableDetailsContainer>
     </AbstractModal>
