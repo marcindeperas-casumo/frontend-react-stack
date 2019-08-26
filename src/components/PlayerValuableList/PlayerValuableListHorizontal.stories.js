@@ -8,7 +8,7 @@ import translationsMock from "./__mocks__/translations.mock.json";
 const stories = storiesOf("PlayerValuableListHorizontal", module);
 
 stories.add("PlayerValuableListHorizontal (Connected)", () => {
-  const consumeValuable = () => Promise.resolve(true);
+  const consumeValuable = () => Promise.resolve();
   const launchGame = () => {};
 
   return (

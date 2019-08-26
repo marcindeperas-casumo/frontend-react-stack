@@ -40,7 +40,7 @@ export type Props = {
     id: string,
     valuableType: ValuableType,
     gameSlug: ?string,
-  }) => Promise<boolean>,
+  }) => Promise<void>,
   translations: Translations,
   children: Node,
 };

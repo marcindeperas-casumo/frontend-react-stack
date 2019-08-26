@@ -39,7 +39,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     valuableType: ValuableType,
     gameSlug: ?string,
   }) => {
-    return onConsumeValuable(id).then(() => {
+    onConsumeValuable(id).then(() => {
       if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
         launchGame(gameSlug);
       }
