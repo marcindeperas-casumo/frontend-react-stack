@@ -22,12 +22,14 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     onConsumeValuable,
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
-  const [open, setOpen] = useState(false);
-  const [selectedValuable, setSelectedValuable] = useState(valuables[0]);
+  const [selectedValuable, setSelectedValuable] = useState(null);
 
   const showModal = valuable => {
     setSelectedValuable(valuable);
-    setOpen(true);
+  };
+
+  const closeModal = () => {
+    setSelectedValuable(null);
   };
 
   const consumeValuable = ({
@@ -95,19 +97,21 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         })}
       </Scrollable>
 
-      <ValuableDetailsWithModal
-        isOpen={open}
-        onClose={() => setOpen(false)}
-        onConsumeValuable={consumeValuable}
-        valuableDetails={selectedValuable}
-      >
-        <div style={{ width: "160px" }}>
-          <ValuableCard
-            translatedHoursUnit={hoursLabel}
-            {...selectedValuable}
-          />
-        </div>
-      </ValuableDetailsWithModal>
+      {selectedValuable && (
+        <ValuableDetailsWithModal
+          isOpen={Boolean(selectedValuable)}
+          onClose={() => closeModal()}
+          onConsumeValuable={consumeValuable}
+          valuableDetails={selectedValuable}
+        >
+          <div style={{ width: "160px" }}>
+            <ValuableCard
+              translatedHoursUnit={hoursLabel}
+              {...selectedValuable}
+            />
+          </div>
+        </ValuableDetailsWithModal>
+      )}
     </div>
   );
 }
