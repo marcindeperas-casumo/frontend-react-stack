@@ -76,58 +76,45 @@ class SearchInput extends React.Component<Props, State> {
   };
 
   render() {
-    const { value, noResults } = this.props;
+    const { value, autofocus } = this.props;
     const { hasFocus } = this.state;
 
     const hasSearchTerm = Boolean(value);
 
-    const inputClassName = classNames(
-      "c-search-input o-flex--1 u-padding-left",
-      hasFocus ? "t-color-grey-dark-3" : "t-color-grey",
-      hasSearchTerm ? "u-font-weight-bold u-font" : "u-font-weight-normal"
-    );
-
-    const clearButtonClassName = classNames(
-      "c-search-input__clear-button t-color-white t-border-r--circle u-overflow-hidden",
-      noResults ? "t-background-black" : "t-background-grey"
+    const containerClassName = classNames(
+      "t-background-white t-border-r--pill u-overflow-hidden",
+      hasFocus && "t-box-shadow--lg"
     );
 
     return (
-      <Flex
-        align="center"
-        className="t-background-white t-border-r--pill u-overflow-hidden"
-      >
+      <Flex align="center" className={containerClassName}>
         <Flex.Block>
-          <label className="u-width--1/1 o-flex u-padding-left--md  u-padding-y">
-            <SearchIcon
-              className={hasFocus ? "t-color-grey-dark-1" : "t-color-grey"}
-            />
+          <label className="u-width--1/1 o-flex o-flex-align--center u-padding--md">
+            <SearchIcon className={"t-color-chrome-dark-2"} />
             <input
               ref={this.textInput}
-              className={inputClassName}
+              className="c-search-input o-flex--1 u-padding-left t-color-grey-dark-3 u-font-weight-bold"
               type="text"
               onBlur={this.onBlur}
               onFocus={this.onFocus}
+              autoFocus={autofocus}
               {...this.inputProps}
             />
           </label>
         </Flex.Block>
         {hasSearchTerm && (
           <div
-            className="u-padding-x--md u-padding-y"
+            className="u-padding-right--md u-padding-y--md"
             data-test="search-input-clear-button"
             onClick={this.handleClear}
           >
-            <div className={clearButtonClassName}>
-              <CrossIcon />
+            <div className="t-color-white t-border-r--circle u-overflow-hidden t-background-black">
+              <CrossIcon size="sm" className="u-display--block" />
             </div>
           </div>
         )}
         {hasFocus && (
-          <div
-            className="c-search-input__scroll-capture"
-            onTouchStart={this.handleScroll}
-          />
+          <div className="o-ratio__content" onTouchStart={this.handleScroll} />
         )}
       </Flex>
     );
