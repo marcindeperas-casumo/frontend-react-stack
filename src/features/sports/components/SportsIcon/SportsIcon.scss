@@ -3,11 +3,11 @@
 }
 
 // stylelint-disable-next-line xi/selector-pattern
-.c-sports-nav-paginated--live .c-sports-icon__active-indicator svg {
+.c-sports-nav-paginated--live .c-sports-icon__active-indicator {
   color: cudl-palette(red, light-1);
 }
 
 // stylelint-disable-next-line xi/selector-pattern
-.c-sports-icon__active-indicator svg {
-  color: cudl-palette(green, light-1);
+.c-sports-icon__active-indicator {
+  color: cudl-palette(turquoise);
 }
