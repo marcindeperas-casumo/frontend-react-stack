@@ -31,7 +31,6 @@ export const BettingGlossary = ({ onClose }: Props) => (
     <SportsModal.Header
       onClose={onClose}
       className="c-sports-modal-header--left-align t-background-white t-color-chrome-dark-3 t-border-bottom"
-      dismissButtonClassName="t-background-white t-color-chrome-dark-1"
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
