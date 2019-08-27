@@ -12,6 +12,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import Tile from "./Tile";
 
 const items = R.map(R.toString, R.range(0, 4));
+const title = "Foo";
 
 describe("<TileListHorizontal /> - Mobile", () => {
   let rendered;
@@ -20,7 +21,11 @@ describe("<TileListHorizontal /> - Mobile", () => {
     setMobileViewport();
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={true} items={items} />
+        <TileListHorizontal
+          isLoaded={true}
+          items={items}
+          title="I'm a cute title"
+        />
       </MockStore>
     );
   });
@@ -32,7 +37,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
   test("should render skeleton while loading", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={false} />
+        <TileListHorizontal isLoaded={false} title={title} />
       </MockStore>
     );
 
@@ -42,7 +47,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
   test("shouldn't render unless there are items", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={true} items={[]} />
+        <TileListHorizontal isLoaded={true} items={[]} title={title} />
       </MockStore>
     );
     expect(rendered.isEmptyRender()).toBe(true);
@@ -52,14 +57,13 @@ describe("<TileListHorizontal /> - Mobile", () => {
     const fetch = jest.fn();
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal fetch={fetch} />
+        <TileListHorizontal fetch={fetch} title={title} />
       </MockStore>
     );
     expect(fetch).toHaveBeenCalledTimes(1);
   });
 
   test("should render title and items", () => {
-    const title = "Foo";
     const item = {
       url: "url1",
       logo: "logo1",
@@ -93,7 +97,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
     setDesktopViewport();
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={true} items={items} />
+        <TileListHorizontal isLoaded={true} items={items} title={title} />
       </MockStore>
     );
   });
@@ -106,7 +110,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
   test("should render skeleton while loading", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={false} />
+        <TileListHorizontal isLoaded={false} title={title} />
       </MockStore>
     );
 
@@ -117,7 +121,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
   test("shouldn't render unless there are items", () => {
     rendered = mount(
       <MockStore state={defaultState}>
-        <TileListHorizontal isLoaded={true} items={[]} />
+        <TileListHorizontal isLoaded={true} items={[]} title={title} />
       </MockStore>
     );
     expect(rendered.isEmptyRender()).toBe(true);

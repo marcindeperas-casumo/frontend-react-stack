@@ -106,11 +106,24 @@ const handlers = {
         R.prop(R.__, diffLimits({ before, after }))
       )(changes);
 
+      const setOnRegistration = R.pathSatisfies(
+        R.equals("PLAYER_REGISTERED"),
+        ["request", "type"],
+        x
+      );
+
       return {
         id: x.id,
         timestamp: R.path(["request", "timestamp"], x),
         type,
-        changes,
+        changes: R.mapObjIndexed(
+          (_, key) => ({
+            before: before[key],
+            after: after[key],
+          }),
+          changes
+        ),
+        ...(setOnRegistration ? { setOnRegistration } : {}),
       };
     }, response);
 
