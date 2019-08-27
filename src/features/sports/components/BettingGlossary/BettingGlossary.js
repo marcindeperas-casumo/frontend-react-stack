@@ -94,7 +94,7 @@ export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
   render() {
     return (
       <Flex.Item
-        className="c-betting-glossary-entry u-font-weight-normal u-padding-y--md u-pointer-events-none"
+        className="c-betting-glossary-entry t-color-chrome-dark-3 u-font-weight-normal u-pointer-events-none"
         onClick={this.handleLinkedEntries}
         data-glossary-term={this.props.id}
       >
@@ -125,8 +125,8 @@ export const BettingGlossary = ({ onClose }: Props) => (
   <SportsModal>
     <SportsModal.Header
       onClose={onClose}
-      className="c-sports-modal-header--left-align t-background-blue-light-1 t-color-white"
-      dismissButtonClassName="t-background-blue-light-1 t-color-blue"
+      className="c-sports-modal-header--left-align t-background-white t-color-chrome-dark-3 t-border-bottom"
+      dismissButtonClassName="t-background-white t-color-chrome-dark-1"
     >
       <DictionaryTerm termKey="glossary.heading" />
     </SportsModal.Header>
@@ -152,6 +152,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
           <SportsModal.Content>
             <List
               items={data.glossary}
+              itemSpacing="md"
               render={props => <BettingGlossaryEntry {...props} />}
             />
           </SportsModal.Content>
