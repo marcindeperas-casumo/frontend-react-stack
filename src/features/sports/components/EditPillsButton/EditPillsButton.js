@@ -18,7 +18,7 @@ type Props = {
   label?: Node,
 };
 
-export const defaultClasses = "t-color-grey t-background-grey-light-2";
+export const defaultClasses = "t-color-white t-background-plum";
 
 const EditPillsButton = ({
   onClick,
@@ -42,7 +42,7 @@ const EditPillsButton = ({
         <Text
           style={{ marginTop: 1 }}
           size="sm"
-          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-grey u-margin-bottom--none"
+          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-chrome u-margin-bottom--none"
         >
           {label}
         </Text>
