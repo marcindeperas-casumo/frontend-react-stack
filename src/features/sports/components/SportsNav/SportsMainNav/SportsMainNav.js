@@ -62,7 +62,7 @@ export const renderEditButton = (
     {canEdit && !isLiveActive && (
       <EditPillsButton
         onClick={onEdit}
-        className="t-background-white t-color-grey u-drop-shadow"
+        className="t-background-plum t-color-white t-box-shadow"
         label={labels.edit}
       />
     )}
@@ -145,7 +145,7 @@ export const SportsMainNav = (props: Props) => {
       className={classNames(
         isLiveActive
           ? "c-sports-nav-paginated--live t-background-orange-light-3"
-          : "t-background-grey-light-2",
+          : "t-background-chrome-light-2",
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
