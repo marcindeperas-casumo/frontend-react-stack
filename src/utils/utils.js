@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import type { Bets } from "Types/liveCasinoLobby";
+import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};
 
@@ -133,15 +133,23 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-// TODO2: decide which type is correct, see: Casumo/Home#27723
-export const renderBets = (bet: ?(Bets | GameRow_Game_lobby_bets)) => {
-  if (!bet) {
-    return "";
-  }
-
-  return `${bet.symbol || ""}${bet.min || 0} - ${bet.symbol || ""}${bet.max ||
-    0}`;
-};
+export const renderBets = (bet: ?GameRow_Game_lobby_bets) =>
+  R.cond([
+    [R.isNil, R.always(null)],
+    [
+      R.pathEq(["symbol"], CURRENCY_SYMBOLS.SEK) ||
+        R.pathEq(["symbol"], CURRENCY_SYMBOLS.DKK),
+      o =>
+        `${R.path(["min"])(o)} ${R.path(["symbol"])(o)} - ` +
+        `${R.path(["max"])(o)} ${R.path(["symbol"])(o)}`,
+    ],
+    [
+      R.T,
+      o =>
+        `${R.path(["symbol"])(o)}${R.path(["min"])(o)} - ` +
+        `${R.path(["symbol"])(o)}${R.path(["max"])(o)}`,
+    ],
+  ])(bet);
 
 export const injectScript = (url: string) =>
   new Promise<void>((resolve, reject) => {
@@ -228,8 +236,9 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
+const defaultTranslation = "[MISSING TRANSLATION]";
 export const interpolate = (
-  target: string,
+  target: string = defaultTranslation,
   replacements: { [string]: string | number }
 ) =>
   target.replace(INTERPOLATION_REGEX, (match, param) =>
@@ -249,7 +258,7 @@ export const interpolateWithJSX = R.curry(
           )(x)}
         </React.Fragment>
       ))
-    )(target)
+    )(target || defaultTranslation)
 );
 
 export const getCssCustomProperty = (property: string) =>

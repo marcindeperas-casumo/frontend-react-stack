@@ -1,7 +1,3 @@
-.c-deposit-limits-history__separator {
-  border-bottom: 1px solid #fff;
-}
-
 .c-deposit-limits-history__container {
   max-width: 608px;
 }
@@ -10,4 +6,23 @@
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
   border-top-right-radius: 16px;
+}
+
+.c-deposit-limits-history__change-icon {
+  margin-left: 2px;
+  margin-right: 2px;
+  margin-top: -2px;
+}
+
+.c-deposit-limits-history__tick-icon-border-width {
+  border-width: 2px;
+}
+
+.c-deposit-limits-history__left-bar {
+  border-radius: 2px;
+  width: 4px;
+
+  &--small {
+    height: 4px;
+  }
 }

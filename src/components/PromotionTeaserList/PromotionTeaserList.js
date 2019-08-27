@@ -23,7 +23,7 @@ export class PromotionTeaserList extends PureComponent<Props> {
 
     return (
       <div className="u-padding-bottom--xlg">
-        <div className="u-padding-x--lg u-padding-y">
+        <div className="u-padding-x--lg u-padding-y o-list-wrapper">
           {promotionsSlugs.map(promotionSlug => (
             <PromotionTeaserRow
               slug={`promotions.${promotionSlug}`}

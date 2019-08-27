@@ -182,7 +182,7 @@ describe("renderBets()", () => {
   test("should not render anything if bets dont exist", async () => {
     const bets = null;
 
-    expect(renderBets(bets)).toEqual("");
+    expect(renderBets(bets)).toEqual(null);
   });
 
   test("should render formatted bets", async () => {

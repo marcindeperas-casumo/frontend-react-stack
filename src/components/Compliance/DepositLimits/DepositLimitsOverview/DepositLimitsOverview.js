@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import Button from "@casumo/cmp-button";
 import { MoreIcon, ClockIcon } from "@casumo/cmp-icons";
 import DangerousHtml from "Components/DangerousHtml";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
@@ -26,12 +26,12 @@ type Props = {
     weekly_short: string,
     monthly_short: string,
     deposit_limits: string,
-    pending_change: string,
-    pending_change_known_deadline: string,
+    pending_increase: string,
     pending_remove_all: string,
     remove_all: string,
     remaining_limit: string,
-    cancel: string,
+    cancel_pending_increases: string,
+    cancel_pending_remove_all: string,
   },
   hideRemoveAll: boolean,
   limits: AllLimits,
@@ -42,7 +42,6 @@ type Props = {
   add: () => void,
   removeAll: () => void,
 };
-
 export function DepositLimitsOverview({ t, ...props }: Props) {
   const allRemoved =
     !R.isNil(props.pendingLimitChanges) &&
@@ -54,6 +53,11 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
       ]),
       R.isEmpty,
     ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
+  const hasPendingChanges = R.anyPass([
+    R.propIs(Number, "daily"),
+    R.propIs(Number, "weekly"),
+    R.propIs(Number, "monthly"),
+  ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
 
   return (
     <Flex
@@ -83,114 +87,87 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
           return (
             <Flex
               key={x}
-              direction="vertical"
               spacing="none"
               className="u-padding-y t-background-white u-padding-x--md"
+              align="center"
+              justify="space-between"
+              onClick={() => props.edit(x)}
+              data-test-id={`limit-${x}`}
             >
-              <Flex
-                align="center"
-                justify="space-between"
-                spacing="none"
-                onClick={() => props.edit(x)}
-                data-test-id={`limit-${x}`}
-              >
-                <ProgressArc value={progressPercentage} />
-                <Flex className="u-margin-left o-flex--1" direction="vertical">
-                  <Text tag="span">
-                    {formatCurrency({
+              <ProgressArc value={progressPercentage} />
+              <Flex className="u-margin-left o-flex--1" direction="vertical">
+                <Text tag="span">
+                  {formatCurrency({
+                    locale: props.locale,
+                    currency: props.currency,
+                    value: parseInt(props.limits[x]),
+                  })}{" "}
+                  {t[`${x}_short`]}
+                </Text>
+                <Text tag="span" size="sm" className="t-color-turquoise">
+                  {interpolate(t.remaining_limit, {
+                    value: formatCurrency({
                       locale: props.locale,
                       currency: props.currency,
-                      value: parseInt(props.limits[x]),
-                    })}{" "}
-                    {t[`${x}_short`]}
-                  </Text>
-                  <Text tag="span" size="sm" style={{ color: "#7967BB" }}>
-                    {interpolate(t.remaining_limit, {
-                      value: formatCurrency({
-                        locale: props.locale,
-                        currency: props.currency,
-                        value: props.remainingLimitValue[x],
-                      }),
-                    })}
-                  </Text>
-                </Flex>
-                <MoreIcon className="t-color-grey-light-1" />
+                      value: props.remainingLimitValue[x],
+                    }),
+                  })}
+                </Text>
               </Flex>
-              {!allRemoved && props.pendingLimitChanges?.value?.[x] && (
-                <Flex
-                  align="center"
-                  justify="space-between"
-                  spacing="none"
-                  className="u-padding-left--sm"
-                >
-                  <ClockIcon size="sm" className="t-color-caution" />
-                  <Text
-                    tag="span"
-                    size="sm"
-                    className="u-margin-left--md t-color-grey-light-1 o-flex--1"
-                  >
-                    {props.pendingLimitChanges?.effectiveFrom ? (
-                      interpolate(t.pending_change_known_deadline, {
-                        newLimitValue: formatCurrency({
-                          locale: props.locale,
-                          currency: props.currency,
-                          value: props.pendingLimitChanges?.value[x],
-                        }),
-                        limitChangeDate: DateTime.fromISO(
-                          props.pendingLimitChanges?.effectiveFrom
-                        )
-                          .setLocale(props.locale)
-                          .toLocaleString(),
-                      })
-                    ) : (
-                      <DangerousHtml
-                        html={interpolate(t.pending_change, {
-                          newLimitValue: formatCurrency({
-                            locale: props.locale,
-                            currency: props.currency,
-                            value: props.pendingLimitChanges?.value[x],
-                          }),
-                        })}
-                      />
-                    )}
-                  </Text>
-                  <Text
-                    tag="span"
-                    size="sm"
-                    className="t-color-turquoise"
-                    onClick={props.limitCancel}
-                    data-test-id={`pending-limit-${x}`}
-                  >
-                    {t.cancel}
-                  </Text>
-                </Flex>
-              )}
+              <MoreIcon className="t-color-grey-light-1" />
             </Flex>
           );
         })}
-      {allRemoved && (
+      {(hasPendingChanges || allRemoved) && (
         <Flex
-          align="center"
+          direction="vertical"
+          align="stretch"
           justify="space-between"
           spacing="none"
-          className="u-padding-x--md"
+          className="u-padding-x--md u-padding-y--lg"
         >
-          <ClockIcon size="sm" className="t-color-caution" />
-          <Text
-            tag="span"
-            size="sm"
-            className="u-margin-left--md t-color-grey-light-1 o-flex--1"
-          >
-            <DangerousHtml html={t.pending_remove_all} />
-          </Text>
-          <Text
-            tag="span"
-            size="sm"
-            className="t-color-turquoise"
+          <Flex align="center" justify="space-between" spacing="none">
+            <ClockIcon size="sm" className="t-color-caution" />
+            <Text
+              tag="span"
+              size="sm"
+              className="u-margin-left--md t-color-grey-dark-1 o-flex--1"
+            >
+              {allRemoved ? (
+                <DangerousHtml html={t.pending_remove_all} />
+              ) : (
+                <Text
+                  tag="span"
+                  size="sm"
+                  className="t-color-warning u-font-weight-bold"
+                >
+                  {t.pending_increase}{" "}
+                </Text>
+              )}
+              {!allRemoved &&
+                limitTypes
+                  .filter(x => R.path(["value", x], props.pendingLimitChanges))
+                  .map(
+                    x =>
+                      `${formatCurrency({
+                        locale: props.locale,
+                        currency: props.currency,
+                        value: props.pendingLimitChanges?.value[x],
+                      })} ${t[`${x}_short`]}`
+                  )
+                  .join(", ")}
+            </Text>
+          </Flex>
+          <Button
+            variant="secondary"
+            className="o-flex--1 u-margin-top--lg"
+            data-test-id="cancel-pending-limit-change"
             onClick={props.limitCancel}
           >
-            {t.cancel}
-          </Text>
+            {allRemoved
+              ? t.cancel_pending_remove_all
+              : t.cancel_pending_increases}
+          </Button>
         </Flex>
       )}
     </Flex>
