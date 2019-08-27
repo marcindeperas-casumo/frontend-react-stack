@@ -62,7 +62,7 @@ export const ErrorMessage = ({
       direction={direction}
       align="center"
       justify={isVertical ? "center" : "space-between"}
-      className="o-flex--1 u-padding--md"
+      className="o-flex--1 u-padding--md t-background-chrome-light-2"
       spacing="lg"
       data-test="error-message-container"
     >
