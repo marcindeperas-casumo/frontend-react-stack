@@ -57,6 +57,7 @@ export default class KambiClient extends React.Component<Props> {
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
+      oddsFormat: this.props.market === "en_gb" ? "fractional" : "decimal",
     };
 
     window.widgetSettings = {
