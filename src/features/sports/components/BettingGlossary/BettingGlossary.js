@@ -58,17 +58,20 @@ export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
 
     linkedElement.classList.add(highlightedClass);
 
-    const topBarOffset = parseInt(
-      getCssCustomProperty("--shell-offset-top") || "75px",
-      10
-    );
-
-    window.document
-      .querySelector(".c-modal__content")
-      .scrollTo(
-        0,
-        linkedElement.offsetTop + topBarOffset - window.innerHeight * 0.5
+    if ("scrollIntoView" in linkedElement) {
+      linkedElement.scrollIntoView({ behavior: "smooth" });
+    } else {
+      const topBarOffset = parseInt(
+        getCssCustomProperty("--shell-offset-top") || "75px",
+        10
       );
+      window.document
+        .querySelector(".c-modal__content")
+        .scrollTo(
+          0,
+          linkedElement.offsetTop + topBarOffset - window.innerHeight * 0.5
+        );
+    }
   };
 
   handleLinkedEntries = (event: SyntheticEvent<HTMLElement>) => {
