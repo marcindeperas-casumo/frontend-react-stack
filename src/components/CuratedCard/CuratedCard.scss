@@ -1,14 +1,4 @@
-@import "cudl-breakpoints";
 @import "~Styles/settings.breakpoints";
-
-$curated-twerkpoints: (
-  map-merge(
-    $cudl-breakpoints,
-    (
-      desktoplg: 1920px,
-    )
-  )
-);
 
 // There is a link between those values and curatedCardOptions 'w' and 'h' in CuratedCardBackground.js
 // Ratio here needs to be reflected in `h`/`w` imgixOpts params
@@ -40,17 +30,15 @@ $curated-card-ratios: (
 .o-ratio--curated-card.o-ratio--curated-card::before {
   @include cudl-breakpoint-with(
     $curated-card-ratios,
-    padding-bottom,
-    $curated-twerkpoints
+    padding-bottom
   );
 }
 
 /* stylelint-disable */
 :export {
-  desktop: cudl-strip-unit(map-get($curated-twerkpoints, desktop));
-  desktopLg: cudl-strip-unit(map-get($curated-twerkpoints, desktoplg));
-  mobile: cudl-strip-unit(map-get($curated-twerkpoints, mobile));
-  phablet: cudl-strip-unit(map-get($curated-twerkpoints, phablet));
-  tablet: cudl-strip-unit(map-get($curated-twerkpoints, tablet));
+  desktop: cudl-strip-unit(map-get($cudl-breakpoints, desktop));
+  mobile: cudl-strip-unit(map-get($cudl-breakpoints, mobile));
+  phablet: cudl-strip-unit(map-get($cudl-breakpoints, phablet));
+  tablet: cudl-strip-unit(map-get($cudl-breakpoints, tablet));
 }
 /* stylelint-enable */

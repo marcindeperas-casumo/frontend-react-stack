@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
-import twerkpoints from "./CuratedCard.scss";
+import breakpoints from "./CuratedCard.scss";
 
 type BaseProps = {
   onLaunchGame: ?Function,
@@ -26,7 +26,7 @@ type Props = BaseProps & {
 
 const curatedCardOptions = [
   {
-    mediaQuery: `(max-width: ${twerkpoints.phablet - 1}px)`,
+    mediaQuery: `(max-width: ${breakpoints.phablet - 1}px)`,
     imgixOpts: {
       w: 343,
       h: 352,
@@ -38,7 +38,7 @@ const curatedCardOptions = [
     },
   },
   {
-    mediaQuery: `(max-width: ${twerkpoints.tablet - 1}px)`,
+    mediaQuery: `(max-width: ${breakpoints.tablet - 1}px)`,
     imgixOpts: {
       w: 496,
       h: 264,
@@ -50,7 +50,7 @@ const curatedCardOptions = [
     },
   },
   {
-    mediaQuery: `(max-width: ${twerkpoints.desktop - 1}px)`,
+    mediaQuery: `(max-width: ${breakpoints.desktop - 1}px)`,
     imgixOpts: {
       w: 768,
       h: 357,
@@ -62,7 +62,7 @@ const curatedCardOptions = [
     },
   },
   {
-    mediaQuery: `(max-width: ${twerkpoints.desktopLg - 1}px)`,
+    mediaQuery: `(min-width: ${breakpoints.desktop}px)`,
     imgixOpts: {
       w: 1181,
       h: 432,
@@ -134,15 +134,15 @@ export const CuratedCardBackgroundDeprecated = ({
   const images = [
     {
       src: small_image,
-      mediaQuery: `(max-width: ${twerkpoints.phablet - 1}px)`,
+      mediaQuery: `(max-width: ${breakpoints.phablet - 1}px)`,
     },
     {
       src: medium_image,
-      mediaQuery: `(max-width: ${twerkpoints.tablet - 1}px)`,
+      mediaQuery: `(max-width: ${breakpoints.tablet - 1}px)`,
     },
     {
       src: large_image,
-      mediaQuery: `(min-width: ${twerkpoints.tablet}px)`,
+      mediaQuery: `(min-width: ${breakpoints.tablet}px)`,
     },
   ];
 
