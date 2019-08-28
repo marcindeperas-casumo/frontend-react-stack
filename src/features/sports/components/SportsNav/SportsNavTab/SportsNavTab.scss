@@ -18,13 +18,15 @@
   border-color: cudl-palette(negative);
 }
 
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-nav-paginated--live .c-sports-nav-live-tab__whatever {
+  border-right: transparent;
+}
+
 $badge-size: $cudl-spacer-size-default * 2.5;
 
 .c-sports-nav-live-tab__badge {
-  font-size: 14px;
-  height: $badge-size;
   right: 0;
   top: 0;
-  width: $badge-size;
   z-index: 1;
 }
