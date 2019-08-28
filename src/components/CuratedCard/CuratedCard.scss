@@ -25,10 +25,7 @@ $curated-card-ratios: (
 
 // stylelint-disable-next-line
 .o-ratio--curated-card.o-ratio--curated-card::before {
-  @include cudl-breakpoint-with(
-    $curated-card-ratios,
-    padding-bottom
-  );
+  @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
 }
 
 /* stylelint-disable */
