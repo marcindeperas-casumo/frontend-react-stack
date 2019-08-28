@@ -32,7 +32,10 @@ const EditPillsButton = ({
     onClick={onClick}
   >
     <Flex.Item
-      className={classNames("c-edit-pills-button", className)}
+      className={classNames(
+        "t-border-r--circle o-flex u-padding--sm",
+        className
+      )}
       data-test="edit-pills-button-container"
     >
       <CrossIcon />
@@ -42,7 +45,7 @@ const EditPillsButton = ({
         <Text
           style={{ marginTop: 1 }}
           size="sm"
-          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-chrome u-margin-bottom--none"
+          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-chrome-dark-1 u-margin-bottom--none"
         >
           {label}
         </Text>
