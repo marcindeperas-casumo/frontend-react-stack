@@ -44,7 +44,7 @@ const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
-          isActive ? "red" : "chrome-dark-1"
+          isActive ? "negative" : "chrome-dark-1"
         } u-drop-shadow`}
       />
     </Flex>
@@ -67,7 +67,8 @@ export const SportsNavLiveTab = ({
   <div
     className={classNames(
       "c-sports-nav-live-tab u-padding-x u-padding-top--md u-padding-bottom--lg u-cursor-pointer o-flex",
-      isActive && "c-sports-live-tab--selected t-background-red t-color-white"
+      isActive &&
+        "c-sports-live-tab--selected t-background-negative t-color-white"
     )}
     onClick={onClick}
   >
