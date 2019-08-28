@@ -2,11 +2,6 @@
 .c-sports-nav-sport-tab {
   border-bottom: 2px solid transparent;
   height: 106px;
-  position: relative;
-}
-
-.c-sports-nav-live-tab__whatever {
-  border-right: 4px solid cudl-palette(white);
 }
 
 .c-sports-nav-sport-tab--selected {
@@ -18,12 +13,14 @@
   border-color: cudl-palette(negative);
 }
 
-// stylelint-disable-next-line xi/selector-pattern
-.c-sports-nav-paginated--live .c-sports-nav-live-tab__whatever {
-  border-right: transparent;
+.c-sports-nav-live-tab__wrapper {
+  border-right: 4px solid cudl-palette(white);
 }
 
-$badge-size: $cudl-spacer-size-default * 2.5;
+// stylelint-disable-next-line xi/selector-pattern
+.c-sports-nav-paginated--live .c-sports-nav-live-tab__wrapper {
+  border-right: transparent;
+}
 
 .c-sports-nav-live-tab__badge {
   right: 0;

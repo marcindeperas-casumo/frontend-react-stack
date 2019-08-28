@@ -58,11 +58,11 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-margin-y--lg u-margin-left--md">
+  <div className="u-margin-y--lg u-padding-left--md c-sports-nav__edit">
     {canEdit && !isLiveActive && (
       <EditPillsButton
         onClick={onEdit}
-        className="t-background-plum t-color-white t-box-shadow"
+        className="t-background-white t-color-chrome-dark-1 t-box-shadow"
         label={labels.edit}
       />
     )}
@@ -122,7 +122,7 @@ export const renderTabList = (
   return (
     <div style={style}>
       <div
-        className={classNames(isLastItem(offsetIndex) && "u-margin-right--xlg")}
+        className={classNames(isLastItem(offsetIndex) && "u-margin-right--md")}
       >
         {renderedTab}
       </div>

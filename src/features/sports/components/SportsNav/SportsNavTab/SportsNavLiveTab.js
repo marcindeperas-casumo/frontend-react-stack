@@ -66,7 +66,7 @@ export const SportsNavLiveTab = ({
 }: Props) => (
   <div
     className={classNames(
-      "c-sports-nav-live-tab u-padding-x u-padding-y u-cursor-pointer o-flex",
+      "c-sports-nav-live-tab u-margin-x u-cursor-pointer o-flex",
       isActive && "c-sports-live-tab--selected t-color-white"
     )}
     onClick={onClick}
@@ -76,7 +76,7 @@ export const SportsNavLiveTab = ({
       justify="center"
       direction="vertical"
       className={classNames(
-        "o-flex--1 c-sports-nav-live-tab__whatever",
+        "o-flex--1 u-margin-y u-padding-x c-sports-nav-live-tab__wrapper",
         isActive && "t-background-negative t-border-r"
       )}
       spacing="none"
