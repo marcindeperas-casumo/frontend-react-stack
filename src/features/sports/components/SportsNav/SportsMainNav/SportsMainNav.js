@@ -143,9 +143,8 @@ export const SportsMainNav = (props: Props) => {
   return (
     <ScrollablePaginated
       className={classNames(
-        isLiveActive
-          ? "c-sports-nav-paginated--live t-background-orange-light-3"
-          : "t-background-chrome-light-2",
+        isLiveActive && "c-sports-nav-paginated--live",
+        "t-background-chrome-light-2",
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}

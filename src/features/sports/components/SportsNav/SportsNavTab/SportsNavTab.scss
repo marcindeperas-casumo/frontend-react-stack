@@ -5,13 +5,17 @@
   position: relative;
 }
 
+.c-sports-nav-live-tab__whatever {
+  border-right: 4px solid cudl-palette(white);
+}
+
 .c-sports-nav-sport-tab--selected {
   border-color: cudl-palette(plum);
 }
 
 // stylelint-disable-next-line xi/selector-pattern
 .c-sports-nav-paginated--live .c-sports-nav-sport-tab--selected {
-  border-color: cudl-palette(red);
+  border-color: cudl-palette(negative);
 }
 
 $badge-size: $cudl-spacer-size-default * 2.5;

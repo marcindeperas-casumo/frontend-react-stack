@@ -44,7 +44,7 @@ const LiveIconColored = ({ count, isActive }: LiveIconColoredProps) => (
     <Flex justify="center" align="center" className="o-ratio__content">
       <LiveIcon
         className={`t-border-r--circle t-color-${
-          isActive ? "red" : "grey-dark-1"
+          isActive ? "red" : "chrome-dark-1"
         } u-drop-shadow`}
       />
     </Flex>
@@ -75,7 +75,7 @@ export const SportsNavLiveTab = ({
       align="center"
       justify="center"
       direction="vertical"
-      className="o-flex--1"
+      className="o-flex--1 c-sports-nav-live-tab__whatever"
       spacing="none"
     >
       <LiveIconColored count={count} isActive={isActive} />
@@ -83,7 +83,7 @@ export const SportsNavLiveTab = ({
         tag="span"
         size="sm"
         className={`u-font-weight-black u-text-align-center t-color-${
-          isActive ? "white" : "grey-dark-1"
+          isActive ? "white" : "chrome-dark-1"
         } u-text-nowrap`}
       >
         {label}
