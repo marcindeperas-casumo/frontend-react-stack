@@ -9,6 +9,8 @@ const KambiSearchResultsListSkeleton = () => (
     items={[1, 2, 3, 4, 5]}
     render={id => (
       <Skeleton
+        colorHi="#d3d8e1"
+        colorLow="#e5eaed"
         key={id}
         width="100%"
         height="24px"
@@ -25,6 +27,8 @@ const KambiSearchResultsListSkeleton = () => (
 const KambiSearchResultsSkeleton = () => (
   <>
     <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
       width="100%"
       height="52px"
       preserveAspectRatio="none"
@@ -34,6 +38,8 @@ const KambiSearchResultsSkeleton = () => (
     </Skeleton>
     <KambiSearchResultsListSkeleton />
     <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
       width="100%"
       height="52px"
       preserveAspectRatio="none"
