@@ -39,9 +39,14 @@ export default class KambiClient extends React.Component<Props> {
     this.redirectToUserHomeRoute();
 
     /* eslint-disable fp/no-mutation */
-    window._kc = pick(["currency", "locale", "market", "playerId", "ticket"], {
-      ...this.props,
-    });
+    window._kc = {
+      ...pick(["currency", "locale", "market", "playerId", "ticket"], {
+        ...this.props,
+      }),
+      oddsFormat: this.props.market.toLowerCase().includes("gb")
+        ? "fractional"
+        : "decimal",
+    };
 
     // pre-setup the widget api
     getKambiWidgetAPI();
@@ -57,7 +62,6 @@ export default class KambiClient extends React.Component<Props> {
       emptyClientRoutes: [/^search$/, "search#home"],
       heartbeat: this.props.sessionKeepAlive,
       notification: this.onNotification,
-      oddsFormat: this.props.market === "en_gb" ? "fractional" : "decimal",
     };
 
     window.widgetSettings = {
