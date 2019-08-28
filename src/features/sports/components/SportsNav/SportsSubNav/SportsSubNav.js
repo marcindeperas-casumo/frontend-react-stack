@@ -59,7 +59,6 @@ const renderItem = ({ props, navItemTypes, isLiveActive }: RenderItemArgs) => ({
 export const SportsSubNav = (props: SportsSubNavProps) => {
   const [isLiveActive] = props.liveState;
   const navItemTypes = ["all", ...props.navItems.map(() => "nav"), "edit"];
-  const backgroundColor = isLiveActive ? "orange-light-3" : "chrome-light-2";
   const isNavEmpty = !props.navItems || props.navItems.length === 0;
 
   if (isNavEmpty) {
@@ -67,7 +66,7 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   }
 
   return (
-    <div className={`u-margin-top--sm t-background-${backgroundColor}`}>
+    <div className={`u-margin-top--sm t-background-chrome-light-2`}>
       <ScrollablePaginated
         className="c-sports-nav-paginated"
         columnCount={navItemTypes.length}
