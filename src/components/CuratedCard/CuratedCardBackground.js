@@ -73,17 +73,6 @@ const curatedCardOptions = [
       crop: "focalpoint",
     },
   },
-  {
-    mediaQuery: `(min-width: ${twerkpoints.desktopLg}px)`,
-    imgixOpts: {
-      w: 1661,
-      h: 616,
-      "fp-y": 0.52,
-      "fp-z": 1,
-      fit: "crop",
-      crop: "focalpoint",
-    },
-  },
 ];
 
 const addImageSourceToOptions = src =>
