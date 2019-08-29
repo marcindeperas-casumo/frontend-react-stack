@@ -251,6 +251,14 @@ export class App extends PureComponent<Props> {
             />
           </GraphQLProvider>
         </Route>
+        <Route path={["launcher"]}>
+          <LazyPortal
+            hostElementId="react-host-reel-race-widget"
+            loader={() => import("Components/ReelRaceWidget")}
+            fallback={<GameListSkeleton />}
+            namedExport="ReelRaceWidget"
+          />
+        </Route>
       </Router>
     );
   }

@@ -24,6 +24,7 @@ export const REACT_APP_EVENT_ON_OVERLAY_CHANGE =
 export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
+export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
