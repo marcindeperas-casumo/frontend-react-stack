@@ -15,6 +15,8 @@ import {
   type Labels,
 } from "Features/sports/components/SportsNav";
 
+import "./SportsSubNav.scss";
+
 export type SportsSubNavProps = {
   navItems: SportsNavItemType[],
   isSelected: SportsNavItemType => boolean,
@@ -66,7 +68,7 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   }
 
   return (
-    <div className={`u-margin-top--sm t-background-chrome-light-2`}>
+    <div className="u-margin-left u-margin-right c-sports-sub-nav">
       <ScrollablePaginated
         className="c-sports-nav-paginated"
         columnCount={navItemTypes.length}
