@@ -20,6 +20,8 @@ import {
 import { makeAllSportsNavItem } from "Features/sports/components/SportsNav/sportsNavUtils";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
+import "./SportsMainNav.scss";
+
 const SPORTS_NAV_HEIGHT = 106;
 const buttonsBeforeNav = ["live", "all"];
 
@@ -58,10 +60,12 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-margin-y--lg u-padding-left--md c-sports-nav__edit-btn">
-    {canEdit && !isLiveActive && (
-      <EditPillsButton onClick={onEdit} label={labels.edit} />
-    )}
+  <div className="u-padding-y u-margin-x c-sports-nav-edit-btn">
+    <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
+      {canEdit && !isLiveActive && (
+        <EditPillsButton onClick={onEdit} label={labels.edit} />
+      )}
+    </div>
   </div>
 );
 
@@ -140,7 +144,6 @@ export const SportsMainNav = (props: Props) => {
     <ScrollablePaginated
       className={classNames(
         isLiveActive && "c-sports-nav-paginated--live",
-        "t-background-chrome-light-2",
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}
