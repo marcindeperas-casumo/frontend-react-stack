@@ -58,13 +58,9 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-margin-y--lg u-padding-left--md c-sports-nav__edit">
+  <div className="u-margin-y--lg u-padding-left--md c-sports-nav__edit-btn">
     {canEdit && !isLiveActive && (
-      <EditPillsButton
-        onClick={onEdit}
-        className="t-background-white t-color-chrome-dark-1 t-box-shadow"
-        label={labels.edit}
-      />
+      <EditPillsButton onClick={onEdit} label={labels.edit} />
     )}
   </div>
 );
