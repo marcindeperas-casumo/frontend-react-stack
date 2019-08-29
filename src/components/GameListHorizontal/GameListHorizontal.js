@@ -38,16 +38,18 @@ export const ITEM_RENDERERS = {
 
 export const TILE_HEIGHTS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: 280,
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: 290,
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: 290,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: 305,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: 305,
   [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: 204,
   default: 204,
 };
 
 const GAME_LIST_CLASS_NAME = {
-  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: "c-exclusive-game",
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "c-live-casino-card",
-  default: "c-top-game",
+  [GAME_LIST_IDS.EXCLUSIVE_GAMES]:
+    "c-exclusive-game t-border-r--md u-overflow-hidden",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
+    "c-live-casino-card t-background-white t-border-r--md t-box-shadow u-overflow-hidden u-margin-bottom--sm",
+  default: "c-top-game t-border-r--md u-overflow-hidden",
 };
 
 const SEE_MORE_URL = {

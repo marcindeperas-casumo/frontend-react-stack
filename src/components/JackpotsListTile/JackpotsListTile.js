@@ -12,6 +12,8 @@ export default class JackpotsListTile extends PureComponent<Props> {
   render() {
     const { ids = [] } = this.props;
 
-    return <List items={ids} render={id => <GameRow id={id} />} />;
+    return (
+      <List itemSpacing="sm" items={ids} render={id => <GameRow id={id} />} />
+    );
   }
 }

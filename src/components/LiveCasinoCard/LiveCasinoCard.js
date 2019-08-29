@@ -50,7 +50,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <div
-        className="o-ratio o-ratio--live-casino-card t-border-r u-overflow-hidden"
+        className="o-ratio o-ratio--live-casino-card"
         onClick={this.props.launchGame}
       >
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
@@ -73,7 +73,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     const { game, launchGame } = this.props;
 
     return (
-      <Flex onClick={launchGame}>
+      <Flex onClick={launchGame} className="u-padding-x--md">
         <Flex.Block>
           <Text
             tag="h3"
