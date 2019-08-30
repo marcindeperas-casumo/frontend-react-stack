@@ -6,7 +6,6 @@ import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";
 import {
-  type ValuableType,
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
@@ -37,7 +36,7 @@ type Props = {
   /** The date on which the valuable will expiry */
   expirationTimeInHours: number,
   /** Function to be triggered on click of card */
-  onCardClick: () => void,
+  onCardClick?: () => void,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
 };

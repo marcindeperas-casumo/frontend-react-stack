@@ -1,4 +1,5 @@
 // @flow
+import type { Game } from "Types/game";
 import {
   VALUABLE_STATES,
   VALUABLE_TYPES,
@@ -24,4 +25,29 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   depositNowLabel: string,
   termsAndConditionLabel: string,
   expirationTimeLabel: string,
+  termsAndConditionsContent: string,
+};
+
+export type ValuableDetailsProps = {
+  id: string,
+  /* Url of the background image to be used in the header */
+  backgroundImage: string,
+  /* Detailed description of the Valuable */
+  content: string,
+  /* Caveat for the valuable */
+  caveat?: string,
+  /* Hours left for the bonus to expire */
+  expirationTimeInHours: number,
+  /* Requirement type to unlock */
+  requirementType: ?ValuableRequirementType,
+  /*Game to launch on click of button */
+  game?: Game,
+  /* Type of Valuable */
+  valuableType: ValuableType,
+  /* The valuable's current state */
+  valuableState: ValuableState,
+  /** The function to be called to consume the valuable which will be triggered by each card click */
+  onConsumeValuable: string => Promise<boolean>,
+  /** The function to be called to launch game which will be triggered after consuming the valuable */
+  onLaunchGame: string => void,
 };

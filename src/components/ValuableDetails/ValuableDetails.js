@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import React, { type Node } from "react";
 import { equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
@@ -6,17 +6,16 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import Button from "@casumo/cmp-button";
-import MaskImage from "Components/MaskImage";
-import { interpolate, convertHoursToDays } from "Utils";
 import {
+  shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
-  type ValuableRequirementType,
-  type ValuableType,
-  type ValuableState,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
+  type ValuableRequirementType,
 } from "Models/valuables";
+import MaskImage from "Components/MaskImage";
+import { interpolate, convertHoursToDays } from "Utils";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
@@ -25,32 +24,24 @@ export const expirationBadgeClasses = {
   grey: "t-background-grey-light-1",
 };
 
+type Game = {
+  slug: string,
+};
+
 type BadgeInfoType = {
   key: string,
   value: number,
 };
 
-type Props = {
-  id: string,
-  /* Url of the background image to be used in the header */
-  backgroundImageUrl: string,
-  /* Detailed description of the Valuable */
-  details: string,
-  /* Caveat for the valuable */
-  caveat: string,
-  /* Content for Terms and conditions */
-  termsContent: string,
-  /* Hours left for the bonus to expire */
-  expirationTimeInHours: number,
-  /* Requirement type to unlock */
-  requirementType?: ValuableRequirementType,
-  /* Type of Valuable */
-  valuableType: ValuableType,
-  /* The valuable's current state */
-  valuableState: ValuableState,
-  /* Translated labels of the component */
+export type Props = {
+  valuableDetails: ValuableDetails_PlayerValuable,
+  /** The function to be called to consume the valuable which will be triggered by each card click */
+  onConsumeValuable: ({
+    id: string,
+    valuableType: ValuableType,
+    gameSlug: ?string,
+  }) => Promise<void>,
   translations: Translations,
-  /* Valuable component to be displayed in the header*/
   children: Node,
 };
 
@@ -58,7 +49,7 @@ const HeaderImgMask = () => (
   <path d="M378 261.753C238.58 277.769 68.4582 269.761 -1 261.753V0H376.993L378 261.753Z" />
 );
 
-const ExpirationBadgeContent = ({ isLocked, text }) => {
+const ActionButtonContent = ({ isLocked, text }) => {
   return (
     <>
       {isLocked && (
@@ -73,57 +64,96 @@ const ExpirationBadgeContent = ({ isLocked, text }) => {
 
 export class ValuableDetails extends React.PureComponent<Props> {
   get expiresWithin24Hours() {
-    return this.props.expirationTimeInHours <= 24;
+    return this.props.valuableDetails.expirationTimeInHours <= 24;
   }
 
   get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props;
+    const { expirationTimeInHours } = this.props.valuableDetails;
 
     return this.expiresWithin24Hours
       ? { key: "hours", value: expirationTimeInHours }
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
 
+  get requirementType(): ?ValuableRequirementType {
+    const { valuableDetails } = this.props;
+
+    if (
+      valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableSpins"
+    ) {
+      return valuableDetails.requirementType;
+    }
+
+    return null;
+  }
+
+  get game(): ?Game {
+    const { valuableDetails } = this.props;
+
+    if (valuableDetails.__typename === "PlayerValuableSpins") {
+      return valuableDetails.game;
+    }
+
+    return null;
+  }
+
+  handleAction = () => {
+    const { valuableDetails } = this.props;
+    const { valuableType, valuableState, id } = valuableDetails;
+    const { onConsumeValuable } = this.props;
+    const game = this.game;
+
+    if (shouldUseValuable(valuableType, valuableState)) {
+      const gameSlug = game ? game.slug : null;
+
+      onConsumeValuable({ id, valuableType, gameSlug });
+    }
+  };
+
   render() {
+    const { valuableDetails } = this.props;
     const {
       id,
-      backgroundImageUrl,
-      details,
+      backgroundImage,
+      content,
       caveat,
-      termsContent,
       expirationTimeInHours,
       valuableType,
       valuableState,
-      requirementType,
-      translations,
-      children,
-    } = this.props;
-    const { termsAndConditionLabel, expirationTimeLabel } = translations;
-
+    } = valuableDetails;
+    const { translations, children } = this.props;
+    const {
+      termsAndConditionLabel,
+      expirationTimeLabel,
+      termsAndConditionsContent,
+    } = translations;
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
       expirationInfo.key,
       expirationInfo.value
     );
 
-    const expirationValueText = interpolate(translations[durationKey], {
-      value: expirationInfo.value,
-    });
+    const expirationValueText =
+      translations[durationKey] &&
+      interpolate(translations[durationKey], {
+        value: expirationInfo.value,
+      });
 
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
       valuableState,
-      requirementType,
+      requirementType: this.requirementType,
       translations,
     });
 
     return (
-      <>
+      <div>
         <div className="o-ratio o-ratio--valuable-details">
           <div className="o-ratio__content c-valuable-details__header">
             <MaskImage
               id={`${id}-detail`}
-              imageUrl={backgroundImageUrl}
+              imageUrl={backgroundImage}
               width={375}
               height={334}
             >
@@ -131,7 +161,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </MaskImage>
           </div>
           <Flex
-            className="o-ratio__content"
+            className="o-ratio__content u-margin-bottom--md"
             justify="end"
             align="center"
             direction="vertical"
@@ -142,8 +172,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
         <div className="u-margin-top--2xlg u-padding-x--md">
           <Flex direction="vertical" align="center">
             <Flex.Item>
-              <Text tag="p" size="md">
-                {details}
+              <Text className="center" tag="p" size="md">
+                {content}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
@@ -153,7 +183,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 data-test="valuable-expiration-badge"
                 className={classNames(
                   "u-text-transform-uppercase u-font-weight-bold",
-                  expirationTimeInHours > 24 && expirationBadgeClasses.grey
+                  expirationTimeInHours >= 24 && expirationBadgeClasses.grey
                 )}
                 radius="sm"
               >
@@ -179,13 +209,18 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 className="t-color-grey u-text-align-left"
                 size="sm"
               >
-                {termsContent}
+                {termsAndConditionsContent}
               </Text>
             </Flex.Item>
           </Flex>
           <div className="c-valuable-details__footer">
-            <Button href={actionButtonProps.url} className="u-width--1/1">
-              <ExpirationBadgeContent
+            <Button
+              href={actionButtonProps.url}
+              className="u-width--1/1"
+              onClick={this.handleAction}
+              data-test="valuable-action-button"
+            >
+              <ActionButtonContent
                 text={actionButtonProps.text}
                 isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
                 data-test="expiration-badge-content"
@@ -193,7 +228,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             </Button>
           </div>
         </div>
-      </>
+      </div>
     );
   }
 }
