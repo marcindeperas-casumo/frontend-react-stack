@@ -11,7 +11,6 @@ import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
   const consumeValuable = jest.fn();
-  const launchGame = jest.fn();
   const refetchMock = jest.fn();
   let rendered;
 
@@ -21,7 +20,6 @@ describe("PlayerValuableListHorizontal", () => {
         valuables={mockedValuables}
         loading={false}
         onConsumeValuable={consumeValuable}
-        onLaunchGame={launchGame}
         translations={translationsMock}
         refetch={refetchMock}
       />
@@ -34,7 +32,6 @@ describe("PlayerValuableListHorizontal", () => {
         valuables={mockedValuables}
         loading={true}
         onConsumeValuable={consumeValuable}
-        onLaunchGame={launchGame}
         translations={translationsMock}
       />
     );
@@ -62,7 +59,6 @@ describe("PlayerValuableListHorizontal", () => {
         valuables={mockedValuables}
         loading={false}
         onConsumeValuable={consumeValuable}
-        onLaunchGame={launchGame}
         translations={translationsMock}
         refetch={mock}
       />
@@ -83,7 +79,6 @@ describe("PlayerValuableListHorizontal", () => {
         valuables={mockedValuables}
         loading={false}
         onConsumeValuable={consumeValuable}
-        onLaunchGame={launchGame}
         translations={translationsMock}
         refetch={mock}
       />
