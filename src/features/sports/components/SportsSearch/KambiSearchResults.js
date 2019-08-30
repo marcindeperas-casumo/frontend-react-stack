@@ -10,7 +10,7 @@ import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/state/clientState";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-import NoResultsIcon from "./no-results-icon.svg";
+import SadSumo from "Components/ErrorMessage/sad-sumo.svg";
 import KambiSearchResultsSkeleton from "./KambiSearchResultsSkeleton";
 
 export const TOP_SEARCHES_QUERY = gql`
@@ -221,7 +221,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex spacing="md" align="center">
+            <Flex className="u-padding-left" spacing="md" align="center">
               <img src={sport.icon} alt={sport.name} height="24" width="24" />
               <Flex.Block>
                 <Text
@@ -276,18 +276,17 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex align="center">
+            <Flex className="u-padding-left" spacing="md" align="center">
               {result.sport && (
                 <img
                   src={result.sport.icon}
                   alt={result.localizedName}
                   height="24"
                   width="24"
-                  className="u-opacity-28"
                 />
               )}
 
-              <Flex.Block className="u-margin-left--lg">
+              <Flex.Block>
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -358,7 +357,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         <div className="t-background-chrome-light-2 t-color-chrome-dark-1 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
             <Flex.Item>
-              <NoResultsIcon />
+              <SadSumo width="32" height="36" />
             </Flex.Item>
             <Flex.Block>
               <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
