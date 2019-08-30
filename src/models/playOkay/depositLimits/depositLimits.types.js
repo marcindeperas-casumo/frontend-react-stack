@@ -81,10 +81,11 @@ export type DepositLimitsHistoryType = Array<{
   timestamp: ISO8601DateTime,
   type: LimitChangeType,
   changes: {
-    daily?: ?number,
-    monthly?: ?number,
-    weekly?: ?number,
+    daily?: ?{ before: ?number, after: ?number },
+    monthly?: ?{ before: ?number, after: ?number },
+    weekly?: ?{ before: ?number, after: ?number },
   },
+  setOnRegistration?: boolean,
 }>;
 
 export type DepositLimitsReduxStore = {|

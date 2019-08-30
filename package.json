@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@casumo/cmp-badge": "^1.2.8",
-    "@casumo/cmp-button": "^2.0.9",
+    "@casumo/cmp-button": "^2.1.0",
     "@casumo/cmp-card": "^3.0.1",
     "@casumo/cmp-flex": "^3.0.1",
     "@casumo/cmp-icons": "^2.0.7",
@@ -55,8 +55,7 @@
     "reselect": "^4.0.0",
     "rollbar": "^2.7.1",
     "sass-resources-loader": "^2.0.1",
-    "store": "^2.0.12",
-    "wait-for-element": "^1.0.2"
+    "store": "^2.0.12"
   },
   "scripts": {
     "flow": "flow",
@@ -89,7 +88,8 @@
     },
     "setupFilesAfterEnv": [
       "<rootDir>/config/jest/enzyme.js",
-      "<rootDir>/config/jest/matchMedia.js"
+      "<rootDir>/config/jest/matchMedia.js",
+      "<rootDir>/config/jest/mutationObserverMock.js"
     ],
     "collectCoverageFrom": [
       "src/**/*.js",
@@ -212,6 +212,7 @@
     "mock-raf": "^1.0.1",
     "mock-socket": "^8.0.5",
     "mockdate": "^2.0.2",
+    "mutation-observer": "^1.0.3",
     "node-sass": "^4.12.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "pnp-webpack-plugin": "^1.5.0",

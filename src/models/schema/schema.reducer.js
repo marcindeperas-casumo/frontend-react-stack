@@ -40,6 +40,9 @@ const schemaReducer = combineReducers({
   [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: entityReducerFactory(
     ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW
   ),
+  [ENTITY_KEYS.ACKNOWLEDGEMENTS]: entityReducerFactory(
+    ENTITY_KEYS.ACKNOWLEDGEMENTS
+  ),
 });
 
 export default schemaReducer;

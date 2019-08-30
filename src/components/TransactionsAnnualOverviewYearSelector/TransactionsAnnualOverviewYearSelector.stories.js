@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { F } from "ramda";
 import { storiesOf } from "@storybook/react";
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
@@ -20,6 +21,7 @@ const props = {
   },
   isContentFetched: true,
   fetchContent: () => {},
+  isAnnualOverviewLoading: F,
 };
 
 stories.add("Default", () => {

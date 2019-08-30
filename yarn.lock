@@ -1165,10 +1165,10 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-button@^2.0.9":
-  version "2.0.9"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.0.9.tgz#70339ed55f14f3e19078e23946eadcb4f23de51e"
-  integrity sha512-JdYzwToGV+FXFnhr/8L6DBN8cwrbNLmvfEiSjRNcl9WUND8Ynmiu+TW9GsABvqCNzAI8ELL+4VirC5kCxo/4tQ==
+"@casumo/cmp-button@^2.1.0":
+  version "2.1.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-button/-/cmp-button-2.1.0.tgz#f09521d6ba1cd5d1e8cf0edd3a4caf76f8b07548"
+  integrity sha512-t74GimcvV4y1cPQzef9mEN/vyeWGAGAU2gE+LqQ0GSORnpIdJ4KQTZrsAmTlNFNLucK+sWcILwxEcfd952dClA==
   dependencies:
     "@casumo/cudl-buttons" "2.0.4"
     "@casumo/cudl-react-utils" "^1.0.6"
@@ -11615,6 +11615,11 @@ multimatch@^2.0.0:
     arrify "^1.0.0"
     minimatch "^3.0.0"
 
+mutation-observer@^1.0.3:
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/mutation-observer/-/mutation-observer-1.0.3.tgz#42e9222b101bca82e5ba9d5a7acf4a14c0f263d0"
+  integrity sha512-M/O/4rF2h776hV7qGMZUH3utZLO/jK7p8rnNgGkjKUw8zCGjRQPxB8z6+5l8+VjRUQ3dNYu4vjqXYLr+U8ZVNA==
+
 mute-stream@0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/mute-stream/-/mute-stream-0.0.6.tgz#48962b19e169fd1dfc240b3f1e7317627bbc47db"
@@ -17515,11 +17520,6 @@ waait@^1.0.5:
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/waait/-/waait-1.0.5.tgz#6a3c7aaa88bd0a1a545e9d47890b9595bebf9aa7"
   integrity sha512-wp+unA4CpqxvBUKHHv8D86fK4jWByHAWyhEXXVHfVUZfK+16ylpj7hjQ58Z8j9ntu8XNukRQT8Fi5qbyJ8rkyw==
-
-wait-for-element@^1.0.2:
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/wait-for-element/-/wait-for-element-1.0.2.tgz#cbe7e31f157981f56f3bc1080768ef1823792f3d"
-  integrity sha1-y+fjHxV5gfVvO8EIB2jvGCN5Lz0=
 
 wait-for-expect@^1.2.0:
   version "1.2.0"

@@ -94,6 +94,17 @@ export const INTL_LOCALES = {
   [MARKETS.es_es]: "es-ES",
 };
 
+export const CURRENCY_SYMBOLS = {
+  EUR: "\u20AC", // €
+  GBP: "\u00A3", // £
+  DKK: "kr.",
+  SEK: "kr",
+  CAD: "\u0024", // $
+  NZD: "\u0024", // $
+  INR: "\u20B9", // ₹
+  JPY: "\u00A5", // ¥
+};
+
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",

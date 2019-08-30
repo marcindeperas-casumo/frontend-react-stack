@@ -254,9 +254,18 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
       history: [
         {
           changes: {
-            daily: 500,
-            monthly: 10000,
-            weekly: 2500,
+            daily: {
+              after: 500,
+              before: null,
+            },
+            monthly: {
+              after: 10000,
+              before: null,
+            },
+            weekly: {
+              after: 2500,
+              before: null,
+            },
           },
           id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
           timestamp: "2019-08-05T14:25:20Z",
@@ -264,9 +273,18 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         },
         {
           changes: {
-            daily: null,
-            monthly: null,
-            weekly: null,
+            daily: {
+              after: null,
+              before: 666,
+            },
+            monthly: {
+              after: null,
+              before: 3000,
+            },
+            weekly: {
+              after: null,
+              before: 1500,
+            },
           },
           id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
           timestamp: "2019-08-02T16:19:26Z",
@@ -274,7 +292,10 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         },
         {
           changes: {
-            daily: 666,
+            daily: {
+              after: 666,
+              before: 595,
+            },
           },
           id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
           timestamp: "2019-08-02T14:31:07Z",

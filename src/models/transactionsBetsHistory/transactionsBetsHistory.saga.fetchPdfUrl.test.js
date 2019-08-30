@@ -1,11 +1,7 @@
-import { DateTime } from "luxon";
 import { path } from "ramda";
 import { ENTITY_KEYS } from "Models/schema";
-import { types } from "./transactionsBetsHistory.constants";
-import {
-  fetchAnnualOverviewPdfUrlSaga,
-  isFailedPdfUrlRequestTakePattern,
-} from "./transactionsBetsHistory.saga.fetchPdfUrl";
+import { getAnnualOverviewPdfUrlReq } from "Api/api.transactionsBetsHistory";
+import { fetchAnnualOverviewPdfUrlSaga } from "./transactionsBetsHistory.saga.fetchPdfUrl";
 import { prepareFetchAnnualOverviewPdfUrlProps } from "./transactionsBetsHistory.utils";
 import annualOverview from "./__mocks__/annualOverview.mock";
 
@@ -49,13 +45,26 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
 
     generator.next(dni);
 
-    const fetchPdfUrlEffect = generator.next(locale).value;
+    const isFetchingEffect = generator.next(locale).value;
 
-    expect(path(["PUT", "action", "name"], fetchPdfUrlEffect)).toEqual(
-      types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
+    expect(isFetchingEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isPdfUrlFetching: true,
+            error: null,
+          },
+        },
+      },
+    });
+
+    const fetchPdfUrlEffect = generator.next().value;
+
+    expect(path(["CALL", "fn"], fetchPdfUrlEffect)).toEqual(
+      getAnnualOverviewPdfUrlReq
     );
 
-    expect(path(["PUT", "action", "asyncCallData"], fetchPdfUrlEffect)).toEqual(
+    expect(path(["CALL", "args", 0], fetchPdfUrlEffect)).toEqual(
       prepareFetchAnnualOverviewPdfUrlProps({
         annualOverview,
         locale,
@@ -65,26 +74,19 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
       })
     );
 
-    const fetchFailRaceEffect = generator.next().value;
-
-    expect(path(["RACE", 0, "TAKE", "pattern"], fetchFailRaceEffect)).toEqual(
-      types.ANNUAL_OVERVIEW_FETCH_PDF_URL_COMPLETED
-    );
-
-    expect(path(["RACE", 1, "TAKE", "pattern"], fetchFailRaceEffect)).toEqual(
-      isFailedPdfUrlRequestTakePattern
-    );
-
     // push for success flow
-    const mergeEntityEffect = generator.next([
-      { response: pdfUrlResponse },
-      null,
-    ]).value;
+    const mergeEntityEffect = generator.next(pdfUrlResponse).value;
 
     expect(path(["PUT", "action", "payload"], mergeEntityEffect)).toEqual({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [year]: {
-          pdfUrl: pdfUrlResponse.downloadUrl,
+          data: {
+            ...annualOverview,
+            pdfUrl: pdfUrlResponse.downloadUrl,
+          },
+          meta: {
+            isPdfUrlFetching: false,
+          },
         },
       },
     });
@@ -111,20 +113,41 @@ describe("fetchAnnualOverviewPdfUrlSaga()", () => {
 
     generator.next(dni);
 
-    const fetchPdfUrlEffect = generator.next(locale).value;
+    const isFetchingEffect = generator.next(locale).value;
 
-    expect(path(["PUT", "action", "name"], fetchPdfUrlEffect)).toEqual(
-      types.ANNUAL_OVERVIEW_FETCH_PDF_URL_START
+    expect(isFetchingEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isPdfUrlFetching: true,
+            error: null,
+          },
+        },
+      },
+    });
+
+    const fetchPdfUrlEffect = generator.next().value;
+
+    expect(path(["CALL", "fn"], fetchPdfUrlEffect)).toEqual(
+      getAnnualOverviewPdfUrlReq
     );
 
-    // race effect
-    generator.next();
-
     // push for failure flow
-    const rejectCallEffects = generator.next([
-      null,
-      { error: "something wrong" },
-    ]).value;
+    const errorMsg = "BAD";
+    const errorEffect = generator.throw(new Error(errorMsg)).value;
+
+    expect(errorEffect.PUT.action.payload).toEqual({
+      [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
+        [action.year]: {
+          meta: {
+            isPdfUrlFetching: false,
+            error: `Error: ${errorMsg}`,
+          },
+        },
+      },
+    });
+
+    const rejectCallEffects = generator.next().value;
 
     expect(path(["CALL", "fn"], rejectCallEffects)).toEqual(reject);
 

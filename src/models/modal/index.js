@@ -2,6 +2,7 @@
 export type ModalKind =
   | "REEL_RACES_CAVEATS"
   | "TERMS_AND_CONDITIONS"
+  | "TERMS_AND_CONDITIONS_SPAIN"
   | "PRIVACY_NOTICE";
 
 const type = {
