@@ -13,7 +13,13 @@ type BaseSkeletonParams = {
 const KambiClientSkeleton = () => (
   <>
     <KambiNavSkeleton />
-    <Skeleton viewBox={null} width="100%" height={134 * 3 + 49}>
+    <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
+      viewBox={null}
+      width="100%"
+      height={134 * 3 + 49}
+    >
       <KambiHeaderSkeleton width="calc(100% - 6px)" height={49} x={3} y={0} />
       {[0, 1, 2].map(i => (
         <KambiOfferingSkeleton
@@ -37,7 +43,13 @@ const KambiNavSkeleton = () => {
   const totalElWidth = sum(widths) + (widths.length - 1) * gap;
 
   return (
-    <Skeleton viewBox={null} width="100%" height={100}>
+    <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
+      viewBox={null}
+      width="100%"
+      height={100}
+    >
       {widths.map((width, i) => (
         <rect
           key={i}
