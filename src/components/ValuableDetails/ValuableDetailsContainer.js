@@ -13,9 +13,7 @@ export const ValuableDetailsContainer = props => (
         return null;
       }
 
-      return (
-        <ValuableDetails loading={loading} {...props} translations={data} />
-      );
+      return <ValuableDetails {...props} translations={data} />;
     }}
   </ValuableDetailsTypedQuery>
 );
