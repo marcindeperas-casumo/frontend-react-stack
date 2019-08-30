@@ -8,13 +8,15 @@ import translationsMock from "./__mocks__/translations.mock.json";
 const stories = storiesOf("PlayerValuableListHorizontal", module);
 
 stories.add("PlayerValuableListHorizontal (Connected)", () => {
-  const consumeValuable = () => {};
+  const consumeValuable = () => Promise.resolve();
+  const launchGame = () => {};
 
   return (
     <PlayerValuableListHorizontal
       loading={false}
       valuables={valuables}
       onConsumeValuable={consumeValuable}
+      onLaunchGame={launchGame}
       translations={translationsMock}
     />
   );

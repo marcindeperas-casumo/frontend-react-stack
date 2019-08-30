@@ -4,8 +4,6 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
   VALUABLE_SPIN_TYPES,
-  VALUABLE_LOCKED_URL,
-  VALUABLE_DEPOSIT_URL,
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
@@ -13,7 +11,6 @@ import {
   gameBrowserUrl,
   durationToTranslationKey,
   coinValueToSpinType,
-  getCardUrl,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -30,9 +27,10 @@ describe("Valuables.utils", () => {
 
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(
-      translations.depositToUnlockLabel,
+      translations.depositNowLabel,
       depositUrl
     );
+
     const actualValue = getValuableDetailsAction({
       valuableType,
       valuableState,
@@ -193,30 +191,6 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
-  });
-
-  test("should return the lock url if valuable type is locked and type is spins", () => {
-    expect(getCardUrl(VALUABLE_STATES.LOCKED, VALUABLE_TYPES.SPINS)).toEqual(
-      VALUABLE_LOCKED_URL
-    );
-  });
-
-  test("should return the deposit url when state is not locked and type is deposit", () => {
-    expect(getCardUrl(VALUABLE_STATES.FRESH, VALUABLE_TYPES.DEPOSIT)).toEqual(
-      VALUABLE_DEPOSIT_URL
-    );
-  });
-
-  test("should return null when state is not locked and type is cash", () => {
-    expect(getCardUrl(VALUABLE_STATES.FRESH, VALUABLE_TYPES.CASH)).toEqual(
-      null
-    );
-  });
-
-  test("should return null when state is not locked and type is spins", () => {
-    expect(getCardUrl(VALUABLE_STATES.FRESH, VALUABLE_TYPES.SPINS)).toEqual(
-      null
-    );
   });
 });
 

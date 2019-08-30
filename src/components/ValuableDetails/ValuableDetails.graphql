@@ -1,0 +1,43 @@
+query ValuableDetailsQuery {
+    termsAndConditionLabel: getText(
+      id: "root:valuable-details-component:fields.terms_and_conditions_title"
+    )
+    playNowLabel: getText(id: "root:valuable-details-component:fields.play_now")
+    playToUnlockLabel: getText(
+      id: "root:valuable-details-component:fields.play_to_unlock"
+    )
+    depositToUnlockLabel: getText(
+      id: "root:valuable-details-component:fields.deposit_to_unlock"
+    )
+    depositNowLabel: getText(
+      id: "root:valuable-details-component:fields.deposit_now"
+    )
+    expirationTimeLabel: getText(
+        id: "root:valuable-details-component:fields.expirationTimeLabel"
+    )
+    termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
+    hour_singular: getText(id: "root:units:fields.hour")
+    hour_plural: getText(id: "root:units:fields.hours")
+    day_singular: getText(id: "root:units:fields.day")
+    day_plural: getText(id: "root:units:fields.days")
+}
+
+fragment ValuableDetails_PlayerValuable on PlayerValuable {
+  __typename
+  id
+  backgroundImage
+  content
+  caveat
+  expirationTimeInHours
+  valuableType
+  valuableState
+  ... on PlayerValuableSpins {
+    requirementType
+    game {
+      slug
+    }
+  }
+  ... on PlayerValuableCash {
+    requirementType
+  }
+}
