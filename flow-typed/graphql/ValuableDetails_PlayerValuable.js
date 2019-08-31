@@ -3,61 +3,50 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL fragment: PlayerValuableList_PlayerValuable
+// GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
+export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
+  backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
 };
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
+export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
   slug: string
 };
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
+export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
+  backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  description: string,
-  coinValue: number,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
   requirementType: ?RequirementType,
-  game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
+  game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
+export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
+  backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
   requirementType: ?RequirementType,
 };
 
-export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash;/* @flow */
+export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableDeposit | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash;/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 

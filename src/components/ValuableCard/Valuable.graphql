@@ -1,6 +1,8 @@
-fragment ValuableCard_Valuable on PlayerValuable {
+fragment ValuableCard_PlayerValuable on PlayerValuable {
+  __typename
   id
   title
+  content
   valuableState
   valuableType
   expirationTimeInHours
@@ -10,9 +12,6 @@ fragment ValuableCard_Valuable on PlayerValuable {
   backgroundImage
   ... on PlayerValuableSpins {
     coinValue
-    game {
-      slug
-    }
     description
   }
 }

@@ -8,12 +8,19 @@ import OpenPadlock from "./open-padlock.svg";
 
 describe("ValuableDetails", () => {
   let rendered;
-  const mockValuable = mockValuables[0];
+  let mockValuable = mockValuables[0];
   const Foo = () => <div>baz</div>;
+  let onConsume;
 
   beforeEach(() => {
+    onConsume = jest.fn().mockResolvedValue(true);
+
     rendered = shallow(
-      <ValuableDetails {...mockValuable} translations={mockTranslations}>
+      <ValuableDetails
+        valuableDetails={mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+      >
         <Foo />
       </ValuableDetails>
     );
@@ -38,7 +45,10 @@ describe("ValuableDetails", () => {
     const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${expirationHours} Hours`;
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={{
+          ...mockValuable,
+          expirationTimeInHours: expirationHours,
+        }}
         expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
@@ -62,7 +72,10 @@ describe("ValuableDetails", () => {
 
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
+        valuableDetails={{
+          ...mockValuable,
+          expirationTimeInHours: expirationHours,
+        }}
         expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
@@ -82,8 +95,10 @@ describe("ValuableDetails", () => {
   test("should display open padlock icon when valuable is LOCKED", () => {
     rendered = shallow(
       <ValuableDetails
-        {...mockValuable}
-        valuableState={VALUABLE_STATES.LOCKED}
+        valuableDetails={{
+          ...mockValuable,
+          valuableState: VALUABLE_STATES.LOCKED,
+        }}
         translations={mockTranslations}
       >
         <Foo />
@@ -105,5 +120,62 @@ describe("ValuableDetails", () => {
         .dive()
         .find(OpenPadlock)
     ).toHaveLength(0);
+  });
+
+  test("should call the onConsume and onlaunch if type is spins and unlocked", async () => {
+    mockValuable = mockValuables[2];
+
+    rendered = shallow(
+      <ValuableDetails
+        valuableDetails={mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    await expect(onConsume).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call not neither onConsume and onlaunch if type is deposit", () => {
+    mockValuable = mockValuables[1];
+
+    rendered = shallow(
+      <ValuableDetails
+        valuableDetails={mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    expect(onConsume).toHaveBeenCalledTimes(0);
+  });
+
+  test("should only call on consume if type is cash", () => {
+    mockValuable = mockValuables[0];
+
+    rendered = shallow(
+      <ValuableDetails
+        valuableDetails={mockValuable}
+        translations={mockTranslations}
+        onConsumeValuable={onConsume}
+      >
+        <Foo />
+      </ValuableDetails>
+    );
+
+    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    actionButton.simulate("click");
+
+    expect(onConsume).toHaveBeenCalledTimes(1);
   });
 });

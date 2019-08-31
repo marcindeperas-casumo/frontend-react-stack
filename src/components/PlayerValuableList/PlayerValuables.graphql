@@ -7,11 +7,13 @@ query PlayerValuablesQuery {
   }
   player {
     valuables {
+      __typename
       id
       valuableState
       expirationTimeInHours
       valuableType
       title
+      content
       caveat
       currency
       market
@@ -19,11 +21,39 @@ query PlayerValuablesQuery {
       ... on PlayerValuableSpins {
         description
         coinValue
+        requirementType
+        game {
+          slug
+        }
+      }
+      ... on PlayerValuableCash {
+        requirementType
       }
     }
   }
 }
 
 fragment PlayerValuableList_PlayerValuable on PlayerValuable {
-  ...ValuableCard_Valuable
+    __typename
+    id
+    valuableState
+    expirationTimeInHours
+    valuableType
+    title
+    content
+    caveat
+    currency
+    market
+    backgroundImage
+    ... on PlayerValuableSpins {
+      description
+      coinValue
+      requirementType
+      game {
+        slug
+      }
+    }
+    ... on PlayerValuableCash {
+      requirementType
+    }
 }
