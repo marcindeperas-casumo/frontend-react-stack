@@ -10,6 +10,7 @@ const props = {
   minBet: "€0.50",
   prize: "€666",
   gameSlug: "gonzos-quest",
+  status: "Scheduled",
   game: {
     name: "Gonzo&#8217;s Quest",
     slug: "gonzos-quest",

@@ -1,11 +1,49 @@
 // @flow
 import { connect } from "react-redux";
-import { initReelRaceWidget } from "Models/reelRaceWidget";
+import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
+import { gameSelector } from "Models/schema";
+import { launchGame } from "Models/games";
+import {
+  fetchPageBySlug as fetchTranslations,
+  isPageFetchedSelector,
+} from "Models/cms";
+import {
+  slug,
+  reelRacesTranslationsSelector,
+  isReelRacesFetched,
+  initReelRacesSaga,
+} from "Models/reelRaces";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
 export default connect(
-  state => ({}),
-  dispatch => ({
-    initReelRaceWidget: () => dispatch(initReelRaceWidget()),
-  })
+  state => {
+    const reelRace = reelRaceWidgetSelector(state);
+
+    if (!reelRace) {
+      return {};
+    }
+
+    return {
+      ...reelRace,
+      game: gameSelector(reelRace.gameSlug)(state),
+      isReelRacesFetched: isReelRacesFetched(state),
+      areTranslationsFetched: isPageFetchedSelector(slug)(state),
+      t: {
+        ...reelRacesTranslationsSelector(state),
+      },
+    };
+  },
+  {
+    initReelRacesSaga,
+    fetchTranslations,
+    launchGame,
+  },
+  (stateProps, dispatchProps, ownProps) => {
+    return {
+      ...stateProps,
+      ...dispatchProps,
+      fetchTranslations: () => dispatchProps.fetchTranslations(slug),
+      launchGame: () => dispatchProps.launchGame(stateProps.gameSlug),
+    };
+  }
 )(ReelRaceWidget);

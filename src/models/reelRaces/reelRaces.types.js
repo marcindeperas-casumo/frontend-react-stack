@@ -12,6 +12,7 @@ export type ReelRace = {
   opted: boolean,
   color: string,
   prize: string,
+  status: string,
 };
 
 export type ReelRacesTranslations = {
@@ -26,7 +27,8 @@ export type ReelRacesTranslations = {
   opted_in_cta_single_game_short: string, // play
   compete_for: string,
   title: string,
-  caveat_short: ?string, // for some reason it's rather "false" than empty
+  caveat_short: ?string, // for some reason it's rather "false" than
+  prize_win_tagline?: string,
 };
 
 type LeaderboardEntryRaw = {

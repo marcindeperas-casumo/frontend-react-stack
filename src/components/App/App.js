@@ -255,7 +255,6 @@ export class App extends PureComponent<Props> {
           <LazyPortal
             hostElementId="react-host-reel-race-widget"
             loader={() => import("Components/ReelRaceWidget")}
-            fallback={<GameListSkeleton />}
             namedExport="ReelRaceWidget"
           />
         </Route>
