@@ -11,6 +11,7 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -108,7 +109,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
           onConsumeValuable={consumeValuable}
           valuableDetails={selectedValuable}
         >
-          <div>
+          <div className="c-valuable-list__valuable-card">
             <ValuableCard
               translatedHoursUnit={hoursLabel}
               {...selectedValuable}
