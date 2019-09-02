@@ -12,6 +12,12 @@ import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 
+const PADDING_PER_DEVICE = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "3xlg",
+};
+
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
     error,
@@ -73,11 +79,11 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   }
 
   return (
-    <div className="u-padding-top--xlg c-player-valuables-list">
+    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg t-background-grey-light-2">
       {listTitleLabel && (
         <ScrollableListTitle paddingLeft title={listTitleLabel} />
       )}
-      <Scrollable>
+      <Scrollable itemSpacing="md" padding={PADDING_PER_DEVICE}>
         {valuables.map(valuable => {
           const { id } = valuable;
 
