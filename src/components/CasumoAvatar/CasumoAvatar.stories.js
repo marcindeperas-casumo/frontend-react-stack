@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, boolean } from "@storybook/addon-knobs/react";
+import { select, number, boolean } from "@storybook/addon-knobs/react";
 import { CasumoAvatar } from "./CasumoAvatar";
 import { belts } from "./beltUtils";
 
@@ -10,7 +10,7 @@ const levels = Array.from(Array(180).keys()).map(value => value + 1);
 
 stories.add("Default", () => {
   const belt = select("Belt level", belts, belts[0]);
-  const level = select("Level", levels, levels[0]);
+  const level = number("Level", levels[0]);
   const inBonusMode = boolean("In bonus mode", false);
 
   return (
