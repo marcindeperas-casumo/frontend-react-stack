@@ -39,7 +39,7 @@ export const CloseButton = ({ className, onClick }: ButtonProps) => (
       align="center"
       justify="center"
       className={classNames(
-        "c-close-button t-background-grey-dark-4 t-border-r--circle",
+        "c-close-button t-background-grey-dark-3 t-border-r--circle",
         className,
         onClick === noop && "u-visibility--hidden"
       )}

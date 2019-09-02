@@ -8,3 +8,8 @@
   height: 100vh;
   width: 100vw;
 }
+
+.c-close-button--inverted:active {
+  background-color: cudl-palette(grey, light-2);
+  color: cudl-palette(grey, dark-3);
+}
