@@ -90,7 +90,7 @@ export class ValuableCard extends PureComponent<Props> {
       valuableType,
     } = this.props;
     return (
-      <div>
+      <>
         <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--md">
           <Flex
             className="o-ratio__content u-padding"
@@ -137,7 +137,7 @@ export class ValuableCard extends PureComponent<Props> {
             <DangerousHtml html={caveat} />
           </Text>
         )}
-      </div>
+      </>
     );
   }
 }
