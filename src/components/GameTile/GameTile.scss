@@ -1,20 +1,20 @@
 .c-game-tile {
-  background-color: cudl-palette(grey, light-2);
+  background-color: cudl-palette(chrome, light-1);
   cursor: pointer;
   outline: none;
   overflow: hidden;
 }
 
 .c-game-tile__overlay--default {
-  background-color: rgba(cudl-palette(teal), 0.9);
+  background-color: rgba(cudl-palette(plum), 0.9);
 }
 
 .c-game-tile__overlay--active:active {
-  background-color: rgba(cudl-palette(grey, "dark-1"), 0.3);
+  background-color: rgba(cudl-palette(chrome, "dark-1"), 0.3);
 }
 
 .c-game-tile__overlay--maintenance {
-  background-color: rgba(cudl-palette(grey, "dark-1"), 0.9);
+  background-color: rgba(cudl-palette(chrome, "dark-1"), 0.9);
 }
 
 .c-game-tile__jackpot-ticker {
