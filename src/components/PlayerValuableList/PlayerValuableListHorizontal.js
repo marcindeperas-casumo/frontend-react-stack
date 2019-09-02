@@ -1,6 +1,6 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals, pick } from "ramda";
+import { equals } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
