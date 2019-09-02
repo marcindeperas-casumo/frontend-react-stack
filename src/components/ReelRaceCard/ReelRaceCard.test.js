@@ -42,6 +42,50 @@ const props = {
 const minute = 60 * 1000;
 
 describe("ReelRaceCard", () => {
+  describe("Empty game object", () => {
+    const propsNoGame = {
+      tournamentId: "1",
+      color: "yellow-light-1",
+      spins: 666,
+      minBet: "€0.50",
+      prize: "€666",
+      gameSlug: "gonzos-quest",
+      // $FlowFixMe
+      game: {},
+      t: {
+        spins: "Spins",
+        duration: "Duration",
+        duration_template: "{{{duration}}} min",
+        min_bet: "Min Bet",
+        starting_in: "Starting in",
+        ending_in: "Ending in",
+        opt_in: "Opt In",
+        opted_in: "Opted In",
+        opted_in_cta_single_game_short: "Play",
+        compete_for: "Compete for {{prize}}",
+        title: "Reel Races",
+        caveat_short: "false",
+      },
+      launchGame: () => {},
+      optIn: () => {},
+    };
+
+    const now = Date.now();
+    const rendered = shallow(
+      <ReelRaceCard
+        {...propsNoGame}
+        promoted={false}
+        opted={false}
+        startTime={now + 30 * minute}
+        endTime={now + 60 * minute}
+      />
+    );
+
+    test("should not show any card if game object is empty", () => {
+      expect(rendered.isEmptyRender()).toEqual(true);
+    });
+  });
+
   describe("Scheduled", () => {
     const now = Date.now();
     const rendered = shallow(

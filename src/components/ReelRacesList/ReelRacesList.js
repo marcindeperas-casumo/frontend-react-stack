@@ -40,7 +40,6 @@ export class ReelRacesList extends React.PureComponent<Props> {
     }
     const { t } = this.props;
     const seeMoreUrl = "/reel-races";
-    const itemClassName = "c-reel-race-card";
 
     return (
       <div className="u-margin-x--3xlg@desktop">
@@ -52,7 +51,6 @@ export class ReelRacesList extends React.PureComponent<Props> {
               seeMoreUrl={seeMoreUrl}
               itemIds={this.props.reelRacesIds}
               Component={ReelRaceCard}
-              itemClassName={itemClassName}
             />
           </Mobile>
           <Desktop>
@@ -62,7 +60,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
                 itemIds: this.props.reelRacesIds,
               }}
               Component={ReelRaceCard}
-              className={itemClassName}
+              className="c-reel-race-card"
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
