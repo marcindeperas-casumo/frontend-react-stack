@@ -176,11 +176,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
         </div>
         <div className="u-margin-top--2xlg u-padding-x--md">
-          <Flex
-            className="u-margin-bottom--lg"
-            direction="vertical"
-            align="center"
-          >
+          <Flex direction="vertical" align="center">
             <Flex.Item>
               <Text className="center" tag="p" size="md">
                 {content}
