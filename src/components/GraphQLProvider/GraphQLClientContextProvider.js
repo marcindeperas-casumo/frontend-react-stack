@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import apolloClient from "Services/apolloClient";
+import { apolloClient } from "Models/apollo/apollo.client";
 import type { ApolloClientType } from "Models/apollo/apollo.client";
 type Props = {
   children: React.Node,
