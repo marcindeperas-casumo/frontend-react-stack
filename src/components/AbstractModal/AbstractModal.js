@@ -40,7 +40,7 @@ export class AbstractModal extends PureComponent<Props> {
           overlayClassName="c-abstract-modal__overlay"
           {...rest}
         >
-          <CloseButton onClick={hideModal} />
+          <CloseButton data-test="modal-close-button" onClick={hideModal} />
           {children}
         </ReactModal>
       </>

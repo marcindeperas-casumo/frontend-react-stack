@@ -1,9 +1,11 @@
 //@flow
 import React from "react";
 import { shallow, mount } from "enzyme";
+import Scrollable from "@casumo/cmp-scrollable";
 import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
+import { ValuableCard } from "Components/ValuableCard";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import translationsMock from "./__mocks__/translations.mock.json";
 
@@ -39,7 +41,9 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the correct number of items", () => {
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(false);
-    expect(rendered.find("ValuableCard")).toHaveLength(mockedValuables.length);
+    expect(rendered.find(Scrollable).find(ValuableCard)).toHaveLength(
+      mockedValuables.length
+    );
   });
 
   test("should render the list title", () => {
