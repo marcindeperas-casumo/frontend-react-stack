@@ -18,13 +18,12 @@ import { defaultState } from "./apollo.client.defaultState";
 export type ApolloClientType = ApolloClient<InMemoryCache>;
 
 const GRAPHQL_API_URL = "/graphql/casumo/";
-const LINK_FUNCTIONS = [getContextLink, getHttpLink];
 
-export const apolloClient = getApolloClient(reduxStore);
+export const apolloClient = getApolloClient();
 
-export function getApolloClient(store: any): ApolloClientType {
+export function getApolloClient(): ApolloClientType {
   return new ApolloClient({
-    link: getLinks(store),
+    link: getLinks(),
     cache: getCache(),
     typeDefs,
     resolvers: clientResolvers,
@@ -41,15 +40,15 @@ function getCache() {
   return cache;
 }
 
-function getContextLink(store) {
+function getContextLink() {
   return setContext(() => {
-    const state = store.getState();
+    const state = reduxStore.getState();
     const market = marketSelector(state);
     const currency = currencySelector(state);
     const sessionId = sessionIdSelector(state);
     const supportForPersistedQueries = {
       includeExtensions: true,
-      includeQuery: false,
+      includeQuery: true,
     };
 
     return {
@@ -63,27 +62,28 @@ function getContextLink(store) {
   });
 }
 
-function getHttpLink(store) {
-  const state = store.getState();
-  const market = marketSelector(state);
-  const locale = languageSelector(state);
-
+function getHttpLink() {
   return new HttpLink({
     uri: GRAPHQL_API_URL,
     credentials: "same-origin",
     useGETForQueries: true,
-    fetch: getFetchExtendedWithMarketAndLocale(market, locale),
+    fetch: getFetchExtendedWithMarketAndLocale(),
   });
 }
 
-function getLinks(store) {
-  return ApolloLink.from(LINK_FUNCTIONS.map(fn => fn(store)));
+function getLinks() {
+  const LINKS = [getContextLink(), getHttpLink()];
+
+  return ApolloLink.from(LINKS);
 }
 
 // Adding these variables to the URL and using GET requests can help with edge caching
 // in CDN, for example in CloudFlare.
-function getFetchExtendedWithMarketAndLocale(market, locale) {
+function getFetchExtendedWithMarketAndLocale() {
   return (uri, options) => {
+    const state = reduxStore.getState();
+    const market = marketSelector(state);
+    const locale = languageSelector(state);
     const url = new URL(uri, window.location.origin);
 
     url.searchParams.append("market", market);
