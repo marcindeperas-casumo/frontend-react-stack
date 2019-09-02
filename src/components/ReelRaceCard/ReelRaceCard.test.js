@@ -82,7 +82,7 @@ describe("ReelRaceCard", () => {
     );
 
     test("should not show any card if game object is empty", () => {
-      expect(rendered.find("Flex")).toHaveLength(0);
+      expect(rendered.isEmptyRender()).toEqual(true);
     });
   });
 
