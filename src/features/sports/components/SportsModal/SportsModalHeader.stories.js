@@ -41,8 +41,7 @@ const addStory = ([name, props = {}]) => {
     {
       onClose,
       className:
-        "c-sports-modal-header--left-align t-background-blue-light-1 t-color-white",
-      dismissButtonClassName: "t-background-blue-light-1 t-color-blue",
+        "c-sports-modal-header--left-align t-background-white t-color-chrome-dark-3 t-border-bottom",
     },
   ],
   ["Back and Close Buttons", { onBack, onClose }],

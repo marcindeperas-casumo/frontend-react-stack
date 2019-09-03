@@ -20,6 +20,8 @@ import {
 import { makeAllSportsNavItem } from "Features/sports/components/SportsNav/sportsNavUtils";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
+import "./SportsMainNav.scss";
+
 const SPORTS_NAV_HEIGHT = 106;
 const buttonsBeforeNav = ["live", "all"];
 
@@ -58,14 +60,12 @@ export const renderEditButton = (
   { navItems, labels, canEdit, onEdit }: Props,
   [isLiveActive]: LiveState
 ) => (
-  <div className="u-margin-y--lg u-margin-left--md">
-    {canEdit && !isLiveActive && (
-      <EditPillsButton
-        onClick={onEdit}
-        className="t-background-white t-color-grey u-drop-shadow"
-        label={labels.edit}
-      />
-    )}
+  <div className="u-padding-y u-margin-x c-sports-nav-edit-btn">
+    <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
+      {canEdit && !isLiveActive && (
+        <EditPillsButton onClick={onEdit} label={labels.edit} />
+      )}
+    </div>
   </div>
 );
 
@@ -122,7 +122,7 @@ export const renderTabList = (
   return (
     <div style={style}>
       <div
-        className={classNames(isLastItem(offsetIndex) && "u-margin-right--xlg")}
+        className={classNames(isLastItem(offsetIndex) && "u-margin-right--md")}
       >
         {renderedTab}
       </div>
@@ -143,9 +143,7 @@ export const SportsMainNav = (props: Props) => {
   return (
     <ScrollablePaginated
       className={classNames(
-        isLiveActive
-          ? "c-sports-nav-paginated--live t-background-orange-light-3"
-          : "t-background-grey-light-2",
+        isLiveActive && "c-sports-nav-paginated--live",
         "c-sports-nav-paginated"
       )}
       columnCount={columnCount}

@@ -74,7 +74,6 @@ export class GameSearchInput extends PureComponent<Props, State> {
           value={this.state.query}
           onChange={this.handleSearchInput}
           onClear={this.handleClearSearchInput}
-          noResults={this.props.noResults}
           placeholder={this.props.placeholder}
           onFocus={this.onFocus}
         />

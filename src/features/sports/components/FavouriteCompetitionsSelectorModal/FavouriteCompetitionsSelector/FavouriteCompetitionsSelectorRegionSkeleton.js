@@ -4,6 +4,8 @@ import Skeleton from "@casumo/cmp-skeleton";
 
 const FavouriteCompetitionsSelectorRegionSkeleton = () => (
   <Skeleton
+    colorHi="#d3d8e1"
+    colorLow="#e5eaed"
     width="100%"
     height="50px"
     preserveAspectRatio="none"
