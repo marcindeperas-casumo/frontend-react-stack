@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-// import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import bridge from "Src/DurandalReactBridge";
@@ -21,51 +20,39 @@ type Props = ReelRace & {
 };
 
 export function ReelRaceWidget(props: Props) {
-  const [gameId, setGameId] = React.useState();
+  const [playing, setPlaying] = React.useState(null);
+
+  function playingGameId({ gameId }) {
+    setPlaying(gameId);
+  }
+
+  React.useEffect(() => {
+    bridge.on(REACT_APP_EVENT_PLAYING, playingGameId);
+  });
 
   React.useEffect(() => {
     if (!props.isReelRacesFetched) {
       props.initReelRacesSaga();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  React.useEffect(() => {
     if (!props.areTranslationsFetched) {
       props.fetchTranslations();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  React.useEffect(() => {
-    const playingGameId = data => setGameId(data.gameId);
-
-    bridge.on(REACT_APP_EVENT_PLAYING, playingGameId);
-
-    return function cleanup() {
-      bridge.off(REACT_APP_EVENT_PLAYING, playingGameId);
-    };
-  });
-
   if (!props.endTime) {
     return null;
   }
 
   const { t, game } = props;
+
   const started = props.status === "Started";
-
-  // const duration = () => {
-  //   return DateTime.fromMillis(props.endTime)
-  //     .diff(DateTime.fromMillis(props.startTime))
-  //     .toFormat("mm");
-  // };
-
-  // console.log(gameId, props.gameSlug);
 
   return (
     <>
       <Flex direction="vertical" align="center" className="u-padding--md">
-        {gameId !== props.gameSlug && (
+        {playing}
+        {playing !== props.gameSlug && (
           <Flex direction="vertical" align="center">
             <Flex direction="vertical" spacing="sm">
               <Text tag="span" size="xs" className="u-text-align-center">

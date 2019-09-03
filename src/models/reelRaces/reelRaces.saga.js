@@ -102,7 +102,14 @@ export function* fetchReelRacesSaga(): * {
   const tournamentsWithGames = R.map(
     (reelRace: TournamentRaw) => ({
       ...R.pick(
-        ["endTime", "promoted", "startTime", "tournamentId", "status"],
+        [
+          "endTime",
+          "promoted",
+          "startTime",
+          "tournamentId",
+          "status",
+          "leaderboard",
+        ],
         reelRace
       ),
       opted: optedReelRaces.has(reelRace.tournamentId),
