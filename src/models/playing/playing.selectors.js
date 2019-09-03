@@ -5,6 +5,5 @@ import { ENTITY_KEYS } from "Models/schema";
 import type { Playing } from "./playing.types";
 
 export const playingSelector: () => Playing = createSelector(
-  R.prop(ENTITY_KEYS.PLAYING),
-  R.identity
+  R.prop(ENTITY_KEYS.PLAYING)
 );
