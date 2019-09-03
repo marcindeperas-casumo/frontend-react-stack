@@ -68,6 +68,7 @@ export const ErrorMessage = ({
     >
       <Flex.Item>
         <SadSumo
+          width="42"
           data-test="error-message-sumo"
           className="c-error-message__icon u-display--block"
         />
