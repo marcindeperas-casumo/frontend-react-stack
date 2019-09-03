@@ -45,11 +45,9 @@ export const TILE_HEIGHTS = {
 };
 
 const GAME_LIST_CLASS_NAME = {
-  [GAME_LIST_IDS.EXCLUSIVE_GAMES]:
-    "c-exclusive-game t-border-r--md u-overflow-hidden",
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
-    "c-live-casino-card t-background-white t-border-r--md t-box-shadow u-overflow-hidden u-margin-bottom--sm",
-  default: "c-top-game t-border-r--md u-overflow-hidden",
+  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: "c-exclusive-game",
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "c-live-casino-card u-margin-bottom--sm",
+  default: "c-top-game",
 };
 
 const SEE_MORE_URL = {
