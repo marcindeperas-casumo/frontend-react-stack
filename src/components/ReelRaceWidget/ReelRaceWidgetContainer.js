@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
 import { gameSelector } from "Models/schema";
 import { launchGame } from "Models/games";
+import { playingSelector } from "Models/playing";
 import {
   fetchPageBySlug as fetchTranslations,
   isPageFetchedSelector,
@@ -26,6 +27,7 @@ export default connect(
     return {
       ...reelRace,
       game: gameSelector(reelRace.gameSlug)(state),
+      playing: playingSelector(state),
       isReelRacesFetched: isReelRacesFetched(state),
       areTranslationsFetched: isPageFetchedSelector(slug)(state),
       t: {

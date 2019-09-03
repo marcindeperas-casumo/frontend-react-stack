@@ -69,6 +69,11 @@ describe("ReelRaceCard", () => {
       },
       launchGame: () => {},
       optIn: () => {},
+      status: "Scheduled",
+      playing: {
+        state: "STARTED",
+        gameId: "foo",
+      },
     };
 
     const now = Date.now();

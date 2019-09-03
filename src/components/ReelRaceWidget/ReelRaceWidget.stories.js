@@ -50,6 +50,10 @@ const props = {
   fetchTranslations: () => {},
   initReelRacesSaga: () => {},
   isReelRacesFetched: () => {},
+  playing: {
+    state: "STARTED",
+    gameId: "foo",
+  },
 };
 
 stories.add("Default", () => {

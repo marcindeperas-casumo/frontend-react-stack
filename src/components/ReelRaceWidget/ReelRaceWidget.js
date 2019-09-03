@@ -2,10 +2,10 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import bridge from "Src/DurandalReactBridge";
 import Timer from "Components/Timer";
-import { REACT_APP_EVENT_PLAYING } from "Src/constants";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import type { Playing } from "Models/playing";
+import { RR_STATE } from "Models/reelRaceWidget";
 import DangerousHtml from "Components/DangerousHtml";
 import "./ReelRaceWidget.scss";
 
@@ -16,20 +16,11 @@ type Props = ReelRace & {
   launchGame: () => void,
   areTranslationsFetched: boolean,
   game: GameRow_Game,
+  playing: Playing,
   t: ReelRacesTranslations,
 };
 
 export function ReelRaceWidget(props: Props) {
-  const [playing, setPlaying] = React.useState(null);
-
-  function playingGameId({ gameId }) {
-    setPlaying(gameId);
-  }
-
-  React.useEffect(() => {
-    bridge.on(REACT_APP_EVENT_PLAYING, playingGameId);
-  });
-
   React.useEffect(() => {
     if (!props.isReelRacesFetched) {
       props.initReelRacesSaga();
@@ -44,15 +35,14 @@ export function ReelRaceWidget(props: Props) {
     return null;
   }
 
-  const { t, game } = props;
+  const { t, game, playing } = props;
 
-  const started = props.status === "Started";
+  const started = playing.state === RR_STATE.STARTED;
 
   return (
     <>
       <Flex direction="vertical" align="center" className="u-padding--md">
-        {playing}
-        {playing !== props.gameSlug && (
+        {playing.gameId !== props.gameSlug && (
           <Flex direction="vertical" align="center">
             <Flex direction="vertical" spacing="sm">
               <Text tag="span" size="xs" className="u-text-align-center">
