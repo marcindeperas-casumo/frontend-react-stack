@@ -2,5 +2,5 @@
 
 export type Playing = {
   status: string,
-  gameId: ?string,
+  gameId?: string,
 };
