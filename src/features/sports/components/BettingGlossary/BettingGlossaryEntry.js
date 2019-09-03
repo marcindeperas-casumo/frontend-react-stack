@@ -21,14 +21,14 @@ const retriggerAnimation = (element: HTMLElement) => {
 
 export const highlightedClass = "c-betting-glossary-entry--highlight";
 
-type EntryProps = {
+type Props = {
   id: string,
   term: string,
   aka: ?string,
   definition: string,
 };
 
-export class BettingGlossaryEntry extends React.PureComponent<EntryProps> {
+export class BettingGlossaryEntry extends React.PureComponent<Props> {
   scrollToTerm = (linkedElement: HTMLElement) => {
     const highlighted =
       window.document.querySelectorAll(`.${highlightedClass}`) || [];
