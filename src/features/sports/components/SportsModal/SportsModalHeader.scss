@@ -20,21 +20,16 @@
     }
   }
 }
+// stylelint-enable xi/selector-pattern
 
 .c-sports-modal-header__heading {
   @include cudl-breakpoint(tablet) {
     padding: map-get($cudl-spacer-sizes, lg);
   }
 }
-// stylelint-enable xi/selector-pattern
-
-$button-size: map-get($cudl-spacer-sizes, "3xlg");
 
 .c-sports-modal-header__fixed-button {
-  border-radius: 3px;
-  height: $button-size;
   position: fixed;
   right: 15px;
   top: calc(var(--top-bar-offset-top, 0px) + 15px);
-  width: $button-size;
 }
