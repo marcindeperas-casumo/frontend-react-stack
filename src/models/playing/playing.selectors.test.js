@@ -7,9 +7,8 @@ describe("Models/Playing/Selectors", () => {
     test("returns playing object", () => {
       const playing = { state: PLAYING_STATE.STARTED, gameId: "foo" };
       const state = { [ENTITY_KEYS.PLAYING]: playing };
-      const selector = playingSelector();
 
-      expect(selector(state)).toEqual(playing);
+      expect(playingSelector(state)).toEqual(playing);
     });
   });
 });
