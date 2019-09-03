@@ -19,8 +19,8 @@ import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
-  red: "red",
-  grey: "grey-dark-1",
+  expiresToday: "red",
+  default: "grey-dark-1",
 };
 
 type Game = {
@@ -78,8 +78,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const { expirationTimeInHours } = this.props.valuableDetails;
 
     return expirationTimeInHours >= 24
-      ? expirationBadgeClasses.grey
-      : expirationBadgeClasses.red;
+      ? expirationBadgeClasses.default
+      : expirationBadgeClasses.expiresToday;
   }
 
   get requirementType(): ?ValuableRequirementType {

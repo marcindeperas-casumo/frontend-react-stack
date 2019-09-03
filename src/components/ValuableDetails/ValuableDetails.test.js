@@ -35,7 +35,7 @@ describe("ValuableDetails", () => {
   test("should render red expiration badge if expirationInHours is > 24", () => {
     expect(
       rendered.find("[data-test='valuable-expiration-badge']").prop("bgColor")
-    ).toBe(expirationBadgeClasses.grey);
+    ).toBe(expirationBadgeClasses.default);
   });
 
   test("should render red expiration badge if expirationInHours is <= 24", () => {
@@ -55,7 +55,7 @@ describe("ValuableDetails", () => {
 
     expect(
       rendered.find("[data-test='valuable-expiration-badge']").prop("bgColor")
-    ).toBe(expirationBadgeClasses.red);
+    ).toBe(expirationBadgeClasses.expiresToday);
   });
 
   test("should display the expiration in hours if expiration is <= 24 hours", () => {
