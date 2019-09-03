@@ -42,7 +42,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     const scrollableChildren = [
       <div
         className="u-padding-y--sm u-height--1/1"
-        key={"must-drop-jackpots-widget"}
+        key="must-drop-jackpots-widget"
       >
         <MustDropJackpotsWidget />
       </div>,
