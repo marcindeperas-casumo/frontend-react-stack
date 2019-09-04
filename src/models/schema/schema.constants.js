@@ -18,4 +18,5 @@ export const ENTITY_KEYS = {
   ADVENTURER: "adventurer",
   TRANSACTIONS_ANNUAL_OVERVIEW: "transactionsBetsHistoryAnnualOverview",
   ACKNOWLEDGEMENTS: "acknowledgements",
+  PLAYING: "playing",
 };

@@ -10,6 +10,7 @@ import * as storage from "Lib/storage";
 import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
+import bridgeToPlayingService from "Services/BridgeToPlayingService";
 import Modal from "Components/RSModal";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
@@ -17,6 +18,7 @@ import "./styles/index.scss";
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
+bridgeToPlayingService(reduxStore);
 
 ReactModal.setAppElement("#root");
 
