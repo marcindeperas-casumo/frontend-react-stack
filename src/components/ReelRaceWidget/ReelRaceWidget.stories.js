@@ -5,7 +5,7 @@ import { storiesOf } from "@storybook/react";
 // import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
-const stories = storiesOf("ReelRaceCard", module);
+const stories = storiesOf("ReelRaceWidget", module);
 
 const props = {
   tournamentId: "1",

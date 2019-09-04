@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Timer from "Components/Timer";
@@ -20,6 +21,11 @@ type Props = ReelRace & {
   t: ReelRacesTranslations,
 };
 
+const timeRemainingBeforeStart = (startTime: number): number =>
+  DateTime.fromMillis(startTime)
+    .diffNow()
+    .valueOf();
+
 export function ReelRaceWidget(props: Props) {
   React.useEffect(() => {
     if (!props.isReelRacesFetched) {
@@ -37,7 +43,7 @@ export function ReelRaceWidget(props: Props) {
 
   const { t, game, playing } = props;
 
-  const started = playing.state === RR_STATE.STARTED;
+  const started = props.status === RR_STATE.STARTED;
 
   return (
     <>
