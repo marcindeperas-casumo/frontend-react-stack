@@ -105,7 +105,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       {selectedValuable && (
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
-          onClose={() => closeModal()}
+          onClose={closeModal}
           onConsumeValuable={consumeValuable}
           valuableDetails={selectedValuable}
         >
