@@ -3,7 +3,8 @@ import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { SettingsSectionsLastLogin as LastLoginBar } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
+import Button from "@casumo/cmp-button";
+import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
 import { logout } from "Services/Logout";
@@ -12,6 +13,16 @@ type Props = {
   playerLoginHistory: PLAYER_LOGIN_HISTORY_QUERY,
   labels: PLAYER_SECTIONS_LABELS_QUERY,
 };
+
+const SettingsSection = ({ title, description, href }) => (
+  <a href={href}>
+    <SettingsRow
+      text={<SettingsHeadline title={title} description={description} />}
+    >
+      <DirectionRightIcon className="t-color-grey-light-1" />
+    </SettingsRow>
+  </a>
+);
 
 export class SettingsSections extends PureComponent<Props> {
   render() {
@@ -33,47 +44,6 @@ export class SettingsSections extends PureComponent<Props> {
       },
     } = this.props;
 
-    const AccountDetailsLink = () => (
-      <a href="/player/settings/account-details">
-        <SettingsRow
-          text={
-            <SettingsHeadline
-              title={accountDetailsTitle}
-              description={accountDetailsDescription}
-            />
-          }
-        >
-          <DirectionRightIcon className="t-color-grey-light-1" />
-        </SettingsRow>
-      </a>
-    );
-
-    const NotificationsLink = () => (
-      <a href="/player/settings/notifications">
-        <SettingsRow
-          text={
-            <SettingsHeadline
-              title={notificationsTitle}
-              description={notificationsDescription}
-            />
-          }
-        >
-          <DirectionRightIcon className="t-color-grey-light-1" />
-        </SettingsRow>
-      </a>
-    );
-
-    const LogoutButton = () => (
-      <a
-        className="u-padding--xlg u-margin-top--md u-text-align-center t-background-white u-cursor-pointer u-display--block"
-        onClick={logout}
-      >
-        <Text tag="p" className="t-color-red u-font-weight-bold">
-          {logoutLabel}
-        </Text>
-      </a>
-    );
-
     return (
       <Flex
         justify="space-between"
@@ -81,19 +51,33 @@ export class SettingsSections extends PureComponent<Props> {
         className="u-height--screen-minus-navbar"
       >
         <Flex.Item>
-          <AccountDetailsLink />
-          <NotificationsLink />
+          <SettingsSection
+            title={accountDetailsTitle}
+            description={accountDetailsDescription}
+            href="/player/settings/account-details"
+          />
+          <SettingsSection
+            title={notificationsTitle}
+            description={notificationsDescription}
+            href="/player/settings/notifications"
+          />
         </Flex.Item>
-        <Flex.Item>
+        <Flex.Item className="u-text-align-center">
           {lastLogin && (
-            <LastLoginBar
+            <SettingsSectionsLastLogin
               currentSessionMessageLabel={currentSessionMessage}
               time={lastLogin.loginTime}
               lastSessionMessageLabel={lastSessionMessage}
               accountActivityLabel={accountActivity}
             />
           )}
-          <LogoutButton />
+          <Button
+            className="u-margin-bottom--md"
+            onClick={logout}
+            variant="primary"
+          >
+            {logoutLabel}
+          </Button>
         </Flex.Item>
       </Flex>
     );
