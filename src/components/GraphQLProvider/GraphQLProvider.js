@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { ApolloProvider } from "react-apollo";
-import apolloClient from "Services/apolloClient";
+import { apolloClient } from "Models/apollo/apollo.client";
 import { GraphQLClientContextProvider } from "./GraphQLClientContextProvider";
 
 type Props = {
