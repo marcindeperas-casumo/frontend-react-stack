@@ -90,7 +90,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
 
           return (
             <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-              <div style={{ width: "160px" }}>
+              <div className="c-valuable-list__valuable-card">
                 <ValuableCard
                   translatedHoursUnit={hoursLabel}
                   {...valuable}
