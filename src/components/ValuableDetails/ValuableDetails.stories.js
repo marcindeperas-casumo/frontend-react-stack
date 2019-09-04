@@ -25,7 +25,9 @@ stories.add("Default", () => {
       onConsumeValuable={F}
       onLaunchGame={() => {}}
     >
-      <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
+      <div style={{ width: "160px" }}>
+        <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} caveat={null} />
+      </div>
     </ValuableDetails>
   );
 });
@@ -40,7 +42,9 @@ stories.add("Default - With modal", () => {
         onClose={() => {}}
         valuableDetails={valuableDetailsMock}
       >
-        <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} />
+        <div style={{ width: "160px" }}>
+          <ValuableCard {...mockValuable(VALUABLE_TYPES.CASH)} caveat={null} />
+        </div>
       </ValuableDetailsWithModal>
     </MockStore>
   );
@@ -56,7 +60,9 @@ stories.add("Deposit - Locked", () => {
       onConsumeValuable={F}
       onLaunchGame={() => {}}
     >
-      <ValuableCard {...mockValuable(VALUABLE_TYPES.DEPOSIT)} />
+      <div style={{ width: "160px" }}>
+        <ValuableCard {...mockValuable(VALUABLE_TYPES.DEPOSIT)} caveat={null} />
+      </div>
     </ValuableDetails>
   );
 });
