@@ -48,8 +48,10 @@ const props = {
   areTranslationsFetched: true,
   launchGame: () => {},
   fetchTranslations: () => {},
-  initReelRacesSaga: () => {},
+  fetchReelRaces: () => {},
   isReelRacesFetched: () => {},
+  subscribeReelRacesUpdates: () => {},
+  unsubscribeReelRacesUpdates: () => {},
   playing: {
     state: "STARTED",
     gameId: "foo",

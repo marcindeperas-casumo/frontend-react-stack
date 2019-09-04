@@ -2,6 +2,7 @@
 import { connect } from "react-redux";
 import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
 import { gameSelector } from "Models/schema";
+import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { launchGame } from "Models/games";
 import { playingSelector } from "Models/playing";
 import {
@@ -14,6 +15,10 @@ import {
   isReelRacesFetched,
   initReelRacesSaga,
 } from "Models/reelRaces";
+import {
+  subscribeReelRaceUpdates,
+  unsubscribeReelRaceUpdates,
+} from "Models/cometd";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
 export default connect(
@@ -33,19 +38,42 @@ export default connect(
       t: {
         ...reelRacesTranslationsSelector(state),
       },
+      tournamentChannels: tournamentChannelsSelector(state),
+      playerId: playerIdSelector(state),
     };
   },
-  {
-    initReelRacesSaga,
-    fetchTranslations,
-    launchGame,
-  },
+  dispatch => ({
+    fetchReelRaces: () => dispatch(initReelRacesSaga()),
+    fetchTranslations: () => dispatch(fetchTranslations(slug)),
+    launchGame: gameId => dispatch(launchGame(gameId)),
+    subscribeReelRacesUpdates: (tournamentChannels, playerId) => {
+      tournamentChannels.map(channelPrefix => {
+        return dispatch(subscribeReelRaceUpdates(channelPrefix, playerId));
+      });
+    },
+    unsubscribeReelRacesUpdates: (tournamentChannels, playerId) => {
+      tournamentChannels &&
+        tournamentChannels.map(channelPrefix => {
+          return dispatch(unsubscribeReelRaceUpdates(channelPrefix, playerId));
+        });
+    },
+  }),
   (stateProps, dispatchProps, ownProps) => {
+    const { tournamentChannels, playerId } = stateProps;
+
     return {
       ...stateProps,
       ...dispatchProps,
       fetchTranslations: () => dispatchProps.fetchTranslations(slug),
       launchGame: () => dispatchProps.launchGame(stateProps.gameSlug),
+      subscribeReelRacesUpdates: () => {
+        return dispatchProps.subscribeReelRacesUpdates(
+          tournamentChannels,
+          playerId
+        );
+      },
+      unsubscribeReelRacesUpdates: () =>
+        dispatchProps.unsubscribeReelRacesUpdates(tournamentChannels, playerId),
     };
   }
 )(ReelRaceWidget);

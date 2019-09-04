@@ -11,9 +11,11 @@ import DangerousHtml from "Components/DangerousHtml";
 import "./ReelRaceWidget.scss";
 
 type Props = ReelRace & {
-  initReelRacesSaga: () => void,
+  fetchReelRaces: () => void,
   isReelRacesFetched: () => void,
   fetchTranslations: () => void,
+  subscribeReelRacesUpdates: () => void,
+  unsubscribeReelRacesUpdates: () => void,
   launchGame: () => void,
   areTranslationsFetched: boolean,
   game: GameRow_Game,
@@ -21,21 +23,30 @@ type Props = ReelRace & {
   t: ReelRacesTranslations,
 };
 
-const timeRemainingBeforeStart = (startTime: number): number =>
-  DateTime.fromMillis(startTime)
-    .diffNow()
-    .valueOf();
+// const timeRemainingBeforeStart = (startTime: number): number =>
+//   DateTime.fromMillis(startTime)
+//     .diffNow()
+//     .valueOf();
 
 export function ReelRaceWidget(props: Props) {
   React.useEffect(() => {
     if (!props.isReelRacesFetched) {
-      props.initReelRacesSaga();
+      props.fetchReelRaces();
     }
     if (!props.areTranslationsFetched) {
       props.fetchTranslations();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  React.useEffect(() => {
+    props.isReelRacesFetched && props.subscribeReelRacesUpdates();
+
+    return () => {
+      props.unsubscribeReelRacesUpdates();
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.isReelRacesFetched]);
 
   if (!props.endTime) {
     return null;
@@ -44,6 +55,8 @@ export function ReelRaceWidget(props: Props) {
   const { t, game, playing } = props;
 
   const started = props.status === RR_STATE.STARTED;
+
+  // console.log("zzz", timeRemainingBeforeStart(props.startTime));
 
   return (
     <>
