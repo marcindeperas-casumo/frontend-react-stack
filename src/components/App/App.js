@@ -148,7 +148,7 @@ export class App extends PureComponent<Props> {
               hostElementId="react-host-sports-shell"
               loader={() => import("Features/sports/components/SportsShell")}
               fallback={<SportsShellSkeleton />}
-              namedExport="SportsShell"
+              namedExport="SportsShellContainer"
             />
           </GraphQLProvider>
         </Route>

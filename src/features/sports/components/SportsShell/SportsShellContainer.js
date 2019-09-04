@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import bridge from "Src/DurandalReactBridge";
@@ -10,11 +9,6 @@ import {
   REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
-import {
-  sessionIdSelector,
-  countrySelector,
-  languageSelector,
-} from "Models/handshake";
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
@@ -131,10 +125,3 @@ export class SportsShellContainer extends React.Component<{}> {
     );
   }
 }
-
-// hook up SportsStateClient to redux data until we can do a proper graphql solution
-export const ConnectedSportsShellContainer = connect(state => ({
-  locale: languageSelector(state).toUpperCase(),
-  market: countrySelector(state).toUpperCase(),
-  sessionId: sessionIdSelector(state),
-}))(SportsShellContainer);

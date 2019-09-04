@@ -1,4 +1,2 @@
 // @flow
-export {
-  ConnectedSportsShellContainer as SportsShellContainer,
-} from "./SportsShellContainer";
+export { SportsShellContainer } from "./SportsShellContainer";
