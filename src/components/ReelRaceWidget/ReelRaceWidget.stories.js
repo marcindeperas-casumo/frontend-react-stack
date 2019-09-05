@@ -56,6 +56,8 @@ const props = {
     state: "STARTED",
     gameId: "foo",
   },
+  leaderboard: [],
+  playerId: "123",
 };
 
 stories.add("Default", () => {

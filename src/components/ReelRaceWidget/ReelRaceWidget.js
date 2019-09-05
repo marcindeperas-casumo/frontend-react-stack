@@ -1,13 +1,15 @@
 // @flow
 import * as React from "react";
-import { DateTime } from "luxon";
+// import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
 import { RR_STATE } from "Models/reelRaceWidget";
+import type { LeaderBoard } from "Models/reelRaceWidget";
 import DangerousHtml from "Components/DangerousHtml";
+import { LeaderBoardWidget } from "./LeaderBoardWidget";
 import "./ReelRaceWidget.scss";
 
 type Props = ReelRace & {
@@ -21,6 +23,8 @@ type Props = ReelRace & {
   game: GameRow_Game,
   playing: Playing,
   t: ReelRacesTranslations,
+  leaderboard: Array<LeaderBoard>,
+  playerId: string,
 };
 
 // const timeRemainingBeforeStart = (startTime: number): number =>
@@ -52,11 +56,9 @@ export function ReelRaceWidget(props: Props) {
     return null;
   }
 
-  const { t, game, playing } = props;
+  const { t, game, playing, leaderboard } = props;
 
   const started = props.status === RR_STATE.STARTED;
-
-  // console.log("zzz", timeRemainingBeforeStart(props.startTime));
 
   return (
     <>
@@ -88,6 +90,7 @@ export function ReelRaceWidget(props: Props) {
         <Flex direction="vertical" spacing="none">
           <Text
             tag="span"
+            size="lg"
             className="u-font-weight-bold u-text-align-center t-color-green"
           >
             {props.spins}
@@ -121,6 +124,8 @@ export function ReelRaceWidget(props: Props) {
           </Text>
         </Flex>
       </Flex>
+      <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
+      <LeaderBoardWidget leaderBoard={leaderboard} playerId={props.playerId} />
       <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
     </>
   );
