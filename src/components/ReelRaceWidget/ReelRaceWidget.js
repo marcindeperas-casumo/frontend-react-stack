@@ -9,6 +9,9 @@ import type { Playing } from "Models/playing";
 import { RR_STATE } from "Models/reelRaceWidget";
 import type { LeaderBoard } from "Models/reelRaceWidget";
 import DangerousHtml from "Components/DangerousHtml";
+import { interpolate } from "Utils";
+import { GameThumb } from "Components/GameThumb";
+import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
 import { LeaderBoardWidget } from "./LeaderBoardWidget";
 import "./ReelRaceWidget.scss";
 
@@ -28,12 +31,13 @@ type Props = ReelRace & {
 };
 
 export function ReelRaceWidget(props: Props) {
-  const { t, startTime, endTime, game, playing, leaderboard } = props;
+  const { t, game, playing } = props;
 
   const started = props.status === RR_STATE.STARTED;
+  const timerEndTime = started ? props.endTime : props.startTime;
 
   const timeRemaining = (): number =>
-    DateTime.fromMillis(started ? endTime : startTime)
+    DateTime.fromMillis(timerEndTime)
       .diffNow()
       .valueOf();
 
@@ -62,84 +66,80 @@ export function ReelRaceWidget(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.tournamentId]);
 
-  if (!startTime) {
+  if (!props.startTime) {
     return null;
   }
 
   return (
-    <>
-      <Flex direction="vertical" align="center" className="u-padding--md">
-        {playing.gameId !== props.gameSlug && (
-          <Flex direction="vertical" align="center">
-            <Flex direction="vertical" spacing="sm">
-              <Text tag="span" size="xs" className="u-text-align-center">
-                {t.title}
-              </Text>
-              <Text
-                tag="span"
-                size="xs"
-                className="u-text-align-center u-font-weight-bold"
-                onClick={props.launchGame}
-              >
-                <DangerousHtml html={game.name} />
-              </Text>
-              <Text
-                tag="span"
-                className="u-margin-bottom--md u-text-align-center"
-              >
-                {t.prize_win_tagline &&
-                  t.prize_win_tagline.replace("{{{name}}}", props.prize)}
-              </Text>
-            </Flex>
-          </Flex>
-        )}
-        <Flex direction="vertical" spacing="none">
-          <Text
-            tag="span"
-            size="lg"
-            className="u-font-weight-bold u-text-align-center t-color-green"
-          >
-            {props.spins}
-          </Text>
-          <Text
-            tag="span"
-            size="xs"
-            className="u-opacity-75 u-text-align-center"
-          >
-            {t.spins}
-          </Text>
-        </Flex>
+    <Flex direction="vertical" justify="space-between">
+      {playing.gameId !== props.gameSlug && (
         <Flex
-          direction="vertical"
-          spacing="none"
-          className="u-margin-top--md u-margin-x--md u-margin-top--md"
+          align="center"
+          className="u-padding-top--md u-padding-x--md u-cursor-pointer"
+          onClick={props.launchGame}
         >
-          <Text tag="span" size="xs" className="u-text-align-center">
+          <GameThumb
+            src={game.logoBackground}
+            alt={game.name}
+            mark={game.logo}
+          />
+          {props.promoted && (
+            <GrandReelRaceBadge className="c-reel-race__badge" />
+          )}
+          <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
+            <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
+              {interpolate(t.compete_for, { prize: props.prize })}
+            </Text>
+            <Text tag="span" size="xs">
+              <DangerousHtml html={game.name} />
+            </Text>
+          </Flex>
+        </Flex>
+      )}
+      <Flex direction="horizontal" className="u-padding--md">
+        <Flex direction="vertical" spacing="none" className="flex-1">
+          <Text tag="span" size="xs">
             {started ? t.ending_in : t.starting_in}
           </Text>
           <Text
             tag="span"
             size="lg"
-            className="u-font-weight-bold t-color-yellow u-text-align-center"
+            className="u-font-weight-bold t-color-yellow"
           >
             <Timer
-              endTime={started ? props.endTime : props.startTime}
-              render={state => `${state.minutes}:${state.seconds}`}
+              endTime={timerEndTime}
+              render={o => `${o.minutes}:${o.seconds}`}
               onEnd={() => "00:00"}
             />
           </Text>
         </Flex>
+        <Flex
+          direction="vertical"
+          spacing="none"
+          className="u-text-align-right"
+        >
+          <Text tag="span" size="xs" className="u-opacity-75">
+            {t.spins}
+          </Text>
+          <Text
+            tag="span"
+            size="lg"
+            className="u-font-weight-bold t-color-green"
+          >
+            {props.spins}
+          </Text>
+        </Flex>
       </Flex>
       <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
-      {started && leaderboard && (
+      {started && props.leaderboard && (
         <>
           <LeaderBoardWidget
-            leaderboard={leaderboard}
+            leaderboard={props.leaderboard}
             playerId={props.playerId}
           />
           <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
         </>
       )}
-    </>
+    </Flex>
   );
 }
