@@ -28,13 +28,13 @@ export class SettingsRow extends PureComponent<Props> {
           "u-padding-x--md",
           "t-border-bottom",
           "t-border--current-color",
-          "t-color-grey-light-2",
+          "t-color-chrome-light-1",
           "t-background-white",
           className
         )}
       >
         <Flex.Item>{text}</Flex.Item>
-        {children ? <Flex.Item>{children}</Flex.Item> : ""}
+        {children && <Flex.Item>{children}</Flex.Item>}
       </Flex>
     );
   }
