@@ -94,6 +94,7 @@ module.exports = {
     "no-unused-expressions": "error",
     "no-useless-catch": "error",
     "no-void": "error",
+    "no-unused-vars": "error",
     "prettier/prettier": "error",
     "require-await": "error",
     "sonarjs/no-duplicate-string": "off",
