@@ -298,10 +298,9 @@ export class ReelRaceCard extends React.Component<Props> {
               <Column top={this.props.spins} bottom={t.spins} />
               <div className="c-reel-race__separator u-margin-x--md" />
               <Column
-                top={t.duration_template.replace(
-                  "{{{duration}}}",
-                  this.duration
-                )}
+                top={interpolate(t.duration_template, {
+                  duration: this.duration,
+                })}
                 bottom={t.duration}
               />
               {this.props.minBet && (
@@ -325,10 +324,9 @@ export class ReelRaceCard extends React.Component<Props> {
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
-              html={t.caveat_short.replace(
-                "{{{ ctaTermsAndConditions }}}",
-                'class="t-color-black"'
-              )}
+              html={interpolate(t.caveat_short, {
+                ctaTermsAndConditions: 'class="t-color-black"',
+              })}
             />
           </Text>
         )}
