@@ -25,7 +25,7 @@ export function LeaderBoardWidget(props: Props) {
   );
 
   return (
-    <Flex direction="vertical" className="u-width--1/1 u-padding-y">
+    <Flex direction="vertical" className="u-width--1/1">
       {board.map(p => (
         <Flex
           direction="horizontal"

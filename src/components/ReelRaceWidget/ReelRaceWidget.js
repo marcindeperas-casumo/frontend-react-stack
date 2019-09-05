@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-// import { DateTime } from "luxon";
+import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import Timer from "Components/Timer";
@@ -27,12 +27,16 @@ type Props = ReelRace & {
   playerId: string,
 };
 
-// const timeRemainingBeforeStart = (startTime: number): number =>
-//   DateTime.fromMillis(startTime)
-//     .diffNow()
-//     .valueOf();
-
 export function ReelRaceWidget(props: Props) {
+  const { t, startTime, endTime, game, playing, leaderboard } = props;
+
+  const started = props.status === RR_STATE.STARTED;
+
+  const timeRemaining = (): number =>
+    DateTime.fromMillis(started ? endTime : startTime)
+      .diffNow()
+      .valueOf();
+
   React.useEffect(() => {
     if (!props.isReelRacesFetched) {
       props.fetchReelRaces();
@@ -44,21 +48,23 @@ export function ReelRaceWidget(props: Props) {
   }, []);
 
   React.useEffect(() => {
-    props.isReelRacesFetched && props.subscribeReelRacesUpdates();
+    if (props.tournamentId) {
+      props.subscribeReelRacesUpdates();
+      const timer = setTimeout(() => {
+        props.fetchReelRaces();
+      }, timeRemaining());
 
-    return () => {
-      props.unsubscribeReelRacesUpdates();
-    };
+      return () => {
+        props.unsubscribeReelRacesUpdates();
+        clearTimeout(timer);
+      };
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.isReelRacesFetched]);
+  }, [props.tournamentId]);
 
-  if (!props.endTime) {
+  if (!startTime) {
     return null;
   }
-
-  const { t, game, playing, leaderboard } = props;
-
-  const started = props.status === RR_STATE.STARTED;
 
   return (
     <>
