@@ -105,23 +105,26 @@ export class SettingsNotifications extends PureComponent<Props> {
     );
     return (
       <>
-        <ToggleWithdrawals />
-        <RealityCheck />
+        <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+          <ToggleWithdrawals />
+          <RealityCheck />
+        </div>
+        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+          <SettingsRow
+            text={
+              <SettingsHeadline
+                title={subscriptionsTitle}
+                description={subscriptionsDescription}
+              />
+            }
+            className="t-border-bottom--none u-margin-top"
+          />
 
-        <SettingsRow
-          text={
-            <SettingsHeadline
-              title={subscriptionsTitle}
-              description={subscriptionsDescription}
-            />
-          }
-          className="t-border-bottom--none u-margin-top--md"
-        />
-
-        <CheckEmail />
-        <CheckSMS />
-        <CheckPhone />
-        <CheckPost />
+          <CheckEmail />
+          <CheckSMS />
+          <CheckPhone />
+          <CheckPost />
+        </div>
       </>
     );
   }
