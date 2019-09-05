@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import { errorMocks, loadingMocks } from "./__mocks__/kambiClientMocks";
 import { LaunchableKambiClient } from "./LaunchableKambiClient";
 

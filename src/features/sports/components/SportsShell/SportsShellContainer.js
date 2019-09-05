@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import bridge from "Src/DurandalReactBridge";
@@ -10,11 +9,6 @@ import {
   REACT_APP_EVENT_ON_OVERLAY_CHANGE,
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
-import {
-  sessionIdSelector,
-  countrySelector,
-  languageSelector,
-} from "Models/handshake";
 import SportsHashWatcher from "Components/HashWatcher";
 import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
@@ -23,22 +17,14 @@ import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals, { MODAL } from "Features/sports/components/Modals";
 import {
-  SportsStateProvider,
-  ClientContext,
   OPEN_MODAL_MUTATION,
   UPDATE_BETSLIP_STATE_MUTATION,
   SHOW_SEARCH,
   HIDE_SEARCH,
   CLOSE_ALL_MODALS_MUTATION,
-} from "Features/sports/state";
+} from "Models/apollo/mutations";
+import { GraphQLClientContext } from "Components/GraphQLProvider";
 import SportsShellSkeleton from "./SportsShellSkeleton";
-
-// hook up SportsStateClient to redux data until we can do a proper graphql solution
-const ConnectedSportsStateProvider = connect(state => ({
-  locale: languageSelector(state).toUpperCase(),
-  market: countrySelector(state).toUpperCase(),
-  sessionId: sessionIdSelector(state),
-}))(SportsStateProvider);
 
 export const SPORTS_SHELL_QUERY = gql`
   query SportsShellQuery {
@@ -94,7 +80,7 @@ const bridgeEventHandlers = [
 ];
 
 export class SportsShellContainer extends React.Component<{}> {
-  static contextType = ClientContext;
+  static contextType = GraphQLClientContext;
 
   componentDidMount() {
     bridgeEventHandlers.map(([event, handler]) =>
@@ -139,9 +125,3 @@ export class SportsShellContainer extends React.Component<{}> {
     );
   }
 }
-
-export default () => (
-  <ConnectedSportsStateProvider>
-    <SportsShellContainer />
-  </ConnectedSportsStateProvider>
-);

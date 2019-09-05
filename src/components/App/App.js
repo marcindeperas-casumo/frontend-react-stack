@@ -46,6 +46,7 @@ export class App extends PureComponent<Props> {
     this.props.subscribeToPlayerUpdates();
   };
 
+  // As this component is handling all the routing for the app, it inevitably will be larger than usual.
   // eslint-disable-next-line max-lines-per-function
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
@@ -142,12 +143,14 @@ export class App extends PureComponent<Props> {
           />
         </Route>
         <Route path={["sports"]}>
-          <LazyPortal
-            hostElementId="react-host-sports-shell"
-            loader={() => import("Features/sports/components/SportsShell")}
-            fallback={<SportsShellSkeleton />}
-            namedExport="SportsShell"
-          />
+          <GraphQLProvider>
+            <LazyPortal
+              hostElementId="react-host-sports-shell"
+              loader={() => import("Features/sports/components/SportsShell")}
+              fallback={<SportsShellSkeleton />}
+              namedExport="SportsShellContainer"
+            />
+          </GraphQLProvider>
         </Route>
         <Route path={["games-provider"]}>
           <LazyPortal
