@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
@@ -46,11 +45,15 @@ export class SettingsSections extends PureComponent<Props> {
 
     return (
       <Flex
-        justify="space-between"
+        justify={{
+          default: "space-between",
+          tablet: "start",
+          desktop: "start",
+        }}
         direction="vertical"
-        className="u-height--screen-minus-navbar"
+        className="u-height--screen-minus-navbar u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop"
       >
-        <Flex.Item>
+        <Flex.Item className="u-margin-bottom--lg@tablet u-margin-bottom--lg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
           <SettingsSection
             title={accountDetailsTitle}
             description={accountDetailsDescription}
