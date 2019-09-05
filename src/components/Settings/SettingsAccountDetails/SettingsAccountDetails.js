@@ -1,13 +1,12 @@
 // @flow
 import React, { PureComponent, type Node } from "react";
-import { ExclamationMarkIcon } from "@casumo/cmp-icons";
+import { EditIcon, ExclamationMarkIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue/SettingsLabelAndValue";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { PASSWORD_PLACEHOLDER_VALUE, onOldStackEvent } from "./utils";
-import EditIcon from "./EditIcon.svg"; //TODO: replace on cudl v2 bump
 
 type Props = {
   player: SETTINGS_PLAYER,
@@ -159,14 +158,14 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     );
 
     return (
-      <>
+      <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
         <Name />
         <Email />
         <ExtentOfGambling />
         <Password />
         <MobileNumber />
         <Address />
-      </>
+      </div>
     );
   }
 }
