@@ -34,7 +34,9 @@ export class SettingsRow extends PureComponent<Props> {
         )}
       >
         <Flex.Item>{text}</Flex.Item>
-        {children && <Flex.Item>{children}</Flex.Item>}
+        {children && (
+          <Flex.Item className="o-flex__item--no-shrink">{children}</Flex.Item>
+        )}
       </Flex>
     );
   }
