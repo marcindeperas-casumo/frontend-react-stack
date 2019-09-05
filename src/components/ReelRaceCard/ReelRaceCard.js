@@ -17,6 +17,7 @@ import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import OptInButton from "Components/OptInButton/OptInButton";
+import { interpolate } from "Utils";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
@@ -280,7 +281,7 @@ export class ReelRaceCard extends React.Component<Props> {
                     tag="span"
                     className="u-margin-bottom--sm u-font-weight-bold"
                   >
-                    {t.compete_for.replace("{{prize}}", this.props.prize)}
+                    {interpolate(t.compete_for, { prize: this.props.prize })}
                   </Text>
                   <Text
                     tag="span"
