@@ -4,7 +4,7 @@ import * as R from "ramda";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
-import { NAVIGATE_CLIENT_MUTATION } from "Features/sports/state";
+import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
 export const selectPath = (client: *, path: string) => {

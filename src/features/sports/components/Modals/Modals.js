@@ -1,7 +1,10 @@
 /* @flow */
 import React from "react";
 import type { Node } from "react";
-import { ActiveModalsQuery, CloseModalMutation } from "Features/sports/state";
+import {
+  ActiveModalsQuery,
+  CloseModalMutation,
+} from "Features/sports/components/GraphQL";
 import { MODAL_MAPPING } from "./Modals.config";
 import "./Modals.scss";
 

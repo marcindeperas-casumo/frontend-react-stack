@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { SportsModal } from "Features/sports/components/SportsModal";
-import { SetFavouritesMutation } from "Features/sports/state";
+import { SetFavouritesMutation } from "Features/sports/components/GraphQL";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
   DictionaryTerm,
