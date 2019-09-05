@@ -7,7 +7,7 @@ import type { LeaderBoard } from "Models/reelRaceWidget";
 import "./ReelRaceWidget.scss";
 
 type Props = {
-  leaderBoard: Array<LeaderBoard>,
+  leaderboard: Array<LeaderBoard>,
   playerId: string,
 };
 
@@ -15,11 +15,14 @@ export function LeaderBoardWidget(props: Props) {
   const l = R.pipe(
     R.values,
     R.sortBy(R.prop("position"))
-  )(props.leaderBoard);
+  )(props.leaderboard);
 
-  const i = R.pipe(R.findIndex(R.propEq("playerId", props.playerId)))(l);
+  const i = R.findIndex(R.propEq("playerId", props.playerId), l);
 
-  const board = R.concat(R.take(3, l), R.slice(i - 3, i + 1, l));
+  const board = R.uniqBy(
+    R.prop("playerId"),
+    R.concat(R.take(3, l), R.slice(i - 3, i + 1, l))
+  );
 
   return (
     <Flex direction="vertical" className="u-width--1/1 u-padding-y">

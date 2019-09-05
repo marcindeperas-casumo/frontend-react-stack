@@ -125,8 +125,15 @@ export function ReelRaceWidget(props: Props) {
         </Flex>
       </Flex>
       <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
-      <LeaderBoardWidget leaderBoard={leaderboard} playerId={props.playerId} />
-      <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
+      {started && leaderboard && (
+        <>
+          <LeaderBoardWidget
+            leaderboard={leaderboard}
+            playerId={props.playerId}
+          />
+          <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
+        </>
+      )}
     </>
   );
 }

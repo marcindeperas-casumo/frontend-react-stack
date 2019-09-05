@@ -8,13 +8,15 @@ export const reelRaceWidgetSelector = createSelector(
   reelRacesSelector,
   reelRaces => {
     const iStarted = R.propEq("status", RR_STATE.STARTED);
+    const iScheduled = R.propEq("status", RR_STATE.SCHEDULED);
     const playerOptedIn = R.propEq("opted", true);
-    const optedStarted = R.anyPass([iStarted, playerOptedIn]);
+    const optedStarted = R.allPass([iStarted, playerOptedIn]);
+    const optedScheduled = R.allPass([iScheduled, playerOptedIn]);
 
     return R.pipe(
       R.values,
       R.sortBy(R.prop("startTime")),
-      R.find(optedStarted)
+      R.either(R.find(optedStarted), R.find(optedScheduled))
     )(reelRaces);
   }
 );
