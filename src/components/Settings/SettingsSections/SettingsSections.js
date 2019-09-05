@@ -76,6 +76,7 @@ export class SettingsSections extends PureComponent<Props> {
           )}
           <Button
             className="u-margin-bottom--md"
+            size="md"
             onClick={logout}
             variant="primary"
           >
