@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent, type Node } from "react";
 import { EditIcon, ExclamationMarkIcon } from "@casumo/cmp-icons";
+import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue/SettingsLabelAndValue";
 import { launchModal } from "Services/LaunchModalService";
@@ -62,7 +63,9 @@ export class SettingsAccountDetails extends PureComponent<Props> {
         <RowTemplate
           label={labels.email}
           value={details.email}
-          action={<EditIcon className="t-color-green" />}
+          action={
+            <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+          }
         />
       </a>
     );
@@ -77,7 +80,9 @@ export class SettingsAccountDetails extends PureComponent<Props> {
           >
             <RowTemplate
               label={labels.gamblingExtent}
-              action={<EditIcon className="t-color-green" />}
+              action={
+                <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+              }
               value={details.extentOfGambling.label}
             />
           </a>
@@ -97,7 +102,9 @@ export class SettingsAccountDetails extends PureComponent<Props> {
             <RowTemplate
               label={labels.password}
               value={PASSWORD_PLACEHOLDER_VALUE}
-              action={<EditIcon className="t-color-green" />}
+              action={
+                <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+              }
             />
           </a>
         );
@@ -114,7 +121,9 @@ export class SettingsAccountDetails extends PureComponent<Props> {
         <RowTemplate
           label={labels.mobileNumber}
           value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
-          action={<EditIcon className="t-color-green" />}
+          action={
+            <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+          }
         />
       </a>
     );
@@ -125,12 +134,19 @@ export class SettingsAccountDetails extends PureComponent<Props> {
           label={labels.mobileNumber}
           value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
           action={
-            <>
-              <ExclamationMarkIcon className="t-color-red" />
-              <Text tag="span" size="sm" className="t-color-red">
-                Verify
-              </Text>
-            </>
+            <Flex align="center" spacing="sm">
+              <Flex.Item>
+                <ExclamationMarkIcon
+                  size="sm"
+                  className="t-color-negative t-border--current-color t-border t-border-r--circle t-border-width--md"
+                />
+              </Flex.Item>
+              <Flex.Item>
+                <Text tag="strong" size="sm" className="t-color-negative">
+                  Verify
+                </Text>
+              </Flex.Item>
+            </Flex>
           }
         />
       </a>
