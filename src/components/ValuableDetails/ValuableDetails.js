@@ -4,7 +4,6 @@ import { equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
-import classNames from "classnames";
 import Button from "@casumo/cmp-button";
 import {
   shouldUseValuable,
@@ -20,8 +19,8 @@ import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
 export const expirationBadgeClasses = {
-  red: "t-background-red",
-  grey: "t-background-grey-light-1",
+  expiresToday: "red",
+  default: "grey-dark-1",
 };
 
 type Game = {
@@ -75,6 +74,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
       : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
   }
 
+  get expirationBadgeColour(): string {
+    const { expirationTimeInHours } = this.props.valuableDetails;
+
+    return expirationTimeInHours >= 24
+      ? expirationBadgeClasses.default
+      : expirationBadgeClasses.expiresToday;
+  }
+
   get requirementType(): ?ValuableRequirementType {
     const { valuableDetails } = this.props;
 
@@ -118,7 +125,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
       backgroundImage,
       content,
       caveat,
-      expirationTimeInHours,
       valuableType,
       valuableState,
     } = valuableDetails;
@@ -170,7 +176,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
         </div>
         <div className="u-margin-top--2xlg u-padding-x--md">
-          <Flex direction="vertical" align="center">
+          <Flex
+            direction="vertical"
+            align="center"
+            className="u-margin-bottom--lg"
+          >
             <Flex.Item>
               <Text className="center" tag="p" size="md">
                 {content}
@@ -181,10 +191,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 tag="p"
                 size="sm"
                 data-test="valuable-expiration-badge"
-                className={classNames(
-                  "u-text-transform-uppercase u-font-weight-bold",
-                  expirationTimeInHours >= 24 && expirationBadgeClasses.grey
-                )}
+                bgColor={this.expirationBadgeColour}
+                className="u-text-transform-uppercase u-font-weight-bold"
                 radius="sm"
               >
                 {`${expirationTimeLabel} ${expirationValueText}`}

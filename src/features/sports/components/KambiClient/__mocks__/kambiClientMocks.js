@@ -1,5 +1,5 @@
 import { assocPath } from "ramda";
-import { SESSION_TOUCH } from "Features/sports/state";
+import { SESSION_TOUCH } from "Models/apollo/mutations";
 import {
   LAUNCH_KAMBI_MUTATION,
   LAUNCHABLE_KAMBI_CLIENT_QUERY,
