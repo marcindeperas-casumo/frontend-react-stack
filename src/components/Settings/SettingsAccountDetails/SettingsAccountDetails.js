@@ -143,7 +143,7 @@ export class SettingsAccountDetails extends PureComponent<Props> {
               </Flex.Item>
               <Flex.Item>
                 <Text tag="strong" size="sm" className="t-color-negative">
-                  Verify
+                  {labels.verify}
                 </Text>
               </Flex.Item>
             </Flex>
