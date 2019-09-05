@@ -65,13 +65,17 @@ export class SettingsRealityCheck extends PureComponent<Props> {
           </div>
           <Button
             variant="primary"
+            size="md"
             loading={isLoading}
             className="u-width--1/1 u-margin-top--xlg"
             onClick={onSave}
           >
             {labels.save}
           </Button>
-          <a className="u-cursor-pointer" onClick={() => window.history.back()}>
+          <a
+            className="u-cursor-pointer t-color-text-link u-font-weight-bold"
+            onClick={() => window.history.back()}
+          >
             <div className="u-width--1/1 u-margin-top--lg center">
               {labels.cancel}
             </div>
