@@ -3,14 +3,13 @@ import React, { type Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
 import { INTL_LOCALES } from "Src/constants";
-import { interpolate } from "Utils";
 import {
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
+  getStateBadgeProperties,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
@@ -33,6 +32,7 @@ type Props = {
   expirationTimeInHours: number,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
+  size?: "sm" | "lg",
 };
 
 export const ValuableThumbnail = ({
@@ -41,6 +41,7 @@ export const ValuableThumbnail = ({
   currency,
   expirationTimeInHours,
   market,
+  size = "sm",
   valuableState,
   valuableType,
   translatedHoursUnit,
@@ -52,20 +53,23 @@ export const ValuableThumbnail = ({
     translatedHoursUnit
   );
   const showStateBadge =
-    stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH;
+    size !== "sm" &&
+    (stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH);
   const locale = INTL_LOCALES[market];
 
   return (
-    <div className="o-ratio o-ratio--valuable-card-header">
+    <div className={`o-ratio o-ratio--valuable-card-header-${size}`}>
       <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
       <Flex
         align="center"
         className="o-ratio__content"
         data-test="valuable-card-header-coin"
         direction="vertical"
-        justify="end"
+        justify={getCoinAlignment(size)}
       >
-        <div className="c-valuable-card-header-coin-wrapper u-margin-bottom--sm o-ratio o-ratio--valuable-card-coin">
+        <div
+          className={`c-valuable-card-header-coin-wrapper--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-coin`}
+        >
           <div
             className={classNames(
               "o-ratio__content",
@@ -87,6 +91,7 @@ export const ValuableThumbnail = ({
               locale={locale}
               spinType={spinType}
               valuableType={valuableType}
+              fontSize={size === "sm" ? "md" : "lg"}
             />
           </Flex>
         </div>
@@ -114,6 +119,14 @@ export const ValuableThumbnail = ({
     </div>
   );
 };
+
+function getCoinAlignment(size: string) {
+  if (size === "sm") {
+    return "center";
+  }
+
+  return "end";
+}
 
 function getCoinClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
@@ -145,50 +158,4 @@ function getCoinTextClassModifier(valuableType: ValuableType) {
     default:
       return "";
   }
-}
-
-function getStateBadgeProperties(
-  valuableState: ValuableState,
-  hours: number,
-  translatedHoursUnit: string
-) {
-  const badgeProperties = {
-    visible: false,
-    text: "",
-    classModifiers: "",
-    icon: null,
-  };
-  const isAboutToExpire = hours > 0 && hours <= 24;
-
-  if (valuableState === VALUABLE_STATES.LOCKED) {
-    return {
-      ...badgeProperties,
-      icon: (
-        <LockIcon
-          size="sm"
-          className="u-margin-right--sm"
-          style={{ width: "10px", height: "11px" }}
-        />
-      ),
-      classModifiers: "t-color-black",
-      text: VALUABLE_STATES.LOCKED,
-      visible: true,
-    };
-  } else if (isAboutToExpire) {
-    return {
-      ...badgeProperties,
-      icon: (
-        <ClockIcon
-          size="sm"
-          className="u-margin-right--sm"
-          style={{ width: "10px", height: "11px" }}
-        />
-      ),
-      classModifiers: "t-color-red",
-      text: interpolate(translatedHoursUnit, { value: hours }),
-      visible: true,
-    };
-  }
-
-  return badgeProperties;
 }

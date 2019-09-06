@@ -1,5 +1,8 @@
 /* @flow */
+import React from "react";
 import { equals, anyPass } from "ramda";
+import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
+import { interpolate } from "Utils";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
@@ -14,6 +17,52 @@ import {
 
 export const depositUrl = "/en/cash/deposit";
 export const gameBrowserUrl = "/en/games/top";
+
+export const getStateBadgeProperties = (
+  valuableState: ValuableState,
+  hours: number,
+  translatedHoursUnit: string
+) => {
+  const badgeProperties = {
+    visible: false,
+    text: "",
+    classModifiers: "",
+    icon: null,
+  };
+  const isAboutToExpire = hours > 0 && hours <= 24;
+
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return {
+      ...badgeProperties,
+      icon: (
+        <LockIcon
+          size="sm"
+          className="u-margin-right--sm"
+          style={{ width: "10px", height: "11px" }}
+        />
+      ),
+      classModifiers: "t-color-black",
+      text: VALUABLE_STATES.LOCKED,
+      visible: true,
+    };
+  } else if (isAboutToExpire) {
+    return {
+      ...badgeProperties,
+      icon: (
+        <ClockIcon
+          size="sm"
+          className="u-margin-right--sm"
+          style={{ width: "10px", height: "11px" }}
+        />
+      ),
+      classModifiers: "t-color-red",
+      text: interpolate(translatedHoursUnit, { value: hours }),
+      visible: true,
+    };
+  }
+
+  return badgeProperties;
+};
 
 export const getValuableDetailsAction = ({
   valuableType,
