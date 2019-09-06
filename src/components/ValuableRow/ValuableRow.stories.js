@@ -23,7 +23,7 @@ stories.add("Default", () => {
     : VALUABLE_STATES.FRESH;
 
   return (
-    <div style={{ width: "320px" }}>
+    <div style={{ width: "375px" }}>
       <ValuableRow
         {...valuableDetails}
         valuableState={valuableState}
