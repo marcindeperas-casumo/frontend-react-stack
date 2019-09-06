@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import DangerousHtml from "Components/DangerousHtml";
 import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
@@ -14,7 +15,9 @@ import {
   type ValuableRequirementType,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
-import { interpolate, convertHoursToDays } from "Utils";
+import { ProgressBar } from "Components/ProgressBar";
+import { interpolate, convertHoursToDays, formatCurrency } from "Utils";
+import { INTL_LOCALES } from "Src/constants";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
@@ -95,6 +98,42 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
+  get leftToWager(): ?number {
+    const { valuableDetails } = this.props;
+
+    if (
+      valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableSpins" ||
+      valuableDetails.__typename === "PlayerValuableDeposit"
+    ) {
+      return valuableDetails.leftToWager;
+    }
+
+    return null;
+  }
+
+  get wageringThreshold(): ?number {
+    const { valuableDetails } = this.props;
+
+    if (
+      valuableDetails.__typename === "PlayerValuableCash" ||
+      valuableDetails.__typename === "PlayerValuableSpins" ||
+      valuableDetails.__typename === "PlayerValuableDeposit"
+    ) {
+      return valuableDetails.wageringThreshold;
+    }
+
+    return null;
+  }
+
+  get wageringStatus(): ?number {
+    if (this.leftToWager && this.wageringThreshold) {
+      return (1 - this.leftToWager / this.wageringThreshold) * 100;
+    }
+
+    return null;
+  }
+
   get game(): ?Game {
     const { valuableDetails } = this.props;
 
@@ -119,20 +158,22 @@ export class ValuableDetails extends React.PureComponent<Props> {
   };
 
   render() {
-    const { valuableDetails } = this.props;
+    const { translations, children, valuableDetails } = this.props;
     const {
       id,
       backgroundImage,
-      content,
       caveat,
+      content,
+      currency,
+      market,
       valuableType,
       valuableState,
     } = valuableDetails;
-    const { translations, children } = this.props;
     const {
       termsAndConditionLabel,
       expirationTimeLabel,
       termsAndConditionsContent,
+      wageringStatus,
     } = translations;
     const expirationInfo = this.expirationBadgeInfo;
     const durationKey = durationToTranslationKey(
@@ -151,6 +192,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
       valuableState,
       requirementType: this.requirementType,
       translations,
+    });
+
+    const formattedAmountLeftToWagerText = interpolate(wageringStatus, {
+      amount: formatCurrency({
+        locale: INTL_LOCALES[market],
+        currency,
+        value: this.leftToWager,
+      }),
     });
 
     return (
@@ -186,10 +235,24 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {content}
               </Text>
             </Flex.Item>
+            {this.wageringStatus && (
+              <Flex.Item className="u-margin-top--xlg">
+                <Text tag="p" className="u-margin--none">
+                  <DangerousHtml html={formattedAmountLeftToWagerText} />
+                </Text>
+                <div className="u-margin-top--md">
+                  <ProgressBar
+                    fillerClassNames="t-background-grey-light-2"
+                    trackClassNames="t-background-green-light-1"
+                    progress={this.wageringStatus}
+                  />
+                </div>
+              </Flex.Item>
+            )}
             <Flex.Item className="u-margin-top--lg">
               <Badge
                 tag="p"
-                size="sm"
+                size="xs"
                 data-test="valuable-expiration-badge"
                 bgColor={this.expirationBadgeColour}
                 className="u-text-transform-uppercase u-font-weight-bold"
