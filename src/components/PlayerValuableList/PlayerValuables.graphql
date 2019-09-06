@@ -25,9 +25,17 @@ query PlayerValuablesQuery {
         game {
           slug
         }
+        wageringThreshold
+        leftToWager
       }
       ... on PlayerValuableCash {
         requirementType
+        wageringThreshold
+        leftToWager
+      }
+      ... on PlayerValuableDeposit {
+        wageringThreshold
+        leftToWager
       }
     }
   }
@@ -52,8 +60,16 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
       game {
         slug
       }
+      wageringThreshold
+      leftToWager
     }
     ... on PlayerValuableCash {
       requirementType
+      wageringThreshold
+      leftToWager
+    }
+    ... on PlayerValuableDeposit {
+      wageringThreshold
+      leftToWager
     }
 }
