@@ -20,7 +20,7 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
 };
 
 export type PlayerValuablesQuery_player_valuables = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename: "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
@@ -47,6 +47,8 @@ export type PlayerValuablesQuery_player_valuables = {
   coinValue: number,
   requirementType: ?RequirementType,
   game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 } | {
   __typename: "PlayerValuableCash",
   id: string,
@@ -60,6 +62,22 @@ export type PlayerValuablesQuery_player_valuables = {
   market: string,
   backgroundImage: string,
   requirementType: ?RequirementType,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+} | {
+  __typename: "PlayerValuableDeposit",
+  id: string,
+  valuableState: PlayerValuableState,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
 export type PlayerValuablesQuery_player = {

@@ -6,12 +6,14 @@
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
-export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+export type ValuableDetails_PlayerValuable_PlayerValuableSport = {
+  __typename: "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
@@ -27,11 +29,15 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   requirementType: ?RequirementType,
   game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
 export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
@@ -40,13 +46,32 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   requirementType: ?RequirementType,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
-export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableDeposit | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash;/* @flow */
+export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
+  __typename: "PlayerValuableDeposit",
+  id: string,
+  backgroundImage: string,
+  content: string,
+  caveat: ?string,
+  currency: Currency,
+  market: string,
+  expirationTimeInHours: number,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
+};
+
+export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableSport | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash | ValuableDetails_PlayerValuable_PlayerValuableDeposit;/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
