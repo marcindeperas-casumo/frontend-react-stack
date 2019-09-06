@@ -177,6 +177,15 @@ export class App extends PureComponent<Props> {
             />
           </GraphQLProvider>
         </Route>
+        <Route path={["valuablesV2"]}>
+          <GraphQLProvider>
+            <LazyPortal
+              hostElementId="react-host-valuables-v2"
+              loader={() => import("Components/ValuablesPage")}
+              namedExport="ValuablesPage"
+            />
+          </GraphQLProvider>
+        </Route>
         <Route path={["settings"]}>
           <GraphQLProvider>
             <LazyPortal
