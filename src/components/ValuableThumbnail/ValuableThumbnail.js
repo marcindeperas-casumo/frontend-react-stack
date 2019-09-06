@@ -41,7 +41,7 @@ export const ValuableThumbnail = ({
   currency,
   expirationTimeInHours,
   market,
-  size = "sm",
+  size = "lg",
   valuableState,
   valuableType,
   translatedHoursUnit,
