@@ -21,14 +21,18 @@ const RowTemplate = ({
   label,
   value,
   action,
+  onClick,
 }: {
   label: string,
   value?: Node,
   action?: Node,
+  onClick?: () => void,
 }) => (
-  <SettingsRow text={<SettingsLabelAndValue label={label} value={value} />}>
-    {action}
-  </SettingsRow>
+  <div onClick={onClick}>
+    <SettingsRow text={<SettingsLabelAndValue label={label} value={value} />}>
+      {action}
+    </SettingsRow>
+  </div>
 );
 
 export class SettingsAccountDetails extends PureComponent<Props> {
@@ -59,33 +63,31 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     );
 
     const Email = () => (
-      <a onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}>
-        <RowTemplate
-          label={labels.email}
-          value={details.email}
-          action={
-            <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-          }
-        />
-      </a>
+      <RowTemplate
+        onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}
+        label={labels.email}
+        value={details.email}
+        action={
+          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+        }
+      />
     );
 
     const ExtentOfGambling = () => {
       if (details.extentOfGambling.canChange) {
         return (
-          <a
+          <RowTemplate
             onClick={() =>
-              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING })
+              launchModal({
+                modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING,
+              })
             }
-          >
-            <RowTemplate
-              label={labels.gamblingExtent}
-              action={
-                <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-              }
-              value={details.extentOfGambling.label}
-            />
-          </a>
+            label={labels.gamblingExtent}
+            action={
+              <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+            }
+            value={details.extentOfGambling.label}
+          />
         );
       }
       return null;
@@ -94,38 +96,32 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     const Password = () => {
       if (details.canChangePassword) {
         return (
-          <a
+          <RowTemplate
             onClick={() =>
               launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD })
             }
-          >
-            <RowTemplate
-              label={labels.password}
-              value={PASSWORD_PLACEHOLDER_VALUE}
-              action={
-                <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-              }
-            />
-          </a>
+            label={labels.password}
+            value={PASSWORD_PLACEHOLDER_VALUE}
+            action={
+              <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+            }
+          />
         );
       }
       return null;
     };
 
     const VerifiedMobileNumber = () => (
-      <a
+      <RowTemplate
         onClick={() =>
           launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
         }
-      >
-        <RowTemplate
-          label={labels.mobileNumber}
-          value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
-          action={
-            <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-          }
-        />
-      </a>
+        label={labels.mobileNumber}
+        value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
+        action={
+          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+        }
+      />
     );
 
     const UnverifiedMobileNumber = () => (
