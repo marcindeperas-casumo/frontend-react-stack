@@ -54,130 +54,123 @@ export class SettingsAccountDetails extends PureComponent<Props> {
       labels,
       player: { details },
     } = this.props;
-
-    const Name = () => (
-      <RowTemplate
-        label={labels.name}
-        value={`${details.name.first} ${details.name.last}`}
-      />
-    );
-
-    const Email = () => (
-      <RowTemplate
-        onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}
-        label={labels.email}
-        value={details.email}
-        action={
-          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-        }
-      />
-    );
-
-    const ExtentOfGambling = () => {
-      if (details.extentOfGambling.canChange) {
-        return (
-          <RowTemplate
-            onClick={() =>
-              launchModal({
-                modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING,
-              })
-            }
-            label={labels.gamblingExtent}
-            action={
-              <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-            }
-            value={details.extentOfGambling.label}
-          />
-        );
-      }
-      return null;
-    };
-
-    const Password = () => {
-      if (details.canChangePassword) {
-        return (
-          <RowTemplate
-            onClick={() =>
-              launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD })
-            }
-            label={labels.password}
-            value={PASSWORD_PLACEHOLDER_VALUE}
-            action={
-              <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-            }
-          />
-        );
-      }
-      return null;
-    };
-
-    const VerifiedMobileNumber = () => (
-      <RowTemplate
-        onClick={() =>
-          launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
-        }
-        label={labels.mobileNumber}
-        value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
-        action={
-          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
-        }
-      />
-    );
-
-    const UnverifiedMobileNumber = () => (
-      <a href="/player/settings/phone-number">
-        <RowTemplate
-          label={labels.mobileNumber}
-          value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
-          action={
-            <Flex align="center" spacing="sm">
-              <Flex.Item>
-                <ExclamationMarkIcon
-                  size="sm"
-                  className="t-color-negative t-border--current-color t-border t-border-r--circle t-border-width--md"
-                />
-              </Flex.Item>
-              <Flex.Item>
-                <Text tag="strong" size="sm" className="t-color-negative">
-                  {labels.verify}
-                </Text>
-              </Flex.Item>
-            </Flex>
-          }
-        />
-      </a>
-    );
-
-    const MobileNumber = () =>
-      details.phoneNumber.verified ? (
-        <VerifiedMobileNumber />
-      ) : (
-        <UnverifiedMobileNumber />
-      );
-
-    const Address = () => (
-      <RowTemplate
-        label={labels.address}
-        value={
-          <>
-            <div>{details.address.street}</div>
-            <div>{details.address.postCode}</div>
-            <div>{details.address.city}</div>
-            <div>{details.address.country.name}</div>
-          </>
-        }
-      />
-    );
+    const labelsAndDetails = { labels, details };
 
     return (
       <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
-        <Name />
-        <Email />
-        <ExtentOfGambling />
-        <Password />
-        <MobileNumber />
-        <Address />
+        <Name {...labelsAndDetails} />
+        <Email {...labelsAndDetails} />
+        <ExtentOfGambling {...labelsAndDetails} />
+        {details.canChangePassword && <Password labels={labels} />}
+        {details.phoneNumber.verified ? (
+          <VerifiedMobileNumber {...labelsAndDetails} />
+        ) : (
+          <UnverifiedMobileNumber {...labelsAndDetails} />
+        )}
+        <Address {...labelsAndDetails} />
       </div>
     );
   }
 }
+
+const Name = ({ labels, details }) => (
+  <RowTemplate
+    label={labels.name}
+    value={`${details.name.first} ${details.name.last}`}
+  />
+);
+
+const Email = ({ labels, details }) => (
+  <RowTemplate
+    onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_EMAIL })}
+    label={labels.email}
+    value={details.email}
+    action={
+      <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+    }
+  />
+);
+
+const ExtentOfGambling = ({ labels, details }) => {
+  if (details.extentOfGambling.canChange) {
+    return (
+      <RowTemplate
+        onClick={() =>
+          launchModal({
+            modal: ACCOUNT_SETTINGS.CHANGE_EXTENT_OF_GAMBLING,
+          })
+        }
+        label={labels.gamblingExtent}
+        action={
+          <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+        }
+        value={details.extentOfGambling.label}
+      />
+    );
+  }
+  return null;
+};
+
+const Password = ({ labels }) => {
+  return (
+    <RowTemplate
+      onClick={() => launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_PASSWORD })}
+      label={labels.password}
+      value={PASSWORD_PLACEHOLDER_VALUE}
+      action={
+        <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+      }
+    />
+  );
+};
+
+const VerifiedMobileNumber = ({ labels, details }) => (
+  <RowTemplate
+    onClick={() =>
+      launchModal({ modal: ACCOUNT_SETTINGS.CHANGE_MOBILE_NUMBER })
+    }
+    label={labels.mobileNumber}
+    value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
+    action={
+      <EditIcon className="t-background-chrome-light-2 t-color-chrome-dark-3 u-padding t-border-r--circle" />
+    }
+  />
+);
+
+const UnverifiedMobileNumber = ({ labels, details }) => (
+  <a href="/player/settings/phone-number">
+    <RowTemplate
+      label={labels.mobileNumber}
+      value={`(${details.phoneNumber.prefix}) ${details.phoneNumber.number}`}
+      action={
+        <Flex align="center" spacing="sm">
+          <Flex.Item>
+            <ExclamationMarkIcon
+              size="sm"
+              className="t-color-negative t-border--current-color t-border t-border-r--circle t-border-width--md"
+            />
+          </Flex.Item>
+          <Flex.Item>
+            <Text tag="strong" size="sm" className="t-color-negative">
+              {labels.verify}
+            </Text>
+          </Flex.Item>
+        </Flex>
+      }
+    />
+  </a>
+);
+
+const Address = ({ labels, details }) => (
+  <RowTemplate
+    label={labels.address}
+    value={
+      <>
+        <div>{details.address.street}</div>
+        <div>{details.address.postCode}</div>
+        <div>{details.address.city}</div>
+        <div>{details.address.country.name}</div>
+      </>
+    }
+  />
+);
