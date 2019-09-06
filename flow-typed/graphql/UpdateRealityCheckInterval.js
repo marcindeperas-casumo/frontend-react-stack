@@ -35,6 +35,11 @@ export type ValuableType = "cash" | "deposit" | "spins" | "sport";
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
+/**
+ * 
+ */
+export type RequirementType = "deposit" | "wager";
+
 export type ContactSettingsInput = {|
   on: boolean
 |};
