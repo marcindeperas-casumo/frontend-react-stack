@@ -19,17 +19,7 @@ const RealityCheck = ({
   frequencyOffLabel: string,
   enabled: boolean,
 }) => (
-  <SettingsRow
-    text={
-      <Text
-        tag="p"
-        size="sm"
-        className="t-color-grey-dark-3 u-font-weight-light"
-      >
-        {title}
-      </Text>
-    }
-  >
+  <SettingsRow text={<Text className="t-color-chrome-dark-2">{title}</Text>}>
     <Flex justify="center">
       {interval ? (
         <Text tag="span" className="t-color-plum u-font-weight-bold">
