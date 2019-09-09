@@ -21,16 +21,16 @@ export default class MustDropJackpotList extends PureComponent<Props> {
     const { ids, areGamesLoaded } = this.props;
 
     return !areGamesLoaded ? (
-      <GameListSkeleton className="u-padding--md" hasTitle={false} />
+      <div className="t-background-chrome-light-2 u-padding--md">
+        <GameListSkeleton hasTitle={false} />
+      </div>
     ) : (
-      <div>
-        <div className="u-padding-x--md u-padding-bottom--md o-list-wrapper">
-          <List
-            items={ids}
-            data-test="must-drop-jackpots-list"
-            render={id => <GameRow id={id} />}
-          />
-        </div>
+      <div className="t-background-chrome-light-2 u-padding-x--md u-padding-top--md u-padding-bottom--md o-list-wrapper">
+        {ids.map(id => (
+          <div className="u-margin-bottom">
+            <GameRow id={id} />
+          </div>
+        ))}
       </div>
     );
   }

@@ -29,17 +29,18 @@ export default class LiveCasinoDetailPage extends PureComponent<Props> {
 
   render() {
     return (
-      <div className="u-padding-x--md u-padding-bottom--md">
+      <div className="t-background-chrome-light-2 u-padding-x--md u-padding-bottom--md">
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
         >
           {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
             <React.Fragment key={id}>
               <SectionTitle title={this.props.translations[id] || id} />
-              <List
-                items={gamesInSection}
-                render={slug => <GameRow id={slug} />}
-              />
+              {gamesInSection.map(slug => (
+                <div className="u-margin-bottom">
+                  <GameRow id={slug} />
+                </div>
+              ))}
             </React.Fragment>
           ))}
         </TrackProvider>
