@@ -2,7 +2,7 @@
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { showTerms } from "Services/ShowTermsService";
-import { OpenModalMutation } from "Features/sports/state";
+import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { MODAL } from "Features/sports/components/Modals";
 

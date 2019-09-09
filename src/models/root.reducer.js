@@ -7,6 +7,7 @@ import { reducer as gameSearch } from "Models/gameSearch";
 import { reducer as playerGames } from "Models/playerGames";
 import { reducer as promotions } from "Models/promotions";
 import { reducer as schema } from "Models/schema";
+import { reducer as playing } from "Models/playing";
 import { modalReducer as modal } from "Models/modal";
 import { playOkayReducer } from "./playOkay/playOkay.reducer";
 
@@ -20,6 +21,7 @@ const rootReducer = combineReducers({
   schema,
   modal,
   playOkay: playOkayReducer,
+  playing,
 });
 
 export default rootReducer;

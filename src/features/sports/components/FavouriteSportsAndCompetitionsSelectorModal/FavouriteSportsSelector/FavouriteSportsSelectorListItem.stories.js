@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   withFavouritesResult,

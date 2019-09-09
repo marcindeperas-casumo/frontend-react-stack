@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -199,6 +200,10 @@ export class ReelRaceCard extends React.Component<Props> {
   render() {
     const { t } = this.props;
 
+    if (R.isEmpty(this.props.game)) {
+      return null;
+    }
+
     if (this.timeRemainingBeforeStart <= 0 && !this.props.opted) {
       return null;
     }
@@ -224,6 +229,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "o-ratio",
             "o-ratio--reel-race-card",
             `t-color-${this.props.color}`,
+            "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
           justify="space-between"

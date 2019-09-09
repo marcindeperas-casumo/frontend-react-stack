@@ -7,7 +7,7 @@ import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PersistedData } from "Utils";
-import { NavigateClientMutation } from "Features/sports/state/clientState";
+import { NavigateClientMutation } from "Features/sports/components/GraphQL";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import SadSumo from "Components/ErrorMessage/sad-sumo.svg";

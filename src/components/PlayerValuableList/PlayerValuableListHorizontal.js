@@ -11,6 +11,13 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import "./PlayerValuableListHorizontal.scss";
+
+const PADDING_PER_DEVICE = {
+  default: "md",
+  tablet: "3xlg",
+  desktop: "3xlg",
+};
 
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
@@ -73,24 +80,22 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   }
 
   return (
-    <div className="u-padding-top--xlg c-player-valuables-list">
+    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg t-background-grey-light-2">
       {listTitleLabel && (
         <ScrollableListTitle paddingLeft title={listTitleLabel} />
       )}
-      <Scrollable>
+      <Scrollable itemSpacing="md" padding={PADDING_PER_DEVICE}>
         {valuables.map(valuable => {
           const { id } = valuable;
 
           return (
             <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-              <div style={{ width: "160px" }}>
-                <div>
-                  <ValuableCard
-                    translatedHoursUnit={hoursLabel}
-                    {...valuable}
-                    onCardClick={() => showModal(valuable)}
-                  />
-                </div>
+              <div className="c-valuable-list__valuable-card">
+                <ValuableCard
+                  translatedHoursUnit={hoursLabel}
+                  {...valuable}
+                  onCardClick={() => showModal(valuable)}
+                />
               </div>
             </div>
           );
@@ -100,14 +105,15 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       {selectedValuable && (
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
-          onClose={() => closeModal()}
+          onClose={closeModal}
           onConsumeValuable={consumeValuable}
           valuableDetails={selectedValuable}
         >
-          <div style={{ width: "160px" }}>
+          <div className="c-valuable-list__valuable-card">
             <ValuableCard
               translatedHoursUnit={hoursLabel}
               {...selectedValuable}
+              caveat={null}
             />
           </div>
         </ValuableDetailsWithModal>
