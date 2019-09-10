@@ -6,8 +6,8 @@
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableSport = {
-  __typename: "PlayerValuableSport",
+export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
+  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
@@ -18,6 +18,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSport = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
@@ -36,12 +38,12 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   description: string,
   coinValue: number,
   requirementType: ?RequirementType,
   game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
@@ -56,28 +58,12 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   requirementType: ?RequirementType,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
 };
 
-export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit",
-  id: string,
-  valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-};
-
-export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableSport | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash | PlayerValuableList_PlayerValuable_PlayerValuableDeposit;/* @flow */
+export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash;/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.
 
