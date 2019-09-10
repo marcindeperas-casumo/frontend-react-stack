@@ -34,21 +34,15 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   expirationTimeInHours
   valuableType
   valuableState
+  wageringThreshold
+  leftToWager
   ... on PlayerValuableSpins {
     requirementType
     game {
       slug
     }
-    wageringThreshold
-    leftToWager
   }
   ... on PlayerValuableCash {
     requirementType
-    wageringThreshold
-    leftToWager
-  }
-  ... on PlayerValuableDeposit {
-    wageringThreshold
-    leftToWager
   }
 }
