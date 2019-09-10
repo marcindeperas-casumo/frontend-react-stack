@@ -98,40 +98,39 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  get leftToWager(): ?number {
-    const { valuableDetails } = this.props;
+  get leftToWager(): number {
+    const {
+      valuableDetails: { leftToWager },
+    } = this.props;
 
-    if (
-      valuableDetails.__typename === "PlayerValuableCash" ||
-      valuableDetails.__typename === "PlayerValuableSpins" ||
-      valuableDetails.__typename === "PlayerValuableDeposit"
-    ) {
-      return valuableDetails.leftToWager;
-    }
-
-    return null;
+    return leftToWager || 0;
   }
 
-  get wageringThreshold(): ?number {
-    const { valuableDetails } = this.props;
+  get wageringThreshold(): number {
+    const {
+      valuableDetails: { wageringThreshold },
+    } = this.props;
 
-    if (
-      valuableDetails.__typename === "PlayerValuableCash" ||
-      valuableDetails.__typename === "PlayerValuableSpins" ||
-      valuableDetails.__typename === "PlayerValuableDeposit"
-    ) {
-      return valuableDetails.wageringThreshold;
-    }
-
-    return null;
+    return wageringThreshold || 0;
   }
 
-  get wageringStatus(): ?number {
-    if (this.leftToWager && this.wageringThreshold) {
-      return (1 - this.leftToWager / this.wageringThreshold) * 100;
+  get wageringRequirementsExist(): boolean {
+    const {
+      valuableDetails: { leftToWager, wageringThreshold },
+    } = this.props;
+
+    return leftToWager !== null && wageringThreshold !== null;
+  }
+
+  get percentageWagered(): number {
+    if (!this.wageringRequirementsExist) {
+      return 0;
     }
 
-    return null;
+    const proportionLeftToWager = this.leftToWager / this.wageringThreshold;
+    const proportionWagered = 1 - proportionLeftToWager;
+
+    return proportionWagered * 100;
   }
 
   get game(): ?Game {
@@ -165,9 +164,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
       caveat,
       content,
       currency,
+      leftToWager,
       market,
       valuableType,
       valuableState,
+      wageringThreshold,
     } = valuableDetails;
     const {
       termsAndConditionLabel,
@@ -198,7 +199,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       amount: formatCurrency({
         locale: INTL_LOCALES[market],
         currency,
-        value: this.leftToWager,
+        value: leftToWager,
       }),
     });
 
@@ -235,7 +236,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {content}
               </Text>
             </Flex.Item>
-            {this.wageringStatus && (
+            {wageringThreshold && (
               <Flex.Item className="u-margin-top--xlg">
                 <Text tag="p" className="u-margin--none">
                   <DangerousHtml html={formattedAmountLeftToWagerText} />
@@ -244,7 +245,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                   <ProgressBar
                     fillerClassNames="t-background-grey-light-2"
                     trackClassNames="t-background-green-light-1"
-                    progress={this.wageringStatus}
+                    progress={this.percentageWagered}
                   />
                 </div>
               </Flex.Item>
