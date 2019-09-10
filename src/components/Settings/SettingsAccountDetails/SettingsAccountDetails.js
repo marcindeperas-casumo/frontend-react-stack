@@ -57,17 +57,19 @@ export class SettingsAccountDetails extends PureComponent<Props> {
     const labelsAndDetails = { labels, details };
 
     return (
-      <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
-        <Name {...labelsAndDetails} />
-        <Email {...labelsAndDetails} />
-        <ExtentOfGambling {...labelsAndDetails} />
-        {details.canChangePassword && <Password labels={labels} />}
-        {details.phoneNumber.verified ? (
-          <VerifiedMobileNumber {...labelsAndDetails} />
-        ) : (
-          <UnverifiedMobileNumber {...labelsAndDetails} />
-        )}
-        <Address {...labelsAndDetails} />
+      <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
+        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+          <Name {...labelsAndDetails} />
+          <Email {...labelsAndDetails} />
+          <ExtentOfGambling {...labelsAndDetails} />
+          {details.canChangePassword && <Password labels={labels} />}
+          {details.phoneNumber.verified ? (
+            <VerifiedMobileNumber {...labelsAndDetails} />
+          ) : (
+            <UnverifiedMobileNumber {...labelsAndDetails} />
+          )}
+          <Address {...labelsAndDetails} />
+        </div>
       </div>
     );
   }

@@ -54,8 +54,8 @@ export class SettingsNotifications extends PureComponent<Props> {
     } = this.props;
 
     return (
-      <>
-        <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+      <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop">
+        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
           <ToggleRow
             label={notificationsApprovedWithdrawalsEmailLabel}
             isEnabled={withdrawalNotifications}
@@ -105,7 +105,7 @@ export class SettingsNotifications extends PureComponent<Props> {
             onChange={setContactByPost}
           />
         </div>
-      </>
+      </div>
     );
   }
 }
