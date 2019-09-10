@@ -19,9 +19,9 @@ export function ProgressArc(props: Props) {
   return (
     <svg width="28" height="25" viewBox="0 0 28 25" fill="none">
       <path
-        className="path"
+        className="t-color-plum-dark-1"
         d="M5.47164 22.2913C3.32656 20.1405 2 17.1689 2 13.8861C2 10.6033 3.32656 7.63176 5.47164 5.48093C7.61672 3.33011 10.5803 2 13.8544 2C17.1285 2 20.0921 3.33011 22.2371 5.48093C24.3822 7.63176 25.7088 10.6033 25.7088 13.8861C25.7088 17.1689 24.3822 20.1405 22.2371 22.2913"
-        stroke="#3B058F"
+        stroke="currentColor"
         strokeWidth="4"
         strokeMiterlimit="10"
         strokeLinecap="round"
@@ -29,9 +29,10 @@ export function ProgressArc(props: Props) {
         strokeDashoffset={dashOffset}
       />
       <path
+        className="t-color-turquoise"
         opacity="0.6"
         d="M5.47164 22.2913C3.32656 20.1405 2 17.1689 2 13.8861C2 10.6033 3.32656 7.63176 5.47164 5.48093C7.61672 3.33011 10.5803 2 13.8544 2C17.1285 2 20.0921 3.33011 22.2371 5.48093C24.3822 7.63176 25.7088 10.6033 25.7088 13.8861C25.7088 17.1689 24.3822 20.1405 22.2371 22.2913"
-        stroke="#D0BDFF"
+        stroke="currentColor"
         strokeWidth="4"
         strokeMiterlimit="10"
         strokeLinecap="round"
