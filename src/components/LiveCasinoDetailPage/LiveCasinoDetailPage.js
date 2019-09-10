@@ -36,11 +36,13 @@ export default class LiveCasinoDetailPage extends PureComponent<Props> {
           {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
             <React.Fragment key={id}>
               <SectionTitle title={this.props.translations[id] || id} />
-              {gamesInSection.map(slug => (
-                <div className="u-margin-bottom">
-                  <GameRow id={slug} />
-                </div>
-              ))}
+              <div data-test-id="live-casino-detail-list">
+                {gamesInSection.map(slug => (
+                  <div key={slug} className="u-margin-bottom">
+                    <GameRow id={slug} />
+                  </div>
+                ))}
+              </div>
             </React.Fragment>
           ))}
         </TrackProvider>

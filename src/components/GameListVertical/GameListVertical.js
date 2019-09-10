@@ -24,7 +24,7 @@ export class GameListVertical extends PureComponent<Props> {
     return (
       <div className="o-list-wrapper">
         {ids.map(id => (
-          <div className="u-margin-bottom">
+          <div key={id} className="u-margin-bottom">
             <GameRow id={id} />
           </div>
         ))}
