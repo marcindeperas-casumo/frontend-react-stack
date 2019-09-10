@@ -53,75 +53,58 @@ export class SettingsNotifications extends PureComponent<Props> {
       },
     } = this.props;
 
-    const ToggleWithdrawals = () => (
-      <ToggleRow
-        label={notificationsApprovedWithdrawalsEmailLabel}
-        isEnabled={withdrawalNotifications}
-        onChange={setWithdrawalNotifications}
-      />
-    );
-
-    const RealityCheck = () => (
-      <RealityCheckField
-        enabled={canChangeInterval}
-        link="/player/settings/reality-check"
-        title={notificationsInGameSessionUpdatesLabel}
-        interval={intervalInMinutes}
-        frequencyLabel={inGameSessionUpdatesFrequencyLabel}
-        frequencyOffLabel={inGameSessionUpdatesOffLabel}
-      />
-    );
-
-    const CheckEmail = () => (
-      <SubscriptionRow
-        label={subscriptionsEmailLabel}
-        isEnabled={subscribedToNewsletters}
-        onChange={setNewsletterSubscription}
-      />
-    );
-
-    const CheckSMS = () => (
-      <SubscriptionRow
-        label={subscriptionsSMSLabel}
-        isEnabled={subscribedToSMSNewsletters}
-        onChange={setSMSNewsletterSubscription}
-      />
-    );
-
-    const CheckPhone = () => (
-      <SubscriptionRow
-        label={subscriptionsPhoneLabel}
-        isEnabled={contactByPhone}
-        onChange={setContactByPhone}
-      />
-    );
-
-    const CheckPost = () => (
-      <SubscriptionRow
-        label={subscriptionsPostLabel}
-        isEnabled={contactByPost}
-        onChange={setContactByPost}
-      />
-    );
     return (
       <>
-        <ToggleWithdrawals />
-        <RealityCheck />
+        <div className="u-padding-top u-padding-top--2xlg@tablet u-padding-top--2xlg@desktop t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+          <ToggleRow
+            label={notificationsApprovedWithdrawalsEmailLabel}
+            isEnabled={withdrawalNotifications}
+            onChange={setWithdrawalNotifications}
+          />
+          <RealityCheckField
+            enabled={canChangeInterval}
+            link="/player/settings/reality-check"
+            title={notificationsInGameSessionUpdatesLabel}
+            interval={intervalInMinutes}
+            frequencyLabel={inGameSessionUpdatesFrequencyLabel}
+            frequencyOffLabel={inGameSessionUpdatesOffLabel}
+          />
+        </div>
+        <div className="t-box-shadow--lg@tablet t-box-shadow--lg@desktop">
+          <SettingsRow
+            text={
+              <SettingsHeadline
+                title={subscriptionsTitle}
+                description={subscriptionsDescription}
+              />
+            }
+            className="t-border-bottom--none u-margin-top"
+          />
 
-        <SettingsRow
-          text={
-            <SettingsHeadline
-              title={subscriptionsTitle}
-              description={subscriptionsDescription}
-            />
-          }
-          className="t-border-bottom--none u-margin-top--md"
-        />
+          <SubscriptionRow
+            label={subscriptionsEmailLabel}
+            isEnabled={subscribedToNewsletters}
+            onChange={setNewsletterSubscription}
+          />
 
-        <CheckEmail />
-        <CheckSMS />
-        <CheckPhone />
-        <CheckPost />
+          <SubscriptionRow
+            label={subscriptionsSMSLabel}
+            isEnabled={subscribedToSMSNewsletters}
+            onChange={setSMSNewsletterSubscription}
+          />
+
+          <SubscriptionRow
+            label={subscriptionsPhoneLabel}
+            isEnabled={contactByPhone}
+            onChange={setContactByPhone}
+          />
+
+          <SubscriptionRow
+            label={subscriptionsPostLabel}
+            isEnabled={contactByPost}
+            onChange={setContactByPost}
+          />
+        </div>
       </>
     );
   }

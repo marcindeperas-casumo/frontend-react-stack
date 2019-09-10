@@ -1,5 +1,6 @@
 //@flow
 import React, { type Node } from "react";
+import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { DirectionRightIcon } from "@casumo/cmp-icons";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
@@ -18,30 +19,22 @@ const RealityCheck = ({
   frequencyOffLabel: string,
   enabled: boolean,
 }) => (
-  <SettingsRow
-    text={
-      <Text
-        tag="p"
-        size="sm"
-        className="t-color-grey-dark-3 u-font-weight-light"
-      >
-        {title}
-      </Text>
-    }
-  >
-    {interval ? (
-      <Text tag="span" className="t-color-green u-font-weight-light">
-        <ContentReplacer
-          value={frequencyLabel}
-          replacements={{ amount: interval }}
-        />
-      </Text>
-    ) : (
-      <Text tag="span" className="t-color-grey-light-1 u-font-weight-light">
-        {frequencyOffLabel}
-      </Text>
-    )}
-    {enabled && <DirectionRightIcon className="t-color-grey-light-1" />}
+  <SettingsRow text={<Text className="t-color-chrome-dark-2">{title}</Text>}>
+    <Flex justify="center">
+      {interval ? (
+        <Text tag="span" className="t-color-plum u-font-weight-bold">
+          <ContentReplacer
+            value={frequencyLabel}
+            replacements={{ amount: interval }}
+          />
+        </Text>
+      ) : (
+        <Text tag="span" className="t-color-chrome u-font-weight-bold">
+          {frequencyOffLabel}
+        </Text>
+      )}
+      {enabled && <DirectionRightIcon className="t-color-chrome-light-1" />}
+    </Flex>
   </SettingsRow>
 );
 

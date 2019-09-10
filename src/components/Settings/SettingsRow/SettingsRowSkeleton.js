@@ -6,6 +6,8 @@ export class SettingsRowSkeleton extends PureComponent<{}> {
   render() {
     return (
       <Skeleton
+        colorHi="#d3d8e1"
+        colorLow="#e5eaed"
         width="100%"
         height="100%"
         preserveAspectRatio="none"
