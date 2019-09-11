@@ -19,11 +19,11 @@ export type SearchQuery_search_sport = {
 
 export type SearchQuery_search = {
   /**
-   * The type of search result, N.B Not overly reliable
+   * The type of search result, N.B Not overly reliable"
    */
   type: SearchResultType,
   /**
-   * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)
+   * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)"
    */
   id: string,
   /**
@@ -31,14 +31,15 @@ export type SearchQuery_search = {
    */
   localizedName: string,
   /**
-   * The sport that this search result is associated to, nullable as relies on finding by kambi controlled data
+   * The sport that this search result is associated to is nullable as relies on
+   * finding by Kambi controlled data.
    */
   sport: ?SearchQuery_search_sport,
 };
 
 export type SearchQuery = {
   /**
-   * Search for events matching a given query, non english lang will search english results too
+   * Search for events matching a given query, non english lang will search english results too"
    */
   search: Array<SearchQuery_search>
 };
@@ -54,6 +55,31 @@ export type SearchQueryVariables = {
 //==============================================================
 
 /**
+ *
+ */
+export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
+
+/**
+ *
+ */
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
+
+/**
+ *
+ */
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
+/**
+ *
+ */
+export type RequirementType = "deposit" | "wager";
+
+/**
+ *
+ */
+export type Vertical = "CASINO" | "SPORTS";
+
+/**
  * 
  */
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
@@ -62,6 +88,14 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
  * 
  */
 export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+
+export type ContactSettingsInput = {|
+  on: boolean
+|};
+
+export type UpdateRealityCheckIntervalInput = {|
+  intervalSeconds: number
+|};
 
 //==============================================================
 // END Enums and Input Objects
