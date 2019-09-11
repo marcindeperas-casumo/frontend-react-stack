@@ -98,7 +98,7 @@ export class ValuableCard extends PureComponent<Props> {
         <div
           className={classNames(
             "c-valuable-card o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
-            className ? className : ""
+            className
           )}
         >
           <Flex
