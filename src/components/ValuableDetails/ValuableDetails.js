@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import DangerousHtml from "Components/DangerousHtml";
+import { interpolate, convertHoursToDays } from "Utils";
 import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
@@ -15,9 +15,7 @@ import {
   type ValuableRequirementType,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
-import { ProgressBar } from "Components/ProgressBar";
-import { interpolate, convertHoursToDays, formatCurrency } from "Utils";
-import { INTL_LOCALES } from "Src/constants";
+import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
 
@@ -98,39 +96,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  get leftToWager(): number {
-    const {
-      valuableDetails: { leftToWager },
-    } = this.props;
-
-    return leftToWager || 0;
-  }
-
-  get wageringThreshold(): number {
-    const {
-      valuableDetails: { wageringThreshold },
-    } = this.props;
-
-    return wageringThreshold || 0;
-  }
-
   get wageringRequirementsExist(): boolean {
     const {
       valuableDetails: { leftToWager, wageringThreshold },
     } = this.props;
 
-    return leftToWager !== null && wageringThreshold !== null;
-  }
-
-  get percentageWagered(): number {
-    if (!this.wageringRequirementsExist) {
-      return 0;
-    }
-
-    const proportionLeftToWager = this.leftToWager / this.wageringThreshold;
-    const proportionWagered = 1 - proportionLeftToWager;
-
-    return proportionWagered * 100;
+    return (
+      typeof leftToWager === "number" && typeof wageringThreshold === "number"
+    );
   }
 
   get game(): ?Game {
@@ -195,14 +168,6 @@ export class ValuableDetails extends React.PureComponent<Props> {
       translations,
     });
 
-    const formattedAmountLeftToWagerText = interpolate(wageringStatus, {
-      amount: formatCurrency({
-        locale: INTL_LOCALES[market],
-        currency,
-        value: leftToWager,
-      }),
-    });
-
     return (
       <div>
         <div className="o-ratio o-ratio--valuable-details">
@@ -236,18 +201,15 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {content}
               </Text>
             </Flex.Item>
-            {wageringThreshold && (
+            {this.wageringRequirementsExist && (
               <Flex.Item className="u-margin-top--xlg">
-                <Text tag="p" className="u-margin--none">
-                  <DangerousHtml html={formattedAmountLeftToWagerText} />
-                </Text>
-                <div className="u-margin-top--md">
-                  <ProgressBar
-                    fillerClassNames="t-background-grey-light-2"
-                    trackClassNames="t-background-green-light-1"
-                    progress={this.percentageWagered}
-                  />
-                </div>
+                <ValuableWageringProgressBar
+                  leftToWager={leftToWager || 0}
+                  wageringThreshold={wageringThreshold || 0}
+                  currency={currency}
+                  market={market}
+                  label={wageringStatus}
+                />
               </Flex.Item>
             )}
             <Flex.Item className="u-margin-top--lg">
