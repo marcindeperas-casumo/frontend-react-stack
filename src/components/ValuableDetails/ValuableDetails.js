@@ -182,14 +182,14 @@ export class ValuableDetails extends React.PureComponent<Props> {
             className="u-margin-bottom--lg"
           >
             <Flex.Item>
-              <Text className="center" tag="p" size="md">
+              <Text className="center" tag="p">
                 {content}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               <Badge
                 tag="p"
-                size="sm"
+                size="2xs"
                 data-test="valuable-expiration-badge"
                 bgColor={this.expirationBadgeColour}
                 className="u-text-transform-uppercase u-font-weight-bold"
@@ -207,7 +207,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey" size="sm">
+              <Text tag="strong" className="t-color-grey" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
