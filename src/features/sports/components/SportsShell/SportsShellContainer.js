@@ -99,7 +99,7 @@ export class SportsShellContainer extends React.Component<{}> {
             return <SportsShellSkeleton />;
           }
           return (
-            <div className="u-padding-right--lg@desktop t-background-chrome-light-2">
+            <div className="t-background-chrome-light-2">
               <SportsHashWatcher>
                 {({ currentHash }) => (
                   <>
