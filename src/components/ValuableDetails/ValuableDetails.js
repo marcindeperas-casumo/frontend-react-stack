@@ -204,7 +204,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
-              <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
+              <hr className="c-valuable-details__separator t-border t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
               <Text tag="strong" className="t-color-grey" size="xs">
@@ -221,7 +221,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer">
+          <div className="c-valuable-details__footer u-padding--md">
             <Button
               href={actionButtonProps.url}
               className="u-width--1/1"
