@@ -80,7 +80,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   }
 
   return (
-    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg t-background-grey-light-2">
+    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
       {listTitleLabel && (
         <ScrollableListTitle paddingLeft title={listTitleLabel} />
       )}
