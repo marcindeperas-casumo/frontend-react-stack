@@ -6,6 +6,7 @@ export type StageFavouritesAPI = {
   sports: Array<FavouriteSportsSelectorContext_groups>,
   isFirstTimeSelectingFavourites: boolean,
   isFirstTimeSelectingFavouriteCompetitions: boolean,
+  isSportsPlayer: boolean,
   toggleFavouriteSport: (id: number) => void,
   toggleAllSports: () => void,
   getSelectedSportsCount: () => number,
