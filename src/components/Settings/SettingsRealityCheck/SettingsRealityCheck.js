@@ -40,41 +40,37 @@ export class SettingsRealityCheck extends PureComponent<Props> {
       <>
         {canToggleInterval && (
           <ToggleRow
-            className="t-border-bottom--none"
             label={labels.inGameSessionUpdatesLabel}
             isEnabled={enabled}
             onChange={change}
           />
         )}
         <div className="u-padding--md">
-          <Text
-            tag="p"
-            size="sm"
-            className="t-color-grey-dark-3 u-font-weight-light"
-          >
+          <Text className="t-color-chrome-dark-2">
             {labels.inGameSessionUpdatesFrequencyLabel}
           </Text>
-          <div className="u-margin-top--md">
-            <PillSelector
-              disabled={!enabled}
-              className="u-margin-top--md"
-              options={options}
-              value={interval}
-              onChange={onChange}
-            />
-          </div>
+          <PillSelector
+            disabled={!enabled}
+            className="u-margin-top--xlg"
+            options={options}
+            value={interval}
+            onChange={onChange}
+          />
           <Button
+            variant="primary"
+            size="md"
             loading={isLoading}
             className="u-width--1/1 u-margin-top--xlg"
             onClick={onSave}
           >
             {labels.save}
           </Button>
-          <a className="u-cursor-pointer" onClick={() => window.history.back()}>
-            <div className="u-width--1/1 u-margin-top--lg center">
-              {labels.cancel}
-            </div>
-          </a>
+          <div
+            onClick={() => window.history.back()}
+            className="u-margin-top--lg u-text-align-center u-cursor-pointer t-color-text-link u-font-weight-bold"
+          >
+            {labels.cancel}
+          </div>
         </div>
       </>
     );

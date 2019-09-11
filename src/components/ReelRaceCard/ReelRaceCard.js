@@ -69,7 +69,7 @@ export class ReelRaceCard extends React.Component<Props> {
           >
             <Button
               size="sm"
-              variant="variant-1"
+              variant="primary"
               className="u-padding-y--md u-padding-x--lg"
               onClick={this.props.launchGame}
             >

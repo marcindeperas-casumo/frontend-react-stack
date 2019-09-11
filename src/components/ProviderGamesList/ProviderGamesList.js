@@ -33,7 +33,7 @@ type State = {
 };
 
 const PAGE_SIZE = 50;
-const ROW_HEIGHT = 80;
+const ROW_HEIGHT = 104;
 
 class ProviderGamesList extends PureComponent<Props, State> {
   static defaultProps = {
@@ -84,7 +84,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
       return (
         <div
           key={key}
-          className="t-border-bottom t-color-grey-light-2 t-border--current-color u-padding-x--md"
+          className="u-margin-y--sm u-padding-x--md"
           index={index}
           style={style}
         >
@@ -94,7 +94,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
     return (
       <Flex
-        className="u-padding-x--md t-border-bottom"
+        className="u-margin-x--md"
         align="center"
         key={key}
         index={index}
@@ -117,7 +117,11 @@ class ProviderGamesList extends PureComponent<Props, State> {
     }
 
     if (!areGamesLoaded) {
-      return <GameListSkeleton hasTitle={false} />;
+      return (
+        <div className="t-background-chrome-light-2 u-padding-top u-padding-x--md">
+          <GameListSkeleton hasTitle={false} />
+        </div>
+      );
     }
 
     return (
@@ -128,7 +132,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
               [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
             }}
           >
-            <div className="c-provider-games-list__games-list">
+            <div className="c-provider-games-list__games-list t-background-chrome-light-2 u-padding-top">
               <VirtualList
                 isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}

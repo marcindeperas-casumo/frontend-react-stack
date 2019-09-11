@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
-import { DirectionUpIcon, DirectionDownIcon } from "@casumo/cmp-icons";
+import { DirectionDownIcon } from "@casumo/cmp-icons";
 import ExpandableListItem from "./ExpandableListItem";
 
 describe("<ExpandableListItem />", () => {
@@ -34,11 +34,13 @@ describe("<ExpandableListItem />", () => {
       </ExpandableListItem>
     );
 
-    expect(rendered.find(DirectionUpIcon)).toHaveLength(0);
-    expect(rendered.find(DirectionDownIcon)).toHaveLength(1);
+    expect(
+      rendered.find(DirectionDownIcon).hasClass("u-transform--flip-y")
+    ).toBe(false);
 
-    expect(renderedExpanded.find(DirectionUpIcon)).toHaveLength(1);
-    expect(renderedExpanded.find(DirectionDownIcon)).toHaveLength(0);
+    expect(
+      renderedExpanded.find(DirectionDownIcon).hasClass("u-transform--flip-y")
+    ).toBe(true);
   });
 
   test("should only render children when expanded", () => {
