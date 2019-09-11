@@ -28,9 +28,9 @@ export default class FavouriteListItem extends PureComponent<Props> {
     const { isFavouritable = true, isFavourite } = this.props;
 
     const tickClassName = classNames(
-      "u-padding t-border-r--circle t-color-white",
-      isFavourite && "t-background-green-light-1",
-      !isFavourite && "t-background-white"
+      "u-padding t-border-r--circle t-color-chrome",
+      isFavourite && "t-background-plum",
+      !isFavourite && "t-background-chrome-light-2"
     );
 
     return isFavouritable ? (
@@ -41,7 +41,12 @@ export default class FavouriteListItem extends PureComponent<Props> {
           boxShadow: isFavourite ? "" : "inset 0px 0px 0px 2px #C9D6D6",
         }} // TODO(CPO): replace with scss class
       >
-        <TickIcon className={classNames(!isFavourite && "u-hidden")} />
+        <TickIcon
+          className={classNames(
+            !isFavourite && "u-hidden t-color-chrome-light-2",
+            "t-color-white"
+          )}
+        />
       </Flex.Item>
     ) : null;
   }

@@ -14,7 +14,7 @@ export const ProgressBarFiller = (props: Props) => {
   return (
     <div
       className={classNames(
-        `c-progress-bar__filler t-border-r--pill u-padding-bottom u-overflow-hidden`,
+        "c-progress-bar__filler t-border-r--pill u-padding-bottom u-overflow-hidden",
         props.trackClassNames
       )}
       style={{ width: `${props.progress}%` }}
@@ -25,15 +25,15 @@ export const ProgressBarFiller = (props: Props) => {
 export class ProgressBar extends PureComponent<Props> {
   static defaultProps = {
     progress: 0,
-    fillerClassNames: "t-background-yellow",
-    trackClassNames: "t-background-grey-dark-4",
+    fillerClassNames: "t-background-plum",
+    trackClassNames: "t-background-chrome-light-2",
   };
 
   render() {
     return (
       <div
         className={classNames(
-          `c-progress-bar t-border-r--pill`,
+          "c-progress-bar t-border-r--pill u-padding--sm",
           this.props.fillerClassNames
         )}
       >

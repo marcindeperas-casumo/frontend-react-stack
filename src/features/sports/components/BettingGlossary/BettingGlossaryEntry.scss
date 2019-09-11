@@ -1,41 +1,43 @@
 // stylelint-disable xi/selector-pattern,
 .c-betting-glossary-entry {
-  line-height: 1.3125rem;
+  line-height: 1.5;
 }
 
 .c-betting-glossary-entry ul {
-  padding: 0.5rem 1.5rem;
+  padding: map-get($cudl-spacer-sizes, default) map-get($cudl-spacer-sizes, md);
 }
 
 .c-betting-glossary-entry--highlight {
-  animation: animate-highlight 0.5s ease 2s 1 normal forwards;
-  background: cudl-palette(grey, light-2);
+  animation: animate-highlight 0.5s ease 2s forwards;
+  background: cudl-palette(chrome, light-1);
   position: relative;
-  top: -(map-get($cudl-spacer-sizes, default));
+  top: -(map-get($cudl-spacer-sizes, xlg) / 2);
 
   @include cudl-breakpoint(max tablet) {
     left: 50%;
-    margin: -(map-get($cudl-spacer-sizes, md)) -50vw;
+    margin: -(map-get($cudl-spacer-sizes, xlg)) -50vw;
     padding: map-get($cudl-spacer-sizes, lg);
     right: 50%;
     width: 100vw;
   }
 
   @include cudl-breakpoint(tablet) {
-    margin: -(map-get($cudl-spacer-sizes, md));
+    margin: #{- (map-get($cudl-spacer-sizes, xlg))} #{- (
+        map-get($cudl-spacer-sizes, md)
+      )};
     padding: map-get($cudl-spacer-sizes, md);
   }
 }
 
 .c-betting-glossary-entry [data-glossary-link] {
-  color: cudl-palette(blue, dark-2);
+  color: cudl-palette(info);
   cursor: pointer;
   pointer-events: initial;
 }
 
 @keyframes animate-highlight {
   0% {
-    background: cudl-palette(grey, light-2);
+    background: cudl-palette(chrome, light-1);
   }
   100% {
     background: cudl-palette(white);

@@ -38,6 +38,11 @@
   }
 }
 
+// remove the header background
+.KambiBC-container#KambiBC-container .KambiBC-header--non-branded {
+  background: transparent !important;
+}
+
 // Hide Kambi's sports filter when on all live events view
 .KambiBC-filter-events__container {
   display: none !important;

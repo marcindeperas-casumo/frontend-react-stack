@@ -23,9 +23,9 @@ export const NavItem = (props: NavItemProps) => (
     className="u-margin-y--md u-margin-x--sm"
   >
     <Pill
-      inactiveClassNames="u-drop-shadow t-background-grey-light-3 t-color-grey-dark-1"
-      activeClassNames={`u-drop-shadow t-background-${
-        props.isLiveActive ? "red" : "green"
+      inactiveClassNames="t-box-shadow t-background-grey-light-3 t-color-chrome-dark-2"
+      activeClassNames={`t-background-${
+        props.isLiveActive ? "negative" : "plum"
       } t-color-white`}
       isActive={props.isSelected(props.navItem)}
     >
@@ -67,11 +67,6 @@ type EditItemProps = {
 
 export const EditItem = ({ canEdit, onEdit, isLiveActive }: EditItemProps) => (
   <div className="u-margin--md u-margin-left--sm">
-    {canEdit && !isLiveActive && (
-      <EditPillsButton
-        onClick={onEdit}
-        className="t-background-grey-light-3 t-color-grey u-drop-shadow"
-      />
-    )}
+    {canEdit && !isLiveActive && <EditPillsButton onClick={onEdit} />}
   </div>
 );

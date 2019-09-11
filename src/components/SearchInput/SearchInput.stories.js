@@ -8,16 +8,10 @@ import SearchInput from "Components/SearchInput";
 const stories = storiesOf("SearchInput", module);
 
 const Wrapper = ({ children }) => (
-  <div className="story t-background-grey-dark-1 u-padding">{children}</div>
+  <div className="story t-background-chrome-light-1 u-padding--2xlg">
+    {children}
+  </div>
 );
-
-const FocusHelper = () => {
-  const input = document.querySelector(".story input");
-  if (input) {
-    input.focus();
-  }
-  return null;
-};
 
 const props = {
   value: "Search text",
@@ -35,15 +29,7 @@ stories.add("With Input", () => (
 
 stories.add("With Input (focused)", () => (
   <Wrapper>
-    <SearchInput {...props} />
-    <FocusHelper />
-  </Wrapper>
-));
-
-stories.add("With Input (no search results)", () => (
-  <Wrapper>
-    <SearchInput {...props} value="Charlie's dignity" noResults />
-    <FocusHelper />
+    <SearchInput {...props} autofocus />
   </Wrapper>
 ));
 
@@ -55,7 +41,6 @@ stories.add("Without Input", () => (
 
 stories.add("Without Input (focused)", () => (
   <Wrapper>
-    <SearchInput {...props} value={null} />
-    <FocusHelper />
+    <SearchInput {...props} value={null} autofocus />
   </Wrapper>
 ));
