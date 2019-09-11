@@ -55,7 +55,7 @@ export function ResponsibleGamblingTest({
       </Flex>
       <Flex align="stretch" justify="space-between">
         <Button
-          variant="variant-2"
+          variant="primary"
           className="o-flex--1 u-margin-right"
           data-test-id="buttonYes"
           onClick={() => next(1)}
@@ -63,7 +63,7 @@ export function ResponsibleGamblingTest({
           {t.yes}
         </Button>
         <Button
-          variant="variant-2"
+          variant="secondary"
           className="o-flex--1 u-margin-left"
           data-test-id="buttonNo"
           onClick={() => next(0)}

@@ -8,7 +8,8 @@ export default function SectionTitle({ title }) {
       className={classNames(
         "u-padding-bottom--lg",
         "u-padding-top--lg",
-        "u-font-weight-bold"
+        "u-font-weight-bold",
+        "t-color-chrome-dark-1"
       )}
       size="md"
       tag="h3"

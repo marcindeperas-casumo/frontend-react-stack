@@ -42,7 +42,13 @@ export class GameListSkeleton extends PureComponent<Props> {
     return (
       <div className={className}>
         {hasTitle && (
-          <Skeleton width="320" height="60" className="u-display--block">
+          <Skeleton
+            colorHi="#d3d8e1"
+            colorLow="#e5eaed"
+            width="320"
+            height="60"
+            className="u-display--block"
+          >
             <rect
               x={titleXOffset}
               y={titleYOffset}

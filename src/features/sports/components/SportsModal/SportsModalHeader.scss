@@ -2,8 +2,6 @@
   height: var(--top-bar-height, 75px);
 
   @include cudl-breakpoint(tablet) {
-    background: none;
-    color: cudl-palette(grey, dark-3);
     font-size: cudl-font-size(md, $cudl-font-sizes);
     height: auto;
   }
@@ -22,34 +20,16 @@
     }
   }
 }
+// stylelint-enable xi/selector-pattern
 
 .c-sports-modal-header__heading {
   @include cudl-breakpoint(tablet) {
     padding: map-get($cudl-spacer-sizes, lg);
   }
 }
-// stylelint-enable xi/selector-pattern
-
-$button-size: $cudl-spacer-size-default * 5;
-$button-size-mobile: $cudl-spacer-size-default * 6;
-
-.c-sports-modal-header__button {
-  height: $button-size-mobile;
-  width: $button-size-mobile;
-
-  @include cudl-breakpoint(tablet) {
-    background: cudl-palette(grey, light-2);
-    color: cudl-palette(grey, dark-3);
-    height: $button-size;
-    width: $button-size;
-  }
-}
 
 .c-sports-modal-header__fixed-button {
-  border-radius: 3px;
-  height: $button-size-mobile;
   position: fixed;
   right: 15px;
   top: calc(var(--top-bar-offset-top, 0px) + 15px);
-  width: $button-size-mobile;
 }

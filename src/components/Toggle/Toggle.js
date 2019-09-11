@@ -1,5 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
+import Flex from "@casumo/cmp-flex";
 import { Checkbox } from "Components/Checkbox/Checkbox";
 import "./Toggle.scss";
 
@@ -9,24 +10,25 @@ type Props = {
 };
 
 const Unchecked = () => (
-  <div className="c-toggle u-display--inline-block u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-grey">
-    <svg>
-      <circle
-        className="c-toggle-circle--inactive"
-        cy="16"
-        r="14"
-        fill="#FFF"
-      />
+  <Flex
+    justify="start"
+    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-chrome-light-1 t-color-white"
+  >
+    <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--inactive">
+      <circle cx="14" cy="14" r="14" fill="currentColor" />
     </svg>
-  </div>
+  </Flex>
 );
 
 const Checked = () => (
-  <div className="c-toggle u-display--inline-block u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-green-light-1">
-    <svg>
-      <circle className="c-toggle-circle--active" cy="16" r="14" fill="#FFF" />
+  <Flex
+    justify="start"
+    className="c-toggle u-cursor-pointer t-border-r--pill u-overflow-hidden t-background-plum t-color-white"
+  >
+    <svg width="28" viewBox="0 0 28 28" className="c-toggle-circle--active">
+      <circle cx="14" cy="14" r="14" fill="currentColor" />
     </svg>
-  </div>
+  </Flex>
 );
 
 export class Toggle extends PureComponent<Props> {

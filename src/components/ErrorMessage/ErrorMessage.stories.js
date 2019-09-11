@@ -6,7 +6,7 @@ import { text } from "@storybook/addon-knobs/react";
 import Flex from "@casumo/cmp-flex";
 import { ErrorMessage } from "Components/ErrorMessage";
 
-const stories = storiesOf("Sports/ErrorMessage", module);
+const stories = storiesOf("ErrorMessage", module);
 
 const retry = action("retry clicked");
 
@@ -19,7 +19,7 @@ const renderError = (props = {}) => () => {
 
   return (
     <Flex
-      className="t-background-grey-light-2 u-padding--3xlg"
+      className="t-background-chrome-light-2 u-padding--3xlg"
       style={{ minHeight: 420 }}
     >
       <ErrorMessage {...propsWithDefaults} />

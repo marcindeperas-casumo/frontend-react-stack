@@ -7,6 +7,8 @@ import FavouriteCompetitionsSelectorRegionSkeleton from "./FavouriteCompetitions
 const FavouriteCompetitionsSelectorSkeleton = () => (
   <>
     <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
       width="100%"
       height="100%"
       preserveAspectRatio="none"
@@ -20,6 +22,8 @@ const FavouriteCompetitionsSelectorSkeleton = () => (
       render={id => <FavouriteCompetitionsSelectorRegionSkeleton key="id" />}
     />
     <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
       width="100%"
       height="100px"
       preserveAspectRatio="none"

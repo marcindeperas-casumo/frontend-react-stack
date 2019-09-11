@@ -1,13 +1,10 @@
 // @flow
-
 import React from "react";
 import type { Node } from "react";
 import classNames from "classnames";
 import { CrossIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-
-import "./EditPillsButton.scss";
 
 type Props = {
   /** onClick handler for the edit button */
@@ -18,7 +15,8 @@ type Props = {
   label?: Node,
 };
 
-export const defaultClasses = "t-color-grey t-background-grey-light-2";
+export const defaultClasses =
+  "t-background-white t-color-chrome-dark-1 t-box-shadow";
 
 const EditPillsButton = ({
   onClick,
@@ -32,17 +30,20 @@ const EditPillsButton = ({
     onClick={onClick}
   >
     <Flex.Item
-      className={classNames("c-edit-pills-button", className)}
+      className={classNames(
+        "t-border-r--circle o-flex u-padding--sm",
+        className
+      )}
       data-test="edit-pills-button-container"
     >
-      <CrossIcon />
+      <CrossIcon className="u-transform-rotate-z--45" />
     </Flex.Item>
     {label && (
       <Flex.Item>
         <Text
           style={{ marginTop: 1 }}
           size="sm"
-          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-grey u-margin-bottom--none"
+          className="u-font-weight-black u-text-align-center u-text-nowrap t-color-chrome-dark-1 u-margin-bottom--none"
         >
           {label}
         </Text>
