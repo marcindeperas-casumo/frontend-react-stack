@@ -182,9 +182,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             className="u-margin-bottom--lg"
           >
             <Flex.Item>
-              <Text className="center" tag="p">
-                {content}
-              </Text>
+              <Text className="center">{content}</Text>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
               <Badge
@@ -199,7 +197,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Badge>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
-              <Text tag="p" className="t-color-grey" size="sm">
+              <Text className="t-color-grey" size="sm">
                 {caveat}
               </Text>
             </Flex.Item>
@@ -212,11 +210,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Text>
             </Flex.Item>
             <Flex.Item>
-              <Text
-                tag="p"
-                className="t-color-grey u-text-align-left"
-                size="sm"
-              >
+              <Text className="t-color-grey u-text-align-left" size="sm">
                 {termsAndConditionsContent}
               </Text>
             </Flex.Item>
