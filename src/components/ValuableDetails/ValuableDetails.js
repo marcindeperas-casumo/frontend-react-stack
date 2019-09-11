@@ -215,7 +215,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <Flex.Item className="u-margin-top--lg">
               <Badge
                 tag="p"
-                size="xs"
+                size="sm"
                 data-test="valuable-expiration-badge"
                 bgColor={this.expirationBadgeColour}
                 className="u-text-transform-uppercase u-font-weight-bold"
