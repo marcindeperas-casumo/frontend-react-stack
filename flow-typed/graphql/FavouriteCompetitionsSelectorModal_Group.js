@@ -20,27 +20,27 @@ export type FavouriteCompetitionsSelectorModal_Group = {
 //==============================================================
 
 /**
- *
+ * 
  */
 export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
- *
+ * 
  */
 export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
- *
+ * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
 /**
- *
+ * 
  */
 export type RequirementType = "deposit" | "wager";
 
 /**
- *
+ * 
  */
 export type Vertical = "CASINO" | "SPORTS";
 

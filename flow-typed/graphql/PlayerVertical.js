@@ -21,37 +21,37 @@ export type PlayerVertical = {
 //==============================================================
 
 /**
- *
+ * 
  */
 export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
 
 /**
- *
+ * 
  */
 export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 
 /**
- *
+ * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
 
 /**
- *
+ * 
  */
 export type RequirementType = "deposit" | "wager";
 
 /**
- *
+ * 
  */
 export type Vertical = "CASINO" | "SPORTS";
 
 /**
- *
+ * 
  */
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 
 /**
- *
+ * 
  */
 export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
