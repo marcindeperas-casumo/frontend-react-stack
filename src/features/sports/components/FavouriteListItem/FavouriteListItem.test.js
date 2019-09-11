@@ -36,14 +36,14 @@ describe("<FavouriteListItem />", () => {
       '[data-test="favourite-list-item-indicator"]'
     );
 
-    expect(notFavouritedIndicator.hasClass("t-background-white")).toBe(true);
-    expect(notFavouritedIndicator.hasClass("t-background-green-light-1")).toBe(
-      false
-    );
-    expect(favouritedIndicator.hasClass("t-background-white")).toBe(false);
-    expect(favouritedIndicator.hasClass("t-background-green-light-1")).toBe(
+    expect(notFavouritedIndicator.hasClass("t-background-chrome-light-2")).toBe(
       true
     );
+    expect(notFavouritedIndicator.hasClass("t-background-plum")).toBe(false);
+    expect(favouritedIndicator.hasClass("t-background-chrome-light-2")).toBe(
+      false
+    );
+    expect(favouritedIndicator.hasClass("t-background-plum")).toBe(true);
   });
 
   test("should not render the indicator if list item is not favouritable", () => {

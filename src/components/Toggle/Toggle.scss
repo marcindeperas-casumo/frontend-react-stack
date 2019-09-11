@@ -1,17 +1,19 @@
 $width: 56px;
 $height: 32px;
+$border-offset: 2px;
 
 .c-toggle {
   height: $height;
+  transition: background-color 0.25s;
   width: $width;
 }
 
 .c-toggle-circle--active {
-  transform: translate3d(40px, 0, 0);
-  transition: transform 0.1s;
+  transform: translate3d(($width / 2) - $border-offset, 0, 0);
+  transition: transform 0.25s;
 }
 
 .c-toggle-circle--inactive {
-  transform: translate3d(16px, 0, 0);
-  transition: transform 0.1s;
+  transform: translate3d($border-offset, 0, 0);
+  transition: transform 0.25s;
 }

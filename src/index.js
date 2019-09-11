@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import ReactModal from "react-modal";
 import { App } from "Components/App";
+import { GraphQLProvider } from "Components/GraphQLProvider";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import * as storage from "Lib/storage";
@@ -28,10 +29,12 @@ const renderApp = AppComponent => {
   if (root) {
     ReactDOM.render(
       <Provider store={reduxStore}>
-        <Modal />
-        <ErrorBoundary>
-          <AppComponent />
-        </ErrorBoundary>
+        <GraphQLProvider>
+          <Modal />
+          <ErrorBoundary>
+            <AppComponent />
+          </ErrorBoundary>
+        </GraphQLProvider>
       </Provider>,
       root
     );

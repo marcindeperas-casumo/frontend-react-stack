@@ -6,6 +6,7 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import SadSumo from "./sad-sumo.svg";
+import "./ErrorMessage.scss";
 
 type Direction = "horizontal" | "vertical";
 
@@ -30,7 +31,7 @@ const renderRetry = ({ retry, retryMessage }: RetryProps) => () => (
   <Flex.Item>
     <Button
       data-test="error-message-retry-button"
-      variant="outline-positive"
+      variant="primary"
       onClick={retry}
     >
       {retryMessage}
@@ -52,6 +53,7 @@ export const ErrorMessage = ({
 
   const errorClassName = classNames(
     "u-font-weight-bold",
+    "t-color-chrome-dark-1",
     !isVertical && "u-margin-y--none"
   );
 
@@ -60,12 +62,16 @@ export const ErrorMessage = ({
       direction={direction}
       align="center"
       justify={isVertical ? "center" : "space-between"}
-      className="o-flex--1 u-padding--md"
+      className="o-flex--1 u-padding--md t-background-chrome-light-2"
       spacing="lg"
       data-test="error-message-container"
     >
       <Flex.Item>
-        <SadSumo data-test="error-message-sumo" className="u-display--block" />
+        <SadSumo
+          width="42"
+          data-test="error-message-sumo"
+          className="c-error-message__icon u-display--block"
+        />
       </Flex.Item>
       <InnerFlex>
         <Text

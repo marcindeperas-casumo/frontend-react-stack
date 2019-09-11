@@ -79,27 +79,25 @@ export default class SportsSearch extends React.Component<{}, State> {
   render() {
     return (
       <>
-        <Flex.Block className="t-background-grey-light-2 c-sports-search__search-bar">
+        <Flex.Block className="t-background-chrome-light-2 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
-                  <div className="u-content-width--tablet">
-                    <SearchInput
-                      autoFocus={true}
-                      value={this.state.query}
-                      onChange={this.handleSearchInput}
-                      onClear={this.handleClearSearchInput}
-                      onFocus={this.handleFocusSearchInput}
-                      placeholder={placeholderText}
-                    />
-                  </div>
+                  <SearchInput
+                    autofocus
+                    value={this.state.query}
+                    onChange={this.handleSearchInput}
+                    onClear={this.handleClearSearchInput}
+                    onFocus={this.handleFocusSearchInput}
+                    placeholder={placeholderText}
+                  />
                 )}
               </DictionaryTerm>
             </Flex.Block>
           </Flex>
         </Flex.Block>
-        <div className="u-content-width--tablet">
+        <div className="u-content-width--tablet t-background-chrome-light-2">
           <KambiSearchResults
             query={this.state.query}
             hideSearchResults={this.state.hideSearchResults}

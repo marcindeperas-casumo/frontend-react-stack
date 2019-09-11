@@ -17,6 +17,9 @@ query PLAYER_SETTINGS_LABELS_QUERY {
   edit: getText(
     id: "root:player-settings-component:fields.account_settings_edit_label"
   )
+  verify: getText(
+    id: "root:player-settings-component:fields.account_settings_verify_label"
+  )
   gamblingExtent: getText(
     id: "root:mobile.settings:fields.gambling_extent_label"
   )

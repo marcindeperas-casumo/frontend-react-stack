@@ -51,12 +51,12 @@ export default class AdventureAvatarAndDetails extends PureComponent<Props> {
         <Flex.Item className="u-margin-left--md">
           <Text
             tag="div"
-            className="u-font-weight-bold t-color-white u-margin-bottom--sm"
+            className="u-font-weight-bold t-color-chrome-dark-3 u-margin-bottom--sm"
             size="md"
           >
             <DangerousHtml html={name} />
           </Text>
-          <Text tag="div" className="t-color-grey-light-1" size="sm">
+          <Text tag="div" className="t-color-chrome-dark-1" size="sm">
             <DangerousHtml
               html={levelLabel.replace("{{level}}", level.toString())}
             />

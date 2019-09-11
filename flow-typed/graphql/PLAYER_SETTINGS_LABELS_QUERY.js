@@ -13,6 +13,7 @@ export type PLAYER_SETTINGS_LABELS_QUERY = {
   mobileNumber: string,
   address: string,
   edit: string,
+  verify: string,
   gamblingExtent: string,
 };/* @flow */
 /* eslint-disable */

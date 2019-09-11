@@ -123,7 +123,7 @@ export function parseTableOfContents(content: string) {
     "u-font-weight-black",
     "u-padding-y--lg"
   );
-  const makeId = (i: number) => `toc_${i}`;
+  const makeId = (i: number) => `tac_${i}`;
   const el = document.createElement("html");
   // eslint-disable-next-line fp/no-mutation
   el.innerHTML = groupSections(content);
@@ -149,4 +149,24 @@ export function parseTableOfContents(content: string) {
     content: el.getElementsByTagName("body")[0].innerHTML, // this was mutated inside map that made tableOfContents, now it contains ids and classes that we need
     tableOfContents,
   };
+}
+
+export function parseChangelog(changelog: string) {
+  const re = /^(\d+(?:\.\d+)?)+(.*)/;
+
+  return changelog
+    .split("\n")
+    .map(x => {
+      try {
+        const [, section, changes] = x.split(re);
+
+        if (!section || !changes) {
+          return null;
+        }
+        return { section, changes };
+      } catch (err) {
+        return null;
+      }
+    })
+    .filter(Boolean);
 }

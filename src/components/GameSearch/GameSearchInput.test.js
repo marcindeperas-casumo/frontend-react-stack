@@ -23,15 +23,11 @@ describe("GameSearchInput", () => {
   });
 
   test("should pass down to SearchInput the right props", () => {
-    const noResults = false;
     const placeholder = "whatever";
 
-    const rendered = shallow(
-      <GameSearchInput noResults={noResults} placeholder={placeholder} />
-    );
+    const rendered = shallow(<GameSearchInput placeholder={placeholder} />);
 
     expect(rendered.find("SearchInput").prop("placeholder")).toBe(placeholder);
-    expect(rendered.find("SearchInput").prop("noResults")).toBe(noResults);
   });
 
   test("should call fetchSearchResults when component updates query", () => {

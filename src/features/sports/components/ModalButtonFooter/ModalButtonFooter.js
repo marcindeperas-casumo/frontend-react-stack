@@ -18,7 +18,7 @@ const ModalButtonFooter = ({ onClick, children }: Props): React.Node => (
   >
     <Button
       size="md"
-      variant="positive"
+      variant="primary"
       onClick={onClick}
       className="u-width--1/1"
     >
