@@ -1,3 +1,5 @@
+/* @flow */
+
 import React from "react";
 import { shallow } from "enzyme";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
@@ -20,7 +22,7 @@ describe("ValuableWageringProgressBar", () => {
   test("should render a progress bar with correct props", () => {
     expect(
       rendered
-        .find("[data-test='valuable-wagering-progress-bar']")
+        .find({ "data-test": "valuable-wagering-progress-bar" })
         .prop("progress")
     ).toBe(amountWagered);
   });
@@ -28,7 +30,7 @@ describe("ValuableWageringProgressBar", () => {
   test("should render text where amount replaced with correct value", () => {
     expect(
       rendered
-        .find("[data-test='valuable-wagering-progress-text']")
+        .find({ "data-test": "valuable-wagering-progress-text" })
         .find("DangerousHtml")
         .prop("html")
     ).toBe(`You have €${props.leftToWager} left to wager`);
