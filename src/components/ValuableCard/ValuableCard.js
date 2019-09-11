@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import classNames from "classnames";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";
@@ -39,6 +40,8 @@ type Props = {
   onCardClick?: () => void,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
+  /** addition css classes to add to containing element */
+  className?: string,
 };
 
 const headerDimensions = {
@@ -79,6 +82,7 @@ export class ValuableCard extends PureComponent<Props> {
   render() {
     const {
       caveat,
+      className,
       coinValue,
       currency,
       description,
@@ -91,7 +95,12 @@ export class ValuableCard extends PureComponent<Props> {
     } = this.props;
     return (
       <>
-        <div className="c-valuable-card o-ratio o-ratio--valuable-card u-drop-shadow--sm t-background-white t-border-r--md">
+        <div
+          className={classNames(
+            "c-valuable-card o-ratio o-ratio--valuable-card t-background-white t-border-r--md",
+            className ? className : ""
+          )}
+        >
           <Flex
             className="o-ratio__content u-padding"
             data-test="valuable-card"

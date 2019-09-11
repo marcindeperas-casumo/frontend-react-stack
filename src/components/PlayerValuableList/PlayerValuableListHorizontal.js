@@ -95,6 +95,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
                   translatedHoursUnit={hoursLabel}
                   {...valuable}
                   onCardClick={() => showModal(valuable)}
+                  className="u-drop-shadow--sm"
                 />
               </div>
             </div>
@@ -114,6 +115,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
               translatedHoursUnit={hoursLabel}
               {...selectedValuable}
               caveat={null}
+              className="u-drop-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>
