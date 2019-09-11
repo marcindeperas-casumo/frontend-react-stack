@@ -144,7 +144,7 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       </Flex>
       <Flex.Block />
       <Button
-        variant="variant-2"
+        variant="primary"
         className="u-padding-y--md"
         disabled={Boolean(inputError)}
         onClick={handleNextButton}

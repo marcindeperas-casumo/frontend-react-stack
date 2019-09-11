@@ -5,21 +5,6 @@
 }
 
 .c-search-input::placeholder {
-  color: cudl-palette(grey);
-}
-
-.c-search-input__clear-button {
-  align-items: center;
-  display: flex;
-  height: 16px;
-  padding: 2px;
-  width: 16px;
-}
-
-.c-search-input__scroll-capture {
-  bottom: 0;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
+  color: cudl-palette(chrome);
+  font-weight: 700;
 }

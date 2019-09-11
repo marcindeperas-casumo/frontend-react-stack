@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import List from "@casumo/cmp-list";
 import { GameRow } from "Components/GameRow";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
@@ -29,17 +28,20 @@ export default class LiveCasinoDetailPage extends PureComponent<Props> {
 
   render() {
     return (
-      <div className="u-padding-x--md u-padding-bottom--md">
+      <div className="t-background-chrome-light-2 u-padding-x--md u-padding-bottom--md">
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
         >
           {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
             <React.Fragment key={id}>
               <SectionTitle title={this.props.translations[id] || id} />
-              <List
-                items={gamesInSection}
-                render={slug => <GameRow id={slug} />}
-              />
+              <div data-test-id="live-casino-detail-list">
+                {gamesInSection.map(slug => (
+                  <div key={slug} className="u-margin-bottom">
+                    <GameRow id={slug} />
+                  </div>
+                ))}
+              </div>
             </React.Fragment>
           ))}
         </TrackProvider>

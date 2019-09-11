@@ -62,7 +62,13 @@ export const SportsSubNavSkeleton = () => (
       overflow: "hidden",
     }}
   >
-    <Skeleton viewBox={null} width="100%" height="100%">
+    <Skeleton
+      colorHi="#d3d8e1"
+      colorLow="#e5eaed"
+      viewBox={null}
+      width="100%"
+      height="100%"
+    >
       <rect x={0} y={0} width="100%" height="100%" />
     </Skeleton>
 
