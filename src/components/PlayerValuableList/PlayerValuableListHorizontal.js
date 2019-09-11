@@ -84,7 +84,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       {listTitleLabel && (
         <ScrollableListTitle paddingLeft title={listTitleLabel} />
       )}
-      <Scrollable itemSpacing="md" padding={PADDING_PER_DEVICE}>
+      <Scrollable padding={PADDING_PER_DEVICE}>
         {valuables.map(valuable => {
           const { id } = valuable;
 
