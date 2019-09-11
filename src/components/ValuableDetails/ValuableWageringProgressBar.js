@@ -24,7 +24,7 @@ export const ValuableWageringProgressBar = ({
 }: Props) => {
   return (
     <>
-      <Text tag="p" className="u-margin--none">
+      <Text className="u-margin--none">
         <DangerousHtml
           data-test="valuable-wagering-progress-text"
           html={formattedAmountLeftToWagerText(
