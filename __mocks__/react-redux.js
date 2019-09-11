@@ -5,6 +5,7 @@
 const React = require("react");
 const reactRedux = jest.requireActual("react-redux");
 const { ReactReduxContext } = jest.requireActual("react-redux/lib/components/Context");
+const R = require("ramda");
 
 function noop() {
   return {}
@@ -37,9 +38,7 @@ module.exports = {
                 if (typeof mapDispatchToProps === 'function') {
                   return mapDispatchToProps(dispatch, ownProps);
                 } else {
-                  return Object.entries(mapDispatchToProps)
-                    .map(([key, val]) => [key, (...args) => dispatch(val(...args))])
-                    .reduce((acc, [key, val]) => ({ ...acc, [key]: val }))
+                  return R.map(fn => (...args) => dispatch(fn(...args)), mapDispatchToProps);
                 }
               })();
               const mergedProps = mergeProps(stateProps, dispatchProps, ownProps);

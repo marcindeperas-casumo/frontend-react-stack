@@ -2,93 +2,111 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import MockStore from "Components/MockStore";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 import t from "./__mocks__/cms";
 
-const stories = storiesOf("DepositLimitsOverview", module);
+const stories = storiesOf("DepositLimits/DepositLimitsOverview", module);
 
 const actions = {
   add: action("add clicked"),
   edit: action("edit clicked"),
   limitCancel: action("limitCancel clicked"),
   removeAll: action("removeAll clicked"),
+  showOldSuspendAccountView: action("showOldSuspendAccountView clicked"),
 };
 
 stories.add("Default", () => (
-  <DepositLimitsOverview
-    locale="en-GB"
-    currency="EUR"
-    hideRemoveAll={false}
-    t={t}
-    limits={{
-      daily: 600,
-      weekly: 1500,
-      monthly: 3000,
-      currency: "EUR",
-    }}
-    pendingLimitChanges={{
-      effectiveFrom: "2012-12-12T12:12:12Z",
-      value: {
-        daily: 750,
-      },
-      approvalRequired: false,
-      confirmationRequired: false,
-      reviewerApproved: false,
-    }}
-    remainingLimitValue={{
-      daily: 30,
-      weekly: 400,
-      monthly: 800,
-    }}
-    {...actions}
-  />
+  <MockStore>
+    <DepositLimitsOverview
+      locale="en-GB"
+      currency="EUR"
+      canIncreaseLimits={false}
+      allRemoved={false}
+      t={t}
+      limits={[
+        {
+          limitKind: "daily",
+          value: 600,
+          remaining: 30,
+        },
+        {
+          limitKind: "weekly",
+          value: 1500,
+          remaining: 400,
+        },
+        {
+          limitKind: "monthly",
+          value: 3000,
+          remaining: 800,
+        },
+      ]}
+      pendingChanges={[
+        {
+          limitKind: "daily",
+          value: 750,
+        },
+      ]}
+      {...actions}
+    />
+  </MockStore>
 ));
 
 stories.add("No limits", () => (
-  <DepositLimitsOverview
-    locale="en-GB"
-    currency="EUR"
-    hideRemoveAll={false}
-    t={t}
-    limits={{
-      daily: null,
-      weekly: null,
-      monthly: null,
-      currency: "EUR",
-    }}
-    remainingLimitValue={{
-      daily: null,
-      weekly: null,
-      monthly: null,
-    }}
-    {...actions}
-  />
+  <MockStore>
+    <DepositLimitsOverview
+      locale="en-GB"
+      currency="EUR"
+      allRemoved={false}
+      canIncreaseLimits={true}
+      t={t}
+      limits={[]}
+      pendingChanges={[]}
+      {...actions}
+    />
+  </MockStore>
 ));
 
 stories.add("Removing all", () => (
-  <DepositLimitsOverview
-    locale="en-GB"
-    currency="EUR"
-    t={t}
-    hideRemoveAll={false}
-    limits={{
-      daily: 600,
-      weekly: 1500,
-      monthly: 3000,
-      currency: "EUR",
-    }}
-    pendingLimitChanges={{
-      effectiveFrom: "2012-12-12T12:12:12Z",
-      value: {},
-      approvalRequired: false,
-      confirmationRequired: false,
-      reviewerApproved: false,
-    }}
-    remainingLimitValue={{
-      daily: 30,
-      weekly: 400,
-      monthly: 800,
-    }}
-    {...actions}
-  />
+  <MockStore>
+    <DepositLimitsOverview
+      locale="en-GB"
+      currency="EUR"
+      t={t}
+      allRemoved
+      canIncreaseLimits={false}
+      limits={[
+        {
+          limitKind: "daily",
+          value: 600,
+          remaining: 30,
+        },
+        {
+          limitKind: "weekly",
+          value: 1500,
+          remaining: 400,
+        },
+        {
+          limitKind: "monthly",
+          value: 3000,
+          remaining: 800,
+        },
+      ]}
+      pendingChanges={[
+        {
+          limitKind: "daily",
+          value: null,
+        },
+        {
+          limitKind: "weekly",
+          value: null,
+        },
+        {
+          limitKind: "monthly",
+          value: null,
+        },
+      ]}
+      {...actions}
+    />
+  </MockStore>
 ));
