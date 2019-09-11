@@ -38,6 +38,28 @@ describe("ValuableDetails", () => {
     ).toBe(expirationBadgeClasses.default);
   });
 
+  test("should not render wagering progress bar if no wagering details are provided", () => {
+    expect(
+      rendered.find("[data-test='valuable-details-wagering-progress-bar']")
+    ).toHaveLength(0);
+  });
+
+  test("should render wagering progress bar if wagering details are provided", () => {
+    rendered = shallow(
+      <ValuableDetails
+        valuableDetails={{
+          ...mockValuable,
+          leftToWager: 90,
+          wageringThreshold: 100,
+        }}
+        translations={mockTranslations}
+      />
+    );
+    expect(
+      rendered.find("[data-test='valuable-details-wagering-progress-bar']")
+    ).toHaveLength(1);
+  });
+
   test("should render red expiration badge if expirationInHours is <= 24", () => {
     const expirationHours = 5;
 

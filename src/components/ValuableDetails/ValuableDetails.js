@@ -204,11 +204,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
             {this.wageringRequirementsExist && (
               <Flex.Item className="u-margin-top--xlg">
                 <ValuableWageringProgressBar
-                  leftToWager={leftToWager || 0}
-                  wageringThreshold={wageringThreshold || 0}
                   currency={currency}
-                  market={market}
+                  data-test="valuable-details-wagering-progress-bar"
+                  leftToWager={leftToWager || 0}
                   label={wageringStatus}
+                  market={market}
+                  wageringThreshold={wageringThreshold || 0}
                 />
               </Flex.Item>
             )}
