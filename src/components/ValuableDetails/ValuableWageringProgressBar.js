@@ -26,6 +26,7 @@ export const ValuableWageringProgressBar = ({
     <>
       <Text tag="p" className="u-margin--none">
         <DangerousHtml
+          data-test="valuable-wagering-progress-text"
           html={formattedAmountLeftToWagerText(
             currency,
             label,
@@ -36,9 +37,10 @@ export const ValuableWageringProgressBar = ({
       </Text>
       <div className="u-margin-top--md">
         <ProgressBar
+          data-test="valuable-wagering-progress-bar"
           fillerClassNames="t-background-grey-light-2"
-          trackClassNames="t-background-green-light-1"
           progress={percentageWagered(leftToWager, wageringThreshold)}
+          trackClassNames="t-background-green-light-1"
         />
       </div>
     </>
