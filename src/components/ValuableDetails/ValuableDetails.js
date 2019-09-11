@@ -1,6 +1,6 @@
 /* @flow */
 import React, { type Node } from "react";
-import { equals } from "ramda";
+import { allPass, propIs } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
@@ -97,13 +97,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
   }
 
   get wageringRequirementsExist(): boolean {
-    const {
-      valuableDetails: { leftToWager, wageringThreshold },
-    } = this.props;
-
-    return (
-      typeof leftToWager === "number" && typeof wageringThreshold === "number"
-    );
+    return allPass([
+      propIs(Number, "leftToWager"),
+      propIs(Number, "wageringThreshold"),
+    ])(this.props.valuableDetails);
   }
 
   get game(): ?Game {
@@ -257,7 +254,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             >
               <ActionButtonContent
                 text={actionButtonProps.text}
-                isLocked={equals(valuableState, VALUABLE_STATES.LOCKED)}
+                isLocked={valuableState === VALUABLE_STATES.LOCKED}
                 data-test="expiration-badge-content"
               />
             </Button>
