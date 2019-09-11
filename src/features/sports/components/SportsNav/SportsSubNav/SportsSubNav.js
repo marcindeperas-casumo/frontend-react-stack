@@ -66,7 +66,8 @@ export const SportsSubNav = (props: SportsSubNavProps) => {
   }
 
   return (
-    <div className="u-margin-left u-margin-right t-border-top t-border-width--lg t-border--current-color t-color-white">
+    <div>
+      <div className="u-margin-left u-margin-right t-border-top t-border-width--lg t-border--current-color t-color-white" />
       <ScrollablePaginated
         className="c-sports-nav-paginated"
         columnCount={navItemTypes.length}

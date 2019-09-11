@@ -61,11 +61,11 @@ export const renderEditButton = (
   [isLiveActive]: LiveState
 ) => (
   <div className="u-padding-y u-margin-x c-sports-nav-edit-btn">
-    <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
-      {canEdit && !isLiveActive && (
+    {canEdit && !isLiveActive && (
+      <div className="u-padding-left--md u-padding-y--md c-sports-nav-edit-btn__wrapper">
         <EditPillsButton onClick={onEdit} label={labels.edit} />
-      )}
-    </div>
+      </div>
+    )}
   </div>
 );
 
