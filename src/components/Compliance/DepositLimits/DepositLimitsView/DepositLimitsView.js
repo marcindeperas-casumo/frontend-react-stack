@@ -3,17 +3,15 @@ import * as React from "react";
 import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { sendResponsibleGamblingTest } from "Api/api.depositLimits";
-import { DepositLimitsSuspendAccountContainer } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import {
   diffLimits,
   getSpecificKinds,
   hasRule,
 } from "Models/playOkay/depositLimits";
 import { DepositLimitsSummaryContainer } from "Components/Compliance/DepositLimits/DepositLimitsSummary";
-import { DepositLimitsOverview } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
+import { DepositLimitsOverviewContainer } from "Components/Compliance/DepositLimits/DepositLimitsOverview";
 import { DepositLimitsCancelAdjustment } from "Components/Compliance/DepositLimits/DepositLimitsCancelAdjustment";
 import { DepositLimitsFormContainer } from "Components/Compliance/DepositLimits/DepositLimitsForm";
-import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import {
   DepositLimitsConfirmationsContainer,
   type ConfirmationPage,
@@ -63,6 +61,7 @@ type Props = {
     pending_remove_all: string,
     remaining_limit: string,
     remove_all: string,
+    add: string,
     remove_selected: string,
     save_limits_button_conditions: string,
     save_limits_button: string,
@@ -70,6 +69,7 @@ type Props = {
     weekly_removed: string,
     weekly_short: string,
     weekly: string,
+    suspend_account: string,
   },
   init: () => void,
   fetchTranslations: () => void,
@@ -112,7 +112,7 @@ export function DepositLimitsView(props: Props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
 
-  if (!props.t || !props.limits || !props.remaining || !props.preadjust) {
+  if (!props.t || !props.limits || !props.preadjust) {
     return "loading";
   }
   const newLimits = { ...props.limits, ...limitChanges };
@@ -124,30 +124,18 @@ export function DepositLimitsView(props: Props) {
 
   const routes = {
     overview: (
-      <DepositLimitsOverview
+      <DepositLimitsOverviewContainer
         t={props.t}
-        locale={props.locale}
-        currency={props.currency}
-        limits={props.limits}
-        pendingLimitChanges={props.pendingLimitChanges}
-        remainingLimitValue={props.remaining}
-        limitCancel={() => {
-          navigate({ route: "cancelAdjustment" });
-        }}
-        hideRemoveAll={
-          Boolean(props.lock) || Boolean(props.pendingLimitChanges)
-        }
+        limitCancel={() => navigate({ route: "cancelAdjustment" })}
         edit={x => navigate({ route: "form", depositKind: x })}
         add={() => navigate({ route: "form" })}
-        removeAll={() => {
-          if (props.lock) {
-            return; // can't remove limits during lock
-          }
+        removeAll={() =>
           navigate({
             route: "summary",
             limitChanges: { daily: null, weekly: null, monthly: null },
-          });
-        }}
+          })
+        }
+        showOldSuspendAccountView={() => navigate({ route: "suspendAccount" })}
       />
     ),
     form: (
@@ -257,25 +245,11 @@ export function DepositLimitsView(props: Props) {
   }
 
   return (
-    <Flex direction="vertical" spacing="none" className="u-margin-bottom--3xlg">
+    <Flex direction="vertical" spacing="none">
       {route !== "overview" && (
         <GoBack t={props.t} goBack={() => navigate({ route: "overview" })} />
       )}
       {routes[route]}
-      {route === "overview" && (
-        <DepositLimitsSuspendAccountContainer
-          showOldSuspendAccountView={() =>
-            navigate({ route: "suspendAccount" })
-          }
-        />
-      )}
-      {route === "overview" && (
-        <DepositLimitsHistoryContainer
-          t={props.t}
-          locale={props.locale}
-          currency={props.currency}
-        />
-      )}
     </Flex>
   );
 }

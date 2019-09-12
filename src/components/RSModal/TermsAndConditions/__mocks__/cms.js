@@ -1,8 +1,9 @@
 // @flow
 
-const changelog = `
-  <b>Section 6.1.2 (b)(i)</b> - Updates related to our Welcome Offer.
-`;
+const changelog = `1.3 Cambiar a la cantidad de giros gratis ofrecidos
+1.6 Oferta de bienvenida actualizada
+2.12 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+13.4 Cambiar a términos de bonificación`;
 
 const content = `<h4>1. General</h4>
   <p>1.1. The Terms and Conditions defined in this text regulate the usage of the games provided through www.casumo.com, as well as other URLs licensed to or belonging to Casumo Services Limited (hereinafter referred to as “Website” or “Websites”). These Terms and Conditions, the Game Rules and any document expressly referred to in them, as well as any guidelines or rules posted on the Website constitute the agreement and understanding between the Parties and govern the contractual relationship between Casumo and the Account Holder. Please read these Terms and Conditions carefully and make sure you understand them. Should you not agree with their contents, please refrain from using this Website any further. These Terms and Conditions shall also apply to all gaming made via mobile devices, including downloadable applications. We also recommend that you familiarise yourself with our Privacy Notice. All references to the use of the Website shall be construed as references to the use of our betting facilities for mobile devices.</p>

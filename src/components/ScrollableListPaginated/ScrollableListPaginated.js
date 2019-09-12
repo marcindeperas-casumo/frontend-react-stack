@@ -93,13 +93,14 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     const { itemIds } = list;
     const itemId = itemIds[columnIndex];
     const isNotFirstElement = columnIndex > 0;
-    const elementMarginClass = classNames(
+    const elementClassNames = classNames(
+      "u-height--1/1",
       isNotFirstElement && createModifierClasses("u-margin-left", itemSpacing)
     );
 
     return (
       <div style={style}>
-        <div className={elementMarginClass}>
+        <div className={elementClassNames}>
           <div className={className}>
             <Component key={itemId} id={itemId} />
           </div>

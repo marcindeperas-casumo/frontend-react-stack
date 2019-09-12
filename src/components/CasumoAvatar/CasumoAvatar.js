@@ -59,5 +59,5 @@ function getBackgroundColor(inBonusMode: boolean, level: number): string {
     return "violet";
   }
 
-  return "teal";
+  return "turquoise";
 }

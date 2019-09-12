@@ -21,8 +21,12 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       limits: "1.limit.value",
       undoable: true,
-      lock: false,
+      lock: null,
       preadjust: undefined,
+      history: undefined,
+      pendingLimitChanges: undefined,
+      remaining: undefined,
+      responsibleGamblingTest: undefined,
     });
   });
 
@@ -108,7 +112,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
           },
         },
         undoable: false,
-        lock: false,
+        lock: null,
         responsibleGamblingTest: undefined,
       },
     };
@@ -145,7 +149,7 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
         weekly: 1500,
         monthly: 3000,
       },
-      lock: false,
+      lock: null,
       preadjust: undefined,
       remaining: undefined,
       responsibleGamblingTest: undefined,
@@ -253,50 +257,60 @@ describe("Models/playOkay/depositLimits/.reducer", () => {
     expect(depositLimitsReducer(DEFAULT_STATE, action)).toEqual({
       history: [
         {
-          changes: {
-            daily: {
+          changes: [
+            {
+              limitKind: "daily",
               after: 500,
               before: null,
             },
-            monthly: {
-              after: 10000,
-              before: null,
-            },
-            weekly: {
+            {
+              limitKind: "weekly",
               after: 2500,
               before: null,
             },
-          },
+            {
+              limitKind: "monthly",
+              after: 10000,
+              before: null,
+            },
+          ],
+          setOnRegistration: false,
           id: "413a0771-e7a9-4c4f-a7b3-3cd9856cd63f",
           timestamp: "2019-08-05T14:25:20Z",
           type: "decrease",
         },
         {
-          changes: {
-            daily: {
+          changes: [
+            {
+              limitKind: "daily",
               after: null,
               before: 666,
             },
-            monthly: {
-              after: null,
-              before: 3000,
-            },
-            weekly: {
+            {
+              limitKind: "weekly",
               after: null,
               before: 1500,
             },
-          },
+            {
+              limitKind: "monthly",
+              after: null,
+              before: 3000,
+            },
+          ],
+          setOnRegistration: false,
           id: "cd4ef6bf-74f1-49fa-86c7-8b157af0c44d",
           timestamp: "2019-08-02T16:19:26Z",
           type: "removed",
         },
         {
-          changes: {
-            daily: {
+          changes: [
+            {
+              limitKind: "daily",
               after: 666,
               before: 595,
             },
-          },
+          ],
+          setOnRegistration: false,
           id: "2e48a8fa-e0bb-4132-8aba-7348bc21dd58",
           timestamp: "2019-08-02T14:31:07Z",
           type: "increase",

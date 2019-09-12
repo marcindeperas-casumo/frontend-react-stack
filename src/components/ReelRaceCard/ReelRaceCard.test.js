@@ -42,6 +42,8 @@ const props = {
 };
 const minute = 60 * 1000;
 
+const launchGame = jest.fn();
+
 describe("ReelRaceCard", () => {
   describe("Empty game object", () => {
     const propsNoGame = {
@@ -136,6 +138,7 @@ describe("ReelRaceCard", () => {
         opted
         startTime={now}
         endTime={now + 30 * minute}
+        launchGame={launchGame}
       />
     );
 
@@ -150,6 +153,17 @@ describe("ReelRaceCard", () => {
           .children()
           .contains(props.t.opted_in_cta_single_game_short)
       ).toBe(true);
+    });
+
+    test("should launch game if click on game info", () => {
+      expect(launchGame).toHaveBeenCalledTimes(0);
+
+      rendered
+        .find("Flex.u-cursor-pointer")
+        .first()
+        .simulate("click");
+
+      expect(launchGame).toHaveBeenCalledTimes(1);
     });
 
     test("shouldn't contain promoted badge", () => {

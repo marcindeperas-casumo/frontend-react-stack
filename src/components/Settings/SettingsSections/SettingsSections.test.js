@@ -30,13 +30,8 @@ describe("SettingsSections", () => {
         />
       );
 
-      const AccountDetailsLink = rendered.find("AccountDetailsLink");
-      expect(AccountDetailsLink.contains(labels.accountDetailsTitle)).toBe(
-        true
-      );
-      expect(
-        AccountDetailsLink.contains(labels.accountDetailsDescription)
-      ).toBe(true);
+      expect(rendered.contains(labels.accountDetailsTitle)).toBe(true);
+      expect(rendered.contains(labels.accountDetailsDescription)).toBe(true);
     });
   });
 
@@ -49,11 +44,8 @@ describe("SettingsSections", () => {
         />
       );
 
-      const NotificationsLink = rendered.find("NotificationsLink");
-      expect(NotificationsLink.contains(labels.notificationsTitle)).toBe(true);
-      expect(NotificationsLink.contains(labels.notificationsDescription)).toBe(
-        true
-      );
+      expect(rendered.contains(labels.notificationsTitle)).toBe(true);
+      expect(rendered.contains(labels.notificationsDescription)).toBe(true);
     });
   });
 
@@ -101,12 +93,8 @@ describe("SettingsSections", () => {
           labels={props.labels}
         />
       );
-      const dateObject = DateTime.fromMillis(ONE_MINUTE_AGO);
-      const date = dateObject.toLocaleString(DateTime.DATE_FULL);
-      const time = dateObject.toLocaleString(DateTime.TIME_24_SIMPLE);
-      const lastLoginMessage = `Your last session was on <strong>${date}</strong>, at <strong>${time}</strong>`;
-      expect(rendered.find("DangerousHtml").prop("html")).toEqual(
-        lastLoginMessage
+      expect(rendered.find("ContentReplacer").prop("value")).toEqual(
+        props.labels.lastSessionMessage
       );
     });
   });

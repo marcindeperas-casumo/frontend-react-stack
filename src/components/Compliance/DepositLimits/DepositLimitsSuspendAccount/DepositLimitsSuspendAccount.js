@@ -1,54 +1,41 @@
 // @flow
 import * as React from "react";
-import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
-import { CrossIcon } from "@casumo/cmp-icons";
+import Button from "@casumo/cmp-button";
 import bridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW } from "Src/constants";
+import { LimitHeader } from "Components/Compliance/LimitHeader";
 import SuspendAccountIcon from "./suspendAccount.svg";
 
 type Props = {
   t: {
-    main_title: string,
+    suspend_account: string,
+    add: string,
   },
-  fetchTranslations: void => void,
   showOldSuspendAccountView: void => void,
 };
 
 export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
-  React.useEffect(() => {
-    props.fetchTranslations();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   if (!t) {
     return null;
   }
 
   return (
-    <Flex
-      align="center"
-      justify="space-between"
-      spacing="none"
-      className="u-padding--md t-background-white u-margin-y--lg"
-      onClick={() => {
-        bridge.emit(KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW, "suspendAccount");
-        props.showOldSuspendAccountView();
-      }}
-    >
-      <Flex
-        justify="center"
-        align="center"
-        spacing="none"
-        className="u-margin-right--md u-padding t-border-r--circle"
-        style={{ backgroundColor: "#f2f2f2" }}
-      >
-        <SuspendAccountIcon />
-      </Flex>
-      <Text tag="span" className="o-flex--1">
-        {t.main_title}
-      </Text>
-      <CrossIcon className="t-color-grey-light-1 c-deposit-limits__x-icon" />
-    </Flex>
+    <div className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--lg">
+      <LimitHeader title={t.suspend_account} icon={<SuspendAccountIcon />}>
+        <Button
+          data-test-id="suspendAccountButton"
+          onClick={() => {
+            bridge.emit(
+              KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW,
+              "suspendAccount"
+            );
+            props.showOldSuspendAccountView();
+          }}
+          variant="secondary"
+        >
+          {t.add}
+        </Button>
+      </LimitHeader>
+    </div>
   );
 }

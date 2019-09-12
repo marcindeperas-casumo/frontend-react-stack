@@ -24,6 +24,7 @@ export type Props = {
 const JackpotsColumn = ({ column }) => {
   return (
     <List
+      itemSpacing="sm"
       items={column}
       render={jackpot => (
         <GameRow
@@ -76,7 +77,7 @@ export default class Jackpots extends PureComponent<Props> {
               className={itemClassName}
               itemSpacing="md"
               itemControlClass="c-scrollable-list-paginated__button"
-              tileHeight={291}
+              tileHeight={315}
             />
           </Desktop>
         </div>

@@ -148,7 +148,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
 
     return (
       <div
-        className="u-padding-x--md u-padding-y t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding-x--md u-padding-y t-border-bottom t-color-chrome-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}

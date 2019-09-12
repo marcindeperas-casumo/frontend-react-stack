@@ -1,3 +1,5 @@
+$cudl-border-color: cudl-palette(chrome, light-1);
+
 $cudl-border-radii: (
   xs: 2px,
   sm: 4px,
@@ -8,3 +10,5 @@ $cudl-border-radii: (
   pill: 100em,
   none: 0,
 );
+
+$cudl-border-radius-responsive: true;

@@ -16,7 +16,7 @@ type CompetitionPillsListProps = {
 };
 
 const CompetitionPillsList = (props: CompetitionPillsListProps) => (
-  <Flex gap="none" style={{ flexWrap: "wrap" }}>
+  <Flex gap="none" className="o-flex--wrap">
     {props.competitions.map(competition => {
       const onClick = makeOptionalCallback(props.onClick, competition);
       const onRemove = makeOptionalCallback(props.onRemove, competition);

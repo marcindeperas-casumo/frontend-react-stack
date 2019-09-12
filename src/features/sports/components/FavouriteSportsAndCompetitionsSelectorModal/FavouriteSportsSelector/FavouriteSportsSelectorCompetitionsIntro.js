@@ -23,7 +23,7 @@ const FavouriteSportsSelectorCompetitionsIntro = ({
     </Flex.Block>
 
     <Flex.Item>
-      <Button size="sm" variant="outline-positive" onClick={onAdd}>
+      <Button size="sm" variant="primary" onClick={onAdd}>
         <DictionaryTerm termKey="favourite-sports-selector.suggestion.button" />
       </Button>
     </Flex.Item>

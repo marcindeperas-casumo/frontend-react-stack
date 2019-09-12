@@ -1,7 +1,28 @@
-.c-deposit-limits__x-icon {
-  transform: rotate(45deg);
+.c-deposit-limits__container {
+  @include cudl-breakpoint-with(
+    (
+      mobile: cudl-palette(grey, light-2),
+      tablet: transparent,
+    ),
+    background-color
+  );
 }
 
-.c-deposit-limits__container {
-  margin: -(map-get($cudl-spacer-sizes, md));
+.c-deposit-limits__limits-list {
+  @include cudl-breakpoint-with(
+    (
+      mobile: column,
+      desktop: row,
+    ),
+    flex-direction
+  );
+
+  // workaround for margin: 0!important on first item
+  @include cudl-breakpoint-with(
+    (
+      mobile: 0,
+      desktop: 16px,
+    ),
+    padding-left
+  );
 }
