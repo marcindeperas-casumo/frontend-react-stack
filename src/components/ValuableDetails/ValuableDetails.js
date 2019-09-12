@@ -194,9 +194,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             className="u-margin-bottom--lg"
           >
             <Flex.Item>
-              <Text className="center" tag="p" size="md">
-                {content}
-              </Text>
+              <Text className="center">{content}</Text>
             </Flex.Item>
             {this.wageringRequirementsExist && (
               <Flex.Item className="u-margin-top--xlg">
@@ -213,7 +211,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <Flex.Item className="u-margin-top--lg">
               <Badge
                 tag="p"
-                size="sm"
+                size="2xs"
                 data-test="valuable-expiration-badge"
                 bgColor={this.expirationBadgeColour}
                 className="u-text-transform-uppercase u-font-weight-bold"
@@ -223,29 +221,25 @@ export class ValuableDetails extends React.PureComponent<Props> {
               </Badge>
             </Flex.Item>
             <Flex.Item className="u-margin-top--lg">
-              <Text tag="p" className="t-color-grey" size="sm">
+              <Text className="t-color-grey" size="sm">
                 {caveat}
               </Text>
             </Flex.Item>
             <Flex.Item className="u-width--1/3 u-margin-y--xlg">
-              <hr className="t-color-grey-light-2 t-border-width--md t-border-r--pill" />
+              <hr className="c-valuable-details__separator t-border t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey" size="sm">
+              <Text tag="strong" className="t-color-grey" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
             <Flex.Item>
-              <Text
-                tag="p"
-                className="t-color-grey u-text-align-left"
-                size="sm"
-              >
+              <Text className="t-color-grey u-text-align-left" size="sm">
                 {termsAndConditionsContent}
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer">
+          <div className="c-valuable-details__footer u-padding--md">
             <Button
               href={actionButtonProps.url}
               className="u-width--1/1"
