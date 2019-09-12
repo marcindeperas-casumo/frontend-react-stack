@@ -2,7 +2,6 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import "./limitHeader.scss";
 
 export function LimitHeader(props: {
   title: string,
@@ -14,7 +13,7 @@ export function LimitHeader(props: {
       align="center"
       justify="space-between"
       spacing="none"
-      className="u-padding--md t-background-white c-limit-header"
+      className="u-padding--md t-background-white"
     >
       <Flex
         justify="center"

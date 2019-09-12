@@ -30,7 +30,7 @@ export function Changelog({ t, ...props }: Props) {
         {t.changelog_title}
       </Text>
       {parseChangelog(props.changelog).map(({ section, changes }) => (
-        <Flex>
+        <Flex key={section}>
           <Text
             tag="span"
             className="u-font-weight-black c-changelog__section-number u-margin-right"
