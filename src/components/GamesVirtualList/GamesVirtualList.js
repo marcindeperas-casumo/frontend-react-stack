@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 
-const ROW_HEIGHT = 80;
+const ROW_HEIGHT = 88;
 const PAGE_SIZE = 100;
 
 type Indexes = {
@@ -147,7 +147,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
     if (has("sectionTitle", this.props.games[index])) {
       return (
         <div
-          className="u-padding-x--md o-flex"
+          className="u-padding-x--md o-flex t-background-chrome-light-2 t-color-chrome-dark-1"
           key={key}
           index={index}
           style={style}
@@ -159,7 +159,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
 
     return (
       <div
-        className="u-padding-x--md u-padding-y t-border-bottom t-color-grey-light-2 t-border--current-color"
+        className="u-padding--md t-border-bottom t-color-chrome-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}

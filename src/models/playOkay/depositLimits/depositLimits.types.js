@@ -67,12 +67,12 @@ export type ResponsibleGamblingTest = {|
 export type DepositLimitsAdjustment = {
   approvalRequired: boolean,
   confirmationRequired: boolean,
-  effectiveFrom: ISO8601DateTime,
+  effectiveFrom?: ISO8601DateTime,
   reviewerApproved: boolean,
   value: {
-    daily?: number,
-    monthly?: number,
-    weekly?: number,
+    daily?: number | null,
+    monthly?: number | null,
+    weekly?: number | null,
   },
 };
 
@@ -80,18 +80,18 @@ export type DepositLimitsHistoryType = Array<{
   id: string,
   timestamp: ISO8601DateTime,
   type: LimitChangeType,
-  changes: {
-    daily?: ?{ before: ?number, after: ?number },
-    monthly?: ?{ before: ?number, after: ?number },
-    weekly?: ?{ before: ?number, after: ?number },
-  },
-  setOnRegistration?: boolean,
+  changes: Array<{
+    limitKind: DepositKinds,
+    before: ?number,
+    after: ?number,
+  }>,
+  setOnRegistration: boolean,
 }>;
 
 export type DepositLimitsReduxStore = {|
   limits: ?AllLimits,
   preadjust: ?DepositLimitPreadjust,
-  lock: ?LimitLock,
+  lock: ?ISO8601DateTime,
   undoable: ?boolean,
   remaining: ?AllLimitsOnlyValues,
   responsibleGamblingTest: ?ResponsibleGamblingTest,
@@ -125,4 +125,18 @@ export type LimitAdjustmentHistory = {
   },
   stateBefore: LimitAdjustmentState,
   stateAfter: LimitAdjustmentState,
+};
+
+export type DepositLimitsSelected = Array<{
+  limitKind: DepositKinds,
+  value: number,
+  remaining: ?number,
+}>;
+
+export type PendingDepositLimitsChangesSelected = {
+  pendingChanges: Array<{
+    limitKind: DepositKinds,
+    value: number | null,
+  }>,
+  allRemoved: boolean,
 };

@@ -17,15 +17,7 @@ export const SettingsNotificationsToggleRow = ({
 }) => (
   <SettingsRow
     className={className}
-    text={
-      <Text
-        tag="p"
-        size="sm"
-        className="t-color-grey-dark-3 u-font-weight-light"
-      >
-        {label}
-      </Text>
-    }
+    text={<Text className="t-color-chrome-dark-2">{label}</Text>}
   >
     <Toggle checked={isEnabled} onChange={onChange} />
   </SettingsRow>

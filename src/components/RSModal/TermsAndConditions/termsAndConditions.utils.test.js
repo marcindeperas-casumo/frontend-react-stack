@@ -4,6 +4,7 @@ import {
   groupSections,
   createVersionDateFormatter,
   createVersionFormatter,
+  parseChangelog,
 } from "./termsAndConditions.utils";
 import cms from "./__mocks__/cms";
 
@@ -97,5 +98,25 @@ describe("RSModal/T&C/createVersionFormatter", () => {
 
   test("should format as current version", () => {
     expect(formatVersion(lastVersion, "2.7")).toEqual("Version 2.7 - Current");
+  });
+});
+
+describe("RSModal/T&C/parseChangelog", () => {
+  test("should have array containing 4 objects", () => {
+    const changelog = `1.3 We're not sure what changed here
+1.1 Lorem ipsum dolor sit amet, consectetur adipiscing elit
+1.2 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+2.13 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+
+    expect(parseChangelog(changelog)).toHaveLength(4);
+  });
+
+  test("should skip lines that doesn't contain section number in the beginning", () => {
+    const changelog = `1.3 We're not sure what changed here
+Lorem ipsum dolor sit amet, consectetur adipiscing elit
+1.2 sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+2.13 Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.`;
+
+    expect(parseChangelog(changelog)).toHaveLength(3);
   });
 });

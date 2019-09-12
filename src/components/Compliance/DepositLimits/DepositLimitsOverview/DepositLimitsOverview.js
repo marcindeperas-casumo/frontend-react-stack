@@ -1,24 +1,22 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { MoreIcon, ClockIcon } from "@casumo/cmp-icons";
-import DangerousHtml from "Components/DangerousHtml";
-import { ProgressArc } from "Components/Compliance/ProgressArc";
+import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
+import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
-  AllLimits,
-  AllLimitsOnlyValues,
   DepositKinds,
-  DepositLimitsAdjustment,
+  DepositLimitsSelected,
+  PendingDepositLimitsChangesSelected,
 } from "Models/playOkay/depositLimits";
-import { formatCurrency, interpolate } from "Utils";
-import { Header, HeaderButton } from "./Header";
-import { limitTypes } from "..";
+import { LimitHeader } from "Components/Compliance/LimitHeader";
+import { PendingChanges } from "./PendingChanges";
+import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
+import DepositLimitsIcon from "./depositLimits.svg";
 import "./styles.scss";
 
-type Props = {
+type Props = PendingDepositLimitsChangesSelected & {
   currency: string,
   locale: string,
   t: {
@@ -29,35 +27,29 @@ type Props = {
     pending_increase: string,
     pending_remove_all: string,
     remove_all: string,
+    add: string,
     remaining_limit: string,
     cancel_pending_increases: string,
     cancel_pending_remove_all: string,
+    suspend_account: string,
+    active_limits_section_title: string,
+    more_limits_section_title: string,
+    adjust_limit: string,
   },
-  hideRemoveAll: boolean,
-  limits: AllLimits,
-  pendingLimitChanges?: DepositLimitsAdjustment,
-  remainingLimitValue: AllLimitsOnlyValues,
+  canIncreaseLimits: boolean,
+  limits: DepositLimitsSelected,
   edit: DepositKinds => void,
-  limitCancel: DepositKinds => void,
+  limitCancel: () => void,
   add: () => void,
   removeAll: () => void,
+  showOldSuspendAccountView: () => void,
 };
-export function DepositLimitsOverview({ t, ...props }: Props) {
-  const allRemoved =
-    !R.isNil(props.pendingLimitChanges) &&
-    R.anyPass([
-      R.allPass([
-        R.propEq("daily", null),
-        R.propEq("weekly", null),
-        R.propEq("monthly", null),
-      ]),
-      R.isEmpty,
-    ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
-  const hasPendingChanges = R.anyPass([
-    R.propIs(Number, "daily"),
-    R.propIs(Number, "weekly"),
-    R.propIs(Number, "monthly"),
-  ])(R.pathOr({}, ["pendingLimitChanges", "value"], props));
+
+export function DepositLimitsOverview(props: Props) {
+  const { t } = props;
+  const shouldShowAddButton = props.limits.length !== 3;
+  const shouldShowRemoveButton =
+    !shouldShowAddButton && props.canIncreaseLimits;
 
   return (
     <Flex
@@ -65,111 +57,78 @@ export function DepositLimitsOverview({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="t-background-white"
+      className="c-deposit-limits__container"
     >
-      <Header title={t.deposit_limits}>
-        <HeaderButton
-          limits={props.limits}
-          add={props.add}
-          removeAll={props.removeAll}
-          t={{ remove_all: t.remove_all }}
-          hideRemoveAll={props.hideRemoveAll}
-        />
-      </Header>
-      {limitTypes
-        .filter(x => props.limits[x])
-        .map(x => {
-          const progressPercentage =
-            100 -
-            ((props.remainingLimitValue[x] || 0) / (props.limits[x] || 0)) *
-              100;
+      <SectionHeader>
+        {props.limits.length
+          ? t.active_limits_section_title
+          : t.more_limits_section_title}
+      </SectionHeader>
+      <Flex
+        direction="vertical"
+        align="stretch"
+        justify="space-between"
+        spacing="none"
+        className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg t-background-white"
+      >
+        <LimitHeader title={t.deposit_limits} icon={<DepositLimitsIcon />}>
+          {shouldShowAddButton && (
+            <Button onClick={props.add} variant="secondary">
+              {t.add}
+            </Button>
+          )}
+          {shouldShowRemoveButton && (
+            <Button onClick={props.removeAll} variant="secondary">
+              {t.remove_all}
+            </Button>
+          )}
+        </LimitHeader>
+        <Flex className="c-deposit-limits__limits-list">
+          {props.limits.map((x, i) => {
+            const shouldRenderSeparator = props.limits.length - 2 >= i;
+            const progressPercentage =
+              100 - ((x.remaining || 0) / x.value) * 100;
 
-          return (
-            <Flex
-              key={x}
-              spacing="none"
-              className="u-padding-y t-background-white u-padding-x--md"
-              align="center"
-              justify="space-between"
-              onClick={() => props.edit(x)}
-              data-test-id={`limit-${x}`}
-            >
-              <ProgressArc value={progressPercentage} />
-              <Flex className="u-margin-left o-flex--1" direction="vertical">
-                <Text tag="span">
-                  {formatCurrency({
-                    locale: props.locale,
-                    currency: props.currency,
-                    value: parseInt(props.limits[x]),
-                  })}{" "}
-                  {t[`${x}_short`]}
-                </Text>
-                <Text tag="span" size="sm" className="t-color-turquoise">
-                  {interpolate(t.remaining_limit, {
-                    value: formatCurrency({
-                      locale: props.locale,
-                      currency: props.currency,
-                      value: props.remainingLimitValue[x],
-                    }),
-                  })}
-                </Text>
-              </Flex>
-              <MoreIcon className="t-color-grey-light-1" />
-            </Flex>
-          );
-        })}
-      {(hasPendingChanges || allRemoved) && (
-        <Flex
-          direction="vertical"
-          align="stretch"
-          justify="space-between"
-          spacing="none"
-          className="u-padding-x--md u-padding-y--lg"
-        >
-          <Flex align="center" justify="space-between" spacing="none">
-            <ClockIcon size="sm" className="t-color-caution" />
-            <Text
-              tag="span"
-              size="sm"
-              className="u-margin-left--md t-color-grey-dark-1 o-flex--1"
-            >
-              {allRemoved ? (
-                <DangerousHtml html={t.pending_remove_all} />
-              ) : (
-                <Text
-                  tag="span"
-                  size="sm"
-                  className="t-color-warning u-font-weight-bold"
-                >
-                  {t.pending_increase}{" "}
-                </Text>
-              )}
-              {!allRemoved &&
-                limitTypes
-                  .filter(x => R.path(["value", x], props.pendingLimitChanges))
-                  .map(
-                    x =>
-                      `${formatCurrency({
-                        locale: props.locale,
-                        currency: props.currency,
-                        value: props.pendingLimitChanges?.value[x],
-                      })} ${t[`${x}_short`]}`
-                  )
-                  .join(", ")}
-            </Text>
-          </Flex>
-          <Button
-            variant="secondary"
-            className="o-flex--1 u-margin-top--lg"
-            data-test-id="cancel-pending-limit-change"
-            onClick={props.limitCancel}
-          >
-            {allRemoved
-              ? t.cancel_pending_remove_all
-              : t.cancel_pending_increases}
-          </Button>
+            return (
+              <SinglePeriodLimitOverview
+                key={x.limitKind}
+                data-test-id={`limit-${x.limitKind}`}
+                t={t}
+                progressPercentage={progressPercentage}
+                shouldRenderSeparator={shouldRenderSeparator}
+                currency={props.currency}
+                locale={props.locale}
+                onClick={() => props.edit(x.limitKind)}
+                {...x}
+              />
+            );
+          })}
         </Flex>
+        <PendingChanges
+          t={t}
+          currency={props.currency}
+          locale={props.locale}
+          pendingChanges={props.pendingChanges}
+          allRemoved={props.allRemoved}
+          limitCancel={props.limitCancel}
+        />
+      </Flex>
+
+      {props.limits.length !== 0 && (
+        <SectionHeader>{t.more_limits_section_title}</SectionHeader>
       )}
+
+      <DepositLimitsSuspendAccount
+        t={t}
+        showOldSuspendAccountView={props.showOldSuspendAccountView}
+      />
+      <DepositLimitsHistoryContainer />
     </Flex>
   );
 }
+
+const SectionHeader = (props: { children: string }) => (
+  <Text className="u-font-weight-black u-padding--md u-padding-top--none t-color-grey-dark-1">
+    {props.children}
+  </Text>
+);

@@ -19,6 +19,7 @@ export default function ScrollableListTitle({ title, paddingLeft }: Props) {
         "u-padding-bottom--md",
         "u-padding-bottom--lg@tablet",
         "u-padding-bottom--lg@desktop",
+        "t-color-chrome-dark-1",
         "u-font-weight-bold",
         { [paddingLeftClasses]: paddingLeft }
       )}
