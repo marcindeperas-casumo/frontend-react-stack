@@ -17,6 +17,7 @@ import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import OptInButton from "Components/OptInButton/OptInButton";
+import { interpolate } from "Utils";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
@@ -254,44 +255,52 @@ export class ReelRaceCard extends React.Component<Props> {
             spacing="none"
             justify="space-between"
           >
-            <Flex align="center">
-              <GameThumb
-                src={this.props.game.logoBackground}
-                alt={this.props.game.name}
-                mark={this.props.game.logo}
-              />
-              {this.props.promoted && (
-                <GrandReelRaceBadge className="c-reel-race__badge" />
-              )}
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
+              data={{ state: BUTTON_STATE.PLAY }}
+            >
               <Flex
-                direction="vertical"
-                spacing="sm"
-                className="u-margin-left--md"
+                align="center"
+                className="u-cursor-pointer"
+                onClick={this.props.launchGame}
               >
-                <Text
-                  tag="span"
-                  className="u-margin-bottom--sm u-font-weight-bold"
+                <GameThumb
+                  src={this.props.game.logoBackground}
+                  alt={this.props.game.name}
+                  mark={this.props.game.logo}
+                />
+                {this.props.promoted && (
+                  <GrandReelRaceBadge className="c-reel-race__badge" />
+                )}
+                <Flex
+                  direction="vertical"
+                  spacing="sm"
+                  className="u-margin-left--md"
                 >
-                  {t.compete_for.replace("{{prize}}", this.props.prize)}
-                </Text>
-                <Text
-                  tag="span"
-                  size="xs"
-                  className="t-color-white u-opacity-75"
-                >
-                  <DangerousHtml html={this.props.game.name} />
-                </Text>
+                  <Text
+                    tag="span"
+                    className="u-margin-bottom--sm u-font-weight-bold"
+                  >
+                    {interpolate(t.compete_for, { prize: this.props.prize })}
+                  </Text>
+                  <Text
+                    tag="span"
+                    size="xs"
+                    className="t-color-white u-opacity-75"
+                  >
+                    <DangerousHtml html={this.props.game.name} />
+                  </Text>
+                </Flex>
               </Flex>
-            </Flex>
+            </TrackClick>
 
             <Flex align="center">
               <Column top={this.props.spins} bottom={t.spins} />
               <div className="c-reel-race__separator u-margin-x--md" />
               <Column
-                top={t.duration_template.replace(
-                  "{{{duration}}}",
-                  this.duration
-                )}
+                top={interpolate(t.duration_template, {
+                  duration: this.duration,
+                })}
                 bottom={t.duration}
               />
               {this.props.minBet && (
@@ -315,10 +324,9 @@ export class ReelRaceCard extends React.Component<Props> {
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
-              html={t.caveat_short.replace(
-                "{{{ ctaTermsAndConditions }}}",
-                'class="t-color-black"'
-              )}
+              html={interpolate(t.caveat_short, {
+                ctaTermsAndConditions: 'class="t-color-black"',
+              })}
             />
           </Text>
         )}
