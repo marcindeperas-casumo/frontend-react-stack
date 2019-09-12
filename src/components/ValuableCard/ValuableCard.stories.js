@@ -30,6 +30,7 @@ stories.add("Default", () => {
         expirationTimeInHours={expiryHours}
         onCardClick={action("click")}
         translatedHoursUnit={translationsMock.hoursUnit}
+        className="u-drop-shadow--sm"
       />
     </div>
   );
