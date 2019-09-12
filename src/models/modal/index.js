@@ -3,7 +3,8 @@ export type ModalKind =
   | "REEL_RACES_CAVEATS"
   | "TERMS_AND_CONDITIONS"
   | "TERMS_AND_CONDITIONS_SPAIN"
-  | "PRIVACY_NOTICE";
+  | "PRIVACY_NOTICE"
+  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
 
 const type = {
   hide: "MODAL/HIDE",

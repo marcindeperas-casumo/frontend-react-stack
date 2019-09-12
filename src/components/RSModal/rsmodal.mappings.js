@@ -3,7 +3,10 @@ import * as React from "react";
 import * as R from "ramda";
 import type { ModalKind } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
+import { MODALS as SCS_MODALS } from "Models/slotControlSystem";
+import { exitConfiguration } from "Services/SlotControlSystemService";
 import { TermsAndConditionsContainer } from "./TermsAndConditions";
+import { SlotControlSystemContainer } from "./SlotControlSystem";
 
 type Mapping = {
   [ModalKind]: {
@@ -38,5 +41,10 @@ export const mappings: Mapping = {
   PRIVACY_NOTICE: {
     slug: "toc.privacy-cookie-policy",
     contentGetter: R.path(["fields", "content"]),
+  },
+  [SCS_MODALS.CONFIGURATION]: {
+    slug: "toc",
+    customContent: <SlotControlSystemContainer />,
+    onHideModal: exitConfiguration,
   },
 };
