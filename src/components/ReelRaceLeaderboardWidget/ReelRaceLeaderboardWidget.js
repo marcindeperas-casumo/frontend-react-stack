@@ -4,14 +4,27 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
 import type { LeaderBoard } from "Models/reelRaceWidget";
-import "./ReelRaceWidget.scss";
 
 type Props = {
   leaderboard: Array<LeaderBoard>,
+  subscribeUpdates: () => void,
+  unsubscribeUpdates: () => void,
   playerId: string,
+  tournamentId: string,
 };
 
-export function LeaderBoardWidget(props: Props) {
+export function ReelRaceLeaderboardWidget(props: Props) {
+  React.useEffect(() => {
+    if (props.tournamentId) {
+      props.subscribeUpdates();
+
+      return () => {
+        props.unsubscribeUpdates();
+      };
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.tournamentId]);
+
   const l = R.pipe(
     R.values,
     R.sortBy(R.prop("position"))
@@ -24,6 +37,9 @@ export function LeaderBoardWidget(props: Props) {
     R.concat(R.take(3, l), R.slice(i - 3, i + 1, l))
   );
 
+  // eslint-disable-next-line no-console
+  console.log(props);
+
   return (
     <Flex direction="vertical" className="u-width--1/1">
       {board.map(p => (
@@ -32,7 +48,7 @@ export function LeaderBoardWidget(props: Props) {
           key={p.playerId}
           className={
             props.playerId === p.playerId
-              ? "u-font-weight-bold t-background-yellow"
+              ? "u-font-weight-bold t-background-turquoise t-color-plum"
               : ""
           }
         >

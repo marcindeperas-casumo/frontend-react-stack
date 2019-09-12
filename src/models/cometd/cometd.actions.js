@@ -48,6 +48,33 @@ export const unsubscribeReelRaceUpdates = (channelPrefix, playerId) => {
   });
 };
 
+export const subscribeReelRacePlayerLeaderboard = (tournamentId, playerId) => {
+  return subscribe({
+    channel: `${CHANNELS.REEL_RACES}/players/${playerId}/tournaments/${tournamentId}/leaderboard`,
+  });
+};
+
+export const subscribeReelRaceLeaderboard = (tournamentId, playerId) => {
+  return subscribe({
+    channel: `${CHANNELS.REEL_RACES}/tournaments/${tournamentId}/leaderboard/${playerId}`,
+  });
+};
+
+export const unsubscribeReelRacePlayerLeaderboard = (
+  tournamentId,
+  playerId
+) => {
+  return unsubscribe({
+    channel: `${CHANNELS.REEL_RACES}/players/${playerId}/tournaments/${tournamentId}/leaderboard`,
+  });
+};
+
+export const unsubscribeReelRaceLeaderboard = (tournamentId, playerId) => {
+  return unsubscribe({
+    channel: `${CHANNELS.REEL_RACES}/tournaments/${tournamentId}/leaderboard/${playerId}`,
+  });
+};
+
 export const subscribeToPlayerUpdates = (playerId, sessionId) => {
   const isAuthenticated = playerId && sessionId;
 

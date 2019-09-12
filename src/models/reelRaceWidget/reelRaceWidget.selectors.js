@@ -8,9 +8,9 @@ export const reelRaceWidgetSelector = createSelector(
   reelRacesSelector,
   reelRaces => {
     const isScheduledInFuture = R.propSatisfies(R.lt(Date.now()), "startTime");
-    const isNotFinished = R.propSatisfies(R.lt(Date.now()), "endTime");
     const iStarted = R.propEq("status", RR_STATE.STARTED);
     const iScheduled = R.propEq("status", RR_STATE.SCHEDULED);
+    const isNotFinished = R.propSatisfies(R.lt(Date.now()), "endTime");
     const playerOptedIn = R.propEq("opted", true);
     const optedStarted = R.allPass([iStarted, isNotFinished, playerOptedIn]);
     const optedScheduled = R.allPass([

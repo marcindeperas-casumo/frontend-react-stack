@@ -3,6 +3,7 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
+import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
 import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
@@ -12,7 +13,6 @@ import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 import { GameThumb } from "Components/GameThumb";
 import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
-import { LeaderBoardWidget } from "./LeaderBoardWidget";
 import "./ReelRaceWidget.scss";
 
 type Props = ReelRace & {
@@ -26,18 +26,19 @@ type Props = ReelRace & {
   game: GameRow_Game,
   playing: Playing,
   t: ReelRacesTranslations,
-  leaderboard: Array<LeaderBoard>,
   playerId: string,
 };
 
 export function ReelRaceWidget(props: Props) {
   const { t, game, playing } = props;
 
+  // eslint-disable-next-line no-console
+  console.log(props);
+
   const started = props.status === RR_STATE.STARTED;
-  const timerEndTime = started ? props.endTime : props.startTime;
 
   const timeRemaining = (): number =>
-    DateTime.fromMillis(timerEndTime)
+    DateTime.fromMillis(started ? props.endTime : props.startTime)
       .diffNow()
       .valueOf();
 
@@ -104,13 +105,21 @@ export function ReelRaceWidget(props: Props) {
           <Text
             tag="span"
             size="lg"
-            className="u-font-weight-bold t-color-yellow"
+            className="u-font-weight-bold t-color-plum"
           >
-            <Timer
-              endTime={timerEndTime}
-              render={o => `${o.minutes}:${o.seconds}`}
-              onEnd={() => "00:00"}
-            />
+            {started ? (
+              <Timer
+                endTime={props.endTime}
+                render={o => `${o.minutes}:${o.seconds}`}
+                onEnd={() => "00:00"}
+              />
+            ) : (
+              <Timer
+                endTime={props.startTime}
+                render={o => `${o.minutes}:${o.seconds}`}
+                onEnd={() => "00:00"}
+              />
+            )}
           </Text>
         </Flex>
         <Flex
@@ -124,17 +133,17 @@ export function ReelRaceWidget(props: Props) {
           <Text
             tag="span"
             size="lg"
-            className="u-font-weight-bold t-color-green"
+            className="u-font-weight-bold t-color-plum"
           >
             {props.spins}
           </Text>
         </Flex>
       </Flex>
       <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
-      {started && props.leaderboard && (
+      {started && (
         <>
-          <LeaderBoardWidget
-            leaderboard={props.leaderboard}
+          <ReelRaceLeaderboardWidget
+            tournamentId={props.tournamentId}
             playerId={props.playerId}
           />
           <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
