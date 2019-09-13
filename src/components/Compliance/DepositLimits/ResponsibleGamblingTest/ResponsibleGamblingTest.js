@@ -45,7 +45,7 @@ export function ResponsibleGamblingTest({
     <Flex
       direction="vertical"
       justify="space-between"
-      className="u-padding--md u-height--1/1 t-background-white c-deposit-limits-container"
+      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
     >
       <Flex direction="vertical" justify="space-between">
         <ProgressBar progress={progress} />

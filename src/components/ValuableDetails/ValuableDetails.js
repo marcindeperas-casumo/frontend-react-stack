@@ -243,7 +243,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="c-valuable-details__footer u-padding--md">
             <Button
               href={actionButtonProps.url}
-              className="u-width--1/1"
+              className="u-width--full"
               onClick={this.handleAction}
               data-test="valuable-action-button"
               variant="primary"

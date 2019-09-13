@@ -106,7 +106,7 @@ export function SinglePeriodLimitOverview(props: Props) {
             justify="center"
             className="c-single-limit__hovered t-border-r u-position-absolute u-padding--lg"
           >
-            <Button variant="secondary" className="u-width--1/1 u-padding--md">
+            <Button variant="secondary" className="u-width--full u-padding--md">
               {t.adjust_limit}
             </Button>
           </Flex>
