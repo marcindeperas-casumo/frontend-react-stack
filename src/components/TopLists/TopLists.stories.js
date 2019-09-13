@@ -4,6 +4,7 @@ import { storiesOf } from "@storybook/react";
 import TopLists, { getSlug } from "Components/TopLists/TopLists";
 import MockStore from "Components/MockStore";
 import curated from "Models/curated/__mocks__/curated.json";
+import { getStateMock } from "Models/__mocks__/state.mock";
 import { GAME_LIST_IDS } from "Src/constants";
 import jackpotsQueryMock from "Components/Jackpots/__mocks__/query.jackpots.mock";
 
@@ -24,6 +25,7 @@ const componentDefinition = [
 ];
 
 const state = {
+  ...getStateMock({ firstDepositDate: 1514764800000 }),
   schema: {
     cms: {
       [slug]: {
