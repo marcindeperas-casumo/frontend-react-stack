@@ -14,7 +14,7 @@ const stories = storiesOf("CuratedCard", module);
 const firstDepositDate = 1514764800000;
 
 const state = {
-  ...getStateMock(firstDepositDate),
+  ...getStateMock({ firstDepositDate }),
   schema: {
     cms: {
       "curated.curated-game-gb_en": {
@@ -37,7 +37,7 @@ stories.add("Default", () => {
 
 stories.add("Promotion", () => {
   return (
-    <MockStore>
+    <MockStore state={state}>
       <CuratedCard card={"curated-gb_en"} />
     </MockStore>
   );
