@@ -172,3 +172,11 @@ export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   path(["contactInfo", "socialSecurityNumber"])
 );
+
+export const verticalSelector = createSelector(
+  playersSelector,
+  pathOr("", ["welcomeOfferId"]),
+  (player, welcomeOfferId) => {
+    return welcomeOfferId.startsWith("wo-sports") ? "SPORTS" : "CASINO";
+  }
+);
