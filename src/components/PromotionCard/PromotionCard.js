@@ -7,6 +7,7 @@ import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
 import PromotionCardSkeleton from "Components/PromotionCard/PromotionCardSkeleton";
 import "./PromotionCard.scss";
 import TrackClick from "Components/TrackClick";
+import TrackView from "Components/TrackView";
 import { EVENT_PROPS, EVENTS } from "../../constants";
 
 type WrapperProps = {
@@ -30,6 +31,10 @@ const PromotionCardWrapper = ({
 }: WrapperProps) => {
   return (
     <a href={link} className="o-ratio o-ratio--promotion-card">
+      <TrackView
+        eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
+        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
+      />
       <TrackClick
         eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
         data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}

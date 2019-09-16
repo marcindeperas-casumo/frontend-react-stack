@@ -118,6 +118,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
+  MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
 };
 export const EVENT_PROPS = {
   LOCATION: "location",
