@@ -38,6 +38,28 @@ describe("ValuableDetails", () => {
     ).toBe(expirationBadgeClasses.default);
   });
 
+  test("should not render wagering progress bar if no wagering details are provided", () => {
+    expect(
+      rendered.find({ "data-test": "valuable-details-wagering-progress-bar" })
+    ).toHaveLength(0);
+  });
+
+  test("should render wagering progress bar if wagering details are provided", () => {
+    rendered = shallow(
+      <ValuableDetails
+        valuableDetails={{
+          ...mockValuable,
+          leftToWager: 90,
+          wageringThreshold: 100,
+        }}
+        translations={mockTranslations}
+      />
+    );
+    expect(
+      rendered.find({ "data-test": "valuable-details-wagering-progress-bar" })
+    ).toHaveLength(1);
+  });
+
   test("should render red expiration badge if expirationInHours is <= 24", () => {
     const expirationHours = 5;
 
@@ -54,7 +76,9 @@ describe("ValuableDetails", () => {
     );
 
     expect(
-      rendered.find("[data-test='valuable-expiration-badge']").prop("bgColor")
+      rendered
+        .find({ "data-test": "valuable-expiration-badge" })
+        .prop("bgColor")
     ).toBe(expirationBadgeClasses.expiresToday);
   });
 
@@ -75,7 +99,7 @@ describe("ValuableDetails", () => {
 
     expect(
       rendered
-        .find("[data-test='valuable-expiration-badge']")
+        .find({ "data-test": "valuable-expiration-badge" })
         .dive()
         .find("span")
         .text()
@@ -102,7 +126,7 @@ describe("ValuableDetails", () => {
 
     expect(
       rendered
-        .find("[data-test='valuable-expiration-badge']")
+        .find({ "data-test": "valuable-expiration-badge" })
         .dive()
         .find("span")
         .text()
@@ -124,7 +148,7 @@ describe("ValuableDetails", () => {
 
     expect(
       rendered
-        .find("[data-test='expiration-badge-content']")
+        .find({ "data-test": "expiration-badge-content" })
         .dive()
         .find(OpenPadlock)
     ).toHaveLength(1);
@@ -133,7 +157,7 @@ describe("ValuableDetails", () => {
   test("should not display open padlock icon if valuable is NOT LOCKED", () => {
     expect(
       rendered
-        .find("[data-test='expiration-badge-content']")
+        .find({ "data-test": "expiration-badge-content" })
         .dive()
         .find(OpenPadlock)
     ).toHaveLength(0);
@@ -152,7 +176,9 @@ describe("ValuableDetails", () => {
       </ValuableDetails>
     );
 
-    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    const actionButton = rendered.find({
+      "data-test": "valuable-action-button",
+    });
     actionButton.simulate("click");
 
     await expect(onConsume).toHaveBeenCalledTimes(1);
@@ -171,7 +197,9 @@ describe("ValuableDetails", () => {
       </ValuableDetails>
     );
 
-    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    const actionButton = rendered.find({
+      "data-test": "valuable-action-button",
+    });
     actionButton.simulate("click");
 
     expect(onConsume).toHaveBeenCalledTimes(0);
@@ -190,7 +218,9 @@ describe("ValuableDetails", () => {
       </ValuableDetails>
     );
 
-    const actionButton = rendered.find("[data-test='valuable-action-button']");
+    const actionButton = rendered.find({
+      "data-test": "valuable-action-button",
+    });
     actionButton.simulate("click");
 
     expect(onConsume).toHaveBeenCalledTimes(1);
