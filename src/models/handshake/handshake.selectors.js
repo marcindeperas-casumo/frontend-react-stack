@@ -173,10 +173,18 @@ export const socialSecurityNumberSelector = createSelector(
   path(["contactInfo", "socialSecurityNumber"])
 );
 
+export const welcomeOfferIdSelector = createSelector(
+  playerSelector,
+  prop(["welcomeOfferId"])
+);
+
 export const verticalSelector = createSelector(
-  playersSelector,
-  pathOr("", ["welcomeOfferId"]),
-  (player, welcomeOfferId) => {
-    return welcomeOfferId.startsWith("wo-sports") ? "SPORTS" : "CASINO";
+  welcomeOfferIdSelector,
+  welcomeOfferId => {
+    const isSportsWelcomeOffer =
+      typeof welcomeOfferId === "string" &&
+      welcomeOfferId.startsWith("wo-sports");
+
+    return isSportsWelcomeOffer ? "SPORTS" : "CASINO";
   }
 );

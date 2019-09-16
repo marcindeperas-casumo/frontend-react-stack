@@ -25,6 +25,7 @@ import {
   playerNameSelector,
   socialSecurityNumberSelector,
   isSuspiciousAccount,
+  verticalSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -460,5 +461,47 @@ describe("Handshake selectors", () => {
     };
 
     expect(isSuspiciousAccount(state)).toEqual(true);
+  });
+
+  describe("verticalSelector()", () => {
+    const createHandshakeStateWithWelcomeOfferId = welcomeOfferId => ({
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                welcomeOfferId,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    test("returns SPORTS if player has a sports welcome offer", () => {
+      const state = createHandshakeStateWithWelcomeOfferId(
+        "wo-sports-this-part-doesnt-mattter"
+      );
+
+      expect(verticalSelector(state)).toEqual("SPORTS");
+    });
+
+    test("defaults to CASINO if welcome offer is not sports related", () => {
+      const state = createHandshakeStateWithWelcomeOfferId("wo-something-else");
+
+      expect(verticalSelector(state)).toEqual("CASINO");
+    });
+
+    test("defaults correctly when welcome offer is not set", () => {
+      const state1 = createHandshakeStateWithWelcomeOfferId(null);
+      const state2 = createHandshakeStateWithWelcomeOfferId();
+      const state3 = createHandshakeStateWithWelcomeOfferId(true);
+
+      expect(verticalSelector(state1)).toEqual("CASINO");
+      expect(verticalSelector(state2)).toEqual("CASINO");
+      expect(verticalSelector(state3)).toEqual("CASINO");
+    });
   });
 });
