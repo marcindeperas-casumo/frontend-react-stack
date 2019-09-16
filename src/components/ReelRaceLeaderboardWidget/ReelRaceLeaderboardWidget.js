@@ -3,7 +3,7 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
-import type { LeaderBoard } from "Models/reelRaceLeaderboardWidget";
+import type { LeaderBoard } from "Models/reelRaceLeaderboard";
 
 type Props = {
   leaderboard: Array<LeaderBoard>,

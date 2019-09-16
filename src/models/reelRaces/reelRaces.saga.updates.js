@@ -1,6 +1,6 @@
 import { put, select, call } from "redux-saga/effects";
 import { mergeEntity } from "Models/schema";
-import { updateLeaderboardSaga } from "Models/reelRaceLeaderboardWidget";
+import { updateLeaderboardSaga } from "Models/reelRaceLeaderboard";
 import { reelRacesByIdSelector } from "./reelRaces.selectors";
 
 export function* reelRacesUpdatesSaga(action) {
