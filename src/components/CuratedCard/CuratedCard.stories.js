@@ -6,14 +6,15 @@ import React from "react";
 import { CuratedCard } from "Components/CuratedCard";
 import { CuratedCard as CuratedCardPresentational } from "Components/CuratedCard/CuratedCard";
 import MockStore from "Components/MockStore";
-import defaultState from "Models/__mocks__/state.mock";
+import { getStateMock } from "Models/__mocks__/state.mock";
 import curated from "Models/curated/__mocks__/curated.json";
 import curatedWelcome from "Models/curated/__mocks__/curated.welcome.json";
 
 const stories = storiesOf("CuratedCard", module);
+const firstDepositDate = 1514764800000;
 
 const state = {
-  ...defaultState,
+  ...getStateMock({ firstDepositDate }),
   schema: {
     cms: {
       "curated.curated-game-gb_en": {
@@ -36,7 +37,7 @@ stories.add("Default", () => {
 
 stories.add("Promotion", () => {
   return (
-    <MockStore>
+    <MockStore state={state}>
       <CuratedCard card={"curated-gb_en"} />
     </MockStore>
   );

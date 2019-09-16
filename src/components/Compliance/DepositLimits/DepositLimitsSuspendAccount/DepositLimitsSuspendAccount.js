@@ -20,17 +20,22 @@ export function DepositLimitsSuspendAccount({ t, ...props }: Props) {
   }
 
   return (
-    <LimitHeader title={t.suspend_account} icon={<SuspendAccountIcon />}>
-      <Button
-        data-test-id="suspendAccountButton"
-        onClick={() => {
-          bridge.emit(KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW, "suspendAccount");
-          props.showOldSuspendAccountView();
-        }}
-        variant="secondary"
-      >
-        {t.add}
-      </Button>
-    </LimitHeader>
+    <div className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--lg">
+      <LimitHeader title={t.suspend_account} icon={<SuspendAccountIcon />}>
+        <Button
+          data-test-id="suspendAccountButton"
+          onClick={() => {
+            bridge.emit(
+              KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW,
+              "suspendAccount"
+            );
+            props.showOldSuspendAccountView();
+          }}
+          variant="secondary"
+        >
+          {t.add}
+        </Button>
+      </LimitHeader>
+    </div>
   );
 }

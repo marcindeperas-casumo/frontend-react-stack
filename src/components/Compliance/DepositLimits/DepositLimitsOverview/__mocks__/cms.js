@@ -12,4 +12,7 @@ export default {
   "remaining_limit": "{{value}} remaining",
   "cancel_pending_increases": "Cancel pending increases",
   "cancel_pending_remove_all": "Cancel pending remove all",
+  "active_limits_section_title": "Active",
+  "more_limits_section_title": "More limits",
+  "adjust_limit": "Adjust limit",
 }

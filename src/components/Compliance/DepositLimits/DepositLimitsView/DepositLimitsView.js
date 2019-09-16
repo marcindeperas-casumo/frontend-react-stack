@@ -245,7 +245,7 @@ export function DepositLimitsView(props: Props) {
   }
 
   return (
-    <Flex direction="vertical" spacing="none" className="u-margin-bottom--3xlg">
+    <Flex direction="vertical" spacing="none">
       {route !== "overview" && (
         <GoBack t={props.t} goBack={() => navigate({ route: "overview" })} />
       )}

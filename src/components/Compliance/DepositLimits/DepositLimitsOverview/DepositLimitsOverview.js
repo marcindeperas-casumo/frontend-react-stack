@@ -1,11 +1,8 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { DirectionRightIcon } from "@casumo/cmp-icons";
-import { ProgressArc } from "Components/Compliance/ProgressArc";
 import { DepositLimitsSuspendAccount } from "Components/Compliance/DepositLimits/DepositLimitsSuspendAccount";
 import { DepositLimitsHistoryContainer } from "Components/Compliance/DepositLimits/DepositLimitsHistory";
 import type {
@@ -13,9 +10,9 @@ import type {
   DepositLimitsSelected,
   PendingDepositLimitsChangesSelected,
 } from "Models/playOkay/depositLimits";
-import { formatCurrency, interpolate } from "Utils";
 import { LimitHeader } from "Components/Compliance/LimitHeader";
 import { PendingChanges } from "./PendingChanges";
+import { SinglePeriodLimitOverview } from "./SinglePeriodLimitOverview";
 import DepositLimitsIcon from "./depositLimits.svg";
 import "./styles.scss";
 
@@ -35,6 +32,9 @@ type Props = PendingDepositLimitsChangesSelected & {
     cancel_pending_increases: string,
     cancel_pending_remove_all: string,
     suspend_account: string,
+    active_limits_section_title: string,
+    more_limits_section_title: string,
+    adjust_limit: string,
   },
   canIncreaseLimits: boolean,
   limits: DepositLimitsSelected,
@@ -44,6 +44,7 @@ type Props = PendingDepositLimitsChangesSelected & {
   removeAll: () => void,
   showOldSuspendAccountView: () => void,
 };
+
 export function DepositLimitsOverview(props: Props) {
   const { t } = props;
   const shouldShowAddButton = props.limits.length !== 3;
@@ -56,14 +57,19 @@ export function DepositLimitsOverview(props: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="t-background-grey-light-2"
+      className="c-deposit-limits__container"
     >
+      <SectionHeader>
+        {props.limits.length
+          ? t.active_limits_section_title
+          : t.more_limits_section_title}
+      </SectionHeader>
       <Flex
         direction="vertical"
         align="stretch"
         justify="space-between"
         spacing="none"
-        className="u-padding-bottom--2xlg"
+        className="t-border-r--none@mobile t-border-r u-overflow-hidden u-margin-bottom--2xlg t-background-white"
       >
         <LimitHeader title={t.deposit_limits} icon={<DepositLimitsIcon />}>
           {shouldShowAddButton && (
@@ -77,52 +83,27 @@ export function DepositLimitsOverview(props: Props) {
             </Button>
           )}
         </LimitHeader>
-        {props.limits.map((x, i) => {
-          const shouldRenderSeparator = props.limits.length - 2 >= i;
-          const progressPercentage = 100 - ((x.remaining || 0) / x.value) * 100;
+        <Flex className="c-deposit-limits__limits-list">
+          {props.limits.map((x, i) => {
+            const shouldRenderSeparator = props.limits.length - 2 >= i;
+            const progressPercentage =
+              100 - ((x.remaining || 0) / x.value) * 100;
 
-          return (
-            <Flex
-              key={x.limitKind}
-              spacing="none"
-              className="t-background-white u-padding-x--md"
-              align="center"
-              onClick={() => props.edit(x.limitKind)}
-              data-test-id={`limit-${x.limitKind}`}
-            >
-              <ProgressArc value={progressPercentage} />
-              <Flex
-                align="center"
-                justify="space-between"
-                className={classNames(
-                  "u-margin-left u-padding-y--md o-flex--1",
-                  shouldRenderSeparator && "t-border-bottom"
-                )}
-              >
-                <Flex direction="vertical">
-                  <Text tag="span">
-                    {formatCurrency({
-                      locale: props.locale,
-                      currency: props.currency,
-                      value: x.value,
-                    })}{" "}
-                    {t[`${x.limitKind}_short`]}
-                  </Text>
-                  <Text tag="span" size="sm" className="t-color-turquoise">
-                    {interpolate(t.remaining_limit, {
-                      value: formatCurrency({
-                        locale: props.locale,
-                        currency: props.currency,
-                        value: x.remaining,
-                      }),
-                    })}
-                  </Text>
-                </Flex>
-                <DirectionRightIcon className="t-color-grey-light-2" />
-              </Flex>
-            </Flex>
-          );
-        })}
+            return (
+              <SinglePeriodLimitOverview
+                key={x.limitKind}
+                data-test-id={`limit-${x.limitKind}`}
+                t={t}
+                progressPercentage={progressPercentage}
+                shouldRenderSeparator={shouldRenderSeparator}
+                currency={props.currency}
+                locale={props.locale}
+                onClick={() => props.edit(x.limitKind)}
+                {...x}
+              />
+            );
+          })}
+        </Flex>
         <PendingChanges
           t={t}
           currency={props.currency}
@@ -133,6 +114,10 @@ export function DepositLimitsOverview(props: Props) {
         />
       </Flex>
 
+      {props.limits.length !== 0 && (
+        <SectionHeader>{t.more_limits_section_title}</SectionHeader>
+      )}
+
       <DepositLimitsSuspendAccount
         t={t}
         showOldSuspendAccountView={props.showOldSuspendAccountView}
@@ -141,3 +126,9 @@ export function DepositLimitsOverview(props: Props) {
     </Flex>
   );
 }
+
+const SectionHeader = (props: { children: string }) => (
+  <Text className="u-font-weight-black u-padding--md u-padding-top--none t-color-grey-dark-1">
+    {props.children}
+  </Text>
+);
