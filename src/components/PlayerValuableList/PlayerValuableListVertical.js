@@ -1,6 +1,5 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals } from "ramda";
 import List from "@casumo/cmp-list";
 import Flex from "@casumo/cmp-flex";
 import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
@@ -45,7 +44,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     gameSlug: ?string,
   }) => {
     onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
+      if (valuableType === VALUABLE_TYPES.SPINS) {
         launchGame(gameSlug);
       }
     });
@@ -61,13 +60,10 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     return function cleanup() {
       handler.unsubscribe();
     };
-  });
+  }, [refetch]);
 
   if (error) {
-    logger.error(`
-      PlayerValuableListHorizontal failed:
-      ${error}
-    `);
+    logger.error("PlayerValuableListHorizontal failed", error);
     return null;
   }
 
