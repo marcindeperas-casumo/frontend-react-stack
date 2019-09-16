@@ -9,7 +9,7 @@ import { Mobile, Desktop } from "Components/ResponsiveLayout";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
-import { CURATED_TYPE } from "Models/curated";
+import { CURATED_TYPE, getCuratedSlug } from "Models/curated";
 
 export type Game = {|
   logoBackground: string,
@@ -71,7 +71,7 @@ export const CuratedCardFooterGameMobile = ({
 }: GameProps) => {
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-    [EVENT_PROPS.CURATED_SLUG]: gameData.slug,
+    [EVENT_PROPS.CURATED_SLUG]: getCuratedSlug(gameData.slug),
   };
 
   return (
@@ -121,7 +121,7 @@ export const CuratedCardFooterGameDesktop = ({
 }: GameProps) => {
   const trackClickGamePlayData = {
     [EVENT_PROPS.CURATED_TYPE]: CURATED_TYPE.GAME,
-    [EVENT_PROPS.CURATED_SLUG]: gameData.slug,
+    [EVENT_PROPS.CURATED_SLUG]: getCuratedSlug(gameData.slug),
   };
 
   return (

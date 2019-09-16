@@ -35,6 +35,6 @@ describe("Sports/WelcomeOfferCuratedCard", () => {
     );
 
     expect(rendered.find(CuratedCard)).toHaveLength(1);
-    expect(rendered.find(CuratedCard).props().card).toBe(CMS_SLUG);
+    expect(rendered.find(CuratedCard).props().slug).toBe(CMS_SLUG);
   });
 });

@@ -16,5 +16,5 @@ export const WelcomeOfferCuratedCard = ({ vertical, hasDeposited }: Props) => {
     return null;
   }
 
-  return <CuratedCard card={CMS_SLUG} />;
+  return <CuratedCard slug={CMS_SLUG} />;
 };

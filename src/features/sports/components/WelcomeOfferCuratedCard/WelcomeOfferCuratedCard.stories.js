@@ -4,18 +4,14 @@ import { storiesOf } from "@storybook/react";
 import defaultStateMock from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
 import { WelcomeOfferCuratedCard, CMS_SLUG } from "./WelcomeOfferCuratedCard";
-import { mock } from "./__mock__";
+import { cmsMock } from "./__mock__";
 
 const stories = storiesOf("Sports/WelcomeOfferCuratedCard", module);
 
 const stateMock = {
   ...defaultStateMock,
   schema: {
-    cms: {
-      [`curated.${CMS_SLUG}`]: {
-        fields: mock,
-      },
-    },
+    cms: cmsMock,
   },
 };
 
