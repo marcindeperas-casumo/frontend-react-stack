@@ -15,6 +15,11 @@ export default connect(
       titleGetter = R.propOr("", "title"),
       contentGetter = R.propOr("", "content"),
       onHideModal,
+      className,
+      portalClassName,
+      headerBgColor,
+      headerTextColor,
+      headerIsTextCentered,
     } = mapping || {};
     const page = getPage(slug)(state);
 
@@ -30,6 +35,11 @@ export default connect(
           },
       isFetched: isPageFetchedSelector(slug)(state),
       onHideModal,
+      className,
+      portalClassName,
+      headerBgColor,
+      headerTextColor,
+      headerIsTextCentered,
     };
   },
   {

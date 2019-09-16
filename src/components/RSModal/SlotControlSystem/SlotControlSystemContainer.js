@@ -8,7 +8,7 @@ import { SlotControlSystem } from "./SlotControlSystem";
 export const SlotControlSystemContainer = connect(
   null,
   dispatch => ({
-    hideModal: () => {
+    hideModalSuccess: () => {
       dispatch(hideModalAction(MODALS.CONFIGURATION));
       finishConfiguration();
     },

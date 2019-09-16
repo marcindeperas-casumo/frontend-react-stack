@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import ReactModal from "react-modal";
+import classNames from "classnames";
 import type { ModalKind } from "Models/modal";
 import { ModalContent } from "./RSModalContent";
 import { ModalHeader } from "./RSModalHeader";
@@ -19,6 +20,13 @@ type Props = {
   t: ?TextProp,
   /* custom content renderer */
   customContent?: React.Node,
+  /* optional classes for the modal */
+  className?: string,
+  /* optional classes for the portal element that wraps overlay and modal */
+  portalClassName?: string,
+  headerBgColor?: string,
+  headerTextColor?: string,
+  headerIsTextCentered?: boolean,
 };
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
@@ -30,11 +38,21 @@ export function Modal(props: Props) {
     <ReactModal
       isOpen={Boolean(props.modalType)}
       onRequestClose={props.hideModal}
-      className="t-background-white o-flex--vertical c-rsmodal"
+      className={classNames(
+        "t-background-white o-flex--vertical c-rsmodal",
+        props.className
+      )}
       overlayClassName="c-rsmodal__overlay"
+      portalClassName={classNames("c-rsmodal__portal", props.portalClassName)}
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
-      <ModalHeader title={text && text.title} hideModal={props.hideModal} />
+      <ModalHeader
+        title={text && text.title}
+        hideModal={props.hideModal}
+        bgColor={props.headerBgColor}
+        textColor={props.headerTextColor}
+        isTextCentered={props.headerIsTextCentered}
+      />
       {props.customContent || <ModalContent content={text && text.content} />}
     </ReactModal>
   );

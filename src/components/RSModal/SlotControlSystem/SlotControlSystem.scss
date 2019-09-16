@@ -1,0 +1,30 @@
+// stylelint-disable xi/selector-pattern
+.c-rsmodal__portal--slot-control-system {
+  .c-rsmodal {
+    @include cudl-breakpoint(mobile) {
+      height: 100vh;
+      margin: 0;
+      width: 100vw;
+    }
+    @include cudl-breakpoint(phablet) {
+      height: auto;
+      margin: 10vh auto;
+      min-height: 40vh;
+      width: 50vw;
+    }
+    @include cudl-breakpoint(desktop) {
+      height: auto;
+      margin: 20vh auto;
+      min-height: 40vh;
+      width: 30vw;
+    }
+  }
+
+  .c-rsmodal__overlay {
+    top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
+
+    @include cudl-breakpoint(phablet) {
+      top: 0;
+    }
+  }
+}
