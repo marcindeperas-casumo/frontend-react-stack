@@ -9,9 +9,7 @@ import {
 } from "Components/PlayerValuableList";
 
 export const ValuablesPage = () => (
-  <>
-    <PlayerValuableListContainer
-      renderList={props => <PlayerValuableListVertical {...props} />}
-    />
-  </>
+  <PlayerValuableListContainer
+    renderList={props => <PlayerValuableListVertical {...props} />}
+  />
 );
