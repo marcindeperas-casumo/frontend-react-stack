@@ -58,17 +58,17 @@ export const ValuableThumbnail = ({
   const locale = INTL_LOCALES[market];
 
   return (
-    <div className={`o-ratio o-ratio--valuable-card-header-${size}`}>
+    <div className={`o-ratio o-ratio--valuable-card-thumbnail-${size}`}>
       <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
       <Flex
         align="center"
         className="o-ratio__content"
-        data-test="valuable-card-header-coin"
+        data-test="valuable-card-thumbnail-coin"
         direction="vertical"
         justify={size === "sm" ? "center" : "end"}
       >
         <div
-          className={`c-valuable-card-header-coin-wrapper--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-coin`}
+          className={`c-valuable-card-thumbnail-coin--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
         >
           <div
             className={classNames(
@@ -98,14 +98,14 @@ export const ValuableThumbnail = ({
       </Flex>
       {showStateBadge && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
+          <div className="c-valuable-card-thumbnail__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
             <Flex
               align="center"
               className={stateBadgeProperties.classModifiers}
             >
               {stateBadgeProperties.icon}
               <Text
-                data-test="valuable-card-header-state-label"
+                data-test="valuable-card-thumbnail-state-label"
                 size="2xs"
                 tag="span"
                 className="u-font-weight-bold"
