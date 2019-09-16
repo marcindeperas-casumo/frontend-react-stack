@@ -117,6 +117,7 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
+  MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
 };
 export const EVENT_PROPS = {
   LOCATION: "location",
@@ -127,6 +128,7 @@ export const EVENT_PROPS = {
   SPORTS_STATE: "State",
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
+  PROMOTION_TYPE: "type",
 };
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",

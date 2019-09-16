@@ -6,6 +6,8 @@ import PromotionCardContent from "Components/PromotionCard/PromotionCardContent"
 import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
 import PromotionCardSkeleton from "Components/PromotionCard/PromotionCardSkeleton";
 import "./PromotionCard.scss";
+import TrackClick from "Components/TrackClick";
+import { EVENT_PROPS, EVENTS } from "../../constants";
 
 type WrapperProps = {
   image: string,
@@ -48,13 +50,18 @@ export default class PromotionCard extends PureComponent<Props> {
     }
 
     return (
-      <PromotionCardWrapper
-        link={link}
-        image={image}
-        badge={badge}
-        dates={dates}
-        title={title}
-      />
+      <TrackClick
+        eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
+        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
+      >
+        <PromotionCardWrapper
+          link={link}
+          image={image}
+          badge={badge}
+          dates={dates}
+          title={title}
+        />
+      </TrackClick>
     );
   }
 }
