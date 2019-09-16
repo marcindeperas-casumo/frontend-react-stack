@@ -30,13 +30,18 @@ const PromotionCardWrapper = ({
 }: WrapperProps) => {
   return (
     <a href={link} className="o-ratio o-ratio--promotion-card">
-      <Card
-        className="o-ratio__content t-border-r--md t-background-white"
-        spacing="none"
-        header={() => <PromotionCardHeader badge={badge} dates={dates} />}
-        content={() => <PromotionCardContent title={title} />}
-        footer={() => <PromotionCardImage image={image} />}
-      />
+      <TrackClick
+        eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
+        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
+      >
+        <Card
+          className="o-ratio__content t-border-r--md t-background-white"
+          spacing="none"
+          header={() => <PromotionCardHeader badge={badge} dates={dates} />}
+          content={() => <PromotionCardContent title={title} />}
+          footer={() => <PromotionCardImage image={image} />}
+        />
+      </TrackClick>
     </a>
   );
 };
@@ -50,18 +55,13 @@ export default class PromotionCard extends PureComponent<Props> {
     }
 
     return (
-      <TrackClick
-        eventName={EVENTS.MIXPANEL_PROMOTION_CLICKED}
-        data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
-      >
-        <PromotionCardWrapper
-          link={link}
-          image={image}
-          badge={badge}
-          dates={dates}
-          title={title}
-        />
-      </TrackClick>
+      <PromotionCardWrapper
+        link={link}
+        image={image}
+        badge={badge}
+        dates={dates}
+        title={title}
+      />
     );
   }
 }
