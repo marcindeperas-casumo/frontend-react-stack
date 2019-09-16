@@ -6,6 +6,8 @@ import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { ValuableRow } from "Components/ValuableRow";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
+import ScrollableListTitle from "Components/ScrollableListTitle";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 import translationsMock from "./__mocks__/translations.mock.json";
 
@@ -36,7 +38,7 @@ describe("PlayerValuableListVertical", () => {
       />
     );
 
-    expect(rendered.find("GameRowSkeleton").exists()).toBe(true);
+    expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
   test("should render the correct number of items", () => {
@@ -49,14 +51,14 @@ describe("PlayerValuableListVertical", () => {
         refetch={refetchMock}
       />
     );
-    expect(rendered.find("GameRowSkeleton").exists()).toBe(false);
+    expect(rendered.find(GameRowSkeleton).exists()).toBe(false);
     expect(rendered.find(List).find(ValuableRow)).toHaveLength(
       mockedValuables.length
     );
   });
 
   test("should render the list title", () => {
-    expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
+    expect(rendered.find(ScrollableListTitle).prop("title")).toEqual(
       translationsMock.listTitleLabel
     );
   });
