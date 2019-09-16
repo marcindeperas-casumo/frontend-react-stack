@@ -1,4 +1,5 @@
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
+import { VERTICALS } from "Src/constants";
 import {
   handshakeSelector,
   applicationHandshakeSelector,
@@ -485,13 +486,13 @@ describe("Handshake selectors", () => {
         "wo-sports-this-part-doesnt-mattter"
       );
 
-      expect(verticalSelector(state)).toEqual("SPORTS");
+      expect(verticalSelector(state)).toEqual(VERTICALS.SPORTS);
     });
 
     test("defaults to CASINO if welcome offer is not sports related", () => {
       const state = createHandshakeStateWithWelcomeOfferId("wo-something-else");
 
-      expect(verticalSelector(state)).toEqual("CASINO");
+      expect(verticalSelector(state)).toEqual(VERTICALS.CASINO);
     });
 
     test("defaults correctly when welcome offer is not set", () => {
@@ -499,9 +500,9 @@ describe("Handshake selectors", () => {
       const state2 = createHandshakeStateWithWelcomeOfferId();
       const state3 = createHandshakeStateWithWelcomeOfferId(true);
 
-      expect(verticalSelector(state1)).toEqual("CASINO");
-      expect(verticalSelector(state2)).toEqual("CASINO");
-      expect(verticalSelector(state3)).toEqual("CASINO");
+      expect(verticalSelector(state1)).toEqual(VERTICALS.CASINO);
+      expect(verticalSelector(state2)).toEqual(VERTICALS.CASINO);
+      expect(verticalSelector(state3)).toEqual(VERTICALS.CASINO);
     });
   });
 });
