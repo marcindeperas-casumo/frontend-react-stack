@@ -65,7 +65,7 @@ export const ValuableThumbnail = ({
         className="o-ratio__content"
         data-test="valuable-card-header-coin"
         direction="vertical"
-        justify={getCoinAlignment(size)}
+        justify={size === "sm" ? "center" : "end"}
       >
         <div
           className={`c-valuable-card-header-coin-wrapper--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-coin`}
@@ -119,14 +119,6 @@ export const ValuableThumbnail = ({
     </div>
   );
 };
-
-function getCoinAlignment(size: string) {
-  if (size === "sm") {
-    return "center";
-  }
-
-  return "end";
-}
 
 function getCoinClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
