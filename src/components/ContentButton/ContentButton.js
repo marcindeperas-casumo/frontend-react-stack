@@ -25,7 +25,7 @@ export class ContentButton extends PureComponent<Props> {
 
     return url ? (
       <div className="u-margin-bottom--xlg u-margin-x--lg">
-        <Button className="u-width--1/1" href={url}>
+        <Button variant="primary" className="u-width--1/1" href={url}>
           {text}
         </Button>
       </div>

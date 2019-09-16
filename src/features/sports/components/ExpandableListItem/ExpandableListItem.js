@@ -1,7 +1,8 @@
 /* @flow */
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import type { Node } from "react";
-import { DirectionUpIcon, DirectionDownIcon } from "@casumo/cmp-icons";
+import { DirectionDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 
 type Props = {
@@ -22,10 +23,13 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
   toggleExpanded = () => this.setState({ isExpanded: !this.state.isExpanded });
 
   get icon() {
-    return this.state.isExpanded ? (
-      <DirectionUpIcon className="t-color-grey-dark-2" />
-    ) : (
-      <DirectionDownIcon className="t-color-grey-dark-2" />
+    return (
+      <DirectionDownIcon
+        className={classNames(
+          "t-color-plum",
+          this.state.isExpanded && "u-transform--flip-y"
+        )}
+      />
     );
   }
 

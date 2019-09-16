@@ -10,7 +10,7 @@ import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/components/GraphQL";
 import MaskText from "Components/MaskText";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-import NoResultsIcon from "./no-results-icon.svg";
+import SadSumo from "Components/ErrorMessage/sad-sumo.svg";
 import KambiSearchResultsSkeleton from "./KambiSearchResultsSkeleton";
 
 export const TOP_SEARCHES_QUERY = gql`
@@ -71,7 +71,7 @@ export const SEARCH_QUERY = gql`
 `;
 
 const GroupTitle = ({ children }: { children: React.Node }): React.Node => (
-  <Text className="t-background-white t-color-black-dark-1 u-padding-y--md u-font-weight-bold">
+  <Text className="t-color-chrome-dark-1 u-padding--md u-font-weight-bold">
     {children}
   </Text>
 );
@@ -87,13 +87,12 @@ const ResultRow = ({
 }): React.Node => (
   <div
     className={classNames(
-      "u-padding--md u-cursor-pointer",
+      "u-padding-x--md u-cursor-pointer",
       className || "t-background-white"
     )}
-    style={{ marginBottom: 1 }}
     onClick={onClick}
   >
-    {children}
+    <div className="u-padding-y--md t-border-bottom">{children}</div>
   </div>
 );
 
@@ -195,10 +194,10 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
 
     return (
-      <Flex.Item className="u-margin-x--md t-background-grey-light-2">
+      <>
         {this.renderSearchHistory(noOfSearchHistoryItems)}
         {this.renderPopularSearches(noOfPopularSearchItems)}
-      </Flex.Item>
+      </>
     );
   };
 
@@ -222,19 +221,13 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex align="center">
-              <img
-                src={sport.icon}
-                alt={sport.name}
-                height="24"
-                width="24"
-                className="u-opacity-28"
-              />
-              <Flex.Block className="u-margin-left--lg">
+            <Flex className="u-padding-left" spacing="md" align="center">
+              <img src={sport.icon} alt={sport.name} height="24" width="24" />
+              <Flex.Block>
                 <Text
                   size="sm"
                   tag="span"
-                  className="t-color-grey-dark-2 u-font-weight-bold"
+                  className="t-color-chrome-dark-2 u-font-weight-bold"
                 >
                   {eventGroup.name}
                 </Text>
@@ -258,7 +251,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         tag="span"
         className={classNames(
           "u-font-weight-bold",
-          isMatch ? "t-color-grey-dark-2" : "t-color-grey-dark-1"
+          isMatch ? "t-color-chrome-dark-3" : "t-color-chrome-dark-1"
         )}
       >
         {value}
@@ -283,18 +276,17 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex align="center">
+            <Flex className="u-padding-left" spacing="md" align="center">
               {result.sport && (
                 <img
                   src={result.sport.icon}
                   alt={result.localizedName}
                   height="24"
                   width="24"
-                  className="u-opacity-28"
                 />
               )}
 
-              <Flex.Block className="u-margin-left--lg">
+              <Flex.Block>
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -343,7 +335,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           return (
-            <Flex.Item className="u-margin-x--md t-background-grey-light-2">
+            <>
               {Object.keys(groupedResults).map(typeTitle => (
                 <React.Fragment key={typeTitle}>
                   <GroupTitle>{typeTitle}</GroupTitle>
@@ -352,7 +344,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                   )}
                 </React.Fragment>
               ))}
-            </Flex.Item>
+            </>
           );
         }}
       </SearchTypedQuery>
@@ -362,10 +354,10 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderNoResultsFound = () => {
     return (
       <>
-        <ResultRow className="t-background-grey-light-2 u-padding-x--xlg u-padding-y--lg">
+        <div className="t-background-chrome-light-2 t-color-chrome-dark-1 u-padding-x--xlg u-padding-y--lg">
           <Flex align="center">
             <Flex.Item>
-              <NoResultsIcon />
+              <SadSumo width="32" height="36" />
             </Flex.Item>
             <Flex.Block>
               <Text className="u-margin-left u-margin-bottom--none u-font-weight-bold">
@@ -373,7 +365,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               </Text>
             </Flex.Block>
           </Flex>
-        </ResultRow>
+        </div>
         {this.renderSearchResultsPlaceholder()}
       </>
     );
@@ -385,11 +377,7 @@ class KambiSearchResults extends React.Component<Props, State> {
         ? this.renderSearchResults()
         : this.renderSearchResultsPlaceholder();
 
-    return (
-      <Flex.Block className="u-tablet-search-width t-background-white">
-        {content}
-      </Flex.Block>
-    );
+    return <Flex.Block className="u-tablet-search-width">{content}</Flex.Block>;
   }
 }
 

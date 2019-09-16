@@ -14,6 +14,7 @@ export type ValuableDetailsQuery = {
   depositNowLabel: string,
   expirationTimeLabel: string,
   termsAndConditionsContent: string,
+  wageringStatus: string,
   hour_singular: string,
   hour_plural: string,
   day_singular: string,

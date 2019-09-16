@@ -13,6 +13,7 @@ export type PLAYER_SETTINGS_LABELS_QUERY = {
   mobileNumber: string,
   address: string,
   edit: string,
+  verify: string,
   gamblingExtent: string,
 };/* @flow */
 /* eslint-disable */
@@ -36,6 +37,11 @@ export type ValuableType = "cash" | "deposit" | "spins" | "sport";
  * 
  */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+
+/**
+ * 
+ */
+export type RequirementType = "deposit" | "wager";
 
 export type ContactSettingsInput = {|
   on: boolean

@@ -30,7 +30,7 @@ export class GameRow extends PureComponent<Props> {
         <Flex
           align="center"
           data-test="game-row"
-          className="u-padding-y"
+          className="u-padding--md t-background-white t-border-r--md t-box-shadow"
           onClick={onLaunchGame}
         >
           {/* Image */}
@@ -58,7 +58,10 @@ export class GameRow extends PureComponent<Props> {
 
           {/* Play Icon */}
           <Flex.Item>
-            <PlayIcon className="t-background-white t-color-grey-light-1 t-border-r--circle u-padding--md" />
+            <PlayIcon
+              size="sm"
+              className="t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding"
+            />
           </Flex.Item>
         </Flex>
       </TrackClick>

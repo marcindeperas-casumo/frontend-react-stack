@@ -63,6 +63,7 @@ export const playerSettingsLabelsQueryMock = {
       address: "Address",
       edit: "",
       email: "Email",
+      verify: "Verify",
       gamblingExtent: "Estimated monthly deposit",
       mobileNumber: "Mobile number",
       name: "Name",

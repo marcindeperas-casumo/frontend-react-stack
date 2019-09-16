@@ -36,6 +36,8 @@ export default class TileListHorizontalSkeleton extends PureComponent<Props> {
     const tileSpan = tileRadius * 2 + tileGutter;
     return (
       <Skeleton
+        colorHi="#d3d8e1"
+        colorLow="#e5eaed"
         className={className}
         width={numberOfItems * tileSpan}
         height="240"

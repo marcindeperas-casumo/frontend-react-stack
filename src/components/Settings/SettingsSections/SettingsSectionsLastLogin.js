@@ -28,32 +28,37 @@ export const SettingsSectionsLastLogin = ({
     });
 
   return (
-    <div className="u-text-align-center u-line-height--15">
-      <div>
+    <div className="u-text-align-center u-line-height--15 u-margin-bottom--md">
+      <Text size="sm" className="t-color-chrome-dark-1">
         {currentSessionMessageLabel}&nbsp;
         <Timer
           startTime={time}
           render={({ hours, minutes, seconds }) => (
-            <strong>
+            <strong className="t-color-chrome-dark-2">
               {hours}:{minutes}:{seconds}
             </strong>
           )}
         />
-      </div>
-      <ContentReplacer
-        value={lastSessionMessageLabel}
-        replacements={{
-          lastLoginDate: dateObject.toLocaleString(DateTime.DATE_FULL),
-          lastLoginTime: dateObject.toLocaleString(DateTime.TIME_24_SIMPLE),
-        }}
-      />
-      <Text tag="p">
-        <a
-          className="u-cursor-pointer u-font-weight-bold"
-          onClick={openAccountActivity}
-        >
-          {accountActivityLabel}
-        </a>
+      </Text>
+      <Text size="sm" className="t-color-chrome-dark-1 u-margin-bottom">
+        <ContentReplacer
+          value={lastSessionMessageLabel}
+          replacements={{
+            lastLoginDate: `<span class="t-color-chrome-dark-2">${dateObject.toLocaleString(
+              DateTime.DATE_FULL
+            )}</span>`,
+            lastLoginTime: `<span class="t-color-chrome-dark-2">${dateObject.toLocaleString(
+              DateTime.TIME_24_SIMPLE
+            )}</span>`,
+          }}
+        />
+      </Text>
+      <Text
+        tag="div"
+        className="u-cursor-pointer u-font-weight-bold t-color-text-link"
+        onClick={openAccountActivity}
+      >
+        {accountActivityLabel}
       </Text>
     </div>
   );

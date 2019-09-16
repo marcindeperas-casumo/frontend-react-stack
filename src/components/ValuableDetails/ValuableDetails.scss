@@ -1,5 +1,6 @@
 .c-valuable-details__footer {
-  bottom: 16px;
+  background-color: rgba(cudl-palette(white), 0.9);
+  bottom: 0;
   position: sticky;
 }
 
@@ -7,4 +8,7 @@
   border-radius: 3px;
   height: 100vh;
   width: 100vw;
+}
+.c-valuable-details__separator {
+  border-color: cudl-palette(grey, "light-2");
 }

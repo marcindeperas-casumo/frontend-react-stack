@@ -35,7 +35,7 @@ class MustDropJackpotsWidget extends PureComponent<Props> {
     return (
       <a
         href="/en/games/must-drop-jackpots"
-        className="o-flex--vertical u-width--1/1 t-border-r--md u-overflow-hidden"
+        className="o-flex--vertical u-width--1/1 u-height--1/1 t-border-r--md u-overflow-hidden"
       >
         {jackpots.map(jackpot => (
           <MustDropJackpot key={jackpot.id} jackpot={jackpot} />

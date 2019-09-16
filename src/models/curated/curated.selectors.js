@@ -4,19 +4,13 @@ import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
 import { hasMadeFirstDepositSelector } from "Models/handshake";
 import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
-import { flavourMatchSelector, AB_TESTS_FEATURE } from "Models/ABTesting";
 
 export const curatedSlugSelector = slug =>
   createSelector(
     hasMadeFirstDepositSelector,
-    flavourMatchSelector(AB_TESTS_FEATURE.DEPOSIT_NOW, "curated-card"),
-    (hasMadeFirstDeposit, ABTestFlavourMatch) => {
-      // Remove this once we are done with the test
-      if (ABTestFlavourMatch) {
-        // Keep only this code after abtest is removed
-        const cardToShow = !hasMadeFirstDeposit ? WELCOME_OFFER_CARD : slug;
-
-        return `${CURATED_SLUG}.${cardToShow}`;
+    hasMadeFirstDeposit => {
+      if (!hasMadeFirstDeposit) {
+        return `${CURATED_SLUG}.${WELCOME_OFFER_CARD}`;
       }
 
       return `${CURATED_SLUG}.${slug}`;

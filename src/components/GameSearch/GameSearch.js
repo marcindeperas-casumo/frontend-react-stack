@@ -109,7 +109,7 @@ export class GameSearch extends React.PureComponent<Props> {
     return (
       <div className="c-game-search">
         <div className="c-game-search-bar u-position-sticky">
-          <div className="t-background-grey-light-2">
+          <div className="t-background-chrome-light-2">
             <GameSearchInput
               className="u-game-search-max-width u-padding--md"
               initFetchGameSearchCount={this.props.initFetchGameSearchCount}

@@ -11,7 +11,11 @@ import type {
   LimitAdjustmentHistory,
 } from "./depositLimits.types";
 import { kindEq } from "./depositLimits.selectors";
-import { getChangedLimitsValues, diffLimits } from "./depositLimits.utils";
+import {
+  getChangedLimitsValues,
+  diffLimits,
+  limitTypes,
+} from "./depositLimits.utils";
 
 export const DEFAULT_STATE = {
   limits: undefined,
@@ -38,7 +42,7 @@ function handleDGOJLimitChange(limitDGOJ: DepositLimit) {
     },
     limits,
     undoable: R.prop("undoable", limitDGOJ),
-    lock: R.prop("lock", limitDGOJ),
+    lock: R.pathOr(null, ["lock", "expiresOn"], limitDGOJ),
   };
 }
 
@@ -73,7 +77,7 @@ const handlers = {
   }),
   [depositLimitsTypes.REMAINING_LIMITS_DONE]: (state, { response }) => ({
     ...state,
-    remaining: response?.value,
+    remaining: R.propOr({}, "value", response),
   }),
   [depositLimitsTypes.RESPONSIBLE_GAMBLING_TEST_DONE]: (
     state,
@@ -92,38 +96,41 @@ const handlers = {
       monthly: null,
     };
     // we're getting a lot of 💩 in that response...
-    const history = R.map(x => {
+    const history = R.map(historyEntry => {
       const before = R.pathOr(
         defaultLimit,
         ["stateBefore", "limit", "value"],
-        x
+        historyEntry
       );
-      const after = R.pathOr(defaultLimit, ["stateAfter", "limit", "value"], x);
-      const changes = getChangedLimitsValues({ before, after });
+      const after = R.pathOr(
+        defaultLimit,
+        ["stateAfter", "limit", "value"],
+        historyEntry
+      );
+      const changedValues = getChangedLimitsValues({ before, after });
       const type: LimitChangeType = R.pipe(
         R.keys,
         R.head,
         R.prop(R.__, diffLimits({ before, after }))
-      )(changes);
-
-      const setOnRegistration = R.pathSatisfies(
-        R.equals("PLAYER_REGISTERED"),
-        ["request", "type"],
-        x
-      );
+      )(changedValues);
+      const changes = limitTypes
+        .filter(R.has(R.__, changedValues))
+        .map(limitKind => ({
+          limitKind,
+          before: before[limitKind],
+          after: after[limitKind],
+        }));
 
       return {
-        id: x.id,
-        timestamp: R.path(["request", "timestamp"], x),
         type,
-        changes: R.mapObjIndexed(
-          (_, key) => ({
-            before: before[key],
-            after: after[key],
-          }),
-          changes
+        changes,
+        id: historyEntry.id,
+        timestamp: R.path(["request", "timestamp"], historyEntry),
+        setOnRegistration: R.pathSatisfies(
+          R.equals("PLAYER_REGISTERED"),
+          ["request", "type"],
+          historyEntry
         ),
-        ...(setOnRegistration ? { setOnRegistration } : {}),
       };
     }, response);
 

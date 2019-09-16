@@ -79,7 +79,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
           />
         </SportsModal.Content>
 
-        {selectedCompetitionsCount === 0 ? null : (
+        {selectedCompetitionsCount > 0 && (
           <SportsModal.Footer>
             <ModalButtonFooter onClick={this.onSave}>
               <PluralisableDictionaryTerm

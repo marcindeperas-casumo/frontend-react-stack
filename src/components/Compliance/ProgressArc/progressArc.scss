@@ -1,0 +1,9 @@
+.c-progress-arc {
+  @include cudl-breakpoint-with(
+    (
+      mobile: 20px,
+      desktop: 95px,
+    ),
+    height
+  );
+}

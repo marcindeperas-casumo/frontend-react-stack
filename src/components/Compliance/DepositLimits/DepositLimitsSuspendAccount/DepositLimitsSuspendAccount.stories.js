@@ -9,7 +9,8 @@ const stories = storiesOf("DepositLimitsSuspendAccount", module);
 stories.add("Default", () => (
   <DepositLimitsSuspendAccount
     t={{
-      main_title: "Suspend account",
+      suspend_account: "Suspend account",
+      add: "Add",
     }}
     fetchTranslations={action("fetchTranslations click")}
     showOldSuspendAccountView={action("showOldSuspendAccountView click")}

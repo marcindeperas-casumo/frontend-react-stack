@@ -5,6 +5,8 @@ export default class MustDropJackpotsWidgetSkeleton extends PureComponent {
   render() {
     return (
       <Skeleton
+        colorHi="#d3d8e1"
+        colorLow="#e5eaed"
         className="u-display--block"
         viewBox={null}
         width="100%"
