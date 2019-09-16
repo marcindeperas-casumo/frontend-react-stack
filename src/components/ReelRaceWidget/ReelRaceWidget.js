@@ -7,8 +7,6 @@ import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
 import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
-// import { RR_STATE } from "Models/reelRaceWidget";
-// import type { LeaderBoard } from "Models/reelRaceWidget";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 import { GameThumb } from "Components/GameThumb";
@@ -30,43 +28,77 @@ type Props = ReelRace & {
   playerSpins: number,
 };
 
+// eslint-disable-next-line sonarjs/cognitive-complexity
 export function ReelRaceWidget(props: Props) {
-  const { t, game, playing } = props;
-  const started = props.startTime < Date.now();
-
-  const timeRemaining = (): number =>
-    DateTime.fromMillis(started ? props.endTime : props.startTime)
-      .diffNow()
-      .valueOf();
-
-  React.useEffect(() => {
-    if (!props.isReelRacesFetched) {
-      props.fetchReelRaces();
-    }
-    if (!props.areTranslationsFetched) {
-      props.fetchTranslations();
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  const [started, setStarted] = React.useState(false);
+  const {
+    t,
+    game,
+    playing,
+    endTime,
+    startTime,
+    isReelRacesFetched,
+    areTranslationsFetched,
+    fetchReelRaces,
+    fetchTranslations,
+    tournamentId,
+    subscribeReelRacesUpdates,
+    unsubscribeReelRacesUpdates,
+  } = props;
 
   React.useEffect(() => {
-    if (props.tournamentId) {
-      props.subscribeReelRacesUpdates();
+    const now = Date.now();
+    const boo = Boolean(startTime < now && endTime > now);
+
+    return setStarted(boo);
+  }, [startTime, endTime]);
+
+  React.useEffect(() => {
+    if (!isReelRacesFetched) {
+      fetchReelRaces();
+    }
+    if (!areTranslationsFetched) {
+      fetchTranslations();
+    }
+  }, [
+    isReelRacesFetched,
+    areTranslationsFetched,
+    fetchReelRaces,
+    fetchTranslations,
+  ]);
+
+  React.useEffect(() => {
+    const timeRemaining = (): number =>
+      DateTime.fromMillis(started ? endTime : startTime)
+        .diffNow()
+        .valueOf();
+    if (tournamentId) {
+      subscribeReelRacesUpdates();
       const timer = setTimeout(() => {
-        props.fetchReelRaces();
+        fetchReelRaces();
       }, timeRemaining());
 
       return () => {
-        props.unsubscribeReelRacesUpdates();
+        unsubscribeReelRacesUpdates();
         clearTimeout(timer);
       };
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.tournamentId]);
+  }, [
+    endTime,
+    fetchReelRaces,
+    startTime,
+    started,
+    subscribeReelRacesUpdates,
+    tournamentId,
+    unsubscribeReelRacesUpdates,
+  ]);
 
   if (!props.startTime) {
     return null;
   }
+
+  // eslint-disable-next-line no-console
+  console.log(`${started ? "STARTED" : "NEXT"} - ${props.gameSlug}`);
 
   return (
     <Flex direction="vertical" justify="space-between">
@@ -106,13 +138,13 @@ export function ReelRaceWidget(props: Props) {
           >
             {started ? (
               <Timer
-                endTime={props.endTime}
+                endTime={endTime}
                 render={o => `${o.minutes}:${o.seconds}`}
                 onEnd={() => "00:00"}
               />
             ) : (
               <Timer
-                endTime={props.startTime}
+                endTime={startTime}
                 render={o => `${o.minutes}:${o.seconds}`}
                 onEnd={() => "00:00"}
               />
@@ -140,7 +172,7 @@ export function ReelRaceWidget(props: Props) {
       {started && (
         <>
           <ReelRaceLeaderboardWidget
-            tournamentId={props.tournamentId}
+            tournamentId={tournamentId}
             playerId={props.playerId}
           />
           <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />

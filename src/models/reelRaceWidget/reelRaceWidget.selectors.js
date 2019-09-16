@@ -23,7 +23,8 @@ export const reelRaceWidgetSelector = createSelector(
     return R.pipe(
       R.values,
       R.sortBy(R.prop("startTime")),
-      R.either(R.find(optedStarted), R.find(optedScheduled))
+      R.either(R.find(optedStarted), R.find(optedScheduled)),
+      R.defaultTo(null)
     )(reelRaces);
   }
 );
@@ -38,6 +39,8 @@ export const reelRacePlayerSpinsSelector = createSelector(
         R.prop(playerId),
         R.prop("remainingSpins")
       )(reelRace);
+    } else {
+      return null;
     }
   }
 );

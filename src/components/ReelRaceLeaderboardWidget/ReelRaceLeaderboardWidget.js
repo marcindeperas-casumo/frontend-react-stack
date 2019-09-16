@@ -3,7 +3,7 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
-import type { LeaderBoard } from "Models/reelRaceWidget";
+import type { LeaderBoard } from "Models/reelRaceLeaderboardWidget";
 
 type Props = {
   leaderboard: Array<LeaderBoard>,
@@ -36,9 +36,6 @@ export function ReelRaceLeaderboardWidget(props: Props) {
     R.prop("playerId"),
     R.concat(R.take(3, l), R.slice(i - 3, i + 1, l))
   );
-
-  // eslint-disable-next-line no-console
-  console.log(props);
 
   return (
     <Flex direction="vertical" className="u-width--1/1">
