@@ -4,10 +4,11 @@
  */
 // @flow
 import * as React from "react";
+import ReactModal from "react-modal";
 import { shallow, mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { useDelayedText } from "./RSModal";
+import { useDelayedText, Modal } from "./RSModal";
 
 jest.useFakeTimers();
 
@@ -77,5 +78,44 @@ describe("useDelayedText", () => {
     wrapper.setProps({ args: [modal2, text2] });
     wrapper.update();
     expectHook(wrapper).toEqual(text2); // even if 1st arg doesn't change it should return 2nd arg as soon as available
+  });
+});
+
+describe("RSModal", () => {
+  beforeAll(() => {
+    // supress ReactModal warning
+    ReactModal.setAppElement("*");
+  });
+
+  test("Correctly renders modal header when headerBgColor, headerTextColor and headerIsTextCentered are provided", () => {
+    const wrapper = mount(
+      <Modal
+        t={text1}
+        modalType={modal1}
+        hideModal={() => {}}
+        headerBgColor="green"
+        headerTextColor="black"
+        headerIsTextCentered={true}
+      />
+    );
+    const headerEl = wrapper.find(`[data-test-name="rsmodal-header"]`).first();
+    const headerTextEl = wrapper
+      .find(`[data-test-name="rsmodal-header-text"]`)
+      .first();
+
+    expect(headerEl.hasClass("t-background-green")).toEqual(true);
+
+    expect(headerTextEl.hasClass("t-color-black")).toEqual(true);
+
+    expect(
+      wrapper
+        .find(`[data-test-name="rsmodal-header-close"]`)
+        .first()
+        .hasClass("t-color-black")
+    ).toEqual(true);
+
+    expect(headerTextEl.hasClass("o-flex__block u-text-align-center")).toEqual(
+      true
+    );
   });
 });

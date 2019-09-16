@@ -25,10 +25,12 @@ export function ModalHeader(props: Props) {
       align="center"
       spacing="md"
       justify="space-between"
+      data-test-name="rsmodal-header"
     >
       <Text
         size="sm"
         tag="span"
+        data-test-name="rsmodal-header-text"
         className={classNames(
           "u-font-weight-bold",
           `t-color-${props.textColor || "white"}`,
@@ -41,6 +43,7 @@ export function ModalHeader(props: Props) {
         className={`u-padding-right--lg t-color-${props.textColor ||
           "blue"} u-cursor-pointer"`}
         onClick={props.hideModal}
+        data-test-name="rsmodal-header-close"
       />
     </Flex>
   );
