@@ -31,6 +31,8 @@ export type PlayerValuablesQuery_player_valuables = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 } | {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -43,6 +45,8 @@ export type PlayerValuablesQuery_player_valuables = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   description: string,
   coinValue: number,
   requirementType: ?RequirementType,
@@ -59,6 +63,8 @@ export type PlayerValuablesQuery_player_valuables = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   requirementType: ?RequirementType,
 };
 

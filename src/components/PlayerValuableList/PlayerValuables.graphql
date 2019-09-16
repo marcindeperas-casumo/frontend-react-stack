@@ -18,6 +18,8 @@ query PlayerValuablesQuery {
       currency
       market
       backgroundImage
+      wageringThreshold
+      leftToWager
       ... on PlayerValuableSpins {
         description
         coinValue
@@ -45,6 +47,8 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     currency
     market
     backgroundImage
+    wageringThreshold
+    leftToWager
     ... on PlayerValuableSpins {
       description
       coinValue

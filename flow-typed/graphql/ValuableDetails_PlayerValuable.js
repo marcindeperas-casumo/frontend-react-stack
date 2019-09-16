@@ -12,9 +12,13 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
@@ -27,9 +31,13 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   requirementType: ?RequirementType,
   game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
@@ -40,9 +48,13 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   backgroundImage: string,
   content: string,
   caveat: ?string,
+  currency: Currency,
+  market: string,
   expirationTimeInHours: number,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   requirementType: ?RequirementType,
 };
 
