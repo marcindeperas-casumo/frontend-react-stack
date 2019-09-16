@@ -46,6 +46,7 @@ type Props = {
 export class ValuableRow extends PureComponent<Props> {
   static defaultProps = {
     valuableState: VALUABLE_STATES.FRESH,
+    caveat: null,
   };
 
   get isValuableTypeSpins() {
@@ -94,64 +95,61 @@ export class ValuableRow extends PureComponent<Props> {
       stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH;
 
     return (
-      <div className="c-valuable-row">
-        <Flex
-          className="u-padding--md"
-          data-test="valuable-row"
-          direction="horizontal"
-          onClick={this.props.onCardClick}
-        >
-          <Flex.Item className="u-width--1/5">
-            <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
-              <ValuableThumbnail
-                backgroundRenderer={this.image}
-                coinValue={coinValue}
-                currency={currency}
-                expirationTimeInHours={expirationTimeInHours}
-                market={market}
-                translatedHoursUnit={translatedHoursUnit}
-                valuableState={valuableState}
-                valuableType={valuableType}
-                size="sm"
-              />
-            </div>
-          </Flex.Item>
-          <Flex.Block>
-            {showStateBadge && (
-              <span className={stateBadgeProperties.classModifiers}>
-                {stateBadgeProperties.icon}
-              </span>
-            )}
-            <Text
-              className="t-color-grey-dark-2 u-font-weight-bold"
+      <Flex
+        className="u-padding--md"
+        data-test="valuable-row"
+        onClick={this.props.onCardClick}
+      >
+        <Flex.Item className="u-width--1/5">
+          <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
+            <ValuableThumbnail
+              backgroundRenderer={this.image}
+              coinValue={coinValue}
+              currency={currency}
+              expirationTimeInHours={expirationTimeInHours}
+              market={market}
+              translatedHoursUnit={translatedHoursUnit}
+              valuableState={valuableState}
+              valuableType={valuableType}
               size="sm"
-              tag="span"
-            >
-              <DangerousHtml data-test="valuable-card-title" html={title} />
+            />
+          </div>
+        </Flex.Item>
+        <Flex.Block>
+          {showStateBadge && (
+            <span className={stateBadgeProperties.classModifiers}>
+              {stateBadgeProperties.icon}
+            </span>
+          )}
+          <Text
+            className="t-color-grey-dark-2 u-font-weight-bold"
+            size="sm"
+            tag="span"
+          >
+            <DangerousHtml data-test="valuable-card-title" html={title} />
+          </Text>
+          {description && (
+            <Text className="u-margin-top" size="sm" tag="div">
+              <DangerousHtml
+                data-test="valuable-card-description"
+                html={description}
+              />
             </Text>
-            {description && (
-              <Text className="u-margin-top" size="sm" tag="div">
-                <DangerousHtml
-                  data-test="valuable-card-description"
-                  html={description}
-                />
-              </Text>
-            )}
-            {caveat && (
-              <Text
-                className="t-color-grey-light-1 u-margin-top--md"
-                size="2xs"
-                tag="div"
-              >
-                <DangerousHtml
-                  data-test="valuable-card-description"
-                  html={caveat}
-                />
-              </Text>
-            )}
-          </Flex.Block>
-        </Flex>
-      </div>
+          )}
+          {caveat && (
+            <Text
+              className="t-color-grey-light-1 u-margin-top--md"
+              size="2xs"
+              tag="div"
+            >
+              <DangerousHtml
+                data-test="valuable-card-description"
+                html={caveat}
+              />
+            </Text>
+          )}
+        </Flex.Block>
+      </Flex>
     );
   }
 }
