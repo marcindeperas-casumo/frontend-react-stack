@@ -36,9 +36,11 @@ export const ValuableDetailsWithModal = ({
   const isMobile = useMedia(getMediaQuery(mobileBreakpoint));
   const isDesktop = useMedia(getMediaQuery(desktopBreakpoint));
 
-  const modalClassName = isMobile = "c-valuable-details-modal--mobile-portrait" : "c-valuable-details-modal--desktop";
+  const modalClassName = isMobile
+    ? "c-valuable-details-modal--mobile-portrait"
+    : "c-valuable-details-modal--desktop";
 
-  const ValuableModal = ({ className }) => (
+  const ValuableModal = ({ className }: { className: string }) => (
     <AbstractModal
       isOpen={isOpen}
       hideModal={onClose}
@@ -49,17 +51,5 @@ export const ValuableDetailsWithModal = ({
     </AbstractModal>
   );
 
-  return (
-    <>
-      <Desktop>
-        <ValuableModal className="c-valuable-details-modal--desktop" />
-      </Desktop>
-      <Mobile orientation={ORIENTATION_VALUES.LANDSCAPE}>
-        <ValuableModal className="c-valuable-details-modal--mobile-landscape" />
-      </Mobile>
-      <Mobile orientation={ORIENTATION_VALUES.PORTRAIT}>
-        <ValuableModal className="c-valuable-details-modal--mobile-portrait" />
-      </Mobile>
-    </>
-  );
+  return <ValuableModal className={modalClassName} />;
 };
