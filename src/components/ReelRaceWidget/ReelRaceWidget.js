@@ -7,8 +7,8 @@ import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
 import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
-import { RR_STATE } from "Models/reelRaceWidget";
-import type { LeaderBoard } from "Models/reelRaceWidget";
+// import { RR_STATE } from "Models/reelRaceWidget";
+// import type { LeaderBoard } from "Models/reelRaceWidget";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 import { GameThumb } from "Components/GameThumb";
@@ -27,15 +27,12 @@ type Props = ReelRace & {
   playing: Playing,
   t: ReelRacesTranslations,
   playerId: string,
+  playerSpins: number,
 };
 
 export function ReelRaceWidget(props: Props) {
   const { t, game, playing } = props;
-
-  // eslint-disable-next-line no-console
-  console.log(props);
-
-  const started = props.status === RR_STATE.STARTED;
+  const started = props.startTime < Date.now();
 
   const timeRemaining = (): number =>
     DateTime.fromMillis(started ? props.endTime : props.startTime)
@@ -135,7 +132,7 @@ export function ReelRaceWidget(props: Props) {
             size="lg"
             className="u-font-weight-bold t-color-plum"
           >
-            {props.spins}
+            {props.playerSpins || props.spins}
           </Text>
         </Flex>
       </Flex>

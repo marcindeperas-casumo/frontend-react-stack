@@ -1,6 +1,9 @@
 // @flow
 import { connect } from "react-redux";
-import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
+import {
+  reelRaceWidgetSelector,
+  reelRacePlayerSpinsSelector,
+} from "Models/reelRaceWidget";
 import { gameSelector } from "Models/schema";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { launchGame } from "Models/games";
@@ -40,6 +43,7 @@ export default connect(
       },
       tournamentChannels: tournamentChannelsSelector(state),
       playerId: playerIdSelector(state),
+      playerSpins: reelRacePlayerSpinsSelector(state),
     };
   },
   dispatch => ({

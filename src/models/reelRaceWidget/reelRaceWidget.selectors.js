@@ -3,6 +3,7 @@ import { createSelector } from "reselect";
 import * as R from "ramda";
 import { reelRacesSelector } from "Models/reelRaces";
 import { RR_STATE } from "Models/reelRaceWidget";
+import { playerIdSelector } from "Models/handshake";
 
 export const reelRaceWidgetSelector = createSelector(
   reelRacesSelector,
@@ -24,5 +25,19 @@ export const reelRaceWidgetSelector = createSelector(
       R.sortBy(R.prop("startTime")),
       R.either(R.find(optedStarted), R.find(optedScheduled))
     )(reelRaces);
+  }
+);
+
+export const reelRacePlayerSpinsSelector = createSelector(
+  reelRaceWidgetSelector,
+  playerIdSelector,
+  (reelRace, playerId) => {
+    if (reelRace && playerId) {
+      return R.pipe(
+        R.prop("leaderboard"),
+        R.prop(playerId),
+        R.prop("remainingSpins")
+      )(reelRace);
+    }
   }
 );

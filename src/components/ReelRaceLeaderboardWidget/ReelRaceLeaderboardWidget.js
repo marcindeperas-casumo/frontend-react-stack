@@ -48,7 +48,7 @@ export function ReelRaceLeaderboardWidget(props: Props) {
           key={p.playerId}
           className={
             props.playerId === p.playerId
-              ? "u-font-weight-bold t-background-turquoise t-color-plum"
+              ? "u-font-weight-bold t-background-turquoise t-color-white"
               : ""
           }
         >

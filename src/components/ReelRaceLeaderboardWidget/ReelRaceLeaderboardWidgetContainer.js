@@ -1,6 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import { playerIdSelector } from "Models/handshake";
+import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
 import {
   subscribeReelRacePlayerLeaderboard,
@@ -18,29 +18,54 @@ export default connect(
       tournamentId,
       leaderboard,
       playerId: playerIdSelector(state),
+      tournamentChannels: tournamentChannelsSelector(state),
     };
   },
   dispatch => ({
-    subscribeUpdates: (tournamentId, playerId) => {
-      dispatch(subscribeReelRacePlayerLeaderboard(tournamentId, playerId));
+    subscribeUpdates: (tournamentChannels, tournamentId, playerId) => {
+      tournamentChannels.map(channelPrefix => {
+        return dispatch(
+          subscribeReelRacePlayerLeaderboard(
+            channelPrefix,
+            tournamentId,
+            playerId
+          )
+        );
+      });
       dispatch(subscribeReelRaceLeaderboard(tournamentId, playerId));
     },
-    unsubscribeUpdates: (tournamentId, playerId) => {
-      dispatch(unsubscribeReelRacePlayerLeaderboard(tournamentId, playerId));
+    unsubscribeUpdates: (tournamentChannels, tournamentId, playerId) => {
+      tournamentChannels.map(channelPrefix => {
+        return dispatch(
+          unsubscribeReelRacePlayerLeaderboard(
+            channelPrefix,
+            tournamentId,
+            playerId
+          )
+        );
+      });
       dispatch(unsubscribeReelRaceLeaderboard(tournamentId, playerId));
     },
   }),
   (stateProps, dispatchProps, ownProps) => {
-    const { playerId } = stateProps;
+    const { playerId, tournamentChannels } = stateProps;
     const { tournamentId } = ownProps;
 
     return {
       ...stateProps,
       ...dispatchProps,
       subscribeUpdates: () =>
-        dispatchProps.subscribeUpdates(tournamentId, playerId),
+        dispatchProps.subscribeUpdates(
+          tournamentChannels,
+          tournamentId,
+          playerId
+        ),
       unsubscribeUpdates: () =>
-        dispatchProps.unsubscribeUpdates(tournamentId, playerId),
+        dispatchProps.unsubscribeUpdates(
+          tournamentChannels,
+          tournamentId,
+          playerId
+        ),
     };
   }
 )(ReelRaceLeaderboardWidget);

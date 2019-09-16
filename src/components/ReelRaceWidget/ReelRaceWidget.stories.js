@@ -58,6 +58,7 @@ const props = {
   },
   leaderboard: [],
   playerId: "123",
+  playerSpins: 200,
 };
 
 stories.add("Default", () => {

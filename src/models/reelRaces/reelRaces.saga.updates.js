@@ -1,5 +1,6 @@
-import { put, select } from "redux-saga/effects";
+import { put, select, call } from "redux-saga/effects";
 import { mergeEntity } from "Models/schema";
+import { updateLeaderboardSaga } from "Models/reelRaceLeaderboardWidget";
 import { reelRacesByIdSelector } from "./reelRaces.selectors";
 
 export function* reelRacesUpdatesSaga(action) {
@@ -14,5 +15,9 @@ export function* reelRacesUpdatesSaga(action) {
     };
 
     yield put(mergeEntity({ reelRaces }));
+  }
+
+  if (data.leaderboard) {
+    yield call(updateLeaderboardSaga, { data });
   }
 }
