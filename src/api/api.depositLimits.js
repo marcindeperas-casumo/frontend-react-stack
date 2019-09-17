@@ -32,7 +32,7 @@ export function limitAdjust(data: AllLimits): Promise<DepositLimit> {
 }
 
 export function limitPreadjust(): Promise<DepositLimitPreadjust> {
-  return http.post(`${USER_LIMITS}/preadjust`);
+  return http.get(`${USER_LIMITS}/preadjust`);
 }
 
 export function limitCancel() {
