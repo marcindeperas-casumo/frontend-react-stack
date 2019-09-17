@@ -42,7 +42,7 @@ describe("PlayerValuableListVertical", () => {
   });
 
   test("should render the correct number of items", () => {
-    rendered = mount(
+    rendered = shallow(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}
@@ -52,9 +52,12 @@ describe("PlayerValuableListVertical", () => {
       />
     );
     expect(rendered.find(GameRowSkeleton).exists()).toBe(false);
-    expect(rendered.find(List).find(ValuableRow)).toHaveLength(
-      mockedValuables.length
-    );
+    expect(
+      rendered
+        .find(List)
+        .dive()
+        .find(ValuableRow)
+    ).toHaveLength(mockedValuables.length);
   });
 
   test("should render the list title", () => {
