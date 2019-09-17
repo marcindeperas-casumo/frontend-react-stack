@@ -14,6 +14,14 @@ type Props = {
   seeMore: string,
 };
 
+const promotionCardContainerRenderer = ({ id }) => (
+  <PromotionCardContainer
+    slug={`promotions.${id}`}
+    link={`promotions/${id}`}
+    key={id}
+  />
+);
+
 class PromotionCardList extends PureComponent<Props> {
   componentDidMount() {
     this.props.fetchCampaign();
@@ -22,16 +30,9 @@ class PromotionCardList extends PureComponent<Props> {
 
   render() {
     const { title = "", promotionsSlugs, seeMore } = this.props;
-    const hasNoPromotionSlugs = !promotionsSlugs || !promotionsSlugs.length;
+    const hasNoPromotionSlugs = !promotionsSlugs.length;
     const seeMoreUrl = "/promotions";
     const itemClassName = "c-promotion-card";
-    const promotionCardContainerRenderer = ({ id }) => (
-      <PromotionCardContainer
-        slug={`promotions.${id}`}
-        link={`promotions/${id}`}
-        key={id}
-      />
-    );
 
     if (hasNoPromotionSlugs) {
       return null;
