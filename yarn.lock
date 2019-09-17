@@ -1381,10 +1381,10 @@
     "@casumo/cudl-compile" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl-heights@^1.0.0":
-  version "1.0.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl-heights/-/cudl-heights-1.0.0.tgz#6c495c4a3ba45768c90b76b4bafe0c12402411b4"
-  integrity sha512-ca6EbFpYEUQsJ/4BiuQDRu0bqqaeH2db8qt9qbhA7dhFrsNdKHeAyAAobgGMOfaQjz/1DSr7S8lZeKJzGWQ3Gg==
+"@casumo/cudl-heights@^1.0.1":
+  version "1.0.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl-heights/-/cudl-heights-1.0.1.tgz#8a16fbdc0a9ed89d17e9a8c43e79064ea838f7d9"
+  integrity sha512-JLQLh81XW4nezbRZpaap6NR+xLtebqJmkxRODxEGNSaXtz2XxEYYQQLvrE5ZQ2q4ft5YBlwrn2S5Y8pG6I1SCw==
   dependencies:
     "@casumo/cudl-breakpoints" "^1.1.4"
     "@casumo/cudl-compile" "^1.0.6"
@@ -1564,10 +1564,10 @@
     "@casumo/cudl-utils" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
-"@casumo/cudl@^8.0.0":
-  version "8.0.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-8.0.0.tgz#9a7b352c9a482a8013497ea98692fc711b08bb46"
-  integrity sha512-g8zrIW5YZSQuhrs59yZBwT1/aKKiwN4PqU23a3P1wYP6LcPvDZ/SaUGWSQQCGP5G8F3ZTSUBQU/8wV7AlCSW9g==
+"@casumo/cudl@^8.0.1":
+  version "8.0.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcudl/-/cudl-8.0.1.tgz#93f720bc6b47cb32dd8321bb7558456d5b64436b"
+  integrity sha512-AUYUv7CKeuBr6dZJlh031ItdLRHQzFnUaJKfhu8+RZlbwcPQwqZqX0BocgrPDgvZ+8zoF8jwtFRb6u6rRXto1A==
   dependencies:
     "@casumo/cudl-border-radius" "^1.0.1"
     "@casumo/cudl-borders" "^4.0.2"
@@ -1578,7 +1578,7 @@
     "@casumo/cudl-compile" "^1.0.6"
     "@casumo/cudl-display" "^1.1.4"
     "@casumo/cudl-flex" "^5.0.4"
-    "@casumo/cudl-heights" "^1.0.0"
+    "@casumo/cudl-heights" "^1.0.1"
     "@casumo/cudl-icons" "^3.0.3"
     "@casumo/cudl-layout" "^4.0.4"
     "@casumo/cudl-mock" "^1.0.6"

@@ -65,7 +65,7 @@ stories.add("Default - With modal", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetailsWithModal>

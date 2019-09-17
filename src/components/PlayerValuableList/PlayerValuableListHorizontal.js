@@ -89,7 +89,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
                   {...valuable}
                   translations={valuableThumbnailTranslations}
                   onCardClick={() => showModal(valuable)}
-                  className="u-drop-shadow--sm"
+                  className="t-box-shadow"
                 />
               </div>
             </div>
@@ -109,7 +109,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
               {...selectedValuable}
               translations={valuableThumbnailTranslations}
               caveat={null}
-              className="u-drop-shadow--lg"
+              className="t-box-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>
