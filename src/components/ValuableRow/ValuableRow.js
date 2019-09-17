@@ -124,11 +124,7 @@ export class ValuableRow extends PureComponent<Props> {
               {stateBadgeProperties.icon}
             </span>
           )}
-          <Text
-            className="t-color-grey-dark-2 u-font-weight-bold"
-            size="sm"
-            tag="span"
-          >
+          <Text className="u-font-weight-bold" size="sm" tag="span">
             <DangerousHtml data-test="valuable-row-title" html={title} />
           </Text>
           {description && (
