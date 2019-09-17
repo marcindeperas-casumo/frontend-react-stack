@@ -139,7 +139,7 @@ export class ValuableRow extends PureComponent<Props> {
               size="2xs"
               tag="div"
             >
-              <DangerousHtml data-test="valuable-row-caveat" html={caveat} />
+              <DangerousHtml html={caveat} />
             </Text>
           )}
         </Flex.Block>
