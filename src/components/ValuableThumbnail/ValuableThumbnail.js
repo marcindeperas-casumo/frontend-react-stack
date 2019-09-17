@@ -104,22 +104,20 @@ export const ValuableThumbnail = ({
       {stateBadgeVisible && (
         <div className="o-ratio__content">
           <div className="c-valuable-card-thumbnail__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
-            <Flex align="center">
-              <ValuableStatus
-                hoursToExpiry={expirationTimeInHours}
-                state={valuableState}
-                label={
-                  <Text
-                    data-test="valuable-card-thumbnail-state-label"
-                    size="2xs"
-                    tag="span"
-                    className="u-font-weight-bold"
-                  >
-                    {stateBadgeText}
-                  </Text>
-                }
-              />
-            </Flex>
+            <ValuableStatus
+              hoursToExpiry={expirationTimeInHours}
+              state={valuableState}
+              label={
+                <Text
+                  data-test="valuable-card-thumbnail-state-label"
+                  size="2xs"
+                  tag="span"
+                  className="u-font-weight-bold"
+                >
+                  {stateBadgeText}
+                </Text>
+              }
+            />
           </div>
         </div>
       )}
