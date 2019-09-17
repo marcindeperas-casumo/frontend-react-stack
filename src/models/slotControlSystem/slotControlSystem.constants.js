@@ -1,7 +1,7 @@
 // @flow
 
 export const CMS_SLUGS = {
-  CONFIGURATION_SCREEN: "slot-control-system.configuration-screen",
+  CONFIGURATION_SCREEN: "slot-control-system.configure-session-screen",
 };
 
 export const MODALS = {

@@ -3,7 +3,10 @@ import * as React from "react";
 import * as R from "ramda";
 import type { ModalKind } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
-import { MODALS as SCS_MODALS } from "Models/slotControlSystem";
+import {
+  MODALS as SCS_MODALS,
+  CMS_SLUGS as SCS_CMS_SLUGS,
+} from "Models/slotControlSystem";
 import { exitConfiguration } from "Services/SlotControlSystemService";
 import { TermsAndConditionsContainer } from "./TermsAndConditions";
 import { SlotControlSystemContainer } from "./SlotControlSystem";
@@ -43,7 +46,7 @@ export const mappings: Mapping = {
     contentGetter: R.path(["fields", "content"]),
   },
   [SCS_MODALS.CONFIGURATION]: {
-    slug: "slot-control-system.configure-session-screen",
+    slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
     customContent: <SlotControlSystemContainer />,
     onHideModal: exitConfiguration,
     portalClassName: "c-rsmodal__portal--slot-control-system",
