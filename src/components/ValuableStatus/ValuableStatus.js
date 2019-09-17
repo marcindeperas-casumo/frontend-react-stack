@@ -10,7 +10,7 @@ import {
 type Props = {
   hoursToExpiry: number,
   state: ValuableState,
-  label?: string,
+  label?: Function,
 };
 
 export const ValuableStatus = ({ hoursToExpiry, state, label }: Props) => {
