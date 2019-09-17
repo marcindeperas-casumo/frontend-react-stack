@@ -54,16 +54,17 @@ export class ValuableRow extends PureComponent<Props> {
   }
 
   get image() {
-    const { id, backgroundImage } = this.props;
-
+    const imgixOptsForSpins = {
+      blur: 100,
+      blend: "AAB8B8",
+      blendMode: "normal",
+      blendAlpha: 20,
+    };
     return (
       <ImageLazy
         className="u-object-fit-cover u-width--1/1 u-height--1/1 t-border-r u-overflow-hidden"
-        id={id}
-        src={backgroundImage}
-        imgixOpts={{
-          blur: this.isValuableTypeSpins ? 100 : 0,
-        }}
+        src={this.props.backgroundImage}
+        imgixOpts={this.isValuableTypeSpins ? imgixOptsForSpins : {}}
       />
     );
   }
