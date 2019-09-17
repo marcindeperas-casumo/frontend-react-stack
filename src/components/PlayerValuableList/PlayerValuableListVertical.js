@@ -63,7 +63,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   }, [refetch]);
 
   if (error) {
-    logger.error("PlayerValuableListHorizontal failed", error);
+    logger.error("PlayerValuableListVertical failed", error);
     return null;
   }
 
