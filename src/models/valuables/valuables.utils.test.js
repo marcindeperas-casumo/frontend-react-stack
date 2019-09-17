@@ -11,6 +11,7 @@ import {
   gameBrowserUrl,
   durationToTranslationKey,
   coinValueToSpinType,
+  getStateBadgeProperties,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -191,6 +192,38 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
+  });
+
+  test("should return visible property as false if not expiring or locked", () => {
+    const hoursLeftToExpire = 48;
+    const expectedValue = getStateBadgeProperties(
+      VALUABLE_STATES.FRESH,
+      hoursLeftToExpire,
+      ""
+    );
+    expect(expectedValue.visible).toBe(false);
+  });
+
+  test("should return class to render text red if expired", () => {
+    const hoursLeftToExpire = 4;
+    const expectedValue = getStateBadgeProperties(
+      VALUABLE_STATES.FRESH,
+      hoursLeftToExpire,
+      ""
+    );
+    expect(expectedValue.classModifiers).toContain("t-color-red");
+    expect(expectedValue.visible).toBe(true);
+  });
+
+  test("should return class to render text black if locked", () => {
+    const hoursLeftToExpire = 48;
+    const expectedValue = getStateBadgeProperties(
+      VALUABLE_STATES.LOCKED,
+      hoursLeftToExpire,
+      ""
+    );
+    expect(expectedValue.classModifiers).toContain("t-color-black");
+    expect(expectedValue.visible).toBe(true);
   });
 });
 
