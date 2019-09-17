@@ -45,7 +45,9 @@ export const getStateBadgeProperties = (
       text: VALUABLE_STATES.LOCKED,
       visible: true,
     };
-  } else if (isAboutToExpire) {
+  }
+
+  if (isAboutToExpire) {
     return {
       ...badgeProperties,
       icon: (
