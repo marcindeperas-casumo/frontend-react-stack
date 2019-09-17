@@ -14,6 +14,8 @@ import {
   getStateBadgeProperties,
 } from "Models/valuables";
 
+import "./ValuableRow.scss";
+
 type Props = {
   /** Unique id of the valuable */
   id: string,
@@ -101,7 +103,7 @@ export class ValuableRow extends PureComponent<Props> {
         data-test="valuable-row"
         onClick={this.props.onCardClick}
       >
-        <Flex.Item className="u-width--1/5">
+        <Flex.Item className="c-valuable-row-thumbnail">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}

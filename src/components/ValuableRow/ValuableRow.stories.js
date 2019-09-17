@@ -23,14 +23,12 @@ stories.add("Default", () => {
     : VALUABLE_STATES.FRESH;
 
   return (
-    <div style={{ width: "375px" }}>
-      <ValuableRow
-        {...valuableDetails}
-        valuableState={valuableState}
-        expirationTimeInHours={expiryHours}
-        onCardClick={action("click")}
-        translatedHoursUnit={translationsMock.hoursUnit}
-      />
-    </div>
+    <ValuableRow
+      {...valuableDetails}
+      valuableState={valuableState}
+      expirationTimeInHours={expiryHours}
+      onCardClick={action("click")}
+      translatedHoursUnit={translationsMock.hoursUnit}
+    />
   );
 });
