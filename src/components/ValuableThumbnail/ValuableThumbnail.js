@@ -132,6 +132,8 @@ function getStatusBadgeText(
   if (isAboutToExpire(hoursToExpiry)) {
     return interpolate(translatedHoursLabel, { value: hoursToExpiry });
   }
+
+  return null;
 }
 
 function getCoinClassModifier(valuableType: ValuableType) {
