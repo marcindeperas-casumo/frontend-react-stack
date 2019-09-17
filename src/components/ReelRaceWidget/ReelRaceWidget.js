@@ -48,9 +48,7 @@ export function ReelRaceWidget(props: Props) {
 
   React.useEffect(() => {
     const now = Date.now();
-    const boo = Boolean(startTime < now && endTime > now);
-
-    return setStarted(boo);
+    return setStarted(Boolean(startTime < now && endTime > now));
   }, [startTime, endTime]);
 
   React.useEffect(() => {
@@ -72,6 +70,7 @@ export function ReelRaceWidget(props: Props) {
       DateTime.fromMillis(started ? endTime : startTime)
         .diffNow()
         .valueOf();
+
     if (tournamentId) {
       subscribeReelRacesUpdates();
       const timer = setTimeout(() => {
@@ -98,14 +97,16 @@ export function ReelRaceWidget(props: Props) {
   }
 
   // eslint-disable-next-line no-console
-  console.log(`${started ? "STARTED" : "NEXT"} - ${props.gameSlug}`);
+  console.log(
+    `${started ? "STARTED" : "NEXT"} - ${props.gameSlug} - ${tournamentId}`
+  );
 
   return (
     <Flex direction="vertical" justify="space-between">
       {playing.gameId !== props.gameSlug && (
         <Flex
           align="center"
-          className="u-padding-top--md u-padding-x--md u-cursor-pointer"
+          className="u-padding-top--md u-padding-x--md u-cursor-pointer u-position-relative"
           onClick={props.launchGame}
         >
           <GameThumb
@@ -118,7 +119,9 @@ export function ReelRaceWidget(props: Props) {
           )}
           <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
             <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
-              {interpolate(t.compete_for, { prize: props.prize })}
+              {interpolate(t.compete_for, {
+                prize: props.prize,
+              })}
             </Text>
             <Text tag="span" size="xs">
               <DangerousHtml html={game.name} />
@@ -157,14 +160,14 @@ export function ReelRaceWidget(props: Props) {
           className="u-text-align-right"
         >
           <Text tag="span" size="xs" className="u-opacity-75">
-            {t.spins}
+            {started ? t.spin_count : t.spins}
           </Text>
           <Text
             tag="span"
             size="lg"
             className="u-font-weight-bold t-color-plum"
           >
-            {props.playerSpins || props.spins}
+            {props.playerSpins === null ? props.spins : props.playerSpins}
           </Text>
         </Flex>
       </Flex>
