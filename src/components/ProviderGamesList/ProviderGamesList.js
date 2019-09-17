@@ -84,7 +84,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
       return (
         <div
           key={key}
-          className="u-margin-y--sm u-padding-x--md"
+          className="u-padding-x--md t-border-bottom"
           index={index}
           style={style}
         >
