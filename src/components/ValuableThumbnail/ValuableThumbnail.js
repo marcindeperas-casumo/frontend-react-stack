@@ -11,6 +11,7 @@ import {
   coinValueToSpinType,
   getStateBadgeProperties,
 } from "Models/valuables";
+import { ValuableStatusIcon } from "Components/ValuableStatusIcon";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
@@ -103,7 +104,10 @@ export const ValuableThumbnail = ({
               align="center"
               className={stateBadgeProperties.classModifiers}
             >
-              {stateBadgeProperties.icon}
+              <ValuableStatusIcon
+                hoursToExpiry={expirationTimeInHours}
+                state={valuableState}
+              />
               <Text
                 data-test="valuable-card-thumbnail-state-label"
                 size="2xs"

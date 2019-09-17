@@ -13,6 +13,7 @@ import {
   coinValueToSpinType,
   getStateBadgeProperties,
 } from "Models/valuables";
+import { ValuableStatusIcon } from "Components/ValuableStatusIcon";
 
 import "./ValuableRow.scss";
 
@@ -121,7 +122,10 @@ export class ValuableRow extends PureComponent<Props> {
         <Flex.Block>
           {showStateBadge && (
             <span className={stateBadgeProperties.classModifiers}>
-              {stateBadgeProperties.icon}
+              <ValuableStatusIcon
+                hoursToExpiry={expirationTimeInHours}
+                state={valuableState}
+              />
             </span>
           )}
           <Text className="u-font-weight-bold" size="sm" tag="span">
