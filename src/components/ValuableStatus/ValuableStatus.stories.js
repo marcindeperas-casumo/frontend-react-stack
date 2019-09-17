@@ -3,9 +3,9 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, text } from "@storybook/addon-knobs/react";
 import { VALUABLE_STATES } from "Models/valuables";
-import { ValuableStatusIcon } from "./ValuableStatusIcon";
+import { ValuableStatus } from "./ValuableStatus";
 
-const stories = storiesOf("ValuableStatusIcon", module);
+const stories = storiesOf("ValuableStatus", module);
 
 stories.add("Default", () => {
   const valuableState = select(
@@ -15,7 +15,5 @@ stories.add("Default", () => {
   );
   const expiryHours = text("Expire in x hours", "100") || "100";
 
-  return (
-    <ValuableStatusIcon state={valuableState} hoursToExpiry={expiryHours} />
-  );
+  return <ValuableStatus state={valuableState} hoursToExpiry={expiryHours} />;
 });

@@ -1,7 +1,5 @@
 /* @flow */
-import React from "react";
 import { equals, anyPass } from "ramda";
-import { interpolate } from "Utils";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
@@ -20,38 +18,8 @@ export const gameBrowserUrl = "/en/games/top";
 export const isAboutToExpire = (hours: number): boolean =>
   hours > 0 && hours <= 24;
 
-export const getStateBadgeProperties = (
-  valuableState: ValuableState,
-  hours: number,
-  translatedHoursUnit: string
-) => {
-  const badgeProperties = {
-    visible: false,
-    text: "",
-    classModifiers: "",
-    icon: null,
-  };
-
-  if (valuableState === VALUABLE_STATES.LOCKED) {
-    return {
-      ...badgeProperties,
-      classModifiers: "t-color-black",
-      text: VALUABLE_STATES.LOCKED,
-      visible: true,
-    };
-  }
-
-  if (isAboutToExpire(hours)) {
-    return {
-      ...badgeProperties,
-      classModifiers: "t-color-red",
-      text: interpolate(translatedHoursUnit, { value: hours }),
-      visible: true,
-    };
-  }
-
-  return badgeProperties;
-};
+export const showStateBadge = (valuableState: ValuableState, hours: number) =>
+  valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
 
 export const getValuableDetailsAction = ({
   valuableType,

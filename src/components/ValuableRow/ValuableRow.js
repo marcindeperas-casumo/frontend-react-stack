@@ -11,9 +11,9 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
-  getStateBadgeProperties,
+  showStateBadge,
 } from "Models/valuables";
-import { ValuableStatusIcon } from "Components/ValuableStatusIcon";
+import { ValuableStatus } from "Components/ValuableStatus";
 
 import "./ValuableRow.scss";
 
@@ -90,13 +90,9 @@ export class ValuableRow extends PureComponent<Props> {
       valuableType,
     } = this.props;
 
-    const stateBadgeProperties = getStateBadgeProperties(
-      valuableState,
-      expirationTimeInHours,
-      translatedHoursUnit
-    );
-    const showStateBadge =
-      stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH;
+    const isFresh = valuableState === VALUABLE_STATES.FRESH;
+    const stateBadgeVisible =
+      showStateBadge(valuableState, expirationTimeInHours) || !isFresh;
 
     return (
       <Flex
@@ -120,13 +116,11 @@ export class ValuableRow extends PureComponent<Props> {
           </div>
         </Flex.Item>
         <Flex.Block>
-          {showStateBadge && (
-            <span className={stateBadgeProperties.classModifiers}>
-              <ValuableStatusIcon
-                hoursToExpiry={expirationTimeInHours}
-                state={valuableState}
-              />
-            </span>
+          {stateBadgeVisible && (
+            <ValuableStatus
+              hoursToExpiry={expirationTimeInHours}
+              state={valuableState}
+            />
           )}
           <Text className="u-font-weight-bold" size="sm" tag="span">
             <DangerousHtml data-test="valuable-row-title" html={title} />

@@ -3,15 +3,17 @@ import React, { type Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { ValuableStatus } from "Components/ValuableStatus";
+import { interpolate } from "Utils";
 import { INTL_LOCALES } from "Src/constants";
 import {
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
-  getStateBadgeProperties,
+  showStateBadge,
+  isAboutToExpire,
 } from "Models/valuables";
-import { ValuableStatusIcon } from "Components/ValuableStatusIcon";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
@@ -48,14 +50,16 @@ export const ValuableThumbnail = ({
   translatedHoursUnit,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
-  const stateBadgeProperties = getStateBadgeProperties(
-    valuableState,
-    expirationTimeInHours,
-    translatedHoursUnit
-  );
-  const showStateBadge =
+  const isFresh = valuableState === VALUABLE_STATES.FRESH;
+  const stateBadgeVisible =
     size !== "sm" &&
-    (stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH);
+    (showStateBadge(valuableState, expirationTimeInHours) || !isFresh);
+  const stateBadgeText = getStatusBadgeText(
+    expirationTimeInHours,
+    translatedHoursUnit,
+    valuableState
+  );
+
   const locale = INTL_LOCALES[market];
 
   return (
@@ -97,25 +101,24 @@ export const ValuableThumbnail = ({
           </Flex>
         </div>
       </Flex>
-      {showStateBadge && (
+      {stateBadgeVisible && (
         <div className="o-ratio__content">
           <div className="c-valuable-card-thumbnail__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
-            <Flex
-              align="center"
-              className={stateBadgeProperties.classModifiers}
-            >
-              <ValuableStatusIcon
+            <Flex align="center">
+              <ValuableStatus
                 hoursToExpiry={expirationTimeInHours}
                 state={valuableState}
+                label={
+                  <Text
+                    data-test="valuable-card-thumbnail-state-label"
+                    size="2xs"
+                    tag="span"
+                    className="u-font-weight-bold"
+                  >
+                    {stateBadgeText}
+                  </Text>
+                }
               />
-              <Text
-                data-test="valuable-card-thumbnail-state-label"
-                size="2xs"
-                tag="span"
-                className="u-font-weight-bold"
-              >
-                {stateBadgeProperties.text}
-              </Text>
             </Flex>
           </div>
         </div>
@@ -123,6 +126,20 @@ export const ValuableThumbnail = ({
     </div>
   );
 };
+
+function getStatusBadgeText(
+  hoursToExpiry: number,
+  translatedHoursLabel: string,
+  valuableState: ValuableState
+): ?string {
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return VALUABLE_STATES.LOCKED;
+  }
+
+  if (isAboutToExpire(hoursToExpiry)) {
+    return interpolate(translatedHoursLabel, { value: hoursToExpiry });
+  }
+}
 
 function getCoinClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
