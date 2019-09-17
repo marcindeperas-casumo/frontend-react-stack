@@ -55,20 +55,19 @@ export function ReelRaceWidget(props: Props) {
     if (!isReelRacesFetched) {
       fetchReelRaces();
     }
+  }, [fetchReelRaces, isReelRacesFetched]);
+
+  React.useEffect(() => {
     if (!areTranslationsFetched) {
       fetchTranslations();
     }
-  }, [
-    isReelRacesFetched,
-    areTranslationsFetched,
-    fetchReelRaces,
-    fetchTranslations,
-  ]);
+  }, [areTranslationsFetched, fetchTranslations]);
 
   React.useEffect(() => {
     const timeRemaining = (): number =>
       DateTime.fromMillis(started ? endTime : startTime)
         .diffNow()
+        .plus({ seconds: 1 })
         .valueOf();
 
     if (tournamentId) {
