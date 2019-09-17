@@ -108,12 +108,7 @@ export const ValuableThumbnail = ({
               hoursToExpiry={expirationTimeInHours}
               state={valuableState}
               label={
-                <Text
-                  data-test="valuable-card-thumbnail-state-label"
-                  size="2xs"
-                  tag="span"
-                  className="u-font-weight-bold"
-                >
+                <Text size="2xs" tag="span" className="u-font-weight-bold">
                   {stateBadgeText}
                 </Text>
               }
