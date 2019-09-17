@@ -43,7 +43,7 @@ export const mappings: Mapping = {
     contentGetter: R.path(["fields", "content"]),
   },
   [SCS_MODALS.CONFIGURATION]: {
-    slug: "toc", // TODO, will change when PCC-255 progresses
+    slug: "slot-control-system.configure-session-screen",
     customContent: <SlotControlSystemContainer />,
     onHideModal: exitConfiguration,
     portalClassName: "c-rsmodal__portal--slot-control-system",
