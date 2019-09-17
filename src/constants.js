@@ -129,7 +129,7 @@ export const EVENT_PROPS = {
   SPORTS_STATE: "State",
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
-  PROMOTION_TYPE: "type",
+  PROMOTION_TYPE: "promotion type",
 };
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
