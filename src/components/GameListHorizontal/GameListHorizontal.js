@@ -54,12 +54,6 @@ const SEE_MORE_URL = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "/games/live-casino-details",
 };
 
-export const ITEM_SPACING = {
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: "md",
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: "md",
-  default: "default",
-};
-
 export const ITEMS_CONTROL_STYLING = {
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]:
     "c-scrollable-list-paginated__live_casino-button",
@@ -76,7 +70,6 @@ export class GameListHorizontal extends PureComponent<Props> {
     const seeMoreUrl = SEE_MORE_URL[id];
     const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
-    const itemSpacing = ITEM_SPACING[id] || ITEM_SPACING.default;
     const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
     const itemControlClass =
       ITEMS_CONTROL_STYLING[id] || ITEMS_CONTROL_STYLING.default;
@@ -104,7 +97,6 @@ export class GameListHorizontal extends PureComponent<Props> {
               seeMoreUrl={seeMoreUrl}
               itemIds={itemIds}
               Component={itemRenderer}
-              spacing={itemSpacing}
             />
           </Mobile>
           <Desktop>
@@ -117,7 +109,6 @@ export class GameListHorizontal extends PureComponent<Props> {
               className={className}
               itemControlClass={itemControlClass}
               tileHeight={tileHeight}
-              itemSpacing={itemSpacing}
               seeMore={{
                 text: seeMoreText,
                 url: seeMoreUrl,

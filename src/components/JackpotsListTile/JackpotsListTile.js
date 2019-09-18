@@ -15,7 +15,10 @@ export default class JackpotsListTile extends PureComponent<Props> {
       <>
         {ids.map(slug => (
           <div key={slug} className="u-padding-y--sm">
-            <GameRow id={slug} />
+            <GameRow
+              id={slug}
+              className="t-background-white t-border-r--md t-box-shadow"
+            />
           </div>
         ))}
       </>
