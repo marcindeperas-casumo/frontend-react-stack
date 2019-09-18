@@ -101,17 +101,7 @@ export function* fetchReelRacesSaga(): * {
 
   const tournamentsWithGames = R.map(
     (reelRace: TournamentRaw) => ({
-      ...R.pick(
-        [
-          "endTime",
-          "promoted",
-          "startTime",
-          "tournamentId",
-          "status",
-          "leaderboard",
-        ],
-        reelRace
-      ),
+      ...R.pick(["endTime", "promoted", "startTime", "tournamentId"], reelRace),
       opted: optedReelRaces.has(reelRace.tournamentId),
       prize: extractPrize(reelRace.prizes, locale),
       gameSlug: providerGameNameToSlug[extractProviderGameName(reelRace)],

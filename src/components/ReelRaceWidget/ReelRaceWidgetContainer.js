@@ -1,7 +1,8 @@
 // @flow
 import { connect } from "react-redux";
 import {
-  reelRaceWidgetSelector,
+  reelRaceStartedSelector,
+  reelRaceScheduledSelector,
   reelRacePlayerSpinsSelector,
 } from "Models/reelRaceWidget";
 import { gameSelector } from "Models/schema";
@@ -26,15 +27,20 @@ import { ReelRaceWidget } from "./ReelRaceWidget";
 
 export default connect(
   state => {
-    const reelRace = reelRaceWidgetSelector(state);
+    const started = reelRaceStartedSelector(state);
+    const scheduled = reelRaceScheduledSelector(state);
 
-    if (!reelRace) {
+    if (!started && !scheduled) {
       return {};
     }
 
+    const { gameSlug } = started || scheduled;
+
     return {
-      ...reelRace,
-      game: gameSelector(reelRace.gameSlug)(state),
+      started,
+      scheduled,
+      gameSlug,
+      scheduledGame: gameSelector(gameSlug)(state),
       playing: playingSelector(state),
       isReelRacesFetched: isReelRacesFetched(state),
       areTranslationsFetched: isPageFetchedSelector(slug)(state),

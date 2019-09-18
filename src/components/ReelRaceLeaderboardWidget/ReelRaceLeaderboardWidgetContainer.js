@@ -1,7 +1,8 @@
 // @flow
 import { connect } from "react-redux";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
-import { reelRaceWidgetSelector } from "Models/reelRaceWidget";
+import { reelRaceLeaderboardSelector } from "Models/reelRaceLeaderboard";
+import { reelRaceStartedSelector } from "Models/reelRaceWidget";
 import {
   subscribeReelRacePlayerLeaderboard,
   unsubscribeReelRacePlayerLeaderboard,
@@ -11,12 +12,12 @@ import {
 import { ReelRaceLeaderboardWidget } from "./ReelRaceLeaderboardWidget";
 
 export default connect(
-  (state, { tournamentId }) => {
-    const { leaderboard } = reelRaceWidgetSelector(state);
+  state => {
+    const { tournamentId } = reelRaceStartedSelector(state);
 
     return {
       tournamentId,
-      leaderboard,
+      leaderboard: reelRaceLeaderboardSelector(state),
       playerId: playerIdSelector(state),
       tournamentChannels: tournamentChannelsSelector(state),
     };
@@ -48,8 +49,7 @@ export default connect(
     },
   }),
   (stateProps, dispatchProps, ownProps) => {
-    const { playerId, tournamentChannels } = stateProps;
-    const { tournamentId } = ownProps;
+    const { tournamentId, playerId, tournamentChannels } = stateProps;
 
     return {
       ...stateProps,

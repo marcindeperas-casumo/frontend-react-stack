@@ -7,13 +7,10 @@ import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
 import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
-import DangerousHtml from "Components/DangerousHtml";
-import { interpolate } from "Utils";
-import { GameThumb } from "Components/GameThumb";
-import GrandReelRaceBadge from "Components/ReelRaceCard/GrandReelRaceBadge.svg";
+import { ReelRaceWidgetHeader } from "./ReelRaceWidgetHeader";
 import "./ReelRaceWidget.scss";
 
-type Props = ReelRace & {
+type Props = {
   fetchReelRaces: () => void,
   isReelRacesFetched: () => void,
   fetchTranslations: () => void,
@@ -21,113 +18,87 @@ type Props = ReelRace & {
   unsubscribeReelRacesUpdates: () => void,
   launchGame: () => void,
   areTranslationsFetched: boolean,
-  game: GameRow_Game,
+  scheduledGame: GameRow_Game,
+  gameSlug: string,
   playing: Playing,
   t: ReelRacesTranslations,
   playerId: string,
   playerSpins: number,
+  started: ReelRace | null,
+  scheduled: ReelRace | null,
+};
+
+const getTimer = (time: number) => {
+  if (time) {
+    return (
+      <Timer
+        endTime={time}
+        render={o => `${o.minutes}:${o.seconds}`}
+        onEnd={() => "00:00"}
+      />
+    );
+  }
 };
 
 // eslint-disable-next-line sonarjs/cognitive-complexity
 export function ReelRaceWidget(props: Props) {
-  const [started, setStarted] = React.useState(false);
   const {
     t,
-    game,
-    playing,
-    endTime,
-    startTime,
+    started,
+    scheduled,
     isReelRacesFetched,
     areTranslationsFetched,
     fetchReelRaces,
     fetchTranslations,
-    tournamentId,
     subscribeReelRacesUpdates,
     unsubscribeReelRacesUpdates,
   } = props;
 
-  React.useEffect(() => {
-    const now = Date.now();
-    return setStarted(Boolean(startTime < now && endTime > now));
-  }, [startTime, endTime]);
+  const reelRace = started || scheduled;
 
   React.useEffect(() => {
     if (!isReelRacesFetched) {
       fetchReelRaces();
     }
-  }, [fetchReelRaces, isReelRacesFetched]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isReelRacesFetched]);
 
   React.useEffect(() => {
     if (!areTranslationsFetched) {
       fetchTranslations();
     }
-  }, [areTranslationsFetched, fetchTranslations]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [areTranslationsFetched]);
 
   React.useEffect(() => {
-    const timeRemaining = (): number =>
-      DateTime.fromMillis(started ? endTime : startTime)
+    const timeRemaining = (rR: ReelRace): number =>
+      DateTime.fromMillis(started ? rR.endTime : rR.startTime)
         .diffNow()
-        .plus({ seconds: 1 })
         .valueOf();
 
-    if (tournamentId) {
+    if (reelRace && reelRace.tournamentId) {
       subscribeReelRacesUpdates();
       const timer = setTimeout(() => {
         fetchReelRaces();
-      }, timeRemaining());
+      }, timeRemaining(reelRace));
 
       return () => {
         unsubscribeReelRacesUpdates();
         clearTimeout(timer);
       };
     }
-  }, [
-    endTime,
-    fetchReelRaces,
-    startTime,
-    started,
-    subscribeReelRacesUpdates,
-    tournamentId,
-    unsubscribeReelRacesUpdates,
-  ]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [reelRace]);
 
-  if (!props.startTime) {
+  if (!reelRace) {
     return null;
   }
 
-  // eslint-disable-next-line no-console
-  console.log(
-    `${started ? "STARTED" : "NEXT"} - ${props.gameSlug} - ${tournamentId}`
-  );
+  const time = started ? reelRace.endTime : reelRace.startTime;
 
   return (
     <Flex direction="vertical" justify="space-between">
-      {playing.gameId !== props.gameSlug && (
-        <Flex
-          align="center"
-          className="u-padding-top--md u-padding-x--md u-cursor-pointer u-position-relative"
-          onClick={props.launchGame}
-        >
-          <GameThumb
-            src={game.logoBackground}
-            alt={game.name}
-            mark={game.logo}
-          />
-          {props.promoted && (
-            <GrandReelRaceBadge className="c-reel-race__badge" />
-          )}
-          <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
-            <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
-              {interpolate(t.compete_for, {
-                prize: props.prize,
-              })}
-            </Text>
-            <Text tag="span" size="xs">
-              <DangerousHtml html={game.name} />
-            </Text>
-          </Flex>
-        </Flex>
-      )}
+      <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
       <Flex direction="horizontal" className="u-padding--md">
         <Flex direction="vertical" spacing="none" className="flex-1">
           <Text tag="span" size="xs">
@@ -138,19 +109,7 @@ export function ReelRaceWidget(props: Props) {
             size="lg"
             className="u-font-weight-bold t-color-plum"
           >
-            {started ? (
-              <Timer
-                endTime={endTime}
-                render={o => `${o.minutes}:${o.seconds}`}
-                onEnd={() => "00:00"}
-              />
-            ) : (
-              <Timer
-                endTime={startTime}
-                render={o => `${o.minutes}:${o.seconds}`}
-                onEnd={() => "00:00"}
-              />
-            )}
+            {getTimer(time)}
           </Text>
         </Flex>
         <Flex
@@ -166,17 +125,14 @@ export function ReelRaceWidget(props: Props) {
             size="lg"
             className="u-font-weight-bold t-color-plum"
           >
-            {props.playerSpins === null ? props.spins : props.playerSpins}
+            {started ? props.playerSpins : reelRace.spins}
           </Text>
         </Flex>
       </Flex>
       <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
       {started && (
         <>
-          <ReelRaceLeaderboardWidget
-            tournamentId={tournamentId}
-            playerId={props.playerId}
-          />
+          <ReelRaceLeaderboardWidget />
           <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
         </>
       )}

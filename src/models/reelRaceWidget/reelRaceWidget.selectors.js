@@ -2,45 +2,50 @@
 import { createSelector } from "reselect";
 import * as R from "ramda";
 import { reelRacesSelector } from "Models/reelRaces";
-import { RR_STATE } from "Models/reelRaceWidget";
 import { playerIdSelector } from "Models/handshake";
+import { ENTITY_KEYS } from "Models/schema";
 
-export const reelRaceWidgetSelector = createSelector(
+const playerOptedIn = R.propEq("opted", true);
+
+export const reelRaceStartedSelector = createSelector(
   reelRacesSelector,
   reelRaces => {
-    const isScheduledInFuture = R.propSatisfies(R.lt(Date.now()), "startTime");
-    const iStarted = R.propEq("status", RR_STATE.STARTED);
-    const iScheduled = R.propEq("status", RR_STATE.SCHEDULED);
+    const iStarted = R.propSatisfies(R.gt(Date.now()), "startTime");
     const isNotFinished = R.propSatisfies(R.lt(Date.now()), "endTime");
-    const playerOptedIn = R.propEq("opted", true);
     const optedStarted = R.allPass([iStarted, isNotFinished, playerOptedIn]);
-    const optedScheduled = R.allPass([
-      iScheduled,
-      isScheduledInFuture,
-      playerOptedIn,
-    ]);
 
     return R.pipe(
       R.values,
       R.sortBy(R.prop("startTime")),
-      R.either(R.find(optedStarted), R.find(optedScheduled)),
+      R.find(optedStarted),
+      R.defaultTo(null)
+    )(reelRaces);
+  }
+);
+
+export const reelRaceScheduledSelector = createSelector(
+  reelRacesSelector,
+  reelRaces => {
+    const isScheduledInFuture = R.propSatisfies(R.lt(Date.now()), "startTime");
+    const optedScheduled = R.allPass([isScheduledInFuture, playerOptedIn]);
+
+    return R.pipe(
+      R.values,
+      R.sortBy(R.prop("startTime")),
+      R.find(optedScheduled),
       R.defaultTo(null)
     )(reelRaces);
   }
 );
 
 export const reelRacePlayerSpinsSelector = createSelector(
-  reelRaceWidgetSelector,
+  state => state,
   playerIdSelector,
-  (reelRace, playerId) => {
-    if (reelRace && playerId) {
-      return R.pipe(
-        R.prop("leaderboard"),
-        R.prop(playerId),
-        R.prop("remainingSpins")
-      )(reelRace);
-    } else {
-      return null;
-    }
-  }
+  (state, playerId) =>
+    R.pipe(
+      R.pathOr({}, ["schema", ENTITY_KEYS.LEADERBOARD]),
+      R.prop(playerId),
+      R.prop("remainingSpins"),
+      R.defaultTo(null)
+    )(state)
 );

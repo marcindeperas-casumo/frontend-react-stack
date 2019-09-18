@@ -20,11 +20,7 @@ import {
   fetchGameListSaga,
   fetchGamesByProviderSaga,
 } from "Models/games";
-import {
-  types as cmsTypes,
-  getFetchCompleteTypeBySlug,
-  fetchPageBySlugSaga,
-} from "Models/cms";
+import { types as cmsTypes, fetchPageBySlugSaga } from "Models/cms";
 import {
   TYPES as jackpotsMustDropTypes,
   fetchJackpotsMustDropSaga,
