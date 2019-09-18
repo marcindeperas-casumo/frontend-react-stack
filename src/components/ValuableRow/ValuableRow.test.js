@@ -42,18 +42,4 @@ describe("ValuableRow", () => {
 
     expect(onClick).toBeCalledTimes(1);
   });
-
-  test("should add css class if provided", () => {
-    const mockValuable = mockData(VALUABLE_TYPES.CASH);
-    const mockCssClass = "my-css-class";
-    const rendered = shallow(
-      <ValuableRow
-        {...mockValuable}
-        onClick={onClick}
-        className={mockCssClass}
-      />
-    );
-
-    expect(rendered.hasClass(mockCssClass));
-  });
 });
