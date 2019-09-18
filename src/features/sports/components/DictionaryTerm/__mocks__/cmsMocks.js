@@ -12,6 +12,11 @@ const dictionary = [
       "Select your favourite sports below to customise your experience. You can always change your selection later.",
   },
   {
+    key: "favourite-sports-selector.intro.sports",
+    value:
+      "Hola sports player! Select your favourite sports below to customise your experience. You can always change your selection later.",
+  },
+  {
     key: "favourite-sports-selector.heading.popular",
     value: "Popular sports",
   },

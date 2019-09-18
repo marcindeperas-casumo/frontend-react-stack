@@ -168,6 +168,13 @@ export class App extends PureComponent<Props> {
             namedExport="AccountPage"
           />
         </Route>
+        <Route path={["valuablesV2"]}>
+          <LazyPortal
+            hostElementId="react-host-valuables-v2"
+            loader={() => import("Components/ValuablesPage")}
+            namedExport="ValuablesPage"
+          />
+        </Route>
         <Route path={["settings"]}>
           <LazyPortal
             hostElementId="react-host-settings"

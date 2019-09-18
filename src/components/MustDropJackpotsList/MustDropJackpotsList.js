@@ -62,7 +62,6 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               <Scrollable
                 itemClassName="c-jackpots-list-tile"
                 padding={PADDING_PER_DEVICE}
-                itemSpacing="md"
               >
                 {scrollableChildren}
               </Scrollable>
@@ -76,7 +75,6 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               }}
               Component={mustDropJackpotRenderer}
               className="c-jackpots-list-tile u-height--1/1"
-              itemSpacing="md"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
               seeMore={{

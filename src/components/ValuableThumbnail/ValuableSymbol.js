@@ -2,7 +2,6 @@ import React from "react";
 import { compose, prop } from "ramda";
 import Text from "@casumo/cmp-text";
 import { CouponIcon } from "@casumo/cmp-icons";
-import { INTL_LOCALES } from "Src/constants";
 import { getSymbolForCurrency } from "Utils";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import {
@@ -24,14 +23,14 @@ const VALUABLE_ICON = {
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
 
-const CashSymbol = ({ locale, currency }) => {
+const CashSymbol = ({ locale, currency, fontSize }) => {
   const currencySymbol = getSymbolForCurrency({
     currency,
     locale,
   });
 
   return (
-    <Text tag="div" size="lg" className="u-font-weight-bold">
+    <Text tag="div" size={fontSize} className="u-font-weight-bold">
       {currencySymbol}
     </Text>
   );
@@ -42,12 +41,15 @@ export const ValuableSymbol = ({
   market,
   valuableType,
   spinType,
+  fontSize = "lg",
 }) => {
   // eslint-disable-next-line fp/no-let
   let ValuableSymbolComponent = VALUABLE_ICON[valuableType];
 
   if (valuableType === VALUABLE_TYPES.CASH) {
-    return <CashSymbol currency={currency} market={market} />;
+    return (
+      <CashSymbol currency={currency} market={market} fontSize={fontSize} />
+    );
   }
 
   if (valuableType === VALUABLE_TYPES.SPINS) {

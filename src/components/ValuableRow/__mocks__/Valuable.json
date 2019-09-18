@@ -1,0 +1,50 @@
+[
+  {
+    "id": "123",
+    "valuableType": "cash",
+    "title": "€50 Bonus Money",
+    "magnitude": "50",
+    "currency": "EUR",
+    "caveat": "Min dep £10. 30x wag req. T&C's apply.",
+    "market": "en",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
+    "expirationTimeInHours": "100",
+    "valuableState": "Fresh"
+  },
+  {
+    "id": "111",
+    "valuableType": "deposit",
+    "title": "100% Deposit Bonus",
+    "market": "en",
+    "caveat": "T&Cs apply",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
+    "expirationTimeInHours": "100",
+    "valuableState": "Fresh"
+  },
+  {
+    "id": "432",
+    "valuableType": "sport",
+    "title": "€5 Sport Bet",
+    "market": "en",
+    "caveat": "T&Cs apply",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
+    "expirationTimeInHours": "100",
+    "valuableState": "Fresh"
+  },
+  {
+    "id": "654",
+    "valuableType": "spins",
+    "title": "20 Free Spins",
+    "magnitude": "20",
+    "coinValue": 30,
+    "game": {
+      "name": "Starburst"
+    },
+    "description": "Starburst",
+    "caveat": "T&Cs apply",
+    "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
+    "market": "en",
+    "expirationTimeInHours": "100",
+    "valuableState": "Fresh"
+  }
+]
