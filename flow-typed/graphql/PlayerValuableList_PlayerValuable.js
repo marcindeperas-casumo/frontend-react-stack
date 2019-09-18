@@ -18,6 +18,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
@@ -36,6 +38,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   description: string,
   coinValue: number,
   requirementType: ?RequirementType,
@@ -54,6 +58,8 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   currency: Currency,
   market: string,
   backgroundImage: string,
+  wageringThreshold: ?number,
+  leftToWager: ?number,
   requirementType: ?RequirementType,
 };
 

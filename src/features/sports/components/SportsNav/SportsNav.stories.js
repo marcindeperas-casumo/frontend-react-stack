@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import * as mocks from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 

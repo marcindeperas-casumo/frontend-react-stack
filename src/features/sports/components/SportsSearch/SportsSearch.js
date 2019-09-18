@@ -3,10 +3,8 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
-import {
-  ClientContext,
-  UPDATE_KAMBI_CLIENT_STATE_MUTATION,
-} from "Features/sports/state";
+import { UPDATE_KAMBI_CLIENT_STATE_MUTATION } from "Models/apollo/mutations";
+import { GraphQLClientContext } from "Components/GraphQLProvider";
 import KambiSearchResults from "./KambiSearchResults";
 import "./SportsSearch.scss";
 type State = {
@@ -15,7 +13,7 @@ type State = {
 };
 
 export default class SportsSearch extends React.Component<{}, State> {
-  static contextType = ClientContext;
+  static contextType = GraphQLClientContext;
 
   state = {
     query: "",
@@ -81,27 +79,25 @@ export default class SportsSearch extends React.Component<{}, State> {
   render() {
     return (
       <>
-        <Flex.Block className="t-background-grey-light-2 c-sports-search__search-bar">
+        <Flex.Block className="t-background-chrome-light-2 u-content-width--tablet c-sports-search__search-bar">
           <Flex className="u-padding--md" align="stretch">
             <Flex.Block>
               <DictionaryTerm termKey="search-input.placeholder">
                 {placeholderText => (
-                  <div className="u-content-width--tablet">
-                    <SearchInput
-                      autoFocus={true}
-                      value={this.state.query}
-                      onChange={this.handleSearchInput}
-                      onClear={this.handleClearSearchInput}
-                      onFocus={this.handleFocusSearchInput}
-                      placeholder={placeholderText}
-                    />
-                  </div>
+                  <SearchInput
+                    autofocus
+                    value={this.state.query}
+                    onChange={this.handleSearchInput}
+                    onClear={this.handleClearSearchInput}
+                    onFocus={this.handleFocusSearchInput}
+                    placeholder={placeholderText}
+                  />
                 )}
               </DictionaryTerm>
             </Flex.Block>
           </Flex>
         </Flex.Block>
-        <div className="u-content-width--tablet">
+        <div className="u-content-width--tablet t-background-chrome-light-2">
           <KambiSearchResults
             query={this.state.query}
             hideSearchResults={this.state.hideSearchResults}

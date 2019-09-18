@@ -104,7 +104,7 @@ export function DepositLimitsConfirmations({ t, ...props }: Props) {
           </Flex>
         )}
         <Button
-          variant="variant-2"
+          variant="primary"
           className="u-padding-y--md"
           onClick={() => {
             if (isLastPage) {

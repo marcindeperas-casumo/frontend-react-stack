@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import wait from "waait";
-import { MockedProviderWithContext } from "Features/sports/state/testUtils";
+import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
   withFavouritesMock,
@@ -60,90 +60,6 @@ describe("<StageFavouritesProvider />", () => {
         renderedWithFavourites.find(StageFavouritesProvider).state().sports
       )
     ).toBe(true);
-  });
-
-  describe("isFirstTimeSelectingFavourites", () => {
-    test("should be true if no sports are favourited on initial query", async () => {
-      const renderedNoFavourites = mount(
-        <MockedProviderWithContext
-          mocks={[noFavouritesMock, competitionsSuggestionsMock]}
-        >
-          <StageFavouritesProvider />
-        </MockedProviderWithContext>
-      );
-
-      // ticks the two pending promises on componentDidMount
-      // to be replaced with https://github.com/facebook/jest/issues/2157
-      await wait(0);
-      await wait(0);
-
-      expect(
-        renderedNoFavourites.find(StageFavouritesProvider).state()
-          .isFirstTimeSelectingFavourites
-      ).toBe(true);
-    });
-
-    test("should be false if sports are favourited on initial query", async () => {
-      const renderedWithFavourites = mount(
-        <MockedProviderWithContext
-          mocks={[withFavouritesMock, competitionsSuggestionsMock]}
-        >
-          <StageFavouritesProvider />
-        </MockedProviderWithContext>
-      );
-
-      // ticks the two pending promises on componentDidMount
-      // to be replaced with https://github.com/facebook/jest/issues/2157
-      await wait(0);
-      await wait(0);
-
-      expect(
-        renderedWithFavourites.find(StageFavouritesProvider).state()
-          .isFirstTimeSelectingFavourites
-      ).toBe(false);
-    });
-  });
-
-  describe("isFirstTimeSelectingFavouriteCompetitions", () => {
-    test("should be true when no competitions are favourited on initial query", async () => {
-      const renderedNoFavourites = mount(
-        <MockedProviderWithContext
-          mocks={[noFavouritesMock, competitionsSuggestionsMock]}
-        >
-          <StageFavouritesProvider />
-        </MockedProviderWithContext>
-      );
-
-      // ticks the two pending promises on componentDidMount
-      // to be replaced with https://github.com/facebook/jest/issues/2157
-      await wait(0);
-      await wait(0);
-
-      expect(
-        renderedNoFavourites.find(StageFavouritesProvider).state()
-          .isFirstTimeSelectingFavouriteCompetitions
-      ).toBe(true);
-    });
-
-    test("should be false when competitions are favourited on initial query", async () => {
-      const renderedWithFavourites = mount(
-        <MockedProviderWithContext
-          mocks={[withFavouritesMock, competitionsSuggestionsMock]}
-        >
-          <StageFavouritesProvider />
-        </MockedProviderWithContext>
-      );
-
-      // ticks the two pending promises on componentDidMount
-      // to be replaced with https://github.com/facebook/jest/issues/2157
-      await wait(0);
-      await wait(0);
-
-      expect(
-        renderedWithFavourites.find(StageFavouritesProvider).state()
-          .isFirstTimeSelectingFavouriteCompetitions
-      ).toBe(false);
-    });
   });
 
   describe("toggleFavouriteSport()", () => {

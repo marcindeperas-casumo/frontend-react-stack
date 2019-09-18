@@ -4,7 +4,11 @@ import { TickIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import DangerousHtml from "Components/DangerousHtml";
-import { formatWithDateMedium } from "./termsAndConditions.utils";
+import {
+  formatWithDateMedium,
+  parseChangelog,
+} from "./termsAndConditions.utils";
+import "./changelog.scss";
 
 type Props = {
   t: {
@@ -22,10 +26,24 @@ export function Changelog({ t, ...props }: Props) {
       direction="vertical"
       className="u-margin--md u-padding--md t-border-r t-background-grey-light-2"
     >
-      <Text className="u-font-weight-bold">{t.changelog_title}</Text>
-      <DangerousHtml className="u-padding-y--md" html={props.changelog} />
+      <Text className="u-font-weight-bold u-margin-bottom--md">
+        {t.changelog_title}
+      </Text>
+      {parseChangelog(props.changelog).map(({ section, changes }) => (
+        <Flex key={section}>
+          <Text
+            tag="span"
+            className="u-font-weight-black c-changelog__section-number u-margin-right"
+          >
+            {section}
+          </Text>
+          <Text tag="span" className="c-changelog__section-content">
+            {changes}
+          </Text>
+        </Flex>
+      ))}
       {props.ackTimestamp && (
-        <Flex className="t-color-chrome-dark-1" align="center">
+        <Flex className="t-color-chrome-dark-1 u-margin-top--md" align="center">
           <TickIcon
             className="c-tac-changelog-approved u-margin-right"
             size="sm"

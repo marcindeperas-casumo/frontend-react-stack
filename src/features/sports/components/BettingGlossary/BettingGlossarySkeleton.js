@@ -36,6 +36,8 @@ const SkeletonItem = ({ height, index }) => {
 
 export const BettingGlossarySkeleton = () => (
   <Skeleton
+    colorHi="#d3d8e1"
+    colorLow="#e5eaed"
     viewBox={null}
     width="100%"
     height={500 || window.innerHeight}

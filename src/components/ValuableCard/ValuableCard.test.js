@@ -44,4 +44,18 @@ describe("ValuableCard", () => {
 
     expect(onCardClick).toBeCalledTimes(1);
   });
+
+  test("should add css class if provided", () => {
+    const mockValuable = mockData(VALUABLE_TYPES.CASH);
+    const mockCssClass = "my-css-class";
+    const rendered = shallow(
+      <ValuableCard
+        {...mockValuable}
+        onCardClick={onCardClick}
+        className={mockCssClass}
+      />
+    );
+
+    expect(rendered.hasClass(mockCssClass));
+  });
 });

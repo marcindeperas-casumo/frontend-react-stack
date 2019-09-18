@@ -7,7 +7,12 @@ export default {
   "pending_increase": "Pending increase:",
   "pending_remove_all": "<b>Pending:</b> Removing all limits",
   "remove_all": "Remove All",
+  "add": "Add",
+  "suspend_account": "Suspend account",
   "remaining_limit": "{{value}} remaining",
   "cancel_pending_increases": "Cancel pending increases",
   "cancel_pending_remove_all": "Cancel pending remove all",
+  "active_limits_section_title": "Active",
+  "more_limits_section_title": "More limits",
+  "adjust_limit": "Adjust limit",
 }

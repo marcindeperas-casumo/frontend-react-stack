@@ -93,7 +93,7 @@ export const CuratedCardFooterGameMobile = ({
             <Button
               id="gtm-curated-play"
               onClick={onLaunchGame}
-              variant="variant-1"
+              variant="primary"
               className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop"
             >
               <PlayIcon size="sm" />
@@ -150,7 +150,7 @@ export const CuratedCardFooterGameDesktop = ({
                 <Button
                   id="gtm-curated-play"
                   onClick={onLaunchGame}
-                  variant="variant-1"
+                  variant="primary"
                   className="u-pointer-events-initial u-padding-x--xlg@phablet u-padding-x--3xlg@tablet u-padding-x--3xlg@desktop u-padding-y--md@desktop"
                 >
                   <PlayIcon />

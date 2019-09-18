@@ -16,9 +16,10 @@ query ValuableDetailsQuery {
         id: "root:valuable-details-component:fields.expirationTimeLabel"
     )
     termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
-    hour_singular: getText(id: "root:units:fields.hour")
+    wageringStatus: getText(id: "root:valuable-details-component:fields.wagering_status")
+    hour_singular: getText(id: "root:units:fields.hour_singular")
     hour_plural: getText(id: "root:units:fields.hours")
-    day_singular: getText(id: "root:units:fields.day")
+    day_singular: getText(id: "root:units:fields.day_singular")
     day_plural: getText(id: "root:units:fields.days")
 }
 
@@ -28,9 +29,13 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   backgroundImage
   content
   caveat
+  currency
+  market
   expirationTimeInHours
   valuableType
   valuableState
+  wageringThreshold
+  leftToWager
   ... on PlayerValuableSpins {
     requirementType
     game {

@@ -80,11 +80,11 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   }
 
   return (
-    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg t-background-grey-light-2">
+    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
       {listTitleLabel && (
         <ScrollableListTitle paddingLeft title={listTitleLabel} />
       )}
-      <Scrollable itemSpacing="md" padding={PADDING_PER_DEVICE}>
+      <Scrollable padding={PADDING_PER_DEVICE}>
         {valuables.map(valuable => {
           const { id } = valuable;
 
@@ -95,6 +95,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
                   translatedHoursUnit={hoursLabel}
                   {...valuable}
                   onCardClick={() => showModal(valuable)}
+                  className="u-drop-shadow--sm"
                 />
               </div>
             </div>
@@ -114,6 +115,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
               translatedHoursUnit={hoursLabel}
               {...selectedValuable}
               caveat={null}
+              className="u-drop-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>

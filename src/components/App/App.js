@@ -7,7 +7,6 @@ import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsSh
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import SearchInputSkeleton from "Components/SearchInput/SearchInputSkeleton";
 import PromotionPageSkeleton from "Components/PromotionPageSkeletons/PromotionPageSkeleton";
-import { GraphQLProvider } from "Components/GraphQLProvider";
 
 type Props = {
   onAppStarted: () => void,
@@ -46,7 +45,6 @@ export class App extends PureComponent<Props> {
     this.props.subscribeToPlayerUpdates();
   };
 
-  // eslint-disable-next-line max-lines-per-function
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
 
@@ -57,14 +55,12 @@ export class App extends PureComponent<Props> {
     return (
       <Router activePaths={activeComponents}>
         <Route path={["games-top", "games"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-games-lists"
-              loader={() => import("Components/TopLists")}
-              fallback={<TopListsSkeleton />}
-              namedExport="TopLists"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-games-lists"
+            loader={() => import("Components/TopLists")}
+            fallback={<TopListsSkeleton />}
+            namedExport="TopLists"
+          />
         </Route>
         <Route path={["must-drop-jackpots"]}>
           <LazyPortal
@@ -146,7 +142,7 @@ export class App extends PureComponent<Props> {
             hostElementId="react-host-sports-shell"
             loader={() => import("Features/sports/components/SportsShell")}
             fallback={<SportsShellSkeleton />}
-            namedExport="SportsShell"
+            namedExport="SportsShellContainer"
           />
         </Route>
         <Route path={["games-provider"]}>
@@ -166,90 +162,76 @@ export class App extends PureComponent<Props> {
           />
         </Route>
         <Route path={["playerV2"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-player-v2"
-              loader={() => import("Components/AccountPage")}
-              namedExport="AccountPage"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-player-v2"
+            loader={() => import("Components/AccountPage")}
+            namedExport="AccountPage"
+          />
         </Route>
         <Route path={["settings"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-settings"
-              loader={() =>
-                import(
-                  "Components/Settings/SettingsSections/SettingsSectionsContainer"
-                )
-              }
-              namedExport="SettingsSectionsContainer"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-settings"
+            loader={() =>
+              import(
+                "Components/Settings/SettingsSections/SettingsSectionsContainer"
+              )
+            }
+            namedExport="SettingsSectionsContainer"
+          />
         </Route>
         <Route path={["account-details"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-settings-account-details"
-              loader={() =>
-                import(
-                  "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
-                )
-              }
-              namedExport="SettingsAccountDetailsContainer"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-settings-account-details"
+            loader={() =>
+              import(
+                "Components/Settings/SettingsAccountDetails/SettingsAccountDetailsContainer"
+              )
+            }
+            namedExport="SettingsAccountDetailsContainer"
+          />
         </Route>
         <Route path={["notifications"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-settings-notifications"
-              loader={() =>
-                import(
-                  "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
-                )
-              }
-              namedExport="SettingsNotificationsContainer"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-settings-notifications"
+            loader={() =>
+              import(
+                "Components/Settings/SettingsNotifications/SettingsNotificationsContainer"
+              )
+            }
+            namedExport="SettingsNotificationsContainer"
+          />
         </Route>
         <Route path={["reality-check"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-settings-reality-check"
-              loader={() =>
-                import(
-                  "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
-                )
-              }
-              namedExport="SettingsRealityCheckContainer"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-settings-reality-check"
+            loader={() =>
+              import(
+                "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer"
+              )
+            }
+            namedExport="SettingsRealityCheckContainer"
+          />
         </Route>
         <Route path={["history"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-transactions-annual-overview-year"
-              loader={transactionsAnnualOverviewYearSelectorLoader}
-              namedExport="TransactionsAnnualOverviewYearSelector"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-transactions-annual-overview-year"
+            loader={transactionsAnnualOverviewYearSelectorLoader}
+            namedExport="TransactionsAnnualOverviewYearSelector"
+          />
         </Route>
         <Route path={["history-transactions-annual-overview"]}>
-          <GraphQLProvider>
-            <LazyPortal
-              hostElementId="react-host-transactions-annual-overview"
-              props={{ selectedYear: routeParams[0] }}
-              loader={() => import("Components/TransactionsAnnualOverview")}
-              namedExport="TransactionsAnnualOverview"
-            />
-            {/* Had to put same portal here because adding another path above didn't work sometimes */}
-            <LazyPortal
-              hostElementId="react-host-transactions-annual-overview-year"
-              loader={transactionsAnnualOverviewYearSelectorLoader}
-              namedExport="TransactionsAnnualOverviewYearSelector"
-            />
-          </GraphQLProvider>
+          <LazyPortal
+            hostElementId="react-host-transactions-annual-overview"
+            props={{ selectedYear: routeParams[0] }}
+            loader={() => import("Components/TransactionsAnnualOverview")}
+            namedExport="TransactionsAnnualOverview"
+          />
+          {/* Had to put same portal here because adding another path above didn't work sometimes */}
+          <LazyPortal
+            hostElementId="react-host-transactions-annual-overview-year"
+            loader={transactionsAnnualOverviewYearSelectorLoader}
+            namedExport="TransactionsAnnualOverviewYearSelector"
+          />
         </Route>
       </Router>
     );

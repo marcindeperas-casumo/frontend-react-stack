@@ -2,7 +2,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { SetFavouriteCompetitions } from "Features/sports/state";
+import { SetFavouriteCompetitions } from "Features/sports/components/GraphQL";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 
 type Props = {
