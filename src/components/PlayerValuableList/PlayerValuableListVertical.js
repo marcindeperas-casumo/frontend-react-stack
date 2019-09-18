@@ -1,25 +1,20 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals } from "ramda";
-import Scrollable from "@casumo/cmp-scrollable";
+import List from "@casumo/cmp-list";
+import Flex from "@casumo/cmp-flex";
 import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
-import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
+import { ValuableRow } from "Components/ValuableRow";
 import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
 
-const PADDING_PER_DEVICE = {
-  default: "md",
-  tablet: "3xlg",
-  desktop: "3xlg",
-};
-
-export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
+export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   const {
     error,
     loading = false,
@@ -30,10 +25,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
-
-  const showModal = valuable => {
-    setSelectedValuable(valuable);
-  };
 
   const closeModal = () => {
     setSelectedValuable(null);
@@ -49,7 +40,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     gameSlug: ?string,
   }) => {
     onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
+      if (valuableType === VALUABLE_TYPES.SPINS) {
         launchGame(gameSlug);
       }
     });
@@ -65,43 +56,40 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     return function cleanup() {
       handler.unsubscribe();
     };
-  });
+  }, [refetch]);
 
   if (error) {
-    logger.error(`
-      PlayerValuableListHorizontal failed:
-      ${error}
-    `);
+    logger.error("PlayerValuableListVertical failed", error);
     return null;
   }
 
   if (loading) {
-    return <GameListHorizontalSkeleton />;
+    return <GameRowSkeleton />;
   }
 
   return (
-    <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
+    <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
       {listTitleLabel && (
-        <ScrollableListTitle paddingLeft title={listTitleLabel} />
+        <Flex justify="space-between">
+          <Flex.Item>
+            <ScrollableListTitle paddingLeft title={listTitleLabel} />
+          </Flex.Item>
+        </Flex>
       )}
-      <Scrollable padding={PADDING_PER_DEVICE}>
-        {valuables.map(valuable => {
-          const { id } = valuable;
-
-          return (
-            <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-              <div className="c-valuable-list__valuable-card">
-                <ValuableCard
-                  translatedHoursUnit={hoursLabel}
-                  {...valuable}
-                  onCardClick={() => showModal(valuable)}
-                  className="u-drop-shadow--sm"
-                />
-              </div>
-            </div>
-          );
-        })}
-      </Scrollable>
+      <List
+        items={valuables}
+        className="t-background-white"
+        data-test="vertical-valuables-list"
+        render={valuable => (
+          <div key={`valuable-row-${valuable.id}`}>
+            <ValuableRow
+              translatedHoursUnit={hoursLabel}
+              {...valuable}
+              onClick={() => setSelectedValuable(valuable)}
+            />
+          </div>
+        )}
+      />
 
       {selectedValuable && (
         <ValuableDetailsWithModal
@@ -115,7 +103,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
               translatedHoursUnit={hoursLabel}
               {...selectedValuable}
               caveat={null}
-              className="u-drop-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>

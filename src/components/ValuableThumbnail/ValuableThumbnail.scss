@@ -1,9 +1,12 @@
-.c-valuable-card__state {
+.c-valuable-card-thumbnail__state {
   vertical-align: bottom;
 }
-.c-valuable-card-header-coin-wrapper {
+.c-valuable-card-thumbnail-coin--large {
   width: 34%;
 }
-.c-valuable-card-header-coin {
+.c-valuable-card-thumbnail-coin--small {
+  width: 52%;
+}
+.c-valuable-card-thumbnail-coin {
   width: 100%;
 }
