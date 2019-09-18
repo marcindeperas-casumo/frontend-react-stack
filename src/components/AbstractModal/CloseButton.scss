@@ -12,10 +12,3 @@ $button-size-mobile: $cudl-spacer-size-default * 4;
     width: $button-size;
   }
 }
-
-.c-close-button__container {
-  position: fixed;
-  right: 10px;
-  top: 10px;
-  z-index: 20;
-}
