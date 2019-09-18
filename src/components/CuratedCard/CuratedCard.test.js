@@ -15,7 +15,7 @@ import {
 } from "Components/CuratedCard/CuratedCardFooter";
 import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
 import curatedData from "Models/curated/__mocks__/curated.json";
-import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
+import { CURATED_TYPE, CARD_CLICK_URL, CURATED_SLUG } from "Models/curated";
 
 describe("CuratedCard", () => {
   let fetchCurated;
@@ -207,13 +207,12 @@ describe("CuratedCard", () => {
 });
 
 describe("Curated card - tracking", () => {
-  const curatedSlug = "CURATED";
   const contentSlug = "topwheel-treasures";
 
-  const assertTrackClickData = (trackComponent, type, slug) => {
+  const assertTrackClickData = (trackComponent, trackedType, trackedSlug) => {
     const expectedTrackData = {
-      type,
-      slug,
+      type: trackedType,
+      slug: `${CURATED_SLUG}.${trackedSlug}`,
     };
     const actualTrackData = trackComponent.prop("data");
 
@@ -235,7 +234,7 @@ describe("Curated card - tracking", () => {
         fetchCurated={fetchCurated}
         onLaunchGame={onLaunchGame}
         isFetched={true}
-        curatedSlug={`${curatedSlug}.${contentSlug}`}
+        slug={contentSlug}
       />
     )
       .find("TrackClick")
@@ -256,7 +255,7 @@ describe("Curated card - tracking", () => {
         fetchCurated={fetchCurated}
         onLaunchGame={onLaunchGame}
         isFetched={true}
-        curatedSlug={`${curatedSlug}.${contentSlug}`}
+        slug={contentSlug}
       />
     )
       .find("TrackClick")
@@ -284,7 +283,7 @@ describe("Curated card - tracking", () => {
             fetchCurated={fetchCurated}
             onLaunchGame={onLaunchGame}
             isFetched={true}
-            curatedSlug={`${curatedSlug}.${contentSlug}`}
+            slug={contentSlug}
           />
         )
           .find(CuratedCardFooterGame)

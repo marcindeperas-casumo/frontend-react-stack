@@ -16,7 +16,11 @@ import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
 import TrackView from "Components/TrackView";
-import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
+import {
+  CURATED_TYPE,
+  CARD_CLICK_URL,
+  prefixCuratedSlug,
+} from "Models/curated";
 
 const spacing = {
   mobile: "md",
@@ -39,7 +43,7 @@ export type Props = {|
   fetchCurated: Function,
   onLaunchGame: Function,
   typeOfCurated: string,
-  curatedSlug: string,
+  slug: string,
 |};
 
 export class CuratedCard extends PureComponent<Props> {
@@ -57,11 +61,11 @@ export class CuratedCard extends PureComponent<Props> {
   }
 
   get trackData() {
-    const { typeOfCurated, curatedSlug = "" } = this.props;
+    const { typeOfCurated, slug = "" } = this.props;
 
     return {
       [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_SLUG]: curatedSlug.split(".")[1],
+      [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(slug),
     };
   }
 
