@@ -16,7 +16,11 @@ import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
 import TrackView from "Components/TrackView";
-import { CURATED_TYPE, CARD_CLICK_URL, getCuratedSlug } from "Models/curated";
+import {
+  CURATED_TYPE,
+  CARD_CLICK_URL,
+  prefixCuratedSlug,
+} from "Models/curated";
 
 const spacing = {
   mobile: "md",
@@ -61,7 +65,7 @@ export class CuratedCard extends PureComponent<Props> {
 
     return {
       [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_SLUG]: getCuratedSlug(slug),
+      [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(slug),
     };
   }
 

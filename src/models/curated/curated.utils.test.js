@@ -1,23 +1,23 @@
 import { types } from "Models/cms";
 import { CURATED_SLUG } from "./curated.constants";
-import { getCuratedSlug, takeFetchedCuratedPages } from "./curated.utils";
+import { prefixCuratedSlug, takeFetchedCuratedPages } from "./curated.utils";
 
 describe("Models/curated/utils", () => {
-  describe("getCuratedSlug()", () => {
+  describe("prefixCuratedSlug()", () => {
     test("prepends the base-page slug to the slug if it is not prepended yet", () => {
-      expect(getCuratedSlug("foo")).toEqual(`${CURATED_SLUG}.foo`);
+      expect(prefixCuratedSlug("foo")).toEqual(`${CURATED_SLUG}.foo`);
     });
 
     test("does not prepend the base-page slug if the slug already has it", () => {
-      expect(getCuratedSlug(`${CURATED_SLUG}.foo`)).toEqual(
+      expect(prefixCuratedSlug(`${CURATED_SLUG}.foo`)).toEqual(
         `${CURATED_SLUG}.foo`
       );
     });
 
     test("returns an empty string if is not a string", () => {
-      expect(getCuratedSlug(null)).toEqual("");
-      expect(getCuratedSlug(false)).toEqual("");
-      expect(getCuratedSlug()).toEqual("");
+      expect(prefixCuratedSlug(null)).toEqual("");
+      expect(prefixCuratedSlug(false)).toEqual("");
+      expect(prefixCuratedSlug()).toEqual("");
     });
   });
 

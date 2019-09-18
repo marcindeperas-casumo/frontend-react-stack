@@ -6,18 +6,18 @@ import { launchGame } from "Models/games";
 import {
   curatedSelector,
   isCuratedLoadedFactory,
-  getCuratedSlug,
+  prefixCuratedSlug,
 } from "Models/curated";
 
 export const CuratedCardContainer = connect(
   (state, { slug }) => {
     return {
-      ...curatedSelector(getCuratedSlug(slug))(state),
-      isFetched: isCuratedLoadedFactory(getCuratedSlug(slug))(state),
+      ...curatedSelector(prefixCuratedSlug(slug))(state),
+      isFetched: isCuratedLoadedFactory(prefixCuratedSlug(slug))(state),
     };
   },
   (dispatch, { slug, gameId }) => ({
-    fetchCurated: () => dispatch(fetchPageBySlug(getCuratedSlug(slug))),
+    fetchCurated: () => dispatch(fetchPageBySlug(prefixCuratedSlug(slug))),
     onLaunchGame: () => dispatch(launchGame(gameId)),
   })
 )(CuratedCard);

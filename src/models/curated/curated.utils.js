@@ -2,7 +2,7 @@ import * as R from "ramda";
 import { types } from "Models/cms";
 import { CURATED_SLUG } from "./curated.constants";
 
-export const getCuratedSlug = slug => {
+export const prefixCuratedSlug = slug => {
   const isString = typeof slug === "string";
   const isPrefixed = isString && R.startsWith(CURATED_SLUG, slug);
 
