@@ -11,7 +11,7 @@ import {
   anyPass,
   propSatisfies,
 } from "ramda";
-import { INTL_LOCALES, LANGUAGES, MARKETS } from "Src/constants";
+import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
@@ -171,4 +171,20 @@ export const playerNameSelector: PlayerNameSelector = createSelector(
 export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   path(["contactInfo", "socialSecurityNumber"])
+);
+
+export const welcomeOfferIdSelector = createSelector(
+  playerSelector,
+  prop(["welcomeOfferId"])
+);
+
+export const verticalSelector = createSelector(
+  welcomeOfferIdSelector,
+  welcomeOfferId => {
+    const isSportsWelcomeOffer =
+      typeof welcomeOfferId === "string" &&
+      welcomeOfferId.startsWith("wo-sports");
+
+    return isSportsWelcomeOffer ? VERTICALS.SPORTS : VERTICALS.CASINO;
+  }
 );
