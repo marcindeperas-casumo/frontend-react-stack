@@ -53,47 +53,6 @@ describe("<PromotionCardList /> - Mobile", () => {
 
     expect(rendered.find("Scrollable").exists()).toBe(false);
   });
-
-  test("should set a background color if backgroundColor is coming down as a prop", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          backgroundColor="blue"
-          promotionsSlugs={promotionSlugs}
-        />
-      </MockStore>
-    );
-
-    expect(
-      rendered
-        .find(Scrollable)
-        .parent()
-        .hasClass("t-background-blue")
-    ).toBe(true);
-  });
-
-  test("should not set a background color if backgroundColor is not coming down as a prop", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <PromotionCardList
-          slug="foo"
-          fetchCampaign={fetchCampaign}
-          fetchPromotions={fetchPromotions}
-          promotionsSlugs={promotionSlugs}
-        />
-      </MockStore>
-    );
-
-    expect(
-      rendered
-        .find("PromotionCardList")
-        .childAt(0)
-        .props().className
-    ).not.toMatch("t-background-");
-  });
 });
 
 describe("<PromotionCardList /> - Desktop", () => {

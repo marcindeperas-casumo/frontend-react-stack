@@ -2,7 +2,7 @@ import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
 import { types as tocTypes, fetchTACListSaga } from "Models/tac";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
-import { CURATED_SLUG, fetchCuratedGameSaga } from "Models/curated";
+import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
 import {
   liveCasinoTypes,
   fetchAllLiveCasinoGamesSaga,
@@ -105,11 +105,7 @@ export default function* rootSaga(dispatch) {
     ),
     updatePlayerFirstDepositDateSaga
   );
-  yield fork(
-    takeEvery,
-    action => action.type.startsWith(getFetchCompleteTypeBySlug(CURATED_SLUG)),
-    fetchCuratedGameSaga
-  );
+  yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(
     takeEvery,
     gameTypes.FETCH_GAMES_BY_SLUGS_START,
