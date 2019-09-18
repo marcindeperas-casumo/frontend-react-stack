@@ -51,6 +51,14 @@ export const FAVOURITE_SPORTS_SELECTOR_CONTEXT = gql`
   ${FavouriteSportsSelector.fragments.group}
 `;
 
+export const PLAYER_VERTICAL_QUERY = gql`
+  query PlayerVertical {
+    player {
+      vertical
+    }
+  }
+`;
+
 class StageFavouritesProvider extends React.Component<
   ProviderProps,
   ProviderState
@@ -71,6 +79,7 @@ class StageFavouritesProvider extends React.Component<
       toggleFavouriteCompetition: this.toggleFavouriteCompetition,
       getSelectedIds: this.getSelectedIds,
       isSelected: this.isSelected,
+      isSportsPlayer: false,
     };
   }
 
@@ -89,6 +98,17 @@ class StageFavouritesProvider extends React.Component<
       fetchPolicy: "network-only",
     });
 
+    const {
+      data: {
+        player: { vertical },
+      },
+    }: {
+      data: PlayerVertical,
+    } = await this.context.client.query({
+      query: PLAYER_VERTICAL_QUERY,
+      fetchPolicy: "network-only",
+    });
+
     // determine if this is the first time selecting favourites and favourite competitions
     // if all favourited competitions are empty
     this.setState({
@@ -98,6 +118,7 @@ class StageFavouritesProvider extends React.Component<
         sports.filter(
           g => g.favouriteCompetitions && g.favouriteCompetitions.length > 0
         ).length === 0,
+      isSportsPlayer: vertical === "SPORTS",
     });
 
     // for all groups that allow subgroup selection, default the favourites

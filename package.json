@@ -74,8 +74,7 @@
     "storybook:build": "build-storybook -c .storybook -s ./.storybook/static -o .out",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --script-name storybook --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components",
-    "graphql-generate-types": "apollo codegen:generate flow-typed/graphql  --target=flow --endpoint=http://localhost:4000 --includes=\"src/components/**/*{js,graphql}\" --outputFlat --no-addTypename",
-    "graphql-generate-types-sports": "apollo codegen:generate flow-typed/graphql  --target=flow --endpoint=http://localhost:4000 --includes=\"src/features/sports/**/*{js,graphql}\" --outputFlat --no-addTypename"
+    "graphql-generate-types": "apollo codegen:generate flow-typed/graphql  --target=flow --endpoint=http://localhost:4000 --includes=\"src/**/*{js,graphql}\" --outputFlat --no-addTypename"
   },
   "husky": {
     "hooks": {
