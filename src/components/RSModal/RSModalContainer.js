@@ -17,9 +17,6 @@ export default connect(
       onHideModal,
       className,
       portalClassName,
-      headerBgColor,
-      headerTextColor,
-      headerIsTextCentered,
     } = mapping || {};
     const page = getPage(slug)(state);
 
@@ -37,9 +34,6 @@ export default connect(
       onHideModal,
       className,
       portalClassName,
-      headerBgColor,
-      headerTextColor,
-      headerIsTextCentered,
     };
   },
   {

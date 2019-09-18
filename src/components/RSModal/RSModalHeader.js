@@ -9,18 +9,12 @@ import Text from "@casumo/cmp-text";
 type Props = {
   title: ?string,
   hideModal: () => void,
-  bgColor?: string,
-  textColor?: string,
-  isTextCentered?: boolean,
 };
 
 export function ModalHeader(props: Props) {
   return (
     <Flex
-      className={classNames(
-        "u-padding-left--lg u-padding-y--lg",
-        `t-background-${props.bgColor || "blue-light-1"}`
-      )}
+      className="u-padding-left--lg u-padding-y--lg t-background-white"
       direction="horizontal"
       align="center"
       spacing="md"
@@ -31,17 +25,12 @@ export function ModalHeader(props: Props) {
         size="sm"
         tag="span"
         data-test-name="rsmodal-header-text"
-        className={classNames(
-          "u-font-weight-bold",
-          `t-color-${props.textColor || "white"}`,
-          props.isTextCentered && "o-flex__block u-text-align-center"
-        )}
+        className="u-font-weight-bold t-color-black o-flex__block u-text-align-center"
       >
         {props.title || <ModalTitleSkeleton />}
       </Text>
       <CrossIcon
-        className={`u-padding-right--lg t-color-${props.textColor ||
-          "blue"} u-cursor-pointer"`}
+        className="u-padding-right--lg t-color-black u-cursor-pointer"
         onClick={props.hideModal}
         data-test-name="rsmodal-header-close"
       />

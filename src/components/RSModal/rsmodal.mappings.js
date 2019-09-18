@@ -50,8 +50,5 @@ export const mappings: Mapping = {
     customContent: <SlotControlSystemContainer />,
     onHideModal: exitConfiguration,
     portalClassName: "c-rsmodal__portal--slot-control-system",
-    headerBgColor: "white",
-    headerTextColor: "black",
-    headerIsTextCentered: true,
   },
 };

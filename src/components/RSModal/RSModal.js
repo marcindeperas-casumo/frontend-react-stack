@@ -24,9 +24,6 @@ type Props = {
   className?: string,
   /* optional classes for the portal element that wraps overlay and modal */
   portalClassName?: string,
-  headerBgColor?: string,
-  headerTextColor?: string,
-  headerIsTextCentered?: boolean,
 };
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
@@ -46,13 +43,7 @@ export function Modal(props: Props) {
       portalClassName={classNames("c-rsmodal__portal", props.portalClassName)}
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
-      <ModalHeader
-        title={text && text.title}
-        hideModal={props.hideModal}
-        bgColor={props.headerBgColor}
-        textColor={props.headerTextColor}
-        isTextCentered={props.headerIsTextCentered}
-      />
+      <ModalHeader title={text && text.title} hideModal={props.hideModal} />
       {props.customContent || <ModalContent content={text && text.content} />}
     </ReactModal>
   );
