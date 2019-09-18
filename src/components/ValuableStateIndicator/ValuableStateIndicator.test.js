@@ -1,3 +1,4 @@
+/* @flow */
 import React from "react";
 import { shallow } from "enzyme";
 import { LockIcon, ClockIcon } from "@casumo/cmp-icons";

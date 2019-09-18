@@ -1,4 +1,4 @@
-// @flow
+/* @flow */
 import React from "react";
 import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
 import {
