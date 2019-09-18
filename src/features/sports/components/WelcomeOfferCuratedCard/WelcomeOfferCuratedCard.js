@@ -2,7 +2,7 @@
 import * as React from "react";
 import { CuratedCard } from "Components/CuratedCard";
 
-export const CMS_SLUG = "sports-welcome-offer";
+export const CMS_SLUG = "welcome-offer-sports";
 
 type Props = {
   vertical: string,
