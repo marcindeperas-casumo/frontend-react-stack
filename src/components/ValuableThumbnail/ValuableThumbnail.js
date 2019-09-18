@@ -103,7 +103,7 @@ export const ValuableThumbnail = ({
       </Flex>
       {stateBadgeVisible && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card-thumbnail__state u-line-height--1 t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
+          <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
             <ValuableStateIndicator
               hoursToExpiry={expirationTimeInHours}
               state={valuableState}
