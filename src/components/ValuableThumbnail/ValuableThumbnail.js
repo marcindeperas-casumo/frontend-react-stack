@@ -35,7 +35,7 @@ type Props = {
   expirationTimeInHours: number,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
-  size?: "sm" | "lg",
+  size?: "small" | "large",
 };
 
 export const ValuableThumbnail = ({
@@ -44,7 +44,7 @@ export const ValuableThumbnail = ({
   currency,
   expirationTimeInHours,
   market,
-  size = "lg",
+  size = "large",
   valuableState,
   valuableType,
   translatedHoursUnit,
@@ -52,7 +52,7 @@ export const ValuableThumbnail = ({
   const spinType = coinValueToSpinType(coinValue);
   const isFresh = valuableState === VALUABLE_STATES.FRESH;
   const stateBadgeVisible =
-    size !== "sm" &&
+    size !== "small" &&
     (showStateBadge(valuableState, expirationTimeInHours) || !isFresh);
   const stateBadgeText = getStatusBadgeText(
     expirationTimeInHours,
@@ -70,7 +70,7 @@ export const ValuableThumbnail = ({
         className="o-ratio__content"
         data-test="valuable-card-thumbnail-coin"
         direction="vertical"
-        justify={size === "sm" ? "center" : "end"}
+        justify={size === "small" ? "center" : "end"}
       >
         <div
           className={`c-valuable-card-thumbnail-coin--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
@@ -96,7 +96,7 @@ export const ValuableThumbnail = ({
               locale={locale}
               spinType={spinType}
               valuableType={valuableType}
-              fontSize={size === "sm" ? "md" : "lg"}
+              fontSize={size === "small" ? "md" : "lg"}
             />
           </Flex>
         </div>

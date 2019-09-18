@@ -105,7 +105,7 @@ export class ValuableRow extends PureComponent<Props> {
               translatedHoursUnit={this.props.translatedHoursUnit}
               valuableState={valuableState}
               valuableType={this.props.valuableType}
-              size="sm"
+              size="small"
             />
           </div>
         </Flex.Item>
