@@ -30,7 +30,10 @@ const PromotionCardWrapper = ({
   title,
 }: WrapperProps) => {
   return (
-    <a href={link} className="o-ratio o-ratio--promotion-card">
+    <a
+      href={link}
+      className="o-ratio o-ratio--promotion-card u-margin-bottom--sm"
+    >
       <TrackView
         eventName={EVENTS.MIXPANEL_PROMOTION_VIEWED}
         data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
@@ -40,7 +43,7 @@ const PromotionCardWrapper = ({
         data={{ [EVENT_PROPS.PROMOTION_TYPE]: link }}
       >
         <Card
-          className="o-ratio__content t-border-r--md t-background-white"
+          className="o-ratio__content t-border-r--md t-background-white t-box-shadow"
           spacing="none"
           header={() => <PromotionCardHeader badge={badge} dates={dates} />}
           content={() => <PromotionCardContent title={title} />}
