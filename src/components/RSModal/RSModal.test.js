@@ -4,11 +4,10 @@
  */
 // @flow
 import * as React from "react";
-import ReactModal from "react-modal";
 import { shallow, mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { useDelayedText, Modal } from "./RSModal";
+import { useDelayedText } from "./RSModal";
 
 jest.useFakeTimers();
 

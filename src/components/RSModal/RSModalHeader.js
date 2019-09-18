@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Skeleton from "@casumo/cmp-skeleton";
 import { CrossIcon } from "@casumo/cmp-icons";

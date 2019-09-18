@@ -49,6 +49,5 @@ export const mappings: Mapping = {
     slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
     customContent: <SlotControlSystemContainer />,
     onHideModal: exitConfiguration,
-    portalClassName: "c-rsmodal__portal--slot-control-system",
   },
 };

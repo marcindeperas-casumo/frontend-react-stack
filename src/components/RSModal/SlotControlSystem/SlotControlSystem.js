@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Button from "@casumo/cmp-button";
-import "./SlotControlSystem.scss";
 
 type Props = {
   hideModalSuccess: () => void,
