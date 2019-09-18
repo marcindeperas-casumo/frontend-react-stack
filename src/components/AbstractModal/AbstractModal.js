@@ -34,14 +34,18 @@ export class AbstractModal extends PureComponent<Props> {
           isOpen={isOpen}
           onRequestClose={hideModal}
           className={classNames(
-            "c-abstract-modal t-background-white",
+            " t-background-white u-position-relative",
             className ? className : "c-abstract-modal--default"
           )}
           overlayClassName="c-abstract-modal__overlay"
           {...rest}
         >
-          <CloseButton data-test="modal-close-button" onClick={hideModal} />
-          {children}
+          <div className="c-abstract-modal__content u-height--1/1">
+            {children}
+          </div>
+          <div className="c-abstract-modal__close u-padding u-position-absolute">
+            <CloseButton data-test="modal-close-button" onClick={hideModal} />
+          </div>
         </ReactModal>
       </>
     );

@@ -3,14 +3,12 @@
   position: sticky;
 }
 
-.c-valuable-details-modal--desktop,
-.c-valuable-details-modal--mobile-landscape {
-  height: 85vh;
-  top: 10vh;
-  width: 60vw;
-}
-
-.c-valuable-details-modal--mobile-portrait {
+.c-valuable-details-modal {
   height: 100%;
   width: 100%;
+
+  @include cudl-breakpoint(phablet) {
+    max-height: 670px;
+    max-width: 420px;
+  }
 }
