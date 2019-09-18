@@ -1,5 +1,5 @@
 /* @flow */
-import React from "react";
+import * as React from "react";
 import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
 import {
   type ValuableState,
@@ -10,7 +10,7 @@ import {
 type Props = {
   hoursToExpiry: number,
   state: ValuableState,
-  label?: Function,
+  label?: React.Node,
 };
 
 export const ValuableStateIndicator = ({
