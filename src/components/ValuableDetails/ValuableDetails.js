@@ -245,6 +245,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
               className="u-width--1/1"
               onClick={this.handleAction}
               data-test="valuable-action-button"
+              variant="primary"
             >
               <ActionButtonContent
                 text={actionButtonProps.text}

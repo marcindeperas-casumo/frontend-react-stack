@@ -11,6 +11,8 @@ import {
   gameBrowserUrl,
   durationToTranslationKey,
   coinValueToSpinType,
+  isAboutToExpire,
+  showStateBadge,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -191,6 +193,27 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
+  });
+
+  describe("isAboutToExpire", () => {
+    test("should return true if less than 24 hours to expiry", () => {
+      expect(isAboutToExpire(10)).toBe(true);
+    });
+
+    test("should return false if greater than 24 hours to expiry", () => {
+      expect(isAboutToExpire(100)).toBe(false);
+    });
+  });
+  describe("showStateBadge", () => {
+    test("should return true if locked but not close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.LOCKED, 100)).toBe(true);
+    });
+    test("should return true if not locked but close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.FRESH, 10)).toBe(true);
+    });
+    test("should return false if not locked and not close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
+    });
   });
 });
 

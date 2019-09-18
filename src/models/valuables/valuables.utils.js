@@ -15,6 +15,12 @@ import {
 export const depositUrl = "/en/cash/deposit";
 export const gameBrowserUrl = "/en/games/top";
 
+export const isAboutToExpire = (hours: number): boolean =>
+  hours > 0 && hours <= 24;
+
+export const showStateBadge = (valuableState: ValuableState, hours: number) =>
+  valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
+
 export const getValuableDetailsAction = ({
   valuableType,
   valuableState,

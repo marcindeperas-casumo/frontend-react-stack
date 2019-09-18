@@ -19,20 +19,22 @@ stories.add("Default", () => {
   const valuableDetailsMock = mock[0];
 
   return (
-    <ValuableDetails
-      valuableDetails={valuableDetailsMock}
-      translations={translations}
-      onConsumeValuable={F}
-      onLaunchGame={() => {}}
-    >
-      <div style={{ width: "160px" }}>
-        <ValuableCard
-          {...mockValuable(VALUABLE_TYPES.CASH)}
-          caveat={null}
-          className="u-drop-shadow--lg"
-        />
-      </div>
-    </ValuableDetails>
+    <div style={{ width: "420px" }}>
+      <ValuableDetails
+        valuableDetails={valuableDetailsMock}
+        translations={translations}
+        onConsumeValuable={F}
+        onLaunchGame={() => {}}
+      >
+        <div style={{ width: "160px" }}>
+          <ValuableCard
+            {...mockValuable(VALUABLE_TYPES.CASH)}
+            caveat={null}
+            className="u-drop-shadow--lg"
+          />
+        </div>
+      </ValuableDetails>
+    </div>
   );
 });
 
@@ -62,19 +64,21 @@ stories.add("Deposit - Locked", () => {
   const valuableDetailsMock = mock[1];
 
   return (
-    <ValuableDetails
-      valuableDetails={valuableDetailsMock}
-      translations={translations}
-      onConsumeValuable={F}
-      onLaunchGame={() => {}}
-    >
-      <div style={{ width: "160px" }}>
-        <ValuableCard
-          {...mockValuable(VALUABLE_TYPES.DEPOSIT)}
-          caveat={null}
-          className="u-drop-shadow--lg"
-        />
-      </div>
-    </ValuableDetails>
+    <div style={{ width: "420px" }}>
+      <ValuableDetails
+        valuableDetails={valuableDetailsMock}
+        translations={translations}
+        onConsumeValuable={F}
+        onLaunchGame={() => {}}
+      >
+        <div style={{ width: "160px" }}>
+          <ValuableCard
+            {...mockValuable(VALUABLE_TYPES.DEPOSIT)}
+            caveat={null}
+            className="u-drop-shadow--lg"
+          />
+        </div>
+      </ValuableDetails>
+    </div>
   );
 });
