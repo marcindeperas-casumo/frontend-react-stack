@@ -27,7 +27,7 @@ stories.add("Default", () => {
       {...valuableDetails}
       valuableState={valuableState}
       expirationTimeInHours={expiryHours}
-      onCardClick={action("click")}
+      onClick={action("click")}
       translatedHoursUnit={translationsMock.hoursUnit}
     />
   );

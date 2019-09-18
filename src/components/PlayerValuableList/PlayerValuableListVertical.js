@@ -26,10 +26,6 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   const { listTitleLabel, hoursLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
 
-  const showModal = valuable => {
-    setSelectedValuable(valuable);
-  };
-
   const closeModal = () => {
     setSelectedValuable(null);
   };
@@ -85,14 +81,11 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         className="t-background-white"
         data-test="vertical-valuables-list"
         render={valuable => (
-          <div
-            key={`valuable-row-${valuable.id}`}
-            id={`valuable-row-${valuable.id}`}
-          >
+          <div key={`valuable-row-${valuable.id}`}>
             <ValuableRow
               translatedHoursUnit={hoursLabel}
               {...valuable}
-              onCardClick={() => showModal(valuable)}
+              onClick={() => setSelectedValuable(valuable)}
             />
           </div>
         )}

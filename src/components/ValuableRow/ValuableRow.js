@@ -41,7 +41,7 @@ type Props = {
   /** The date on which the valuable will expiry */
   expirationTimeInHours: number,
   /** Function to be triggered on click of card */
-  onCardClick: () => void,
+  onClick: () => void,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
 };
@@ -98,7 +98,7 @@ export class ValuableRow extends PureComponent<Props> {
       <Flex
         className="u-padding--md"
         data-test="valuable-row"
-        onClick={this.props.onCardClick}
+        onClick={this.props.onClick}
       >
         <Flex.Item className="c-valuable-row-thumbnail">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">

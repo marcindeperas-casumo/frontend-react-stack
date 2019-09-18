@@ -14,22 +14,9 @@ import translationsMock from "./__mocks__/translations.mock.json";
 describe("PlayerValuableListVertical", () => {
   const consumeValuable = jest.fn();
   const refetchMock = jest.fn();
-  let rendered;
-
-  beforeEach(() => {
-    rendered = shallow(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={refetchMock}
-      />
-    );
-  });
 
   test("should render skeleton while loading", () => {
-    rendered = shallow(
+    const rendered = shallow(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={true}
@@ -42,7 +29,7 @@ describe("PlayerValuableListVertical", () => {
   });
 
   test("should render the correct number of items", () => {
-    rendered = shallow(
+    const rendered = shallow(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}
@@ -61,6 +48,15 @@ describe("PlayerValuableListVertical", () => {
   });
 
   test("should render the list title", () => {
+    const rendered = shallow(
+      <PlayerValuableListVertical
+        valuables={mockedValuables}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={refetchMock}
+      />
+    );
     expect(rendered.find(ScrollableListTitle).prop("title")).toEqual(
       translationsMock.listTitleLabel
     );
@@ -68,7 +64,7 @@ describe("PlayerValuableListVertical", () => {
 
   test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
     const mock = jest.fn();
-    rendered = mount(
+    const rendered = mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}
@@ -88,7 +84,7 @@ describe("PlayerValuableListVertical", () => {
 
   test("should not refetch when component is unmounted", () => {
     const mock = jest.fn();
-    rendered = mount(
+    const rendered = mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}

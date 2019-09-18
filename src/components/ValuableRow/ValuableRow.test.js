@@ -6,15 +6,13 @@ import ImageLazy from "Components/Image/ImageLazy";
 import { ValuableRow } from "./ValuableRow";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 
-const onCardClick = jest.fn();
+const onClick = jest.fn();
 
 describe("ValuableRow", () => {
   test("should always pass an image url to ValuableThumbnail if type is not SPINS", () => {
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     const { backgroundImage: expectedValue } = mockValuable;
-    const rendered = mount(
-      <ValuableRow {...mockValuable} onCardClick={onCardClick} />
-    );
+    const rendered = mount(<ValuableRow {...mockValuable} onClick={onClick} />);
     const actualValue = rendered
       .find(ValuableThumbnail)
       .find(ImageLazy)
@@ -26,7 +24,7 @@ describe("ValuableRow", () => {
   test("should not display any description if valuableType is not SPINS", () => {
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     const rendered = shallow(
-      <ValuableRow {...mockValuable} onCardClick={onCardClick} />
+      <ValuableRow {...mockValuable} onClick={onClick} />
     );
 
     expect(
@@ -37,12 +35,12 @@ describe("ValuableRow", () => {
   test("should call the onClick function on click of card", () => {
     const mockValuable = mockData(VALUABLE_TYPES.CASH);
     const rendered = shallow(
-      <ValuableRow {...mockValuable} onCardClick={onCardClick} />
+      <ValuableRow {...mockValuable} onClick={onClick} />
     );
 
     rendered.find({ "data-test": "valuable-row" }).simulate("click");
 
-    expect(onCardClick).toBeCalledTimes(1);
+    expect(onClick).toBeCalledTimes(1);
   });
 
   test("should add css class if provided", () => {
@@ -51,7 +49,7 @@ describe("ValuableRow", () => {
     const rendered = shallow(
       <ValuableRow
         {...mockValuable}
-        onCardClick={onCardClick}
+        onClick={onClick}
         className={mockCssClass}
       />
     );
