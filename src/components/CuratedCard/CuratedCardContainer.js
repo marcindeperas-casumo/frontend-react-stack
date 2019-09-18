@@ -12,8 +12,8 @@ import {
 export const CuratedCardContainer = connect(
   (state, { slug }) => {
     return {
-      ...curatedSelector(prefixCuratedSlug(slug))(state),
-      isFetched: isCuratedLoadedFactory(prefixCuratedSlug(slug))(state),
+      ...curatedSelector(slug)(state),
+      isFetched: isCuratedLoadedFactory(slug)(state),
     };
   },
   (dispatch, { slug, gameId }) => ({
