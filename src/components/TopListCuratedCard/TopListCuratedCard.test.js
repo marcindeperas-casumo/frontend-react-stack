@@ -8,7 +8,7 @@ describe("TopListCuratedCard", () => {
   test("renders the injected card IF the user has already deposited", () => {
     const slug = "foo";
     const rendered = shallow(
-      <TopListCuratedCard slug={slug} hasDeposited={true} />
+      <TopListCuratedCard card={slug} hasDeposited={true} />
     );
 
     expect(rendered.find(CuratedCard)).toHaveLength(1);
@@ -18,7 +18,7 @@ describe("TopListCuratedCard", () => {
   test("renders the 'welcome-offer' card IF the user has NOT deposited yet", () => {
     const slug = "foo";
     const rendered = shallow(
-      <TopListCuratedCard slug={slug} hasDeposited={false} />
+      <TopListCuratedCard card={slug} hasDeposited={false} />
     );
 
     expect(rendered.find(CuratedCard)).toHaveLength(1);
@@ -28,7 +28,7 @@ describe("TopListCuratedCard", () => {
   test("if the 'card' prop is an array it takes the first item", () => {
     const slug = ["foo", "bar"];
     const rendered = shallow(
-      <TopListCuratedCard slug={slug} hasDeposited={true} />
+      <TopListCuratedCard card={slug} hasDeposited={true} />
     );
 
     expect(rendered.find(CuratedCard)).toHaveLength(1);
