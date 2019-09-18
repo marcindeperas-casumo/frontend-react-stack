@@ -30,7 +30,7 @@ const state = {
 stories.add("Default", () => {
   return (
     <MockStore state={state}>
-      <CuratedCard card={"curated-game-gb_en"} />
+      <CuratedCard slug={"curated-game-gb_en"} />
     </MockStore>
   );
 });
@@ -38,7 +38,7 @@ stories.add("Default", () => {
 stories.add("Promotion", () => {
   return (
     <MockStore state={state}>
-      <CuratedCard card={"curated-gb_en"} />
+      <CuratedCard slug={"curated-gb_en"} />
     </MockStore>
   );
 });
@@ -46,7 +46,7 @@ stories.add("Promotion", () => {
 stories.add("Welcome offer", () => {
   return (
     <MockStore state={state}>
-      <CuratedCard card={"welcome-offer-test"} />
+      <CuratedCard slug={"welcome-offer-test"} />
     </MockStore>
   );
 });
@@ -101,12 +101,12 @@ stories.add(
     const btnTxt = text("Play Button Text", "Play", "Game Info");
 
     const promotion = [""];
-    const curatedSlug = "";
+    const slug = "";
 
     return (
       <CuratedCardPresentational
         typeOfCurated={typeOfCurated}
-        curatedSlug={curatedSlug}
+        slug={slug}
         promotion={promotion}
         game=""
         header={headerTxt}

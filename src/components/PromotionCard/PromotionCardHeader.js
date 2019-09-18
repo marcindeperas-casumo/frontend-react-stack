@@ -14,7 +14,7 @@ const PromotionCardHeader = ({ badge, dates }) => {
       <Flex.Item>
         <Text
           tag="strong"
-          className="t-color-red u-text-transform-uppercase"
+          className="t-color-plum u-text-transform-uppercase"
           size="2xs"
         >
           {dates}

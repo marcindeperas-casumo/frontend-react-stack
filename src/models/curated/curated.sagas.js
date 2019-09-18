@@ -3,7 +3,7 @@ import {
   types,
   curatedSelector,
   fetchCuratedGame,
-  CURATED_SLUG,
+  prefixCuratedSlug,
 } from "Models/curated";
 import { normalizeData, updateEntity } from "Models/schema";
 import { countrySelector } from "Models/handshake";
@@ -12,7 +12,7 @@ export function* fetchCuratedGameSaga(action) {
   const platform = "mobile";
   const { type } = action;
   const gameId = type.split(".")[1];
-  const slug = `${CURATED_SLUG}.${gameId}`;
+  const slug = prefixCuratedSlug(gameId);
   const curated = yield select(curatedSelector(slug));
   const country = yield select(countrySelector);
 
