@@ -4,9 +4,9 @@ import { storiesOf } from "@storybook/react";
 import { select, text } from "@storybook/addon-knobs/react";
 import Text from "@casumo/cmp-text";
 import { VALUABLE_STATES } from "Models/valuables";
-import { ValuableStatus } from "./ValuableStatus";
+import { ValuableStateIndicator } from "./ValuableStateIndicator";
 
-const stories = storiesOf("ValuableStatus", module);
+const stories = storiesOf("ValuableStateIndicator", module);
 
 stories.add("Default", () => {
   const valuableState = select(
@@ -18,7 +18,7 @@ stories.add("Default", () => {
   const label = text("Status label", "Locked") || null;
 
   return (
-    <ValuableStatus
+    <ValuableStateIndicator
       state={valuableState}
       hoursToExpiry={expiryHours}
       label={

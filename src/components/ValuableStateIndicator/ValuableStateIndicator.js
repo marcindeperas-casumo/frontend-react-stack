@@ -13,7 +13,11 @@ type Props = {
   label?: Function,
 };
 
-export const ValuableStatus = ({ hoursToExpiry, state, label }: Props) => {
+export const ValuableStateIndicator = ({
+  hoursToExpiry,
+  state,
+  label,
+}: Props) => {
   if (state === VALUABLE_STATES.LOCKED) {
     return (
       <div className="u-display--inline-block t-color-black">

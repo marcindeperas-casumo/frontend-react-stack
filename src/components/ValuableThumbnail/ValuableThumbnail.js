@@ -3,7 +3,7 @@ import React, { type Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { ValuableStatus } from "Components/ValuableStatus";
+import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
 import { INTL_LOCALES } from "Src/constants";
 import {
@@ -104,7 +104,7 @@ export const ValuableThumbnail = ({
       {stateBadgeVisible && (
         <div className="o-ratio__content">
           <div className="c-valuable-card-thumbnail__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
-            <ValuableStatus
+            <ValuableStateIndicator
               hoursToExpiry={expirationTimeInHours}
               state={valuableState}
               label={
