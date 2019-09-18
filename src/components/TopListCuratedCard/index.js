@@ -1,2 +1,4 @@
 // @flow
-export { TopListCuratedCard } from "./TopListCuratedCard";
+export {
+  TopListCuratedCardContainer as TopListCuratedCard,
+} from "./TopListCuratedCardContainer";

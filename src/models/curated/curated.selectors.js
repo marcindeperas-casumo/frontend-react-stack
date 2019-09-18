@@ -2,24 +2,11 @@ import { createSelector } from "reselect";
 import { prop, compose, isEmpty } from "ramda";
 import { getPage } from "Models/cms";
 import { gameSelector } from "Models/schema";
-import { hasMadeFirstDepositSelector } from "Models/handshake";
-import { CURATED_SLUG, WELCOME_OFFER_CARD } from "Models/curated";
-
-export const curatedSlugSelector = slug =>
-  createSelector(
-    hasMadeFirstDepositSelector,
-    hasMadeFirstDeposit => {
-      if (!hasMadeFirstDeposit) {
-        return `${CURATED_SLUG}.${WELCOME_OFFER_CARD}`;
-      }
-
-      return `${CURATED_SLUG}.${slug}`;
-    }
-  );
+import { prefixCuratedSlug } from "./curated.utils";
 
 export const curatedSelector = slug =>
   createSelector(
-    getPage(slug),
+    getPage(prefixCuratedSlug(slug)),
     state => state,
     (page, state) => {
       const { fields = {} } = page;
@@ -44,7 +31,7 @@ export const curatedSelector = slug =>
 
 export const isCuratedLoadedFactory = slug =>
   createSelector(
-    getPage(slug),
+    getPage(prefixCuratedSlug(slug)),
     state => state,
     (page, state) => {
       const { fields = {} } = page;
