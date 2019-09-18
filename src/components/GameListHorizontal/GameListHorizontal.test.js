@@ -2,7 +2,6 @@ import React from "react";
 import { mount } from "enzyme";
 import {
   GameListHorizontal,
-  ITEM_SPACING,
   ITEM_RENDERERS,
   TILE_HEIGHTS,
   ITEMS_CONTROL_STYLING,
@@ -50,29 +49,10 @@ describe("<GameListHorizontal /> - Mobile", () => {
     expect(itemIds).toBe(list.games);
   });
 
-  test("uses the default spacing if it is not specified", () => {
-    const { spacing } = rendered.find(ScrollableList).props();
-
-    expect(spacing).toBe(ITEM_SPACING.default);
-  });
-
   test("uses the default renderer if it is not specified", () => {
     const { Component } = rendered.find(ScrollableList).props();
 
     expect(Component).toEqual(ITEM_RENDERERS.default);
-  });
-
-  test("specifies spacing by list id", () => {
-    Object.keys(ITEM_SPACING).forEach(listId => {
-      rendered = mount(
-        <MockStore state={defaultState}>
-          <GameListHorizontal list={getList(listId)} isLoading={false} />
-        </MockStore>
-      ).find(Mobile);
-      const { spacing } = rendered.find(ScrollableList).props();
-
-      expect(spacing).toBe(ITEM_SPACING[listId]);
-    });
   });
 
   test("passes seeMoreText to the ScrollableList", () => {

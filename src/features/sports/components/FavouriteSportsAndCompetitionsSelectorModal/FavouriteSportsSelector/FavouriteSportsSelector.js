@@ -4,7 +4,7 @@ import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
-import Intro from "./FavouriteSportsSelectorIntro";
+import { FavouriteSportsSelectorIntro } from "./FavouriteSportsSelectorIntro";
 import Heading from "./FavouriteSportsSelectorHeading";
 import ListItem from "./FavouriteSportsSelectorListItem";
 import ListItemSkeleton from "./FavouriteSportsSelectorListItemSkeleton";
@@ -24,9 +24,7 @@ const FavouriteSportsSelector = (props: Props) => (
 
       return (
         <>
-          <Intro>
-            <DictionaryTerm termKey="favourite-sports-selector.intro" />
-          </Intro>
+          <FavouriteSportsSelectorIntro isSportsPlayer={api.isSportsPlayer} />
 
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.popular" />

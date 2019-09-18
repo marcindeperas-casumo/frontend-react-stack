@@ -3,29 +3,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: PLAYER_REALITY_CHECK_QUERY
+// GraphQL mutation operation: CloseAllModals
 // ====================================================
 
-export type PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
-  __typename: "PlayerRealityCheckSettings",
-  canChangeInterval: boolean,
-  isZeroIntervalAllowed: boolean,
-  intervalInMinutes: number,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY_player_playOk = {
-  __typename: "PlayerPlayOkSettings",
-  realityCheck: PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY_player = {
-  id: string,
-  __typename: "Player",
-  playOk: PLAYER_REALITY_CHECK_QUERY_player_playOk,
-};
-
-export type PLAYER_REALITY_CHECK_QUERY = {
-  player: PLAYER_REALITY_CHECK_QUERY_player
+export type CloseAllModals = {
+  closeAllModals: ?boolean
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

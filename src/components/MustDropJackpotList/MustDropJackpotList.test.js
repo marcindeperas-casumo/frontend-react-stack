@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
+import List from "@casumo/cmp-list";
 import MustDropJackpotList from "Components/MustDropJackpotList/MustDropJackpotList";
 import { GameRow } from "Components/GameRow";
 
@@ -35,13 +36,18 @@ describe("<MustDropJackpotList />", () => {
     const rendered = shallow(
       <MustDropJackpotList ids={ids} areGamesLoaded={true} />
     );
-    expect(rendered.find(GameRow)).toHaveLength(ids.length);
+
+    const list = rendered.find(List).dive();
+
+    expect(list.find(GameRow)).toHaveLength(ids.length);
   });
 
   test("should not render a <GameRow /> if ids is empty", () => {
     const rendered = shallow(
       <MustDropJackpotList ids={[]} areGamesLoaded={true} />
     );
-    expect(rendered.find(GameRow)).toHaveLength(0);
+    const list = rendered.find(List).dive();
+
+    expect(list.find(GameRow)).toHaveLength(0);
   });
 });
