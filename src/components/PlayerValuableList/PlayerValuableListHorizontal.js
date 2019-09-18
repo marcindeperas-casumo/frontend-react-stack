@@ -22,10 +22,10 @@ const PADDING_PER_DEVICE = {
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
     error,
-    loading,
-    valuables,
+    loading = false,
+    valuables = [],
     translations,
-    refetch,
+    refetch = () => {},
     onConsumeValuable,
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
@@ -123,10 +123,3 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     </div>
   );
 }
-
-// eslint-disable-next-line fp/no-mutation
-PlayerValuableListHorizontal.defaultProps = {
-  loading: false,
-  refetch: () => {},
-  valuable: [],
-};

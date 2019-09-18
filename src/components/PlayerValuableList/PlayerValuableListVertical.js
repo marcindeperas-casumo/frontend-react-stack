@@ -17,10 +17,10 @@ import "./PlayerValuableListHorizontal.scss";
 export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   const {
     error,
-    loading,
-    valuables,
+    loading = false,
+    valuables = [],
     translations,
-    refetch,
+    refetch = () => {},
     onConsumeValuable,
   } = props;
   const { listTitleLabel, hoursLabel } = translations;
@@ -110,10 +110,3 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     </div>
   );
 }
-
-// eslint-disable-next-line fp/no-mutation
-PlayerValuableListVertical.defaultProps = {
-  loading: false,
-  refetch: () => {},
-  valuable: [],
-};
