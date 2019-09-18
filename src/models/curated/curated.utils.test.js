@@ -8,6 +8,12 @@ describe("Models/curated/utils", () => {
       expect(prefixCuratedSlug("foo")).toEqual(`${CURATED_SLUG}.foo`);
     });
 
+    test("prepends the base-slug if the slug starts with the base-slug, but without a dot", () => {
+      expect(prefixCuratedSlug(`${CURATED_SLUG}-foo`)).toEqual(
+        `${CURATED_SLUG}.${CURATED_SLUG}-foo`
+      );
+    });
+
     test("does not prepend the base-page slug if the slug already has it", () => {
       expect(prefixCuratedSlug(`${CURATED_SLUG}.foo`)).toEqual(
         `${CURATED_SLUG}.foo`

@@ -4,7 +4,8 @@ import { CURATED_SLUG } from "./curated.constants";
 
 export const prefixCuratedSlug = slug => {
   const isString = typeof slug === "string";
-  const isPrefixed = isString && R.startsWith(CURATED_SLUG, slug);
+  const prefix = `${CURATED_SLUG}.`;
+  const isPrefixed = isString && R.startsWith(prefix, slug);
 
   if (!isString) {
     return "";
