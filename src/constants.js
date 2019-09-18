@@ -106,6 +106,11 @@ export const CURRENCY_SYMBOLS = {
   JPY: "\u00A5", // ¥
 };
 
+export const VERTICALS = {
+  SPORTS: "SPORTS",
+  CASINO: "CASINO",
+};
+
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",
