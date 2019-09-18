@@ -23,11 +23,11 @@ export class GameListVertical extends PureComponent<Props> {
     const ids = this.props.ids || [];
     return (
       <div className="o-list-wrapper">
-        {ids.map(id => (
-          <div key={id} className="u-margin-bottom">
-            <GameRow id={id} />
-          </div>
-        ))}
+        <List
+          itemSpacing="none"
+          items={ids}
+          render={id => <GameRow id={id} />}
+        />
       </div>
     );
   }
