@@ -79,15 +79,9 @@ export class ValuableRow extends PureComponent<Props> {
   render() {
     const {
       caveat,
-      coinValue,
-      currency,
       description,
       expirationTimeInHours,
-      market,
-      title,
-      translatedHoursUnit,
       valuableState,
-      valuableType,
     } = this.props;
 
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
@@ -104,13 +98,13 @@ export class ValuableRow extends PureComponent<Props> {
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}
-              coinValue={coinValue}
-              currency={currency}
+              coinValue={this.props.coinValue}
+              currency={this.props.currency}
               expirationTimeInHours={expirationTimeInHours}
-              market={market}
-              translatedHoursUnit={translatedHoursUnit}
+              market={this.props.market}
+              translatedHoursUnit={this.props.translatedHoursUnit}
               valuableState={valuableState}
-              valuableType={valuableType}
+              valuableType={this.props.valuableType}
               size="sm"
             />
           </div>
@@ -123,7 +117,10 @@ export class ValuableRow extends PureComponent<Props> {
             />
           )}
           <Text className="u-font-weight-bold" size="sm" tag="span">
-            <DangerousHtml data-test="valuable-row-title" html={title} />
+            <DangerousHtml
+              data-test="valuable-row-title"
+              html={this.props.title}
+            />
           </Text>
           {description && (
             <Text className="u-margin-top" size="sm" tag="div">
