@@ -29,6 +29,7 @@ const JackpotsColumn = ({ column }) => {
       render={jackpot => (
         <GameRow
           game={jackpot}
+          className="t-background-white t-border-r--md t-box-shadow"
           onLaunchGame={() => launchGame({ slug: jackpot.slug })}
         />
       )}
@@ -61,7 +62,6 @@ export default class Jackpots extends PureComponent<Props> {
               <Scrollable
                 itemClassName={itemClassName}
                 padding={PADDING_PER_DEVICE}
-                itemSpacing="md"
               >
                 {columns.map((id, i) => JackpotColumnRenderer({ id, i }))}
               </Scrollable>
@@ -75,7 +75,6 @@ export default class Jackpots extends PureComponent<Props> {
               }}
               Component={JackpotColumnRenderer}
               className={itemClassName}
-              itemSpacing="md"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
             />

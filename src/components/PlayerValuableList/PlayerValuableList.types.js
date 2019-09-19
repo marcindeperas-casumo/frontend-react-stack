@@ -10,7 +10,7 @@ export type PlayerValuableListProps = {
   /** Indicates whether the data has loaded or still being retrieved */
   loading: boolean,
   /** Refetch valuables function */
-  refetch: () => void,
+  refetch?: () => void,
   /** The list of valuables to be displayed as cards */
   valuables: Array<PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */

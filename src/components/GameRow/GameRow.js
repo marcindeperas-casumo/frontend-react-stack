@@ -13,11 +13,12 @@ import TrackClick from "Components/TrackClick";
 type Props = {
   game: GameRow_Game,
   onLaunchGame: () => void,
+  className?: string,
 };
 
 export class GameRow extends PureComponent<Props> {
   render() {
-    const { game = {}, onLaunchGame } = this.props;
+    const { game = {}, onLaunchGame, className } = this.props;
     const { name, logo, logoBackground } = game;
     const lobby = game.lobby || {};
     const { bets } = lobby;
@@ -30,7 +31,7 @@ export class GameRow extends PureComponent<Props> {
         <Flex
           align="center"
           data-test="game-row"
-          className="u-padding--md t-background-white t-border-r--md t-box-shadow"
+          className={classNames("u-padding--md", className)}
           onClick={onLaunchGame}
         >
           {/* Image */}

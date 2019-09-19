@@ -15,6 +15,7 @@ const StageFavouritesContext = React.createContext<StageFavouritesAPI>({
   toggleFavouriteCompetition: () => {},
   getSelectedIds: () => [],
   isSelected: F,
+  isSportsPlayer: false,
 });
 
 export default StageFavouritesContext;
