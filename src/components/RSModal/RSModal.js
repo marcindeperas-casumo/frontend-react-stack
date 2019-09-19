@@ -1,84 +1,37 @@
 // @flow
 import * as React from "react";
 import ReactModal from "react-modal";
-import type { ModalKind } from "Models/modal";
-import { ModalContent } from "./RSModalContent";
+import { useTranslations, useDelayedCleanup } from "Utils/hooks";
+import { useSelectModal, useHideModal } from "Models/modal";
 import { ModalHeader } from "./RSModalHeader";
+import { getModalData } from "./rsmodal.mappings";
 import "./rsmodals.scss";
-
-type TextProp = {
-  content: string,
-  title: string,
-};
-type Props = {
-  /* type of modal, see modal.mappings */
-  modalType?: ModalKind,
-  /* function that should set modalType prop to null */
-  hideModal: () => void,
-  /* translated text */
-  t: ?TextProp,
-  /* custom content renderer */
-  customContent?: React.Node,
-};
 
 const CLOSING_ANIMATION_LENGTH_MS = 150;
 
-export function Modal(props: Props) {
-  const text = useDelayedText(props.modalType, props.t);
+export function Modal() {
+  const state = useSelectModal();
+  const modalId = useDelayedCleanup(state.modalId, CLOSING_ANIMATION_LENGTH_MS);
+  const { slug, Content } = getModalData(modalId);
+  const hideModal = useHideModal(modalId);
+  const t = useTranslations(slug);
 
   return (
     <ReactModal
-      isOpen={Boolean(props.modalType)}
-      onRequestClose={props.hideModal}
+      isOpen={Boolean(state.modalId)}
+      onRequestClose={hideModal}
       className="t-background-white o-flex--vertical c-rsmodal"
       overlayClassName="c-rsmodal__overlay"
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
+      shouldCloseOnOverlayClick={!state.config.mustAccept}
+      shouldCloseOnEsc={!state.config.mustAccept}
     >
-      <ModalHeader title={text?.title} hideModal={props.hideModal} />
-      {props.customContent || <ModalContent content={text && text.content} />}
+      <ModalHeader
+        title={t.title}
+        hideModal={hideModal}
+        showCloseButton={!state.config.mustAccept}
+      />
+      <Content t={t} />
     </ReactModal>
   );
-}
-
-export function useDelayedText(modalProp: ?ModalKind, textProp: ?TextProp) {
-  const [modal, setModal] = React.useState(modalProp);
-  const [text, setText] = React.useState(textProp);
-
-  React.useEffect(() => {
-    if (textProp !== null) {
-      setText(textProp);
-    }
-
-    if (modal === modalProp) {
-      // state doesn't change if modal is the same
-      return;
-    }
-
-    function changeModal() {
-      setModal(() => modalProp);
-      /**
-       * text is set to proper value in the beginning of this hook, but we
-       * have to clear it here every time modal changes.
-       * Without that we could show last seen modal instead of loading state.
-       */
-      setText(() => null);
-    }
-
-    if (modalProp === null) {
-      /**
-       * if modalProp is null we are showing closing animation. Until it ends
-       * we have to hold reference to old data because it is still visible.
-       */
-      const timeoutId = setTimeout(changeModal, CLOSING_ANIMATION_LENGTH_MS);
-
-      return function cleanup() {
-        clearTimeout(timeoutId);
-      };
-    } else {
-      // If we are replacing modal with new one it should change right away
-      changeModal();
-    }
-  }, [modal, modalProp, textProp]);
-
-  return text;
 }

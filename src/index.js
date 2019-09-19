@@ -13,7 +13,7 @@ import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import bridgeToPlayingService from "Services/BridgeToPlayingService";
 import { bridgeToInitConfigurationService } from "Services/SlotControlSystemService";
-import Modal from "Components/RSModal";
+import { Modal } from "Components/RSModal";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
