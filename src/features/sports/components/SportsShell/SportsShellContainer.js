@@ -100,7 +100,7 @@ export class SportsShellContainer extends React.Component<{}> {
             return <SportsShellSkeleton />;
           }
           return (
-            <div className="t-background-chrome-light-2">
+            <>
               <SportsHashWatcher>
                 {({ currentHash }) => (
                   <>
@@ -109,7 +109,10 @@ export class SportsShellContainer extends React.Component<{}> {
                       isSearchVisible={data.isSearchVisible}
                     />
 
-                    <WelcomeOfferCuratedCard />
+                    {/* Top Content Area */}
+                    <div className="t-background-white u-overflow-hidden">
+                      <WelcomeOfferCuratedCard />
+                    </div>
 
                     {data.isSearchVisible ? (
                       <SportsSearch />
@@ -122,7 +125,7 @@ export class SportsShellContainer extends React.Component<{}> {
               {data.hasSelectedFavourites ? <KambiClient /> : null}
               <Modals />
               <SportsFooter />
-            </div>
+            </>
           );
         }}
       </Query>

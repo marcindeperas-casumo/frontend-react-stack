@@ -17,5 +17,9 @@ export const WelcomeOfferCuratedCard = ({ vertical, hasDeposited }: Props) => {
     return null;
   }
 
-  return <CuratedCard slug={CMS_SLUG} />;
+  return (
+    <div className="u-margin-y--md u-margin-x--md t-border-r--md u-overflow-hidden">
+      <CuratedCard slug={CMS_SLUG} />
+    </div>
+  );
 };
