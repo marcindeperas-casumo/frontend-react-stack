@@ -1,5 +1,5 @@
 import { select, put } from "redux-saga/effects";
-import { mergeEntity } from "Models/schema";
+import { mergeEntity, ENTITY_KEYS } from "Models/schema";
 import { reelRaceStartedSelector } from "Models/reelRaceWidget";
 
 export function* updateLeaderboardSaga(action) {
@@ -10,6 +10,6 @@ export function* updateLeaderboardSaga(action) {
   const rr = yield select(reelRaceStartedSelector);
 
   if (rr) {
-    yield put(mergeEntity({ leaderboard }));
+    yield put(mergeEntity({ [ENTITY_KEYS.LEADERBOARD]: leaderboard }));
   }
 }
