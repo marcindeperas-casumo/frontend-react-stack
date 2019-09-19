@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { CuratedCard } from "Components/CuratedCard";
+import { VERTICALS } from "Src/constants";
 
 export const CMS_SLUG = "welcome-offer-sports";
 
@@ -10,7 +11,7 @@ type Props = {
 };
 
 export const WelcomeOfferCuratedCard = ({ vertical, hasDeposited }: Props) => {
-  const isSportsPlayer = vertical === "SPORTS";
+  const isSportsPlayer = vertical === VERTICALS.SPORTS;
 
   if (!isSportsPlayer || hasDeposited) {
     return null;
