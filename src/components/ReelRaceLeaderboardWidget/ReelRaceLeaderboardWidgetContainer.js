@@ -1,8 +1,11 @@
 // @flow
 import { connect } from "react-redux";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
-import { reelRaceLeaderboardSelector } from "Models/reelRaceLeaderboard";
 import { reelRaceStartedSelector } from "Models/reelRaceWidget";
+import {
+  reelRaceLeaderboardSelector,
+  reelRacePlayerBoostersSelector,
+} from "Models/reelRaceLeaderboard";
 import {
   subscribeReelRacePlayerLeaderboard,
   unsubscribeReelRacePlayerLeaderboard,
@@ -19,6 +22,7 @@ export default connect(
       tournamentId,
       leaderboard: reelRaceLeaderboardSelector(state),
       playerId: playerIdSelector(state),
+      playerBoosters: reelRacePlayerBoostersSelector(state),
       tournamentChannels: tournamentChannelsSelector(state),
     };
   },

@@ -32,6 +32,7 @@ const getTimer = (time: number) => {
   if (time) {
     return (
       <Timer
+        key={time}
         endTime={time}
         render={o => `${o.minutes}:${o.seconds}`}
         onEnd={() => "00:00"}
@@ -97,7 +98,11 @@ export function ReelRaceWidget(props: Props) {
   const time = started ? reelRace.endTime : reelRace.startTime;
 
   return (
-    <Flex direction="vertical" justify="space-between">
+    <Flex
+      direction="vertical"
+      justify="space-between"
+      className="t-border-bottom t-border-current-color"
+    >
       <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
       <Flex direction="horizontal" className="u-padding--md">
         <Flex direction="vertical" spacing="none" className="flex-1">
@@ -118,24 +123,20 @@ export function ReelRaceWidget(props: Props) {
           className="u-text-align-right"
         >
           <Text tag="span" size="xs" className="u-opacity-75">
-            {started ? t.spin_count : t.spins}
+            {t.spins}
           </Text>
           <Text
             tag="span"
             size="lg"
             className="u-font-weight-bold t-color-plum"
           >
-            {started ? props.playerSpins : reelRace.spins}
+            {started && props.playerSpins !== null
+              ? props.playerSpins
+              : reelRace.spins}
           </Text>
         </Flex>
       </Flex>
-      <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
-      {started && (
-        <>
-          <ReelRaceLeaderboardWidget />
-          <div className="t-border-bottom t-color-grey-light-1 t-border--current-color u-width--1/1" />
-        </>
-      )}
+      {started && <ReelRaceLeaderboardWidget />}
     </Flex>
   );
 }

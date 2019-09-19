@@ -2,8 +2,6 @@
 import { createSelector } from "reselect";
 import * as R from "ramda";
 import { reelRacesSelector } from "Models/reelRaces";
-import { playerIdSelector } from "Models/handshake";
-import { ENTITY_KEYS } from "Models/schema";
 
 const playerOptedIn = R.propEq("opted", true);
 
@@ -36,16 +34,4 @@ export const reelRaceScheduledSelector = createSelector(
       R.defaultTo(null)
     )(reelRaces);
   }
-);
-
-export const reelRacePlayerSpinsSelector = createSelector(
-  state => state,
-  playerIdSelector,
-  (state, playerId) =>
-    R.pipe(
-      R.pathOr({}, ["schema", ENTITY_KEYS.LEADERBOARD]),
-      R.prop(playerId),
-      R.prop("remainingSpins"),
-      R.defaultTo(null)
-    )(state)
 );

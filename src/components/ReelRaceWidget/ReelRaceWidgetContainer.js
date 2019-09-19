@@ -3,8 +3,8 @@ import { connect } from "react-redux";
 import {
   reelRaceStartedSelector,
   reelRaceScheduledSelector,
-  reelRacePlayerSpinsSelector,
 } from "Models/reelRaceWidget";
+import { reelRacePlayerSpinsSelector } from "Models/reelRaceLeaderboard";
 import { gameSelector } from "Models/schema";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { launchGame } from "Models/games";

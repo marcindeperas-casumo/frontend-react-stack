@@ -23,6 +23,10 @@ export function ReelRaceWidgetHeader(props: Props) {
   const { t, scheduledGame, gameSlug, playing, reelRace } = props;
 
   if (playing.gameId === gameSlug) {
+    if (!scheduledGame.name) {
+      return null;
+    }
+
     return (
       <Flex direction="vertical" justify="space-between">
         <Text
@@ -30,12 +34,12 @@ export function ReelRaceWidgetHeader(props: Props) {
           tag="div"
           className="u-text-transform-uppercase u-padding-x--md u-font-weight-black u-padding-top--md u-text-align-center t-color-plum"
         >
-          {scheduledGame.name} {t.title}
+          {scheduledGame.name}
         </Text>
         <Text
           size="xs"
           tag="div"
-          className="u-margin-bottom--sm u-font-weight-bold u-text-align-center"
+          className="u-font-weight-bold u-text-align-center"
         >
           {interpolate(t.compete_for, {
             prize: reelRace.prize,
@@ -47,7 +51,7 @@ export function ReelRaceWidgetHeader(props: Props) {
     return (
       <Flex
         align="center"
-        className="u-padding-top--md u-padding-x--md u-cursor-pointer u-position-relative"
+        className="u-padding--md u-cursor-pointer u-position-relative"
         onClick={props.launchGame}
       >
         <GameThumb
