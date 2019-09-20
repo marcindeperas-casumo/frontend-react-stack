@@ -14,7 +14,7 @@ stories.add("Default", () => {
   const valuableType =
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
-  const isLocked = boolean("Locked", false);
+  const isLocked = boolean("Expires within 24 hours?", false);
   const expiryDateMock = new Date(Date.now() + 120 * 60000).getTime();
   const expiryDate = text("Expire date timeStamp", expiryDateMock);
   const valuableDetails = mockData(valuableType);

@@ -32,7 +32,7 @@ describe("ValuableDetails", () => {
     expect(foo).toHaveLength(1);
   });
 
-  test("should render red expiration badge if expirationInHours is > 24", () => {
+  test("should render red expiration badge if hours to expire is > 24", () => {
     expect(
       rendered.find("[data-test='valuable-expiration-badge']").prop("bgColor")
     ).toBe(expirationBadgeClasses.default);
@@ -60,14 +60,15 @@ describe("ValuableDetails", () => {
     ).toHaveLength(1);
   });
 
-  test("should render red expiration badge if expirationInHours is <= 24", () => {
-    const expirationHours = 5;
+  test("should render red expiration badge if hours to expire is <= 24", () => {
+    const expirationHours = Math.floor(5.5);
+    const expiryDate = addHoursToNow(expirationHours);
 
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
         translations={mockTranslations}
       >
