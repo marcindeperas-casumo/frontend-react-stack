@@ -18,6 +18,11 @@ import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
 
+type timeProps = {
+  hours: number,
+  minutes: number,
+};
+
 type Props = {
   /** Valuable type of the valuable */
   valuableType: ValuableType,
@@ -31,8 +36,8 @@ type Props = {
   backgroundRenderer: Node,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTimeInHours: number,
+  /** Time left in h, m for the valuable to expire */
+  expiryTimeLeft: timeProps,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
   size?: "small" | "large",
@@ -42,9 +47,9 @@ export const ValuableThumbnail = ({
   backgroundRenderer,
   coinValue,
   currency,
-  expirationTimeInHours,
   market,
   size = "large",
+  expiryTimeLeft,
   valuableState,
   valuableType,
   translatedHoursUnit,
@@ -53,9 +58,9 @@ export const ValuableThumbnail = ({
   const isFresh = valuableState === VALUABLE_STATES.FRESH;
   const stateBadgeVisible =
     size !== "small" &&
-    (showStateBadge(valuableState, expirationTimeInHours) || !isFresh);
-  const stateBadgeText = getStatusBadgeText(
-    expirationTimeInHours,
+    (showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh);
+  const stateBadgeText = getStateBadgeText(
+    expiryTimeLeft,
     translatedHoursUnit,
     valuableState
   );
@@ -105,7 +110,6 @@ export const ValuableThumbnail = ({
         <div className="o-ratio__content">
           <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
             <ValuableStateIndicator
-              hoursToExpiry={expirationTimeInHours}
               state={valuableState}
               label={
                 <Text size="2xs" tag="span" className="u-font-weight-bold">
@@ -120,8 +124,8 @@ export const ValuableThumbnail = ({
   );
 };
 
-function getStatusBadgeText(
-  hoursToExpiry: number,
+function getStateBadgeText(
+  expiryTimeLeft: timeProps,
   translatedHoursLabel: string,
   valuableState: ValuableState
 ): ?string {
@@ -129,8 +133,14 @@ function getStatusBadgeText(
     return VALUABLE_STATES.LOCKED;
   }
 
-  if (isAboutToExpire(hoursToExpiry)) {
-    return interpolate(translatedHoursLabel, { value: hoursToExpiry });
+  if (isAboutToExpire(expiryTimeLeft.hours)) {
+    const { minutes, hours } = expiryTimeLeft;
+
+    if (hours < 1) {
+      return interpolate("{{value}}m", { value: minutes });
+    }
+
+    return interpolate(translatedHoursLabel, { value: hours });
   }
 
   return null;

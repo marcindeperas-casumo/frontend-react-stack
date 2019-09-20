@@ -11,12 +11,16 @@ import {
   type DurationTranslations,
   VALUABLE_SPIN_TYPES,
 } from "Models/valuables";
+import {
+  convertTimestampToLuxonDate,
+  getDateTimeDifferenceFromNow,
+} from "Utils";
 
 export const depositUrl = "/en/cash/deposit";
 export const gameBrowserUrl = "/en/games/top";
 
 export const isAboutToExpire = (hours: number): boolean =>
-  hours > 0 && hours <= 24;
+  hours >= 0 && hours <= 24;
 
 export const showStateBadge = (valuableState: ValuableState, hours: number) =>
   valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
@@ -98,4 +102,10 @@ export const shouldUseValuable = (
     (equals(valuableType, VALUABLE_TYPES.CASH) &&
       !equals(valuableState, VALUABLE_STATES.LOCKED))
   );
+};
+
+export const getExpiryTimeLeft = (timestamp: number) => {
+  const luxonDate = convertTimestampToLuxonDate(timestamp);
+
+  return getDateTimeDifferenceFromNow(luxonDate);
 };
