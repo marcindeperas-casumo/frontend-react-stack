@@ -1,7 +1,7 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
 import List from "@casumo/cmp-list";
-import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
@@ -84,45 +84,47 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
       {availableListTitleLabel && (
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle paddingLeft title={availableListTitleLabel} />
-          </Flex.Item>
-        </Flex>
+        <Text
+          className="u-padding-bottom--md t-color-chrome-dark-3 u-font-weight-bold u-padding-left--md"
+          data-test="vertical-list-title"
+          tag="h3"
+        >
+          {availableListTitleLabel}
+        </Text>
       )}
       <List
         items={availableValuables}
         className="t-background-white"
         data-test="vertical-valuables-list"
         render={valuable => (
-          <div key={`avaiable-valuable-row-${valuable.id}`}>
-            <ValuableRow
-              translatedHoursUnit={hoursLabel}
-              {...valuable}
-              onClick={() => setSelectedValuable(valuable)}
-            />
-          </div>
+          <ValuableRow
+            key={`available-valuable-row-${valuable.id}`}
+            translatedHoursUnit={hoursLabel}
+            {...valuable}
+            onClick={() => setSelectedValuable(valuable)}
+          />
         )}
       />
       {lockedListTitleLabel && (
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle paddingLeft title={lockedListTitleLabel} />
-          </Flex.Item>
-        </Flex>
+        <Text
+          className="u-padding-bottom--md u-padding-top--lg t-color-chrome-dark-3 u-font-weight-bold u-padding-left--md"
+          data-test="vertical-list-title"
+          tag="h3"
+        >
+          {lockedListTitleLabel}
+        </Text>
       )}
       <List
         items={lockedValuables}
         className="t-background-white"
         data-test="vertical-valuables-list"
         render={valuable => (
-          <div key={`locked-valuable-row-${valuable.id}`}>
-            <ValuableRow
-              translatedHoursUnit={hoursLabel}
-              {...valuable}
-              onClick={() => setSelectedValuable(valuable)}
-            />
-          </div>
+          <ValuableRow
+            key={`locked-valuable-row-${valuable.id}`}
+            translatedHoursUnit={hoursLabel}
+            {...valuable}
+            onClick={() => setSelectedValuable(valuable)}
+          />
         )}
       />
 
