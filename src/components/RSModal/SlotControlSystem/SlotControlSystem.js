@@ -7,7 +7,7 @@ type Props = {
 };
 
 export function SlotControlSystem(props: Props) {
-  // TODO, will change when PCC-255 progresses
+  // TODO, will change when PCC-255 progresses (https://jira.casumocave.com/browse/PCC-255)
   return (
     <div>
       <h1>Slot Control System</h1>
