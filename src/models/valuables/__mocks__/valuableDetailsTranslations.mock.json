@@ -5,6 +5,8 @@
   "depositToUnlockLabel": "Deposit to unlock",
   "depositNowLabel": "Deposit now",
   "expirationTimeLabel": "Expires in",
+  "minute_singular": "{{value}} Minute",
+  "minute_plural": "{{value}} Minutes",
   "hour_singular": "{{value}} Hour",
   "hour_plural": "{{value}} Hours",
   "day_singular": "{{value}} Day",

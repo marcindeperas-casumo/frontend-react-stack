@@ -65,10 +65,6 @@ const ActionButtonContent = ({ isLocked, text }) => {
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get expiresWithin24Hours() {
-    return this.props.valuableDetails.expirationTimeInHours <= 24;
-  }
-
   get expiryTimeLeft(): DurationProps {
     return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
@@ -90,9 +86,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
   }
 
   get expirationBadgeColour(): string {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours } = this.expiryTimeLeft;
 
-    return expirationTimeInHours >= 24
+    return hours >= 24
       ? expirationBadgeClasses.default
       : expirationBadgeClasses.expiresToday;
   }

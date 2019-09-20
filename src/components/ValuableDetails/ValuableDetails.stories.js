@@ -47,6 +47,7 @@ stories.add("Default - With modal", () => {
         isOpen={true}
         onClose={() => {}}
         valuableDetails={valuableDetailsMock}
+        translations={translations}
       >
         <div style={{ width: "160px" }}>
           <ValuableCard
