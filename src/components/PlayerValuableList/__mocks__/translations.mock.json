@@ -1,4 +1,6 @@
 {
   "hoursUnit": "{{value}}h",
-  "listTitleLabel": "Your Valuables"
+  "listTitleLabel": "Your Valuables",
+  "availableListTitleLabel": "Available",
+  "lockedListTitleLabel": "Locked"
 }

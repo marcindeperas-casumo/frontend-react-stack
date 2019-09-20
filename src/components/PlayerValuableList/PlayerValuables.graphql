@@ -3,6 +3,8 @@ query PlayerValuablesQuery {
     playerValuableTranslations {
       hoursLabel
       listTitleLabel
+      availableListTitleLabel
+      lockedListTitleLabel
     }
   }
   player {
