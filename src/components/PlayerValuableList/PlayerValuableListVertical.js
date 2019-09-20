@@ -2,7 +2,11 @@
 import React, { useEffect, useState } from "react";
 import List from "@casumo/cmp-list";
 import Flex from "@casumo/cmp-flex";
-import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
+import {
+  VALUABLE_TYPES,
+  VALUABLE_STATES,
+  type ValuableType,
+} from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
@@ -23,8 +27,18 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, hoursLabel } = translations;
+  const {
+    availableListTitleLabel,
+    lockedListTitleLabel,
+    hoursLabel,
+  } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
+  const availableValuables = valuables.filter(
+    ({ valuableState }) => valuableState !== VALUABLE_STATES.LOCKED
+  );
+  const lockedValuables = valuables.filter(
+    ({ valuableState }) => valuableState === VALUABLE_STATES.LOCKED
+  );
 
   const closeModal = () => {
     setSelectedValuable(null);
@@ -69,19 +83,40 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
-      {listTitleLabel && (
+      {availableListTitleLabel && (
         <Flex justify="space-between">
           <Flex.Item>
-            <ScrollableListTitle paddingLeft title={listTitleLabel} />
+            <ScrollableListTitle paddingLeft title={availableListTitleLabel} />
           </Flex.Item>
         </Flex>
       )}
       <List
-        items={valuables}
+        items={availableValuables}
         className="t-background-white"
         data-test="vertical-valuables-list"
         render={valuable => (
-          <div key={`valuable-row-${valuable.id}`}>
+          <div key={`avaiable-valuable-row-${valuable.id}`}>
+            <ValuableRow
+              translatedHoursUnit={hoursLabel}
+              {...valuable}
+              onClick={() => setSelectedValuable(valuable)}
+            />
+          </div>
+        )}
+      />
+      {lockedListTitleLabel && (
+        <Flex justify="space-between">
+          <Flex.Item>
+            <ScrollableListTitle paddingLeft title={lockedListTitleLabel} />
+          </Flex.Item>
+        </Flex>
+      )}
+      <List
+        items={lockedValuables}
+        className="t-background-white"
+        data-test="vertical-valuables-list"
+        render={valuable => (
+          <div key={`locked-valuable-row-${valuable.id}`}>
             <ValuableRow
               translatedHoursUnit={hoursLabel}
               {...valuable}

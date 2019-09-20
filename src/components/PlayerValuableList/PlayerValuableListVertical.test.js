@@ -38,16 +38,23 @@ describe("PlayerValuableListVertical", () => {
         refetch={refetchMock}
       />
     );
+    const availableValuables = rendered
+      .find(List)
+      .at(0)
+      .dive()
+      .find(ValuableRow);
+    const lockedValuables = rendered
+      .find(List)
+      .at(1)
+      .dive()
+      .find(ValuableRow);
     expect(rendered.find(GameRowSkeleton).exists()).toBe(false);
-    expect(
-      rendered
-        .find(List)
-        .dive()
-        .find(ValuableRow)
-    ).toHaveLength(mockedValuables.length);
+    expect(availableValuables.length + lockedValuables.length).toBe(
+      mockedValuables.length
+    );
   });
 
-  test("should render the list title", () => {
+  test("should render the list titles", () => {
     const rendered = shallow(
       <PlayerValuableListVertical
         valuables={mockedValuables}
@@ -57,14 +64,18 @@ describe("PlayerValuableListVertical", () => {
         refetch={refetchMock}
       />
     );
-    expect(rendered.find(ScrollableListTitle).prop("title")).toEqual(
-      translationsMock.listTitleLabel
+    const listTitles = rendered.find(ScrollableListTitle);
+    expect(listTitles.at(0).prop("title")).toEqual(
+      translationsMock.availableListTitleLabel
+    );
+    expect(listTitles.at(1).prop("title")).toEqual(
+      translationsMock.lockedListTitleLabel
     );
   });
 
   test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
     const mock = jest.fn();
-    const rendered = mount(
+    mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}

@@ -1,6 +1,8 @@
 // @flow
 type Translations = {
   listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
   hoursLabel: string,
 };
 
