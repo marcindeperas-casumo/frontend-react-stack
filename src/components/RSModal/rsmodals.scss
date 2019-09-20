@@ -31,7 +31,7 @@
   right: 0;
   top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
   transition: opacity 150ms ease;
-  z-index: 32; // above the menu and chat
+  z-index: $modal-z-index; // above the menu and chat
 
   @include cudl-breakpoint(phablet) {
     top: 0;
