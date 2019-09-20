@@ -18,14 +18,16 @@ type Props = {
     error_budget_too_low: string,
     error_budget_too_high: string,
   },
+  budget?: number,
   balance: number,
   currency: string,
   locale: string,
+  onSubmit: (budget: number) => void,
 };
 
 export function LimitYourBudget(props: Props) {
-  const { balance, currency, t, locale } = props;
-  const [budget, setBudget] = useState();
+  const { balance, currency, t, locale, onSubmit } = props;
+  const [budget, setBudget] = useState(props.budget);
   const parsedBudget = parseFloat(budget);
   const budgetBalance = { balance, budget: parsedBudget };
   const formattedBalance = formatCurrency({
@@ -64,6 +66,7 @@ export function LimitYourBudget(props: Props) {
           variant="primary"
           size="sm"
           className="u-width--1/3 u-margin-left"
+          onClick={() => onSubmit(parsedBudget)}
         >
           <ArrowRightIcon size="default" />
         </Button>
@@ -76,6 +79,7 @@ export function LimitYourBudget(props: Props) {
       <Button
         variant="secondary"
         className="u-margin-top--xlg c-scs__limit-your-budget__use-all-balance"
+        onClick={() => onSubmit(balance)}
       >
         {interpolate(t.use_all_balance, { balance: formattedBalance })}
       </Button>
