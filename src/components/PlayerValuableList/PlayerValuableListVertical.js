@@ -23,7 +23,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, hoursLabel } = translations;
+  const { listTitleLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
 
   const closeModal = () => {
@@ -83,7 +83,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         render={valuable => (
           <div key={`valuable-row-${valuable.id}`}>
             <ValuableRow
-              translatedHoursUnit={hoursLabel}
+              translations={translations}
               {...valuable}
               onClick={() => setSelectedValuable(valuable)}
             />
@@ -100,7 +100,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         >
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
-              translatedHoursUnit={hoursLabel}
+              translations={translations}
               {...selectedValuable}
               caveat={null}
             />

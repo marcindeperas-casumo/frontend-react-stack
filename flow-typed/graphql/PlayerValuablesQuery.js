@@ -9,6 +9,7 @@
 export type PlayerValuablesQuery_translations_playerValuableTranslations = {
   hoursLabel: string,
   listTitleLabel: string,
+  minutesLabel: string,
 };
 
 export type PlayerValuablesQuery_translations = {

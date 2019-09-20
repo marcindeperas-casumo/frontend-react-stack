@@ -12,7 +12,12 @@ import {
   VALUABLE_STATES,
   coinValueToSpinType,
   getExpiryTimeLeft,
+  type ValuableThumbnailTranslations,
 } from "Models/valuables";
+
+type Translations = ValuableThumbnailTranslations & {
+  listTitleLabel: string,
+};
 
 type Props = {
   /** Unique id of the valuable */
@@ -39,8 +44,8 @@ type Props = {
   valuableState: ValuableState,
   /** Function to be triggered on click of card */
   onCardClick?: () => void,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
+  /** translations */
+  translations: Translations,
   /** addition css classes to add to containing element */
   className?: string,
 };
@@ -97,9 +102,9 @@ export class ValuableCard extends PureComponent<Props> {
       description,
       market,
       title,
-      translatedHoursUnit,
       valuableState,
       valuableType,
+      translations,
     } = this.props;
     return (
       <>
@@ -122,7 +127,7 @@ export class ValuableCard extends PureComponent<Props> {
                 currency={currency}
                 expiryTimeLeft={this.expiryTimeLeft}
                 market={market}
-                translatedHoursUnit={translatedHoursUnit}
+                translations={translations}
                 valuableState={valuableState}
                 valuableType={valuableType}
               />

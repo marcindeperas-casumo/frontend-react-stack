@@ -28,7 +28,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, hoursLabel } = translations;
+  const { listTitleLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
 
   const showModal = valuable => {
@@ -92,8 +92,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
               <div className="c-valuable-list__valuable-card">
                 <ValuableCard
-                  translatedHoursUnit={hoursLabel}
                   {...valuable}
+                  translations={translations}
                   onCardClick={() => showModal(valuable)}
                   className="u-drop-shadow--sm"
                 />
@@ -112,8 +112,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         >
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
-              translatedHoursUnit={hoursLabel}
               {...selectedValuable}
+              translations={translations}
               caveat={null}
               className="u-drop-shadow--lg"
             />

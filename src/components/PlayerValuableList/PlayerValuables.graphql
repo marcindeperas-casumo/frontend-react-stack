@@ -3,6 +3,7 @@ query PlayerValuablesQuery {
     playerValuableTranslations {
       hoursLabel
       listTitleLabel
+      minutesLabel
     }
   }
   player {

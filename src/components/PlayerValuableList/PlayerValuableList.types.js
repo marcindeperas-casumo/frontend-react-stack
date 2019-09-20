@@ -2,6 +2,7 @@
 type Translations = {
   listTitleLabel: string,
   hoursLabel: string,
+  minutesLabel: string,
 };
 
 export type PlayerValuableListProps = {

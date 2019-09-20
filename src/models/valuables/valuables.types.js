@@ -18,6 +18,11 @@ export type DurationTranslations = {
   day_plural: string,
 };
 
+export type ValuableThumbnailTranslations = {
+  hoursLabel: string,
+  minutesLabel: string,
+};
+
 export type ValuableDetailsTranslations = DurationTranslations & {
   playNowLabel: string,
   playToUnlockLabel: string,

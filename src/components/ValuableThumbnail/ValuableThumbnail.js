@@ -14,6 +14,7 @@ import {
   showStateBadge,
   isAboutToExpire,
   type DurationProps,
+  type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
@@ -34,8 +35,8 @@ type Props = {
   valuableState: ValuableState,
   /** Time left in h, m for the valuable to expire */
   expiryTimeLeft: DurationProps,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
+  /* Translations of the component */
+  translations: Translations,
   size?: "small" | "large",
 };
 
@@ -48,7 +49,7 @@ export const ValuableThumbnail = ({
   expiryTimeLeft,
   valuableState,
   valuableType,
-  translatedHoursUnit,
+  translations,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
   const isFresh = valuableState === VALUABLE_STATES.FRESH;
@@ -57,7 +58,7 @@ export const ValuableThumbnail = ({
     (showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh);
   const stateBadgeText = getStateBadgeText(
     expiryTimeLeft,
-    translatedHoursUnit,
+    translations,
     valuableState
   );
 
@@ -122,7 +123,7 @@ export const ValuableThumbnail = ({
 
 function getStateBadgeText(
   expiryTimeLeft: DurationProps,
-  translatedHoursLabel: string,
+  translations: Translations,
   valuableState: ValuableState
 ): ?string {
   if (valuableState === VALUABLE_STATES.LOCKED) {
@@ -133,10 +134,10 @@ function getStateBadgeText(
     const { minutes, hours } = expiryTimeLeft;
 
     if (hours < 1) {
-      return interpolate("{{value}}m", { value: minutes });
+      return interpolate(translations.minutesLabel, { value: minutes });
     }
 
-    return interpolate(translatedHoursLabel, { value: hours });
+    return interpolate(translations.hoursLabel, { value: hours });
   }
 
   return null;

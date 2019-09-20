@@ -29,7 +29,7 @@ stories.add("Default", () => {
         valuableState={valuableState}
         expiryDate={expiryDate}
         onCardClick={action("click")}
-        translatedHoursUnit={translationsMock.hoursUnit}
+        translations={translationsMock}
         className="u-drop-shadow--sm"
       />
     </div>

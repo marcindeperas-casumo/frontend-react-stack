@@ -13,6 +13,7 @@ import {
   coinValueToSpinType,
   showStateBadge,
   getExpiryTimeLeft,
+  type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 
@@ -39,13 +40,11 @@ type Props = {
   caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  // expirationTimeInHours: number,
+  /** Translations */
+  translations: Translations,
   expiryDate: number,
   /** Function to be triggered on click of card */
   onClick: () => void,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
 };
 
 export class ValuableRow extends PureComponent<Props> {
@@ -104,7 +103,7 @@ export class ValuableRow extends PureComponent<Props> {
               currency={this.props.currency}
               expiryTimeLeft={expiryTimeLeft}
               market={this.props.market}
-              translatedHoursUnit={this.props.translatedHoursUnit}
+              translations={this.props.translations}
               valuableState={valuableState}
               valuableType={this.props.valuableType}
               size="small"
