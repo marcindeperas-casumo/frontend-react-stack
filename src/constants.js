@@ -26,6 +26,12 @@ export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/onPlaying";
 
+export const REACT_APP_EVENTS = {
+  SLOT_CONTROL_SYSTEM: {
+    CONFIGURATION_INIT: "REACT_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationInit",
+  },
+};
+
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
@@ -35,6 +41,22 @@ export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
 export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
+
+export const KO_EVENTS = {
+  ACCOUNT_SETTINGS: {
+    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
+  },
+  VALUABLES: {
+    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
+  },
+  SLOT_CONTROL_SYSTEM: {
+    CONFIGURATION_FINISHED:
+      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationFinished",
+    CONFIGURATION_EXITED:
+      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationExited",
+  },
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {
@@ -162,13 +184,4 @@ export const EVOLUTION_LOBBY_TYPES = {
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
   BACCARAT: "Baccarat",
-};
-
-export const KO_EVENTS = {
-  ACCOUNT_SETTINGS: {
-    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
-  },
-  VALUABLES: {
-    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
-  },
 };

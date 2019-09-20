@@ -34,7 +34,7 @@ export function Modal(props: Props) {
       overlayClassName="c-rsmodal__overlay"
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
     >
-      <ModalHeader title={text && text.title} hideModal={props.hideModal} />
+      <ModalHeader title={text?.title} hideModal={props.hideModal} />
       {props.customContent || <ModalContent content={text && text.content} />}
     </ReactModal>
   );
