@@ -18,12 +18,10 @@ export function ModalHeader(props: Props) {
       align="center"
       spacing="md"
       justify="space-between"
-      data-test-name="rsmodal-header"
     >
       <Text
         size="sm"
         tag="span"
-        data-test-name="rsmodal-header-text"
         className="u-font-weight-bold t-color-black o-flex__block u-text-align-center"
       >
         {props.title || <ModalTitleSkeleton />}
@@ -31,7 +29,6 @@ export function ModalHeader(props: Props) {
       <CrossIcon
         className="u-padding-right--lg t-color-black u-cursor-pointer"
         onClick={props.hideModal}
-        data-test-name="rsmodal-header-close"
       />
     </Flex>
   );
