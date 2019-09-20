@@ -78,6 +78,7 @@ export function durationToTranslationKey(
   return {
     days: value > 1 ? "day_plural" : "day_singular",
     hours: value > 1 ? "hour_plural" : "hour_singular",
+    minutes: value > 1 ? "minute_plural" : "minute_sungular",
   }[durationKey];
 }
 

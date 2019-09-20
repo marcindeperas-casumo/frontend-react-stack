@@ -52,3 +52,9 @@ export type ValuableDetailsProps = {
   /** The function to be called to launch game which will be triggered after consuming the valuable */
   onLaunchGame: string => void,
 };
+
+export type DurationProps = {
+  hours: number,
+  minutes: number,
+  seconds: number,
+};

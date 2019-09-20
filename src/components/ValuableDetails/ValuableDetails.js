@@ -13,6 +13,8 @@ import {
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
+  getExpiryTimeLeft,
+  type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
@@ -67,12 +69,24 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return this.props.valuableDetails.expirationTimeInHours <= 24;
   }
 
-  get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+  get expiryTimeLeft(): DurationProps {
+    return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
+  }
 
-    return this.expiresWithin24Hours
-      ? { key: "hours", value: expirationTimeInHours }
-      : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
+  get expirationBadgeInfo(): BadgeInfoType {
+    const { hours, minutes } = this.expiryTimeLeft;
+    const expiresWithin24Hours = hours <= 24;
+    const expiresInLessThanAnHour = hours < 1;
+
+    if (expiresWithin24Hours) {
+      if (expiresInLessThanAnHour) {
+        return { key: "minutes", value: minutes };
+      }
+
+      return { key: "hours", value: hours };
+    }
+
+    return { key: "days", value: convertHoursToDays(hours) };
   }
 
   get expirationBadgeColour(): string {

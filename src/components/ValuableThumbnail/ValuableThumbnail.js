@@ -13,15 +13,11 @@ import {
   coinValueToSpinType,
   showStateBadge,
   isAboutToExpire,
+  type DurationProps,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
 import Coin from "./Icons/coin.svg";
-
-type timeProps = {
-  hours: number,
-  minutes: number,
-};
 
 type Props = {
   /** Valuable type of the valuable */
@@ -37,7 +33,7 @@ type Props = {
   /** The state of the valuable */
   valuableState: ValuableState,
   /** Time left in h, m for the valuable to expire */
-  expiryTimeLeft: timeProps,
+  expiryTimeLeft: DurationProps,
   /** translated label for the 'hours' unit */
   translatedHoursUnit: string,
   size?: "small" | "large",
@@ -125,7 +121,7 @@ export const ValuableThumbnail = ({
 };
 
 function getStateBadgeText(
-  expiryTimeLeft: timeProps,
+  expiryTimeLeft: DurationProps,
   translatedHoursLabel: string,
   valuableState: ValuableState
 ): ?string {

@@ -83,13 +83,14 @@ describe("ValuableDetails", () => {
   });
 
   test("should display the expiration in hours if expiration is <= 24 hours", () => {
-    const expirationHours = 5;
+    const expirationHours = Math.floor(5.5);
+    const expiryDate = addHoursToNow(expirationHours);
     const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${expirationHours} Hours`;
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
         translations={mockTranslations}
       >
@@ -107,17 +108,16 @@ describe("ValuableDetails", () => {
   });
 
   test("should display the expiration in days if expiration is >= 24 hours", () => {
-    const expirationHours = 300;
-    const days = Math.floor(expirationHours / 24);
+    const days = 5;
+    const expiryDate = addDaysToNow(days);
     const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${days} Days`;
 
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
-        expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
         <Foo />
@@ -226,3 +226,18 @@ describe("ValuableDetails", () => {
     expect(onConsume).toHaveBeenCalledTimes(1);
   });
 });
+
+// const addMinutesToNow = minutes => {
+//   return new Date(Date.now() + minutes * 60000).getTime();
+// };
+
+const addDaysToNow = days => {
+  const result = new Date(Date.now());
+  return result.setDate(result.getDate() + days);
+};
+
+const addHoursToNow = hours => {
+  const result = new Date(Date.now());
+
+  return result.setHours(result.getHours() + hours);
+};

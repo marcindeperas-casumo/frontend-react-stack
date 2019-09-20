@@ -17,6 +17,8 @@ query ValuableDetailsQuery {
     )
     termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
     wageringStatus: getText(id: "root:valuable-details-component:fields.wagering_status")
+    minute_singular: getText(id: "root:units:fields.minute_singular")
+    minute_plural: getText(id: "root:units:fields.minutes")
     hour_singular: getText(id: "root:units:fields.hour_singular")
     hour_plural: getText(id: "root:units:fields.hours")
     day_singular: getText(id: "root:units:fields.day_singular")
@@ -32,6 +34,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   currency
   market
   expirationTimeInHours
+  expiryDate
   valuableType
   valuableState
   wageringThreshold

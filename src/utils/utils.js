@@ -278,10 +278,16 @@ export const convertHoursToDays = (hours: number) => {
   return Math.floor(hours / 24);
 };
 
+export const convertHoursMinutes = (hours: number) => {
+  return Math.floor(hours * 60);
+};
+
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromMillis(value);
 };
 
 export const getDateTimeDifferenceFromNow = (value: DateTime) => {
-  return value.diff(DateTime.utc(), ["hours", "minutes", "seconds"]).toObject();
+  const duration = value.diff(DateTime.utc(), ["hours", "minutes", "seconds"]);
+
+  return R.pick(["hours", "minutes", "seconds"], duration);
 };
