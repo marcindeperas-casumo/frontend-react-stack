@@ -10,7 +10,6 @@ import {
   REACT_APP_SPORTS_SHOW_SEARCH,
 } from "Src/constants";
 import SportsHashWatcher from "Components/HashWatcher";
-import { Mobile } from "Components/ResponsiveLayout";
 import KambiClient from "Features/sports/components/KambiClient";
 import { SportsFooter } from "Features/sports/components/SportsFooter";
 import SportsSearch from "Features/sports/components/SportsSearch";
@@ -111,11 +110,7 @@ export class SportsShellContainer extends React.Component<{}> {
                     />
 
                     {/* Top Content Area */}
-                    <div className="t-background-white u-overflow-hidden">
-                      <Mobile>
-                        <WelcomeOfferCuratedCard />
-                      </Mobile>
-                    </div>
+                    <WelcomeOfferCuratedCard />
 
                     {data.isSearchVisible ? (
                       <SportsSearch />
