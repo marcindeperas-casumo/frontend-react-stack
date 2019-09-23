@@ -71,15 +71,13 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
   get expirationBadgeInfo(): BadgeInfoType {
     const { hours, minutes } = this.expiryTimeLeft;
-    const expiresWithin24Hours = hours <= 24;
+    const expiresWithin24Hours = hours < 24;
     const expiresInLessThanAnHour = hours < 1;
 
     if (expiresWithin24Hours) {
-      if (expiresInLessThanAnHour) {
-        return { key: "minutes", value: minutes };
-      }
-
       return { key: "hours", value: hours };
+    } else if (expiresInLessThanAnHour) {
+      return { key: "minutes", value: minutes };
     }
 
     return { key: "days", value: convertHoursToDays(hours) };
@@ -88,7 +86,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
   get expirationBadgeColour(): string {
     const { hours } = this.expiryTimeLeft;
 
-    return hours >= 24
+    return hours > 24
       ? expirationBadgeClasses.default
       : expirationBadgeClasses.expiresToday;
   }
