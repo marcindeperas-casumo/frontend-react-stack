@@ -11,6 +11,7 @@ import {
   anyPass,
   propSatisfies,
 } from "ramda";
+import * as storage from "Lib/storage";
 import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
@@ -188,3 +189,26 @@ export const verticalSelector = createSelector(
     return isSportsWelcomeOffer ? VERTICALS.SPORTS : VERTICALS.CASINO;
   }
 );
+
+/**
+ * It looks for feature flags in 2 places: in the handshake and in the localStorage.
+ * The localStorage values are set by casumo-frontend codebase when adding "?features=feature-1,feature-2" to the URL.
+ * Related casumo-frontend code: https://github.com/Casumo/casumo-frontend/blob/8b06b1dc2533550caa3ee9291ece98d56b515bda/web/common-frontend/src/js/featureFlags.es6
+ */
+export const featureFlagSelector = (featureFlag: string) =>
+  createSelector(
+    playerSelector,
+    player => {
+      const backendFeatureFlags = pathOr([], ["featureFlags"], player);
+      const localContainer = storage.get("featureFlags", {});
+      const localFeatureFlags = pathOr([], ["features"], localContainer);
+      const hasFeatureFlag = x =>
+        [...backendFeatureFlags, ...localFeatureFlags].includes(x);
+
+      if (hasFeatureFlag(featureFlag)) {
+        return true;
+      }
+
+      return false;
+    }
+  );
