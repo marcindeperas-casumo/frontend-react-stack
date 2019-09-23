@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { replace } from "ramda";
+import classNames from "classnames";
 import Card from "@casumo/cmp-card";
 import {
   CuratedCardFooterText,
@@ -44,6 +45,7 @@ export type Props = {|
   onLaunchGame: Function,
   typeOfCurated: string,
   slug: string,
+  className?: string,
 |};
 
 export class CuratedCard extends PureComponent<Props> {
@@ -82,6 +84,7 @@ export class CuratedCard extends PureComponent<Props> {
   }
 
   renderCard = () => {
+    const { className = "" } = this.props;
     const backgroundProps = {
       ...this.props,
       onLaunchGame: this.isGame ? this.props.onLaunchGame : null,
@@ -89,7 +92,12 @@ export class CuratedCard extends PureComponent<Props> {
     };
 
     return (
-      <div className="c-curated-card o-ratio o-ratio--curated-card">
+      <div
+        className={classNames(
+          "c-curated-card o-ratio o-ratio--curated-card",
+          className
+        )}
+      >
         <TrackView
           eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
           data={this.trackData}

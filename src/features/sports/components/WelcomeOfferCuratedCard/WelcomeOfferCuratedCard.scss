@@ -1,0 +1,22 @@
+@import "~Styles/settings.breakpoints";
+
+// We need to override the original Curated Card height on mobile
+// to make it smaller.
+//prettier-ignore
+$curated-card-ratios: (
+  mobile: 225px,
+  phablet: (
+    264/496
+  ) * 100%,
+  tablet: (
+    254/545
+  ) * 100%,
+  desktop: (
+    432/1181
+  ) * 100%,
+);
+
+// stylelint-disable-next-line
+.c-sports-welcome-offer-card.c-sports-welcome-offer-card::before {
+  @include cudl-breakpoint-with($curated-card-ratios, padding-bottom);
+}
