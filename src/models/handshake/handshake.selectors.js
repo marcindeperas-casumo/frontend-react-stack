@@ -193,7 +193,10 @@ export const verticalSelector = createSelector(
 /**
  * It looks for feature flags in 2 places: in the handshake and in the localStorage.
  * The localStorage values are set by casumo-frontend codebase when adding "?features=feature-1,feature-2" to the URL.
- * Related casumo-frontend code: https://github.com/Casumo/casumo-frontend/blob/8b06b1dc2533550caa3ee9291ece98d56b515bda/web/common-frontend/src/js/featureFlags.es6
+ * (for more info check casumo-frontend/common-frontend/src/js/featureFlags.es6)
+ *
+ * Note! You have to whitelist your feature-flags here to be able to use them:
+ * https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
  */
 export const featureFlagSelector = (featureFlag: string) =>
   createSelector(
