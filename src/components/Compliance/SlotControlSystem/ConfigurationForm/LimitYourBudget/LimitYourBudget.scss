@@ -1,12 +1,6 @@
 // stylelint-disable xi/selector-pattern
-.c-scs__limit-your-budget {
-  .c-scs__limit-your-budget__use-all-balance {
-    color: #000;
-  }
-}
-
 .c-scs__limit-your-budget--error {
-  .t-border-bottom {
+  .c-scs__limit-your-budget__field {
     border-color: #f05e5e;
   }
 }

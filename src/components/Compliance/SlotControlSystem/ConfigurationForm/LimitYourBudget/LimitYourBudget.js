@@ -55,20 +55,21 @@ export function LimitYourBudget(props: Props) {
       <Text tag="label" size="sm" className="u-margin-bottom--md">
         <strong>{t.limit_your_budget}</strong>
       </Text>
-      <Flex>
+      <Flex align="center">
         <TextInput
           currencySign={getSymbolForCurrency({ locale, currency })}
           onChange={onChange}
           value={budget}
+          className="c-scs__limit-your-budget__field"
         />
         <Button
           disabled={isBudgetWrong(budgetBalance)}
           variant="primary"
           size="sm"
-          className="u-width--1/3 u-margin-left"
+          className="u-width--1/4 u-margin-left--md u-padding--md t-box-shadow"
           onClick={() => onSubmit(parsedBudget)}
         >
-          <ArrowRightIcon size="default" />
+          <ArrowRightIcon size="sm" />
         </Button>
       </Flex>
       <ErrorMessage
@@ -78,10 +79,12 @@ export function LimitYourBudget(props: Props) {
       />
       <Button
         variant="secondary"
-        className="u-margin-top--xlg c-scs__limit-your-budget__use-all-balance"
+        className="u-margin-top--xlg"
         onClick={() => onSubmit(balance)}
       >
-        {interpolate(t.use_all_balance, { balance: formattedBalance })}
+        <span className="t-color-black">
+          {interpolate(t.use_all_balance, { balance: formattedBalance })}
+        </span>
       </Button>
     </Flex>
   );
