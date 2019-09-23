@@ -3,13 +3,9 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
-import {
-  TripleWinIcon,
-  TripleBigWinIcon,
-  MegaIcon,
-  PrizeIcon,
-} from "@casumo/cmp-icons";
+import { PrizeIcon } from "@casumo/cmp-icons";
 import type { LeaderBoard } from "Models/reelRaceLeaderboard";
+import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
 import "./ReelRaceLeaderboardWidget.scss";
 
 type Props = {
@@ -53,50 +49,7 @@ export function ReelRaceLeaderboardWidget(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {playerBoosters && (
-        <Flex
-          direction="horizontal"
-          justify="space-between"
-          className="u-padding-x--md t-color-plum"
-        >
-          <Flex direction="vertical" align="center">
-            <div className="t-color-turquoise t-border t-border--current-color t-border-r--circle u-padding">
-              <TripleWinIcon size="md" className="t-color-plum" />
-            </div>
-            <Text
-              tag="div"
-              size="xs"
-              className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold"
-            >
-              {playerBoosters.triples}
-            </Text>
-          </Flex>
-          <Flex direction="vertical" align="center">
-            <div className="t-color-turquoise t-border t-border--current-color t-border-r--circle u-padding">
-              <TripleBigWinIcon size="md" className="t-color-plum" />
-            </div>
-            <Text
-              tag="div"
-              size="xs"
-              className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold"
-            >
-              {playerBoosters.bigWins}
-            </Text>
-          </Flex>
-          <Flex direction="vertical" align="center">
-            <div className="t-color-turquoise t-border t-border--current-color t-border-r--circle u-padding">
-              <MegaIcon size="md" className="t-color-plum" />
-            </div>
-            <Text
-              tag="div"
-              size="xs"
-              className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold"
-            >
-              {playerBoosters.megaWins}
-            </Text>
-          </Flex>
-        </Flex>
-      )}
+      <ReelRacePlayerBoosters boosters={playerBoosters} />
       {board.map(p => (
         <Flex
           direction="horizontal"
