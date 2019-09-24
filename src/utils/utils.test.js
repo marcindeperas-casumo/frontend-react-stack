@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
+import { DateTime } from "luxon";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -17,6 +18,8 @@ import {
   isCmsEntryEmpty,
   findOr,
   convertHoursToDays,
+  convertTimestampToLuxonDate,
+  getDateTimeDifferenceFromNow,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -366,7 +369,12 @@ describe("convertHoursToDays()", () => {
     expect(convertHoursToDays(hours)).toEqual(expectedValue);
   });
 
-  // describe("getDateTimeDifferenceFromNow()", () => {
-  //   test("should get difference between given date and now", () => {});
-  // });
+  describe("convertTimestampToLuxonDate()", () => {
+    test("should covnert date to luxon", () => {
+      const timestamp = 15697943990;
+      const result = convertTimestampToLuxonDate(timestamp);
+
+      expect(result.isLuxonDateTime).toBe(true);
+    });
+  });
 });
