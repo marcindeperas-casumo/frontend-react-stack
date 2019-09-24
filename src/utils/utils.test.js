@@ -19,7 +19,6 @@ import {
   findOr,
   convertHoursToDays,
   convertTimestampToLuxonDate,
-  getDateTimeDifferenceFromNow,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
