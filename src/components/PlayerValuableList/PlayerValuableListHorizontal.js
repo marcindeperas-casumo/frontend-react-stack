@@ -24,7 +24,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     error,
     loading = false,
     valuables = [],
-    translations,
+    translations = {},
     refetch = () => {},
     onConsumeValuable,
   } = props;
