@@ -7,10 +7,11 @@ import { ReelRaceWidget } from "./ReelRaceWidget";
 const stories = storiesOf("ReelRaceWidget", module);
 
 const props = {
-  started: {
+  started: null,
+  scheduled: {
     tournamentId: "1",
     color: "yellow-light-1",
-    spins: 666,
+    spins: 250,
     minBet: "€0.50",
     prize: "€666",
     gameSlug: "gonzos-quest",
@@ -20,7 +21,6 @@ const props = {
     opted: true,
     promoted: false,
   },
-  scheduled: null,
   scheduledGame: {
     name: "Gonzo&#8217;s Quest",
     slug: "gonzos-quest",
@@ -58,11 +58,9 @@ const props = {
     state: "STARTED",
     gameId: "foo",
   },
-  leaderboard: [],
   playerId: "123",
   playerSpins: 200,
   gameSlug: "foo",
-  color: "blue",
 };
 
 if (isNotChromatic) {
