@@ -1,13 +1,12 @@
 // @flow
 import * as React from "react";
 import { DateTime } from "luxon";
-import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
-import Timer from "Components/Timer";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
 import { ReelRaceWidgetHeader } from "./ReelRaceWidgetHeader";
+import { ReelRaceWidgetInfo } from "./ReelRaceWidgetInfo";
 import "./ReelRaceWidget.scss";
 
 type Props = {
@@ -28,20 +27,6 @@ type Props = {
   scheduled: ReelRace | null,
 };
 
-const getTimer = (time: number) => {
-  if (time) {
-    return (
-      <Timer
-        key={time}
-        endTime={time}
-        render={o => `${o.minutes}:${o.seconds}`}
-        onEnd={() => "00:00"}
-      />
-    );
-  }
-};
-
-// eslint-disable-next-line sonarjs/cognitive-complexity
 export function ReelRaceWidget(props: Props) {
   const {
     t,
@@ -95,8 +80,6 @@ export function ReelRaceWidget(props: Props) {
     return null;
   }
 
-  const time = started ? reelRace.endTime : reelRace.startTime;
-
   return (
     <Flex
       direction="vertical"
@@ -104,38 +87,11 @@ export function ReelRaceWidget(props: Props) {
       className="t-border-bottom t-border-current-color"
     >
       <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
-      <Flex direction="horizontal" className="u-padding--md">
-        <Flex direction="vertical" spacing="none" className="flex-1">
-          <Text tag="span" size="xs">
-            {started ? t.ending_in : t.starting_in}
-          </Text>
-          <Text
-            tag="span"
-            size="lg"
-            className="u-font-weight-bold t-color-plum"
-          >
-            {getTimer(time)}
-          </Text>
-        </Flex>
-        <Flex
-          direction="vertical"
-          spacing="none"
-          className="u-text-align-right"
-        >
-          <Text tag="span" size="xs" className="u-opacity-75">
-            {t.spins}
-          </Text>
-          <Text
-            tag="span"
-            size="lg"
-            className="u-font-weight-bold t-color-plum"
-          >
-            {started && props.playerSpins !== null
-              ? props.playerSpins
-              : reelRace.spins}
-          </Text>
-        </Flex>
-      </Flex>
+      {/* <ReelRaceWidgetInfo
+        reelRace={reelRace}
+        started={Boolean(started)}
+        {...props}
+      /> */}
       {started && <ReelRaceLeaderboardWidget />}
     </Flex>
   );
