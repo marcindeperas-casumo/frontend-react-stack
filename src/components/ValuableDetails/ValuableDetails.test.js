@@ -8,7 +8,7 @@ import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
 
 jest.mock("Utils", () => ({
-  ...jest.requireActual("Utils"),
+  ...jest.requireActual("../../utils/utils"),
   getDateTimeDifferenceFromNow: jest.fn(),
 }));
 
