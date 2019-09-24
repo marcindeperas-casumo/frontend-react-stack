@@ -24,7 +24,10 @@ const FavouriteSportsSelector = (props: Props) => (
 
       return (
         <>
-          <FavouriteSportsSelectorIntro isSportsPlayer={api.isSportsPlayer} />
+          <FavouriteSportsSelectorIntro
+            isSportsPlayer={api.isSportsPlayer}
+            hasFavourites={!api.isFirstTimeSelectingFavourites}
+          />
 
           <Heading>
             <DictionaryTerm termKey="favourite-sports-selector.heading.popular" />
