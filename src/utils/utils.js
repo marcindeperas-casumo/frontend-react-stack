@@ -278,10 +278,6 @@ export const convertHoursToDays = (hours: number) => {
   return Math.floor(hours / 24);
 };
 
-export const convertHoursMinutes = (hours: number) => {
-  return Math.floor(hours * 60);
-};
-
 export const convertTimestampToLuxonDate = (value: number) => {
   return DateTime.fromMillis(value);
 };
