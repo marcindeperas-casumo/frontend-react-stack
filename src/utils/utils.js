@@ -279,7 +279,7 @@ export const convertHoursToDays = (hours: number) => {
 };
 
 export const convertTimestampToLuxonDate = (value: number) => {
-  return DateTime.fromMillis(value);
+  return DateTime.fromSeconds(value);
 };
 
 export const getDateTimeDifferenceFromNow = (value: DateTime) => {
