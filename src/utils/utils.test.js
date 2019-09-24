@@ -365,4 +365,8 @@ describe("convertHoursToDays()", () => {
 
     expect(convertHoursToDays(hours)).toEqual(expectedValue);
   });
+
+  // describe("getDateTimeDifferenceFromNow()", () => {
+  //   test("should get difference between given date and now", () => {});
+  // });
 });
