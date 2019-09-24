@@ -23,7 +23,7 @@ const reelRaces = {
 };
 
 describe("Models/reelRaceWidget/Selectors", () => {
-  describe("reelRaceWidgetSelector", () => {
+  describe("reelRaceStartedSelector", () => {
     test("should return null if started and not opted in", () => {
       const state = { schema: { reelRaces } };
 
@@ -54,6 +54,40 @@ describe("Models/reelRaceWidget/Selectors", () => {
       const state = { schema: { reelRaces: rr } };
 
       expect(reelRaceStartedSelector(state)).toEqual(rr["1"]);
+    });
+  });
+
+  describe("reelRaceScheduledSelector", () => {
+    test("should return null if started and not opted in", () => {
+      const state = { schema: { reelRaces } };
+
+      expect(reelRaceScheduledSelector(state)).toEqual(null);
+    });
+
+    test("should return null if STARTED and player opted in", () => {
+      const rr = {
+        "1": {
+          ...reelRaces["1"],
+          startTime: now - THIRTY_MINUTES,
+          status: RR_STATE.STARTED,
+          opted: true,
+        },
+      };
+      const state = { schema: { reelRaces: rr } };
+
+      expect(reelRaceScheduledSelector(state)).toEqual(null);
+    });
+
+    test("should return rr if SCHEDULED and player opted in", () => {
+      const rr = {
+        "1": {
+          ...reelRaces["1"],
+          opted: true,
+        },
+      };
+      const state = { schema: { reelRaces: rr } };
+
+      expect(reelRaceScheduledSelector(state)).toEqual(rr["1"]);
     });
   });
 });
