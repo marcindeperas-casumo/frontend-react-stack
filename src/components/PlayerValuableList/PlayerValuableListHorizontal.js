@@ -49,8 +49,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     gameSlug: ?string,
   }) => {
     onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
-        gameSlug && launchGame({ slug: gameSlug });
+      if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
+        launchGame({ slug: gameSlug });
       }
     });
   };
