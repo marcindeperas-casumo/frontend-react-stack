@@ -7,6 +7,7 @@ import { EditIcon, PlayIcon } from "@casumo/cmp-icons";
 import { PillSelector } from "Components/PillSelector";
 import { interpolate, formatCurrency } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
+import "./ConfigurationForm.scss";
 
 const { useState, useCallback } = React;
 const SCREEN_TYPES = {
@@ -153,7 +154,9 @@ export function ConfigurationForm(props: Props) {
           !isPlayActive({ budget, time, alertsEvery, wantsBreak, breakAfter })
         }
       >
-        <span className="o-flex__block">{t.play}</span>
+        <span className="o-flex__block c-scs__form__play-btn__label">
+          {t.play}
+        </span>
         <PlayIcon />
       </Button>
     </Flex>
