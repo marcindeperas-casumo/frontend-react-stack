@@ -8,7 +8,7 @@ import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameLi
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { launchGame } from "Models/games";
+import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -49,8 +49,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     gameSlug: ?string,
   }) => {
     onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
-        launchGame(gameSlug);
+      if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
+        launchGame({ slug: gameSlug });
       }
     });
   };
