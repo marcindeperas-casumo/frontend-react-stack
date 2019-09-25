@@ -16,8 +16,8 @@ export const CuratedCardContainer = connect(
       isFetched: isCuratedLoadedFactory(slug)(state),
     };
   },
-  (dispatch, { slug, gameId }) => ({
+  (dispatch, { slug }) => ({
     fetchCurated: () => dispatch(fetchPageBySlug(prefixCuratedSlug(slug))),
-    onLaunchGame: () => dispatch(launchGame(gameId)),
+    onLaunchGame: (gameId: string) => dispatch(launchGame(gameId)),
   })
 )(CuratedCard);
