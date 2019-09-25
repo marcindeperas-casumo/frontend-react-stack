@@ -9,7 +9,7 @@ type Props = {
   card: string | Array<string>,
   /** A boolean indicating if the player has deposited yet or not. */
   hasDeposited: boolean,
-  /** An override to show the original slug no matter what. This is used in feature flags. */
+  /** Will enforce showing the curated contend specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
   enforceOriginalSlug?: boolean,
 };
 
