@@ -9,7 +9,7 @@ type Props = {
   card: string | Array<string>,
   /** A boolean indicating if the player has deposited yet or not. */
   hasDeposited: boolean,
-  /** Will enforce showing the curated contend specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
+  /** Will enforce showing the curated content specified by the "card" property if set to TRUE. (bypasses the welcome-offer logic) */
   enforceOriginalSlug?: boolean,
 };
 
