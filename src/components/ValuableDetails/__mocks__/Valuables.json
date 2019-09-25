@@ -35,6 +35,12 @@
     "valuableState": "Fresh",
     "requirementType": "wager",
     "currency": "EUR",
-    "market": "en"
+    "market": "en",
+    "game": {
+      "name": "Starburst"
+    },
+    "title": "20 Free Spins",
+    "magnitude": "20",
+    "coinValue": 30
   }
 ]

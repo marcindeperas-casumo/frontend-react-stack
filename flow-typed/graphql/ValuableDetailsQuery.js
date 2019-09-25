@@ -8,7 +8,8 @@
 
 export type ValuableDetailsQuery = {
   termsAndConditionLabel: string,
-  playNowLabel: string,
+  cashUnLockedActionLabel: string,
+  spinsUnlockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,
