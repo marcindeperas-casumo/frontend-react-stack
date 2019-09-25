@@ -96,7 +96,7 @@ export class ValuableRow extends PureComponent<Props> {
         onClick={this.props.onClick}
       >
         <Flex.Item className="c-valuable-row-thumbnail">
-          <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
+          <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}
               coinValue={this.props.coinValue}

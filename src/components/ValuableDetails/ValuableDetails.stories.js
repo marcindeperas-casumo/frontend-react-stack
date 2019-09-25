@@ -42,7 +42,7 @@ stories.add("Default", () => {
           <ValuableCard
             {...mockValuableCard(valuableType)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetails>
@@ -88,7 +88,7 @@ stories.add("Deposit - Locked", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetails>
