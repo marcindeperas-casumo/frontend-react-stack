@@ -163,7 +163,7 @@ export function ConfigurationForm(props: Props) {
   );
 }
 
-function isPlayActive(props: IsPlayActiveType): boolean {
+export function isPlayActive(props: IsPlayActiveType): boolean {
   const { budget, time, alertsEvery, wantsBreak, breakAfter } = props;
 
   return Boolean(
