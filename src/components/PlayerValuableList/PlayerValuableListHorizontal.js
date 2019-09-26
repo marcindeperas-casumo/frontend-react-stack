@@ -1,6 +1,6 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals } from "ramda";
+import { equals, pick } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
@@ -30,6 +30,10 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   } = props;
   const { listTitleLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
+  const valuableThumbnailTranslations = pick(
+    ["hoursLabel", "minutesLabel"],
+    translations
+  );
 
   const showModal = valuable => {
     setSelectedValuable(valuable);
@@ -93,7 +97,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
               <div className="c-valuable-list__valuable-card">
                 <ValuableCard
                   {...valuable}
-                  translations={translations}
+                  translations={valuableThumbnailTranslations}
                   onCardClick={() => showModal(valuable)}
                   className="u-drop-shadow--sm"
                 />
@@ -113,7 +117,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
               {...selectedValuable}
-              translations={translations}
+              translations={valuableThumbnailTranslations}
               caveat={null}
               className="u-drop-shadow--lg"
             />
