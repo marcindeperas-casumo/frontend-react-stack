@@ -50,7 +50,7 @@ const BackButton = ({ onClick, className }: ButtonProps) => (
         onClick === noop && "u-visibility--hidden"
       )}
     >
-      <ArrowLeftIcon />
+      <ArrowLeftIcon size="md" />
     </Flex>
   </ButtonContainer>
 );
@@ -66,7 +66,7 @@ const CloseButton = ({ onClick, className }: ButtonProps) => (
         onClick === noop && "u-visibility--hidden"
       )}
     >
-      <CrossIcon />
+      <CrossIcon size="md" />
     </Flex>
   </ButtonContainer>
 );
