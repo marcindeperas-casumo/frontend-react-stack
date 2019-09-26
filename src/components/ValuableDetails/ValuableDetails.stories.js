@@ -3,24 +3,27 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
 import { F } from "ramda";
+import { select } from "@storybook/addon-knobs/react";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
-import { mockValuable } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import { mockValuable as mockValuableCard } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES } from "Models/valuables";
 import defaultState from "Models/__mocks__/state.mock";
 import MockStore from "Components/MockStore";
-import mock from "./__mocks__/Valuables.json";
 import { ValuableDetails } from "./ValuableDetails";
 import { ValuableDetailsWithModal } from "./ValuableDetailsWithModal";
 import ValuableDetailsMockQuery from "./__mocks__/query.valuableDetails.mock";
+import { mockValuable as mockData } from "./__mocks__/Valuables.mock";
 
 const stories = storiesOf("ValuableDetails/ValuableDetails", module);
 
 stories.add("Default", () => {
+  const valuableType =
+    select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
+    VALUABLE_TYPES.CASH;
+  const valuableDetailsMock = mockData(valuableType);
   const expiresWith24Hours = boolean("Locked", false);
   const expiryDate = addHoursToNow(4);
-
-  const valuableDetailsMock = mock[0];
   const expiresSoonValuable = {
     ...valuableDetailsMock,
     expiryDate,
@@ -38,7 +41,7 @@ stories.add("Default", () => {
       >
         <div style={{ width: "160px" }}>
           <ValuableCard
-            {...mockValuable(VALUABLE_TYPES.CASH)}
+            {...mockValuableCard(valuableType)}
             caveat={null}
             className="u-drop-shadow--lg"
           />
@@ -49,7 +52,7 @@ stories.add("Default", () => {
 });
 
 stories.add("Default - With modal", () => {
-  const valuableDetailsMock = mock[0];
+  const valuableDetailsMock = mockData(VALUABLE_TYPES.CASH);
 
   return (
     <MockStore state={defaultState} queryMocks={[ValuableDetailsMockQuery]}>
@@ -61,7 +64,7 @@ stories.add("Default - With modal", () => {
       >
         <div style={{ width: "160px" }}>
           <ValuableCard
-            {...mockValuable(VALUABLE_TYPES.CASH)}
+            {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
             className="u-drop-shadow--lg"
           />
@@ -72,7 +75,7 @@ stories.add("Default - With modal", () => {
 });
 
 stories.add("Deposit - Locked", () => {
-  const valuableDetailsMock = mock[1];
+  const valuableDetailsMock = mockData(VALUABLE_TYPES.DEPOSIT);
 
   return (
     <div style={{ width: "420px" }}>
@@ -84,7 +87,7 @@ stories.add("Deposit - Locked", () => {
       >
         <div style={{ width: "160px" }}>
           <ValuableCard
-            {...mockValuable(VALUABLE_TYPES.DEPOSIT)}
+            {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
             className="u-drop-shadow--lg"
           />
