@@ -76,12 +76,12 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
     align="center"
     justify="center"
     className={classNames(
-      "c-sports-modal-header__fixed-button u-cursor-pointer t-border-r--sm u-padding--md t-color-chrome-light-2 t-background-chrome-dark-3 u-display--none@mobile u-display--none@phablet",
+      "c-sports-modal-header__fixed-button u-cursor-pointer t-border-r--sm u-width--4xlg u-height--4xlg t-color-chrome-light-2 t-background-chrome-dark-3 u-display--none@mobile u-display--none@phablet",
       onClick === noop && "u-visibility--hidden"
     )}
     onClick={onClick}
   >
-    <CrossIcon />
+    <CrossIcon size="md" />
   </Flex>
 );
 
