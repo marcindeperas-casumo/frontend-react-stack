@@ -18,8 +18,14 @@ export type DurationTranslations = {
   day_plural: string,
 };
 
+export type ValuableThumbnailTranslations = {
+  hoursLabel: string,
+  minutesLabel: string,
+};
+
 export type ValuableDetailsTranslations = DurationTranslations & {
-  playNowLabel: string,
+  cashUnLockedActionLabel: string,
+  spinsUnLockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,
@@ -51,4 +57,10 @@ export type ValuableDetailsProps = {
   onConsumeValuable: string => Promise<boolean>,
   /** The function to be called to launch game which will be triggered after consuming the valuable */
   onLaunchGame: string => void,
+};
+
+export type DurationProps = {
+  hours: number,
+  minutes: number,
+  seconds: number,
 };

@@ -12,6 +12,8 @@ import {
   VALUABLE_STATES,
   coinValueToSpinType,
   showStateBadge,
+  getExpiryTimeLeft,
+  type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 
@@ -38,12 +40,11 @@ type Props = {
   caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTimeInHours: number,
+  /** Translations */
+  translations: Translations,
+  expiryDate: number,
   /** Function to be triggered on click of card */
   onClick: () => void,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
 };
 
 export class ValuableRow extends PureComponent<Props> {
@@ -72,21 +73,21 @@ export class ValuableRow extends PureComponent<Props> {
     );
   }
 
+  get expiryTimeLeft() {
+    return getExpiryTimeLeft(this.props.expiryDate);
+  }
+
   get spinType() {
     return coinValueToSpinType(this.props.coinValue);
   }
 
   render() {
-    const {
-      caveat,
-      description,
-      expirationTimeInHours,
-      valuableState,
-    } = this.props;
+    const { caveat, description, valuableState } = this.props;
+    const expiryTimeLeft = this.expiryTimeLeft;
 
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
     const stateBadgeVisible =
-      showStateBadge(valuableState, expirationTimeInHours) || !isFresh;
+      showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
       <Flex
@@ -100,9 +101,9 @@ export class ValuableRow extends PureComponent<Props> {
               backgroundRenderer={this.image}
               coinValue={this.props.coinValue}
               currency={this.props.currency}
-              expirationTimeInHours={expirationTimeInHours}
+              expiryTimeLeft={expiryTimeLeft}
               market={this.props.market}
-              translatedHoursUnit={this.props.translatedHoursUnit}
+              translations={this.props.translations}
               valuableState={valuableState}
               valuableType={this.props.valuableType}
               size="small"
@@ -111,10 +112,7 @@ export class ValuableRow extends PureComponent<Props> {
         </Flex.Item>
         <Flex.Block>
           {stateBadgeVisible && (
-            <ValuableStateIndicator
-              hoursToExpiry={expirationTimeInHours}
-              state={valuableState}
-            />
+            <ValuableStateIndicator state={valuableState} />
           )}
           <Text className="u-font-weight-bold" size="sm" tag="span">
             <DangerousHtml

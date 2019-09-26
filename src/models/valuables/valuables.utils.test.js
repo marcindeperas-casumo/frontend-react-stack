@@ -42,11 +42,11 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is CASH unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is CASH unlocked", () => {
     valuableType = VALUABLE_TYPES.CASH;
 
     const expectedValue = getExpectedActionValue(
-      translations.playNowLabel,
+      translations.cashUnLockedActionLabel,
       gameBrowserUrl
     );
     const actualValue = getValuableDetailsAction({
@@ -58,10 +58,13 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is SPINS unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is SPINS unlocked", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
-    const expectedValue = getExpectedActionValue(translations.playNowLabel, "");
+    const expectedValue = getExpectedActionValue(
+      translations.spinsUnLockedActionLabel,
+      ""
+    );
     const actualValue = getValuableDetailsAction({
       valuableType,
       valuableState,

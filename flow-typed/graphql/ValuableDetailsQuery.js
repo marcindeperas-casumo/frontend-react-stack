@@ -8,13 +8,16 @@
 
 export type ValuableDetailsQuery = {
   termsAndConditionLabel: string,
-  playNowLabel: string,
+  cashUnLockedActionLabel: string,
+  spinsUnlockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,
   expirationTimeLabel: string,
   termsAndConditionsContent: string,
   wageringStatus: string,
+  minute_singular: string,
+  minute_plural: string,
   hour_singular: string,
   hour_plural: string,
   day_singular: string,
