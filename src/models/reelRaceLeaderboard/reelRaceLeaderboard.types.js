@@ -1,5 +1,5 @@
 // @flow
-export type LeaderBoard = {
+export type Leaderboard = {
   playerId: string,
   playerName: string,
   points: number,

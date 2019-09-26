@@ -4,12 +4,12 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import * as R from "ramda";
 import { PrizeIcon } from "@casumo/cmp-icons";
-import type { LeaderBoard } from "Models/reelRaceLeaderboard";
+import type { Leaderboard } from "Models/reelRaceLeaderboard";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
 import "./ReelRaceLeaderboardWidget.scss";
 
 type Props = {
-  leaderboard: Array<LeaderBoard>,
+  leaderboard: Array<Leaderboard>,
   subscribeUpdates: () => void,
   unsubscribeUpdates: () => void,
   playerId: string,

@@ -59,7 +59,7 @@ const props = {
   unsubscribeReelRacesUpdates: () => {},
   playing: {
     state: "STARTED",
-    gameId: "foo",
+    gameId: "bar",
   },
   playerId: "123",
   playerSpins: 200,
@@ -69,7 +69,7 @@ const props = {
 if (isNotChromatic) {
   stories.add("Default", () => {
     return (
-      <div>
+      <div style={{ width: "300px" }}>
         <ReelRaceWidget {...props} />
       </div>
     );
