@@ -26,6 +26,12 @@ export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 
+export const REACT_APP_EVENTS = {
+  SLOT_CONTROL_SYSTEM: {
+    CONFIGURATION_INIT: "REACT_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationInit",
+  },
+};
+
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
@@ -35,6 +41,22 @@ export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
 export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
+
+export const KO_EVENTS = {
+  ACCOUNT_SETTINGS: {
+    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
+  },
+  VALUABLES: {
+    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
+  },
+  SLOT_CONTROL_SYSTEM: {
+    CONFIGURATION_FINISHED:
+      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationFinished",
+    CONFIGURATION_EXITED:
+      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationExited",
+  },
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {
@@ -125,6 +147,7 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
 };
+
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
@@ -136,6 +159,7 @@ export const EVENT_PROPS = {
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
   PROMOTION_TYPE: "promotion type",
 };
+
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
   ALL_GAMES: "allGames",
@@ -143,6 +167,7 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
+
 export const MODALS = {
   ACCOUNT_SETTINGS: {
     CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
@@ -155,6 +180,7 @@ export const MODALS = {
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
   ERROR: "ERROR",
 };
+
 export const EVOLUTION_LOBBY_TYPES = {
   MONEYWHEEL: "MoneyWheel",
   ROULETTE: "Roulette",
@@ -164,11 +190,9 @@ export const EVOLUTION_LOBBY_TYPES = {
   BACCARAT: "Baccarat",
 };
 
-export const KO_EVENTS = {
-  ACCOUNT_SETTINGS: {
-    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
-  },
-  VALUABLES: {
-    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
-  },
+// Make sure that any flags you have here are also listed here, otherwise they will not work:
+// https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
+export const FEATURE_FLAGS = {
+  SPORTS: "sports",
+  TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };
