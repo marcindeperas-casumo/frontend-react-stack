@@ -45,11 +45,9 @@ export function ReelRaceLeaderboardWidget(props: Props) {
     R.concat(R.take(3, l), R.slice(i - 2, i + 1, l))
   );
 
-  const { playerBoosters } = props;
-
   return (
     <Flex direction="vertical">
-      <ReelRacePlayerBoosters boosters={playerBoosters} />
+      <ReelRacePlayerBoosters boosters={props.playerBoosters} />
       {board.map(p => (
         <Flex
           direction="horizontal"
@@ -63,8 +61,7 @@ export function ReelRaceLeaderboardWidget(props: Props) {
           <Text
             tag="div"
             size="xs"
-            className="u-text-align-center u-padding"
-            style={{ width: "40px" }}
+            className="u-text-align-center u-padding c-reel-race-leaderboard-widget-position"
           >
             {p.position === 1 ? <PrizeIcon size="sm" /> : p.position}
           </Text>

@@ -1,10 +1,16 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import isNotChromatic from "Storybook/isNotChromatic";
+import MockDate from "mockdate";
+import { PLAYING_STATE } from "Models/playing";
+import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceWidget } from "./ReelRaceWidget";
 
 const stories = storiesOf("ReelRaceWidget", module);
+
+if (isChromatic) {
+  MockDate.set(new Date().toString());
+}
 
 const now = Date.now();
 const minute = 60 * 1000;
@@ -58,7 +64,7 @@ const props = {
   subscribeReelRacesUpdates: () => {},
   unsubscribeReelRacesUpdates: () => {},
   playing: {
-    state: "STARTED",
+    state: PLAYING_STATE.STARTED,
     gameId: "bar",
   },
   playerId: "123",
@@ -66,12 +72,10 @@ const props = {
   gameSlug: "foo",
 };
 
-if (isNotChromatic) {
-  stories.add("Default", () => {
-    return (
-      <div style={{ width: "300px" }}>
-        <ReelRaceWidget {...props} />
-      </div>
-    );
-  });
-}
+stories.add("Default", () => {
+  return (
+    <div style={{ width: "300px" }}>
+      <ReelRaceWidget {...props} />
+    </div>
+  );
+});

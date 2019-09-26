@@ -1,11 +1,15 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import isNotChromatic from "Storybook/isNotChromatic";
 import { ReelRaceLeaderboardWidget } from "./ReelRaceLeaderboardWidget";
 
 const stories = storiesOf("ReelRaceLeaderboardWidget", module);
 
+const boosters = {
+  triples: 0,
+  bigWins: 0,
+  megaWins: 0,
+};
 const leaderboard = [
   {
     playerId: "101112",
@@ -13,14 +17,7 @@ const leaderboard = [
     position: 1,
     points: 2345,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
   {
     playerId: "888",
@@ -28,14 +25,7 @@ const leaderboard = [
     position: 58,
     points: 8,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
   {
     playerId: "777",
@@ -43,14 +33,7 @@ const leaderboard = [
     position: 57,
     points: 100,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
   {
     playerId: "123",
@@ -58,14 +41,7 @@ const leaderboard = [
     position: 59,
     points: 0,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
   {
     playerId: "456",
@@ -73,14 +49,7 @@ const leaderboard = [
     position: 2,
     points: 1098,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
   {
     playerId: "789",
@@ -88,14 +57,7 @@ const leaderboard = [
     position: 3,
     points: 600,
     remainingSpins: 250,
-    mostPlayedGame: null,
-    boosters: {
-      winsInARow: 0,
-      triples: 0,
-      wins: 0,
-      bigWins: 0,
-      megaWins: 0,
-    },
+    boosters,
   },
 ];
 

@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { shallow } from "enzyme";
+import { PLAYING_STATE } from "Models/playing";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 const props = {
@@ -73,7 +74,7 @@ describe("ReelRaceCard", () => {
       optIn: () => {},
       status: "Scheduled",
       playing: {
-        state: "STARTED",
+        state: PLAYING_STATE.STARTED,
         gameId: "foo",
       },
     };

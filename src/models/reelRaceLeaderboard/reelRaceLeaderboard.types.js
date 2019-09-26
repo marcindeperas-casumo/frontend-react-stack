@@ -9,7 +9,5 @@ export type Leaderboard = {
     bigWins: number,
     megaWins: number,
     triples: number,
-    wins: number,
-    winsInARow: number,
   },
 };
