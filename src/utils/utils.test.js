@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
+import { DateTime } from "luxon";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -17,6 +18,7 @@ import {
   isCmsEntryEmpty,
   findOr,
   convertHoursToDays,
+  convertTimestampToLuxonDate,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -364,5 +366,14 @@ describe("convertHoursToDays()", () => {
     const expectedValue = 1;
 
     expect(convertHoursToDays(hours)).toEqual(expectedValue);
+  });
+
+  describe("convertTimestampToLuxonDate()", () => {
+    test("should covnert date to luxon", () => {
+      const timestamp = 15697943990;
+      const result = convertTimestampToLuxonDate(timestamp);
+
+      expect(result.isLuxonDateTime).toBe(true);
+    });
   });
 });

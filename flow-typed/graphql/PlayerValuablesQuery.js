@@ -9,6 +9,7 @@
 export type PlayerValuablesQuery_translations_playerValuableTranslations = {
   hoursLabel: string,
   listTitleLabel: string,
+  minutesLabel: string,
 };
 
 export type PlayerValuablesQuery_translations = {
@@ -24,6 +25,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: number,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -38,6 +40,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: number,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -56,6 +59,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: number,
   valuableType: ValuableType,
   title: string,
   content: string,
