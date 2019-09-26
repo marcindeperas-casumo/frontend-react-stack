@@ -66,7 +66,7 @@ export class ValuableRow extends PureComponent<Props> {
     };
     return (
       <ImageLazy
-        className="u-object-fit-cover u-width--1/1 u-height--1/1 t-border-r u-overflow-hidden"
+        className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow-hidden"
         src={this.props.backgroundImage}
         imgixOpts={this.isValuableTypeSpins ? imgixOptsForSpins : {}}
       />
