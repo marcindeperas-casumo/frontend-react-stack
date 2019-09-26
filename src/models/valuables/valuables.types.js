@@ -24,7 +24,8 @@ export type ValuableThumbnailTranslations = {
 };
 
 export type ValuableDetailsTranslations = DurationTranslations & {
-  playNowLabel: string,
+  cashUnLockedActionLabel: string,
+  spinsUnLockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,

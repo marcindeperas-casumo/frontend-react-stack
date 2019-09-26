@@ -2,7 +2,8 @@ query ValuableDetailsQuery {
     termsAndConditionLabel: getText(
       id: "root:valuable-details-component:fields.terms_and_conditions_title"
     )
-    playNowLabel: getText(id: "root:valuable-details-component:fields.play_now")
+    cashUnLockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_money")
+    spinsUnlockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_spins")
     playToUnlockLabel: getText(
       id: "root:valuable-details-component:fields.play_to_unlock"
     )
