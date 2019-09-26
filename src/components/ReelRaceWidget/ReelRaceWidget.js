@@ -29,7 +29,6 @@ type Props = {
 
 export function ReelRaceWidget(props: Props) {
   const {
-    t,
     started,
     scheduled,
     isReelRacesFetched,
@@ -83,15 +82,10 @@ export function ReelRaceWidget(props: Props) {
   return (
     <Flex
       direction="vertical"
-      justify="space-between"
       className="t-border-bottom t-border-current-color"
     >
       <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
-      {/* <ReelRaceWidgetInfo
-        reelRace={reelRace}
-        started={Boolean(started)}
-        {...props}
-      /> */}
+      <ReelRaceWidgetInfo reelRace={reelRace} {...props} />
       {started && <ReelRaceLeaderboardWidget />}
     </Flex>
   );

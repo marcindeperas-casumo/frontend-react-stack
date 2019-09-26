@@ -3,14 +3,13 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
-import type { Playing } from "Models/playing";
 import Timer from "Components/Timer";
 
 type Props = {
   t: ReelRacesTranslations,
   playerSpins: number,
   reelRace: ReelRace,
-  started: boolean,
+  started: ReelRace | null,
 };
 
 const getTimer = (time: number) => {
@@ -31,7 +30,11 @@ export function ReelRaceWidgetInfo(props: Props) {
   const time = started ? reelRace.endTime : reelRace.startTime;
 
   return (
-    <Flex direction="horizontal" className="u-padding--md">
+    <Flex
+      direction="horizontal"
+      justify="space-between"
+      className="u-padding--md"
+    >
       <Flex direction="vertical" spacing="none" className="flex-1">
         <Text tag="span" size="xs">
           {started ? t.ending_in : t.starting_in}

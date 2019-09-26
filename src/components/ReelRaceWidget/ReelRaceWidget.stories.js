@@ -6,6 +6,9 @@ import { ReelRaceWidget } from "./ReelRaceWidget";
 
 const stories = storiesOf("ReelRaceWidget", module);
 
+const now = Date.now();
+const minute = 60 * 1000;
+
 const props = {
   started: null,
   scheduled: {
@@ -16,8 +19,8 @@ const props = {
     prize: "€666",
     gameSlug: "gonzos-quest",
     status: "Scheduled",
-    startTime: 1234,
-    endTime: 12345,
+    startTime: now + 30 * minute,
+    endTime: now + 60 * minute,
     opted: true,
     promoted: false,
   },
