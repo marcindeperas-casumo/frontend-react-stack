@@ -15,10 +15,6 @@ import {
   type ValuableThumbnailTranslations,
 } from "Models/valuables";
 
-type Translations = ValuableThumbnailTranslations & {
-  listTitleLabel: string,
-};
-
 type Props = {
   /** Unique id of the valuable */
   id: string,
@@ -45,7 +41,7 @@ type Props = {
   /** Function to be triggered on click of card */
   onCardClick?: () => void,
   /** translations */
-  translations: Translations,
+  translations: ValuableThumbnailTranslations,
   /** addition css classes to add to containing element */
   className?: string,
 };

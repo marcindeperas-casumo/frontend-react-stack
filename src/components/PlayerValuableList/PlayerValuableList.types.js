@@ -1,8 +1,8 @@
 // @flow
-type Translations = {
+import { type ValuableThumbnailTranslations } from "Models/valuables";
+
+type Translations = ValuableThumbnailTranslations & {
   listTitleLabel: string,
-  hoursLabel: string,
-  minutesLabel: string,
 };
 
 export type PlayerValuableListProps = {
@@ -17,5 +17,5 @@ export type PlayerValuableListProps = {
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => Promise<void>,
   /** An array of translated labels */
-  translations: Translations, // TODO: update type,
+  translations: Translations,
 };
