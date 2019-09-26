@@ -5,20 +5,29 @@ import Skeleton from "@casumo/cmp-skeleton";
 import { CrossIcon } from "@casumo/cmp-icons";
 import Text from "@casumo/cmp-text";
 
-export function ModalHeader(props: { title: ?string, hideModal: () => void }) {
+type Props = {
+  title: ?string,
+  hideModal: () => void,
+};
+
+export function ModalHeader(props: Props) {
   return (
     <Flex
-      className="u-padding-left--lg u-padding-y--lg t-background-blue-light-1"
+      className="u-padding-left--lg u-padding-y--lg t-background-white"
       direction="horizontal"
       align="center"
       spacing="md"
       justify="space-between"
     >
-      <Text size="sm" tag="span" className="u-font-weight-bold t-color-white">
+      <Text
+        size="sm"
+        tag="span"
+        className="u-font-weight-bold t-color-black o-flex__block u-text-align-center"
+      >
         {props.title || <ModalTitleSkeleton />}
       </Text>
       <CrossIcon
-        className="u-padding-right--lg t-color-blue u-cursor-pointer"
+        className="u-padding-right--lg t-color-black u-cursor-pointer"
         onClick={props.hideModal}
       />
     </Flex>
