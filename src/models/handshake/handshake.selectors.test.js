@@ -1,5 +1,6 @@
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
 import { VERTICALS } from "Src/constants";
+import * as storage from "Lib/storage";
 import {
   handshakeSelector,
   applicationHandshakeSelector,
@@ -27,6 +28,7 @@ import {
   socialSecurityNumberSelector,
   isSuspiciousAccount,
   verticalSelector,
+  featureFlagSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -503,6 +505,25 @@ describe("Handshake selectors", () => {
       expect(verticalSelector(state1)).toEqual(VERTICALS.CASINO);
       expect(verticalSelector(state2)).toEqual(VERTICALS.CASINO);
       expect(verticalSelector(state3)).toEqual(VERTICALS.CASINO);
+    });
+  });
+
+  describe("featureFlagSelector()", () => {
+    test("checks the feature-flag in the handshake and returns TRUE if it is there", () => {
+      expect(featureFlagSelector("MOBILE_VERIFICATION")(stateMock)).toBe(true);
+    });
+
+    test("checks the feature-flag in the localStorage and returns TRUE if it is there", () => {
+      const featureFlag = "fooBar";
+      const featureFlags = { features: [featureFlag] };
+
+      storage.set("featureFlags", featureFlags);
+
+      expect(featureFlagSelector(featureFlag)(stateMock)).toBe(true);
+    });
+
+    test("returns FALSE if the feature-flag is not in the handshake nor in the localStorage", () => {
+      expect(featureFlagSelector("unknown")(stateMock)).toBe(false);
     });
   });
 });

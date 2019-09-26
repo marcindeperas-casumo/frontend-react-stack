@@ -134,7 +134,7 @@ export class CuratedCard extends PureComponent<Props> {
       <CuratedCardFooterGame
         gameData={this.props.gameData}
         buttonText={this.props.primary_action_text}
-        onLaunchGame={this.props.onLaunchGame}
+        onLaunchGame={() => this.props.onLaunchGame(this.props.gameData.slug)}
       />
     ) : (
       <CuratedCardFooterText text={this.props.promotions_legal_text} />

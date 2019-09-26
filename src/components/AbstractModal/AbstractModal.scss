@@ -1,5 +1,6 @@
 .c-abstract-modal__content {
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .c-abstract-modal__close {

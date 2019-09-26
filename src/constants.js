@@ -147,6 +147,7 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
 };
+
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
@@ -158,6 +159,7 @@ export const EVENT_PROPS = {
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
   PROMOTION_TYPE: "promotion type",
 };
+
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
   ALL_GAMES: "allGames",
@@ -165,6 +167,7 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
+
 export const MODALS = {
   ACCOUNT_SETTINGS: {
     CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
@@ -177,6 +180,7 @@ export const MODALS = {
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
   ERROR: "ERROR",
 };
+
 export const EVOLUTION_LOBBY_TYPES = {
   MONEYWHEEL: "MoneyWheel",
   ROULETTE: "Roulette",
@@ -184,4 +188,11 @@ export const EVOLUTION_LOBBY_TYPES = {
   MONOPOLY: "Monopoly",
   BLACKJACK: "Blackjack",
   BACCARAT: "Baccarat",
+};
+
+// Make sure that any flags you have here are also listed here, otherwise they will not work:
+// https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
+export const FEATURE_FLAGS = {
+  SPORTS: "sports",
+  TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };
