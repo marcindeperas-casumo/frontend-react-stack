@@ -5,7 +5,7 @@ export const types = {
 
 export const slug = "reel-races.reel-race-templates";
 
-export const RR_STATE = {
+export const REEL_RACE_STATE = {
   STARTED: "Started",
   SCHEDULED: "Scheduled",
 };

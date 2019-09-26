@@ -2,7 +2,7 @@ import {
   reelRaceStartedSelector,
   reelRaceScheduledSelector,
 } from "./reelRaceWidget.selectors";
-import { RR_STATE } from "./reelRaceWidget.constants";
+import { REEL_RACE_STATE } from "./reelRaceWidget.constants";
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 const now = Date.now();
@@ -13,7 +13,7 @@ const reelRaces = {
     startTime: now + THIRTY_MINUTES,
     endTime: now + THIRTY_MINUTES * 2,
     opted: false,
-    status: RR_STATE.SCHEDULED,
+    status: REEL_RACE_STATE.SCHEDULED,
     leaderboard: {
       player1: {
         remainingSpins: 30,
@@ -47,7 +47,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
         "1": {
           ...reelRaces["1"],
           startTime: now - THIRTY_MINUTES,
-          status: RR_STATE.STARTED,
+          status: REEL_RACE_STATE.STARTED,
           opted: true,
         },
       };
@@ -69,7 +69,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
         "1": {
           ...reelRaces["1"],
           startTime: now - THIRTY_MINUTES,
-          status: RR_STATE.STARTED,
+          status: REEL_RACE_STATE.STARTED,
           opted: true,
         },
       };

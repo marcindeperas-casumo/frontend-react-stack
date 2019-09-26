@@ -7,9 +7,9 @@ export function* updateLeaderboardSaga(action) {
     data: { leaderboard },
   } = action;
 
-  const rr = yield select(reelRaceStartedSelector);
+  const reelRace = yield select(reelRaceStartedSelector);
 
-  if (rr) {
+  if (reelRace) {
     yield put(mergeEntity({ [ENTITY_KEYS.LEADERBOARD]: leaderboard }));
   }
 }
