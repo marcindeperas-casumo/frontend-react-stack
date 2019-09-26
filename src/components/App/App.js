@@ -45,6 +45,7 @@ export class App extends PureComponent<Props> {
     this.props.subscribeToPlayerUpdates();
   };
 
+  // eslint-disable-next-line max-lines-per-function
   render() {
     const { isAuthenticated, activeComponents, routeParams } = this.props;
 
