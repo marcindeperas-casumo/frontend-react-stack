@@ -2,9 +2,15 @@ import React from "react";
 import { shallow } from "enzyme";
 import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { VALUABLE_STATES } from "Models/valuables";
+import { getDateTimeDifferenceFromNow } from "Utils";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 import OpenPadlock from "./open-padlock.svg";
+
+jest.mock("Utils", () => ({
+  ...jest.requireActual("../../utils/utils"),
+  getDateTimeDifferenceFromNow: jest.fn(),
+}));
 
 describe("ValuableDetails", () => {
   let rendered;
@@ -14,7 +20,9 @@ describe("ValuableDetails", () => {
 
   beforeEach(() => {
     onConsume = jest.fn().mockResolvedValue(true);
+    getDateTimeDifferenceFromNow.mockReturnValue({ hours: 30 });
 
+    jest.resetModules();
     rendered = shallow(
       <ValuableDetails
         valuableDetails={mockValuable}
@@ -32,7 +40,7 @@ describe("ValuableDetails", () => {
     expect(foo).toHaveLength(1);
   });
 
-  test("should render red expiration badge if expirationInHours is > 24", () => {
+  test("should render red expiration badge if hours to expire is > 24", () => {
     expect(
       rendered.find("[data-test='valuable-expiration-badge']").prop("bgColor")
     ).toBe(expirationBadgeClasses.default);
@@ -60,14 +68,16 @@ describe("ValuableDetails", () => {
     ).toHaveLength(1);
   });
 
-  test("should render red expiration badge if expirationInHours is <= 24", () => {
+  test("should render red expiration badge if hours to expire is < 24", () => {
     const expirationHours = 5;
+    const expiryDate = addHoursToNow(expirationHours);
+    getDateTimeDifferenceFromNow.mockReturnValue({ hours: 5 });
 
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
         translations={mockTranslations}
       >
@@ -82,20 +92,24 @@ describe("ValuableDetails", () => {
     ).toBe(expirationBadgeClasses.expiresToday);
   });
 
-  test("should display the expiration in hours if expiration is <= 24 hours", () => {
+  test("should display the expiration in hours if expiration is < 24 hours", () => {
     const expirationHours = 5;
-    const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${expirationHours} Hours`;
+    const expiryDate = addHoursToNow(expirationHours);
+    getDateTimeDifferenceFromNow.mockReturnValue({ hours: 5 });
+
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
         translations={mockTranslations}
       >
         <Foo />
       </ValuableDetails>
     );
+
+    const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${expirationHours} Hours`;
 
     expect(
       rendered
@@ -107,17 +121,23 @@ describe("ValuableDetails", () => {
   });
 
   test("should display the expiration in days if expiration is >= 24 hours", () => {
-    const expirationHours = 300;
-    const days = Math.floor(expirationHours / 24);
+    const days = 5;
+    const expiryDate = addDaysToNow(days);
     const expectedExpirationText = `${mockTranslations.expirationTimeLabel} ${days} Days`;
+    getDateTimeDifferenceFromNow.mockReturnValue({ hours: 5 * 24 });
+
+    jest.mock("Utils", () => ({
+      getDateTimeDifferenceFromNow: jest
+        .fn()
+        .mockReturnValue({ hours: 24 * 5 }),
+    }));
 
     rendered = shallow(
       <ValuableDetails
         valuableDetails={{
           ...mockValuable,
-          expirationTimeInHours: expirationHours,
+          expiryDate,
         }}
-        expirationTimeInHours={expirationHours}
         translations={mockTranslations}
       >
         <Foo />
@@ -226,3 +246,14 @@ describe("ValuableDetails", () => {
     expect(onConsume).toHaveBeenCalledTimes(1);
   });
 });
+
+const addDaysToNow = days => {
+  const result = new Date(Date.now());
+  return result.setDate(result.getDate() + days);
+};
+
+const addHoursToNow = hours => {
+  const result = new Date(Date.now());
+
+  return result.setHours(result.getHours() + hours);
+};

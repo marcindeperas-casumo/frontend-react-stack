@@ -3,6 +3,7 @@ query PlayerValuablesQuery {
     playerValuableTranslations {
       hoursLabel
       listTitleLabel
+      minutesLabel
     }
   }
   player {
@@ -11,6 +12,7 @@ query PlayerValuablesQuery {
       id
       valuableState
       expirationTimeInHours
+      expiryDate
       valuableType
       title
       content
@@ -40,6 +42,7 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     id
     valuableState
     expirationTimeInHours
+    expiryDate
     valuableType
     title
     content

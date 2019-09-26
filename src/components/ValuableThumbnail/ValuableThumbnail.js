@@ -13,6 +13,8 @@ import {
   coinValueToSpinType,
   showStateBadge,
   isAboutToExpire,
+  type DurationProps,
+  type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
@@ -31,10 +33,10 @@ type Props = {
   backgroundRenderer: Node,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTimeInHours: number,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
+  /** Time left in h, m for the valuable to expire */
+  expiryTimeLeft: DurationProps,
+  /* Translations of the component */
+  translations: Translations,
   size?: "small" | "large",
 };
 
@@ -42,21 +44,21 @@ export const ValuableThumbnail = ({
   backgroundRenderer,
   coinValue,
   currency,
-  expirationTimeInHours,
   market,
   size = "large",
+  expiryTimeLeft,
   valuableState,
   valuableType,
-  translatedHoursUnit,
+  translations,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
   const isFresh = valuableState === VALUABLE_STATES.FRESH;
   const stateBadgeVisible =
     size !== "small" &&
-    (showStateBadge(valuableState, expirationTimeInHours) || !isFresh);
-  const stateBadgeText = getStatusBadgeText(
-    expirationTimeInHours,
-    translatedHoursUnit,
+    (showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh);
+  const stateBadgeText = getStateBadgeText(
+    expiryTimeLeft,
+    translations,
     valuableState
   );
 
@@ -105,7 +107,6 @@ export const ValuableThumbnail = ({
         <div className="o-ratio__content">
           <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
             <ValuableStateIndicator
-              hoursToExpiry={expirationTimeInHours}
               state={valuableState}
               label={
                 <Text size="2xs" tag="span" className="u-font-weight-bold">
@@ -120,17 +121,23 @@ export const ValuableThumbnail = ({
   );
 };
 
-function getStatusBadgeText(
-  hoursToExpiry: number,
-  translatedHoursLabel: string,
+function getStateBadgeText(
+  expiryTimeLeft: DurationProps,
+  translations: Translations,
   valuableState: ValuableState
 ): ?string {
   if (valuableState === VALUABLE_STATES.LOCKED) {
     return VALUABLE_STATES.LOCKED;
   }
 
-  if (isAboutToExpire(hoursToExpiry)) {
-    return interpolate(translatedHoursLabel, { value: hoursToExpiry });
+  if (isAboutToExpire(expiryTimeLeft.hours)) {
+    const { minutes, hours } = expiryTimeLeft;
+
+    if (hours < 1) {
+      return interpolate(translations.minutesLabel, { value: minutes });
+    }
+
+    return interpolate(translations.hoursLabel, { value: hours });
   }
 
   return null;
