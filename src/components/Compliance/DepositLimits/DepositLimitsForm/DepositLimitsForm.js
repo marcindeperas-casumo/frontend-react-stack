@@ -145,11 +145,11 @@ export function DepositLimitsForm({ t, ...props }: Props) {
       <Flex.Block />
       <Button
         variant="primary"
-        className="u-padding-y--md"
+        className="u-padding-y"
         disabled={Boolean(inputError)}
         onClick={handleNextButton}
       >
-        <ArrowRightIcon className="t-color-white" />
+        <ArrowRightIcon size="md" className="t-color-white" />
       </Button>
     </Flex>
   );
