@@ -6,16 +6,6 @@
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type PlayerValuablesQuery_translations_playerValuableTranslations = {
-  hoursLabel: string,
-  listTitleLabel: string,
-  minutesLabel: string,
-};
-
-export type PlayerValuablesQuery_translations = {
-  playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
-};
-
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string
 };
@@ -77,7 +67,11 @@ export type PlayerValuablesQuery_player = {
 };
 
 export type PlayerValuablesQuery = {
-  translations: PlayerValuablesQuery_translations,
+  listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
+  hoursLabel: string,
+  minutesLabel: string,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */
