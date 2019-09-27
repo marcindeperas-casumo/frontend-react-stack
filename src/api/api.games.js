@@ -204,6 +204,7 @@ export const fetchGames = async ({
   market,
   playerId,
   handshake,
+  sessionId,
 }) => {
   const gameListsRequests = handshake.topListIds
     .map(id => prop(id, handshake.gamesLists))
@@ -252,6 +253,7 @@ export const fetchGames = async ({
         title,
       };
     });
+  const myListGames = fetchMyListGames({ handshake, sessionId });
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
@@ -271,6 +273,7 @@ export const fetchGames = async ({
   );
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
+      myListGames,
       latestPlayedGames,
       suggestedGames,
       ...gameListsRequests,
