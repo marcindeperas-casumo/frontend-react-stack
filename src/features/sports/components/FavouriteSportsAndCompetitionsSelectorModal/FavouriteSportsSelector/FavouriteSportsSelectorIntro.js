@@ -31,11 +31,17 @@ const CasinoPlayerIntro = () => (
 
 type Props = {
   isSportsPlayer: boolean,
+  hasFavourites: boolean,
 };
 
 export const FavouriteSportsSelectorIntro = ({
   isSportsPlayer = false,
+  hasFavourites = false,
 }: Props) => {
+  if (hasFavourites) {
+    return null;
+  }
+
   if (isSportsPlayer) {
     return <SportsPlayerIntro />;
   }

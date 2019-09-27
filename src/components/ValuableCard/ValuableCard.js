@@ -11,6 +11,8 @@ import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
+  getExpiryTimeLeft,
+  type ValuableThumbnailTranslations,
 } from "Models/valuables";
 
 type Props = {
@@ -20,6 +22,8 @@ type Props = {
   title: string,
   /** Description of the valuable. Ex: title of a game etc.*/
   description?: string,
+  /** Expiry date of the valuable */
+  expiryDate: number,
   /** Valuable type of the valuable */
   valuableType: ValuableType,
   /** currency of the player */
@@ -34,12 +38,10 @@ type Props = {
   caveat: ?string,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTimeInHours: number,
   /** Function to be triggered on click of card */
   onCardClick?: () => void,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
+  /** translations */
+  translations: ValuableThumbnailTranslations,
   /** addition css classes to add to containing element */
   className?: string,
 };
@@ -79,6 +81,10 @@ export class ValuableCard extends PureComponent<Props> {
     );
   }
 
+  get expiryTimeLeft() {
+    return getExpiryTimeLeft(this.props.expiryDate);
+  }
+
   get spinType() {
     return coinValueToSpinType(this.props.coinValue);
   }
@@ -90,12 +96,11 @@ export class ValuableCard extends PureComponent<Props> {
       coinValue,
       currency,
       description,
-      expirationTimeInHours,
       market,
       title,
-      translatedHoursUnit,
       valuableState,
       valuableType,
+      translations,
     } = this.props;
     return (
       <>
@@ -116,9 +121,9 @@ export class ValuableCard extends PureComponent<Props> {
                 backgroundRenderer={this.maskedImage}
                 coinValue={coinValue}
                 currency={currency}
-                expirationTimeInHours={expirationTimeInHours}
+                expiryTimeLeft={this.expiryTimeLeft}
                 market={market}
-                translatedHoursUnit={translatedHoursUnit}
+                translations={translations}
                 valuableState={valuableState}
                 valuableType={valuableType}
               />

@@ -1,6 +1,6 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals } from "ramda";
+import { equals, pick } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
@@ -8,7 +8,7 @@ import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameLi
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { launchGame } from "Models/games";
+import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -24,12 +24,16 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     error,
     loading = false,
     valuables = [],
-    translations,
+    translations = {},
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, hoursLabel } = translations;
+  const { listTitleLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
+  const valuableThumbnailTranslations = pick(
+    ["hoursLabel", "minutesLabel"],
+    translations
+  );
 
   const showModal = valuable => {
     setSelectedValuable(valuable);
@@ -49,8 +53,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     gameSlug: ?string,
   }) => {
     onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS)) {
-        launchGame(gameSlug);
+      if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
+        launchGame({ slug: gameSlug });
       }
     });
   };
@@ -92,8 +96,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
               <div className="c-valuable-list__valuable-card">
                 <ValuableCard
-                  translatedHoursUnit={hoursLabel}
                   {...valuable}
+                  translations={valuableThumbnailTranslations}
                   onCardClick={() => showModal(valuable)}
                   className="u-drop-shadow--sm"
                 />
@@ -112,8 +116,8 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         >
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
-              translatedHoursUnit={hoursLabel}
               {...selectedValuable}
+              translations={valuableThumbnailTranslations}
               caveat={null}
               className="u-drop-shadow--lg"
             />

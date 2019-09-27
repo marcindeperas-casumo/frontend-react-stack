@@ -27,11 +27,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const {
-    availableListTitleLabel,
-    lockedListTitleLabel,
-    hoursLabel,
-  } = translations;
+  const { availableListTitleLabel, lockedListTitleLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
   const availableValuables = valuables.filter(
     ({ valuableState }) => valuableState !== VALUABLE_STATES.LOCKED
@@ -99,7 +95,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         render={valuable => (
           <ValuableRow
             key={`available-valuable-row-${valuable.id}`}
-            translatedHoursUnit={hoursLabel}
+            translations={translations}
             {...valuable}
             onClick={() => setSelectedValuable(valuable)}
           />
@@ -121,7 +117,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         render={valuable => (
           <ValuableRow
             key={`locked-valuable-row-${valuable.id}`}
-            translatedHoursUnit={hoursLabel}
+            translations={translations}
             {...valuable}
             onClick={() => setSelectedValuable(valuable)}
           />
@@ -137,7 +133,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         >
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
-              translatedHoursUnit={hoursLabel}
+              translations={translations}
               {...selectedValuable}
               caveat={null}
             />

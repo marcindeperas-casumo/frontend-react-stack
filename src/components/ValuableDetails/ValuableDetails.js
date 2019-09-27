@@ -13,6 +13,8 @@ import {
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
+  getExpiryTimeLeft,
+  type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
@@ -63,22 +65,28 @@ const ActionButtonContent = ({ isLocked, text }) => {
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get expiresWithin24Hours() {
-    return this.props.valuableDetails.expirationTimeInHours <= 24;
+  get expiryTimeLeft(): DurationProps {
+    return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
   get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours, minutes } = this.expiryTimeLeft;
+    const expiresWithin24Hours = hours < 24;
+    const expiresInLessThanAnHour = hours < 1;
 
-    return this.expiresWithin24Hours
-      ? { key: "hours", value: expirationTimeInHours }
-      : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
+    if (expiresWithin24Hours) {
+      return { key: "hours", value: hours };
+    } else if (expiresInLessThanAnHour) {
+      return { key: "minutes", value: minutes };
+    }
+
+    return { key: "days", value: convertHoursToDays(hours) };
   }
 
   get expirationBadgeColour(): string {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours } = this.expiryTimeLeft;
 
-    return expirationTimeInHours >= 24
+    return hours > 24
       ? expirationBadgeClasses.default
       : expirationBadgeClasses.expiresToday;
   }

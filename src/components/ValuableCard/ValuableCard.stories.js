@@ -14,9 +14,9 @@ stories.add("Default", () => {
   const valuableType =
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
-  const isLocked = boolean("Locked", false);
-  const expiryHours = text("Expire in x hours", "100") || "100";
-
+  const isLocked = boolean("Expires within 24 hours?", false);
+  const expiryDateMock = new Date(Date.now() + 120 * 60000).getTime();
+  const expiryDate = text("Expire date timeStamp", expiryDateMock);
   const valuableDetails = mockData(valuableType);
   const valuableState = isLocked
     ? VALUABLE_STATES.LOCKED
@@ -27,9 +27,9 @@ stories.add("Default", () => {
       <ValuableCard
         {...valuableDetails}
         valuableState={valuableState}
-        expirationTimeInHours={expiryHours}
+        expiryDate={expiryDate}
         onCardClick={action("click")}
-        translatedHoursUnit={translationsMock.hoursUnit}
+        translations={translationsMock}
         className="u-drop-shadow--sm"
       />
     </div>
