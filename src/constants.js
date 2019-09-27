@@ -73,6 +73,7 @@ export const GAME_LIST_IDS = {
   PLAYER_GAMES: "playerGames",
   SUGGESTED_GAMES: "suggestedGames",
   SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
+  MY_LIST: "myList",
 };
 export const MARKETS = {
   ___en: "___en",
