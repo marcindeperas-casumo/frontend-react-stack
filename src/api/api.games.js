@@ -8,6 +8,7 @@ import {
   head,
   pipe,
   sort,
+  isEmpty,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import {
@@ -84,13 +85,23 @@ const fetchMyListGames = async ({ handshake, sessionId }) => {
   if (!myList || myList.gameIds.length === 0) {
     return null;
   }
-
+  //
   const games = await getCasinoPlayerGamesBatch({
     ids: myList.gameIds,
     sessionId,
-  }).then(batchedGames =>
-    batchedGames.reduce((acc, game) => [...acc, game.slug], [])
+  }).then(myListGames =>
+    myListGames.map(game => ({
+      hasPlayForFun: game.hasPlayForFun,
+      inMaintenanceMode: game.inMaintenance,
+      jackpotId: isEmpty(game.jackpotIds) ? null : head(game.jackpotIds),
+      logo: game.logo,
+      logoBackground: game.backgroundImage,
+      name: game.title,
+      slug: game.slug,
+      tableId: game.liveCasinoId,
+    }))
   );
+
   const { name: id, title } = myList;
 
   return { games, id, title };
@@ -126,7 +137,6 @@ const fetchLatestPlayedGames = async ({
       providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
     })
     .then(prop("games"));
-
   return { games, id, title };
 };
 
