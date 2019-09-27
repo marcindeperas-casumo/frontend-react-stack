@@ -2,14 +2,12 @@
 import React, { useEffect, useState } from "react";
 import List from "@casumo/cmp-list";
 import Flex from "@casumo/cmp-flex";
-import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
-import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -28,22 +26,6 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   const closeModal = () => {
     setSelectedValuable(null);
-  };
-
-  const consumeValuable = ({
-    id,
-    valuableType,
-    gameSlug,
-  }: {
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => {
-    onConsumeValuable(id).then(() => {
-      if (valuableType === VALUABLE_TYPES.SPINS && gameSlug) {
-        launchGame({ slug: gameSlug });
-      }
-    });
   };
 
   useEffect(() => {
@@ -95,7 +77,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={consumeValuable}
+          onConsumeValuable={onConsumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">

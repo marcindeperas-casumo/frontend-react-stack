@@ -14,14 +14,6 @@ describe("ValuableStateIndicator", () => {
     expect(rendered.find(LockIcon)).toHaveLength(1);
   });
 
-  test("Returns clock by default", () => {
-    const rendered = shallow(
-      <ValuableStateIndicator state={VALUABLE_STATES.FRESH} />
-    );
-
-    expect(rendered.find(ClockIcon)).toHaveLength(1);
-  });
-
   test("Returns null if not locked or close to expiry", () => {
     const rendered = shallow(
       <ValuableStateIndicator state={VALUABLE_STATES.FRESH} />
