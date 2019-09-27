@@ -5,3 +5,4 @@ export * from "./games.saga.fetchGameList";
 export * from "./games.saga.fetchGamesBySlugs";
 export * from "./games.saga.fetchGamesByProvider";
 export * from "./games.saga.launchGame";
+export * from "./games.utils";
