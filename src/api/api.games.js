@@ -91,7 +91,7 @@ const fetchMyListGames = async ({ handshake, sessionId }) => {
   }).then(batchedGames =>
     batchedGames.reduce((acc, game) => [...acc, game.slug], [])
   );
-  const { id, title } = myList;
+  const { name: id, title } = myList;
 
   return { games, id, title };
 };
