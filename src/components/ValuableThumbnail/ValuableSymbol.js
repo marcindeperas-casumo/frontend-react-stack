@@ -1,10 +1,15 @@
 import React from "react";
 import { compose, prop } from "ramda";
-import Text from "@casumo/cmp-text";
-import { CouponIcon } from "@casumo/cmp-icons";
-import { getSymbolForCurrency } from "Utils";
+import {
+  CouponIcon,
+  CurrencyCadIcon,
+  CurrencyEurIcon,
+  CurrencyGbpIcon,
+  CurrencyKrnIcon,
+  CurrencyRupIcon,
+} from "@casumo/cmp-icons";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
-import { CURRENCY_SYMBOLS } from "Src/constants";
+import { CURRENCIES } from "Src/constants";
 import {
   DepositIcon,
   BasicSpinsIcon,
@@ -22,11 +27,12 @@ const VALUABLE_ICON = {
     [VALUABLE_SPIN_TYPES.MEGA]: MegaSpinsIcon,
   },
   [VALUABLE_TYPES.CASH]: {
-    [CURRENCY_SYMBOLS.CAD]: "",
-    [CURRENCY_SYMBOLS.EUR]: "",
-    [CURRENCY_SYMBOLS.GBP]: "",
-    [CURRENCY_SYMBOLS.DKK]: "", // TODO: confirm
-    [CURRENCY_SYMBOLS.INR]: "",
+    [CURRENCIES.CAD]: CurrencyCadIcon,
+    [CURRENCIES.EUR]: CurrencyEurIcon,
+    [CURRENCIES.GBP]: CurrencyGbpIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.INR]: CurrencyRupIcon,
+    [CURRENCIES.SEK]: CurrencyKrnIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
@@ -39,15 +45,20 @@ export const ValuableSymbol = ({
   fontSize = "lg",
 }) => {
   const ValuableIcon = VALUABLE_ICON[valuableType];
+
   // eslint-disable-next-line fp/no-let
   let ValuableSymbolComponent = ValuableIcon;
 
   if (valuableType === VALUABLE_TYPES.SPINS) {
     // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent = compose(prop(spinType))(ValuableIcon);
-  } else if (valuableType === VALUABLE_SPIN_TYPES.CASH) {
+    ValuableSymbolComponent =
+      compose(prop(spinType))(ValuableIcon) ||
+      compose(prop(VALUABLE_SPIN_TYPES.BASIC_SPINS))(ValuableIcon);
+  } else if (valuableType === VALUABLE_TYPES.CASH) {
     // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent = compose(prop(currency))(ValuableIcon);
+    ValuableSymbolComponent =
+      compose(prop(currency))(ValuableIcon) ||
+      compose(prop(CURRENCIES.EUR))(ValuableIcon);
   }
 
   return <ValuableSymbolComponent className="u-width--1/1" />;
