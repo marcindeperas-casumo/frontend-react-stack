@@ -1,13 +1,12 @@
 //@flow
 import React from "react";
 import { shallow, mount } from "enzyme";
-import List from "@casumo/cmp-list";
-import Text from "@casumo/cmp-text";
-import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
+import mockedValuables from "Components/ValuableRow/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
-import { ValuableRow } from "Components/ValuableRow";
+import { getValuablesByState, VALUABLE_STATES } from "Models/valuables";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
+import SectionList from "Components/SectionList";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 import translationsMock from "./__mocks__/translations.mock.json";
 
@@ -28,8 +27,8 @@ describe("PlayerValuableListVertical", () => {
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
-  test("should render the correct number of items", () => {
-    const rendered = shallow(
+  test("Should render a SectionList", () => {
+    const rendered = mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}
@@ -38,45 +37,17 @@ describe("PlayerValuableListVertical", () => {
         refetch={refetchMock}
       />
     );
-    const availableValuables = rendered
-      .find(List)
-      .at(0)
-      .dive()
-      .find(ValuableRow);
-    const lockedValuables = rendered
-      .find(List)
-      .at(1)
-      .dive()
-      .find(ValuableRow);
-    expect(rendered.find(GameRowSkeleton).exists()).toBe(false);
-    expect(availableValuables.length + lockedValuables.length).toBe(
-      mockedValuables.length
-    );
-  });
-
-  test("should render the list titles", () => {
-    const rendered = shallow(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={refetchMock}
-      />
-    );
-    const listTitles = rendered.find(Text);
-    expect(
-      listTitles
-        .at(0)
-        .dive()
-        .text()
-    ).toEqual(translationsMock.availableListTitleLabel);
-    expect(
-      listTitles
-        .at(1)
-        .dive()
-        .text()
-    ).toEqual(translationsMock.lockedListTitleLabel);
+    expect(rendered.find(SectionList)).toHaveLength(1);
+    expect(rendered.find(SectionList).prop("sections")).toEqual([
+      {
+        title: translationsMock.availableListTitleLabel,
+        data: getValuablesByState(VALUABLE_STATES.FRESH)(mockedValuables),
+      },
+      {
+        title: translationsMock.lockedListTitleLabel,
+        data: getValuablesByState(VALUABLE_STATES.LOCKED)(mockedValuables),
+      },
+    ]);
   });
 
   test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {

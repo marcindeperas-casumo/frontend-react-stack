@@ -1,16 +1,15 @@
 /* @flow */
-import React, { useEffect, useState } from "react";
-import List from "@casumo/cmp-list";
-import Text from "@casumo/cmp-text";
+import * as React from "react";
 import {
   VALUABLE_TYPES,
   VALUABLE_STATES,
+  getValuablesByState,
   type ValuableType,
 } from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { launchGame } from "Models/games";
@@ -28,13 +27,9 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     onConsumeValuable,
   } = props;
   const { availableListTitleLabel, lockedListTitleLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = useState(null);
-  const availableValuables = valuables.filter(
-    ({ valuableState }) => valuableState !== VALUABLE_STATES.LOCKED
-  );
-  const lockedValuables = valuables.filter(
-    ({ valuableState }) => valuableState === VALUABLE_STATES.LOCKED
-  );
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
+  const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
 
   const closeModal = () => {
     setSelectedValuable(null);
@@ -56,7 +51,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     });
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
         refetch();
@@ -79,20 +74,18 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
-      {availableListTitleLabel && (
-        <Text
-          className="u-padding-bottom--md t-color-chrome-dark-3 u-font-weight-bold u-padding-left--md"
-          data-test="vertical-list-title"
-          tag="h3"
-        >
-          {availableListTitleLabel}
-        </Text>
-      )}
-      <List
-        items={availableValuables}
-        className="t-background-white"
-        data-test="vertical-valuables-list"
-        render={valuable => (
+      <SectionList
+        sections={[
+          {
+            title: availableListTitleLabel,
+            data: getAvailableValuables(valuables),
+          },
+          {
+            title: lockedListTitleLabel,
+            data: getLockedValuables(valuables),
+          },
+        ]}
+        renderItem={valuable => (
           <ValuableRow
             key={`available-valuable-row-${valuable.id}`}
             translations={translations}
@@ -101,29 +94,6 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
           />
         )}
       />
-      {lockedListTitleLabel && (
-        <Text
-          className="u-padding-bottom--md u-padding-top--lg t-color-chrome-dark-3 u-font-weight-bold u-padding-left--md"
-          data-test="vertical-list-title"
-          tag="h3"
-        >
-          {lockedListTitleLabel}
-        </Text>
-      )}
-      <List
-        items={lockedValuables}
-        className="t-background-white"
-        data-test="vertical-valuables-list"
-        render={valuable => (
-          <ValuableRow
-            key={`locked-valuable-row-${valuable.id}`}
-            translations={translations}
-            {...valuable}
-            onClick={() => setSelectedValuable(valuable)}
-          />
-        )}
-      />
-
       {selectedValuable && (
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
