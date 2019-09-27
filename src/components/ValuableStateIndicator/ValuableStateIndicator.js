@@ -9,10 +9,6 @@ type Props = {
 };
 
 export const ValuableStateIndicator = ({ state, label }: Props) => {
-  if (state === VALUABLE_STATES.FRESH) {
-    return null;
-  }
-
   if (state === VALUABLE_STATES.LOCKED) {
     return (
       <div className="u-display--inline-block t-color-black">
