@@ -15,10 +15,10 @@ export const DEFAULT_FETCH_OPTIONS = {
 };
 
 export const createGetUrl = (url: string, data: ?Object) =>
-  data ? `${url}?${getQueryParams(data)}` : url;
+  data ? `${url}?${buildQueryParams(data)}` : url;
 
-export const getQueryParams = (params: ?Object) =>
-  stringify(params, { skipNulls: true, arrayFormat: "brackets" });
+export const buildQueryParams = (params: ?Object, options: ?Object) =>
+  stringify(params, { skipNulls: true, arrayFormat: "brackets", ...options });
 
 const errorHandler = response => {
   // Heads up! This is erroring out on 30x requests
