@@ -10,6 +10,10 @@ import {
   sort,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
+import {
+  getCasinoPlayerGameList,
+  getCasinoPlayerGamesBatch,
+} from "Api/api.casinoPlayerGames";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { convertHTMLToString } from "Utils";
@@ -69,6 +73,27 @@ export const fetchSuggestedGames = async ({
     // eslint-disable-next-line no-template-curly-in-string
     title: title.replace("${GAME_NAME}", convertHTMLToString(game.name)),
   };
+};
+
+const fetchMyListGames = async ({ handshake, sessionId }) => {
+  const myList = await getCasinoPlayerGameList({
+    gameListName: "myList",
+    sessionId,
+  });
+
+  if (!myList || myList.gameIds.length === 0) {
+    return null;
+  }
+
+  const games = await getCasinoPlayerGamesBatch({
+    ids: myList.gameIds,
+    sessionId,
+  }).then(batchedGames =>
+    batchedGames.reduce((acc, game) => [...acc, game.slug], [])
+  );
+  const { id, title } = myList;
+
+  return { games, id, title };
 };
 
 const fetchLatestPlayedGames = async ({
