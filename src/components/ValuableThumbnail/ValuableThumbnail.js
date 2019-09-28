@@ -62,8 +62,6 @@ export const ValuableThumbnail = ({
     valuableState
   );
 
-  const locale = INTL_LOCALES[market];
-
   return (
     <div className={`o-ratio o-ratio--valuable-card-thumbnail-${size}`}>
       <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
