@@ -33,13 +33,13 @@ const VALUABLE_ICON = {
     [CURRENCIES.DKK]: CurrencyKrnIcon,
     [CURRENCIES.INR]: CurrencyRupIcon,
     [CURRENCIES.SEK]: CurrencyKrnIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
 
 export const ValuableSymbol = ({
   currency,
-  market,
   valuableType,
   spinType,
   fontSize = "lg",

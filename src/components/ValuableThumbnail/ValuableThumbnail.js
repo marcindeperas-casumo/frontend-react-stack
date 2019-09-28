@@ -95,7 +95,6 @@ export const ValuableThumbnail = ({
           >
             <ValuableSymbol
               currency={currency}
-              locale={locale}
               spinType={spinType}
               valuableType={valuableType}
               fontSize={size === "small" ? "md" : "lg"}
