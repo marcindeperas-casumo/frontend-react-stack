@@ -1,10 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
 import classNames from "classnames";
-import { isEmpty } from "ramda";
 import GameTileOverlay from "Components/GameTile/GameTileOverlay";
 import GameTileImage from "Components/GameTile/GameTileImage";
-import GameTileJackpot from "Components/GameTile/GameTileJackpot";
 import type { Game } from "Types/game";
 
 import "./GameTile.scss";
@@ -68,16 +66,8 @@ export default class GameTile extends PureComponent<Props, State> {
       ratio = "game-tile",
       isOverlayAlwaysActive = false,
     } = this.props;
-    const {
-      inMaintenanceMode,
-      jackpotInfo = {},
-      logoBackground,
-      logo,
-      name,
-      slug,
-    } = game;
+    const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
     const { isOverlayActive } = this.state;
-    const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
     const showOverlay = isOverlayAlwaysActive || isOverlayActive;
 
     return (
@@ -96,7 +86,6 @@ export default class GameTile extends PureComponent<Props, State> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
         {showOverlay && (
           <GameTileOverlay
             name={name}
