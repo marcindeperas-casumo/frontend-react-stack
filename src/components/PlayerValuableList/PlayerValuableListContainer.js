@@ -30,10 +30,15 @@ export const PlayerValuableListContainer = (props: Props) => {
           return null;
         }
 
-        const {
-          translations: { playerValuableTranslations } = {},
-          player: { valuables = [] } = {},
-        } = data || {};
+        const translations = {
+          listTitleLabel: data.listTitleLabel || "",
+          availableListTitleLabel: data.availableListTitleLabel || "",
+          lockedListTitleLabel: data.lockedListTitleLabel || "",
+          hoursLabel: data.hoursLabel || "",
+          minutesLabel: data.minutesLabel || "",
+        };
+
+        const { player: { valuables = [] } = {} } = data || {};
 
         return (
           <Mutation mutation={UseValuable}>
@@ -43,7 +48,7 @@ export const PlayerValuableListContainer = (props: Props) => {
                 loading,
                 onConsumeValuable: consumeValuableMutation(useValuable),
                 refetch,
-                translations: playerValuableTranslations,
+                translations,
                 valuables,
               })
             }

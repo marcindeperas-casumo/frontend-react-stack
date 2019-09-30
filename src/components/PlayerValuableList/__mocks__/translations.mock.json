@@ -1,4 +1,6 @@
 {
+  "availableListTitleLabel": "Available",
+  "lockedListTitleLabel": "Locked",
   "hoursLabel": "{{value}}h",
   "minutesLabel": "{{value}}m",
   "listTitleLabel": "Your Valuables"

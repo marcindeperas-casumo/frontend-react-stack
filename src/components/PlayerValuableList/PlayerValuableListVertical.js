@@ -1,11 +1,10 @@
 /* @flow */
-import React, { useEffect, useState } from "react";
-import List from "@casumo/cmp-list";
-import Flex from "@casumo/cmp-flex";
+import * as React from "react";
+import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { subscribeToItemCreatedEvent } from "./utils";
@@ -21,14 +20,16 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = useState(null);
+  const { availableListTitleLabel, lockedListTitleLabel } = translations;
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
+  const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
 
   const closeModal = () => {
     setSelectedValuable(null);
   };
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
         refetch();
@@ -51,28 +52,26 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
-      {listTitleLabel && (
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle paddingLeft title={listTitleLabel} />
-          </Flex.Item>
-        </Flex>
-      )}
-      <List
-        items={valuables}
-        className="t-background-white"
-        data-test="vertical-valuables-list"
-        render={valuable => (
-          <div key={`valuable-row-${valuable.id}`}>
-            <ValuableRow
-              translations={translations}
-              {...valuable}
-              onClick={() => setSelectedValuable(valuable)}
-            />
-          </div>
+      <SectionList
+        sections={[
+          {
+            title: availableListTitleLabel,
+            data: getAvailableValuables(valuables),
+          },
+          {
+            title: lockedListTitleLabel,
+            data: getLockedValuables(valuables),
+          },
+        ]}
+        renderItem={valuable => (
+          <ValuableRow
+            key={`available-valuable-row-${valuable.id}`}
+            translations={translations}
+            {...valuable}
+            onClick={() => setSelectedValuable(valuable)}
+          />
         )}
       />
-
       {selectedValuable && (
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
