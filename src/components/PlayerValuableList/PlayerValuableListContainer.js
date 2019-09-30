@@ -36,6 +36,7 @@ export const PlayerValuableListContainer = (props: Props) => {
           lockedListTitleLabel: data.lockedListTitleLabel || "",
           hoursLabel: data.hoursLabel || "",
           minutesLabel: data.minutesLabel || "",
+          seeAllLabel: data.seeAllLabel || "",
         };
 
         const { player: { valuables = [] } = {} } = data || {};
