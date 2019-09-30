@@ -21,6 +21,7 @@ export const ValuableStateIndicator = ({ state, label }: Props) => {
       </div>
     );
   }
+
   return (
     <div className="u-display--inline-block t-color-red">
       <ClockIcon

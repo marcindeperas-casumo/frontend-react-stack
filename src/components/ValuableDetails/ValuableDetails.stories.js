@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean, select } from "@storybook/addon-knobs/react";
 import { F } from "ramda";
-import { select } from "@storybook/addon-knobs/react";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
 import { mockValuable as mockValuableCard } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { ValuableCard } from "Components/ValuableCard";

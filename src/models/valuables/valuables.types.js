@@ -24,8 +24,8 @@ export type ValuableThumbnailTranslations = {
 };
 
 export type ValuableDetailsTranslations = DurationTranslations & {
-  cashUnLockedActionLabel: string,
-  spinsUnLockedActionLabel: string,
+  cashUnlockedActionLabel: string,
+  spinsUnlockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,
@@ -55,8 +55,6 @@ export type ValuableDetailsProps = {
   valuableState: ValuableState,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => Promise<boolean>,
-  /** The function to be called to launch game which will be triggered after consuming the valuable */
-  onLaunchGame: string => void,
 };
 
 export type DurationProps = {
