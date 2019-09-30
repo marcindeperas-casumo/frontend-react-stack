@@ -14,6 +14,9 @@ query PlayerValuablesQuery {
   minutesLabel: getText(
     id: "root:units:fields.minutes_abbreviated"
   )
+  seeAllLabel: getText(
+    id: "root:mobile.valuables:fields.see_all_valuables_link"
+  )
   player {
     valuables {
       __typename
