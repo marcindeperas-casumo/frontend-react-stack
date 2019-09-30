@@ -1,5 +1,5 @@
 import React from "react";
-import { compose, prop } from "ramda";
+import { either, prop } from "ramda";
 import {
   CouponIcon,
   CurrencyCadIcon,
@@ -51,14 +51,15 @@ export const ValuableSymbol = ({
 
   if (valuableType === VALUABLE_TYPES.SPINS) {
     // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent =
-      compose(prop(spinType))(ValuableIcon) ||
-      compose(prop(VALUABLE_SPIN_TYPES.BASIC_SPINS))(ValuableIcon);
+    ValuableSymbolComponent = either(
+      prop(spinType),
+      prop(VALUABLE_SPIN_TYPES.BASIC_SPINS)
+    )(ValuableIcon);
   } else if (valuableType === VALUABLE_TYPES.CASH) {
     // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent =
-      compose(prop(currency))(ValuableIcon) ||
-      compose(prop(CURRENCIES.EUR))(ValuableIcon);
+    ValuableSymbolComponent = either(prop(currency), prop(CURRENCIES.EUR))(
+      ValuableIcon
+    );
   }
 
   return <ValuableSymbolComponent className="u-width--1/1" />;

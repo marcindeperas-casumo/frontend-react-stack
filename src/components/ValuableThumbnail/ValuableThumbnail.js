@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
-import { INTL_LOCALES } from "Src/constants";
 import {
   type ValuableState,
   VALUABLE_TYPES,
@@ -96,6 +95,7 @@ export const ValuableThumbnail = ({
               spinType={spinType}
               valuableType={valuableType}
               fontSize={size === "small" ? "md" : "lg"}
+              className="u-width--1/1"
             />
           </Flex>
         </div>
