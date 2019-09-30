@@ -14,6 +14,7 @@ export type Props = {
   onLaunchGame: Function,
   ratio?: string,
   isOverlayAlwaysActive?: boolean,
+  isInMyList?: boolean,
 };
 
 type State = {
@@ -65,6 +66,7 @@ export default class GameTile extends PureComponent<Props, State> {
       },
       ratio = "game-tile",
       isOverlayAlwaysActive = false,
+      isInMyList = false,
     } = this.props;
     const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
     const { isOverlayActive } = this.state;
@@ -93,6 +95,7 @@ export default class GameTile extends PureComponent<Props, State> {
             inMaintenanceMode={inMaintenanceMode}
             onLaunchGame={onLaunchGame}
             alwaysActive={isOverlayAlwaysActive}
+            isInMyList={isInMyList}
           />
         )}
       </div>
