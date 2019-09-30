@@ -62,5 +62,5 @@ export const ValuableSymbol = ({
     );
   }
 
-  return <ValuableSymbolComponent className="u-width--1/1" />;
+  return <ValuableSymbolComponent size={fontSize} className="u-width--1/1" />;
 };
