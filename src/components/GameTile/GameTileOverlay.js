@@ -9,6 +9,7 @@ import { convertHTMLToString } from "Utils";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 import TrackClick from "Components/TrackClick";
+import GameTileHeart from "./GameTileHeart.svg";
 
 type Props = {
   name: string,
@@ -16,6 +17,7 @@ type Props = {
   inMaintenanceMode: boolean,
   onLaunchGame: Function,
   alwaysActive: boolean,
+  isInMyList: boolean,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
@@ -43,26 +45,28 @@ const GameTileOverlay = ({
   inMaintenanceMode,
   onLaunchGame,
   alwaysActive,
+  isInMyList,
 }: Props) => {
   return (
     <Flex
       align="center"
-      justify={alwaysActive ? "center" : "space-between"}
+      justify={"space-between"}
       direction="vertical"
       className={classNames(
         "o-ratio__content u-text-align-center",
         getClassModifier(inMaintenanceMode, alwaysActive),
-        "u-padding-y--lg u-padding-x--md t-border-r"
+        "u-padding--md t-border-r"
       )}
     >
-      {!alwaysActive && (
-        <Text
-          size="sm"
-          className="t-color-white u-text-clamp u-font-weight-bold"
-        >
-          {convertHTMLToString(name)}
-        </Text>
-      )}
+      <Text
+        size="sm"
+        className={classNames(
+          alwaysActive && "u-visibility--hidden",
+          "t-color-white u-text-clamp u-font-weight-bold u-padding-top"
+        )}
+      >
+        {convertHTMLToString(name)}
+      </Text>
 
       {inMaintenanceMode ? (
         <TemporaryUnavailable />
@@ -74,17 +78,28 @@ const GameTileOverlay = ({
           <PlayAction onLaunchGame={onLaunchGame} />
         </TrackClick>
       )}
-
-      {!alwaysActive && (
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
-        >
-          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-            <MoreIcon className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm" />
-          </a>
-        </TrackClick>
-      )}
+      <Flex
+        justify={alwaysActive ? "end" : "space-between"}
+        align="center"
+        className="u-width--1/1"
+      >
+        {!alwaysActive && (
+          <TrackClick
+            eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+            data={{ [EVENT_PROPS.GAME_NAME]: name }}
+          >
+            <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
+              <MoreIcon className="t-color-white" />
+            </a>
+          </TrackClick>
+        )}
+        <GameTileHeart
+          className={classNames(
+            "c-game-tile__heart",
+            isInMyList && "c-game-tile__heart--is-active"
+          )}
+        />
+      </Flex>
     </Flex>
   );
 };
