@@ -11,7 +11,7 @@ const PlayAction = ({ onLaunchGame }: Props) => (
     className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--md"
     onClick={() => onLaunchGame()}
   >
-    <PlayIcon />
+    <PlayIcon size="md" />
   </div>
 );
 
