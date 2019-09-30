@@ -42,7 +42,7 @@ export const ValuableSymbol = ({
   currency,
   valuableType,
   spinType,
-  fontSize = "lg",
+  size = "md",
 }) => {
   const ValuableIcon = VALUABLE_ICON[valuableType];
 
@@ -62,5 +62,5 @@ export const ValuableSymbol = ({
     );
   }
 
-  return <ValuableSymbolComponent size={fontSize} className="u-width--1/1" />;
+  return <ValuableSymbolComponent size={size} className="u-width--1/1" />;
 };
