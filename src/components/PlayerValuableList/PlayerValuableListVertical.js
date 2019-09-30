@@ -1,18 +1,12 @@
 /* @flow */
 import * as React from "react";
-import {
-  VALUABLE_TYPES,
-  VALUABLE_STATES,
-  getValuablesByState,
-  type ValuableType,
-} from "Models/valuables";
+import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
-import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -33,22 +27,6 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   const closeModal = () => {
     setSelectedValuable(null);
-  };
-
-  const consumeValuable = ({
-    id,
-    valuableType,
-    gameSlug,
-  }: {
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => {
-    onConsumeValuable(id).then(() => {
-      if (valuableType === VALUABLE_TYPES.SPINS) {
-        launchGame(gameSlug);
-      }
-    });
   };
 
   React.useEffect(() => {
@@ -98,7 +76,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={consumeValuable}
+          onConsumeValuable={onConsumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">

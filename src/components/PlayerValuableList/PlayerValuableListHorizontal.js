@@ -1,14 +1,12 @@
 /* @flow */
 import React, { useEffect, useState } from "react";
-import { equals, pick } from "ramda";
+import { pick } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
-import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { launchGame } from "Services/LaunchGameService";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -41,22 +39,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
 
   const closeModal = () => {
     setSelectedValuable(null);
-  };
-
-  const consumeValuable = ({
-    id,
-    valuableType,
-    gameSlug,
-  }: {
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => {
-    onConsumeValuable(id).then(() => {
-      if (equals(valuableType, VALUABLE_TYPES.SPINS) && gameSlug) {
-        launchGame({ slug: gameSlug });
-      }
-    });
   };
 
   useEffect(() => {
@@ -111,7 +93,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={consumeValuable}
+          onConsumeValuable={onConsumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">

@@ -64,8 +64,8 @@ export const getValuableDetailsAction = ({
     }
 
     return isSpins
-      ? setActionProps(translations.spinsUnLockedActionLabel)
-      : setActionProps(translations.cashUnLockedActionLabel, gameBrowserUrl);
+      ? setActionProps(translations.spinsUnlockedActionLabel)
+      : setActionProps(translations.cashUnlockedActionLabel, gameBrowserUrl);
   }
 
   return setActionProps();

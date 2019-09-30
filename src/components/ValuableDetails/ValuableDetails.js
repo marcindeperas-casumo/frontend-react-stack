@@ -38,11 +38,7 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: ({
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => Promise<void>,
+  onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,
   children: Node,
 };
@@ -125,12 +121,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const { valuableDetails } = this.props;
     const { valuableType, valuableState, id } = valuableDetails;
     const { onConsumeValuable } = this.props;
-    const game = this.game;
 
     if (shouldUseValuable(valuableType, valuableState)) {
-      const gameSlug = game ? game.slug : null;
-
-      onConsumeValuable({ id, valuableType, gameSlug });
+      onConsumeValuable(id);
     }
   };
 

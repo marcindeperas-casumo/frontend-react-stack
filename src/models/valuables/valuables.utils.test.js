@@ -47,7 +47,7 @@ describe("Valuables.utils", () => {
     valuableType = VALUABLE_TYPES.CASH;
 
     const expectedValue = getExpectedActionValue(
-      translations.cashUnLockedActionLabel,
+      translations.cashUnlockedActionLabel,
       gameBrowserUrl
     );
     const actualValue = getValuableDetailsAction({
@@ -63,7 +63,7 @@ describe("Valuables.utils", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
     const expectedValue = getExpectedActionValue(
-      translations.spinsUnLockedActionLabel,
+      translations.spinsUnlockedActionLabel,
       ""
     );
     const actualValue = getValuableDetailsAction({
