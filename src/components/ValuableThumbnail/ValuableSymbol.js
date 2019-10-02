@@ -1,5 +1,5 @@
 import React from "react";
-import { either, prop } from "ramda";
+import { either, prop, cond, T, equals } from "ramda";
 import {
   CouponIcon,
   CurrencyCadIcon,
@@ -46,21 +46,26 @@ export const ValuableSymbol = ({
 }) => {
   const ValuableIcon = VALUABLE_ICON[valuableType];
 
-  // eslint-disable-next-line fp/no-let
-  let ValuableSymbolComponent = ValuableIcon;
+  const ValuableSymbolComponent = cond([
+    [
+      equals(VALUABLE_TYPES.SPINS),
+      () =>
+        either(prop(spinType), prop(VALUABLE_SPIN_TYPES.BASIC_SPINS))(
+          ValuableIcon
+        ),
+    ],
+    [
+      equals(VALUABLE_TYPES.CASH),
+      () => either(prop(currency), prop(CURRENCIES.EUR))(ValuableIcon),
+    ],
+    [T, () => ValuableIcon],
+  ])(valuableType);
 
-  if (valuableType === VALUABLE_TYPES.SPINS) {
-    // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent = either(
-      prop(spinType),
-      prop(VALUABLE_SPIN_TYPES.BASIC_SPINS)
-    )(ValuableIcon);
-  } else if (valuableType === VALUABLE_TYPES.CASH) {
-    // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent = either(prop(currency), prop(CURRENCIES.EUR))(
-      ValuableIcon
-    );
-  }
-
-  return <ValuableSymbolComponent size={size} className="u-width--1/1" />;
+  return (
+    <ValuableSymbolComponent
+      type={valuableType}
+      size={size}
+      className="u-width--1/1"
+    />
+  );
 };
