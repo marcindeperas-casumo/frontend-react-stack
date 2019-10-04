@@ -57,6 +57,18 @@ export const addGameToMyList = async (
   },
   http: HTTPClient = clientHttp
 ) => await http.post(URL.MY_LIST, { gameSlug }, getHeaders(sessionId));
+
+export const removeGameFromMyList = async (
+  {
+    sessionId,
+    gameSlug,
+  }: {
+    sessionId: string,
+    gameSlug: string,
+  },
+  http: HTTPClient = clientHttp
+) => await http.del(`${URL.MY_LIST}/${gameSlug}`, getHeaders(sessionId));
+
 export const getCasinoPlayerGamesBatch = async (
   {
     sessionId,
