@@ -18,6 +18,7 @@ import {
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
   fetchGamesByProviderSaga,
+  addGameToMyListSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -167,5 +168,10 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
     fetchAnnualOverviewPdfUrlSaga
+  );
+  yield fork(
+    takeEvery,
+    gameTypes.ADD_GAME_TO_MY_LIST_START,
+    addGameToMyListSaga
   );
 }

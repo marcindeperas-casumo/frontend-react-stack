@@ -10,10 +10,16 @@ import {
   sessionIdSelector,
   types as handshakeTypes,
 } from "Models/handshake";
-import { normalizeData, updateEntity } from "Models/schema";
+import {
+  ENTITY_KEYS,
+  normalizeData,
+  updateEntity,
+  gameListSelector,
+} from "Models/schema";
 import { isFetchingStarted } from "Models/fetch";
 import { waitForSelector } from "Utils";
-import { fetchTopLists } from "./games.actions";
+import { GAME_LIST_IDS } from "Src/constants";
+import { fetchTopLists, addMyListGame } from "./games.actions";
 import { types } from "./games.constants";
 
 export function* fetchGameListSaga() {
@@ -58,5 +64,21 @@ export function* fetchGameListSaga() {
   // normalize and update the store
   const { response } = yield take(types.FETCH_TOP_LISTS_COMPLETE);
   const { entities } = yield call(normalizeData, response);
+  yield put(updateEntity(entities));
+}
+
+export function* addGameToMyListSaga({ gameSlug }) {
+  const sessionId = yield select(sessionIdSelector);
+  yield put(addMyListGame({ sessionId, gameSlug }));
+  const myList = yield select(gameListSelector(GAME_LIST_IDS.MY_LIST));
+  const entity = {
+    [ENTITY_KEYS.GAME_LIST]: {
+      id: GAME_LIST_IDS.MY_LIST,
+      title: myList.title,
+      games: [gameSlug, ...myList.games],
+    },
+  };
+
+  const { entities } = normalizeData(entity);
   yield put(updateEntity(entities));
 }

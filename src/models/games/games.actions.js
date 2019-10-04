@@ -1,7 +1,10 @@
 import { types as fetchTypes } from "Models/fetch";
 import { fetchGames } from "Api/api.games";
 import { getGamesBySlugs } from "Api/api.gamebrowser";
-import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
+import {
+  getCasinoPlayerGames,
+  addGameToMyList,
+} from "Api/api.casinoPlayerGames";
 import { types } from "./games.constants";
 import { getFetchGamesBySlugsCompleteType } from "./games.utils";
 
@@ -45,6 +48,14 @@ export const fetchTopLists = asyncCallData => ({
   asyncCallData,
   asyncCall: fetchGames,
   postFetch: types.FETCH_TOP_LISTS_COMPLETE,
+});
+
+export const addMyListGame = asyncCallData => ({
+  type: fetchTypes.FETCH,
+  name: types.ADD_GAME_TO_MY_LIST_QUERY_START,
+  asyncCallData,
+  asyncCall: addGameToMyList,
+  postFetch: types.ADD_GAME_TO_MY_LIST_QUERY_COMPLETE,
 });
 
 export const fetchGamesBySlugs = slugs => ({
