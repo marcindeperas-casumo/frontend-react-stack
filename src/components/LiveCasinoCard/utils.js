@@ -8,7 +8,7 @@ const COLORS = {
   GREEN: "green",
   YELLOW: "caution",
   BLUE: "info",
-  PURPLE: "purple", // new color #C3B5FC missing
+  PURPLE: "purple-5",
   ORANGE: "warning",
   GREY_LIGHT_1: "grey-light-1",
 };
