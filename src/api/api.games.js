@@ -85,7 +85,7 @@ const fetchMyListGames = async ({ handshake, sessionId }) => {
   if (!myList || myList.gameIds.length === 0) {
     return null;
   }
-  //
+
   const games = await getCasinoPlayerGamesBatch({
     ids: myList.gameIds,
     sessionId,
