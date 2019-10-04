@@ -1,9 +1,7 @@
 // @flow
 import * as React from "react";
-import {
-  USER_NAVIGATION_QUERY,
-  UserNavigationTypedQuery,
-} from "Features/sports/components/SportsNav/SportsNavQueries";
+import { useQuery } from "@apollo/react-hooks";
+import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import { GraphQLClientContext } from "Components/GraphQLProvider";
@@ -123,6 +121,10 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );
+  const variables = { live: isLiveActive };
+  const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
+    variables,
+  });
 
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
@@ -130,49 +132,38 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     return null;
   }
 
-  return (
-    <UserNavigationTypedQuery
-      query={USER_NAVIGATION_QUERY}
-      variables={{ live: isLiveActive }}
-    >
-      {({ loading, error, data }) => {
-        if (loading) {
-          return <SportsNavSkeleton />;
-        }
+  if (loading) {
+    return <SportsNavSkeleton />;
+  }
 
-        if (error) {
-          return <ErrorMessage direction="horizontal" />;
-        }
+  if (error) {
+    return <ErrorMessage direction="horizontal" />;
+  }
 
-        if (
-          !data ||
-          !data.sportsNavigation ||
-          !data.allLabel ||
-          !data.editLabel ||
-          !data.liveLabel
-        ) {
-          return null;
-        }
+  if (
+    !data ||
+    !data.sportsNavigation ||
+    !data.allLabel ||
+    !data.editLabel ||
+    !data.liveLabel
+  ) {
+    return null;
+  }
 
-        const setIsLiveActiveAndUpdateSelectedNavItem = (
-          liveActive: boolean
-        ) => {
-          setIsLiveActive(liveActive);
+  const setIsLiveActiveAndUpdateSelectedNavItem = (liveActive: boolean) => {
+    setIsLiveActive(liveActive);
 
-          const path = liveActive
-            ? navItemUtils.ALL_SPORTS_PATH
-            : data.sportsNavigation[0].sport.clientPath;
+    const path = liveActive
+      ? navItemUtils.ALL_SPORTS_PATH
+      : data.sportsNavigation[0].sport.clientPath;
 
-          navItemUtils.selectPath(client, path);
-        };
+    navItemUtils.selectPath(client, path);
+  };
 
-        return renderSportsNav(
-          currentHash,
-          [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
-          data,
-          client
-        );
-      }}
-    </UserNavigationTypedQuery>
+  return renderSportsNav(
+    currentHash,
+    [isLiveActive, setIsLiveActiveAndUpdateSelectedNavItem],
+    data,
+    client
   );
 };

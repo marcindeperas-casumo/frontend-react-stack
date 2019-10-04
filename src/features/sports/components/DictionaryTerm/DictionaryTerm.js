@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
@@ -14,11 +14,6 @@ type Props = {
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
   children?: (dictionaryTerm: string) => React.Node,
 };
-
-class DictionaryTermTypedQuery extends Query<
-  DictionaryTermQuery,
-  DictionaryTermQueryVariables
-> {}
 
 export const DICTIONARY_TERM_QUERY = gql`
   query DictionaryTermQuery($key: String!) {
@@ -46,14 +41,10 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
-}: Props): React.Node => (
-  <DictionaryTermTypedQuery
-    query={DICTIONARY_TERM_QUERY}
-    variables={{ key: termKey }}
-  >
-    {({ data, loading }) => {
-      const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
-      return children ? children(dictionaryTerm) : dictionaryTerm;
-    }}
-  </DictionaryTermTypedQuery>
-);
+}: Props): React.Node => {
+  const variables = { key: termKey };
+  const { data, loading } = useQuery(DICTIONARY_TERM_QUERY, { variables });
+  const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
+
+  return children ? children(dictionaryTerm) : dictionaryTerm;
+};

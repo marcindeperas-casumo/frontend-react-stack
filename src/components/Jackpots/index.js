@@ -1,3 +1,3 @@
 // @flow
 export type * from "./JackpotsContainer"; // eslint-disable-line import/export
-export { default } from "./JackpotsContainer";
+export { JackpotsContainer } from "./JackpotsContainer"; // eslint-disable-line import/export

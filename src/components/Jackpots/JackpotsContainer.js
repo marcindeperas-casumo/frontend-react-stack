@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
-import { Query } from "react-apollo";
 import { path } from "ramda";
+import { useQuery } from "@apollo/react-hooks";
 import Jackpots from "./Jackpots";
 // $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { JackpotsQuery } from "./Jackpots.graphql";
@@ -11,24 +11,14 @@ import { JackpotsQuery } from "./Jackpots.graphql";
 // We are only using this until we implement subscribing to the RabbitMQ queues
 // in the GraphQL server.
 // Related issue: https://github.com/Casumo/Home/issues/26668
-const REFRESH_INTERVAL = 30000;
+const pollInterval = 30000;
 
-class GamesListJackpotsTypedQuery extends Query<GamesListJackpots, null> {}
+export const JackpotsContainer = () => {
+  const { data, loading } = useQuery(JackpotsQuery, { pollInterval });
+  const getTitle = path(["gamesList", "title"]);
+  const getGames = path(["gamesList", "games"]);
 
-const JackpotsContainer = () => (
-  <GamesListJackpotsTypedQuery
-    query={JackpotsQuery}
-    pollInterval={REFRESH_INTERVAL}
-  >
-    {({ loading, data }) => {
-      const getTitle = path(["gamesList", "title"]);
-      const getGames = path(["gamesList", "games"]);
-
-      return loading ? null : (
-        <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
-      );
-    }}
-  </GamesListJackpotsTypedQuery>
-);
-
-export default JackpotsContainer;
+  return loading ? null : (
+    <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
+  );
+};
