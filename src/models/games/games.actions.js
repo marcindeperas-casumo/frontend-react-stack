@@ -4,6 +4,7 @@ import { getGamesBySlugs } from "Api/api.gamebrowser";
 import {
   getCasinoPlayerGames,
   addGameToMyList,
+  removeGameFromMyList,
 } from "Api/api.casinoPlayerGames";
 import { types } from "./games.constants";
 import { getFetchGamesBySlugsCompleteType } from "./games.utils";
@@ -50,12 +51,25 @@ export const fetchTopLists = asyncCallData => ({
   postFetch: types.FETCH_TOP_LISTS_COMPLETE,
 });
 
+export const updateMyList = gameSlug => ({
+  type: types.UPDATE_MY_LIST,
+  gameSlug,
+});
+
 export const addMyListGame = asyncCallData => ({
   type: fetchTypes.FETCH,
-  name: types.ADD_GAME_TO_MY_LIST_QUERY_START,
+  name: types.ADD_GAME_TO_MY_LIST_START,
   asyncCallData,
   asyncCall: addGameToMyList,
-  postFetch: types.ADD_GAME_TO_MY_LIST_QUERY_COMPLETE,
+  postFetch: types.ADD_GAME_TO_MY_LIST_COMPLETE,
+});
+
+export const removeMyListGame = asyncCallData => ({
+  type: fetchTypes.FETCH,
+  name: types.REMOVE_GAME_FROM_MY_LIST_START,
+  asyncCallData,
+  asyncCall: removeGameFromMyList,
+  postFetch: types.REMOVE_GAME_FROM_MY_LIST_COMPLETE,
 });
 
 export const fetchGamesBySlugs = slugs => ({
