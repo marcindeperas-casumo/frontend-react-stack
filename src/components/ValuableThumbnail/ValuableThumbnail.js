@@ -81,7 +81,7 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--1/1" />
+            <Coin className="u-width--full" />
           </div>
           <Flex
             align="center"

@@ -40,7 +40,7 @@ export default class AdventureProgressBar extends PureComponent<Props> {
 
     return (
       <>
-        <Flex.Item className="u-width--1/1 u-margin-top--none">
+        <Flex.Item className="u-width--full u-margin-top--none">
           <ProgressBar
             progress={progressPercentage}
             fillerClassNames="t-background-chrome-light-2"
@@ -53,7 +53,7 @@ export default class AdventureProgressBar extends PureComponent<Props> {
         </Flex.Item>
         <Flex
           justify="space-between"
-          className="u-width--1/1 u-font-sm u-padding-x--sm u-padding-top"
+          className="u-width--full u-font-sm u-padding-x--sm u-padding-top"
         >
           <Text className="t-color-chrome-dark-2" tag="div" size="sm">
             <DangerousHtml
