@@ -40,7 +40,7 @@
     "ramda": "^0.26.1",
     "react": "^16.8.6",
     "react-adopt": "^0.6.0",
-    "react-apollo": "^2.5.6",
+    "react-apollo": "^3.1.2",
     "react-dev-utils": "^9.0.1",
     "react-dom": "^16.8.6",
     "react-icon-base": "^2.1.2",
