@@ -49,7 +49,15 @@ const post: FetchType = (url, data, options) =>
     .then(errorHandler)
     .then(response => response.json());
 
+const del: FetchType = (url, options) =>
+  fetch(url, {
+    method: "DELETE",
+    ...DEFAULT_FETCH_OPTIONS,
+    ...options,
+  });
+
 export default {
+  del,
   get,
   post,
 };
