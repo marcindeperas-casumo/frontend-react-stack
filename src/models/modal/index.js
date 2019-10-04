@@ -1,14 +1,28 @@
 // @flow
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
+import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
+import bridge from "Src/DurandalReactBridge";
 
-export type ModalId =
-  | "REEL_RACES_CAVEATS"
-  | "TERMS_AND_CONDITIONS_SPAIN"
-  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
-const type = {
+export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",
+};
+export type ModalId =
+  | "TERMS_AND_CONDITIONS_SPAIN"
+  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
+type ModalReturnCode =
+  | "CLOSED" // click on "x"
+  | "ACCEPTED" // click on accept button
+  | "DISMISSED"; // click outside of the modal
+/*::
+// flow magic, with that I can safely use ModalId and ModalReturnCode type
+const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
+(REACT_APP_MODAL.ID: { [ModalId]: ModalId });
+(REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
+*/
+export type ModalConfig = {
+  mustAccept: boolean,
 };
 
 type ModalReturnCode =
@@ -43,17 +57,24 @@ export function useSelectModal(): ModalState {
   return useSelector(R.prop("modal"), R.eqProps("modalId"));
 }
 
-export function hideModal(modalId: ?ModalId) {
+export function hideModal() {
   return {
     type: type.hide,
-    modalId,
   };
 }
 
 export function useHideModal(modalId: ?ModalId) {
   const dispatch = useDispatch();
+  const fn = (reason: ModalReturnCode) => () => {
+    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, reason });
+    dispatch(hideModal());
+  };
 
-  return () => dispatch(hideModal(modalId));
+  return {
+    closeModal: fn("CLOSED"),
+    dismissModal: fn("DISMISSED"),
+    acceptModal: fn("ACCEPTED"),
+  };
 }
 
 type Actions = typeof showModal | typeof hideModal;

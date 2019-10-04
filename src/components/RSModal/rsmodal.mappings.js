@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import type { ModalId } from "Models/modal";
+import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import {
   MODALS as SCS_MODALS,
@@ -24,8 +24,15 @@ type Mapping = {
   [ModalId]: {
     // cms slug
     slug: string,
-    // Content component
-    Content: React.ComponentType<ModalContentComponent<Object>>,
+    Content: React.ComponentType<{
+      /** object with translations for provided slug, null if still fetching */
+      t: ?{},
+      /** object that was passed with spawn action, defaults to empty object */
+      config: ModalConfig,
+      closeModal: () => void,
+      dismissModal: () => void,
+      acceptModal: () => void,
+    }>,
   },
 };
 

@@ -3,7 +3,6 @@ import * as React from "react";
 import ReactModal from "react-modal";
 import { useTranslations, useDelayedCleanup } from "Utils/hooks";
 import { useSelectModal, useHideModal } from "Models/modal";
-import { ModalHeader } from "./RSModalHeader";
 import { getModalData } from "./rsmodal.mappings";
 import "./rsmodals.scss";
 
@@ -13,25 +12,26 @@ export function Modal() {
   const state = useSelectModal();
   const modalId = useDelayedCleanup(state.modalId, CLOSING_ANIMATION_LENGTH_MS);
   const { slug, Content } = getModalData(modalId);
-  const hideModal = useHideModal(modalId);
+  const { closeModal, dismissModal, acceptModal } = useHideModal(modalId);
   const t = useTranslations(slug);
 
   return (
     <ReactModal
       isOpen={Boolean(state.modalId)}
-      onRequestClose={hideModal}
+      onRequestClose={dismissModal}
       className="t-background-white o-flex--vertical c-rsmodal"
       overlayClassName="c-rsmodal__overlay"
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
       shouldCloseOnOverlayClick={!state.config.mustAccept}
       shouldCloseOnEsc={!state.config.mustAccept}
     >
-      <ModalHeader
-        title={t.title}
-        hideModal={hideModal}
-        showCloseButton={!state.config.mustAccept}
+      <Content
+        t={t}
+        closeModal={closeModal}
+        dismissModal={dismissModal}
+        acceptModal={acceptModal}
+        config={state.config}
       />
-      <Content t={t} />
     </ReactModal>
   );
 }

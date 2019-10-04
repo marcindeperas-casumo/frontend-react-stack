@@ -47,7 +47,6 @@ export function ModalHeader(props: Props) {
         noIcon
       )}
       <Text
-        size="sm"
         tag="span"
         className="u-padding-y--lg u-font-weight-bold t-color-black o-flex__block u-text-align-center"
       >
