@@ -26,6 +26,7 @@ const getHeaders = (token: string) => {
     headers: {
       "X-Token": token,
       "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
+      "content-type": "application/json",
     },
   };
 };
@@ -46,6 +47,16 @@ export const getCasinoPlayerGameList = async (
     getHeaders(sessionId)
   );
 
+export const addGameToMyList = async (
+  {
+    sessionId,
+    gameSlug,
+  }: {
+    sessionId: string,
+    gameSlug: string,
+  },
+  http: HTTPClient = clientHttp
+) => await http.post(URL.MY_LIST, { gameSlug }, getHeaders(sessionId));
 export const getCasinoPlayerGamesBatch = async (
   {
     sessionId,
