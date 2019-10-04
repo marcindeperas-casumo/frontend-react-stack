@@ -16,6 +16,7 @@ type Props = {
   slug: string,
   inMaintenanceMode: boolean,
   onLaunchGame: Function,
+  onFavouriteGame: Function,
   alwaysActive: boolean,
   isInMyList: boolean,
 };
@@ -44,6 +45,7 @@ const GameTileOverlay = ({
   slug,
   inMaintenanceMode,
   onLaunchGame,
+  onFavouriteGame,
   alwaysActive,
   isInMyList,
 }: Props) => {
@@ -98,6 +100,7 @@ const GameTileOverlay = ({
             "c-game-tile__heart",
             isInMyList && "c-game-tile__heart--is-active"
           )}
+          onClick={onFavouriteGame}
         />
       </Flex>
     </Flex>

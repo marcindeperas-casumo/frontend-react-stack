@@ -3,7 +3,12 @@ import React from "react";
 import { connect } from "react-redux";
 import GameTile from "Components/GameTile/GameTile";
 import { gameSelector } from "Models/schema";
-import { launchGame, isGameInMyList } from "Models/games";
+import { launchGame, isGameInMyList, types } from "Models/games";
+
+export const addGameToMyList = (id: Props) => ({
+  type: types.ADD_GAME_TO_MY_LIST_START,
+  gameSlug: id,
+});
 
 const GameTileConnected = connect(
   (state, props) => ({
@@ -12,6 +17,9 @@ const GameTileConnected = connect(
   }),
   (dispatch, props) => ({
     onLaunchGame: () => dispatch(launchGame(props.id)),
+    onFavouriteGame: () => {
+      dispatch(addGameToMyList(props.id));
+    },
   })
 )(GameTile);
 

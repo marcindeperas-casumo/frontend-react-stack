@@ -12,6 +12,7 @@ export type Props = {
   game: Game,
   imgixOpts?: Object,
   onLaunchGame: Function,
+  onFavouriteGame: Function,
   ratio?: string,
   isOverlayAlwaysActive?: boolean,
   isInMyList?: boolean,
@@ -61,6 +62,7 @@ export default class GameTile extends PureComponent<Props, State> {
       className,
       game = {},
       onLaunchGame,
+      onFavouriteGame,
       imgixOpts = {
         w: 170,
       },
@@ -94,6 +96,7 @@ export default class GameTile extends PureComponent<Props, State> {
             slug={slug}
             inMaintenanceMode={inMaintenanceMode}
             onLaunchGame={onLaunchGame}
+            onFavouriteGame={onFavouriteGame}
             alwaysActive={isOverlayAlwaysActive}
             isInMyList={isInMyList}
           />
