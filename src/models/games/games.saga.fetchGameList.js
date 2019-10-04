@@ -22,6 +22,7 @@ export function* fetchGameListSaga() {
   const currency = yield select(currencySelector);
   const market = yield select(marketSelector);
   const playerId = yield select(playerIdSelector);
+  const sessionId = yield select(sessionIdSelector);
   const areGamesFetched = yield select(
     isFetchingStarted(handshakeTypes.FETCH_GAMES_HANDSHAKE)
   );
@@ -40,7 +41,6 @@ export function* fetchGameListSaga() {
   yield call(waitForSelector, isGamesHandshakeLoaded);
 
   const handshake = yield select(gamesHandshakeSelector);
-  const sessionId = yield select(sessionIdSelector);
 
   yield put(
     fetchTopLists({

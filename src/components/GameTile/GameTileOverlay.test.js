@@ -56,7 +56,7 @@ describe("GameTileOverlay", () => {
     );
 
     expect(rendered.find("PlayAction").length).toBe(1);
-    expect(rendered.find("Text").length).toBe(0);
+    expect(rendered.find("Text").hasClass("u-visibility--hidden")).toBe(true);
     expect(rendered.find("MoreIcon").length).toBe(0);
   });
 

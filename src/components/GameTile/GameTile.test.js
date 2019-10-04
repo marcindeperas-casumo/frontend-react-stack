@@ -64,11 +64,6 @@ describe("GameTile", () => {
     expect(rendered.find("GameTileJackpot").length).toBe(0);
   });
 
-  test("should render GameTileJackpot if game.jackpotInfo exists", () => {
-    const rendered = shallow(<GameTile game={{ ...gameInfo, jackpotInfo }} />);
-    expect(rendered.find("GameTileJackpot").length).toBe(1);
-  });
-
   test("should not set maintence class when inMaintenanceMode is false", () => {
     const rendered = shallow(<GameTile game={gameInfo} />);
     expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(false);
