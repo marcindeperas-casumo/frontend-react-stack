@@ -13,3 +13,22 @@
 .c-card-data-badge-shadow-yellow {
   box-shadow: inset 0 0 0 2px cudl-palette(yellow);
 }
+
+.c-card-data-badges-background {
+  height: 45px; // this should be 40px. In order to do that, I need to reduce badges size.
+  width: 100%;
+}
+
+.c-card-data-badges-mask {
+  background: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0) 25%);
+  height: 100%;
+  width: 100%;
+}
+
+.c-card-data-badge::after {
+  color: cudl-palette(white);
+  content: ".";
+  font-size: 20px;
+  margin-top: 13px;
+  position: absolute;
+}

@@ -11,7 +11,7 @@ import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
-const RESULT_BADGES = 5;
+const RESULT_BADGES = 9;
 
 type Props = {|
   lobby: liveCasinoLobby,
@@ -27,20 +27,24 @@ const renderResults = ({ results, type }) => {
 
   return (
     <>
-      <Flex spacing="sm" className="u-margin-bottom">
+      <Flex
+        spacing="sm"
+        className="u-margin-bottom u-padding-top u-margin-left--md u-padding-right--sm"
+      >
         {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
             <Flex.Item key={i}>
               <Badge
-                size="sm"
+                size="xs"
                 tag="div"
                 bgColor={color}
                 txtColor={getTextColor(color)}
                 circle={true}
                 className={classNames(
-                  borderColor && `c-card-data-badge-shadow-${borderColor}`
+                  borderColor && `c-card-data-badge-shadow-${borderColor}`,
+                  i === 0 && "c-card-data-badge"
                 )}
               >
                 {getResultsDisplay(type, n)}
@@ -49,12 +53,6 @@ const renderResults = ({ results, type }) => {
           );
         })}
       </Flex>
-      <Text
-        size="2xs"
-        className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-      >
-        <DisplayText type={type} />
-      </Text>
     </>
   );
 };
@@ -119,9 +117,17 @@ const LobbyType = ({ lobby }) =>
   ])(lobby.type);
 
 const LiveCasinoCardData = ({ lobby }: Props) => (
-  <Flex direction="vertical" align="center" className="u-width--1/1">
-    <LobbyType lobby={lobby} />
-  </Flex>
+  <>
+    <Flex className="c-card-data-badges-background u-opacity-75 t-background-black u-position-absolute"></Flex>
+    <Flex
+      direction="vertical"
+      align="center"
+      className="u-width--1/1 u-position-relative"
+    >
+      <LobbyType lobby={lobby} />
+      <div className="c-card-data-badges-mask u-position-absolute" />
+    </Flex>
+  </>
 );
 
 export default LiveCasinoCardData;
