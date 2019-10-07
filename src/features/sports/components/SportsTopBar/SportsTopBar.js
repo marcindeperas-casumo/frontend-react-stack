@@ -122,7 +122,7 @@ const SportsTopBar = ({ currentHash, isSearchVisible }: Props) => {
               isActive={isSearchVisible}
               className="c-sports-top-bar--search"
             >
-              <SearchIcon />
+              <SearchIcon size="md" />
             </SportsTopBarTab>
           </Flex.Item>
           <Flex.Item>

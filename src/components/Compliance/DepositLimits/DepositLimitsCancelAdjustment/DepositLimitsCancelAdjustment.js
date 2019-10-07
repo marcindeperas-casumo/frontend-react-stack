@@ -22,7 +22,7 @@ export function DepositLimitsCancelAdjustment({ t, ...props }: Props) {
       align="stretch"
       justify="space-between"
       spacing="none"
-      className="u-padding--md u-height--1/1 t-background-white c-deposit-limits-container"
+      className="u-padding--md u-height--full t-background-white c-deposit-limits-container"
     >
       <Text
         size="xlg"

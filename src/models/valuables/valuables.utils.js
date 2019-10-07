@@ -1,5 +1,5 @@
 /* @flow */
-import { equals, anyPass } from "ramda";
+import { equals, anyPass, filter, reject } from "ramda";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
@@ -24,6 +24,9 @@ export const isAboutToExpire = (hours: number): boolean =>
 
 export const showStateBadge = (valuableState: ValuableState, hours: number) =>
   valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
+
+export const getValuablesByState = (state: ValuableState) =>
+  filter(({ valuableState }) => valuableState === state);
 
 export const getValuableDetailsAction = ({
   valuableType,
@@ -61,8 +64,8 @@ export const getValuableDetailsAction = ({
     }
 
     return isSpins
-      ? setActionProps(translations.spinsUnLockedActionLabel)
-      : setActionProps(translations.cashUnLockedActionLabel, gameBrowserUrl);
+      ? setActionProps(translations.spinsUnlockedActionLabel)
+      : setActionProps(translations.cashUnlockedActionLabel, gameBrowserUrl);
   }
 
   return setActionProps();

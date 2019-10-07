@@ -1,11 +1,22 @@
 query PlayerValuablesQuery {
-  translations {
-    playerValuableTranslations {
-      hoursLabel
-      listTitleLabel
-      minutesLabel
-    }
-  }
+  listTitleLabel: getText(
+    id: "root:mobile.valuables:fields.your_valuables"
+  )
+  availableListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.available_valuables"
+  )
+  lockedListTitleLabel: getText(
+    id: "root:mobile.valuables:fields.locked_valuables"
+  )
+  hoursLabel: getText(
+    id: "root:units:fields.hours_abbreviated"
+  )
+  minutesLabel: getText(
+    id: "root:units:fields.minutes_abbreviated"
+  )
+  seeAllLabel: getText(
+    id: "root:mobile.valuables:fields.see_all_valuables_link"
+  )
   player {
     valuables {
       __typename

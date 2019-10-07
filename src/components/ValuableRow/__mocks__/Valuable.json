@@ -21,7 +21,7 @@
     "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
     "expirationTimeInHours": "100",
     "expiryDate": 1569794399000,
-    "valuableState": "Fresh"
+    "valuableState": "Locked"
   },
   {
     "id": "432",

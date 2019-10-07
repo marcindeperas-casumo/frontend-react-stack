@@ -35,12 +35,14 @@ export class AbstractModal extends PureComponent<Props> {
           onRequestClose={hideModal}
           className={classNames(
             " t-background-white u-position-relative",
-            className ? className : "c-abstract-modal--default"
+            className
+              ? className
+              : "c-abstract-modal--default u-height--full u-width--full"
           )}
           overlayClassName="c-abstract-modal__overlay"
           {...rest}
         >
-          <div className="c-abstract-modal__content u-height--1/1">
+          <div className="c-abstract-modal__content u-height--full">
             {children}
           </div>
           <div className="c-abstract-modal__close u-padding u-position-absolute">

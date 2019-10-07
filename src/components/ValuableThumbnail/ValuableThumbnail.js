@@ -51,10 +51,8 @@ export const ValuableThumbnail = ({
   translations,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
-  const isFresh = valuableState === VALUABLE_STATES.FRESH;
   const stateBadgeVisible =
-    size !== "small" &&
-    (showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh);
+    size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
   const stateBadgeText = getStateBadgeText(
     expiryTimeLeft,
     translations,
@@ -80,7 +78,7 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--1/1" />
+            <Coin className="u-width--full" />
           </div>
           <Flex
             align="center"

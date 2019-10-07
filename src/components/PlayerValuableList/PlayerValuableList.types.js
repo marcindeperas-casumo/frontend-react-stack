@@ -3,6 +3,9 @@ import { type ValuableThumbnailTranslations } from "Models/valuables";
 
 type Translations = ValuableThumbnailTranslations & {
   listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
+  seeAllLabel: string,
 };
 
 export type PlayerValuableListProps = {
