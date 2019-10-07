@@ -4,7 +4,7 @@ import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 
 const COLORS = {
   BLACK: "chrome-dark-2",
-  RED: "red", // new color #FC484C missing
+  RED: "red-support",
   GREEN: "green",
   YELLOW: "caution",
   BLUE: "info",
