@@ -276,3 +276,34 @@ export const isCmsEntryEmpty = R.pipe(
 export const convertHoursToDays = (hours: number) => {
   return Math.floor(hours / 24);
 };
+
+type LocaliseTimeIntervalType = {
+  seconds: number,
+  t: {
+    seconds: string,
+    minutes?: string,
+    hours?: string,
+    days?: string,
+  },
+};
+
+export const localiseTimeInterval = ({
+  seconds,
+  t,
+}: LocaliseTimeIntervalType) => {
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (t.days && days >= 1) {
+    return interpolate(t.days, { days });
+  }
+  if (t.hours && hours >= 1) {
+    return interpolate(t.hours, { hours });
+  }
+  if (t.minutes && minutes >= 1) {
+    return interpolate(t.minutes, { minutes });
+  }
+
+  return interpolate(t.seconds, { seconds });
+};

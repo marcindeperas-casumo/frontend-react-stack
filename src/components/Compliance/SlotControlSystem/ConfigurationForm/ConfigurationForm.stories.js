@@ -16,6 +16,9 @@ const t = {
   want_break_after: "Want a break after playing?",
   for_how_long: "For how long?",
   play: "Play",
+  minutes_abbreviated: "{{minutes}}m",
+  hours_abbreviated: "{{hours}}h",
+  days_abbreviated: "{{days}}d",
 };
 
 stories.add("Default", () => {

@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
+import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { EditIcon, PlayIcon } from "@casumo/cmp-icons";
 import { PillSelector } from "Components/PillSelector";
-import { interpolate, formatCurrency } from "Utils";
+import { interpolate, formatCurrency, localiseTimeInterval } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import "./ConfigurationForm.scss";
 
@@ -14,27 +15,13 @@ const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
 };
-const LIMIT_YOUR_TIME_OPTS = [
-  { label: "15 min", value: 15 },
-  { label: "30 min", value: 30 },
-  { label: "1 hr", value: 60 },
-  { label: "4 hr", value: 240 },
-];
-const STATUS_ALERTS_EVERY_OPTS = [
-  { label: "5 min", value: 5 },
-  { label: "10 min", value: 10 },
-  { label: "15 min", value: 15 },
-];
+const LIMIT_YOUR_TIME_OPTS_2 = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
+const STATUS_ALERTS_EVERY_OPTS_2 = [5 * 60, 10 * 60, 15 * 60];
 const WANT_BREAK_AFTER_OPTS = [
   { label: "Yes", value: true },
   { label: "No", value: false },
 ];
-const WANT_BREAK_AFTER_YES_OPTS = [
-  { label: "1 hr", value: 1 },
-  { label: "2 hr", value: 2 },
-  { label: "4 hr", value: 4 },
-  { label: "1 dy", value: 24 },
-];
+const WANT_BREAK_AFTER_YES_OPTS_2 = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
 
 type Props = {
   t: {
@@ -47,6 +34,9 @@ type Props = {
     want_break_after: string,
     for_how_long: string,
     play: string,
+    minutes_abbreviated: string,
+    hours_abbreviated: string,
+    days_abbreviated: string,
   },
   balance: number,
   currency: string,
@@ -69,6 +59,8 @@ type LimitYourTimeRowType = {
   },
   /* chosen time limit */
   value: ?number,
+  /* pill options where value is number of seconds */
+  options: Array<{ value: number, label: string }>,
   onChange: number => void,
 };
 
@@ -78,6 +70,8 @@ type StatusAlertsEveryRowType = {
   },
   /* chosen period of time between alerts */
   value: ?number,
+  /* pill options where value is number of seconds */
+  options: Array<{ value: number, label: string }>,
   onChange: number => void,
 };
 
@@ -91,6 +85,8 @@ type WantBreakAfterRowType = {
   onChange: boolean => void,
   /* how long a break should be */
   breakValue: ?number,
+  /* pill options where value is number of seconds */
+  breakOptions: Array<{ value: number, label: string }>,
   onChangeBreak: number => void,
 };
 
@@ -120,6 +116,18 @@ export function ConfigurationForm(props: Props) {
     },
     [setBudget, setScreen]
   );
+  const mapSecondsToPillOpts = map(seconds => ({
+    value: seconds,
+    label: localiseTimeInterval({
+      seconds,
+      t: {
+        seconds: "unused",
+        minutes: t.minutes_abbreviated,
+        hours: t.hours_abbreviated,
+        days: t.days_abbreviated,
+      },
+    }),
+  }));
 
   if (screen === SCREEN_TYPES.LIMIT_YOUR_BUDGET) {
     return (
@@ -134,10 +142,16 @@ export function ConfigurationForm(props: Props) {
         budget={budget}
         onClickEdit={onClickEditBudget}
       />
-      <LimitYourTimeRow t={t} value={time} onChange={setTime} />
+      <LimitYourTimeRow
+        t={t}
+        value={time}
+        options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS_2)}
+        onChange={setTime}
+      />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
+        options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS_2)}
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
@@ -145,6 +159,7 @@ export function ConfigurationForm(props: Props) {
         value={wantsBreak}
         onChange={setWantsBreak}
         breakValue={breakAfter}
+        breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS_2)}
         onChangeBreak={setBreakAfter}
       />
       <Button
@@ -204,7 +219,7 @@ function LimitYourBudgetRow(props: LimitYourBudgetRowType) {
 }
 
 function LimitYourTimeRow(props: LimitYourTimeRowType) {
-  const { t, value, onChange } = props;
+  const { t, value, options, onChange } = props;
 
   return (
     <Flex
@@ -214,17 +229,13 @@ function LimitYourTimeRow(props: LimitYourTimeRowType) {
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.limit_your_time}
       </Text>
-      <PillSelector
-        options={LIMIT_YOUR_TIME_OPTS}
-        onChange={onChange}
-        value={value}
-      />
+      <PillSelector options={options} onChange={onChange} value={value} />
     </Flex>
   );
 }
 
 function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
-  const { t, value, onChange } = props;
+  const { t, value, options, onChange } = props;
 
   return (
     <Flex
@@ -234,17 +245,13 @@ function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
       <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
         {t.get_status_alerts}
       </Text>
-      <PillSelector
-        options={STATUS_ALERTS_EVERY_OPTS}
-        onChange={onChange}
-        value={value}
-      />
+      <PillSelector options={options} onChange={onChange} value={value} />
     </Flex>
   );
 }
 
 function WantBreakAfterRow(props: WantBreakAfterRowType) {
-  const { t, value, onChange, onChangeBreak, breakValue } = props;
+  const { t, value, onChange, onChangeBreak, breakValue, breakOptions } = props;
 
   return (
     <Flex
@@ -265,7 +272,7 @@ function WantBreakAfterRow(props: WantBreakAfterRowType) {
             {t.for_how_long}
           </Text>
           <PillSelector
-            options={WANT_BREAK_AFTER_YES_OPTS}
+            options={breakOptions}
             value={breakValue}
             onChange={onChangeBreak}
           />
