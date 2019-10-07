@@ -6,10 +6,10 @@ import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { convertHTMLToString } from "Utils";
+import { GameTileHeart } from "Components/GameTile/GameTileHeart";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 import TrackClick from "Components/TrackClick";
-import GameTileHeart from "./GameTileHeart.svg";
 
 type Props = {
   name: string,
@@ -55,7 +55,7 @@ const GameTileOverlay = ({
       justify={"space-between"}
       direction="vertical"
       className={classNames(
-        "o-ratio__content u-text-align-center",
+        "c-game-tile__overlay o-ratio__content u-text-align-center",
         getClassModifier(inMaintenanceMode, alwaysActive),
         "u-padding--md t-border-r"
       )}
@@ -95,13 +95,7 @@ const GameTileOverlay = ({
             </a>
           </TrackClick>
         )}
-        <GameTileHeart
-          className={classNames(
-            "c-game-tile__heart",
-            isInMyList && "c-game-tile__heart--is-active"
-          )}
-          onClick={onFavouriteGame}
-        />
+        <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
       </Flex>
     </Flex>
   );

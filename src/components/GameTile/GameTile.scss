@@ -21,13 +21,3 @@
   white-space: nowrap;
   width: 100%;
 }
-
-.c-game-tile__heart {
-  fill: transparent;
-  stroke: cudl-palette(white);
-}
-
-.c-game-tile__heart--is-active {
-  fill: cudl-palette(white);
-  stroke: transparent;
-}
