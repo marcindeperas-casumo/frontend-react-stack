@@ -36,7 +36,7 @@ stories.add("Default", () => {
         <GameTile
           game={{ ...game, inMaintenanceMode }}
           onLaunchGame={action(game.name)}
-          onFavouriteGame={boolean("Is favourite game", false)}
+          onFavouriteGame={action("favourite game")}
         />
       </MockStore>
     </div>
@@ -54,7 +54,7 @@ stories.add("With Jackpot", () => {
         <GameTile
           game={{ ...game, jackpotInfo, inMaintenanceMode }}
           onLaunchGame={action(game.name)}
-          onFavouriteGame={boolean("Is favourite game", false)}
+          onFavouriteGame={action("favourite game")}
         />
       </MockStore>
     </div>
