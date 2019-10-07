@@ -3,7 +3,7 @@ import React from "react";
 import { connect } from "react-redux";
 import { gameSelector } from "Models/schema";
 import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay/GameTileWithActiveOverlay";
-import { launchGame, isGameInMyList } from "Models/games";
+import { launchGame, updateMyList, isGameInMyList } from "Models/games";
 
 const GameTileWithActiveOverlayConnected = connect(
   (state, props) => ({
@@ -12,6 +12,9 @@ const GameTileWithActiveOverlayConnected = connect(
   }),
   (dispatch, props) => ({
     onLaunchGame: () => dispatch(launchGame(props.id)),
+    onFavouriteGame: () => {
+      dispatch(updateMyList(props.id));
+    },
   })
 )(GameTileWithActiveOverlay);
 
