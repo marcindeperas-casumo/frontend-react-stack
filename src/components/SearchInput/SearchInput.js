@@ -89,7 +89,7 @@ class SearchInput extends React.Component<Props, State> {
     return (
       <Flex align="center" className={containerClassName}>
         <Flex.Block>
-          <label className="u-width--1/1 o-flex o-flex-align--center u-padding--md">
+          <label className="u-width--full o-flex o-flex-align--center u-padding--md">
             <SearchIcon className="t-color-chrome-dark-2" />
             <input
               ref={this.textInput}

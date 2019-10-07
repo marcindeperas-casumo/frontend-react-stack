@@ -72,6 +72,7 @@ export type PlayerValuablesQuery = {
   lockedListTitleLabel: string,
   hoursLabel: string,
   minutesLabel: string,
+  seeAllLabel: string,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */

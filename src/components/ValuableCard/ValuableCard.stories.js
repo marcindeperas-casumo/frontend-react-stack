@@ -33,7 +33,7 @@ stories.add("Default", () => {
         expiryDate={expiryDate}
         onCardClick={action("click")}
         translations={translationsMock}
-        className="u-drop-shadow--sm"
+        className="t-box-shadow"
       />
     </div>
   );

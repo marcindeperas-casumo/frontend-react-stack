@@ -71,7 +71,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
       direction="vertical"
       align="stretch"
       spacing="none"
-      className="u-padding--md u-height--1/1 t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow-hidden"
+      className="u-padding--md u-height--full t-background-white u-margin-top t-border-r--none@mobile t-border-r u-overflow-hidden"
     >
       <Flex
         align="center"
@@ -91,7 +91,7 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
             direction="vertical"
             spacing="none"
             align="stretch"
-            className="c-deposit-limits-history__container u-width--1/1 u-margin-bottom--md"
+            className="c-deposit-limits-history__container u-width--full u-margin-bottom--md"
           >
             <Flex className="t-color-positive u-margin-y" align="center">
               <TickIcon

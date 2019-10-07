@@ -119,7 +119,10 @@ export function TermsAndConditions({ t, acks, ...props }: Props) {
           t={{ note_version_old: t.note_version_old }}
         />
       )}
-      <Flex className="c-tac__container" direction="vertical">
+      <Flex
+        className="c-tac__container u-height--full u-width--full"
+        direction="vertical"
+      >
         <Flex
           direction="vertical"
           className="c-tac__header u-padding--md u-margin-bottom--lg t-color-grey-light-2"
