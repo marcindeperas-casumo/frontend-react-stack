@@ -58,34 +58,12 @@ const renderResults = ({ results, type }) => {
 };
 
 const renderSeats = ({ seats }) => (
-  <>
-    <Badge
-      size="sm"
-      className={classNames(!seats && "u-width--3/4", "u-margin-bottom")}
-      tag="div"
-      bgColor="green"
-      txtColor="white"
-      circle={Boolean(seats)}
-    >
-      {seats || (
-        <CMSField
-          slug="mobile.live-casino-cards-content"
-          field="bet_behind"
-          view={text => (
-            <Text size="sm" tag="span" className="u-text-nowrap">
-              {text}
-            </Text>
-          )}
-        />
-      )}
-    </Badge>
-    <Text
-      size="2xs"
-      className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-uppercase"
-    >
-      {seats ? getText("open_seats") : getText("table_full")}
-    </Text>
-  </>
+  <Text
+    size="sm"
+    className="t-color-white u-margin-bottom--md u-font-weight-bold"
+  >
+    {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
+  </Text>
 );
 
 const getText = field => (
