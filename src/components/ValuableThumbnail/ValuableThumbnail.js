@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
-import { INTL_LOCALES } from "Src/constants";
 import {
   type ValuableState,
   VALUABLE_TYPES,
@@ -60,8 +59,6 @@ export const ValuableThumbnail = ({
     valuableState
   );
 
-  const locale = INTL_LOCALES[market];
-
   return (
     <div className={`o-ratio o-ratio--valuable-card-thumbnail-${size}`}>
       <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
@@ -93,10 +90,10 @@ export const ValuableThumbnail = ({
           >
             <ValuableSymbol
               currency={currency}
-              locale={locale}
               spinType={spinType}
               valuableType={valuableType}
-              fontSize={size === "small" ? "md" : "lg"}
+              size="md"
+              className="u-width--1/1"
             />
           </Flex>
         </div>
