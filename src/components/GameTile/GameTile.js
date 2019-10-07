@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from "react";
+import React, { createRef, PureComponent } from "react";
 import classNames from "classnames";
 import GameTileOverlay from "Components/GameTile/GameTileOverlay";
 import GameTileImage from "Components/GameTile/GameTileImage";
@@ -27,9 +27,13 @@ export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 export default class GameTile extends PureComponent<Props, State> {
   handleOnClick: Function;
   handleOutsideClick: Function;
+  myRef: {|
+    current: any,
+  |};
 
   constructor(props: Props) {
     super(props);
+    this.myRef = createRef();
     this.state = {
       isOverlayActive: false,
     };
@@ -41,20 +45,29 @@ export default class GameTile extends PureComponent<Props, State> {
     document.removeEventListener("click", this.handleOutsideClick);
   }
 
-  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction
+  handleOnClick(ev: SyntheticEvent<HTMLElement>) {
+    const hasClickedInOverlay = this.myRef.current
+      .querySelector(".c-game-tile__overlay")
+      .contains(ev.target);
 
-  handleOnClick() {
-    this.setState({
-      isOverlayActive: !this.state.isOverlayActive,
-    });
-    document.addEventListener("click", this.handleOutsideClick);
+    if (!hasClickedInOverlay) {
+      this.setState({
+        isOverlayActive: true,
+      });
+      document.addEventListener("click", this.handleOutsideClick);
+    }
   }
 
-  handleOutsideClick() {
-    this.setState({
-      isOverlayActive: false,
-    });
-    document.removeEventListener("click", this.handleOutsideClick);
+  handleOutsideClick(ev: SyntheticEvent<HTMLElement>) {
+    const hasClickedInOverlay = this.myRef.current
+      .querySelector(".c-game-tile__overlay")
+      .contains(ev.target);
+    if (!hasClickedInOverlay) {
+      this.setState({
+        isOverlayActive: false,
+      });
+      document.removeEventListener("click", this.handleOutsideClick);
+    }
   }
 
   render() {
@@ -76,6 +89,7 @@ export default class GameTile extends PureComponent<Props, State> {
 
     return (
       <div
+        ref={this.myRef}
         className={classNames(
           inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
           `o-ratio--${ratio}`,
@@ -90,7 +104,11 @@ export default class GameTile extends PureComponent<Props, State> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {showOverlay && (
+        <div
+          className={classNames(
+            showOverlay ? "u-display--block" : "u-display--none"
+          )}
+        >
           <GameTileOverlay
             name={name}
             slug={slug}
@@ -100,6 +118,7 @@ export default class GameTile extends PureComponent<Props, State> {
             alwaysActive={isOverlayAlwaysActive}
             isInMyList={isInMyList}
           />
+        </div>
         )}
       </div>
     );
