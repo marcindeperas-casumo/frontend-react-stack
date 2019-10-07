@@ -1,5 +1,4 @@
 // @flow
-import React from "react";
 import { isPlayActive } from "./ConfigurationForm";
 
 describe("Compliance/SlotControlSystem/ConfigurationForm", () => {

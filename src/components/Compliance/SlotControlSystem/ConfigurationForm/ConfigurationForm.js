@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { EditIcon, PlayIcon } from "@casumo/cmp-icons";
 import { PillSelector } from "Components/PillSelector";
-import { interpolate, formatCurrency } from "Utils";
+import { formatCurrency } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import "./ConfigurationForm.scss";
 
@@ -103,7 +103,7 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: Props) {
-  const { currency, locale, t } = props;
+  const { t } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
