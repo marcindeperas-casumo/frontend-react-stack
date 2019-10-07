@@ -60,7 +60,7 @@ const renderResults = ({ results, type }) => {
 const renderSeats = ({ seats }) => (
   <Text
     size="sm"
-    className="t-color-white u-margin-bottom--md u-font-weight-bold"
+    className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-capitalize"
   >
     {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
   </Text>
