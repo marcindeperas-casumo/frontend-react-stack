@@ -6,6 +6,7 @@ import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { ValuableCard } from "Components/ValuableCard";
+import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import translationsMock from "./__mocks__/translations.mock.json";
 
@@ -47,8 +48,29 @@ describe("PlayerValuableListHorizontal", () => {
   });
 
   test("should render the list title", () => {
-    expect(rendered.find("ScrollableListTitle").prop("title")).toEqual(
+    expect(rendered.find(ScrollableListTitleRow).prop("title")).toEqual(
       translationsMock.listTitleLabel
+    );
+  });
+
+  test("should render a link to list view when valuables exist", () => {
+    expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
+      translationsMock.seeAllLabel
+    );
+  });
+
+  test("should not render a link to list view when valuables exist", () => {
+    rendered = shallow(
+      <PlayerValuableListHorizontal
+        valuables={[]}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+      />
+    );
+
+    expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
+      ""
     );
   });
 

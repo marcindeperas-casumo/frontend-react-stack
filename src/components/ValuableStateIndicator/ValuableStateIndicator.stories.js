@@ -14,13 +14,11 @@ stories.add("Default", () => {
     VALUABLE_STATES,
     VALUABLE_STATES.LOCKED
   );
-  const expiryHours = text("Expire in x hours", "100") || "100";
   const label = text("Status label", "Locked") || null;
 
   return (
     <ValuableStateIndicator
       state={valuableState}
-      hoursToExpiry={expiryHours}
       label={
         <Text size="2xs" tag="span" className="u-font-weight-bold">
           {label}

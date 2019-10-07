@@ -1,5 +1,5 @@
 /* @flow */
-import { equals, anyPass } from "ramda";
+import { equals, anyPass, filter, reject } from "ramda";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
@@ -11,15 +11,22 @@ import {
   type DurationTranslations,
   VALUABLE_SPIN_TYPES,
 } from "Models/valuables";
+import {
+  convertTimestampToLuxonDate,
+  getDateTimeDifferenceFromNow,
+} from "Utils";
 
 export const depositUrl = "/en/cash/deposit";
 export const gameBrowserUrl = "/en/games/top";
 
 export const isAboutToExpire = (hours: number): boolean =>
-  hours > 0 && hours <= 24;
+  hours >= 0 && hours <= 24;
 
 export const showStateBadge = (valuableState: ValuableState, hours: number) =>
   valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
+
+export const getValuablesByState = (state: ValuableState) =>
+  filter(({ valuableState }) => valuableState === state);
 
 export const getValuableDetailsAction = ({
   valuableType,
@@ -57,8 +64,8 @@ export const getValuableDetailsAction = ({
     }
 
     return isSpins
-      ? setActionProps(translations.playNowLabel)
-      : setActionProps(translations.playNowLabel, gameBrowserUrl);
+      ? setActionProps(translations.spinsUnlockedActionLabel)
+      : setActionProps(translations.cashUnlockedActionLabel, gameBrowserUrl);
   }
 
   return setActionProps();
@@ -74,6 +81,7 @@ export function durationToTranslationKey(
   return {
     days: value > 1 ? "day_plural" : "day_singular",
     hours: value > 1 ? "hour_plural" : "hour_singular",
+    minutes: value > 1 ? "minute_plural" : "minute_sungular",
   }[durationKey];
 }
 
@@ -98,4 +106,10 @@ export const shouldUseValuable = (
     (equals(valuableType, VALUABLE_TYPES.CASH) &&
       !equals(valuableState, VALUABLE_STATES.LOCKED))
   );
+};
+
+export const getExpiryTimeLeft = (timestamp: number) => {
+  const luxonDate = convertTimestampToLuxonDate(timestamp);
+
+  return getDateTimeDifferenceFromNow(luxonDate);
 };

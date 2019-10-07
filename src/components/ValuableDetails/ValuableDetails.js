@@ -13,6 +13,8 @@ import {
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
+  getExpiryTimeLeft,
+  type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
@@ -36,11 +38,7 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: ({
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => Promise<void>,
+  onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,
   children: Node,
 };
@@ -63,22 +61,28 @@ const ActionButtonContent = ({ isLocked, text }) => {
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get expiresWithin24Hours() {
-    return this.props.valuableDetails.expirationTimeInHours <= 24;
+  get expiryTimeLeft(): DurationProps {
+    return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
   get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours, minutes } = this.expiryTimeLeft;
+    const expiresWithin24Hours = hours < 24;
+    const expiresInLessThanAnHour = hours < 1;
 
-    return this.expiresWithin24Hours
-      ? { key: "hours", value: expirationTimeInHours }
-      : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
+    if (expiresWithin24Hours) {
+      return { key: "hours", value: hours };
+    } else if (expiresInLessThanAnHour) {
+      return { key: "minutes", value: minutes };
+    }
+
+    return { key: "days", value: convertHoursToDays(hours) };
   }
 
   get expirationBadgeColour(): string {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours } = this.expiryTimeLeft;
 
-    return expirationTimeInHours >= 24
+    return hours > 24
       ? expirationBadgeClasses.default
       : expirationBadgeClasses.expiresToday;
   }
@@ -117,12 +121,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const { valuableDetails } = this.props;
     const { valuableType, valuableState, id } = valuableDetails;
     const { onConsumeValuable } = this.props;
-    const game = this.game;
 
     if (shouldUseValuable(valuableType, valuableState)) {
-      const gameSlug = game ? game.slug : null;
-
-      onConsumeValuable({ id, valuableType, gameSlug });
+      onConsumeValuable(id);
     }
   };
 
@@ -242,7 +243,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="c-valuable-details__footer u-padding--md">
             <Button
               href={actionButtonProps.url}
-              className="u-width--1/1"
+              className="u-width--full"
               onClick={this.handleAction}
               data-test="valuable-action-button"
               variant="primary"

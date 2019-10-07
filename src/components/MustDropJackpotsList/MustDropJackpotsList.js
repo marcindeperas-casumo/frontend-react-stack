@@ -41,7 +41,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     const seeMoreUrl = "/games/must-drop-jackpots";
     const scrollableChildren = [
       <div
-        className="u-padding-y--sm u-height--1/1"
+        className="u-padding-y--sm u-height--full"
         key="must-drop-jackpots-widget"
       >
         <MustDropJackpotsWidget />
@@ -74,7 +74,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
                 itemIds: [[mustDropWidgetId], ...idsByColumns],
               }}
               Component={mustDropJackpotRenderer}
-              className="c-jackpots-list-tile u-height--1/1"
+              className="c-jackpots-list-tile u-height--full"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
               seeMore={{

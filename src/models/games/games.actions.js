@@ -3,6 +3,7 @@ import { fetchGames } from "Api/api.games";
 import { getGamesBySlugs } from "Api/api.gamebrowser";
 import { getCasinoPlayerGames } from "Api/api.casinoPlayerGames";
 import { types } from "./games.constants";
+import { getFetchGamesBySlugsCompleteType } from "./games.utils";
 
 export const initiateFetchGamesBySlugs = ({
   slugs,
@@ -13,7 +14,7 @@ export const initiateFetchGamesBySlugs = ({
   return {
     type: fetchTypes.FETCH,
     name: types.FETCH_GAMES_BY_SLUGS,
-    postFetch: types.FETCH_GAMES_BY_SLUGS_COMPLETE,
+    postFetch: getFetchGamesBySlugsCompleteType(slugs),
     asyncCall: getGamesBySlugs,
     asyncCallData: { platform, country, slugs, variant },
   };

@@ -10,9 +10,7 @@ export const normalQuery = {
   },
   result: {
     data: {
-      translations: {
-        playerValuableTranslations
-      },
+      ...playerValuableTranslations,
       player: {
         valuables
       },

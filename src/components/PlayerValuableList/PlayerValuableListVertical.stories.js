@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import valuables from "Components/ValuableCard/__mocks__/Valuable.json";
+import valuables from "Components/ValuableRow/__mocks__/Valuable.json";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 import translationsMock from "./__mocks__/translations.mock.json";
 

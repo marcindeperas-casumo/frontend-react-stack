@@ -1,5 +1,6 @@
 .c-abstract-modal__content {
   overflow: scroll;
+  -webkit-overflow-scrolling: touch;
 }
 
 .c-abstract-modal__close {
@@ -9,11 +10,6 @@
 
 //default modal dimensions when no custom class or ResponsiveLayout component is provided
 .c-abstract-modal--default {
-  @include cudl-breakpoint(mobile) {
-    border-radius: 0;
-    height: 100%;
-    width: 100%;
-  }
   @include cudl-breakpoint(phablet) {
     border-radius: 3px;
     max-height: 85vh;

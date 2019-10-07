@@ -13,6 +13,7 @@ import {
   coinValueToSpinType,
   isAboutToExpire,
   showStateBadge,
+  getValuablesByState,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -42,11 +43,11 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is CASH unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is CASH unlocked", () => {
     valuableType = VALUABLE_TYPES.CASH;
 
     const expectedValue = getExpectedActionValue(
-      translations.playNowLabel,
+      translations.cashUnlockedActionLabel,
       gameBrowserUrl
     );
     const actualValue = getValuableDetailsAction({
@@ -58,10 +59,13 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is SPINS unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is SPINS unlocked", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
-    const expectedValue = getExpectedActionValue(translations.playNowLabel, "");
+    const expectedValue = getExpectedActionValue(
+      translations.spinsUnlockedActionLabel,
+      ""
+    );
     const actualValue = getValuableDetailsAction({
       valuableType,
       valuableState,
@@ -213,6 +217,27 @@ describe("Valuables.utils", () => {
     });
     test("should return false if not locked and not close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
+    });
+  });
+  describe("getValuablesByState", () => {
+    test("should filter based on state provided", () => {
+      const valuables = [
+        {
+          valuableState: VALUABLE_STATES.LOCKED,
+        },
+        {
+          valuableState: VALUABLE_STATES.FRESH,
+        },
+        {
+          valuableState: VALUABLE_STATES.FRESH,
+        },
+      ];
+      expect(
+        getValuablesByState(VALUABLE_STATES.LOCKED)(valuables)
+      ).toHaveLength(1);
+      expect(
+        getValuablesByState(VALUABLE_STATES.FRESH)(valuables)
+      ).toHaveLength(2);
     });
   });
 });
