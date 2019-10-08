@@ -6,12 +6,12 @@
   );
 }
 
-.c-card-data-badge-shadow-grey-light-3 {
-  box-shadow: inset 0 0 0 2px cudl-palette(grey, light-3);
+.c-card-data-badge-shadow-grey-light-1 {
+  border: 2px solid cudl-palette(grey, light-3);
 }
 
-.c-card-data-badge-shadow-yellow {
-  box-shadow: inset 0 0 0 2px cudl-palette(yellow);
+.c-card-data-badge-shadow-caution {
+  border: 2px solid cudl-palette(yellow);
 }
 
 .c-card-data-badges-background {
