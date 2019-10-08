@@ -10,7 +10,7 @@ import blackjackFull from "./__mocks__/BlackjackFull.json";
 
 describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
-    test("renders 5 badges with correct values", () => {
+    test("renders 9 badges with correct values", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
       const results = roulette.lobby.results.slice(0, 9);
       const badges = component
