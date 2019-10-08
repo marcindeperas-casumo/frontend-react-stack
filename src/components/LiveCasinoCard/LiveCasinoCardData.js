@@ -68,37 +68,39 @@ const getText = field => (
 );
 
 const isIn = flip(contains);
+const liveCasinoTypes = [
+  TYPES.MONEYWHEEL,
+  TYPES.ROULETTE,
+  TYPES.TOPCARD,
+  TYPES.MONOPOLY,
+  TYPES.BACCARAT,
+];
 const LobbyType = ({ lobby }) =>
   cond([
-    [
-      isIn([
-        TYPES.MONEYWHEEL,
-        TYPES.ROULETTE,
-        TYPES.TOPCARD,
-        TYPES.MONOPOLY,
-        TYPES.BACCARAT,
-      ]),
-      () => renderResults(lobby),
-    ],
+    [isIn(liveCasinoTypes), () => renderResults(lobby)],
     [equals(TYPES.BLACKJACK), () => renderSeats(lobby)],
     [T, () => null],
   ])(lobby.type);
 
-const LiveCasinoCardData = ({ lobby }: Props) => (
-  <Flex
-    align="center"
-    justify="center"
-    className="c-card-data-badges-background"
-  >
+const LiveCasinoCardData = ({ lobby }: Props) => {
+  return (
     <Flex
-      direction="vertical"
       align="center"
-      className="u-width--full u-position-relative"
+      justify="center"
+      className={classNames(
+        contains(lobby.type, liveCasinoTypes) && "c-card-data-badges-background"
+      )}
     >
-      <LobbyType lobby={lobby} />
-      <div className="c-card-data-badges-mask u-position-absolute" />
+      <Flex
+        direction="vertical"
+        align="center"
+        className="u-width--full u-position-relative"
+      >
+        <LobbyType lobby={lobby} />
+        <div className="c-card-data-badges-mask u-position-absolute" />
+      </Flex>
     </Flex>
-  </Flex>
-);
+  );
+};
 
 export default LiveCasinoCardData;
