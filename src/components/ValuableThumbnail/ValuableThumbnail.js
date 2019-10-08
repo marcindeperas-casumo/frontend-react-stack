@@ -5,7 +5,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
-import { INTL_LOCALES } from "Src/constants";
 import {
   type ValuableState,
   VALUABLE_TYPES,
@@ -52,17 +51,13 @@ export const ValuableThumbnail = ({
   translations,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
-  const isFresh = valuableState === VALUABLE_STATES.FRESH;
   const stateBadgeVisible =
-    size !== "small" &&
-    (showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh);
+    size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
   const stateBadgeText = getStateBadgeText(
     expiryTimeLeft,
     translations,
     valuableState
   );
-
-  const locale = INTL_LOCALES[market];
 
   return (
     <div className={`o-ratio o-ratio--valuable-card-thumbnail-${size}`}>
@@ -83,7 +78,7 @@ export const ValuableThumbnail = ({
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--1/1" />
+            <Coin className="u-width--full" />
           </div>
           <Flex
             align="center"
@@ -95,10 +90,10 @@ export const ValuableThumbnail = ({
           >
             <ValuableSymbol
               currency={currency}
-              locale={locale}
               spinType={spinType}
               valuableType={valuableType}
-              fontSize={size === "small" ? "md" : "lg"}
+              size="md"
+              className="u-width--1/1"
             />
           </Flex>
         </div>

@@ -1,13 +1,12 @@
 //@flow
 import React from "react";
 import { shallow, mount } from "enzyme";
-import List from "@casumo/cmp-list";
-import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
+import mockedValuables from "Components/ValuableRow/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
-import { ValuableRow } from "Components/ValuableRow";
+import { getValuablesByState, VALUABLE_STATES } from "Models/valuables";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import SectionList from "Components/SectionList";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 import translationsMock from "./__mocks__/translations.mock.json";
 
@@ -28,8 +27,8 @@ describe("PlayerValuableListVertical", () => {
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
-  test("should render the correct number of items", () => {
-    const rendered = shallow(
+  test("Should render a SectionList", () => {
+    const rendered = mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}
@@ -38,33 +37,22 @@ describe("PlayerValuableListVertical", () => {
         refetch={refetchMock}
       />
     );
-    expect(rendered.find(GameRowSkeleton).exists()).toBe(false);
-    expect(
-      rendered
-        .find(List)
-        .dive()
-        .find(ValuableRow)
-    ).toHaveLength(mockedValuables.length);
-  });
-
-  test("should render the list title", () => {
-    const rendered = shallow(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={refetchMock}
-      />
-    );
-    expect(rendered.find(ScrollableListTitle).prop("title")).toEqual(
-      translationsMock.listTitleLabel
-    );
+    expect(rendered.find(SectionList)).toHaveLength(1);
+    expect(rendered.find(SectionList).prop("sections")).toEqual([
+      {
+        title: translationsMock.availableListTitleLabel,
+        data: getValuablesByState(VALUABLE_STATES.FRESH)(mockedValuables),
+      },
+      {
+        title: translationsMock.lockedListTitleLabel,
+        data: getValuablesByState(VALUABLE_STATES.LOCKED)(mockedValuables),
+      },
+    ]);
   });
 
   test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
     const mock = jest.fn();
-    const rendered = mount(
+    mount(
       <PlayerValuableListVertical
         valuables={mockedValuables}
         loading={false}

@@ -128,6 +128,17 @@ export const CURRENCY_SYMBOLS = {
   JPY: "\u00A5", // ¥
 };
 
+export const CURRENCIES = {
+  EUR: "EUR",
+  GBP: "GBP",
+  DKK: "KR",
+  SEK: "KR",
+  CAD: "CAD",
+  NZD: "NZD",
+  INR: "INR",
+  JPY: "JPY",
+};
+
 export const VERTICALS = {
   SPORTS: "SPORTS",
   CASINO: "CASINO",

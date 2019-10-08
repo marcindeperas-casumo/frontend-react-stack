@@ -66,7 +66,7 @@ export class ValuableRow extends PureComponent<Props> {
     };
     return (
       <ImageLazy
-        className="u-object-fit-cover u-width--1/1 u-height--1/1 t-border-r u-overflow-hidden"
+        className="u-object-fit-cover u-width--full u-height--full t-border-r u-overflow-hidden"
         src={this.props.backgroundImage}
         imgixOpts={this.isValuableTypeSpins ? imgixOptsForSpins : {}}
       />
@@ -96,7 +96,7 @@ export class ValuableRow extends PureComponent<Props> {
         onClick={this.props.onClick}
       >
         <Flex.Item className="c-valuable-row-thumbnail">
-          <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden u-drop-shadow">
+          <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}
               coinValue={this.props.coinValue}

@@ -1,11 +1,13 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { boolean } from "@storybook/addon-knobs/react";
+import { boolean, select } from "@storybook/addon-knobs/react";
 import { F } from "ramda";
-import { select } from "@storybook/addon-knobs/react";
 import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
-import { mockValuable as mockValuableCard } from "Components/ValuableCard/__mocks__/Valuable.mock";
+import {
+  mockValuable as mockValuableCard,
+  mockExpiryDate,
+} from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { ValuableCard } from "Components/ValuableCard";
 import { VALUABLE_TYPES } from "Models/valuables";
 import defaultState from "Models/__mocks__/state.mock";
@@ -22,19 +24,16 @@ stories.add("Default", () => {
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
   const valuableDetailsMock = mockData(valuableType);
-  const expiresWith24Hours = boolean("Locked", false);
-  const expiryDate = addHoursToNow(4);
-  const expiresSoonValuable = {
-    ...valuableDetailsMock,
-    expiryDate,
-  };
+  const expiresWith24Hours = boolean("Expires within 24 hours", false);
+  const expiryDate = mockExpiryDate(expiresWith24Hours);
 
   return (
     <div style={{ width: "420px" }}>
       <ValuableDetails
-        valuableDetails={
-          expiresWith24Hours ? expiresSoonValuable : valuableDetailsMock
-        }
+        valuableDetails={{
+          ...valuableDetailsMock,
+          expiryDate,
+        }}
         translations={translations}
         onConsumeValuable={F}
         onLaunchGame={() => {}}
@@ -43,7 +42,7 @@ stories.add("Default", () => {
           <ValuableCard
             {...mockValuableCard(valuableType)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetails>
@@ -66,7 +65,7 @@ stories.add("Default - With modal", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.CASH)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetailsWithModal>
@@ -89,7 +88,7 @@ stories.add("Deposit - Locked", () => {
           <ValuableCard
             {...mockValuableCard(VALUABLE_TYPES.DEPOSIT)}
             caveat={null}
-            className="u-drop-shadow--lg"
+            className="t-box-shadow--lg"
           />
         </div>
       </ValuableDetails>
