@@ -25,36 +25,31 @@ const renderResults = ({ results, type }) => {
   }
 
   return (
-    <>
-      <Flex
-        spacing="sm"
-        className="u-margin-bottom u-padding-top u-margin-left"
-      >
-        {results.slice(0, RESULT_BADGES).map((n, i) => {
-          const color = getBadgeColor(type, n);
-          const borderColor = getBadgeBorderColor(type, n);
-          return (
-            <Flex.Item key={i}>
-              <Flex
-                align="center"
-                justify="center"
-                className={classNames(
-                  "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
-                  `t-background-${color}`,
-                  `t-color-${getTextColor(color)}`,
-                  borderColor && `c-card-data-badge-shadow-${borderColor}`,
-                  i === 0 && "c-card-data-badge"
-                )}
-              >
-                <Text size="xs" tag="span">
-                  {getResultsDisplay(type, n)}
-                </Text>
-              </Flex>
-            </Flex.Item>
-          );
-        })}
-      </Flex>
-    </>
+    <Flex spacing="sm" className="u-margin-bottom u-padding-top u-margin-left">
+      {results.slice(0, RESULT_BADGES).map((n, i) => {
+        const color = getBadgeColor(type, n);
+        const borderColor = getBadgeBorderColor(type, n);
+        return (
+          <Flex.Item key={i}>
+            <Flex
+              align="center"
+              justify="center"
+              className={classNames(
+                "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
+                `t-background-${color}`,
+                `t-color-${getTextColor(color)}`,
+                borderColor && `c-card-data-badge-shadow-${borderColor}`,
+                i === 0 && "c-card-data-badge"
+              )}
+            >
+              <Text size="xs" tag="span">
+                {getResultsDisplay(type, n)}
+              </Text>
+            </Flex>
+          </Flex.Item>
+        );
+      })}
+    </Flex>
   );
 };
 
