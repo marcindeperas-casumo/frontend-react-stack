@@ -11,4 +11,5 @@ export type liveCasinoLobby = {
   provider: string,
   results: [string],
   history: [string],
+  betBehind?: boolean,
 };
