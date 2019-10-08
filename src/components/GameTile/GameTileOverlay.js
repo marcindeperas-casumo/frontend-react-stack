@@ -19,6 +19,7 @@ type Props = {
   onFavouriteGame: Function,
   alwaysActive: boolean,
   isInMyList: boolean,
+  className?: string,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
@@ -48,56 +49,62 @@ const GameTileOverlay = ({
   onFavouriteGame,
   alwaysActive,
   isInMyList,
+  className,
 }: Props) => {
   return (
-    <Flex
-      align="center"
-      justify={"space-between"}
-      direction="vertical"
-      className={classNames(
-        "c-game-tile__overlay o-ratio__content u-text-align-center",
-        getClassModifier(inMaintenanceMode, alwaysActive),
-        "u-padding--md t-border-r"
-      )}
-    >
-      <Text
-        size="sm"
+    <div className={className}>
+      <Flex
+        align="center"
+        justify={"space-between"}
+        direction="vertical"
         className={classNames(
-          alwaysActive && "u-visibility--hidden",
-          "t-color-white u-text-clamp u-font-weight-bold u-padding-top"
+          "c-game-tile__overlay o-ratio__content u-text-align-center",
+          getClassModifier(inMaintenanceMode, alwaysActive),
+          "u-padding--md t-border-r"
         )}
       >
-        {convertHTMLToString(name)}
-      </Text>
-
-      {inMaintenanceMode ? (
-        <TemporaryUnavailable />
-      ) : (
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        <Text
+          size="sm"
+          className={classNames(
+            alwaysActive && "u-visibility--hidden",
+            "t-color-white u-text-clamp u-font-weight-bold u-padding-top"
+          )}
         >
-          <PlayAction onLaunchGame={onLaunchGame} />
-        </TrackClick>
-      )}
-      <Flex
-        justify={alwaysActive ? "end" : "space-between"}
-        align="center"
-        className="u-width--1/1"
-      >
-        {!alwaysActive && (
+          {convertHTMLToString(name)}
+        </Text>
+
+        {inMaintenanceMode ? (
+          <TemporaryUnavailable />
+        ) : (
           <TrackClick
-            eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
             data={{ [EVENT_PROPS.GAME_NAME]: name }}
           >
-            <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-              <MoreIcon className="t-color-white" />
-            </a>
+            <PlayAction onLaunchGame={onLaunchGame} />
           </TrackClick>
         )}
-        <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+        <Flex
+          justify={alwaysActive ? "end" : "space-between"}
+          align="center"
+          className="u-width--full"
+        >
+          {!alwaysActive && (
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+              data={{ [EVENT_PROPS.GAME_NAME]: name }}
+            >
+              <a
+                href={`/en/play/${slug}`}
+                onMouseDown={e => e.preventDefault()}
+              >
+                <MoreIcon className="t-color-white" />
+              </a>
+            </TrackClick>
+          )}
+          <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+        </Flex>
       </Flex>
-    </Flex>
+    </div>
   );
 };
 

@@ -104,22 +104,18 @@ export default class GameTile extends PureComponent<Props, State> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        <div
+        <GameTileOverlay
           className={classNames(
             showOverlay ? "u-display--block" : "u-display--none"
           )}
-        >
-          <GameTileOverlay
-            name={name}
-            slug={slug}
-            inMaintenanceMode={inMaintenanceMode}
-            onLaunchGame={onLaunchGame}
-            onFavouriteGame={onFavouriteGame}
-            alwaysActive={isOverlayAlwaysActive}
-            isInMyList={isInMyList}
-          />
-        </div>
-        )}
+          name={name}
+          slug={slug}
+          inMaintenanceMode={inMaintenanceMode}
+          onLaunchGame={onLaunchGame}
+          onFavouriteGame={onFavouriteGame}
+          alwaysActive={isOverlayAlwaysActive}
+          isInMyList={isInMyList}
+        />
       </div>
     );
   }
