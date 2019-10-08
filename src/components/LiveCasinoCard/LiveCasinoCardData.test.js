@@ -12,7 +12,7 @@ describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
     test("renders 5 badges with correct values", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
-      const results = roulette.lobby.results.slice(0, 5);
+      const results = roulette.lobby.results.slice(0, 9);
       const badges = component
         .find("LobbyType")
         .shallow()
@@ -20,7 +20,7 @@ describe("LiveCasinoCardData", () => {
       const rendered = badges.map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);
-      expect(badges).toHaveLength(5);
+      expect(badges).toHaveLength(9);
     });
   });
 
