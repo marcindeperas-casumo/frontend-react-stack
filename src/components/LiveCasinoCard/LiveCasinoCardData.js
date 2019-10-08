@@ -88,7 +88,8 @@ const LiveCasinoCardData = ({ lobby }: Props) => {
       align="center"
       justify="center"
       className={classNames(
-        contains(lobby.type, liveCasinoTypes) && "c-card-data-badges-background"
+        (contains(lobby.type, liveCasinoTypes) || lobby.betBehind) &&
+          "c-card-data-badges-background"
       )}
     >
       <Flex
