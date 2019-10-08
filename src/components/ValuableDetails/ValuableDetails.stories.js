@@ -95,9 +95,3 @@ stories.add("Deposit - Locked", () => {
     </div>
   );
 });
-
-const addHoursToNow = hours => {
-  const result = new Date(Date.now());
-
-  return result.setHours(result.getHours() + hours);
-};
