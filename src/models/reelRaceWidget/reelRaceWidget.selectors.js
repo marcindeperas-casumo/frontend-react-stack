@@ -15,8 +15,7 @@ export const reelRaceStartedSelector = createSelector(
     return R.pipe(
       R.values,
       R.sortBy(R.prop("startTime")),
-      R.find(optedStarted),
-      R.defaultTo(null)
+      R.find(optedStarted)
     )(reelRaces);
   }
 );
@@ -30,8 +29,7 @@ export const reelRaceScheduledSelector = createSelector(
     return R.pipe(
       R.values,
       R.sortBy(R.prop("startTime")),
-      R.find(optedScheduled),
-      R.defaultTo(null)
+      R.find(optedScheduled)
     )(reelRaces);
   }
 );

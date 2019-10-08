@@ -27,7 +27,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
     test("should return null if started and not opted in", () => {
       const state = { schema: { reelRaces } };
 
-      expect(reelRaceStartedSelector(state)).toEqual(null);
+      expect(reelRaceStartedSelector(state)).toBeUndefined();
     });
 
     test("should return null if SCHEDULED and player opted in", () => {
@@ -39,7 +39,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
       };
       const state = { schema: { reelRaces: rr } };
 
-      expect(reelRaceStartedSelector(state)).toEqual(null);
+      expect(reelRaceStartedSelector(state)).toBeUndefined();
     });
 
     test("should return rr if STARTED and player opted in", () => {
@@ -61,7 +61,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
     test("should return null if started and not opted in", () => {
       const state = { schema: { reelRaces } };
 
-      expect(reelRaceScheduledSelector(state)).toEqual(null);
+      expect(reelRaceScheduledSelector(state)).toBeUndefined();
     });
 
     test("should return null if STARTED and player opted in", () => {
@@ -75,7 +75,7 @@ describe("Models/reelRaceWidget/Selectors", () => {
       };
       const state = { schema: { reelRaces: rr } };
 
-      expect(reelRaceScheduledSelector(state)).toEqual(null);
+      expect(reelRaceScheduledSelector(state)).toBeUndefined();
     });
 
     test("should return rr if SCHEDULED and player opted in", () => {
