@@ -2,7 +2,6 @@
 import React from "react";
 import classNames from "classnames";
 import { cond, contains, equals, flip, T } from "ramda";
-import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { CMSField } from "Components/CMSField";
@@ -11,7 +10,7 @@ import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
 
-const RESULT_BADGES = 9;
+const RESULT_BADGES = 10;
 
 type Props = {|
   lobby: liveCasinoLobby,
@@ -29,26 +28,28 @@ const renderResults = ({ results, type }) => {
     <>
       <Flex
         spacing="sm"
-        className="u-margin-bottom u-padding-top u-margin-left--md u-padding-right--sm"
+        className="u-margin-bottom u-padding-top u-margin-left"
       >
         {results.slice(0, RESULT_BADGES).map((n, i) => {
           const color = getBadgeColor(type, n);
           const borderColor = getBadgeBorderColor(type, n);
           return (
             <Flex.Item key={i}>
-              <Badge
-                size="xs"
-                tag="div"
-                bgColor={color}
-                txtColor={getTextColor(color)}
-                circle={true}
+              <Flex
+                align="center"
+                justify="center"
                 className={classNames(
+                  "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
+                  `t-background-${color}`,
+                  `t-color-${getTextColor(color)}`,
                   borderColor && `c-card-data-badge-shadow-${borderColor}`,
                   i === 0 && "c-card-data-badge"
                 )}
               >
-                {getResultsDisplay(type, n)}
-              </Badge>
+                <Text size="xs" tag="span">
+                  {getResultsDisplay(type, n)}
+                </Text>
+              </Flex>
             </Flex.Item>
           );
         })}
@@ -60,7 +61,7 @@ const renderResults = ({ results, type }) => {
 const renderSeats = ({ seats }) => (
   <Text
     size="sm"
-    className="t-color-white u-margin-bottom--md u-font-weight-bold u-text-transform-capitalize"
+    className="t-color-white u-margin-bottom u-margin-top u-padding-bottom--sm u-font-weight-bold u-text-transform-capitalize"
   >
     {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
   </Text>
@@ -93,7 +94,7 @@ const LiveCasinoCardData = ({ lobby }: Props) => (
     <Flex
       direction="vertical"
       align="center"
-      className="u-width--1/1 u-position-relative"
+      className="u-width--full u-position-relative"
     >
       <LobbyType lobby={lobby} />
       <div className="c-card-data-badges-mask u-position-absolute" />

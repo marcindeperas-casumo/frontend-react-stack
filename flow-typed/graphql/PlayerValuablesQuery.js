@@ -6,16 +6,6 @@
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type PlayerValuablesQuery_translations_playerValuableTranslations = {
-  hoursLabel: string,
-  listTitleLabel: string,
-  minutesLabel: string,
-};
-
-export type PlayerValuablesQuery_translations = {
-  playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
-};
-
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string
 };
@@ -25,7 +15,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
-  expiryDate: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -40,7 +30,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
-  expiryDate: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -59,7 +49,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
-  expiryDate: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -77,7 +67,12 @@ export type PlayerValuablesQuery_player = {
 };
 
 export type PlayerValuablesQuery = {
-  translations: PlayerValuablesQuery_translations,
+  listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
+  hoursLabel: string,
+  minutesLabel: string,
+  seeAllLabel: string,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */
