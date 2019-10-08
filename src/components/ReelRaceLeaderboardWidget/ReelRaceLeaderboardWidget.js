@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { PrizeIcon } from "@casumo/cmp-icons";
@@ -9,19 +10,15 @@ import "./ReelRaceLeaderboardWidget.scss";
 
 type Props = {
   playerId: string,
-  playerBoosters: {
-    triples: number,
-    bigWins: number,
-    megaWins: number,
-  },
 };
 
 export function ReelRaceLeaderboardWidget(props: Props) {
   const board = useReelRaceLeaderboard();
+  const player = R.find(R.propEq("playerId", props.playerId))(board);
 
   return (
     <Flex direction="vertical">
-      <ReelRacePlayerBoosters boosters={props.playerBoosters} />
+      {player && <ReelRacePlayerBoosters boosters={player.boosters} />}
       {board.map(p => (
         <Flex
           direction="horizontal"

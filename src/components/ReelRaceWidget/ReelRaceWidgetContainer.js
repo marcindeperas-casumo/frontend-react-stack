@@ -4,7 +4,6 @@ import {
   reelRaceStartedSelector,
   reelRaceScheduledSelector,
 } from "Models/reelRaceWidget";
-import { reelRacePlayerSpinsSelector } from "Models/reelRaceLeaderboard";
 import { gameSelector } from "Models/schema";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { launchGame } from "Models/games";
@@ -49,7 +48,6 @@ export default connect(
       },
       tournamentChannels: tournamentChannelsSelector(state),
       playerId: playerIdSelector(state),
-      playerSpins: reelRacePlayerSpinsSelector(state),
     };
   },
   dispatch => ({

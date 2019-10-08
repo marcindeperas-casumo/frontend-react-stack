@@ -1,4 +1,4 @@
-import { reelRacesUpdatesSaga } from "./reelRaces.saga.updates";
+import { reelRacesUpdatesSaga } from "./reelRaces.saga.optIn";
 
 describe("Models/reelRaces/UpdateSaga", () => {
   const action = {
