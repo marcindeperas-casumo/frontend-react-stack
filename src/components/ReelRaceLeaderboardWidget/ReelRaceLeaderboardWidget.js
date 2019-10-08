@@ -2,48 +2,22 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import * as R from "ramda";
 import { PrizeIcon } from "@casumo/cmp-icons";
-import type { Leaderboard } from "Models/reelRaceLeaderboard";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
+import { useReelRaceLeaderboard } from "./useReelRaceLeaderboard";
 import "./ReelRaceLeaderboardWidget.scss";
 
 type Props = {
-  leaderboard: Array<Leaderboard>,
-  subscribeUpdates: () => void,
-  unsubscribeUpdates: () => void,
   playerId: string,
   playerBoosters: {
     triples: number,
     bigWins: number,
     megaWins: number,
   },
-  tournamentId: string,
 };
 
 export function ReelRaceLeaderboardWidget(props: Props) {
-  React.useEffect(() => {
-    if (props.tournamentId) {
-      props.subscribeUpdates();
-
-      return () => {
-        props.unsubscribeUpdates();
-      };
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [props.tournamentId]);
-
-  const l = R.pipe(
-    R.values,
-    R.sortBy(R.prop("position"))
-  )(props.leaderboard);
-
-  const i = R.findIndex(R.propEq("playerId", props.playerId), l);
-
-  const board = R.uniqBy(
-    R.prop("playerId"),
-    R.concat(R.take(3, l), R.slice(i - 2, i + 1, l))
-  );
+  const board = useReelRaceLeaderboard();
 
   return (
     <Flex direction="vertical">
