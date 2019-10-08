@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
+import isNotChromatic from "Storybook/isNotChromatic";
 import { ReelRaceLeaderboardWidget } from "./ReelRaceLeaderboardWidget";
 
 const stories = storiesOf("ReelRaceLeaderboardWidget", module);
@@ -74,10 +75,12 @@ const props = {
   tournamentId: "123",
 };
 
-stories.add("Default", () => {
-  return (
-    <div style={{ width: "300px" }}>
-      <ReelRaceLeaderboardWidget {...props} />
-    </div>
-  );
-});
+if (isNotChromatic) {
+  stories.add("Default", () => {
+    return (
+      <div style={{ width: "300px" }}>
+        <ReelRaceLeaderboardWidget {...props} />
+      </div>
+    );
+  });
+}
