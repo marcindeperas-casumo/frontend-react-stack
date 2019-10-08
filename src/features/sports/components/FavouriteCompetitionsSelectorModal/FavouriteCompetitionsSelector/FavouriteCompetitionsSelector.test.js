@@ -1,7 +1,7 @@
 import React from "react";
 import wait from "waait";
 import { all, equals, F } from "ramda";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import { isNilOrEmpty } from "Src/utils";

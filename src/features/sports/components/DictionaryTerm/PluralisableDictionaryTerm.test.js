@@ -3,7 +3,7 @@ import React from "react";
 import { mount } from "enzyme";
 import wait from "waait";
 import waitForExpect from "wait-for-expect";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {

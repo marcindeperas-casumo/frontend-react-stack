@@ -1,5 +1,5 @@
 import FavouriteSportsAndCompetitionsSelectorModal from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal";
-import EditFavouriteCompetitionsModal from "Features/sports/components/EditFavouriteCompetitionsModal";
+import { EditFavouriteCompetitionsModal } from "Features/sports/components/EditFavouriteCompetitionsModal";
 import { BettingGlossary } from "Features/sports/components/BettingGlossary";
 
 export const MODAL = {

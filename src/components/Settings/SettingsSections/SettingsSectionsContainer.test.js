@@ -1,7 +1,7 @@
 import React from "react";
 import wait from "waait";
 import { mount } from "enzyme";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { withContainer } from "./SettingsSectionsContainer";
 import {
   playerSectionsQueryMock,

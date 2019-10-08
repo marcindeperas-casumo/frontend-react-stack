@@ -1,6 +1,6 @@
 // @flow
 import React from "react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";

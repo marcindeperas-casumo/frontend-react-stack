@@ -1,6 +1,6 @@
 import React from "react";
 import { ApolloProvider } from "react-apollo";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { GraphQLClientContext } from "Components/GraphQLProvider";
 
 /**
