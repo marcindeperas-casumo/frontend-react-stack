@@ -10,25 +10,13 @@ export const reelRaceLeaderboardSelector = createSelector(
 );
 
 export const reelRacePlayerSpinsSelector = createSelector(
-  state => state,
+  reelRaceLeaderboardSelector,
   playerIdSelector,
-  (state, playerId) =>
-    R.pathOr(
-      null,
-      ["schema", ENTITY_KEYS.LEADERBOARD, playerId, "remainingSpins"],
-      state
-    )
+  (board, playerId) => R.pathOr(null, [playerId, "remainingSpins"], board)
 );
 
 export const reelRacePlayerBoostersSelector = createSelector(
-  state => state,
+  reelRaceLeaderboardSelector,
   playerIdSelector,
-  (state, playerId) => {
-    return R.pipe(
-      R.pathOr({}, ["schema", ENTITY_KEYS.LEADERBOARD]),
-      R.prop(playerId),
-      R.prop("boosters"),
-      R.defaultTo(null)
-    )(state);
-  }
+  (board, playerId) => R.pathOr(null, [playerId, "boosters"], board)
 );
