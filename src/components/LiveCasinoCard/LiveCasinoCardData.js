@@ -61,7 +61,8 @@ const renderResults = ({ results, type }) => {
 const renderSeats = ({ seats }) => (
   <Text
     size="sm"
-    className="t-color-white u-margin-bottom u-margin-top u-padding-bottom--sm u-font-weight-bold u-text-transform-capitalize"
+    tag="span"
+    className="t-color-white u-font-weight-bold u-text-transform-capitalize"
   >
     {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
   </Text>
@@ -89,8 +90,11 @@ const LobbyType = ({ lobby }) =>
   ])(lobby.type);
 
 const LiveCasinoCardData = ({ lobby }: Props) => (
-  <>
-    <Flex className="c-card-data-badges-background u-opacity-75 t-background-black u-position-absolute"></Flex>
+  <Flex
+    align="center"
+    justify="center"
+    className="c-card-data-badges-background"
+  >
     <Flex
       direction="vertical"
       align="center"
@@ -99,7 +103,7 @@ const LiveCasinoCardData = ({ lobby }: Props) => (
       <LobbyType lobby={lobby} />
       <div className="c-card-data-badges-mask u-position-absolute" />
     </Flex>
-  </>
+  </Flex>
 );
 
 export default LiveCasinoCardData;
