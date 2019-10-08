@@ -25,69 +25,37 @@ describe("LiveCasinoCardData", () => {
   });
 
   describe("TopCard (Football Studio)", () => {
-    test("renders 5 badges with Football letter results", () => {
+    test("renders 9 badges with Football letter results", () => {
       const component = shallow(<CardData lobby={topCard.lobby} />);
       const data = component.find("LobbyType").shallow();
       const results = topCard.lobby.results
-        .slice(0, 5)
+        .slice(0, 9)
         .map(v => topCardLettersDisplay[v]);
       const rendered = data
         .find("Badge")
         .map(node => node.props().children.toString());
-
       expect(rendered).toEqual(results);
-      expect(data.find("Badge")).toHaveLength(5);
-    });
-
-    test("should render recent letters text", () => {
-      const component = shallow(<CardData lobby={topCard.lobby} />);
-      const data = component
-        .find("LobbyType")
-        .shallow()
-        .find("DisplayText")
-        .shallow();
-      const cmsField = data.find("Connect(CMSField)").props().field;
-
-      expect(cmsField).toEqual("recent_letters");
+      expect(data.find("Badge")).toHaveLength(9);
     });
   });
 
   describe("MoneyWheel", () => {
-    test("renders the 5 badges values with no leading 0", () => {
+    test("renders the 9 badges values with no leading 0", () => {
       const component = shallow(<CardData lobby={moneyWheel.lobby} />);
       const data = component.find("LobbyType").shallow();
       const results = moneyWheel.lobby.results
-        .slice(0, 5)
+        .slice(0, 9)
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
       const rendered = data
         .find("Badge")
         .map(node => node.props().children.toString());
 
       expect(rendered).toEqual(results);
-      expect(data.find("Badge")).toHaveLength(5);
-    });
-
-    test("should render recent letters text", () => {
-      const component = shallow(<CardData lobby={moneyWheel.lobby} />);
-      const data = component
-        .find("LobbyType")
-        .shallow()
-        .find("DisplayText")
-        .shallow();
-      const cmsField = data.find("Connect(CMSField)").props().field;
-
-      expect(cmsField).toEqual("recent_numbers");
+      expect(data.find("Badge")).toHaveLength(9);
     });
   });
 
   describe("Blackjack (Open Seats)", () => {
-    test("renders 1 badge", () => {
-      const component = shallow(<CardData lobby={blackjack.lobby} />);
-      const data = component.find("LobbyType").shallow();
-
-      expect(data.find("Badge").props().children).toEqual(7);
-    });
-
     test("should render open seats text", () => {
       const component = shallow(<CardData lobby={blackjack.lobby} />);
       const data = component.find("LobbyType").shallow();
@@ -98,17 +66,6 @@ describe("LiveCasinoCardData", () => {
   });
 
   describe("Blackjack No Seats", () => {
-    test("renders 1 badge bet with behind text", () => {
-      const component = shallow(<CardData lobby={blackjackFull.lobby} />);
-      const data = component.find("LobbyType").shallow();
-      const cmsField = data
-        .find("Badge")
-        .children()
-        .props().field;
-
-      expect(cmsField).toEqual("bet_behind");
-    });
-
     test("renders bet behind text", () => {
       const component = shallow(<CardData lobby={blackjackFull.lobby} />);
       const data = component.find("LobbyType").shallow();
@@ -117,7 +74,7 @@ describe("LiveCasinoCardData", () => {
         .find("Connect(CMSField)")
         .props().field;
 
-      expect(cmsField).toEqual("table_full");
+      expect(cmsField).toEqual("bet_behind");
     });
   });
 });
