@@ -62,6 +62,7 @@ const GameTileOverlay = ({
           getClassModifier(inMaintenanceMode, alwaysActive),
           "u-padding--md t-border-r"
         )}
+        data-test-id="gameTileOverlay"
       >
         <Text
           size="sm"
