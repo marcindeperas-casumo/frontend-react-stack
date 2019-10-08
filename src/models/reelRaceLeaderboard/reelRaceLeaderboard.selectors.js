@@ -13,12 +13,11 @@ export const reelRacePlayerSpinsSelector = createSelector(
   state => state,
   playerIdSelector,
   (state, playerId) =>
-    R.pipe(
-      R.pathOr({}, ["schema", ENTITY_KEYS.LEADERBOARD]),
-      R.prop(playerId),
-      R.prop("remainingSpins"),
-      R.defaultTo(null)
-    )(state)
+    R.pathOr(
+      null,
+      ["schema", ENTITY_KEYS.LEADERBOARD, playerId, "remainingSpins"],
+      state
+    )
 );
 
 export const reelRacePlayerBoostersSelector = createSelector(
