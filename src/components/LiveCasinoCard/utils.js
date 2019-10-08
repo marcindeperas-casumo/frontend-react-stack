@@ -1,17 +1,6 @@
 // @flow
 import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
-import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
-
-const COLORS = {
-  BLACK: "chrome-dark-2",
-  RED: "red-support",
-  GREEN: "green",
-  YELLOW: "caution",
-  BLUE: "info",
-  PURPLE: "purple-5",
-  ORANGE: "warning",
-  GREY_LIGHT_1: "grey-light-1",
-};
+import { EVOLUTION_LOBBY_TYPES as TYPES, COLORS } from "./constants";
 
 /* Roulette */
 

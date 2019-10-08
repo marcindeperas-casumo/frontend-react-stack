@@ -6,11 +6,9 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { CMSField } from "Components/CMSField";
 import type { liveCasinoLobby } from "Types/liveCasinoLobby";
-import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
+import { EVOLUTION_LOBBY_TYPES as TYPES, RESULT_BADGES } from "./constants";
 import { getBadgeColor, getBadgeBorderColor, getResultsDisplay } from "./utils";
 import "./LiveCasinoCardData.scss";
-
-const RESULT_BADGES = 10;
 
 type Props = {|
   lobby: liveCasinoLobby,

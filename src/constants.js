@@ -192,15 +192,6 @@ export const MODALS = {
   ERROR: "ERROR",
 };
 
-export const EVOLUTION_LOBBY_TYPES = {
-  MONEYWHEEL: "MoneyWheel",
-  ROULETTE: "Roulette",
-  TOPCARD: "TopCard",
-  MONOPOLY: "Monopoly",
-  BLACKJACK: "Blackjack",
-  BACCARAT: "Baccarat",
-};
-
 // Make sure that any flags you have here are also listed here, otherwise they will not work:
 // https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
 export const FEATURE_FLAGS = {
