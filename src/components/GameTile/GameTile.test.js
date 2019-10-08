@@ -30,12 +30,14 @@ describe("GameTile", () => {
     const rendered = shallow(
       <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
     );
-    expect(rendered.find("GameTileOverlay").length).toBe(0);
+    expect(rendered.find("GameTileOverlay").hasClass("u-display--none")).toBe(
+      true
+    );
   });
 
   test("should render GameTileOverlay when clicked", () => {
     const onLaunchGame = jest.fn();
-    const rendered = shallow(
+    const rendered = mount(
       <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
     );
     rendered.simulate("click");
@@ -44,7 +46,9 @@ describe("GameTile", () => {
       .find("GameTileOverlay")
       .props();
 
-    expect(rendered.find("GameTileOverlay").length).toBe(1);
+    expect(rendered.find("GameTileOverlay").hasClass("u-display--block")).toBe(
+      true
+    );
     expect(renderedGameTileOverlayProps.name).toBe(gameInfo.name);
     expect(renderedGameTileOverlayProps.slug).toBe(gameInfo.slug);
     expect(renderedGameTileOverlayProps.inMaintenanceMode).toBe(
