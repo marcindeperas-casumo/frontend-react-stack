@@ -4,7 +4,11 @@ import { find, propEq } from "ramda";
 import { DateTime } from "luxon";
 
 export const mockValuable = valuableType => {
-    return find(propEq("valuableType", valuableType))(mockData) || mockData[0];
+    const mockedValuable = find(propEq("valuableType", valuableType))(mockData) || mockData[0];
+    return {
+        ...mockedValuable,
+        expiryDate: mockExpiryDate(false),
+    }
 };
 
 export const mockExpiryDate = expiresWith24Hours => {
