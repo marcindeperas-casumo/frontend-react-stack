@@ -22,18 +22,6 @@ describe("LiveCasinoCardData", () => {
       expect(rendered).toEqual(results);
       expect(badges).toHaveLength(5);
     });
-
-    test("renders recent numbers text", () => {
-      const component = shallow(<CardData lobby={roulette.lobby} />);
-      const data = component
-        .find("LobbyType")
-        .shallow()
-        .find("DisplayText")
-        .shallow();
-      const cmsField = data.find("Connect(CMSField)").props().field;
-
-      expect(cmsField).toEqual("recent_numbers");
-    });
   });
 
   describe("TopCard (Football Studio)", () => {

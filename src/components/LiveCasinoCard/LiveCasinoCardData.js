@@ -70,13 +70,6 @@ const getText = field => (
   <CMSField slug="mobile.live-casino-cards-content" field={field} />
 );
 
-const DisplayText = ({ type }) =>
-  cond([
-    [equals(TYPES.TOPCARD), () => getText("recent_letters")],
-    [equals(TYPES.BACCARAT), () => getText("recent_outcomes")],
-    [T, () => getText("recent_numbers")],
-  ])(type);
-
 const isIn = flip(contains);
 const LobbyType = ({ lobby }) =>
   cond([
