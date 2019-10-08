@@ -39,7 +39,7 @@ const renderResults = ({ results, type }) => {
                 `t-background-${color}`,
                 `t-color-${getTextColor(color)}`,
                 borderColor && `c-card-data-badge-shadow-${borderColor}`,
-                i === 0 && "c-card-data-badge"
+                { "c-card-data-badge": i === 0 }
               )}
             >
               <Text size="xs" tag="span">
