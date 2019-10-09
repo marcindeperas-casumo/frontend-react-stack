@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import "./textInput.scss";
 
@@ -7,13 +8,17 @@ type Props = {
   currencySign: string,
   value: ?(string | number),
   onChange: any => void,
+  className?: string,
 };
 
 export function TextInput(props: Props) {
   return (
     <Flex
       align="end"
-      className="u-margin-y u-font-3xlg u-font-weight-black u-line-height t-color-grey-dark-3 t-border-bottom t-border--current-color"
+      className={classNames(
+        "u-margin-y u-font-3xlg u-font-weight-black u-line-height t-color-grey-dark-3 t-border-bottom t-border--current-color",
+        props.className
+      )}
     >
       {props.currencySign}
       <input
