@@ -65,7 +65,7 @@ export const ValuableSymbol = ({
     <ValuableSymbolComponent
       type={valuableType}
       size={size}
-      className="u-width--1/1"
+      className="u-width--1/1 u-width--full"
     />
   );
 };
