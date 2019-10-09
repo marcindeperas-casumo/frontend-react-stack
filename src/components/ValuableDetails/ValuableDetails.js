@@ -127,9 +127,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     if (shouldUseValuable(valuableType)) {
       onConsumeValuable(id)
         .then(data => {
-          if (url) {
-            navigate({ url });
-          }
+          url && navigate({ url });
         })
         .catch(({ graphQLErrors }, data) => {
           const {
