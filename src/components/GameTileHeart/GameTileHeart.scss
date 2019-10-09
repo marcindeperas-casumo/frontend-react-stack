@@ -1,0 +1,33 @@
+.c-game-tile-heart__stroke {
+  opacity: 1;
+  stroke: currentColor;
+  stroke-width: 2;
+  transition: opacity 0.35s ease-in;
+}
+
+.c-game-tile-heart__fill {
+  fill: currentColor;
+  visibility: hidden;
+}
+
+/* stylelint-disable xi/selector-pattern */
+.c-game-tile-heart.is-active {
+  animation: heart-is-active 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+  will-change: transform;
+
+  .c-game-tile-heart__fill {
+    visibility: visible;
+  }
+
+  .c-game-tile-heart__stroke {
+    opacity: 0;
+  }
+}
+
+@keyframes heart-is-active {
+  0%,
+  17.5% {
+    transform: scale(0);
+  }
+}
+/* stylelint-enable xi/selector-pattern */
