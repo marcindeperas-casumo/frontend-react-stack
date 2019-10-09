@@ -103,8 +103,7 @@ export const shouldUseValuable = (
 ) => {
   return (
     equals(valuableType, VALUABLE_TYPES.SPINS) ||
-    (equals(valuableType, VALUABLE_TYPES.CASH) &&
-      !equals(valuableState, VALUABLE_STATES.LOCKED))
+    equals(valuableType, VALUABLE_TYPES.CASH)
   );
 };
 
