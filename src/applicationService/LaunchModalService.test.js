@@ -10,6 +10,7 @@ jest.mock("../DurandalReactBridge");
 
 describe("LaunchModalService", () => {
   beforeEach(() => {
+    // $FlowFixMe
     bridge.emit.mockReset();
   });
 
