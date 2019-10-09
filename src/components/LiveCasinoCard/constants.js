@@ -1,6 +1,6 @@
 export const COLORS = {
   BLACK: "chrome-dark-2",
-  RED: "red-support",
+  RED: "red-5",
   GREEN: "green",
   YELLOW: "caution",
   BLUE: "info",

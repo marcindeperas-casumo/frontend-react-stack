@@ -52,10 +52,8 @@ const rouletteGreen = ["0", "00"];
 describe("getBadgeColor() for `Roulette`", () => {
   const type = "Roulette";
   test("should return `red` for red numbers", () => {
-    expect(rouletteRed).toEqual(rouletteResults["red-support"]);
-    rouletteRed.forEach(n =>
-      expect(getBadgeColor(type, n)).toBe("red-support")
-    );
+    expect(rouletteRed).toEqual(rouletteResults["red-5"]);
+    rouletteRed.forEach(n => expect(getBadgeColor(type, n)).toBe("red-5"));
   });
 
   test("should return `grey-dark-2` for black numbers", () => {
@@ -89,7 +87,7 @@ describe("getBadgeColor() for `MoneyWheel`", () => {
     expect(getBadgeColor(type, "20")).toBe("warning"));
 
   test("should return `red` colour for `40`", () =>
-    expect(getBadgeColor(type, "40")).toBe("red-support"));
+    expect(getBadgeColor(type, "40")).toBe("red-5"));
 
   test("should return `grey-dark-2` colour for multipliers X2, X7 and by default", () => {
     expect(getBadgeColor(type, "X2")).toBe("chrome-dark-2");
@@ -101,7 +99,7 @@ describe("getBadgeColor() for `MoneyWheel`", () => {
 describe("getBadgeColor() for `TopCard`", () => {
   const type = "TopCard";
   test("should return `red` colour for `L`", () =>
-    expect(getBadgeColor(type, "L")).toBe("red-support"));
+    expect(getBadgeColor(type, "L")).toBe("red-5"));
 
   test("should return `yellow` colour for `S`", () =>
     expect(getBadgeColor(type, "S")).toBe("caution"));
@@ -137,7 +135,7 @@ describe("getBadgeColor() for `Monopoly`", () => {
     expect(getBadgeColor(type, "2")).toBe("green"));
 
   test("should return `red` colour for `5`", () =>
-    expect(getBadgeColor(type, "5")).toBe("red-support"));
+    expect(getBadgeColor(type, "5")).toBe("red-5"));
 
   test("should return `blue-light-1` for `10`", () =>
     expect(getBadgeColor(type, "10")).toBe("info"));
@@ -188,5 +186,5 @@ describe("getBadgeColor() for `Baccarat`", () => {
     expect(getBadgeColor(type, "T")).toBe("green"));
 
   test("should return `red` colour for `B`", () =>
-    expect(getBadgeColor(type, "B")).toBe("red-support"));
+    expect(getBadgeColor(type, "B")).toBe("red-5"));
 });
