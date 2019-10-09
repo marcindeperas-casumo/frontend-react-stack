@@ -87,6 +87,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
               translations={translations}
               {...selectedValuable}
               caveat={null}
+              className="t-box-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>
