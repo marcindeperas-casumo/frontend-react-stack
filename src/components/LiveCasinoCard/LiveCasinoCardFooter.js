@@ -21,7 +21,7 @@ export default function LiveCasinoCardFooter({ players, provider }) {
   return (
     <div className="u-margin-x--md o-flex o-flex-justify--space-between o-flex__block t-border-top t-border--current-color t-color-chrome-light-2">
       <div className="o-flex-align--center">
-        <PlayerIcon className="u-margin-y t-color-grey" size="sm" />
+        <PlayerIcon className="u-margin-y t-color-grey" />
         <Text
           size="sm"
           className="u-margin-left--sm u-margin-y u-font-weight-bold t-color-grey-dark-2"
