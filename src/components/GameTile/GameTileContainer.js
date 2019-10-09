@@ -12,9 +12,7 @@ const GameTileConnected = connect(
   }),
   (dispatch, props) => ({
     onLaunchGame: () => dispatch(launchGame(props.id)),
-    onFavouriteGame: () => {
-      dispatch(updateMyList(props.id));
-    },
+    onFavouriteGame: () => dispatch(updateMyList(props.id)),
   })
 )(GameTile);
 

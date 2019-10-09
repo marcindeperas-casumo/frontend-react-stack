@@ -14,9 +14,8 @@ export const isGameListLoaded = createSelector(
   (...props) => all(identity)([...props])
 );
 
-// isGameInMyList
 export const isGameInMyList = id =>
   createSelector(
     gameListSelector(GAME_LIST_IDS.MY_LIST),
-    (...props) => contains(id, props[0].games)
+    gameList => contains(id, gameList.games)
   );
