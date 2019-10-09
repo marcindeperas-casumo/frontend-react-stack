@@ -6,6 +6,8 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolate, convertHoursToDays } from "Utils";
+import { launchErrorModal } from "Services/LaunchModalService";
+import { navigate } from "Services/NavigationService";
 import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
@@ -117,13 +119,25 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = () => {
+  handleAction = (url?: string) => {
     const { valuableDetails } = this.props;
-    const { valuableType, valuableState, id } = valuableDetails;
+    const { valuableType, id } = valuableDetails;
     const { onConsumeValuable } = this.props;
 
-    if (shouldUseValuable(valuableType, valuableState)) {
-      onConsumeValuable(id);
+    if (shouldUseValuable(valuableType)) {
+      onConsumeValuable(id)
+        .then(data => {
+          url && navigate({ url });
+        })
+        .catch(({ graphQLErrors }, data) => {
+          const {
+            extensions: { code },
+          } = graphQLErrors[0];
+
+          launchErrorModal({
+            rejectReasonId: code,
+          });
+        });
     }
   };
 
@@ -242,9 +256,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
           <div className="c-valuable-details__footer u-padding--md">
             <Button
-              href={actionButtonProps.url}
               className="u-width--full"
-              onClick={this.handleAction}
+              onClick={() => this.handleAction(actionButtonProps.url)}
               data-test="valuable-action-button"
               variant="primary"
             >

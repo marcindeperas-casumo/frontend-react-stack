@@ -14,6 +14,7 @@ import {
   isAboutToExpire,
   showStateBadge,
   getValuablesByState,
+  shouldUseValuable,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -197,6 +198,14 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
+  });
+
+  describe("shouldUseValuable", () => {
+    test("should return true if valuable is of type SPINS or CASH", () => {
+      expect(shouldUseValuable(VALUABLE_TYPES.SPINS)).toBe(true);
+      expect(shouldUseValuable(VALUABLE_TYPES.CASH)).toBe(true);
+      expect(shouldUseValuable(VALUABLE_TYPES.DEPOSIT)).toBe(false);
+    });
   });
 
   describe("isAboutToExpire", () => {

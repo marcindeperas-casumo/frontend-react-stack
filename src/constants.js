@@ -36,11 +36,13 @@ export const REACT_APP_EVENTS = {
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
+export const KO_APP_EVENT_LAUNCH_ERROR_MODAL = "KO_APP_EVENT/launchErrorModal";
 export const KO_APP_EVENT_SHOW_TERMS = "KO_APP_EVENT/showTerms";
 export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
 export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
+export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
 
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {
