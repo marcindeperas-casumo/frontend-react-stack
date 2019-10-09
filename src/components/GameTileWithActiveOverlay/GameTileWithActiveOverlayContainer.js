@@ -12,9 +12,7 @@ const GameTileWithActiveOverlayConnected = connect(
   }),
   (dispatch, props) => ({
     onLaunchGame: () => dispatch(launchGame(props.id)),
-    onFavouriteGame: () => {
-      dispatch(updateMyList(props.id));
-    },
+    onFavouriteGame: () => dispatch(updateMyList(props.id)),
   })
 )(GameTileWithActiveOverlay);
 

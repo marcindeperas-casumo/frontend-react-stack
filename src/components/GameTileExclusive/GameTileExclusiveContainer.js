@@ -11,9 +11,7 @@ const mapStateToProps = (state, props) => ({
 });
 const mapDispatchToProps = (dispatch, props) => ({
   onLaunchGame: () => dispatch(launchGame(props.id)),
-  onFavouriteGame: () => {
-    dispatch(updateMyList(props.id));
-  },
+  onFavouriteGame: () => dispatch(updateMyList(props.id)),
 });
 
 const GameTileExclusiveConnected = connect(
