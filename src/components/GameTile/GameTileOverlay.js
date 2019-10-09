@@ -4,9 +4,9 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
+import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { convertHTMLToString } from "Utils";
-import { GameTileHeart } from "Components/GameTile/GameTileHeart";
 import PlayAction from "Components/GameTile/PlayAction";
 import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 import TrackClick from "Components/TrackClick";
@@ -102,7 +102,9 @@ const GameTileOverlay = ({
               </a>
             </TrackClick>
           )}
-          <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+          <div className="u-width--lg u-height--lg">
+            <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+          </div>
         </Flex>
       </Flex>
     </div>
