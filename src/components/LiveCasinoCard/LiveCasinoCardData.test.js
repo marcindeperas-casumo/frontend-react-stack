@@ -11,7 +11,7 @@ import blackjackFull from "./__mocks__/BlackjackFull.json";
 
 describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
-    test("renders 10 Text components with correct values", () => {
+    test("renders 10 results with correct values", () => {
       const component = shallow(<CardData lobby={roulette.lobby} />);
       const results = roulette.lobby.results.slice(0, 10);
       const numbersTexts = component
@@ -28,7 +28,7 @@ describe("LiveCasinoCardData", () => {
   });
 
   describe("TopCard (Football Studio)", () => {
-    test("renders 10 Text components with Football letter results", () => {
+    test("renders 10 Football letter results", () => {
       const component = shallow(<CardData lobby={topCard.lobby} />);
       const data = component.find("LobbyType").shallow();
       const results = topCard.lobby.results
@@ -43,7 +43,7 @@ describe("LiveCasinoCardData", () => {
   });
 
   describe("MoneyWheel", () => {
-    test("renders the 10 Text values with no leading 0", () => {
+    test("renders 10 results with no leading 0", () => {
       const component = shallow(<CardData lobby={moneyWheel.lobby} />);
       const data = component.find("LobbyType").shallow();
       const results = moneyWheel.lobby.results
