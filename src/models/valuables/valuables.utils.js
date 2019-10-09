@@ -97,10 +97,7 @@ export const coinValueToSpinType = (coinValue: number = 0) => {
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
 };
 
-export const shouldUseValuable = (
-  valuableType: ValuableType,
-  valuableState: ValuableState
-) => {
+export const shouldUseValuable = (valuableType: ValuableType) => {
   return (
     equals(valuableType, VALUABLE_TYPES.SPINS) ||
     equals(valuableType, VALUABLE_TYPES.CASH)

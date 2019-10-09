@@ -121,10 +121,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
   handleAction = (url?: string) => {
     const { valuableDetails } = this.props;
-    const { valuableType, valuableState, id } = valuableDetails;
+    const { valuableType, id } = valuableDetails;
     const { onConsumeValuable } = this.props;
 
-    if (shouldUseValuable(valuableType, valuableState)) {
+    if (shouldUseValuable(valuableType)) {
       onConsumeValuable(id)
         .then(data => {
           if (url) {
