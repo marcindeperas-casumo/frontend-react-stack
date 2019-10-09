@@ -1,6 +1,6 @@
 import { put, select } from "redux-saga/effects";
 import { without } from "ramda";
-import { isGameInMyList, addMyListGame, removeMyListGame } from "Models/games";
+import { isGameInMyList } from "Models/games";
 import { sessionIdSelector } from "Models/handshake";
 import {
   ENTITY_KEYS,
@@ -9,6 +9,11 @@ import {
   gameListSelector,
 } from "Models/schema";
 import { GAME_LIST_IDS } from "Src/constants";
+import {
+  addGameToMyList,
+  removeGameFromMyList,
+} from "Api/api.casinoPlayerGames";
+import logger from "Services/logger";
 
 export function* updateMyListSaga({ gameSlug }) {
   const gameIsInMyList = yield select(isGameInMyList(gameSlug));
@@ -17,28 +22,46 @@ export function* updateMyListSaga({ gameSlug }) {
 
   // toggle add / remove game from list.
   if (!gameIsInMyList) {
-    yield put(addMyListGame({ sessionId, gameSlug }));
-    const entity = {
-      [ENTITY_KEYS.GAME_LIST]: {
-        id: GAME_LIST_IDS.MY_LIST,
-        title: myList.title,
-        games: [gameSlug, ...myList.games],
-      },
-    };
+    addGameToMyList({ sessionId, gameSlug }).catch(error => {
+      logger.error("SAGA/updateMyList - adding to list", error);
+      removeGameFromEntities(gameSlug, myList);
+    });
 
-    const { entities } = normalizeData(entity);
-    yield put(updateEntity(entities));
+    yield put(updateEntity(addGameToEntities(gameSlug, myList)));
   } else {
-    yield put(removeMyListGame({ sessionId, gameSlug }));
-    const entity = {
-      [ENTITY_KEYS.GAME_LIST]: {
-        id: GAME_LIST_IDS.MY_LIST,
-        title: myList.title,
-        games: without(gameSlug, myList.games),
-      },
-    };
+    removeGameFromMyList({ sessionId, gameSlug }).catch(error => {
+      logger.error("SAGA/updateMyList - removing from list", error);
+      addGameToEntities(gameSlug, myList);
+    });
 
-    const { entities } = normalizeData(entity);
-    yield put(updateEntity(entities));
+    yield put(updateEntity(removeGameFromEntities(gameSlug, myList)));
   }
+}
+
+function removeGameFromEntities(gameSlug, list) {
+  const entity = {
+    [ENTITY_KEYS.GAME_LIST]: {
+      id: GAME_LIST_IDS.MY_LIST,
+      title: list.title,
+      games: without(gameSlug, list.games),
+    },
+  };
+
+  const { entities } = normalizeData(entity);
+
+  return entities;
+}
+
+function addGameToEntities(gameSlug, list) {
+  const entity = {
+    [ENTITY_KEYS.GAME_LIST]: {
+      id: GAME_LIST_IDS.MY_LIST,
+      title: list.title,
+      games: [gameSlug, ...list.games],
+    },
+  };
+
+  const { entities } = normalizeData(entity);
+
+  return entities;
 }
