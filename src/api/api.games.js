@@ -77,7 +77,7 @@ export const fetchSuggestedGames = async ({
   };
 };
 
-const fetchMyListGames = async ({ handshake, sessionId }) => {
+const fetchMyListGames = async ({ sessionId }) => {
   const myList = await getCasinoPlayerGameList({
     gameListName: GAME_LIST_IDS.MY_LIST,
     sessionId,
@@ -264,7 +264,7 @@ export const fetchGames = async ({
         title,
       };
     });
-  const myListGames = fetchMyListGames({ handshake, sessionId });
+  const myListGames = fetchMyListGames({ sessionId });
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
