@@ -6,30 +6,19 @@
   );
 }
 
-.c-card-data-badge-shadow-grey-light-1 {
-  border: 2px solid cudl-palette(grey, light-3);
-}
-
-.c-card-data-badge-shadow-caution {
-  border: 2px solid cudl-palette(yellow);
-}
-
-.c-card-data-badges-background {
-  background-color: rgba(cudl-palette(black), 0.75);
-  height: 40px;
-  width: 100%;
-}
-
-.c-card-data-badges-mask {
-  background: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0) 30%);
-  height: 100%;
-  width: 100%;
-}
-
-.c-card-data-badge::after {
+.c-card-data__badge::after {
   color: cudl-palette(white);
   content: ".";
   font-size: 20px;
   margin-top: 11px;
   position: absolute;
+}
+
+.c-card-data__badges-background {
+  background-color: rgba(cudl-palette(black), 0.75);
+  height: 40px;
+}
+
+.c-card-data__badges-mask {
+  background: linear-gradient(270deg, #000 0%, rgba(0, 0, 0, 0) 30%);
 }

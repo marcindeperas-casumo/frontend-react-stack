@@ -35,12 +35,16 @@ const renderResults = ({ results, type }) => {
               className={classNames(
                 "u-width--lg u-height--lg t-border-r--circle u-margin-left--sm",
                 `t-background-${color}`,
-                `t-color-${getTextColor(color)}`,
-                borderColor && `c-card-data-badge-shadow-${borderColor}`,
-                { "c-card-data-badge": i === 0 }
+                borderColor &&
+                  `t-border-width--md t-border--current-color t-color-${borderColor}`,
+                { "c-card-data__badge": i === 0 }
               )}
             >
-              <Text size="xs" tag="span">
+              <Text
+                className={classNames(`t-color-${getTextColor(color)}`)}
+                size="xs"
+                tag="span"
+              >
                 {getResultsDisplay(type, n)}
               </Text>
             </Flex>
@@ -87,7 +91,7 @@ const LiveCasinoCardData = ({ lobby }: Props) => {
       justify="center"
       className={classNames(
         (contains(lobby.type, liveCasinoTypes) || lobby.betBehind) &&
-          "c-card-data-badges-background"
+          "c-card-data__badges-background u-width--full"
       )}
     >
       <Flex
@@ -96,7 +100,7 @@ const LiveCasinoCardData = ({ lobby }: Props) => {
         className="u-width--full u-position-relative"
       >
         <LobbyType lobby={lobby} />
-        <div className="c-card-data-badges-mask u-position-absolute" />
+        <div className="c-card-data__badges-mask u-width--full u-height--full u-position-absolute" />
       </Flex>
     </Flex>
   );
