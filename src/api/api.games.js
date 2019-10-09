@@ -15,6 +15,7 @@ import {
   getCasinoPlayerGameList,
   getCasinoPlayerGamesBatch,
 } from "Api/api.casinoPlayerGames";
+import { GAME_LIST_IDS } from "Src/constants";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { convertHTMLToString } from "Utils";
@@ -78,7 +79,7 @@ export const fetchSuggestedGames = async ({
 
 const fetchMyListGames = async ({ handshake, sessionId }) => {
   const myList = await getCasinoPlayerGameList({
-    gameListName: "myList",
+    gameListName: GAME_LIST_IDS.MY_LIST,
     sessionId,
   });
 
