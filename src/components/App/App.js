@@ -155,18 +155,20 @@ export class App extends PureComponent<Props> {
           />
         </Route>
         <Route path={["player"]}>
-          <LazyPortal
-            hostElementId="react-host-adventure"
-            loader={() => import("Components/AdventureCard")}
-            namedExport="AdventureCard"
-          />
-          <LazyPortal
-            hostElementId="react-host-adventure-valuables"
-            loader={() => import("Components/AccountPage")}
-            namedExport="AccountPage"
-          />
+          <>
+            <LazyPortal
+              hostElementId="react-host-adventure"
+              loader={() => import("Components/AdventureCard")}
+              namedExport="AdventureCard"
+            />
+            <LazyPortal
+              hostElementId="react-host-adventure-valuables"
+              loader={() => import("Components/AccountPage")}
+              namedExport="AccountPage"
+            />
+          </>
         </Route>
-        <Route path={["valuables"]}>
+        <Route path={["player-valuables"]}>
           <LazyPortal
             hostElementId="react-host-valuables"
             loader={() => import("Components/ValuablesPage")}

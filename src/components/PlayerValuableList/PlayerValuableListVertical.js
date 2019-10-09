@@ -53,6 +53,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
       <SectionList
+        className="u-padding-x--md"
         sections={[
           {
             title: availableListTitleLabel,
@@ -64,12 +65,14 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
           },
         ]}
         renderItem={valuable => (
-          <ValuableRow
-            key={`available-valuable-row-${valuable.id}`}
-            translations={translations}
-            {...valuable}
-            onClick={() => setSelectedValuable(valuable)}
-          />
+          <div className="u-padding-y--md">
+            <ValuableRow
+              key={`available-valuable-row-${valuable.id}`}
+              translations={translations}
+              {...valuable}
+              onClick={() => setSelectedValuable(valuable)}
+            />
+          </div>
         )}
       />
       {selectedValuable && (
