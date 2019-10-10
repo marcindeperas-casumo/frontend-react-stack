@@ -1228,10 +1228,10 @@
   dependencies:
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-scrollable@^3.0.5":
-  version "3.0.5"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-scrollable/-/cmp-scrollable-3.0.5.tgz#77fafd4a72a50c1f236583dbad4bccd42cba62ce"
-  integrity sha512-r6fAbt4+T5+i1EF053kMQyjMKajV41Sx5nV2f9GUARkHevgQXOeGBHOmiSVUsKDXQ6CzZC0UI8wFYXReEkewPg==
+"@casumo/cmp-scrollable@^4.0.0":
+  version "4.0.0"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-scrollable/-/cmp-scrollable-4.0.0.tgz#e7ca2aac646a85cb73b78550e6ac82824db6d4c9"
+  integrity sha512-35Oz9WBqcoc3sBUd58LpQX7xje+FZ6iKTCf0D3hBv83w5fffH1u/tFxKkdunVNqjALRBA0qeW4wg9t6OE+4ySg==
   dependencies:
     "@casumo/cmp-flex" "^3.0.4"
     "@casumo/cudl-react-prop-types" "^2.1.1"
