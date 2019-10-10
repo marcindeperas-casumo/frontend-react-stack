@@ -59,7 +59,7 @@ export default class Jackpots extends PureComponent<Props> {
   }: {
     id: Array<Jackpots_Game>,
     i: number,
-  }) => <JackpotsColumn key={`jackpots-column-${i}`} column={gamesInColumn} />;
+  }) => <JackpotsColumn key={this.keyGetter(i)} column={gamesInColumn} />;
 
   render() {
     const { title } = this.props;
