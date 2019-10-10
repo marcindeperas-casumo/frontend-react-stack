@@ -26,7 +26,12 @@ describe("ScrollableList", () => {
   test("renders with the GameTileContainer by default", () => {
     const rendered = shallow(<ScrollableList itemIds={[1, 2]} title="hi" />);
 
-    expect(rendered.find(GameTile)).toHaveLength(2);
+    expect(
+      rendered
+        .find(Scrollable)
+        .dive()
+        .find(GameTile)
+    ).toHaveLength(2);
   });
 
   test("renders with the custom component if passed", () => {
@@ -35,9 +40,16 @@ describe("ScrollableList", () => {
       <ScrollableList itemIds={[1, 2]} title="hi" Component={SampleComponent} />
     );
 
-    expect(rendered.find("SampleComponent")).toHaveLength(2);
     expect(
       rendered
+        .find(Scrollable)
+        .dive()
+        .find("SampleComponent")
+    ).toHaveLength(2);
+    expect(
+      rendered
+        .find(Scrollable)
+        .dive()
         .find("SampleComponent")
         .first()
         .props()
