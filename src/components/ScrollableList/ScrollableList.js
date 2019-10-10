@@ -35,9 +35,18 @@ export default class ScrollableList extends PureComponent<Props> {
     Component: GameTile,
   };
 
+  getKey = (i: number) => {
+    const { itemIds } = this.props;
+    return itemIds[i];
+  };
+
+  itemRenderer = (i: number) => {
+    const { Component, itemIds } = this.props;
+    return <Component id={itemIds[i]} />;
+  };
+
   render() {
     const {
-      Component,
       itemIds,
       seeMoreText,
       seeMoreUrl,
@@ -58,14 +67,13 @@ export default class ScrollableList extends PureComponent<Props> {
           title={title}
         />
         <Scrollable
+          numberOfItems={itemIds.length}
+          keyGetter={this.getKey}
+          itemRenderer={this.itemRenderer}
           itemClassName={itemClassName}
           padding={PADDING_PER_DEVICE}
           itemSpacing={spacing}
-        >
-          {itemIds.map(itemId => (
-            <Component key={itemId} id={itemId} />
-          ))}
-        </Scrollable>
+        />
       </div>
     );
   }
