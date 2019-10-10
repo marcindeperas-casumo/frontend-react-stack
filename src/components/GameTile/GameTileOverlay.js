@@ -66,6 +66,7 @@ const GameTileOverlay = ({
       >
         <Text
           size="sm"
+          tag="span"
           className={classNames(
             alwaysActive && "u-visibility--hidden",
             "t-color-white u-text-clamp u-font-weight-bold u-padding-top"
