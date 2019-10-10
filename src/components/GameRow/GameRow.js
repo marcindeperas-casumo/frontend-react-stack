@@ -73,7 +73,7 @@ export class GameRow extends PureComponent<Props> {
 function BetsLevels({ bets }) {
   if (bets) {
     return (
-      <Text tag="div" size="xs" className="u-padding-top--sm t-color-grey">
+      <Text tag="div" size="sm" className="u-padding-top--sm t-color-grey">
         {bets}
       </Text>
     );
