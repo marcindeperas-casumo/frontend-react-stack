@@ -6,10 +6,16 @@ import cometd from "Models/cometd/cometd.service";
 import { tournamentChannelsSelector, playerIdSelector } from "Models/handshake";
 import { reelRaceStartedSelector } from "Models/reelRaceWidget";
 
+// After is mounted we show initial leaderboard from reelRace.
+// It shows new leaderboard only when event happens.
 export function useReelRaceLeaderboard() {
   const [leaderboard, setLeaderboard] = React.useState([]);
 
-  const { tournamentId } = useSelector(reelRaceStartedSelector, shallowEqual);
+  const { tournamentId, leaderboard: reelRaceLeaderboard } = useSelector(
+    reelRaceStartedSelector,
+    shallowEqual
+  );
+
   const playerId = useSelector(playerIdSelector, shallowEqual);
   const tournamentChannels = useSelector(
     tournamentChannelsSelector,
@@ -34,6 +40,8 @@ export function useReelRaceLeaderboard() {
   };
 
   React.useEffect(() => {
+    setLeaderboard(reelRaceLeaderboard);
+    // why do we have to subscribe to all channels?
     tournamentChannels.forEach(channel =>
       cometd.subscribe(
         `${channel}/tournaments/players/${playerId}/tournaments/${tournamentId}/leaderboard`,

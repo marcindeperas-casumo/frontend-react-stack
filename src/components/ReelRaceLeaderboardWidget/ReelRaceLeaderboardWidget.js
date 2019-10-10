@@ -4,8 +4,8 @@ import * as R from "ramda";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { PrizeIcon } from "@casumo/cmp-icons";
+import { useReelRaceLeaderboard } from "Models/reelRaceWidget";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
-import { useReelRaceLeaderboard } from "./useReelRaceLeaderboard";
 import "./ReelRaceLeaderboardWidget.scss";
 
 type Props = {
