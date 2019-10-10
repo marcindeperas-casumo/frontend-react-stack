@@ -90,11 +90,7 @@ export class ValuableRow extends PureComponent<Props> {
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
-      <Flex
-        className="u-padding--md"
-        data-test="valuable-row"
-        onClick={this.props.onClick}
-      >
+      <Flex data-test="valuable-row" onClick={this.props.onClick}>
         <Flex.Item className="c-valuable-row-thumbnail">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail

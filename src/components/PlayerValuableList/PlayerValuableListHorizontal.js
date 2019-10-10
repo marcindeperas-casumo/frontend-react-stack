@@ -17,7 +17,7 @@ const PADDING_PER_DEVICE = {
   desktop: "3xlg",
 };
 
-const seeAllUrl = "/valuablesV2";
+const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
