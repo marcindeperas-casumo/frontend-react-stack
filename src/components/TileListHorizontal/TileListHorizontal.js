@@ -43,11 +43,20 @@ class TileListHorizontal extends PureComponent<Props> {
     this.props.fetch();
   }
 
+  getKey = (i: number) => {
+    return this.props.items[i].id;
+  };
+
+  get itemsWithBackground(): Array<ItemObject> {
+    return this.props.items.filter(item => item.background !== null);
+  }
+
+  itemRenderer = (i: number) => {
+    return <Tile {...this.itemsWithBackground[i]} />;
+  };
+
   render() {
     const { title, items, isLoaded } = this.props;
-    const itemsWithBackground = items.filter(item => item.background !== null);
-    const itemRenderer = ({ id, ...props }) => <Tile key={id} {...props} />;
-    const scrollableChildren = itemsWithBackground.map(itemRenderer);
 
     if (!isLoaded) {
       return <TileListHorizontalSkeleton />;
@@ -64,21 +73,22 @@ class TileListHorizontal extends PureComponent<Props> {
             <div className="u-padding-top--xlg">
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
+                numberOfItems={this.itemsWithBackground.length}
+                keyGetter={this.getKey}
+                itemRenderer={this.itemRenderer}
                 itemClassName="c-tile"
                 padding={PADDING_PER_DEVICE}
                 itemSpacing={DEFAULT_SPACING}
-              >
-                {scrollableChildren}
-              </Scrollable>
+              />
             </div>
           </Mobile>
           <Desktop>
             <ScrollableListPaginated
               list={{
                 title: title,
-                itemIds: itemsWithBackground,
+                itemIds: this.itemsWithBackground,
               }}
-              // we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
+              // we are bound to "id" because of the cellRenderer method inside <ScrollableListPaginated />
               Component={({ id: item }) => <Tile {...item} />}
               className="c-tile"
               itemControlClass="c-scrollable-list-paginated__button"
