@@ -7,11 +7,11 @@ import {
   CurrencyGbpIcon,
   CurrencyKrnIcon,
   CurrencyRupIcon,
+  DepositIcon,
 } from "@casumo/cmp-icons";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
 import {
-  DepositIcon,
   BasicSpinsIcon,
   BonusSpinsIcon,
   SuperSpinsIcon,
