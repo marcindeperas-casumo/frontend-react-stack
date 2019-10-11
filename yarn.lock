@@ -1188,10 +1188,10 @@
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
 
-"@casumo/cmp-icons@^2.3.0":
-  version "2.3.0"
-  resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-2.3.0.tgz#0817e808e43ece74f0687914249471adcf08836f"
-  integrity sha512-qMAEcQ6KqVQtRSRpuxcv52V7IufTG9bK3SdUQ7b3fFWAs43DqdvIzb5S7HFMMczshAjcWj7M6R6XoHUiX3MEEw==
+"@casumo/cmp-icons@^2.4.1":
+  version "2.4.1"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-icons/-/cmp-icons-2.4.1.tgz#ddd772522ca8bbe01268b5bdb0ed4c7733007f3e"
+  integrity sha512-5uhwxKxQjFS98PaOJv6PmUh+iKbNUiMAQUw7KnWtUWVgU/EZRQq1BMoxS+dsHItkQngkFbKfRgtbB3u3CrTo8g==
   dependencies:
     "@casumo/cudl-react-prop-types" "^2.1.1"
     "@casumo/cudl-react-utils" "^1.0.6"
