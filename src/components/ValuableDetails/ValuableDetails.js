@@ -118,25 +118,25 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = (url?: string) => {
+  handleAction = async (url?: string) => {
     const {
       valuableDetails: { id },
       onConsumeValuable,
     } = this.props;
 
-    onConsumeValuable(id)
-      .then(data => {
-        url && navigate({ url });
-      })
-      .catch(({ graphQLErrors }, data) => {
-        const {
-          extensions: { exception },
-        } = graphQLErrors[0];
+    try {
+      await onConsumeValuable(id);
 
-        launchErrorModal({
-          rejectReasonId: exception.rejectReasonId,
-        });
+      url && navigate({ url });
+    } catch (error) {
+      const {
+        extensions: { exception },
+      } = error.graphQLErrors[0];
+
+      launchErrorModal({
+        rejectReasonId: exception.rejectReasonId,
       });
+    }
   };
 
   render() {
