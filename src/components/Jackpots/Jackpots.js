@@ -43,14 +43,14 @@ export default class Jackpots extends PureComponent<Props> {
     title: "",
   };
 
-  get items(): Array<Array<Jackpots_Game>> {
+  get columns(): Array<Array<Jackpots_Game>> {
     return generateColumns(this.props.jackpots);
   }
 
   keyGetter = (i: number) => `jackpots-column-${i}`;
 
   mobileJackpotColumnRenderer = (i: number) => {
-    return <JackpotsColumn column={this.items[i]} />;
+    return <JackpotsColumn column={this.columns[i]} />;
   };
 
   desktopJackpotColumnRenderer = ({
@@ -73,7 +73,7 @@ export default class Jackpots extends PureComponent<Props> {
               <Scrollable
                 keyGetter={this.keyGetter}
                 itemRenderer={this.mobileJackpotColumnRenderer}
-                numberOfItems={this.items.length}
+                numberOfItems={this.columns.length}
                 itemClassName="c-jackpots-list-tile"
                 padding={PADDING_PER_DEVICE}
               />
@@ -83,7 +83,7 @@ export default class Jackpots extends PureComponent<Props> {
             <ScrollableListPaginated
               list={{
                 title,
-                itemIds: this.items,
+                itemIds: this.columns,
               }}
               Component={this.desktopJackpotColumnRenderer}
               className="c-jackpots-list-tile"
