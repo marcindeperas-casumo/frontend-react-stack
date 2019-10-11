@@ -30,6 +30,7 @@ stories.add("Default", () => {
       currency={select("Currency", ["EUR", "GBP"], "EUR")}
       locale="en-GB"
       balance={number("Balance", 100)}
+      fetchContentIfNecessary={() => {}}
       t={t}
     />
   );

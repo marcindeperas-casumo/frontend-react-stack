@@ -12,7 +12,7 @@ import { StatusAlertsEveryRow } from "./StatusAlertsEveryRow";
 import { WantBreakAfterRow } from "./WantBreakAfterRow";
 import "./ConfigurationForm.scss";
 
-const { useState, useCallback } = React;
+const { useState, useCallback, useEffect } = React;
 const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
@@ -41,6 +41,7 @@ type Props = {
   balance: number,
   currency: string,
   locale: string,
+  fetchContentIfNecessary: () => void,
 };
 
 type IsPlayActiveType = {
@@ -52,7 +53,7 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: Props) {
-  const { t } = props;
+  const { t, fetchContentIfNecessary } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
@@ -81,6 +82,10 @@ export function ConfigurationForm(props: Props) {
       },
     }),
   }));
+
+  useEffect(() => {
+    fetchContentIfNecessary();
+  }, [fetchContentIfNecessary]);
 
   if (screen === SCREEN_TYPES.LIMIT_YOUR_BUDGET) {
     return (
