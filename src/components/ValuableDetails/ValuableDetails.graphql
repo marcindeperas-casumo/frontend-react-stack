@@ -2,7 +2,8 @@ query ValuableDetailsQuery {
     termsAndConditionLabel: getText(
       id: "root:valuable-details-component:fields.terms_and_conditions_title"
     )
-    playNowLabel: getText(id: "root:valuable-details-component:fields.play_now")
+    cashUnlockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_money")
+    spinsUnlockedActionLabel: getText(id: "root:valuable-details-component:fields.use_bonus_spins")
     playToUnlockLabel: getText(
       id: "root:valuable-details-component:fields.play_to_unlock"
     )
@@ -17,6 +18,8 @@ query ValuableDetailsQuery {
     )
     termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
     wageringStatus: getText(id: "root:valuable-details-component:fields.wagering_status")
+    minute_singular: getText(id: "root:units:fields.minute_singular")
+    minute_plural: getText(id: "root:units:fields.minutes")
     hour_singular: getText(id: "root:units:fields.hour_singular")
     hour_plural: getText(id: "root:units:fields.hours")
     day_singular: getText(id: "root:units:fields.day_singular")
@@ -32,6 +35,7 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   currency
   market
   expirationTimeInHours
+  expiryDate
   valuableType
   valuableState
   wageringThreshold

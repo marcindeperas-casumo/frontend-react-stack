@@ -60,7 +60,7 @@ export class SettingsRealityCheck extends PureComponent<Props> {
             variant="primary"
             size="md"
             loading={isLoading}
-            className="u-width--1/1 u-margin-top--xlg"
+            className="u-width--full u-margin-top--xlg"
             onClick={onSave}
           >
             {labels.save}

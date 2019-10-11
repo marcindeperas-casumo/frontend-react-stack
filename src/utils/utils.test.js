@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
+import { DateTime } from "luxon";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -17,6 +18,8 @@ import {
   isCmsEntryEmpty,
   findOr,
   convertHoursToDays,
+  convertTimestampToLuxonDate,
+  localiseTimeInterval,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -364,5 +367,59 @@ describe("convertHoursToDays()", () => {
     const expectedValue = 1;
 
     expect(convertHoursToDays(hours)).toEqual(expectedValue);
+  });
+
+  describe("convertTimestampToLuxonDate()", () => {
+    test("should covnert date to luxon", () => {
+      const timestamp = 15697943990;
+      const result = convertTimestampToLuxonDate(timestamp);
+
+      expect(result.isLuxonDateTime).toBe(true);
+    });
+  });
+
+  describe("localiseTimeInterval()", () => {
+    const t = {
+      seconds: "{{seconds}}secs",
+      minutes: "{{minutes}}mins",
+      hours: "{{hours}}hrs",
+      days: "{{days}}days",
+    };
+
+    test("should return string for seconds if number of seconds is lower than in a minute", () => {
+      const props = {
+        seconds: 12,
+        t,
+      };
+
+      expect(localiseTimeInterval(props)).toEqual("12secs");
+    });
+
+    test("should return string for minutes if number of seconds is lower than in an hour", () => {
+      const props = {
+        seconds: 77,
+        t,
+      };
+
+      expect(localiseTimeInterval(props)).toEqual("1mins");
+    });
+
+    test("should return string for hours if number of seconds is lower than in a day", () => {
+      const props = {
+        seconds: 60 * 60 * 5,
+        t,
+      };
+
+      expect(localiseTimeInterval(props)).toEqual("5hrs");
+    });
+
+    test("should return string for days if number of seconds is equal or greater than in a day", () => {
+      const props = {
+        seconds: 60 * 60 * 24 * 3,
+        t,
+      };
+
+      expect(localiseTimeInterval(props)).toEqual("3days");
+    });
   });
 });

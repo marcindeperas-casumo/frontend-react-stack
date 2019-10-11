@@ -1,10 +1,9 @@
 // @flow
-import React from "react";
 import { isPlayActive } from "./ConfigurationForm";
 
 describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
   describe("isPlayActive()", () => {
-    test("Should return false if budget is 0 or undefined", () => {
+    test("Should return false if budget is 0", () => {
       const mockData = {
         budget: 0,
         time: 5,
@@ -16,7 +15,31 @@ describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
       expect(isPlayActive(mockData)).toEqual(false);
     });
 
-    test("Should return false if time is 0 or undefined", () => {
+    test("Should return false if budget is undefined", () => {
+      const mockData = {
+        budget: undefined,
+        time: 5,
+        alertsEvery: 10,
+        wantsBreak: false,
+        breakAfter: null,
+      };
+
+      expect(isPlayActive(mockData)).toEqual(false);
+    });
+
+    test("Should return false if time is 0", () => {
+      const mockData = {
+        budget: 13,
+        time: 0,
+        alertsEvery: 10,
+        wantsBreak: false,
+        breakAfter: null,
+      };
+
+      expect(isPlayActive(mockData)).toEqual(false);
+    });
+
+    test("Should return false if time is undefined", () => {
       const mockData = {
         budget: 13,
         time: undefined,
@@ -28,11 +51,23 @@ describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
       expect(isPlayActive(mockData)).toEqual(false);
     });
 
-    test("Should return false if alertsEvery is 0 or undefined", () => {
+    test("Should return false if alertsEvery is 0", () => {
       const mockData = {
         budget: 13,
         time: 10,
-        alertsEvery: null,
+        alertsEvery: 0,
+        wantsBreak: false,
+        breakAfter: null,
+      };
+
+      expect(isPlayActive(mockData)).toEqual(false);
+    });
+
+    test("Should return false if alertsEvery is undefined", () => {
+      const mockData = {
+        budget: 13,
+        time: 10,
+        alertsEvery: undefined,
         wantsBreak: false,
         breakAfter: null,
       };
@@ -46,7 +81,7 @@ describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
         time: 10,
         alertsEvery: 5,
         wantsBreak: true,
-        breakAfter: null,
+        breakAfter: undefined,
       };
 
       expect(isPlayActive(mockData)).toEqual(false);
@@ -58,7 +93,7 @@ describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
         time: 10,
         alertsEvery: 5,
         wantsBreak: false,
-        breakAfter: null,
+        breakAfter: undefined,
       };
 
       expect(isPlayActive(mockData)).toEqual(true);

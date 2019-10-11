@@ -1,15 +1,12 @@
 /* @flow */
-import React, { useEffect, useState } from "react";
-import List from "@casumo/cmp-list";
-import Flex from "@casumo/cmp-flex";
-import { VALUABLE_TYPES, type ValuableType } from "Models/valuables";
+import * as React from "react";
+import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
-import ScrollableListTitle from "Components/ScrollableListTitle";
+import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
-import { launchGame } from "Models/games";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -23,30 +20,16 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, hoursLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = useState(null);
+  const { availableListTitleLabel, lockedListTitleLabel } = translations;
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
+  const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
 
   const closeModal = () => {
     setSelectedValuable(null);
   };
 
-  const consumeValuable = ({
-    id,
-    valuableType,
-    gameSlug,
-  }: {
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => {
-    onConsumeValuable(id).then(() => {
-      if (valuableType === VALUABLE_TYPES.SPINS) {
-        launchGame(gameSlug);
-      }
-    });
-  };
-
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
         refetch();
@@ -69,40 +52,42 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
 
   return (
     <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
-      {listTitleLabel && (
-        <Flex justify="space-between">
-          <Flex.Item>
-            <ScrollableListTitle paddingLeft title={listTitleLabel} />
-          </Flex.Item>
-        </Flex>
-      )}
-      <List
-        items={valuables}
-        className="t-background-white"
-        data-test="vertical-valuables-list"
-        render={valuable => (
-          <div key={`valuable-row-${valuable.id}`}>
+      <SectionList
+        className="u-padding-x--md"
+        sections={[
+          {
+            title: availableListTitleLabel,
+            data: getAvailableValuables(valuables),
+          },
+          {
+            title: lockedListTitleLabel,
+            data: getLockedValuables(valuables),
+          },
+        ]}
+        renderItem={valuable => (
+          <div className="u-padding-y--md">
             <ValuableRow
-              translatedHoursUnit={hoursLabel}
+              key={`available-valuable-row-${valuable.id}`}
+              translations={translations}
               {...valuable}
               onClick={() => setSelectedValuable(valuable)}
             />
           </div>
         )}
       />
-
       {selectedValuable && (
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={consumeValuable}
+          onConsumeValuable={onConsumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">
             <ValuableCard
-              translatedHoursUnit={hoursLabel}
+              translations={translations}
               {...selectedValuable}
               caveat={null}
+              className="t-box-shadow--lg"
             />
           </div>
         </ValuableDetailsWithModal>

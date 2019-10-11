@@ -6,6 +6,8 @@ import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolate, convertHoursToDays } from "Utils";
+import { launchErrorModal } from "Services/LaunchModalService";
+import { navigate } from "Services/NavigationService";
 import {
   shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
@@ -13,6 +15,8 @@ import {
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
+  getExpiryTimeLeft,
+  type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
@@ -36,11 +40,7 @@ type BadgeInfoType = {
 export type Props = {
   valuableDetails: ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: ({
-    id: string,
-    valuableType: ValuableType,
-    gameSlug: ?string,
-  }) => Promise<void>,
+  onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,
   children: Node,
 };
@@ -63,22 +63,28 @@ const ActionButtonContent = ({ isLocked, text }) => {
 };
 
 export class ValuableDetails extends React.PureComponent<Props> {
-  get expiresWithin24Hours() {
-    return this.props.valuableDetails.expirationTimeInHours <= 24;
+  get expiryTimeLeft(): DurationProps {
+    return getExpiryTimeLeft(this.props.valuableDetails.expiryDate);
   }
 
   get expirationBadgeInfo(): BadgeInfoType {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours, minutes } = this.expiryTimeLeft;
+    const expiresWithin24Hours = hours < 24;
+    const expiresInLessThanAnHour = hours < 1;
 
-    return this.expiresWithin24Hours
-      ? { key: "hours", value: expirationTimeInHours }
-      : { key: "days", value: convertHoursToDays(expirationTimeInHours) };
+    if (expiresWithin24Hours) {
+      return { key: "hours", value: hours };
+    } else if (expiresInLessThanAnHour) {
+      return { key: "minutes", value: minutes };
+    }
+
+    return { key: "days", value: convertHoursToDays(hours) };
   }
 
   get expirationBadgeColour(): string {
-    const { expirationTimeInHours } = this.props.valuableDetails;
+    const { hours } = this.expiryTimeLeft;
 
-    return expirationTimeInHours >= 24
+    return hours > 24
       ? expirationBadgeClasses.default
       : expirationBadgeClasses.expiresToday;
   }
@@ -113,16 +119,25 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = () => {
+  handleAction = (url?: string) => {
     const { valuableDetails } = this.props;
-    const { valuableType, valuableState, id } = valuableDetails;
+    const { valuableType, id } = valuableDetails;
     const { onConsumeValuable } = this.props;
-    const game = this.game;
 
-    if (shouldUseValuable(valuableType, valuableState)) {
-      const gameSlug = game ? game.slug : null;
+    if (shouldUseValuable(valuableType)) {
+      onConsumeValuable(id)
+        .then(data => {
+          url && navigate({ url });
+        })
+        .catch(({ graphQLErrors }, data) => {
+          const {
+            extensions: { code },
+          } = graphQLErrors[0];
 
-      onConsumeValuable({ id, valuableType, gameSlug });
+          launchErrorModal({
+            rejectReasonId: code,
+          });
+        });
     }
   };
 
@@ -241,9 +256,8 @@ export class ValuableDetails extends React.PureComponent<Props> {
           </Flex>
           <div className="c-valuable-details__footer u-padding--md">
             <Button
-              href={actionButtonProps.url}
-              className="u-width--1/1"
-              onClick={this.handleAction}
+              className="u-width--full"
+              onClick={() => this.handleAction(actionButtonProps.url)}
               data-test="valuable-action-button"
               variant="primary"
             >

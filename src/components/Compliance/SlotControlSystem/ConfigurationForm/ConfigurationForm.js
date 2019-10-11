@@ -2,12 +2,14 @@
 import * as React from "react";
 import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
-import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { EditIcon, PlayIcon } from "@casumo/cmp-icons";
-import { PillSelector } from "Components/PillSelector";
-import { interpolate, formatCurrency, localiseTimeInterval } from "Utils";
+import { PlayIcon } from "@casumo/cmp-icons";
+import { localiseTimeInterval } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
+import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
+import { LimitYourTimeRow } from "./LimitYourTimeRow";
+import { StatusAlertsEveryRow } from "./StatusAlertsEveryRow";
+import { WantBreakAfterRow } from "./WantBreakAfterRow";
 import "./ConfigurationForm.scss";
 
 const { useState, useCallback } = React;
@@ -15,13 +17,10 @@ const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
 };
-const LIMIT_YOUR_TIME_OPTS_2 = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
-const STATUS_ALERTS_EVERY_OPTS_2 = [5 * 60, 10 * 60, 15 * 60];
-const WANT_BREAK_AFTER_OPTS = [
-  { label: "Yes", value: true },
-  { label: "No", value: false },
-];
-const WANT_BREAK_AFTER_YES_OPTS_2 = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
+// these are given in seconds
+const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
+const STATUS_ALERTS_EVERY_OPTS = [5 * 60, 10 * 60, 15 * 60];
+const WANT_BREAK_AFTER_YES_OPTS = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
 
 type Props = {
   t: {
@@ -32,6 +31,7 @@ type Props = {
     limit_your_time: string,
     get_status_alerts: string,
     want_break_after: string,
+    want_break_after_opts: Array<{ value: string, label: string }>,
     for_how_long: string,
     play: string,
     minutes_abbreviated: string,
@@ -43,53 +43,6 @@ type Props = {
   locale: string,
 };
 
-type LimitYourBudgetRowType = {
-  t: {
-    limit_your_budget: string,
-  },
-  budget: number,
-  currency: string,
-  locale: string,
-  onClickEdit: () => void,
-};
-
-type LimitYourTimeRowType = {
-  t: {
-    limit_your_time: string,
-  },
-  /* chosen time limit */
-  value: ?number,
-  /* pill options where value is number of seconds */
-  options: Array<{ value: number, label: string }>,
-  onChange: number => void,
-};
-
-type StatusAlertsEveryRowType = {
-  t: {
-    get_status_alerts: string,
-  },
-  /* chosen period of time between alerts */
-  value: ?number,
-  /* pill options where value is number of seconds */
-  options: Array<{ value: number, label: string }>,
-  onChange: number => void,
-};
-
-type WantBreakAfterRowType = {
-  t: {
-    want_break_after: string,
-    for_how_long: string,
-  },
-  /* if a user wants a break after playing or not */
-  value: ?boolean,
-  onChange: boolean => void,
-  /* how long a break should be */
-  breakValue: ?number,
-  /* pill options where value is number of seconds */
-  breakOptions: Array<{ value: number, label: string }>,
-  onChangeBreak: number => void,
-};
-
 type IsPlayActiveType = {
   budget: ?number,
   time: ?number,
@@ -99,7 +52,7 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: Props) {
-  const { currency, locale, t } = props;
+  const { t } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
@@ -145,13 +98,13 @@ export function ConfigurationForm(props: Props) {
       <LimitYourTimeRow
         t={t}
         value={time}
-        options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS_2)}
+        options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS)}
         onChange={setTime}
       />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
-        options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS_2)}
+        options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS)}
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
@@ -159,7 +112,7 @@ export function ConfigurationForm(props: Props) {
         value={wantsBreak}
         onChange={setWantsBreak}
         breakValue={breakAfter}
-        breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS_2)}
+        breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS)}
         onChangeBreak={setBreakAfter}
       />
       <Button
@@ -187,97 +140,5 @@ export function isPlayActive(props: IsPlayActiveType): boolean {
       alertsEvery &&
       // check explicitly for false as unset is not accepted
       ((wantsBreak && breakAfter) || wantsBreak === false)
-  );
-}
-
-function LimitYourBudgetRow(props: LimitYourBudgetRowType) {
-  const { budget, currency, locale, t, onClickEdit } = props;
-
-  return (
-    <Flex
-      direction="vertical"
-      className="t-border-bottom u-padding-y--md u-margin-bottom--md"
-    >
-      <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
-        {t.limit_your_budget}
-      </Text>
-      <Flex justify="space-between" align="center">
-        <Text tag="span" className="u-font-weight-bold">
-          {formatCurrency({ value: budget, currency, locale })}
-        </Text>
-        <Button
-          variant="secondary"
-          size="sm"
-          className="u-padding"
-          onClick={onClickEdit}
-        >
-          <EditIcon className="t-color-black" />
-        </Button>
-      </Flex>
-    </Flex>
-  );
-}
-
-function LimitYourTimeRow(props: LimitYourTimeRowType) {
-  const { t, value, options, onChange } = props;
-
-  return (
-    <Flex
-      direction="vertical"
-      className="t-border-bottom u-padding-y--md u-margin-bottom--md"
-    >
-      <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
-        {t.limit_your_time}
-      </Text>
-      <PillSelector options={options} onChange={onChange} value={value} />
-    </Flex>
-  );
-}
-
-function StatusAlertsEveryRow(props: StatusAlertsEveryRowType) {
-  const { t, value, options, onChange } = props;
-
-  return (
-    <Flex
-      direction="vertical"
-      className="t-border-bottom u-padding-y--md u-margin-bottom--md"
-    >
-      <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
-        {t.get_status_alerts}
-      </Text>
-      <PillSelector options={options} onChange={onChange} value={value} />
-    </Flex>
-  );
-}
-
-function WantBreakAfterRow(props: WantBreakAfterRowType) {
-  const { t, value, onChange, onChangeBreak, breakValue, breakOptions } = props;
-
-  return (
-    <Flex
-      direction="vertical"
-      className="t-border-bottom u-padding-y--md u-margin-bottom--md"
-    >
-      <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
-        {t.want_break_after}
-      </Text>
-      <PillSelector
-        options={WANT_BREAK_AFTER_OPTS}
-        onChange={onChange}
-        value={value}
-      />
-      {value && (
-        <>
-          <Text tag="label" className="u-font-weight-bold u-margin-y--lg">
-            {t.for_how_long}
-          </Text>
-          <PillSelector
-            options={breakOptions}
-            value={breakValue}
-            onChange={onChangeBreak}
-          />
-        </>
-      )}
-    </Flex>
   );
 }

@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import { type BeltType, isMaxLevel } from "Models/adventure";
 import { beltToColorMap } from "./beltUtils";
-import "./CasumoAvatar.scss";
 import SumoAvatar from "./sumo-avatar.svg";
 import SenseiAvatar from "./sensei-avatar.svg";
 
@@ -14,6 +13,8 @@ type Props = {
   inBonusMode: boolean,
   level: number,
 };
+
+const AVATAR_CLASS_NAMES = "u-height--full u-width--full";
 
 export class CasumoAvatar extends PureComponent<Props> {
   static defaultProps = {
@@ -38,7 +39,11 @@ export class CasumoAvatar extends PureComponent<Props> {
           justify="center"
           className="o-ratio__content u-padding--md"
         >
-          {isMaxLevel(level, inBonusMode) ? <SenseiAvatar /> : <SumoAvatar />}
+          {isMaxLevel(level, inBonusMode) ? (
+            <SenseiAvatar className={AVATAR_CLASS_NAMES} />
+          ) : (
+            <SumoAvatar className={AVATAR_CLASS_NAMES} />
+          )}
         </Flex>
       </div>
     );

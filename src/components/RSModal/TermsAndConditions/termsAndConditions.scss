@@ -28,7 +28,5 @@
 }
 
 .c-tac__container {
-  height: 100%; // u-height--1/1 adds flex: none and it's breaking everything
   overflow-x: hidden;
-  width: 100%;
 }

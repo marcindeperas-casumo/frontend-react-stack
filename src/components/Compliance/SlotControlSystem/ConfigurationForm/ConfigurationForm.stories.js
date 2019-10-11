@@ -1,12 +1,11 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, boolean, number } from "@storybook/addon-knobs/react";
+import { select, number } from "@storybook/addon-knobs/react";
 import { ConfigurationForm } from "./ConfigurationForm";
 
 const stories = storiesOf("SlotControlSystem/ConfigurationForm", module);
 const t = {
-  limit_your_budget: "Limit your budget",
   limit_your_budget: "Limit your budget",
   use_all_balance: "Use all balance {{balance}}",
   error_budget_too_low: "{{budget}} is the minimum budget",
@@ -14,6 +13,10 @@ const t = {
   limit_your_time: "Limit your time",
   get_status_alerts: "Get status alerts every",
   want_break_after: "Want a break after playing?",
+  want_break_after_opts: [
+    { value: "true", label: "Yes" },
+    { value: "false", label: "No" },
+  ],
   for_how_long: "For how long?",
   play: "Play",
   minutes_abbreviated: "{{minutes}}m",

@@ -1,11 +1,17 @@
 import React from "react";
-import { compose, prop } from "ramda";
-import Text from "@casumo/cmp-text";
-import { CouponIcon } from "@casumo/cmp-icons";
-import { getSymbolForCurrency } from "Utils";
-import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
+import { either, prop, cond, T, equals } from "ramda";
 import {
+  CouponIcon,
+  CurrencyCadIcon,
+  CurrencyEurIcon,
+  CurrencyGbpIcon,
+  CurrencyKrnIcon,
+  CurrencyRupIcon,
   DepositIcon,
+} from "@casumo/cmp-icons";
+import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
+import { CURRENCIES } from "Src/constants";
+import {
   BasicSpinsIcon,
   BonusSpinsIcon,
   SuperSpinsIcon,
@@ -20,45 +26,46 @@ const VALUABLE_ICON = {
     [VALUABLE_SPIN_TYPES.SUPER]: SuperSpinsIcon,
     [VALUABLE_SPIN_TYPES.MEGA]: MegaSpinsIcon,
   },
+  [VALUABLE_TYPES.CASH]: {
+    [CURRENCIES.CAD]: CurrencyCadIcon,
+    [CURRENCIES.EUR]: CurrencyEurIcon,
+    [CURRENCIES.GBP]: CurrencyGbpIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.INR]: CurrencyRupIcon,
+    [CURRENCIES.SEK]: CurrencyKrnIcon,
+    [CURRENCIES.DKK]: CurrencyKrnIcon,
+  },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
-};
-
-const CashSymbol = ({ locale, currency, fontSize }) => {
-  const currencySymbol = getSymbolForCurrency({
-    currency,
-    locale,
-  });
-
-  return (
-    <Text tag="div" size={fontSize} className="u-font-weight-bold">
-      {currencySymbol}
-    </Text>
-  );
 };
 
 export const ValuableSymbol = ({
   currency,
-  market,
   valuableType,
   spinType,
-  fontSize = "lg",
+  size = "md",
 }) => {
-  // eslint-disable-next-line fp/no-let
-  let ValuableSymbolComponent = VALUABLE_ICON[valuableType];
+  const ValuableIcon = VALUABLE_ICON[valuableType];
 
-  if (valuableType === VALUABLE_TYPES.CASH) {
-    return (
-      <CashSymbol currency={currency} market={market} fontSize={fontSize} />
-    );
-  }
+  const ValuableSymbolComponent = cond([
+    [
+      equals(VALUABLE_TYPES.SPINS),
+      () =>
+        either(prop(spinType), prop(VALUABLE_SPIN_TYPES.BASIC_SPINS))(
+          ValuableIcon
+        ),
+    ],
+    [
+      equals(VALUABLE_TYPES.CASH),
+      () => either(prop(currency), prop(CURRENCIES.EUR))(ValuableIcon),
+    ],
+    [T, () => ValuableIcon],
+  ])(valuableType);
 
-  if (valuableType === VALUABLE_TYPES.SPINS) {
-    // eslint-disable-next-line fp/no-mutation
-    ValuableSymbolComponent = compose(
-      prop(spinType),
-      prop(valuableType)
-    )(VALUABLE_ICON);
-  }
-
-  return <ValuableSymbolComponent className="u-width--1/1" />;
+  return (
+    <ValuableSymbolComponent
+      type={valuableType}
+      size={size}
+      className="u-width--1/1 u-width--full"
+    />
+  );
 };

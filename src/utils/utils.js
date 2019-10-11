@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { DateTime } from "luxon";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};
@@ -306,4 +307,14 @@ export const localiseTimeInterval = ({
   }
 
   return interpolate(t.seconds, { seconds });
+};
+
+export const convertTimestampToLuxonDate = (value: number) => {
+  return DateTime.fromSeconds(value);
+};
+
+export const getDateTimeDifferenceFromNow = (value: DateTime) => {
+  const duration = value.diff(DateTime.utc(), ["hours", "minutes", "seconds"]);
+
+  return R.pick(["hours", "minutes", "seconds"], duration);
 };
