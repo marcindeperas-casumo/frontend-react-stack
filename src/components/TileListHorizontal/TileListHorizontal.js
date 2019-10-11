@@ -43,7 +43,7 @@ class TileListHorizontal extends PureComponent<Props> {
     this.props.fetch();
   }
 
-  getKey = (i: number) => {
+  keyGetter = (i: number) => {
     return this.props.items[i].id;
   };
 
@@ -74,7 +74,7 @@ class TileListHorizontal extends PureComponent<Props> {
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
                 numberOfItems={this.itemsWithBackground.length}
-                keyGetter={this.getKey}
+                keyGetter={this.keyGetter}
                 itemRenderer={this.itemRenderer}
                 itemClassName="c-tile"
                 padding={PADDING_PER_DEVICE}
