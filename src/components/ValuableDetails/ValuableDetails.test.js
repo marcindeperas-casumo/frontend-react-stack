@@ -204,27 +204,6 @@ describe("ValuableDetails", () => {
     await expect(onConsume).toHaveBeenCalledTimes(1);
   });
 
-  test("should call not neither onConsume and onlaunch if type is deposit", () => {
-    mockValuable = mockValuables[1];
-
-    rendered = shallow(
-      <ValuableDetails
-        valuableDetails={mockValuable}
-        translations={mockTranslations}
-        onConsumeValuable={onConsume}
-      >
-        <Foo />
-      </ValuableDetails>
-    );
-
-    const actionButton = rendered.find({
-      "data-test": "valuable-action-button",
-    });
-    actionButton.simulate("click");
-
-    expect(onConsume).toHaveBeenCalledTimes(0);
-  });
-
   test("should only call on consume if type is cash", () => {
     mockValuable = mockValuables[0];
 
