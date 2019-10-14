@@ -56,11 +56,6 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     };
   }, [refetch]);
 
-  if (error) {
-    logger.error("PlayerValuableListVertical failed", error);
-    return null;
-  }
-
   if (loading) {
     return <GameRowSkeleton />;
   }

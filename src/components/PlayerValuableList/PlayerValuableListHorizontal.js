@@ -57,14 +57,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     };
   });
 
-  if (error) {
-    logger.error(`
-      PlayerValuableListHorizontal failed:
-      ${error}
-    `);
-    return null;
-  }
-
   if (loading) {
     return <GameListHorizontalSkeleton />;
   }
@@ -89,7 +81,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
 
               return (
                 <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-                  <div className="c-valuable-list__valuable-card">
+                  <div className="c-valuable-list__valuable-card u-padding-bottom--sm">
                     <ValuableCard
                       {...valuable}
                       translations={valuableThumbnailTranslations}
