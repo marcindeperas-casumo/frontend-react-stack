@@ -6,9 +6,8 @@ import {
   createVersionFormatter,
   parseChangelog,
 } from "./termsAndConditions.utils";
-import cms from "./__mocks__/cms";
+import cms, { content as originalContent } from "./__mocks__/cms";
 
-const originalContent = cms.content;
 const numberOfSectionHeaders = 18; // based on originalContent
 
 describe("RSModal/T&C/parseTableOfContents", () => {
@@ -29,10 +28,10 @@ describe("RSModal/T&C/parseTableOfContents", () => {
     expect(document.querySelectorAll(".p1")).toHaveLength(0);
   });
 
-  test("content contains c-tac-section-header classes", () => {
+  test("content contains u-font classes", () => {
     // $FlowIgnoreError: we can assume that we always have body element
     document.body.innerHTML = content;
-    expect(document.querySelectorAll(".c-tac-section-header")).toHaveLength(
+    expect(document.querySelectorAll(".u-font")).toHaveLength(
       numberOfSectionHeaders
     );
   });
