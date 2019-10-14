@@ -22,7 +22,6 @@ const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
-    error,
     loading = false,
     valuables = [],
     translations = {},
