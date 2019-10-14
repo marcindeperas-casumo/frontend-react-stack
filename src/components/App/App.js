@@ -79,13 +79,6 @@ export class App extends PureComponent<Props> {
             namedExport="DepositLimitsViewContainer"
           />
         </Route>
-        <Route path="*">
-          <LazyPortal
-            hostElementId="react-host-dgoj-terms"
-            loader={() => import("Components/RSModal/TermsAndConditions")}
-            namedExport="TermsAndConditionsContainer"
-          />
-        </Route>
         <Route path={["live-casino-details"]}>
           <LazyPortal
             hostElementId="react-host-live-casino-details"

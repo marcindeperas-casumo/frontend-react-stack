@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean } from "@storybook/addon-knobs/react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { Modal } from "./RSModal";
-import { ModalContent } from "./RSModalContent";
+import { ModalContentLoading } from "./RSModalContent";
 import { ModalHeader } from "./RSModalHeader";
 
 const stories = storiesOf("RSModal", module);
@@ -36,16 +36,20 @@ if (isNotChromatic) {
 
     return (
       <>
-        <ModalHeader title={text.title} hideModal={() => {}} />
-        <ModalContent content={text.content} />
+        <ModalHeader
+          title={text.title}
+          closeAction={() => {}}
+          showCloseButton
+        />
+        <div style={{ height: 200, backgroundColor: "#ffcd32" }} />
       </>
     );
   });
   stories.add("Loading", () => {
     return (
       <>
-        <ModalHeader title={undefined} hideModal={() => {}} />
-        <ModalContent content={undefined} />
+        <ModalHeader />
+        <ModalContentLoading />
       </>
     );
   });

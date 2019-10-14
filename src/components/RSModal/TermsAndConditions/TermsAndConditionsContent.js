@@ -1,25 +1,25 @@
 // @flow
 import * as React from "react";
+import { useTranslations } from "Utils/hooks";
+import { interpolate } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
 import { ParagraphSkeleton } from "Components/Skeleton/Paragraph";
+import { cmsSlugs } from "Models/tac";
 import { TableOfContents } from "./TableOfContents";
 import { parseTableOfContents } from "./termsAndConditions.utils";
 import "./termsAndConditions.scss";
 
 type Props = {
-  content: ?string,
-  fetchVersionContent: number => void,
   version: number,
 };
 
-export function TermsAndConditionsContent(props: Props) {
-  React.useEffect(() => {
-    if (!props.content) {
-      props.fetchVersionContent(props.version);
-    }
-  }, [props]);
+export function TermsAndConditionsContent({ version }: Props) {
+  const rawContent = useTranslations(
+    interpolate(cmsSlugs.content, { version }),
+    true
+  );
 
-  if (!props.content) {
+  if (!rawContent) {
     return (
       <div className="u-padding--md">
         <ParagraphSkeleton size="sm" />
@@ -28,7 +28,7 @@ export function TermsAndConditionsContent(props: Props) {
     );
   }
 
-  const { tableOfContents, content } = parseTableOfContents(props.content);
+  const { tableOfContents, content } = parseTableOfContents(rawContent);
 
   return (
     <>
