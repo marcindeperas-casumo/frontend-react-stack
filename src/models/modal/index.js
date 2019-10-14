@@ -1,40 +1,90 @@
 // @flow
-export type ModalKind =
-  | "REEL_RACES_CAVEATS"
-  | "TERMS_AND_CONDITIONS"
-  | "TERMS_AND_CONDITIONS_SPAIN"
-  | "PRIVACY_NOTICE"
-  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
+import * as R from "ramda";
+import { useDispatch, useSelector } from "react-redux";
+import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
+import bridge from "Src/DurandalReactBridge";
 
-const type = {
+export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",
 };
+export type ModalId =
+  | "TERMS_AND_CONDITIONS_SPAIN"
+  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
+type ModalReturnCode =
+  | "CLOSED" // click on "x"
+  | "ACCEPTED" // click on accept button
+  | "DISMISSED"; // click outside of the modal
+/*::
+// flow magic, with that I can safely use ModalId and ModalReturnCode type
+const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
+(REACT_APP_MODAL.ID: { [ModalId]: ModalId });
+(REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
+*/
+export type ModalConfig = {
+  mustAccept?: boolean,
+};
+type ModalState = {
+  modalId: ModalId | null,
+  config: ModalConfig,
+};
 
-export function showModal(kind: ModalKind) {
+type ActionType = "MODAL/HIDE" | "MODAL/SHOW";
+
+export function showModal(modalId: ModalId, config: any) {
   return {
     type: type.show,
-    kind,
+    modalId,
+    config,
   };
 }
 
-export function hideModal(kind: ModalKind) {
+export function useSelectModal(): ModalState {
+  return useSelector(R.prop("modal"), R.eqProps("modalId"));
+}
+
+export function hideModal() {
   return {
     type: type.hide,
-    kind,
+  };
+}
+
+export function useHideModal(modalId: ?ModalId) {
+  const dispatch = useDispatch();
+  const fn = (returnCode: ModalReturnCode) => () => {
+    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, returnCode });
+    dispatch(hideModal());
+  };
+
+  return {
+    closeModal: fn("CLOSED"),
+    dismissModal: fn("DISMISSED"),
+    acceptModal: fn("ACCEPTED"),
   };
 }
 
 type Actions = typeof showModal | typeof hideModal;
 type Handler = {
-  [string]: (state: Array<string>, action: Actions) => ?ModalKind,
+  [ActionType]: (state: Array<string>, action: Actions) => ModalState,
 };
 
 const handlers: Handler = {
-  [type.show]: (state, action) => action.kind,
-  [type.hide]: state => null,
+  [type.show]: (state, action) => ({
+    modalId: action.modalId,
+    config: action.config || {},
+  }),
+  [type.hide]: state => ({
+    modalId: null,
+    config: {},
+  }),
 };
-
-export function modalReducer(state: ?ModalKind = null, action: Actions) {
+const DEFAULT_STATE = {
+  modalId: null,
+  config: {},
+};
+export function modalReducer(
+  state: ModalState = DEFAULT_STATE,
+  action: Actions
+) {
   return handlers[action.type] ? handlers[action.type](state, action) : state;
 }
