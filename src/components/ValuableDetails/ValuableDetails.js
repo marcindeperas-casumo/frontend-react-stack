@@ -1,16 +1,18 @@
 /* @flow */
 import React, { type Node } from "react";
-import { allPass, propIs } from "ramda";
+import { allPass, propIs, equals } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolate, convertHoursToDays } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
+import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import {
   type ValuableDetailsTranslations as Translations,
   VALUABLE_STATES,
+  VALUABLE_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
