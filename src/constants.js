@@ -25,6 +25,7 @@ export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
+export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 
 export const REACT_APP_EVENTS = {
   SLOT_CONTROL_SYSTEM: {
@@ -43,6 +44,7 @@ export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
 export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
+export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {
@@ -180,6 +182,21 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
+
+// Those modals are implemented on react side. They can be spawned from knockout.
+// Event KO_APP_EVENT_MODAL_HIDDEN will contain ID and RETURN_CODE of closed modal
+export const REACT_APP_MODAL = {
+  RETURN_CODE: {
+    ACCEPTED: "ACCEPTED",
+    CLOSED: "CLOSED",
+    DISMISSED: "DISMISSED",
+  },
+  ID: {
+    TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
+    SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
+  },
+};
+// Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
 
 export const MODALS = {
   ACCOUNT_SETTINGS: {

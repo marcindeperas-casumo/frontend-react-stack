@@ -24,37 +24,44 @@ export function Changelog({ t, ...props }: Props) {
   return (
     <Flex
       direction="vertical"
-      className="u-margin--md u-padding--md t-border-r t-background-grey-light-2"
+      className="u-margin--md u-padding-x--md u-padding-y--lg t-border-r t-background-chrome-light-2"
     >
-      <Text className="u-font-weight-bold u-margin-bottom--md">
+      <Text
+        tag="span"
+        size="xs"
+        className="u-font-weight-bold u-margin-bottom--md"
+      >
         {t.changelog_title}
       </Text>
       {parseChangelog(props.changelog).map(({ section, changes }) => (
         <Flex key={section}>
           <Text
             tag="span"
+            size="xs"
             className="u-font-weight-black c-changelog__section-number u-margin-right"
           >
             {section}
           </Text>
-          <Text tag="span" className="c-changelog__section-content">
+          <Text tag="span" size="xs" className="c-changelog__section-content">
             {changes}
           </Text>
         </Flex>
       ))}
       {props.ackTimestamp && (
-        <Flex className="t-color-chrome-dark-1 u-margin-top--md" align="center">
+        <Flex className="t-color-green u-margin-top--md" align="center">
           <TickIcon
             className="c-tac-changelog-approved u-margin-right"
             size="sm"
           />
-          <DangerousHtml
-            html={formatWithDateMedium(
-              t.date_changes_accepted,
-              props.ackTimestamp,
-              props.locale
-            )}
-          />
+          <Text tag="span" size="sm" className="c-changelog__section-content">
+            <DangerousHtml
+              html={formatWithDateMedium(
+                t.date_changes_accepted,
+                props.ackTimestamp,
+                props.locale
+              )}
+            />
+          </Text>
         </Flex>
       )}
     </Flex>
