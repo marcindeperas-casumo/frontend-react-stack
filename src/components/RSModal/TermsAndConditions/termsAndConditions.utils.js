@@ -75,6 +75,8 @@ export function createVersionDateFormatter(data: {
     });
   };
 }
+/*:: const __createVersionDateFormatter = createVersionDateFormatter({}); */
+export type VersionDateFormatter = typeof __createVersionDateFormatter;
 
 export function createVersionFormatter(data: {
   t: {
@@ -109,6 +111,8 @@ export function createVersionFormatter(data: {
     return interpolate(data.t.version_label, { version: versionName });
   };
 }
+/*:: const __createVersionFormatter = createVersionFormatter({}); */
+export type VersionFormatter = typeof __createVersionFormatter;
 
 export function parseTableOfContents(content: string) {
   /**
@@ -117,11 +121,9 @@ export function parseTableOfContents(content: string) {
    * in sync with what is done here.
    */
   const classesForSectionHeader = classNames(
-    "c-tac-section-header",
-    "t-background-white",
-    "u-font-lg",
-    "u-font-weight-black",
-    "u-padding-y--lg"
+    "u-font",
+    "u-font-weight-bold",
+    "u-padding-y--md"
   );
   const makeId = (i: number) => `tac_${i}`;
   const el = document.createElement("html");

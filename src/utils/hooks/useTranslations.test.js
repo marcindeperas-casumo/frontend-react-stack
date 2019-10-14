@@ -51,7 +51,7 @@ describe("useTranslations", () => {
     expectHook(wrapper).toEqual(null);
   });
 
-  test("returns null if translation doesn't exist in redux", () => {
+  test("returns translation when present, but omits fields we don't want", () => {
     const state2 = {
       schema: {
         cms: {

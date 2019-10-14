@@ -1,47 +1,37 @@
 // @flow
 import * as React from "react";
-import { shallow } from "enzyme";
+import { shallow, mount } from "enzyme";
+import MockStore from "Components/MockStore";
 import { TermsAndConditions } from "./TermsAndConditions";
 import { HistoryView } from "./HistoryView";
-import cms from "./__mocks__/cms";
+import cms, { state } from "./__mocks__/cms";
 
-const acks = {
-  first: {
-    version: 16,
-    timestamp: new Date("2019-01-01T06:06:06").valueOf(),
-  },
-  last: {
-    version: 17,
-    timestamp: new Date("2019-06-01T07:07:07").valueOf(),
-  },
+const baseProps = {
+  config: {},
+  acceptModal: () => {},
+  closeModal: () => {},
+  dismissModal: () => {},
+  t: cms,
 };
-
 describe("RSModal/T&C", () => {
   test("doesn't initialize with history view", () => {
     const wrapper = shallow(
-      <TermsAndConditions
-        t={cms}
-        locale="en-GB"
-        fetchTACAcknowledgements={() => {}}
-        fetchTranslations={() => {}}
-        acks={acks}
-      />
+      <MockStore state={state}>
+        <TermsAndConditions {...baseProps} />
+      </MockStore>
     );
     expect(wrapper.find(HistoryView)).toHaveLength(0);
   });
 
   test("show history view after clicking toggle", () => {
-    const wrapper = shallow(
-      <TermsAndConditions
-        t={cms}
-        locale="en-GB"
-        fetchTACAcknowledgements={() => {}}
-        fetchTranslations={() => {}}
-        acks={acks}
-      />
+    const wrapper = mount(
+      <MockStore state={state}>
+        <TermsAndConditions {...baseProps} />
+      </MockStore>
     );
     wrapper
       .find({ "data-test-id": "toggle-history-view-btn" })
+      .at(0)
       .simulate("click");
 
     expect(wrapper.find(HistoryView)).toHaveLength(1); // history view present after clicking

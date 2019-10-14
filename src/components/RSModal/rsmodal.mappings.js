@@ -10,6 +10,7 @@ import {
 import { exitConfiguration } from "Services/SlotControlSystemService";
 import { TermsAndConditions } from "./TermsAndConditions";
 import { SlotControlSystemContainer } from "./SlotControlSystem";
+import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
   /** object with translations for provided slug, null if still fetching */
@@ -24,15 +25,7 @@ type Mapping = {
   [ModalId]: {
     // cms slug
     slug: string,
-    Content: React.ComponentType<{
-      /** object with translations for provided slug, null if still fetching */
-      t: ?{},
-      /** object that was passed with spawn action, defaults to empty object */
-      config: ModalConfig,
-      closeModal: () => void,
-      dismissModal: () => void,
-      acceptModal: () => void,
-    }>,
+    Content: React.ComponentType<ModalContentComponent<Object>>,
   },
 };
 
@@ -53,4 +46,4 @@ export const getModalData: (
 ) => {
   slug: string,
   Content: React.ComponentType<{}>,
-} = R.prop(R.__, mappings);
+} = R.propOr({ Content: ModalLoadingState }, R.__, mappings);

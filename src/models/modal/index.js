@@ -22,20 +22,6 @@ const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
 (REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
 */
 export type ModalConfig = {
-  mustAccept: boolean,
-};
-
-type ModalReturnCode =
-  | "CLOSED" // click on "x"
-  | "ACCEPTED" // click on accept button
-  | "DISMISSED"; // click outside of the modal
-/*::
-// flow magic, with that I can safely use ModalId and ModalReturnCode type
-const REACT_APP_MODAL = Object.freeze(require("Src/constants").REACT_APP_MODAL);
-(REACT_APP_MODAL.ID: { [ModalId]: ModalId });
-(REACT_APP_MODAL.RETURN_CODE: { [ModalReturnCode]: ModalReturnCode });
-*/
-export type ModalConfig = {
   mustAccept?: boolean,
 };
 type ModalState = {
@@ -65,8 +51,8 @@ export function hideModal() {
 
 export function useHideModal(modalId: ?ModalId) {
   const dispatch = useDispatch();
-  const fn = (reason: ModalReturnCode) => () => {
-    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, reason });
+  const fn = (returnCode: ModalReturnCode) => () => {
+    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, returnCode });
     dispatch(hideModal());
   };
 

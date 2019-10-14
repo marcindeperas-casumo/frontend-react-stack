@@ -8,9 +8,6 @@ const stories = storiesOf("RSModal/T&C", module);
 
 stories.add("ArchivedVersionHeader", () => {
   return (
-    <ArchivedVersionHeader
-      t={{ note_version_old: cms.note_version_old }}
-      onClick={() => {}}
-    />
+    <ArchivedVersionHeader title={cms.note_version_old} onClick={() => {}} />
   );
 });
