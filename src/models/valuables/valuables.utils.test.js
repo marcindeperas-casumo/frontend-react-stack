@@ -7,14 +7,13 @@ import {
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
-  depositUrl,
-  gameBrowserUrl,
+  depositRouteId,
+  gameBrowserRouteId,
   durationToTranslationKey,
   coinValueToSpinType,
   isAboutToExpire,
   showStateBadge,
   getValuablesByState,
-  shouldUseValuable,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -32,7 +31,7 @@ describe("Valuables.utils", () => {
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(
       translations.depositNowLabel,
-      depositUrl
+      depositRouteId
     );
 
     const actualValue = getValuableDetailsAction({
@@ -49,7 +48,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.cashUnlockedActionLabel,
-      gameBrowserUrl
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -83,7 +82,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositUrl
+      depositRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -102,7 +101,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
-      gameBrowserUrl
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -121,7 +120,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositUrl
+      depositRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -140,7 +139,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
-      gameBrowserUrl
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -198,14 +197,6 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
-  });
-
-  describe("shouldUseValuable", () => {
-    test("should return true if valuable is of type SPINS or CASH", () => {
-      expect(shouldUseValuable(VALUABLE_TYPES.SPINS)).toBe(true);
-      expect(shouldUseValuable(VALUABLE_TYPES.CASH)).toBe(true);
-      expect(shouldUseValuable(VALUABLE_TYPES.DEPOSIT)).toBe(false);
-    });
   });
 
   describe("isAboutToExpire", () => {

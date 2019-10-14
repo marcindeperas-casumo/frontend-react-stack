@@ -9,7 +9,6 @@ import { interpolate, convertHoursToDays } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { navigate } from "Services/NavigationService";
 import {
-  shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
   VALUABLE_STATES,
   getValuableDetailsAction,
@@ -119,25 +118,24 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = (url?: string) => {
-    const { valuableDetails } = this.props;
-    const { valuableType, id } = valuableDetails;
-    const { onConsumeValuable } = this.props;
+  handleAction = async (url?: string) => {
+    const {
+      valuableDetails: { id },
+      onConsumeValuable,
+    } = this.props;
 
-    if (shouldUseValuable(valuableType)) {
-      onConsumeValuable(id)
-        .then(data => {
-          url && navigate({ url });
-        })
-        .catch(({ graphQLErrors }, data) => {
-          const {
-            extensions: { code },
-          } = graphQLErrors[0];
+    try {
+      await onConsumeValuable(id);
 
-          launchErrorModal({
-            rejectReasonId: code,
-          });
-        });
+      url && navigate({ url });
+    } catch (error) {
+      const {
+        extensions: { exception },
+      } = error.graphQLErrors[0];
+
+      launchErrorModal({
+        rejectReasonId: exception.rejectReasonId,
+      });
     }
   };
 
