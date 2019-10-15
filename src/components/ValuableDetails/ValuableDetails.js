@@ -11,6 +11,7 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import {
   type ValuableDetailsTranslations as Translations,
+  type ValuableType,
   VALUABLE_STATES,
   VALUABLE_TYPES,
   getValuableDetailsAction,
@@ -120,7 +121,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = async (url?: string) => {
+  handleAction = async (url?: string, valuableType: ValuableType) => {
     const {
       valuableDetails: { id },
       onConsumeValuable,
@@ -128,6 +129,10 @@ export class ValuableDetails extends React.PureComponent<Props> {
 
     try {
       await onConsumeValuable(id);
+
+      if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
+        depositBonusSelected({ badgeId: id });
+      }
 
       url && navigate({ url });
     } catch (error) {
@@ -257,7 +262,9 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="c-valuable-details__footer u-padding--md">
             <Button
               className="u-width--full"
-              onClick={() => this.handleAction(actionButtonProps.url)}
+              onClick={() =>
+                this.handleAction(actionButtonProps.url, valuableType)
+              }
               data-test="valuable-action-button"
               variant="primary"
             >

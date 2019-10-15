@@ -45,6 +45,8 @@ export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
 export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
 export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
+export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
+  "KO_APP_EVENT/depositBonusSelected";
 
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {

@@ -51,16 +51,15 @@ export const getValuableDetailsAction = ({
   });
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-    return setActionProps(translations.depositNowLabel, depositRouteId);
+    // The redirection is being taken care of by the KO code
+    return setActionProps(translations.depositNowLabel, "");
   }
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-        return setActionProps(
-          translations.depositToUnlockLabel,
-          depositRouteId
-        );
+        // The redirection is being taken care of by the KO code
+        return setActionProps(translations.depositToUnlockLabel, "");
       }
 
       return setActionProps(translations.playToUnlockLabel, gameBrowserRouteId);

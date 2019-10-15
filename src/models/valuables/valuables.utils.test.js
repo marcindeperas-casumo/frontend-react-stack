@@ -31,7 +31,7 @@ describe("Valuables.utils", () => {
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(
       translations.depositNowLabel,
-      depositRouteId
+      ""
     );
 
     const actualValue = getValuableDetailsAction({
@@ -82,7 +82,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositRouteId
+      ""
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -120,7 +120,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositRouteId
+      ""
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
