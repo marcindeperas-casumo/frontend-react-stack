@@ -6,6 +6,7 @@ type Translations = ValuableThumbnailTranslations & {
   availableListTitleLabel: string,
   lockedListTitleLabel: string,
   seeAllLabel: string,
+  noValuablesLabel: string,
 };
 
 export type PlayerValuableListProps = {

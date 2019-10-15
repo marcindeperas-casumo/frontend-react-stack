@@ -6,6 +6,7 @@ import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { getValuablesByState, VALUABLE_STATES } from "Models/valuables";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import SectionList from "Components/SectionList";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 import translationsMock from "./__mocks__/translations.mock.json";
@@ -89,5 +90,18 @@ describe("PlayerValuableListVertical", () => {
       },
     });
     expect(mock).toHaveBeenCalledTimes(0);
+  });
+
+  test("should render EmptyValuablesList if no valuables are provided", () => {
+    const rendered = mount(
+      <PlayerValuableListVertical
+        valuables={[]}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={refetchMock}
+      />
+    );
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });
