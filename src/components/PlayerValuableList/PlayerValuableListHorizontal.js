@@ -7,6 +7,7 @@ import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameLi
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { subscribeToItemCreatedEvent } from "./utils";
 import { type PlayerValuableListProps } from "./PlayerValuableList.types";
 import "./PlayerValuableListHorizontal.scss";
@@ -21,14 +22,13 @@ const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
-    error,
     loading = false,
     valuables = [],
     translations = {},
     refetch = () => {},
     onConsumeValuable,
   } = props;
-  const { listTitleLabel, seeAllLabel } = translations;
+  const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
   const [selectedValuable, setSelectedValuable] = useState(null);
   const valuableThumbnailTranslations = pick(
     ["hoursLabel", "minutesLabel"],
@@ -56,14 +56,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     };
   });
 
-  if (error) {
-    logger.error(`
-      PlayerValuableListHorizontal failed:
-      ${error}
-    `);
-    return null;
-  }
-
   if (loading) {
     return <GameListHorizontalSkeleton />;
   }
@@ -78,41 +70,47 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         }}
         title={listTitleLabel}
       />
-      <Scrollable padding={PADDING_PER_DEVICE}>
-        {valuables.map(valuable => {
-          const { id } = valuable;
+      {noValuablesAvailable ? (
+        <EmptyValuablesList message={noValuablesLabel} />
+      ) : (
+        <>
+          <Scrollable padding={PADDING_PER_DEVICE}>
+            {valuables.map(valuable => {
+              const { id } = valuable;
 
-          return (
-            <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-              <div className="c-valuable-list__valuable-card u-padding-bottom--sm">
+              return (
+                <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
+                  <div className="c-valuable-list__valuable-card u-padding-bottom--sm">
+                    <ValuableCard
+                      {...valuable}
+                      translations={valuableThumbnailTranslations}
+                      onCardClick={() => showModal(valuable)}
+                      className="t-box-shadow"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+          </Scrollable>
+
+          {selectedValuable && (
+            <ValuableDetailsWithModal
+              isOpen={Boolean(selectedValuable)}
+              onClose={closeModal}
+              onConsumeValuable={onConsumeValuable}
+              valuableDetails={selectedValuable}
+            >
+              <div className="c-valuable-list__valuable-card">
                 <ValuableCard
-                  {...valuable}
+                  {...selectedValuable}
                   translations={valuableThumbnailTranslations}
-                  onCardClick={() => showModal(valuable)}
-                  className="t-box-shadow"
+                  caveat={null}
+                  className="t-box-shadow--lg"
                 />
               </div>
-            </div>
-          );
-        })}
-      </Scrollable>
-
-      {selectedValuable && (
-        <ValuableDetailsWithModal
-          isOpen={Boolean(selectedValuable)}
-          onClose={closeModal}
-          onConsumeValuable={onConsumeValuable}
-          valuableDetails={selectedValuable}
-        >
-          <div className="c-valuable-list__valuable-card">
-            <ValuableCard
-              {...selectedValuable}
-              translations={valuableThumbnailTranslations}
-              caveat={null}
-              className="t-box-shadow--lg"
-            />
-          </div>
-        </ValuableDetailsWithModal>
+            </ValuableDetailsWithModal>
+          )}
+        </>
       )}
     </div>
   );

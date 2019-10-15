@@ -4,5 +4,6 @@
   "hoursLabel": "{{value}}h",
   "minutesLabel": "{{value}}m",
   "listTitleLabel": "Your Valuables",
-  "seeAllLabel": "See All"
+  "seeAllLabel": "See All",
+  "noValuablesLabel": "No bonuses available"
 }

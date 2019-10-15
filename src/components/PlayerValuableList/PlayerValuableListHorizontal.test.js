@@ -6,6 +6,7 @@ import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
 import { ValuableCard } from "Components/ValuableCard";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
 import translationsMock from "./__mocks__/translations.mock.json";
@@ -113,5 +114,18 @@ describe("PlayerValuableListHorizontal", () => {
       },
     });
     expect(mock).toHaveBeenCalledTimes(0);
+  });
+
+  test("should render EmptyValuablesList if no valuables are provided", () => {
+    rendered = mount(
+      <PlayerValuableListHorizontal
+        valuables={[]}
+        loading={false}
+        onConsumeValuable={consumeValuable}
+        translations={translationsMock}
+        refetch={refetchMock}
+      />
+    );
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });
