@@ -14,6 +14,7 @@ import {
   type ValuableType,
   VALUABLE_STATES,
   VALUABLE_TYPES,
+  VALUABLE_REQUIREMENT_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
@@ -121,7 +122,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = async (url?: string, valuableType: ValuableType) => {
+  handleAction = async (
+    url?: string,
+    valuableType: ValuableType,
+    requirementType: ?ValuableRequirementType
+  ) => {
     const {
       valuableDetails: { id },
       onConsumeValuable,
@@ -130,7 +135,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
     try {
       await onConsumeValuable(id);
 
-      if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
+      if (
+        equals(valuableType, VALUABLE_TYPES.DEPOSIT) ||
+        (requirementType &&
+          equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT))
+      ) {
         depositBonusSelected({ badgeId: id });
       }
 
@@ -171,6 +180,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationInfo.key,
       expirationInfo.value
     );
+    const requirementType = this.requirementType;
 
     const expirationValueText =
       translations[durationKey] &&
@@ -181,7 +191,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
       valuableState,
-      requirementType: this.requirementType,
+      requirementType,
       translations,
     });
 
@@ -263,7 +273,11 @@ export class ValuableDetails extends React.PureComponent<Props> {
             <Button
               className="u-width--full"
               onClick={() =>
-                this.handleAction(actionButtonProps.url, valuableType)
+                this.handleAction(
+                  actionButtonProps.url,
+                  valuableType,
+                  requirementType
+                )
               }
               data-test="valuable-action-button"
               variant="primary"
