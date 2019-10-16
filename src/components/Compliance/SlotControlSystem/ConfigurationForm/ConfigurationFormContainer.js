@@ -28,8 +28,9 @@ export const ConfigurationFormContainer = connect(
       dispatch(fetchPageBySlug(CMS_SLUGS.CONFIGURATION_SCREEN)),
     fetchUnitsContent: () => dispatch(fetchPageBySlug(CMS_SLUGS.UNITS)),
   }),
-  (props, dispatchProps) => ({
+  (props, dispatchProps, ownProps) => ({
     ...props,
+    ...ownProps,
     fetchContentIfNecessary: () => {
       if (!props.isContentFetched) {
         dispatchProps.fetchContent();

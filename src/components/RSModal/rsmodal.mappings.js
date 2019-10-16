@@ -7,9 +7,12 @@ import {
   MODALS as SCS_MODALS,
   CMS_SLUGS as SCS_CMS_SLUGS,
 } from "Models/slotControlSystem";
-import { exitConfiguration } from "Services/SlotControlSystemService";
+import {
+  exitConfiguration as scsExitConfiguration,
+  finishConfiguration as scsFinishConfiguration,
+} from "Services/SlotControlSystemService";
 import { TermsAndConditions } from "./TermsAndConditions";
-import { SlotControlSystemContainer } from "./SlotControlSystem";
+import { SlotControlSystem } from "./SlotControlSystem";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -36,8 +39,9 @@ export const mappings: Mapping = {
   },
   [SCS_MODALS.CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
-    Content: SlotControlSystemContainer,
-    onHideModal: exitConfiguration,
+    Content: SlotControlSystem,
+    dismissModal: scsExitConfiguration,
+    acceptModal: scsFinishConfiguration,
   },
 };
 
@@ -46,4 +50,6 @@ export const getModalData: (
 ) => {
   slug: string,
   Content: React.ComponentType<{}>,
+  dismissModal?: () => void,
+  acceptModal?: () => void,
 } = R.propOr({ Content: ModalLoadingState }, R.__, mappings);

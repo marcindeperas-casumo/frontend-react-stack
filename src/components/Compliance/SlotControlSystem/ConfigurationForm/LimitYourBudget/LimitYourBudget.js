@@ -81,7 +81,7 @@ export function LimitYourBudget(props: Props) {
       />
       <Button
         variant="secondary"
-        className="u-margin-top--xlg"
+        className="u-margin-top--xlg u-margin-top--3xlg@tablet"
         onClick={() => onSubmit(balance)}
       >
         <span className="t-color-black">
