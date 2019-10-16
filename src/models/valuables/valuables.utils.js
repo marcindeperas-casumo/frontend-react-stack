@@ -52,14 +52,14 @@ export const getValuableDetailsAction = ({
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
     // The redirection is being taken care of by the KO code
-    return setActionProps(translations.depositNowLabel, "");
+    return setActionProps(translations.depositNowLabel);
   }
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
         // The redirection is being taken care of by the KO code
-        return setActionProps(translations.depositToUnlockLabel, "");
+        return setActionProps(translations.depositToUnlockLabel);
       }
 
       return setActionProps(translations.playToUnlockLabel, gameBrowserRouteId);
