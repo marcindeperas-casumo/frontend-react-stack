@@ -7,8 +7,7 @@ jest.mock("../DurandalReactBridge");
 
 describe("DepositBonusSelected", () => {
   beforeEach(() => {
-    // $FlowFixMe
-    bridge.emit.mockReset();
+    jest.resetAllMocks();
   });
 
   test("calls emit on the bridge with the deposit selected and badgeId", () => {
