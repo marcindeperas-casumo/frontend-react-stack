@@ -27,7 +27,7 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
   });
 
-  test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
+  test("should return an empty url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(translations.depositNowLabel);
 
     const actualValue = getValuableDetailsAction({
@@ -70,7 +70,7 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return deposit url and depositToUnlock label when CASH, locked with deposit req.", () => {
+  test("should return an empty url and depositToUnlock label when CASH, locked with deposit req.", () => {
     valuableType = VALUABLE_TYPES.CASH;
     valuableState = VALUABLE_STATES.LOCKED;
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
@@ -107,7 +107,7 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return deposit url and depositToUnlock label when SPINS, locked with deposit req.", () => {
+  test("should return an empty url and depositToUnlock label when SPINS, locked with deposit req.", () => {
     valuableType = VALUABLE_TYPES.SPINS;
     valuableState = VALUABLE_STATES.LOCKED;
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
