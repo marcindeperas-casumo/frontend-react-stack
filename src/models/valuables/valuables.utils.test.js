@@ -7,7 +7,6 @@ import {
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
-  depositRouteId,
   gameBrowserRouteId,
   durationToTranslationKey,
   coinValueToSpinType,
@@ -29,10 +28,7 @@ describe("Valuables.utils", () => {
   });
 
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
-    const expectedValue = getExpectedActionValue(
-      translations.depositNowLabel,
-      ""
-    );
+    const expectedValue = getExpectedActionValue(translations.depositNowLabel);
 
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -63,8 +59,7 @@ describe("Valuables.utils", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
     const expectedValue = getExpectedActionValue(
-      translations.spinsUnlockedActionLabel,
-      ""
+      translations.spinsUnlockedActionLabel
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -81,8 +76,7 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
-      translations.depositToUnlockLabel,
-      ""
+      translations.depositToUnlockLabel
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -119,8 +113,7 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
-      translations.depositToUnlockLabel,
-      ""
+      translations.depositToUnlockLabel
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -242,7 +235,7 @@ describe("Valuables.utils", () => {
   });
 });
 
-const getExpectedActionValue = (text, url) => ({
+const getExpectedActionValue = (text = "", url = "") => ({
   text,
   url,
 });
