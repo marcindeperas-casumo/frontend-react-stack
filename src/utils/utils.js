@@ -278,7 +278,7 @@ export const convertHoursToDays = (hours: number) => {
   return Math.floor(hours / 24);
 };
 
-type LocaliseTimeIntervalType = {
+type InterpolateTimeIntervalType = {
   seconds: number,
   t: {
     seconds: string,
@@ -288,10 +288,10 @@ type LocaliseTimeIntervalType = {
   },
 };
 
-export const localiseTimeInterval = ({
+export const interpolateTimeInterval = ({
   seconds,
   t,
-}: LocaliseTimeIntervalType) => {
+}: InterpolateTimeIntervalType) => {
   const minutes = Math.floor(seconds / 60);
   const hours = Math.floor(minutes / 60);
   const days = Math.floor(hours / 24);
