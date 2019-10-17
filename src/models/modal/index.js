@@ -51,8 +51,8 @@ export function hideModal() {
 
 export function useHideModal(modalId: ?ModalId) {
   const dispatch = useDispatch();
-  const fn = (returnCode: ModalReturnCode) => () => {
-    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, returnCode });
+  const fn = (returnCode: ModalReturnCode) => (result?: any) => {
+    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { modalId, returnCode, result });
     dispatch(hideModal());
   };
 
