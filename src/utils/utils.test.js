@@ -19,7 +19,7 @@ import {
   findOr,
   convertHoursToDays,
   convertTimestampToLuxonDate,
-  localiseTimeInterval,
+  interpolateTimeInterval,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -378,7 +378,7 @@ describe("convertHoursToDays()", () => {
     });
   });
 
-  describe("localiseTimeInterval()", () => {
+  describe("interpolateTimeInterval()", () => {
     const t = {
       seconds: "{{seconds}}secs",
       minutes: "{{minutes}}mins",
@@ -392,7 +392,7 @@ describe("convertHoursToDays()", () => {
         t,
       };
 
-      expect(localiseTimeInterval(props)).toEqual("12secs");
+      expect(interpolateTimeInterval(props)).toEqual("12secs");
     });
 
     test("should return string for minutes if number of seconds is lower than in an hour", () => {
@@ -401,7 +401,7 @@ describe("convertHoursToDays()", () => {
         t,
       };
 
-      expect(localiseTimeInterval(props)).toEqual("1mins");
+      expect(interpolateTimeInterval(props)).toEqual("1mins");
     });
 
     test("should return string for hours if number of seconds is lower than in a day", () => {
@@ -410,7 +410,7 @@ describe("convertHoursToDays()", () => {
         t,
       };
 
-      expect(localiseTimeInterval(props)).toEqual("5hrs");
+      expect(interpolateTimeInterval(props)).toEqual("5hrs");
     });
 
     test("should return string for days if number of seconds is equal or greater than in a day", () => {
@@ -419,7 +419,7 @@ describe("convertHoursToDays()", () => {
         t,
       };
 
-      expect(localiseTimeInterval(props)).toEqual("3days");
+      expect(interpolateTimeInterval(props)).toEqual("3days");
     });
   });
 });

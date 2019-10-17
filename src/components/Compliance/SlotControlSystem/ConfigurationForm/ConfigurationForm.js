@@ -4,7 +4,7 @@ import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
-import { localiseTimeInterval } from "Utils";
+import { interpolateTimeInterval } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -72,7 +72,7 @@ export function ConfigurationForm(props: Props) {
   );
   const mapSecondsToPillOpts = map(seconds => ({
     value: seconds,
-    label: localiseTimeInterval({
+    label: interpolateTimeInterval({
       seconds,
       t: {
         seconds: "unused",
