@@ -4,7 +4,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PillSelector } from "Components/PillSelector";
 
-const { useCallback } = React;
 const castToBoolean = (value: string) => (value === "true" ? true : false);
 
 type WantBreakAfterRowType = {
@@ -25,12 +24,9 @@ type WantBreakAfterRowType = {
 
 export function WantBreakAfterRow(props: WantBreakAfterRowType) {
   const { t, value, onChangeBreak, breakValue, breakOptions } = props;
-  const onChange = useCallback(
-    v => {
-      props.onChange(castToBoolean(v));
-    },
-    [props]
-  );
+  const onChange = v => {
+    props.onChange(castToBoolean(v));
+  };
 
   return (
     <Flex
