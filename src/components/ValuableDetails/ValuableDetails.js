@@ -1,6 +1,6 @@
 /* @flow */
 import React, { type Node } from "react";
-import { allPass, propIs, equals } from "ramda";
+import { allPass, propIs } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
@@ -11,10 +11,8 @@ import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import {
   type ValuableDetailsTranslations as Translations,
-  type ValuableType,
+  type ValuableActionProps,
   VALUABLE_STATES,
-  VALUABLE_TYPES,
-  VALUABLE_REQUIREMENT_TYPES,
   getValuableDetailsAction,
   durationToTranslationKey,
   type ValuableRequirementType,
@@ -122,24 +120,18 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = async (
-    url?: string,
-    valuableType: ValuableType,
-    requirementType: ?ValuableRequirementType
-  ) => {
+  handleAction = async (actionProps: ValuableActionProps) => {
     const {
       valuableDetails: { id },
       onConsumeValuable,
     } = this.props;
 
+    const { url, isDepositBonusSelected } = actionProps;
+
     try {
       await onConsumeValuable(id);
 
-      if (
-        equals(valuableType, VALUABLE_TYPES.DEPOSIT) ||
-        (requirementType &&
-          equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT))
-      ) {
+      if (isDepositBonusSelected) {
         depositBonusSelected({ badgeId: id });
       }
 
@@ -272,13 +264,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="c-valuable-details__footer u-padding--md">
             <Button
               className="u-width--full"
-              onClick={() =>
-                this.handleAction(
-                  actionButtonProps.url,
-                  valuableType,
-                  requirementType
-                )
-              }
+              onClick={() => this.handleAction(actionButtonProps)}
               data-test="valuable-action-button"
               variant="primary"
             >

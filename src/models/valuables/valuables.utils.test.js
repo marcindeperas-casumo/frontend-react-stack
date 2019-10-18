@@ -4,6 +4,7 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
   VALUABLE_SPIN_TYPES,
+  type ValuableActionProps,
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
@@ -27,8 +28,11 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
   });
 
-  test("should return an empty url and deposit translations when type is DEPOSIT un/locked", () => {
-    const expectedValue = getExpectedActionValue(translations.depositNowLabel);
+  test("should return an empty url and deposit translations when type is DEPOSIT un/locked and set deposit selected", () => {
+    const expectedValue = getExpectedActionValue(
+      translations.depositNowLabel,
+      true
+    );
 
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -44,6 +48,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.cashUnlockedActionLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -76,7 +81,8 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
-      translations.depositToUnlockLabel
+      translations.depositToUnlockLabel,
+      true
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -95,6 +101,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -113,7 +120,8 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
-      translations.depositToUnlockLabel
+      translations.depositToUnlockLabel,
+      true
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -132,6 +140,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -235,7 +244,12 @@ describe("Valuables.utils", () => {
   });
 });
 
-const getExpectedActionValue = (text = "", url = "") => ({
+const getExpectedActionValue = (
+  text = "",
+  isDepositBonusSelected = false,
+  url = ""
+): ValuableActionProps => ({
   text,
+  isDepositBonusSelected,
   url,
 });
