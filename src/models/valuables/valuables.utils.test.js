@@ -210,17 +210,21 @@ describe("Valuables.utils", () => {
       expect(isAboutToExpire(100)).toBe(false);
     });
   });
+
   describe("showStateBadge", () => {
     test("should return true if locked but not close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.LOCKED, 100)).toBe(true);
     });
+
     test("should return true if not locked but close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.FRESH, 10)).toBe(true);
     });
+
     test("should return false if not locked and not close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
     });
   });
+
   describe("getValuablesByState", () => {
     test("should filter based on state provided", () => {
       const valuables = [
