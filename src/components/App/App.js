@@ -79,13 +79,6 @@ export class App extends PureComponent<Props> {
             namedExport="DepositLimitsViewContainer"
           />
         </Route>
-        <Route path="*">
-          <LazyPortal
-            hostElementId="react-host-dgoj-terms"
-            loader={() => import("Components/RSModal/TermsAndConditions")}
-            namedExport="TermsAndConditionsContainer"
-          />
-        </Route>
         <Route path={["live-casino-details"]}>
           <LazyPortal
             hostElementId="react-host-live-casino-details"
@@ -155,17 +148,24 @@ export class App extends PureComponent<Props> {
           />
         </Route>
         <Route path={["player"]}>
-          <LazyPortal
-            hostElementId="react-host-adventure"
-            loader={() => import("Components/AdventureCard")}
-            namedExport="AdventureCard"
-          />
+          <>
+            <LazyPortal
+              hostElementId="react-host-adventure"
+              loader={() => import("Components/AdventureCard")}
+              namedExport="AdventureCard"
+            />
+            <LazyPortal
+              hostElementId="react-host-adventure-valuables"
+              loader={() => import("Components/AccountPage")}
+              namedExport="AccountPage"
+            />
+          </>
         </Route>
-        <Route path={["playerV2"]}>
+        <Route path={["player-valuables"]}>
           <LazyPortal
-            hostElementId="react-host-player-v2"
-            loader={() => import("Components/AccountPage")}
-            namedExport="AccountPage"
+            hostElementId="react-host-valuables"
+            loader={() => import("Components/ValuablesPage")}
+            namedExport="ValuablesPage"
           />
         </Route>
         <Route path={["settings"]}>

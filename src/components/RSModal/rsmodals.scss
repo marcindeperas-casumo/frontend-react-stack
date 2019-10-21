@@ -3,6 +3,21 @@
   height: 100%;
   transform: scale(0.8);
   transition: transform 150ms ease;
+
+  @include cudl-breakpoint(mobile) {
+    margin: 0;
+    width: 100vw;
+  }
+  @include cudl-breakpoint(phablet) {
+    margin: 10vh auto;
+    max-height: 80vh;
+    min-height: 40vh;
+    width: 50vw;
+  }
+
+  &:focus {
+    outline: none;
+  }
 }
 
 .c-rsmodal__overlay {
@@ -12,33 +27,17 @@
   opacity: 0;
   position: fixed;
   right: 0;
-  top: 0;
+  top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
   transition: opacity 150ms ease;
-  z-index: 10;
+  z-index: $modal-z-index; // above the menu and chat
+
+  @include cudl-breakpoint(phablet) {
+    top: 0;
+  }
 }
 
-.c-rsmodal__content {
-  overflow-y: auto;
-  padding: 20px 24px;
-
-  // stylelint-disable xi/selector-pattern
-  // ^-- for compatibility with cms data
-  ol {
-    padding-left: 15px;
-  }
-
-  li {
-    padding: 3px 0;
-  }
-
-  .ol-numbers {
-    list-style-type: decimal;
-  }
-
-  .ol-alphabet {
-    list-style-type: lower-alpha;
-  }
-  // stylelint-enable xi/selector-pattern
+.c-rsmodal__acknowledgment-button-position {
+  bottom: 0;
 }
 
 // stylelint-disable xi/selector-pattern

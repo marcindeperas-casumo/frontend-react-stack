@@ -12,23 +12,6 @@
   border-radius: 50%;
 }
 
-.c-tac__header {
-  border-bottom: 4px solid currentColor;
-}
-
 .c-tac-list--number {
-  margin-right: 8px;
-  text-align: center;
   width: 3ch;
-}
-
-.c-tac-section-header {
-  position: sticky;
-  top: 0;
-}
-
-.c-tac__container {
-  height: 100%; // u-height--1/1 adds flex: none and it's breaking everything
-  overflow-x: hidden;
-  width: 100%;
 }

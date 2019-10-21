@@ -11,7 +11,8 @@ import {
   anyPass,
   propSatisfies,
 } from "ramda";
-import { INTL_LOCALES, LANGUAGES, MARKETS } from "Src/constants";
+import * as storage from "Lib/storage";
+import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
 import { APP_HANDSHAKE_KEY, GAMES_HANDSHAKE_KEY } from "./handshake.constants";
 
 export const DEFAULT_LANGUAGE = LANGUAGES[MARKETS.___en];
@@ -172,3 +173,45 @@ export const socialSecurityNumberSelector = createSelector(
   playerSelector,
   path(["contactInfo", "socialSecurityNumber"])
 );
+
+export const welcomeOfferIdSelector = createSelector(
+  playerSelector,
+  prop(["welcomeOfferId"])
+);
+
+export const verticalSelector = createSelector(
+  welcomeOfferIdSelector,
+  welcomeOfferId => {
+    const isSportsWelcomeOffer =
+      typeof welcomeOfferId === "string" &&
+      welcomeOfferId.startsWith("wo-sports");
+
+    return isSportsWelcomeOffer ? VERTICALS.SPORTS : VERTICALS.CASINO;
+  }
+);
+
+/**
+ * It looks for feature flags in 2 places: in the handshake and in the localStorage.
+ * The localStorage values are set by casumo-frontend codebase when adding "?features=feature-1,feature-2" to the URL.
+ * (for more info check casumo-frontend/common-frontend/src/js/featureFlags.es6)
+ *
+ * Note! You have to whitelist your feature-flags here to be able to use them:
+ * https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
+ */
+export const featureFlagSelector = (featureFlag: string) =>
+  createSelector(
+    playerSelector,
+    player => {
+      const backendFeatureFlags = pathOr([], ["featureFlags"], player);
+      const localContainer = storage.get("featureFlags", {});
+      const localFeatureFlags = pathOr([], ["features"], localContainer);
+      const hasFeatureFlag = x =>
+        [...backendFeatureFlags, ...localFeatureFlags].includes(x);
+
+      if (hasFeatureFlag(featureFlag)) {
+        return true;
+      }
+
+      return false;
+    }
+  );

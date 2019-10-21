@@ -15,6 +15,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   currency: Currency,
   market: string,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   wageringThreshold: ?number,
@@ -34,6 +35,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   currency: Currency,
   market: string,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   wageringThreshold: ?number,
@@ -51,6 +53,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   currency: Currency,
   market: string,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   valuableState: PlayerValuableState,
   wageringThreshold: ?number,
@@ -85,6 +88,21 @@ export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
  * 
  */
 export type RequirementType = "deposit" | "wager";
+
+/**
+ * 
+ */
+export type Vertical = "CASINO" | "SPORTS";
+
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+
+/**
+ * 
+ */
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 export type ContactSettingsInput = {|
   on: boolean

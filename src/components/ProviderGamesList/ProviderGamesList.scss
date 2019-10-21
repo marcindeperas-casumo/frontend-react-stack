@@ -1,4 +1,4 @@
-.c-provider-games-list__games-list {
+.c-provider-games-list {
   $provider-bar: 71px;
   height: calc(100vh - #{$provider-bar} - var(--play-okay-bar-height, 0));
 }

@@ -1,4 +1,6 @@
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
+import { VERTICALS } from "Src/constants";
+import * as storage from "Lib/storage";
 import {
   handshakeSelector,
   applicationHandshakeSelector,
@@ -25,6 +27,8 @@ import {
   playerNameSelector,
   socialSecurityNumberSelector,
   isSuspiciousAccount,
+  verticalSelector,
+  featureFlagSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -460,5 +464,66 @@ describe("Handshake selectors", () => {
     };
 
     expect(isSuspiciousAccount(state)).toEqual(true);
+  });
+
+  describe("verticalSelector()", () => {
+    const createHandshakeStateWithWelcomeOfferId = welcomeOfferId => ({
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                welcomeOfferId,
+              },
+            },
+          },
+        },
+      },
+    });
+
+    test("returns SPORTS if player has a sports welcome offer", () => {
+      const state = createHandshakeStateWithWelcomeOfferId(
+        "wo-sports-this-part-doesnt-mattter"
+      );
+
+      expect(verticalSelector(state)).toEqual(VERTICALS.SPORTS);
+    });
+
+    test("defaults to CASINO if welcome offer is not sports related", () => {
+      const state = createHandshakeStateWithWelcomeOfferId("wo-something-else");
+
+      expect(verticalSelector(state)).toEqual(VERTICALS.CASINO);
+    });
+
+    test("defaults correctly when welcome offer is not set", () => {
+      const state1 = createHandshakeStateWithWelcomeOfferId(null);
+      const state2 = createHandshakeStateWithWelcomeOfferId();
+      const state3 = createHandshakeStateWithWelcomeOfferId(true);
+
+      expect(verticalSelector(state1)).toEqual(VERTICALS.CASINO);
+      expect(verticalSelector(state2)).toEqual(VERTICALS.CASINO);
+      expect(verticalSelector(state3)).toEqual(VERTICALS.CASINO);
+    });
+  });
+
+  describe("featureFlagSelector()", () => {
+    test("checks the feature-flag in the handshake and returns TRUE if it is there", () => {
+      expect(featureFlagSelector("MOBILE_VERIFICATION")(stateMock)).toBe(true);
+    });
+
+    test("checks the feature-flag in the localStorage and returns TRUE if it is there", () => {
+      const featureFlag = "fooBar";
+      const featureFlags = { features: [featureFlag] };
+
+      storage.set("featureFlags", featureFlags);
+
+      expect(featureFlagSelector(featureFlag)(stateMock)).toBe(true);
+    });
+
+    test("returns FALSE if the feature-flag is not in the handshake nor in the localStorage", () => {
+      expect(featureFlagSelector("unknown")(stateMock)).toBe(false);
+    });
   });
 });

@@ -1,18 +1,6 @@
 // @flow
 import { cond, flip, isNil, pipe, prop, T, when, propOr } from "ramda";
-import { EVOLUTION_LOBBY_TYPES as TYPES } from "Src/constants";
-
-const COLORS = {
-  BLACK: "grey-dark-2",
-  RED: "red",
-  GREEN: "green-light-1",
-  YELLOW: "yellow",
-  BLUE: "blue-light-1",
-  PURPLE: "purple",
-  ORANGE: "orange",
-  GREY_LIGHT_1: "grey-light-1",
-  GREY_LIGHT_3: "grey-light-3",
-};
+import { EVOLUTION_LOBBY_TYPES as TYPES, COLORS } from "./constants";
 
 /* Roulette */
 
@@ -119,7 +107,7 @@ const monopolyResultsColors = {
 };
 
 const monopolyResultsBorderColor = {
-  "2r": COLORS.GREY_LIGHT_3,
+  "2r": COLORS.GREY_LIGHT_1,
   "4r": COLORS.YELLOW,
 };
 

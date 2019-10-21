@@ -3,14 +3,17 @@ import React, { type Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
-import { LockIcon, ClockIcon } from "@casumo/cmp-icons";
-import { INTL_LOCALES } from "Src/constants";
+import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
 import {
   type ValuableState,
   VALUABLE_TYPES,
   VALUABLE_STATES,
   coinValueToSpinType,
+  showStateBadge,
+  isAboutToExpire,
+  type DurationProps,
+  type ValuableThumbnailTranslations as Translations,
 } from "Models/valuables";
 import { ValuableSymbol } from "./ValuableSymbol";
 import "./ValuableThumbnail.scss";
@@ -29,50 +32,53 @@ type Props = {
   backgroundRenderer: Node,
   /** The state of the valuable */
   valuableState: ValuableState,
-  /** The date on which the valuable will expiry */
-  expirationTimeInHours: number,
-  /** translated label for the 'hours' unit */
-  translatedHoursUnit: string,
+  /** Time left in h, m for the valuable to expire */
+  expiryTimeLeft: DurationProps,
+  /* Translations of the component */
+  translations: Translations,
+  size?: "small" | "large",
 };
 
 export const ValuableThumbnail = ({
   backgroundRenderer,
   coinValue,
   currency,
-  expirationTimeInHours,
   market,
+  size = "large",
+  expiryTimeLeft,
   valuableState,
   valuableType,
-  translatedHoursUnit,
+  translations,
 }: Props) => {
   const spinType = coinValueToSpinType(coinValue);
-  const stateBadgeProperties = getStateBadgeProperties(
-    valuableState,
-    expirationTimeInHours,
-    translatedHoursUnit
+  const stateBadgeVisible =
+    size !== "small" && showStateBadge(valuableState, expiryTimeLeft.hours);
+  const stateBadgeText = getStateBadgeText(
+    expiryTimeLeft,
+    translations,
+    valuableState
   );
-  const showStateBadge =
-    stateBadgeProperties.visible || valuableState !== VALUABLE_STATES.FRESH;
-  const locale = INTL_LOCALES[market];
 
   return (
-    <div className="o-ratio o-ratio--valuable-card-header">
+    <div className={`o-ratio o-ratio--valuable-card-thumbnail-${size}`}>
       <div className="o-ratio__content t-border-r">{backgroundRenderer}</div>
       <Flex
         align="center"
         className="o-ratio__content"
-        data-test="valuable-card-header-coin"
+        data-test="valuable-card-thumbnail-coin"
         direction="vertical"
-        justify="end"
+        justify={size === "small" ? "center" : "end"}
       >
-        <div className="c-valuable-card-header-coin-wrapper u-margin-bottom--sm o-ratio o-ratio--valuable-card-coin">
+        <div
+          className={`c-valuable-card-thumbnail-coin--${size} u-margin-bottom--sm o-ratio o-ratio--valuable-card-thumbnail-coin`}
+        >
           <div
             className={classNames(
               "o-ratio__content",
               getCoinClassModifier(valuableType)
             )}
           >
-            <Coin className="u-width--1/1" />
+            <Coin className="u-width--full" />
           </div>
           <Flex
             align="center"
@@ -84,36 +90,53 @@ export const ValuableThumbnail = ({
           >
             <ValuableSymbol
               currency={currency}
-              locale={locale}
               spinType={spinType}
               valuableType={valuableType}
+              size={size === "small" ? "sm" : "md"}
+              className="u-width--1/1"
             />
           </Flex>
         </div>
       </Flex>
-      {showStateBadge && (
+      {stateBadgeVisible && (
         <div className="o-ratio__content">
-          <div className="c-valuable-card__state t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
-            <Flex
-              align="center"
-              className={stateBadgeProperties.classModifiers}
-            >
-              {stateBadgeProperties.icon}
-              <Text
-                data-test="valuable-card-header-state-label"
-                size="2xs"
-                tag="span"
-                className="u-font-weight-bold"
-              >
-                {stateBadgeProperties.text}
-              </Text>
-            </Flex>
+          <div className="c-valuable-card-thumbnail__state u-font-2xs t-border-r-bottom-right--md u-display--inline-block t-background-white u-padding-bottom u-padding-right">
+            <ValuableStateIndicator
+              state={valuableState}
+              label={
+                <Text size="2xs" tag="span" className="u-font-weight-bold">
+                  {stateBadgeText}
+                </Text>
+              }
+            />
           </div>
         </div>
       )}
     </div>
   );
 };
+
+function getStateBadgeText(
+  expiryTimeLeft: DurationProps,
+  translations: Translations,
+  valuableState: ValuableState
+): ?string {
+  if (valuableState === VALUABLE_STATES.LOCKED) {
+    return VALUABLE_STATES.LOCKED;
+  }
+
+  if (isAboutToExpire(expiryTimeLeft.hours)) {
+    const { minutes, hours } = expiryTimeLeft;
+
+    if (hours < 1) {
+      return interpolate(translations.minutesLabel, { value: minutes });
+    }
+
+    return interpolate(translations.hoursLabel, { value: hours });
+  }
+
+  return null;
+}
 
 function getCoinClassModifier(valuableType: ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
@@ -145,50 +168,4 @@ function getCoinTextClassModifier(valuableType: ValuableType) {
     default:
       return "";
   }
-}
-
-function getStateBadgeProperties(
-  valuableState: ValuableState,
-  hours: number,
-  translatedHoursUnit: string
-) {
-  const badgeProperties = {
-    visible: false,
-    text: "",
-    classModifiers: "",
-    icon: null,
-  };
-  const isAboutToExpire = hours > 0 && hours <= 24;
-
-  if (valuableState === VALUABLE_STATES.LOCKED) {
-    return {
-      ...badgeProperties,
-      icon: (
-        <LockIcon
-          size="sm"
-          className="u-margin-right--sm"
-          style={{ width: "10px", height: "11px" }}
-        />
-      ),
-      classModifiers: "t-color-black",
-      text: VALUABLE_STATES.LOCKED,
-      visible: true,
-    };
-  } else if (isAboutToExpire) {
-    return {
-      ...badgeProperties,
-      icon: (
-        <ClockIcon
-          size="sm"
-          className="u-margin-right--sm"
-          style={{ width: "10px", height: "11px" }}
-        />
-      ),
-      classModifiers: "t-color-red",
-      text: interpolate(translatedHoursUnit, { value: hours }),
-      visible: true,
-    };
-  }
-
-  return badgeProperties;
 }

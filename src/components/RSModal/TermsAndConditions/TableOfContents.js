@@ -12,26 +12,29 @@ type Props = {
 
 export function TableOfContents(props: Props) {
   return (
-    <Flex
-      direction="vertical"
-      className="u-padding-y--md u-margin-x--md t-border-bottom"
-    >
+    <Flex direction="vertical">
       {props.tableOfContents.map(({ href, text }) => {
         const [number, ...rest] = text.split(" ");
 
         return (
-          <Flex
-            key={href}
-            className="u-font-weight-bold u-margin-y"
-            align="center"
-          >
-            <Text tag="div" className="t-color-turquoise c-tac-list--number">
-              {number}
-            </Text>
-            <a href={href} className="t-color-grey-dark-3">
-              {rest.join(" ")}
-            </a>
-          </Flex>
+          <a key={href} href={href}>
+            <Flex key={href} className="u-padding--md">
+              <Text
+                tag="div"
+                size="sm"
+                className="c-tac-list--number u-font-weight-bold u-text-align-left u-margin-right--sm"
+              >
+                {number}
+              </Text>
+              <Text
+                tag="div"
+                size="sm"
+                className="u-width--full t-color-text-link"
+              >
+                {rest.join(" ")}
+              </Text>
+            </Flex>
+          </a>
         );
       })}
     </Flex>

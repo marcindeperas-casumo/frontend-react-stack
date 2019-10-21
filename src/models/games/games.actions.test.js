@@ -1,13 +1,14 @@
 import { types as fetchTypes } from "Models/fetch";
 import { types } from "./games.constants";
 import { fetchGamesBySlugs, initiateFetchGamesBySlugs } from "./games.actions";
+import { getFetchGamesBySlugsCompleteType } from "./games.utils";
 
 describe("Models/Games/Actions", () => {
   describe("initiateFetchGamesBySlugs()", () => {
     test("initiates an API fetch", () => {
       const slugs = ["foo", "bar"];
 
-      expect(initiateFetchGamesBySlugs(slugs)).toMatchObject({
+      expect(initiateFetchGamesBySlugs({ slugs })).toMatchObject({
         type: fetchTypes.FETCH,
         name: types.FETCH_GAMES_BY_SLUGS,
       });
@@ -16,14 +17,14 @@ describe("Models/Games/Actions", () => {
     test("fires a completed action when fetch finished", () => {
       const slugs = ["foo", "bar"];
 
-      expect(initiateFetchGamesBySlugs(slugs)).toMatchObject({
-        postFetch: types.FETCH_GAMES_BY_SLUGS_COMPLETE,
+      expect(initiateFetchGamesBySlugs({ slugs })).toMatchObject({
+        postFetch: getFetchGamesBySlugsCompleteType(slugs),
       });
     });
 
     test("passes the fetcher function to the action", () => {
       const slugs = ["foo", "bar"];
-      const action = initiateFetchGamesBySlugs(slugs);
+      const action = initiateFetchGamesBySlugs({ slugs });
 
       expect(typeof action.asyncCall).toBe("function");
     });

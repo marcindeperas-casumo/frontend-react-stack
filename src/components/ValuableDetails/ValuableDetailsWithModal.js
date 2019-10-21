@@ -18,15 +18,13 @@ export const ValuableDetailsWithModal = ({
   onClose,
   children,
   ...props
-}: Props) => {
-  return (
-    <AbstractModal
-      isOpen={isOpen}
-      hideModal={onClose}
-      className="c-valuable-details-modal c-valuable-details-modal--mobile-landscape"
-      closeTimeoutMS={100}
-    >
-      <ValuableDetailsContainer {...props}>{children}</ValuableDetailsContainer>
-    </AbstractModal>
-  );
-};
+}: Props) => (
+  <AbstractModal
+    isOpen={isOpen}
+    hideModal={onClose}
+    className="c-valuable-details-modal u-height--full u-width--full"
+    closeTimeoutMS={100}
+  >
+    <ValuableDetailsContainer {...props}>{children}</ValuableDetailsContainer>
+  </AbstractModal>
+);

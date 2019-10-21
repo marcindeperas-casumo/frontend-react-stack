@@ -1,37 +1,23 @@
 // @flow
 import { connect } from "react-redux";
 import { CuratedCard } from "Components/CuratedCard/CuratedCard";
+import { fetchPageBySlug } from "Models/cms";
+import { launchGame } from "Models/games";
 import {
   curatedSelector,
   isCuratedLoadedFactory,
-  curatedSlugSelector,
+  prefixCuratedSlug,
 } from "Models/curated";
-import { fetchPageBySlug } from "Models/cms";
-import { launchGame } from "Models/games";
 
 export const CuratedCardContainer = connect(
-  (state, { card }) => {
-    const defaultSlug = Array.isArray(card) ? card[0] : card;
-    const curatedSlug = curatedSlugSelector(defaultSlug)(state);
-
+  (state, { slug }) => {
     return {
-      curatedSlug,
-      ...curatedSelector(curatedSlug)(state),
-      isFetched: isCuratedLoadedFactory(curatedSlug)(state),
+      ...curatedSelector(slug)(state),
+      isFetched: isCuratedLoadedFactory(slug)(state),
     };
   },
-  dispatch => ({
-    dispatchFetchCurated: slug => dispatch(fetchPageBySlug(slug)),
-    dispatchLaunchGame: id => dispatch(launchGame(id)),
-  }),
-  (stateProps, dispatchProps) => {
-    const { gameId, curatedSlug } = stateProps;
-    const { dispatchFetchCurated } = dispatchProps;
-
-    return {
-      ...stateProps,
-      fetchCurated: () => dispatchFetchCurated(curatedSlug),
-      onLaunchGame: () => dispatchProps.dispatchLaunchGame(gameId),
-    };
-  }
+  (dispatch, { slug }) => ({
+    fetchCurated: () => dispatch(fetchPageBySlug(prefixCuratedSlug(slug))),
+    onLaunchGame: (gameId: string) => dispatch(launchGame(gameId)),
+  })
 )(CuratedCard);

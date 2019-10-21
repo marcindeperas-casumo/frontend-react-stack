@@ -25,16 +25,30 @@ export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
+export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
 export const KO_APP_EVENT_LAUNCH_MODAL = "KO_APP_EVENT/launchModal";
+export const KO_APP_EVENT_LAUNCH_ERROR_MODAL = "KO_APP_EVENT/launchErrorModal";
 export const KO_APP_EVENT_SHOW_TERMS = "KO_APP_EVENT/showTerms";
 export const KO_APP_EVENT_LOGOUT = "KO_APP_EVENT/logout";
 export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
+export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
+export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
+
+export const KO_EVENTS = {
+  ACCOUNT_SETTINGS: {
+    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
+  },
+  VALUABLES: {
+    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
+  },
+};
+
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
 export const LOW_RES_IMAGE_SETTINGS = {
@@ -106,6 +120,22 @@ export const CURRENCY_SYMBOLS = {
   JPY: "\u00A5", // ¥
 };
 
+export const CURRENCIES = {
+  EUR: "EUR",
+  GBP: "GBP",
+  DKK: "KR",
+  SEK: "KR",
+  CAD: "CAD",
+  NZD: "NZD",
+  INR: "INR",
+  JPY: "JPY",
+};
+
+export const VERTICALS = {
+  SPORTS: "SPORTS",
+  CASINO: "CASINO",
+};
+
 export const EVENTS = {
   MIXPANEL_GAME_LAUNCH: "Game Started",
   MIXPANEL_GAME_DETAILS: "Game Information",
@@ -120,6 +150,7 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
 };
+
 export const EVENT_PROPS = {
   LOCATION: "location",
   GAME_NAME: "name",
@@ -131,6 +162,7 @@ export const EVENT_PROPS = {
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
   PROMOTION_TYPE: "promotion type",
 };
+
 export const EVENT_LOCATIONS = {
   SEARCH_GAMES: "searchGames",
   ALL_GAMES: "allGames",
@@ -138,6 +170,22 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
+
+// Those modals are implemented on react side. They can be spawned from knockout.
+// Event KO_APP_EVENT_MODAL_HIDDEN will contain ID and RETURN_CODE of closed modal
+export const REACT_APP_MODAL = {
+  RETURN_CODE: {
+    ACCEPTED: "ACCEPTED",
+    CLOSED: "CLOSED",
+    DISMISSED: "DISMISSED",
+  },
+  ID: {
+    TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
+    SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
+  },
+};
+// Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
+
 export const MODALS = {
   ACCOUNT_SETTINGS: {
     CHANGE_EMAIL: "ACCOUNT_SETTINGS/CHANGE_EMAIL",
@@ -150,20 +198,10 @@ export const MODALS = {
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
   ERROR: "ERROR",
 };
-export const EVOLUTION_LOBBY_TYPES = {
-  MONEYWHEEL: "MoneyWheel",
-  ROULETTE: "Roulette",
-  TOPCARD: "TopCard",
-  MONOPOLY: "Monopoly",
-  BLACKJACK: "Blackjack",
-  BACCARAT: "Baccarat",
-};
 
-export const KO_EVENTS = {
-  ACCOUNT_SETTINGS: {
-    COMMAND_EXECUTED: "ACCOUNT_SETTINGS/COMMAND_EXECUTED",
-  },
-  VALUABLES: {
-    ITEM_CREATED: "VALUABLES/ITEM_CREATED",
-  },
+// Make sure that any flags you have here are also listed here, otherwise they will not work:
+// https://github.com/Casumo/casumo-frontend/blob/a9ff0a7f4fcbf6141b9f803238be6eece822f708/web/common-frontend/src/js/config/params.js#L107
+export const FEATURE_FLAGS = {
+  SPORTS: "sports",
+  TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };

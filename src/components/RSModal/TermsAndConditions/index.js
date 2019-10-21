@@ -1,2 +1,2 @@
 // @flow
-export { TermsAndConditionsContainer } from "./TermsAndConditionsContainer";
+export { TermsAndConditions } from "./TermsAndConditions";

@@ -6,15 +6,6 @@
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type PlayerValuablesQuery_translations_playerValuableTranslations = {
-  hoursLabel: string,
-  listTitleLabel: string,
-};
-
-export type PlayerValuablesQuery_translations = {
-  playerValuableTranslations: ?PlayerValuablesQuery_translations_playerValuableTranslations
-};
-
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string
 };
@@ -24,6 +15,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -38,6 +30,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -56,6 +49,7 @@ export type PlayerValuablesQuery_player_valuables = {
   id: string,
   valuableState: PlayerValuableState,
   expirationTimeInHours: number,
+  expiryDate: any,
   valuableType: ValuableType,
   title: string,
   content: string,
@@ -73,7 +67,12 @@ export type PlayerValuablesQuery_player = {
 };
 
 export type PlayerValuablesQuery = {
-  translations: PlayerValuablesQuery_translations,
+  listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
+  hoursLabel: string,
+  minutesLabel: string,
+  seeAllLabel: string,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */
@@ -102,6 +101,21 @@ export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
  * 
  */
 export type RequirementType = "deposit" | "wager";
+
+/**
+ * 
+ */
+export type Vertical = "CASINO" | "SPORTS";
+
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+
+/**
+ * 
+ */
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 export type ContactSettingsInput = {|
   on: boolean

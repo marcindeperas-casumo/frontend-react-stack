@@ -7,10 +7,13 @@ import {
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
-  depositUrl,
-  gameBrowserUrl,
+  depositRouteId,
+  gameBrowserRouteId,
   durationToTranslationKey,
   coinValueToSpinType,
+  isAboutToExpire,
+  showStateBadge,
+  getValuablesByState,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
 
@@ -28,7 +31,7 @@ describe("Valuables.utils", () => {
   test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
     const expectedValue = getExpectedActionValue(
       translations.depositNowLabel,
-      depositUrl
+      depositRouteId
     );
 
     const actualValue = getValuableDetailsAction({
@@ -40,12 +43,12 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is CASH unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is CASH unlocked", () => {
     valuableType = VALUABLE_TYPES.CASH;
 
     const expectedValue = getExpectedActionValue(
-      translations.playNowLabel,
-      gameBrowserUrl
+      translations.cashUnlockedActionLabel,
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -56,10 +59,13 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return gamebrowser url and play now translation when type is SPINS unclocked", () => {
+  test("should return gamebrowser url and play now translation when type is SPINS unlocked", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
-    const expectedValue = getExpectedActionValue(translations.playNowLabel, "");
+    const expectedValue = getExpectedActionValue(
+      translations.spinsUnlockedActionLabel,
+      ""
+    );
     const actualValue = getValuableDetailsAction({
       valuableType,
       valuableState,
@@ -76,7 +82,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositUrl
+      depositRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -95,7 +101,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
-      gameBrowserUrl
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -114,7 +120,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositUrl
+      depositRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -133,7 +139,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
-      gameBrowserUrl
+      gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -191,6 +197,48 @@ describe("Valuables.utils", () => {
     const expectedValue = VALUABLE_SPIN_TYPES.MEGA;
 
     expect(coinValueToSpinType(coinValue)).toBe(expectedValue);
+  });
+
+  describe("isAboutToExpire", () => {
+    test("should return true if less than 24 hours to expiry", () => {
+      expect(isAboutToExpire(10)).toBe(true);
+    });
+
+    test("should return false if greater than 24 hours to expiry", () => {
+      expect(isAboutToExpire(100)).toBe(false);
+    });
+  });
+  describe("showStateBadge", () => {
+    test("should return true if locked but not close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.LOCKED, 100)).toBe(true);
+    });
+    test("should return true if not locked but close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.FRESH, 10)).toBe(true);
+    });
+    test("should return false if not locked and not close to expiry", () => {
+      expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
+    });
+  });
+  describe("getValuablesByState", () => {
+    test("should filter based on state provided", () => {
+      const valuables = [
+        {
+          valuableState: VALUABLE_STATES.LOCKED,
+        },
+        {
+          valuableState: VALUABLE_STATES.FRESH,
+        },
+        {
+          valuableState: VALUABLE_STATES.FRESH,
+        },
+      ];
+      expect(
+        getValuablesByState(VALUABLE_STATES.LOCKED)(valuables)
+      ).toHaveLength(1);
+      expect(
+        getValuablesByState(VALUABLE_STATES.FRESH)(valuables)
+      ).toHaveLength(2);
+    });
   });
 });
 

@@ -1,6 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import { replace } from "ramda";
+import classNames from "classnames";
 import Card from "@casumo/cmp-card";
 import {
   CuratedCardFooterText,
@@ -16,7 +17,11 @@ import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import "./CuratedCard.scss";
 import TrackView from "Components/TrackView";
-import { CURATED_TYPE, CARD_CLICK_URL } from "Models/curated";
+import {
+  CURATED_TYPE,
+  CARD_CLICK_URL,
+  prefixCuratedSlug,
+} from "Models/curated";
 
 const spacing = {
   mobile: "md",
@@ -39,7 +44,8 @@ export type Props = {|
   fetchCurated: Function,
   onLaunchGame: Function,
   typeOfCurated: string,
-  curatedSlug: string,
+  slug: string,
+  className?: string,
 |};
 
 export class CuratedCard extends PureComponent<Props> {
@@ -57,11 +63,11 @@ export class CuratedCard extends PureComponent<Props> {
   }
 
   get trackData() {
-    const { typeOfCurated, curatedSlug = "" } = this.props;
+    const { typeOfCurated, slug = "" } = this.props;
 
     return {
       [EVENT_PROPS.CURATED_TYPE]: typeOfCurated,
-      [EVENT_PROPS.CURATED_SLUG]: curatedSlug.split(".")[1],
+      [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(slug),
     };
   }
 
@@ -78,6 +84,7 @@ export class CuratedCard extends PureComponent<Props> {
   }
 
   renderCard = () => {
+    const { className = "" } = this.props;
     const backgroundProps = {
       ...this.props,
       onLaunchGame: this.isGame ? this.props.onLaunchGame : null,
@@ -85,7 +92,12 @@ export class CuratedCard extends PureComponent<Props> {
     };
 
     return (
-      <div className="c-curated-card o-ratio o-ratio--curated-card">
+      <div
+        className={classNames(
+          "c-curated-card o-ratio o-ratio--curated-card",
+          className
+        )}
+      >
         <TrackView
           eventName={EVENTS.MIXPANEL_CURATED_COMPONENT_VIEWED}
           data={this.trackData}
@@ -122,7 +134,7 @@ export class CuratedCard extends PureComponent<Props> {
       <CuratedCardFooterGame
         gameData={this.props.gameData}
         buttonText={this.props.primary_action_text}
-        onLaunchGame={this.props.onLaunchGame}
+        onLaunchGame={() => this.props.onLaunchGame(this.props.gameData.slug)}
       />
     ) : (
       <CuratedCardFooterText text={this.props.promotions_legal_text} />

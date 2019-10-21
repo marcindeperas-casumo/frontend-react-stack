@@ -1,0 +1,6 @@
+@import "cudl-icons";
+
+// stylelint-disable xi/selector-pattern
+.c-scs__form__play-btn__label {
+  margin-right: -(map-get($cudl-icons-sizes, default)); // to move the text to the right and ignore the icon width
+}

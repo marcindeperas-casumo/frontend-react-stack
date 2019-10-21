@@ -8,13 +8,16 @@
 
 export type ValuableDetailsQuery = {
   termsAndConditionLabel: string,
-  playNowLabel: string,
+  cashUnlockedActionLabel: string,
+  spinsUnlockedActionLabel: string,
   playToUnlockLabel: string,
   depositToUnlockLabel: string,
   depositNowLabel: string,
   expirationTimeLabel: string,
   termsAndConditionsContent: string,
   wageringStatus: string,
+  minute_singular: string,
+  minute_plural: string,
   hour_singular: string,
   hour_plural: string,
   day_singular: string,
@@ -46,6 +49,21 @@ export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
  * 
  */
 export type RequirementType = "deposit" | "wager";
+
+/**
+ * 
+ */
+export type Vertical = "CASINO" | "SPORTS";
+
+/**
+ * 
+ */
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+
+/**
+ * 
+ */
+export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
 
 export type ContactSettingsInput = {|
   on: boolean

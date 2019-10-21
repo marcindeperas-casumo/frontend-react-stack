@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** Promotion name */
@@ -15,11 +16,11 @@ type Props = {
 const PromotionTitleText = ({ title, dates }: Props) => (
   <>
     <Text tag="h1" size="lg" className="u-margin-bottom--sm u-font-weight-bold">
-      {title}
+      <DangerousHtml html={title} />
     </Text>
     <Text
       size="2xs"
-      className="t-color-red u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase"
+      className="t-color-chrome-dark-1 u-margin-bottom--none u-font-weight-bold u-text-transform-uppercase"
     >
       {dates}
     </Text>
