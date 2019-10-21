@@ -1,8 +1,10 @@
 // @flow
 import * as React from "react";
+import { map } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
+import { interpolateTimeInterval } from "Utils";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -10,11 +12,15 @@ import { StatusAlertsEveryRow } from "./StatusAlertsEveryRow";
 import { WantBreakAfterRow } from "./WantBreakAfterRow";
 import "./ConfigurationForm.scss";
 
-const { useState, useCallback } = React;
+const { useState, useCallback, useEffect } = React;
 const SCREEN_TYPES = {
   FORM: "FORM",
   LIMIT_YOUR_BUDGET: "LIMIT_YOUR_BUDGET",
 };
+// these are given in seconds
+const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
+const STATUS_ALERTS_EVERY_OPTS = [5 * 60, 10 * 60, 15 * 60];
+const WANT_BREAK_AFTER_YES_OPTS = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
 
 type Props = {
   t: {
@@ -25,12 +31,17 @@ type Props = {
     limit_your_time: string,
     get_status_alerts: string,
     want_break_after: string,
+    want_break_after_opts: Array<{ value: string, label: string }>,
     for_how_long: string,
     play: string,
+    minutes_abbreviated: string,
+    hours_abbreviated: string,
+    days_abbreviated: string,
   },
   balance: number,
   currency: string,
   locale: string,
+  fetchContentIfNecessary: () => void,
 };
 
 type IsPlayActiveType = {
@@ -42,7 +53,7 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: Props) {
-  const { t } = props;
+  const { t, fetchContentIfNecessary } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
@@ -59,6 +70,22 @@ export function ConfigurationForm(props: Props) {
     },
     [setBudget, setScreen]
   );
+  const mapSecondsToPillOpts = map(seconds => ({
+    value: seconds,
+    label: interpolateTimeInterval({
+      seconds,
+      t: {
+        seconds: "unused",
+        minutes: t.minutes_abbreviated,
+        hours: t.hours_abbreviated,
+        days: t.days_abbreviated,
+      },
+    }),
+  }));
+
+  useEffect(() => {
+    fetchContentIfNecessary();
+  }, [fetchContentIfNecessary]);
 
   if (screen === SCREEN_TYPES.LIMIT_YOUR_BUDGET) {
     return (
@@ -73,10 +100,16 @@ export function ConfigurationForm(props: Props) {
         budget={budget}
         onClickEdit={onClickEditBudget}
       />
-      <LimitYourTimeRow t={t} value={time} onChange={setTime} />
+      <LimitYourTimeRow
+        t={t}
+        value={time}
+        options={mapSecondsToPillOpts(LIMIT_YOUR_TIME_OPTS)}
+        onChange={setTime}
+      />
       <StatusAlertsEveryRow
         t={t}
         value={alertsEvery}
+        options={mapSecondsToPillOpts(STATUS_ALERTS_EVERY_OPTS)}
         onChange={setAlertsEvery}
       />
       <WantBreakAfterRow
@@ -84,6 +117,7 @@ export function ConfigurationForm(props: Props) {
         value={wantsBreak}
         onChange={setWantsBreak}
         breakValue={breakAfter}
+        breakOptions={mapSecondsToPillOpts(WANT_BREAK_AFTER_YES_OPTS)}
         onChangeBreak={setBreakAfter}
       />
       <Button

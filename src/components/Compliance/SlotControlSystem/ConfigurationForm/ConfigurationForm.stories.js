@@ -13,8 +13,15 @@ const t = {
   limit_your_time: "Limit your time",
   get_status_alerts: "Get status alerts every",
   want_break_after: "Want a break after playing?",
+  want_break_after_opts: [
+    { value: "true", label: "Yes" },
+    { value: "false", label: "No" },
+  ],
   for_how_long: "For how long?",
   play: "Play",
+  minutes_abbreviated: "{{minutes}}m",
+  hours_abbreviated: "{{hours}}h",
+  days_abbreviated: "{{days}}d",
 };
 
 stories.add("Default", () => {
@@ -23,6 +30,7 @@ stories.add("Default", () => {
       currency={select("Currency", ["EUR", "GBP"], "EUR")}
       locale="en-GB"
       balance={number("Balance", 100)}
+      fetchContentIfNecessary={() => {}}
       t={t}
     />
   );
