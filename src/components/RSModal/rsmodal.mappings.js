@@ -7,9 +7,8 @@ import {
   MODALS as SCS_MODALS,
   CMS_SLUGS as SCS_CMS_SLUGS,
 } from "Models/slotControlSystem";
-import { exitConfiguration } from "Services/SlotControlSystemService";
 import { TermsAndConditions } from "./TermsAndConditions";
-import { SlotControlSystemContainer } from "./SlotControlSystem";
+import { SlotControlSystem } from "./SlotControlSystem";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -17,9 +16,9 @@ export type ModalContentComponent<T> = {|
   t: ?T,
   /** object that was passed with spawn action, defaults to empty object */
   config: ModalConfig,
-  closeModal: () => void,
-  dismissModal: () => void,
-  acceptModal: () => void,
+  acceptModal: (result?: any) => void,
+  closeModal: (result?: any) => void,
+  dismissModal: (result?: any) => void,
 |};
 type Mapping = {
   [ModalId]: {
@@ -36,8 +35,7 @@ export const mappings: Mapping = {
   },
   [SCS_MODALS.CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
-    Content: SlotControlSystemContainer,
-    onHideModal: exitConfiguration,
+    Content: SlotControlSystem,
   },
 };
 

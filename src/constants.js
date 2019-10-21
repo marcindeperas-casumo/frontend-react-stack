@@ -27,12 +27,6 @@ export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 
-export const REACT_APP_EVENTS = {
-  SLOT_CONTROL_SYSTEM: {
-    CONFIGURATION_INIT: "REACT_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationInit",
-  },
-};
-
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
 export const KO_APP_EVENT_LAUNCH_GAME = "KO_APP_EVENT/launchGame";
@@ -52,12 +46,6 @@ export const KO_EVENTS = {
   },
   VALUABLES: {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
-  },
-  SLOT_CONTROL_SYSTEM: {
-    CONFIGURATION_FINISHED:
-      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationFinished",
-    CONFIGURATION_EXITED:
-      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationExited",
   },
 };
 
