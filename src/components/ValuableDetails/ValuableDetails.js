@@ -7,9 +7,11 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { interpolate, convertHoursToDays } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
+import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import {
   type ValuableDetailsTranslations as Translations,
+  type ValuableActionProps,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
@@ -118,14 +120,20 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = async (url?: string) => {
+  handleAction = async (actionProps: ValuableActionProps) => {
     const {
       valuableDetails: { id },
       onConsumeValuable,
     } = this.props;
 
+    const { url, isDepositBonusSelected } = actionProps;
+
     try {
       await onConsumeValuable(id);
+
+      if (isDepositBonusSelected) {
+        depositBonusSelected({ badgeId: id });
+      }
 
       url && navigate({ url });
     } catch (error) {
@@ -164,6 +172,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationInfo.key,
       expirationInfo.value
     );
+    const requirementType = this.requirementType;
 
     const expirationValueText =
       translations[durationKey] &&
@@ -174,7 +183,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
       valuableState,
-      requirementType: this.requirementType,
+      requirementType,
       translations,
     });
 
@@ -255,7 +264,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
           <div className="c-valuable-details__footer u-padding--md">
             <Button
               className="u-width--full"
-              onClick={() => this.handleAction(actionButtonProps.url)}
+              onClick={() => this.handleAction(actionButtonProps)}
               data-test="valuable-action-button"
               variant="primary"
             >
