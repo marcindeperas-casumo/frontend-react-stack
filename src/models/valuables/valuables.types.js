@@ -57,6 +57,12 @@ export type ValuableDetailsProps = {
   onConsumeValuable: string => Promise<boolean>,
 };
 
+export type ValuableActionProps = {
+  text: string,
+  isDepositBonusSelected: boolean,
+  url?: string,
+};
+
 export type DurationProps = {
   hours: number,
   minutes: number,
