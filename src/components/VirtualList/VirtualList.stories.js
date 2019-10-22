@@ -74,7 +74,6 @@ class MyComponent extends PureComponent {
     return (
       <div style={{ height: "100vh" }}>
         <VirtualList
-          scrollElementId="root"
           isRowLoaded={this.isRowLoaded}
           rowHeight={this.ROW_HEIGHT}
           totalNumberOfRows={this.REMOTE_ROWS_COUNT}
