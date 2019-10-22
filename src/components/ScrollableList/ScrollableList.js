@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import { isEmpty } from "ramda";
+import { isEmpty, prop } from "ramda";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
@@ -35,10 +35,7 @@ export default class ScrollableList extends PureComponent<Props> {
     Component: GameTile,
   };
 
-  keyGetter = (i: number) => {
-    const { itemIds } = this.props;
-    return itemIds[i];
-  };
+  keyGetter = (i: number) => prop(i, this.props.itemIds);
 
   itemRenderer = (i: number) => {
     const { Component, itemIds } = this.props;
