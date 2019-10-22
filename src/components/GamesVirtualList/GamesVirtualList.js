@@ -172,6 +172,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
   render() {
     return (
       <VirtualList
+        scrollElementId="main-content-wrapper"
         totalNumberOfRows={this.props.rowCount}
         rowHeight={ROW_HEIGHT}
         loadMoreRows={this.loadMoreRows}

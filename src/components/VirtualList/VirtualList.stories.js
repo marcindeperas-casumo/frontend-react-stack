@@ -14,7 +14,6 @@ class MyComponent extends PureComponent {
     this.ROW_HEIGHT = 80;
     this.PAGE_SIZE = 50;
     this.REMOTE_ROWS_COUNT = 1290;
-
     this.state = {
       list: [],
       pagesLoaded: [],
@@ -75,6 +74,7 @@ class MyComponent extends PureComponent {
     return (
       <div style={{ height: "100vh" }}>
         <VirtualList
+          scrollElementId="root"
           isRowLoaded={this.isRowLoaded}
           rowHeight={this.ROW_HEIGHT}
           totalNumberOfRows={this.REMOTE_ROWS_COUNT}

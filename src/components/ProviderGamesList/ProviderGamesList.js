@@ -134,6 +134,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
           >
             <div className="c-provider-games-list u-padding-top">
               <VirtualList
+                scrollElementId="main-content-wrapper"
                 isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}
                 totalNumberOfRows={count}
