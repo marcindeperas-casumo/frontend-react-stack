@@ -13,7 +13,7 @@ class MyComponent extends PureComponent {
     super();
     this.ROW_HEIGHT = 80;
     this.PAGE_SIZE = 50;
-    this.REMOTE_ROWS_COUNT = 500;
+    this.REMOTE_ROWS_COUNT = 250;
     this.state = {
       list: [],
       pagesLoaded: [],
