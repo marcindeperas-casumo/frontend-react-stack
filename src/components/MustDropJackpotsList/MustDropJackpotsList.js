@@ -55,9 +55,9 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     const isIdMustDropWidgetId = idsInColumn.indexOf(mustDropWidgetId) !== -1;
 
     return isIdMustDropWidgetId ? (
-      <MustDropJackpotsWidget key={mustDropWidgetId} />
+      <MustDropJackpotsWidget />
     ) : (
-      <JackpotsListTile ids={idsInColumn} key={this.keyGetter(i)} />
+      <JackpotsListTile ids={idsInColumn} />
     );
   };
 
