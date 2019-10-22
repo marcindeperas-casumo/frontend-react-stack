@@ -47,6 +47,8 @@ export default class Jackpots extends PureComponent<Props> {
     return generateColumns(this.props.jackpots);
   }
 
+  keyGetter = (i: number) => this.columns[i][0].slug;
+
   mobileJackpotColumnRenderer = (i: number) => {
     return <JackpotsColumn column={this.columns[i]} />;
   };
@@ -57,7 +59,7 @@ export default class Jackpots extends PureComponent<Props> {
   }: {
     id: Array<Jackpots_Game>,
     i: number,
-  }) => <JackpotsColumn key={i} column={gamesInColumn} />;
+  }) => <JackpotsColumn key={gamesInColumn[0].slug} column={gamesInColumn} />;
 
   render() {
     const { title } = this.props;
@@ -69,6 +71,7 @@ export default class Jackpots extends PureComponent<Props> {
             <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
+                keyGetter={this.keyGetter}
                 itemRenderer={this.mobileJackpotColumnRenderer}
                 numberOfItems={this.columns.length}
                 itemClassName="c-jackpots-list-tile"

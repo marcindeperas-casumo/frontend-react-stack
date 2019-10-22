@@ -29,7 +29,10 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     return [[mustDropWidgetId], ...idsByColumns];
   }
 
-  keyGetter = (i: number) => `jackpots-column-${i}`;
+  keyGetter = (i: number) =>
+    this.columns[i].indexOf(mustDropWidgetId) !== -1
+      ? mustDropWidgetId
+      : this.columns[i][0];
 
   mobileMustDropJackpotRenderer = (i: number) => {
     const isIdMustDropWidgetId =
