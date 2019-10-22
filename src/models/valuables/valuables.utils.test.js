@@ -4,10 +4,10 @@ import {
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
   VALUABLE_SPIN_TYPES,
+  type ValuableActionProps,
 } from "Models/valuables";
 import {
   getValuableDetailsAction,
-  depositRouteId,
   gameBrowserRouteId,
   durationToTranslationKey,
   coinValueToSpinType,
@@ -28,10 +28,10 @@ describe("Valuables.utils", () => {
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
   });
 
-  test("should return deposit url and deposit translations when type is DEPOSIT un/locked", () => {
+  test("should return an empty url and deposit translations when type is DEPOSIT un/locked and set deposit selected", () => {
     const expectedValue = getExpectedActionValue(
       translations.depositNowLabel,
-      depositRouteId
+      true
     );
 
     const actualValue = getValuableDetailsAction({
@@ -48,6 +48,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.cashUnlockedActionLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -63,8 +64,7 @@ describe("Valuables.utils", () => {
     valuableType = VALUABLE_TYPES.SPINS;
 
     const expectedValue = getExpectedActionValue(
-      translations.spinsUnlockedActionLabel,
-      ""
+      translations.spinsUnlockedActionLabel
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -75,14 +75,14 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return deposit url and depositToUnlock label when CASH, locked with deposit req.", () => {
+  test("should return an empty url and depositToUnlock label when CASH, locked with deposit req.", () => {
     valuableType = VALUABLE_TYPES.CASH;
     valuableState = VALUABLE_STATES.LOCKED;
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositRouteId
+      true
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -101,6 +101,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -113,14 +114,14 @@ describe("Valuables.utils", () => {
     expect(actualValue).toEqual(expectedValue);
   });
 
-  test("should return deposit url and depositToUnlock label when SPINS, locked with deposit req.", () => {
+  test("should return an empty url and depositToUnlock label when SPINS, locked with deposit req.", () => {
     valuableType = VALUABLE_TYPES.SPINS;
     valuableState = VALUABLE_STATES.LOCKED;
     requirementType = VALUABLE_REQUIREMENT_TYPES.DEPOSIT;
 
     const expectedValue = getExpectedActionValue(
       translations.depositToUnlockLabel,
-      depositRouteId
+      true
     );
     const actualValue = getValuableDetailsAction({
       valuableType,
@@ -139,6 +140,7 @@ describe("Valuables.utils", () => {
 
     const expectedValue = getExpectedActionValue(
       translations.playToUnlockLabel,
+      false,
       gameBrowserRouteId
     );
     const actualValue = getValuableDetailsAction({
@@ -208,17 +210,21 @@ describe("Valuables.utils", () => {
       expect(isAboutToExpire(100)).toBe(false);
     });
   });
+
   describe("showStateBadge", () => {
     test("should return true if locked but not close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.LOCKED, 100)).toBe(true);
     });
+
     test("should return true if not locked but close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.FRESH, 10)).toBe(true);
     });
+
     test("should return false if not locked and not close to expiry", () => {
       expect(showStateBadge(VALUABLE_STATES.FRESH, 100)).toBe(false);
     });
   });
+
   describe("getValuablesByState", () => {
     test("should filter based on state provided", () => {
       const valuables = [
@@ -242,7 +248,12 @@ describe("Valuables.utils", () => {
   });
 });
 
-const getExpectedActionValue = (text, url) => ({
+const getExpectedActionValue = (
+  text = "",
+  isDepositBonusSelected = false,
+  url = ""
+): ValuableActionProps => ({
   text,
+  isDepositBonusSelected,
   url,
 });

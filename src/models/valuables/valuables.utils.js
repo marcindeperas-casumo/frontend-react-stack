@@ -5,6 +5,7 @@ import {
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
+  type ValuableActionProps,
   VALUABLE_STATES,
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
@@ -38,38 +39,44 @@ export const getValuableDetailsAction = ({
   valuableState: ValuableState,
   requirementType?: ?ValuableRequirementType,
   translations: ValuableDetailsTranslations,
-}): {
-  text: string,
-  url: string,
-} => {
+}): ValuableActionProps => {
   const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
   const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
 
-  const setActionProps = (text = "", url = "") => ({
+  const setActionProps = (
+    text = "",
+    isDepositBonusSelected = false,
+    url = ""
+  ) => ({
     text,
+    isDepositBonusSelected,
     url,
   });
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-    return setActionProps(translations.depositNowLabel, depositRouteId);
+    // The redirection is being taken care of by the KO code, so url is not required
+    return setActionProps(translations.depositNowLabel, true);
   }
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-        return setActionProps(
-          translations.depositToUnlockLabel,
-          depositRouteId
-        );
+        // The redirection is being taken care of by the KO code, so url is not required
+        return setActionProps(translations.depositToUnlockLabel, true);
       }
 
-      return setActionProps(translations.playToUnlockLabel, gameBrowserRouteId);
+      return setActionProps(
+        translations.playToUnlockLabel,
+        false,
+        gameBrowserRouteId
+      );
     }
 
     return isSpins
       ? setActionProps(translations.spinsUnlockedActionLabel)
       : setActionProps(
           translations.cashUnlockedActionLabel,
+          false,
           gameBrowserRouteId
         );
   }
