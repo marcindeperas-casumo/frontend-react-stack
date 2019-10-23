@@ -1,8 +1,10 @@
+$heart-animation-duration: 350;
+
 .c-game-tile-heart__stroke {
   opacity: 1;
   stroke: currentColor;
   stroke-width: 2;
-  transition: opacity 0.35s ease-in;
+  transition: opacity #{$heart-animation-duration}ms ease-in;
 }
 
 .c-game-tile-heart__fill {
@@ -12,7 +14,8 @@
 
 /* stylelint-disable xi/selector-pattern */
 .c-game-tile-heart.is-active {
-  animation: heart-is-active 0.35s cubic-bezier(0.17, 0.89, 0.32, 1.49);
+  animation: heart-is-active #{$heart-animation-duration}ms
+    cubic-bezier(0.17, 0.89, 0.32, 1.49) both;
   will-change: transform;
 
   .c-game-tile-heart__fill {
@@ -31,3 +34,9 @@
   }
 }
 /* stylelint-enable xi/selector-pattern */
+
+/* stylelint-disable */
+:export {
+  heartAnimationDuration: $heart-animation-duration;
+}
+/* stylelint-enable */
