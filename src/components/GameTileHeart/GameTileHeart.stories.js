@@ -21,6 +21,6 @@ stories.add(
     </div>
   ),
   {
-    chromatic: { delay: 375 },
+    chromatic: { delay: 375, pauseAnimationAtEnd: true },
   }
 );
