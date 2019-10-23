@@ -44,6 +44,21 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     setSelectedValuable(null);
   };
 
+  const keyGetter = (i: number) => `valuable-card-${valuables[i].id}`;
+
+  const itemRenderer = (i: number) => (
+    <div id={`valuable-card-${valuables[i].id}`}>
+      <div className="c-valuable-list__valuable-card">
+        <ValuableCard
+          {...valuables[i]}
+          translations={valuableThumbnailTranslations}
+          onCardClick={() => showModal(valuables[i])}
+          className="t-box-shadow"
+        />
+      </div>
+    </div>
+  );
+
   useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
@@ -74,24 +89,12 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
         <EmptyValuablesList message={noValuablesLabel} />
       ) : (
         <>
-          <Scrollable padding={PADDING_PER_DEVICE}>
-            {valuables.map(valuable => {
-              const { id } = valuable;
-
-              return (
-                <div key={`valuable-card-${id}`} id={`valuable-card-${id}`}>
-                  <div className="c-valuable-list__valuable-card u-padding-bottom--sm">
-                    <ValuableCard
-                      {...valuable}
-                      translations={valuableThumbnailTranslations}
-                      onCardClick={() => showModal(valuable)}
-                      className="t-box-shadow"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-          </Scrollable>
+          <Scrollable
+            numberOfItems={valuables.length}
+            keyGetter={keyGetter}
+            itemRenderer={itemRenderer}
+            padding={PADDING_PER_DEVICE}
+          />
 
           {selectedValuable && (
             <ValuableDetailsWithModal

@@ -1,17 +1,10 @@
 @import "cudl-breakpoints";
 @import "~Styles/settings.breakpoints";
 
-//prettier-ignore
 $promotion-image-ratios: (
-  mobile: (
-    179/377
-  ) * 100%,
-  phablet: (
-    188/546
-  ) * 100%,
-  tablet: (
-    562/1180
-  ) * 100%
+  mobile: percentage(179/377),
+  phablet: percentage(188/546),
+  tablet: percentage(562/1180),
 );
 
 // stylelint-disable-next-line
