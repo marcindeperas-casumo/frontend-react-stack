@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
 import { PlayIcon } from "@casumo/cmp-icons";
 import { interpolateTimeInterval } from "Utils";
+import type { ActiveSessionType } from "Models/slotControlSystem";
 import { LimitYourBudget } from "./LimitYourBudget/LimitYourBudget";
 import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
@@ -44,7 +45,8 @@ type ConfigurationFormProps = {
   currency: string,
   locale: string,
   fetchContentIfNecessary: () => void,
-  finishConfiguration: () => void,
+  createSession: () => void,
+  isCreatingSession: boolean,
 };
 
 type IsPlayActiveType = {
@@ -56,7 +58,12 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: ConfigurationFormProps) {
-  const { t, fetchContentIfNecessary, finishConfiguration } = props;
+  const {
+    t,
+    fetchContentIfNecessary,
+    createSession,
+    isCreatingSession,
+  } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
@@ -129,7 +136,8 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         disabled={
           !isPlayActive({ budget, time, alertsEvery, wantsBreak, breakAfter })
         }
-        onClick={finishConfiguration}
+        loading={isCreatingSession}
+        onClick={createSession}
       >
         <span className="o-flex__block c-scs__form__play-btn__label">
           {t.play}

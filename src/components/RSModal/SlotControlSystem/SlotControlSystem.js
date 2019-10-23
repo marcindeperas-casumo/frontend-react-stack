@@ -1,8 +1,11 @@
 // @flow
 import * as React from "react";
+import { useActiveSession } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import type { ModalContentComponent } from "../rsmodal.mappings";
 import { ModalHeader } from "../RSModalHeader";
+
+const { useEffect } = React;
 
 type SlotControlSystemContent = {
   modal_title: string,
@@ -11,6 +14,18 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
+  const sessionData = useActiveSession();
+
+  useEffect(() => {
+    if (sessionData.activeSession && !sessionData.isOld) {
+      props.acceptModal();
+    }
+  }, [props, sessionData]);
+
+  if (sessionData.isFetching) {
+    return null;
+  }
+
   return (
     <>
       <ModalHeader
@@ -19,7 +34,7 @@ export function SlotControlSystem(
         closeAction={props.dismissModal}
       />
       <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet">
-        <ConfigurationFormContainer finishConfiguration={props.acceptModal} />
+        <ConfigurationFormContainer />
       </div>
     </>
   );

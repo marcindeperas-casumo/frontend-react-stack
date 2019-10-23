@@ -1,8 +1,10 @@
 // @flow
 import { createSelector } from "reselect";
-import { propOr, pipe, pick } from "ramda";
+import { propOr, pipe, pick, path, identity } from "ramda";
 import { getPage } from "Models/cms";
-import { CMS_SLUGS } from "./slotControlSystem.constants";
+import { getFetch } from "Models/fetch";
+import { CMS_SLUGS, ACTION_TYPES } from "Models/slotControlSystem";
+import type { ActiveSessionType } from "./slotControlSystem.types";
 
 export const configurationFormContentSelector = createSelector(
   getPage(CMS_SLUGS.CONFIGURATION_SCREEN),
@@ -14,4 +16,30 @@ export const configurationFormContentSelector = createSelector(
       pick(["minutes_abbreviated", "hours_abbreviated", "days_abbreviated"])
     )(unitsContent),
   })
+);
+
+export const isFetchingActiveSessionSelector = createSelector<boolean>(
+  getFetch(ACTION_TYPES.FETCH_SESSION_INIT),
+  fetchData => fetchData?.isFetching
+);
+
+export const activeSessionUpdatedAtSelector = createSelector<number>(
+  path(["slotControlSystem", "updatedAt"]),
+  identity
+);
+
+export const isCreatingSessionSelector = createSelector<boolean>(
+  getFetch(ACTION_TYPES.CREATE_SESSION_INIT),
+  fetchData => fetchData?.isFetching
+);
+
+export const activeSessionSelector = createSelector<ActiveSessionType | null>(
+  isFetchingActiveSessionSelector,
+  path(["slotControlSystem", "activeSession"]),
+  (isFetching, activeSession) => {
+    if (isFetching) {
+      return null;
+    }
+    return activeSession;
+  }
 );
