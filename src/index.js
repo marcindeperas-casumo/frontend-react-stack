@@ -12,7 +12,6 @@ import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
 import bridgeToDispatchService from "Services/BridgeToDispatchService";
 import bridgeToPlayingService from "Services/BridgeToPlayingService";
-import { bridgeToInitConfigurationService } from "Services/SlotControlSystemService";
 import { Modal } from "Components/RSModal";
 import { bridgeToLaunchModalService } from "Services/LaunchModalService";
 import "Services/logger"; // side effect, initializes rollbar
@@ -22,7 +21,6 @@ import "./styles/index.scss";
 window.bridge = bridge;
 bridgeToDispatchService(reduxStore);
 bridgeToPlayingService(reduxStore);
-bridgeToInitConfigurationService(reduxStore);
 bridgeToLaunchModalService(reduxStore);
 
 ReactModal.setAppElement("#root");

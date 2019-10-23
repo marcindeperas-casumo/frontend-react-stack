@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
-import type { ModalContentComponent } from "../rsmodal.mappings";
+import { type ModalContentComponent } from "Components/RSModal";
 import { ModalHeader } from "../RSModalHeader";
 
 type SlotControlSystemContent = {

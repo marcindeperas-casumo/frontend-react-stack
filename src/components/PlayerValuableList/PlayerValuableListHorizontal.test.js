@@ -43,9 +43,12 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the correct number of items", () => {
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(false);
-    expect(rendered.find(Scrollable).find(ValuableCard)).toHaveLength(
-      mockedValuables.length
-    );
+    expect(
+      rendered
+        .find(Scrollable)
+        .dive()
+        .find(ValuableCard)
+    ).toHaveLength(mockedValuables.length);
   });
 
   test("should render the list title", () => {
