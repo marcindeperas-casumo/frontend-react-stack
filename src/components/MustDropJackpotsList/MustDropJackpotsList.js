@@ -23,31 +23,47 @@ export type Props = {
 
 const mustDropWidgetId = "must-drop-jackpots-widget";
 
-// we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
-const mustDropJackpotRenderer = ({ id: idsInColumn, i }) => {
-  const isIdMustDropWidgetId = idsInColumn.indexOf(mustDropWidgetId) !== -1;
-
-  return isIdMustDropWidgetId ? (
-    <MustDropJackpotsWidget key={mustDropWidgetId} />
-  ) : (
-    <JackpotsListTile ids={idsInColumn} key={`must-drop-jackpots-tile-${i}`} />
-  );
-};
-
 export default class MustDropJackpotsList extends PureComponent<Props> {
+  get columns(): Array<Array<string>> {
+    const idsByColumns = generateColumns(this.props.ids);
+    return [[mustDropWidgetId], ...idsByColumns];
+  }
+
+  keyGetter = (i: number) =>
+    this.columns[i].indexOf(mustDropWidgetId) !== -1
+      ? mustDropWidgetId
+      : this.columns[i][0];
+
+  mobileMustDropJackpotRenderer = (i: number) => {
+    const isIdMustDropWidgetId =
+      this.columns[i].indexOf(mustDropWidgetId) !== -1;
+
+    return isIdMustDropWidgetId ? (
+      <MustDropJackpotsWidget />
+    ) : (
+      <JackpotsListTile ids={this.columns[i]} />
+    );
+  };
+
+  desktopMustDropJackpotRenderer = ({
+    id: idsInColumn,
+    i,
+  }: {
+    id: Array<string>,
+    i: number,
+  }) => {
+    const isIdMustDropWidgetId = idsInColumn.indexOf(mustDropWidgetId) !== -1;
+
+    return isIdMustDropWidgetId ? (
+      <MustDropJackpotsWidget />
+    ) : (
+      <JackpotsListTile ids={idsInColumn} />
+    );
+  };
+
   render() {
-    const { ids, title, seeMore } = this.props;
-    const idsByColumns = generateColumns(ids);
+    const { title, seeMore } = this.props;
     const seeMoreUrl = "/games/must-drop-jackpots";
-    const scrollableChildren = [
-      <div
-        className="u-padding-y--sm u-height--full"
-        key="must-drop-jackpots-widget"
-      >
-        <MustDropJackpotsWidget />
-      </div>,
-      ...idsByColumns.map((id, i) => mustDropJackpotRenderer({ id, i })),
-    ];
 
     return (
       <div className="u-margin-x--3xlg@desktop">
@@ -60,20 +76,21 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
                 title={title}
               />
               <Scrollable
+                keyGetter={this.keyGetter}
+                numberOfItems={this.columns.length}
+                itemRenderer={this.mobileMustDropJackpotRenderer}
                 itemClassName="c-jackpots-list-tile"
                 padding={PADDING_PER_DEVICE}
-              >
-                {scrollableChildren}
-              </Scrollable>
+              />
             </div>
           </Mobile>
           <Desktop>
             <ScrollableListPaginated
               list={{
                 title,
-                itemIds: [[mustDropWidgetId], ...idsByColumns],
+                itemIds: this.columns,
               }}
-              Component={mustDropJackpotRenderer}
+              Component={this.desktopMustDropJackpotRenderer}
               className="c-jackpots-list-tile u-height--full"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
