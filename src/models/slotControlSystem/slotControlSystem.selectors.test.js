@@ -1,5 +1,12 @@
 // @flow
-import { configurationFormContentSelector } from "./slotControlSystem.selectors";
+import {
+  configurationFormContentSelector,
+  isFetchingActiveSessionSelector,
+  activeSessionUpdatedAtSelector,
+  activeSessionSelector,
+  isCreatingSessionSelector,
+  ACTION_TYPES,
+} from "Models/slotControlSystem";
 
 describe("Slot Control System selectors", () => {
   test("configurationFormContentSelector", () => {
@@ -32,5 +39,54 @@ describe("Slot Control System selectors", () => {
       ...unitsFields,
       ...modalFields,
     });
+  });
+
+  test("isFetchingActiveSessionSelector", () => {
+    const state = {
+      fetch: {
+        [ACTION_TYPES.FETCH_SESSION_INIT]: {
+          isFetching: true,
+        },
+      },
+    };
+
+    expect(isFetchingActiveSessionSelector(state)).toEqual(true);
+  });
+
+  test("activeSessionUpdatedAtSelector", () => {
+    const now = Date.now();
+    const state = {
+      slotControlSystem: {
+        activeSession: { id: "123-123-123" },
+        updatedAt: now,
+      },
+    };
+
+    expect(activeSessionUpdatedAtSelector(state)).toEqual(now);
+  });
+
+  test("activeSessionSelector", () => {
+    const now = Date.now();
+    const activeSession = { id: "123-123-123" };
+    const state = {
+      slotControlSystem: {
+        activeSession,
+        updatedAt: now,
+      },
+    };
+
+    expect(activeSessionSelector(state)).toEqual(activeSession);
+  });
+
+  test("isCreatingSessionSelector", () => {
+    const state = {
+      fetch: {
+        [ACTION_TYPES.CREATE_SESSION_INIT]: {
+          isFetching: true,
+        },
+      },
+    };
+
+    expect(isCreatingSessionSelector(state)).toEqual(true);
   });
 });

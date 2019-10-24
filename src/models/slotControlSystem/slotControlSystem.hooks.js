@@ -20,6 +20,7 @@ export function useActiveSession(): UseActiveSessionType {
   const updatedAt = useSelector(activeSessionUpdatedAtSelector);
   const activeSession = useSelector(activeSessionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
+  // data is older than 1 minute
   const isOld = updatedAt + 1000 * 60 < Date.now();
 
   React.useEffect(() => {
