@@ -1,8 +1,14 @@
+// @flow
 import React from "react";
 import classNames from "classnames";
 import "./GameTileHeart.scss";
 
-export const GameTileHeart = ({ onClick, isActive }) => (
+type Props = {
+  onClick: () => void,
+  isActive: boolean,
+};
+
+export const GameTileHeart = ({ onClick, isActive }: Props) => (
   <svg
     onClick={onClick}
     className={classNames("c-game-tile-heart u-display--block", {
