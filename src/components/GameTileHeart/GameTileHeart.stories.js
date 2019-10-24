@@ -21,5 +21,10 @@ stories.add(
       <GameTileHeart isActive={true} onClick={() => {}} />
     </div>
   ),
-  { chromatic: { delay: parseInt(styles.heartAnimationDuration) } }
+  {
+    chromatic: {
+      delay: parseInt(styles.heartAnimationDuration),
+      pauseAnimationAtEnd: true,
+    },
+  }
 );
