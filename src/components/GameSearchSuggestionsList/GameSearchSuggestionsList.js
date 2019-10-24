@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import SectionList from "Components/SectionList";
-import { GameRowSearch } from "Components/GameRowSearch";
+import { GameRow } from "Components/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
@@ -39,7 +39,9 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
               data: games,
             },
           ]}
-          renderItem={id => <GameRowSearch slug={id} />}
+          renderItem={id => (
+            <GameRow id={id} search={{ highlightSearchQuery: false }} />
+          )}
         />
       </TrackProvider>
     ) : (
