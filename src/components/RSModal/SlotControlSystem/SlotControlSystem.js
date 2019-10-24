@@ -14,14 +14,13 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
-  const sessionData = useActiveSession();
-  const { activeSession, isOld, isFetching } = sessionData;
+  const { activeSession, isFetching } = useActiveSession();
 
   useEffect(() => {
-    if (activeSession && !isOld) {
+    if (activeSession) {
       props.acceptModal();
     }
-  }, [activeSession, isOld]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isFetching) {
     return null;

@@ -32,7 +32,6 @@ describe("useActiveSession", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      isOld: updatedAt + 60 * 1000 < Date.now(),
     });
   });
 });

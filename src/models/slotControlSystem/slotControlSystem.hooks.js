@@ -11,7 +11,6 @@ import {
 
 type UseActiveSessionType = {
   isFetching: boolean,
-  isOld: boolean,
   activeSession: ?ActiveSessionType,
 };
 
@@ -30,8 +29,7 @@ export function useActiveSession(): UseActiveSessionType {
   }, [dispatch, isOld]);
 
   return {
-    activeSession,
+    activeSession: isOld ? null : activeSession,
     isFetching,
-    isOld,
   };
 }
