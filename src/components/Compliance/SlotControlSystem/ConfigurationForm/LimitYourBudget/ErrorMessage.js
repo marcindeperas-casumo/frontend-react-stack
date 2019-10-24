@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import Text from "@casumo/cmp-text";
-import DangerousHtml from "Components/DangerousHtml";
 import { interpolate, formatCurrency } from "Utils";
 import { isBudgetTooHigh, isBudgetTooLow, isBudgetInvalid } from "../Utils";
 
@@ -35,11 +34,7 @@ export function ErrorMessage(props: ErrorMessageProps) {
   };
 
   if (!isBudgetInvalid(props) || isNaN(budget)) {
-    return (
-      <Text {...textProps}>
-        <DangerousHtml html="&nbsp;" />
-      </Text>
-    );
+    return <Text {...textProps}>&nbsp;</Text>;
   }
 
   return (

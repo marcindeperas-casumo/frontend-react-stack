@@ -18,7 +18,7 @@ export function SlotControlSystem(
         showCloseButton
         closeAction={props.dismissModal}
       />
-      <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet">
+      <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet u-overflow-y--auto">
         <ConfigurationFormContainer finishConfiguration={props.acceptModal} />
       </div>
     </>
