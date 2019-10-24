@@ -5,10 +5,10 @@ import { launchGame } from "Models/games";
 import { GameRow } from "Components/GameRow/GameRow";
 
 export const GameRowContainer = connect(
-  (state, { id }: string) => ({
+  (state, { id }) => ({
     game: gameSelector(id)(state),
   }),
-  (dispatch, { id }: string) => ({
+  (dispatch, { id }) => ({
     onLaunchGame: () => dispatch(launchGame(id)),
   })
 )(GameRow);

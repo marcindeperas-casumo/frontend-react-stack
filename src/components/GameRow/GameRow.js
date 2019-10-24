@@ -12,17 +12,22 @@ import DangerousHtml from "Components/DangerousHtml";
 import { GameRowSearchTitle } from "Components/GameRow/GameRowSearchTitle";
 import TrackClick from "Components/TrackClick";
 
+type SearchProps = {
+  /** The search query */
+  query?: string,
+  /** Whether highlight the search query on the game title or not  */
+  highlightSearchQuery?: boolean,
+};
+
 type Props = {
   /** The Game object containing name, logo, logoBackground and slug of the game to be rendered */
   game: GameRow_Game,
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
-  /** The search query */
-  query?: string,
-  /** Whether highlight the search query on the game title or not  */
-  highlightSearchQuery?: boolean,
   /** Class name to apply to the game row */
   className?: string,
+  /** The search props */
+  search?: SearchProps,
 };
 
 const iconStyle =
@@ -80,14 +85,8 @@ const GameRowSearchText = ({
 );
 
 export class GameRow extends PureComponent<Props> {
-  static defaultProps = {
-    game: {},
-    className: "",
-    search: {},
-  };
-
   render() {
-    const { game, onLaunchGame, search, className } = this.props;
+    const { game = {}, onLaunchGame, search = {}, className = "" } = this.props;
     const { query, highlightSearchQuery } = search;
     const { name, logo, logoBackground, slug } = game;
     const lobby = game.lobby || {};
