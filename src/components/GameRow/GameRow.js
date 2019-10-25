@@ -32,7 +32,13 @@ type Props = {
 const iconStyle =
   "t-background-chrome-light-1 t-color-chrome-dark-2 t-border-r--circle u-padding";
 
-const TrackPlayIcon = ({ name, onLaunchGame }) => (
+export const TrackPlayIcon = ({
+  name,
+  onLaunchGame,
+}: {
+  name: string,
+  onLaunchGame: () => void,
+}) => (
   <TrackClick
     eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
     data={{ [EVENT_PROPS.GAME_NAME]: name }}
@@ -43,7 +49,13 @@ const TrackPlayIcon = ({ name, onLaunchGame }) => (
   </TrackClick>
 );
 
-const TrackMoreIcon = ({ name, slug }) => (
+export const TrackMoreIcon = ({
+  name,
+  slug,
+}: {
+  name: string,
+  slug: string,
+}) => (
   <Flex.Item className="o-flex__item--no-shrink">
     <TrackClick
       eventName={EVENTS.MIXPANEL_GAME_DETAILS}
@@ -56,7 +68,7 @@ const TrackMoreIcon = ({ name, slug }) => (
   </Flex.Item>
 );
 
-const GameRowText = ({ name, bets }) => (
+export const GameRowText = ({ name, bets }: { name: string, bets: Object }) => (
   <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
     <Text
       tag="div"
@@ -69,7 +81,13 @@ const GameRowText = ({ name, bets }) => (
   </Flex.Block>
 );
 
-const GameRowSearchText = ({ name, search = {} }) => {
+export const GameRowSearchText = ({
+  name,
+  search = {},
+}: {
+  name: string,
+  search: SearchProps,
+}) => {
   const { query, highlightSearchQuery } = search;
 
   return (

@@ -1,6 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { GameRow } from "Components/GameRow/GameRow";
+import {
+  GameRow,
+  TrackPlayIcon,
+  TrackMoreIcon,
+  GameRowText,
+  GameRowSearchText,
+} from "Components/GameRow/GameRow";
+import { GameThumb } from "Components/GameThumb";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { renderBets } from "Utils";
 
@@ -24,7 +31,7 @@ describe("<GameRow />", () => {
   });
 
   test("renders a GameThumb for the component", () => {
-    const thumbnail = rendered.find("GameThumb");
+    const thumbnail = rendered.find(GameThumb);
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
 
     expect(thumbnail.length).toBe(1);
@@ -41,15 +48,15 @@ describe("<GameRow />", () => {
       />
     );
 
-    expect(rendered.find("TrackPlayIcon").length).toBe(1);
-    expect(rendered.find("TrackMoreIcon").length).toBe(0);
+    expect(rendered.find(TrackPlayIcon).length).toBe(1);
+    expect(rendered.find(TrackMoreIcon).length).toBe(0);
   });
 
   test("renders a More info icon if not a jackpot game", () => {
     rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
 
-    expect(rendered.find("TrackMoreIcon").length).toBe(1);
-    expect(rendered.find("TrackPlayIcon").length).toBe(0);
+    expect(rendered.find(TrackMoreIcon).length).toBe(1);
+    expect(rendered.find(TrackPlayIcon).length).toBe(0);
   });
 
   test("clicking on the whole row launches the game if Jackpot game", () => {
@@ -82,14 +89,14 @@ describe("<GameRow />", () => {
       <GameRow game={game} onLaunchGame={launchGame} search={{}} />
     );
 
-    expect(rendered.find("GameRowSearchText")).toHaveLength(1);
-    expect(rendered.find("GameRowText")).toHaveLength(0);
+    expect(rendered.find(GameRowSearchText)).toHaveLength(1);
+    expect(rendered.find(GameRowText)).toHaveLength(0);
   });
 
   test("should render the GameRowText if default GameRow", () => {
     rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
 
-    expect(rendered.find("GameRowSearchText")).toHaveLength(0);
-    expect(rendered.find("GameRowText")).toHaveLength(1);
+    expect(rendered.find(GameRowSearchText)).toHaveLength(0);
+    expect(rendered.find(GameRowText)).toHaveLength(1);
   });
 });
