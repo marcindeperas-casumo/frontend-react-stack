@@ -16,6 +16,7 @@ import { PAGE_SIZE } from "Models/gameSearch";
 import { GamesVirtualList } from "Components/GamesVirtualList";
 import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+
 import "./GameSearch.scss";
 
 type Props = {
