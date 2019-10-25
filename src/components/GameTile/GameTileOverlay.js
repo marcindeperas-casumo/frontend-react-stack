@@ -104,7 +104,15 @@ const GameTileOverlay = ({
             </TrackClick>
           )}
           <div className="u-width--lg u-height--lg">
-            <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: name,
+                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
+              }}
+            >
+              <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+            </TrackClick>
           </div>
         </Flex>
       </Flex>

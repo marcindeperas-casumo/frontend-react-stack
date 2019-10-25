@@ -152,6 +152,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
+  MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
 };
 
 export const EVENT_PROPS = {
@@ -164,6 +165,7 @@ export const EVENT_PROPS = {
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
   PROMOTION_TYPE: "promotion type",
+  IS_FAVOURITE: "Is Favourite",
 };
 
 export const EVENT_LOCATIONS = {
