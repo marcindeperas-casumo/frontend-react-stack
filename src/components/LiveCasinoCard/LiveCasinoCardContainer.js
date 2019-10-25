@@ -3,16 +3,20 @@ import React from "react";
 import { connect } from "react-redux";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import { gameSelector } from "Models/schema";
-import { launchGame } from "Models/games";
+import { launchGame, updateMyList, isGameInMyList } from "Models/games";
 import {
   subscribeLiveCasinoUpdates,
   unsubscribeLiveCasinoUpdates,
 } from "Models/cometd";
 
 const LiveCasinoCardConnected = connect(
-  (state, { id }) => ({ game: gameSelector(id)(state) }),
+  (state, { id }) => ({
+    game: gameSelector(id)(state),
+    isInMyList: isGameInMyList(id)(state),
+  }),
   (dispatch, { id }) => ({
     launchGame: () => dispatch(launchGame(id)),
+    onFavouriteGame: () => dispatch(updateMyList(id)),
     subscribeToUpdates: tableId =>
       dispatch(subscribeLiveCasinoUpdates(tableId)),
     unsubscribeFromUpdates: tableId =>

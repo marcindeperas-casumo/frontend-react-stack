@@ -10,13 +10,16 @@ import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
+import { GameTileHeart } from "Components/GameTileHeart";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 
 export type Props = {
   game: Game,
+  isInMyList: boolean,
   launchGame: Function,
+  onFavouriteGame: Function,
   subscribeToUpdates: string => void,
   unsubscribeFromUpdates: string => void,
 };
@@ -27,6 +30,10 @@ export const getTableId = compose(
 );
 
 export default class LiveCasinoCard extends PureComponent<Props> {
+  static defaultProps = {
+    isInMyList: false,
+  };
+
   componentDidMount() {
     const { game, subscribeToUpdates } = this.props;
     const tableId = getTableId(game);
@@ -45,6 +52,11 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     return getLobby(this.props.game);
   }
 
+  onGameTileHeartClick = (e: SyntheticInputEvent<HTMLInputElement>) => {
+    e.stopPropagation();
+    this.props.onFavouriteGame();
+  };
+
   renderHeader = () => {
     const { lobby } = this;
 
@@ -56,13 +68,20 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
         <Flex
           direction="vertical"
-          align="center"
-          justify="end"
+          align="end"
+          justify="space-between"
           className="o-ratio__content u-font-weight-bold"
           style={{
             background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
           }}
         >
+          <div className="t-color-white">
+            <GameTileHeart
+              className="u-width--4xlg u-height--4xlg u-padding--md"
+              onClick={this.onGameTileHeartClick}
+              isActive={this.props.isInMyList}
+            />
+          </div>
           <CardData lobby={lobby} />
         </Flex>
       </div>
