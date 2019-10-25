@@ -284,6 +284,7 @@ describe("SettingsRealityCheckContainer", () => {
       ).toBe(45);
     });
 
+    // TODO: this test is skipped due to it failing randomly in CI.
     test.skip("after unsuccessful mutation, state should be refetched", async () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
