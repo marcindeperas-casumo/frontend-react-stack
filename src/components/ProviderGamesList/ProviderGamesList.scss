@@ -1,3 +1,4 @@
 .c-provider-games-list {
   $provider-bar: 71px;
+  min-height: calc(100vh - #{$provider-bar} - var(--play-okay-bar-height, 0));
 }

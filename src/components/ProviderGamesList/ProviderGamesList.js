@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { GameRow } from "Components/GameRow";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { EVENT_PROPS } from "Src/constants";
+import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_SELECTOR } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
@@ -36,6 +36,12 @@ const PAGE_SIZE = 50;
 const ROW_HEIGHT = 104;
 
 class ProviderGamesList extends PureComponent<Props, State> {
+  constructor(props: Props) {
+    super(props);
+
+    this.scrollElement = document.querySelector(ROOT_SCROLL_ELEMENT_SELECTOR);
+  }
+
   static defaultProps = {
     fetchGames: () => {},
     areGamesLoaded: false,
@@ -47,6 +53,8 @@ class ProviderGamesList extends PureComponent<Props, State> {
     currentPage: 0,
     requestedPages: [],
   };
+
+  scrollElement: ?HTMLElement;
 
   componentDidMount() {
     this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
@@ -134,7 +142,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
           >
             <div className="c-provider-games-list u-padding-top">
               <VirtualList
-                scrollElementId="main-content-wrapper"
+                scrollElement={this.scrollElement}
                 isRowLoaded={this.isRowLoaded}
                 rowHeight={ROW_HEIGHT}
                 totalNumberOfRows={count}

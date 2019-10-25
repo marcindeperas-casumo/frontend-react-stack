@@ -12,7 +12,7 @@ import "./VirtualList.scss";
 
 type Props = {
   /** Element id to attach scroll event listeners. Defaults to window */
-  scrollElementId: string,
+  scrollElement: ?HTMLElement,
   /** The total number of items in the list. */
   totalNumberOfRows: number,
   /** The height of a row. Can be a number or a function that returns the height of a row by index. */
@@ -35,15 +35,6 @@ type Props = {
 };
 
 class VirtualList extends PureComponent<Props> {
-  scrollElement: HTMLElement | any;
-
-  constructor(props: Props) {
-    super(props);
-
-    this.scrollElement =
-      document.querySelector(`#${this.props.scrollElementId}`) || window;
-  }
-
   render() {
     const {
       rowHeight,
@@ -52,6 +43,7 @@ class VirtualList extends PureComponent<Props> {
       isRowLoaded,
       rowRenderer,
       pageSize,
+      scrollElement,
     } = this.props;
 
     return (
@@ -63,8 +55,8 @@ class VirtualList extends PureComponent<Props> {
         threshold={pageSize / 2}
       >
         {({ onRowsRendered, registerChild }) => (
-          <WindowScroller scrollElement={this.scrollElement}>
-            {({ height, scrollTop }) => (
+          <WindowScroller scrollElement={scrollElement || window}>
+            {({ height, scrollTop, isScrolling, onChildScroll }) => (
               <AutoSizer disableHeight>
                 {({ width }) => (
                   <List
@@ -77,6 +69,8 @@ class VirtualList extends PureComponent<Props> {
                     height={height || 0}
                     rowHeight={rowHeight}
                     rowRenderer={rowRenderer}
+                    isScrolling={isScrolling}
+                    onScroll={onChildScroll}
                     scrollTop={scrollTop}
                   />
                 )}

@@ -7,12 +7,15 @@ import { GameRowSearch } from "Components/GameRowSearch";
 import SearchNotFound from "Components/SearchNotFound";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
-import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import {
+  EVENT_PROPS,
+  EVENT_LOCATIONS,
+  ROOT_SCROLL_ELEMENT_SELECTOR,
+} from "Src/constants";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { GamesVirtualList } from "Components/GamesVirtualList";
 import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
-
 import "./GameSearch.scss";
 
 type Props = {
@@ -27,8 +30,26 @@ type Props = {
 };
 
 export class GameSearch extends React.PureComponent<Props> {
+  constructor(props: Props) {
+    super(props);
+
+    this.scrollElement = document.querySelector(ROOT_SCROLL_ELEMENT_SELECTOR);
+  }
+
   componentDidMount() {
     this.props.fetchPageBySlug();
+  }
+
+  componentDidUpdate(nextProps: Props) {
+    if (
+      nextProps.query !== this.props.query &&
+      this.scrollElement &&
+      this.scrollElement.scrollTop
+    ) {
+      // This would reset the scroll element's initial position from WindowScroller otherwise
+      // when typing in the search bar we will end up at the bottom of the scroll element
+      this.scrollElement.scrollTop = 0;
+    }
   }
 
   get noResults() {
@@ -38,6 +59,8 @@ export class GameSearch extends React.PureComponent<Props> {
         this.props.query.length
     );
   }
+
+  scrollElement: ?HTMLElement;
 
   renderResults = () => {
     const { loading, searchResults, searchResultsCount, query } = this.props;

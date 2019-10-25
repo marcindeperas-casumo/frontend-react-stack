@@ -20,3 +20,15 @@ $game-search-widths: (
 .c-game-search-bar {
   z-index: cudl-z("content-overlay");
 }
+
+.c-game-search-virtual-list {
+  min-height: calc(
+    100vh - #{$search-bar} - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)
+  );
+
+  @media (orientation: landscape) {
+    min-height: calc(
+      100vh - #{$search-bar} - var(--top-bar-height--landscape, 64px) - var(--play-okay-bar-height, 0)
+    );
+  }
+}
