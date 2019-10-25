@@ -33,19 +33,39 @@ describe("<GameRow />", () => {
     expect(thumbnailProps.alt).toBe(game.name);
   });
 
-  test("renders a play icon", () => {
-    const playIcon = rendered.find("PlayIcon");
+  test("renders a play icon if jackpot game", () => {
+    rendered = shallow(
+      <GameRow
+        game={{ ...game, lobby: "whatever" }}
+        onLaunchGame={launchGame}
+      />
+    );
 
-    expect(playIcon.length).toBe(1);
+    expect(rendered.find("TrackPlayIcon").length).toBe(1);
+    expect(rendered.find("TrackMoreIcon").length).toBe(0);
   });
 
-  test("clicking on the whole row launches the game", () => {
+  test("renders a More info icon if not a jackpot game", () => {
+    rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
+
+    expect(rendered.find("TrackMoreIcon").length).toBe(1);
+    expect(rendered.find("TrackPlayIcon").length).toBe(0);
+  });
+
+  test("clicking on the whole row launches the game if Jackpot game", () => {
+    rendered = shallow(
+      <GameRow
+        game={{ ...game, lobby: "whatever" }}
+        onLaunchGame={launchGame}
+      />
+    );
+
     rendered
-      .find("Flex")
+      .find("FlexBlock")
       .first()
       .simulate("click");
 
-    expect(launchGame.mock.calls.length).toBe(1);
+    expect(launchGame).toHaveBeenCalledTimes(1);
   });
 
   test("should render betsLevels if LiveCasino game", () => {
@@ -55,5 +75,21 @@ describe("<GameRow />", () => {
     );
 
     expect(rendered.html()).toMatch(renderBets(game.lobby.bets));
+  });
+
+  test("should render the GameRowTextSearch if used for search", () => {
+    rendered = shallow(
+      <GameRow game={game} onLaunchGame={launchGame} search={{}} />
+    );
+
+    expect(rendered.find("GameRowSearchText")).toHaveLength(1);
+    expect(rendered.find("GameRowText")).toHaveLength(0);
+  });
+
+  test("should render the GameRowText if default GameRow", () => {
+    rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
+
+    expect(rendered.find("GameRowSearchText")).toHaveLength(0);
+    expect(rendered.find("GameRowText")).toHaveLength(1);
   });
 });
