@@ -46,7 +46,7 @@ export class GameSearch extends React.PureComponent<Props> {
       this.scrollElement &&
       this.scrollElement.scrollTop
     ) {
-      // This would reset the scroll element's initial position from WindowScroller otherwise
+      // This would reset the root scroll element's initial position otherwise
       // when typing in the search bar we will end up at the bottom of the scroll element
       this.scrollElement.scrollTop = 0;
     }
