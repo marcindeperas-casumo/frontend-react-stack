@@ -1,6 +1,5 @@
 // @flow
 import React, { PureComponent } from "react";
-import * as R from "ramda";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
