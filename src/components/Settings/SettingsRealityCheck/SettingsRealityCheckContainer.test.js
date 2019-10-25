@@ -284,7 +284,7 @@ describe("SettingsRealityCheckContainer", () => {
       ).toBe(45);
     });
 
-    test("after unsuccessful mutation, state should be refetched", async () => {
+    test.skip("after unsuccessful mutation, state should be refetched", async () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
         <>
