@@ -39,9 +39,7 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
               data: games,
             },
           ]}
-          renderItem={id => (
-            <GameRow id={id} search={{ highlightSearchQuery: false }} />
-          )}
+          renderItem={id => <GameRow id={id} search={{}} />}
         />
       </TrackProvider>
     ) : (

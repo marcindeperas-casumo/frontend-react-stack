@@ -70,24 +70,23 @@ const GameRowText = ({ name, bets }) => (
   </Flex.Block>
 );
 
-const GameRowSearchText = ({
-  name,
-  highlightSearchQuery = false,
-  query = "",
-}) => (
-  <Flex.Block className="u-padding-left--sm t-color-grey-dark-2">
-    <GameRowSearchTitle
-      highlightSearchQuery={highlightSearchQuery}
-      name={name}
-      query={query}
-    />
-  </Flex.Block>
-);
+const GameRowSearchText = ({ name, search = {} }) => {
+  const { query, highlightSearchQuery } = search;
+
+  return (
+    <Flex.Block className="u-padding-left--sm t-color-grey-dark-2">
+      <GameRowSearchTitle
+        highlightSearchQuery={highlightSearchQuery}
+        name={name}
+        query={query}
+      />
+    </Flex.Block>
+  );
+};
 
 export class GameRow extends PureComponent<Props> {
   render() {
-    const { game = {}, onLaunchGame, search = {}, className = "" } = this.props;
-    const { query, highlightSearchQuery } = search;
+    const { game = {}, onLaunchGame, search, className = "" } = this.props;
     const { name, logo, logoBackground, slug } = game;
     const lobby = game.lobby || {};
     const { bets } = lobby;
@@ -95,10 +94,7 @@ export class GameRow extends PureComponent<Props> {
     return (
       <Flex
         align="center"
-        className={classNames(
-          { "u-padding--md": R.isEmpty(search) },
-          className
-        )}
+        className={classNames({ "u-padding--md": !search }, className)}
       >
         <Flex.Block onClick={onLaunchGame}>
           <TrackClick
@@ -109,14 +105,10 @@ export class GameRow extends PureComponent<Props> {
               <Flex.Item className="o-flex__item--no-shrink">
                 <GameThumb src={logoBackground} alt={name} mark={logo} />
               </Flex.Item>
-              {R.isEmpty(search) ? (
-                <GameRowText name={name} bets={bets} />
+              {search ? (
+                <GameRowSearchText name={name} search={search} />
               ) : (
-                <GameRowSearchText
-                  name={name}
-                  highlightSearchQuery={highlightSearchQuery}
-                  query={query}
-                />
+                <GameRowText name={name} bets={bets} />
               )}
             </Flex>
           </TrackClick>
