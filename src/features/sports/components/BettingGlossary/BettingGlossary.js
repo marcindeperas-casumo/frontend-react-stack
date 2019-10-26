@@ -37,7 +37,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
 );
 
 export const BettingGlossaryModalContent = () => {
-  const { data, error, loading } = useQuery(GLOSSARY_QUERY);
+  const { data, error, loading } = useQuery<GlossaryQuery, _>(GLOSSARY_QUERY);
 
   if (error) {
     return (
@@ -47,7 +47,7 @@ export const BettingGlossaryModalContent = () => {
     );
   }
 
-  if (!data?.glossary || loading) {
+  if (!data || !data.glossary || loading) {
     return (
       <SportsModal.Content>
         <BettingGlossarySkeleton />
