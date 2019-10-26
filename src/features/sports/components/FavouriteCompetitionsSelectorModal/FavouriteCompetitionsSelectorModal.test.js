@@ -6,7 +6,7 @@ import { MockedProvider } from "@apollo/react-testing";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import FavouriteCompetitionsSelectorModal from "./FavouriteCompetitionsSelectorModal";
-import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
+import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./FavouriteCompetitionsSelector/__mocks__/favouriteCompetitionsSelectorQuery";
 
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];

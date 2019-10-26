@@ -5,7 +5,8 @@ import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import { isNilOrEmpty } from "Src/utils";
-import FavouriteCompetitionsSelector, {
+import {
+  FavouriteCompetitionsSelector,
   isOrphanGroup,
   isPopularGroup,
   transformOrphanGroup,
