@@ -1,6 +1,6 @@
-/* @flow */
-import React, { useEffect, useState } from "react";
-import { pick } from "ramda";
+// @flow
+import * as React from "react";
+import * as R from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
@@ -9,7 +9,7 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { subscribeToItemCreatedEvent } from "./utils";
-import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
@@ -22,15 +22,15 @@ const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
   const {
-    loading = false,
-    valuables = [],
-    translations = {},
-    refetch = () => {},
+    loading,
+    valuables,
+    translations,
+    refetch,
     onConsumeValuable,
-  } = props;
+  } = usePlayerValuableList();
   const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = useState(null);
-  const valuableThumbnailTranslations = pick(
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const valuableThumbnailTranslations = R.pick(
     ["hoursLabel", "minutesLabel"],
     translations
   );
@@ -59,7 +59,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
     </div>
   );
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
       if (success) {
         refetch();

@@ -1,7 +1,6 @@
 /* @flow */
 import * as React from "react";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
-import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import SectionList from "Components/SectionList";
@@ -9,24 +8,22 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { subscribeToItemCreatedEvent } from "./utils";
-import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
-export function PlayerValuableListVertical(props: PlayerValuableListProps) {
+export function PlayerValuableListVertical() {
   const {
-    error,
-    loading = false,
-    valuables = [],
+    loading,
+    valuables,
     translations,
-    refetch = () => {},
+    refetch,
     onConsumeValuable,
-  } = props;
+  } = usePlayerValuableList();
   const {
     availableListTitleLabel,
     lockedListTitleLabel,
     noValuablesLabel,
   } = translations;
-  const [selectedValuable, setSelectedValuable] = React.useState(null);
   const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
   const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
   const sections = [
@@ -39,6 +36,11 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
       data: getLockedValuables(valuables),
     },
   ].filter(section => section.data.length > 0);
+
+  const [
+    selectedValuable,
+    setSelectedValuable,
+  ] = React.useState<?PlayerValuablesQuery_player_valuables>(null);
 
   const closeModal = () => {
     setSelectedValuable(null);
@@ -56,7 +58,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     };
   }, [refetch]);
 
-  if (loading) {
+  if (loading || !translations) {
     return <GameRowSkeleton />;
   }
 
