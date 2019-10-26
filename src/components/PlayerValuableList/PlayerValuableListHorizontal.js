@@ -20,7 +20,7 @@ const PADDING_PER_DEVICE = {
 
 const seeAllUrl = "player/valuables";
 
-export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
+export function PlayerValuableListHorizontal() {
   const {
     loading,
     valuables,

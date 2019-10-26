@@ -18,18 +18,26 @@ export function usePlayerValuableList() {
     USE_VALUABLE_MUTATION
   );
 
+  const translations = {
+    listTitleLabel: data?.listTitleLabel || "",
+    availableListTitleLabel: data?.availableListTitleLabel || "",
+    lockedListTitleLabel: data?.lockedListTitleLabel || "",
+    hoursLabel: data?.hoursLabel || "",
+    minutesLabel: data?.minutesLabel || "",
+    seeAllLabel: data?.seeAllLabel || "",
+    // $FlowIgnore: Either type is wrong or it really doesn't exist @dave
+    noValuablesLabel: data?.noValuablesLabel || "",
+  };
+
   return {
     error,
     loading,
     refetch,
+    translations,
     valuables: (R.path(
       ["player", "valuables"],
       data
     ): Array<PlayerValuablesQuery_player_valuables>),
-    translations: (R.path(
-      ["translations", "playerValuableTranslations"],
-      data
-    ): ?PlayerValuablesQuery_translations_playerValuableTranslations),
     onConsumeValuable: (id: string) =>
       mutateValuable({
         variables: {
