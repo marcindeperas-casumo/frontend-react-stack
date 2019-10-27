@@ -5,7 +5,7 @@ declare module '@apollo/react-hooks' {
   import type { ComponentType, Element, Node } from 'react';
 
   /* start graphql types */
-  declare type DocumentNode = any;
+  declare type DocumentNode = string;
   declare type GraphQLError = any;
   /* end graphql types */
 
