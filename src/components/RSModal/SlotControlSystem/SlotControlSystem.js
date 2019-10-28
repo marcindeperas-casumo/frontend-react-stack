@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import { EitherOr } from "Components/EitherOr";
-import { useActiveSession } from "Models/slotControlSystem";
+import { useSessions } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
@@ -17,7 +16,7 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
-  const { activeSession, isFetching } = useActiveSession();
+  const { activeSession, isFetching } = useSessions();
   const lastSessionEndedIn60Mins = true;
   const [continuePlaying, setContinuePlaying] = useState(false);
 

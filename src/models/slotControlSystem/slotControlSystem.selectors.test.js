@@ -2,8 +2,8 @@
 import {
   configurationFormContentSelector,
   isFetchingActiveSessionSelector,
-  activeSessionUpdatedAtSelector,
   activeSessionSelector,
+  endedSessionSelector,
   isCreatingSessionSelector,
   ACTION_TYPES,
 } from "Models/slotControlSystem";
@@ -53,29 +53,30 @@ describe("Slot Control System selectors", () => {
     expect(isFetchingActiveSessionSelector(state)).toEqual(true);
   });
 
-  test("activeSessionUpdatedAtSelector", () => {
-    const now = Date.now();
-    const state = {
-      slotControlSystem: {
-        activeSession: { id: "123-123-123" },
-        updatedAt: now,
-      },
-    };
-
-    expect(activeSessionUpdatedAtSelector(state)).toEqual(now);
-  });
-
   test("activeSessionSelector", () => {
     const now = Date.now();
-    const activeSession = { id: "123-123-123" };
+    const activeSession = { id: "123-123-123", lastUpdateTime: now };
     const state = {
       slotControlSystem: {
         activeSession,
-        updatedAt: now,
+        endedSession: null,
       },
     };
 
     expect(activeSessionSelector(state)).toEqual(activeSession);
+  });
+
+  test("endedSessionSelector", () => {
+    const now = Date.now();
+    const endedSession = { id: "123-123-123", endTime: now };
+    const state = {
+      slotControlSystem: {
+        activeSession: null,
+        endedSession,
+      },
+    };
+
+    expect(endedSessionSelector(state)).toEqual(endedSession);
   });
 
   test("isCreatingSessionSelector", () => {

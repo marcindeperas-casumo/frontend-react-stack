@@ -20,28 +20,35 @@ describe("Models/slotControlSystem/Reducer", () => {
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
       activeSession: null,
-      updatedAt: null,
+      endedSession: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
-      activeSession: response,
-      updatedAt: now,
+      endedSession: null,
+      activeSession: {
+        ...response,
+        lastUpdateTime: now,
+      },
     });
   });
 
   test("INVALIDATE_SESSION", () => {
     const activeSession = {
       id: "123-345-456-677",
+      lastUpdateTime: now,
     };
     const action = { type: ACTION_TYPES.INVALIDATE_SESSION };
     const state = {
       activeSession,
-      updatedAt: now,
+      endedSession: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
       activeSession: null,
-      updatedAt: now,
+      endedSession: {
+        id: activeSession.id,
+        endTime: now,
+      },
     });
   });
 });
