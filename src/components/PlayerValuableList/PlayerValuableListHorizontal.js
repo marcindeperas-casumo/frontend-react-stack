@@ -2,13 +2,11 @@
 import * as React from "react";
 import * as R from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
-import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
-import { subscribeToItemCreatedEvent } from "./utils";
 import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
@@ -25,26 +23,24 @@ export function PlayerValuableListHorizontal() {
     loading,
     valuables,
     translations,
-    refetch,
     onConsumeValuable,
   } = usePlayerValuableList();
-  const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
   const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const showModal = setSelectedValuable;
+  const closeModal = () => setSelectedValuable(null);
+
+  if (loading) {
+    return <GameListHorizontalSkeleton />;
+  }
+
+  const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
   const valuableThumbnailTranslations = R.pick(
     ["hoursLabel", "minutesLabel"],
     translations
   );
   const noValuablesAvailable = !valuables.length;
 
-  const showModal = valuable => {
-    setSelectedValuable(valuable);
-  };
-
-  const closeModal = () => {
-    setSelectedValuable(null);
-  };
-
-  const keyGetter = (i: number) => `valuable-card-${valuables[i].id}`;
+  const keyGetter = (i: number) => valuables[i].id;
 
   const itemRenderer = (i: number) => (
     <div id={`valuable-card-${valuables[i].id}`}>
@@ -58,22 +54,6 @@ export function PlayerValuableListHorizontal() {
       </div>
     </div>
   );
-
-  React.useEffect(() => {
-    const handler = subscribeToItemCreatedEvent(({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
-
-    return function cleanup() {
-      handler.unsubscribe();
-    };
-  });
-
-  if (loading) {
-    return <GameListHorizontalSkeleton />;
-  }
 
   return (
     <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">

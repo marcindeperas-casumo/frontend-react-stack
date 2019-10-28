@@ -1,6 +1,6 @@
 // @flow
-import { PLAYER_VALUABLES_QUERY } from "../playerValuableGQL";
-import valuables from "Components/ValuableCard/__mocks__/Valuable.json";
+import { PLAYER_VALUABLES_QUERY } from "../PlayerValuables.graphql";
+import valuables from "Components/ValuableCard/__mocks__/Valuable";
 import playerValuableTranslations from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 
 export const normalQuery = {

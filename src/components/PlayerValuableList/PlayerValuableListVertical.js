@@ -7,7 +7,6 @@ import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
-import { subscribeToItemCreatedEvent } from "./utils";
 import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
@@ -16,7 +15,6 @@ export function PlayerValuableListVertical() {
     loading,
     valuables,
     translations,
-    refetch,
     onConsumeValuable,
   } = usePlayerValuableList();
   const {
@@ -37,26 +35,10 @@ export function PlayerValuableListVertical() {
     },
   ].filter(section => section.data.length > 0);
 
-  const [
-    selectedValuable,
-    setSelectedValuable,
-  ] = React.useState<?PlayerValuablesQuery_player_valuables>(null);
-
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
   const closeModal = () => {
     setSelectedValuable(null);
   };
-
-  React.useEffect(() => {
-    const handler = subscribeToItemCreatedEvent(({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
-
-    return function cleanup() {
-      handler.unsubscribe();
-    };
-  }, [refetch]);
 
   if (loading || !translations) {
     return <GameRowSkeleton />;
