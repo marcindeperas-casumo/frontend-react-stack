@@ -52,11 +52,6 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     return getLobby(this.props.game);
   }
 
-  onGameTileHeartClick = (e: SyntheticInputEvent<HTMLInputElement>) => {
-    e.stopPropagation();
-    this.props.onFavouriteGame();
-  };
-
   renderHeader = () => {
     const { lobby } = this;
 
@@ -75,12 +70,20 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
           }}
         >
-          <div className="t-color-white">
-            <GameTileHeart
-              className="u-width--4xlg u-height--4xlg u-padding--md"
-              onClick={this.onGameTileHeartClick}
-              isActive={this.props.isInMyList}
-            />
+          <div className="t-color-white" onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: this.props.game.name,
+                [EVENT_PROPS.IS_FAVOURITE]: !this.props.isInMyList,
+              }}
+            >
+              <GameTileHeart
+                className="u-width--4xlg u-height--4xlg u-padding--md"
+                onClick={this.props.onFavouriteGame}
+                isActive={this.props.isInMyList}
+              />
+            </TrackClick>
           </div>
           <CardData lobby={lobby} />
         </Flex>
