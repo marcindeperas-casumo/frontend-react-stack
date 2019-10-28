@@ -13,10 +13,8 @@ import { ErrorMessage } from "Components/ErrorMessage";
 import { SettingsRealityCheck } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheck";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS } from "Src/constants";
-// $FlowIgnore
 import { REALITY_CHECK_LABELS_QUERY } from "./SettingsRealityCheckLabelsQuery.graphql";
 import { PLAYER_REALITY_CHECK_QUERY } from "./SettingsRealityCheckQuery";
-// $FlowIgnore
 import { UpdateRealityCheckInterval } from "./Mutations.graphql";
 
 const Composed = adopt({

@@ -3,7 +3,6 @@ import React from "react";
 import { path } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import Jackpots from "./Jackpots";
-// $FlowIgnore - Flow doesn't understand the queries imported by name.
 import { JackpotsQuery } from "./Jackpots.graphql";
 
 // Refreshing the jackpots by polling the API every 30 seconds.
