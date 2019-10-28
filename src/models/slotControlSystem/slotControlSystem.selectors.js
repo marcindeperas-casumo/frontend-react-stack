@@ -4,7 +4,10 @@ import { propOr, pipe, pick, path, identity } from "ramda";
 import { getPage } from "Models/cms";
 import { getFetch } from "Models/fetch";
 import { CMS_SLUGS, ACTION_TYPES } from "Models/slotControlSystem";
-import type { ActiveSessionType } from "./slotControlSystem.types";
+import type {
+  ActiveSessionType,
+  EndedSessionType,
+} from "./slotControlSystem.types";
 
 export const configurationFormContentSelector = createSelector(
   getPage(CMS_SLUGS.CONFIGURATION_SCREEN),
@@ -23,11 +26,6 @@ export const isFetchingActiveSessionSelector = createSelector<boolean>(
   fetchData => fetchData?.isFetching
 );
 
-export const activeSessionUpdatedAtSelector = createSelector<number>(
-  path(["slotControlSystem", "updatedAt"]),
-  identity
-);
-
 export const isCreatingSessionSelector = createSelector<boolean>(
   getFetch(ACTION_TYPES.CREATE_SESSION_INIT),
   fetchData => fetchData?.isFetching
@@ -42,4 +40,9 @@ export const activeSessionSelector = createSelector<ActiveSessionType | null>(
     }
     return activeSession;
   }
+);
+
+export const endedSessionSelector = createSelector<EndedSessionType | null>(
+  path(["slotControlSystem", "endedSession"]),
+  identity
 );

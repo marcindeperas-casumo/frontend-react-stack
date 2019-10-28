@@ -5,18 +5,24 @@ import { ACTION_TYPES } from "./slotControlSystem.constants";
 
 const DEFAULT_STATE: StateType = {
   activeSession: null,
-  updatedAt: null,
+  endedSession: null,
 };
 
 const handlers = {
   [ACTION_TYPES.UPDATE_SESSION]: (state, action) => ({
     ...state,
-    activeSession: action.response,
-    updatedAt: Date.now(),
+    activeSession: {
+      ...action.response,
+      lastUpdateTime: Date.now(),
+    },
   }),
   [ACTION_TYPES.INVALIDATE_SESSION]: (state, action) => ({
     ...state,
     activeSession: null,
+    endedSession: state.activeSession && {
+      id: state.activeSession.id,
+      endTime: Date.now(),
+    },
   }),
 };
 

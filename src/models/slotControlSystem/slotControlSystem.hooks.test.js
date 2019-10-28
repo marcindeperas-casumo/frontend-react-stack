@@ -3,13 +3,20 @@ import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { useActiveSession, ACTION_TYPES } from "Models/slotControlSystem";
+import { useSessions, ACTION_TYPES } from "Models/slotControlSystem";
 
-describe("useActiveSession", () => {
+describe("useSessions", () => {
+  const lastUpdateTime = Date.now();
   const activeSession = {
     id: "123-234-345",
+    lastUpdateTime,
   };
-  const updatedAt = Date.now();
+  const endTime = Date.now() - 10000;
+  const endedSession = {
+    id: "234-456-789",
+    endTime,
+  };
+
   const state = {
     fetch: {
       [ACTION_TYPES.FETCH_SESSION_INIT]: {
@@ -18,20 +25,21 @@ describe("useActiveSession", () => {
     },
     slotControlSystem: {
       activeSession,
-      updatedAt,
+      endedSession,
     },
   };
 
-  test("returns object with activeSession, isFetching and isOld keys", () => {
+  test("returns object with activeSession, isFetching and endedSession keys", () => {
     const wrapper = mount(
       <MockStore state={state}>
-        <HookWrapper hook={useActiveSession} args={[]} />
+        <HookWrapper hook={useSessions} args={[]} />
       </MockStore>
     );
 
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      endedSession,
     });
   });
 });

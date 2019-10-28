@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useActiveSession } from "Models/slotControlSystem";
+import { useSessions } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { type ModalContentComponent } from "Components/RSModal";
 import { ModalHeader } from "../RSModalHeader";
@@ -14,7 +14,7 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
-  const { activeSession, isFetching } = useActiveSession();
+  const { activeSession, isFetching } = useSessions();
 
   useEffect(() => {
     if (activeSession) {
