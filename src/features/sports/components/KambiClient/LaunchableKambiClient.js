@@ -44,10 +44,6 @@ type State = {
   firstLoadCompleted: boolean,
 };
 
-class LaunchableKambiClientQuery extends Query<
-  LaunchableKambiClientQuery,
-  null
-> {}
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 export class LaunchableKambiClient extends React.Component<Props, State> {
@@ -92,9 +88,12 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
           } = data.launchKambi;
 
           return (
-            <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
+            <Query query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
               {/* eslint-disable-next-line no-shadow */}
-              {({ data }) => {
+              {({ data }: { data: ?LaunchableKambiClientQuery }) => {
+                if (!data) {
+                  return null;
+                }
                 return (
                   <Mutation mutation={SESSION_TOUCH}>
                     {sessionTouch => (
@@ -123,7 +122,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
                   </Mutation>
                 );
               }}
-            </LaunchableKambiClientQuery>
+            </Query>
           );
         }}
       </LaunchKambiMutationOnMount>
