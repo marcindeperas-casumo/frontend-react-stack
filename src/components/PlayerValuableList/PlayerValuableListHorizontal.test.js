@@ -19,7 +19,6 @@ describe("PlayerValuableListHorizontal", () => {
         <PlayerValuableListHorizontal />
       </MockedProvider>
     );
-    actWait();
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(true);
   });

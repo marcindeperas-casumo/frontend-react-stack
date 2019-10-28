@@ -1,12 +1,12 @@
 import React from "react";
 import { mount } from "enzyme";
-import wait from "waait";
 import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import {
   SportsNav,
   SportsMainNav,
   SportsSubNav,
 } from "Features/sports/components/SportsNav";
+import { updateWrapper } from "Utils";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
@@ -41,13 +41,12 @@ describe("<SportsNav/>", () => {
   test("should render without errors once data is resolved", async () => {
     const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(rendered.find(SportsMainNav)).toHaveLength(1);
     expect(rendered.find(SportsSubNav)).toHaveLength(1);
   });
-
+  /*
   test("should open CHOOSE_FAVOURITES modal when editing main nav", async () => {
     // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
@@ -55,4 +54,5 @@ describe("<SportsNav/>", () => {
   test("should open CHOOSE_FAVOURITE_COMPETITIONS modal when editing sub nav", async () => {
     // TODO: Strategy for Testing Mutations and Apollo Components - https://github.com/casumo/Home/issues/30372
   });
+  */
 });

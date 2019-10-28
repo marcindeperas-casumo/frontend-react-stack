@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { actWait, updateWrapper, getCache } from "Utils";
+import { updateWrapper, getCache } from "Utils";
 import mockedValuables from "Components/ValuableCard/__mocks__/Valuable";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
@@ -12,13 +12,14 @@ import { mocks } from "./__mocks__/playerValuableListMocks";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
 
 describe("PlayerValuableListVertical", () => {
-  test("should render skeleton while loading", () => {
+  test("should render skeleton while loading", async () => {
     const rendered = mount(
       <MockedProvider mocks={[]}>
         <PlayerValuableListVertical />
       </MockedProvider>
     );
-    actWait();
+
+    // await updateWrapper(rendered);
 
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
@@ -32,7 +33,9 @@ describe("PlayerValuableListVertical", () => {
 
     await updateWrapper(rendered);
 
-    expect(rendered.find(SectionList).find(ValuableRow)).toHaveLength(1);
+    expect(rendered.find(SectionList).find(ValuableRow)).toHaveLength(
+      mockedValuables.length
+    );
   });
 
   test("should render EmptyValuablesList if no valuables are provided", async () => {
@@ -44,8 +47,6 @@ describe("PlayerValuableListVertical", () => {
 
     await updateWrapper(rendered);
 
-    expect(rendered.find(EmptyValuablesList)).toHaveLength(
-      mockedValuables.length
-    );
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });
