@@ -3,11 +3,7 @@
 
 declare module '@apollo/react-hooks' {
   import type { ComponentType, Element, Node } from 'react';
-
-  /* start graphql types */
-  declare type DocumentNode = string;
-  declare type GraphQLError = any;
-  /* end graphql types */
+  import type { DocumentNode, GraphQLError } from 'graphql';
 
   /* start @apollo/react-common types */
   declare export type ApolloProviderProps<TCache> = {

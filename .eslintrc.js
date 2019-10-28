@@ -99,6 +99,7 @@ module.exports = {
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "flowtype/space-after-type-colon": "off",
+    "flowtype/generic-spacing": "off",
   },
   overrides: [
     {

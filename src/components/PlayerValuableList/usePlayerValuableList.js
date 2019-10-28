@@ -6,14 +6,13 @@ import { UseValuable, PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 
 export function usePlayerValuableList() {
-  const { data, loading, refetch } = useQuery<PlayerValuablesQueryQuery, void>(
+  const { data, loading, refetch } = useQuery<PlayerValuablesQuery, void>(
     PlayerValuablesQuery,
     { returnPartialData: true }
   );
-  const [mutateValuable] = useMutation<
-    $PropertyType<Mutation, "useValuable">,
-    MutationUseValuableArgs
-  >(UseValuable);
+  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+    UseValuable
+  );
 
   React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {
@@ -41,7 +40,7 @@ export function usePlayerValuableList() {
     loading,
     translations,
     valuables: (R.pathOr([], ["player", "valuables"], data): $ElementType<
-      $ElementType<PlayerValuablesQueryQuery, "player">,
+      $ElementType<PlayerValuablesQuery, "player">,
       "valuables"
     >),
     onConsumeValuable: (id: string) =>

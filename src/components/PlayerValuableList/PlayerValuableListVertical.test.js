@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper, getCache } from "Utils";
+import { updateWrapper } from "Utils";
 import mockedValuables from "Components/ValuableCard/__mocks__/Valuable";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
@@ -26,7 +26,7 @@ describe("PlayerValuableListVertical", () => {
 
   test("Should render a SectionList", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.mockedValuables} cache={getCache()}>
+      <MockedProvider mocks={mocks.mockedValuables}>
         <PlayerValuableListVertical />
       </MockedProvider>
     );

@@ -3,11 +3,11 @@
 // This file was automatically generated and should not be edited.
 
 // ====================================================
-// GraphQL query operation: KambiClientVisible
+// GraphQL query operation: SearchVisible
 // ====================================================
 
-export type KambiClientVisible = {
-  kambiClientVisible: boolean
+export type SearchVisible = {
+  isSearchVisible: boolean
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

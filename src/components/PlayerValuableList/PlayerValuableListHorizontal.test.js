@@ -3,7 +3,7 @@ import * as React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import Scrollable from "@casumo/cmp-scrollable";
-import { actWait, updateWrapper, getCache } from "Utils";
+import { updateWrapper } from "Utils";
 import { ValuableCard } from "Components/ValuableCard";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -25,7 +25,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the correct number of items", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.mockedValuables} cache={getCache()}>
+      <MockedProvider mocks={mocks.mockedValuables}>
         <PlayerValuableListHorizontal />
       </MockedProvider>
     );
@@ -40,7 +40,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render the list title", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.mockedValuables} cache={getCache()}>
+      <MockedProvider mocks={mocks.mockedValuables}>
         <PlayerValuableListHorizontal />
       </MockedProvider>
     );
@@ -54,7 +54,7 @@ describe("PlayerValuableListHorizontal", () => {
 
   test("should render a link to list view when valuables exist", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.mockedValuables} cache={getCache()}>
+      <MockedProvider mocks={mocks.mockedValuables}>
         <PlayerValuableListHorizontal />
       </MockedProvider>
     );
