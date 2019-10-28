@@ -1,6 +1,7 @@
 /* @flow */
 import React from "react";
 import classNames from "classnames";
+import type { ExecutionResult } from "@apollo/react-hooks";
 import { pick } from "ramda";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
@@ -22,7 +23,7 @@ type Props = {
   isHidden?: boolean,
   searchMode: boolean,
   isBetslipVisible?: boolean,
-  sessionKeepAlive: () => void,
+  sessionKeepAlive: () => Promise<ExecutionResult<SessionTouch>>,
   onLoginCompleted?: () => void,
 };
 
@@ -31,7 +32,6 @@ export default class KambiClient extends React.Component<Props> {
     onNavigate: () => {},
     searchMode: false,
     isBetslipVisible: true,
-    sessionKeepAlive: () => {},
     onLoginCompleted: () => {},
   };
 
