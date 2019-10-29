@@ -43,6 +43,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
   types as playerGamesTypes,
@@ -144,6 +145,11 @@ export default function* rootSaga(dispatch) {
       takeEvery,
       gameSearchTypes.GAME_SEARCH_FETCH_PAGE,
       fetchGameSearchPageSaga
+    ),
+    fork(
+      takeLatest,
+      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
+      resetGameSearchScrollPositionSaga
     ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);

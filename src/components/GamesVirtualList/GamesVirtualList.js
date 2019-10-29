@@ -4,7 +4,7 @@ import { append, range, assoc, has } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
-import { ROOT_SCROLL_ELEMENT_SELECTOR } from "Src/constants";
+import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
 const ROW_HEIGHT = 88;
 const PAGE_SIZE = 100;
@@ -36,7 +36,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.scrollElement = document.querySelector(ROOT_SCROLL_ELEMENT_SELECTOR);
+    this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
   }
 
   componentDidMount() {

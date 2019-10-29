@@ -42,7 +42,7 @@ export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
 
-export const ROOT_SCROLL_ELEMENT_SELECTOR = "#main-content-wrapper";
+export const ROOT_SCROLL_ELEMENT_ID = "main-content-wrapper";
 
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {

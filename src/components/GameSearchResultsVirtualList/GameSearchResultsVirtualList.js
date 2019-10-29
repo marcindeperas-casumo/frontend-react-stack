@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
-import { ROOT_SCROLL_ELEMENT_SELECTOR } from "Src/constants";
+import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
 const ROW_HEIGHT = 80;
 
@@ -43,7 +43,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
   constructor(props: Props) {
     super(props);
 
-    this.scrollElement = document.querySelector(ROOT_SCROLL_ELEMENT_SELECTOR);
+    this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
   }
 
   promises = {

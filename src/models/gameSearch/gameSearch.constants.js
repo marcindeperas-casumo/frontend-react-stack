@@ -27,6 +27,8 @@ export const types = {
     "GAME_SEARCH/FETCH_SUGGESTED_GAMES_COMPLETE",
 
   GAME_SEARCH_CLEAR: "GAME_SEARCH/CLEAR",
+
+  GAME_SEARCH_RESET_SCROLL_POSITION: "GAME_SEARCH/RESET_SCROLL_POSITION",
 };
 
 export const cmsPageSlug = "mobile.games-search";

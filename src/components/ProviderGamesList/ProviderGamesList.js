@@ -5,7 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import { GameRow } from "Components/GameRow";
 import { ErrorMessage } from "Components/ErrorMessage";
-import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_SELECTOR } from "Src/constants";
+import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
@@ -39,7 +39,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    this.scrollElement = document.querySelector(ROOT_SCROLL_ELEMENT_SELECTOR);
+    this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
   }
 
   static defaultProps = {
