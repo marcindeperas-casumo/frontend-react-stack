@@ -7,14 +7,20 @@ const DEFAULT_STATE: StateType = {
   activeSession: null,
   endedSession: null,
 };
-
+// TODO revisit these handlers while the API takes shape
 const handlers = {
   [ACTION_TYPES.UPDATE_SESSION]: (state, action) => ({
     ...state,
-    activeSession: {
+    activeSession: action.response && {
       ...action.response,
       lastUpdateTime: Date.now(),
     },
+    endedSession: action.response
+      ? state.endedSession
+      : state.activeSession && {
+          id: state.activeSession.id,
+          endTime: Date.now(),
+        },
   }),
   [ACTION_TYPES.INVALIDATE_SESSION]: (state, action) => ({
     ...state,
