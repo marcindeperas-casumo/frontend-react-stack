@@ -28,13 +28,17 @@ export function ErrorMessage(props: ErrorMessageProps) {
     currency,
     locale,
   });
+  const textProps = {
+    size: "sm",
+    className: "t-color-red u-margin-bottom--3xlg@tablet",
+  };
 
-  if (!isBudgetInvalid(props)) {
-    return null;
+  if (!isBudgetInvalid(props) || isNaN(budget)) {
+    return <Text {...textProps}>&nbsp;</Text>;
   }
 
   return (
-    <Text className="t-color-red">
+    <Text {...textProps}>
       {isBudgetTooLow(budgetBalance) &&
         interpolate(props.t.error_budget_too_low, {
           budget: formattedMinBudget,
