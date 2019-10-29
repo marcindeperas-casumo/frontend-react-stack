@@ -26,7 +26,7 @@ const getHeaders = (token: string) => {
     headers: {
       "X-Token": token,
       "X-Request-Features": showDisabledGames ? "HIDDEN_GAMES" : null,
-      "content-type": "application/json",
+      "Content-Type": "application/json",
     },
   };
 };
