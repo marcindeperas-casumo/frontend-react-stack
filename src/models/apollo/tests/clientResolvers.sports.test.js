@@ -37,8 +37,8 @@ const createClientWithState = (state: {
   return client;
 };
 
-const modal1: Modal = MODAL.CHOOSE_FAVOURITES;
-const modal2: Modal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
+const modal1: gModal = MODAL.CHOOSE_FAVOURITES;
+const modal2: gModal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
 
 describe("Client state resolvers", () => {
   describe("Default state", () => {

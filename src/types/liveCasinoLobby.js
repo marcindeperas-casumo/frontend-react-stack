@@ -5,7 +5,7 @@ export type liveCasinoLobby = {
   type: EvolutionLobbyType,
   tableId: string,
   image: string,
-  bets: GameRow_Game_lobby_bets,
+  bets: gGameRow_Game_lobby_bets,
   players: number,
   seats: number,
   provider: string,

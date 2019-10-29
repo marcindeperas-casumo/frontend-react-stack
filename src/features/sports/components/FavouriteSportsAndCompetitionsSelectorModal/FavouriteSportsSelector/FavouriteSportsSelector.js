@@ -63,7 +63,7 @@ const FavouriteSportsSelector = (props: Props) => (
           </Heading>
           <DictionaryTerm termKey="favourite-sports-selector.selectall">
             {allSportsGroupTitle => {
-              const allSportsGroup: FavouriteSportsSelectorListItem_Group = {
+              const allSportsGroup: gFavouriteSportsSelectorListItem_Group = {
                 id: -1,
                 icon:
                   "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",

@@ -16,12 +16,12 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
-  jackpots: Array<Jackpots_Game>,
+  jackpots: Array<gJackpots_Game>,
   className?: string,
   title: string,
 };
 
-const JackpotsColumn = ({ column }: { column: Array<Jackpots_Game> }) => {
+const JackpotsColumn = ({ column }: { column: Array<gJackpots_Game> }) => {
   return (
     <List
       itemSpacing="sm"
@@ -43,7 +43,7 @@ export default class Jackpots extends PureComponent<Props> {
     title: "",
   };
 
-  get columns(): Array<Array<Jackpots_Game>> {
+  get columns(): Array<Array<gJackpots_Game>> {
     return generateColumns(this.props.jackpots);
   }
 
@@ -57,7 +57,7 @@ export default class Jackpots extends PureComponent<Props> {
     id: gamesInColumn,
     i,
   }: {
-    id: Array<Jackpots_Game>,
+    id: Array<gJackpots_Game>,
     i: number,
   }) => <JackpotsColumn key={gamesInColumn[0].slug} column={gamesInColumn} />;
 

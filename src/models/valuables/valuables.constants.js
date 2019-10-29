@@ -1,12 +1,12 @@
 // @flow
-export const VALUABLE_TYPES: { [string]: ValuableType } = {
+export const VALUABLE_TYPES: { [string]: gValuableType } = {
   CASH: "cash",
   SPINS: "spins",
   DEPOSIT: "deposit",
   SPORT: "sport",
 };
 
-export const VALUABLE_STATES: { [string]: PlayerValuableState } = {
+export const VALUABLE_STATES: { [string]: gPlayerValuableState } = {
   FRESH: "Fresh",
   LOCKED: "Locked",
 };
@@ -18,7 +18,7 @@ export const VALUABLE_SPIN_TYPES = Object.freeze({
   MEGA: "mega",
 });
 
-export const VALUABLE_REQUIREMENT_TYPES: { [string]: RequirementType } = {
+export const VALUABLE_REQUIREMENT_TYPES: { [string]: gRequirementType } = {
   WAGER: "wager",
   DEPOSIT: "deposit",
 };

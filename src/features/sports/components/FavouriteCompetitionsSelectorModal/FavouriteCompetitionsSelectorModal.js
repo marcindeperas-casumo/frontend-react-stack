@@ -10,7 +10,7 @@ import {
 } from "Features/sports/components/DictionaryTerm";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
-type SelectedCompetitions = Array<FavouriteCompetitionsSelectorModal_Group>;
+type SelectedCompetitions = Array<gFavouriteCompetitionsSelectorModal_Group>;
 
 type Props = {
   onClose: () => void,
@@ -48,7 +48,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     return Boolean(this.state.selectedCompetitions.find(c => c.id === groupId));
   };
 
-  toggleCompetition = (group: FavouriteCompetitionsSelectorModal_Group) =>
+  toggleCompetition = (group: gFavouriteCompetitionsSelectorModal_Group) =>
     this.setState(state => ({
       selectedCompetitions: this.isCompetitionSelected(group.id)
         ? state.selectedCompetitions.filter(c => c.id !== group.id)

@@ -13,7 +13,7 @@ type Props = {
   /** Optional isActive flag that is passed to the underlying Pill component */
   isActive?: boolean,
   /** The group object to be displayed, type is generated from GroupPill.fragments.group */
-  group: GroupPill_Group,
+  group: gGroupPill_Group,
 };
 
 const GroupPill = ({ onClick, onRemove, group, isActive = false }: Props) => (

@@ -5,7 +5,7 @@ import { SET_FAVOURITES } from "Models/apollo/mutations";
 import type { MutationProps } from "Models/apollo/types";
 
 export const SetFavouritesMutation = (
-  props: MutationProps<SetFavourites, SetFavouritesVariables>
+  props: MutationProps<gSetFavourites, gSetFavouritesVariables>
 ) => (
   <Mutation
     {...props}

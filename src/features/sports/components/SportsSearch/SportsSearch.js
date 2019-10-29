@@ -27,7 +27,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   setClientVisible = (visible: boolean) => {
-    this.context.client.mutate<UpdateKambiClientState>({
+    this.context.client.mutate<gUpdateKambiClientState>({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {
         isVisible: visible,
@@ -65,7 +65,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   handleSearchResultClick = (
-    resultOrEventGroup: SearchQuery_search | TopSearches_topSearches
+    resultOrEventGroup: gSearchQuery_search | gTopSearches_topSearches
   ) => {
     this.setState({
       // $FlowIgnore: either type will have either prop

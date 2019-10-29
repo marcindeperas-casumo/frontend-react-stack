@@ -25,7 +25,7 @@ type Props = {
   /** Expiry date of the valuable */
   expiryDate: number,
   /** Valuable type of the valuable */
-  valuableType: ValuableType,
+  valuableType: gValuableType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */

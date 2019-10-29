@@ -4,7 +4,7 @@ import { ACTIVE_MODALS_QUERY } from "Models/apollo/queries";
 import type { QueryProps } from "Models/apollo/types";
 import { SimpleQuery } from "./SimpleQuery";
 
-export const ActiveModalsQuery = (props: QueryProps<ActiveModals, null>) => {
+export const ActiveModalsQuery = (props: QueryProps<gActiveModals, null>) => {
   return (
     <SimpleQuery {...props} query={ACTIVE_MODALS_QUERY}>
       {data => props.children(data)}

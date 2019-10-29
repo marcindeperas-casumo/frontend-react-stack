@@ -22,7 +22,7 @@ import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
 type Props = ReelRace & {
-  game: GameRow_Game,
+  game: gGameRow_Game,
   t: ReelRacesTranslations,
   optIn: () => void,
   launchGame: () => void,

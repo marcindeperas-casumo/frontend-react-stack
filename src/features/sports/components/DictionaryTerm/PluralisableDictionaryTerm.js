@@ -31,7 +31,7 @@ export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
 const getPluralisableDictionaryTerm = (
-  data: ?PluralisableDictionaryTermQuery,
+  data: ?gPluralisableDictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements,
   isPlural: boolean
@@ -65,8 +65,8 @@ export const PluralisableDictionaryTerm = ({
     pluralKey: createPluralKey(termKey),
   };
   const { data, loading } = useQuery<
-    PluralisableDictionaryTermQuery,
-    PluralisableDictionaryTermQueryVariables
+    gPluralisableDictionaryTermQuery,
+    gPluralisableDictionaryTermQueryVariables
   >(PLURALISABLE_DICTIONARY_TERM_QUERY, {
     variables,
   });

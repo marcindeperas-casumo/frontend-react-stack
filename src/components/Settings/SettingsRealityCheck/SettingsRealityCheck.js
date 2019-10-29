@@ -7,7 +7,7 @@ import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
 type Props = {
-  labels: REALITY_CHECK_LABELS_QUERY,
+  labels: gREALITY_CHECK_LABELS_QUERY,
   onChange: (interval: number) => void,
   isLoading: boolean,
   onSave: () => void,

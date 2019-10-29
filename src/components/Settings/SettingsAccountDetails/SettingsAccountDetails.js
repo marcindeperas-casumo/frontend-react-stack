@@ -10,8 +10,8 @@ import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { PASSWORD_PLACEHOLDER_VALUE, onOldStackEvent } from "./utils";
 
 type Props = {
-  player: SETTINGS_PLAYER,
-  labels: PLAYER_SETTINGS_LABELS_QUERY,
+  player: gSETTINGS_PLAYER,
+  labels: gPLAYER_SETTINGS_LABELS_QUERY,
   refetchSettings: () => {},
 };
 
