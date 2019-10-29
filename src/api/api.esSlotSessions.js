@@ -6,7 +6,7 @@ import type { ActiveSessionType } from "Models/slotControlSystem";
 const BASE = "/casino-player/es-slot-sessions/api/sessions";
 
 export function getActiveSession(): Promise<ActiveSessionType | null> {
-  return http.get(BASE);
+  return http.get(BASE).catch(e => null);
 }
 
 export function createSession(): Promise<ActiveSessionType> {

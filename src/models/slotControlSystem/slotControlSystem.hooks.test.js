@@ -3,9 +3,9 @@ import * as React from "react";
 import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { useSessions, ACTION_TYPES } from "Models/slotControlSystem";
+import { useSessionsState, ACTION_TYPES } from "Models/slotControlSystem";
 
-describe("useSessions", () => {
+describe("useSessionsState", () => {
   const lastUpdateTime = Date.now();
   const activeSession = {
     id: "123-234-345",
@@ -29,10 +29,10 @@ describe("useSessions", () => {
     },
   };
 
-  test("returns object with activeSession, isFetching and endedSession keys", () => {
+  test("returns object with activeSession, isFetching, endedSession and endedSessionDuringLastHour keys", () => {
     const wrapper = mount(
       <MockStore state={state}>
-        <HookWrapper hook={useSessions} args={[]} />
+        <HookWrapper hook={useSessionsState} args={[]} />
       </MockStore>
     );
 
@@ -40,6 +40,7 @@ describe("useSessions", () => {
       activeSession,
       isFetching: false,
       endedSession,
+      endedSessionDuringLastHour: true,
     });
   });
 });

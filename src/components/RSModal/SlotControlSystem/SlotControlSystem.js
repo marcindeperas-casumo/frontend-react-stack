@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { useSessions } from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
@@ -16,8 +16,11 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
-  const { activeSession, isFetching } = useSessions();
-  const lastSessionEndedIn60Mins = true;
+  const {
+    activeSession,
+    isFetching,
+    endedSessionDuringLastHour,
+  } = useSessionsState();
   const [continuePlaying, setContinuePlaying] = useState(false);
 
   useEffect(() => {
@@ -38,7 +41,7 @@ export function SlotControlSystem(
     );
   }
 
-  if (lastSessionEndedIn60Mins && !continuePlaying) {
+  if (!activeSession && endedSessionDuringLastHour && !continuePlaying) {
     return (
       <ModalContentSkin {...props}>
         <RememberToPlayWithinLimitsContainer
