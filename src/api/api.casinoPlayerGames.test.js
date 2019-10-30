@@ -18,7 +18,7 @@ describe("API/casinoPlayerGames", () => {
     headers: {
       "X-Request-Features": null,
       "X-Token": sessionId,
-      "content-type": "application/json",
+      "Content-Type": "application/json",
     },
   };
 
