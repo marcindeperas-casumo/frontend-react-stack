@@ -1,6 +1,6 @@
 import { put, select } from "redux-saga/effects";
 import { without } from "ramda";
-import { isGameInMyList } from "Models/games";
+import { isGameInMyListSelector } from "Models/games";
 import { sessionIdSelector } from "Models/handshake";
 import {
   ENTITY_KEYS,
@@ -16,7 +16,7 @@ import {
 import logger from "Services/logger";
 
 export function* updateMyListSaga({ gameSlug }) {
-  const gameIsInMyList = yield select(isGameInMyList(gameSlug));
+  const gameIsInMyList = yield select(isGameInMyListSelector(gameSlug));
   const sessionId = yield select(sessionIdSelector);
   const myList = yield select(gameListSelector(GAME_LIST_IDS.MY_LIST));
 
