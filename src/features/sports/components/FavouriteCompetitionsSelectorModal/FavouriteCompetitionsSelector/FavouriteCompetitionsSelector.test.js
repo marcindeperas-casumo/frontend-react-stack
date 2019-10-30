@@ -1,10 +1,9 @@
 import React from "react";
-import wait from "waait";
 import { all, equals, F } from "ramda";
 import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
+import { updateWrapper, isNilOrEmpty } from "Utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
-import { isNilOrEmpty } from "Src/utils";
 import {
   FavouriteCompetitionsSelector,
   isOrphanGroup,
@@ -103,8 +102,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(rendered.find(FavouriteCompetitionsSelectorRegion)).toHaveLength(
       footballData.data.group.groups.filter(g => !isNilOrEmpty(g.groups))
@@ -123,8 +121,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(
       rendered
@@ -147,8 +144,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(
       rendered

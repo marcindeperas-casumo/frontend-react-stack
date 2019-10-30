@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import wait from "waait";
-import waitForExpect from "wait-for-expect";
 import { MockedProvider } from "@apollo/react-testing";
+import { updateWrapper, actWait } from "Utils";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
@@ -21,8 +20,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
@@ -37,8 +35,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await updateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
   });
@@ -76,13 +73,11 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    renderedSingular.update();
-    renderedPlural.update();
+    await updateWrapper(renderedSingular);
+    await updateWrapper(renderedPlural);
 
-    await waitForExpect(() => {
-      expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
-      expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
-    });
+    expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
+    expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
   });
 
   test("replaces any replacement keys in the translation before rendering", async () => {
@@ -104,9 +99,8 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
-    rendered2.update();
+    await updateWrapper(rendered);
+    await updateWrapper(rendered2);
 
     expect(rendered.text()).toBe("Liverpool have scored 1 goal");
     expect(rendered2.text()).toBe("Manchester have scored 0 goals");
@@ -140,7 +134,7 @@ describe("<PluralisableDictionaryTerm />", () => {
     expect(children2).toBeCalledWith(LOADING_STRING);
     expect(children3).toBeCalledWith(LOADING_STRING);
 
-    await wait(0);
+    await actWait();
 
     expect(children).toBeCalledWith(WORKING_TERM.value);
     expect(children2).toBeCalledWith(WORKING_TERM.pluralValue);
