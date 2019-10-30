@@ -37,17 +37,12 @@ const getGamesCountParams = (providers?: Array<string>) =>
 const buildGamesBatchIds = ids =>
   buildQueryParams(ids, { arrayFormat: "repeat" });
 
-export const getCasinoPlayerGameList = async (
+export const getCasinoPlayerGameList = (
   { sessionId, gameListName }: { sessionId: string, gameListName: string },
   http: HTTPClient = clientHttp
-) =>
-  await http.get(
-    `${URL.GAME_LISTS}/${gameListName}`,
-    null,
-    getHeaders(sessionId)
-  );
+) => http.get(`${URL.GAME_LISTS}/${gameListName}`, null, getHeaders(sessionId));
 
-export const addGameToMyList = async (
+export const addGameToMyList = (
   {
     sessionId,
     gameSlug,
@@ -56,9 +51,9 @@ export const addGameToMyList = async (
     gameSlug: string,
   },
   http: HTTPClient = clientHttp
-) => await http.post(URL.MY_LIST, { gameSlug }, getHeaders(sessionId));
+) => http.post(URL.MY_LIST, { gameSlug }, getHeaders(sessionId));
 
-export const removeGameFromMyList = async (
+export const removeGameFromMyList = (
   {
     sessionId,
     gameSlug,
@@ -67,7 +62,7 @@ export const removeGameFromMyList = async (
     gameSlug: string,
   },
   http: HTTPClient = clientHttp
-) => await http.del(`${URL.MY_LIST}/${gameSlug}`, getHeaders(sessionId));
+) => http.del(`${URL.MY_LIST}/${gameSlug}`, getHeaders(sessionId));
 
 export const getCasinoPlayerGamesBatch = async (
   {
