@@ -9,19 +9,30 @@ const DEFAULT_STATE: StateType = {
 };
 // TODO revisit these handlers while the API takes shape
 const handlers = {
-  [ACTION_TYPES.UPDATE_SESSION]: (state, action) => ({
-    ...state,
-    activeSession: action.response && {
-      ...action.response,
-      lastUpdateTime: Date.now(),
-    },
-    endedSession: action.response
-      ? state.endedSession
-      : state.activeSession && {
+  [ACTION_TYPES.UPDATE_SESSION]: (state, action) => {
+    const newState = {
+      ...state,
+      activeSession: action.response && {
+        ...action.response,
+        lastUpdateTime: Date.now(),
+      },
+    };
+    if (action.response) {
+      return newState;
+    }
+
+    if (state.activeSession) {
+      return {
+        ...newState,
+        endedSession: {
           id: state.activeSession.id,
           endTime: Date.now(),
         },
-  }),
+      };
+    }
+
+    return newState;
+  },
   [ACTION_TYPES.INVALIDATE_SESSION]: (state, action) => ({
     ...state,
     activeSession: null,

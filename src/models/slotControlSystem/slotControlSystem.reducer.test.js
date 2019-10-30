@@ -15,20 +15,72 @@ describe("Models/slotControlSystem/Reducer", () => {
     nowSpy.mockClear();
   });
 
-  test("UPDATE_SESSION", () => {
-    const response = { id: "123-123-456" };
-    const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
-    const state = {
-      activeSession: null,
-      endedSession: null,
-    };
+  describe("UPDATE_SESSION", () => {
+    test("there is no active session nor previous session", () => {
+      const response = { id: "123-123-456" };
+      const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
+      const state = {
+        activeSession: null,
+        endedSession: null,
+      };
 
-    expect(slotControlSystemReducer(state, action)).toEqual({
-      endedSession: null,
-      activeSession: {
-        ...response,
-        lastUpdateTime: now,
-      },
+      expect(slotControlSystemReducer(state, action)).toEqual({
+        endedSession: null,
+        activeSession: {
+          ...response,
+          lastUpdateTime: now,
+        },
+      });
+    });
+
+    test("there is active session and ended session", () => {
+      const response = { id: "123-123-456" };
+      const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
+      const activeSession = {
+        id: "222-222-222",
+        lastUpdateTime: 222222222,
+      };
+      const endedSession = {
+        id: "444-444-444",
+        endTime: 123123123,
+      };
+      const state = {
+        activeSession,
+        endedSession,
+      };
+
+      expect(slotControlSystemReducer(state, action)).toEqual({
+        endedSession,
+        activeSession: {
+          ...response,
+          lastUpdateTime: now,
+        },
+      });
+    });
+
+    test("there is active session but it expires", () => {
+      const response = null;
+      const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
+      const activeSession = {
+        id: "222-222-222",
+        lastUpdateTime: 222222222,
+      };
+      const endedSession = {
+        id: "444-444-444",
+        endTime: 123123123,
+      };
+      const state = {
+        activeSession,
+        endedSession,
+      };
+
+      expect(slotControlSystemReducer(state, action)).toEqual({
+        endedSession: {
+          id: activeSession.id,
+          endTime: now,
+        },
+        activeSession: null,
+      });
     });
   });
 

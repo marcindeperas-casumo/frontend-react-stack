@@ -2,10 +2,13 @@
 import { connect } from "react-redux";
 import DurandalReactBridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
+import { configurationFormContentSelector } from "Models/slotControlSystem";
 import { RememberToPlayWithinLimits } from "./RememberToPlayWithinLimits";
 
 export const RememberToPlayWithinLimitsContainer = connect(
-  state => ({}),
+  state => ({
+    t: configurationFormContentSelector(state),
+  }),
   null,
   (stateProps, dispatchProps, ownProps) => ({
     ...stateProps,
@@ -15,8 +18,7 @@ export const RememberToPlayWithinLimitsContainer = connect(
       setTimeout(
         () =>
           DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
-            routeId: "cms-page",
-            params: { slug: "play-okay" },
+            routeId: "play-okay",
           }),
         200
       );

@@ -6,8 +6,8 @@ import { action } from "@storybook/addon-actions";
 import { NotEnoughFunds } from "./NotEnoughFunds";
 
 const t = {
-  message: "You don't have enough funds to play with",
-  button_label: "Deposit now",
+  not_enough_funds: "You don't have enough funds to play with",
+  not_enough_funds_button_label: "Deposit now",
 };
 const stories = storiesOf(
   "Compliance/SlotControlSystem/NotEnoughFunds",

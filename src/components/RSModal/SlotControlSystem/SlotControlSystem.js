@@ -5,6 +5,7 @@ import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSys
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
 import { type ModalContentComponent } from "Components/RSModal";
+import { useWalletAmount } from "Utils/hooks";
 import { ModalHeader } from "../RSModalHeader";
 
 const { useEffect, useState } = React;
@@ -21,10 +22,11 @@ export function SlotControlSystem(
     isFetching,
     endedSessionDuringLastHour,
   } = useSessionsState();
+  const { amount } = useWalletAmount();
   const [continuePlaying, setContinuePlaying] = useState(false);
 
   useEffect(() => {
-    if (hasEnoughFunds() && activeSession) {
+    if (hasEnoughFunds(amount) && activeSession) {
       props.acceptModal();
     }
   }, [activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
@@ -33,7 +35,7 @@ export function SlotControlSystem(
     return null;
   }
 
-  if (!hasEnoughFunds()) {
+  if (!hasEnoughFunds(amount)) {
     return (
       <ModalContentSkin {...props}>
         <NotEnoughFundsContainer onClick={props.closeModal} />
@@ -82,6 +84,6 @@ function ModalContentSkin(props: ModalContentSkinProps) {
   );
 }
 
-function hasEnoughFunds() {
-  return true;
+function hasEnoughFunds(amount: number) {
+  return amount > 0.6;
 }

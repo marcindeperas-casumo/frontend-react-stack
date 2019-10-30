@@ -8,8 +8,8 @@ import { PlanetIcon } from "@casumo/cmp-icons";
 type Props = {
   onClick: () => void,
   t: {
-    message: string,
-    button_label: string,
+    not_enough_funds: string,
+    not_enough_funds_button_label: string,
   },
 };
 
@@ -24,15 +24,15 @@ export function NotEnoughFunds(props: Props) {
         tag="h3"
         className="t-color-plum-dark-1 u-padding-md u-margin-y--lg u-text-align-center"
       >
-        {t.message}
+        {t.not_enough_funds}
       </Text>
       <Button
         size="md"
         variant="primary"
         onClick={onClick}
-        className="u-width--full"
+        className="u-width--full u-margin-top--xlg"
       >
-        {t.button_label}
+        {t.not_enough_funds_button_label}
       </Button>
     </Flex>
   );
