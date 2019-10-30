@@ -7,7 +7,7 @@ import {
   InfiniteLoader,
   AutoSizer,
 } from "react-virtualized";
-import "react-virtualized/styles.css";
+import "./VirtualList.scss";
 
 type Props = {
   /** Element id to attach scroll event listeners. Defaults to window */
