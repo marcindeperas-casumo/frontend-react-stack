@@ -3,7 +3,10 @@ import { ApolloClient } from "apollo-client";
 import { ApolloLink } from "apollo-link";
 import { setContext } from "apollo-link-context";
 import { HttpLink } from "apollo-link-http";
-import { InMemoryCache } from "apollo-cache-inmemory";
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from "apollo-cache-inmemory";
 import {
   marketSelector,
   currencySelector,
@@ -11,6 +14,7 @@ import {
   languageSelector,
 } from "Models/handshake";
 import reduxStore from "Services/reduxStore";
+import introspectionQueryResultData from "./introspections.json";
 import { clientResolvers } from "./clientResolvers";
 import { typeDefs } from "./typedefs";
 import { defaultState } from "./apollo.client.defaultState";
@@ -30,8 +34,12 @@ export function getApolloClient(): ApolloClientType {
   });
 }
 
-function getCache() {
-  const cache = new InMemoryCache();
+const fragmentMatcher = new IntrospectionFragmentMatcher({
+  introspectionQueryResultData,
+});
+
+export function getCache() {
+  const cache = new InMemoryCache({ fragmentMatcher });
 
   cache.writeData({
     data: defaultState,

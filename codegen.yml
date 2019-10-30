@@ -1,0 +1,8 @@
+schema: http://localhost:4000/
+documents:
+  - "src/**/*.{graphql,js}":
+    noRequire: true
+generates:
+  src/models/apollo/introspections.json:
+    plugins:
+      - fragment-matcher

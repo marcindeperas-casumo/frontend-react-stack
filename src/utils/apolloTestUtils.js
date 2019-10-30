@@ -6,6 +6,11 @@
 // @flow
 import { act } from "react-dom/test-utils";
 import { ReactWrapper } from "enzyme";
+import {
+  InMemoryCache,
+  IntrospectionFragmentMatcher,
+} from "apollo-cache-inmemory";
+import introspectionQueryResultData from "Models/apollo/introspections.json";
 
 // https://github.com/wesbos/waait/blob/master/index.js
 export function wait(amount: number = 0): Promise<void> {
@@ -28,4 +33,12 @@ export async function updateWrapper(
     await wait(amount);
     wrapper.update();
   });
+}
+
+export function getCacheWithIntrospections() {
+  const fragmentMatcher = new IntrospectionFragmentMatcher({
+    introspectionQueryResultData,
+  });
+
+  return new InMemoryCache({ fragmentMatcher });
 }

@@ -3,7 +3,7 @@ import * as React from "react";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { updateWrapper, getCacheWithIntrospections } from "Utils";
 import { HookWrapper } from "Utils/HookWrapper";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
@@ -24,7 +24,7 @@ describe("usePlayerValuableList", () => {
       },
     ];
     const wrapper = mount(
-      <MockedProvider mocks={m}>
+      <MockedProvider mocks={m} cache={getCacheWithIntrospections()}>
         <HookWrapper hook={usePlayerValuableList} args={[]} />
       </MockedProvider>
     );

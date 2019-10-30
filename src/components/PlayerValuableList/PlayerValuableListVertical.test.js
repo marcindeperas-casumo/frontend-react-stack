@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { actWait, updateWrapper, getCacheWithIntrospections } from "Utils";
 import mockedValuables from "Components/ValuableCard/__mocks__/Valuable";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
@@ -19,14 +19,17 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
 
-    // await updateWrapper(rendered);
+    await actWait();
 
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
   test("Should render a SectionList", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.mockedValuables}>
+      <MockedProvider
+        mocks={mocks.mockedValuables}
+        cache={getCacheWithIntrospections()}
+      >
         <PlayerValuableListVertical />
       </MockedProvider>
     );
@@ -40,7 +43,10 @@ describe("PlayerValuableListVertical", () => {
 
   test("should render EmptyValuablesList if no valuables are provided", async () => {
     const rendered = mount(
-      <MockedProvider mocks={mocks.emptyValuables}>
+      <MockedProvider
+        mocks={mocks.emptyValuables}
+        cache={getCacheWithIntrospections()}
+      >
         <PlayerValuableListVertical />
       </MockedProvider>
     );
