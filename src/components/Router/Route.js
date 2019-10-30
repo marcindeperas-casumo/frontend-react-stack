@@ -4,7 +4,7 @@ import invariant from "invariant";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 
 type Props = {
-  children?: React.Node,
+  children: React.Element<any>,
   path: string | string[],
 };
 
