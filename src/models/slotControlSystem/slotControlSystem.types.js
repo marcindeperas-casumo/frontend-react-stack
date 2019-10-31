@@ -10,7 +10,13 @@ export type EndedSessionType = {
   endTime: number,
 };
 
+export type ExclusionType = {
+  id: string,
+  expiryTime: number,
+};
+
 export type StateType = {
   activeSession: ?ActiveSessionType,
   endedSession: ?EndedSessionType,
+  activeExclusion: ?ExclusionType,
 };

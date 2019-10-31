@@ -21,9 +21,11 @@ describe("Models/slotControlSystem/Reducer", () => {
     const state = {
       activeSession: null,
       endedSession: null,
+      activeExclusion: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      activeExclusion: null,
       endedSession: null,
       activeSession: {
         ...response,
@@ -41,9 +43,11 @@ describe("Models/slotControlSystem/Reducer", () => {
     const state = {
       activeSession,
       endedSession: null,
+      activeExclusion: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      activeExclusion: null,
       activeSession: null,
       endedSession: {
         id: activeSession.id,

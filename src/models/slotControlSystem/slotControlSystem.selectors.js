@@ -7,6 +7,7 @@ import { CMS_SLUGS, ACTION_TYPES } from "Models/slotControlSystem";
 import type {
   ActiveSessionType,
   EndedSessionType,
+  ExclusionType,
 } from "./slotControlSystem.types";
 
 export const configurationFormContentSelector = createSelector(
@@ -44,5 +45,10 @@ export const activeSessionSelector = createSelector<ActiveSessionType | null>(
 
 export const endedSessionSelector = createSelector<EndedSessionType | null>(
   path(["slotControlSystem", "endedSession"]),
+  identity
+);
+
+export const activeExclusionSelector = createSelector<ExclusionType | null>(
+  path(["slotControlSystem", "activeExclusion"]),
   identity
 );
