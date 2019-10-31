@@ -148,3 +148,7 @@ export const fetchSuggestedGamesAction = ({
     variant,
   },
 });
+
+export const gameSearchScrollPositionReset = () => ({
+  type: types.GAME_SEARCH_RESET_SCROLL_POSITION,
+});

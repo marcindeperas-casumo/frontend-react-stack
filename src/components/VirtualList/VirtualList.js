@@ -1,11 +1,17 @@
 // @flow
 import React, { PureComponent } from "react";
 import type { Node } from "react";
-import { List, AutoSizer, InfiniteLoader } from "react-virtualized";
-
+import {
+  List,
+  WindowScroller,
+  InfiniteLoader,
+  AutoSizer,
+} from "react-virtualized";
 import "./VirtualList.scss";
 
 type Props = {
+  /** Element id to attach scroll event listeners. Defaults to window */
+  scrollElement: HTMLElement | null,
   /** The total number of items in the list. */
   totalNumberOfRows: number,
   /** The height of a row. Can be a number or a function that returns the height of a row by index. */
@@ -36,6 +42,7 @@ class VirtualList extends PureComponent<Props> {
       isRowLoaded,
       rowRenderer,
       pageSize,
+      scrollElement,
     } = this.props;
 
     return (
@@ -47,20 +54,28 @@ class VirtualList extends PureComponent<Props> {
         threshold={pageSize / 2}
       >
         {({ onRowsRendered, registerChild }) => (
-          <AutoSizer>
-            {({ width, height }) => (
-              <List
-                className="c-virtual-list"
-                ref={registerChild}
-                onRowsRendered={onRowsRendered}
-                rowCount={totalNumberOfRows}
-                width={width}
-                height={height}
-                rowHeight={rowHeight}
-                rowRenderer={rowRenderer}
-              />
+          <WindowScroller scrollElement={scrollElement || window}>
+            {({ height, scrollTop, isScrolling, onChildScroll }) => (
+              <AutoSizer disableHeight>
+                {({ width }) => (
+                  <List
+                    className="c-virtual-list"
+                    ref={registerChild}
+                    onRowsRendered={onRowsRendered}
+                    rowCount={totalNumberOfRows}
+                    width={width}
+                    autoHeight
+                    height={height || 0}
+                    rowHeight={rowHeight}
+                    rowRenderer={rowRenderer}
+                    isScrolling={isScrolling}
+                    onScroll={onChildScroll}
+                    scrollTop={scrollTop}
+                  />
+                )}
+              </AutoSizer>
             )}
-          </AutoSizer>
+          </WindowScroller>
         )}
       </InfiniteLoader>
     );
