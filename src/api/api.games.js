@@ -86,9 +86,11 @@ const fetchMyListGames = async ({ sessionId }) => {
   if (!myList || myList.gameIds.length === 0) {
     return null;
   }
+  // Games batch endpoint explodes if passed more than 100 items.
+  const GAMES_BATCH_LIMIT = 99;
 
   const games = await getCasinoPlayerGamesBatch({
-    ids: myList.gameIds,
+    ids: myList.gameIds.slice(0, GAMES_BATCH_LIMIT),
     sessionId,
   }).then(myListGames =>
     myListGames.map(game => ({
