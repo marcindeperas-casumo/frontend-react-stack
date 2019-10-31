@@ -44,6 +44,7 @@ const BackButton = ({ onClick, className }: ButtonProps) => (
     <Flex
       align="center"
       justify="center"
+      data-test-id="sports-modal-back-button"
       className={classNames(
         "c-sports-modal-header__button c-sports-modal-header__button--back",
         className,
@@ -60,6 +61,7 @@ const CloseButton = ({ onClick, className }: ButtonProps) => (
     <Flex
       align="center"
       justify="center"
+      data-test-id="sports-modal-close-button"
       className={classNames(
         "c-sports-modal-header__button c-sports-modal-header__button--close u-visibility--hidden@tablet",
         className,
@@ -75,6 +77,7 @@ const FixedCloseButton = ({ onClick }: ButtonProps) => (
   <Flex
     align="center"
     justify="center"
+    data-test-id="sports-modal-fixed-close-button"
     className={classNames(
       "c-sports-modal-header__fixed-button u-cursor-pointer t-border-r--sm u-width--4xlg u-height--4xlg t-color-chrome-light-2 t-background-chrome-dark-3 u-display--none@mobile u-display--none@phablet",
       onClick === noop && "u-visibility--hidden"
