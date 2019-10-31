@@ -22,26 +22,29 @@ const LIMIT_YOUR_TIME_OPTS = [15 * 60, 30 * 60, 60 * 60, 240 * 60];
 const STATUS_ALERTS_EVERY_OPTS = [5 * 60, 10 * 60, 15 * 60];
 const WANT_BREAK_AFTER_YES_OPTS = [60 * 60, 120 * 60, 240 * 60, 24 * 60 * 60];
 
-type Props = {
-  t: {
-    limit_your_budget: string,
-    use_all_balance: string,
-    error_budget_too_low: string,
-    error_budget_too_high: string,
-    limit_your_time: string,
-    get_status_alerts: string,
-    want_break_after: string,
-    want_break_after_opts: Array<{ value: string, label: string }>,
-    for_how_long: string,
-    play: string,
-    minutes_abbreviated: string,
-    hours_abbreviated: string,
-    days_abbreviated: string,
-  },
+export type ConfigurationFormContent = {
+  limit_your_budget: string,
+  use_all_balance: string,
+  error_budget_too_low: string,
+  error_budget_too_high: string,
+  limit_your_time: string,
+  get_status_alerts: string,
+  want_break_after: string,
+  want_break_after_opts: Array<{ value: string, label: string }>,
+  for_how_long: string,
+  play: string,
+  minutes_abbreviated: string,
+  hours_abbreviated: string,
+  days_abbreviated: string,
+};
+
+type ConfigurationFormProps = {
+  t: ConfigurationFormContent,
   balance: number,
   currency: string,
   locale: string,
   fetchContentIfNecessary: () => void,
+  finishConfiguration: () => void,
 };
 
 type IsPlayActiveType = {
@@ -52,8 +55,8 @@ type IsPlayActiveType = {
   breakAfter: ?number,
 };
 
-export function ConfigurationForm(props: Props) {
-  const { t, fetchContentIfNecessary } = props;
+export function ConfigurationForm(props: ConfigurationFormProps) {
+  const { t, fetchContentIfNecessary, finishConfiguration } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
@@ -94,7 +97,7 @@ export function ConfigurationForm(props: Props) {
   }
 
   return (
-    <Flex direction="vertical" className="u-height--1/1 u-padding--md">
+    <Flex direction="vertical" className="u-height--1/1 u-padding-x--md">
       <LimitYourBudgetRow
         {...props}
         budget={budget}
@@ -126,6 +129,7 @@ export function ConfigurationForm(props: Props) {
         disabled={
           !isPlayActive({ budget, time, alertsEvery, wantsBreak, breakAfter })
         }
+        onClick={finishConfiguration}
       >
         <span className="o-flex__block c-scs__form__play-btn__label">
           {t.play}
