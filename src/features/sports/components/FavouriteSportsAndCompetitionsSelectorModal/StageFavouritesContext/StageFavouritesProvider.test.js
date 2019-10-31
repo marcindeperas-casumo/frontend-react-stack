@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import wait from "waait";
+import { actWait } from "Utils";
 import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
@@ -8,6 +8,7 @@ import {
   noFavouritesMock,
 } from "./__mocks__/favouriteSportsSelectorContextQuery";
 import competitionsSuggestionsMock from "./__mocks__/competititonSuggestionsQuery";
+import playerVerticalMock from "./__mocks__/playerVerticalQuery";
 
 const areFavouritesPopulatedForCustomisableSports = sports =>
   sports.reduce((result, sport) => {
@@ -21,7 +22,11 @@ describe("<StageFavouritesProvider />", () => {
   test("should fetch sports on mount", () => {
     const rendered = mount(
       <MockedProviderWithContext
-        mocks={[noFavouritesMock, competitionsSuggestionsMock]}
+        mocks={[
+          playerVerticalMock,
+          noFavouritesMock,
+          competitionsSuggestionsMock,
+        ]}
       >
         <StageFavouritesProvider />
       </MockedProviderWithContext>
@@ -37,18 +42,24 @@ describe("<StageFavouritesProvider />", () => {
   test("should default to suggested competitions if user has none", async () => {
     const renderedNoFavourites = mount(
       <MockedProviderWithContext
-        mocks={[noFavouritesMock, competitionsSuggestionsMock]}
+        mocks={[
+          playerVerticalMock,
+          noFavouritesMock,
+          competitionsSuggestionsMock,
+        ]}
       >
         <StageFavouritesProvider />
       </MockedProviderWithContext>
     );
     const renderedWithFavourites = mount(
-      <MockedProviderWithContext mocks={[withFavouritesMock]}>
+      <MockedProviderWithContext
+        mocks={[playerVerticalMock, withFavouritesMock]}
+      >
         <StageFavouritesProvider />
       </MockedProviderWithContext>
     );
 
-    await wait(0);
+    await actWait(0);
 
     expect(
       areFavouritesPopulatedForCustomisableSports(
