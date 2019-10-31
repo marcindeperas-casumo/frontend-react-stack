@@ -9,6 +9,8 @@ import {
   pipe,
   sort,
   isEmpty,
+  anyPass,
+  propEq,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import {
@@ -284,6 +286,8 @@ export const fetchGames = async ({
     i => i > 0,
     path(["games", "length"])
   );
+  const isMyList = propEq("id", GAME_LIST_IDS.MY_LIST);
+  const hasSomeGamesOrIsMyList = anyPass([hasSomeGames, isMyList]);
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
       myListGames,
@@ -291,7 +295,7 @@ export const fetchGames = async ({
       suggestedGames,
       ...gameListsRequests,
     ])
-  )).filter(hasSomeGames);
+  )).filter(hasSomeGamesOrIsMyList);
 
   const jackpots = await fetchJackpots({ market, currency });
 
