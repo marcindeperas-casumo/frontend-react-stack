@@ -1,34 +1,41 @@
 // @flow
 import * as React from "react";
+import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import NotEnoughFundsImage from "./NotEnoughFunds.svg";
+import { interpolate } from "Utils";
+import StillOnBreakImage from "./StillOnBreak.svg";
 
 type Props = {
-  onClick: () => void,
   t: {
-    not_enough_funds: string,
-    not_enough_funds_subtext: string,
-    not_enough_funds_button_label: string,
+    still_on_break: string,
+    still_on_break_subtext: string,
+    still_on_break_button_label: string,
   },
+  onClick: () => void,
+  /* Unix timestamp in millis */
+  exclusionExpiryTime: number,
 };
 
-export function NotEnoughFunds(props: Props) {
+export function StillOnBreak(props: Props) {
   const { t, onClick } = props;
+  const exclusionExpiryTime = DateTime.fromMillis(props.exclusionExpiryTime);
 
   return (
     <Flex direction="vertical">
-      <NotEnoughFundsImage />
+      <StillOnBreakImage />
       <Text
         size="2xlg"
         tag="h3"
         className="t-color-plum-dark-1 u-padding u-margin-top--lg"
       >
-        {t.not_enough_funds}
+        {t.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {t.not_enough_funds_subtext}
+        {interpolate(t.still_on_break_subtext, {
+          time: exclusionExpiryTime.toFormat("T"),
+        })}
       </Text>
       <Button
         size="md"
@@ -36,7 +43,7 @@ export function NotEnoughFunds(props: Props) {
         onClick={onClick}
         className="u-width--full u-margin-top--3xlg"
       >
-        {t.not_enough_funds_button_label}
+        {t.still_on_break_button_label}
       </Button>
     </Flex>
   );

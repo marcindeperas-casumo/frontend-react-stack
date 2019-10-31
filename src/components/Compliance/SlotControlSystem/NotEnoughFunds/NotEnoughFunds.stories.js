@@ -6,7 +6,8 @@ import { action } from "@storybook/addon-actions";
 import { NotEnoughFunds } from "./NotEnoughFunds";
 
 const t = {
-  not_enough_funds: "You don't have enough funds to play with",
+  not_enough_funds: "You don't have enough funds",
+  not_enough_funds_subtext: "You'll need to make a deposit in order to play",
   not_enough_funds_button_label: "Deposit now",
 };
 const stories = storiesOf(

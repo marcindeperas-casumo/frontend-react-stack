@@ -3,7 +3,6 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import { PlanetIcon } from "@casumo/cmp-icons";
 
 type Props = {
   t: {
@@ -21,7 +20,6 @@ export function RememberToPlayWithinLimits(props: Props) {
 
   return (
     <Flex direction="vertical" align="center">
-      <PlanetIcon size="xlg" />
       <Text
         size="2xlg"
         tag="h3"
