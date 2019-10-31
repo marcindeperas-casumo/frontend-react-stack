@@ -85,9 +85,16 @@ const fetchMyListGames = async ({ sessionId }) => {
     sessionId,
   });
 
-  if (!myList || myList.gameIds.length === 0) {
+  if (!myList) {
     return null;
   }
+
+  const { name: id, title } = myList;
+
+  if (myList.gameIds.length === 0) {
+    return { games: [], id, title };
+  }
+
   // Games batch endpoint explodes if passed more than 100 items.
   const GAMES_BATCH_LIMIT = 99;
 
@@ -106,8 +113,6 @@ const fetchMyListGames = async ({ sessionId }) => {
       tableId: game.liveCasinoId,
     }))
   );
-
-  const { name: id, title } = myList;
 
   return { games, id, title };
 };
@@ -222,6 +227,7 @@ export const fetchGames = async ({
   sessionId,
 }) => {
   const gameListsRequests = handshake.topListIds
+    .filter(id => id !== GAME_LIST_IDS.MY_LIST)
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
@@ -296,7 +302,6 @@ export const fetchGames = async ({
       ...gameListsRequests,
     ])
   )).filter(hasSomeGamesOrIsMyList);
-
   const jackpots = await fetchJackpots({ market, currency });
 
   return {
