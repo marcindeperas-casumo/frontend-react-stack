@@ -20,14 +20,22 @@ describe("GameTileOverlay", () => {
     const rendered = shallow(
       <GameTileOverlay {...gameInfo} inMaintenanceMode={false} />
     );
-    expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(false);
+    expect(
+      rendered
+        .find({ "data-test-id": "gameTileOverlay" })
+        .hasClass(IN_MAINTENANCE_CLASS_NAME)
+    ).toBe(false);
   });
 
   test("should set maintence class when inMaintenanceMode is true", () => {
     const rendered = shallow(
       <GameTileOverlay {...gameInfo} inMaintenanceMode={true} />
     );
-    expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
+    expect(
+      rendered
+        .find({ "data-test-id": "gameTileOverlay" })
+        .hasClass(IN_MAINTENANCE_CLASS_NAME)
+    ).toBe(true);
   });
 
   test("should render TemporaryUnavailable if in maintenance mode", () => {
@@ -39,15 +47,27 @@ describe("GameTileOverlay", () => {
 
   test("should set active class when alwaysActive is true", () => {
     const rendered = shallow(<GameTileOverlay {...gameInfo} alwaysActive />);
-    expect(rendered.hasClass(ALWAYS_ACTIVE_CLASS_NAME)).toBe(true);
+    expect(
+      rendered
+        .find({ "data-test-id": "gameTileOverlay" })
+        .hasClass(ALWAYS_ACTIVE_CLASS_NAME)
+    ).toBe(true);
   });
 
   test("should set maintenance class when inMaintenanceMode is true and alwaysActive is true", () => {
     const rendered = shallow(
       <GameTileOverlay {...gameInfo} alwaysActive inMaintenanceMode />
     );
-    expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
-    expect(rendered.hasClass(ALWAYS_ACTIVE_CLASS_NAME)).toBe(false);
+    expect(
+      rendered
+        .find({ "data-test-id": "gameTileOverlay" })
+        .hasClass(IN_MAINTENANCE_CLASS_NAME)
+    ).toBe(true);
+    expect(
+      rendered
+        .find({ "data-test-id": "gameTileOverlay" })
+        .hasClass(ALWAYS_ACTIVE_CLASS_NAME)
+    ).toBe(false);
   });
 
   test("should only show play icon on overlay if alwaysActive is true", () => {
@@ -56,7 +76,7 @@ describe("GameTileOverlay", () => {
     );
 
     expect(rendered.find("PlayAction").length).toBe(1);
-    expect(rendered.find("Text").length).toBe(0);
+    expect(rendered.find("Text").hasClass("u-visibility--hidden")).toBe(true);
     expect(rendered.find("MoreIcon").length).toBe(0);
   });
 

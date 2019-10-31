@@ -8,4 +8,5 @@ export * from "./gameSearch.saga.suggestedGames";
 export * from "./gameSearch.saga.count.search";
 export * from "./gameSearch.saga.page.search";
 export * from "./gameSearch.saga.clear";
+export * from "./gameSearch.saga.resetScrollPosition";
 export * from "./gameSearch.utils";

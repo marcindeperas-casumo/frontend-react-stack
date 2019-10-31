@@ -47,6 +47,11 @@ export const fetchTopLists = asyncCallData => ({
   postFetch: types.FETCH_TOP_LISTS_COMPLETE,
 });
 
+export const updateMyList = gameSlug => ({
+  type: types.UPDATE_MY_LIST,
+  gameSlug,
+});
+
 export const fetchGamesBySlugs = slugs => ({
   slugs,
   type: types.FETCH_GAMES_BY_SLUGS_START,

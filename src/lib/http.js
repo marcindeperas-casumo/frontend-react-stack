@@ -15,10 +15,10 @@ export const DEFAULT_FETCH_OPTIONS = {
 };
 
 export const createGetUrl = (url: string, data: ?Object) =>
-  data ? `${url}?${getQueryParams(data)}` : url;
+  data ? `${url}?${buildQueryParams(data)}` : url;
 
-export const getQueryParams = (params: ?Object) =>
-  stringify(params, { skipNulls: true, arrayFormat: "brackets" });
+export const buildQueryParams = (params: ?Object, options: ?Object) =>
+  stringify(params, { skipNulls: true, arrayFormat: "brackets", ...options });
 
 const errorHandler = response => {
   // Heads up! This is erroring out on 30x requests
@@ -49,7 +49,15 @@ const post: FetchType = (url, data, options) =>
     .then(errorHandler)
     .then(response => response.json());
 
+const del: FetchType = (url, options) =>
+  fetch(url, {
+    method: "DELETE",
+    ...DEFAULT_FETCH_OPTIONS,
+    ...options,
+  });
+
 export default {
+  del,
   get,
   post,
 };

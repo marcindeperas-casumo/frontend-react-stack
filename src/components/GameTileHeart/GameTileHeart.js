@@ -4,16 +4,21 @@ import classNames from "classnames";
 import "./GameTileHeart.scss";
 
 type Props = {
-  onClick: () => void,
+  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => void,
   isActive: boolean,
+  className?: string,
 };
 
-export const GameTileHeart = ({ onClick, isActive }: Props) => (
+export const GameTileHeart = ({ onClick, isActive, className }: Props) => (
   <svg
     onClick={onClick}
-    className={classNames("c-game-tile-heart u-display--block", {
-      "is-active": isActive,
-    })}
+    className={classNames(
+      "c-game-tile-heart u-display--block",
+      {
+        "is-active": isActive,
+      },
+      className
+    )}
     viewBox="0 0 18 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"

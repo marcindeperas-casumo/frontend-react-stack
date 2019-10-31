@@ -22,12 +22,12 @@ $game-search-widths: (
 }
 
 .c-game-search-virtual-list {
-  height: calc(
+  min-height: calc(
     100vh - #{$search-bar} - var(--top-bar-height, 75px) - var(--play-okay-bar-height, 0)
   );
 
   @media (orientation: landscape) {
-    height: calc(
+    min-height: calc(
       100vh - #{$search-bar} - var(--top-bar-height--landscape, 64px) - var(--play-okay-bar-height, 0)
     );
   }

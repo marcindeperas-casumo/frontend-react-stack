@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
+import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
 const ROW_HEIGHT = 80;
 
@@ -39,6 +40,12 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
   Props,
   State
 > {
+  constructor(props: Props) {
+    super(props);
+
+    this.scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+  }
+
   promises = {
     list: [],
   };
@@ -47,6 +54,8 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
     loadedRowsMap: {},
     pagesMap: {},
   };
+
+  scrollElement: HTMLElement | null;
 
   componentDidUpdate() {
     const loadedPromises = this.promises.list.filter(this.isPromiseLoaded);
@@ -161,6 +170,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
   render() {
     return (
       <VirtualList
+        scrollElement={this.scrollElement}
         totalNumberOfRows={this.props.rowCount}
         rowHeight={ROW_HEIGHT}
         loadMoreRows={this.loadMoreRows}

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, number } from "@storybook/addon-knobs/react";
+import { action } from "@storybook/addon-actions";
 import { ConfigurationForm } from "./ConfigurationForm";
 
 const stories = storiesOf("SlotControlSystem/ConfigurationForm", module);
@@ -30,7 +31,8 @@ stories.add("Default", () => {
       currency={select("Currency", ["EUR", "GBP"], "EUR")}
       locale="en-GB"
       balance={number("Balance", 100)}
-      fetchContentIfNecessary={() => {}}
+      fetchContentIfNecessary={action("fetchContentIfNecessary")}
+      finishConfiguration={action("finishConfiguration")}
       t={t}
     />
   );
