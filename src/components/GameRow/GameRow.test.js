@@ -1,12 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
-import {
-  GameRow,
-  TrackPlayIcon,
-  TrackMoreIcon,
-  GameRowText,
-  GameRowSearchText,
-} from "Components/GameRow/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
+import { GameRowText } from "Components/GameRow/GameRowText";
+import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
+import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { renderBets } from "Utils";
@@ -48,15 +46,15 @@ describe("<GameRow />", () => {
       />
     );
 
-    expect(rendered.find(TrackPlayIcon).length).toBe(1);
-    expect(rendered.find(TrackMoreIcon).length).toBe(0);
+    expect(rendered.find(GameRowTrackPlayIcon).length).toBe(1);
+    expect(rendered.find(GameRowTrackMoreIcon).length).toBe(0);
   });
 
   test("renders a More info icon if not a jackpot game", () => {
     rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
 
-    expect(rendered.find(TrackMoreIcon).length).toBe(1);
-    expect(rendered.find(TrackPlayIcon).length).toBe(0);
+    expect(rendered.find(GameRowTrackMoreIcon).length).toBe(1);
+    expect(rendered.find(GameRowTrackPlayIcon).length).toBe(0);
   });
 
   test("clicking on the whole row launches the game if Jackpot game", () => {
