@@ -55,7 +55,7 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
     pagesMap: {},
   };
 
-  scrollElement: ?HTMLElement;
+  scrollElement: HTMLElement | null;
 
   componentDidUpdate() {
     const loadedPromises = this.promises.list.filter(this.isPromiseLoaded);

@@ -11,7 +11,7 @@ import "./VirtualList.scss";
 
 type Props = {
   /** Element id to attach scroll event listeners. Defaults to window */
-  scrollElement: ?HTMLElement,
+  scrollElement: HTMLElement | null,
   /** The total number of items in the list. */
   totalNumberOfRows: number,
   /** The height of a row. Can be a number or a function that returns the height of a row by index. */

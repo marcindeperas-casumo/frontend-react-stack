@@ -54,7 +54,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     requestedPages: [],
   };
 
-  scrollElement: ?HTMLElement;
+  scrollElement: HTMLElement | null;
 
   componentDidMount() {
     this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
