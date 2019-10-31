@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import { append, range, assoc, has } from "ramda";
-import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import VirtualList from "Components/VirtualList";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
@@ -141,39 +140,39 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
   }) => {
     if (!this.isRowLoaded({ index })) {
       return (
-        <Flex
-          className="u-padding-x--md"
-          align="center"
-          key={key}
-          index={index}
-          style={style}
-        >
-          <GameRowSkeleton />
-        </Flex>
+        <div className="o-flex--wrap" key={key} index={index} style={style}>
+          <div className="o-flex u-padding--md u-game-search-max-width">
+            <GameRowSkeleton />
+          </div>
+        </div>
       );
     }
 
     if (has("sectionTitle", this.props.games[index])) {
       return (
         <div
-          className="u-padding-x--md o-flex t-background-chrome-light-2 t-color-chrome-dark-1"
+          className="o-flex--wrap t-background-chrome-light-2 t-color-chrome-dark-1"
           key={key}
           index={index}
           style={style}
         >
-          {this.props.renderTitle(this.props.games[index].sectionTitle)}
+          <div className="o-flex u-padding--md u-game-search-max-width">
+            {this.props.renderTitle(this.props.games[index].sectionTitle)}
+          </div>
         </div>
       );
     }
 
     return (
       <div
-        className="u-padding--md t-border-bottom t-color-chrome-light-2 t-border--current-color"
+        className="t-color-chrome-light-2 t-border--current-color"
         key={key}
         index={index}
         style={style}
       >
-        {this.props.renderItem(this.props.games[index].game)}
+        <div className="u-padding--md t-border-bottom u-game-search-max-width">
+          {this.props.renderItem(this.props.games[index].game)}
+        </div>
       </div>
     );
   };
