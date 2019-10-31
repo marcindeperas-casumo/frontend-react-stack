@@ -31,5 +31,5 @@ stories.add("Search with match", () => (
 ));
 
 stories.add("Search with no match", () => (
-  <GameRow game={game} onLaunchGame={action(gonzosQuest)} search={{}} />
+  <GameRow game={game} onLaunchGame={action(gonzosQuest)} search />
 ));

@@ -95,7 +95,7 @@ export class GameSearch extends React.PureComponent<Props> {
         >
           <div className="c-game-search-virtual-list u-game-search-max-width">
             <GamesVirtualList
-              renderItem={id => <GameRow search={{}} id={id} />}
+              renderItem={id => <GameRow search id={id} />}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
             />
           </div>

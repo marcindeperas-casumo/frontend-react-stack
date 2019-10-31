@@ -26,7 +26,7 @@ type Props = {
   /** Class name to apply to the game row */
   className?: string,
   /** The search props */
-  search?: SearchProps,
+  search?: SearchProps | boolean,
 };
 
 const iconStyle =
@@ -83,12 +83,21 @@ export const GameRowText = ({ name, bets }: { name: string, bets: Object }) => (
 
 export const GameRowSearchText = ({
   name,
-  search = {},
+  search,
 }: {
   name: string,
-  search: SearchProps,
+  search: SearchProps | boolean,
 }) => {
-  const { query, highlightSearchQuery } = search;
+  /* eslint-disable fp/no-let, fp/no-mutation */
+  let highlightSearchQuery, query;
+
+  if (typeof search === "boolean") {
+    highlightSearchQuery = false;
+    query = "";
+  } else {
+    ({ highlightSearchQuery, query } = search);
+  }
+  /* eslint-enable fp/no-let, fp/no-mutation */
 
   return (
     <Flex.Block className="u-padding-left--sm t-color-grey-dark-2">

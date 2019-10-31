@@ -86,7 +86,7 @@ describe("<GameRow />", () => {
 
   test("should render the GameRowTextSearch if used for search", () => {
     rendered = shallow(
-      <GameRow game={game} onLaunchGame={launchGame} search={{}} />
+      <GameRow game={game} onLaunchGame={launchGame} search />
     );
 
     expect(rendered.find(GameRowSearchText)).toHaveLength(1);
