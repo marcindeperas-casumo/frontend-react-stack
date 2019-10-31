@@ -5,6 +5,7 @@ import {
   activeSessionSelector,
   endedSessionSelector,
   isCreatingSessionSelector,
+  activeExclusionSelector,
   ACTION_TYPES,
 } from "Models/slotControlSystem";
 
@@ -89,5 +90,19 @@ describe("Slot Control System selectors", () => {
     };
 
     expect(isCreatingSessionSelector(state)).toEqual(true);
+  });
+
+  test("activeExclusionSelector", () => {
+    const now = Date.now();
+    const activeExclusion = { id: "123-123-123", expiryTime: now };
+    const state = {
+      slotControlSystem: {
+        activeSession: null,
+        endedSession: null,
+        activeExclusion,
+      },
+    };
+
+    expect(activeExclusionSelector(state)).toEqual(activeExclusion);
   });
 });

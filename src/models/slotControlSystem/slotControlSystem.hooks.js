@@ -5,9 +5,11 @@ import {
   initFetchActiveSessionAction,
   activeSessionSelector,
   endedSessionSelector,
+  activeExclusionSelector,
   isFetchingActiveSessionSelector,
   type ActiveSessionType,
   type EndedSessionType,
+  type ExclusionType,
 } from "Models/slotControlSystem";
 
 type UseActiveSessionType = {
@@ -15,12 +17,14 @@ type UseActiveSessionType = {
   activeSession: ?ActiveSessionType,
   endedSession: ?EndedSessionType,
   endedSessionDuringLastHour: boolean,
+  activeExclusion: ?ExclusionType,
 };
 
 export function useSessionsState(): UseActiveSessionType {
   const dispatch = useDispatch();
   const activeSession = useSelector(activeSessionSelector);
   const endedSession = useSelector(endedSessionSelector);
+  const activeExclusion = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
   // data is older than 1 minute
   const isOld = activeSession
@@ -39,6 +43,7 @@ export function useSessionsState(): UseActiveSessionType {
     activeSession: isOld ? null : activeSession,
     endedSession,
     endedSessionDuringLastHour,
+    activeExclusion,
     isFetching,
   };
 }

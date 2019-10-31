@@ -6,6 +6,7 @@ import { ACTION_TYPES } from "./slotControlSystem.constants";
 const DEFAULT_STATE: StateType = {
   activeSession: null,
   endedSession: null,
+  activeExclusion: null,
 };
 // TODO revisit these handlers while the API takes shape
 const handlers = {
