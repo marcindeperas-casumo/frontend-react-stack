@@ -4,6 +4,7 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
+import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { convertHTMLToString } from "Utils";
 import PlayAction from "Components/GameTile/PlayAction";
@@ -15,7 +16,10 @@ type Props = {
   slug: string,
   inMaintenanceMode: boolean,
   onLaunchGame: Function,
+  onFavouriteGame: Function,
   alwaysActive: boolean,
+  isInMyList: boolean,
+  className?: string,
 };
 
 export const IN_MAINTENANCE_CLASS_NAME = "c-game-tile__overlay--maintenance";
@@ -42,50 +46,77 @@ const GameTileOverlay = ({
   slug,
   inMaintenanceMode,
   onLaunchGame,
+  onFavouriteGame,
   alwaysActive,
+  isInMyList,
+  className,
 }: Props) => {
   return (
-    <Flex
-      align="center"
-      justify={alwaysActive ? "center" : "space-between"}
-      direction="vertical"
-      className={classNames(
-        "o-ratio__content u-text-align-center",
-        getClassModifier(inMaintenanceMode, alwaysActive),
-        "u-padding-y--lg u-padding-x--md t-border-r"
-      )}
-    >
-      {!alwaysActive && (
+    <div className={className}>
+      <Flex
+        align="center"
+        justify={"space-between"}
+        direction="vertical"
+        className={classNames(
+          "c-game-tile__overlay o-ratio__content u-text-align-center",
+          getClassModifier(inMaintenanceMode, alwaysActive),
+          "u-padding--md t-border-r"
+        )}
+        data-test-id="gameTileOverlay"
+      >
         <Text
           size="sm"
-          className="t-color-white u-text-clamp u-font-weight-bold"
+          tag="span"
+          className={classNames(
+            alwaysActive && "u-visibility--hidden",
+            "t-color-white u-text-clamp u-font-weight-bold u-padding-top"
+          )}
         >
           {convertHTMLToString(name)}
         </Text>
-      )}
 
-      {inMaintenanceMode ? (
-        <TemporaryUnavailable />
-      ) : (
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        {inMaintenanceMode ? (
+          <TemporaryUnavailable />
+        ) : (
+          <TrackClick
+            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+            data={{ [EVENT_PROPS.GAME_NAME]: name }}
+          >
+            <PlayAction onLaunchGame={onLaunchGame} />
+          </TrackClick>
+        )}
+        <Flex
+          justify={alwaysActive ? "end" : "space-between"}
+          align="center"
+          className="u-width--full"
         >
-          <PlayAction onLaunchGame={onLaunchGame} />
-        </TrackClick>
-      )}
-
-      {!alwaysActive && (
-        <TrackClick
-          eventName={EVENTS.MIXPANEL_GAME_DETAILS}
-          data={{ [EVENT_PROPS.GAME_NAME]: name }}
-        >
-          <a href={`/en/play/${slug}`} onMouseDown={e => e.preventDefault()}>
-            <MoreIcon className="t-background-white t-color-grey-dark-3 t-border-r--circle u-padding--sm" />
-          </a>
-        </TrackClick>
-      )}
-    </Flex>
+          {!alwaysActive && (
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+              data={{ [EVENT_PROPS.GAME_NAME]: name }}
+            >
+              <a
+                href={`/en/play/${slug}`}
+                onMouseDown={e => e.preventDefault()}
+              >
+                <MoreIcon className="t-color-white" />
+              </a>
+            </TrackClick>
+          )}
+          <div className="u-width--lg u-height--lg">
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: name,
+                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
+              }}
+            >
+              <GameTileHeart onClick={onFavouriteGame} isActive={isInMyList} />
+            </TrackClick>
+          </div>
+        </Flex>
+      </Flex>
+    </div>
   );
 };
 
