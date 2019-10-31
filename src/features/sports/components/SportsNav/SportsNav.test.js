@@ -34,8 +34,8 @@ describe("<SportsNav/>", () => {
       <SportsNav currentHash="#bethistory" />
     );
 
-    expect(renderedOnEventPage.html()).toBe(null);
-    expect(renderedOnBethistoryPage.html()).toBe(null);
+    expect(renderedOnEventPage.isEmptyRender()).toBe(true);
+    expect(renderedOnBethistoryPage.isEmptyRender()).toBe(true);
   });
 
   test("should render without errors once data is resolved", async () => {

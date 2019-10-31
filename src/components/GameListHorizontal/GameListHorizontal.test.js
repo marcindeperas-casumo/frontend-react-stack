@@ -85,7 +85,7 @@ describe("<GameListHorizontal /> - Mobile", () => {
       </MockStore>
     );
 
-    expect(rendered.html()).toBeNull();
+    expect(rendered.isEmptyRender()).toBe(true);
   });
 });
 
