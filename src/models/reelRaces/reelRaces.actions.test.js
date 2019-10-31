@@ -32,7 +32,7 @@ describe("Models/reelRaces/Actions", () => {
     });
   });
 
-  test("optInForReelRace()", async () => {
+  test("optInForReelRace()", () => {
     const playerId = "23";
     const tournamentId = "13a";
     const state = {

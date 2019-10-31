@@ -95,6 +95,7 @@ module.exports = {
     "no-useless-catch": "error",
     "no-void": "error",
     "prettier/prettier": "error",
+    "require-await": "error",
     "sonarjs/no-duplicate-string": "off",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",

@@ -22,7 +22,7 @@ import { ReelRacesList } from "./ReelRacesList";
 
 const subscribeReelRacesUpdates = dispatch => {
   return (tournamentChannels, playerId) => {
-    tournamentChannels.map(channelPrefix => {
+    tournamentChannels.forEach(channelPrefix => {
       dispatch(subscribeReelRaceUpdates(channelPrefix, playerId));
     });
   };
@@ -30,7 +30,7 @@ const subscribeReelRacesUpdates = dispatch => {
 
 const unsubscribeReelRacesUpdates = dispatch => {
   return (tournamentChannels, playerId) => {
-    tournamentChannels.map(channelPrefix => {
+    tournamentChannels.forEach(channelPrefix => {
       dispatch(unsubscribeReelRaceUpdates(channelPrefix, playerId));
     });
   };

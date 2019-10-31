@@ -12,7 +12,6 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
-import { Mobile } from "Components/ResponsiveLayout";
 
 const getList = id => ({ id, title: "Title.", games: ["game-1", "game-2"] });
 const list = getList("id-1");

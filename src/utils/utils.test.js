@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { DateTime } from "luxon";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -160,7 +159,7 @@ describe("makeProtocolAwareUrl()", () => {
 });
 
 describe("generateColumns()", () => {
-  test("should group items of an array into columns", async () => {
+  test("should group items of an array into columns", () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const numberByColumn = 3;
 
@@ -170,7 +169,7 @@ describe("generateColumns()", () => {
     expect(generateColumns(list, numberByColumn)[2]).toEqual([7, 8, 9]);
   });
 
-  test("should group items even if number of items is not dividable by column number", async () => {
+  test("should group items even if number of items is not dividable by column number", () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8];
     const numberByColumn = 3;
 
@@ -182,13 +181,13 @@ describe("generateColumns()", () => {
 });
 
 describe("renderBets()", () => {
-  test("should not render anything if bets dont exist", async () => {
+  test("should not render anything if bets dont exist", () => {
     const bets = null;
 
     expect(renderBets(bets)).toEqual(null);
   });
 
-  test("should render formatted bets", async () => {
+  test("should render formatted bets", () => {
     const bets = {
       symbol: "£",
       min: 1,

@@ -68,7 +68,7 @@ export const withContainer = (Component: Function) =>
       if (this.state.intervalMinutes === 0 && !isZeroIntervalAllowed) {
         return;
       }
-      return mutate({
+      return await mutate({
         variables: {
           input: {
             intervalSeconds: this.intervalSeconds,

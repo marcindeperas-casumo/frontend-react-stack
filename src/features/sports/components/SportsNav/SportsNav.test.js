@@ -20,13 +20,13 @@ const renderMocked = children =>
 describe("<SportsNav/>", () => {
   beforeEach(jest.restoreAllMocks);
 
-  test("should render skeleton while loading navigation data", async () => {
+  test("should render skeleton while loading navigation data", () => {
     const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
     expect(rendered.find(SportsNavSkeleton)).toHaveLength(1);
   });
 
-  test("should not be rendered on #event, or #bethistory kambi routes", async () => {
+  test("should not be rendered on #event, or #bethistory kambi routes", () => {
     const renderedOnEventPage = renderMocked(
       <SportsNav currentHash="#event" />
     );
@@ -44,6 +44,7 @@ describe("<SportsNav/>", () => {
     await updateWrapper(rendered);
 
     expect(rendered.find(SportsMainNav)).toHaveLength(1);
+
     expect(rendered.find(SportsSubNav)).toHaveLength(1);
   });
   /*

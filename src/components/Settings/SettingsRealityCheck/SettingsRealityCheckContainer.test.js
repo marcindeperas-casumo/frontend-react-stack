@@ -27,7 +27,7 @@ describe("SettingsRealityCheckContainer", () => {
       SettingsRealityCheckContainer = withContainer(Component);
     });
 
-    test("should render loader", async () => {
+    test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}

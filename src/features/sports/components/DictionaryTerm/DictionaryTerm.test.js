@@ -25,7 +25,7 @@ describe("<DictionaryTerm />", () => {
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
 
-  test("renders the LOADING_STRING when translation is loading", async () => {
+  test("renders the LOADING_STRING when translation is loading", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <DictionaryTerm termKey={WORKING_TERM.key} />

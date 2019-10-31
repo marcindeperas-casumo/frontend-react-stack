@@ -74,7 +74,7 @@ describe("<StageFavouritesProvider />", () => {
   });
 
   describe("toggleFavouriteSport()", () => {
-    test("should toggle whether the sport is selected", async () => {
+    test("should toggle whether the sport is selected", () => {
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });

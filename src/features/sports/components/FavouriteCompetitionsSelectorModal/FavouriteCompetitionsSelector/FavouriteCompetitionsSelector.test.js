@@ -17,7 +17,7 @@ import footballData from "./__mocks__/football";
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
 
 describe("isOrphanGroup", () => {
-  test("should return true for orphaned groups", async () => {
+  test("should return true for orphaned groups", () => {
     const orphanedGroups = [
       isOrphanGroup({ groups: undefined }),
       isOrphanGroup({ groups: null }),
@@ -27,21 +27,21 @@ describe("isOrphanGroup", () => {
     expect(all(equals(true), orphanedGroups)).toBe(true);
   });
 
-  test("should return false for non-orphaned groups", async () => {
+  test("should return false for non-orphaned groups", () => {
     const orphanGroup = isOrphanGroup({ groups: ["non-empty-array"] });
     expect(orphanGroup).toBe(false);
   });
 });
 
 describe("isPopularGroup", () => {
-  test("should return true for a popular group", async () => {
+  test("should return true for a popular group", () => {
     const popularGroup = isPopularGroup({
       groups: [{ popular: true }, { popular: false }],
     });
     expect(popularGroup).toBe(true);
   });
 
-  test("should return false for a non-popular group", async () => {
+  test("should return false for a non-popular group", () => {
     const unpopularGroups = isPopularGroup({
       groups: [
         { popular: "true" },
@@ -56,7 +56,7 @@ describe("isPopularGroup", () => {
 });
 
 describe("transformOrphanGroup", () => {
-  test("should add default properties without overriding ones from the input", async () => {
+  test("should add default properties without overriding ones from the input", () => {
     const orphanGroups = [
       {
         __typename: "EventGroup",

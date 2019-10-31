@@ -1,6 +1,6 @@
 // @flow
 import * as React from "react";
-import { shallow, mount, type ReactWrapper } from "enzyme";
+import { mount, type ReactWrapper } from "enzyme";
 import { SportsModalHeader, components } from "./SportsModalHeader";
 
 export const selectors = {

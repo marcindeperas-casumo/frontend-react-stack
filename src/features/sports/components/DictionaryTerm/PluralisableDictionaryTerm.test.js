@@ -40,7 +40,7 @@ describe("<PluralisableDictionaryTerm />", () => {
     expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
   });
 
-  test("renders the LOADING_STRING when translation is loading", async () => {
+  test("renders the LOADING_STRING when translation is loading", () => {
     const renderedSingular = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <PluralisableDictionaryTerm termKey={WORKING_TERM.key} />

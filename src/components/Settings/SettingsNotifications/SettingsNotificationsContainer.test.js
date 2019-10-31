@@ -33,7 +33,7 @@ describe("Notifications", () => {
       SettingsNotificationsContainer = () => withContainer(Component);
     });
 
-    test("should render loader", async () => {
+    test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerContactSettingsQueryMock, notificationsLabelsQueryMock]}
