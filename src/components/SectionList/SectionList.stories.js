@@ -1,6 +1,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { GameRowSearch } from "Components/GameRowSearch";
+import { GameRow } from "Components/GameRow";
 import MockStore from "Components/MockStore";
 import SectionList from "./";
 
@@ -27,10 +27,7 @@ const sections = [
 
 stories.add("Alphabetical", () => (
   <MockStore>
-    <SectionList
-      sections={sections}
-      renderItem={id => <GameRowSearch slug={id} />}
-    />
+    <SectionList sections={sections} renderItem={id => <GameRow id={id} />} />
   </MockStore>
 ));
 
@@ -48,7 +45,7 @@ stories.add("Section with no games", () => (
           data: ["hall-of-gods", "divine-fortune"],
         },
       ]}
-      renderItem={id => <GameRowSearch slug={id} />}
+      renderItem={id => <GameRow id={id} />}
     />
   </MockStore>
 ));

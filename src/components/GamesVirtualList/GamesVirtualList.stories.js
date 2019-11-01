@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import MockStore from "Components/MockStore";
-import { GameRowSearch } from "Components/GameRowSearch";
+import { GameRow } from "Components/GameRow";
 import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 
 const stories = storiesOf("GamesVirtualList", module);
@@ -37,7 +37,7 @@ stories.add("Default", () => (
     <div className="u-height--screen">
       <GamesVirtualList
         games={games}
-        renderItem={id => <GameRowSearch slug={id} />}
+        renderItem={id => <GameRow id={id} />}
         renderTitle={sectionTitle => (
           <GamesVirtualListTitle title={sectionTitle} />
         )}
