@@ -10,7 +10,6 @@ import {
   sort,
   isEmpty,
   anyPass,
-  propEq,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import {
@@ -86,7 +85,7 @@ const fetchMyListGames = async ({ sessionId }) => {
   });
 
   if (!myList) {
-    return null;
+    return {};
   }
 
   const { name: id, title } = myList;
@@ -292,8 +291,13 @@ export const fetchGames = async ({
     i => i > 0,
     path(["games", "length"])
   );
-  const isMyList = propEq("id", GAME_LIST_IDS.MY_LIST);
-  const hasSomeGamesOrIsMyList = anyPass([hasSomeGames, isMyList]);
+
+  const isMyList = compose(
+    id => id === GAME_LIST_IDS.MY_LIST,
+    path(["id"])
+  );
+
+  const hasSomeGamesOrIsMyList = anyPass([isMyList, hasSomeGames]);
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
       myListGames,
