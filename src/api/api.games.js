@@ -9,6 +9,7 @@ import {
   pipe,
   sort,
   isEmpty,
+  anyPass,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
 import {
@@ -83,12 +84,21 @@ const fetchMyListGames = async ({ sessionId }) => {
     sessionId,
   });
 
-  if (!myList || myList.gameIds.length === 0) {
-    return null;
+  if (!myList) {
+    return {};
   }
 
+  const { name: id, title } = myList;
+
+  if (myList.gameIds.length === 0) {
+    return { games: [], id, title };
+  }
+
+  // Games batch endpoint explodes if passed more than 100 items.
+  const GAMES_BATCH_LIMIT = 99;
+
   const games = await getCasinoPlayerGamesBatch({
-    ids: myList.gameIds,
+    ids: myList.gameIds.slice(0, GAMES_BATCH_LIMIT),
     sessionId,
   }).then(myListGames =>
     myListGames.map(game => ({
@@ -102,8 +112,6 @@ const fetchMyListGames = async ({ sessionId }) => {
       tableId: game.liveCasinoId,
     }))
   );
-
-  const { name: id, title } = myList;
 
   return { games, id, title };
 };
@@ -218,6 +226,7 @@ export const fetchGames = async ({
   sessionId,
 }) => {
   const gameListsRequests = handshake.topListIds
+    .filter(id => id !== GAME_LIST_IDS.MY_LIST)
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
@@ -282,6 +291,13 @@ export const fetchGames = async ({
     i => i > 0,
     path(["games", "length"])
   );
+
+  const isMyList = compose(
+    id => id === GAME_LIST_IDS.MY_LIST,
+    path(["id"])
+  );
+
+  const hasSomeGamesOrIsMyList = anyPass([isMyList, hasSomeGames]);
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
       myListGames,
@@ -289,8 +305,7 @@ export const fetchGames = async ({
       suggestedGames,
       ...gameListsRequests,
     ])
-  )).filter(hasSomeGames);
-
+  )).filter(hasSomeGamesOrIsMyList);
   const jackpots = await fetchJackpots({ market, currency });
 
   return {
