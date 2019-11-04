@@ -32,7 +32,6 @@ const GameTile = ({
   },
   ratio = "game-tile",
   isInMyList = false,
-  ...props
 }: Props) => {
   const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
 
