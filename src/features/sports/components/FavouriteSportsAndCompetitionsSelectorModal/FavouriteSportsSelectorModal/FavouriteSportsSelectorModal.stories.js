@@ -2,8 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { MockedProvider } from "@apollo/react-testing";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import { ModalsArea } from "Features/sports/components/Modals";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import { cmsImageMocks } from "Features/sports/components/CmsImage";
@@ -19,7 +19,7 @@ import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 const stories = storiesOf("Sports/FavouriteSportsSelectorModal", module);
 
 stories.add("No favourites - Casino User", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       competitionsSuggestionsMock,
@@ -35,11 +35,11 @@ stories.add("No favourites - Casino User", () => (
         />
       </ModalsArea>
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("With favourites - Casino User", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       withFavouritesMock,
       competitionsSuggestionsMock,
@@ -55,11 +55,11 @@ stories.add("With favourites - Casino User", () => (
         />
       </ModalsArea>
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("No favourites - Sports User", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       competitionsSuggestionsMock,
@@ -76,5 +76,5 @@ stories.add("No favourites - Sports User", () => (
         />
       </ModalsArea>
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

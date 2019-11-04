@@ -3,6 +3,7 @@ import React from "react";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
+import { getApolloContext } from "@apollo/react-hooks";
 import { propOr } from "ramda";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
@@ -12,7 +13,6 @@ import {
 } from "Models/handshake";
 import { SESSION_TOUCH } from "Models/apollo/mutations";
 import { MutateOnMount } from "Features/sports/components/GraphQL";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -47,7 +47,7 @@ type State = {
 class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
 
 export class LaunchableKambiClient extends React.Component<Props, State> {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   state = {
     firstLoadCompleted: false,

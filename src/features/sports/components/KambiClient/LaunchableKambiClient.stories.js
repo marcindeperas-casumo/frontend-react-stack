@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
 import { errorMocks, loadingMocks } from "./__mocks__/kambiClientMocks";
 import { LaunchableKambiClient } from "./LaunchableKambiClient";
 
@@ -14,13 +14,13 @@ const props = {
 };
 
 stories.add("Loading", () => (
-  <MockedProviderWithContext mocks={loadingMocks} addTypename={false}>
+  <MockedProvider mocks={loadingMocks} addTypename={false}>
     <LaunchableKambiClient {...props} />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("Error", () => (
-  <MockedProviderWithContext mocks={errorMocks} addTypename={false}>
+  <MockedProvider mocks={errorMocks} addTypename={false}>
     <LaunchableKambiClient {...props} />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

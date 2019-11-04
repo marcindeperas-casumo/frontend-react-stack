@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
 import { actWait, updateWrapper } from "Utils";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import { selectors } from "Features/sports/components/SportsModal/SportsModalHeader.test";
 import {
   withFavouritesMock,
@@ -16,7 +16,7 @@ import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 describe("<FavouriteSportsSelectorModal />", () => {
   test("should render save button only when there are selected sports", async () => {
     const rendered = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           withFavouritesMock,
           competitionsSuggestionsMock,
@@ -29,10 +29,10 @@ describe("<FavouriteSportsSelectorModal />", () => {
             onClose={() => {}}
           />
         </StageFavouritesProvider>
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const renderedNoFavourites = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           noFavouritesMock,
           competitionsSuggestionsMock,
@@ -45,7 +45,7 @@ describe("<FavouriteSportsSelectorModal />", () => {
             onClose={() => {}}
           />
         </StageFavouritesProvider>
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
 
     await actWait(20);
@@ -58,7 +58,7 @@ describe("<FavouriteSportsSelectorModal />", () => {
 
   test("should not show close button if user has no favourites'", async () => {
     const rendered = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           withFavouritesMock,
           competitionsSuggestionsMock,
@@ -71,10 +71,10 @@ describe("<FavouriteSportsSelectorModal />", () => {
             onClose={() => {}}
           />
         </StageFavouritesProvider>
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const renderedNoFavourites = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           noFavouritesMock,
           competitionsSuggestionsMock,
@@ -87,7 +87,7 @@ describe("<FavouriteSportsSelectorModal />", () => {
             onClose={() => {}}
           />
         </StageFavouritesProvider>
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
 
     await actWait(20);

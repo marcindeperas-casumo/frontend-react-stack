@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
 import {
   SportsNav,
   SportsMainNav,
@@ -12,9 +12,9 @@ import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/u
 
 const renderMocked = children =>
   mount(
-    <MockedProviderWithContext mocks={multipleSports} addTypename={false}>
+    <MockedProvider mocks={multipleSports} addTypename={false}>
       {children}
-    </MockedProviderWithContext>
+    </MockedProvider>
   );
 
 describe("<SportsNav/>", () => {

@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, getApolloContext } from "@apollo/react-hooks";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
 import {
   SportsMainNav,
   SportsSubNav,
@@ -117,7 +116,7 @@ const renderSportsNav = (
 };
 
 export const SportsNav = ({ currentHash }: { currentHash: string }) => {
-  const { client } = React.useContext(GraphQLClientContext);
+  const { client } = React.useContext(getApolloContext());
   const [isLiveActive, setIsLiveActive] = React.useState(
     navItemUtils.isInPlayHash(currentHash)
   );

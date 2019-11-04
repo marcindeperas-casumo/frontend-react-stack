@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
 import { actWait } from "Utils";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
   withFavouritesMock,
@@ -21,7 +21,7 @@ const areFavouritesPopulatedForCustomisableSports = sports =>
 describe("<StageFavouritesProvider />", () => {
   test("should fetch sports on mount", () => {
     const rendered = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           playerVerticalMock,
           noFavouritesMock,
@@ -29,7 +29,7 @@ describe("<StageFavouritesProvider />", () => {
         ]}
       >
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const instance = rendered.find(StageFavouritesProvider).instance();
 
@@ -41,7 +41,7 @@ describe("<StageFavouritesProvider />", () => {
 
   test("should default to suggested competitions if user has none", async () => {
     const renderedNoFavourites = mount(
-      <MockedProviderWithContext
+      <MockedProvider
         mocks={[
           playerVerticalMock,
           noFavouritesMock,
@@ -49,14 +49,12 @@ describe("<StageFavouritesProvider />", () => {
         ]}
       >
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const renderedWithFavourites = mount(
-      <MockedProviderWithContext
-        mocks={[playerVerticalMock, withFavouritesMock]}
-      >
+      <MockedProvider mocks={[playerVerticalMock, withFavouritesMock]}>
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
 
     await actWait(0);
