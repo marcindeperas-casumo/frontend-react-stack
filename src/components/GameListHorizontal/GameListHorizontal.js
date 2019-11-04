@@ -8,7 +8,6 @@ import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
-import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 import "./GameListHorizontal.scss";
@@ -32,8 +31,6 @@ export const ITEM_RENDERERS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: GameTileExclusiveContainer,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: LiveCasinoCardContainer,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: LiveCasinoCardContainer,
-  [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: GameTileWithActiveOverlay,
-  [GAME_LIST_IDS.MY_LIST]: GameTileWithActiveOverlay,
   default: GameTileContainer,
 };
 
