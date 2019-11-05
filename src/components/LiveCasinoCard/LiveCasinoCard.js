@@ -140,7 +140,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <Card
-        className="u-width--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
+        className="u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
         spacing="md"
         header={this.renderHeader}
         content={this.renderContent}
