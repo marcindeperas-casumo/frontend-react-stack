@@ -29,6 +29,7 @@ const GameTile = ({
   onFavouriteGame,
   imgixOpts = {
     w: 170,
+    q: 70,
   },
   ratio = "game-tile",
   isInMyList = false,
