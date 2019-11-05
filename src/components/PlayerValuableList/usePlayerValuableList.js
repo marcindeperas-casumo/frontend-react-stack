@@ -1,17 +1,14 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
-import { useQuery, useMutation } from "@apollo/react-hooks";
-import { UseValuable, PlayerValuablesQuery } from "./PlayerValuables.graphql";
+import { useQuery } from "@apollo/react-hooks";
+import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 
 export function usePlayerValuableList() {
   const { data, loading, refetch } = useQuery<PlayerValuablesQuery, void>(
     PlayerValuablesQuery,
     { returnPartialData: true }
-  );
-  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
-    UseValuable
   );
 
   React.useEffect(() => {
@@ -43,12 +40,5 @@ export function usePlayerValuableList() {
       $ElementType<PlayerValuablesQuery, "player">,
       "valuables"
     >),
-    onConsumeValuable: (id: string) =>
-      mutateValuable({
-        variables: {
-          id,
-          source: "mobile",
-        },
-      }),
   };
 }

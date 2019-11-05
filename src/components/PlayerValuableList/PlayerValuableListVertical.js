@@ -1,5 +1,6 @@
 /* @flow */
 import * as React from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
@@ -8,15 +9,21 @@ import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { usePlayerValuableList } from "./usePlayerValuableList";
+import { UseValuable } from "./PlayerValuables.graphql";
 import "./PlayerValuableListHorizontal.scss";
 
 export function PlayerValuableListVertical() {
-  const {
-    loading,
-    valuables,
-    translations,
-    onConsumeValuable,
-  } = usePlayerValuableList();
+  const { loading, valuables, translations } = usePlayerValuableList();
+  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+    UseValuable
+  );
+  const consumeValuable = (id: string) =>
+    mutateValuable({
+      variables: {
+        id,
+        source: "mobile",
+      },
+    });
   const {
     availableListTitleLabel,
     lockedListTitleLabel,
@@ -69,7 +76,7 @@ export function PlayerValuableListVertical() {
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={onConsumeValuable}
+          onConsumeValuable={consumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">

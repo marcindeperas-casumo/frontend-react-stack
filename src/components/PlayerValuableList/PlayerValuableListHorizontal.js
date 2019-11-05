@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import { useMutation } from "@apollo/react-hooks";
 import Scrollable from "@casumo/cmp-scrollable";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
@@ -8,6 +9,8 @@ import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { usePlayerValuableList } from "./usePlayerValuableList";
+import { UseValuable } from "./PlayerValuables.graphql";
+
 import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
@@ -19,12 +22,17 @@ const PADDING_PER_DEVICE = {
 const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal() {
-  const {
-    loading,
-    valuables,
-    translations,
-    onConsumeValuable,
-  } = usePlayerValuableList();
+  const { loading, valuables, translations } = usePlayerValuableList();
+  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+    UseValuable
+  );
+  const consumeValuable = (id: string) =>
+    mutateValuable({
+      variables: {
+        id,
+        source: "mobile",
+      },
+    });
   const [selectedValuable, setSelectedValuable] = React.useState(null);
   const showModal = setSelectedValuable;
   const closeModal = () => setSelectedValuable(null);
@@ -80,7 +88,7 @@ export function PlayerValuableListHorizontal() {
             <ValuableDetailsWithModal
               isOpen={Boolean(selectedValuable)}
               onClose={closeModal}
-              onConsumeValuable={onConsumeValuable}
+              onConsumeValuable={consumeValuable}
               valuableDetails={selectedValuable}
             >
               <div className="c-valuable-list__valuable-card">
