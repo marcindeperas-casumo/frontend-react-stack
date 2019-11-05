@@ -1,13 +1,13 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import GameTile, {
+import {
+  GameTile,
   IN_MAINTENANCE_CLASS_NAME,
 } from "Components/GameTile/GameTile";
 import gameInfo from "./__mocks__/Game.json";
-import jackpotInfo from "./__mocks__/JackpotGameInfo.json";
 
 describe("GameTile", () => {
-  test("should render GameTimeImage", () => {
+  test("should render GameTileImage", () => {
     const imgixOpts = {
       w: 170,
     };
@@ -23,38 +23,6 @@ describe("GameTile", () => {
     expect(renderedGameTileImageProps.logo).toBe(gameInfo.logo);
     expect(renderedGameTileImageProps.name).toBe(gameInfo.name);
     expect(renderedGameTileImageProps.imgixOpts).toEqual(imgixOpts);
-  });
-
-  test("should not render GameTileOverlay if not isActive", () => {
-    const onLaunchGame = jest.fn();
-    const rendered = shallow(
-      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
-    );
-    expect(rendered.find("GameTileOverlay").hasClass("u-display--none")).toBe(
-      true
-    );
-  });
-
-  test("should render GameTileOverlay when clicked", () => {
-    const onLaunchGame = jest.fn();
-    const rendered = mount(
-      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
-    );
-    rendered.simulate("click");
-
-    const renderedGameTileOverlayProps = rendered
-      .find("GameTileOverlay")
-      .props();
-
-    expect(rendered.find("GameTileOverlay").hasClass("u-display--block")).toBe(
-      true
-    );
-    expect(renderedGameTileOverlayProps.name).toBe(gameInfo.name);
-    expect(renderedGameTileOverlayProps.slug).toBe(gameInfo.slug);
-    expect(renderedGameTileOverlayProps.inMaintenanceMode).toBe(
-      gameInfo.inMaintenanceMode
-    );
-    expect(renderedGameTileOverlayProps.onLaunchGame).toBe(onLaunchGame);
   });
 
   test("should add default game-tile ratio class", () => {
@@ -79,23 +47,12 @@ describe("GameTile", () => {
     expect(rendered.hasClass(IN_MAINTENANCE_CLASS_NAME)).toBe(true);
   });
 
-  test("should render gameOverlay if isOverlayAlwaysActive is true", () => {
-    const rendered = shallow(
-      <GameTile game={gameInfo} isOverlayAlwaysActive />
-    );
-    expect(rendered.find("GameTileOverlay").length).toBe(1);
-  });
-
-  test("should launchGame if isOverlayAlwaysActive is true and component is clicked", () => {
+  test("should launchGame if component is clicked", () => {
     const onLaunchGame = jest.fn();
     const rendered = mount(
-      <GameTile
-        game={gameInfo}
-        onLaunchGame={onLaunchGame}
-        isOverlayAlwaysActive
-      />
+      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
     );
-    rendered.find("PlayIcon").simulate("click");
+    rendered.simulate("click");
 
     expect(onLaunchGame).toHaveBeenCalled();
   });
