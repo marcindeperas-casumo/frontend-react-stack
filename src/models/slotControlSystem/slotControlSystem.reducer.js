@@ -1,4 +1,5 @@
 // @flow
+import { omit } from "ramda";
 import { createReducer } from "Utils";
 import type { StateType } from "./slotControlSystem.types";
 import { ACTION_TYPES } from "./slotControlSystem.constants";
@@ -14,7 +15,7 @@ const handlers = {
     const newState = {
       ...state,
       activeSession: action.response && {
-        ...action.response,
+        ...omit(["playerId"], action.response),
         lastUpdateTime: Date.now(),
       },
     };
@@ -27,7 +28,7 @@ const handlers = {
         ...newState,
         endedSession: {
           id: state.activeSession.id,
-          endTime: Date.now(),
+          endTime: state.activeSession.expiringTime,
         },
       };
     }
@@ -39,7 +40,7 @@ const handlers = {
     activeSession: null,
     endedSession: state.activeSession && {
       id: state.activeSession.id,
-      endTime: Date.now(),
+      endTime: state.activeSession.expiringTime,
     },
   }),
 };

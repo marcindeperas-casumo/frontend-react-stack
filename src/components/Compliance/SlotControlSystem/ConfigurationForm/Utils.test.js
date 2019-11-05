@@ -1,5 +1,10 @@
 // @flow
-import { isBudgetTooLow, isBudgetTooHigh, isBudgetInvalid } from "./Utils";
+import {
+  isBudgetTooLow,
+  isBudgetTooHigh,
+  isBudgetInvalid,
+  transformFormDataToRequestPayload,
+} from "./Utils";
 
 describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
   describe("isBudgetTooLow()", () => {
@@ -25,6 +30,34 @@ describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
 
     test("it returns true if budget is too high", () => {
       expect(isBudgetInvalid({ budget: 70, balance: 54 })).toEqual(true);
+    });
+  });
+
+  describe("transformFormDataToRequestPayload()", () => {
+    test("it transforms argument object into valid payload", () => {
+      const currency = "EUR";
+      const budget = 111;
+      const time = 333333333;
+      const alertsEvery = 60 * 5;
+      const breakAfter = 100;
+
+      expect(
+        transformFormDataToRequestPayload({
+          currency,
+          budget,
+          time,
+          alertsEvery,
+          breakAfter,
+        })
+      ).toEqual({
+        limit: {
+          currency,
+          amount: budget,
+        },
+        durationInSecs: time,
+        reminderFrequencyInSecs: alertsEvery,
+        postSessionExclusionInMinutes: breakAfter,
+      });
     });
   });
 });

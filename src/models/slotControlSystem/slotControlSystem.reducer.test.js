@@ -3,6 +3,7 @@ import {
   ACTION_TYPES,
   slotControlSystemReducer,
 } from "Models/slotControlSystem";
+import activeSession from "./__mocks__/activeSession.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {
   const now = Date.now();
@@ -35,10 +36,6 @@ describe("Models/slotControlSystem/Reducer", () => {
   });
 
   test("INVALIDATE_SESSION", () => {
-    const activeSession = {
-      id: "123-345-456-677",
-      lastUpdateTime: now,
-    };
     const action = { type: ACTION_TYPES.INVALIDATE_SESSION };
     const state = {
       activeSession,
@@ -51,7 +48,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       activeSession: null,
       endedSession: {
         id: activeSession.id,
-        endTime: now,
+        endTime: activeSession.expiringTime,
       },
     });
   });
