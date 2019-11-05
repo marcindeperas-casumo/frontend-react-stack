@@ -4,9 +4,9 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import GameTileImage from "Components/GameTile/GameTileImage";
+import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import TemporaryUnavailable from "Components/GameTile/TemporaryUnavailable";
 import type { Game } from "Types/game";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 
@@ -20,7 +20,8 @@ export type Props = {
   isInMyList?: boolean,
 };
 
-export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
+export const DEFAULT_CLASSES =
+  "o-ratio t-color-white t-border-r--md t-background-chrome-light-1 u-overflow-hidden";
 
 export const GameTile = ({
   className,
@@ -36,32 +37,43 @@ export const GameTile = ({
 }: Props) => {
   const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
 
-  return (
-    <Flex
-      className={classNames(
-        "o-ratio t-color-white t-border-r--md t-background-chrome-light-1 u-overflow-hidden u-cursor-pointer",
-        { "t-greyscale": inMaintenanceMode },
-        `o-ratio--${ratio}`,
-        className
-      )}
-      onClick={onLaunchGame}
-    >
-      <GameTileImage
-        logoBackground={logoBackground}
-        logo={logo}
-        name={name}
+  if (inMaintenanceMode) {
+    return (
+      <GameTileInMaintenance
+        ratio={ratio}
+        className={className}
+        game={game}
         imgixOpts={imgixOpts}
       />
+    );
+  }
 
-      {inMaintenanceMode ? (
-        <TemporaryUnavailable />
-      ) : (
+  return (
+    <TrackClick
+      eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+      data={{ [EVENT_PROPS.GAME_NAME]: name }}
+    >
+      <Flex
+        className={classNames(
+          DEFAULT_CLASSES,
+          "u-cursor-pointer",
+          `o-ratio--${ratio}`,
+          className
+        )}
+        onClick={onLaunchGame}
+      >
+        <GameTileImage
+          logoBackground={logoBackground}
+          logo={logo}
+          name={name}
+          imgixOpts={imgixOpts}
+        />
         <Flex
           justify="space-between"
           align="end"
           className="u-width--full o-ratio__content"
         >
-          <Flex.Item>
+          <Flex.Item onClick={e => e.stopPropagation()}>
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_DETAILS}
               data={{ [EVENT_PROPS.GAME_NAME]: name }}
@@ -69,13 +81,12 @@ export const GameTile = ({
               <a
                 className="u-padding u-display--block"
                 href={`/en/play/${slug}`}
-                onClick={e => e.stopPropagation()}
               >
                 <MoreIcon className="t-color-white" />
               </a>
             </TrackClick>
           </Flex.Item>
-          <Flex.Item>
+          <Flex.Item onClick={e => e.stopPropagation()}>
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
               data={{
@@ -85,16 +96,13 @@ export const GameTile = ({
             >
               <GameTileHeart
                 className="u-padding u-width--2xlg"
-                onClick={e => {
-                  e.stopPropagation();
-                  onFavouriteGame();
-                }}
+                onClick={onFavouriteGame}
                 isActive={isInMyList}
               />
             </TrackClick>
           </Flex.Item>
         </Flex>
-      )}
-    </Flex>
+      </Flex>
+    </TrackClick>
   );
 };
