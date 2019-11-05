@@ -8,8 +8,15 @@ import {
   head,
   pipe,
   sort,
+  isEmpty,
+  anyPass,
 } from "ramda";
 import * as gamebrowserApi from "Api/api.gamebrowser";
+import {
+  getCasinoPlayerGameList,
+  getCasinoPlayerGamesBatch,
+} from "Api/api.casinoPlayerGames";
+import { GAME_LIST_IDS } from "Src/constants";
 import { getJackpots } from "Api/api.jackpots";
 import { getSuggestedGames } from "Api/api.gameSuggest";
 import { convertHTMLToString } from "Utils";
@@ -71,6 +78,44 @@ export const fetchSuggestedGames = async ({
   };
 };
 
+const fetchMyListGames = async ({ sessionId }) => {
+  const myList = await getCasinoPlayerGameList({
+    gameListName: GAME_LIST_IDS.MY_LIST,
+    sessionId,
+  });
+
+  if (!myList) {
+    return {};
+  }
+
+  const { name: id, title } = myList;
+
+  if (myList.gameIds.length === 0) {
+    return { games: [], id, title };
+  }
+
+  // Games batch endpoint explodes if passed more than 100 items.
+  const GAMES_BATCH_LIMIT = 99;
+
+  const games = await getCasinoPlayerGamesBatch({
+    ids: myList.gameIds.slice(0, GAMES_BATCH_LIMIT),
+    sessionId,
+  }).then(myListGames =>
+    myListGames.map(game => ({
+      hasPlayForFun: game.hasPlayForFun,
+      inMaintenanceMode: game.inMaintenance,
+      jackpotId: isEmpty(game.jackpotIds) ? null : head(game.jackpotIds),
+      logo: game.logo,
+      logoBackground: game.backgroundImage,
+      name: game.title,
+      slug: game.slug,
+      tableId: game.liveCasinoId,
+    }))
+  );
+
+  return { games, id, title };
+};
+
 const fetchLatestPlayedGames = async ({
   variant = "default",
   handshake,
@@ -101,7 +146,6 @@ const fetchLatestPlayedGames = async ({
       providerGameNames: pluck("gameName", latestPlayedProviderGameNames),
     })
     .then(prop("games"));
-
   return { games, id, title };
 };
 
@@ -179,8 +223,10 @@ export const fetchGames = async ({
   market,
   playerId,
   handshake,
+  sessionId,
 }) => {
   const gameListsRequests = handshake.topListIds
+    .filter(id => id !== GAME_LIST_IDS.MY_LIST)
     .map(id => prop(id, handshake.gamesLists))
     .filter(complement(isNil))
     .map(async ({ title, id, variants, variant = "default" }) => {
@@ -227,6 +273,7 @@ export const fetchGames = async ({
         title,
       };
     });
+  const myListGames = fetchMyListGames({ sessionId });
   const latestPlayedGames = fetchLatestPlayedGames({
     handshake,
     country,
@@ -244,14 +291,21 @@ export const fetchGames = async ({
     i => i > 0,
     path(["games", "length"])
   );
+
+  const isMyList = compose(
+    id => id === GAME_LIST_IDS.MY_LIST,
+    path(["id"])
+  );
+
+  const hasSomeGamesOrIsMyList = anyPass([isMyList, hasSomeGames]);
   const allListsResponses = (await Promise.all(
     handleListsFetchErrors([
+      myListGames,
       latestPlayedGames,
       suggestedGames,
       ...gameListsRequests,
     ])
-  )).filter(hasSomeGames);
-
+  )).filter(hasSomeGamesOrIsMyList);
   const jackpots = await fetchJackpots({ market, currency });
 
   return {

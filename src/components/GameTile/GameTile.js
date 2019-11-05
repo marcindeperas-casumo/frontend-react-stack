@@ -1,10 +1,8 @@
 // @flow
-import React, { PureComponent } from "react";
+import React, { createRef, PureComponent } from "react";
 import classNames from "classnames";
-import { isEmpty } from "ramda";
 import GameTileOverlay from "Components/GameTile/GameTileOverlay";
 import GameTileImage from "Components/GameTile/GameTileImage";
-import GameTileJackpot from "Components/GameTile/GameTileJackpot";
 import type { Game } from "Types/game";
 
 import "./GameTile.scss";
@@ -14,8 +12,10 @@ export type Props = {
   game: Game,
   imgixOpts?: Object,
   onLaunchGame: Function,
+  onFavouriteGame: Function,
   ratio?: string,
   isOverlayAlwaysActive?: boolean,
+  isInMyList?: boolean,
 };
 
 type State = {
@@ -27,9 +27,13 @@ export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 export default class GameTile extends PureComponent<Props, State> {
   handleOnClick: Function;
   handleOutsideClick: Function;
+  myRef: {|
+    current: any,
+  |};
 
   constructor(props: Props) {
     super(props);
+    this.myRef = createRef();
     this.state = {
       isOverlayActive: false,
     };
@@ -41,20 +45,29 @@ export default class GameTile extends PureComponent<Props, State> {
     document.removeEventListener("click", this.handleOutsideClick);
   }
 
-  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction
+  handleOnClick(ev: SyntheticEvent<HTMLElement>) {
+    const hasClickedInOverlay = this.myRef.current
+      .querySelector(".c-game-tile__overlay")
+      .contains(ev.target);
 
-  handleOnClick() {
-    this.setState({
-      isOverlayActive: !this.state.isOverlayActive,
-    });
-    document.addEventListener("click", this.handleOutsideClick);
+    if (!hasClickedInOverlay) {
+      this.setState({
+        isOverlayActive: true,
+      });
+      document.addEventListener("click", this.handleOutsideClick);
+    }
   }
 
-  handleOutsideClick() {
-    this.setState({
-      isOverlayActive: false,
-    });
-    document.removeEventListener("click", this.handleOutsideClick);
+  handleOutsideClick(ev: SyntheticEvent<HTMLElement>) {
+    const hasClickedInOverlay = this.myRef.current
+      .querySelector(".c-game-tile__overlay")
+      .contains(ev.target);
+    if (!hasClickedInOverlay) {
+      this.setState({
+        isOverlayActive: false,
+      });
+      document.removeEventListener("click", this.handleOutsideClick);
+    }
   }
 
   render() {
@@ -62,26 +75,21 @@ export default class GameTile extends PureComponent<Props, State> {
       className,
       game = {},
       onLaunchGame,
+      onFavouriteGame,
       imgixOpts = {
         w: 170,
       },
       ratio = "game-tile",
       isOverlayAlwaysActive = false,
+      isInMyList = false,
     } = this.props;
-    const {
-      inMaintenanceMode,
-      jackpotInfo = {},
-      logoBackground,
-      logo,
-      name,
-      slug,
-    } = game;
+    const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
     const { isOverlayActive } = this.state;
-    const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
     const showOverlay = isOverlayAlwaysActive || isOverlayActive;
 
     return (
       <div
+        ref={this.myRef}
         className={classNames(
           inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
           `o-ratio--${ratio}`,
@@ -96,16 +104,18 @@ export default class GameTile extends PureComponent<Props, State> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        {showOverlay && (
-          <GameTileOverlay
-            name={name}
-            slug={slug}
-            inMaintenanceMode={inMaintenanceMode}
-            onLaunchGame={onLaunchGame}
-            alwaysActive={isOverlayAlwaysActive}
-          />
-        )}
+        <GameTileOverlay
+          className={classNames(
+            showOverlay ? "u-display--block" : "u-display--none"
+          )}
+          name={name}
+          slug={slug}
+          inMaintenanceMode={inMaintenanceMode}
+          onLaunchGame={onLaunchGame}
+          onFavouriteGame={onFavouriteGame}
+          alwaysActive={isOverlayAlwaysActive}
+          isInMyList={isInMyList}
+        />
       </div>
     );
   }

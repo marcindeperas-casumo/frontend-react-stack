@@ -12,6 +12,7 @@ import {
   fetchSuggestedGamesAction,
   initFetchSuggested,
   initFetchGameSearchCount,
+  gameSearchScrollPositionReset,
 } from "Models/gameSearch";
 import { fetchSuggestedGames } from "Api/api.games";
 
@@ -248,6 +249,14 @@ describe("Models/GameSearch/Actions", () => {
         platform,
         variant,
       });
+    });
+  });
+
+  describe("gameSearchScrollPositionReset()", () => {
+    const action = gameSearchScrollPositionReset();
+
+    test("returns an action with the correct type", () => {
+      expect(action).toEqual({ type: types.GAME_SEARCH_RESET_SCROLL_POSITION });
     });
   });
 });

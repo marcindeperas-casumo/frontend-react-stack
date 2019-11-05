@@ -18,6 +18,7 @@ import {
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
   fetchGamesByProviderSaga,
+  updateMyListSaga,
 } from "Models/games";
 import {
   types as cmsTypes,
@@ -43,6 +44,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
   types as playerGamesTypes,
@@ -145,6 +147,11 @@ export default function* rootSaga(dispatch) {
       gameSearchTypes.GAME_SEARCH_FETCH_PAGE,
       fetchGameSearchPageSaga
     ),
+    fork(
+      takeLatest,
+      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
+      resetGameSearchScrollPositionSaga
+    ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
@@ -168,4 +175,5 @@ export default function* rootSaga(dispatch) {
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
     fetchAnnualOverviewPdfUrlSaga
   );
+  yield fork(takeEvery, gameTypes.UPDATE_MY_LIST, updateMyListSaga);
 }
