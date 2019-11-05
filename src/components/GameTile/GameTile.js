@@ -39,7 +39,7 @@ const GameTile = ({
     <Flex
       className={classNames(
         "o-ratio t-color-white t-border-r--md t-background-chrome-light-1 u-overflow-hidden u-cursor-pointer",
-        inMaintenanceMode && "t-greyscale",
+        "t-greyscale": inMaintenanceMode,
         `o-ratio--${ratio}`,
         className
       )}
