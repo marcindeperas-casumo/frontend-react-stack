@@ -22,7 +22,7 @@ export type Props = {
 
 export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
 
-const GameTile = ({
+export const GameTile = ({
   className,
   game = {},
   onLaunchGame,
@@ -98,5 +98,3 @@ const GameTile = ({
     </Flex>
   );
 };
-
-export default GameTile;

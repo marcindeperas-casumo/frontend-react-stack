@@ -1,6 +1,7 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import GameTile, {
+import {
+  GameTile,
   IN_MAINTENANCE_CLASS_NAME,
 } from "Components/GameTile/GameTile";
 import gameInfo from "./__mocks__/Game.json";
