@@ -1,11 +1,12 @@
 // @flow
 import * as React from "react";
-import { useSessionsState } from "Models/slotControlSystem";
+import { useSessionsState, CMS_SLUGS } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
+import { StillOnBreak } from "Components/Compliance/SlotControlSystem/StillOnBreak";
 import { type ModalContentComponent } from "Components/RSModal";
-import { useWalletAmount } from "Utils/hooks";
+import { useWalletAmount, useTranslations } from "Utils/hooks";
 import { ModalHeader } from "../RSModalHeader";
 
 const { useEffect, useState } = React;
@@ -17,13 +18,15 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
+  const translations = useTranslations(CMS_SLUGS.CONFIGURATION_SCREEN);
+  const { amount } = useWalletAmount();
+  const [continuePlaying, setContinuePlaying] = useState(false);
   const {
     activeSession,
     isFetching,
     endedSessionDuringLastHour,
+    activeExclusion,
   } = useSessionsState();
-  const { amount } = useWalletAmount();
-  const [continuePlaying, setContinuePlaying] = useState(false);
 
   useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
@@ -33,6 +36,18 @@ export function SlotControlSystem(
 
   if (isFetching) {
     return null;
+  }
+
+  if (activeExclusion) {
+    return (
+      <ModalContentSkin {...props}>
+        <StillOnBreak
+          t={translations}
+          onClick={props.closeModal}
+          exclusionExpiryTime={activeExclusion.expiryTime}
+        />
+      </ModalContentSkin>
+    );
   }
 
   if (!hasEnoughFunds(amount)) {

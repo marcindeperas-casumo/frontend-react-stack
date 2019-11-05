@@ -8,7 +8,7 @@ import { interpolate } from "Utils";
 import StillOnBreakImage from "./StillOnBreak.svg";
 
 type Props = {
-  t: {
+  t: ?{
     still_on_break: string,
     still_on_break_subtext: string,
     still_on_break_button_label: string,
@@ -30,10 +30,10 @@ export function StillOnBreak(props: Props) {
         tag="h3"
         className="t-color-plum-dark-1 u-padding u-margin-top--lg"
       >
-        {t.still_on_break}
+        {t?.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {interpolate(t.still_on_break_subtext, {
+        {interpolate(t?.still_on_break_subtext, {
           time: exclusionExpiryTime.toFormat("T"),
         })}
       </Text>
@@ -43,7 +43,7 @@ export function StillOnBreak(props: Props) {
         onClick={onClick}
         className="u-width--full u-margin-top--3xlg"
       >
-        {t.still_on_break_button_label}
+        {t?.still_on_break_button_label || ""}
       </Button>
     </Flex>
   );
