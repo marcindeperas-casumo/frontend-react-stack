@@ -1,6 +1,7 @@
 import React from "react";
 import * as R from "ramda";
 import { shallow } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
 import ScrollablePaginated from "Components/ScrollablePaginated";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
@@ -66,10 +67,12 @@ describe("<SportsMainNav />", () => {
       const onSelected = jest.fn();
       const isLiveActive = true;
       const rendered = shallow(
-        renderAllSportsTab({ isSelected, onSelected }, [isLiveActive])
+        <MockedProvider mocks={[]}>
+          {renderAllSportsTab({ isSelected, onSelected }, [isLiveActive])}
+        </MockedProvider>
       );
 
-      expect(rendered.find("DictionaryTermTypedQuery")).toHaveLength(1);
+      expect(rendered.find("DictionaryTerm")).toHaveLength(1);
     });
   });
 

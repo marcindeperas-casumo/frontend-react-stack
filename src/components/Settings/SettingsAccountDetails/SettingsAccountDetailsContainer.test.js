@@ -1,7 +1,7 @@
 import React from "react";
-import wait from "waait";
 import { mount } from "enzyme";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "./SettingsAccountDetailsContainer";
 import {
   playerSettingsQueryMock,
@@ -18,7 +18,7 @@ describe("AccountDetails", () => {
   });
 
   describe("Player Settings", () => {
-    test("should render loader", async () => {
+    test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerSettingsQueryMock, playerSettingsLabelsQueryMock]}
@@ -38,8 +38,9 @@ describe("AccountDetails", () => {
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
@@ -51,8 +52,9 @@ describe("AccountDetails", () => {
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("Component").prop("player")).toStrictEqual(
         playerSettingsQueryMock.result.data.player
       );
@@ -68,8 +70,9 @@ describe("AccountDetails", () => {
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
@@ -81,8 +84,9 @@ describe("AccountDetails", () => {
           <SettingsAccountDetailsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels"))) //for some reason, this prop's object prototype is null
       ).toStrictEqual(playerSettingsLabelsQueryMock.result.data);

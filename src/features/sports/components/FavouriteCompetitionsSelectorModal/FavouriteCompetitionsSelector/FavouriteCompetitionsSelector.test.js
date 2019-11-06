@@ -1,11 +1,11 @@
 import React from "react";
-import wait from "waait";
 import { all, equals, F } from "ramda";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
+import { waitAndUpdateWrapper, isNilOrEmpty } from "Utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
-import { isNilOrEmpty } from "Src/utils";
-import FavouriteCompetitionsSelector, {
+import {
+  FavouriteCompetitionsSelector,
   isOrphanGroup,
   isPopularGroup,
   transformOrphanGroup,
@@ -17,7 +17,7 @@ import footballData from "./__mocks__/football";
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
 
 describe("isOrphanGroup", () => {
-  test("should return true for orphaned groups", async () => {
+  test("should return true for orphaned groups", () => {
     const orphanedGroups = [
       isOrphanGroup({ groups: undefined }),
       isOrphanGroup({ groups: null }),
@@ -27,21 +27,21 @@ describe("isOrphanGroup", () => {
     expect(all(equals(true), orphanedGroups)).toBe(true);
   });
 
-  test("should return false for non-orphaned groups", async () => {
+  test("should return false for non-orphaned groups", () => {
     const orphanGroup = isOrphanGroup({ groups: ["non-empty-array"] });
     expect(orphanGroup).toBe(false);
   });
 });
 
 describe("isPopularGroup", () => {
-  test("should return true for a popular group", async () => {
+  test("should return true for a popular group", () => {
     const popularGroup = isPopularGroup({
       groups: [{ popular: true }, { popular: false }],
     });
     expect(popularGroup).toBe(true);
   });
 
-  test("should return false for a non-popular group", async () => {
+  test("should return false for a non-popular group", () => {
     const unpopularGroups = isPopularGroup({
       groups: [
         { popular: "true" },
@@ -56,7 +56,7 @@ describe("isPopularGroup", () => {
 });
 
 describe("transformOrphanGroup", () => {
-  test("should add default properties without overriding ones from the input", async () => {
+  test("should add default properties without overriding ones from the input", () => {
     const orphanGroups = [
       {
         __typename: "EventGroup",
@@ -102,8 +102,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(FavouriteCompetitionsSelectorRegion)).toHaveLength(
       footballData.data.group.groups.filter(g => !isNilOrEmpty(g.groups))
@@ -122,8 +121,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await waitAndUpdateWrapper(rendered);
 
     expect(
       rendered
@@ -146,8 +144,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await waitAndUpdateWrapper(rendered);
 
     expect(
       rendered

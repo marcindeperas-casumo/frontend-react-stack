@@ -2,6 +2,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
+import { getApolloContext } from "@apollo/react-hooks";
 import bridge from "Src/DurandalReactBridge";
 import {
   REACT_APP_EVENT_MENU_CLOSED,
@@ -24,7 +25,6 @@ import {
   HIDE_SEARCH,
   CLOSE_ALL_MODALS_MUTATION,
 } from "Models/apollo/mutations";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
 import SportsShellSkeleton from "./SportsShellSkeleton";
 
 export const SPORTS_SHELL_QUERY = gql`
@@ -81,7 +81,7 @@ const bridgeEventHandlers = [
 ];
 
 export class SportsShellContainer extends React.Component<{}> {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   componentDidMount() {
     bridgeEventHandlers.map(([event, handler]) =>

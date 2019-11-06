@@ -3,8 +3,9 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Provider } from "react-redux";
 import ReactModal from "react-modal";
+import { ApolloProvider } from "@apollo/react-hooks";
 import { App } from "Components/App";
-import { GraphQLProvider } from "Components/GraphQLProvider";
+import { apolloClient } from "Models/apollo/apollo.client";
 import { ErrorBoundary } from "Components/ErrorBoundary";
 import bridge from "Src/DurandalReactBridge";
 import * as storage from "Lib/storage";
@@ -31,12 +32,12 @@ const renderApp = AppComponent => {
   if (root) {
     ReactDOM.render(
       <Provider store={reduxStore}>
-        <GraphQLProvider>
-          <Modal />
+        <ApolloProvider client={apolloClient}>
           <ErrorBoundary>
+            <Modal />
             <AppComponent />
           </ErrorBoundary>
-        </GraphQLProvider>
+        </ApolloProvider>
       </Provider>,
       root
     );
