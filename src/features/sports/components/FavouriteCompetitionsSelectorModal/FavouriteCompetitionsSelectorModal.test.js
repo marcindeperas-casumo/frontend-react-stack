@@ -1,7 +1,7 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import FavouriteCompetitionsSelectorModal from "./FavouriteCompetitionsSelectorModal";
@@ -33,8 +33,8 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
-    await updateWrapper(renderedSelected);
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(renderedSelected);
 
     expect(rendered.find("ModalButtonFooter").length).toBe(0);
     expect(renderedSelected.find("ModalButtonFooter").length).toBe(1);

@@ -6,7 +6,7 @@ import {
   SportsMainNav,
   SportsSubNav,
 } from "Features/sports/components/SportsNav";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
 
@@ -41,7 +41,7 @@ describe("<SportsNav/>", () => {
   test("should render without errors once data is resolved", async () => {
     const rendered = renderMocked(<SportsNav currentHash="#home" />);
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(SportsMainNav)).toHaveLength(1);
 

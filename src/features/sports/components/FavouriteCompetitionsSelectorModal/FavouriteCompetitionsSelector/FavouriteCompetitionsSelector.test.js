@@ -2,7 +2,7 @@ import React from "react";
 import { all, equals, F } from "ramda";
 import { MockedProvider } from "@apollo/react-testing";
 import { mount } from "enzyme";
-import { updateWrapper, isNilOrEmpty } from "Utils";
+import { waitAndUpdateWrapper, isNilOrEmpty } from "Utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   FavouriteCompetitionsSelector,
@@ -102,7 +102,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(FavouriteCompetitionsSelectorRegion)).toHaveLength(
       footballData.data.group.groups.filter(g => !isNilOrEmpty(g.groups))
@@ -121,7 +121,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(
       rendered
@@ -144,7 +144,7 @@ describe("<FavouriteCompetitionsSelector />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(
       rendered

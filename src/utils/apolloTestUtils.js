@@ -25,7 +25,7 @@ export async function actWait(amount: number = 0) {
 }
 
 // Use this in your test after mounting if you want the query to finish and update the wrapper
-export async function updateWrapper(
+export async function waitAndUpdateWrapper(
   wrapper: ReactWrapper<any>,
   amount: number = 0
 ) {

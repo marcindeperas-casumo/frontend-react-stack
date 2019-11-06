@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper, actWait } from "Utils";
+import { waitAndUpdateWrapper, actWait } from "Utils";
 import { DictionaryTerm } from "./DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
@@ -20,7 +20,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
@@ -42,7 +42,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe(NOT_FOUND_STRING);
   });
@@ -65,8 +65,8 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
-    await updateWrapper(rendered2);
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered2);
 
     expect(rendered.text()).toBe("Liverpool have scored 1 goal");
     expect(rendered2.text()).toBe("Manchester have scored 0 goal");
@@ -84,7 +84,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe("No goals have scored {goalCount} goal");
   });

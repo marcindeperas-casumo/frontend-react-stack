@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "./SettingsSectionsContainer";
 import {
   playerSectionsQueryMock,
@@ -39,7 +39,7 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -53,7 +53,7 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(
@@ -73,7 +73,7 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -87,7 +87,7 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))

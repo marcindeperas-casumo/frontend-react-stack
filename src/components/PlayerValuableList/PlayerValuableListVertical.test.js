@@ -2,7 +2,11 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { actWait, updateWrapper, getCacheWithIntrospections } from "Utils";
+import {
+  actWait,
+  waitAndUpdateWrapper,
+  getCacheWithIntrospections,
+} from "Utils";
 import mockedValuables from "Components/ValuableCard/__mocks__/Valuable";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
@@ -34,7 +38,7 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(SectionList).find(ValuableRow)).toHaveLength(
       mockedValuables.length
@@ -51,7 +55,7 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });

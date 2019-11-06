@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper, actWait } from "Utils";
+import { waitAndUpdateWrapper, actWait } from "Utils";
 import { PluralisableDictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
@@ -20,7 +20,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
@@ -35,7 +35,7 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.pluralValue);
   });
@@ -73,8 +73,8 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(renderedSingular);
-    await updateWrapper(renderedPlural);
+    await waitAndUpdateWrapper(renderedSingular);
+    await waitAndUpdateWrapper(renderedPlural);
 
     expect(renderedSingular.text()).toBe(NOT_FOUND_STRING);
     expect(renderedPlural.text()).toBe(NOT_FOUND_STRING);
@@ -99,8 +99,8 @@ describe("<PluralisableDictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
-    await updateWrapper(rendered2);
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered2);
 
     expect(rendered.text()).toBe("Liverpool have scored 1 goal");
     expect(rendered2.text()).toBe("Manchester have scored 0 goals");

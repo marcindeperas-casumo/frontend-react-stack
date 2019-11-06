@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "Components/Settings/SettingsNotifications/SettingsNotificationsContainer";
 import {
   withMockQueries,
@@ -54,7 +54,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("player")))
@@ -70,7 +70,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
@@ -89,7 +89,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -106,7 +106,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -130,7 +130,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -146,7 +146,7 @@ describe("Notifications", () => {
           .withdrawalNotifications
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -164,7 +164,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -179,7 +179,7 @@ describe("Notifications", () => {
           .withdrawalNotifications
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -206,7 +206,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -222,7 +222,7 @@ describe("Notifications", () => {
           .adventurerPublic
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -238,7 +238,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -253,7 +253,7 @@ describe("Notifications", () => {
           .adventurerPublic
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -277,7 +277,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -293,7 +293,7 @@ describe("Notifications", () => {
           .contactByPost
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -309,7 +309,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -324,7 +324,7 @@ describe("Notifications", () => {
           .contactByPost
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -348,7 +348,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -364,7 +364,7 @@ describe("Notifications", () => {
           .contactByPhone
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -380,7 +380,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -395,7 +395,7 @@ describe("Notifications", () => {
           .contactByPhone
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -422,7 +422,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -438,7 +438,7 @@ describe("Notifications", () => {
           .subscribedToNewsletters
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -456,7 +456,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -471,7 +471,7 @@ describe("Notifications", () => {
           .subscribedToNewsletters
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -498,7 +498,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //initial value should be the one from the query
       expect(
@@ -514,7 +514,7 @@ describe("Notifications", () => {
           .subscribedToSMSNewsletters
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       //actual response from the mutation
       expect(
@@ -532,7 +532,7 @@ describe("Notifications", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings
@@ -547,7 +547,7 @@ describe("Notifications", () => {
           .subscribedToSMSNewsletters
       ).toBe(false);
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("player").details.contactSettings

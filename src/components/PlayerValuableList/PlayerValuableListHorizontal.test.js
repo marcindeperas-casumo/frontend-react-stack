@@ -3,7 +3,11 @@ import * as React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 import Scrollable from "@casumo/cmp-scrollable";
-import { actWait, updateWrapper, getCacheWithIntrospections } from "Utils";
+import {
+  actWait,
+  waitAndUpdateWrapper,
+  getCacheWithIntrospections,
+} from "Utils";
 import { ValuableCard } from "Components/ValuableCard";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -35,7 +39,7 @@ describe("PlayerValuableListHorizontal", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(false);
     expect(rendered.find(Scrollable).find(ValuableCard)).toHaveLength(
@@ -53,7 +57,7 @@ describe("PlayerValuableListHorizontal", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ScrollableListTitleRow).prop("title")).toEqual(
       translationsMock.listTitleLabel
@@ -70,7 +74,7 @@ describe("PlayerValuableListHorizontal", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
       translationsMock.seeAllLabel
@@ -87,7 +91,7 @@ describe("PlayerValuableListHorizontal", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
       ""
@@ -104,7 +108,7 @@ describe("PlayerValuableListHorizontal", () => {
       </MockedProvider>
     );
 
-    await updateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });

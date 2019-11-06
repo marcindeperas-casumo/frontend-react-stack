@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
 import {
   withMockQueries,
@@ -48,7 +48,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("Component").prop("interval")).toStrictEqual(
         playerRealityCheckQueryMock.result.data.player.playOk.realityCheck
@@ -65,7 +65,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
@@ -84,7 +84,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -101,7 +101,7 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -119,11 +119,11 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       rendered.find("Component").simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -150,14 +150,14 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -189,14 +189,14 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -228,13 +228,13 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -270,14 +270,14 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -293,7 +293,7 @@ describe("SettingsRealityCheckContainer", () => {
         expect(updateRealityCheckInterval).toBe(10 * 60);
       });
 
-      await updateWrapper(rendered, 10);
+      await waitAndUpdateWrapper(rendered, 10);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -323,14 +323,14 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
@@ -342,7 +342,7 @@ describe("SettingsRealityCheckContainer", () => {
         await promiseFn();
       });
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")

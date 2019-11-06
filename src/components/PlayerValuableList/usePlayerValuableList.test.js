@@ -3,7 +3,7 @@ import * as React from "react";
 import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper, getCacheWithIntrospections } from "Utils";
+import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
 import { HookWrapper } from "Utils/HookWrapper";
 import bridge from "Src/DurandalReactBridge";
 import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
@@ -28,7 +28,7 @@ describe("usePlayerValuableList", () => {
         <HookWrapper hook={usePlayerValuableList} args={[]} />
       </MockedProvider>
     );
-    await updateWrapper(wrapper);
+    await waitAndUpdateWrapper(wrapper);
     expect(refetched).toBe(false);
 
     act(() => {
@@ -39,7 +39,7 @@ describe("usePlayerValuableList", () => {
         },
       });
     });
-    await updateWrapper(wrapper);
+    await waitAndUpdateWrapper(wrapper);
     expect(refetched).toBe(true);
   });
 });

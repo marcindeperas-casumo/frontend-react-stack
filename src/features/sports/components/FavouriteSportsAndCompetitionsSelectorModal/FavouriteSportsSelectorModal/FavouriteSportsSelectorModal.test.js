@@ -2,7 +2,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { actWait, updateWrapper } from "Utils";
+import { actWait, waitAndUpdateWrapper } from "Utils";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
 import { selectors } from "Features/sports/components/SportsModal/SportsModalHeader.test";
 import {
@@ -49,8 +49,8 @@ describe("<FavouriteSportsSelectorModal />", () => {
     );
 
     await actWait(20);
-    await updateWrapper(rendered);
-    await updateWrapper(renderedNoFavourites);
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(renderedNoFavourites);
 
     expect(rendered.find("ModalButtonFooter").length).toBe(1);
     expect(renderedNoFavourites.find("ModalButtonFooter").length).toBe(0);
@@ -91,8 +91,8 @@ describe("<FavouriteSportsSelectorModal />", () => {
     );
 
     await actWait(20);
-    await updateWrapper(rendered);
-    await updateWrapper(renderedNoFavourites);
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(renderedNoFavourites);
 
     expect(selectors.isBackButtonHidden(rendered)).toBe(true);
     expect(selectors.isCloseButtonHidden(rendered)).toBe(false);

@@ -1,7 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { updateWrapper } from "Utils";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "./SettingsAccountDetailsContainer";
 import {
   playerSettingsQueryMock,
@@ -39,7 +39,7 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -53,7 +53,7 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("Component").prop("player")).toStrictEqual(
         playerSettingsQueryMock.result.data.player
@@ -71,7 +71,7 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
@@ -85,7 +85,7 @@ describe("AccountDetails", () => {
         </MockedProvider>
       );
 
-      await updateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels"))) //for some reason, this prop's object prototype is null
