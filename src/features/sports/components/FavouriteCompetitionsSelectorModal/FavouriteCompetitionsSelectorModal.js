@@ -8,7 +8,7 @@ import {
   DictionaryTerm,
   PluralisableDictionaryTerm,
 } from "Features/sports/components/DictionaryTerm";
-import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
+import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
 type SelectedCompetitions = Array<FavouriteCompetitionsSelectorModal_Group>;
 

@@ -63,7 +63,7 @@ export type PlayerValuablesQuery_player_valuables = {
 };
 
 export type PlayerValuablesQuery_player = {
-  valuables: Array<?PlayerValuablesQuery_player_valuables>
+  valuables: Array<PlayerValuablesQuery_player_valuables>
 };
 
 export type PlayerValuablesQuery = {
@@ -73,6 +73,7 @@ export type PlayerValuablesQuery = {
   hoursLabel: string,
   minutesLabel: string,
   seeAllLabel: string,
+  noValuablesLabel: string,
   player: PlayerValuablesQuery_player,
 };/* @flow */
 /* eslint-disable */

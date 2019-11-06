@@ -2,8 +2,8 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { MockedProvider } from "@apollo/react-testing";
 import { StageFavouritesProvider } from "Features/sports/components/FavouriteSportsAndCompetitionsSelectorModal/StageFavouritesContext";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import { cmsImageMocks } from "Features/sports/components/CmsImage";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
@@ -18,7 +18,7 @@ import FavouriteSportsSelector from "./FavouriteSportsSelector";
 const stories = storiesOf("Sports/FavouriteSportsSelector", module);
 
 stories.add("Default", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       PlayerVerticalSportsMock,
@@ -32,11 +32,11 @@ stories.add("Default", () => (
         showCompetitionIntro={false}
       />
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("With favourites", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       withFavouritesMock,
       PlayerVerticalSportsMock,
@@ -50,11 +50,11 @@ stories.add("With favourites", () => (
         showCompetitionIntro={false}
       />
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("With favourites, first time", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       PlayerVerticalSportsMock,
@@ -68,11 +68,11 @@ stories.add("With favourites, first time", () => (
         showCompetitionIntro={true}
       />
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("First time, Sports Player", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       PlayerVerticalSportsMock,
@@ -87,11 +87,11 @@ stories.add("First time, Sports Player", () => (
         showCompetitionIntro={true}
       />
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("First time, Casino Player", () => (
-  <MockedProviderWithContext
+  <MockedProvider
     mocks={[
       noFavouritesMock,
       PlayerVerticalCasinoMock,
@@ -105,5 +105,5 @@ stories.add("First time, Casino Player", () => (
         showCompetitionIntro={true}
       />
     </StageFavouritesProvider>
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

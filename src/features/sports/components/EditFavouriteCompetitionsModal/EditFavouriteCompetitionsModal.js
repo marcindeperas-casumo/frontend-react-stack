@@ -1,7 +1,7 @@
 /* @flow */
 import * as React from "react";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { SetFavouriteCompetitions } from "Features/sports/components/GraphQL";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 
@@ -18,47 +18,37 @@ const EDIT_FAVOURITE_COMPETITIONS_QUERY = gql`
   }
 `;
 
-class EditFavouriteCompetitionsTypedQuery extends Query<
-  EditFavouriteCompetitions,
-  EditFavouriteCompetitionsVariables
-> {}
-
-const EditFavouriteCompetitionsModal = ({
+export const EditFavouriteCompetitionsModal = ({
   onClose,
   groupId = 1000093190,
-}: Props) => (
-  <EditFavouriteCompetitionsTypedQuery
-    query={EDIT_FAVOURITE_COMPETITIONS_QUERY}
-    variables={{ groupId }}
-    fetchPolicy="network-only"
-  >
-    {({ data, loading }) => {
-      if (loading || !data || !data.favouriteCompetitions) {
-        return null;
-      }
+}: Props) => {
+  const { data, loading } = useQuery(EDIT_FAVOURITE_COMPETITIONS_QUERY, {
+    variables: { groupId },
+    fetchPolicy: "network-only",
+  });
 
-      return (
-        <SetFavouriteCompetitions>
-          {setFavouriteCompetitions => (
-            <FavouriteCompetitionsSelectorModal
-              onClose={onClose}
-              onSave={selectedCompetitions => {
-                setFavouriteCompetitions({
-                  variables: {
-                    groupId,
-                    ids: selectedCompetitions.map(c => c.id),
-                  },
-                });
-                onClose();
-              }}
-              initiallySelectedCompetitions={data.favouriteCompetitions}
-              groupId={groupId}
-            />
-          )}
-        </SetFavouriteCompetitions>
-      );
-    }}
-  </EditFavouriteCompetitionsTypedQuery>
-);
+  if (loading || !data || !data.favouriteCompetitions) {
+    return null;
+  }
 
-export default EditFavouriteCompetitionsModal;
+  return (
+    <SetFavouriteCompetitions>
+      {setFavouriteCompetitions => (
+        <FavouriteCompetitionsSelectorModal
+          onClose={onClose}
+          onSave={selectedCompetitions => {
+            setFavouriteCompetitions({
+              variables: {
+                groupId,
+                ids: selectedCompetitions.map(c => c.id),
+              },
+            });
+            onClose();
+          }}
+          initiallySelectedCompetitions={data.favouriteCompetitions}
+          groupId={groupId}
+        />
+      )}
+    </SetFavouriteCompetitions>
+  );
+};

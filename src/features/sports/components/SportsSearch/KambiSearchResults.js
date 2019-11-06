@@ -27,8 +27,6 @@ export const TOP_SEARCHES_QUERY = gql`
     }
   }
 `;
-class TopSearchesTypedQuery extends Query<TopSearches, TopSearchesVariables> {}
-
 type GroupByResultTypeType = (
   SearchQuery_search[]
 ) => { [string]: SearchQuery_search[] };
@@ -96,8 +94,6 @@ const ResultRow = ({
   </div>
 );
 
-class SearchTypedQuery extends Query<SearchQuery, SearchQueryVariables> {}
-
 type Props = {
   query: string,
   onResultClick: (SearchQuery_search | TopSearches_topSearches) => void,
@@ -153,17 +149,17 @@ class KambiSearchResults extends React.Component<Props, State> {
       <GroupTitle>
         <DictionaryTerm termKey="search-results.heading.popular" />
       </GroupTitle>
-      <TopSearchesTypedQuery
+      <Query
         query={TOP_SEARCHES_QUERY}
-        variables={{ count: 5 }}
+        variables={({ count: 5 }: TopSearchesVariables)}
       >
-        {({ data = {} }) =>
+        {({ data = {} }: { data: ?TopSearches }) =>
           pipe(
             propOr([], "topSearches"),
             map(this.renderPopularSearchItem)
           )(data)
         }
-      </TopSearchesTypedQuery>
+      </Query>
     </>
   );
 
@@ -218,7 +214,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={eventGroup.termKey}
             onClick={() => {
               this.props.onResultClick(eventGroup);
-              navigateClient();
+              // navigateClient();
             }}
           >
             <Flex className="u-padding-left" spacing="md" align="center">
@@ -304,16 +300,16 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResults = () => {
-    if (this.props.hideSearchResults) {
-      return null;
-    }
+    // if (this.props.hideSearchResults) {
+    //   return null;
+    // }
 
     return (
-      <SearchTypedQuery
+      <Query
         query={SEARCH_QUERY}
-        variables={{ query: this.props.query }}
+        variables={({ query: this.props.query }: SearchQueryVariables)}
       >
-        {res => {
+        {(res: { data: ?SearchQuery, loading: boolean, error: any }) => {
           if (res.error) {
             return this.renderNoResultsFound();
           }
@@ -347,7 +343,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             </>
           );
         }}
-      </SearchTypedQuery>
+      </Query>
     );
   };
 

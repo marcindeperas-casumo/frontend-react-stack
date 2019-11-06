@@ -37,7 +37,7 @@ stories.add("Default", () => (
     <div className="u-height--screen">
       <GamesVirtualList
         games={games}
-        renderItem={id => <GameRow id={id} />}
+        renderItem={id => <GameRow id={id} search />}
         renderTitle={sectionTitle => (
           <GamesVirtualListTitle title={sectionTitle} />
         )}

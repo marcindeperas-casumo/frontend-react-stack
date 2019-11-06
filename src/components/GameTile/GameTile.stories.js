@@ -5,7 +5,7 @@ import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
 import MockStore from "Components/MockStore";
 import GameTileConnected from "Components/GameTile";
-import GameTile from "Components/GameTile/GameTile";
+import { GameTile } from "Components/GameTile/GameTile";
 import isNotChromatic from "Storybook/isNotChromatic";
 import game from "./__mocks__/Game.json";
 

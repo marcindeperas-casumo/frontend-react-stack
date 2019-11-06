@@ -1,11 +1,11 @@
-
-import { PlayerValuablesQuery } from "../PlayerValuables.graphql";
-import valuables from "Components/ValuableCard/__mocks__/Valuable.json";
+// @flow
+import { PLAYER_VALUABLES_QUERY } from "../PlayerValuables.graphql";
+import valuables from "Components/ValuableCard/__mocks__/Valuable";
 import playerValuableTranslations from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 
 export const normalQuery = {
   request: {
-    query: PlayerValuablesQuery,
+    query: PLAYER_VALUABLES_QUERY,
     variables: {},
   },
   result: {
@@ -20,7 +20,7 @@ export const normalQuery = {
 
 export const failedQuery = {
     request: {
-      query: PlayerValuablesQuery,
+      query: PLAYER_VALUABLES_QUERY,
       variables: {},
     },
     result: {

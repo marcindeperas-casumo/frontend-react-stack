@@ -36,7 +36,7 @@ describe("Models/adventure/Actions", () => {
     });
   });
 
-  test("fetchAdventurerProgression()", async () => {
+  test("fetchAdventurerProgression()", () => {
     const asyncCallData = { playerId: "1" };
     const action = fetchAdventurerProgression(asyncCallData);
 

@@ -1,4 +1,5 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { mount } from "enzyme";
 import * as R from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
@@ -11,7 +12,17 @@ import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/Ti
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import Tile from "./Tile";
 
-const items = R.map(R.toString, R.range(0, 4));
+const items = R.times(
+  i => ({
+    id: `${i}`,
+    url: `casumo.es/game/${i}`,
+    logo:
+      "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-bg.jpg",
+    background:
+      "https://cms.casumo.com/wp-content/uploads/2016/05/live-roulette-logo.png",
+  }),
+  4
+);
 const title = "Foo";
 
 describe("<TileListHorizontal /> - Mobile", () => {
@@ -50,6 +61,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
         <TileListHorizontal isLoaded={true} items={[]} title={title} />
       </MockStore>
     );
+
     expect(rendered.isEmptyRender()).toBe(true);
   });
 
@@ -65,6 +77,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
 
   test("should render title and items", () => {
     const item = {
+      id: "1",
       url: "url1",
       logo: "logo1",
       background: "background1",

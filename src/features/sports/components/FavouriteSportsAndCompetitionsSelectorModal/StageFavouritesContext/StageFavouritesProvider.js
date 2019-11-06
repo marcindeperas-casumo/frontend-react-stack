@@ -2,7 +2,7 @@
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
 import gql from "graphql-tag";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
+import { getApolloContext } from "@apollo/react-hooks";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";
@@ -63,7 +63,7 @@ class StageFavouritesProvider extends React.Component<
   ProviderProps,
   ProviderState
 > {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   constructor(props: ProviderProps) {
     super(props);

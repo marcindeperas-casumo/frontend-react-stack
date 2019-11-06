@@ -2,7 +2,7 @@
 import React, { type ElementProps } from "react";
 import { mergeDeepRight } from "ramda";
 import { Provider } from "react-redux";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { createReduxStore } from "Services/reduxStore";
 import defaultState from "Models/__mocks__/state.mock";
 

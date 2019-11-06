@@ -1,14 +1,14 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
 import { SportsFooter } from "./SportsFooter";
 import { mocks } from "./__mocks__/termMocks";
 
 const stories = storiesOf("Sports/SportsFooter", module);
 
 stories.add("Default View", () => (
-  <MockedProviderWithContext mocks={mocks}>
+  <MockedProvider mocks={mocks}>
     <SportsFooter />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

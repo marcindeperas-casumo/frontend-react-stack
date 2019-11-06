@@ -7,7 +7,7 @@
 // ====================================================
 
 export type KambiClientVisible = {
-  isSearchVisible: boolean
+  kambiClientVisible: boolean
 };/* @flow */
 /* eslint-disable */
 // This file was automatically generated and should not be edited.

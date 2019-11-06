@@ -1,6 +1,5 @@
 import React from "react";
 import { mount } from "enzyme";
-import Scrollable from "@casumo/cmp-scrollable";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";

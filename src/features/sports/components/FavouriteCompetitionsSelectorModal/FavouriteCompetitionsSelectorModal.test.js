@@ -1,12 +1,11 @@
 import React from "react";
-import wait from "waait";
 import { shallow, mount } from "enzyme";
-import waitForExpect from "wait-for-expect";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper } from "Utils";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks.js";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import FavouriteCompetitionsSelectorModal from "./FavouriteCompetitionsSelectorModal";
-import FavouriteCompetitionsSelector from "./FavouriteCompetitionsSelector";
+import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 import favouriteCompetitionsSelectorMocks from "./FavouriteCompetitionsSelector/__mocks__/favouriteCompetitionsSelectorQuery";
 
 const mocks = [...cmsMocks, ...favouriteCompetitionsSelectorMocks];
@@ -34,14 +33,11 @@ describe("<FavouriteCompetitionsSelectorModal />", () => {
       </MockedProvider>
     );
 
-    await wait(20);
-    rendered.update();
-    renderedSelected.update();
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(renderedSelected);
 
-    waitForExpect(() => {
-      expect(rendered.find("ModalButtonFooter").length).toBe(0);
-      expect(renderedSelected.find("ModalButtonFooter").length).toBe(1);
-    });
+    expect(rendered.find("ModalButtonFooter").length).toBe(0);
+    expect(renderedSelected.find("ModalButtonFooter").length).toBe(1);
   });
 
   test("should call onClose when modal is closed", () => {

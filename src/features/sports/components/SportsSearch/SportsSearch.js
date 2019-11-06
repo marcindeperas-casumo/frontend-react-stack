@@ -1,10 +1,10 @@
 /* @flow */
 import React from "react";
+import { getApolloContext } from "@apollo/react-hooks";
 import Flex from "@casumo/cmp-flex";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { UPDATE_KAMBI_CLIENT_STATE_MUTATION } from "Models/apollo/mutations";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
 import KambiSearchResults from "./KambiSearchResults";
 import "./SportsSearch.scss";
 type State = {
@@ -13,7 +13,7 @@ type State = {
 };
 
 export default class SportsSearch extends React.Component<{}, State> {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   state = {
     query: "",
