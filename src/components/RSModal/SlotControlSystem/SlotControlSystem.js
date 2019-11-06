@@ -5,8 +5,6 @@ import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSys
 import { type ModalContentComponent } from "Components/RSModal";
 import { ModalHeader } from "../RSModalHeader";
 
-const { useEffect } = React;
-
 type SlotControlSystemContent = {
   modal_title: string,
 };
@@ -16,7 +14,7 @@ export function SlotControlSystem(
 ) {
   const { activeSession, isFetching } = useSessionsState();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (activeSession) {
       props.acceptModal();
     }
