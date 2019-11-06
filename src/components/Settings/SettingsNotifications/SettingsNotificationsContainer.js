@@ -7,17 +7,11 @@ import { dataIdFromObject } from "Services/apolloCacheUtils";
 import { ErrorMessage } from "Components/ErrorMessage";
 import logger from "Services/logger";
 import {
-  // $FlowIgnore
   SetAdventurerPublicity,
-  // $FlowIgnore
   SetWithdrawalNotifications,
-  // $FlowIgnore
   SetContactByPost,
-  // $FlowIgnore
   SetContactByPhone,
-  // $FlowIgnore
   SetNewsletterSubscription,
-  // $FlowIgnore
   SetSMSNewsletterSubscription,
 } from "./Mutations.graphql";
 import {

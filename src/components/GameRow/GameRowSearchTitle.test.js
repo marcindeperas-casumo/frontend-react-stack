@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { GameRowSearchTitle } from "Components/GameRowSearch/GameRowSearchTitle";
+import { GameRowSearchTitle } from "Components/GameRow/GameRowSearchTitle";
 
 describe("<GameRowSearchTitle />", () => {
   const name = "I'm a game title";

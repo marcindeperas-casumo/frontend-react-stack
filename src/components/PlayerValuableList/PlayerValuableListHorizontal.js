@@ -1,15 +1,16 @@
-/* @flow */
-import React, { useEffect, useState } from "react";
-import { pick } from "ramda";
+// @flow
+import * as React from "react";
+import * as R from "ramda";
+import { useMutation } from "@apollo/react-hooks";
 import Scrollable from "@casumo/cmp-scrollable";
-import logger from "Services/logger";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
-import { subscribeToItemCreatedEvent } from "./utils";
-import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import { usePlayerValuableList } from "./usePlayerValuableList";
+import { UseValuable } from "./PlayerValuables.graphql";
+
 import "./PlayerValuableListHorizontal.scss";
 
 const PADDING_PER_DEVICE = {
@@ -20,31 +21,34 @@ const PADDING_PER_DEVICE = {
 
 const seeAllUrl = "player/valuables";
 
-export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
-  const {
-    loading = false,
-    valuables = [],
-    translations = {},
-    refetch = () => {},
-    onConsumeValuable,
-  } = props;
+export function PlayerValuableListHorizontal() {
+  const { loading, valuables, translations } = usePlayerValuableList();
+  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+    UseValuable
+  );
+  const consumeValuable = (id: string) =>
+    mutateValuable({
+      variables: {
+        id,
+        source: "mobile",
+      },
+    });
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
+  const showModal = setSelectedValuable;
+  const closeModal = () => setSelectedValuable(null);
+
+  if (loading) {
+    return <GameListHorizontalSkeleton />;
+  }
+
   const { listTitleLabel, seeAllLabel, noValuablesLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = useState(null);
-  const valuableThumbnailTranslations = pick(
+  const valuableThumbnailTranslations = R.pick(
     ["hoursLabel", "minutesLabel"],
     translations
   );
   const noValuablesAvailable = !valuables.length;
 
-  const showModal = valuable => {
-    setSelectedValuable(valuable);
-  };
-
-  const closeModal = () => {
-    setSelectedValuable(null);
-  };
-
-  const keyGetter = (i: number) => `valuable-card-${valuables[i].id}`;
+  const keyGetter = (i: number) => valuables[i].id;
 
   const itemRenderer = (i: number) => (
     <div id={`valuable-card-${valuables[i].id}`}>
@@ -58,22 +62,6 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
       </div>
     </div>
   );
-
-  useEffect(() => {
-    const handler = subscribeToItemCreatedEvent(({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
-
-    return function cleanup() {
-      handler.unsubscribe();
-    };
-  });
-
-  if (loading) {
-    return <GameListHorizontalSkeleton />;
-  }
 
   return (
     <div className="u-padding-top--xlg c-player-valuables-list u-padding-bottom--xlg">
@@ -100,7 +88,7 @@ export function PlayerValuableListHorizontal(props: PlayerValuableListProps) {
             <ValuableDetailsWithModal
               isOpen={Boolean(selectedValuable)}
               onClose={closeModal}
-              onConsumeValuable={onConsumeValuable}
+              onConsumeValuable={consumeValuable}
               valuableDetails={selectedValuable}
             >
               <div className="c-valuable-list__valuable-card">

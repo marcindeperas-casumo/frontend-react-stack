@@ -47,7 +47,7 @@ describe("LiveCasinoCard", () => {
       />
     );
 
-    expect(rendered.getElement()).toBe(null);
+    expect(rendered.isEmptyRender()).toBe(true);
   });
 
   test("launchGame is called when clicking in card header", () => {

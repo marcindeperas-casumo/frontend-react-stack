@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import { shallow, mount } from "enzyme";
-import MockStore from "Components/MockStore";
+import { shallow } from "enzyme";
 import { DepositLimitsOverview } from "./DepositLimitsOverview";
 import t from "./__mocks__/cms";
 

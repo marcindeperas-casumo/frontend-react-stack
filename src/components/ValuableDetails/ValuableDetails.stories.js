@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { boolean, select } from "@storybook/addon-knobs/react";
 import { F } from "ramda";
-import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
+import translations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock";
 import {
   mockValuable as mockValuableCard,
   mockExpiryDate,

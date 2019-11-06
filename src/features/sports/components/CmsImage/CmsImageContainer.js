@@ -2,13 +2,9 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import ResponsiveImage from "@casumo/cmp-responsive-image";
 import logger from "Services/logger";
-
-// We need this shenanigans to have static typing for the data returned from the query.
-// This will go away as soon as switching to Apollo Hooks.
-class CmsImageTypedQuery extends Query<CmsImageQuery, CmsImageQueryVariables> {}
 
 export const CMS_IMAGE_QUERY = gql`
   query CmsImageQuery($key: String!) {
@@ -23,22 +19,19 @@ type Props = {
   className?: string,
 };
 
-export const CmsImageContainer = ({ id, className }: Props): React.Node => (
-  <CmsImageTypedQuery query={CMS_IMAGE_QUERY} variables={{ key: id }}>
-    {({ data, loading }) => {
-      if (loading) {
-        return null;
-      }
+export const CmsImageContainer = ({ id, className }: Props): React.Node => {
+  const variables = { key: id };
+  const { data, loading } = useQuery(CMS_IMAGE_QUERY, { variables });
 
-      if (!data || !data.sportsCmsImage) {
-        logger.error(`Sports/Components/CmsImage - Image not found "${id}"`);
+  if (loading) {
+    return null;
+  }
 
-        return null;
-      }
+  if (!data || !data.sportsCmsImage) {
+    logger.error(`Sports/Components/CmsImage - Image not found "${id}"`);
 
-      return (
-        <ResponsiveImage src={data.sportsCmsImage} className={className} />
-      );
-    }}
-  </CmsImageTypedQuery>
-);
+    return null;
+  }
+
+  return <ResponsiveImage src={data.sportsCmsImage} className={className} />;
+};

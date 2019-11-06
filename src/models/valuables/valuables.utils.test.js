@@ -15,7 +15,7 @@ import {
   showStateBadge,
   getValuablesByState,
 } from "./valuables.utils";
-import translations from "./__mocks__/valuableDetailsTranslations.mock.json";
+import translations from "./__mocks__/valuableDetailsTranslations.mock";
 
 describe("Valuables.utils", () => {
   let valuableType;
