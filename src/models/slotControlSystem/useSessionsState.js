@@ -30,8 +30,9 @@ export function useSessionsState(): UseActiveSessionType {
   const isOld = activeSession
     ? activeSession.lastUpdateTime + 1000 * 60 < Date.now()
     : true;
-  const endedSessionDuringLastHour =
-    endedSession && endedSession.endTime + 1000 * 60 * 60 > Date.now();
+  const endedSessionDuringLastHour = Boolean(
+    endedSession && endedSession.endTime + 1000 * 60 * 60 > Date.now()
+  );
 
   React.useEffect(() => {
     if (isOld) {
