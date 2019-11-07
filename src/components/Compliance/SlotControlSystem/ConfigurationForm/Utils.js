@@ -1,4 +1,5 @@
 // @flow
+import { reject, isNil } from "ramda";
 import { type NewSessionRequestType } from "Models/slotControlSystem";
 import { type ConfigurationFormData } from "./ConfigurationForm";
 
@@ -23,13 +24,14 @@ export function isBudgetInvalid(props: { budget: number, balance: number }) {
 export function transformFormDataToRequestPayload(
   formData: ConfigurationFormData
 ): NewSessionRequestType {
-  return {
+  return reject(isNil, {
     durationInSecs: formData.time,
     reminderFrequencyInSecs: formData.alertsEvery,
-    postSessionExclusionInMinutes: formData.breakAfter,
+    postSessionExclusionInMinutes:
+      formData.breakAfter && formData.breakAfter / 60,
     limit: {
       amount: formData.budget,
       currency: formData.currency,
     },
-  };
+  });
 }

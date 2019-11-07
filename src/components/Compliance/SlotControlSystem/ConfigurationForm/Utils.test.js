@@ -34,13 +34,13 @@ describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
   });
 
   describe("transformFormDataToRequestPayload()", () => {
-    test("it transforms argument object into valid payload", () => {
-      const currency = "EUR";
-      const budget = 111;
-      const time = 333333333;
-      const alertsEvery = 60 * 5;
-      const breakAfter = 100;
+    const currency = "EUR";
+    const budget = 111;
+    const time = 333333333;
+    const alertsEvery = 60 * 5;
+    const breakAfter = 60 * 60;
 
+    test("it transforms argument object into valid payload", () => {
       expect(
         transformFormDataToRequestPayload({
           currency,
@@ -56,7 +56,25 @@ describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
         },
         durationInSecs: time,
         reminderFrequencyInSecs: alertsEvery,
-        postSessionExclusionInMinutes: breakAfter,
+        postSessionExclusionInMinutes: breakAfter / 60,
+      });
+    });
+
+    test("it does not include postSessionExclusionInMinutes in payload if no defined break", () => {
+      expect(
+        transformFormDataToRequestPayload({
+          currency,
+          budget,
+          time,
+          alertsEvery,
+        })
+      ).toEqual({
+        limit: {
+          currency,
+          amount: budget,
+        },
+        durationInSecs: time,
+        reminderFrequencyInSecs: alertsEvery,
       });
     });
   });

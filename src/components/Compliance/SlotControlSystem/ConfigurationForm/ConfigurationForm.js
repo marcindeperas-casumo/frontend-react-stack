@@ -41,9 +41,12 @@ export type ConfigurationFormContent = {
 export type ConfigurationFormData = {
   budget: number,
   currency: string,
+  /** in seconds */
   time: number,
+  /** in seconds */
   alertsEvery: number,
-  breakAfter: number,
+  /** in seconds */
+  breakAfter?: number,
 };
 
 type ConfigurationFormProps = {
@@ -83,7 +86,7 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
     budget: budget || 0,
     time: time || 0,
     alertsEvery: alertsEvery || 0,
-    breakAfter: breakAfter || 0,
+    breakAfter,
   };
   const onClickEditBudget = useCallback(() => {
     setScreen(SCREEN_TYPES.LIMIT_YOUR_BUDGET);

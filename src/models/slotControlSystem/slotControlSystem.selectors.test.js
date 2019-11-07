@@ -60,7 +60,7 @@ describe("Slot Control System selectors", () => {
     const state = {
       slotControlSystem: {
         activeSession,
-        endedSession: null,
+        lastEndedSession: null,
       },
     };
 
@@ -69,15 +69,15 @@ describe("Slot Control System selectors", () => {
 
   test("endedSessionSelector", () => {
     const now = Date.now();
-    const endedSession = { id: "123-123-123", endTime: now };
+    const lastEndedSession = { id: "123-123-123", endTime: now };
     const state = {
       slotControlSystem: {
         activeSession: null,
-        endedSession,
+        lastEndedSession,
       },
     };
 
-    expect(endedSessionSelector(state)).toEqual(endedSession);
+    expect(endedSessionSelector(state)).toEqual(lastEndedSession);
   });
 
   test("isCreatingSessionSelector", () => {
@@ -98,7 +98,7 @@ describe("Slot Control System selectors", () => {
     const state = {
       slotControlSystem: {
         activeSession: null,
-        endedSession: null,
+        lastEndedSession: null,
         activeExclusion,
       },
     };

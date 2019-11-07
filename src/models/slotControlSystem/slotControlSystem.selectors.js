@@ -50,7 +50,7 @@ export const activeSessionSelector: (
 export const endedSessionSelector: (
   s: Object
 ) => ?EndedSessionType = createSelector(
-  path(["slotControlSystem", "endedSession"]),
+  path(["slotControlSystem", "lastEndedSession"]),
   identity
 );
 

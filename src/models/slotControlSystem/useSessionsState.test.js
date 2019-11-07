@@ -19,13 +19,13 @@ describe("useSessionsState", () => {
     lastUpdateTime,
   };
   const endTime = Date.now() - 10000;
-  const endedSession = {
+  const lastEndedSession = {
     ...endedSessionMock,
     endTime,
   };
   const slotControlSystem: StateType = {
     activeSession,
-    endedSession,
+    lastEndedSession,
     activeExclusion: null,
   };
   const fetch = {
@@ -48,8 +48,8 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      endedSession,
-      endedSessionDuringLastHour: true,
+      lastEndedSession,
+      lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
     });
   });
@@ -74,8 +74,8 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession: null,
       isFetching: true,
-      endedSession,
-      endedSessionDuringLastHour: true,
+      lastEndedSession,
+      lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
     });
   });
@@ -85,7 +85,7 @@ describe("useSessionsState", () => {
       fetch,
       slotControlSystem: {
         ...slotControlSystem,
-        endedSession: null,
+        lastEndedSession: null,
       },
     };
     const wrapper = mount(
@@ -97,8 +97,8 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      endedSession: null,
-      endedSessionDuringLastHour: false,
+      lastEndedSession: null,
+      lastEndedSessionDuringLastHour: false,
       activeExclusion: null,
     });
   });
@@ -120,8 +120,8 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      endedSession,
-      endedSessionDuringLastHour: true,
+      lastEndedSession,
+      lastEndedSessionDuringLastHour: true,
       activeExclusion: activeExclusionMock,
     });
   });
