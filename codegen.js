@@ -7,6 +7,7 @@ module.exports = {
       "src/**/*.{graphql,js}": null,
       noRequire: true,
     },
+    { "!src/types/apollo.js": null },
   ],
   generates: {
     "src/models/apollo/introspections.json": {

@@ -74,8 +74,7 @@
     "storybook:build": "build-storybook -c .storybook -s ./.storybook/static -o .out",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --build-script-name storybook:build --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components",
-    "graphql-generate-introspections": "graphql-codegen",
-    "graphql-generate-types": "apollo codegen:generate src/types/apollo.js  --target=flow --includes=\"src/**/*{js,graphql}\" --outputFlat --no-addTypename --passthroughCustomScalars && node ./scripts/cleanupFlowGQL.js"
+    "graphql-generate": "node ./scripts/graphql-generate.js"
   },
   "husky": {
     "hooks": {
