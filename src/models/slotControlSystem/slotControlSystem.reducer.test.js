@@ -6,7 +6,6 @@ import {
   type SessionStateResponseType,
 } from "Models/slotControlSystem";
 import activeSessionMock from "./__mocks__/activeSession.mock";
-import lastEndedSessionMock from "./__mocks__/endedSession.mock";
 import endedSessionMock from "./__mocks__/endedSession.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {

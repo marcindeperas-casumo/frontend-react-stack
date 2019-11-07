@@ -1,20 +1,5 @@
 // @flow
 
-export type NewSessionRequestType = {
-  durationInSecs: number,
-  reminderFrequencyInSecs: number,
-  postSessionExclusionInMinutes?: number,
-  limit: {
-    amount: number,
-    currency: string,
-  },
-};
-
-export type SessionStateResponseType = {
-  activeSession: ?$Diff<ActiveSessionType, { lastUpdateTime: number }>,
-  lastEndedSession: ?EndedSessionType,
-};
-
 export type ActiveSessionType = {
   id: string,
   /** Unix time in millis */
@@ -51,4 +36,19 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
+};
+
+export type SessionStateResponseType = {
+  activeSession: ?$Diff<ActiveSessionType, { lastUpdateTime: number }>,
+  lastEndedSession: ?EndedSessionType,
+};
+
+export type NewSessionRequestType = {
+  durationInSecs: number,
+  reminderFrequencyInSecs: number,
+  postSessionExclusionInMinutes?: number,
+  limit: {
+    amount: number,
+    currency: string,
+  },
 };

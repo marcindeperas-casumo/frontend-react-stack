@@ -1,7 +1,6 @@
 // @flow
 import http from "Lib/http";
 import type {
-  ActiveSessionType,
   NewSessionRequestType,
   SessionStateResponseType,
 } from "Models/slotControlSystem";
