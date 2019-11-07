@@ -23,7 +23,7 @@ type Props = {
   isHidden?: boolean,
   searchMode: boolean,
   isBetslipVisible?: boolean,
-  sessionKeepAlive: () => Promise<ExecutionResult<gSessionTouch>>,
+  sessionKeepAlive: () => Promise<ExecutionResult<A.SessionTouch>>,
   onLoginCompleted?: () => void,
 };
 

@@ -6,7 +6,7 @@ import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 
 export function usePlayerValuableList() {
-  const { data, loading, refetch } = useQuery<gPlayerValuablesQuery, void>(
+  const { data, loading, refetch } = useQuery<A.PlayerValuablesQuery, void>(
     PlayerValuablesQuery,
     { returnPartialData: true }
   );

@@ -37,7 +37,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
 );
 
 export const BettingGlossaryModalContent = () => {
-  const { data, error, loading } = useQuery<gGlossaryQuery, _>(GLOSSARY_QUERY);
+  const { data, error, loading } = useQuery<A.GlossaryQuery, _>(GLOSSARY_QUERY);
 
   if (error) {
     return (

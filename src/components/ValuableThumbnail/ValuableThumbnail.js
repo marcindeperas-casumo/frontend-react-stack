@@ -21,7 +21,7 @@ import Coin from "./Icons/coin.svg";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: gValuableType,
+  valuableType: A.ValuableType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
@@ -138,7 +138,7 @@ function getStateBadgeText(
   return null;
 }
 
-function getCoinClassModifier(valuableType: gValuableType) {
+function getCoinClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
@@ -154,7 +154,7 @@ function getCoinClassModifier(valuableType: gValuableType) {
   }
 }
 
-function getCoinTextClassModifier(valuableType: gValuableType) {
+function getCoinTextClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:

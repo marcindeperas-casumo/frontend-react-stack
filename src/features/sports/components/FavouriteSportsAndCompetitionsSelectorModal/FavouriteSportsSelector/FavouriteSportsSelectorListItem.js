@@ -9,7 +9,7 @@ import CompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 type Props = {
   /** Sport group to render the favourite selector for, type comes from FavouriteSportsSelectorListItem.fragments.group */
-  group: gFavouriteSportsSelectorListItem_Group,
+  group: A.FavouriteSportsSelectorListItem_Group,
   /** Whether this group should be favouritable */
   isFavouritable?: boolean,
   /** Whether we should show an intro to selecting competitions */
@@ -23,7 +23,7 @@ type Props = {
   /** What should happen when a competition is removed  */
   onRemoveFavouriteCompetition: (
     groupId: number,
-    competition: gFavouriteSportsSelectorListItem_Group_favouriteCompetitions
+    competition: A.FavouriteSportsSelectorListItem_Group_favouriteCompetitions
   ) => void,
 };
 

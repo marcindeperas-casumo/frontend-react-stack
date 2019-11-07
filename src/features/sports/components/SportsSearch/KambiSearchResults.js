@@ -28,8 +28,8 @@ export const TOP_SEARCHES_QUERY = gql`
   }
 `;
 type GroupByResultTypeType = (
-  gSearchQuery_search[]
-) => { [string]: gSearchQuery_search[] };
+  A.SearchQuery_search[]
+) => { [string]: A.SearchQuery_search[] };
 
 const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
@@ -96,12 +96,12 @@ const ResultRow = ({
 
 type Props = {
   query: string,
-  onResultClick: (gSearchQuery_search | gTopSearches_topSearches) => void,
+  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
   hideSearchResults?: boolean,
 };
 
 type State = {
-  searchHistory: Array<gSearchQuery_search>,
+  searchHistory: Array<A.SearchQuery_search>,
 };
 
 class KambiSearchResults extends React.Component<Props, State> {
@@ -126,7 +126,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     this.state.searchHistory = this.persisted.searchHistory.get();
   }
 
-  saveSearchHistory = (searchResult: gSearchQuery_search) => {
+  saveSearchHistory = (searchResult: A.SearchQuery_search) => {
     this.setState(prevState => {
       // make sure new entry is not duplicated, is added to beginning and limit to 10
       const newHistory = [
@@ -151,9 +151,9 @@ class KambiSearchResults extends React.Component<Props, State> {
       </GroupTitle>
       <Query
         query={TOP_SEARCHES_QUERY}
-        variables={({ count: 5 }: gTopSearchesVariables)}
+        variables={({ count: 5 }: A.TopSearchesVariables)}
       >
-        {({ data = {} }: { data: ?gTopSearches }) =>
+        {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
             propOr([], "topSearches"),
             map(this.renderPopularSearchItem)
@@ -197,7 +197,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
   };
 
-  renderPopularSearchItem = (eventGroup: gTopSearches_topSearches) => {
+  renderPopularSearchItem = (eventGroup: A.TopSearches_topSearches) => {
     const [sport = eventGroup] = eventGroup.parentGroups;
 
     return (
@@ -236,7 +236,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResult = (
-    result: gSearchQuery_search,
+    result: A.SearchQuery_search,
     renderAllTextAsMatched: boolean = false
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
@@ -307,9 +307,9 @@ class KambiSearchResults extends React.Component<Props, State> {
     return (
       <Query
         query={SEARCH_QUERY}
-        variables={({ query: this.props.query }: gSearchQueryVariables)}
+        variables={({ query: this.props.query }: A.SearchQueryVariables)}
       >
-        {(res: { data: ?gSearchQuery, loading: boolean, error: any }) => {
+        {(res: { data: ?A.SearchQuery, loading: boolean, error: any }) => {
           if (res.error) {
             return this.renderNoResultsFound();
           }
@@ -323,7 +323,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           const groupedResults: {
-            [string]: gSearchQuery_search[],
+            [string]: A.SearchQuery_search[],
           } = groupByResultType(res.data.search);
 
           if (isEmpty(groupedResults)) {

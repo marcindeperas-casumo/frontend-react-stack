@@ -22,7 +22,7 @@ export const DICTIONARY_TERM_QUERY = gql`
 `;
 
 const getDictionaryTerm = (
-  data: ?gDictionaryTermQuery,
+  data: ?A.DictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements
 ): string => {
@@ -44,8 +44,8 @@ export const DictionaryTerm = ({
 }: Props): React.Node => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<
-    gDictionaryTermQuery,
-    gDictionaryTermQueryVariables
+    A.DictionaryTermQuery,
+    A.DictionaryTermQueryVariables
   >(DICTIONARY_TERM_QUERY, { variables });
   const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
 

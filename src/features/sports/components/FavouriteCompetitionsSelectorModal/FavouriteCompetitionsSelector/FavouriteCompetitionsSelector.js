@@ -11,7 +11,7 @@ import Region from "./FavouriteCompetitionsSelectorRegion";
 import Intro from "./FavouriteCompetitionsSelectorIntro";
 import Skeleton from "./FavouriteCompetitionsSelectorSkeleton";
 
-type Competition = gFavouriteCompetitionsSelectorQuery_group_groups_groups;
+type Competition = A.FavouriteCompetitionsSelectorQuery_group_groups_groups;
 type Props = {
   /** Id of Group to select competitions for */
   groupId: number,
@@ -50,16 +50,16 @@ export const FAVOURITE_COMPETITIONS_SELECTOR_QUERY = gql`
 `;
 
 export const isOrphanGroup = (
-  group: gFavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery_group
 ) => isNilOrEmpty(group.groups);
 
 export const isPopularGroup = (
-  group: gFavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery_group
 ) => any(propEq("popular", true), group.groups);
 
 // TODO:(adampilks) - change graphql server to have concept of Sports/Regions/Competitions?
 export const transformOrphanGroup = (
-  group: gFavouriteCompetitionsSelectorQuery_group
+  group: A.FavouriteCompetitionsSelectorQuery_group
 ) => ({
   popular: false,
   groups: undefined,
@@ -77,7 +77,7 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
     return <Skeleton />;
   }
 
-  const groups: Array<gFavouriteCompetitionsSelectorQuery_group_groups> =
+  const groups: Array<A.FavouriteCompetitionsSelectorQuery_group_groups> =
     data.group.groups || [];
 
   const [orphanGroups, nonOrphanGroups] = partition(isOrphanGroup, groups);

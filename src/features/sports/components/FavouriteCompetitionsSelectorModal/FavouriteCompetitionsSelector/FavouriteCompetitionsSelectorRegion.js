@@ -8,11 +8,11 @@ import CompetitionPillsList from "Features/sports/components/CompetitionPillsLis
 import { isNilOrEmpty } from "Src/utils";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 
-type Competition = gFavouriteCompetitionsSelectorRegion_Group_groups;
+type Competition = A.FavouriteCompetitionsSelectorRegion_Group_groups;
 
 type Props = {
   /** The region Group to render the selector for, type defined by FavouriteCompetitionsSelectorRegion.fragments.group */
-  group: gFavouriteCompetitionsSelectorRegion_Group,
+  group: A.FavouriteCompetitionsSelectorRegion_Group,
   /** Whether this region's competitions should be initially expanded */
   isExpanded: boolean,
   /** Is the competition with this Id selected? */

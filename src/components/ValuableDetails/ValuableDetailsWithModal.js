@@ -9,7 +9,7 @@ type Props = {
   isOpen: boolean,
   /** Close button callback */
   onClose: () => void,
-  valuableDetails: gValuableDetails_PlayerValuable,
+  valuableDetails: A.ValuableDetails_PlayerValuable,
   children: Node,
 };
 

@@ -39,7 +39,7 @@ type BadgeInfoType = {
 };
 
 export type Props = {
-  valuableDetails: gValuableDetails_PlayerValuable,
+  valuableDetails: A.ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,

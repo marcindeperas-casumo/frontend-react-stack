@@ -7,14 +7,14 @@ import { SettingsNotificationsToggleRow as ToggleRow } from "./SettingsNotificat
 import { RealityCheckField } from "./SettingsNotificationsFields";
 
 type Props = {
-  player: gPLAYER_CONTACT_SETTINGS_QUERY_player,
+  player: A.PLAYER_CONTACT_SETTINGS_QUERY_player,
   setAdventurerPublicity: (active: boolean) => void,
   setWithdrawalNotifications: (active: boolean) => void,
   setContactByPost: (active: boolean) => void,
   setContactByPhone: (active: boolean) => void,
   setNewsletterSubscription: (active: boolean) => void,
   setSMSNewsletterSubscription: (active: boolean) => void,
-  labels: gNOTIFICATIONS_LABELS_QUERY,
+  labels: A.NOTIFICATIONS_LABELS_QUERY,
 };
 
 export class SettingsNotifications extends PureComponent<Props> {

@@ -8,7 +8,7 @@ import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
 export const selectPath = (client: *, path: string) => {
-  client.mutate<gNavigateClient>({
+  client.mutate<A.NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
       path,
@@ -67,7 +67,7 @@ export const onNavItemSelected = (
     [EVENT_PROPS.SPORTS_IS_LIVE_ACTIVE]: isLiveActive,
   });
 
-  client.mutate<gNavigateClient>({
+  client.mutate<A.NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
       path,
@@ -78,8 +78,8 @@ export const onNavItemSelected = (
 
 const toSubNavItem = (
   isLiveActive: boolean,
-  sport: gUserNavigation_sportsNavigation_sport
-) => (subNav: gUserNavigation_sportsNavigation_subNav) => ({
+  sport: A.UserNavigation_sportsNavigation_sport
+) => (subNav: A.UserNavigation_sportsNavigation_subNav) => ({
   text: (
     <>
       {subNav.competition.regionCode && (
@@ -102,7 +102,7 @@ const toSubNavItem = (
 export const toNavItem = (isLiveActive: boolean) => ({
   sport,
   subNav,
-}: gUserNavigation_sportsNavigation): SportsNavItemType => ({
+}: A.UserNavigation_sportsNavigation): SportsNavItemType => ({
   text: sport.name,
   path: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,

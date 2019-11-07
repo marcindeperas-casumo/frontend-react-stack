@@ -8,11 +8,11 @@ import GroupPill from "Features/sports/components/GroupPill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 
 type CompetitionPillsListProps = {
-  competitions: Array<gCompetitionPillsList_Group>,
-  onRemove?: gCompetitionPillsList_Group => *,
+  competitions: Array<A.CompetitionPillsList_Group>,
+  onRemove?: A.CompetitionPillsList_Group => *,
   onAdd?: () => *,
-  onClick?: gCompetitionPillsList_Group => *,
-  isActive?: gCompetitionPillsList_Group => boolean,
+  onClick?: A.CompetitionPillsList_Group => *,
+  isActive?: A.CompetitionPillsList_Group => boolean,
 };
 
 const CompetitionPillsList = (props: CompetitionPillsListProps) => (

@@ -8,7 +8,7 @@ const FavouriteCompetitionsSelectorIntro = ({
   /** The group object to render the into for, type of group is defined by FavouriteCompetitionsSelectorIntro.fragments.group  */
   group,
 }: {
-  group: gFavouriteCompetitionsSelectorIntro_Group,
+  group: A.FavouriteCompetitionsSelectorIntro_Group,
 }) => (
   <Text size="sm" className="u-margin-y--xlg">
     <DictionaryTerm

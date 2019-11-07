@@ -9,8 +9,8 @@ import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsH
 import { logout } from "Services/Logout";
 
 type Props = {
-  playerLoginHistory: gPLAYER_LOGIN_HISTORY_QUERY,
-  labels: gPLAYER_SECTIONS_LABELS_QUERY,
+  playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
+  labels: A.PLAYER_SECTIONS_LABELS_QUERY,
 };
 
 const SettingsSection = ({ title, description, href }) => (

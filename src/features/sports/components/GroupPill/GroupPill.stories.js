@@ -6,12 +6,12 @@ import GroupPill from "./GroupPill";
 
 const stories = storiesOf("Sports/GroupPill", module);
 
-const groupA: gGroupPill_Group = {
+const groupA: A.GroupPill_Group = {
   name: "Group A",
   regionCode: "",
 };
 
-const groupB: gGroupPill_Group = {
+const groupB: A.GroupPill_Group = {
   name: "Group B",
   regionCode: "SE",
 };

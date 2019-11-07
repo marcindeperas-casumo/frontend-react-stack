@@ -1,9 +1,9 @@
 // @flow
 
-export type Competition = gFavouriteSportsSelectorContext_groups_favouriteCompetitions;
+export type Competition = A.FavouriteSportsSelectorContext_groups_favouriteCompetitions;
 
 export type StageFavouritesAPI = {
-  sports: Array<gFavouriteSportsSelectorContext_groups>,
+  sports: Array<A.FavouriteSportsSelectorContext_groups>,
   isFirstTimeSelectingFavourites: boolean,
   isFirstTimeSelectingFavouriteCompetitions: boolean,
   isSportsPlayer: boolean,

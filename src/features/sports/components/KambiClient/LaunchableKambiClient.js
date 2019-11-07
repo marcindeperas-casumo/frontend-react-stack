@@ -44,7 +44,7 @@ type State = {
   firstLoadCompleted: boolean,
 };
 
-class LaunchKambiMutationOnMount extends MutateOnMount<gLaunchKambi> {}
+class LaunchKambiMutationOnMount extends MutateOnMount<A.LaunchKambi> {}
 
 export class LaunchableKambiClient extends React.Component<Props, State> {
   static contextType = getApolloContext();
@@ -59,7 +59,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
 
   setFirstLoadCompleted = () => this.setState({ firstLoadCompleted: true });
 
-  isKambiClientVisible = (kambiLaunchData: gLaunchableKambiClientQuery) => {
+  isKambiClientVisible = (kambiLaunchData: A.LaunchableKambiClientQuery) => {
     return kambiLaunchData.kambiClientVisible && this.state.firstLoadCompleted;
   };
 
@@ -90,7 +90,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
           return (
             <Query query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
               {/* eslint-disable-next-line no-shadow */}
-              {({ data }: { data: ?gLaunchableKambiClientQuery }) => {
+              {({ data }: { data: ?A.LaunchableKambiClientQuery }) => {
                 if (!data) {
                   return null;
                 }

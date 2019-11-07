@@ -92,7 +92,7 @@ class StageFavouritesProvider extends React.Component<
     const {
       data: { groups: sports },
     }: {
-      data: gFavouriteSportsSelectorContext,
+      data: A.FavouriteSportsSelectorContext,
     } = await this.context.client.query({
       query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
       fetchPolicy: "network-only",
@@ -103,7 +103,7 @@ class StageFavouritesProvider extends React.Component<
         player: { vertical },
       },
     }: {
-      data: gPlayerVertical,
+      data: A.PlayerVertical,
     } = await this.context.client.query({
       query: PLAYER_VERTICAL_QUERY,
       fetchPolicy: "network-only",
@@ -127,7 +127,7 @@ class StageFavouritesProvider extends React.Component<
       .filter(g => g.canSelectSubgroups && g.favouriteCompetitions.length === 0)
       .map(g => {
         return this.context.client
-          .query<gFavouriteSportsSelectorContextCompetitionSuggestions>({
+          .query<A.FavouriteSportsSelectorContextCompetitionSuggestions>({
             query: COMPETITION_SUGGESTIONS_QUERY,
             variables: { id: g.id },
           })

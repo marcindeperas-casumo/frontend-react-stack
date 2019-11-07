@@ -5,7 +5,7 @@ import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import type { MutationProps } from "Models/apollo/types";
 
 export const NavigateClientMutation = (
-  props: MutationProps<gNavigateClient, gNavigateClientVariables>
+  props: MutationProps<A.NavigateClient, A.NavigateClientVariables>
 ) => (
   <Mutation {...props} mutation={NAVIGATE_CLIENT_MUTATION}>
     {props.children}

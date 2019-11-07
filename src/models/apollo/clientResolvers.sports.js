@@ -20,7 +20,7 @@ export const updateBetslipState = (
 
 export const openModal = async (
   _: null,
-  { modal }: { modal: gModal },
+  { modal }: { modal: A.Modal },
   context: Context
 ) => {
   const currentModals = await context.cache.readQuery({
@@ -41,7 +41,7 @@ export const openModal = async (
 
 export const closeModal = async (
   _: null,
-  { modal }: { modal: gModal },
+  { modal }: { modal: A.Modal },
   context: Context
 ) => {
   const currentModals = await context.cache.readQuery({

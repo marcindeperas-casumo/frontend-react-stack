@@ -19,7 +19,7 @@ export type SearchProps = {
 
 type Props = {
   /** The Game object containing name, logo, logoBackground and slug of the game to be rendered */
-  game: gGameRow_Game,
+  game: A.GameRow_Game,
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
   /** Class name to apply to the game row */

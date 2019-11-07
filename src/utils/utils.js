@@ -134,7 +134,7 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-export const renderBets = (bet: ?gGameRow_Game_lobby_bets) =>
+export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
   R.cond([
     [R.isNil, R.always(null)],
     [
