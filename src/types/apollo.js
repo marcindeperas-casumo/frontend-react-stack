@@ -2,53 +2,53 @@
 // ====================================================
 // GraphQL query operation: JackpotsQuery
 // ====================================================
-export type gJackpotsQuery_gamesList_games_lobby_bets = {
+export type JackpotsQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type gJackpotsQuery_gamesList_games_lobby = {
-  bets: ?gJackpotsQuery_gamesList_games_lobby_bets,
+export type JackpotsQuery_gamesList_games_lobby = {
+  bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
-export type gJackpotsQuery_gamesList_games_jackpotInfo = {
+export type JackpotsQuery_gamesList_games_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-export type gJackpotsQuery_gamesList_games = {
+export type JackpotsQuery_gamesList_games = {
   slug: string,
   name: string,
   logo: string,
   logoBackground: string,
-  lobby: ?gJackpotsQuery_gamesList_games_lobby,
-  jackpotInfo: ?gJackpotsQuery_gamesList_games_jackpotInfo,
+  lobby: ?JackpotsQuery_gamesList_games_lobby,
+  jackpotInfo: ?JackpotsQuery_gamesList_games_jackpotInfo,
 };
-export type gJackpotsQuery_gamesList = {
+export type JackpotsQuery_gamesList = {
   title: ?string,
-  games: ?Array<?gJackpotsQuery_gamesList_games>,
+  games: ?Array<?JackpotsQuery_gamesList_games>,
 };
-export type gJackpotsQuery = {
-  gamesList: ?gJackpotsQuery_gamesList,
+export type JackpotsQuery = {
+  gamesList: ?JackpotsQuery_gamesList,
 };
 
 // ====================================================
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
-export type gPlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
+export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string,
 };
-export type gPlayerValuablesQuery_player_valuables =
+export type PlayerValuablesQuery_player_valuables =
   | {
       __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
       id: string,
-      valuableState: gPlayerValuableState,
+      valuableState: PlayerValuableState,
       expirationTimeInHours: number,
       expiryDate: BigInt,
-      valuableType: gValuableType,
+      valuableType: ValuableType,
       title: string,
       content: string,
       caveat: ?string,
-      currency: gCurrency,
+      currency: Currency,
       market: string,
       backgroundImage: string,
       wageringThreshold: ?number,
@@ -57,44 +57,44 @@ export type gPlayerValuablesQuery_player_valuables =
   | {
       __typename: "PlayerValuableSpins",
       id: string,
-      valuableState: gPlayerValuableState,
+      valuableState: PlayerValuableState,
       expirationTimeInHours: number,
       expiryDate: BigInt,
-      valuableType: gValuableType,
+      valuableType: ValuableType,
       title: string,
       content: string,
       caveat: ?string,
-      currency: gCurrency,
+      currency: Currency,
       market: string,
       backgroundImage: string,
       wageringThreshold: ?number,
       leftToWager: ?number,
       description: string,
       coinValue: number,
-      requirementType: ?gRequirementType,
-      game: ?gPlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
+      requirementType: ?RequirementType,
+      game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
     }
   | {
       __typename: "PlayerValuableCash",
       id: string,
-      valuableState: gPlayerValuableState,
+      valuableState: PlayerValuableState,
       expirationTimeInHours: number,
       expiryDate: BigInt,
-      valuableType: gValuableType,
+      valuableType: ValuableType,
       title: string,
       content: string,
       caveat: ?string,
-      currency: gCurrency,
+      currency: Currency,
       market: string,
       backgroundImage: string,
       wageringThreshold: ?number,
       leftToWager: ?number,
-      requirementType: ?gRequirementType,
+      requirementType: ?RequirementType,
     };
-export type gPlayerValuablesQuery_player = {
-  valuables: Array<gPlayerValuablesQuery_player_valuables>,
+export type PlayerValuablesQuery_player = {
+  valuables: Array<?PlayerValuablesQuery_player_valuables>,
 };
-export type gPlayerValuablesQuery = {
+export type PlayerValuablesQuery = {
   listTitleLabel: string,
   availableListTitleLabel: string,
   lockedListTitleLabel: string,
@@ -102,17 +102,17 @@ export type gPlayerValuablesQuery = {
   minutesLabel: string,
   seeAllLabel: string,
   noValuablesLabel: string,
-  player: gPlayerValuablesQuery_player,
+  player: PlayerValuablesQuery_player,
 };
 
 // ====================================================
 // GraphQL mutation operation: UseValuable
 // ====================================================
 
-export type gUseValuable = {
+export type UseValuable = {
   useValuable: ?boolean,
 };
-export type gUseValuableVariables = {
+export type UseValuableVariables = {
   id: string,
   source?: ?string,
 };
@@ -121,7 +121,7 @@ export type gUseValuableVariables = {
 // GraphQL query operation: PLAYER_SETTINGS_LABELS_QUERY
 // ====================================================
 
-export type gPLAYER_SETTINGS_LABELS_QUERY = {
+export type PLAYER_SETTINGS_LABELS_QUERY = {
   name: string,
   email: string,
   password: string,
@@ -136,123 +136,123 @@ export type gPLAYER_SETTINGS_LABELS_QUERY = {
 // GraphQL query operation: PLAYER_SETTINGS_QUERY
 // ====================================================
 
-export type gPLAYER_SETTINGS_QUERY_player_details_name = {
+export type PLAYER_SETTINGS_QUERY_player_details_name = {
   __typename: "PlayerName",
   first: string,
   last: string,
 };
-export type gPLAYER_SETTINGS_QUERY_player_details_extentOfGambling = {
+export type PLAYER_SETTINGS_QUERY_player_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
-export type gPLAYER_SETTINGS_QUERY_player_details_phoneNumber = {
+export type PLAYER_SETTINGS_QUERY_player_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
-export type gPLAYER_SETTINGS_QUERY_player_details_address_country = {
+export type PLAYER_SETTINGS_QUERY_player_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
-export type gPLAYER_SETTINGS_QUERY_player_details_address = {
+export type PLAYER_SETTINGS_QUERY_player_details_address = {
   __typename: "PlayerAddress",
   city: string,
   street: string,
   postCode: string,
-  country: gPLAYER_SETTINGS_QUERY_player_details_address_country,
+  country: PLAYER_SETTINGS_QUERY_player_details_address_country,
 };
-export type gPLAYER_SETTINGS_QUERY_player_details = {
+export type PLAYER_SETTINGS_QUERY_player_details = {
   __typename: "PlayerDetails",
-  name: gPLAYER_SETTINGS_QUERY_player_details_name,
+  name: PLAYER_SETTINGS_QUERY_player_details_name,
   canChangePassword: boolean,
-  extentOfGambling: gPLAYER_SETTINGS_QUERY_player_details_extentOfGambling,
-  phoneNumber: gPLAYER_SETTINGS_QUERY_player_details_phoneNumber,
-  address: gPLAYER_SETTINGS_QUERY_player_details_address,
+  extentOfGambling: PLAYER_SETTINGS_QUERY_player_details_extentOfGambling,
+  phoneNumber: PLAYER_SETTINGS_QUERY_player_details_phoneNumber,
+  address: PLAYER_SETTINGS_QUERY_player_details_address,
   email: string,
 };
-export type gPLAYER_SETTINGS_QUERY_player = {
+export type PLAYER_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
-  details: gPLAYER_SETTINGS_QUERY_player_details,
+  details: PLAYER_SETTINGS_QUERY_player_details,
 };
-export type gPLAYER_SETTINGS_QUERY = {
-  player: gPLAYER_SETTINGS_QUERY_player,
+export type PLAYER_SETTINGS_QUERY = {
+  player: PLAYER_SETTINGS_QUERY_player,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetAdventurerPublicity
 // ====================================================
 
-export type gSetAdventurerPublicity = {
+export type SetAdventurerPublicity = {
   setAdventurerPublicity: ?boolean,
 };
-export type gSetAdventurerPublicityVariables = {
-  input?: ?gContactSettingsInput,
+export type SetAdventurerPublicityVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetWithdrawalNotifications
 // ====================================================
 
-export type gSetWithdrawalNotifications = {
+export type SetWithdrawalNotifications = {
   setWithdrawalNotifications: ?boolean,
 };
-export type gSetWithdrawalNotificationsVariables = {
-  input?: ?gContactSettingsInput,
+export type SetWithdrawalNotificationsVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetNewsletterSubscription
 // ====================================================
 
-export type gSetNewsletterSubscription = {
+export type SetNewsletterSubscription = {
   setNewsletterSubscription: ?boolean,
 };
-export type gSetNewsletterSubscriptionVariables = {
-  input?: ?gContactSettingsInput,
+export type SetNewsletterSubscriptionVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetSMSNewsletterSubscription
 // ====================================================
 
-export type gSetSMSNewsletterSubscription = {
+export type SetSMSNewsletterSubscription = {
   setSMSNewsletterSubscription: ?boolean,
 };
-export type gSetSMSNewsletterSubscriptionVariables = {
-  input?: ?gContactSettingsInput,
+export type SetSMSNewsletterSubscriptionVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPhone
 // ====================================================
 
-export type gSetContactByPhone = {
+export type SetContactByPhone = {
   setContactByPhone: ?boolean,
 };
-export type gSetContactByPhoneVariables = {
-  input?: ?gContactSettingsInput,
+export type SetContactByPhoneVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPost
 // ====================================================
 
-export type gSetContactByPost = {
+export type SetContactByPost = {
   setContactByPost: ?boolean,
 };
-export type gSetContactByPostVariables = {
-  input?: ?gContactSettingsInput,
+export type SetContactByPostVariables = {
+  input?: ?ContactSettingsInput,
 };
 
 // ====================================================
 // GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
 // ====================================================
 
-export type gPLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
+export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
   withdrawalNotifications: boolean,
   adventurerPublic: boolean,
   subscribedToNewsletters: boolean,
@@ -260,34 +260,34 @@ export type gPLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
   contactByPhone: boolean,
   contactByPost: boolean,
 };
-export type gPLAYER_CONTACT_SETTINGS_QUERY_player_details = {
-  contactSettings: gPLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
+export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
+  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
 };
-export type gPLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
+export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
   __typename: "PlayerRealityCheckSettings",
   canChangeInterval: boolean,
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-export type gPLAYER_CONTACT_SETTINGS_QUERY_player_playOk = {
+export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
-  realityCheck: gPLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck,
+  realityCheck: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck,
 };
-export type gPLAYER_CONTACT_SETTINGS_QUERY_player = {
+export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
-  details: gPLAYER_CONTACT_SETTINGS_QUERY_player_details,
-  playOk: gPLAYER_CONTACT_SETTINGS_QUERY_player_playOk,
+  details: PLAYER_CONTACT_SETTINGS_QUERY_player_details,
+  playOk: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk,
 };
-export type gPLAYER_CONTACT_SETTINGS_QUERY = {
-  player: gPLAYER_CONTACT_SETTINGS_QUERY_player,
+export type PLAYER_CONTACT_SETTINGS_QUERY = {
+  player: PLAYER_CONTACT_SETTINGS_QUERY_player,
 };
 
 // ====================================================
 // GraphQL query operation: NOTIFICATIONS_LABELS_QUERY
 // ====================================================
 
-export type gNOTIFICATIONS_LABELS_QUERY = {
+export type NOTIFICATIONS_LABELS_QUERY = {
   subscriptionsTitle: string,
   subscriptionsDescription: string,
   subscriptionsEmailLabel: string,
@@ -304,18 +304,18 @@ export type gNOTIFICATIONS_LABELS_QUERY = {
 // GraphQL mutation operation: UpdateRealityCheckInterval
 // ====================================================
 
-export type gUpdateRealityCheckInterval = {
+export type UpdateRealityCheckInterval = {
   updateRealityCheckInterval: ?number,
 };
-export type gUpdateRealityCheckIntervalVariables = {
-  input?: ?gUpdateRealityCheckIntervalInput,
+export type UpdateRealityCheckIntervalVariables = {
+  input?: ?UpdateRealityCheckIntervalInput,
 };
 
 // ====================================================
 // GraphQL query operation: REALITY_CHECK_LABELS_QUERY
 // ====================================================
 
-export type gREALITY_CHECK_LABELS_QUERY = {
+export type REALITY_CHECK_LABELS_QUERY = {
   inGameSessionUpdatesLabel: string,
   inGameSessionUpdatesFrequencyLabel: string,
   save: string,
@@ -326,45 +326,45 @@ export type gREALITY_CHECK_LABELS_QUERY = {
 // GraphQL query operation: PLAYER_REALITY_CHECK_QUERY
 // ====================================================
 
-export type gPLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
+export type PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
   __typename: "PlayerRealityCheckSettings",
   canChangeInterval: boolean,
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-export type gPLAYER_REALITY_CHECK_QUERY_player_playOk = {
+export type PLAYER_REALITY_CHECK_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
-  realityCheck: gPLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
+  realityCheck: PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
 };
-export type gPLAYER_REALITY_CHECK_QUERY_player = {
+export type PLAYER_REALITY_CHECK_QUERY_player = {
   id: string,
   __typename: "Player",
-  playOk: gPLAYER_REALITY_CHECK_QUERY_player_playOk,
+  playOk: PLAYER_REALITY_CHECK_QUERY_player_playOk,
 };
-export type gPLAYER_REALITY_CHECK_QUERY = {
-  player: gPLAYER_REALITY_CHECK_QUERY_player,
+export type PLAYER_REALITY_CHECK_QUERY = {
+  player: PLAYER_REALITY_CHECK_QUERY_player,
 };
 
 // ====================================================
 // GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
 // ====================================================
 
-export type gPLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
+export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
   loginTime: Long,
 };
-export type gPLAYER_LOGIN_HISTORY_QUERY_player = {
+export type PLAYER_LOGIN_HISTORY_QUERY_player = {
   id: string,
-  loginHistory: Array<gPLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
+  loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
 };
-export type gPLAYER_LOGIN_HISTORY_QUERY = {
-  player: gPLAYER_LOGIN_HISTORY_QUERY_player,
+export type PLAYER_LOGIN_HISTORY_QUERY = {
+  player: PLAYER_LOGIN_HISTORY_QUERY_player,
 };
 
 // ====================================================
 // GraphQL query operation: PLAYER_SECTIONS_LABELS_QUERY
 // ====================================================
 
-export type gPLAYER_SECTIONS_LABELS_QUERY = {
+export type PLAYER_SECTIONS_LABELS_QUERY = {
   accountDetailsTitle: string,
   accountDetailsDescription: string,
   notificationsTitle: string,
@@ -379,7 +379,7 @@ export type gPLAYER_SECTIONS_LABELS_QUERY = {
 // GraphQL query operation: ValuableDetailsQuery
 // ====================================================
 
-export type gValuableDetailsQuery = {
+export type ValuableDetailsQuery = {
   termsAndConditionLabel: string,
   cashUnlockedActionLabel: string,
   spinsUnlockedActionLabel: string,
@@ -401,24 +401,24 @@ export type gValuableDetailsQuery = {
 // GraphQL query operation: GlossaryQuery
 // ====================================================
 
-export type gGlossaryQuery_glossary = {
+export type GlossaryQuery_glossary = {
   id: string,
   term: string,
   aka: ?string,
   definition: string,
 };
-export type gGlossaryQuery = {
-  glossary: Array<gGlossaryQuery_glossary>,
+export type GlossaryQuery = {
+  glossary: Array<GlossaryQuery_glossary>,
 };
 
 // ====================================================
 // GraphQL query operation: CmsImageQuery
 // ====================================================
 
-export type gCmsImageQuery = {
+export type CmsImageQuery = {
   sportsCmsImage: ?string,
 };
-export type gCmsImageQueryVariables = {
+export type CmsImageQueryVariables = {
   key: string,
 };
 
@@ -426,10 +426,10 @@ export type gCmsImageQueryVariables = {
 // GraphQL query operation: DictionaryTermQuery
 // ====================================================
 
-export type gDictionaryTermQuery = {
+export type DictionaryTermQuery = {
   dictionaryTerm: string,
 };
-export type gDictionaryTermQueryVariables = {
+export type DictionaryTermQueryVariables = {
   key: string,
 };
 
@@ -437,11 +437,11 @@ export type gDictionaryTermQueryVariables = {
 // GraphQL query operation: PluralisableDictionaryTermQuery
 // ====================================================
 
-export type gPluralisableDictionaryTermQuery = {
+export type PluralisableDictionaryTermQuery = {
   singularTerm: string,
   pluralTerm: string,
 };
-export type gPluralisableDictionaryTermQueryVariables = {
+export type PluralisableDictionaryTermQueryVariables = {
   singularKey: string,
   pluralKey: string,
 };
@@ -450,16 +450,16 @@ export type gPluralisableDictionaryTermQueryVariables = {
 // GraphQL query operation: EditFavouriteCompetitions
 // ====================================================
 
-export type gEditFavouriteCompetitions_favouriteCompetitions = {
+export type EditFavouriteCompetitions_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
   id: number,
 };
-export type gEditFavouriteCompetitions = {
-  favouriteCompetitions: Array<gEditFavouriteCompetitions_favouriteCompetitions>,
+export type EditFavouriteCompetitions = {
+  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>,
 };
-export type gEditFavouriteCompetitionsVariables = {
+export type EditFavouriteCompetitionsVariables = {
   groupId: number,
 };
 
@@ -467,7 +467,7 @@ export type gEditFavouriteCompetitionsVariables = {
 // GraphQL query operation: FavouriteCompetitionsSelectorQuery
 // ====================================================
 
-export type gFavouriteCompetitionsSelectorQuery_group_groups_groups = {
+export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
   /**
    * Unique identifier of the event group
    */
@@ -493,7 +493,7 @@ export type gFavouriteCompetitionsSelectorQuery_group_groups_groups = {
    */
   popular: boolean,
 };
-export type gFavouriteCompetitionsSelectorQuery_group_groups = {
+export type FavouriteCompetitionsSelectorQuery_group_groups = {
   /**
    * Unique identifier of the event group
    */
@@ -517,9 +517,9 @@ export type gFavouriteCompetitionsSelectorQuery_group_groups = {
   /**
    * Array of subgroups in this event group
    */
-  groups: ?Array<gFavouriteCompetitionsSelectorQuery_group_groups_groups>,
+  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,
 };
-export type gFavouriteCompetitionsSelectorQuery_group = {
+export type FavouriteCompetitionsSelectorQuery_group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -528,16 +528,16 @@ export type gFavouriteCompetitionsSelectorQuery_group = {
   /**
    * Array of subgroups in this event group
    */
-  groups: ?Array<gFavouriteCompetitionsSelectorQuery_group_groups>,
+  groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups>,
 };
-export type gFavouriteCompetitionsSelectorQuery = {
+export type FavouriteCompetitionsSelectorQuery = {
   /**
    * Get list of sub-groups from a given group"
    */
-  group: gFavouriteCompetitionsSelectorQuery_group,
+  group: FavouriteCompetitionsSelectorQuery_group,
   internationalGroupName: string,
 };
-export type gFavouriteCompetitionsSelectorQueryVariables = {
+export type FavouriteCompetitionsSelectorQueryVariables = {
   groupId: number,
 };
 
@@ -545,7 +545,7 @@ export type gFavouriteCompetitionsSelectorQueryVariables = {
 // GraphQL query operation: FavouriteSportsSelectorContextCompetitionSuggestions
 // ====================================================
 
-export type gFavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions = {
+export type FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -561,13 +561,13 @@ export type gFavouriteSportsSelectorContextCompetitionSuggestions_topCompetition
    */
   name: string,
 };
-export type gFavouriteSportsSelectorContextCompetitionSuggestions = {
+export type FavouriteSportsSelectorContextCompetitionSuggestions = {
   /**
    * TopCompetitions returns the most popular subgroups of a group, currently based on number of events
    */
-  topCompetitions: Array<gFavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>,
+  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>,
 };
-export type gFavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
+export type FavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
   id: number,
 };
 
@@ -575,7 +575,7 @@ export type gFavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
 // GraphQL query operation: FavouriteSportsSelectorContext
 // ====================================================
 
-export type gFavouriteSportsSelectorContext_groups_favouriteCompetitions = {
+export type FavouriteSportsSelectorContext_groups_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -596,7 +596,7 @@ export type gFavouriteSportsSelectorContext_groups_favouriteCompetitions = {
    */
   regionCode: ?string,
 };
-export type gFavouriteSportsSelectorContext_groups = {
+export type FavouriteSportsSelectorContext_groups = {
   /**
    * Unique identifier of the event group
    */
@@ -636,44 +636,44 @@ export type gFavouriteSportsSelectorContext_groups = {
   /**
    * The favourited competitions for this EventGroup
    */
-  favouriteCompetitions: Array<gFavouriteSportsSelectorContext_groups_favouriteCompetitions>,
+  favouriteCompetitions: Array<FavouriteSportsSelectorContext_groups_favouriteCompetitions>,
 };
-export type gFavouriteSportsSelectorContext = {
+export type FavouriteSportsSelectorContext = {
   /**
    * Get list of available event groups from the root level
    */
-  groups: Array<gFavouriteSportsSelectorContext_groups>,
+  groups: Array<FavouriteSportsSelectorContext_groups>,
 };
 
 // ====================================================
 // GraphQL query operation: PlayerVertical
 // ====================================================
 
-export type gPlayerVertical_player = {
-  vertical: gVertical,
+export type PlayerVertical_player = {
+  vertical: Vertical,
 };
-export type gPlayerVertical = {
-  player: gPlayerVertical_player,
+export type PlayerVertical = {
+  player: PlayerVertical_player,
 };
 
 // ====================================================
 // GraphQL mutation operation: LaunchKambi
 // ====================================================
 
-export type gLaunchKambi_launchKambi = {
+export type LaunchKambi_launchKambi = {
   clientBootstrapUrl: string,
   providerPlayerId: string,
   ticket: string,
 };
-export type gLaunchKambi = {
-  launchKambi: ?gLaunchKambi_launchKambi,
+export type LaunchKambi = {
+  launchKambi: ?LaunchKambi_launchKambi,
 };
 
 // ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
 // ====================================================
 
-export type gLaunchableKambiClientQuery = {
+export type LaunchableKambiClientQuery = {
   userHomepage: ?string,
   kambiClientVisible: boolean,
   isBetslipVisible: boolean,
@@ -683,7 +683,7 @@ export type gLaunchableKambiClientQuery = {
 // GraphQL query operation: UserNavigation
 // ====================================================
 
-export type gUserNavigation_sportsNavigation_sport = {
+export type UserNavigation_sportsNavigation_sport = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -725,7 +725,7 @@ export type gUserNavigation_sportsNavigation_sport = {
    */
   canSelectSubgroups: boolean,
 };
-export type gUserNavigation_sportsNavigation_subNav_competition = {
+export type UserNavigation_sportsNavigation_subNav_competition = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -756,20 +756,20 @@ export type gUserNavigation_sportsNavigation_subNav_competition = {
    */
   regionCode: ?string,
 };
-export type gUserNavigation_sportsNavigation_subNav = {
-  competition: gUserNavigation_sportsNavigation_subNav_competition,
+export type UserNavigation_sportsNavigation_subNav = {
+  competition: UserNavigation_sportsNavigation_subNav_competition,
 };
-export type gUserNavigation_sportsNavigation = {
-  sport: gUserNavigation_sportsNavigation_sport,
-  subNav: Array<gUserNavigation_sportsNavigation_subNav>,
+export type UserNavigation_sportsNavigation = {
+  sport: UserNavigation_sportsNavigation_sport,
+  subNav: Array<UserNavigation_sportsNavigation_subNav>,
 };
-export type gUserNavigation = {
+export type UserNavigation = {
   allLabel: string,
   editLabel: string,
   liveLabel: string,
-  sportsNavigation: Array<gUserNavigation_sportsNavigation>,
+  sportsNavigation: Array<UserNavigation_sportsNavigation>,
 };
-export type gUserNavigationVariables = {
+export type UserNavigationVariables = {
   live: boolean,
 };
 
@@ -777,7 +777,7 @@ export type gUserNavigationVariables = {
 // GraphQL query operation: TopSearches
 // ====================================================
 
-export type gTopSearches_topSearches_parentGroups = {
+export type TopSearches_topSearches_parentGroups = {
   /**
    * The icon for the sport group
    */
@@ -788,7 +788,7 @@ export type gTopSearches_topSearches_parentGroups = {
    */
   name: string,
 };
-export type gTopSearches_topSearches = {
+export type TopSearches_topSearches = {
   /**
    * Normalized name of the group
    */
@@ -812,15 +812,15 @@ export type gTopSearches_topSearches = {
   /**
    * Array of parents of this group in order, be careful with nesting!
    */
-  parentGroups: Array<gTopSearches_topSearches_parentGroups>,
+  parentGroups: Array<TopSearches_topSearches_parentGroups>,
 };
-export type gTopSearches = {
+export type TopSearches = {
   /**
    * Top searches returns the event groups for the groupIds marked as popular
    */
-  topSearches: Array<gTopSearches_topSearches>,
+  topSearches: Array<TopSearches_topSearches>,
 };
-export type gTopSearchesVariables = {
+export type TopSearchesVariables = {
   count: number,
 };
 
@@ -828,7 +828,7 @@ export type gTopSearchesVariables = {
 // GraphQL query operation: SearchQuery
 // ====================================================
 
-export type gSearchQuery_search_sport = {
+export type SearchQuery_search_sport = {
   /**
    * The icon for the sport group
    */
@@ -839,11 +839,11 @@ export type gSearchQuery_search_sport = {
    */
   name: string,
 };
-export type gSearchQuery_search = {
+export type SearchQuery_search = {
   /**
    * The type of search result, N.B Not overly reliable"
    */
-  type: gSearchResultType,
+  type: SearchResultType,
 
   /**
    * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)"
@@ -859,15 +859,15 @@ export type gSearchQuery_search = {
    * The sport that this search result is associated to is nullable as relies on
    * finding by Kambi controlled data.
    */
-  sport: ?gSearchQuery_search_sport,
+  sport: ?SearchQuery_search_sport,
 };
-export type gSearchQuery = {
+export type SearchQuery = {
   /**
    * Search for events matching a given query, non english lang will search english results too"
    */
-  search: Array<gSearchQuery_search>,
+  search: Array<SearchQuery_search>,
 };
-export type gSearchQueryVariables = {
+export type SearchQueryVariables = {
   query: string,
 };
 
@@ -875,7 +875,7 @@ export type gSearchQueryVariables = {
 // GraphQL query operation: SportsShellQuery
 // ====================================================
 
-export type gSportsShellQuery = {
+export type SportsShellQuery = {
   hasSelectedFavourites: boolean,
   isSearchVisible: boolean,
 };
@@ -884,10 +884,10 @@ export type gSportsShellQuery = {
 // GraphQL mutation operation: NavigateClient
 // ====================================================
 
-export type gNavigateClient = {
+export type NavigateClient = {
   navigateClient: ?boolean,
 };
-export type gNavigateClientVariables = {
+export type NavigateClientVariables = {
   path: string,
   trackingLocation: string,
 };
@@ -896,29 +896,29 @@ export type gNavigateClientVariables = {
 // GraphQL mutation operation: OpenModal
 // ====================================================
 
-export type gOpenModal = {
+export type OpenModal = {
   openModal: ?boolean,
 };
-export type gOpenModalVariables = {
-  modal: gModal,
+export type OpenModalVariables = {
+  modal: Modal,
 };
 
 // ====================================================
 // GraphQL mutation operation: CloseModal
 // ====================================================
 
-export type gCloseModal = {
+export type CloseModal = {
   closeModal: ?boolean,
 };
-export type gCloseModalVariables = {
-  modal: gModal,
+export type CloseModalVariables = {
+  modal: Modal,
 };
 
 // ====================================================
 // GraphQL mutation operation: CloseAllModals
 // ====================================================
 
-export type gCloseAllModals = {
+export type CloseAllModals = {
   closeAllModals: ?boolean,
 };
 
@@ -926,10 +926,10 @@ export type gCloseAllModals = {
 // GraphQL mutation operation: UpdateKambiClientState
 // ====================================================
 
-export type gUpdateKambiClientState = {
+export type UpdateKambiClientState = {
   updateKambiClientState: ?boolean,
 };
-export type gUpdateKambiClientStateVariables = {
+export type UpdateKambiClientStateVariables = {
   isVisible: boolean,
 };
 
@@ -937,10 +937,10 @@ export type gUpdateKambiClientStateVariables = {
 // GraphQL mutation operation: UpdateBetslipState
 // ====================================================
 
-export type gUpdateBetslipState = {
+export type UpdateBetslipState = {
   updateBetslipState: ?boolean,
 };
-export type gUpdateBetslipStateVariables = {
+export type UpdateBetslipStateVariables = {
   isVisible: boolean,
 };
 
@@ -948,7 +948,7 @@ export type gUpdateBetslipStateVariables = {
 // GraphQL mutation operation: ShowSearch
 // ====================================================
 
-export type gShowSearch = {
+export type ShowSearch = {
   showSearch: ?boolean,
 };
 
@@ -956,7 +956,7 @@ export type gShowSearch = {
 // GraphQL mutation operation: HideSearch
 // ====================================================
 
-export type gHideSearch = {
+export type HideSearch = {
   hideSearch: ?boolean,
 };
 
@@ -964,7 +964,7 @@ export type gHideSearch = {
 // GraphQL mutation operation: ToggleFavouriteGroup
 // ====================================================
 
-export type gToggleFavouriteGroup_toggleFavouriteGroup = {
+export type ToggleFavouriteGroup_toggleFavouriteGroup = {
   /**
    * Unique identifier of the event group
    */
@@ -975,10 +975,10 @@ export type gToggleFavouriteGroup_toggleFavouriteGroup = {
    */
   userFavourite: boolean,
 };
-export type gToggleFavouriteGroup = {
-  toggleFavouriteGroup: gToggleFavouriteGroup_toggleFavouriteGroup,
+export type ToggleFavouriteGroup = {
+  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup,
 };
-export type gToggleFavouriteGroupVariables = {
+export type ToggleFavouriteGroupVariables = {
   id: number,
 };
 
@@ -986,7 +986,7 @@ export type gToggleFavouriteGroupVariables = {
 // GraphQL mutation operation: SetFavourites
 // ====================================================
 
-export type gSetFavourites_setFavouriteGroups = {
+export type SetFavourites_setFavouriteGroups = {
   /**
    * Unique identifier of the event group
    */
@@ -997,10 +997,10 @@ export type gSetFavourites_setFavouriteGroups = {
    */
   userFavourite: boolean,
 };
-export type gSetFavourites = {
-  setFavouriteGroups: Array<gSetFavourites_setFavouriteGroups>,
+export type SetFavourites = {
+  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>,
 };
-export type gSetFavouritesVariables = {
+export type SetFavouritesVariables = {
   ids: Array<number>,
 };
 
@@ -1008,7 +1008,7 @@ export type gSetFavouritesVariables = {
 // GraphQL mutation operation: SetFavouriteCompetitions
 // ====================================================
 
-export type gSetFavouriteCompetitions_setFavouriteCompetitions = {
+export type SetFavouriteCompetitions_setFavouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -1019,10 +1019,10 @@ export type gSetFavouriteCompetitions_setFavouriteCompetitions = {
    */
   userFavourite: boolean,
 };
-export type gSetFavouriteCompetitions = {
-  setFavouriteCompetitions: Array<gSetFavouriteCompetitions_setFavouriteCompetitions>,
+export type SetFavouriteCompetitions = {
+  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>,
 };
-export type gSetFavouriteCompetitionsVariables = {
+export type SetFavouriteCompetitionsVariables = {
   groupId: number,
   ids: Array<number>,
 };
@@ -1031,7 +1031,7 @@ export type gSetFavouriteCompetitionsVariables = {
 // GraphQL mutation operation: SessionTouch
 // ====================================================
 
-export type gSessionTouch = {
+export type SessionTouch = {
   /**
    * Pings the current session to keep it alive, requires the session cookie to be present in the headers
    */
@@ -1042,15 +1042,15 @@ export type gSessionTouch = {
 // GraphQL query operation: ActiveModals
 // ====================================================
 
-export type gActiveModals = {
-  activeModals: Array<gModal>,
+export type ActiveModals = {
+  activeModals: Array<Modal>,
 };
 
 // ====================================================
 // GraphQL query operation: BetslipVisible
 // ====================================================
 
-export type gBetslipVisible = {
+export type BetslipVisible = {
   isBetslipVisible: boolean,
 };
 
@@ -1058,7 +1058,7 @@ export type gBetslipVisible = {
 // GraphQL query operation: KambiClientVisible
 // ====================================================
 
-export type gKambiClientVisible = {
+export type KambiClientVisible = {
   kambiClientVisible: boolean,
 };
 
@@ -1066,7 +1066,7 @@ export type gKambiClientVisible = {
 // GraphQL query operation: SearchVisible
 // ====================================================
 
-export type gSearchVisible = {
+export type SearchVisible = {
   isSearchVisible: boolean,
 };
 
@@ -1074,276 +1074,276 @@ export type gSearchVisible = {
 // GraphQL fragment: GameRow_Game
 // ====================================================
 
-export type gGameRow_Game_lobby_bets = {
+export type GameRow_Game_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type gGameRow_Game_lobby = {
-  bets: ?gGameRow_Game_lobby_bets,
+export type GameRow_Game_lobby = {
+  bets: ?GameRow_Game_lobby_bets,
 };
-export type gGameRow_Game_jackpotInfo = {
+export type GameRow_Game_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-export type gGameRow_Game = {
+export type GameRow_Game = {
   slug: string,
   name: string,
   logo: string,
   logoBackground: string,
-  lobby: ?gGameRow_Game_lobby,
-  jackpotInfo: ?gGameRow_Game_jackpotInfo,
+  lobby: ?GameRow_Game_lobby,
+  jackpotInfo: ?GameRow_Game_jackpotInfo,
 };
 
 // ====================================================
 // GraphQL fragment: Jackpots_Game
 // ====================================================
 
-export type gJackpots_Game_lobby_bets = {
+export type Jackpots_Game_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type gJackpots_Game_lobby = {
-  bets: ?gJackpots_Game_lobby_bets,
+export type Jackpots_Game_lobby = {
+  bets: ?Jackpots_Game_lobby_bets,
 };
-export type gJackpots_Game_jackpotInfo = {
+export type Jackpots_Game_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-export type gJackpots_Game = {
+export type Jackpots_Game = {
   slug: string,
   name: string,
   logo: string,
   logoBackground: string,
-  lobby: ?gJackpots_Game_lobby,
-  jackpotInfo: ?gJackpots_Game_jackpotInfo,
+  lobby: ?Jackpots_Game_lobby,
+  jackpotInfo: ?Jackpots_Game_jackpotInfo,
 };
 
 // ====================================================
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
-export type gPlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
-  valuableState: gPlayerValuableState,
+  valuableState: PlayerValuableState,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
+  valuableType: ValuableType,
   title: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   backgroundImage: string,
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
-export type gPlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
   slug: string,
 };
-export type gPlayerValuableList_PlayerValuable_PlayerValuableSpins = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
-  valuableState: gPlayerValuableState,
+  valuableState: PlayerValuableState,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
+  valuableType: ValuableType,
   title: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   backgroundImage: string,
   wageringThreshold: ?number,
   leftToWager: ?number,
   description: string,
   coinValue: number,
-  requirementType: ?gRequirementType,
-  game: ?gPlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
+  requirementType: ?RequirementType,
+  game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
 };
-export type gPlayerValuableList_PlayerValuable_PlayerValuableCash = {
+export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
-  valuableState: gPlayerValuableState,
+  valuableState: PlayerValuableState,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
+  valuableType: ValuableType,
   title: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   backgroundImage: string,
   wageringThreshold: ?number,
   leftToWager: ?number,
-  requirementType: ?gRequirementType,
+  requirementType: ?RequirementType,
 };
-export type gPlayerValuableList_PlayerValuable =
-  | gPlayerValuableList_PlayerValuable_PlayerValuableDeposit
-  | gPlayerValuableList_PlayerValuable_PlayerValuableSpins
-  | gPlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
+export type PlayerValuableList_PlayerValuable =
+  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
+  | PlayerValuableList_PlayerValuable_PlayerValuableSpins
+  | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: SETTINGS_PLAYER
 // ====================================================
 
-export type gSETTINGS_PLAYER_details_name = {
+export type SETTINGS_PLAYER_details_name = {
   __typename: "PlayerName",
   first: string,
   last: string,
 };
-export type gSETTINGS_PLAYER_details_extentOfGambling = {
+export type SETTINGS_PLAYER_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
-export type gSETTINGS_PLAYER_details_phoneNumber = {
+export type SETTINGS_PLAYER_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
-export type gSETTINGS_PLAYER_details_address_country = {
+export type SETTINGS_PLAYER_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
-export type gSETTINGS_PLAYER_details_address = {
+export type SETTINGS_PLAYER_details_address = {
   __typename: "PlayerAddress",
   city: string,
   street: string,
   postCode: string,
-  country: gSETTINGS_PLAYER_details_address_country,
+  country: SETTINGS_PLAYER_details_address_country,
 };
-export type gSETTINGS_PLAYER_details = {
+export type SETTINGS_PLAYER_details = {
   __typename: "PlayerDetails",
-  name: gSETTINGS_PLAYER_details_name,
+  name: SETTINGS_PLAYER_details_name,
   canChangePassword: boolean,
-  extentOfGambling: gSETTINGS_PLAYER_details_extentOfGambling,
-  phoneNumber: gSETTINGS_PLAYER_details_phoneNumber,
-  address: gSETTINGS_PLAYER_details_address,
+  extentOfGambling: SETTINGS_PLAYER_details_extentOfGambling,
+  phoneNumber: SETTINGS_PLAYER_details_phoneNumber,
+  address: SETTINGS_PLAYER_details_address,
   email: string,
 };
-export type gSETTINGS_PLAYER = {
+export type SETTINGS_PLAYER = {
   id: string,
   __typename: "Player",
-  details: gSETTINGS_PLAYER_details,
+  details: SETTINGS_PLAYER_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_withdrawalNotifications
 // ====================================================
 
-export type gContact_Settings_Player_withdrawalNotifications_details_contactSettings = {
+export type Contact_Settings_Player_withdrawalNotifications_details_contactSettings = {
   withdrawalNotifications: boolean,
 };
-export type gContact_Settings_Player_withdrawalNotifications_details = {
-  contactSettings: gContact_Settings_Player_withdrawalNotifications_details_contactSettings,
+export type Contact_Settings_Player_withdrawalNotifications_details = {
+  contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings,
 };
-export type gContact_Settings_Player_withdrawalNotifications = {
+export type Contact_Settings_Player_withdrawalNotifications = {
   __typename: "Player",
-  details: gContact_Settings_Player_withdrawalNotifications_details,
+  details: Contact_Settings_Player_withdrawalNotifications_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_adventurerPublic
 // ====================================================
 
-export type gContact_Settings_Player_adventurerPublic_details_contactSettings = {
+export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
   adventurerPublic: boolean,
 };
-export type gContact_Settings_Player_adventurerPublic_details = {
-  contactSettings: gContact_Settings_Player_adventurerPublic_details_contactSettings,
+export type Contact_Settings_Player_adventurerPublic_details = {
+  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings,
 };
-export type gContact_Settings_Player_adventurerPublic = {
+export type Contact_Settings_Player_adventurerPublic = {
   __typename: "Player",
-  details: gContact_Settings_Player_adventurerPublic_details,
+  details: Contact_Settings_Player_adventurerPublic_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_subscribedToNewsletters
 // ====================================================
 
-export type gContact_Settings_Player_subscribedToNewsletters_details_contactSettings = {
+export type Contact_Settings_Player_subscribedToNewsletters_details_contactSettings = {
   subscribedToNewsletters: boolean,
 };
-export type gContact_Settings_Player_subscribedToNewsletters_details = {
-  contactSettings: gContact_Settings_Player_subscribedToNewsletters_details_contactSettings,
+export type Contact_Settings_Player_subscribedToNewsletters_details = {
+  contactSettings: Contact_Settings_Player_subscribedToNewsletters_details_contactSettings,
 };
-export type gContact_Settings_Player_subscribedToNewsletters = {
+export type Contact_Settings_Player_subscribedToNewsletters = {
   __typename: "Player",
-  details: gContact_Settings_Player_subscribedToNewsletters_details,
+  details: Contact_Settings_Player_subscribedToNewsletters_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_subscribedToSMSNewsletters
 // ====================================================
 
-export type gContact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings = {
+export type Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings = {
   subscribedToSMSNewsletters: boolean,
 };
-export type gContact_Settings_Player_subscribedToSMSNewsletters_details = {
-  contactSettings: gContact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings,
+export type Contact_Settings_Player_subscribedToSMSNewsletters_details = {
+  contactSettings: Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings,
 };
-export type gContact_Settings_Player_subscribedToSMSNewsletters = {
+export type Contact_Settings_Player_subscribedToSMSNewsletters = {
   __typename: "Player",
-  details: gContact_Settings_Player_subscribedToSMSNewsletters_details,
+  details: Contact_Settings_Player_subscribedToSMSNewsletters_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_contactByPhone
 // ====================================================
 
-export type gContact_Settings_Player_contactByPhone_details_contactSettings = {
+export type Contact_Settings_Player_contactByPhone_details_contactSettings = {
   contactByPhone: boolean,
 };
-export type gContact_Settings_Player_contactByPhone_details = {
-  contactSettings: gContact_Settings_Player_contactByPhone_details_contactSettings,
+export type Contact_Settings_Player_contactByPhone_details = {
+  contactSettings: Contact_Settings_Player_contactByPhone_details_contactSettings,
 };
-export type gContact_Settings_Player_contactByPhone = {
+export type Contact_Settings_Player_contactByPhone = {
   __typename: "Player",
-  details: gContact_Settings_Player_contactByPhone_details,
+  details: Contact_Settings_Player_contactByPhone_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_contactByPost
 // ====================================================
 
-export type gContact_Settings_Player_contactByPost_details_contactSettings = {
+export type Contact_Settings_Player_contactByPost_details_contactSettings = {
   contactByPost: boolean,
 };
-export type gContact_Settings_Player_contactByPost_details = {
-  contactSettings: gContact_Settings_Player_contactByPost_details_contactSettings,
+export type Contact_Settings_Player_contactByPost_details = {
+  contactSettings: Contact_Settings_Player_contactByPost_details_contactSettings,
 };
-export type gContact_Settings_Player_contactByPost = {
+export type Contact_Settings_Player_contactByPost = {
   __typename: "Player",
-  details: gContact_Settings_Player_contactByPost_details,
+  details: Contact_Settings_Player_contactByPost_details,
 };
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_realityCheck
 // ====================================================
 
-export type gContact_Settings_Player_realityCheck_playOk_realityCheck = {
+export type Contact_Settings_Player_realityCheck_playOk_realityCheck = {
   __typename: "PlayerRealityCheckSettings",
   canChangeInterval: boolean,
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-export type gContact_Settings_Player_realityCheck_playOk = {
+export type Contact_Settings_Player_realityCheck_playOk = {
   __typename: "PlayerPlayOkSettings",
-  realityCheck: gContact_Settings_Player_realityCheck_playOk_realityCheck,
+  realityCheck: Contact_Settings_Player_realityCheck_playOk_realityCheck,
 };
-export type gContact_Settings_Player_realityCheck = {
+export type Contact_Settings_Player_realityCheck = {
   __typename: "Player",
-  playOk: gContact_Settings_Player_realityCheck_playOk,
+  playOk: Contact_Settings_Player_realityCheck_playOk,
 };
 
 // ====================================================
 // GraphQL fragment: ValuableCard_PlayerValuable
 // ====================================================
 
-export type gValuableCard_PlayerValuable_PlayerValuableCash = {
+export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   __typename:
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
@@ -1351,94 +1351,94 @@ export type gValuableCard_PlayerValuable_PlayerValuableCash = {
   id: string,
   title: string,
   content: string,
-  valuableState: gPlayerValuableState,
-  valuableType: gValuableType,
+  valuableState: PlayerValuableState,
+  valuableType: ValuableType,
   expirationTimeInHours: number,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   caveat: ?string,
   backgroundImage: string,
 };
-export type gValuableCard_PlayerValuable_PlayerValuableSpins = {
+export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
   title: string,
   content: string,
-  valuableState: gPlayerValuableState,
-  valuableType: gValuableType,
+  valuableState: PlayerValuableState,
+  valuableType: ValuableType,
   expirationTimeInHours: number,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   caveat: ?string,
   backgroundImage: string,
   coinValue: number,
   description: string,
 };
-export type gValuableCard_PlayerValuable =
-  | gValuableCard_PlayerValuable_PlayerValuableCash
-  | gValuableCard_PlayerValuable_PlayerValuableSpins; // ====================================================
+export type ValuableCard_PlayerValuable =
+  | ValuableCard_PlayerValuable_PlayerValuableCash
+  | ValuableCard_PlayerValuable_PlayerValuableSpins; // ====================================================
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
-export type gValuableDetails_PlayerValuable_PlayerValuableDeposit = {
+export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
-  valuableState: gPlayerValuableState,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
-export type gValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
+export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
   slug: string,
 };
-export type gValuableDetails_PlayerValuable_PlayerValuableSpins = {
+export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
   backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
-  valuableState: gPlayerValuableState,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
   wageringThreshold: ?number,
   leftToWager: ?number,
-  requirementType: ?gRequirementType,
-  game: ?gValuableDetails_PlayerValuable_PlayerValuableSpins_game,
+  requirementType: ?RequirementType,
+  game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
-export type gValuableDetails_PlayerValuable_PlayerValuableCash = {
+export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
   backgroundImage: string,
   content: string,
   caveat: ?string,
-  currency: gCurrency,
+  currency: Currency,
   market: string,
   expirationTimeInHours: number,
   expiryDate: BigInt,
-  valuableType: gValuableType,
-  valuableState: gPlayerValuableState,
+  valuableType: ValuableType,
+  valuableState: PlayerValuableState,
   wageringThreshold: ?number,
   leftToWager: ?number,
-  requirementType: ?gRequirementType,
+  requirementType: ?RequirementType,
 };
-export type gValuableDetails_PlayerValuable =
-  | gValuableDetails_PlayerValuable_PlayerValuableDeposit
-  | gValuableDetails_PlayerValuable_PlayerValuableSpins
-  | gValuableDetails_PlayerValuable_PlayerValuableCash; // ====================================================
+export type ValuableDetails_PlayerValuable =
+  | ValuableDetails_PlayerValuable_PlayerValuableDeposit
+  | ValuableDetails_PlayerValuable_PlayerValuableSpins
+  | ValuableDetails_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 
-export type gCompetitionPillsList_Group = {
+export type CompetitionPillsList_Group = {
   /**
    * Unique identifier of the event group
    */
@@ -1464,7 +1464,7 @@ export type gCompetitionPillsList_Group = {
 // GraphQL fragment: FavouriteCompetitionsSelectorIntro_Group
 // ====================================================
 
-export type gFavouriteCompetitionsSelectorIntro_Group = {
+export type FavouriteCompetitionsSelectorIntro_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -1475,7 +1475,7 @@ export type gFavouriteCompetitionsSelectorIntro_Group = {
 // GraphQL fragment: FavouriteCompetitionsSelectorRegion_Group
 // ====================================================
 
-export type gFavouriteCompetitionsSelectorRegion_Group_groups = {
+export type FavouriteCompetitionsSelectorRegion_Group_groups = {
   /**
    * Unique identifier of the event group
    */
@@ -1496,7 +1496,7 @@ export type gFavouriteCompetitionsSelectorRegion_Group_groups = {
    */
   regionCode: ?string,
 };
-export type gFavouriteCompetitionsSelectorRegion_Group = {
+export type FavouriteCompetitionsSelectorRegion_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -1510,14 +1510,14 @@ export type gFavouriteCompetitionsSelectorRegion_Group = {
   /**
    * Array of subgroups in this event group
    */
-  groups: ?Array<gFavouriteCompetitionsSelectorRegion_Group_groups>,
+  groups: ?Array<FavouriteCompetitionsSelectorRegion_Group_groups>,
 };
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
 // ====================================================
 
-export type gFavouriteCompetitionsSelectorModal_Group = {
+export type FavouriteCompetitionsSelectorModal_Group = {
   /**
    * Unique identifier of the event group
    */
@@ -1528,7 +1528,7 @@ export type gFavouriteCompetitionsSelectorModal_Group = {
 // GraphQL fragment: FavouriteSportsSelector_Group
 // ====================================================
 
-export type gFavouriteSportsSelector_Group_favouriteCompetitions = {
+export type FavouriteSportsSelector_Group_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -1549,7 +1549,7 @@ export type gFavouriteSportsSelector_Group_favouriteCompetitions = {
    */
   regionCode: ?string,
 };
-export type gFavouriteSportsSelector_Group = {
+export type FavouriteSportsSelector_Group = {
   /**
    * Unique identifier of the event group
    */
@@ -1584,14 +1584,14 @@ export type gFavouriteSportsSelector_Group = {
   /**
    * The favourited competitions for this EventGroup
    */
-  favouriteCompetitions: Array<gFavouriteSportsSelector_Group_favouriteCompetitions>,
+  favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
 };
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorListItem_Group
 // ====================================================
 
-export type gFavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
+export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
@@ -1612,7 +1612,7 @@ export type gFavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
    */
   regionCode: ?string,
 };
-export type gFavouriteSportsSelectorListItem_Group = {
+export type FavouriteSportsSelectorListItem_Group = {
   /**
    * Unique identifier of the event group
    */
@@ -1642,14 +1642,14 @@ export type gFavouriteSportsSelectorListItem_Group = {
   /**
    * The favourited competitions for this EventGroup
    */
-  favouriteCompetitions: Array<gFavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
+  favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
 };
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorContext_Competition
 // ====================================================
 
-export type gFavouriteSportsSelectorContext_Competition = {
+export type FavouriteSportsSelectorContext_Competition = {
   /**
    * Unique identifier of the event group
    */
@@ -1670,7 +1670,7 @@ export type gFavouriteSportsSelectorContext_Competition = {
 // GraphQL fragment: GroupPill_Group
 // ====================================================
 
-export type gGroupPill_Group = {
+export type GroupPill_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
@@ -1686,26 +1686,26 @@ export type gGroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type gPlayerValuableState =
+export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-export type gValuableType = "cash" | "deposit" | "spins" | "sport";
-export type gCurrency = "CAD" | "DKK" | "EUR" | "GBP";
-export type gRequirementType = "deposit" | "wager";
-export type gVertical = "CASINO" | "SPORTS";
-export type gSearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
-export type gModal =
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+export type RequirementType = "deposit" | "wager";
+export type Vertical = "CASINO" | "SPORTS";
+export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
+export type Modal =
   | "BETTING_GLOSSARY"
   | "CHOOSE_FAVOURITES"
   | "CHOOSE_FAVOURITE_COMPETITIONS"
   | "SEARCH";
-export type gContactSettingsInput = {|
+export type ContactSettingsInput = {|
   on: boolean,
 |};
-export type gUpdateRealityCheckIntervalInput = {|
+export type UpdateRealityCheckIntervalInput = {|
   intervalSeconds: number,
 |};
 

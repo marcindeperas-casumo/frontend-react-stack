@@ -6,7 +6,7 @@ const babelParser = require("@babel/parser").parse;
 const babelGenerator = require("@babel/generator").default;
 const babelTraverse = require("@babel/traverse").default;
 
-const gqlFlowTypes = resolve(__dirname, "../flow-typed/graphql.js");
+const gqlFlowTypes = resolve(__dirname, "../src/types/apollo.js");
 
 fs.stat(gqlFlowTypes, function(err, fileStat) {
   if (err && err.code === "ENOENT") {
@@ -67,20 +67,20 @@ function manipulate(fileContents, prefix = "g") {
     plugins: ["flow", "estree"],
   });
 
-  /* eslint-disable fp/no-mutation */
-  babelTraverse(ast, {
-    TypeAlias: function({ node }) {
-      node.id.name = `${prefix}${node.id.name}`;
-    },
-    GenericTypeAnnotation: function({ node }) {
-      const typesThatShouldntBePrefixed = ["Array", "BigInt", "Long"];
-      // those 3 types will fall here as well, we shouldn't prefix them
-      if (!typesThatShouldntBePrefixed.some(x => x === node.id.name)) {
-        node.id.name = `g${node.id.name}`;
-      }
-    },
-  });
-  /* eslint-enable fp/no-mutation */
+  // /* eslint-disable fp/no-mutation */
+  // babelTraverse(ast, {
+  //   TypeAlias: function({ node }) {
+  //     node.id.name = `${prefix}${node.id.name}`;
+  //   },
+  //   GenericTypeAnnotation: function({ node }) {
+  //     const typesThatShouldntBePrefixed = ["Array", "BigInt", "Long"];
+  //     // those 3 types will fall here as well, we shouldn't prefix them
+  //     if (!typesThatShouldntBePrefixed.some(x => x === node.id.name)) {
+  //       node.id.name = `g${node.id.name}`;
+  //     }
+  //   },
+  // });
+  // /* eslint-enable fp/no-mutation */
 
   const content = babelGenerator(
     ast,

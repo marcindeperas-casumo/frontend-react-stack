@@ -8,3 +8,6 @@ declare var module: {
 };
 
 declare type ThunkDispatch = (action: { type: string }) => any;
+
+declare type BigInt = number;
+declare type Long = number;

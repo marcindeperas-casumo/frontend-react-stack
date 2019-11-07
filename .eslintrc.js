@@ -125,7 +125,7 @@ module.exports = {
       },
     },
     {
-      files: ["flow-typed/graphql.js"],
+      files: ["src/types/apollo.js"],
       rules: {
         "max-lines": "off",
         "no-use-before-define": "off",
