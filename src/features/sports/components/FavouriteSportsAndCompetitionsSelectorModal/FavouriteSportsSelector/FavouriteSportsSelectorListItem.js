@@ -2,6 +2,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { T } from "ramda";
+import * as A from "Types/apollo";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import SportsIcon from "Features/sports/components/SportsIcon";

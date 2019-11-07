@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import * as R from "ramda";
+import * as A from "Types/apollo";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";

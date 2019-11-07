@@ -1,4 +1,5 @@
 // @flow
+import * as A from "Types/apollo";
 
 export type Competition = A.FavouriteSportsSelectorContext_groups_favouriteCompetitions;
 

@@ -1,4 +1,6 @@
 // @flow
+import * as A from "Types/apollo";
+
 export default ({
   "wageringStatus": "Wagering status should be here",
   "termsAndConditionLabel": "Terms & Conditions",

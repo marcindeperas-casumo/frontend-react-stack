@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import * as A from "Types/apollo";
 import { SettingsNotificationsToggleRow as ToggleRow } from "Components/Settings/SettingsNotifications/SettingsNotificationsToggleRow";
 import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";

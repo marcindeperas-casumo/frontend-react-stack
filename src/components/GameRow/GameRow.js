@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";

@@ -1,4 +1,5 @@
 // @flow
+import * as A from "Types/apollo";
 import { type ValuableThumbnailTranslations } from "Models/valuables";
 
 type Translations = ValuableThumbnailTranslations & {

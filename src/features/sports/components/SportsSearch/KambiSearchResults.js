@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/components/GraphQL";
 import MaskText from "Components/MaskText";

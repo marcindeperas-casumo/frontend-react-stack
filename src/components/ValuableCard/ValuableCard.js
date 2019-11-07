@@ -3,6 +3,7 @@ import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
+import * as A from "Types/apollo";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import DangerousHtml from "Components/DangerousHtml";
 import MaskImage from "Components/MaskImage";

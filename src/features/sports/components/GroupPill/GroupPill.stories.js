@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as A from "Types/apollo";
 import GroupPill from "./GroupPill";
 
 const stories = storiesOf("Sports/GroupPill", module);

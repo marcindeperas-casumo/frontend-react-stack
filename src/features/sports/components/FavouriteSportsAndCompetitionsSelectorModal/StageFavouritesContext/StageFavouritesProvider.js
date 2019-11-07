@@ -3,6 +3,7 @@ import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
 import gql from "graphql-tag";
 import { getApolloContext } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";

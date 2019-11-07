@@ -4,6 +4,7 @@ import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { any, partition, propEq } from "ramda";
+import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { isNilOrEmpty } from "Src/utils";
 import Heading from "./FavouriteCompetitionsSelectorHeading";

@@ -1,6 +1,7 @@
 // @flow
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import * as A from "Types/apollo";
 import * as kambi from "Features/sports/kambi";
 import { MODAL } from "Features/sports/components/Modals";
 import * as queries from "../queries.sports";

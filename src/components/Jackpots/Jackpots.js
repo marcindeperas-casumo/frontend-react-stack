@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";

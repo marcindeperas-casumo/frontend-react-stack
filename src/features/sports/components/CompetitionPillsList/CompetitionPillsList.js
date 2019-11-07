@@ -3,6 +3,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { makeOptionalCallback } from "Utils";
 import GroupPill from "Features/sports/components/GroupPill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";

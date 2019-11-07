@@ -2,6 +2,7 @@
 
 import { uniq } from "ramda";
 import type { InMemoryCache } from "apollo-cache-inmemory";
+import * as A from "Types/apollo";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { ACTIVE_MODALS_QUERY } from "./queries";
 

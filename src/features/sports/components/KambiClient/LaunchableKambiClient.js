@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
 import { getApolloContext } from "@apollo/react-hooks";
 import { propOr } from "ramda";
+import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
   currencySelector,

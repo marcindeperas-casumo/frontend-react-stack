@@ -1,4 +1,6 @@
 // @flow
+import * as A from "Types/apollo";
+
 export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   CASH: "cash",
   SPINS: "spins",

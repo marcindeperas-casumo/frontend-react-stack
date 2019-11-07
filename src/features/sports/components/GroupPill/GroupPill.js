@@ -2,6 +2,7 @@
 
 import React from "react";
 import gql from "graphql-tag";
+import * as A from "Types/apollo";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
 import { Pill } from "Components/Pill";
 

@@ -2,6 +2,7 @@
 import * as React from "react";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
+import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 import { FavouriteSportsSelectorIntro } from "./FavouriteSportsSelectorIntro";

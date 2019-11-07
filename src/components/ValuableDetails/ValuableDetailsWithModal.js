@@ -1,5 +1,6 @@
 //@flow
 import React, { type Node } from "react";
+import * as A from "Types/apollo";
 import { AbstractModal } from "Components/AbstractModal";
 import { ValuableDetailsContainer } from "Components/ValuableDetails";
 import "./ValuableDetails.scss";

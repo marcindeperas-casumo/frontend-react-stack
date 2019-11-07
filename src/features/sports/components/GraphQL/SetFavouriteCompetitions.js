@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { Mutation } from "react-apollo";
+import * as A from "Types/apollo";
 import { SET_FAVOURITE_COMPETITIONS } from "Models/apollo/mutations";
 import type { MutationProps } from "Models/apollo/types";
 

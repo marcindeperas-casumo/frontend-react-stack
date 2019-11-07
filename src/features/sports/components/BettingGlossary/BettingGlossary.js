@@ -3,6 +3,7 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { ErrorMessage } from "Components/ErrorMessage";

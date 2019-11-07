@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
+import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};

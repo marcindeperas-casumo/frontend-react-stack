@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { PlayerValuablesQuery } from "./PlayerValuables.graphql";
 import { subscribeToItemCreatedEvent } from "./utils";
 

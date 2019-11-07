@@ -1,4 +1,5 @@
 // @flow
+import * as A from "Types/apollo";
 import type { EvolutionLobbyType } from "Models/liveCasino";
 
 export type liveCasinoLobby = {
