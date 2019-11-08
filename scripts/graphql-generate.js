@@ -8,7 +8,7 @@ const prettier = require("prettier");
 const glob = require("glob");
 const babelParser = require("@babel/parser").parse;
 const babelGenerator = require("@babel/generator").default;
-const nEq = R.complement(R.equals);
+const notEq = R.complement(R.equals);
 
 child_process.exec(`cd ${resolve(__dirname, "..")}`);
 // ^-- everything after that line will be relative to main directory
@@ -17,7 +17,7 @@ const TYPE_FILE_LOCATION = "src/types/apollo.js";
 
 let argv = process.argv.slice(2);
 if (argv.length > 1) {
-  const notSupportedArgs = R.filter(nEq("--watch"), argv);
+  const notSupportedArgs = R.filter(notEq("--watch"), argv);
   if (notSupportedArgs.length > 0) {
     console.warn(
       `Only --watch is supported, ignoring: ${notSupportedArgs.join(", ")}`
