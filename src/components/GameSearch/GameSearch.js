@@ -93,7 +93,7 @@ export class GameSearch extends React.PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
-          <div className="c-game-search-virtual-list u-game-search-max-width">
+          <div className="c-game-search-virtual-list">
             <GamesVirtualList
               renderItem={id => <GameRow search id={id} />}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
