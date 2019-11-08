@@ -15,16 +15,7 @@ child_process.exec(`cd ${resolve(__dirname, "..")}`);
 
 const TYPE_FILE_LOCATION = "src/types/apollo.js";
 
-let argv = process.argv.slice(2);
-if (argv.length > 1) {
-  const notSupportedArgs = R.filter(notEq("--watch"), argv);
-  if (notSupportedArgs.length > 0) {
-    console.warn(
-      `Only --watch is supported, ignoring: ${notSupportedArgs.join(", ")}`
-    );
-    argv = R.difference(argv, notSupportedArgs); // eslint-disable-line fp/no-mutation
-  }
-}
+const args = getArgs();
 
 const commands = [
   [
@@ -37,17 +28,17 @@ const commands = [
       "--outputFlat",
       "--no-addTypename",
       "--passthroughCustomScalars",
-      ...argv,
+      ...args,
     ],
   ],
-  ["graphql-codegen", argv],
+  ["graphql-codegen", args],
 ];
 let processes;
 
 launchCommands();
 function launchCommands() {
   // eslint-disable-next-line fp/no-mutation
-  processes = commands.map(([cmd, args]) => child_process.spawn(cmd, args));
+  processes = commands.map(x => child_process.spawn(...x));
 
   processes.forEach(p => {
     p.stdout.on("data", handleOutput);
@@ -83,7 +74,7 @@ function handleError(data) {
   if (weirdFilePath) {
     glob(`src/**/${weirdFilePath}`, {}, (err, files) => {
       console.log(`${error} (see: ${files[0]})`);
-      if (argv.length === 0) {
+      if (args.length === 0) {
         // exit if we're not in --watch (any other arg will get stripped away)
         process.exit(2);
       }
@@ -177,4 +168,19 @@ function killAll() {
     p.stdin.pause();
     p.kill();
   });
+}
+
+function getArgs() {
+  const argv = process.argv.slice(2);
+  if (argv.length > 0) {
+    const notSupportedArgs = R.filter(notEq("--watch"), argv);
+    if (notSupportedArgs.length > 0) {
+      console.warn(
+        `Only --watch is supported, ignoring: ${notSupportedArgs.join(", ")}`
+      );
+      return R.difference(argv, notSupportedArgs);
+    }
+  }
+
+  return [];
 }
