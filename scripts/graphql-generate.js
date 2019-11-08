@@ -73,7 +73,7 @@ function handleError(data) {
   killAll();
   if (weirdFilePath) {
     glob(`src/**/${weirdFilePath}`, {}, (err, files) => {
-      console.log(`${error} (see: ${files[0]})`);
+      console.error(`${error} (see: ${files[0]})`);
       if (args.length === 0) {
         // exit if we're not in --watch (any other arg will get stripped away)
         process.exit(2);
@@ -103,7 +103,7 @@ function watchForNextUpdate() {
     watcher.close();
     fs.readFile(TYPE_FILE_LOCATION, "utf8", function(err, fileContents) {
       if (err) {
-        console.log("unable to read file: ", TYPE_FILE_LOCATION);
+        console.error("unable to read file: ", TYPE_FILE_LOCATION);
         process.exit(2);
       } else {
         manipulate(fileContents);
@@ -151,7 +151,6 @@ function manipulate(fileContents, prefix = "g") {
   fs.writeFile(TYPE_FILE_LOCATION, output, function(err) {
     if (!err) {
       logWithTime(`Generated: ${TYPE_FILE_LOCATION}`);
-      // logWithTime(`Formatted!`);
       setTimeout(watchForNextUpdate, 10);
     }
   });
