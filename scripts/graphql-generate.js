@@ -50,9 +50,9 @@ function launchCommands() {
 
 function handleOutput(data) {
   const str = data.toString();
-  const m = str.match(/Generate (.*?) \[completed\]/);
-  if (m && m[1] !== "outputs") {
-    logWithTime(`Generated: ${m[1]}`);
+  const [, filename] = str.match(/Generate (.*?) \[completed\]/) || [];
+  if (filename && filename !== "outputs") {
+    logWithTime(`Generated: ${filename}`);
   }
 }
 
