@@ -106,34 +106,13 @@ function watchForNextUpdate() {
         console.error("unable to read file: ", TYPE_FILE_LOCATION);
         process.exit(2);
       } else {
-        formatTypeFile(fileContents);
+        beautifyTypeFile(fileContents);
       }
     });
   });
 }
 
-function formatTypeFile(fileContents, prefix = "g") {
-  function shouldPrintComment(comment) {
-    const notWantedComments = [
-      " @flow",
-      " @flow ",
-      " eslint-disable ",
-      " This file was automatically generated and should not be edited.",
-      "*\n * \n ", // empty 3-line block comment
-    ];
-
-    return !notWantedComments.some(y => comment === y);
-  }
-
-  function fixComments(afterBabel) {
-    const tmp = afterBabel.replace(
-      /\}; \/\/ ?={52,66}/g,
-      "};\n\n// ===================================================="
-    );
-
-    return `// @flow\n${tmp}`;
-  }
-
+function beautifyTypeFile(fileContents, prefix = "g") {
   const ast = babelParser(fileContents, {
     tokens: true,
     sourceType: "module",
@@ -154,6 +133,27 @@ function formatTypeFile(fileContents, prefix = "g") {
       setTimeout(watchForNextUpdate, 10);
     }
   });
+}
+
+function shouldPrintComment(comment) {
+  const notWantedComments = [
+    " @flow",
+    " @flow ",
+    " eslint-disable ",
+    " This file was automatically generated and should not be edited.",
+    "*\n * \n ", // empty 3-line block comment
+  ];
+
+  return !notWantedComments.some(y => comment === y);
+}
+
+function fixComments(afterBabel) {
+  const tmp = afterBabel.replace(
+    /\}; \/\/ ?={52,66}/g,
+    "};\n\n// ===================================================="
+  );
+
+  return `// @flow\n${tmp}`;
 }
 
 function logWithTime(str) {
