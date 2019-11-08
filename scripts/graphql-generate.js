@@ -106,13 +106,13 @@ function watchForNextUpdate() {
         console.error("unable to read file: ", TYPE_FILE_LOCATION);
         process.exit(2);
       } else {
-        manipulate(fileContents);
+        formatTypeFile(fileContents);
       }
     });
   });
 }
 
-function manipulate(fileContents, prefix = "g") {
+function formatTypeFile(fileContents, prefix = "g") {
   function shouldPrintComment(comment) {
     const notWantedComments = [
       " @flow",
