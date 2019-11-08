@@ -1,1 +1,1 @@
-export { default } from "./FavouriteCompetitionsSelector";
+export { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";

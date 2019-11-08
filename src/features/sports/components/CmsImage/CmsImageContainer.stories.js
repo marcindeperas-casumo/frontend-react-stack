@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { cmsImageMocks } from "./CmsImage.mocks";
 import { CmsImageContainer as CmsImage } from "./CmsImageContainer";

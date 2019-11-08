@@ -1,6 +1,5 @@
 export { ActiveModalsQuery } from "./ActiveModalsQuery";
 export { CloseModalMutation } from "./CloseModalMutation";
-export { MockedProviderWithContext } from "./MockedProviderWithContext";
 export { MutateOnMount } from "./MutateOnMount";
 export { NavigateClientMutation } from "./NavigateClientMutation";
 export { OpenModalMutation } from "./OpenModalMutation";

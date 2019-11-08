@@ -22,17 +22,21 @@ export const configurationFormContentSelector = createSelector(
   })
 );
 
-export const isFetchingActiveSessionSelector = createSelector<boolean>(
+export const isFetchingActiveSessionSelector: (
+  s: Object
+) => boolean = createSelector(
   getFetch(ACTION_TYPES.FETCH_SESSION_INIT),
   fetchData => fetchData?.isFetching
 );
 
-export const isCreatingSessionSelector = createSelector<boolean>(
+export const isCreatingSessionSelector: (s: Object) => boolean = createSelector(
   getFetch(ACTION_TYPES.CREATE_SESSION_INIT),
   fetchData => fetchData?.isFetching
 );
 
-export const activeSessionSelector = createSelector<ActiveSessionType | null>(
+export const activeSessionSelector: (
+  s: Object
+) => ?ActiveSessionType = createSelector(
   isFetchingActiveSessionSelector,
   path(["slotControlSystem", "activeSession"]),
   (isFetching, activeSession) => {
@@ -43,12 +47,16 @@ export const activeSessionSelector = createSelector<ActiveSessionType | null>(
   }
 );
 
-export const endedSessionSelector = createSelector<EndedSessionType | null>(
-  path(["slotControlSystem", "endedSession"]),
+export const endedSessionSelector: (
+  s: Object
+) => ?EndedSessionType = createSelector(
+  path(["slotControlSystem", "lastEndedSession"]),
   identity
 );
 
-export const activeExclusionSelector = createSelector<ExclusionType | null>(
+export const activeExclusionSelector: (
+  s: Object
+) => ?ExclusionType = createSelector(
   path(["slotControlSystem", "activeExclusion"]),
   identity
 );

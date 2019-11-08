@@ -1,7 +1,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
 import cmsMocks from "Features/sports/components/DictionaryTerm/__mocks__/cmsMocks";
 import {
   withFavouritesResult,
@@ -50,7 +50,7 @@ stories.add("With competition selection and selected", () => (
 ));
 
 stories.add("With competition intro", () => (
-  <MockedProviderWithContext mocks={cmsMocks}>
+  <MockedProvider mocks={cmsMocks}>
     <FavouriteSportsSelectorListItem
       group={withFavouritesResult.groups[0]}
       onToggleFavouriteSport={action("onToggleFavouriteSport")}
@@ -59,5 +59,5 @@ stories.add("With competition intro", () => (
       onAddCompetition={action("onAddCompetition")}
       onRemoveFavouriteCompetition={action("onRemoveFavouriteCompetition")}
     />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

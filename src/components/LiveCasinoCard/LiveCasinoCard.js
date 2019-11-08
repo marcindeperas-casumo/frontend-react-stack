@@ -10,13 +10,16 @@ import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
+import { GameTileHeart } from "Components/GameTileHeart";
 import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 
 export type Props = {
   game: Game,
+  isInMyList: boolean,
   launchGame: Function,
+  onFavouriteGame: Function,
   subscribeToUpdates: string => void,
   unsubscribeFromUpdates: string => void,
 };
@@ -27,6 +30,10 @@ export const getTableId = compose(
 );
 
 export default class LiveCasinoCard extends PureComponent<Props> {
+  static defaultProps = {
+    isInMyList: false,
+  };
+
   componentDidMount() {
     const { game, subscribeToUpdates } = this.props;
     const tableId = getTableId(game);
@@ -56,13 +63,28 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
         <Flex
           direction="vertical"
-          align="center"
-          justify="end"
+          align="end"
+          justify="space-between"
           className="o-ratio__content u-font-weight-bold"
           style={{
             background: "linear-gradient(transparent, rgba(0, 0, 0, 0.5)",
           }}
         >
+          <div className="t-color-white" onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: this.props.game.name,
+                [EVENT_PROPS.IS_FAVOURITE]: !this.props.isInMyList,
+              }}
+            >
+              <GameTileHeart
+                className="u-width--4xlg u-height--4xlg u-padding--md"
+                onClick={this.props.onFavouriteGame}
+                isActive={this.props.isInMyList}
+              />
+            </TrackClick>
+          </div>
           <CardData lobby={lobby} />
         </Flex>
       </div>
@@ -118,7 +140,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
     return (
       <Card
-        className="u-width--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
+        className="u-width--full u-height--full t-background-white t-border-r--md t-box-shadow u-overflow-hidden"
         spacing="md"
         header={this.renderHeader}
         content={this.renderContent}

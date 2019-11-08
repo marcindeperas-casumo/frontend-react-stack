@@ -1,7 +1,7 @@
 import React from "react";
-import wait from "waait";
 import { mount } from "enzyme";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "./SettingsSectionsContainer";
 import {
   playerSectionsQueryMock,
@@ -18,7 +18,7 @@ describe("SettingsSections", () => {
   });
 
   describe("Player Settings", () => {
-    test("should render loader", async () => {
+    test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
@@ -38,8 +38,9 @@ describe("SettingsSections", () => {
           <SettingsSectionsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
@@ -51,8 +52,9 @@ describe("SettingsSections", () => {
           <SettingsSectionsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         JSON.parse(
           JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
@@ -70,8 +72,9 @@ describe("SettingsSections", () => {
           <SettingsSectionsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
@@ -83,8 +86,9 @@ describe("SettingsSections", () => {
           <SettingsSectionsContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
       ).toStrictEqual(playerSectionsLabelsQueryMock.result.data);

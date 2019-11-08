@@ -1,0 +1,24 @@
+{
+  "__schema": {
+    "types": [
+      {
+        "kind": "INTERFACE",
+        "name": "PlayerValuable",
+        "possibleTypes": [
+          {
+            "name": "PlayerValuableCash"
+          },
+          {
+            "name": "PlayerValuableDeposit"
+          },
+          {
+            "name": "PlayerValuableSpins"
+          },
+          {
+            "name": "PlayerValuableSport"
+          }
+        ]
+      }
+    ]
+  }
+}

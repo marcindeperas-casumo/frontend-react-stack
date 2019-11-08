@@ -1,7 +1,5 @@
 import { curatedSelector, isCuratedLoadedFactory } from "Models/curated";
 
-const mockPlayerId = "2bb42ab0-7937-11e8-b6b5-0242ac11000b";
-
 const mockState = {
   schema: {
     cms: {

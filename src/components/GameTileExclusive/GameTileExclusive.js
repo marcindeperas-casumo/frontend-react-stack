@@ -1,5 +1,5 @@
 import React, { PureComponent } from "react";
-import GameTile from "Components/GameTile/GameTile";
+import { GameTile } from "Components/GameTile/GameTile";
 
 class GameTileExclusive extends PureComponent {
   imgixOpts = {

@@ -1,6 +1,5 @@
 import React from "react";
 import { mount } from "enzyme";
-import { DateTime } from "luxon";
 import { labels } from "./__mocks__/Queries.mock";
 import { SettingsSections } from "./SettingsSections";
 

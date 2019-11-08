@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
+import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock";
 import { VALUABLE_STATES } from "Models/valuables";
 import { getDateTimeDifferenceFromNow } from "Utils";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";

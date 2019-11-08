@@ -2,7 +2,7 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
@@ -16,11 +16,6 @@ type Props = {
   /** Optional children, if provided this will be render prop component so children is a function of string -> Node */
   children?: (dictionaryTerm: string) => React.Node,
 };
-
-class PluralisableDictionaryTermTypedQuery extends Query<
-  PluralisableDictionaryTermQuery,
-  PluralisableDictionaryTermQueryVariables
-> {}
 
 export const PLURALISABLE_DICTIONARY_TERM_QUERY = gql`
   query PluralisableDictionaryTermQuery(
@@ -36,7 +31,7 @@ export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
 const getPluralisableDictionaryTerm = (
-  data?: PluralisableDictionaryTermQuery,
+  data: ?PluralisableDictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements,
   isPlural: boolean
@@ -64,23 +59,24 @@ export const PluralisableDictionaryTerm = ({
   replacements,
   isPlural = false,
   children,
-}: Props): React.Node => (
-  <PluralisableDictionaryTermTypedQuery
-    query={PLURALISABLE_DICTIONARY_TERM_QUERY}
-    variables={{
-      singularKey: createSingularKey(termKey),
-      pluralKey: createPluralKey(termKey),
-    }}
-  >
-    {({ data, loading }) => {
-      const dictionaryTerm = getPluralisableDictionaryTerm(
-        data,
-        loading,
-        replacements,
-        isPlural
-      );
-      // if children provided this is a render prop component, if not return the translation
-      return children ? children(dictionaryTerm) : dictionaryTerm;
-    }}
-  </PluralisableDictionaryTermTypedQuery>
-);
+}: Props): React.Node => {
+  const variables = {
+    singularKey: createSingularKey(termKey),
+    pluralKey: createPluralKey(termKey),
+  };
+  const { data, loading } = useQuery<
+    PluralisableDictionaryTermQuery,
+    PluralisableDictionaryTermQueryVariables
+  >(PLURALISABLE_DICTIONARY_TERM_QUERY, {
+    variables,
+  });
+  const dictionaryTerm = getPluralisableDictionaryTerm(
+    data,
+    loading,
+    replacements,
+    isPlural
+  );
+
+  // if children provided this is a render prop component, if not return the translation
+  return children ? children(dictionaryTerm) : dictionaryTerm;
+};

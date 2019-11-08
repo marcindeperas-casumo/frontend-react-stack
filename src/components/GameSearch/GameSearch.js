@@ -3,7 +3,7 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
-import { GameRowSearch } from "Components/GameRowSearch";
+import { GameRow } from "Components/GameRow";
 import SearchNotFound from "Components/SearchNotFound";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
@@ -41,6 +41,9 @@ export class GameSearch extends React.PureComponent<Props> {
 
   renderResults = () => {
     const { loading, searchResults, searchResultsCount, query } = this.props;
+    const GameRowHighlightSearch = id => (
+      <GameRow search={{ query, highlightSearchQuery: true }} id={id} />
+    );
 
     if (loading) {
       return (
@@ -60,18 +63,14 @@ export class GameSearch extends React.PureComponent<Props> {
               className="u-padding-top u-padding-x--md u-game-search-max-width"
               items={searchResults}
               itemSpacing="default"
-              render={id => (
-                <GameRowSearch query={query} highlightSearchQuery slug={id} />
-              )}
+              render={GameRowHighlightSearch}
             />
           ) : (
             <div className="c-game-search-virtual-list u-game-search-max-width">
               <GameSearchResultsVirtualList
                 query={query}
                 games={searchResults}
-                renderItem={id => (
-                  <GameRowSearch query={query} highlightSearchQuery slug={id} />
-                )}
+                renderItem={GameRowHighlightSearch}
               />
             </div>
           )}
@@ -94,9 +93,9 @@ export class GameSearch extends React.PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
-          <div className="c-game-search-virtual-list u-game-search-max-width">
+          <div className="c-game-search-virtual-list">
             <GamesVirtualList
-              renderItem={id => <GameRowSearch slug={id} />}
+              renderItem={id => <GameRow search id={id} />}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
             />
           </div>

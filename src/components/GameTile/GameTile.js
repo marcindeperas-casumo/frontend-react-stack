@@ -1,94 +1,66 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import classNames from "classnames";
-import { isEmpty } from "ramda";
-import GameTileOverlay from "Components/GameTile/GameTileOverlay";
+import Flex from "@casumo/cmp-flex";
+import { MoreIcon } from "@casumo/cmp-icons";
 import GameTileImage from "Components/GameTile/GameTileImage";
-import GameTileJackpot from "Components/GameTile/GameTileJackpot";
+import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
+import TrackClick from "Components/TrackClick";
+import { GameTileHeart } from "Components/GameTileHeart";
 import type { Game } from "Types/game";
-
-import "./GameTile.scss";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 
 export type Props = {
   className?: string,
   game: Game,
   imgixOpts?: Object,
   onLaunchGame: Function,
+  onFavouriteGame: Function,
   ratio?: string,
-  isOverlayAlwaysActive?: boolean,
+  isInMyList?: boolean,
 };
 
-type State = {
-  isOverlayActive: boolean,
-};
+export const DEFAULT_CLASSES =
+  "o-ratio t-color-white t-border-r--md t-background-chrome-light-1 u-overflow-hidden";
 
-export const IN_MAINTENANCE_CLASS_NAME = "t-greyscale";
+export const GameTile = ({
+  className,
+  game = {},
+  onLaunchGame,
+  onFavouriteGame,
+  imgixOpts = {
+    w: 170,
+    q: 70,
+  },
+  ratio = "game-tile",
+  isInMyList = false,
+}: Props) => {
+  const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
 
-export default class GameTile extends PureComponent<Props, State> {
-  handleOnClick: Function;
-  handleOutsideClick: Function;
-
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isOverlayActive: false,
-    };
-    this.handleOnClick = this.handleOnClick.bind(this);
-    this.handleOutsideClick = this.handleOutsideClick.bind(this);
-  }
-
-  componentWillUnmount() {
-    document.removeEventListener("click", this.handleOutsideClick);
-  }
-
-  // handleOnClick and handleOutsideClick mimic a focus / blur type interaction
-
-  handleOnClick() {
-    this.setState({
-      isOverlayActive: !this.state.isOverlayActive,
-    });
-    document.addEventListener("click", this.handleOutsideClick);
-  }
-
-  handleOutsideClick() {
-    this.setState({
-      isOverlayActive: false,
-    });
-    document.removeEventListener("click", this.handleOutsideClick);
-  }
-
-  render() {
-    const {
-      className,
-      game = {},
-      onLaunchGame,
-      imgixOpts = {
-        w: 170,
-      },
-      ratio = "game-tile",
-      isOverlayAlwaysActive = false,
-    } = this.props;
-    const {
-      inMaintenanceMode,
-      jackpotInfo = {},
-      logoBackground,
-      logo,
-      name,
-      slug,
-    } = game;
-    const { isOverlayActive } = this.state;
-    const showJackpot = !isEmpty(jackpotInfo) && !isOverlayActive;
-    const showOverlay = isOverlayAlwaysActive || isOverlayActive;
-
+  if (inMaintenanceMode) {
     return (
-      <div
+      <GameTileInMaintenance
+        ratio={ratio}
+        className={className}
+        game={game}
+        imgixOpts={imgixOpts}
+      />
+    );
+  }
+
+  return (
+    <TrackClick
+      eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+      data={{ [EVENT_PROPS.GAME_NAME]: name }}
+    >
+      <Flex
         className={classNames(
-          inMaintenanceMode && IN_MAINTENANCE_CLASS_NAME,
+          DEFAULT_CLASSES,
+          "u-cursor-pointer",
           `o-ratio--${ratio}`,
-          "c-game-tile o-ratio t-color-white t-border-r--md u-overflow-hidden",
           className
         )}
-        onClick={this.handleOnClick}
+        onClick={onLaunchGame}
       >
         <GameTileImage
           logoBackground={logoBackground}
@@ -96,17 +68,41 @@ export default class GameTile extends PureComponent<Props, State> {
           name={name}
           imgixOpts={imgixOpts}
         />
-        {showJackpot && <GameTileJackpot jackpotInfo={jackpotInfo} />}
-        {showOverlay && (
-          <GameTileOverlay
-            name={name}
-            slug={slug}
-            inMaintenanceMode={inMaintenanceMode}
-            onLaunchGame={onLaunchGame}
-            alwaysActive={isOverlayAlwaysActive}
-          />
-        )}
-      </div>
-    );
-  }
-}
+        <Flex
+          justify="space-between"
+          align="end"
+          className="u-width--full o-ratio__content"
+        >
+          <Flex.Item onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_DETAILS}
+              data={{ [EVENT_PROPS.GAME_NAME]: name }}
+            >
+              <a
+                className="u-padding u-display--block"
+                href={`/en/play/${slug}`}
+              >
+                <MoreIcon className="t-color-white" />
+              </a>
+            </TrackClick>
+          </Flex.Item>
+          <Flex.Item onClick={e => e.stopPropagation()}>
+            <TrackClick
+              eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
+              data={{
+                [EVENT_PROPS.GAME_NAME]: name,
+                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
+              }}
+            >
+              <GameTileHeart
+                className="u-padding u-width--2xlg"
+                onClick={onFavouriteGame}
+                isActive={isInMyList}
+              />
+            </TrackClick>
+          </Flex.Item>
+        </Flex>
+      </Flex>
+    </TrackClick>
+  );
+};

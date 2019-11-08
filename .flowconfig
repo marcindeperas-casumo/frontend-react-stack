@@ -20,13 +20,10 @@ esproposal.optional_chaining=enable
 module.file_ext=.js
 module.file_ext=.scss
 module.file_ext=.json
+module.file_ext=.graphql
 
 module.name_mapper='.+\.s?css' -> 'CSSModule'
-
 module.name_mapper='@storybook/addon-info' -> '<PROJECT_ROOT>/scripts/stubs/jsModuleStub.js'
-
-module.name_mapper.extension='graphql' -> '<PROJECT_ROOT>/src/utils/graphqlShim'
-
 module.name_mapper='^Containers' -> '<PROJECT_ROOT>/src/containers'
 module.name_mapper='^Components' -> '<PROJECT_ROOT>/src/components'
 module.name_mapper='^Features' -> '<PROJECT_ROOT>/src/features'

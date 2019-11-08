@@ -1,2 +1,4 @@
 // @flow
-export { default } from "./EditFavouriteCompetitionsModal";
+export {
+  EditFavouriteCompetitionsModal,
+} from "./EditFavouriteCompetitionsModal";

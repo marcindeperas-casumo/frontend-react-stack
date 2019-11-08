@@ -1,11 +1,16 @@
 // @flow
+import { omit } from "ramda";
 import {
   ACTION_TYPES,
   slotControlSystemReducer,
+  type SessionStateResponseType,
 } from "Models/slotControlSystem";
+import activeSessionMock from "./__mocks__/activeSession.mock";
+import endedSessionMock from "./__mocks__/endedSession.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {
   const now = Date.now();
+  const responseActiveSession = omit(["lastUpdateTime"], activeSessionMock);
   let nowSpy;
 
   beforeEach(() => {
@@ -16,98 +21,117 @@ describe("Models/slotControlSystem/Reducer", () => {
   });
 
   describe("UPDATE_SESSION", () => {
-    test("there is no active session nor previous session", () => {
-      const response = { id: "123-123-456" };
+    test("response contains activeSession, state is empty", () => {
+      const response: SessionStateResponseType = {
+        activeSession: responseActiveSession,
+        lastEndedSession: null,
+      };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
         activeSession: null,
-        endedSession: null,
+        lastEndedSession: null,
         activeExclusion: null,
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
         activeExclusion: null,
-        endedSession: null,
+        lastEndedSession: null,
         activeSession: {
-          ...response,
+          ...response.activeSession,
           lastUpdateTime: now,
         },
       });
     });
 
-    test("there is active session and ended session", () => {
-      const response = { id: "123-123-456" };
+    test("response contains activeSession, state contains activeSession", () => {
+      const response: SessionStateResponseType = {
+        activeSession: responseActiveSession,
+        lastEndedSession: null,
+      };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
-      const activeSession = {
-        id: "222-222-222",
-        lastUpdateTime: 222222222,
-      };
-      const endedSession = {
-        id: "444-444-444",
-        endTime: 123123123,
-      };
       const state = {
-        activeSession,
-        endedSession,
+        activeSession: {
+          ...activeSessionMock,
+          id: "999-999-999",
+          lastUpdateTime: Date.now() - 1000 * 60 * 5,
+          limit: {
+            amount: 22,
+            currency: "EUR",
+          },
+        },
+        lastEndedSession: null,
         activeExclusion: null,
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
         activeExclusion: null,
-        endedSession,
+        lastEndedSession: null,
         activeSession: {
-          ...response,
+          ...response.activeSession,
           lastUpdateTime: now,
         },
       });
     });
 
-    test("there is active session but it expires", () => {
-      const response = null;
+    test("response contains lastEndedSession, state contains activeSession and no lastEndedSession", () => {
+      const response: SessionStateResponseType = {
+        activeSession: null,
+        lastEndedSession: endedSessionMock,
+      };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
-      const activeSession = {
-        id: "222-222-222",
-        lastUpdateTime: 222222222,
-      };
-      const endedSession = {
-        id: "444-444-444",
-        endTime: 123123123,
-      };
       const state = {
-        activeSession,
-        endedSession,
+        activeSession: {
+          ...activeSessionMock,
+          id: "999-999-999",
+          lastUpdateTime: Date.now() - 1000 * 60 * 5,
+          limit: {
+            amount: 22,
+            currency: "EUR",
+          },
+        },
+        lastEndedSession: null,
         activeExclusion: null,
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
-        endedSession: {
-          id: activeSession.id,
-          endTime: now,
-        },
-        activeSession: null,
         activeExclusion: null,
+        lastEndedSession: response.lastEndedSession,
+        activeSession: null,
       });
     });
   });
 
-  test("INVALIDATE_SESSION", () => {
-    const activeSession = {
-      id: "123-345-456-677",
-      lastUpdateTime: now,
+  test("response contains lastEndedSession and activeSession, state contains activeSession and lastEndedSession", () => {
+    const response: SessionStateResponseType = {
+      activeSession: responseActiveSession,
+      lastEndedSession: endedSessionMock,
     };
-    const action = { type: ACTION_TYPES.INVALIDATE_SESSION };
+    const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
-      activeSession,
-      endedSession: null,
+      activeSession: {
+        ...activeSessionMock,
+        id: "999-999-999",
+        lastUpdateTime: Date.now() - 1000 * 60 * 5,
+        limit: {
+          amount: 22,
+          currency: "EUR",
+        },
+      },
+      lastEndedSession: {
+        ...endedSessionMock,
+        id: "777-777-777",
+        endReason: "Player logout",
+        endedTime: now - 1000 * 60 * 2,
+      },
       activeExclusion: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
       activeExclusion: null,
-      activeSession: null,
-      endedSession: {
-        id: activeSession.id,
-        endTime: now,
+      lastEndedSession: response.lastEndedSession,
+      activeSession: {
+        ...response.activeSession,
+        lastUpdateTime: now,
       },
     });
   });

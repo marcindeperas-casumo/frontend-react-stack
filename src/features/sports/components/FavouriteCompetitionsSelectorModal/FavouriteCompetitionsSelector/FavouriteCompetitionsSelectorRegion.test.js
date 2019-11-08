@@ -34,9 +34,9 @@ describe("<FavouriteCompetitionsSelectorRegion />", () => {
       ),
     };
 
-    expect(rendered.emptyGroups.html()).toBe(null);
-    expect(rendered.nullGroups.html()).toBe(null);
-    expect(rendered.undefinedGroups.html()).toBe(null);
+    expect(rendered.emptyGroups.isEmptyRender()).toBe(true);
+    expect(rendered.nullGroups.isEmptyRender()).toBe(true);
+    expect(rendered.undefinedGroups.isEmptyRender()).toBe(true);
   });
 
   test("should check if each competition is selected based on the competition id", () => {

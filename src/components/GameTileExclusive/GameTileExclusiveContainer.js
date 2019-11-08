@@ -3,13 +3,15 @@ import React from "react";
 import { connect } from "react-redux";
 import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
 import { gameSelector } from "Models/schema";
-import { launchGame } from "Models/games";
+import { launchGame, updateMyList, isGameInMyListSelector } from "Models/games";
 
 const mapStateToProps = (state, props) => ({
   game: gameSelector(props.id)(state),
+  isInMyList: isGameInMyListSelector(props.id)(state),
 });
 const mapDispatchToProps = (dispatch, props) => ({
   onLaunchGame: () => dispatch(launchGame(props.id)),
+  onFavouriteGame: () => dispatch(updateMyList(props.id)),
 });
 
 const GameTileExclusiveConnected = connect(

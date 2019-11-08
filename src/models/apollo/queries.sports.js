@@ -20,7 +20,7 @@ export const KAMBI_CLIENT_VISIBLE_QUERY = gql`
 `;
 
 export const SEARCH_VISIBLE_QUERY = gql`
-  query KambiClientVisible {
+  query SearchVisible {
     isSearchVisible @client
   }
 `;

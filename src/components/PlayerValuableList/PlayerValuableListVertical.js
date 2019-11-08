@@ -1,32 +1,34 @@
 /* @flow */
 import * as React from "react";
+import { useMutation } from "@apollo/react-hooks";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
-import logger from "Services/logger";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import SectionList from "Components/SectionList";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableRow } from "Components/ValuableRow";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
-import { subscribeToItemCreatedEvent } from "./utils";
-import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import { usePlayerValuableList } from "./usePlayerValuableList";
+import { UseValuable } from "./PlayerValuables.graphql";
 import "./PlayerValuableListHorizontal.scss";
 
-export function PlayerValuableListVertical(props: PlayerValuableListProps) {
-  const {
-    error,
-    loading = false,
-    valuables = [],
-    translations,
-    refetch = () => {},
-    onConsumeValuable,
-  } = props;
+export function PlayerValuableListVertical() {
+  const { loading, valuables, translations } = usePlayerValuableList();
+  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+    UseValuable
+  );
+  const consumeValuable = (id: string) =>
+    mutateValuable({
+      variables: {
+        id,
+        source: "mobile",
+      },
+    });
   const {
     availableListTitleLabel,
     lockedListTitleLabel,
     noValuablesLabel,
   } = translations;
-  const [selectedValuable, setSelectedValuable] = React.useState(null);
   const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
   const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
   const sections = [
@@ -40,23 +42,12 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
     },
   ].filter(section => section.data.length > 0);
 
+  const [selectedValuable, setSelectedValuable] = React.useState(null);
   const closeModal = () => {
     setSelectedValuable(null);
   };
 
-  React.useEffect(() => {
-    const handler = subscribeToItemCreatedEvent(({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
-
-    return function cleanup() {
-      handler.unsubscribe();
-    };
-  }, [refetch]);
-
-  if (loading) {
+  if (loading || !translations) {
     return <GameRowSkeleton />;
   }
 
@@ -85,7 +76,7 @@ export function PlayerValuableListVertical(props: PlayerValuableListProps) {
         <ValuableDetailsWithModal
           isOpen={Boolean(selectedValuable)}
           onClose={closeModal}
-          onConsumeValuable={onConsumeValuable}
+          onConsumeValuable={consumeValuable}
           valuableDetails={selectedValuable}
         >
           <div className="c-valuable-list__valuable-card">

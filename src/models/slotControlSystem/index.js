@@ -4,4 +4,4 @@ export * from "./slotControlSystem.selectors";
 export * from "./slotControlSystem.reducer";
 export * from "./slotControlSystem.types";
 export * from "./slotControlSystem.actions";
-export * from "./slotControlSystem.hooks";
+export * from "./useSessionsState";

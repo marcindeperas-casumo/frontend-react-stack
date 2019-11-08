@@ -9,8 +9,6 @@ import { type ModalContentComponent } from "Components/RSModal";
 import { useWalletAmount, useTranslations } from "Utils/hooks";
 import { ModalHeader } from "../RSModalHeader";
 
-const { useEffect, useState } = React;
-
 type SlotControlSystemContent = {
   modal_title: string,
 };
@@ -20,19 +18,19 @@ export function SlotControlSystem(
 ) {
   const translations = useTranslations(CMS_SLUGS.CONFIGURATION_SCREEN);
   const { amount } = useWalletAmount();
-  const [continuePlaying, setContinuePlaying] = useState(false);
+  const [continuePlaying, setContinuePlaying] = React.useState(false);
   const {
     activeSession,
     isFetching,
-    endedSessionDuringLastHour,
+    lastEndedSessionDuringLastHour,
     activeExclusion,
   } = useSessionsState();
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
       props.acceptModal();
     }
-  }, [activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [amount, activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (isFetching) {
     return null;
@@ -58,7 +56,7 @@ export function SlotControlSystem(
     );
   }
 
-  if (!activeSession && endedSessionDuringLastHour && !continuePlaying) {
+  if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
     return (
       <ModalContentSkin {...props}>
         <RememberToPlayWithinLimitsContainer

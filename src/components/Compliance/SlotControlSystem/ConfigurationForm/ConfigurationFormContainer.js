@@ -13,7 +13,11 @@ import {
   CMS_SLUGS,
   initCreateSessionAction,
 } from "Models/slotControlSystem";
-import { ConfigurationForm } from "./ConfigurationForm";
+import {
+  ConfigurationForm,
+  type ConfigurationFormData,
+} from "./ConfigurationForm";
+import { transformFormDataToRequestPayload } from "./Utils";
 
 export const ConfigurationFormContainer = connect(
   state => ({
@@ -29,6 +33,9 @@ export const ConfigurationFormContainer = connect(
       dispatch(fetchPageBySlug(CMS_SLUGS.CONFIGURATION_SCREEN));
       dispatch(fetchPageBySlug(CMS_SLUGS.UNITS));
     },
-    createSession: () => dispatch(initCreateSessionAction()),
+    createSession: (formData: ConfigurationFormData) =>
+      dispatch(
+        initCreateSessionAction(transformFormDataToRequestPayload(formData))
+      ),
   })
 )(ConfigurationForm);

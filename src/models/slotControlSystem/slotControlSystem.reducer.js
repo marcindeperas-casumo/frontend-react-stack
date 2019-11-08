@@ -1,47 +1,34 @@
 // @flow
 import { createReducer } from "Utils";
-import type { StateType } from "./slotControlSystem.types";
+import type {
+  StateType,
+  SessionStateResponseType,
+} from "./slotControlSystem.types";
 import { ACTION_TYPES } from "./slotControlSystem.constants";
 
 const DEFAULT_STATE: StateType = {
   activeSession: null,
-  endedSession: null,
+  lastEndedSession: null,
   activeExclusion: null,
 };
-// TODO revisit these handlers while the API takes shape
+
+type UpdateSessionActionType = {
+  response: SessionStateResponseType,
+};
+
 const handlers = {
-  [ACTION_TYPES.UPDATE_SESSION]: (state, action) => {
-    const newState = {
+  [ACTION_TYPES.UPDATE_SESSION]: (state, action: UpdateSessionActionType) => {
+    return {
       ...state,
-      activeSession: action.response && {
-        ...action.response,
+      activeSession: action.response.activeSession && {
+        ...action.response.activeSession,
         lastUpdateTime: Date.now(),
       },
+      lastEndedSession: action.response.lastEndedSession && {
+        ...action.response.lastEndedSession,
+      },
     };
-    if (action.response) {
-      return newState;
-    }
-
-    if (state.activeSession) {
-      return {
-        ...newState,
-        endedSession: {
-          id: state.activeSession.id,
-          endTime: Date.now(),
-        },
-      };
-    }
-
-    return newState;
   },
-  [ACTION_TYPES.INVALIDATE_SESSION]: (state, action) => ({
-    ...state,
-    activeSession: null,
-    endedSession: state.activeSession && {
-      id: state.activeSession.id,
-      endTime: Date.now(),
-    },
-  }),
 };
 
 export const slotControlSystemReducer = createReducer<StateType>(

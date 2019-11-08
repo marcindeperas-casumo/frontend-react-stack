@@ -1,9 +1,8 @@
 // @flow
 import React from "react";
 import { mount } from "enzyme";
-import wait from "waait";
-import waitForExpect from "wait-for-expect";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper, actWait } from "Utils";
 import { DictionaryTerm } from "./DictionaryTerm";
 import { NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import {
@@ -21,13 +20,12 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe(WORKING_TERM.value);
   });
 
-  test("renders the LOADING_STRING when translation is loading", async () => {
+  test("renders the LOADING_STRING when translation is loading", () => {
     const rendered = mount(
       <MockedProvider mocks={mocks} addTypename={false}>
         <DictionaryTerm termKey={WORKING_TERM.key} />
@@ -44,10 +42,9 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    rendered.update();
-    await waitForExpect(() => {
-      expect(rendered.text()).toBe(NOT_FOUND_STRING);
-    });
+    await waitAndUpdateWrapper(rendered);
+
+    expect(rendered.text()).toBe(NOT_FOUND_STRING);
   });
 
   test("replaces any replacement keys in the translation before rendering", async () => {
@@ -68,9 +65,8 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
-    rendered2.update();
+    await waitAndUpdateWrapper(rendered);
+    await waitAndUpdateWrapper(rendered2);
 
     expect(rendered.text()).toBe("Liverpool have scored 1 goal");
     expect(rendered2.text()).toBe("Manchester have scored 0 goal");
@@ -88,8 +84,7 @@ describe("<DictionaryTerm />", () => {
       </MockedProvider>
     );
 
-    await wait(0);
-    rendered.update();
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.text()).toBe("No goals have scored {goalCount} goal");
   });
@@ -110,7 +105,7 @@ describe("<DictionaryTerm />", () => {
     expect(children).toBeCalledWith(LOADING_STRING);
     expect(children2).toBeCalledWith(LOADING_STRING);
 
-    await wait(0);
+    await actWait(0);
 
     expect(children).toBeCalledWith(WORKING_TERM.value);
     expect(children2).toBeCalledWith(NOT_FOUND_STRING);
