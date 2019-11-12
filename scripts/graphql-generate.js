@@ -4,6 +4,7 @@ const { resolve } = require("path");
 const child_process = require("child_process");
 const { DateTime } = require("luxon");
 const R = require("ramda");
+const debounce = require("lodash.debounce");
 const prettier = require("prettier");
 const glob = require("glob");
 const babelParser = require("@babel/parser").parse;
@@ -24,7 +25,7 @@ const commands = [
       "codegen:generate",
       TYPE_FILE_LOCATION,
       "--target=flow",
-      `--includes=src/**/*{js,graphql}`,
+      `--includes=src/**/!(apollo).{js,graphql}`,
       "--outputFlat",
       "--no-addTypename",
       "--passthroughCustomScalars",
@@ -34,6 +35,7 @@ const commands = [
   ["graphql-codegen", args],
 ];
 let processes;
+let modified = new Date();
 
 launchCommands();
 function launchCommands() {
@@ -44,15 +46,21 @@ function launchCommands() {
     p.stdout.on("data", handleOutput);
     p.stderr.on("data", handleError);
   });
-
-  watchForNextUpdate();
 }
 
 function handleOutput(data) {
   const str = data.toString();
+  const changed = /Change detected, generating types/.test(str);
   const [, filename] = str.match(/Generate (.*?) \[completed\]/) || [];
-  if (filename && filename !== "outputs") {
+
+  if (changed) {
+    watchForNextUpdate();
+  } else if (filename && filename !== "outputs") {
     logWithTime(`Generated: ${filename}`);
+  } else if (filename && filename === "outputs") {
+    // eslint-disable-next-line fp/no-mutation
+    modified = new Date();
+    watchForNextUpdate();
   }
 }
 
@@ -97,22 +105,37 @@ function handleError(data) {
   }
 }
 
+function updateIfNeeded() {
+  fs.stat(
+    TYPE_FILE_LOCATION,
+    debounce((err, data) => {
+      if (data.mtime.valueOf() > modified.valueOf()) {
+        handleFileUpdate();
+      }
+    }, 100)
+  );
+}
+
+function handleFileUpdate() {
+  fs.readFile(TYPE_FILE_LOCATION, "utf8", function(err, fileContents) {
+    if (err) {
+      console.error("unable to read file: ", TYPE_FILE_LOCATION);
+      process.exit(2);
+    } else {
+      beautifyTypeFile(fileContents);
+    }
+  });
+}
+
 function watchForNextUpdate() {
   // eslint-disable-next-line fp/no-mutating-methods
   const watcher = fs.watch(TYPE_FILE_LOCATION, (event, filename) => {
     watcher.close();
-    fs.readFile(TYPE_FILE_LOCATION, "utf8", function(err, fileContents) {
-      if (err) {
-        console.error("unable to read file: ", TYPE_FILE_LOCATION);
-        process.exit(2);
-      } else {
-        beautifyTypeFile(fileContents);
-      }
-    });
+    updateIfNeeded();
   });
 }
 
-function beautifyTypeFile(fileContents, prefix = "g") {
+function beautifyTypeFile(fileContents) {
   const ast = babelParser(fileContents, {
     tokens: true,
     sourceType: "module",
@@ -129,8 +152,9 @@ function beautifyTypeFile(fileContents, prefix = "g") {
 
   fs.writeFile(TYPE_FILE_LOCATION, output, function(err) {
     if (!err) {
+      // eslint-disable-next-line fp/no-mutation
+      modified = new Date();
       logWithTime(`Generated: ${TYPE_FILE_LOCATION}`);
-      setTimeout(watchForNextUpdate, 10);
     }
   });
 }
