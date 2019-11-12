@@ -1,9 +1,10 @@
 // @flow
+import * as A from "Types/apollo";
 
-export type Competition = FavouriteSportsSelectorContext_groups_favouriteCompetitions;
+export type Competition = A.FavouriteSportsSelectorContext_groups_favouriteCompetitions;
 
 export type StageFavouritesAPI = {
-  sports: Array<FavouriteSportsSelectorContext_groups>,
+  sports: Array<A.FavouriteSportsSelectorContext_groups>,
   isFirstTimeSelectingFavourites: boolean,
   isFirstTimeSelectingFavouriteCompetitions: boolean,
   isSportsPlayer: boolean,

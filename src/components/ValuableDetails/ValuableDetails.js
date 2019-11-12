@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import * as A from "Types/apollo";
 import { interpolate, convertHoursToDays } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
 import { depositBonusSelected } from "Services/DepositBonusSelectedService";
@@ -39,7 +40,7 @@ type BadgeInfoType = {
 };
 
 export type Props = {
-  valuableDetails: ValuableDetails_PlayerValuable,
+  valuableDetails: A.ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,

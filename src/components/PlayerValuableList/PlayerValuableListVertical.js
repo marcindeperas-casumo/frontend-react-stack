@@ -1,6 +1,7 @@
 /* @flow */
 import * as React from "react";
 import { useMutation } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
@@ -14,7 +15,7 @@ import "./PlayerValuableListHorizontal.scss";
 
 export function PlayerValuableListVertical() {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+  const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
     UseValuable
   );
   const consumeValuable = (id: string) =>

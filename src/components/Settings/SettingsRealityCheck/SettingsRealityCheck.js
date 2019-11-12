@@ -2,12 +2,13 @@
 import React, { PureComponent } from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import * as A from "Types/apollo";
 import { SettingsNotificationsToggleRow as ToggleRow } from "Components/Settings/SettingsNotifications/SettingsNotificationsToggleRow";
 import { PillSelector } from "Components/PillSelector";
 import { options } from "./constants";
 
 type Props = {
-  labels: REALITY_CHECK_LABELS_QUERY,
+  labels: A.REALITY_CHECK_LABELS_QUERY,
   onChange: (interval: number) => void,
   isLoading: boolean,
   onSave: () => void,

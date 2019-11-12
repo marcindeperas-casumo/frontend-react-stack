@@ -3,16 +3,17 @@
 import React from "react";
 import gql from "graphql-tag";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { makeOptionalCallback } from "Utils";
 import GroupPill from "Features/sports/components/GroupPill";
 import EditPillsButton from "Features/sports/components/EditPillsButton";
 
 type CompetitionPillsListProps = {
-  competitions: Array<CompetitionPillsList_Group>,
-  onRemove?: CompetitionPillsList_Group => *,
+  competitions: Array<A.CompetitionPillsList_Group>,
+  onRemove?: A.CompetitionPillsList_Group => *,
   onAdd?: () => *,
-  onClick?: CompetitionPillsList_Group => *,
-  isActive?: CompetitionPillsList_Group => boolean,
+  onClick?: A.CompetitionPillsList_Group => *,
+  isActive?: A.CompetitionPillsList_Group => boolean,
 };
 
 const CompetitionPillsList = (props: CompetitionPillsListProps) => (

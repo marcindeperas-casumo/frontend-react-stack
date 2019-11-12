@@ -2,13 +2,14 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 
 const FavouriteCompetitionsSelectorIntro = ({
   /** The group object to render the into for, type of group is defined by FavouriteCompetitionsSelectorIntro.fragments.group  */
   group,
 }: {
-  group: FavouriteCompetitionsSelectorIntro_Group,
+  group: A.FavouriteCompetitionsSelectorIntro_Group,
 }) => (
   <Text size="sm" className="u-margin-y--xlg">
     <DictionaryTerm

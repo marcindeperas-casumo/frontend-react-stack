@@ -2,6 +2,7 @@
 import React from "react";
 import gql from "graphql-tag";
 import { T } from "ramda";
+import * as A from "Types/apollo";
 import FavouriteListItem from "Features/sports/components/FavouriteListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import SportsIcon from "Features/sports/components/SportsIcon";
@@ -9,7 +10,7 @@ import CompetitionsIntro from "./FavouriteSportsSelectorCompetitionsIntro";
 
 type Props = {
   /** Sport group to render the favourite selector for, type comes from FavouriteSportsSelectorListItem.fragments.group */
-  group: FavouriteSportsSelectorListItem_Group,
+  group: A.FavouriteSportsSelectorListItem_Group,
   /** Whether this group should be favouritable */
   isFavouritable?: boolean,
   /** Whether we should show an intro to selecting competitions */
@@ -23,7 +24,7 @@ type Props = {
   /** What should happen when a competition is removed  */
   onRemoveFavouriteCompetition: (
     groupId: number,
-    competition: FavouriteSportsSelectorListItem_Group_favouriteCompetitions
+    competition: A.FavouriteSportsSelectorListItem_Group_favouriteCompetitions
   ) => void,
 };
 

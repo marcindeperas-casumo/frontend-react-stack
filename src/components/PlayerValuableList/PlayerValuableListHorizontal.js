@@ -3,6 +3,7 @@ import * as React from "react";
 import * as R from "ramda";
 import { useMutation } from "@apollo/react-hooks";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ValuableCard } from "Components/ValuableCard";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -23,7 +24,7 @@ const seeAllUrl = "player/valuables";
 
 export function PlayerValuableListHorizontal() {
   const { loading, valuables, translations } = usePlayerValuableList();
-  const [mutateValuable] = useMutation<UseValuable, UseValuableVariables>(
+  const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
     UseValuable
   );
   const consumeValuable = (id: string) =>

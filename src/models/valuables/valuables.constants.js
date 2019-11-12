@@ -1,12 +1,14 @@
 // @flow
-export const VALUABLE_TYPES: { [string]: ValuableType } = {
+import * as A from "Types/apollo";
+
+export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   CASH: "cash",
   SPINS: "spins",
   DEPOSIT: "deposit",
   SPORT: "sport",
 };
 
-export const VALUABLE_STATES: { [string]: PlayerValuableState } = {
+export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {
   FRESH: "Fresh",
   LOCKED: "Locked",
 };
@@ -18,7 +20,7 @@ export const VALUABLE_SPIN_TYPES = Object.freeze({
   MEGA: "mega",
 });
 
-export const VALUABLE_REQUIREMENT_TYPES: { [string]: RequirementType } = {
+export const VALUABLE_REQUIREMENT_TYPES: { [string]: A.RequirementType } = {
   WAGER: "wager",
   DEPOSIT: "deposit",
 };

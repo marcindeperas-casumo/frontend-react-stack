@@ -3,6 +3,7 @@ import React, { PureComponent, type Node } from "react";
 import { EditIcon, ExclamationMarkIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue/SettingsLabelAndValue";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
@@ -10,8 +11,8 @@ import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { PASSWORD_PLACEHOLDER_VALUE, onOldStackEvent } from "./utils";
 
 type Props = {
-  player: SETTINGS_PLAYER,
-  labels: PLAYER_SETTINGS_LABELS_QUERY,
+  player: A.SETTINGS_PLAYER,
+  labels: A.PLAYER_SETTINGS_LABELS_QUERY,
   refetchSettings: () => {},
 };
 

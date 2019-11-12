@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
+import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};
@@ -134,7 +135,7 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-export const renderBets = (bet: ?GameRow_Game_lobby_bets) =>
+export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
   R.cond([
     [R.isNil, R.always(null)],
     [

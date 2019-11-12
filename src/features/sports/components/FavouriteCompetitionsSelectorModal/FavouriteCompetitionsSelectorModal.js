@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
+import * as A from "Types/apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import ModalButtonFooter from "Features/sports/components/ModalButtonFooter";
 import {
@@ -10,7 +11,7 @@ import {
 } from "Features/sports/components/DictionaryTerm";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
-type SelectedCompetitions = Array<FavouriteCompetitionsSelectorModal_Group>;
+type SelectedCompetitions = Array<A.FavouriteCompetitionsSelectorModal_Group>;
 
 type Props = {
   onClose: () => void,
@@ -48,7 +49,7 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     return Boolean(this.state.selectedCompetitions.find(c => c.id === groupId));
   };
 
-  toggleCompetition = (group: FavouriteCompetitionsSelectorModal_Group) =>
+  toggleCompetition = (group: A.FavouriteCompetitionsSelectorModal_Group) =>
     this.setState(state => ({
       selectedCompetitions: this.isCompetitionSelected(group.id)
         ? state.selectedCompetitions.filter(c => c.id !== group.id)
