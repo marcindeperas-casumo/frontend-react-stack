@@ -22,16 +22,16 @@ type UseActiveSessionType = {
 
 export function useSessionsState(): UseActiveSessionType {
   const dispatch = useDispatch();
-  const activeSession = useSelector(activeSessionSelector);
-  const lastEndedSession = useSelector(endedSessionSelector);
-  const activeExclusion = useSelector(activeExclusionSelector);
+  const activeSession: ActiveSessionType = useSelector(activeSessionSelector);
+  const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
+  const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
   // data is older than 1 minute
   const isOld = activeSession
     ? activeSession.lastUpdateTime + 1000 * 60 < Date.now()
     : true;
   const lastEndedSessionDuringLastHour = Boolean(
-    lastEndedSession && lastEndedSession.endTime + 1000 * 60 * 60 > Date.now()
+    lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
   );
 
   React.useEffect(() => {
