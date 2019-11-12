@@ -177,9 +177,8 @@ function getArgs() {
       console.warn(
         `Only --watch is supported, ignoring: ${notSupportedArgs.join(", ")}`
       );
-      return R.difference(argv, notSupportedArgs);
     }
   }
 
-  return [];
+  return R.filter(R.equals("--watch"), argv);
 }
