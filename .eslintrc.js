@@ -124,6 +124,13 @@ module.exports = {
         "filenames/match-exported": ["error", "dot"],
       },
     },
+    {
+      files: ["src/types/apollo.js"],
+      rules: {
+        "max-lines": "off",
+        "no-use-before-define": "off",
+      },
+    },
   ],
   settings: {
     flowtype: {

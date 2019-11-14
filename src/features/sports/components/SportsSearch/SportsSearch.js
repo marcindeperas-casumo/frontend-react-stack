@@ -2,11 +2,13 @@
 import React from "react";
 import { getApolloContext } from "@apollo/react-hooks";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import SearchInput from "Components/SearchInput";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { UPDATE_KAMBI_CLIENT_STATE_MUTATION } from "Models/apollo/mutations";
 import KambiSearchResults from "./KambiSearchResults";
 import "./SportsSearch.scss";
+
 type State = {
   query: string,
   hideSearchResults: boolean,
@@ -27,7 +29,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   setClientVisible = (visible: boolean) => {
-    this.context.client.mutate<UpdateKambiClientState>({
+    this.context.client.mutate<A.UpdateKambiClientState>({
       mutation: UPDATE_KAMBI_CLIENT_STATE_MUTATION,
       variables: {
         isVisible: visible,
@@ -65,7 +67,7 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   handleSearchResultClick = (
-    resultOrEventGroup: SearchQuery_search | TopSearches_topSearches
+    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches
   ) => {
     this.setState({
       // $FlowIgnore: either type will have either prop

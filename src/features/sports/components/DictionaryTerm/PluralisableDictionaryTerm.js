@@ -3,6 +3,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
@@ -31,7 +32,7 @@ export const createSingularKey = (termKey: string) => `${termKey}.singular`;
 export const createPluralKey = (termKey: string) => `${termKey}.plural`;
 
 const getPluralisableDictionaryTerm = (
-  data: ?PluralisableDictionaryTermQuery,
+  data: ?A.PluralisableDictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements,
   isPlural: boolean
@@ -65,8 +66,8 @@ export const PluralisableDictionaryTerm = ({
     pluralKey: createPluralKey(termKey),
   };
   const { data, loading } = useQuery<
-    PluralisableDictionaryTermQuery,
-    PluralisableDictionaryTermQueryVariables
+    A.PluralisableDictionaryTermQuery,
+    A.PluralisableDictionaryTermQueryVariables
   >(PLURALISABLE_DICTIONARY_TERM_QUERY, {
     variables,
   });
