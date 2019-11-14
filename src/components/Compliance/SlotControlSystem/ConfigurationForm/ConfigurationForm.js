@@ -38,13 +38,25 @@ export type ConfigurationFormContent = {
   days_abbreviated: string,
 };
 
+export type ConfigurationFormData = {
+  budget: number,
+  currency: string,
+  /** in seconds */
+  time: number,
+  /** in seconds */
+  alertsEvery: number,
+  /** in seconds */
+  breakAfter?: number,
+};
+
 type ConfigurationFormProps = {
   t: ConfigurationFormContent,
   balance: number,
   currency: string,
   locale: string,
   fetchContentIfNecessary: () => void,
-  finishConfiguration: () => void,
+  createSession: (formData: ConfigurationFormData) => void,
+  isCreatingSession: boolean,
 };
 
 type IsPlayActiveType = {
@@ -56,13 +68,26 @@ type IsPlayActiveType = {
 };
 
 export function ConfigurationForm(props: ConfigurationFormProps) {
-  const { t, fetchContentIfNecessary, finishConfiguration } = props;
+  const {
+    t,
+    currency,
+    fetchContentIfNecessary,
+    createSession,
+    isCreatingSession,
+  } = props;
   const [screen, setScreen] = useState(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   const [budget, setBudget] = useState();
   const [time, setTime] = useState();
   const [alertsEvery, setAlertsEvery] = useState();
   const [wantsBreak, setWantsBreak] = useState();
   const [breakAfter, setBreakAfter] = useState();
+  const formData: ConfigurationFormData = {
+    currency,
+    budget: budget || 0,
+    time: time || 0,
+    alertsEvery: alertsEvery || 0,
+    breakAfter,
+  };
   const onClickEditBudget = useCallback(() => {
     setScreen(SCREEN_TYPES.LIMIT_YOUR_BUDGET);
   }, [setScreen]);
@@ -129,7 +154,8 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         disabled={
           !isPlayActive({ budget, time, alertsEvery, wantsBreak, breakAfter })
         }
-        onClick={finishConfiguration}
+        loading={isCreatingSession}
+        onClick={() => createSession(formData)}
       >
         <span className="o-flex__block c-scs__form__play-btn__label">
           {t.play}
