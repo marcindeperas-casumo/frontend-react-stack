@@ -7,7 +7,7 @@ export const LazyPromotions = props => (
     hostElementId="react-host-promotions"
     loader={() => import("Components/ComponentBuilder")}
     fallback={<PromotionPageSkeleton />}
-    props={{ slug: "campaigns.winter-games" }}
+    slug="campaigns.winter-games"
     namedExport="ComponentBuilder"
     {...props}
   />
