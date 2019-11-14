@@ -1,5 +1,5 @@
 // @flow
-import * as React from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   initFetchActiveSessionAction,
@@ -34,7 +34,7 @@ export function useSessionsState(): UseActiveSessionType {
     lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOld) {
       dispatch(initFetchActiveSessionAction());
     }
