@@ -8,9 +8,16 @@ import {
 } from "Models/handshake";
 import {
   configurationFormContentSelector,
+  activeSessionSelector,
+  isCreatingSessionSelector,
   CMS_SLUGS,
+  initCreateSessionAction,
 } from "Models/slotControlSystem";
-import { ConfigurationForm } from "./ConfigurationForm";
+import {
+  ConfigurationForm,
+  type ConfigurationFormData,
+} from "./ConfigurationForm";
+import { transformFormDataToRequestPayload } from "./Utils";
 
 export const ConfigurationFormContainer = connect(
   state => ({
@@ -18,11 +25,17 @@ export const ConfigurationFormContainer = connect(
     locale: localeSelector(state),
     currency: currencySelector(state),
     balance: walletAmountSelector(state),
+    isCreatingSession: isCreatingSessionSelector(state),
+    activeSession: activeSessionSelector(state),
   }),
   dispatch => ({
     fetchContentIfNecessary: () => {
       dispatch(fetchPageBySlug(CMS_SLUGS.CONFIGURATION_SCREEN));
       dispatch(fetchPageBySlug(CMS_SLUGS.UNITS));
     },
+    createSession: (formData: ConfigurationFormData) =>
+      dispatch(
+        initCreateSessionAction(transformFormDataToRequestPayload(formData))
+      ),
   })
 )(ConfigurationForm);

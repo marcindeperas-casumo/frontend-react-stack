@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { useSessionsState } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { type ModalContentComponent } from "Components/RSModal";
 import { ModalHeader } from "../RSModalHeader";
@@ -11,6 +12,18 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
+  const { activeSession, isFetching } = useSessionsState();
+
+  React.useEffect(() => {
+    if (activeSession) {
+      props.acceptModal();
+    }
+  }, [activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (isFetching) {
+    return null;
+  }
+
   return (
     <>
       <ModalHeader
@@ -19,7 +32,7 @@ export function SlotControlSystem(
         closeAction={props.dismissModal}
       />
       <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet u-overflow-y--auto">
-        <ConfigurationFormContainer finishConfiguration={props.acceptModal} />
+        <ConfigurationFormContainer />
       </div>
     </>
   );
