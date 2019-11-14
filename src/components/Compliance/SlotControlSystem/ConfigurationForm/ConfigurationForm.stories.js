@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, number } from "@storybook/addon-knobs/react";
+import { select, number, boolean } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
 import { ConfigurationForm } from "./ConfigurationForm";
 
@@ -32,7 +32,8 @@ stories.add("Default", () => {
       locale="en-GB"
       balance={number("Balance", 100)}
       fetchContentIfNecessary={action("fetchContentIfNecessary")}
-      finishConfiguration={action("finishConfiguration")}
+      createSession={action("createSession")}
+      isCreatingSession={boolean("isCreatingSession", false)}
       t={t}
     />
   );
