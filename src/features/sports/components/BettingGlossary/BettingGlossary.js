@@ -3,6 +3,7 @@ import * as React from "react";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { SportsModal } from "Features/sports/components/SportsModal";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -37,7 +38,7 @@ export const BettingGlossary = ({ onClose }: Props) => (
 );
 
 export const BettingGlossaryModalContent = () => {
-  const { data, error, loading } = useQuery<GlossaryQuery, _>(GLOSSARY_QUERY);
+  const { data, error, loading } = useQuery<A.GlossaryQuery, _>(GLOSSARY_QUERY);
 
   if (error) {
     return (

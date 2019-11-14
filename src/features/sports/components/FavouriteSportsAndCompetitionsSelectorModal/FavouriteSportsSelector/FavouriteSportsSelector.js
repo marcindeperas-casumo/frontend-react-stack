@@ -2,6 +2,7 @@
 import * as React from "react";
 import List from "@casumo/cmp-list";
 import gql from "graphql-tag";
+import * as A from "Types/apollo";
 import { DictionaryTerm } from "Features/sports/components/DictionaryTerm";
 import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesConsumer";
 import { FavouriteSportsSelectorIntro } from "./FavouriteSportsSelectorIntro";
@@ -63,7 +64,7 @@ const FavouriteSportsSelector = (props: Props) => (
           </Heading>
           <DictionaryTerm termKey="favourite-sports-selector.selectall">
             {allSportsGroupTitle => {
-              const allSportsGroup: FavouriteSportsSelectorListItem_Group = {
+              const allSportsGroup: A.FavouriteSportsSelectorListItem_Group = {
                 id: -1,
                 icon:
                   "https://cms.casumo.com/wp-content/uploads/2019/02/all_sports.svg",

@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
 import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
@@ -19,7 +20,7 @@ export type SearchProps = {
 
 type Props = {
   /** The Game object containing name, logo, logoBackground and slug of the game to be rendered */
-  game: GameRow_Game,
+  game: A.GameRow_Game,
   /** The function in charge of launching the game */
   onLaunchGame: () => void,
   /** Class name to apply to the game row */

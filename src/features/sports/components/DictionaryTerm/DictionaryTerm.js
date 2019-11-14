@@ -3,6 +3,7 @@
 import * as React from "react";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
@@ -22,7 +23,7 @@ export const DICTIONARY_TERM_QUERY = gql`
 `;
 
 const getDictionaryTerm = (
-  data: ?DictionaryTermQuery,
+  data: ?A.DictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements
 ): string => {
@@ -44,8 +45,8 @@ export const DictionaryTerm = ({
 }: Props): React.Node => {
   const variables = { key: termKey };
   const { data, loading } = useQuery<
-    DictionaryTermQuery,
-    DictionaryTermQueryVariables
+    A.DictionaryTermQuery,
+    A.DictionaryTermQueryVariables
   >(DICTIONARY_TERM_QUERY, { variables });
   const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
 
