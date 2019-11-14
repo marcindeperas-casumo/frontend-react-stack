@@ -10,17 +10,10 @@ import {
   type ActiveSessionType,
   type EndedSessionType,
   type ExclusionType,
+  type UseSessionsStateType,
 } from "Models/slotControlSystem";
 
-type UseActiveSessionType = {
-  isFetching: boolean,
-  activeSession: ?ActiveSessionType,
-  lastEndedSession: ?EndedSessionType,
-  lastEndedSessionDuringLastHour: boolean,
-  activeExclusion: ?ExclusionType,
-};
-
-export function useSessionsState(): UseActiveSessionType {
+export function useSessionsState(): UseSessionsStateType {
   const dispatch = useDispatch();
   const activeSession: ActiveSessionType = useSelector(activeSessionSelector);
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);

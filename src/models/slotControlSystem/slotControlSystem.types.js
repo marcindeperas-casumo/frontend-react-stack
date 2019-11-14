@@ -52,3 +52,11 @@ export type NewSessionRequestType = {
     currency: string,
   },
 };
+
+export type UseSessionsStateType = {
+  isFetching: boolean,
+  activeSession: ?ActiveSessionType,
+  lastEndedSession: ?EndedSessionType,
+  lastEndedSessionDuringLastHour: boolean,
+  activeExclusion: ?ExclusionType,
+};

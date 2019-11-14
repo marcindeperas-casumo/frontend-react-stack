@@ -10,7 +10,8 @@ export const type = {
 };
 export type ModalId =
   | "TERMS_AND_CONDITIONS_SPAIN"
-  | "SLOT_CONTROL_SYSTEM_CONFIGURATION";
+  | "SLOT_CONTROL_SYSTEM_CONFIGURATION"
+  | "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT";
 type ModalReturnCode =
   | "CLOSED" // click on "x"
   | "ACCEPTED" // click on accept button

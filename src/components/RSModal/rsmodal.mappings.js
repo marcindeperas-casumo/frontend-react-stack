@@ -8,7 +8,7 @@ import {
   CMS_SLUGS as SCS_CMS_SLUGS,
 } from "Models/slotControlSystem";
 import { TermsAndConditions } from "./TermsAndConditions";
-import { SlotControlSystem } from "./SlotControlSystem";
+import { BeforePlaying, BeforeLoggingOut } from "./SlotControlSystem";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -35,7 +35,11 @@ export const mappings: Mapping = {
   },
   [SCS_MODALS.CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
-    Content: SlotControlSystem,
+    Content: BeforePlaying,
+  },
+  [SCS_MODALS.BEFORE_LOGGING_OUT]: {
+    slug: SCS_CMS_SLUGS.AFTER_PLAYING,
+    Content: BeforeLoggingOut,
   },
 };
 

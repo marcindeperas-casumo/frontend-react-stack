@@ -13,7 +13,7 @@ type SlotControlSystemContent = {
   modal_title: string,
 };
 
-export function SlotControlSystem(
+export function BeforePlaying(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
   const translations = useTranslations(CMS_SLUGS.CONFIGURATION_SCREEN);
