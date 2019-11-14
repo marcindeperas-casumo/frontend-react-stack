@@ -19,6 +19,7 @@ import {
   LazySports,
   LazyTransactionHistory,
   LazyAnnualTransactionsOverview,
+  TRANSLATED_ROUTES,
 } from "./routes";
 
 type Props = {
@@ -26,6 +27,7 @@ type Props = {
   subscribeToPlayerUpdates: Function,
   unsubscribeToPlayerUpdates: Function,
   playerId: string,
+  language: string,
   isAuthenticated: boolean,
   activeComponents: Array<string>,
   routeParams: Array<Object>,
@@ -59,7 +61,8 @@ export class App extends PureComponent<Props> {
   };
 
   render() {
-    const { isAuthenticated } = this.props;
+    const { isAuthenticated, language } = this.props;
+    const translatedGamesRoute = TRANSLATED_ROUTES.GAMES[language] || "games";
 
     if (!isAuthenticated) {
       return null;
@@ -68,22 +71,36 @@ export class App extends PureComponent<Props> {
     return (
       <>
         <Router>
-          <LazyTopLists path=":market/games/top" />
-          <LazyGameSearch path=":market/games/search" />
-          <LazyMustDropJackpots path=":market/games/must-drop-jackpots" />
-          <LazyGameProviders path=":market/games/provider/:provider" />
-          <LazyPromotions path=":market/promotions" />
-          <LazyPromotionDetail path=":market/promotions/:slug" />
-          <LazyPlayer path=":market/player" />
-          <LazyPlayerValuables path=":market/player/valuables" />
-          <LazyPlayerSettings path=":market/player/settings" />
-          <LazyPlayerSettingsNotifications path=":market/player/settings/notifications" />
-          <LazyPlayerSettingsAccountDetails path=":market/player/settings/account-details" />
-          <LazyPlayerSettingsRealityCheck path=":market/player/settings/reality-check" />
-          <LazyLiveCasinoDetails path=":market/games/live-casino-details" />
-          <LazySports path=":market/sports" />
-          <LazyTransactionHistory path=":market/cash/history" />
-          <LazyAnnualTransactionsOverview path=":market/cash/history/transactions-annual-overview/:selectedYear" />
+          <LazyTopLists path={`${language}/${translatedGamesRoute}/top`} />
+          <LazyGameSearch path={`${language}/${translatedGamesRoute}/search`} />
+          <LazyMustDropJackpots
+            path={`${language}/${translatedGamesRoute}/must-drop-jackpots`}
+          />
+          <LazyGameProviders
+            path={`${language}/${translatedGamesRoute}/provider/:provider`}
+          />
+          <LazyLiveCasinoDetails
+            path={`${language}/${translatedGamesRoute}/live-casino-details`}
+          />
+          <LazyPromotions path={`${language}/promotions`} />
+          <LazyPromotionDetail path={`${language}/promotions/:slug`} />
+          <LazyPlayer path={`${language}/player`} />
+          <LazyPlayerValuables path={`${language}/player/valuables`} />
+          <LazyPlayerSettings path={`${language}/player/settings`} />
+          <LazyPlayerSettingsNotifications
+            path={`${language}/player/settings/notifications`}
+          />
+          <LazyPlayerSettingsAccountDetails
+            path={`${language}/player/settings/account-details`}
+          />
+          <LazyPlayerSettingsRealityCheck
+            path={`${language}/player/settings/reality-check`}
+          />
+          <LazySports path={`${language}/sports`} />
+          <LazyTransactionHistory path={`${language}/cash/history`} />
+          <LazyAnnualTransactionsOverview
+            path={`${language}/cash/history/transactions-annual-overview/:selectedYear`}
+          />
         </Router>
         <LazyPortal
           hostElementId="react-host-deposit-limits"

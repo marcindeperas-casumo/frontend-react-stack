@@ -6,6 +6,7 @@ import {
   isAuthenticated,
   playerIdSelector,
   sessionIdSelector,
+  languageSelector,
 } from "Models/handshake";
 import { activeComponents, routeParamsSelector } from "Models/router";
 import { App } from "Components/App/App";
@@ -22,6 +23,7 @@ export default hot(
       routeParams: routeParamsSelector(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
+      language: languageSelector(state),
     }),
     {
       onAppStarted: appStarted,

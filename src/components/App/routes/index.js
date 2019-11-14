@@ -14,3 +14,4 @@ export * from "./LazyPlayerSettingsRealityCheck.js";
 export * from "./LazySports.js";
 export * from "./LazyTransactionHistory.js";
 export * from "./LazyAnnualTransactionsOverview.js";
+export * from "./translations.constants.js";
