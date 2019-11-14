@@ -20,9 +20,7 @@ describe("<LazyPortal />", () => {
       <LazyPortal
         hostElementId={hostElementId}
         loader={() => import("Components/DangerousHtml")}
-        props={{
-          html,
-        }}
+        html={html}
       />
     );
 
