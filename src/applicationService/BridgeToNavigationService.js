@@ -13,6 +13,6 @@ export const BridgeToNavigationService = () => {
     // sync. `replace` is used to avoid adding another entry to the browser
     // history.
 
-    navigate(`${path}`, { replace: true });
+    navigate(path, { replace: true });
   });
 };
