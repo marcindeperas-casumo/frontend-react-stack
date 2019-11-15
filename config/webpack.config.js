@@ -434,7 +434,6 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       new HtmlWebpackPlugin({
         filename: `index.html`,
         template: paths.appIndexHtml,
-        title: "Casumo",
       }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
