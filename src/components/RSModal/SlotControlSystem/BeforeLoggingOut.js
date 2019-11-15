@@ -13,7 +13,6 @@ import {
 import { ModalHeader } from "../RSModalHeader";
 
 type ContentType = {
-  before_logging_out_modal_title: string,
   session_details_header: string,
   balance: string,
   money_wagered: string,
@@ -22,9 +21,13 @@ type ContentType = {
   play_started: string,
   play_ended: string,
   last_status_alert: string,
-  limits_reached_cta: string,
-  logout_cta: string,
+  limits_reached_play_again_header: string,
+  limits_reached_button_label: string,
+  limits_reached_modal_title: string,
+  limits_reached_exclusion_text: string,
+  logout_button_label: string,
   logout_text: string,
+  logout_modal_title: string,
 };
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
@@ -45,7 +48,7 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   return (
     <>
       <ModalHeader
-        title={props.t?.before_logging_out_modal_title}
+        title={props.t?.logout_modal_title}
         showCloseButton
         closeAction={props.acceptModal}
       />

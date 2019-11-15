@@ -14,10 +14,11 @@ const t = {
   play_started: "Play started",
   play_ended: "Play ended",
   last_status_alert: "Last status alert",
-  logout_cta: "Logout",
+  logout_button_label: "Logout",
   logout_text: "Here's a breakdown of your play session today:",
-  limits_reached_cta: "Back to games",
+  limits_reached_button_label: "Back to games",
 };
+const now = 1573824000160;
 const stories = storiesOf(
   "Compliance/SlotControlSystem/SessionDetails",
   module
@@ -33,9 +34,9 @@ stories.add("Default", () => {
       moneyWagered={number("Wagered", 10)}
       moneyLeft={32}
       moneyWon={12}
-      playStarted={Date.now() - 1000 * 60 * 5}
-      playEnded={Date.now() - 1000 * 60}
-      lastStatusAlert={Date.now() - 1000 * 60 * 2}
+      playStarted={now - 1000 * 60 * 5}
+      playEnded={now - 1000 * 60}
+      lastStatusAlert={now - 1000 * 60 * 2}
       onClickButton={action("onClickButton")}
     />
   );

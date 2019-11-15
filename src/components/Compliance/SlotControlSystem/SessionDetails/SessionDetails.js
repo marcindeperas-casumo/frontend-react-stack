@@ -23,8 +23,8 @@ type Props = {
     play_started: string,
     play_ended: string,
     last_status_alert: string,
-    limits_reached_cta: string,
-    logout_cta: string,
+    limits_reached_button_label: string,
+    logout_button_label: string,
     logout_text: string,
   },
   type: $Values<typeof TYPES>,
@@ -45,8 +45,6 @@ type Props = {
 
 export function SessionDetails(props: Props) {
   const { t, currency, locale, type, onClickButton } = props;
-  const formatTime = (millis: number) =>
-    DateTime.fromMillis(millis).toFormat("TT");
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
@@ -83,9 +81,14 @@ export function SessionDetails(props: Props) {
         className="u-margin--md"
         onClick={onClickButton}
       >
-        {(type === TYPES.LOGOUT ? t?.logout_cta : t?.limits_reached_cta) ||
-          null}
+        {(type === TYPES.LOGOUT
+          ? t?.logout_button_label
+          : t?.limits_reached_button_label) || null}
       </Button>
     </Flex>
   );
+}
+
+function formatTime(millis: number): string {
+  return DateTime.fromMillis(millis).toFormat("TT");
 }
