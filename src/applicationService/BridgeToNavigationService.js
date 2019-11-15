@@ -4,7 +4,7 @@ import bridge from "../DurandalReactBridge";
 
 export const BridgeToNavigationService = () => {
   bridge.on(REACT_APP_EVENT_ROUTE_CHANGE, ({ config, params }) => {
-    const { pathname, search } = window.location;
+    const path = window.location.href.replace(window.location.origin, "");
 
     // In the current implmentation, links clicked on the durandal side
     // seem to be scoped somehow, leaving react unaware that the url has
@@ -12,6 +12,7 @@ export const BridgeToNavigationService = () => {
     // retriggering navigation on the react side to keep everything in
     // sync. `replace` is used to avoid adding another entry to the browser
     // history.
-    navigate(`${pathname}${search}`, { replace: true });
+
+    navigate(`${path}`, { replace: true });
   });
 };

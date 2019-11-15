@@ -15,8 +15,8 @@ describe("BridgeToNavigationService", () => {
     delete window.location;
 
     window.location = {
-      pathname: "/test",
-      search: "?myquery",
+      href: "https://mydomain.com/test?myquery",
+      origin: "https://mydomain.com",
     };
   });
 
