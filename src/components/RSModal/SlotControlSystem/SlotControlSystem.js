@@ -1,12 +1,15 @@
 // @flow
 import * as React from "react";
-import { useSessionsState, CMS_SLUGS } from "Models/slotControlSystem";
+import {
+  useSessionsState,
+  type UseSessionsStateType,
+} from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
-import { StillOnBreak } from "Components/Compliance/SlotControlSystem/StillOnBreak";
+import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
 import { type ModalContentComponent } from "Components/RSModal";
-import { useWalletAmount, useTranslations } from "Utils/hooks";
+import { useWalletAmount } from "Utils/hooks";
 import { ModalHeader } from "../RSModalHeader";
 
 type SlotControlSystemContent = {
@@ -16,7 +19,6 @@ type SlotControlSystemContent = {
 export function SlotControlSystem(
   props: ModalContentComponent<SlotControlSystemContent>
 ) {
-  const translations = useTranslations(CMS_SLUGS.CONFIGURATION_SCREEN);
   const { amount } = useWalletAmount();
   const [continuePlaying, setContinuePlaying] = React.useState(false);
   const {
@@ -24,7 +26,7 @@ export function SlotControlSystem(
     isFetching,
     lastEndedSessionDuringLastHour,
     activeExclusion,
-  } = useSessionsState();
+  }: UseSessionsStateType = useSessionsState();
 
   React.useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
@@ -39,10 +41,9 @@ export function SlotControlSystem(
   if (activeExclusion) {
     return (
       <ModalContentSkin {...props}>
-        <StillOnBreak
-          t={translations}
+        <StillOnBreakContainer
           onClick={props.closeModal}
-          exclusionExpiryTime={activeExclusion.expiryTime}
+          exclusionExpiryTime={activeExclusion.expiringTime}
         />
       </ModalContentSkin>
     );

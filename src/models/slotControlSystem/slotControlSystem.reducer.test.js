@@ -7,6 +7,7 @@ import {
 } from "Models/slotControlSystem";
 import activeSessionMock from "./__mocks__/activeSession.mock";
 import endedSessionMock from "./__mocks__/endedSession.mock";
+import activeExclusionMock from "./__mocks__/activeExclusion.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {
   const now = Date.now();
@@ -25,6 +26,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       const response: SessionStateResponseType = {
         activeSession: responseActiveSession,
         lastEndedSession: null,
+        activeExclusion: null,
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
@@ -47,6 +49,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       const response: SessionStateResponseType = {
         activeSession: responseActiveSession,
         lastEndedSession: null,
+        activeExclusion: null,
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
@@ -77,6 +80,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       const response: SessionStateResponseType = {
         activeSession: null,
         lastEndedSession: endedSessionMock,
+        activeExclusion: null,
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
@@ -105,6 +109,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     const response: SessionStateResponseType = {
       activeSession: responseActiveSession,
       lastEndedSession: endedSessionMock,
+      activeExclusion: null,
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
@@ -133,6 +138,26 @@ describe("Models/slotControlSystem/Reducer", () => {
         ...response.activeSession,
         lastUpdateTime: now,
       },
+    });
+  });
+
+  test("response contains activeExclusion, state is empty", () => {
+    const response: SessionStateResponseType = {
+      activeSession: null,
+      lastEndedSession: null,
+      activeExclusion: activeExclusionMock,
+    };
+    const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
+    const state = {
+      activeSession: null,
+      lastEndedSession: null,
+      activeExclusion: null,
+    };
+
+    expect(slotControlSystemReducer(state, action)).toEqual({
+      activeExclusion: activeExclusionMock,
+      lastEndedSession: null,
+      activeSession: null,
     });
   });
 });

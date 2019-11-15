@@ -7,11 +7,7 @@ import { NotEnoughFunds } from "./NotEnoughFunds";
 
 export const NotEnoughFundsContainer = connect(
   state => ({
-    t: {
-      ...configurationFormContentSelector(state),
-      message: "You don't have enough funds to play with",
-      button_label: "Deposit now",
-    },
+    t: configurationFormContentSelector(state),
   }),
   null,
   (stateProps, dispatchProps, ownProps) => ({

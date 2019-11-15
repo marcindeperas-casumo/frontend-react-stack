@@ -17,7 +17,14 @@ export const configurationFormContentSelector = createSelector(
     ...propOr({}, "fields", configurationFormContent),
     ...pipe(
       propOr({}, "fields"),
-      pick(["minutes_abbreviated", "hours_abbreviated", "days_abbreviated"])
+      pick([
+        "hours",
+        "minutes",
+        "seconds",
+        "minutes_abbreviated",
+        "hours_abbreviated",
+        "days_abbreviated",
+      ])
     )(unitsContent),
   })
 );

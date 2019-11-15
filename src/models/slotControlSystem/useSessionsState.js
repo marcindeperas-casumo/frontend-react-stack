@@ -10,25 +10,18 @@ import {
   type ActiveSessionType,
   type EndedSessionType,
   type ExclusionType,
+  type UseSessionsStateType,
 } from "Models/slotControlSystem";
 
-type UseActiveSessionType = {
-  isFetching: boolean,
-  activeSession: ?ActiveSessionType,
-  lastEndedSession: ?EndedSessionType,
-  lastEndedSessionDuringLastHour: boolean,
-  activeExclusion: ?ExclusionType,
-};
-
-export function useSessionsState(): UseActiveSessionType {
+export function useSessionsState(): UseSessionsStateType {
   const dispatch = useDispatch();
   const activeSession: ActiveSessionType = useSelector(activeSessionSelector);
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  // data is older than 1 minute
+  // data is older than 15s
   const isOld = activeSession
-    ? activeSession.lastUpdateTime + 1000 * 60 < Date.now()
+    ? activeSession.lastUpdateTime + 1000 * 15 < Date.now()
     : true;
   const lastEndedSessionDuringLastHour = Boolean(
     lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
