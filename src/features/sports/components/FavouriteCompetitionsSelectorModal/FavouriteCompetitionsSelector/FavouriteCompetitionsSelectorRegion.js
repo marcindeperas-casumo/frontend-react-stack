@@ -3,16 +3,17 @@ import * as React from "react";
 import gql from "graphql-tag";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import ExpandableListItem from "Features/sports/components/ExpandableListItem";
 import CompetitionPillsList from "Features/sports/components/CompetitionPillsList";
 import { isNilOrEmpty } from "Src/utils";
 import FavouriteCompetitionsCount from "./FavouriteCompetitionsCount";
 
-type Competition = FavouriteCompetitionsSelectorRegion_Group_groups;
+type Competition = A.FavouriteCompetitionsSelectorRegion_Group_groups;
 
 type Props = {
   /** The region Group to render the selector for, type defined by FavouriteCompetitionsSelectorRegion.fragments.group */
-  group: FavouriteCompetitionsSelectorRegion_Group,
+  group: A.FavouriteCompetitionsSelectorRegion_Group,
   /** Whether this region's competitions should be initially expanded */
   isExpanded: boolean,
   /** Is the competition with this Id selected? */

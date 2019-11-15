@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
@@ -16,12 +17,12 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
-  jackpots: Array<Jackpots_Game>,
+  jackpots: Array<A.Jackpots_Game>,
   className?: string,
   title: string,
 };
 
-const JackpotsColumn = ({ column }: { column: Array<Jackpots_Game> }) => {
+const JackpotsColumn = ({ column }: { column: Array<A.Jackpots_Game> }) => {
   return (
     <List
       itemSpacing="sm"
@@ -43,7 +44,7 @@ export default class Jackpots extends PureComponent<Props> {
     title: "",
   };
 
-  get columns(): Array<Array<Jackpots_Game>> {
+  get columns(): Array<Array<A.Jackpots_Game>> {
     return generateColumns(this.props.jackpots);
   }
 
@@ -57,7 +58,7 @@ export default class Jackpots extends PureComponent<Props> {
     id: gamesInColumn,
     i,
   }: {
-    id: Array<Jackpots_Game>,
+    id: Array<A.Jackpots_Game>,
     i: number,
   }) => <JackpotsColumn key={gamesInColumn[0].slug} column={gamesInColumn} />;
 

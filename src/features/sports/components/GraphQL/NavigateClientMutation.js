@@ -1,11 +1,12 @@
 // @flow
 import React from "react";
 import { Mutation } from "react-apollo";
+import * as A from "Types/apollo";
 import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import type { MutationProps } from "Models/apollo/types";
 
 export const NavigateClientMutation = (
-  props: MutationProps<NavigateClient, NavigateClientVariables>
+  props: MutationProps<A.NavigateClient, A.NavigateClientVariables>
 ) => (
   <Mutation {...props} mutation={NAVIGATE_CLIENT_MUTATION}>
     {props.children}

@@ -1,5 +1,5 @@
 // @flow
-import * as React from "react";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   initFetchActiveSessionAction,
@@ -19,15 +19,15 @@ export function useSessionsState(): UseSessionsStateType {
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  // data is older than 1 minute
+  // data is older than 15s
   const isOld = activeSession
-    ? activeSession.lastUpdateTime + 1000 * 60 < Date.now()
+    ? activeSession.lastUpdateTime + 1000 * 15 < Date.now()
     : true;
   const lastEndedSessionDuringLastHour = Boolean(
     lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isOld) {
       dispatch(initFetchActiveSessionAction());
     }

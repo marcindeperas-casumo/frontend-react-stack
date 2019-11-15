@@ -3,6 +3,7 @@ import React, { type Node } from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import { ValuableStateIndicator } from "Components/ValuableStateIndicator";
 import { interpolate } from "Utils";
 import {
@@ -21,7 +22,7 @@ import Coin from "./Icons/coin.svg";
 
 type Props = {
   /** Valuable type of the valuable */
-  valuableType: ValuableType,
+  valuableType: A.ValuableType,
   /** currency of the player */
   currency: string,
   /** The coin value of each spin. Applies when valuable is type spins */
@@ -138,7 +139,7 @@ function getStateBadgeText(
   return null;
 }
 
-function getCoinClassModifier(valuableType: ValuableType) {
+function getCoinClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:
@@ -154,7 +155,7 @@ function getCoinClassModifier(valuableType: ValuableType) {
   }
 }
 
-function getCoinTextClassModifier(valuableType: ValuableType) {
+function getCoinTextClassModifier(valuableType: A.ValuableType) {
   // eslint-disable-next-line no-switch-statements/no-switch
   switch (valuableType) {
     case VALUABLE_TYPES.CASH:

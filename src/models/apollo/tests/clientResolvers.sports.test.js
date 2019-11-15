@@ -1,6 +1,7 @@
 // @flow
 import { ApolloClient } from "apollo-client";
 import { InMemoryCache } from "apollo-cache-inmemory";
+import * as A from "Types/apollo";
 import * as kambi from "Features/sports/kambi";
 import { MODAL } from "Features/sports/components/Modals";
 import * as queries from "../queries.sports";
@@ -37,8 +38,8 @@ const createClientWithState = (state: {
   return client;
 };
 
-const modal1: Modal = MODAL.CHOOSE_FAVOURITES;
-const modal2: Modal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
+const modal1: A.Modal = MODAL.CHOOSE_FAVOURITES;
+const modal2: A.Modal = MODAL.CHOOSE_FAVOURITE_COMPETITIONS;
 
 describe("Client state resolvers", () => {
   describe("Default state", () => {

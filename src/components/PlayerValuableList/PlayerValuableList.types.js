@@ -1,4 +1,5 @@
 // @flow
+import * as A from "Types/apollo";
 import { type ValuableThumbnailTranslations } from "Models/valuables";
 
 type Translations = ValuableThumbnailTranslations & {
@@ -17,7 +18,7 @@ export type PlayerValuableListProps = {
   /** Refetch valuables function */
   refetch?: () => void,
   /** The list of valuables to be displayed as cards */
-  valuables: Array<PlayerValuableList_PlayerValuable>,
+  valuables: Array<A.PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => Promise<void>,
   /** An array of translated labels */

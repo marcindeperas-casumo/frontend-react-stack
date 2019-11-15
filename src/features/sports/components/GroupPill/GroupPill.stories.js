@@ -2,16 +2,17 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import * as A from "Types/apollo";
 import GroupPill from "./GroupPill";
 
 const stories = storiesOf("Sports/GroupPill", module);
 
-const groupA: GroupPill_Group = {
+const groupA: A.GroupPill_Group = {
   name: "Group A",
   regionCode: "",
 };
 
-const groupB: GroupPill_Group = {
+const groupB: A.GroupPill_Group = {
   name: "Group B",
   regionCode: "SE",
 };

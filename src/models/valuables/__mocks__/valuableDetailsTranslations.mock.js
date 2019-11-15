@@ -1,4 +1,6 @@
 // @flow
+import * as A from "Types/apollo";
+
 export default ({
   "wageringStatus": "Wagering status should be here",
   "termsAndConditionLabel": "Terms & Conditions",
@@ -15,4 +17,4 @@ export default ({
   "day_singular": "{{value}} Day",
   "day_plural": "{{value}} Days",
   "termsAndConditionsContent": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut eget vehicula ante, eget tincidunt lectus. Sed aliquet sapien dolor, eu pretium quam pellentesque sed. Praesent est orci, efficitur nec mi ut, efficitur blandit ligula. Etiam vestibulum sapien a sapien commodo lobortis ac et mauris. Sed feugiat varius tellus, id pharetra risus faucibus nec."
-}: ValuableDetailsQuery);
+}: A.ValuableDetailsQuery);

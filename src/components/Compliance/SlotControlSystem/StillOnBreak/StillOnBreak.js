@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
-import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import { interpolate } from "Utils";
+import { interpolate, interpolateTimeInterval } from "Utils";
 import StillOnBreakImage from "./StillOnBreak.svg";
 
 type Props = {
@@ -12,6 +11,9 @@ type Props = {
     still_on_break: string,
     still_on_break_subtext: string,
     still_on_break_button_label: string,
+    minutes: string,
+    hours: string,
+    seconds: string,
   },
   onClick: () => void,
   /* Unix timestamp in millis */
@@ -19,8 +21,14 @@ type Props = {
 };
 
 export function StillOnBreak(props: Props) {
-  const { t, onClick } = props;
-  const exclusionExpiryTime = DateTime.fromMillis(props.exclusionExpiryTime);
+  const { t, onClick, exclusionExpiryTime } = props;
+  const seconds = (exclusionExpiryTime - Date.now()) / 1000;
+  const timeInterval = interpolateTimeInterval({
+    seconds,
+    t: {
+      ...t,
+    },
+  });
 
   return (
     <Flex direction="vertical">
@@ -33,9 +41,7 @@ export function StillOnBreak(props: Props) {
         {t?.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {interpolate(t?.still_on_break_subtext, {
-          time: exclusionExpiryTime.toFormat("T"),
-        })}
+        {interpolate(t?.still_on_break_subtext, { time: timeInterval })}
       </Text>
       <Button
         size="md"

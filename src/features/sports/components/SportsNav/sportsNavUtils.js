@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import * as R from "ramda";
+import * as A from "Types/apollo";
 import tracker from "Services/tracker";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { RegionFlag } from "Features/sports/components/RegionFlag";
@@ -8,7 +9,7 @@ import { NAVIGATE_CLIENT_MUTATION } from "Models/apollo/mutations";
 import { type SportsNavItemType } from "Features/sports/components/SportsNav";
 
 export const selectPath = (client: *, path: string) => {
-  client.mutate<NavigateClient>({
+  client.mutate<A.NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
       path,
@@ -67,7 +68,7 @@ export const onNavItemSelected = (
     [EVENT_PROPS.SPORTS_IS_LIVE_ACTIVE]: isLiveActive,
   });
 
-  client.mutate<NavigateClient>({
+  client.mutate<A.NavigateClient>({
     mutation: NAVIGATE_CLIENT_MUTATION,
     variables: {
       path,
@@ -78,8 +79,8 @@ export const onNavItemSelected = (
 
 const toSubNavItem = (
   isLiveActive: boolean,
-  sport: UserNavigation_sportsNavigation_sport
-) => (subNav: UserNavigation_sportsNavigation_subNav) => ({
+  sport: A.UserNavigation_sportsNavigation_sport
+) => (subNav: A.UserNavigation_sportsNavigation_subNav) => ({
   text: (
     <>
       {subNav.competition.regionCode && (
@@ -102,7 +103,7 @@ const toSubNavItem = (
 export const toNavItem = (isLiveActive: boolean) => ({
   sport,
   subNav,
-}: UserNavigation_sportsNavigation): SportsNavItemType => ({
+}: A.UserNavigation_sportsNavigation): SportsNavItemType => ({
   text: sport.name,
   path: isLiveActive ? sport.clientPathLive : sport.clientPath,
   key: sport.termKey,

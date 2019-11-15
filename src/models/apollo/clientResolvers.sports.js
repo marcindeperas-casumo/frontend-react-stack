@@ -2,6 +2,7 @@
 
 import { uniq } from "ramda";
 import type { InMemoryCache } from "apollo-cache-inmemory";
+import * as A from "Types/apollo";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { ACTIVE_MODALS_QUERY } from "./queries";
 
@@ -20,7 +21,7 @@ export const updateBetslipState = (
 
 export const openModal = async (
   _: null,
-  { modal }: { modal: Modal },
+  { modal }: { modal: A.Modal },
   context: Context
 ) => {
   const currentModals = await context.cache.readQuery({
@@ -41,7 +42,7 @@ export const openModal = async (
 
 export const closeModal = async (
   _: null,
-  { modal }: { modal: Modal },
+  { modal }: { modal: A.Modal },
   context: Context
 ) => {
   const currentModals = await context.cache.readQuery({

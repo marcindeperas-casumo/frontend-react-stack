@@ -29,7 +29,9 @@ export type EndedSessionType = {
 export type ExclusionType = {
   id: string,
   /** Unix time in millis */
-  expiryTime: number,
+  expiringTime: number,
+  /** Unix time in millis */
+  startedTime: number,
 };
 
 export type StateType = {
@@ -41,6 +43,7 @@ export type StateType = {
 export type SessionStateResponseType = {
   activeSession: ?$Diff<ActiveSessionType, { lastUpdateTime: number }>,
   lastEndedSession: ?EndedSessionType,
+  activeExclusion: ?ExclusionType,
 };
 
 export type NewSessionRequestType = {
