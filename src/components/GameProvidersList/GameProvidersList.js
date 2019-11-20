@@ -76,7 +76,7 @@ class GameProvidersList extends PureComponent<Props> {
                 numberOfItems={this.itemsWithBackground.length}
                 keyGetter={this.keyGetter}
                 itemRenderer={this.itemRenderer}
-                itemClassName="c-tile"
+                itemClassName="c-game-provider-avatar"
                 padding={PADDING_PER_DEVICE}
                 itemSpacing={DEFAULT_SPACING}
               />
@@ -90,7 +90,7 @@ class GameProvidersList extends PureComponent<Props> {
               }}
               // we are bound to "id" because of the cellRenderer method inside <ScrollableListPaginated />
               Component={({ id: item }) => <GameProviderAvatar {...item} />}
-              className="c-tile"
+              className="c-game-provider-avatar"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
               itemSpacing="md"
