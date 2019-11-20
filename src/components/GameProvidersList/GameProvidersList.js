@@ -6,7 +6,7 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
-import Tile from "./Tile";
+import GameProviderAvatar from "./GameProviderAvatar";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -52,7 +52,7 @@ class GameProvidersList extends PureComponent<Props> {
   }
 
   itemRenderer = (i: number) => {
-    return <Tile {...this.itemsWithBackground[i]} />;
+    return <GameProviderAvatar {...this.itemsWithBackground[i]} />;
   };
 
   render() {
@@ -89,7 +89,7 @@ class GameProvidersList extends PureComponent<Props> {
                 itemIds: this.itemsWithBackground,
               }}
               // we are bound to "id" because of the cellRenderer method inside <ScrollableListPaginated />
-              Component={({ id: item }) => <Tile {...item} />}
+              Component={({ id: item }) => <GameProviderAvatar {...item} />}
               className="c-tile"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
