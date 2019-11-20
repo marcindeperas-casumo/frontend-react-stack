@@ -31,7 +31,7 @@ type Props = {
   isLoaded: boolean,
 };
 
-class TileListHorizontal extends PureComponent<Props> {
+class GameProvidersList extends PureComponent<Props> {
   static defaultProps = {
     fetch: () => {},
     title: "",
@@ -102,4 +102,4 @@ class TileListHorizontal extends PureComponent<Props> {
   }
 }
 
-export default TileListHorizontal;
+export default GameProvidersList;

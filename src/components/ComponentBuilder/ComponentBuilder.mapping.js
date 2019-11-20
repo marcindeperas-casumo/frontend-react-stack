@@ -17,7 +17,7 @@ import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
-import TileListHorizontal from "Components/TileListHorizontal";
+import TileListHorizontal from "Components/GameProvidersList";
 import ReelRacesList from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";

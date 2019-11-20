@@ -2,11 +2,11 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
-import TileListHorizontal from "Components/TileListHorizontal";
-import TileListHorizontalPresentational from "Components/TileListHorizontal/TileListHorizontal";
+import GameProvidersList from "Components/GameProvidersList";
+import GameProvidersListPresentational from "Components/GameProvidersList/GameProvidersList";
 import isNotChromatic from "Storybook/isNotChromatic";
 
-const stories = storiesOf("TileListHorizontal", module);
+const stories = storiesOf("GameProvidersList", module);
 const title = "Game Providers";
 const items = [
   {
@@ -60,7 +60,7 @@ const items = [
 
 stories.add("Game Providers List (Presentational)", () => (
   <MockStore>
-    <TileListHorizontalPresentational
+    <GameProvidersListPresentational
       isLoaded={true}
       title={title}
       items={items}
@@ -71,7 +71,7 @@ stories.add("Game Providers List (Presentational)", () => (
 if (isNotChromatic) {
   stories.add("Game Providers List (Connected)", () => (
     <MockStore>
-      <TileListHorizontal title={"Game Providers"} type={"game-providers"} />
+      <GameProvidersList title={"Game Providers"} type={"game-providers"} />
     </MockStore>
   ));
 }
