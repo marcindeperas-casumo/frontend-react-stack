@@ -11,7 +11,7 @@ import bridge from "Src/DurandalReactBridge";
 import * as storage from "Lib/storage";
 import tracker from "Services/tracker";
 import reduxStore from "Services/reduxStore";
-import bridgeToDispatchService from "Services/BridgeToDispatchService";
+import { BridgeToNavigationService } from "Services/BridgeToNavigationService";
 import bridgeToPlayingService from "Services/BridgeToPlayingService";
 import { Modal } from "Components/RSModal";
 import { bridgeToLaunchModalService } from "Services/LaunchModalService";
@@ -20,7 +20,7 @@ import "./styles/index.scss";
 
 // eslint-disable-next-line fp/no-mutation
 window.bridge = bridge;
-bridgeToDispatchService(reduxStore);
+BridgeToNavigationService();
 bridgeToPlayingService(reduxStore);
 bridgeToLaunchModalService(reduxStore);
 

@@ -88,6 +88,7 @@ export const MARKETS = {
   no_no: "no_no",
   se_sv: "se_sv",
   es_es: "es_es",
+  nz_en: "nz_en",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -100,6 +101,7 @@ export const LANGUAGES = {
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
   [MARKETS.es_es]: "es",
+  [MARKETS.nz_en]: "nz",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -112,8 +114,35 @@ export const INTL_LOCALES = {
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
   [MARKETS.es_es]: "es-ES",
+  [MARKETS.nz_en]: "en-NZ",
 };
-
+export const URL_PREFIXES = {
+  [MARKETS.___en]: "en",
+  [MARKETS.ca_en]: "en-ca",
+  [MARKETS.de_de]: "de",
+  [MARKETS.dk_da]: "da",
+  [MARKETS.fi_fi]: "fi",
+  [MARKETS.gb_en]: "en-gb",
+  [MARKETS.in_en]: "en-in",
+  [MARKETS.no_no]: "no",
+  [MARKETS.se_sv]: "sv",
+  [MARKETS.es_es]: "",
+  [MARKETS.nz_en]: "en-nz",
+};
+export const TRANSLATED_ROUTES = {
+  GAMES: {
+    sv: "spel",
+    fi: "pelit",
+    no: "spillvelger",
+    de: "spiele",
+  },
+  PLAY: {
+    sv: "spela",
+    fi: "pelaa",
+    no: "spill",
+    de: "spielen",
+  },
+};
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £

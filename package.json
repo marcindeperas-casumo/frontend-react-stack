@@ -21,6 +21,7 @@
     "@casumo/cmp-table": "^2.0.4",
     "@casumo/cmp-text": "^2.0.3",
     "@casumo/cudl": "^8.0.1",
+    "@reach/router": "^1.2.1",
     "@researchgate/react-intersection-observer": "^1.0.1",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",

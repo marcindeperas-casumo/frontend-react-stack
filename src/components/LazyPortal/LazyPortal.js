@@ -26,8 +26,8 @@ export default class LazyPortal extends React.PureComponent<Props> {
       fallback = <DefaultFallback />,
       loader,
       hostElementId,
-      props,
       namedExport,
+      props,
     } = this.props;
 
     return (
