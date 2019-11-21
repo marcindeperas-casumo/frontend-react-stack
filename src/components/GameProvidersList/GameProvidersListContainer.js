@@ -12,6 +12,7 @@ import { types } from "./GameProvidersList.constants";
 type Props = {
   /** Type of list (e.g, game-providers) */
   type: string,
+  /** The list title to show */
   title: string,
 };
 
