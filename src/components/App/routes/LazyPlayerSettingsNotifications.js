@@ -10,6 +10,6 @@ export const LazyPlayerSettingsNotifications = props => (
       )
     }
     namedExport="SettingsNotificationsContainer"
-    {...props}
+    props={props}
   />
 );

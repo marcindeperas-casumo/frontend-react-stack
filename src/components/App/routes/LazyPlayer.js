@@ -7,13 +7,13 @@ export const LazyPlayer = props => (
       hostElementId="react-host-adventure"
       loader={() => import("Components/AdventureCard")}
       namedExport="AdventureCard"
-      {...props}
+      props={props}
     />
     <LazyPortal
       hostElementId="react-host-adventure-valuables"
       loader={() => import("Components/PlayerValuableList")}
       namedExport="PlayerValuableListHorizontal"
-      {...props}
+      props={props}
     />
   </>
 );

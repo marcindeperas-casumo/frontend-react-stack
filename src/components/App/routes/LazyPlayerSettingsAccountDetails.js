@@ -10,6 +10,6 @@ export const LazyPlayerSettingsAccountDetails = props => (
       )
     }
     namedExport="SettingsAccountDetailsContainer"
-    {...props}
+    props={props}
   />
 );

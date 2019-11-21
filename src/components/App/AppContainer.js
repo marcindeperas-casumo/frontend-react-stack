@@ -7,6 +7,7 @@ import {
   playerIdSelector,
   sessionIdSelector,
   languageSelector,
+  marketSelector,
 } from "Models/handshake";
 import { activeComponents, routeParamsSelector } from "Models/router";
 import { App } from "Components/App/App";
@@ -23,6 +24,7 @@ export default hot(
       routeParams: routeParamsSelector(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
+      market: marketSelector(state),
       language: languageSelector(state),
     }),
     {

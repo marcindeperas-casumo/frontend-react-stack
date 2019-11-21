@@ -9,6 +9,6 @@ export const LazyPromotions = props => (
     fallback={<PromotionPageSkeleton />}
     slug="campaigns.winter-games"
     namedExport="ComponentBuilder"
-    {...props}
+    props={props}
   />
 );

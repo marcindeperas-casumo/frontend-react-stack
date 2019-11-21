@@ -8,6 +8,6 @@ export const LazyLiveCasinoDetails = props => (
     loader={() => import("Components/LiveCasinoDetailPage")}
     fallback={<GameListSkeleton />}
     namedExport="LiveCasinoDetailPage"
-    {...props}
+    props={props}
   />
 );

@@ -6,6 +6,6 @@ export const LazyTransactionHistory = props => (
     hostElementId="react-host-transactions-annual-overview-year"
     loader={() => import("Components/TransactionsAnnualOverviewYearSelector")}
     namedExport="TransactionsAnnualOverviewYearSelector"
-    {...props}
+    props={props}
   />
 );

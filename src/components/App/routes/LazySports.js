@@ -8,6 +8,6 @@ export const LazySports = props => (
     loader={() => import("Features/sports/components/SportsShell")}
     fallback={<SportsShellSkeleton />}
     namedExport="SportsShellContainer"
-    {...props}
+    props={props}
   />
 );

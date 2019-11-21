@@ -8,6 +8,6 @@ export const LazyTopLists = props => (
     loader={() => import("Components/TopLists")}
     fallback={<TopListsSkeleton />}
     namedExport="TopLists"
-    {...props}
+    props={props}
   />
 );

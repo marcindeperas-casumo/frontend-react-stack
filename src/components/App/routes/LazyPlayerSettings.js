@@ -8,6 +8,6 @@ export const LazyPlayerSettings = props => (
       import("Components/Settings/SettingsSections/SettingsSectionsContainer")
     }
     namedExport="SettingsSectionsContainer"
-    {...props}
+    props={props}
   />
 );

@@ -13,7 +13,7 @@ export const LazyPromotionDetail = props => {
       loader={() => import("Components/ComponentBuilder")}
       fallback={<PromotionPageSkeleton />}
       namedExport="ComponentBuilder"
-      {...augmentedProps}
+      props={augmentedProps}
     />
   );
 };

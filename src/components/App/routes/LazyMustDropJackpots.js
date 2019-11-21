@@ -8,6 +8,6 @@ export const LazyMustDropJackpots = props => (
     loader={() => import("Components/MustDropJackpotList")}
     fallback={<GameListSkeleton hasTitle={false} />}
     namedExport="MustDropJackpotList"
-    {...props}
+    props={props}
   />
 );

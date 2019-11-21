@@ -6,6 +6,6 @@ export const LazyPlayerValuables = props => (
     hostElementId="react-host-valuables"
     loader={() => import("Components/PlayerValuableList")}
     namedExport="PlayerValuableListVertical"
-    {...props}
+    props={props}
   />
 );

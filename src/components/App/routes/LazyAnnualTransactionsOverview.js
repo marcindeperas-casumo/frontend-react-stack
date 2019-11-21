@@ -7,13 +7,13 @@ export const LazyAnnualTransactionsOverview = props => (
       hostElementId="react-host-transactions-annual-overview"
       loader={() => import("Components/TransactionsAnnualOverview")}
       namedExport="TransactionsAnnualOverview"
-      {...props}
+      props={props}
     />
     <LazyPortal
       hostElementId="react-host-transactions-annual-overview-year"
       loader={() => import("Components/TransactionsAnnualOverviewYearSelector")}
       namedExport="TransactionsAnnualOverviewYearSelector"
-      {...props}
+      props={props}
     />
   </>
 );

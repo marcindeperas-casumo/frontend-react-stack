@@ -8,6 +8,6 @@ export const LazyGameProviders = props => (
     loader={() => import("Components/ProviderGamesList")}
     fallback={<GameListSkeleton hasTitle={false} />}
     namedExport="ProverGamesList"
-    {...props}
+    props={props}
   />
 );

@@ -10,6 +10,6 @@ export const LazyPlayerSettingsRealityCheck = props => (
       )
     }
     namedExport="SettingsRealityCheckContainer"
-    {...props}
+    props={props}
   />
 );
