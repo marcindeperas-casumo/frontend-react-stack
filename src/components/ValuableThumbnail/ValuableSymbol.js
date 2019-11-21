@@ -34,6 +34,7 @@ const VALUABLE_ICON = {
     [CURRENCIES.INR]: CurrencyRupIcon,
     [CURRENCIES.SEK]: CurrencyKrnIcon,
     [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.NZD]: CurrencyCadIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };
