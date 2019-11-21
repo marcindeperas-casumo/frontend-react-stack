@@ -14,7 +14,7 @@ stories.add(
       hostElementId={hostElementId}
       fallback={<GameListHorizontalSkeleton itemWidth={170} />}
       loader={() => import("Components/DangerousHtml")}
-      html="<div>Sample lazy-loaded HTML.</div>"
+      props={{ html: "<div>Sample lazy-loaded HTML.</div>" }}
       namedExport="DangerousHtml"
     />
   ),
