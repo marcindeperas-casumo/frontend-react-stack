@@ -8,9 +8,9 @@ import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import GameProvidersList from "Components/GameProvidersList/GameProvidersList";
-import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
+import GameProvidersListSkeleton from "Components/GameProvidersList/GameProvidersListSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import Tile from "./Tile";
+import GameProviderAvatar from "./GameProviderAvatar";
 
 const items = R.times(
   i => ({
@@ -25,7 +25,7 @@ const items = R.times(
 );
 const title = "Foo";
 
-describe("<TileListHorizontal /> - Mobile", () => {
+describe("<GameProvidersList /> - Mobile", () => {
   let rendered;
 
   beforeEach(() => {
@@ -52,7 +52,7 @@ describe("<TileListHorizontal /> - Mobile", () => {
       </MockStore>
     );
 
-    expect(rendered.find(TileListHorizontalSkeleton)).toHaveLength(1);
+    expect(rendered.find(GameProvidersListSkeleton)).toHaveLength(1);
   });
 
   test("shouldn't render unless there are items", () => {
@@ -90,20 +90,20 @@ describe("<TileListHorizontal /> - Mobile", () => {
 
     expect(rendered.find(ScrollableListTitle)).toHaveLength(1);
     expect(rendered.find(ScrollableListTitle).prop("title")).toBe(title);
-    expect(rendered.find(Scrollable).find(Tile)).toHaveLength(1);
+    expect(rendered.find(Scrollable).find(GameProviderAvatar)).toHaveLength(1);
 
-    const tile = rendered
+    const avatar = rendered
       .find(Scrollable)
-      .find(Tile)
+      .find(GameProviderAvatar)
       .first();
 
-    expect(tile.prop("url")).toBe(item.url);
-    expect(tile.prop("logo")).toBe(item.logo);
-    expect(tile.prop("background")).toBe(item.background);
+    expect(avatar.prop("url")).toBe(item.url);
+    expect(avatar.prop("logo")).toBe(item.logo);
+    expect(avatar.prop("background")).toBe(item.background);
   });
 });
 
-describe("<TileListHorizontal /> - Desktop", () => {
+describe("<GameProvidersList /> - Desktop", () => {
   let rendered;
 
   beforeEach(() => {
@@ -127,7 +127,7 @@ describe("<TileListHorizontal /> - Desktop", () => {
       </MockStore>
     );
 
-    expect(rendered.find(TileListHorizontalSkeleton)).toHaveLength(1);
+    expect(rendered.find(GameProvidersListSkeleton)).toHaveLength(1);
   });
 
   //eslint-disable-next-line sonarjs/no-identical-functions

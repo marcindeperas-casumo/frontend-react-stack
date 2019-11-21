@@ -23,7 +23,7 @@ const defaultClassNames = `
   u-padding-left--3xlg@desktop
 `;
 
-export default class TileListHorizontalSkeleton extends PureComponent<Props> {
+export default class GameProvidersListSkeleton extends PureComponent<Props> {
   static defaultProps = {
     className: defaultClassNames,
     numberOfItems: 5,

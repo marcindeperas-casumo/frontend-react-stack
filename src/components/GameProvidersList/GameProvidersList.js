@@ -2,8 +2,8 @@
 import React, { PureComponent } from "react";
 import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
+import GameProvidersListSkeleton from "Components/GameProvidersList/GameProvidersListSkeleton";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
 import GameProviderAvatar from "./GameProviderAvatar";
@@ -59,7 +59,7 @@ class GameProvidersList extends PureComponent<Props> {
     const { title, items, isLoaded } = this.props;
 
     if (!isLoaded) {
-      return <TileListHorizontalSkeleton />;
+      return <GameProvidersListSkeleton />;
     }
 
     if (isEmpty(items)) {
