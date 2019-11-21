@@ -42,7 +42,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -58,7 +57,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableSpins",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -78,7 +76,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableCash",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -92,7 +89,7 @@ export type PlayerValuablesQuery_player_valuables =
       requirementType: ?RequirementType,
     };
 export type PlayerValuablesQuery_player = {
-  valuables: Array<?PlayerValuablesQuery_player_valuables>,
+  valuables: Array<PlayerValuablesQuery_player_valuables>,
 };
 export type PlayerValuablesQuery = {
   listTitleLabel: string,
@@ -1128,7 +1125,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,
@@ -1147,7 +1143,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,
@@ -1167,7 +1162,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,

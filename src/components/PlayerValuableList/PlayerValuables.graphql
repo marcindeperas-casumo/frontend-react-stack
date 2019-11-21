@@ -25,7 +25,6 @@ query PlayerValuablesQuery {
       __typename
       id
       valuableState
-      expirationTimeInHours
       expiryDate
       valuableType
       title
@@ -55,7 +54,6 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     __typename
     id
     valuableState
-    expirationTimeInHours
     expiryDate
     valuableType
     title
