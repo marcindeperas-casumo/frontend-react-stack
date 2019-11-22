@@ -54,14 +54,13 @@ initNumberOfVisits();
 // We need it to prevent people to look into our React tree with the extension
 // in production.
 if (!__DEV__ && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === "object") {
-  // eslint-disable-next-line fp/no-loops, fp/no-let
-  for (let [key, value] of Object.entries(
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__
-  )) {
-    // eslint-disable-next-line fp/no-mutation
-    window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
-      typeof value === "function" ? () => {} : null;
-  }
+  Object.entries(window.__REACT_DEVTOOLS_GLOBAL_HOOK__).forEach(
+    ([key, value]) => {
+      // eslint-disable-next-line fp/no-mutation
+      window.__REACT_DEVTOOLS_GLOBAL_HOOK__[key] =
+        typeof value === "function" ? () => {} : null;
+    }
+  );
 }
 
 function initNumberOfVisits() {
