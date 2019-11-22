@@ -2,10 +2,10 @@
 import React, { PureComponent } from "react";
 import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
-import GameProvidersListSkeleton from "Components/GameProvidersList/GameProvidersListSkeleton";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
 import GameProviderAvatar from "./GameProviderAvatar";
 
 const PADDING_PER_DEVICE = {
