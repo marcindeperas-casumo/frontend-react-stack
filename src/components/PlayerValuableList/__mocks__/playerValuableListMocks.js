@@ -1,20 +1,40 @@
 // @flow
 import gql from "graphql-tag";
 import { PlayerValuablesQuery } from "../PlayerValuables.graphql";
-import valuables from "Components/ValuableCard/__mocks__/Valuable";
+import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import translationsMock from "./translations.mock.json";
+import { VALUABLE_TYPES } from "Models/valuables";
 
-const mockedValuables = [
+const mockedDepositValuables = [
   {
     request: {
       query: PlayerValuablesQuery,
+      variables: { valuableType: VALUABLE_TYPES.DEPOSIT }
     },
     result: {
       data: {
         ...translationsMock,
         player: {
           __typename: "Player",
-          valuables,
+          valuables: mockValuables(VALUABLE_TYPES.DEPOSIT),
+        },
+      }
+    },
+  },
+];
+
+const mockedValuables = [
+  {
+    request: {
+      query: PlayerValuablesQuery,
+      variables: {}
+    },
+    result: {
+      data: {
+        ...translationsMock,
+        player: {
+          __typename: "Player",
+          valuables: mockValuables()
         },
       }
     },
@@ -25,6 +45,7 @@ const emptyValuables = [
   {
     request: {
       query: PlayerValuablesQuery,
+      variables: {}
     },
     result: {
       data: {
@@ -60,6 +81,7 @@ const error = [
 
 export const mocks = {
   mockedValuables,
+  mockedDepositValuables,
   emptyValuables,
   loading,
   error,
