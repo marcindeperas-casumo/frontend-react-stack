@@ -13,7 +13,6 @@ type Props = {
 export const PlayerDepositValuablesWithModal = ({
   isOpen,
   onClose,
-  children,
   ...props
 }: Props) => (
   <AbstractModal
