@@ -18,7 +18,7 @@ stories.add("Default", () => {
     <StillOnBreak
       t={t}
       onClick={action("clicked")}
-      exclusionExpiryTime={Date.now()}
+      exclusionExpiryTime={1574423978913}
     />
   );
 });

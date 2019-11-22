@@ -1,9 +1,6 @@
 // @flow
 import * as React from "react";
-import {
-  useSessionsState,
-  type UseSessionsStateType,
-} from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
@@ -26,7 +23,7 @@ export function SlotControlSystem(
     isFetching,
     lastEndedSessionDuringLastHour,
     activeExclusion,
-  }: UseSessionsStateType = useSessionsState();
+  } = useSessionsState();
 
   React.useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
@@ -91,7 +88,7 @@ function ModalContentSkin(props: ModalContentSkinProps) {
         showCloseButton
         closeAction={props.dismissModal}
       />
-      <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet u-overflow-y--auto">
+      <div className="u-padding-x--2xlg@tablet u-padding-x--2xlg@desktop u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
         {props.children}
       </div>
     </>

@@ -3,7 +3,9 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import { navigateById } from "Services/NavigationService";
 import NotEnoughFundsImage from "./NotEnoughFunds.svg";
+import "./NotEnoughFunds.scss";
 
 type Props = {
   onClick: () => void,
@@ -15,11 +17,15 @@ type Props = {
 };
 
 export function NotEnoughFunds(props: Props) {
-  const { t, onClick } = props;
+  const { t } = props;
+  const onClick = () => {
+    props.onClick();
+    navigateById({ routeId: "deposit" });
+  };
 
   return (
     <Flex direction="vertical">
-      <NotEnoughFundsImage />
+      <NotEnoughFundsImage className="c-scs__not-enough-funds__image" />
       <Text
         size="2xlg"
         tag="h3"
