@@ -4,27 +4,26 @@ import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
+import { pick } from "ramda";
+import * as A from "Types/apollo";
 import { ValuableRow } from "Components/ValuableRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableCard } from "Components/ValuableCard";
+import { type ValuableListProps } from "Models/valuables";
 
-type Props = {
-  className?: string,
-  loading: boolean,
-  title?: string,
-  translations: any[], // TODO: set type
-  valuables: any[], // TODO: set type
-  onConsumeValuable?: () => {},
-};
-
-const valuableItemRenderer = (valuable, translations, onClick) => (
+const valuableItemRenderer = (
+  valuable, // : A.PlayerValuableList_PlayerValuable,
+  translations, // : ValuableThumbnailTranslations,
+  onMoreInfo, // : A.PlayerValuableList_PlayerValuable => void
+  onConsumeValuable
+) => (
   <div className="u-padding-y--md">
     <ValuableRow
       key={`available-valuable-row-${valuable.id}`}
       translations={translations}
       {...valuable}
-      onClick={() => onClick(valuable)}
+      onMoreInfo={() => onMoreInfo(valuable)}
     />
   </div>
 );
@@ -36,10 +35,35 @@ export const ValuablesVerticalList = ({
   loading,
   className,
   onConsumeValuable,
-}: Props) => {
+}: ValuableListProps) => {
   const [selectedValuable, setSelectedValuable] = React.useState(null);
   const closeModal = () => {
     setSelectedValuable(null);
+  };
+
+  const showValuableDetails = (
+    valuable: A.PlayerValuableList_PlayerValuable
+  ) => {
+    const valuableDetails = pick(
+      [
+        "id",
+        "backgroundImage",
+        "content",
+        "caveat",
+        "currency",
+        "market",
+        "expiryDate",
+        "expirationTimeInHours",
+        "valuableType",
+        "valuableState",
+        "wageringThreshold",
+        "leftToWager",
+        "requirementType",
+        "title",
+      ],
+      valuable
+    );
+    setSelectedValuable(valuableDetails);
   };
 
   if (loading || !translations) {
@@ -50,7 +74,7 @@ export const ValuablesVerticalList = ({
     <div
       className={classNames(
         className,
-        "u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white"
+        "c-player-valuables-list u-padding-bottom--lg t-background-white"
       )}
     >
       <Flex direction="vertical" spacing="none">
@@ -67,7 +91,12 @@ export const ValuablesVerticalList = ({
             itemSpacing="none"
             items={valuables}
             render={valuable =>
-              valuableItemRenderer(valuable, translations, setSelectedValuable)
+              valuableItemRenderer(
+                valuable,
+                translations,
+                showValuableDetails,
+                onConsumeValuable
+              )
             }
           />
         )}

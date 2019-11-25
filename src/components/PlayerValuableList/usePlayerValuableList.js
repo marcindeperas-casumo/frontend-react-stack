@@ -9,13 +9,13 @@ import { subscribeToItemCreatedEvent } from "./utils";
 
 export function usePlayerValuableList(valuableType?: ValuableType) {
   const variables = { valuableType };
-  const { data, loading, refetch } = useQuery<A.PlayerValuablesQuery, void>(
-    PlayerValuablesQuery,
-    {
-      returnPartialData: true,
-      variables,
-    }
-  );
+  const { data, loading, refetch } = useQuery<
+    A.PlayerValuablesQuery,
+    A.PlayerValuablesQueryVariables
+  >(PlayerValuablesQuery, {
+    returnPartialData: true,
+    variables,
+  });
 
   React.useEffect(() => {
     const handler = subscribeToItemCreatedEvent(({ success }) => {

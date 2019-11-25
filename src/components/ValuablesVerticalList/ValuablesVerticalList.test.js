@@ -1,12 +1,15 @@
 //@flow
 import React from "react";
 import { shallow } from "enzyme";
-// import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
+import List from "@casumo/cmp-list";
+import { mockValuables } from "Components/ValuableCard/__mocks__/Valuable.mock";
 import { actWait } from "Utils";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
+import { ValuableRow } from "Components/ValuableRow";
 
 describe("PlayerValuableListVertical", () => {
+  const mockedValuables = mockValuables();
   test("should render skeleton while loading", async () => {
     const rendered = shallow(
       <ValuablesVerticalList valuables={[]} loading={true} translations={{}} />
@@ -17,13 +20,20 @@ describe("PlayerValuableListVertical", () => {
     expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
   });
 
-  test("should render a list of valuable rows", async () => {
+  test("should render a list of valuable rows", () => {
     const rendered = shallow(
-      <ValuablesVerticalList valuables={[]} loading={false} translations={{}} />
+      <ValuablesVerticalList
+        valuables={mockedValuables}
+        loading={false}
+        translations={{}}
+      />
     );
 
-    await actWait();
-
-    expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
+    expect(
+      rendered
+        .find(List)
+        .dive()
+        .find(ValuableRow).length
+    ).toEqual(mockedValuables.length);
   });
 });

@@ -2,6 +2,7 @@
 import * as React from "react";
 import { useMutation } from "@apollo/react-hooks";
 import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
 import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
@@ -40,14 +41,19 @@ export function PlayerValuableListVertical() {
   ].filter(section => section.data.length > 0);
 
   if (!valuables.length) {
-    return <EmptyValuablesList message={noValuablesLabel} />;
+    return (
+      <div className="u-padding-top--lg">
+        <EmptyValuablesList message={noValuablesLabel} />
+      </div>
+    );
   }
 
   return (
-    <Flex className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
+    <Flex className="c-player-valuables-list u-padding-bottom--lg t-background-white">
       {sections.map(section => (
         <ValuablesVerticalList
           className="u-padding-x--md"
+          key={section.title}
           valuables={valuables}
           title={section.title}
           translations={translations}

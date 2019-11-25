@@ -34,7 +34,7 @@ const mockedValuables = [
         ...translationsMock,
         player: {
           __typename: "Player",
-          valuables: mockValuables()
+          valuables: mockValuables(),
         },
       }
     },

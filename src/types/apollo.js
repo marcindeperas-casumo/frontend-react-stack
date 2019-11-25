@@ -101,6 +101,9 @@ export type PlayerValuablesQuery = {
   noValuablesLabel: string,
   player: PlayerValuablesQuery_player,
 };
+export type PlayerValuablesQueryVariables = {
+  valuableType?: ?ValuableType,
+};
 
 // ====================================================
 // GraphQL mutation operation: UseValuable
@@ -1680,14 +1683,14 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-export type ValuableType = "cash" | "deposit" | "spins" | "sport";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
