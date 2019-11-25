@@ -13,8 +13,9 @@ type Props = {
     still_on_break: string,
     still_on_break_subtext: string,
     still_on_break_button_label: string,
-    minutes: string,
-    hours: string,
+    days?: string,
+    minutes?: string,
+    hours?: string,
     seconds: string,
   },
   onClick: () => void,
@@ -31,9 +32,7 @@ export function StillOnBreak(props: Props) {
   const seconds = (exclusionExpiryTime - Date.now()) / 1000;
   const timeInterval = interpolateTimeInterval({
     seconds,
-    t: {
-      ...t,
-    },
+    t,
   });
 
   return (

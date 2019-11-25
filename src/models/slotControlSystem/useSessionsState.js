@@ -19,8 +19,7 @@ export function useSessionsState(): UseSessionsStateType {
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  // data is older than 15s
-  const isOld = activeSession
+  const isOlderThan15s = activeSession
     ? activeSession.lastUpdateTime + 1000 * 15 < Date.now()
     : true;
   const lastEndedSessionDuringLastHour = Boolean(
@@ -28,13 +27,13 @@ export function useSessionsState(): UseSessionsStateType {
   );
 
   useEffect(() => {
-    if (isOld) {
+    if (isOlderThan15s) {
       dispatch(initFetchActiveSessionAction());
     }
-  }, [dispatch, isOld]);
+  }, [dispatch, isOlderThan15s]);
 
   return {
-    activeSession: isOld ? null : activeSession,
+    activeSession: isOlderThan15s ? null : activeSession,
     lastEndedSession,
     lastEndedSessionDuringLastHour,
     activeExclusion,

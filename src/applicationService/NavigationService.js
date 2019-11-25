@@ -14,4 +14,5 @@ export const navigateById = ({
 }) =>
   bridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
     routeId,
+    params,
   });

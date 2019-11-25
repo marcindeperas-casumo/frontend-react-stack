@@ -7,7 +7,7 @@ import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotC
 import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
 import { type ModalContentComponent } from "Components/RSModal";
 import { useWalletAmount } from "Utils/hooks";
-import { ModalHeader } from "../RSModalHeader";
+import { ModalSkin } from "./ModalSkin";
 
 type SlotControlSystemContent = {
   modal_title: string,
@@ -37,61 +37,38 @@ export function SlotControlSystem(
 
   if (activeExclusion) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <StillOnBreakContainer
           onClick={props.closeModal}
           exclusionExpiryTime={activeExclusion.expiringTime}
         />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   if (!hasEnoughFunds(amount)) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <NotEnoughFundsContainer onClick={props.closeModal} />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <RememberToPlayWithinLimitsContainer
           onClickYes={() => setContinuePlaying(true)}
           onClickAbout={props.closeModal}
         />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   return (
-    <ModalContentSkin {...props}>
+    <ModalSkin {...props}>
       <ConfigurationFormContainer />
-    </ModalContentSkin>
-  );
-}
-
-type ModalContentSkinProps = {
-  t: ?{
-    modal_title: string,
-  },
-  dismissModal: () => void,
-  children: React.Node,
-};
-
-function ModalContentSkin(props: ModalContentSkinProps) {
-  return (
-    <>
-      <ModalHeader
-        title={props.t?.modal_title}
-        showCloseButton
-        closeAction={props.dismissModal}
-      />
-      <div className="u-padding-x--2xlg@tablet u-padding-x--2xlg@desktop u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
-        {props.children}
-      </div>
-    </>
+    </ModalSkin>
   );
 }
 
