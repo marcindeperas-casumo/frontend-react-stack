@@ -5,7 +5,10 @@ import { select, number, boolean } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
 import { ConfigurationForm } from "./ConfigurationForm";
 
-const stories = storiesOf("SlotControlSystem/ConfigurationForm", module);
+const stories = storiesOf(
+  "Compliance/SlotControlSystem/ConfigurationForm",
+  module
+);
 const t = {
   limit_your_budget: "Limit your budget",
   use_all_balance: "Use all balance {{balance}}",
