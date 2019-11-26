@@ -10,38 +10,30 @@ import {
   type ActiveSessionType,
   type EndedSessionType,
   type ExclusionType,
+  type UseSessionsStateType,
 } from "Models/slotControlSystem";
 
-type UseActiveSessionType = {
-  isFetching: boolean,
-  activeSession: ?ActiveSessionType,
-  lastEndedSession: ?EndedSessionType,
-  lastEndedSessionDuringLastHour: boolean,
-  activeExclusion: ?ExclusionType,
-};
-
-export function useSessionsState(): UseActiveSessionType {
+export function useSessionsState(): UseSessionsStateType {
   const dispatch = useDispatch();
   const activeSession: ActiveSessionType = useSelector(activeSessionSelector);
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  // data is older than 1 minute
-  const isOld = activeSession
-    ? activeSession.lastUpdateTime + 1000 * 60 < Date.now()
+  const isOlderThan15s = activeSession
+    ? activeSession.lastUpdateTime + 1000 * 15 < Date.now()
     : true;
   const lastEndedSessionDuringLastHour = Boolean(
     lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
   );
 
   useEffect(() => {
-    if (isOld) {
+    if (isOlderThan15s) {
       dispatch(initFetchActiveSessionAction());
     }
-  }, [dispatch, isOld]);
+  }, [dispatch, isOlderThan15s]);
 
   return {
-    activeSession: isOld ? null : activeSession,
+    activeSession: isOlderThan15s ? null : activeSession,
     lastEndedSession,
     lastEndedSessionDuringLastHour,
     activeExclusion,
