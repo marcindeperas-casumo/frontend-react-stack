@@ -301,9 +301,9 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResults = () => {
-    // if (this.props.hideSearchResults) {
-    //   return null;
-    // }
+    if (this.props.hideSearchResults) {
+      return null;
+    }
 
     return (
       <Query
