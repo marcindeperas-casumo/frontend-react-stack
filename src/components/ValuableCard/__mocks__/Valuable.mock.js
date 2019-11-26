@@ -10,7 +10,7 @@ export const mockValuable = (valuableType) => {
         expiryDate: mockExpiryDate(false),
     }
 };
-// ValuableDetails_PlayerValuable
+
 export const mockValuables = (valuableType = null) => {
   return valuableType ?
     mockData.filter(valuable => valuable.valuableType === valuableType) :
