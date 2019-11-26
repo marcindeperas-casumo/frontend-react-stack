@@ -36,6 +36,6 @@ describe("PlayerValuableListVertical", () => {
 
     await waitAndUpdateWrapper(rendered);
 
-    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
+    expect(rendered.find(EmptyValuablesList).exists()).toBe(true);
   });
 });

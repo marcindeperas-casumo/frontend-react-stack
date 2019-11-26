@@ -10,8 +10,23 @@ import { ValuableRow } from "Components/ValuableRow";
 
 describe("PlayerValuableListVertical", () => {
   const mockedValuables = mockValuables();
+  let onMoreInfo;
+  let rendered;
+
+  beforeEach(() => {
+    onMoreInfo = jest.fn();
+    rendered = shallow(
+      <ValuablesVerticalList
+        valuables={mockedValuables}
+        loading={false}
+        translations={{}}
+        onMoreInfo={onMoreInfo}
+      />
+    );
+  });
+
   test("should render skeleton while loading", async () => {
-    const rendered = shallow(
+    rendered = shallow(
       <ValuablesVerticalList valuables={[]} loading={true} translations={{}} />
     );
 
@@ -21,14 +36,6 @@ describe("PlayerValuableListVertical", () => {
   });
 
   test("should render a list of valuable rows", () => {
-    const rendered = shallow(
-      <ValuablesVerticalList
-        valuables={mockedValuables}
-        loading={false}
-        translations={{}}
-      />
-    );
-
     expect(
       rendered
         .find(List)

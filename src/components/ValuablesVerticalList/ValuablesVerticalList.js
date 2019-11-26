@@ -13,9 +13,9 @@ import { ValuableCard } from "Components/ValuableCard";
 import { type ValuableListProps } from "Models/valuables";
 
 const valuableItemRenderer = (
-  valuable, // : A.PlayerValuableList_PlayerValuable,
-  translations, // : ValuableThumbnailTranslations,
-  onMoreInfo, // : A.PlayerValuableList_PlayerValuable => void
+  valuable,
+  translations,
+  onMoreInfo,
   onConsumeValuable
 ) => (
   <div className="u-padding-y--md">

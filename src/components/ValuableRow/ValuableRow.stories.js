@@ -16,6 +16,7 @@ stories.add("Default", () => {
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
   const expiryHours = text("Expire in x hours", "100") || "100";
+  const onMoreInfo = () => {};
 
   const valuableDetails = mockData(valuableType);
   const valuableState = isLocked
@@ -29,6 +30,7 @@ stories.add("Default", () => {
       expirationTimeInHours={expiryHours}
       onClick={action("click")}
       translatedHoursUnit={translationsMock.hoursUnit}
+      onMoreInfo={onMoreInfo}
     />
   );
 });

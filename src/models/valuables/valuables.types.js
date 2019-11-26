@@ -1,6 +1,5 @@
 // @flow
 import * as A from "Types/apollo";
-import type { Game } from "Types/game";
 import {
   VALUABLE_STATES,
   VALUABLE_TYPES,
@@ -35,28 +34,6 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   termsAndConditionsContent: string,
   wageringStatus: string,
 };
-
-// export type ValuableDetailsProps = {
-//   id: string,
-//   /* Url of the background image to be used in the header */
-//   backgroundImage: string,
-//   /* Detailed description of the Valuable */
-//   content: string,
-//   /* Caveat for the valuable */
-//   caveat?: string,
-//   /* Hours left for the bonus to expire */
-//   expirationTimeInHours: number,
-//   /* Requirement type to unlock */
-//   requirementType: ?ValuableRequirementType,
-//   /*Game to launch on click of button */
-//   game?: Game,
-//   /* Type of Valuable */
-//   valuableType: ValuableType,
-//   /* The valuable's current state */
-//   valuableState: ValuableState,
-//   /** The function to be called to consume the valuable which will be triggered by each card click */
-//   onConsumeValuable: string => Promise<boolean>,
-// };
 
 export type ValuableActionProps = {
   text: string,
