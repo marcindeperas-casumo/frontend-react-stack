@@ -1,16 +1,13 @@
 // @flow
 import * as React from "react";
 import { useLocale } from "Utils/hooks";
-import {
-  useSessionsState,
-  type UseSessionsStateType,
-} from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
 import { type ModalContentComponent } from "Components/RSModal";
 import {
   SessionDetails,
   TYPES as DETAILS_TYPES,
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
-import { ModalHeader } from "../RSModalHeader";
+import { ModalSkin } from "./ModalSkin";
 
 type ContentType = {
   session_details_header: string,
@@ -31,43 +28,45 @@ type ContentType = {
 };
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
-  const { activeSession }: UseSessionsStateType = useSessionsState();
+  const { activeSession, isFetching } = useSessionsState();
   const locale = useLocale();
   const now = Date.now();
+  const modalSkinProps = {
+    ...props,
+    t: {
+      modal_title: props.t?.logout_modal_title || "",
+    },
+  };
 
   React.useEffect(() => {
-    if (!activeSession) {
+    if (!activeSession && !isFetching) {
       props.acceptModal();
     }
-  }, [activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSession, isFetching]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!activeSession) {
     return null;
   }
 
   return (
-    <>
-      <ModalHeader
-        title={props.t?.logout_modal_title}
-        showCloseButton
-        closeAction={props.acceptModal}
+    // $FlowFixMe
+    <ModalSkin {...modalSkinProps}>
+      <SessionDetails
+        t={props.t}
+        type={DETAILS_TYPES.LOGOUT}
+        locale={locale}
+        balance={activeSession.limit.amount}
+        currency={activeSession.limit.currency}
+        // TODO bind proper data when available in API
+        moneyWagered={10}
+        moneyWon={100}
+        moneyLeft={1000}
+        playStarted={activeSession.startedTime}
+        playEnded={now}
+        // TODO bind proper data when available in API
+        lastStatusAlert={now}
+        onClickButton={props.acceptModal}
       />
-      <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet u-overflow-y--auto">
-        <SessionDetails
-          t={props.t}
-          type={DETAILS_TYPES.LOGOUT}
-          locale={locale}
-          balance={activeSession.limit.amount}
-          currency={activeSession.limit.currency}
-          moneyWagered={10}
-          moneyWon={100}
-          moneyLeft={1000}
-          playStarted={activeSession.startedTime}
-          playEnded={now}
-          lastStatusAlert={now}
-          onClickButton={props.acceptModal}
-        />
-      </div>
-    </>
+    </ModalSkin>
   );
 }

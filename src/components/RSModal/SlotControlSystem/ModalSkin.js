@@ -2,7 +2,7 @@
 import * as React from "react";
 import { ModalHeader } from "../RSModalHeader";
 
-type ModalContentSkinProps = {
+type ModalSkinProps = {
   t: ?{
     modal_title: string,
   },
@@ -10,7 +10,7 @@ type ModalContentSkinProps = {
   children: React.Node,
 };
 
-export function ModalSkin(props: ModalContentSkinProps) {
+export function ModalSkin(props: ModalSkinProps) {
   return (
     <>
       <ModalHeader
