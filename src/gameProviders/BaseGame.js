@@ -1,21 +1,14 @@
 // @flow
 
-import {
-  type IframeGameLaunchData,
-  type NetentGameLaunchData,
-  type GameRef,
-} from "./types";
+import type { GameLaunchData, GameRef } from "./types";
 
 const TOP_LISTS_URL = "";
 
 export class BaseGame {
   gameRef: GameRef;
-  gameData: IframeGameLaunchData | NetentGameLaunchData;
+  gameData: GameLaunchData;
 
-  constructor(
-    gameData: IframeGameLaunchData | NetentGameLaunchData,
-    gameRef: GameRef
-  ) {
+  constructor(gameData: GameLaunchData, gameRef: GameRef) {
     this.gameData = gameData;
     this.gameRef = gameRef;
   }
