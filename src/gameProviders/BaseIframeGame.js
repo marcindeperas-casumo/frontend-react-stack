@@ -53,15 +53,13 @@ export class BaseIframeGame extends BaseGame {
   }
 
   pauseGame() {
-    const self = this;
-
     return new Promise<void>((resolve, reject) => {
       if (!this.api.commands.pause) {
         reject();
       }
 
       const onPauseMessageHandler = (event: MessageEvent) => {
-        if (equals(event.data, self.api.events.onPauseEnded)) {
+        if (equals(event.data, this.api.events.onPauseEnded)) {
           window.removeEventListener("message", onPauseMessageHandler);
           resolve();
         }
