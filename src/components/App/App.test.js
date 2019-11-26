@@ -29,21 +29,6 @@ describe("App", () => {
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("pass activeComponents prop to Router", () => {
-    const rendered = shallow(
-      <App
-        onAppStarted={() => {}}
-        isAuthenticated={true}
-        activeComponents={["foo"]}
-        routeParams={[]}
-        subscribeToPlayerUpdates={() => {}}
-        unsubscribeToPlayerUpdates={() => {}}
-      />
-    );
-
-    expect(rendered.get(0).props.activePaths).toEqual(["foo"]);
-  });
-
   test("should subscribe on initial load only", () => {
     const subscribeFn = jest.fn();
 

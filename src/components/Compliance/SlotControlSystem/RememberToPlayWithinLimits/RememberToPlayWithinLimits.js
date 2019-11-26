@@ -3,6 +3,7 @@ import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import { navigateById } from "Services/NavigationService";
 
 type Props = {
   t: {
@@ -17,6 +18,10 @@ type Props = {
 
 export function RememberToPlayWithinLimits(props: Props) {
   const { t } = props;
+  const onClickAbout = () => {
+    props.onClickAbout();
+    navigateById({ routeId: "play-okay" });
+  };
 
   return (
     <Flex direction="vertical" align="center">
@@ -41,7 +46,7 @@ export function RememberToPlayWithinLimits(props: Props) {
       <Button
         size="md"
         variant="secondary"
-        onClick={props.onClickAbout}
+        onClick={onClickAbout}
         className="u-width--full u-margin-top--md"
       >
         {t.remember_to_play_within_limits_about_label}

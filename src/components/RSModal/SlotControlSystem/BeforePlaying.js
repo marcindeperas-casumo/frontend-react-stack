@@ -1,16 +1,13 @@
 // @flow
 import * as React from "react";
-import {
-  useSessionsState,
-  type UseSessionsStateType,
-} from "Models/slotControlSystem";
+import { useSessionsState } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
 import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
 import { type ModalContentComponent } from "Components/RSModal";
 import { useWalletAmount } from "Utils/hooks";
-import { ModalHeader } from "../RSModalHeader";
+import { ModalSkin } from "./ModalSkin";
 
 type SlotControlSystemContent = {
   modal_title: string,
@@ -26,7 +23,7 @@ export function BeforePlaying(
     isFetching,
     lastEndedSessionDuringLastHour,
     activeExclusion,
-  }: UseSessionsStateType = useSessionsState();
+  } = useSessionsState();
 
   React.useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
@@ -40,61 +37,38 @@ export function BeforePlaying(
 
   if (activeExclusion) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <StillOnBreakContainer
           onClick={props.closeModal}
           exclusionExpiryTime={activeExclusion.expiringTime}
         />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   if (!hasEnoughFunds(amount)) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <NotEnoughFundsContainer onClick={props.closeModal} />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
     return (
-      <ModalContentSkin {...props}>
+      <ModalSkin {...props}>
         <RememberToPlayWithinLimitsContainer
           onClickYes={() => setContinuePlaying(true)}
           onClickAbout={props.closeModal}
         />
-      </ModalContentSkin>
+      </ModalSkin>
     );
   }
 
   return (
-    <ModalContentSkin {...props}>
+    <ModalSkin {...props}>
       <ConfigurationFormContainer />
-    </ModalContentSkin>
-  );
-}
-
-type ModalContentSkinProps = {
-  t: ?{
-    modal_title: string,
-  },
-  dismissModal: () => void,
-  children: React.Node,
-};
-
-function ModalContentSkin(props: ModalContentSkinProps) {
-  return (
-    <>
-      <ModalHeader
-        title={props.t?.modal_title}
-        showCloseButton
-        closeAction={props.dismissModal}
-      />
-      <div className="u-padding-x--lg@tablet u-padding-bottom--lg@tablet u-overflow-y--auto">
-        {props.children}
-      </div>
-    </>
+    </ModalSkin>
   );
 }
 
