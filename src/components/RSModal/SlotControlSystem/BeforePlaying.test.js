@@ -10,12 +10,12 @@ import { RememberToPlayWithinLimits } from "Components/Compliance/SlotControlSys
 import { ConfigurationForm } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { useSessionsState } from "Models/slotControlSystem/useSessionsState";
 import { useWalletAmount } from "Utils/hooks";
-import { SlotControlSystem } from "./SlotControlSystem";
+import { BeforePlaying } from "./BeforePlaying";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
 jest.mock("Utils/hooks");
 
-describe("RSModal/SlotControlSystem", () => {
+describe("RSModal/SlotControlSystem/BeforePlaying", () => {
   const enoughFunds = 0.61;
   const mock = (fn: any) => fn;
 
@@ -35,7 +35,7 @@ describe("RSModal/SlotControlSystem", () => {
     const dismissModal = jest.fn();
     mount(
       <MockStore state={{}}>
-        <SlotControlSystem
+        <BeforePlaying
           t={null}
           config={{}}
           acceptModal={acceptModal}
@@ -64,7 +64,7 @@ describe("RSModal/SlotControlSystem", () => {
     const dismissModal = jest.fn();
     const rendered = mount(
       <MockStore state={{}}>
-        <SlotControlSystem
+        <BeforePlaying
           t={null}
           config={{}}
           acceptModal={acceptModal}
@@ -95,7 +95,7 @@ describe("RSModal/SlotControlSystem", () => {
     const dismissModal = jest.fn();
     const rendered = mount(
       <MockStore state={{}}>
-        <SlotControlSystem
+        <BeforePlaying
           t={null}
           config={{}}
           acceptModal={acceptModal}
@@ -126,7 +126,7 @@ describe("RSModal/SlotControlSystem", () => {
     const dismissModal = jest.fn();
     const rendered = mount(
       <MockStore state={{}}>
-        <SlotControlSystem
+        <BeforePlaying
           t={null}
           config={{}}
           acceptModal={acceptModal}
@@ -155,7 +155,7 @@ describe("RSModal/SlotControlSystem", () => {
     const dismissModal = jest.fn();
     const rendered = mount(
       <MockStore state={{}}>
-        <SlotControlSystem
+        <BeforePlaying
           t={null}
           config={{}}
           acceptModal={acceptModal}
