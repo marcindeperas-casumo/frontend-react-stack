@@ -19,19 +19,17 @@ type Props = {
     seconds: string,
   },
   onClick: () => void,
-  /* Unix timestamp in millis */
-  exclusionExpiryTime: number,
+  secondsTillEnd: number,
 };
 
 export function StillOnBreak(props: Props) {
-  const { t, exclusionExpiryTime } = props;
+  const { t, secondsTillEnd } = props;
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
-  const seconds = (exclusionExpiryTime - Date.now()) / 1000;
   const timeInterval = interpolateTimeInterval({
-    seconds,
+    seconds: secondsTillEnd,
     t,
   });
 
