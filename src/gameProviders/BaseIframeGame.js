@@ -37,10 +37,8 @@ export class BaseIframeGame extends BaseGame {
   }
 
   get props() {
-    const superProps = super.props;
-
     return {
-      ...superProps,
+      ...super.props,
       allow: "autoplay",
       style: {
         width: "100%",
