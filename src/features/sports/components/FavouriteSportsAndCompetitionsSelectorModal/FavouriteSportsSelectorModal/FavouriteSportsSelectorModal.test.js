@@ -99,8 +99,4 @@ describe("<FavouriteSportsSelectorModal />", () => {
     expect(selectors.isBackButtonHidden(renderedNoFavourites)).toBe(true);
     expect(selectors.isCloseButtonHidden(renderedNoFavourites)).toBe(true);
   });
-
-  // test("should call mutation to save new favourites when clicking the save button", () => {
-  //   TODO:(adampilks)- test for mutation execution when next MockedProvider version is available, currently not possible
-  // });
 });
