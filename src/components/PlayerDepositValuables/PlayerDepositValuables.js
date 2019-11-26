@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
+import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { VALUABLE_TYPES } from "Models/valuables";
-import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 
 export const PlayerDepositValuables = () => {
   const { loading, valuables, translations } = usePlayerValuableList(

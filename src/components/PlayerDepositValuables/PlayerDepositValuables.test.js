@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
-import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
+import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
 import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
 import { PlayerDepositValuables } from "./PlayerDepositValuables";
 
