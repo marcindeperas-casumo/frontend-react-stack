@@ -27,6 +27,7 @@ const handlers = {
       lastEndedSession: action.response.lastEndedSession && {
         ...action.response.lastEndedSession,
       },
+      activeExclusion: action.response.activeExclusion,
     };
   },
 };

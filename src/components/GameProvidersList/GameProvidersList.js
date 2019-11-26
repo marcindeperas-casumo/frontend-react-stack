@@ -3,10 +3,10 @@ import React, { PureComponent } from "react";
 import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
-import TileListHorizontalSkeleton from "Components/TileListHorizontalSkeleton/TileListHorizontalSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, Mobile } from "Components/ResponsiveLayout";
-import Tile from "./Tile";
+import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
+import GameProviderAvatar from "./GameProviderAvatar";
 
 const PADDING_PER_DEVICE = {
   default: "md",
@@ -31,7 +31,7 @@ type Props = {
   isLoaded: boolean,
 };
 
-class TileListHorizontal extends PureComponent<Props> {
+class GameProvidersList extends PureComponent<Props> {
   static defaultProps = {
     fetch: () => {},
     title: "",
@@ -52,14 +52,14 @@ class TileListHorizontal extends PureComponent<Props> {
   }
 
   itemRenderer = (i: number) => {
-    return <Tile {...this.itemsWithBackground[i]} />;
+    return <GameProviderAvatar {...this.itemsWithBackground[i]} />;
   };
 
   render() {
     const { title, items, isLoaded } = this.props;
 
     if (!isLoaded) {
-      return <TileListHorizontalSkeleton />;
+      return <GameProvidersListSkeleton />;
     }
 
     if (isEmpty(items)) {
@@ -76,7 +76,7 @@ class TileListHorizontal extends PureComponent<Props> {
                 numberOfItems={this.itemsWithBackground.length}
                 keyGetter={this.keyGetter}
                 itemRenderer={this.itemRenderer}
-                itemClassName="c-tile"
+                itemClassName="c-game-provider-avatar"
                 padding={PADDING_PER_DEVICE}
                 itemSpacing={DEFAULT_SPACING}
               />
@@ -89,8 +89,8 @@ class TileListHorizontal extends PureComponent<Props> {
                 itemIds: this.itemsWithBackground,
               }}
               // we are bound to "id" because of the cellRenderer method inside <ScrollableListPaginated />
-              Component={({ id: item }) => <Tile {...item} />}
-              className="c-tile"
+              Component={({ id: item }) => <GameProviderAvatar {...item} />}
+              className="c-game-provider-avatar"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
               itemSpacing="md"
@@ -102,4 +102,4 @@ class TileListHorizontal extends PureComponent<Props> {
   }
 }
 
-export default TileListHorizontal;
+export default GameProvidersList;

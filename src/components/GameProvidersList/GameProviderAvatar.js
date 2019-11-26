@@ -2,7 +2,7 @@
 import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 
-import "./Tile.scss";
+import "./GameProviderAvatar.scss";
 
 type imgixOptsObject = {
   w: number,
@@ -16,7 +16,7 @@ type Props = {
   imgixOpts?: imgixOptsObject,
 };
 
-const Tile = ({
+const GameProviderAvatar = ({
   url,
   logo,
   background,
@@ -41,4 +41,4 @@ const Tile = ({
   );
 };
 
-export default Tile;
+export default GameProviderAvatar;
