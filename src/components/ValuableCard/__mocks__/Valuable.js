@@ -1,9 +1,11 @@
 // @flow
+import { VALUABLE_TYPES } from "Models/valuables";
+
 export default [
   {
-    __typename: 'PlayerValuableCash',
+    __typename: "PlayerValuableCash",
     id: "123",
-    valuableType: "cash",
+    valuableType: VALUABLE_TYPES.CASH,
     title: "€50 Bonus Money",
     currency: "EUR",
     caveat: "Min dep £10. 30x wag req. T&C's apply.",
@@ -14,7 +16,6 @@ export default [
       name: 'rule1',
     },
     backgroundImage: "https://cms.casumo.com/wp-content/uploads/2019/04/background-cash.png",
-    expirationTimeInHours: 100,
     expiryDate: 1569794399000,
     valuableState: "Fresh",
     content: "",
@@ -24,14 +25,13 @@ export default [
     magnitude: 1.0,
   },
   {
-    __typename: 'PlayerValuableDeposit',
+    __typename: "PlayerValuableDeposit",
     id: "111",
-    valuableType: "deposit",
+    valuableType: VALUABLE_TYPES.DEPOSIT,
     title: "100% Deposit Bonus",
     market: "en",
     caveat: "T&Cs apply",
     backgroundImage: "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
-    expirationTimeInHours: 100,
     expiryDate: 1569794399000,
     valuableState: "Fresh",
     content: "",
@@ -50,12 +50,11 @@ export default [
   {
     __typename: "PlayerValuableDeposit",
     id: "432",
-    valuableType: "sport",
+    valuableType: VALUABLE_TYPES.SPORT,
     title: "€5 Sport Bet",
     market: "en",
     caveat: "T&Cs apply",
     backgroundImage: "https://cms.casumo.com/wp-content/uploads/2019/04/background-sport.png",
-    expirationTimeInHours: 100,
     expiryDate: 1569794399000,
     valuableState: "Fresh",
     content: "",
@@ -74,7 +73,7 @@ export default [
   {
     __typename: "PlayerValuableSpins",
     id: "654",
-    valuableType: "spins",
+    valuableType: VALUABLE_TYPES.SPINS,
     title: "20 Free Spins",
     magnitude: 20,
     coinValue: 30,
@@ -96,7 +95,6 @@ export default [
     caveat: "T&Cs apply",
     backgroundImage: "https://cms.casumo.com/wp-content/uploads/2018/09/cc-small-starburst.png",
     market: "en",
-    expirationTimeInHours: 100,
     expiryDate: 1569794399000,
     valuableState: "Fresh",
     content: "",

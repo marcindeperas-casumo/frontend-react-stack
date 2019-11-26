@@ -34,7 +34,6 @@ fragment ValuableDetails_PlayerValuable on PlayerValuable {
   caveat
   currency
   market
-  expirationTimeInHours
   expiryDate
   valuableType
   valuableState

@@ -53,7 +53,6 @@ export const ValuablesVerticalList = ({
         "currency",
         "market",
         "expiryDate",
-        "expirationTimeInHours",
         "valuableType",
         "valuableState",
         "wageringThreshold",

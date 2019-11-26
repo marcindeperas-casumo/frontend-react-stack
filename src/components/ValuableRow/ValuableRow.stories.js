@@ -15,7 +15,6 @@ stories.add("Default", () => {
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
-  const expiryHours = text("Expire in x hours", "100") || "100";
   const onMoreInfo = () => {};
 
   const valuableDetails = mockData(valuableType);
@@ -27,7 +26,6 @@ stories.add("Default", () => {
     <ValuableRow
       {...valuableDetails}
       valuableState={valuableState}
-      expirationTimeInHours={expiryHours}
       onClick={action("click")}
       translatedHoursUnit={translationsMock.hoursUnit}
       onMoreInfo={onMoreInfo}
