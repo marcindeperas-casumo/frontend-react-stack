@@ -1,5 +1,13 @@
 // @flow
-import { configurationFormContentSelector } from "./slotControlSystem.selectors";
+import {
+  configurationFormContentSelector,
+  isFetchingActiveSessionSelector,
+  activeSessionSelector,
+  endedSessionSelector,
+  isCreatingSessionSelector,
+  activeExclusionSelector,
+  ACTION_TYPES,
+} from "Models/slotControlSystem";
 
 describe("Slot Control System selectors", () => {
   test("configurationFormContentSelector", () => {
@@ -32,5 +40,69 @@ describe("Slot Control System selectors", () => {
       ...unitsFields,
       ...modalFields,
     });
+  });
+
+  test("isFetchingActiveSessionSelector", () => {
+    const state = {
+      fetch: {
+        [ACTION_TYPES.FETCH_SESSION_INIT]: {
+          isFetching: true,
+        },
+      },
+    };
+
+    expect(isFetchingActiveSessionSelector(state)).toEqual(true);
+  });
+
+  test("activeSessionSelector", () => {
+    const now = Date.now();
+    const activeSession = { id: "123-123-123", lastUpdateTime: now };
+    const state = {
+      slotControlSystem: {
+        activeSession,
+        lastEndedSession: null,
+      },
+    };
+
+    expect(activeSessionSelector(state)).toEqual(activeSession);
+  });
+
+  test("endedSessionSelector", () => {
+    const now = Date.now();
+    const lastEndedSession = { id: "123-123-123", endTime: now };
+    const state = {
+      slotControlSystem: {
+        activeSession: null,
+        lastEndedSession,
+      },
+    };
+
+    expect(endedSessionSelector(state)).toEqual(lastEndedSession);
+  });
+
+  test("isCreatingSessionSelector", () => {
+    const state = {
+      fetch: {
+        [ACTION_TYPES.CREATE_SESSION_INIT]: {
+          isFetching: true,
+        },
+      },
+    };
+
+    expect(isCreatingSessionSelector(state)).toEqual(true);
+  });
+
+  test("activeExclusionSelector", () => {
+    const now = Date.now();
+    const activeExclusion = { id: "123-123-123", expiryTime: now };
+    const state = {
+      slotControlSystem: {
+        activeSession: null,
+        lastEndedSession: null,
+        activeExclusion,
+      },
+    };
+
+    expect(activeExclusionSelector(state)).toEqual(activeExclusion);
   });
 });

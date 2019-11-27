@@ -17,7 +17,7 @@ import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
-import TileListHorizontal from "Components/TileListHorizontal";
+import GameProvidersList from "Components/GameProvidersList";
 import ReelRacesList from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";
@@ -27,7 +27,7 @@ export const COMPONENT_MAPPING = {
   GAMES_LIST: GameListHorizontal,
   GAMES_LIST_HORIZONTAL: GameListHorizontal,
   GAMES_LIST_VERTICAL: GameListVertical,
-  GROUPED_LIST_HORIZONTAL: TileListHorizontal,
+  GROUPED_LIST_HORIZONTAL: GameProvidersList,
   CURATED_CARD: TopListCuratedCard,
   JACKPOTS: Jackpots,
   CONTENT_IMAGE: ContentImage,

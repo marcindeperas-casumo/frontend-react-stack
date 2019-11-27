@@ -29,3 +29,4 @@ yarn-error.log*
 .gradle
 pact/pacts/
 pact/logs/
+.settings/
