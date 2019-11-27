@@ -1,5 +1,5 @@
 // @flow
-import type { JackpotInfo } from "./jackpotInfo";
+import type { Jackpot } from "./jackpot";
 import type { liveCasinoLobby } from "./liveCasinoLobby";
 export type Game = {
   name: string,
@@ -8,7 +8,7 @@ export type Game = {
   logo: string,
   hasPlayForFun: boolean,
   inMaintenanceMode: boolean,
-  jackpotInfo: ?JackpotInfo,
+  jackpot: ?Jackpot,
   jackpotId: void | string,
   tableId: void | string,
   lobby: liveCasinoLobby,

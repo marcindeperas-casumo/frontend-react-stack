@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import game from "Components/GameTile/__mocks__/Game.json";
-import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
+import jackpot from "Components/GameTile/__mocks__/Jackpot.json";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { GameRow } from "Components/GameRow/GameRow";
 
@@ -15,7 +15,7 @@ stories.add("Default", () => (
 ));
 
 stories.add("Default with Jackpot", () => (
-  <GameRow game={{ ...game, jackpotInfo }} onLaunchGame={action(gonzosQuest)} />
+  <GameRow game={{ ...game, jackpot }} onLaunchGame={action(gonzosQuest)} />
 ));
 
 stories.add("Default with Live Casino", () => (

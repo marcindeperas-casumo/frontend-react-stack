@@ -2,6 +2,8 @@
 // ====================================================
 // GraphQL query operation: JackpotsQuery
 // ====================================================
+import type { JackpotMoney } from "./jackpot";
+
 export type JackpotsQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
@@ -10,9 +12,9 @@ export type JackpotsQuery_gamesList_games_lobby_bets = {
 export type JackpotsQuery_gamesList_games_lobby = {
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
-export type JackpotsQuery_gamesList_games_jackpotInfo = {
+export type JackpotsQuery_gamesList_games_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: JackpotMoney,
 };
 export type JackpotsQuery_gamesList_games = {
   slug: string,
@@ -20,7 +22,7 @@ export type JackpotsQuery_gamesList_games = {
   logo: string,
   logoBackground: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
-  jackpotInfo: ?JackpotsQuery_gamesList_games_jackpotInfo,
+  jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
 export type JackpotsQuery_gamesList = {
   title: ?string,
@@ -1082,9 +1084,9 @@ export type GameRow_Game_lobby_bets = {
 export type GameRow_Game_lobby = {
   bets: ?GameRow_Game_lobby_bets,
 };
-export type GameRow_Game_jackpotInfo = {
+export type GameRow_Game_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: JackpotMoney,
 };
 export type GameRow_Game = {
   slug: string,
@@ -1092,7 +1094,7 @@ export type GameRow_Game = {
   logo: string,
   logoBackground: string,
   lobby: ?GameRow_Game_lobby,
-  jackpotInfo: ?GameRow_Game_jackpotInfo,
+  jackpot: ?GameRow_Game_jackpot,
 };
 
 // ====================================================
@@ -1107,9 +1109,9 @@ export type Jackpots_Game_lobby_bets = {
 export type Jackpots_Game_lobby = {
   bets: ?Jackpots_Game_lobby_bets,
 };
-export type Jackpots_Game_jackpotInfo = {
+export type Jackpots_Game_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: JackpotMoney,
 };
 export type Jackpots_Game = {
   slug: string,
@@ -1117,7 +1119,7 @@ export type Jackpots_Game = {
   logo: string,
   logoBackground: string,
   lobby: ?Jackpots_Game_lobby,
-  jackpotInfo: ?Jackpots_Game_jackpotInfo,
+  jackpot: ?Jackpots_Game_jackpot,
 };
 
 // ====================================================

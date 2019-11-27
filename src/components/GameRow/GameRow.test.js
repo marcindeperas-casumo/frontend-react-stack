@@ -21,8 +21,12 @@ describe("<GameRow />", () => {
       name: "Foo Bar",
       logo: "http://foo.com/logo.jpg",
       logoBackground: "http://foo.com/logo-background.jpg",
-      jackpotInfo: {
-        formattedJackpotAmount: "€ 1,000,000",
+      jackpot: {
+        id: "netent-starburst",
+        value: {
+          currency: "EUR",
+          amount: 10,
+        },
       },
     };
     rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);
