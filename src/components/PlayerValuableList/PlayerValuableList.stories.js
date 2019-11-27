@@ -15,9 +15,7 @@ stories.add("Horizontal", () => (
 ));
 
 stories.add("Vertical default", () => (
-  <div style={{ width: "375px" }}>
-    <MockedProvider mocks={mocks.mockedValuables}>
-      <PlayerValuableListVertical />
-    </MockedProvider>
-  </div>
+  <MockedProvider mocks={mocks.mockedValuables}>
+    <PlayerValuableListVertical />
+  </MockedProvider>
 ));

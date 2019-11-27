@@ -9,11 +9,9 @@ import { PlayerDepositValuablesWithModal } from "Components/PlayerDepositValuabl
 const stories = storiesOf("PlayerDepositValuables", module);
 
 stories.add("Default", () => (
-  <div style={{ width: "375px" }}>
-    <MockedProvider mocks={mocks.mockedDepositValuables}>
-      <PlayerDepositValuables />
-    </MockedProvider>
-  </div>
+  <MockedProvider mocks={mocks.mockedDepositValuables}>
+    <PlayerDepositValuables />
+  </MockedProvider>
 ));
 
 stories.add("Default - With modal", () => {
