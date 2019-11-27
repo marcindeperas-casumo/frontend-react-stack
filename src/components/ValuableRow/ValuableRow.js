@@ -94,7 +94,7 @@ export class ValuableRow extends PureComponent<Props> {
 
     return (
       <Flex data-test="valuable-row">
-        <Flex.Item className="c-valuable-row-thumbnail">
+        <Flex.Item className="c-valuable-row-thumbnail o-flex__item--no-shrink">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}

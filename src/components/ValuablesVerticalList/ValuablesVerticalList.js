@@ -23,6 +23,11 @@ const valuableItemRenderer = (
       key={`available-valuable-row-${valuable.id}`}
       translations={translations}
       {...valuable}
+      description={
+        valuable.__typename === "PlayerValuableSpins"
+          ? valuable.description
+          : valuable.content
+      }
       onMoreInfo={() => onMoreInfo(valuable)}
     />
   </div>
