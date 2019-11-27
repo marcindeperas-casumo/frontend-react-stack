@@ -15,10 +15,6 @@ const t = {
 const stories = storiesOf("Compliance/SlotControlSystem/StillOnBreak", module);
 stories.add("Default", () => {
   return (
-    <StillOnBreak
-      t={t}
-      onClick={action("clicked")}
-      exclusionExpiryTime={1574423978913}
-    />
+    <StillOnBreak t={t} onClick={action("clicked")} secondsTillEnd={900} />
   );
 });

@@ -215,7 +215,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={eventGroup.termKey}
             onClick={() => {
               this.props.onResultClick(eventGroup);
-              // navigateClient();
+              navigateClient();
             }}
           >
             <Flex className="u-padding-left" spacing="md" align="center">
@@ -301,9 +301,9 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResults = () => {
-    // if (this.props.hideSearchResults) {
-    //   return null;
-    // }
+    if (this.props.hideSearchResults) {
+      return null;
+    }
 
     return (
       <Query

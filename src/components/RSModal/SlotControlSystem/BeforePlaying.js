@@ -40,7 +40,7 @@ export function BeforePlaying(
       <ModalSkin {...props}>
         <StillOnBreakContainer
           onClick={props.closeModal}
-          exclusionExpiryTime={activeExclusion.expiringTime}
+          secondsTillEnd={(activeExclusion.expiringTime - Date.now()) / 1000}
         />
       </ModalSkin>
     );
