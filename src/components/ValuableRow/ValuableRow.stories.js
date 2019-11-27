@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { select, boolean, text } from "@storybook/addon-knobs/react";
+import { select, boolean } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
