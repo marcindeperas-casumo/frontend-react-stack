@@ -17,21 +17,24 @@ const valuableItemRenderer = (
   translations,
   onMoreInfo,
   onConsumeValuable
-) => (
-  <div className="u-padding-y--md">
-    <ValuableRow
-      key={`available-valuable-row-${valuable.id}`}
-      translations={translations}
-      {...valuable}
-      description={
-        valuable.__typename === "PlayerValuableSpins"
-          ? valuable.description
-          : valuable.content
-      }
-      onMoreInfo={() => onMoreInfo(valuable)}
-    />
-  </div>
-);
+) => {
+  const itemDescription =
+    valuable.__typename === "PlayerValuableSpins"
+      ? valuable.description
+      : valuable.content;
+
+  return (
+    <div className="u-padding-y--md">
+      <ValuableRow
+        key={`available-valuable-row-${valuable.id}`}
+        translations={translations}
+        {...valuable}
+        description={itemDescription}
+        onMoreInfo={() => onMoreInfo(valuable)}
+      />
+    </div>
+  );
+};
 
 export const ValuablesVerticalList = ({
   title,
