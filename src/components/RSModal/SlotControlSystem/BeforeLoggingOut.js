@@ -49,6 +49,8 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   }
 
   return (
+    // Flow thinks modalSkinProps are the same type as props and
+    // that props should contain modal_title
     // $FlowFixMe
     <ModalSkin {...modalSkinProps}>
       <SessionDetails
