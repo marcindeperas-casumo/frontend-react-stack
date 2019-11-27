@@ -38,7 +38,7 @@ describe("NetentGame", () => {
 
     model.goToLobby();
 
-    expect(window.location.replace).toHaveBeenCalledWith(window.location);
+    expect(window.location.replace).toHaveBeenCalledWith(`${window.location}`);
   });
 
   it("should get the config", () => {
