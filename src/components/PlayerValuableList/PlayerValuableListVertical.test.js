@@ -24,7 +24,7 @@ describe("PlayerValuableListVertical", () => {
     expect(rendered.find(ValuablesVerticalList).exists()).toBe(true);
   });
 
-  test("should render EmptyValuablesList if no valuables are provided", async () => {
+  test("should render one EmptyValuablesList if no valuables are provided", async () => {
     const rendered = mount(
       <MockedProvider
         mocks={mocks.emptyValuables}
@@ -36,6 +36,6 @@ describe("PlayerValuableListVertical", () => {
 
     await waitAndUpdateWrapper(rendered);
 
-    expect(rendered.find(EmptyValuablesList).exists()).toBe(true);
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });
