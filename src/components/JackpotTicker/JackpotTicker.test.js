@@ -3,17 +3,18 @@ import { shallow } from "enzyme";
 import Badge from "@casumo/cmp-badge";
 import JackpotTicker from "Components/JackpotTicker";
 import { jackpotTickerClass } from "Components/GameTile/GameTileJackpot";
+import { CURRENCIES } from "Src/constants";
 
 describe("JackpotTicker", () => {
-  let jackotValue, formattedJackpotAmount;
+  let jackpotValue, formattedJackpotAmount;
 
   test("should render the Badge component if formattedJackpotAmount exists", () => {
-    formattedJackpotAmount = "€12,347.00";
-    jackotValue = {
-      currency: "EUR",
+    formattedJackpotAmount = "€12,347";
+    jackpotValue = {
+      currency: CURRENCIES.EUR,
       amount: 12347,
     };
-    const rendered = shallow(<JackpotTicker value={jackotValue} />);
+    const rendered = shallow(<JackpotTicker value={jackpotValue} />);
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
@@ -22,8 +23,8 @@ describe("JackpotTicker", () => {
 
   test("should NOT render the Badge component if formattedJackpotAmount is null", () => {
     formattedJackpotAmount = null;
-    jackotValue = null;
-    const rendered = shallow(<JackpotTicker value={jackotValue} />);
+    jackpotValue = null;
+    const rendered = shallow(<JackpotTicker value={jackpotValue} />);
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
@@ -31,12 +32,12 @@ describe("JackpotTicker", () => {
   });
 
   test("should apply jackpotTickerClass to the Badge", () => {
-    jackotValue = {
-      currency: "EUR",
+    jackpotValue = {
+      currency: CURRENCIES.EUR,
       amount: 12347,
     };
     const rendered = shallow(
-      <JackpotTicker value={jackotValue} className={jackpotTickerClass} />
+      <JackpotTicker value={jackpotValue} className={jackpotTickerClass} />
     );
 
     expect(rendered.hasClass(jackpotTickerClass)).toEqual(true);

@@ -3,9 +3,10 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { renderBets } from "Utils";
+import { renderBets, formatCurrency } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
 import type { Jackpot } from "Types/jackpot";
+import type { JackpotsQuery_gamesList_games_lobby_bets } from "Types/apollo";
 
 export const GameRowText = ({
   name,
@@ -13,7 +14,7 @@ export const GameRowText = ({
   jackpot,
 }: {
   name: string,
-  bets: Object,
+  bets: ?JackpotsQuery_gamesList_games_lobby_bets,
   jackpot: ?Jackpot,
 }) => (
   <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
@@ -47,10 +48,6 @@ function JackpotAmount({ value }) {
   }
 
   const { currency, amount } = value;
-  const formattedAmount = new Intl.NumberFormat(navigator.language, {
-    style: "currency",
-    currency,
-  }).format(amount);
 
   return (
     <Text
@@ -58,7 +55,7 @@ function JackpotAmount({ value }) {
       size="sm"
       className="u-font-weight-bold t-color-red u-padding-bottom--sm"
     >
-      {formattedAmount}
+      {formatCurrency({ currency, locale: navigator.language, value: amount })}
     </Text>
   );
 }

@@ -8,6 +8,7 @@ import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { renderBets } from "Utils";
+import { CURRENCIES } from "Src/constants";
 
 describe("<GameRow />", () => {
   let rendered;
@@ -24,7 +25,7 @@ describe("<GameRow />", () => {
       jackpot: {
         id: "netent-starburst",
         value: {
-          currency: "EUR",
+          currency: CURRENCIES.EUR,
           amount: 10,
         },
       },
