@@ -15,7 +15,12 @@ type Extend = {
     errorCallback?: () => void
   ) => {},
   removeEventListener: (command: string) => {},
-  call: Function,
+  call: (
+    command: string,
+    args: Array<string>,
+    successCallback: () => void,
+    errorCallback?: () => void
+  ) => {},
 };
 
 export class NetentGame extends BaseGame {
@@ -69,11 +74,15 @@ export class NetentGame extends BaseGame {
   }
 
   pauseGame() {
-    this.extend && this.extend.call("pauseAutoplay", [], () => {}, () => {});
+    const onSuccess = () => {};
+    const onError = () => {};
+    this.extend && this.extend.call("pauseAutoplay", [], onSuccess, onError);
     return Promise.resolve();
   }
 
   resumeGame() {
-    this.extend && this.extend.call("resumeAutoplay", [], () => {}, () => {});
+    const onSuccess = () => {};
+    const onError = () => {};
+    this.extend && this.extend.call("resumeAutoplay", [], onSuccess, onError);
   }
 }
