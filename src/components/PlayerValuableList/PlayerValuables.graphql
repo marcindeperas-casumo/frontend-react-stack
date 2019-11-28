@@ -1,4 +1,4 @@
-query PlayerValuablesQuery {
+query PlayerValuablesQuery($valuableType: ValuableType)  {
   listTitleLabel: getText(
     id: "root:mobile.valuables:fields.your_valuables"
   )
@@ -21,11 +21,10 @@ query PlayerValuablesQuery {
     id: "root:mobile.valuables:fields.no_valuables"
   )
   player {
-    valuables {
+    valuables (valuableType: $valuableType) {
       __typename
       id
       valuableState
-      expirationTimeInHours
       expiryDate
       valuableType
       title
@@ -55,7 +54,6 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     __typename
     id
     valuableState
-    expirationTimeInHours
     expiryDate
     valuableType
     title

@@ -42,7 +42,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -58,7 +57,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableSpins",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -78,7 +76,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename: "PlayerValuableCash",
       id: string,
       valuableState: PlayerValuableState,
-      expirationTimeInHours: number,
       expiryDate: BigInt,
       valuableType: ValuableType,
       title: string,
@@ -92,7 +89,7 @@ export type PlayerValuablesQuery_player_valuables =
       requirementType: ?RequirementType,
     };
 export type PlayerValuablesQuery_player = {
-  valuables: Array<?PlayerValuablesQuery_player_valuables>,
+  valuables: Array<PlayerValuablesQuery_player_valuables>,
 };
 export type PlayerValuablesQuery = {
   listTitleLabel: string,
@@ -103,6 +100,9 @@ export type PlayerValuablesQuery = {
   seeAllLabel: string,
   noValuablesLabel: string,
   player: PlayerValuablesQuery_player,
+};
+export type PlayerValuablesQueryVariables = {
+  valuableType?: ?ValuableType,
 };
 
 // ====================================================
@@ -1128,7 +1128,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,
@@ -1147,7 +1146,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,
@@ -1167,7 +1165,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
   valuableState: PlayerValuableState,
-  expirationTimeInHours: number,
   expiryDate: BigInt,
   valuableType: ValuableType,
   title: string,
@@ -1686,14 +1683,14 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
+export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-export type ValuableType = "cash" | "deposit" | "spins" | "sport";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP";
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
