@@ -12,11 +12,13 @@ export class ThunderkickGame extends BaseIframeGame {
   }
 
   get props() {
-    const baseProps = super.props;
+    if (this.gameData && this.gameData.url) {
+      return {
+        ...super.props,
+        src: `${this.gameData.url}&lobbyUrl=${super.lobbyUrl}`,
+      };
+    }
 
-    return {
-      ...baseProps,
-      src: `${baseProps.src}&lobbyUrl=${super.lobbyUrl}`,
-    };
+    return super.props;
   }
 }

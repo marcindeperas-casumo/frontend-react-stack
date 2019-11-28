@@ -1,5 +1,6 @@
 // @flow
 import logger from "Services/logger";
+import { injectScript } from "Utils";
 import { BaseGame } from "./BaseGame";
 
 export const NETENT_SCRIPT_URL =
@@ -8,22 +9,17 @@ export const NETENT_SCRIPT_URL =
 declare var netent: { launch: Function };
 
 type Extend = {
-  addEventListener: Function,
-  removeEventListener: Function,
+  addEventListener: (
+    command: string,
+    successCallback: () => void,
+    errorCallback?: () => void
+  ) => {},
+  removeEventListener: (command: string) => {},
   call: Function,
-};
-
-const addScript = (src: string, callback: Function) => {
-  const script = document.createElement("script");
-  script.setAttribute("src", src);
-  // eslint-disable-next-line fp/no-mutation
-  script.onload = callback;
-  document.body && document.body.appendChild(script);
 };
 
 export class NetentGame extends BaseGame {
   extend: ?Extend = null;
-  addScript = addScript;
 
   get props() {
     return {
@@ -54,7 +50,7 @@ export class NetentGame extends BaseGame {
   }
 
   onMount() {
-    this.addScript(NETENT_SCRIPT_URL, () => {
+    injectScript(NETENT_SCRIPT_URL).then(() => {
       netent.launch(
         this.config,
         (extend: Extend) => {

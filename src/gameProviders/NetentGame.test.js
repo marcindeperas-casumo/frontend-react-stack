@@ -1,5 +1,11 @@
 // @flow
+import * as utils from "Utils";
 import { NETENT_SCRIPT_URL, NetentGame } from "./NetentGame";
+
+jest.mock("../utils/utils.js", () => ({
+  ...jest.requireActual("../utils/utils.js"),
+  injectScript: jest.fn().mockResolvedValue(),
+}));
 
 describe("NetentGame", () => {
   const params = {
@@ -17,14 +23,10 @@ describe("NetentGame", () => {
   const gameRef = { current: null };
   const model = new NetentGame(params, gameRef);
 
-  it("should call addScript when onMount is called", () => {
-    model.addScript = jest.fn();
+  it("should call injectScript when onMount is called", () => {
     model.onMount();
 
-    expect(model.addScript).toHaveBeenCalledWith(
-      NETENT_SCRIPT_URL,
-      expect.any(Function)
-    );
+    expect(utils.injectScript).toHaveBeenCalledWith(NETENT_SCRIPT_URL);
   });
 
   it("should return the element as div", () => {

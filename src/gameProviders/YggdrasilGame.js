@@ -11,11 +11,13 @@ export class YggdrasilGame extends BaseIframeGame {
   }
 
   get props() {
-    const superProps = super.props;
+    if (this.gameData && this.gameData.url) {
+      return {
+        ...super.props,
+        src: `${this.gameData.url}&lobby=${super.lobbyUrl}`,
+      };
+    }
 
-    return {
-      ...superProps,
-      src: `${superProps.src}&lobby=${super.lobbyUrl}`,
-    };
+    return super.props;
   }
 }
