@@ -4,9 +4,10 @@ import { pick } from "ramda";
 import * as A from "Types/apollo";
 import { ValuableDetailsWithModal } from "Components/ValuableDetails";
 import { ValuableCard } from "Components/ValuableCard";
+import { type ValuableThumbnailTranslations as Translations } from "Models/valuables";
 
 export const useValuableDetails = (
-  translations: any,
+  translations: Translations,
   onConsumeValuable: string => Promise<void>
 ) => {
   const [selectedValuable, setSelectedValuable] = useState(null);
