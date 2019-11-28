@@ -3,7 +3,6 @@ import { mount } from "enzyme";
 import { act } from "react-dom/test-utils";
 import { HookWrapper } from "Utils/HookWrapper";
 import MockStore from "Components/MockStore";
-import { waitAndUpdateWrapper } from "Utils";
 import { useValuableDetails } from "./useValuableDetails";
 import mockValuables from "./__mocks__/Valuables.json";
 
@@ -24,13 +23,13 @@ describe("useValuableDetails", () => {
     );
   });
 
-  test("should return details component if show details is not called", async () => {
+  test("should return details component if show details is not called", () => {
     const { showValuableDetails } = wrapper.find("div").props().hook;
 
     act(() => {
       showValuableDetails(mockValuable);
     });
-    await waitAndUpdateWrapper(wrapper);
+    wrapper.update();
 
     expect(wrapper.find("div").props().hook.detailsComponent).not.toBeNull();
   });
