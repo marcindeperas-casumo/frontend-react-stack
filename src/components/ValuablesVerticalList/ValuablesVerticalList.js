@@ -4,24 +4,22 @@ import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
-import { pick } from "ramda";
-import * as A from "Types/apollo";
 import { ValuableRow } from "Components/ValuableRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { ValuableCard } from "Components/ValuableCard";
 import { type ValuableListProps } from "Models/valuables";
+import { useValuableDetails } from "Components/ValuableDetails/useValuableDetails";
 
 const valuableItemRenderer = (
   valuable,
   translations,
-  onMoreInfo,
+  onMoreInfo?,
   onConsumeValuable
 ) => {
   const itemDescription =
     valuable.__typename === "PlayerValuableSpins"
       ? valuable.description
       : valuable.content;
+  const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
 
   return (
     <div className="u-padding-y--md">
@@ -30,7 +28,7 @@ const valuableItemRenderer = (
         translations={translations}
         {...valuable}
         description={itemDescription}
-        onMoreInfo={() => onMoreInfo(valuable)}
+        onMoreInfo={moreInfo}
       />
     </div>
   );
@@ -44,34 +42,10 @@ export const ValuablesVerticalList = ({
   className,
   onConsumeValuable,
 }: ValuableListProps) => {
-  const [selectedValuable, setSelectedValuable] = React.useState(null);
-  const closeModal = () => {
-    setSelectedValuable(null);
-  };
-
-  const showValuableDetails = (
-    valuable: A.PlayerValuableList_PlayerValuable
-  ) => {
-    const valuableDetails = pick(
-      [
-        "id",
-        "backgroundImage",
-        "content",
-        "caveat",
-        "currency",
-        "market",
-        "expiryDate",
-        "valuableType",
-        "valuableState",
-        "wageringThreshold",
-        "leftToWager",
-        "requirementType",
-        "title",
-      ],
-      valuable
-    );
-    setSelectedValuable(valuableDetails);
-  };
+  const { detailsComp, showValuableDetails } = useValuableDetails(
+    translations,
+    onConsumeValuable
+  );
 
   if (loading || !translations) {
     return <GameRowSkeleton />;
@@ -108,24 +82,7 @@ export const ValuablesVerticalList = ({
           />
         )}
       </Flex>
-
-      {selectedValuable && (
-        <ValuableDetailsWithModal
-          isOpen={Boolean(selectedValuable)}
-          onClose={closeModal}
-          onConsumeValuable={onConsumeValuable}
-          valuableDetails={selectedValuable}
-        >
-          <div className="c-valuable-list__valuable-card">
-            <ValuableCard
-              translations={translations}
-              {...selectedValuable}
-              caveat={null}
-              className="t-box-shadow--lg"
-            />
-          </div>
-        </ValuableDetailsWithModal>
-      )}
+      {detailsComp}
     </div>
   );
 };

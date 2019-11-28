@@ -47,7 +47,7 @@ type Props = {
   /** Function to be triggered on click of card */
   onClick?: () => void,
   /** Function to be triggered on click of the more icon */
-  onMoreInfo?: () => void,
+  onMoreInfo: ?() => void,
 };
 
 export class ValuableRow extends PureComponent<Props> {
