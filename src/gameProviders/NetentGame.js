@@ -70,19 +70,33 @@ export class NetentGame extends BaseGame {
   }
 
   onUnmount() {
-    this.extend && this.extend.removeEventListener("goToLobby");
+    if (this.extend) {
+      this.extend.removeEventListener("goToLobby");
+    }
   }
 
   pauseGame() {
-    const onSuccess = () => {};
-    const onError = () => {};
-    this.extend && this.extend.call("pauseAutoplay", [], onSuccess, onError);
-    return Promise.resolve();
+    return new Promise<void>((resolve, reject) => {
+      const onSuccess = () => {
+        resolve();
+      };
+      const onError = () => {
+        reject();
+      };
+      if (this.extend) {
+        this.extend.call("pauseAutoplay", [], onSuccess, onError);
+      } else {
+        reject();
+      }
+    });
   }
 
   resumeGame() {
     const onSuccess = () => {};
     const onError = () => {};
-    this.extend && this.extend.call("resumeAutoplay", [], onSuccess, onError);
+
+    if (this.extend) {
+      this.extend.call("resumeAutoplay", [], onSuccess, onError);
+    }
   }
 }
