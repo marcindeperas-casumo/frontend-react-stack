@@ -8,7 +8,7 @@ import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRow } from "Components/ValuableRow";
 
-describe("PlayerValuableListVertical", () => {
+describe("ValuablesVerticalList", () => {
   const mockedValuables = mockValuables();
   let onMoreInfo;
   let rendered;
