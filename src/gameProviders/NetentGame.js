@@ -30,8 +30,8 @@ export class NetentGame extends BaseGame {
 
   get config() {
     return {
-      gameId: this.gameData.gameId || "",
-      sessionId: this.gameData.sessionId || "",
+      gameId: this.gameData.gameId || null,
+      sessionId: this.gameData.sessionId || null,
       staticServer: decodeURIComponent(this.gameData.staticServer || ""),
       gameServerURL: decodeURIComponent(this.gameData.gameServer || ""),
       lobbyURL: "#",
