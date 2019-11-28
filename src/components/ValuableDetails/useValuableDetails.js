@@ -7,7 +7,7 @@ import { ValuableCard } from "Components/ValuableCard";
 
 export const useValuableDetails = (
   translations: any,
-  onConsumeValuable: string => any
+  onConsumeValuable: string => Promise<void>
 ) => {
   const [selectedValuable, setSelectedValuable] = useState(null);
   const closeModal = () => {
