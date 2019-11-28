@@ -42,7 +42,7 @@ export const ValuablesVerticalList = ({
   className,
   onConsumeValuable,
 }: ValuableListProps) => {
-  const { detailsComp, showValuableDetails } = useValuableDetails(
+  const { detailsComponent, showValuableDetails } = useValuableDetails(
     translations,
     onConsumeValuable
   );
@@ -82,7 +82,7 @@ export const ValuablesVerticalList = ({
           />
         )}
       </Flex>
-      {detailsComp}
+      {detailsComponent}
     </div>
   );
 };

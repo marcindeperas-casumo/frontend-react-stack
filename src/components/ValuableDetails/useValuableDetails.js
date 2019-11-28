@@ -10,7 +10,6 @@ export const useValuableDetails = (
   onConsumeValuable: string => any
 ) => {
   const [selectedValuable, setSelectedValuable] = useState(null);
-
   const closeModal = () => {
     setSelectedValuable(null);
   };
@@ -41,14 +40,14 @@ export const useValuableDetails = (
 
   if (!selectedValuable) {
     return {
-      detailsComp: null,
+      detailsComponent: null,
       showValuableDetails: showValuableDetails,
     };
   }
 
   return {
     showValuableDetails,
-    detailsComp: (
+    detailsComponent: (
       <ValuableDetailsWithModal
         isOpen={Boolean(selectedValuable)}
         onClose={closeModal}
