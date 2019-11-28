@@ -1,13 +1,12 @@
 // @flow
-
 import type { GameLaunchData, GameRef } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-export class ThunderkickGame extends BaseIframeGame {
+export class YggdrasilGame extends BaseIframeGame {
   constructor(gameData: GameLaunchData, gameRef: GameRef) {
     super(gameData, gameRef);
-    this.api.commands.pause = { eventid: "pausegame" };
-    this.api.commands.resume = { eventid: "resumegame" };
+    this.api.commands.pause = "game/pause";
+    this.api.commands.resume = "game/resume";
     this.api.features.instantPause = true;
   }
 
@@ -15,7 +14,7 @@ export class ThunderkickGame extends BaseIframeGame {
     if (this.gameData && this.gameData.url) {
       return {
         ...super.props,
-        src: `${this.gameData.url}&lobbyUrl=${super.lobbyUrl}`,
+        src: `${this.gameData.url}&lobby=${super.lobbyUrl}`,
       };
     }
 

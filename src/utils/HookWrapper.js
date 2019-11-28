@@ -15,6 +15,7 @@ type Props<T> = {
  */
 export function HookWrapper(props: Props<*>) {
   const hook = props.hook(...props.args);
+
   return <div hook={hook} />;
 }
 

@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import { MoreIcon } from "@casumo/cmp-icons";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import ImageLazy from "Components/Image/ImageLazy";
 import DangerousHtml from "Components/DangerousHtml";
@@ -44,7 +45,9 @@ type Props = {
   translations: Translations,
   expiryDate: number,
   /** Function to be triggered on click of card */
-  onClick: () => void,
+  onClick?: () => void,
+  /** Function to be triggered on click of the more icon */
+  onMoreInfo: ?() => void,
 };
 
 export class ValuableRow extends PureComponent<Props> {
@@ -82,7 +85,7 @@ export class ValuableRow extends PureComponent<Props> {
   }
 
   render() {
-    const { caveat, description, valuableState } = this.props;
+    const { caveat, description, valuableState, onMoreInfo } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
 
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
@@ -90,8 +93,8 @@ export class ValuableRow extends PureComponent<Props> {
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
-      <Flex data-test="valuable-row" onClick={this.props.onClick}>
-        <Flex.Item className="c-valuable-row-thumbnail">
+      <Flex data-test="valuable-row">
+        <Flex.Item className="c-valuable-row-thumbnail o-flex__item--no-shrink">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail
               backgroundRenderer={this.image}
@@ -134,6 +137,11 @@ export class ValuableRow extends PureComponent<Props> {
             </Text>
           )}
         </Flex.Block>
+        {onMoreInfo && (
+          <Flex.Item>
+            <MoreIcon onClick={onMoreInfo} className="t-color-grey" />
+          </Flex.Item>
+        )}
       </Flex>
     );
   }

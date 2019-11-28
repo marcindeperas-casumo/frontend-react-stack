@@ -1,0 +1,1 @@
+export { ValuablesVerticalList } from "./ValuablesVerticalList";
