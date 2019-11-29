@@ -129,20 +129,6 @@ export const URL_PREFIXES = {
   [MARKETS.es_es]: "",
   [MARKETS.nz_en]: "en-nz",
 };
-export const TRANSLATED_ROUTES = {
-  GAMES: {
-    sv: "spel",
-    fi: "pelit",
-    no: "spillvelger",
-    de: "spiele",
-  },
-  PLAY: {
-    sv: "spela",
-    fi: "pelaa",
-    no: "spill",
-    de: "spielen",
-  },
-};
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £
