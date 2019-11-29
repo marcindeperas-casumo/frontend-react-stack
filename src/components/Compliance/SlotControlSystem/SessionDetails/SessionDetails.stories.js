@@ -3,7 +3,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select, number, boolean } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
-import { SessionDetails, TYPES } from "./SessionDetails";
+import { SessionDetails } from "./SessionDetails";
 
 const t = {
   session_details_header: "Session details",
@@ -27,7 +27,7 @@ stories.add("Default", () => {
   return (
     <SessionDetails
       t={t}
-      type={select("Type", TYPES, TYPES.LOGOUT)}
+      isLogout={boolean("isLogout", true)}
       locale="en-GB"
       balance={number("Balance", 112)}
       currency={select("Currency", { EUR: "EUR", GBP: "GBP" }, "EUR")}

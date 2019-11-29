@@ -3,10 +3,7 @@ import * as React from "react";
 import { useLocale } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
 import { type ModalContentComponent } from "Components/RSModal";
-import {
-  SessionDetails,
-  TYPES as DETAILS_TYPES,
-} from "Components/Compliance/SlotControlSystem/SessionDetails";
+import { SessionDetails } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
 
 type ContentType = {
@@ -55,7 +52,7 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
     <ModalSkin {...modalSkinProps}>
       <SessionDetails
         t={props.t}
-        type={DETAILS_TYPES.LOGOUT}
+        isLogout
         locale={locale}
         balance={activeSession.limit.amount}
         currency={activeSession.limit.currency}

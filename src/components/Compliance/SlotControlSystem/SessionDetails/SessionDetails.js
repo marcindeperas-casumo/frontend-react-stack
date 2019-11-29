@@ -8,11 +8,6 @@ import { formatCurrency } from "Utils";
 import { Row } from "./Row";
 import { Header } from "./Header";
 
-export const TYPES = Object.freeze({
-  LIMITS_REACHED: "LIMITS_REACHED",
-  LOGOUT: "LOGOUT",
-});
-
 type Props = {
   t: ?{
     session_details_header: string,
@@ -27,7 +22,7 @@ type Props = {
     logout_button_label: string,
     logout_text: string,
   },
-  type: $Values<typeof TYPES>,
+  isLogout: boolean,
   balance: number,
   currency: string,
   locale: string,
@@ -44,7 +39,7 @@ type Props = {
 };
 
 export function SessionDetails(props: Props) {
-  const { t, currency, locale, type, onClickButton } = props;
+  const { t, currency, locale, isLogout, onClickButton } = props;
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
@@ -54,7 +49,7 @@ export function SessionDetails(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {type === TYPES.LOGOUT && (
+      {isLogout && (
         <>
           <div className="u-padding--sm t-background-grey-light-2" />
           <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
@@ -81,9 +76,8 @@ export function SessionDetails(props: Props) {
         className="u-margin--md"
         onClick={onClickButton}
       >
-        {(type === TYPES.LOGOUT
-          ? t?.logout_button_label
-          : t?.limits_reached_button_label) || null}
+        {(isLogout ? t?.logout_button_label : t?.limits_reached_button_label) ||
+          null}
       </Button>
     </Flex>
   );
