@@ -12,7 +12,6 @@ export const mockValuable = (valuableType) => {
 };
 
 export const mockValuables = (valuableType = null) => {
-  console.log("MOCKDATA ", mockData);
   return valuableType ?
     mockData.filter(valuable => valuable.valuableType === valuableType) :
     mockData;
