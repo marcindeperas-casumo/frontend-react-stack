@@ -32,6 +32,7 @@ export const PlayerDepositValuables = () => {
       <div className="c-valuable-row-shell u-padding-y--md">
         <ValuableRowShell text={translations.dontUseValuableLabel} />
       </div>
+      <div>Bonus Terms and Conditions</div>
     </Flex>
   );
 };
