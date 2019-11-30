@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import Text from "@casumo/cmp-text";
 import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerValuableList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
@@ -18,14 +19,17 @@ export const PlayerDepositValuables = () => {
 
   return (
     <Flex direction="vertical" className="u-padding u-height--screen">
-      <div className="u-padding-x--md u-overflow-y--auto">
+      <Text className="u-height--5xlg u-padding-top--lg u-padding-left--md u-font-weight-bold">
+        Choose a bonus card
+      </Text>
+      <div className="u-overflow-y--auto">
         <ValuablesVerticalList
           valuables={valuables}
           translations={translations}
           loading={loading}
         />
       </div>
-      <div className="c-valuable-row-shell u-padding-x--md">
+      <div className="c-valuable-row-shell u-padding-y--md">
         <ValuableRowShell text={translations.dontUseValuableLabel} />
       </div>
     </Flex>

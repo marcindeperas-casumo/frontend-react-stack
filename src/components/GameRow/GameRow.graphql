@@ -3,13 +3,13 @@ fragment GameRow_Game on Game {
   name
   logo
   logoBackground
-  lobby {
-    bets {
-      min
-      max
-      symbol
-    }
-  }
+  # lobby {
+  #   bets {
+  #     min
+  #     max
+  #     symbol
+  #   }
+  # }
   jackpotInfo {
     id
     formattedJackpotAmount

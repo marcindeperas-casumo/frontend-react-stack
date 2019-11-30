@@ -55,7 +55,7 @@ export const ValuablesVerticalList = ({
     <div
       className={classNames(
         className,
-        "c-player-valuables-list u-padding-bottom--lg t-background-white"
+        "c-player-valuables-list t-background-white"
       )}
     >
       <Flex direction="vertical" spacing="none">
