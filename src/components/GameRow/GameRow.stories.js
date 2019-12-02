@@ -16,7 +16,11 @@ stories.add("Default", () => (
 ));
 
 stories.add("Default with Jackpot", () => (
-  <GameRow game={{ ...game, jackpot }} onLaunchGame={action(gonzosQuest)} />
+  <GameRow
+    game={{ ...game, jackpot }}
+    locale="en"
+    onLaunchGame={action(gonzosQuest)}
+  />
 ));
 
 stories.add("Default with Live Casino", () => (
