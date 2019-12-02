@@ -6,20 +6,20 @@ import "./SideBarRow.scss";
 
 type Props = {
   text: string,
-  smallText: string,
+  smallText?: string,
   Icon: string,
   cssClasses: Array<string>,
-  link: string,
+  link?: string,
+  action?: Function,
 };
 
 export class SideBarRow extends PureComponent<Props> {
   render() {
-    const { text, smallText, Icon, cssClasses, link } = this.props;
+    const { text, smallText, Icon, cssClasses, link, action } = this.props;
 
     const stylesLi = classNames(
       `u-font-weight-bold`,
       `c-sidebar-nav-li`,
-      `t-color-white`,
       `u-margin--none`,
       `u-padding--none`,
       `u-position-relative`,
@@ -33,7 +33,7 @@ export class SideBarRow extends PureComponent<Props> {
       condition ? wrapper(children) : children;
 
     return (
-      <li className={stylesLi}>
+      <li className={stylesLi} onClick={action} data-test-id="sidebar-li">
         <ConditionalWrapper
           condition={link}
           wrapper={children => (
@@ -54,7 +54,7 @@ export class SideBarRow extends PureComponent<Props> {
                 data-test-id="sidebar-icon"
               />
             )}
-            <div data-test-id="sidebar-text t-color-white">{text}</div>
+            <div data-test-id="sidebar-text">{text}</div>
             {smallText && (
               <div
                 className="u-font-sm t-color-turquoise"
@@ -70,29 +70,29 @@ export class SideBarRow extends PureComponent<Props> {
   }
 }
 
-const getLiClassNamesByParam = cssClassArray => {
+const getLiClassNamesByParam = (cssClassArray: Array<string> = []) => {
   const mapArray = {
-    "": "t-background-plum",
-    white: "t-background-white, c-sidebar-nav__white",
-    selected: "t-background-turquoise",
+    default: "t-background-plum t-color-white",
+    white: "t-background-white c-sidebar-nav__white t-color-grey-dark-1",
+    selected: "t-background-turquoise t-color-white",
   };
 
   if (cssClassArray.length === 0) {
-    return "t-background-plum";
+    return mapArray["default"];
   }
 
   return cssClassArray.map(css => mapArray[css]);
 };
 
-const getAClassNamesByParam = cssClassArray => {
+const getAClassNamesByParam = (cssClassArray: Array<string> = []) => {
   const mapArray = {
-    "": "t-color-white",
+    default: "t-color-white",
     white: "t-color-grey-dark-1",
     selected: "t-color-grey-dark-1",
   };
 
   if (cssClassArray.length === 0) {
-    return "t-color-white";
+    return mapArray["default"];
   }
 
   return cssClassArray.map(css => mapArray[css]);

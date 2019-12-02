@@ -52,6 +52,7 @@ export class SideBar extends PureComponent<Props> {
               Icon=""
               cssClasses={[`white`]}
               link={row.link}
+              action={row.action}
               key={row.name}
             />
           ))}

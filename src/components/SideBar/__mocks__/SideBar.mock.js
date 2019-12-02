@@ -1,8 +1,10 @@
+export const fakeAction = () => console.log("live");
+
 export const menu = [
-  { name: `Your settings`, link: `/somewhere/gamebrowser` },
+  { name: `Your settings`, link: `/somewhere/gamebrowser`},
   { name: `Play Okay Settings`, link: `/somewhere/poks` },
   { name: `Email us`, link: `/somewhere/email` },
-  { name: `Live chat`, link: `/somewhere/chat` },
+  { name: `Live chat`, link: ``, action: fakeAction},
   { name: `Play Okay`, link: `/somewhere/pok` },
   { name: `Blog`, link: `/somewhere/blog` },
   { name: `FAQ`, link: `/somewhere/faq` },

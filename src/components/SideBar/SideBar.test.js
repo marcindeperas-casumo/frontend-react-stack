@@ -8,7 +8,7 @@ describe("SideBar", () => {
     const rendered = shallow(
       <SideBar username={username} wallet={walletUK} menu={menu} />
     );
-    expect(rendered.find(".u-icon-casumo").length).toBe(1);
+    expect(rendered.find(".c-sidebar-logo").length).toBe(1);
   });
 
   test("should render menu rows", () => {

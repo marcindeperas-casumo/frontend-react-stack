@@ -37,7 +37,7 @@ describe("SideBarRow", () => {
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(0);
   });
 
-  test("should not render text", () => {
+  test("should render text", () => {
     const text = "FAQ";
     const rendered = shallow(
       <SideBarRow text={text} Icon="" cssClasses={[`white`]} link="" />
@@ -70,15 +70,21 @@ describe("SideBarRow", () => {
     );
   });
 
-  test("should assign propper class", () => {
+  test("action fires", () => {
+    const action = jest.fn();
     const rendered = shallow(
-      <SideBarRow text="FAQ" Icon="" cssClasses={[`test1`, `test2`]} link="" />
+      <SideBarRow
+        text=""
+        smallText=""
+        Icon=""
+        cssClasses={[`white`]}
+        link=""
+        action={action}
+      />
     );
-    expect(
-      rendered.find(".c-sidebar-nav__test1").hasClass("c-sidebar-nav__test2")
-    ).toBe(true);
-    expect(
-      rendered.find(".c-sidebar-nav__test1").hasClass("c-sidebar-nav__test3")
-    ).toBe(false);
+
+    const li = rendered.find({ "data-test-id": "sidebar-li" });
+    li.simulate("click");
+    expect(action).toHaveBeenCalledTimes(1);
   });
 });
