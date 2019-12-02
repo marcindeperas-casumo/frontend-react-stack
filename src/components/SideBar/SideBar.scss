@@ -1,10 +1,9 @@
 // stylelint-disable xi/selector-pattern
 .c-sidebar-nav {
-  font-family: "Circular Pro", "Helvetica Neue", Helvetica, Arial, sans-serif;
   max-width: 260px;
 }
 
-.u-icon-casumo {
+.c-sidebar-logo {
   path {
     fill: cudl-palette(turquoise, "base");
   }

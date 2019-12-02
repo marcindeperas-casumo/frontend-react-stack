@@ -3,7 +3,7 @@ import { createSelector } from "reselect";
 import { pathOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";
 import { walletAmountSelector, currencySelector } from "Models/handshake";
-import { slugs } from "Models/player";
+import { SLUGS } from "Models/player";
 
 const player = state => state.player;
 
@@ -47,7 +47,7 @@ export const mapPaymentTranslations = pipe(
 
 export const playerPaymentsTextsSelector = createSelector(
   getField({
-    slug: slugs.PAYMENTS,
+    slug: SLUGS.PAYMENTS,
     field: "text_fields",
     defaultValue: [],
   }),

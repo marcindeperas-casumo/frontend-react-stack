@@ -11,7 +11,7 @@ import {
   playerBonusTextSelector,
   balanceAmountDisplay,
   balanceBonusDisplay,
-  slugs,
+  SLUGS,
 } from "Models/player";
 
 const menu = fields => {
@@ -51,7 +51,7 @@ const menu = fields => {
 
 export const SideBarContainer = connect(
   state => ({
-    menu: menu(R.prop("fields", getPage(slugs.MENU)(state))),
+    menu: menu(R.prop("fields", getPage(SLUGS.MENU)(state))),
     username: playerCasumoNameSelector(state),
     wallet: {
       cash: balanceAmountDisplay(
@@ -66,7 +66,7 @@ export const SideBarContainer = connect(
     },
   }),
   dispatch => ({
-    fetchMenuPage: dispatch(fetchPageBySlug(slugs.MENU)),
-    fetchPaymentsPage: dispatch(fetchPageBySlug(slugs.PAYMENTS)),
+    fetchMenuPage: dispatch(fetchPageBySlug(SLUGS.MENU)),
+    fetchPaymentsPage: dispatch(fetchPageBySlug(SLUGS.PAYMENTS)),
   })
 )(SideBar);

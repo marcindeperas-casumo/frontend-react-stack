@@ -1,11 +1,10 @@
-// eslint-disable-next-line filenames/match-exported
 import { CHANNELS, takeChannel } from "Models/cometd";
 
 const DEFAULT_STATE = {
   wallet: {},
 };
 
-const playerBalandeReducer = (state = DEFAULT_STATE, action) => {
+const playerBalanceReducer = (state = DEFAULT_STATE, action) => {
   if (takeChannel(CHANNELS.PLAYER)(action)) {
     const { data } = action;
 
@@ -31,4 +30,4 @@ const playerBalandeReducer = (state = DEFAULT_STATE, action) => {
   return state;
 };
 
-export default playerBalandeReducer;
+export default playerBalanceReducer;
