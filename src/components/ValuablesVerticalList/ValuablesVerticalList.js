@@ -22,7 +22,7 @@ const valuableItemRenderer = (
   const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
 
   return (
-    <div className="u-padding-y--md">
+    <div className=" u-padding-y--md">
       <ValuableRow
         key={`available-valuable-row-${valuable.id}`}
         translations={translations}
@@ -52,22 +52,17 @@ export const ValuablesVerticalList = ({
   }
 
   return (
-    <div
-      className={classNames(
-        className,
-        "c-player-valuables-list t-background-white"
+    <div className={classNames(className, "t-background-white")}>
+      {title && (
+        <Text
+          tag="p"
+          className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none"
+        >
+          {title}
+        </Text>
       )}
-    >
-      <Flex direction="vertical" spacing="none">
-        {title && (
-          <Text
-            tag="p"
-            className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none"
-          >
-            {title}
-          </Text>
-        )}
-        {valuables?.length && (
+      {valuables?.length && (
+        <div className="o-list-wrapper">
           <List
             itemSpacing="none"
             items={valuables}
@@ -80,8 +75,8 @@ export const ValuablesVerticalList = ({
               )
             }
           />
-        )}
-      </Flex>
+        </div>
+      )}
       {detailsComponent}
     </div>
   );
