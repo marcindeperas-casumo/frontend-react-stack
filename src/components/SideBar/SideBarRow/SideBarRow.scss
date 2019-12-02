@@ -1,0 +1,24 @@
+// stylelint-disable xi/selector-pattern
+.c-sidebar-nav-li {
+  font-size: cudl-font-size(default, $cudl-font-sizes);
+  height: 100px;
+  list-style: none;
+
+  a {
+    color: cudl-palette(white, "base");
+  }
+}
+
+.c-sidebar-nav__selected {
+  background-color: cudl-palette(turquoise, "base");
+}
+
+.c-sidebar-nav__white {
+  background-color: cudl-palette(white, "base");
+  color: cudl-palette(grey, "dark-1");
+  height: 91px;
+
+  a {
+    color: cudl-palette(grey, "dark-1");
+  }
+}
