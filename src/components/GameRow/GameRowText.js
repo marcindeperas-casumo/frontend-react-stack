@@ -12,8 +12,10 @@ export const GameRowText = ({
   name,
   bets,
   jackpot,
+  locale,
 }: {
   name: string,
+  locale: ?string,
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
   jackpot: ?Jackpot,
 }) => (
@@ -25,7 +27,7 @@ export const GameRowText = ({
     >
       <DangerousHtml html={name} />
     </Text>
-    <JackpotAmount {...jackpot} />
+    <JackpotAmount {...jackpot} locale={locale} />
     <BetsLevels bets={renderBets(bets)} />
   </Flex.Block>
 );
@@ -42,8 +44,8 @@ function BetsLevels({ bets }) {
   return null;
 }
 
-function JackpotAmount({ value }) {
-  if (!value) {
+function JackpotAmount({ value, locale }) {
+  if (!value || !locale) {
     return null;
   }
 
@@ -55,7 +57,7 @@ function JackpotAmount({ value }) {
       size="sm"
       className="u-font-weight-bold t-color-red u-padding-bottom--sm"
     >
-      {formatCurrency({ currency, locale: navigator.language, value: amount })}
+      {formatCurrency({ currency, locale, value: amount })}
     </Text>
   );
 }
