@@ -16,7 +16,7 @@ export class SideBar extends PureComponent<Props> {
   render() {
     return (
       <div className="t-color-white u-font-weight-bold">
-        <ul className="c-sidebar-nav u-margin--none u-padding--none">
+        <ul className="c-sidebar-nav u-margin--none u-padding--none u-font">
           <li className="u-padding--lg t-background-plum">
             <Flex align="center" justify="center" className="u-height--full">
               <a href="/">
