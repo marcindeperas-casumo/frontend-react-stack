@@ -21,8 +21,8 @@ export class SideBarRow extends PureComponent<Props> {
       `c-sidebar-nav-li`,
       `t-color-white`,
       `t-background-plum`,
-      `u-margin--noone`,
-      `u-padding--noone`,
+      `u-margin--none`,
+      `u-padding--none`,
       `u-position-relative`,
       `u-overflow-hidden`,
       cssClasses.map(t => `c-sidebar-nav__${t}`).join(` `)
