@@ -87,7 +87,9 @@ export class CuratedCard extends PureComponent<Props> {
     const { className = "" } = this.props;
     const backgroundProps = {
       ...this.props,
-      onLaunchGame: this.isGame ? this.props.onLaunchGame : null,
+      onLaunchGame: this.isGame
+        ? () => this.props.onLaunchGame(this.props.gameData.slug)
+        : null,
       link: this.cardClickUrl,
     };
 
