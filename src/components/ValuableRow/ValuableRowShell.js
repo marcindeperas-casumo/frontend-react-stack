@@ -4,6 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { ValuablesCardDefaultIcon } from "Components/ValuableThumbnail/icons";
 import DangerousHtml from "Components/DangerousHtml";
+import "./ValuableRow.scss";
 
 type Props = {
   text: string,
@@ -14,7 +15,7 @@ export const ValuableRowShell = ({ text }: Props) => (
     data-test="valuable-row-shell"
     className="u-padding-y--md t-background-white"
   >
-    <Flex.Item className="c-valuable-row-thumbnail o-flex__item--no-shrink">
+    <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
       <ValuablesCardDefaultIcon />
     </Flex.Item>
     <Flex align="center" className="u-margin-left">

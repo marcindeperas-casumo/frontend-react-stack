@@ -26,12 +26,7 @@ export const PlayerDepositValuables = () => {
         className="u-padding-bottom--lg u-overflow-hidden u-height--screen"
         spacing="none"
       >
-        <Flex.Item>
-          <Text className="u-height--5xlg u-padding-top--lg u-padding-left--md u-font-weight-bold">
-            Choose a bonus card
-          </Text>
-        </Flex.Item>
-        <Flex.Item className="u-overflow-y--auto">
+        <Flex.Item className="u-overflow-y--auto u-margin-x--md">
           <ValuablesVerticalList
             valuables={valuables}
             translations={translations}
@@ -39,7 +34,7 @@ export const PlayerDepositValuables = () => {
           />
         </Flex.Item>
         <Flex.Item>
-          <div className="o-list-wrapper">
+          <div className="o-list-wrapper u-margin-x--md">
             <ValuableRowShell text={translations.dontUseValuableLabel} />
           </div>
         </Flex.Item>
