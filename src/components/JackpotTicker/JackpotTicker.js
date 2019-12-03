@@ -7,9 +7,10 @@ import type { Jackpot } from "Types/jackpot";
 type Props = {
   ...Jackpot,
   className: string,
+  locale: string,
 };
 
-export default function JackpotTicker({ value, className }: Props) {
+export default function JackpotTicker({ value, className, locale }: Props) {
   if (!value) {
     return null;
   }
@@ -18,7 +19,7 @@ export default function JackpotTicker({ value, className }: Props) {
 
   return (
     <Badge className={className}>
-      {formatCurrency({ currency, locale: navigator.language, value: amount })}
+      {formatCurrency({ currency, locale, value: amount })}
     </Badge>
   );
 }

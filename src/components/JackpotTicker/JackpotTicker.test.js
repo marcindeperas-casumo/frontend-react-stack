@@ -6,6 +6,7 @@ import { jackpotTickerClass } from "Components/GameTile/GameTileJackpot";
 import { CURRENCIES } from "Src/constants";
 
 describe("JackpotTicker", () => {
+  const locale = "en";
   let jackpotValue, formattedJackpotAmount;
 
   test("should render the Badge component if formattedJackpotAmount exists", () => {
@@ -14,7 +15,9 @@ describe("JackpotTicker", () => {
       currency: CURRENCIES.EUR,
       amount: 12347,
     };
-    const rendered = shallow(<JackpotTicker value={jackpotValue} />);
+    const rendered = shallow(
+      <JackpotTicker locale={locale} value={jackpotValue} />
+    );
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
@@ -24,7 +27,9 @@ describe("JackpotTicker", () => {
   test("should NOT render the Badge component if formattedJackpotAmount is null", () => {
     formattedJackpotAmount = null;
     jackpotValue = null;
-    const rendered = shallow(<JackpotTicker value={jackpotValue} />);
+    const rendered = shallow(
+      <JackpotTicker locale={locale} value={jackpotValue} />
+    );
 
     expect(
       rendered.containsMatchingElement(<Badge>{formattedJackpotAmount}</Badge>)
@@ -37,7 +42,11 @@ describe("JackpotTicker", () => {
       amount: 12347,
     };
     const rendered = shallow(
-      <JackpotTicker value={jackpotValue} className={jackpotTickerClass} />
+      <JackpotTicker
+        locale={locale}
+        value={jackpotValue}
+        className={jackpotTickerClass}
+      />
     );
 
     expect(rendered.hasClass(jackpotTickerClass)).toEqual(true);
