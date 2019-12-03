@@ -148,7 +148,7 @@ stories.add(
     );
 
     const image = text(
-      "Mobile (Small)",
+      "Image",
       "https://cms.casumo.com/wp-content/uploads/2019/07/artwork-V1.2.png",
       "Card Background"
     );
