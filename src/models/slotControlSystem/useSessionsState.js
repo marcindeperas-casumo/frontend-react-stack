@@ -38,5 +38,6 @@ export function useSessionsState(): UseSessionsStateType {
     lastEndedSessionDuringLastHour,
     activeExclusion,
     isFetching,
+    isFresh: !isOlderThan15s,
   };
 }

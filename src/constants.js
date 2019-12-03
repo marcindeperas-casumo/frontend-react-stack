@@ -218,6 +218,8 @@ export const REACT_APP_MODAL = {
   ID: {
     TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
     SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
+    SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT:
+      "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService

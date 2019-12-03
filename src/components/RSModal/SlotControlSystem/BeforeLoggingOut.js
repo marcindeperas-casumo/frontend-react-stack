@@ -25,7 +25,7 @@ type ContentType = {
 };
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
-  const { activeSession, isFetching } = useSessionsState();
+  const { activeSession, isFresh } = useSessionsState();
   const locale = useLocale();
   const now = Date.now();
   const modalSkinProps = {
@@ -36,10 +36,10 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   };
 
   React.useEffect(() => {
-    if (!activeSession && !isFetching) {
+    if (!activeSession && isFresh) {
       props.acceptModal();
     }
-  }, [activeSession, isFetching]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSession, isFresh]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!activeSession) {
     return null;

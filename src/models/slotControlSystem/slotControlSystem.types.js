@@ -58,6 +58,7 @@ export type NewSessionRequestType = {
 
 export type UseSessionsStateType = {
   isFetching: boolean,
+  isFresh: boolean,
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   lastEndedSessionDuringLastHour: boolean,

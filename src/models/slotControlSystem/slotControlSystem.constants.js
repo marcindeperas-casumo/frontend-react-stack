@@ -1,14 +1,9 @@
 // @flow
 
 export const CMS_SLUGS = {
-  CONFIGURATION_SCREEN: "slot-control-system.configure-session-screen",
+  BEFORE_PLAYING: "slot-control-system.configure-session-screen",
   AFTER_PLAYING: "slot-control-system.after-playing",
   UNITS: "units",
-};
-
-export const MODALS = {
-  CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
-  BEFORE_LOGGING_OUT: "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
 };
 
 export const ACTION_TYPES = {
