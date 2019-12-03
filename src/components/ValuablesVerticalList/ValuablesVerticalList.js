@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";

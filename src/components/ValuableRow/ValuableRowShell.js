@@ -17,7 +17,7 @@ export const ValuableRowShell = ({ text }: Props) => (
     <Flex.Item className="c-valuable-row-thumbnail o-flex__item--no-shrink">
       <ValuablesCardDefaultIcon />
     </Flex.Item>
-    <Flex align="center" justify="center" className="u-margin-left--sm">
+    <Flex align="center" className="u-margin-left">
       <Text className="u-font-weight-bold" size="sm" tag="span">
         <DangerousHtml data-test="valuable-row-title" html={text} />
       </Text>
