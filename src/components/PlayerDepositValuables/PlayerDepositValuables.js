@@ -33,10 +33,8 @@ export const PlayerDepositValuables = () => {
             loading={loading}
           />
         </Flex.Item>
-        <Flex.Item>
-          <div className="o-list-wrapper u-margin-x--md">
-            <ValuableRowShell text={translations.dontUseValuableLabel} />
-          </div>
+        <Flex.Item className="u-margin-x--md">
+          <ValuableRowShell text={translations.dontUseValuableLabel} />
         </Flex.Item>
       </Flex>
       <div className="c-player-deposit-valuables__footer">

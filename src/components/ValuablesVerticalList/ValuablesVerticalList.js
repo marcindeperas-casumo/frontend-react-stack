@@ -61,20 +61,18 @@ export const ValuablesVerticalList = ({
         </Text>
       )}
       {valuables?.length && (
-        <div className="o-list-wrapper">
-          <List
-            itemSpacing="none"
-            items={valuables}
-            render={valuable =>
-              valuableItemRenderer(
-                valuable,
-                translations,
-                showValuableDetails,
-                onConsumeValuable
-              )
-            }
-          />
-        </div>
+        <List
+          itemSpacing="none"
+          items={valuables}
+          render={valuable =>
+            valuableItemRenderer(
+              valuable,
+              translations,
+              showValuableDetails,
+              onConsumeValuable
+            )
+          }
+        />
       )}
       {detailsComponent}
     </div>
