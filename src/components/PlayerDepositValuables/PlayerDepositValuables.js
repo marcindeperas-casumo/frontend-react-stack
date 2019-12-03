@@ -20,7 +20,7 @@ export const PlayerDepositValuables = () => {
   }
 
   return (
-    <div>
+    <>
       <Flex
         direction="vertical"
         className="u-padding-bottom--lg u-overflow-hidden u-height--screen"
@@ -41,6 +41,7 @@ export const PlayerDepositValuables = () => {
       </Flex>
       <div className="c-player-deposit-valuables__footer">
         <Text
+          data-test-id="bonus-terms-link"
           onClick={launchBonusTermsDialog}
           tag="h3"
           className="t-color-text-link u-text-align-center"
@@ -48,6 +49,6 @@ export const PlayerDepositValuables = () => {
           Bonus Terms and Conditions
         </Text>
       </div>
-    </div>
+    </>
   );
 };

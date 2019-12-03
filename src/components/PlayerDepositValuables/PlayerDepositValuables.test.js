@@ -5,11 +5,21 @@ import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
 import { mocks } from "Components/PlayerValuableList/__mocks__/playerValuableListMocks";
 import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
+import { launchBonusTermsDialog } from "Services/LaunchBonusTermsDialog";
 import { PlayerDepositValuables } from "./PlayerDepositValuables";
 
+jest.mock("Services/LaunchBonusTermsDialog", () => ({
+  ...jest.requireActual("../../applicationService/LaunchBonusTermsDialog"),
+  launchBonusTermsDialog: jest.fn(),
+}));
+
 describe("PlayerDepositValuables", () => {
-  test("should render valuables vertical list", async () => {
-    const rendered = mount(
+  let rendered;
+
+  beforeEach(() => {
+    jest.resetModules();
+
+    rendered = mount(
       <MockedProvider
         mocks={mocks.mockedDepositValuables}
         cache={getCacheWithIntrospections()}
@@ -17,24 +27,24 @@ describe("PlayerDepositValuables", () => {
         <PlayerDepositValuables />
       </MockedProvider>
     );
+  });
 
+  test("should render valuables vertical list", async () => {
     await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ValuablesVerticalList).exists()).toBe(true);
   });
 
   test("should render valuables row shell after the deposit valuables list", async () => {
-    const rendered = mount(
-      <MockedProvider
-        mocks={mocks.mockedDepositValuables}
-        cache={getCacheWithIntrospections()}
-      >
-        <PlayerDepositValuables />
-      </MockedProvider>
-    );
-
     await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ValuableRowShell).exists()).toBe(true);
+  });
+
+  test("should launch bonus terms dialog on click of bonus terms link", async () => {
+    await waitAndUpdateWrapper(rendered);
+    rendered.find("Text[data-test-id='bonus-terms-link']").simulate("click");
+
+    expect(launchBonusTermsDialog).toHaveBeenCalledTimes(1);
   });
 });
