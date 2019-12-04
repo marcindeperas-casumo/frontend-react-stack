@@ -5,8 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import { renderBets, formatCurrency } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
-import type { Jackpot } from "Types/jackpot";
-import type { JackpotsQuery_gamesList_games_lobby_bets } from "Types/apollo";
+import * as A from "Types/apollo";
 
 export const GameRowText = ({
   name,
@@ -16,8 +15,8 @@ export const GameRowText = ({
 }: {
   name: string,
   locale: ?string,
-  bets: ?JackpotsQuery_gamesList_games_lobby_bets,
-  jackpot: ?Jackpot,
+  bets: ?A.GameRow_Game_lobby_bets,
+  jackpot: ?A.GameRow_Game_jackpot,
 }) => (
   <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
     <Text

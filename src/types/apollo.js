@@ -2,8 +2,6 @@
 // ====================================================
 // GraphQL query operation: JackpotsQuery
 // ====================================================
-import type { JackpotMoney } from "./jackpot";
-
 export type JackpotsQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
@@ -12,9 +10,13 @@ export type JackpotsQuery_gamesList_games_lobby_bets = {
 export type JackpotsQuery_gamesList_games_lobby = {
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
+export type JackpotsQuery_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
 export type JackpotsQuery_gamesList_games_jackpot = {
   id: string,
-  value: JackpotMoney,
+  value: JackpotsQuery_gamesList_games_jackpot_value,
 };
 export type JackpotsQuery_gamesList_games = {
   slug: string,
@@ -1084,9 +1086,13 @@ export type GameRow_Game_lobby_bets = {
 export type GameRow_Game_lobby = {
   bets: ?GameRow_Game_lobby_bets,
 };
+export type GameRow_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
 export type GameRow_Game_jackpot = {
   id: string,
-  value: JackpotMoney,
+  value: GameRow_Game_jackpot_value,
 };
 export type GameRow_Game = {
   slug: string,
@@ -1109,9 +1115,13 @@ export type Jackpots_Game_lobby_bets = {
 export type Jackpots_Game_lobby = {
   bets: ?Jackpots_Game_lobby_bets,
 };
+export type Jackpots_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
 export type Jackpots_Game_jackpot = {
   id: string,
-  value: JackpotMoney,
+  value: Jackpots_Game_jackpot_value,
 };
 export type Jackpots_Game = {
   slug: string,
