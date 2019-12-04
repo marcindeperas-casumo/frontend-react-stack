@@ -53,10 +53,7 @@ export const ValuablesVerticalList = ({
   return (
     <div className={classNames(className, "t-background-white")}>
       {title && (
-        <Text
-          tag="p"
-          className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none"
-        >
+        <Text className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none">
           {title}
         </Text>
       )}
