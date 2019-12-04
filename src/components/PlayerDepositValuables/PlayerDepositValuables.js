@@ -37,7 +37,7 @@ export const PlayerDepositValuables = () => {
           <ValuableRowShell text={translations.dontUseValuableLabel} />
         </Flex.Item>
       </Flex>
-      <div className="c-player-deposit-valuables__footer u-padding-bottom--md">
+      <div className="u-position-sticky--bottom u-padding-bottom--md">
         <Text
           data-test-id="bonus-terms-link"
           onClick={launchBonusTermsDialog}
