@@ -21,7 +21,7 @@ const valuableItemRenderer = (
   const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
 
   return (
-    <div className=" u-padding-y--md">
+    <div className="u-padding-y--md">
       <ValuableRow
         key={`available-valuable-row-${valuable.id}`}
         translations={translations}
