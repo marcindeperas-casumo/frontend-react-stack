@@ -16,7 +16,7 @@ query ValuableDetailsQuery {
     expirationTimeLabel: getText(
         id: "root:valuable-details-component:fields.expirationTimeLabel"
     )
-    termsAndConditionsContent: getText(id: "root:valuable-details-component:fields.terms_and_conditions_content")
+    termsAndConditionsContent: getText(id: "root:uk-welcome-bonus-terms:content")
     wageringStatus: getText(id: "root:valuable-details-component:fields.wagering_status")
     minute_singular: getText(id: "root:units:fields.minute_singular")
     minute_plural: getText(id: "root:units:fields.minutes")
