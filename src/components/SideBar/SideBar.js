@@ -26,7 +26,6 @@ export class SideBar extends PureComponent<Props> {
           </li>
           <SideBarRow
             text={this.props.username}
-            smallText=""
             Icon={IconProfile}
             cssClasses={[]}
             link=""
@@ -40,7 +39,6 @@ export class SideBar extends PureComponent<Props> {
           />
           <SideBarRow
             text="Game Browser"
-            smallText=""
             Icon={IconCasino}
             cssClasses={[`selected`]}
             link=""
@@ -48,8 +46,6 @@ export class SideBar extends PureComponent<Props> {
           {this.props.menu.map(row => (
             <SideBarRow
               text={row.name}
-              smallText=""
-              Icon=""
               cssClasses={[`white`]}
               link={row.link}
               action={row.action}

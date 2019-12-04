@@ -31,7 +31,7 @@ const menu = fields => {
       name: fields["contact_us_link_text"] || `Email us`,
       link: `mailto:hey@casumo.com`,
     },
-    // { name: fields["help_text"], link: `/somewhere/chat/` }, TODO
+    { name: fields["help_text"], link: `/somewhere/chat/` },
     {
       name: fields["play_okay_link_text"] || `Play Okay`,
       link: `/somewhere/pok`,

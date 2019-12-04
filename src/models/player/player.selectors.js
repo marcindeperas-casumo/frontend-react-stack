@@ -1,6 +1,6 @@
 // @flow
 import { createSelector } from "reselect";
-import { pathOr, prop, map, fromPairs, pipe } from "ramda";
+import { propOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";
 import { walletAmountSelector, currencySelector } from "Models/handshake";
 import { SLUGS } from "Models/player";
@@ -24,7 +24,7 @@ export const playerWalletAmountSelector = createSelector(
 
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
-  pathOr("", ["bonus"])
+  propOr("", ["bonus"])
 );
 
 export const playerWalletCurrencySelector = createSelector(

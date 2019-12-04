@@ -7,7 +7,7 @@ import "./SideBarRow.scss";
 type Props = {
   text: string,
   smallText?: string,
-  Icon: string,
+  Icon?: string,
   cssClasses: Array<string>,
   link?: string,
   action?: Function,
@@ -29,18 +29,13 @@ export class SideBarRow extends PureComponent<Props> {
 
     const sylesA = classNames(getAClassNamesByParam(cssClasses));
 
-    const ConditionalWrapper = ({ condition, wrapper, children }) =>
-      condition ? wrapper(children) : children;
-
     return (
-      <li className={stylesLi} onClick={action} data-test-id="sidebar-li">
-        <ConditionalWrapper
-          condition={link}
-          wrapper={children => (
-            <a data-test-id="sidebar-link" className={sylesA} href={link}>
-              {children}
-            </a>
-          )}
+      <li className={stylesLi} data-test-id="sidebar-li">
+        <a
+          data-test-id="sidebar-link"
+          className={sylesA}
+          onClick={action}
+          href={link}
         >
           <Flex
             align="center"
@@ -64,7 +59,7 @@ export class SideBarRow extends PureComponent<Props> {
               </div>
             )}
           </Flex>
-        </ConditionalWrapper>
+        </a>
       </li>
     );
   }
@@ -88,7 +83,7 @@ const getAClassNamesByParam = (cssClassArray: Array<string> = []) => {
   const mapArray = {
     default: "t-color-white",
     white: "t-color-grey-dark-1",
-    selected: "t-color-grey-dark-1",
+    selected: "t-color-white",
   };
 
   if (cssClassArray.length === 0) {
