@@ -7,7 +7,12 @@ import { usePlayerValuableList } from "Components/PlayerValuableList/usePlayerVa
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
-import { launchBonusTermsDialog } from "Services/LaunchBonusTermsDialog";
+import { launchModal } from "Services/LaunchModalService";
+import { MODALS } from "Src/constants";
+
+const showBonusTerms = () => {
+  launchModal({ modal: MODALS.DEPOSIT.SHOW_BONUS_TERMS });
+};
 
 export const PlayerDepositValuables = () => {
   const { loading, valuables, translations } = usePlayerValuableList(
@@ -39,7 +44,7 @@ export const PlayerDepositValuables = () => {
       <div className="u-position-sticky--bottom u-padding-bottom--md">
         <Text
           data-test-id="bonus-terms-link"
-          onClick={launchBonusTermsDialog}
+          onClick={showBonusTerms}
           tag="h3"
           className="t-color-text-link u-text-align-center"
         >

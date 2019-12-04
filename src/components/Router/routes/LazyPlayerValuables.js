@@ -4,8 +4,8 @@ import LazyPortal from "Components/LazyPortal";
 export const LazyPlayerValuables = props => (
   <LazyPortal
     hostElementId="react-host-valuables"
-    loader={() => import("Components/PlayerValuableList")}
-    namedExport="PlayerValuableListVertical"
+    loader={() => import("Components/PlayerDepositValuables")}
+    namedExport="PlayerDepositValuables"
     props={props}
   />
 );
