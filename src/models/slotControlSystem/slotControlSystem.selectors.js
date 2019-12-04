@@ -67,3 +67,8 @@ export const activeExclusionSelector: (
   path(["slotControlSystem", "activeExclusion"]),
   identity
 );
+
+export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
+  path(["slotControlSystem", "lastUpdateTime"]),
+  identity
+);

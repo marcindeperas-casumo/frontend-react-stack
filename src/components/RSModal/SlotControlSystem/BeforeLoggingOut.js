@@ -25,7 +25,7 @@ type ContentType = {
 };
 
 export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
-  const { activeSession, isFresh } = useSessionsState();
+  const { activeSession, isFresh, isFetching } = useSessionsState();
   const locale = useLocale();
   const now = Date.now();
   const modalSkinProps = {
@@ -36,10 +36,10 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   };
 
   React.useEffect(() => {
-    if (!activeSession && isFresh) {
+    if (!activeSession && isFresh && !isFetching) {
       props.acceptModal();
     }
-  }, [activeSession, isFresh]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [activeSession, isFresh, isFetching]); // eslint-disable-line react-hooks/exhaustive-deps
 
   if (!activeSession) {
     return null;
@@ -49,7 +49,7 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
     // Flow thinks modalSkinProps are the same type as props and
     // that props should contain modal_title
     // $FlowFixMe
-    <ModalSkin {...modalSkinProps}>
+    <ModalSkin {...modalSkinProps} closeAction={props.acceptModal}>
       <SessionDetails
         t={props.t}
         isLogout
