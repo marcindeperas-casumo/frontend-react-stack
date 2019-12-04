@@ -8,7 +8,6 @@ import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
 import { launchBonusTermsDialog } from "Services/LaunchBonusTermsDialog";
-import "./PlayerDepositValuables.scss";
 
 export const PlayerDepositValuables = () => {
   const { loading, valuables, translations } = usePlayerValuableList(
