@@ -41,6 +41,7 @@ export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
 export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
 export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
   "KO_APP_EVENT/depositBonusSelected";
+export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
 
 export const ROOT_SCROLL_ELEMENT_ID = "main-content-wrapper";
 
@@ -51,6 +52,14 @@ export const KO_EVENTS = {
   VALUABLES: {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
   },
+};
+export const DEVICES = {
+  DESKTOP: "desktop",
+  MOBILE: "mobile",
+};
+export const ENVIRONMENTS = {
+  TEST: "test",
+  PRODUCTION: "production",
 };
 
 export const STORE_REHYDRATE = "REHYDRATE";
@@ -218,6 +227,7 @@ export const MODALS = {
     VALUABLE_DETAILS: "VALUABLE_DETAILS/VALUABLE_DETAILS",
   },
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
+  DEPOSIT: { SHOW_BONUS_TERMS: "DEPOSIT/SHOW_BONUS_TERMS" },
   ERROR: "ERROR",
 };
 

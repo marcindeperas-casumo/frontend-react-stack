@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import Flex from "@casumo/cmp-flex";
 import List from "@casumo/cmp-list";
 import Text from "@casumo/cmp-text";
 import classNames from "classnames";
@@ -52,36 +51,26 @@ export const ValuablesVerticalList = ({
   }
 
   return (
-    <div
-      className={classNames(
-        className,
-        "c-player-valuables-list u-padding-bottom--lg t-background-white"
+    <div className={classNames(className, "t-background-white")}>
+      {title && (
+        <Text className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none">
+          {title}
+        </Text>
       )}
-    >
-      <Flex direction="vertical" spacing="none">
-        {title && (
-          <Text
-            tag="p"
-            className="u-font-weight-bold u-padding-y--lg u-margin-bottom--none"
-          >
-            {title}
-          </Text>
-        )}
-        {valuables?.length && (
-          <List
-            itemSpacing="none"
-            items={valuables}
-            render={valuable =>
-              valuableItemRenderer(
-                valuable,
-                translations,
-                showValuableDetails,
-                onConsumeValuable
-              )
-            }
-          />
-        )}
-      </Flex>
+      {valuables?.length && (
+        <List
+          itemSpacing="none"
+          items={valuables}
+          render={valuable =>
+            valuableItemRenderer(
+              valuable,
+              translations,
+              showValuableDetails,
+              onConsumeValuable
+            )
+          }
+        />
+      )}
       {detailsComponent}
     </div>
   );

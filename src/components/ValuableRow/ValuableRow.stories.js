@@ -5,6 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { select, boolean } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
+import { ValuableRowShell } from "./ValuableRowShell";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 import { ValuableRow } from "./ValuableRow";
 
@@ -31,4 +32,8 @@ stories.add("Default", () => {
       onMoreInfo={onMoreInfo}
     />
   );
+});
+
+stories.add("Valuable Row - Shell", () => {
+  return <ValuableRowShell text="Don't use bonus" />;
 });

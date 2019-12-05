@@ -8,6 +8,8 @@ export const baseIframeGameApi = {
   },
   events: {
     onPauseEnded: null,
+    onGameRoundStart: null,
+    onGameRoundEnd: null,
   },
   features: {
     instantPause: false,
