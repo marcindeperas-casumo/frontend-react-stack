@@ -1,9 +1,8 @@
 // @flow
 
 import { useRef, useState, useEffect } from "react";
-import http from "Lib/http";
 import logger from "Services/logger";
-import { DEVICES, ENVIRONMENTS } from "Src/constants";
+import type { AppDevice, AppEnvironment } from "Src/types";
 import {
   getGameLaunchParameters,
   getGameProviderName,
@@ -13,9 +12,9 @@ import { getGameModel } from "GameProviders";
 type Props = {
   slug: string,
   playForFun: boolean,
-  platform: $Values<typeof DEVICES>,
+  platform: AppDevice,
   language: string,
-  environment: $Values<typeof ENVIRONMENTS>,
+  environment: AppEnvironment,
 };
 
 export const useGameLaunchData = ({
@@ -32,19 +31,12 @@ export const useGameLaunchData = ({
   useEffect(() => {
     (async () => {
       try {
-        const { providerGameName } = await getGameProviderName(
-          slug,
+        const { providerGameName } = await getGameProviderName(slug, platform);
+        const { responseData } = await getGameLaunchParameters({
+          gameName: providerGameName,
+          playForFun,
           platform,
-          http
-        );
-        const { responseData } = await getGameLaunchParameters(
-          {
-            gameName: providerGameName,
-            playForFun,
-            platform,
-          },
-          http
-        );
+        });
         const gameModel = getGameModel(
           responseData.providedSession.parameters,
           gameRef,

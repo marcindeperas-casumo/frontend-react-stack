@@ -9,3 +9,4 @@ export * from "./YggdrasilGame";
 export * from "./gameModelMapping";
 export * from "./constants";
 export * from "./types";
+export * from "./config";

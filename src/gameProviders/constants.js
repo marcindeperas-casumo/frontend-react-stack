@@ -31,5 +31,3 @@ export const PROVIDERS = Object.freeze({
   YGGDRASIL_DESKTOP: "YGGDRASIL_DESKTOP",
   YGGDRASIL_MOBILE: "YGGDRASIL_MOBILE",
 });
-
-export const EVENT_BUBBLER_PATH = "react-stack/event-bubbler.html";
