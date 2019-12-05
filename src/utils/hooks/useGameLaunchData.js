@@ -3,6 +3,7 @@
 import { useRef, useState, useEffect } from "react";
 import http from "Lib/http";
 import logger from "Services/logger";
+import { DEVICES, ENVIRONMENTS } from "Src/constants";
 import {
   getGameLaunchParameters,
   getGameProviderName,
@@ -12,9 +13,9 @@ import { getGameModel } from "GameProviders";
 type Props = {
   slug: string,
   playForFun: boolean,
-  platform: string,
+  platform: $Values<typeof DEVICES>,
   language: string,
-  environment: string,
+  environment: $Values<typeof ENVIRONMENTS>,
 };
 
 export const useGameLaunchData = ({
