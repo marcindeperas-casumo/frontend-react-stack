@@ -3,29 +3,19 @@
 import { equals } from "ramda";
 import logger from "Services/logger";
 import { BaseGame } from "./BaseGame";
-
-type IframeGameAPI = {
-  commands: {
-    pause: ?string | ?{},
-    resume: ?string | ?{},
-  },
-  events: {
-    onPauseEnded: ?string | ?{},
-  },
-  features: {
-    instantPause: boolean,
-  },
-};
+import type { IframeGameApi } from "./types";
 
 export class BaseIframeGame extends BaseGame {
   targetDomain: string = "*";
-  api: IframeGameAPI = {
+  api: IframeGameApi = {
     commands: {
       pause: null,
       resume: null,
     },
     events: {
       onPauseEnded: null,
+      onGameRoundStart: null,
+      onGameRoundEnd: null,
     },
     features: {
       instantPause: false,
