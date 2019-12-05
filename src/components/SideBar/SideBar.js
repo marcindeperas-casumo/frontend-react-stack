@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import Flex from "@casumo/cmp-flex";
 import "./SideBar.scss";
-import { CasumoLogo, IconProfile, IconWallet, IconCasino } from "./icons";
+import { CasumoLogo, IconProfile, IconWallet, IconCherry } from "./icons";
 import { SideBarRow } from "./SideBarRow";
 import type { SideBarMenuRow, SideBarWallet } from "./types";
 
@@ -20,7 +20,10 @@ export class SideBar extends PureComponent<Props> {
           <li className="u-padding--lg t-background-plum">
             <Flex align="center" justify="center" className="u-height--full">
               <a href="/">
-                <CasumoLogo className="t-color-turquoise" />
+                <CasumoLogo
+                  className="t-color-turquoise"
+                  data-test-id="sidebar-logo"
+                />
               </a>
             </Flex>
           </li>
@@ -30,7 +33,7 @@ export class SideBar extends PureComponent<Props> {
             label={this.props.wallet.bonus}
             Icon={IconWallet}
           />
-          <SideBarRow text="Game Browser" Icon={IconCasino} isSelected={true} />
+          <SideBarRow text="Game Browser" Icon={IconCherry} isSelected={true} />
           {this.props.menu.map(row => (
             <SideBarRow
               text={row.name}

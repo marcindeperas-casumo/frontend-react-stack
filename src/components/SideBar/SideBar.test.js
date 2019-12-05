@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { SideBar } from "Components/SideBar";
+import { SideBar } from "Components/SideBar/SideBar";
 import { menu, menuShort, walletUK, username } from "./__mocks__/SideBar.mock";
 
 describe("SideBar", () => {
@@ -8,7 +8,7 @@ describe("SideBar", () => {
     const rendered = shallow(
       <SideBar username={username} wallet={walletUK} menu={menu} />
     );
-    expect(rendered.find(".c-sidebar-logo").length).toBe(1);
+    expect(rendered.find({ "data-test-id": "sidebar-logo" }).length).toBe(1);
   });
 
   test("should render menu rows", () => {

@@ -38,7 +38,7 @@ export class SideBarRow extends PureComponent<Props> {
     );
 
     return (
-      <li className={stylesLi}>
+      <li className={stylesLi} data-test-id="sidebar-li">
         <a
           data-test-id="sidebar-link"
           className={getAClassNamesByParam(isSelected, isWhiteRow)}

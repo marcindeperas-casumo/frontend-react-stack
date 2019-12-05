@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { menu, wallet, walletUK } from "./__mocks__/SideBar.mock";
-import { SideBar } from "./";
+import { SideBar } from "./SideBar";
 
 const stories = storiesOf("SideBar", module);
 
