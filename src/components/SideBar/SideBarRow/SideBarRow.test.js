@@ -48,13 +48,7 @@ describe("SideBarRow", () => {
   test("should render small text", () => {
     const text = "SuperRandomText";
     const rendered = shallow(
-      <SideBarRow
-        text=""
-        smallText={text}
-        Icon=""
-        cssClasses={[`white`]}
-        link=""
-      />
+      <SideBarRow text="" label={text} Icon="" cssClasses={[`white`]} link="" />
     );
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).text()).toBe(
       text
@@ -63,7 +57,7 @@ describe("SideBarRow", () => {
 
   test("should not render small text", () => {
     const rendered = shallow(
-      <SideBarRow text="" smallText="" Icon="" cssClasses={[`white`]} link="" />
+      <SideBarRow text="" label="" Icon="" cssClasses={[`white`]} link="" />
     );
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).length).toBe(
       0
@@ -75,7 +69,7 @@ describe("SideBarRow", () => {
     const rendered = shallow(
       <SideBarRow
         text=""
-        smallText=""
+        label=""
         Icon=""
         cssClasses={[`white`]}
         link=""

@@ -24,7 +24,7 @@ export const playerWalletAmountSelector = createSelector(
 
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
-  propOr("", ["bonus"])
+  propOr("", "bonus")
 );
 
 export const playerWalletCurrencySelector = createSelector(
@@ -36,7 +36,7 @@ export const playerCurrencySelector = createSelector(
   playerWalletCurrencySelector,
   currencySelector,
   (walletCurrency, handsakeCurrency) => {
-    return walletCurrency ? walletCurrency : handsakeCurrency;
+    return walletCurrency || handsakeCurrency;
   }
 );
 
@@ -63,6 +63,6 @@ export const playerBalanceAmountSelector = createSelector(
   playerWalletAmountSelector,
   walletAmountSelector,
   (walletAmount, handsakeAmount) => {
-    return walletAmount ? walletAmount : handsakeAmount;
+    return walletAmount || handsakeAmount;
   }
 );

@@ -6,7 +6,7 @@ import "./SideBarRow.scss";
 
 type Props = {
   text: string,
-  smallText?: string,
+  label?: string,
   Icon?: string,
   cssClasses: Array<string>,
   link?: string,
@@ -15,7 +15,7 @@ type Props = {
 
 export class SideBarRow extends PureComponent<Props> {
   render() {
-    const { text, smallText, Icon, cssClasses, link, action } = this.props;
+    const { text, label, Icon, cssClasses, link, action } = this.props;
 
     const stylesLi = classNames(
       `u-font-weight-bold`,
@@ -50,12 +50,12 @@ export class SideBarRow extends PureComponent<Props> {
               />
             )}
             <div data-test-id="sidebar-text">{text}</div>
-            {smallText && (
+            {label && (
               <div
                 className="u-font-sm t-color-turquoise"
                 data-test-id="sidebar-text-small"
               >
-                {smallText}
+                {label}
               </div>
             )}
           </Flex>

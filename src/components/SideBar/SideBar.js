@@ -32,7 +32,7 @@ export class SideBar extends PureComponent<Props> {
           />
           <SideBarRow
             text={this.props.wallet.cash}
-            smallText={this.props.wallet.bonus}
+            label={this.props.wallet.bonus}
             Icon={IconWallet}
             cssClasses={[]}
             link=""

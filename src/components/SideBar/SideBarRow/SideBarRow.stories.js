@@ -10,7 +10,7 @@ const stories = storiesOf("SideBarRow", module);
 
 stories.add("Default", () => {
   const textVal = text("Text", walletUK.cash);
-  const smallTextVal = text("Text Small", walletUK.bonus);
+  const labelVal = text("Text Small", walletUK.bonus);
   const linkVal = text("Link", "/faq");
   const cssClassesVal = select(
     "CSS",
@@ -21,7 +21,7 @@ stories.add("Default", () => {
   return (
     <SideBarRow
       text={textVal}
-      smallText={smallTextVal}
+      label={labelVal}
       Icon={IconWallet}
       cssClasses={cssClassesVal}
       link={linkVal}
