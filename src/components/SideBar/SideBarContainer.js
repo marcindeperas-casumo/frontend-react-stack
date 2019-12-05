@@ -2,7 +2,7 @@
 import { connect } from "react-redux";
 import * as R from "ramda";
 import { fetchPageBySlug, getPage } from "Models/cms";
-import { playerCasumoNameSelector } from "Models/handshake";
+import { playerCasumoNameSelector, localeSelector } from "Models/handshake";
 import {
   playerBalanceAmountSelector,
   playerWalletBonusSelector,
@@ -22,12 +22,14 @@ const SideBarContainer = connect(
     wallet: {
       cash: balanceAmountDisplay(
         playerBalanceAmountSelector(state),
-        playerCurrencySelector(state)
+        playerCurrencySelector(state),
+        localeSelector(state)
       ),
       bonus: balanceBonusDisplay(
         playerWalletBonusSelector(state),
         playerCurrencySelector(state),
-        playerBonusTextSelector(state)
+        playerBonusTextSelector(state),
+        localeSelector(state)
       ),
     },
   }),
