@@ -1,16 +1,16 @@
 import { formatCurrency } from "Utils";
 
-export const balanceAmountDisplay = (amount, isoCurrency, locale) => {
-  if (typeof amount !== "number") {
+export const balanceAmountDisplay = (value, currency, locale) => {
+  if (value && typeof value !== "number") {
     return "";
   }
-  return formatCurrency(locale, isoCurrency, amount);
+  return formatCurrency({ locale, currency, value });
 };
 
-export const balanceBonusDisplay = (bonus, isoCurrency, bonusText, locale) => {
-  if (bonus && typeof bonus === "number") {
-    return `+${formatCurrency(locale, isoCurrency, bonus)} ${bonusText}`;
+export const balanceBonusDisplay = (value, currency, bonusText, locale) => {
+  if (value && typeof value === "number") {
+    return `+${formatCurrency({ locale, currency, value })} ${bonusText}`;
   } else {
-    return bonus;
+    return value;
   }
 };
