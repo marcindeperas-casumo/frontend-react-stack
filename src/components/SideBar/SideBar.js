@@ -20,7 +20,7 @@ export class SideBar extends PureComponent<Props> {
           <li className="u-padding--lg t-background-plum">
             <Flex align="center" justify="center" className="u-height--full">
               <a href="/">
-                <CasumoLogo className="c-sidebar-logo" />
+                <CasumoLogo className="t-color-turquoise" />
               </a>
             </Flex>
           </li>
