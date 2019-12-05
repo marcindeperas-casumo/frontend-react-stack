@@ -26,6 +26,11 @@ describe("useGameLaunchData", () => {
       })
     );
   });
+  afterEach(function() {
+    global.fetch.mockClear();
+    // eslint-disable-next-line fp/no-delete
+    delete global.fetch;
+  });
 
   test("returns gameProvider model", async () => {
     const wrapper = mount(
