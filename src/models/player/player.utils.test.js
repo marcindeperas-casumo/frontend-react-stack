@@ -3,7 +3,7 @@ import { balanceAmountDisplay, balanceBonusDisplay } from "Models/player";
 describe("Models/player/utils", () => {
   describe("balanceAmountDisplay", () => {
     test("Propper data", () => {
-      expect(balanceAmountDisplay(123.456, "EUR", "de-DE")).toEqual("€ 123.46");
+      expect(balanceAmountDisplay(123.456, "EUR", "de-DE")).toEqual("€123.46");
     });
 
     test("Returning empty string if NaN", () => {
@@ -20,7 +20,7 @@ describe("Models/player/utils", () => {
   describe("balanceBonusDisplay", () => {
     test("Propper data", () => {
       expect(balanceBonusDisplay(1233.456, "EUR", "Bonus")).toEqual(
-        "+€ 1,233.46 Bonus"
+        "+€1,233.46 Bonus"
       );
     });
 
