@@ -1,5 +1,6 @@
 // @flow
 
+import { ENVIRONMENTS, LANGUAGES } from "Src/constants";
 import { PROVIDERS } from "./constants";
 
 export type GameProviderType = $Values<typeof PROVIDERS>;
@@ -29,18 +30,19 @@ export type GameRef = { current: null | HTMLIFrameElement | HTMLDivElement };
 export type GameProviderModelProps = {
   gameData: GameLaunchData,
   gameRef: GameRef,
-  language: string,
-  environment: string,
+  language: $Values<typeof LANGUAGES>,
+  environment: $Values<typeof ENVIRONMENTS>,
 };
 
 export type IframeGameApiMessage = ?string | ?{};
 
-export type IframeGameAPI = {
+export type IframeGameApi = {
   commands: {
     pause: IframeGameApiMessage,
     resume: IframeGameApiMessage,
   },
   events: {
+    onPauseEnded: IframeGameApiMessage,
     onGameRoundStart: IframeGameApiMessage,
     onGameRoundEnd: IframeGameApiMessage,
   },
