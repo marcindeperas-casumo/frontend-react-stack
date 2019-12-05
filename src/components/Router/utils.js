@@ -10,3 +10,13 @@ export const routeTranslator = (language: string) => {
   };
   return (key: string) => interpolate(ROUTES[key], translatedRoutes);
 };
+
+export const redirectToTranslateUrl = (language: string, toPath: string) => {
+  const translateRoute = routeTranslator(language);
+
+  return window.location.replace(`/${translateRoute(toPath)}`);
+};
+
+export const redirectTo = (path: string) => {
+  return window.location.replace(path);
+};
