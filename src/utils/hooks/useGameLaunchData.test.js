@@ -17,7 +17,7 @@ const responseData = {
   },
 };
 
-describe("useGame", () => {
+describe("useGameLaunchData", () => {
   beforeEach(function() {
     global.fetch = jest.fn(() =>
       Promise.resolve({
@@ -27,7 +27,7 @@ describe("useGame", () => {
     );
   });
 
-  test("returns gameProvider", async () => {
+  test("returns gameProvider model", async () => {
     const wrapper = mount(
       <HookWrapper
         hook={useGameLaunchData}
