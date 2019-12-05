@@ -99,6 +99,7 @@ export type PlayerValuablesQuery = {
   minutesLabel: string,
   seeAllLabel: string,
   noValuablesLabel: string,
+  dontUseValuableLabel: string,
   player: PlayerValuablesQuery_player,
 };
 export type PlayerValuablesQueryVariables = {

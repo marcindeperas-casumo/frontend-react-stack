@@ -37,6 +37,7 @@ export function usePlayerValuableList(valuableType?: ValuableType) {
     minutesLabel: data?.minutesLabel || "",
     seeAllLabel: data?.seeAllLabel || "",
     noValuablesLabel: data?.noValuablesLabel || "",
+    dontUseValuableLabel: data?.dontUseValuableLabel || "",
   };
 
   return {
