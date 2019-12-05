@@ -32,8 +32,8 @@ const SideBarContainer = connect(
     },
   }),
   dispatch => ({
-    fetchMenuPage: dispatch(fetchPageBySlug(SLUGS.MENU)),
-    fetchPaymentsPage: dispatch(fetchPageBySlug(SLUGS.PAYMENTS)),
+    fetchMenuPage: () => dispatch(fetchPageBySlug(SLUGS.MENU)),
+    fetchPaymentsPage: () => dispatch(fetchPageBySlug(SLUGS.PAYMENTS)),
   })
 )(SideBar);
 

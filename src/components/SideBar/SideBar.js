@@ -10,9 +10,20 @@ type Props = {
   username: string,
   wallet: SideBarWallet,
   menu: Array<SideBarMenuRow>,
+  fetchMenuPage?: () => void,
+  fetchPaymentsPage?: () => void,
 };
 
 export class SideBar extends PureComponent<Props> {
+  componentDidMount() {
+    if (this.props.fetchMenuPage) {
+      this.props.fetchMenuPage();
+    }
+    if (this.props.fetchPaymentsPage) {
+      this.props.fetchPaymentsPage();
+    }
+  }
+
   render() {
     return (
       <div className="t-color-white u-font-weight-bold">
