@@ -24,29 +24,17 @@ export class SideBar extends PureComponent<Props> {
               </a>
             </Flex>
           </li>
-          <SideBarRow
-            text={this.props.username}
-            Icon={IconProfile}
-            cssClasses={[]}
-            link=""
-          />
+          <SideBarRow text={this.props.username} Icon={IconProfile} link="" />
           <SideBarRow
             text={this.props.wallet.cash}
             label={this.props.wallet.bonus}
             Icon={IconWallet}
-            cssClasses={[]}
-            link=""
           />
-          <SideBarRow
-            text="Game Browser"
-            Icon={IconCasino}
-            cssClasses={[`selected`]}
-            link=""
-          />
+          <SideBarRow text="Game Browser" Icon={IconCasino} isSelected={true} />
           {this.props.menu.map(row => (
             <SideBarRow
               text={row.name}
-              cssClasses={[`white`]}
+              isWhiteRow={true}
               link={row.link}
               action={row.action}
               key={row.name}

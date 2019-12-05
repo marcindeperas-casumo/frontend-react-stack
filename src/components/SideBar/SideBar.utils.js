@@ -1,5 +1,5 @@
 // @flow
-export const menu = (fields: Object) => {
+export const generateMenu = (fields: Object) => {
   if (!fields) {
     return [];
   }

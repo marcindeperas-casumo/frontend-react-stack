@@ -6,49 +6,33 @@ import { SideBarRow } from "./SideBarRow";
 describe("SideBarRow", () => {
   test("should render link", () => {
     const rendered = mount(
-      <SideBarRow text="FAQ" Icon="" cssClasses={[`white`]} link="/faq" />
+      <SideBarRow text="FAQ" isWhiteRow={true} link="/faq" />
     );
     expect(rendered.find({ "data-test-id": "sidebar-link" }).length).toBe(1);
   });
 
-  test("should not render link", () => {
-    const rendered = mount(
-      <SideBarRow text="FAQ" Icon="" cssClasses={[`white`]} link="" />
-    );
-    expect(rendered.find({ "data-test-id": "sidebar-link" }).length).toBe(0);
-  });
-
   test("should render icon", () => {
     const rendered = shallow(
-      <SideBarRow
-        text="FAQ"
-        Icon={IconProfile}
-        cssClasses={[`white`]}
-        link=""
-      />
+      <SideBarRow text="FAQ" Icon={IconProfile} isWhiteRow={true} />
     );
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(1);
   });
 
   test("should not render icon", () => {
-    const rendered = shallow(
-      <SideBarRow text="FAQ" Icon="" cssClasses={[`white`]} link="" />
-    );
+    const rendered = shallow(<SideBarRow text="FAQ" isWhiteRow={true} />);
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(0);
   });
 
   test("should render text", () => {
     const text = "FAQ";
-    const rendered = shallow(
-      <SideBarRow text={text} Icon="" cssClasses={[`white`]} link="" />
-    );
+    const rendered = shallow(<SideBarRow text={text} isWhiteRow={true} />);
     expect(rendered.find({ "data-test-id": "sidebar-text" }).text()).toBe(text);
   });
 
-  test("should render small text", () => {
+  test("should render label", () => {
     const text = "SuperRandomText";
     const rendered = shallow(
-      <SideBarRow text="" label={text} Icon="" cssClasses={[`white`]} link="" />
+      <SideBarRow text="" label={text} isWhiteRow={true} />
     );
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).text()).toBe(
       text
@@ -56,9 +40,7 @@ describe("SideBarRow", () => {
   });
 
   test("should not render small text", () => {
-    const rendered = shallow(
-      <SideBarRow text="" label="" Icon="" cssClasses={[`white`]} link="" />
-    );
+    const rendered = shallow(<SideBarRow text="" isWhiteRow={true} />);
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).length).toBe(
       0
     );
@@ -67,18 +49,11 @@ describe("SideBarRow", () => {
   test("action fires", () => {
     const action = jest.fn();
     const rendered = shallow(
-      <SideBarRow
-        text=""
-        label=""
-        Icon=""
-        cssClasses={[`white`]}
-        link=""
-        action={action}
-      />
+      <SideBarRow text="" label="" Icon="" link="" action={action} />
     );
 
-    const li = rendered.find({ "data-test-id": "sidebar-li" });
-    li.simulate("click");
+    const a = rendered.find({ "data-test-id": "sidebar-link" });
+    a.simulate("click");
     expect(action).toHaveBeenCalledTimes(1);
   });
 });

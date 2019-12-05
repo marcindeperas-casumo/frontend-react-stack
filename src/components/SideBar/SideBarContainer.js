@@ -1,7 +1,7 @@
 // @flow
 import { connect } from "react-redux";
 import * as R from "ramda";
-import { SideBar, menu } from "Components/SideBar";
+import { SideBar, generateMenu } from "Components/SideBar";
 import { fetchPageBySlug, getPage } from "Models/cms";
 import { playerCasumoNameSelector } from "Models/handshake";
 import {
@@ -16,7 +16,7 @@ import {
 
 export const SideBarContainer = connect(
   state => ({
-    menu: menu(R.prop("fields", getPage(SLUGS.MENU)(state))),
+    menu: generateMenu(R.prop("fields", getPage(SLUGS.MENU)(state))),
     username: playerCasumoNameSelector(state),
     wallet: {
       cash: balanceAmountDisplay(
