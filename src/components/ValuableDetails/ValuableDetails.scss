@@ -1,7 +1,5 @@
 .c-valuable-details__footer {
   background-color: rgba(cudl-palette(white), 0.9);
-  bottom: 0;
-  position: sticky;
 }
 
 .c-valuable-details-modal {
@@ -13,4 +11,8 @@
 
 .c-valuable-details__separator {
   border-color: cudl-palette(grey, "light-2");
+}
+
+.c-valuable-details__valuable-card {
+  width: 160px;
 }
