@@ -52,6 +52,14 @@ export const KO_EVENTS = {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
   },
 };
+export const DEVICES = {
+  DESKTOP: "desktop",
+  MOBILE: "mobile",
+};
+export const ENVIRONMENTS = {
+  TEST: "test",
+  PRODUCTION: "production",
+};
 
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";

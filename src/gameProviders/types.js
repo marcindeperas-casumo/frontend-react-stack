@@ -25,3 +25,31 @@ export type NetentGameLaunchData = {|
 export type GameLaunchData = IframeGameLaunchData | NetentGameLaunchData;
 
 export type GameRef = { current: null | HTMLIFrameElement | HTMLDivElement };
+
+export type GameProviderModelProps = {
+  gameData: GameLaunchData,
+  gameRef: GameRef,
+  language: string,
+  environment: string,
+};
+
+export type IframeGameApiMessage = ?string | ?{};
+
+export type IframeGameAPI = {
+  commands: {
+    pause: IframeGameApiMessage,
+    resume: IframeGameApiMessage,
+  },
+  events: {
+    onGameRoundStart: IframeGameApiMessage,
+    onGameRoundEnd: IframeGameApiMessage,
+  },
+  features: {
+    instantPause: boolean,
+  },
+};
+
+export type IframeMessageEvent = {
+  data: any,
+  origin: string,
+};
