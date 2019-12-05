@@ -20,6 +20,9 @@ query PlayerValuablesQuery($valuableType: ValuableType)  {
   noValuablesLabel: getText(
     id: "root:mobile.valuables:fields.no_valuables"
   )
+  dontUseValuableLabel: getText(
+    id: "root:mobile.deposit:fields.dont_use_valuable_label"
+  )
   player {
     valuables (valuableType: $valuableType) {
       __typename

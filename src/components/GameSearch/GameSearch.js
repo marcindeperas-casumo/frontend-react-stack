@@ -107,7 +107,7 @@ export class GameSearch extends React.PureComponent<Props> {
   render() {
     return (
       <div className="c-game-search">
-        <div className="c-game-search-bar u-position-sticky">
+        <div className="c-game-search-bar u-position-sticky--top">
           <div className="t-background-chrome-light-2">
             <GameSearchInput
               className="u-game-search-max-width u-padding--md"
