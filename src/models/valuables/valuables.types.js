@@ -53,6 +53,7 @@ type ValuableListTranslations = ValuableThumbnailTranslations & {
   lockedListTitleLabel: string,
   seeAllLabel: string,
   noValuablesLabel: string,
+  dontUseValuableLabel: string,
 };
 
 export type ValuableListProps = {
