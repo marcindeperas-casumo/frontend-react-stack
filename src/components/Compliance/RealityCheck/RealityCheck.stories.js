@@ -21,6 +21,7 @@ const realityCheck = {
   totalBetAmount: {
     amount: 20,
   },
+  sessionStartedTime: 1575624543323,
 };
 
 stories.add("Default", () => {

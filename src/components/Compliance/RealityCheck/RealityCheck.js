@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -32,19 +33,25 @@ type Props = {
     totalBetAmount: {
       amount: number,
     },
+    sessionStartedTime: number,
   },
 };
 
 export function RealityCheck(props: Props) {
   const {
     t,
+    language,
     locale,
     currency,
-    realityCheck,
-    language,
     casumoName,
+    realityCheck,
     onClickContinue,
   } = props;
+
+  const onClickCancel = () =>
+    redirectToTranslateUrl(language, ROUTE_IDS.TOP_LISTS);
+  const onClickViewHistoryBets = () =>
+    redirectTo(ROUTES.TRANSACTION_HISTORY_BETS);
 
   const formattedLostAmount = formatCurrency({
     locale,
@@ -53,28 +60,29 @@ export function RealityCheck(props: Props) {
       realityCheck.totalWinAmount.amount - realityCheck.totalBetAmount.amount
     ),
   });
+  const amountLostMessage =
+    t.reality_check_amount_lost_message &&
+    t.reality_check_amount_lost_message.replace(
+      "{{ amount | € }}",
+      formattedLostAmount
+    );
+  const hiTitle = interpolate(t.reality_check_title, {
+    name: casumoName,
+  });
+  const timeDiff =
+    DateTime.local() - DateTime.fromMillis(realityCheck.sessionStartedTime);
 
-  const onClickCancel = () =>
-    redirectToTranslateUrl(language, ROUTE_IDS.TOP_LISTS);
-  const onClickViewHistoryBets = () =>
-    redirectTo(ROUTES.TRANSACTION_HISTORY_BETS);
+  const messageMinutesPlayed = interpolate(t.reality_check_message, {
+    totalMinutesPlayed: DateTime.fromMillis(timeDiff).offset,
+  });
 
   return (
     <Flex direction="vertical" align="center">
       <Text tag="div" className="u-padding u-text-align-center">
-        {interpolate(t.reality_check_title, {
-          name: casumoName,
-        })}{" "}
-        {interpolate(t.reality_check_message, {
-          totalMinutesPlayed: "7",
-        })}
+        {hiTitle} {messageMinutesPlayed}
       </Text>
       <Text tag="div" className="u-text-align-center">
-        {t.reality_check_amount_lost_message &&
-          t.reality_check_amount_lost_message.replace(
-            "{{ amount | € }}",
-            formattedLostAmount
-          )}
+        {amountLostMessage}
       </Text>
       <Text tag="div" className="u-margin-bottom--2xlg u-text-align-center">
         <a href="/" onClick={onClickViewHistoryBets}>
