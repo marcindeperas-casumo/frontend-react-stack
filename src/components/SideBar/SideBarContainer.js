@@ -8,10 +8,10 @@ import {
   playerWalletBonusSelector,
   playerCurrencySelector,
   playerBonusTextSelector,
-  balanceAmountDisplay,
   balanceBonusDisplay,
   SLUGS,
 } from "Models/player";
+import { formatCurrency } from "Utils";
 import { SideBar } from "./SideBar";
 import { generateMenu } from "./SideBar.utils";
 
@@ -20,11 +20,11 @@ const SideBarContainer = connect(
     menu: generateMenu(R.prop("fields", getPage(SLUGS.MENU)(state))),
     username: playerCasumoNameSelector(state),
     wallet: {
-      cash: balanceAmountDisplay(
-        playerBalanceAmountSelector(state),
-        playerCurrencySelector(state),
-        localeSelector(state)
-      ),
+      cash: formatCurrency({
+        locale: localeSelector(state),
+        currency: playerCurrencySelector(state),
+        value: playerBalanceAmountSelector(state),
+      }),
       bonus: balanceBonusDisplay(
         playerWalletBonusSelector(state),
         playerCurrencySelector(state),
