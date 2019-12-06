@@ -24,9 +24,11 @@ export class BaseGame {
       ref: this.props.gameRef,
     };
   }
+
   goToLobby() {
     redirectTo(this.lobbyUrl);
   }
+
   onMount() {}
 
   onUnmount() {}
