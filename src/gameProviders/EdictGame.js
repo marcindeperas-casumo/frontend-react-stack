@@ -1,24 +1,27 @@
 // @flow
 
-import type { GameLaunchData, GameRef } from "./types";
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export class EdictGame extends BaseIframeGame {
-  constructor(gameData: GameLaunchData, gameRef: GameRef) {
-    super(gameData, gameRef);
+  constructor(props: GameProviderModelProps) {
+    super(props);
     this.api.features.instantPause = true;
     this.api.commands.pause = "pauseGame";
     this.api.commands.resume = "resumeGame";
   }
 
-  get props() {
-    if (this.gameData && this.gameData.url) {
+  get componentProps() {
+    // url contains &realityCheckLinkUrl=https://casumo.com/assets/return-from-3rd-party.html?destinationUrl%3D%252Fcash%252Fhistory%252Fbets
+    const { url = null } = this.props.gameData;
+
+    if (url) {
       return {
-        ...super.props,
-        src: `${this.gameData.url}&referrerUrl=${super.lobbyUrl}`,
+        ...super.componentProps,
+        src: `${url}&referrerUrl=${super.lobbyUrl}`,
       };
     }
 
-    return super.props;
+    return super.componentProps;
   }
 }

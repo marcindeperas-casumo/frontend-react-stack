@@ -1,10 +1,15 @@
 // @flow
 import logger from "Services/logger";
+import { ENVIRONMENTS } from "Src/constants";
 import { injectScript } from "Utils";
 import { BaseGame } from "./BaseGame";
 
-export const NETENT_SCRIPT_URL =
-  "https://casumo-static.casinomodule.com/gameinclusion/library/gameinclusion.js";
+export const NETENT_SCRIPT_URL = {
+  [ENVIRONMENTS.TEST]:
+    "https://casumo-static-test.casinomodule.com/gameinclusion/library/gameinclusion.js",
+  [ENVIRONMENTS.PRODUCTION]:
+    "https://casumo-static.casinomodule.com/gameinclusion/library/gameinclusion.js",
+};
 
 declare var netent: { launch: Function };
 
@@ -23,24 +28,36 @@ type Extend = {
   ) => {},
 };
 
+const NETENT_EVENTS = {
+  BACK_TO_LOBBY: "goToLobby",
+  PAUSE_AUTOPLAY: "pauseAutoplay",
+  RESUME_AUTOPLAY: "resumeAutoplay",
+};
+
 export class NetentGame extends BaseGame {
   extend: ?Extend = null;
 
-  get props() {
+  get componentProps() {
     return {
       id: "netent-game",
-      ref: this.gameRef,
+      ref: this.props.gameRef,
     };
   }
 
   get config() {
+    const {
+      gameId = null,
+      sessionId = null,
+      staticServer = "",
+      gameServer = "",
+    } = this.props.gameData;
     return {
-      gameId: this.gameData.gameId || null,
-      sessionId: this.gameData.sessionId || null,
-      staticServer: decodeURIComponent(this.gameData.staticServer || ""),
-      gameServerURL: decodeURIComponent(this.gameData.gameServer || ""),
+      gameId: gameId,
+      sessionId: sessionId,
+      staticServer: decodeURIComponent(staticServer),
+      gameServerURL: decodeURIComponent(gameServer),
       lobbyURL: "#",
-      language: "en",
+      language: this.props.language,
       width: "100%",
       height: "100%",
       enforceRatio: false,
@@ -50,17 +67,16 @@ export class NetentGame extends BaseGame {
     };
   }
 
-  goToLobby() {
-    window.location.replace(super.lobbyUrl);
-  }
-
   onMount() {
-    injectScript(NETENT_SCRIPT_URL).then(() => {
+    injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
       netent.launch(
         this.config,
         (extend: Extend) => {
           this.extend = extend;
-          this.extend.addEventListener("goToLobby", this.goToLobby);
+          this.extend.addEventListener(
+            NETENT_EVENTS.BACK_TO_LOBBY,
+            this.goToLobby.bind(this)
+          );
         },
         (error: {}) => {
           logger.error("Cannot load game", { error });
@@ -71,7 +87,7 @@ export class NetentGame extends BaseGame {
 
   onUnmount() {
     if (this.extend) {
-      this.extend.removeEventListener("goToLobby");
+      this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
     }
   }
 
@@ -84,7 +100,7 @@ export class NetentGame extends BaseGame {
         reject();
       };
       if (this.extend) {
-        this.extend.call("pauseAutoplay", [], onSuccess, onError);
+        this.extend.call(NETENT_EVENTS.PAUSE_AUTOPLAY, [], onSuccess, onError);
       } else {
         reject();
       }
@@ -96,7 +112,7 @@ export class NetentGame extends BaseGame {
     const onError = () => {};
 
     if (this.extend) {
-      this.extend.call("resumeAutoplay", [], onSuccess, onError);
+      this.extend.call(NETENT_EVENTS.RESUME_AUTOPLAY, [], onSuccess, onError);
     }
   }
 }

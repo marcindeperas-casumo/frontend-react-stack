@@ -1,34 +1,32 @@
 // @flow
-
-import type { GameLaunchData, GameRef } from "./types";
-
-const TOP_LISTS_URL = "";
+import { routeTranslator, redirectTo, ROUTE_IDS } from "Components/Router";
+import type { GameProviderModelProps } from "./types";
 
 export class BaseGame {
-  gameRef: GameRef;
-  gameData: GameLaunchData;
+  props: GameProviderModelProps;
 
-  constructor(gameData: GameLaunchData, gameRef: GameRef) {
-    this.gameData = gameData;
-    this.gameRef = gameRef;
+  constructor(props: GameProviderModelProps) {
+    this.props = props;
   }
 
   get lobbyUrl() {
-    const { protocol, host } = window.top.location;
+    const translateRoute = routeTranslator(this.props.language);
 
-    return `${protocol}//${host}/${TOP_LISTS_URL}`;
+    return `${window.location.origin}/${translateRoute(ROUTE_IDS.TOP_LISTS)}`;
   }
 
-  get element() {
+  get componentTag() {
     return "div";
   }
 
-  get props() {
+  get componentProps() {
     return {
-      ref: this.gameRef,
+      ref: this.props.gameRef,
     };
   }
-
+  goToLobby() {
+    redirectTo(this.lobbyUrl);
+  }
   onMount() {}
 
   onUnmount() {}

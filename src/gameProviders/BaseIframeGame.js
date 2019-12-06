@@ -5,6 +5,8 @@ import logger from "Services/logger";
 import { BaseGame } from "./BaseGame";
 import type { IframeGameApi } from "./types";
 
+export const IFRAME_ID = "casumo-game";
+
 export class BaseIframeGame extends BaseGame {
   targetDomain: string = "*";
   api: IframeGameApi = {
@@ -22,50 +24,50 @@ export class BaseIframeGame extends BaseGame {
     },
   };
 
-  get element() {
+  get componentTag() {
     return "iframe";
   }
 
-  get props() {
+  get componentProps() {
     return {
-      ...super.props,
+      ...super.componentProps,
       allow: "autoplay",
       style: {
         width: "100%",
         height: "100%",
         border: 0,
       },
-      src: this.gameData.url || "",
-      title: "casumo-game",
+      src: this.props.gameData.url || "",
+      title: IFRAME_ID,
+      id: IFRAME_ID,
     };
   }
 
   pauseGame() {
+    const { current: gameElement } = this.props.gameRef;
+    const { pause: pauseCommand } = this.api.commands;
+    const { onPauseEnded } = this.api.events;
+    const { instantPause } = this.api.features;
+
     return new Promise<void>((resolve, reject) => {
-      if (!this.api.commands.pause) {
+      if (!pauseCommand) {
         reject();
       }
 
       const onPauseMessageHandler = (event: MessageEvent) => {
-        if (equals(event.data, this.api.events.onPauseEnded)) {
+        if (equals(event.data, onPauseEnded)) {
           window.removeEventListener("message", onPauseMessageHandler);
           resolve();
         }
       };
 
-      if (!this.api.features.instantPause) {
+      if (!instantPause) {
         window.addEventListener("message", onPauseMessageHandler);
       }
 
-      if (
-        this.gameRef.current &&
-        this.gameRef.current instanceof HTMLIFrameElement
-      ) {
-        this.gameRef.current.contentWindow.postMessage(
-          this.api.commands.pause,
-          this.targetDomain
-        );
-        this.api.features.instantPause && resolve();
+      if (gameElement instanceof HTMLIFrameElement) {
+        gameElement.contentWindow.postMessage(pauseCommand, this.targetDomain);
+        instantPause && resolve();
       } else {
         logger.error("Iframe reference not provided. PostMessage disabled");
         reject();
@@ -74,15 +76,10 @@ export class BaseIframeGame extends BaseGame {
   }
 
   resumeGame() {
-    if (
-      this.api.commands.resume &&
-      this.gameRef.current &&
-      this.gameRef.current instanceof HTMLIFrameElement
-    ) {
-      this.gameRef.current.contentWindow.postMessage(
-        this.api.commands.resume,
-        this.targetDomain
-      );
+    const { current: gameElement } = this.props.gameRef;
+    const { resume: resumeCommand } = this.api.commands;
+    if (resumeCommand && gameElement instanceof HTMLIFrameElement) {
+      gameElement.contentWindow.postMessage(resumeCommand, this.targetDomain);
     }
   }
 }

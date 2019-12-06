@@ -1,23 +1,25 @@
 // @flow
-import type { GameLaunchData, GameRef } from "./types";
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export class YggdrasilGame extends BaseIframeGame {
-  constructor(gameData: GameLaunchData, gameRef: GameRef) {
-    super(gameData, gameRef);
+  constructor(props: GameProviderModelProps) {
+    super(props);
     this.api.commands.pause = "game/pause";
     this.api.commands.resume = "game/resume";
     this.api.features.instantPause = true;
   }
 
-  get props() {
-    if (this.gameData && this.gameData.url) {
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+
+    if (url) {
       return {
-        ...super.props,
-        src: `${this.gameData.url}&lobby=${super.lobbyUrl}`,
+        ...super.componentProps,
+        src: `${url}&lobby=${super.lobbyUrl}`,
       };
     }
 
-    return super.props;
+    return super.componentProps;
   }
 }

@@ -1,24 +1,25 @@
 // @flow
 
-import type { GameLaunchData, GameRef } from "./types";
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export class ThunderkickGame extends BaseIframeGame {
-  constructor(gameData: GameLaunchData, gameRef: GameRef) {
-    super(gameData, gameRef);
+  constructor(props: GameProviderModelProps) {
+    super(props);
     this.api.commands.pause = { eventid: "pausegame" };
     this.api.commands.resume = { eventid: "resumegame" };
     this.api.features.instantPause = true;
   }
 
-  get props() {
-    if (this.gameData && this.gameData.url) {
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+    if (url) {
       return {
-        ...super.props,
-        src: `${this.gameData.url}&lobbyUrl=${super.lobbyUrl}`,
+        ...super.componentProps,
+        src: `${url}&lobbyUrl=${super.lobbyUrl}`,
       };
     }
 
-    return super.props;
+    return super.componentProps;
   }
 }
