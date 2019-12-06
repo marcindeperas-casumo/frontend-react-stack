@@ -7,7 +7,7 @@ import Flex from "@casumo/cmp-flex";
 import {
   ROUTES,
   ROUTE_IDS,
-  redirectToTranslateUrl,
+  redirectToTranslatedUrl,
   redirectTo,
 } from "Components/Router";
 import { interpolate, formatCurrency } from "Utils";
@@ -49,7 +49,7 @@ export function RealityCheck(props: Props) {
   } = props;
 
   const onClickCancel = () =>
-    redirectToTranslateUrl(language, ROUTE_IDS.TOP_LISTS);
+    redirectToTranslatedUrl(language, ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () =>
     redirectTo(ROUTES.TRANSACTION_HISTORY_BETS);
 

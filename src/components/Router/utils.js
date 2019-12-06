@@ -11,7 +11,7 @@ export const routeTranslator = (language: string) => {
   return (key: string) => interpolate(ROUTES[key], translatedRoutes);
 };
 
-export const redirectToTranslateUrl = (language: string, toPath: string) => {
+export const redirectToTranslatedUrl = (language: string, toPath: string) => {
   const translateRoute = routeTranslator(language);
 
   return window.location.replace(`/${translateRoute(toPath)}`);
