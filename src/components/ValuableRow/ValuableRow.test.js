@@ -49,4 +49,10 @@ describe("ValuableRow", () => {
 
     expect(onMoreInfo).toHaveBeenCalledTimes(1);
   });
+
+  test("should call the onClick on click of ValuableRow", () => {
+    rendered.find({ "data-test": "valuable-row" }).simulate("click");
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
 });
