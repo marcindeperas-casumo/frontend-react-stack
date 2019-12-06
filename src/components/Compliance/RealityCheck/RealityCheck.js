@@ -4,6 +4,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import {
+  ROUTES,
   ROUTE_IDS,
   redirectToTranslateUrl,
   redirectTo,
@@ -55,7 +56,8 @@ export function RealityCheck(props: Props) {
 
   const onClickCancel = () =>
     redirectToTranslateUrl(language, ROUTE_IDS.TOP_LISTS);
-  const onClickViewHistoryBets = () => redirectTo("cash/history/bets");
+  const onClickViewHistoryBets = () =>
+    redirectTo(ROUTES.TRANSACTION_HISTORY_BETS);
 
   return (
     <Flex direction="vertical" align="center">
