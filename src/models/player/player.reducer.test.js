@@ -32,7 +32,7 @@ const action = {
 
 test("initial state", () => {
   const state = reducer(undefined, {});
-  expect(state).toEqual({ wallet: {} });
+  expect(state).toEqual({ wallet: {}, realityCheck: {} });
 });
 
 test("update player wallet", () => {
