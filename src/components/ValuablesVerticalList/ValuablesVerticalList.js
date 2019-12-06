@@ -12,13 +12,15 @@ const valuableItemRenderer = (
   valuable,
   translations,
   onMoreInfo?,
-  onConsumeValuable
+  onConsumeValuable,
+  onItemClick
 ) => {
   const itemDescription =
     valuable.__typename === "PlayerValuableSpins"
       ? valuable.description
       : valuable.content;
   const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
+  const itemClick = onItemClick ? () => onItemClick(valuable.id) : undefined;
 
   return (
     <div className="u-padding-y--md">
@@ -28,6 +30,7 @@ const valuableItemRenderer = (
         {...valuable}
         description={itemDescription}
         onMoreInfo={moreInfo}
+        onClick={itemClick}
       />
     </div>
   );
@@ -40,6 +43,7 @@ export const ValuablesVerticalList = ({
   loading,
   className,
   onConsumeValuable,
+  onItemClick,
 }: ValuableListProps) => {
   const { detailsComponent, showValuableDetails } = useValuableDetails(
     translations,
@@ -66,7 +70,8 @@ export const ValuablesVerticalList = ({
               valuable,
               translations,
               showValuableDetails,
-              onConsumeValuable
+              onConsumeValuable,
+              onItemClick
             )
           }
         />

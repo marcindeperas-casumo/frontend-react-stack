@@ -8,10 +8,15 @@ import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import { VALUABLE_TYPES } from "Models/valuables";
 import { ValuableRowShell } from "Components/ValuableRow/ValuableRowShell";
 import { launchModal } from "Services/LaunchModalService";
+import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { MODALS } from "Src/constants";
 
 const showBonusTerms = () => {
   launchModal({ modal: MODALS.DEPOSIT.SHOW_BONUS_TERMS });
+};
+
+const selectBonus = badgeId => {
+  depositBonusSelected({ badgeId });
 };
 
 export const PlayerDepositValuables = () => {
@@ -35,6 +40,7 @@ export const PlayerDepositValuables = () => {
             valuables={valuables}
             translations={translations}
             loading={loading}
+            onItemClick={selectBonus}
           />
         </Flex.Item>
         <Flex.Item className="u-margin-x--md">

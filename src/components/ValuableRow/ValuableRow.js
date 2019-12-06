@@ -85,7 +85,13 @@ export class ValuableRow extends PureComponent<Props> {
   }
 
   render() {
-    const { caveat, description, valuableState, onMoreInfo } = this.props;
+    const {
+      caveat,
+      description,
+      valuableState,
+      onMoreInfo,
+      onClick,
+    } = this.props;
     const expiryTimeLeft = this.expiryTimeLeft;
 
     const isFresh = valuableState === VALUABLE_STATES.FRESH;
@@ -93,7 +99,7 @@ export class ValuableRow extends PureComponent<Props> {
       showStateBadge(valuableState, expiryTimeLeft.hours) || !isFresh;
 
     return (
-      <Flex data-test="valuable-row">
+      <Flex data-test="valuable-row" onClick={onClick}>
         <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
           <div className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
             <ValuableThumbnail

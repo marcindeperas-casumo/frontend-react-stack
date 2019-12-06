@@ -70,6 +70,8 @@ export type ValuableListProps = {
   valuables: Array<A.PlayerValuableList_PlayerValuable>,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: string => Promise<void>,
+  /** The function to be called on click of a valuable row item */
+  onItemClick?: string => void,
   /** An array of translated labels */
   translations: ValuableListTranslations,
 };

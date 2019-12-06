@@ -10,6 +10,7 @@ import {
   LazyPromotions,
   LazyPromotionDetail,
   LazyPlayerValuables,
+  LazyPlayerDepositValuables,
   LazyPlayer,
   LazyPlayerSettings,
   LazyPlayerSettingsNotifications,
@@ -39,6 +40,7 @@ export const Router = ({ basePath, language }) => {
       <LazyPromotionDetail path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)} />
       <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
       <LazyPlayerValuables path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)} />
+      <LazyPlayerDepositValuables path={translateRoute(ROUTE_IDS.DEPOSIT)} />
       <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
       <LazyPlayerSettingsNotifications
         path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}
