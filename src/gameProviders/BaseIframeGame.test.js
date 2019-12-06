@@ -22,6 +22,7 @@ export const baseIframeGameProps = {
   allow: "autoplay",
   src: "src",
   title: "casumo-game",
+  id: "casumo-game",
   style: {
     border: 0,
     height: "100%",
