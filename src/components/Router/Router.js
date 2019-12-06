@@ -18,6 +18,8 @@ import {
   LazySports,
   LazyTransactionHistory,
   LazyAnnualTransactionsOverview,
+  LazyRealMoneyGamePage,
+  LazyPlayForFunGamePage,
 } from "./routes";
 import { routeTranslator } from "./utils";
 
@@ -26,6 +28,8 @@ export const Router = ({ basePath, language }) => {
 
   return (
     <ReachRouter basepath={basePath}>
+      <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
+      <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTISE)} />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
       <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
       <LazyMustDropJackpots

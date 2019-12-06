@@ -14,3 +14,5 @@ export * from "./LazyPlayerSettingsRealityCheck";
 export * from "./LazySports";
 export * from "./LazyTransactionHistory";
 export * from "./LazyAnnualTransactionsOverview";
+export * from "./LazyPlayForFunGamePage";
+export * from "./LazyRealMoneyGamePage";
