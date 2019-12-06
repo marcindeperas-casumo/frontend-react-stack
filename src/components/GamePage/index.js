@@ -1,1 +1,1 @@
-export * from "./GamePage";
+export { GamePageContainer as GamePage } from "./GamePageContainer";

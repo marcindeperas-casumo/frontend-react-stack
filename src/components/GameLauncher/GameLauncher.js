@@ -1,10 +1,11 @@
 // @flow
 
 import React, { useEffect } from "react";
+import type { GameProviderModel } from "GameProviders";
 
 type Props = {
   className?: string,
-  gameProviderModel: any,
+  gameProviderModel: GameProviderModel,
 };
 
 export const GameLauncher = ({ className, gameProviderModel }: Props) => {
