@@ -35,26 +35,33 @@ type Props = {
 };
 
 export function RealityCheck(props: Props) {
-  const { t } = props;
+  const {
+    t,
+    locale,
+    currency,
+    realityCheck,
+    language,
+    casumoName,
+    onClickContinue,
+  } = props;
 
   const formattedLostAmount = formatCurrency({
-    locale: props.locale,
-    currency: props.currency,
+    locale,
+    currency,
     value: Math.abs(
-      props.realityCheck.totalWinAmount.amount -
-        props.realityCheck.totalBetAmount.amount
+      realityCheck.totalWinAmount.amount - realityCheck.totalBetAmount.amount
     ),
   });
 
   const onClickCancel = () =>
-    redirectToTranslateUrl(props.language, ROUTE_IDS.TOP_LISTS);
+    redirectToTranslateUrl(language, ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () => redirectTo("cash/history/bets");
 
   return (
     <Flex direction="vertical" align="center">
       <Text tag="div" className="u-padding u-text-align-center">
         {interpolate(t.reality_check_title, {
-          name: props.casumoName,
+          name: casumoName,
         })}{" "}
         {interpolate(t.reality_check_message, {
           totalMinutesPlayed: "7",
@@ -76,7 +83,7 @@ export function RealityCheck(props: Props) {
         <Button
           size="md"
           variant="primary"
-          onClick={props.onClickContinue}
+          onClick={onClickContinue}
           className="o-flex--1"
         >
           {t.reality_check_continue_button_text}
