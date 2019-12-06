@@ -1,6 +1,6 @@
 // @flow
 
-import React from "react";
+import React, { useEffect } from "react";
 import Flex from "@casumo/cmp-flex";
 import type { AppEnvironment, AppDevice, AppLanguage } from "Src/types";
 import { useGameLaunchData } from "Utils/hooks";
@@ -15,6 +15,7 @@ type Props = {
   platform: AppDevice,
   language: AppLanguage,
   errorMessage: string,
+  fetchTranslations: () => {},
 };
 
 export const GamePage = ({
@@ -24,6 +25,7 @@ export const GamePage = ({
   platform,
   language,
   errorMessage,
+  fetchTranslations,
 }: Props) => {
   const { gameProviderModel, error } = useGameLaunchData({
     environment,
@@ -32,6 +34,11 @@ export const GamePage = ({
     playForFun,
     slug,
   });
+
+  useEffect(() => {
+    fetchTranslations();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (error) {
     return (
