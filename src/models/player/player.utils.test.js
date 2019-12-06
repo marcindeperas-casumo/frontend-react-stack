@@ -10,7 +10,7 @@ describe("Models/player/utils", () => {
 
     test("Return 0 bonus", () => {
       expect(balanceBonusDisplay(undefined, "EUR", "Bonus")).toEqual(
-        "+€ 0 Bonus"
+        "+€0 Bonus"
       );
     });
   });
