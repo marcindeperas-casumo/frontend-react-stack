@@ -59,6 +59,11 @@ export const playerSelector = createSelector(
   (players, playerId) => prop(playerId)(players)
 );
 
+export const playerCasumoNameSelector = createSelector(
+  playerSelector,
+  prop("casumoName")
+);
+
 export const sessionIdSelector = createSelector(
   session,
   prop("sessionId")
