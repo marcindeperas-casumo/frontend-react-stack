@@ -73,8 +73,8 @@ describe("Player selectors", () => {
       expect(playerWalletAmountSelector(state)).toEqual(wallet.amount);
     });
 
-    test("Should get nothing", () => {
-      expect(playerWalletAmountSelector(state2)).toEqual(undefined);
+    test("Should get 0", () => {
+      expect(playerWalletAmountSelector(state2)).toEqual(0);
     });
   });
 
@@ -83,8 +83,8 @@ describe("Player selectors", () => {
       expect(playerWalletBonusSelector(state)).toEqual(wallet.bonus);
     });
 
-    test("Should get nothing", () => {
-      expect(playerWalletBonusSelector(state2)).toEqual("");
+    test("Should get 0", () => {
+      expect(playerWalletBonusSelector(state2)).toEqual(0);
     });
   });
 

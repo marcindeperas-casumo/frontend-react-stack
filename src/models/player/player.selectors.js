@@ -19,12 +19,12 @@ export const playerWalletSelector = createSelector(
 
 export const playerWalletAmountSelector = createSelector(
   playerWalletSelector,
-  prop("amount")
+  propOr(0, "amount")
 );
 
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
-  propOr("", "bonus")
+  propOr(0, "bonus")
 );
 
 export const playerWalletCurrencySelector = createSelector(
