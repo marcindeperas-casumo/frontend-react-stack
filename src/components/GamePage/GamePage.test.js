@@ -14,6 +14,7 @@ const mockedProps = {
   playForFun: true,
   slug: "error-prone-game",
   errorMessage: "Error has occurred",
+  fetchTranslations: () => {},
 };
 
 jest.mock("../../utils/hooks", () => ({
