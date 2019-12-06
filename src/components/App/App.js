@@ -1,67 +1,56 @@
 // @flow
-import React, { PureComponent } from "react";
-import { URL_PREFIXES } from "Src/constants";
+import React, { useEffect } from "react";
 import LazyPortal from "Components/LazyPortal";
-import { Router } from "Components/Router";
+import { Router, ROUTE_IDS, redirectToTranslatedUrl } from "Components/Router";
 
 type Props = {
   onAppStarted: () => void,
-  subscribeToPlayerUpdates: Function,
-  unsubscribeToPlayerUpdates: Function,
+  subscribeToUpdates: Function,
+  unsubscribeToUpdates: Function,
   playerId: string,
+  sessionId: string,
   language: string,
   market: string,
   isAuthenticated: boolean,
+  isAppHandshakeLoaded: Boolean,
   activeComponents: Array<string>,
   routeParams: Array<Object>,
 };
 
-export class App extends PureComponent<Props> {
-  subscribe: Function;
+export const App = (props: Props) => {
+  const { onAppStarted, playerId, sessionId } = props;
 
-  componentDidMount() {
-    const { onAppStarted } = this.props;
-
+  useEffect(() => {
     onAppStarted();
-    this.subscribe();
-  }
+  }, [onAppStarted]);
 
-  componentWillUnmount() {
-    this.props.unsubscribeToPlayerUpdates();
-  }
+  useEffect(() => {
+    if (playerId && sessionId) {
+      props.subscribeToUpdates();
 
-  componentDidUpdate(props: Props) {
-    const { playerId: oldPlayerId } = props;
-    const initialPageLoad = !oldPlayerId;
-
-    if (initialPageLoad) {
-      this.subscribe();
+      return props.unsubscribeToUpdates;
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [playerId, sessionId]);
+
+  if (!props.isAppHandshakeLoaded) {
+    return null;
   }
 
-  subscribe = () => {
-    this.props.subscribeToPlayerUpdates();
-  };
-
-  render() {
-    const { isAuthenticated, language, market } = this.props;
-    const basePath = URL_PREFIXES[market];
-
-    if (!isAuthenticated) {
-      return null;
-    }
-
-    return (
-      <>
-        <Router basePath={basePath} language={language} />
-        <LazyPortal
-          hostElementId="react-host-deposit-limits"
-          loader={() =>
-            import("Components/Compliance/DepositLimits/DepositLimitsView")
-          }
-          namedExport="DepositLimitsViewContainer"
-        />
-      </>
-    );
+  if (props.isAppHandshakeLoaded && !props.isAuthenticated) {
+    redirectToTranslatedUrl(props.language, ROUTE_IDS.LOGIN);
   }
-}
+
+  return (
+    <>
+      <Router></Router>
+      <LazyPortal
+        hostElementId="react-host-deposit-limits"
+        loader={() =>
+          import("Components/Compliance/DepositLimits/DepositLimitsView")
+        }
+        namedExport="DepositLimitsViewContainer"
+      />
+    </>
+  );
+};
