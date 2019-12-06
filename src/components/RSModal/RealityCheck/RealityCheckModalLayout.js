@@ -10,7 +10,7 @@ type ModalContentSkinProps = {
   children: React.Node,
 };
 
-export function ModalSkin(props: ModalContentSkinProps) {
+export function RealityCheckModalLayout(props: ModalContentSkinProps) {
   return (
     <>
       <ModalHeader
