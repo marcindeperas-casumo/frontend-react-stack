@@ -75,7 +75,7 @@ export const unsubscribeToSessionUpdates = sessionId => {
 };
 
 export const subscribeToAdventureUpdates = (playerId, sessionId) => {
-  // TODO remove this check in  favor of useEffect for susbscribing when props are ready
+  // PRR-484:  remove this check in  favor of useEffect for susbscribing when props are ready
   const isAuthenticated = playerId && sessionId;
 
   if (!isAuthenticated) {
