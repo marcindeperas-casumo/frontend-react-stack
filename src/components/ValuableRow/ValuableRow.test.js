@@ -43,11 +43,13 @@ describe("ValuableRow", () => {
   });
 
   test("Should call the onMoreInfo when the more icon is clicked", () => {
+    const stopPropagation = jest.fn();
     const moreIcon = rendered.find(MoreIcon);
 
-    moreIcon.simulate("click");
+    moreIcon.simulate("click", { stopPropagation });
 
     expect(onMoreInfo).toHaveBeenCalledTimes(1);
+    expect(stopPropagation).toHaveBeenCalledTimes(1);
   });
 
   test("should call the onClick on click of ValuableRow", () => {

@@ -145,7 +145,13 @@ export class ValuableRow extends PureComponent<Props> {
         </Flex.Block>
         {onMoreInfo && (
           <Flex.Item>
-            <MoreIcon onClick={onMoreInfo} className="t-color-grey" />
+            <MoreIcon
+              onClick={e => {
+                e.stopPropagation();
+                onMoreInfo();
+              }}
+              className="t-color-grey"
+            />
           </Flex.Item>
         )}
       </Flex>

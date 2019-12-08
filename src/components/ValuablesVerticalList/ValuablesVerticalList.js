@@ -13,7 +13,7 @@ const valuableItemRenderer = (
   translations,
   onMoreInfo?,
   onConsumeValuable,
-  onItemClick
+  onItemClick?
 ) => {
   const itemDescription =
     valuable.__typename === "PlayerValuableSpins"
