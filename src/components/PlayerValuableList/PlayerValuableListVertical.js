@@ -62,6 +62,7 @@ export function PlayerValuableListVertical() {
           translations={translations}
           loading={loading}
           onConsumeValuable={consumeValuable}
+          isItemSelectable={false}
         />
       ))}
     </Flex>

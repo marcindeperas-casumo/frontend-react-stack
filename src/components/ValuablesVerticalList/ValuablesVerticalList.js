@@ -5,7 +5,7 @@ import Text from "@casumo/cmp-text";
 import classNames from "classnames";
 import { ValuableRow } from "Components/ValuableRow";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import { type ValuableListProps } from "Models/valuables";
+import { type ValuableListProps, VALUABLE_STATES } from "Models/valuables";
 import { useValuableDetails } from "Components/ValuableDetails/useValuableDetails";
 
 const valuableItemRenderer = (
@@ -13,7 +13,8 @@ const valuableItemRenderer = (
   translations,
   onMoreInfo?,
   onConsumeValuable,
-  onItemClick?
+  onItemClick?,
+  isItemSelectable
 ) => {
   const itemDescription =
     valuable.__typename === "PlayerValuableSpins"
@@ -21,6 +22,8 @@ const valuableItemRenderer = (
       : valuable.content;
   const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
   const itemClick = onItemClick ? () => onItemClick(valuable.id) : undefined;
+  const isSelected =
+    isItemSelectable && valuable.valuableState === VALUABLE_STATES.USED;
 
   return (
     <div className="u-padding-y--md">
@@ -31,6 +34,7 @@ const valuableItemRenderer = (
         description={itemDescription}
         onMoreInfo={moreInfo}
         onClick={itemClick}
+        isSelected={isSelected}
       />
     </div>
   );
@@ -44,6 +48,7 @@ export const ValuablesVerticalList = ({
   className,
   onConsumeValuable,
   onItemClick,
+  isItemSelectable,
 }: ValuableListProps) => {
   const { detailsComponent, showValuableDetails } = useValuableDetails(
     translations,
@@ -71,7 +76,8 @@ export const ValuablesVerticalList = ({
               translations,
               showValuableDetails,
               onConsumeValuable,
-              onItemClick
+              onItemClick,
+              isItemSelectable
             )
           }
         />
