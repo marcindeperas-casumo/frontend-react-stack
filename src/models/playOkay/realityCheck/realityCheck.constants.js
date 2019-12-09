@@ -1,2 +1,0 @@
-// @flow
-export const REALITY_CHECK_MODAL = "REALITY_CHECK_MODAL";
