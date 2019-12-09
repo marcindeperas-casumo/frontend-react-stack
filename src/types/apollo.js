@@ -1,25 +1,19 @@
-/* @flow */
-// This file was automatically generated and should not be edited.
-
+// @flow
 // ====================================================
 // GraphQL query operation: JackpotsQuery
 // ====================================================
-
 export type JackpotsQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-
 export type JackpotsQuery_gamesList_games_lobby = {
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
-
 export type JackpotsQuery_gamesList_games_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-
 export type JackpotsQuery_gamesList_games = {
   slug: string,
   name: string,
@@ -28,17 +22,13 @@ export type JackpotsQuery_gamesList_games = {
   lobby: ?JackpotsQuery_gamesList_games_lobby,
   jackpotInfo: ?JackpotsQuery_gamesList_games_jackpotInfo,
 };
-
 export type JackpotsQuery_gamesList = {
   title: ?string,
   games: ?Array<?JackpotsQuery_gamesList_games>,
 };
-
 export type JackpotsQuery = {
   gamesList: ?JackpotsQuery_gamesList,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayerValuablesQuery
@@ -47,10 +37,13 @@ export type JackpotsQuery = {
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
   slug: string,
 };
-
 export type PlayerValuablesQuery_player_valuables =
   | {
-      __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+      __typename:
+        | "PlayerValuableDeposit"
+        | "PlayerValuableFreeBet"
+        | "PlayerValuableFreeBetLocked"
+        | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -99,11 +92,9 @@ export type PlayerValuablesQuery_player_valuables =
       leftToWager: ?number,
       requirementType: ?RequirementType,
     };
-
 export type PlayerValuablesQuery_player = {
   valuables: Array<PlayerValuablesQuery_player_valuables>,
 };
-
 export type PlayerValuablesQuery = {
   listTitleLabel: string,
   availableListTitleLabel: string,
@@ -115,12 +106,9 @@ export type PlayerValuablesQuery = {
   dontUseValuableLabel: string,
   player: PlayerValuablesQuery_player,
 };
-
 export type PlayerValuablesQueryVariables = {
   valuableType?: ?ValuableType,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UseValuable
@@ -129,13 +117,10 @@ export type PlayerValuablesQueryVariables = {
 export type UseValuable = {
   useValuable: ?boolean,
 };
-
 export type UseValuableVariables = {
   id: string,
   source?: ?string,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_LABELS_QUERY
@@ -151,8 +136,6 @@ export type PLAYER_SETTINGS_LABELS_QUERY = {
   verify: string,
   gamblingExtent: string,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_SETTINGS_QUERY
@@ -163,26 +146,22 @@ export type PLAYER_SETTINGS_QUERY_player_details_name = {
   first: string,
   last: string,
 };
-
 export type PLAYER_SETTINGS_QUERY_player_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
-
 export type PLAYER_SETTINGS_QUERY_player_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
-
 export type PLAYER_SETTINGS_QUERY_player_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
-
 export type PLAYER_SETTINGS_QUERY_player_details_address = {
   __typename: "PlayerAddress",
   city: string,
@@ -190,7 +169,6 @@ export type PLAYER_SETTINGS_QUERY_player_details_address = {
   postCode: string,
   country: PLAYER_SETTINGS_QUERY_player_details_address_country,
 };
-
 export type PLAYER_SETTINGS_QUERY_player_details = {
   __typename: "PlayerDetails",
   name: PLAYER_SETTINGS_QUERY_player_details_name,
@@ -200,18 +178,14 @@ export type PLAYER_SETTINGS_QUERY_player_details = {
   address: PLAYER_SETTINGS_QUERY_player_details_address,
   email: string,
 };
-
 export type PLAYER_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
   details: PLAYER_SETTINGS_QUERY_player_details,
 };
-
 export type PLAYER_SETTINGS_QUERY = {
   player: PLAYER_SETTINGS_QUERY_player,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetAdventurerPublicity
@@ -220,12 +194,9 @@ export type PLAYER_SETTINGS_QUERY = {
 export type SetAdventurerPublicity = {
   setAdventurerPublicity: ?boolean,
 };
-
 export type SetAdventurerPublicityVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetWithdrawalNotifications
@@ -234,12 +205,9 @@ export type SetAdventurerPublicityVariables = {
 export type SetWithdrawalNotifications = {
   setWithdrawalNotifications: ?boolean,
 };
-
 export type SetWithdrawalNotificationsVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetNewsletterSubscription
@@ -248,13 +216,9 @@ export type SetWithdrawalNotificationsVariables = {
 export type SetNewsletterSubscription = {
   setNewsletterSubscription: ?boolean,
 };
-
 export type SetNewsletterSubscriptionVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetSMSNewsletterSubscription
@@ -263,13 +227,9 @@ export type SetNewsletterSubscriptionVariables = {
 export type SetSMSNewsletterSubscription = {
   setSMSNewsletterSubscription: ?boolean,
 };
-
 export type SetSMSNewsletterSubscriptionVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPhone
@@ -278,13 +238,9 @@ export type SetSMSNewsletterSubscriptionVariables = {
 export type SetContactByPhone = {
   setContactByPhone: ?boolean,
 };
-
 export type SetContactByPhoneVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetContactByPost
@@ -293,13 +249,9 @@ export type SetContactByPhoneVariables = {
 export type SetContactByPost = {
   setContactByPost: ?boolean,
 };
-
 export type SetContactByPostVariables = {
   input?: ?ContactSettingsInput,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_CONTACT_SETTINGS_QUERY
@@ -313,36 +265,28 @@ export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
   contactByPhone: boolean,
   contactByPost: boolean,
 };
-
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
   contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
 };
-
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
   __typename: "PlayerRealityCheckSettings",
   canChangeInterval: boolean,
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck,
 };
-
 export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
   id: string,
   __typename: "Player",
   details: PLAYER_CONTACT_SETTINGS_QUERY_player_details,
   playOk: PLAYER_CONTACT_SETTINGS_QUERY_player_playOk,
 };
-
 export type PLAYER_CONTACT_SETTINGS_QUERY = {
   player: PLAYER_CONTACT_SETTINGS_QUERY_player,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: NOTIFICATIONS_LABELS_QUERY
@@ -360,9 +304,6 @@ export type NOTIFICATIONS_LABELS_QUERY = {
   inGameSessionUpdatesOffLabel: string,
   inGameSessionUpdatesFrequencyLabel: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateRealityCheckInterval
@@ -371,13 +312,9 @@ export type NOTIFICATIONS_LABELS_QUERY = {
 export type UpdateRealityCheckInterval = {
   updateRealityCheckInterval: ?number,
 };
-
 export type UpdateRealityCheckIntervalVariables = {
   input?: ?UpdateRealityCheckIntervalInput,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: REALITY_CHECK_LABELS_QUERY
@@ -389,9 +326,6 @@ export type REALITY_CHECK_LABELS_QUERY = {
   save: string,
   cancel: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_REALITY_CHECK_QUERY
@@ -403,24 +337,18 @@ export type PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck = {
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-
 export type PLAYER_REALITY_CHECK_QUERY_player_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: PLAYER_REALITY_CHECK_QUERY_player_playOk_realityCheck,
 };
-
 export type PLAYER_REALITY_CHECK_QUERY_player = {
   id: string,
   __typename: "Player",
   playOk: PLAYER_REALITY_CHECK_QUERY_player_playOk,
 };
-
 export type PLAYER_REALITY_CHECK_QUERY = {
   player: PLAYER_REALITY_CHECK_QUERY_player,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_LOGIN_HISTORY_QUERY
@@ -429,18 +357,13 @@ export type PLAYER_REALITY_CHECK_QUERY = {
 export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
   loginTime: Long,
 };
-
 export type PLAYER_LOGIN_HISTORY_QUERY_player = {
   id: string,
   loginHistory: Array<PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory>,
 };
-
 export type PLAYER_LOGIN_HISTORY_QUERY = {
   player: PLAYER_LOGIN_HISTORY_QUERY_player,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PLAYER_SECTIONS_LABELS_QUERY
@@ -456,9 +379,6 @@ export type PLAYER_SECTIONS_LABELS_QUERY = {
   accountActivity: string,
   logout: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ValuableDetailsQuery
@@ -481,9 +401,6 @@ export type ValuableDetailsQuery = {
   day_singular: string,
   day_plural: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: GlossaryQuery
@@ -495,13 +412,9 @@ export type GlossaryQuery_glossary = {
   aka: ?string,
   definition: string,
 };
-
 export type GlossaryQuery = {
   glossary: Array<GlossaryQuery_glossary>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: CmsImageQuery
@@ -510,13 +423,9 @@ export type GlossaryQuery = {
 export type CmsImageQuery = {
   sportsCmsImage: ?string,
 };
-
 export type CmsImageQueryVariables = {
   key: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: DictionaryTermQuery
@@ -525,13 +434,9 @@ export type CmsImageQueryVariables = {
 export type DictionaryTermQuery = {
   dictionaryTerm: string,
 };
-
 export type DictionaryTermQueryVariables = {
   key: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PluralisableDictionaryTermQuery
@@ -541,14 +446,10 @@ export type PluralisableDictionaryTermQuery = {
   singularTerm: string,
   pluralTerm: string,
 };
-
 export type PluralisableDictionaryTermQueryVariables = {
   singularKey: string,
   pluralKey: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: EditFavouriteCompetitions
@@ -560,17 +461,12 @@ export type EditFavouriteCompetitions_favouriteCompetitions = {
    */
   id: number,
 };
-
 export type EditFavouriteCompetitions = {
   favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>,
 };
-
 export type EditFavouriteCompetitionsVariables = {
   groupId: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteCompetitionsSelectorQuery
@@ -581,58 +477,64 @@ export type FavouriteCompetitionsSelectorQuery_group_groups_groups = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
+
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
 };
-
 export type FavouriteCompetitionsSelectorQuery_group_groups = {
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
+
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups_groups>,
 };
-
 export type FavouriteCompetitionsSelectorQuery_group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorQuery_group_groups>,
 };
-
 export type FavouriteCompetitionsSelectorQuery = {
   /**
    * Get list of sub-groups from a given group"
@@ -640,13 +542,9 @@ export type FavouriteCompetitionsSelectorQuery = {
   group: FavouriteCompetitionsSelectorQuery_group,
   internationalGroupName: string,
 };
-
 export type FavouriteCompetitionsSelectorQueryVariables = {
   groupId: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteSportsSelectorContextCompetitionSuggestions
@@ -657,29 +555,26 @@ export type FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
-
 export type FavouriteSportsSelectorContextCompetitionSuggestions = {
   /**
    * TopCompetitions returns the most popular subgroups of a group, currently based on number of events
    */
   topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>,
 };
-
 export type FavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
   id: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: FavouriteSportsSelectorContext
@@ -690,65 +585,70 @@ export type FavouriteSportsSelectorContext_groups_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-
 export type FavouriteSportsSelectorContext_groups = {
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
+
   /**
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
+
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelectorContext_groups_favouriteCompetitions>,
 };
-
 export type FavouriteSportsSelectorContext = {
   /**
    * Get list of available event groups from the root level
    */
   groups: Array<FavouriteSportsSelectorContext_groups>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: PlayerVertical
@@ -757,13 +657,9 @@ export type FavouriteSportsSelectorContext = {
 export type PlayerVertical_player = {
   vertical: Vertical,
 };
-
 export type PlayerVertical = {
   player: PlayerVertical_player,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: LaunchKambi
@@ -774,13 +670,9 @@ export type LaunchKambi_launchKambi = {
   providerPlayerId: string,
   ticket: string,
 };
-
 export type LaunchKambi = {
   launchKambi: ?LaunchKambi_launchKambi,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
@@ -791,9 +683,6 @@ export type LaunchableKambiClientQuery = {
   kambiClientVisible: boolean,
   isBetslipVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: UserNavigation
@@ -804,86 +693,90 @@ export type UserNavigation_sportsNavigation_sport = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
+
   /**
    * The full path in the kambi client to navigate to the in-play bets for this group
    */
   clientPathLive: string,
+
   /**
    * Normalized name of the group
    */
   termKey: string,
+
   /**
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
+
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
 };
-
 export type UserNavigation_sportsNavigation_subNav_competition = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
+
   /**
    * The full path in the kambi client to navigate to the in-play bets for this group
    */
   clientPathLive: string,
+
   /**
    * Normalized name of the group
    */
   termKey: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-
 export type UserNavigation_sportsNavigation_subNav = {
   competition: UserNavigation_sportsNavigation_subNav_competition,
 };
-
 export type UserNavigation_sportsNavigation = {
   sport: UserNavigation_sportsNavigation_sport,
   subNav: Array<UserNavigation_sportsNavigation_subNav>,
 };
-
 export type UserNavigation = {
   allLabel: string,
   editLabel: string,
   liveLabel: string,
   sportsNavigation: Array<UserNavigation_sportsNavigation>,
 };
-
 export type UserNavigationVariables = {
   live: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: TopSearches
@@ -894,48 +787,47 @@ export type TopSearches_topSearches_parentGroups = {
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
-
 export type TopSearches_topSearches = {
   /**
    * Normalized name of the group
    */
   termKey: string,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The full path in the kambi client to navigate to this group
    */
   clientPath: string,
+
   /**
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * Array of parents of this group in order, be careful with nesting!
    */
   parentGroups: Array<TopSearches_topSearches_parentGroups>,
 };
-
 export type TopSearches = {
   /**
    * Top searches returns the event groups for the groupIds marked as popular
    */
   topSearches: Array<TopSearches_topSearches>,
 };
-
 export type TopSearchesVariables = {
   count: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SearchQuery
@@ -946,45 +838,43 @@ export type SearchQuery_search_sport = {
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
-
 export type SearchQuery_search = {
   /**
    * The type of search result, N.B Not overly reliable"
    */
   type: SearchResultType,
+
   /**
    * ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)"
    */
   id: string,
+
   /**
    * Translated name of the search result
    */
   localizedName: string,
+
   /**
    * The sport that this search result is associated to is nullable as relies on
    * finding by Kambi controlled data.
    */
   sport: ?SearchQuery_search_sport,
 };
-
 export type SearchQuery = {
   /**
    * Search for events matching a given query, non english lang will search english results too"
    */
   search: Array<SearchQuery_search>,
 };
-
 export type SearchQueryVariables = {
   query: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SportsShellQuery
@@ -994,9 +884,6 @@ export type SportsShellQuery = {
   hasSelectedFavourites: boolean,
   isSearchVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: NavigateClient
@@ -1005,14 +892,10 @@ export type SportsShellQuery = {
 export type NavigateClient = {
   navigateClient: ?boolean,
 };
-
 export type NavigateClientVariables = {
   path: string,
   trackingLocation: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: OpenModal
@@ -1021,13 +904,9 @@ export type NavigateClientVariables = {
 export type OpenModal = {
   openModal: ?boolean,
 };
-
 export type OpenModalVariables = {
   modal: Modal,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: CloseModal
@@ -1036,13 +915,9 @@ export type OpenModalVariables = {
 export type CloseModal = {
   closeModal: ?boolean,
 };
-
 export type CloseModalVariables = {
   modal: Modal,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: CloseAllModals
@@ -1051,9 +926,6 @@ export type CloseModalVariables = {
 export type CloseAllModals = {
   closeAllModals: ?boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateKambiClientState
@@ -1062,13 +934,9 @@ export type CloseAllModals = {
 export type UpdateKambiClientState = {
   updateKambiClientState: ?boolean,
 };
-
 export type UpdateKambiClientStateVariables = {
   isVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: UpdateBetslipState
@@ -1077,13 +945,9 @@ export type UpdateKambiClientStateVariables = {
 export type UpdateBetslipState = {
   updateBetslipState: ?boolean,
 };
-
 export type UpdateBetslipStateVariables = {
   isVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: ShowSearch
@@ -1092,9 +956,6 @@ export type UpdateBetslipStateVariables = {
 export type ShowSearch = {
   showSearch: ?boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: HideSearch
@@ -1103,9 +964,6 @@ export type ShowSearch = {
 export type HideSearch = {
   hideSearch: ?boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: ToggleFavouriteGroup
@@ -1116,22 +974,18 @@ export type ToggleFavouriteGroup_toggleFavouriteGroup = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
-
 export type ToggleFavouriteGroup = {
   toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup,
 };
-
 export type ToggleFavouriteGroupVariables = {
   id: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetFavourites
@@ -1142,22 +996,18 @@ export type SetFavourites_setFavouriteGroups = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
-
 export type SetFavourites = {
   setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>,
 };
-
 export type SetFavouritesVariables = {
   ids: Array<number>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SetFavouriteCompetitions
@@ -1168,23 +1018,19 @@ export type SetFavouriteCompetitions_setFavouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
 };
-
 export type SetFavouriteCompetitions = {
   setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>,
 };
-
 export type SetFavouriteCompetitionsVariables = {
   groupId: number,
   ids: Array<number>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL mutation operation: SessionTouch
@@ -1196,9 +1042,6 @@ export type SessionTouch = {
    */
   sessionTouch: ?boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: ActiveModals
@@ -1207,9 +1050,6 @@ export type SessionTouch = {
 export type ActiveModals = {
   activeModals: Array<Modal>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: BetslipVisible
@@ -1218,9 +1058,6 @@ export type ActiveModals = {
 export type BetslipVisible = {
   isBetslipVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: KambiClientVisible
@@ -1229,9 +1066,6 @@ export type BetslipVisible = {
 export type KambiClientVisible = {
   kambiClientVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL query operation: SearchVisible
@@ -1240,9 +1074,6 @@ export type KambiClientVisible = {
 export type SearchVisible = {
   isSearchVisible: boolean,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GameRow_Game
@@ -1253,16 +1084,13 @@ export type GameRow_Game_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
-
 export type GameRow_Game_lobby = {
   bets: ?GameRow_Game_lobby_bets,
 };
-
 export type GameRow_Game_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-
 export type GameRow_Game = {
   slug: string,
   name: string,
@@ -1271,9 +1099,6 @@ export type GameRow_Game = {
   lobby: ?GameRow_Game_lobby,
   jackpotInfo: ?GameRow_Game_jackpotInfo,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Jackpots_Game
@@ -1284,16 +1109,13 @@ export type Jackpots_Game_lobby_bets = {
   max: ?number,
   symbol: ?string,
 };
-
 export type Jackpots_Game_lobby = {
   bets: ?Jackpots_Game_lobby_bets,
 };
-
 export type Jackpots_Game_jackpotInfo = {
   id: string,
   formattedJackpotAmount: ?string,
 };
-
 export type Jackpots_Game = {
   slug: string,
   name: string,
@@ -1302,16 +1124,17 @@ export type Jackpots_Game = {
   lobby: ?Jackpots_Game_lobby,
   jackpotInfo: ?Jackpots_Game_jackpotInfo,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: PlayerValuableList_PlayerValuable
 // ====================================================
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -1325,11 +1148,9 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
-
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
   slug: string,
 };
-
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -1349,7 +1170,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
   requirementType: ?RequirementType,
   game: ?PlayerValuableList_PlayerValuable_PlayerValuableSpins_game,
 };
-
 export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
@@ -1366,16 +1186,10 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
-
 export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
-  | PlayerValuableList_PlayerValuable_PlayerValuableCash;
-/* @flow */
-
-// This file was automatically generated and should not be edited.
-
-// ====================================================
+  | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: SETTINGS_PLAYER
 // ====================================================
 
@@ -1384,26 +1198,22 @@ export type SETTINGS_PLAYER_details_name = {
   first: string,
   last: string,
 };
-
 export type SETTINGS_PLAYER_details_extentOfGambling = {
   __typename: "PlayerExtentOfGambling",
   canChange: boolean,
   label: ?string,
 };
-
 export type SETTINGS_PLAYER_details_phoneNumber = {
   __typename: "PhoneNumber",
   prefix: string,
   number: string,
   verified: boolean,
 };
-
 export type SETTINGS_PLAYER_details_address_country = {
   __typename: "Country",
   code: string,
   name: string,
 };
-
 export type SETTINGS_PLAYER_details_address = {
   __typename: "PlayerAddress",
   city: string,
@@ -1411,7 +1221,6 @@ export type SETTINGS_PLAYER_details_address = {
   postCode: string,
   country: SETTINGS_PLAYER_details_address_country,
 };
-
 export type SETTINGS_PLAYER_details = {
   __typename: "PlayerDetails",
   name: SETTINGS_PLAYER_details_name,
@@ -1421,15 +1230,11 @@ export type SETTINGS_PLAYER_details = {
   address: SETTINGS_PLAYER_details_address,
   email: string,
 };
-
 export type SETTINGS_PLAYER = {
   id: string,
   __typename: "Player",
   details: SETTINGS_PLAYER_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_withdrawalNotifications
@@ -1438,18 +1243,13 @@ export type SETTINGS_PLAYER = {
 export type Contact_Settings_Player_withdrawalNotifications_details_contactSettings = {
   withdrawalNotifications: boolean,
 };
-
 export type Contact_Settings_Player_withdrawalNotifications_details = {
   contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings,
 };
-
 export type Contact_Settings_Player_withdrawalNotifications = {
   __typename: "Player",
   details: Contact_Settings_Player_withdrawalNotifications_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_adventurerPublic
@@ -1458,18 +1258,13 @@ export type Contact_Settings_Player_withdrawalNotifications = {
 export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
   adventurerPublic: boolean,
 };
-
 export type Contact_Settings_Player_adventurerPublic_details = {
   contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings,
 };
-
 export type Contact_Settings_Player_adventurerPublic = {
   __typename: "Player",
   details: Contact_Settings_Player_adventurerPublic_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_subscribedToNewsletters
@@ -1478,18 +1273,13 @@ export type Contact_Settings_Player_adventurerPublic = {
 export type Contact_Settings_Player_subscribedToNewsletters_details_contactSettings = {
   subscribedToNewsletters: boolean,
 };
-
 export type Contact_Settings_Player_subscribedToNewsletters_details = {
   contactSettings: Contact_Settings_Player_subscribedToNewsletters_details_contactSettings,
 };
-
 export type Contact_Settings_Player_subscribedToNewsletters = {
   __typename: "Player",
   details: Contact_Settings_Player_subscribedToNewsletters_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_subscribedToSMSNewsletters
@@ -1498,18 +1288,13 @@ export type Contact_Settings_Player_subscribedToNewsletters = {
 export type Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings = {
   subscribedToSMSNewsletters: boolean,
 };
-
 export type Contact_Settings_Player_subscribedToSMSNewsletters_details = {
   contactSettings: Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings,
 };
-
 export type Contact_Settings_Player_subscribedToSMSNewsletters = {
   __typename: "Player",
   details: Contact_Settings_Player_subscribedToSMSNewsletters_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_contactByPhone
@@ -1518,18 +1303,13 @@ export type Contact_Settings_Player_subscribedToSMSNewsletters = {
 export type Contact_Settings_Player_contactByPhone_details_contactSettings = {
   contactByPhone: boolean,
 };
-
 export type Contact_Settings_Player_contactByPhone_details = {
   contactSettings: Contact_Settings_Player_contactByPhone_details_contactSettings,
 };
-
 export type Contact_Settings_Player_contactByPhone = {
   __typename: "Player",
   details: Contact_Settings_Player_contactByPhone_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_contactByPost
@@ -1538,18 +1318,13 @@ export type Contact_Settings_Player_contactByPhone = {
 export type Contact_Settings_Player_contactByPost_details_contactSettings = {
   contactByPost: boolean,
 };
-
 export type Contact_Settings_Player_contactByPost_details = {
   contactSettings: Contact_Settings_Player_contactByPost_details_contactSettings,
 };
-
 export type Contact_Settings_Player_contactByPost = {
   __typename: "Player",
   details: Contact_Settings_Player_contactByPost_details,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: Contact_Settings_Player_realityCheck
@@ -1561,19 +1336,14 @@ export type Contact_Settings_Player_realityCheck_playOk_realityCheck = {
   isZeroIntervalAllowed: boolean,
   intervalInMinutes: number,
 };
-
 export type Contact_Settings_Player_realityCheck_playOk = {
   __typename: "PlayerPlayOkSettings",
   realityCheck: Contact_Settings_Player_realityCheck_playOk_realityCheck,
 };
-
 export type Contact_Settings_Player_realityCheck = {
   __typename: "Player",
   playOk: Contact_Settings_Player_realityCheck_playOk,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: ValuableCard_PlayerValuable
@@ -1583,6 +1353,8 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   __typename:
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   title: string,
@@ -1594,7 +1366,6 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   caveat: ?string,
   backgroundImage: string,
 };
-
 export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -1609,20 +1380,18 @@ export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   coinValue: number,
   description: string,
 };
-
 export type ValuableCard_PlayerValuable =
   | ValuableCard_PlayerValuable_PlayerValuableCash
-  | ValuableCard_PlayerValuable_PlayerValuableSpins;
-/* @flow */
-
-// This file was automatically generated and should not be edited.
-
-// ====================================================
+  | ValuableCard_PlayerValuable_PlayerValuableSpins; // ====================================================
 // GraphQL fragment: ValuableDetails_PlayerValuable
 // ====================================================
 
 export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -1635,11 +1404,9 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   wageringThreshold: ?number,
   leftToWager: ?number,
 };
-
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
   slug: string,
 };
-
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   __typename: "PlayerValuableSpins",
   id: string,
@@ -1656,7 +1423,6 @@ export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
   requirementType: ?RequirementType,
   game: ?ValuableDetails_PlayerValuable_PlayerValuableSpins_game,
 };
-
 export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   __typename: "PlayerValuableCash",
   id: string,
@@ -1672,16 +1438,10 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   leftToWager: ?number,
   requirementType: ?RequirementType,
 };
-
 export type ValuableDetails_PlayerValuable =
   | ValuableDetails_PlayerValuable_PlayerValuableDeposit
   | ValuableDetails_PlayerValuable_PlayerValuableSpins
-  | ValuableDetails_PlayerValuable_PlayerValuableCash;
-/* @flow */
-
-// This file was automatically generated and should not be edited.
-
-// ====================================================
+  | ValuableDetails_PlayerValuable_PlayerValuableCash; // ====================================================
 // GraphQL fragment: CompetitionPillsList_Group
 // ====================================================
 
@@ -1690,22 +1450,22 @@ export type CompetitionPillsList_Group = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorIntro_Group
@@ -1717,9 +1477,6 @@ export type FavouriteCompetitionsSelectorIntro_Group = {
    */
   name: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorRegion_Group
@@ -1730,37 +1487,38 @@ export type FavouriteCompetitionsSelectorRegion_Group_groups = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-
 export type FavouriteCompetitionsSelectorRegion_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
+
   /**
    * Array of subgroups in this event group
    */
   groups: ?Array<FavouriteCompetitionsSelectorRegion_Group_groups>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteCompetitionsSelectorModal_Group
@@ -1772,9 +1530,6 @@ export type FavouriteCompetitionsSelectorModal_Group = {
    */
   id: number,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelector_Group
@@ -1785,54 +1540,59 @@ export type FavouriteSportsSelector_Group_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-
 export type FavouriteSportsSelector_Group = {
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * Popular defines whether we consider the EventGroup to be popular
    */
   popular: boolean,
+
   /**
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
+
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
+
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorListItem_Group
@@ -1843,50 +1603,54 @@ export type FavouriteSportsSelectorListItem_Group_favouriteCompetitions = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Whether this is one of the users, selected favourites
    */
   userFavourite: boolean,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
 };
-
 export type FavouriteSportsSelectorListItem_Group = {
   /**
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The icon for the sport group
    */
   icon: ?string,
+
   /**
    * The active indicator for the sport group, used on the nav
    */
   activeIndicator: ?string,
+
   /**
    * Whether to allow a custom selection of subgroups to be shown as sub-nav items
    * instead of just popular ones
    */
   canSelectSubgroups: boolean,
+
   /**
    * The favourited competitions for this EventGroup
    */
   favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: FavouriteSportsSelectorContext_Competition
@@ -1897,18 +1661,17 @@ export type FavouriteSportsSelectorContext_Competition = {
    * Unique identifier of the event group
    */
   id: number,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
+
   /**
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
 };
-/* @flow */
-
-// This file was automatically generated and should not be edited.
 
 // ====================================================
 // GraphQL fragment: GroupPill_Group
@@ -1919,70 +1682,46 @@ export type GroupPill_Group = {
    * Name of the event group, localized according to the lang parameter
    */
   name: string,
+
   /**
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-}; /* @flow */
+};
 
-// This file was automatically generated and should not be edited.
-
-//==============================================================
+// ====================================================
 // START Enums and Input Objects
 //==============================================================
 
-/**
- *
- */
-export type ValuableType = "cash" | "deposit" | "spins" | "sport";
-
-/**
- *
- */
+export type ValuableType =
+  | "cash"
+  | "deposit"
+  | "freeBet"
+  | "freeBetLocked"
+  | "spins"
+  | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-
-/**
- *
- */
 export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD";
-
-/**
- *
- */
 export type RequirementType = "deposit" | "wager";
-
-/**
- *
- */
 export type Vertical = "CASINO" | "SPORTS";
-
-/**
- *
- */
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
-
-/**
- *
- */
 export type Modal =
   | "BETTING_GLOSSARY"
   | "CHOOSE_FAVOURITES"
   | "CHOOSE_FAVOURITE_COMPETITIONS"
   | "SEARCH";
-
 export type ContactSettingsInput = {|
   on: boolean,
 |};
-
 export type UpdateRealityCheckIntervalInput = {|
   intervalSeconds: number,
 |};
 
-//==============================================================
+// ====================================================
 // END Enums and Input Objects
 //==============================================================

@@ -12,6 +12,12 @@
             "name": "PlayerValuableDeposit"
           },
           {
+            "name": "PlayerValuableFreeBet"
+          },
+          {
+            "name": "PlayerValuableFreeBetLocked"
+          },
+          {
             "name": "PlayerValuableSpins"
           },
           {
