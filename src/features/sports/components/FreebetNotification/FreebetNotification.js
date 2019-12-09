@@ -126,9 +126,12 @@ const renderValuableText = (
         </Text>
       )}
     </div>
-    <CrossIcon
-      className="u-cursor-pointer o-flex__item--no-shrink"
-      onClick={onClose}
-    />
+
+    {onClose && (
+      <CrossIcon
+        className="u-cursor-pointer o-flex__item--no-shrink"
+        onClick={onClose}
+      />
+    )}
   </Flex>
 );
