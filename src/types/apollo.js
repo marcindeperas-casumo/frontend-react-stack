@@ -1,5 +1,4 @@
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -13,7 +12,7 @@ export type JackpotsQuery_gamesList_games_lobby_bets = {
 };
 
 export type JackpotsQuery_gamesList_games_lobby = {
-  bets: ?JackpotsQuery_gamesList_games_lobby_bets
+  bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
 
 export type JackpotsQuery_gamesList_games_jackpotInfo = {
@@ -36,10 +35,9 @@ export type JackpotsQuery_gamesList = {
 };
 
 export type JackpotsQuery = {
-  gamesList: ?JackpotsQuery_gamesList
+  gamesList: ?JackpotsQuery_gamesList,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -47,60 +45,63 @@ export type JackpotsQuery = {
 // ====================================================
 
 export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
-  slug: string
+  slug: string,
 };
 
-export type PlayerValuablesQuery_player_valuables = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-} | {
-  __typename: "PlayerValuableSpins",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  description: string,
-  coinValue: number,
-  requirementType: ?RequirementType,
-  game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
-} | {
-  __typename: "PlayerValuableCash",
-  id: string,
-  valuableState: PlayerValuableState,
-  expiryDate: BigInt,
-  valuableType: ValuableType,
-  title: string,
-  content: string,
-  caveat: ?string,
-  currency: Currency,
-  market: string,
-  backgroundImage: string,
-  wageringThreshold: ?number,
-  leftToWager: ?number,
-  requirementType: ?RequirementType,
-};
+export type PlayerValuablesQuery_player_valuables =
+  | {
+      __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+    }
+  | {
+      __typename: "PlayerValuableSpins",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+      description: string,
+      coinValue: number,
+      requirementType: ?RequirementType,
+      game: ?PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game,
+    }
+  | {
+      __typename: "PlayerValuableCash",
+      id: string,
+      valuableState: PlayerValuableState,
+      expiryDate: BigInt,
+      valuableType: ValuableType,
+      title: string,
+      content: string,
+      caveat: ?string,
+      currency: Currency,
+      market: string,
+      backgroundImage: string,
+      wageringThreshold: ?number,
+      leftToWager: ?number,
+      requirementType: ?RequirementType,
+    };
 
 export type PlayerValuablesQuery_player = {
-  valuables: Array<PlayerValuablesQuery_player_valuables>
+  valuables: Array<PlayerValuablesQuery_player_valuables>,
 };
 
 export type PlayerValuablesQuery = {
@@ -116,10 +117,9 @@ export type PlayerValuablesQuery = {
 };
 
 export type PlayerValuablesQueryVariables = {
-  valuableType?: ?ValuableType
+  valuableType?: ?ValuableType,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -127,7 +127,7 @@ export type PlayerValuablesQueryVariables = {
 // ====================================================
 
 export type UseValuable = {
-  useValuable: ?boolean
+  useValuable: ?boolean,
 };
 
 export type UseValuableVariables = {
@@ -135,7 +135,6 @@ export type UseValuableVariables = {
   source?: ?string,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -153,7 +152,6 @@ export type PLAYER_SETTINGS_LABELS_QUERY = {
   gamblingExtent: string,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -210,10 +208,9 @@ export type PLAYER_SETTINGS_QUERY_player = {
 };
 
 export type PLAYER_SETTINGS_QUERY = {
-  player: PLAYER_SETTINGS_QUERY_player
+  player: PLAYER_SETTINGS_QUERY_player,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -221,14 +218,13 @@ export type PLAYER_SETTINGS_QUERY = {
 // ====================================================
 
 export type SetAdventurerPublicity = {
-  setAdventurerPublicity: ?boolean
+  setAdventurerPublicity: ?boolean,
 };
 
 export type SetAdventurerPublicityVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -236,14 +232,13 @@ export type SetAdventurerPublicityVariables = {
 // ====================================================
 
 export type SetWithdrawalNotifications = {
-  setWithdrawalNotifications: ?boolean
+  setWithdrawalNotifications: ?boolean,
 };
 
 export type SetWithdrawalNotificationsVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -251,14 +246,14 @@ export type SetWithdrawalNotificationsVariables = {
 // ====================================================
 
 export type SetNewsletterSubscription = {
-  setNewsletterSubscription: ?boolean
+  setNewsletterSubscription: ?boolean,
 };
 
 export type SetNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -266,14 +261,14 @@ export type SetNewsletterSubscriptionVariables = {
 // ====================================================
 
 export type SetSMSNewsletterSubscription = {
-  setSMSNewsletterSubscription: ?boolean
+  setSMSNewsletterSubscription: ?boolean,
 };
 
 export type SetSMSNewsletterSubscriptionVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -281,14 +276,14 @@ export type SetSMSNewsletterSubscriptionVariables = {
 // ====================================================
 
 export type SetContactByPhone = {
-  setContactByPhone: ?boolean
+  setContactByPhone: ?boolean,
 };
 
 export type SetContactByPhoneVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -296,14 +291,14 @@ export type SetContactByPhoneVariables = {
 // ====================================================
 
 export type SetContactByPost = {
-  setContactByPost: ?boolean
+  setContactByPost: ?boolean,
 };
 
 export type SetContactByPostVariables = {
-  input?: ?ContactSettingsInput
+  input?: ?ContactSettingsInput,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -320,7 +315,7 @@ export type PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings = {
 };
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_details = {
-  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings
+  contactSettings: PLAYER_CONTACT_SETTINGS_QUERY_player_details_contactSettings,
 };
 
 export type PLAYER_CONTACT_SETTINGS_QUERY_player_playOk_realityCheck = {
@@ -343,10 +338,10 @@ export type PLAYER_CONTACT_SETTINGS_QUERY_player = {
 };
 
 export type PLAYER_CONTACT_SETTINGS_QUERY = {
-  player: PLAYER_CONTACT_SETTINGS_QUERY_player
+  player: PLAYER_CONTACT_SETTINGS_QUERY_player,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -366,7 +361,7 @@ export type NOTIFICATIONS_LABELS_QUERY = {
   inGameSessionUpdatesFrequencyLabel: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -374,14 +369,14 @@ export type NOTIFICATIONS_LABELS_QUERY = {
 // ====================================================
 
 export type UpdateRealityCheckInterval = {
-  updateRealityCheckInterval: ?number
+  updateRealityCheckInterval: ?number,
 };
 
 export type UpdateRealityCheckIntervalVariables = {
-  input?: ?UpdateRealityCheckIntervalInput
+  input?: ?UpdateRealityCheckIntervalInput,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -395,7 +390,7 @@ export type REALITY_CHECK_LABELS_QUERY = {
   cancel: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -421,10 +416,10 @@ export type PLAYER_REALITY_CHECK_QUERY_player = {
 };
 
 export type PLAYER_REALITY_CHECK_QUERY = {
-  player: PLAYER_REALITY_CHECK_QUERY_player
+  player: PLAYER_REALITY_CHECK_QUERY_player,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -432,7 +427,7 @@ export type PLAYER_REALITY_CHECK_QUERY = {
 // ====================================================
 
 export type PLAYER_LOGIN_HISTORY_QUERY_player_loginHistory = {
-  loginTime: Long
+  loginTime: Long,
 };
 
 export type PLAYER_LOGIN_HISTORY_QUERY_player = {
@@ -441,10 +436,10 @@ export type PLAYER_LOGIN_HISTORY_QUERY_player = {
 };
 
 export type PLAYER_LOGIN_HISTORY_QUERY = {
-  player: PLAYER_LOGIN_HISTORY_QUERY_player
+  player: PLAYER_LOGIN_HISTORY_QUERY_player,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -462,7 +457,7 @@ export type PLAYER_SECTIONS_LABELS_QUERY = {
   logout: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -487,7 +482,7 @@ export type ValuableDetailsQuery = {
   day_plural: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -502,10 +497,10 @@ export type GlossaryQuery_glossary = {
 };
 
 export type GlossaryQuery = {
-  glossary: Array<GlossaryQuery_glossary>
+  glossary: Array<GlossaryQuery_glossary>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -513,14 +508,14 @@ export type GlossaryQuery = {
 // ====================================================
 
 export type CmsImageQuery = {
-  sportsCmsImage: ?string
+  sportsCmsImage: ?string,
 };
 
 export type CmsImageQueryVariables = {
-  key: string
+  key: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -528,14 +523,14 @@ export type CmsImageQueryVariables = {
 // ====================================================
 
 export type DictionaryTermQuery = {
-  dictionaryTerm: string
+  dictionaryTerm: string,
 };
 
 export type DictionaryTermQueryVariables = {
-  key: string
+  key: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -552,7 +547,7 @@ export type PluralisableDictionaryTermQueryVariables = {
   pluralKey: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -563,18 +558,18 @@ export type EditFavouriteCompetitions_favouriteCompetitions = {
   /**
    * Unique identifier of the event group
    */
-  id: number
+  id: number,
 };
 
 export type EditFavouriteCompetitions = {
-  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>
+  favouriteCompetitions: Array<EditFavouriteCompetitions_favouriteCompetitions>,
 };
 
 export type EditFavouriteCompetitionsVariables = {
-  groupId: number
+  groupId: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -647,10 +642,10 @@ export type FavouriteCompetitionsSelectorQuery = {
 };
 
 export type FavouriteCompetitionsSelectorQueryVariables = {
-  groupId: number
+  groupId: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -676,14 +671,14 @@ export type FavouriteSportsSelectorContextCompetitionSuggestions = {
   /**
    * TopCompetitions returns the most popular subgroups of a group, currently based on number of events
    */
-  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>
+  topCompetitions: Array<FavouriteSportsSelectorContextCompetitionSuggestions_topCompetitions>,
 };
 
 export type FavouriteSportsSelectorContextCompetitionSuggestionsVariables = {
-  id: number
+  id: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -749,10 +744,10 @@ export type FavouriteSportsSelectorContext = {
   /**
    * Get list of available event groups from the root level
    */
-  groups: Array<FavouriteSportsSelectorContext_groups>
+  groups: Array<FavouriteSportsSelectorContext_groups>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -760,14 +755,14 @@ export type FavouriteSportsSelectorContext = {
 // ====================================================
 
 export type PlayerVertical_player = {
-  vertical: Vertical
+  vertical: Vertical,
 };
 
 export type PlayerVertical = {
-  player: PlayerVertical_player
+  player: PlayerVertical_player,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -781,10 +776,10 @@ export type LaunchKambi_launchKambi = {
 };
 
 export type LaunchKambi = {
-  launchKambi: ?LaunchKambi_launchKambi
+  launchKambi: ?LaunchKambi_launchKambi,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -797,7 +792,7 @@ export type LaunchableKambiClientQuery = {
   isBetslipVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -868,7 +863,7 @@ export type UserNavigation_sportsNavigation_subNav_competition = {
 };
 
 export type UserNavigation_sportsNavigation_subNav = {
-  competition: UserNavigation_sportsNavigation_subNav_competition
+  competition: UserNavigation_sportsNavigation_subNav_competition,
 };
 
 export type UserNavigation_sportsNavigation = {
@@ -884,10 +879,10 @@ export type UserNavigation = {
 };
 
 export type UserNavigationVariables = {
-  live: boolean
+  live: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -932,14 +927,14 @@ export type TopSearches = {
   /**
    * Top searches returns the event groups for the groupIds marked as popular
    */
-  topSearches: Array<TopSearches_topSearches>
+  topSearches: Array<TopSearches_topSearches>,
 };
 
 export type TopSearchesVariables = {
-  count: number
+  count: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -981,14 +976,14 @@ export type SearchQuery = {
   /**
    * Search for events matching a given query, non english lang will search english results too"
    */
-  search: Array<SearchQuery_search>
+  search: Array<SearchQuery_search>,
 };
 
 export type SearchQueryVariables = {
-  query: string
+  query: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1000,7 +995,7 @@ export type SportsShellQuery = {
   isSearchVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1008,7 +1003,7 @@ export type SportsShellQuery = {
 // ====================================================
 
 export type NavigateClient = {
-  navigateClient: ?boolean
+  navigateClient: ?boolean,
 };
 
 export type NavigateClientVariables = {
@@ -1016,7 +1011,7 @@ export type NavigateClientVariables = {
   trackingLocation: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1024,14 +1019,14 @@ export type NavigateClientVariables = {
 // ====================================================
 
 export type OpenModal = {
-  openModal: ?boolean
+  openModal: ?boolean,
 };
 
 export type OpenModalVariables = {
-  modal: Modal
+  modal: Modal,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1039,14 +1034,14 @@ export type OpenModalVariables = {
 // ====================================================
 
 export type CloseModal = {
-  closeModal: ?boolean
+  closeModal: ?boolean,
 };
 
 export type CloseModalVariables = {
-  modal: Modal
+  modal: Modal,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1054,10 +1049,10 @@ export type CloseModalVariables = {
 // ====================================================
 
 export type CloseAllModals = {
-  closeAllModals: ?boolean
+  closeAllModals: ?boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1065,14 +1060,14 @@ export type CloseAllModals = {
 // ====================================================
 
 export type UpdateKambiClientState = {
-  updateKambiClientState: ?boolean
+  updateKambiClientState: ?boolean,
 };
 
 export type UpdateKambiClientStateVariables = {
-  isVisible: boolean
+  isVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1080,14 +1075,14 @@ export type UpdateKambiClientStateVariables = {
 // ====================================================
 
 export type UpdateBetslipState = {
-  updateBetslipState: ?boolean
+  updateBetslipState: ?boolean,
 };
 
 export type UpdateBetslipStateVariables = {
-  isVisible: boolean
+  isVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1095,10 +1090,10 @@ export type UpdateBetslipStateVariables = {
 // ====================================================
 
 export type ShowSearch = {
-  showSearch: ?boolean
+  showSearch: ?boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1106,10 +1101,10 @@ export type ShowSearch = {
 // ====================================================
 
 export type HideSearch = {
-  hideSearch: ?boolean
+  hideSearch: ?boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1128,14 +1123,14 @@ export type ToggleFavouriteGroup_toggleFavouriteGroup = {
 };
 
 export type ToggleFavouriteGroup = {
-  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup
+  toggleFavouriteGroup: ToggleFavouriteGroup_toggleFavouriteGroup,
 };
 
 export type ToggleFavouriteGroupVariables = {
-  id: number
+  id: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1154,14 +1149,14 @@ export type SetFavourites_setFavouriteGroups = {
 };
 
 export type SetFavourites = {
-  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>
+  setFavouriteGroups: Array<SetFavourites_setFavouriteGroups>,
 };
 
 export type SetFavouritesVariables = {
-  ids: Array<number>
+  ids: Array<number>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1180,7 +1175,7 @@ export type SetFavouriteCompetitions_setFavouriteCompetitions = {
 };
 
 export type SetFavouriteCompetitions = {
-  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>
+  setFavouriteCompetitions: Array<SetFavouriteCompetitions_setFavouriteCompetitions>,
 };
 
 export type SetFavouriteCompetitionsVariables = {
@@ -1188,7 +1183,7 @@ export type SetFavouriteCompetitionsVariables = {
   ids: Array<number>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1199,10 +1194,10 @@ export type SessionTouch = {
   /**
    * Pings the current session to keep it alive, requires the session cookie to be present in the headers
    */
-  sessionTouch: ?boolean
+  sessionTouch: ?boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1210,10 +1205,10 @@ export type SessionTouch = {
 // ====================================================
 
 export type ActiveModals = {
-  activeModals: Array<Modal>
+  activeModals: Array<Modal>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1221,10 +1216,10 @@ export type ActiveModals = {
 // ====================================================
 
 export type BetslipVisible = {
-  isBetslipVisible: boolean
+  isBetslipVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1232,10 +1227,10 @@ export type BetslipVisible = {
 // ====================================================
 
 export type KambiClientVisible = {
-  kambiClientVisible: boolean
+  kambiClientVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1243,10 +1238,10 @@ export type KambiClientVisible = {
 // ====================================================
 
 export type SearchVisible = {
-  isSearchVisible: boolean
+  isSearchVisible: boolean,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1260,7 +1255,7 @@ export type GameRow_Game_lobby_bets = {
 };
 
 export type GameRow_Game_lobby = {
-  bets: ?GameRow_Game_lobby_bets
+  bets: ?GameRow_Game_lobby_bets,
 };
 
 export type GameRow_Game_jackpotInfo = {
@@ -1277,7 +1272,7 @@ export type GameRow_Game = {
   jackpotInfo: ?GameRow_Game_jackpotInfo,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1291,7 +1286,7 @@ export type Jackpots_Game_lobby_bets = {
 };
 
 export type Jackpots_Game_lobby = {
-  bets: ?Jackpots_Game_lobby_bets
+  bets: ?Jackpots_Game_lobby_bets,
 };
 
 export type Jackpots_Game_jackpotInfo = {
@@ -1308,7 +1303,7 @@ export type Jackpots_Game = {
   jackpotInfo: ?Jackpots_Game_jackpotInfo,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1332,7 +1327,7 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string
+  slug: string,
 };
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableSpins = {
@@ -1372,9 +1367,12 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableCash = {
   requirementType: ?RequirementType,
 };
 
-export type PlayerValuableList_PlayerValuable = PlayerValuableList_PlayerValuable_PlayerValuableDeposit | PlayerValuableList_PlayerValuable_PlayerValuableSpins | PlayerValuableList_PlayerValuable_PlayerValuableCash;
+export type PlayerValuableList_PlayerValuable =
+  | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
+  | PlayerValuableList_PlayerValuable_PlayerValuableSpins
+  | PlayerValuableList_PlayerValuable_PlayerValuableCash;
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1430,7 +1428,7 @@ export type SETTINGS_PLAYER = {
   details: SETTINGS_PLAYER_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1438,11 +1436,11 @@ export type SETTINGS_PLAYER = {
 // ====================================================
 
 export type Contact_Settings_Player_withdrawalNotifications_details_contactSettings = {
-  withdrawalNotifications: boolean
+  withdrawalNotifications: boolean,
 };
 
 export type Contact_Settings_Player_withdrawalNotifications_details = {
-  contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings
+  contactSettings: Contact_Settings_Player_withdrawalNotifications_details_contactSettings,
 };
 
 export type Contact_Settings_Player_withdrawalNotifications = {
@@ -1450,7 +1448,7 @@ export type Contact_Settings_Player_withdrawalNotifications = {
   details: Contact_Settings_Player_withdrawalNotifications_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1458,11 +1456,11 @@ export type Contact_Settings_Player_withdrawalNotifications = {
 // ====================================================
 
 export type Contact_Settings_Player_adventurerPublic_details_contactSettings = {
-  adventurerPublic: boolean
+  adventurerPublic: boolean,
 };
 
 export type Contact_Settings_Player_adventurerPublic_details = {
-  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings
+  contactSettings: Contact_Settings_Player_adventurerPublic_details_contactSettings,
 };
 
 export type Contact_Settings_Player_adventurerPublic = {
@@ -1470,7 +1468,7 @@ export type Contact_Settings_Player_adventurerPublic = {
   details: Contact_Settings_Player_adventurerPublic_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1478,11 +1476,11 @@ export type Contact_Settings_Player_adventurerPublic = {
 // ====================================================
 
 export type Contact_Settings_Player_subscribedToNewsletters_details_contactSettings = {
-  subscribedToNewsletters: boolean
+  subscribedToNewsletters: boolean,
 };
 
 export type Contact_Settings_Player_subscribedToNewsletters_details = {
-  contactSettings: Contact_Settings_Player_subscribedToNewsletters_details_contactSettings
+  contactSettings: Contact_Settings_Player_subscribedToNewsletters_details_contactSettings,
 };
 
 export type Contact_Settings_Player_subscribedToNewsletters = {
@@ -1490,7 +1488,7 @@ export type Contact_Settings_Player_subscribedToNewsletters = {
   details: Contact_Settings_Player_subscribedToNewsletters_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1498,11 +1496,11 @@ export type Contact_Settings_Player_subscribedToNewsletters = {
 // ====================================================
 
 export type Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings = {
-  subscribedToSMSNewsletters: boolean
+  subscribedToSMSNewsletters: boolean,
 };
 
 export type Contact_Settings_Player_subscribedToSMSNewsletters_details = {
-  contactSettings: Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings
+  contactSettings: Contact_Settings_Player_subscribedToSMSNewsletters_details_contactSettings,
 };
 
 export type Contact_Settings_Player_subscribedToSMSNewsletters = {
@@ -1510,7 +1508,7 @@ export type Contact_Settings_Player_subscribedToSMSNewsletters = {
   details: Contact_Settings_Player_subscribedToSMSNewsletters_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1518,11 +1516,11 @@ export type Contact_Settings_Player_subscribedToSMSNewsletters = {
 // ====================================================
 
 export type Contact_Settings_Player_contactByPhone_details_contactSettings = {
-  contactByPhone: boolean
+  contactByPhone: boolean,
 };
 
 export type Contact_Settings_Player_contactByPhone_details = {
-  contactSettings: Contact_Settings_Player_contactByPhone_details_contactSettings
+  contactSettings: Contact_Settings_Player_contactByPhone_details_contactSettings,
 };
 
 export type Contact_Settings_Player_contactByPhone = {
@@ -1530,7 +1528,7 @@ export type Contact_Settings_Player_contactByPhone = {
   details: Contact_Settings_Player_contactByPhone_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1538,11 +1536,11 @@ export type Contact_Settings_Player_contactByPhone = {
 // ====================================================
 
 export type Contact_Settings_Player_contactByPost_details_contactSettings = {
-  contactByPost: boolean
+  contactByPost: boolean,
 };
 
 export type Contact_Settings_Player_contactByPost_details = {
-  contactSettings: Contact_Settings_Player_contactByPost_details_contactSettings
+  contactSettings: Contact_Settings_Player_contactByPost_details_contactSettings,
 };
 
 export type Contact_Settings_Player_contactByPost = {
@@ -1550,7 +1548,7 @@ export type Contact_Settings_Player_contactByPost = {
   details: Contact_Settings_Player_contactByPost_details,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1574,7 +1572,7 @@ export type Contact_Settings_Player_realityCheck = {
   playOk: Contact_Settings_Player_realityCheck_playOk,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1582,7 +1580,10 @@ export type Contact_Settings_Player_realityCheck = {
 // ====================================================
 
 export type ValuableCard_PlayerValuable_PlayerValuableCash = {
-  __typename: "PlayerValuableCash" | "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableCash"
+    | "PlayerValuableDeposit"
+    | "PlayerValuableSport",
   id: string,
   title: string,
   content: string,
@@ -1609,9 +1610,11 @@ export type ValuableCard_PlayerValuable_PlayerValuableSpins = {
   description: string,
 };
 
-export type ValuableCard_PlayerValuable = ValuableCard_PlayerValuable_PlayerValuableCash | ValuableCard_PlayerValuable_PlayerValuableSpins;
+export type ValuableCard_PlayerValuable =
+  | ValuableCard_PlayerValuable_PlayerValuableCash
+  | ValuableCard_PlayerValuable_PlayerValuableSpins;
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1634,7 +1637,7 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
 };
 
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins_game = {
-  slug: string
+  slug: string,
 };
 
 export type ValuableDetails_PlayerValuable_PlayerValuableSpins = {
@@ -1670,9 +1673,12 @@ export type ValuableDetails_PlayerValuable_PlayerValuableCash = {
   requirementType: ?RequirementType,
 };
 
-export type ValuableDetails_PlayerValuable = ValuableDetails_PlayerValuable_PlayerValuableDeposit | ValuableDetails_PlayerValuable_PlayerValuableSpins | ValuableDetails_PlayerValuable_PlayerValuableCash;
+export type ValuableDetails_PlayerValuable =
+  | ValuableDetails_PlayerValuable_PlayerValuableDeposit
+  | ValuableDetails_PlayerValuable_PlayerValuableSpins
+  | ValuableDetails_PlayerValuable_PlayerValuableCash;
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1698,7 +1704,7 @@ export type CompetitionPillsList_Group = {
   regionCode: ?string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1709,10 +1715,10 @@ export type FavouriteCompetitionsSelectorIntro_Group = {
   /**
    * Name of the event group, localized according to the lang parameter
    */
-  name: string
+  name: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1753,7 +1759,7 @@ export type FavouriteCompetitionsSelectorRegion_Group = {
   groups: ?Array<FavouriteCompetitionsSelectorRegion_Group_groups>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1764,10 +1770,10 @@ export type FavouriteCompetitionsSelectorModal_Group = {
   /**
    * Unique identifier of the event group
    */
-  id: number
+  id: number,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1825,7 +1831,7 @@ export type FavouriteSportsSelector_Group = {
   favouriteCompetitions: Array<FavouriteSportsSelector_Group_favouriteCompetitions>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1879,7 +1885,7 @@ export type FavouriteSportsSelectorListItem_Group = {
   favouriteCompetitions: Array<FavouriteSportsSelectorListItem_Group_favouriteCompetitions>,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1901,7 +1907,7 @@ export type FavouriteSportsSelectorContext_Competition = {
   name: string,
 };
 /* @flow */
-/* eslint-disable */
+
 // This file was automatically generated and should not be edited.
 
 // ====================================================
@@ -1917,8 +1923,8 @@ export type GroupPill_Group = {
    * The region code for the group, iso3166 code for most with some custom regions
    */
   regionCode: ?string,
-};/* @flow */
-/* eslint-disable */
+}; /* @flow */
+
 // This file was automatically generated and should not be edited.
 
 //==============================================================
@@ -1933,7 +1939,12 @@ export type ValuableType = "cash" | "deposit" | "spins" | "sport";
 /**
  *
  */
-export type PlayerValuableState = "Consumed" | "Expired" | "Fresh" | "Locked" | "Used";
+export type PlayerValuableState =
+  | "Consumed"
+  | "Expired"
+  | "Fresh"
+  | "Locked"
+  | "Used";
 
 /**
  *
@@ -1958,14 +1969,18 @@ export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
 /**
  *
  */
-export type Modal = "BETTING_GLOSSARY" | "CHOOSE_FAVOURITES" | "CHOOSE_FAVOURITE_COMPETITIONS" | "SEARCH";
+export type Modal =
+  | "BETTING_GLOSSARY"
+  | "CHOOSE_FAVOURITES"
+  | "CHOOSE_FAVOURITE_COMPETITIONS"
+  | "SEARCH";
 
 export type ContactSettingsInput = {|
-  on: boolean
+  on: boolean,
 |};
 
 export type UpdateRealityCheckIntervalInput = {|
-  intervalSeconds: number
+  intervalSeconds: number,
 |};
 
 //==============================================================
