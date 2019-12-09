@@ -21,6 +21,7 @@ import {
   type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
+import DangerousHtml from "Components/DangerousHtml";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
@@ -252,17 +253,20 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <hr className="c-valuable-details__separator t-border t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey" size="xs">
+              <Text tag="strong" className="t-color-grey-dark-2" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
             <Flex.Item>
-              <Text className="t-color-grey u-text-align-left" size="sm">
-                {termsAndConditionsContent}
+              <Text className="t-color-grey-dark-2 u-text-align-left" size="sm">
+                <DangerousHtml
+                  data-test="valuable-card-title"
+                  html={termsAndConditionsContent}
+                />
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer u-padding--md">
+          <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
             <Button
               className="u-width--full"
               onClick={() => this.handleAction(actionButtonProps)}

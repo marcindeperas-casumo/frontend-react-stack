@@ -1,5 +1,6 @@
 // @flow
 
+import type { AppLanguage, AppEnvironment } from "Src/types";
 import { PROVIDERS } from "./constants";
 
 export type GameProviderType = $Values<typeof PROVIDERS>;
@@ -25,3 +26,32 @@ export type NetentGameLaunchData = {|
 export type GameLaunchData = IframeGameLaunchData | NetentGameLaunchData;
 
 export type GameRef = { current: null | HTMLIFrameElement | HTMLDivElement };
+
+export type GameProviderModelProps = {
+  gameData: GameLaunchData,
+  gameRef: GameRef,
+  language: AppLanguage,
+  environment: AppEnvironment,
+};
+
+export type IframeGameApiMessage = ?string | ?{};
+
+export type IframeGameApi = {
+  commands: {
+    pause: IframeGameApiMessage,
+    resume: IframeGameApiMessage,
+  },
+  events: {
+    onPauseEnded: IframeGameApiMessage,
+    onGameRoundStart: IframeGameApiMessage,
+    onGameRoundEnd: IframeGameApiMessage,
+  },
+  features: {
+    instantPause: boolean,
+  },
+};
+
+export type IframeMessageEvent = {
+  data: any,
+  origin: string,
+};

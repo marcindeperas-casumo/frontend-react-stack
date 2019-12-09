@@ -66,6 +66,10 @@ function handleOutput(data) {
 
 function handleError(data) {
   const str = data.toString();
+  if (/warning/i.test(str)) {
+    console.warn(str);
+    return;
+  }
   if (/^ToolError:/.test(str)) {
     return;
   }

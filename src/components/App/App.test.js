@@ -1,6 +1,8 @@
 import React from "react";
-import { shallow } from "enzyme";
-import { App } from "Components/App/App";
+import { shallow, mount } from "enzyme";
+import { MARKETS, LANGUAGES, URL_PREFIXES } from "Src/constants";
+import { Router } from "Components/Router";
+import { App } from "./App";
 
 describe("App", () => {
   test("onAppStart is called when the component is mounted", () => {
@@ -44,5 +46,27 @@ describe("App", () => {
     );
 
     expect(subscribeFn).toHaveBeenCalledTimes(1);
+  });
+
+  Object.values(MARKETS).forEach(market => {
+    const marketLanguage = LANGUAGES[market];
+    const marketUrlPrefix = URL_PREFIXES[market];
+
+    test(`should pass '${marketUrlPrefix}' as basePath and '${marketLanguage}' as language to Router for ${market}`, () => {
+      const rendered = mount(
+        <App
+          onAppStarted={() => {}}
+          isAuthenticated={true}
+          subscribeToPlayerUpdates={() => {}}
+          unsubscribeToPlayerUpdates={() => {}}
+          market={market}
+          language={marketLanguage}
+        />
+      );
+      const { basePath, language } = rendered.find(Router).props();
+
+      expect(basePath).toBe(marketUrlPrefix);
+      expect(language).toBe(marketLanguage);
+    });
   });
 });

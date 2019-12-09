@@ -1,5 +1,5 @@
 // @flow
-import type { Game } from "Types/game";
+import * as A from "Types/apollo";
 import {
   VALUABLE_STATES,
   VALUABLE_TYPES,
@@ -35,28 +35,6 @@ export type ValuableDetailsTranslations = DurationTranslations & {
   wageringStatus: string,
 };
 
-export type ValuableDetailsProps = {
-  id: string,
-  /* Url of the background image to be used in the header */
-  backgroundImage: string,
-  /* Detailed description of the Valuable */
-  content: string,
-  /* Caveat for the valuable */
-  caveat?: string,
-  /* Hours left for the bonus to expire */
-  expirationTimeInHours: number,
-  /* Requirement type to unlock */
-  requirementType: ?ValuableRequirementType,
-  /*Game to launch on click of button */
-  game?: Game,
-  /* Type of Valuable */
-  valuableType: ValuableType,
-  /* The valuable's current state */
-  valuableState: ValuableState,
-  /** The function to be called to consume the valuable which will be triggered by each card click */
-  onConsumeValuable: string => Promise<boolean>,
-};
-
 export type ValuableActionProps = {
   text: string,
   isDepositBonusSelected: boolean,
@@ -67,4 +45,31 @@ export type DurationProps = {
   hours: number,
   minutes: number,
   seconds: number,
+};
+
+type ValuableListTranslations = ValuableThumbnailTranslations & {
+  listTitleLabel: string,
+  availableListTitleLabel: string,
+  lockedListTitleLabel: string,
+  seeAllLabel: string,
+  noValuablesLabel: string,
+  dontUseValuableLabel: string,
+};
+
+export type ValuableListProps = {
+  className?: string,
+  /** Error message to be log in case of error*/
+  error?: string,
+  /** Indicates whether the data has loaded or still being retrieved */
+  loading: boolean,
+  /** Text as header */
+  title?: string,
+  /** Refetch valuables function */
+  refetch?: () => void,
+  /** The list of valuables to be displayed as cards */
+  valuables: Array<A.PlayerValuableList_PlayerValuable>,
+  /** The function to be called to consume the valuable which will be triggered by each card click */
+  onConsumeValuable: string => Promise<void>,
+  /** An array of translated labels */
+  translations: ValuableListTranslations,
 };

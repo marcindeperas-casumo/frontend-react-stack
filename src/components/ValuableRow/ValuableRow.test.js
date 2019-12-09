@@ -1,5 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
+import { MoreIcon } from "@casumo/cmp-icons";
 import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import { VALUABLE_TYPES } from "Models/valuables";
 import ImageLazy from "Components/Image/ImageLazy";
@@ -9,10 +10,24 @@ import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 const onClick = jest.fn();
 
 describe("ValuableRow", () => {
+  let rendered;
+  let mockValuable;
+  const onMoreInfo = jest.fn();
+
+  beforeEach(() => {
+    mockValuable = mockData(VALUABLE_TYPES.CASH);
+    rendered = shallow(
+      <ValuableRow
+        {...mockValuable}
+        onClick={onClick}
+        onMoreInfo={onMoreInfo}
+      />
+    );
+  });
+
   test("should always pass an image url to ValuableThumbnail if type is not SPINS", () => {
-    const mockValuable = mockData(VALUABLE_TYPES.CASH);
+    rendered = mount(<ValuableRow {...mockValuable} onClick={onClick} />);
     const { backgroundImage: expectedValue } = mockValuable;
-    const rendered = mount(<ValuableRow {...mockValuable} onClick={onClick} />);
     const actualValue = rendered
       .find(ValuableThumbnail)
       .find(ImageLazy)
@@ -22,24 +37,16 @@ describe("ValuableRow", () => {
   });
 
   test("should not display any description if valuableType is not SPINS", () => {
-    const mockValuable = mockData(VALUABLE_TYPES.CASH);
-    const rendered = shallow(
-      <ValuableRow {...mockValuable} onClick={onClick} />
-    );
-
     expect(
       rendered.find({ "data-test": "valuable-row-description" })
     ).toHaveLength(0);
   });
 
-  test("should call the onClick function on click of card", () => {
-    const mockValuable = mockData(VALUABLE_TYPES.CASH);
-    const rendered = shallow(
-      <ValuableRow {...mockValuable} onClick={onClick} />
-    );
+  test("Should call the onMoreInfo when the more icon is clicked", () => {
+    const moreIcon = rendered.find(MoreIcon);
 
-    rendered.find({ "data-test": "valuable-row" }).simulate("click");
+    moreIcon.simulate("click");
 
-    expect(onClick).toBeCalledTimes(1);
+    expect(onMoreInfo).toHaveBeenCalledTimes(1);
   });
 });
