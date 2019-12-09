@@ -257,8 +257,12 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
-            <Flex.Item>
-              <Text className="t-color-grey-dark-2 u-text-align-left" size="sm">
+            <Flex.Item className="u-width--full u-overflow-x--hidden">
+              <Text
+                tag="div"
+                className="t-color-grey-dark-2 u-text-align-left"
+                size="sm"
+              >
                 <DangerousHtml
                   data-test="valuable-card-title"
                   html={termsAndConditionsContent}
