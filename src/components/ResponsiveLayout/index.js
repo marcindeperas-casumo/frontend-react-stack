@@ -1,2 +1,8 @@
 // @flow
-export { Desktop, Mobile } from "./ResponsiveLayout";
+export {
+  Desktop,
+  Tablet,
+  TabletandDesktop,
+  Mobile,
+  MobileAndTablet,
+} from "./ResponsiveLayout";
