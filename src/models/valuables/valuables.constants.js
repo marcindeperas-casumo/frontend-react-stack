@@ -10,6 +10,7 @@ export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
 
 export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {
   FRESH: "Fresh",
+  USED: "Used",
   LOCKED: "Locked",
   USED: "Used",
 };
