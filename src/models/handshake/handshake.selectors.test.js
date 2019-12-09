@@ -30,6 +30,7 @@ import {
   isSuspiciousAccount,
   verticalSelector,
   featureFlagSelector,
+  playerCasumoNameSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -168,6 +169,21 @@ describe("Handshake selectors", () => {
     };
 
     expect(playerSelector(state)).toEqual({ id: "p1" });
+  });
+
+  test("playerCasumoNameSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: { p1: { id: "p1", casumoName: "Maroto" } },
+          },
+        },
+      },
+    };
+
+    expect(playerCasumoNameSelector(state)).toEqual("Maroto");
   });
 
   test("countrySelector", () => {
