@@ -40,19 +40,23 @@ export const FreebetNotification = ({
   caveat,
   onClose,
 }: Props) => {
-  const renderImage = () =>
-    renderValuableThumbnail(
-      backgroundImage,
-      currency,
-      expiryDate,
-      market,
-      valuableState,
-      valuableType
-    );
-  const renderText = () =>
-    renderValuableText(title, description, caveat, valuableState, onClose);
-
-  return <Media renderImage={renderImage} renderText={renderText}></Media>;
+  return (
+    <Media
+      renderImage={() =>
+        renderValuableThumbnail(
+          backgroundImage,
+          currency,
+          expiryDate,
+          market,
+          valuableState,
+          valuableType
+        )
+      }
+      renderText={() =>
+        renderValuableText(title, description, caveat, valuableState, onClose)
+      }
+    ></Media>
+  );
 };
 
 const NO_NONSENSE_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
@@ -106,6 +110,7 @@ const renderValuableText = (
         )}
         <DangerousHtml data-test="freebet-notification-title" html={title} />
       </Text>
+
       {description && (
         <Text size="sm" tag="div">
           <DangerousHtml
@@ -114,6 +119,7 @@ const renderValuableText = (
           />
         </Text>
       )}
+
       {caveat && (
         <Text className="t-color-grey-light-1" size="2xs" tag="span">
           <DangerousHtml html={caveat} />
