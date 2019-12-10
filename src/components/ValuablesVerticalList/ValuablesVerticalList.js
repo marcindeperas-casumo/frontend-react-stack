@@ -11,7 +11,7 @@ import { useValuableDetails } from "Components/ValuableDetails/useValuableDetail
 const valuableItemRenderer = (
   valuable,
   translations,
-  onMoreInfo?,
+  onMoreInfo,
   onConsumeValuable,
   onItemClick?,
   isItemSelectable
@@ -20,8 +20,8 @@ const valuableItemRenderer = (
     valuable.__typename === "PlayerValuableSpins"
       ? valuable.description
       : valuable.content;
-  const moreInfo = onMoreInfo ? () => onMoreInfo(valuable) : undefined;
-  const itemClick = onItemClick ? () => onItemClick(valuable.id) : undefined;
+  const moreInfo = () => onMoreInfo(valuable);
+  const itemClick = onItemClick ? () => onItemClick(valuable.id) : moreInfo;
   const isSelected =
     isItemSelectable && valuable.valuableState === VALUABLE_STATES.USED;
 
