@@ -1,6 +1,6 @@
 export const freebet = {
   id: "123",
-  valuableType: "sport",
+  valuableType: "freeBetLocked",
   title: "€10 Free Bet",
   description: "Bet €20.00 on any match (min odds 1.4) to unlock this free bet.",
   currency: "EUR",
