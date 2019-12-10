@@ -9,12 +9,12 @@ export const mobileAndTabletBreakpoint = {
 };
 
 export const tabletBreakpoint = {
-  "min-device-width": breakpoints.tablet,
-  "max-device-width": `${parseInt(breakpoints.desktop) - 1}px`,
+  "min-width": breakpoints.tablet,
+  "max-width": `${parseInt(breakpoints.desktop) - 1}px`,
 };
 
 export const tabletAndDesktopBreakpoint = {
-  "min-device-width": breakpoints.tablet,
+  "min-width": breakpoints.tablet,
 };
 
 export const desktopBreakpoint = {

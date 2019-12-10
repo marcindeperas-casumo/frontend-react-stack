@@ -32,7 +32,7 @@ export const Desktop = ({ children }: { children: React.Node }) => {
   );
 };
 
-export const TabletandDesktop = ({ children }: { children: React.Node }) => {
+export const TabletAndDesktop = ({ children }: { children: React.Node }) => {
   return (
     <RenderIfMatchBreakpoint breakpoint={tabletAndDesktopBreakpoint}>
       {children}

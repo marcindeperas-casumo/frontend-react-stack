@@ -2,7 +2,7 @@
 export {
   Desktop,
   Tablet,
-  TabletandDesktop,
+  TabletAndDesktop,
   Mobile,
   MobileAndTablet,
 } from "./ResponsiveLayout";
