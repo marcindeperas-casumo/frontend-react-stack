@@ -10,7 +10,7 @@ import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import {
   getExpiryTimeLeft,
   type ValuableThumbnailTranslations,
-  VALUABLE_STATES,
+  VALUABLE_TYPES,
 } from "Models/valuables";
 import * as A from "Types/apollo";
 
@@ -53,7 +53,14 @@ export const FreebetNotification = ({
         )
       }
       renderText={() =>
-        renderValuableText(title, description, caveat, valuableState, onClose)
+        renderValuableText(
+          title,
+          description,
+          caveat,
+          valuableState,
+          valuableType,
+          onClose
+        )
       }
     ></Media>
   );
@@ -96,6 +103,7 @@ const renderValuableText = (
   description,
   caveat,
   valuableState,
+  valuableType,
   onClose
 ) => (
   <Flex justify="space-between">
@@ -105,7 +113,7 @@ const renderValuableText = (
         size="sm"
         tag="div"
       >
-        {valuableState === VALUABLE_STATES.LOCKED && (
+        {valuableType === VALUABLE_TYPES.FREE_BET_LOCKED && (
           <LockIcon size="sm" className="u-margin-right--sm" />
         )}
         <DangerousHtml data-test="freebet-notification-title" html={title} />
