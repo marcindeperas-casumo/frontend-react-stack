@@ -17,7 +17,7 @@ const getList = id => ({ id, title: "Title.", games: ["game-1", "game-2"] });
 const list = getList("id-1");
 const seeMoreText = "whatever";
 
-describe("<GameListHorizontal /> - Mobile", () => {
+describe("<GameListHorizontal /> - Mobile and Tablet", () => {
   let rendered;
   beforeEach(() => {
     setMobileViewport();
