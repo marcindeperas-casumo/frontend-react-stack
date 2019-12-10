@@ -257,7 +257,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
-            <Flex.Item>
+            <Flex.Item className="u-width--full u-overflow-x--hidden">
               <Text
                 tag="div"
                 className="t-color-grey-dark-2 u-text-align-left"

@@ -49,11 +49,6 @@ export const unsubscribeReelRaceUpdates = (channelPrefix, playerId) => {
 };
 
 export const subscribeToPlayerUpdates = (playerId, sessionId) => {
-  const isAuthenticated = playerId && sessionId;
-
-  if (!isAuthenticated) {
-    return { type: TYPES.CANCEL };
-  }
   return subscribe({
     channel: `${CHANNELS.PLAYER}/${playerId}`,
     sessionId,
@@ -66,7 +61,21 @@ export const unsubscribeToPlayerUpdates = playerId => {
   });
 };
 
+export const subscribeToSessionUpdates = sessionId => {
+  return subscribe({
+    channel: `${CHANNELS.SESSION}/${sessionId}/ended`,
+    sessionId,
+  });
+};
+
+export const unsubscribeToSessionUpdates = sessionId => {
+  return unsubscribe({
+    channel: `${CHANNELS.SESSION}/${sessionId}/ended`,
+  });
+};
+
 export const subscribeToAdventureUpdates = (playerId, sessionId) => {
+  // PRR-484:  remove this check in  favor of useEffect for susbscribing when props are ready
   const isAuthenticated = playerId && sessionId;
 
   if (!isAuthenticated) {

@@ -14,6 +14,7 @@ export const ENTITY_KEYS = {
   CMS: "cms",
   GAME_PROVIDER: "gameProvider",
   PLAYER_GAMES: "playerGames",
+  PLAYER_SESSION: "playerSession",
   REEL_RACES: "reelRaces",
   ADVENTURER: "adventurer",
   TRANSACTIONS_ANNUAL_OVERVIEW: "transactionsBetsHistoryAnnualOverview",
