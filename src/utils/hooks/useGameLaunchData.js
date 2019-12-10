@@ -26,9 +26,7 @@ export const useGameLaunchData = ({ slug, playForFun }: Props) => {
   const environment = useSelector(isTestEnv)
     ? ENVIRONMENTS.TEST
     : ENVIRONMENTS.PRODUCTION;
-  const language = useSelector(languageSelector)
-    ? ENVIRONMENTS.TEST
-    : ENVIRONMENTS.PRODUCTION;
+  const language = useSelector(languageSelector);
 
   useEffect(() => {
     (async () => {
