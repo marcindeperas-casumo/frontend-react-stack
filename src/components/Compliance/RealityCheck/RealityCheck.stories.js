@@ -2,6 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import MockStore from "Components/MockStore";
 import { RealityCheck } from "./RealityCheck";
 
 const t = {
@@ -28,15 +29,17 @@ const realityCheck = {
 
 stories.add("Default", () => {
   return (
-    <RealityCheck
-      casumoName="Cayetano"
-      realityCheck={realityCheck}
-      currency="GBP"
-      locale="en-gb"
-      language="en"
-      onClickCancel={action("onClickCancel")}
-      onClickContinue={action("onClickContinue")}
-      t={t}
-    />
+    <MockStore>
+      <RealityCheck
+        casumoName="Cayetano"
+        realityCheck={realityCheck}
+        currency="GBP"
+        locale="en-gb"
+        language="en"
+        onClickCancel={action("onClickCancel")}
+        onClickContinue={action("onClickContinue")}
+        t={t}
+      />
+    </MockStore>
   );
 });

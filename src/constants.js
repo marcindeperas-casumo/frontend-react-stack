@@ -86,6 +86,74 @@ export const GAME_LIST_IDS = {
   SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
   MY_LIST: "myList",
 };
+
+export const ROUTE_IDS = {
+  DEPOSIT: "DEPOSIT",
+  LOGIN: "LOGIN",
+  PLAY: "PLAY",
+  PRACTICE: "PRACTICE",
+  TOP_LISTS: "TOP_LISTS",
+  GAMES_SEARCH: "GAMES_SEARCH",
+  MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
+  GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
+  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
+  PROMOTIONS: "PROMOTIONS",
+  PROMOTION_DETAILS: "PROMOTION_DETAILS",
+  PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
+  PLAYER_VALUABLES: "PLAYER_VALUABLES",
+  PLAYER_SETTINGS: "PLAYER_SETTINGS",
+  PLAYER_SETTINGS_NOTIFICATIONS: "PLAYER_SETTINGS_NOTIFICATIONS",
+  PLAYER_SETTINGS_ACCOUNT_DETAILS: "PLAYER_SETTINGS_ACCOUNT_DETAILS",
+  PLAYER_SETTINGS_REALITY_CHECK: "PLAYER_SETTINGS_REALITY_CHECK",
+  SPORTS: "SPORTS",
+  TRANSACTION_HISTORY: "TRANSACTION_HISTORY",
+  TRANSACTION_HISTORY_BETS: "TRANSACTION_HISTORY_BETS",
+  TRANSACTION_ANNUAL_OVERVIEW: "TRANSACTION_ANNUAL_OVERVIEW",
+};
+
+export const ROUTES = {
+  [ROUTE_IDS.LOGIN]: "log-in",
+  [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
+  [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
+  [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
+  [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
+  [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
+  [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
+  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
+  [ROUTE_IDS.PROMOTIONS]: "promotions",
+  [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
+  [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
+  [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
+  [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
+  [ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS]: "player/settings/notifications",
+  [ROUTE_IDS.PLAYER_SETTINGS_ACCOUNT_DETAILS]:
+    "player/settings/account-details",
+  [ROUTE_IDS.PLAYER_SETTINGS_REALITY_CHECK]: "player/settings/reality-check",
+  [ROUTE_IDS.SPORTS]: "sports",
+  [ROUTE_IDS.TRANSACTION_HISTORY]: "cash/history",
+  [ROUTE_IDS.TRANSACTION_HISTORY_BETS]: "cash/history/bets",
+  [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
+    "cash/history/transactions-annual-overview/:selectedYear",
+  [ROUTE_IDS.DEPOSIT]: "cash/deposit",
+};
+
+export const TRANSLATED_ROUTES = {
+  GAMES: {
+    sv: "spel",
+    fi: "pelit",
+    no: "spillvelger",
+    de: "spiele",
+    DEFAULT: "games",
+  },
+  PLAY: {
+    sv: "spela",
+    fi: "pelaa",
+    no: "spill",
+    de: "spielen",
+    DEFAULT: "play",
+  },
+};
+
 export const MARKETS = {
   ___en: "___en",
   ca_en: "ca_en",
@@ -98,6 +166,7 @@ export const MARKETS = {
   se_sv: "se_sv",
   es_es: "es_es",
   nz_en: "nz_en",
+  jp_ja: "jp_ja",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -111,6 +180,7 @@ export const LANGUAGES = {
   [MARKETS.se_sv]: "sv",
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "nz",
+  [MARKETS.jp_ja]: "jp",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -124,6 +194,7 @@ export const INTL_LOCALES = {
   [MARKETS.se_sv]: "sv-SE",
   [MARKETS.es_es]: "es-ES",
   [MARKETS.nz_en]: "en-NZ",
+  [MARKETS.jp_ja]: "ja-JP",
 };
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
@@ -135,8 +206,9 @@ export const URL_PREFIXES = {
   [MARKETS.in_en]: "en-in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
-  [MARKETS.es_es]: "",
+  [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
+  [MARKETS.jp_ja]: "ja",
 };
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
@@ -146,7 +218,7 @@ export const CURRENCY_SYMBOLS = {
   CAD: "\u0024", // $
   NZD: "\u0024", // $
   INR: "\u20B9", // ₹
-  JPY: "\u00A5", // ¥
+  USD: "\u0024", // $
 };
 
 export const CURRENCIES = {
@@ -157,7 +229,7 @@ export const CURRENCIES = {
   CAD: "CAD",
   NZD: "NZD",
   INR: "INR",
-  JPY: "JPY",
+  USD: "USD",
 };
 
 export const VERTICALS = {

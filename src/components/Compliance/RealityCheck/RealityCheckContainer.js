@@ -10,7 +10,6 @@ import {
   playerCasumoNameSelector,
   localeSelector,
   currencySelector,
-  languageSelector,
 } from "Models/handshake";
 import { RealityCheck } from "./RealityCheck";
 
@@ -21,7 +20,6 @@ export const RealityCheckContainer = connect(
       ...R.propOr({}, "fields", getPage(REALITY_CHECK_CMS_SLUG)(state)),
     },
     locale: localeSelector(state),
-    language: languageSelector(state),
     currency: currencySelector(state),
     casumoName: playerCasumoNameSelector(state),
     realityCheck: realityCheckSelector(state),

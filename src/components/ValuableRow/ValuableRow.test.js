@@ -6,6 +6,7 @@ import { VALUABLE_TYPES } from "Models/valuables";
 import ImageLazy from "Components/Image/ImageLazy";
 import { ValuableRow } from "./ValuableRow";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
+import ValuableSelector from "./valuable-selector.svg";
 
 const onClick = jest.fn();
 
@@ -43,10 +44,38 @@ describe("ValuableRow", () => {
   });
 
   test("Should call the onMoreInfo when the more icon is clicked", () => {
+    const stopPropagation = jest.fn();
     const moreIcon = rendered.find(MoreIcon);
 
-    moreIcon.simulate("click");
+    moreIcon.simulate("click", { stopPropagation });
 
     expect(onMoreInfo).toHaveBeenCalledTimes(1);
+    expect(stopPropagation).toHaveBeenCalledTimes(1);
+  });
+
+  test("should call the onClick on click of ValuableRow", () => {
+    rendered.find({ "data-test": "valuable-row" }).simulate("click");
+
+    expect(onClick).toHaveBeenCalledTimes(1);
+  });
+
+  test("should display valuable selector when ValuableRow is selected", () => {
+    rendered = shallow(
+      <ValuableRow {...mockValuable} isSelected={true} onClick={onClick} />
+    );
+
+    expect(rendered.find(ValuableSelector).exists()).toBe(true);
+  });
+
+  test("should not display valuable selector when ValuableRow is not selected", () => {
+    rendered = shallow(
+      <ValuableRow {...mockValuable} isSelected={false} onClick={onClick} />
+    );
+
+    expect(rendered.find(ValuableSelector).exists()).toBe(false);
+  });
+
+  test("should not display valuable selector when ValuableRow by default", () => {
+    expect(rendered.find(ValuableSelector).exists()).toBe(false);
   });
 });

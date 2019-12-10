@@ -13,7 +13,7 @@ type Props = {
 export const ValuableRowShell = ({ text }: Props) => (
   <Flex
     data-test="valuable-row-shell"
-    className="u-padding-y--md t-background-white"
+    className="u-padding-y--md t-background-white u-padding-x--md"
   >
     <Flex.Item className="c-valuable-row__thumbnail o-flex__item--no-shrink">
       <ValuablesCardDefaultIcon />

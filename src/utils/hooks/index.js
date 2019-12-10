@@ -6,3 +6,4 @@ export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
 export { useGameLaunchData } from "./useGameLaunchData";
+export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
