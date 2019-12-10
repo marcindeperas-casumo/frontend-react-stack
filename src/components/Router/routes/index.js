@@ -6,6 +6,7 @@ export * from "./LazyLiveCasinoDetails";
 export * from "./LazyPromotions";
 export * from "./LazyPromotionDetail";
 export * from "./LazyPlayerValuables";
+export * from "./LazyPlayerDepositValuables";
 export * from "./LazyPlayer";
 export * from "./LazyPlayerSettings";
 export * from "./LazyPlayerSettingsNotifications";

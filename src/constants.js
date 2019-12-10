@@ -88,6 +88,7 @@ export const GAME_LIST_IDS = {
 };
 
 export const ROUTE_IDS = {
+  DEPOSIT: "DEPOSIT",
   LOGIN: "LOGIN",
   PLAY: "PLAY",
   PRACTICE: "PRACTICE",
@@ -133,6 +134,7 @@ export const ROUTES = {
   [ROUTE_IDS.TRANSACTION_HISTORY_BETS]: "cash/history/bets",
   [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
     "cash/history/transactions-annual-overview/:selectedYear",
+  [ROUTE_IDS.DEPOSIT]: "cash/deposit",
 };
 
 export const TRANSLATED_ROUTES = {
@@ -164,6 +166,7 @@ export const MARKETS = {
   se_sv: "se_sv",
   es_es: "es_es",
   nz_en: "nz_en",
+  jp_ja: "jp_ja",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -177,6 +180,7 @@ export const LANGUAGES = {
   [MARKETS.se_sv]: "sv",
   [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "nz",
+  [MARKETS.jp_ja]: "jp",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -190,6 +194,7 @@ export const INTL_LOCALES = {
   [MARKETS.se_sv]: "sv-SE",
   [MARKETS.es_es]: "es-ES",
   [MARKETS.nz_en]: "en-NZ",
+  [MARKETS.jp_ja]: "ja-JP",
 };
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
@@ -201,8 +206,9 @@ export const URL_PREFIXES = {
   [MARKETS.in_en]: "en-in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
-  [MARKETS.es_es]: "",
+  [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
+  [MARKETS.jp_ja]: "ja",
 };
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
@@ -212,7 +218,7 @@ export const CURRENCY_SYMBOLS = {
   CAD: "\u0024", // $
   NZD: "\u0024", // $
   INR: "\u20B9", // ₹
-  JPY: "\u00A5", // ¥
+  USD: "\u0024", // $
 };
 
 export const CURRENCIES = {
@@ -223,7 +229,7 @@ export const CURRENCIES = {
   CAD: "CAD",
   NZD: "NZD",
   INR: "INR",
-  JPY: "JPY",
+  USD: "USD",
 };
 
 export const VERTICALS = {

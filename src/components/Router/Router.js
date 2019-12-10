@@ -1,4 +1,5 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
 import { routeTranslator } from "Utils";
@@ -12,6 +13,7 @@ import {
   LazyPromotions,
   LazyPromotionDetail,
   LazyPlayerValuables,
+  LazyPlayerDepositValuables,
   LazyPlayer,
   LazyPlayerSettings,
   LazyPlayerSettingsNotifications,
@@ -26,11 +28,12 @@ import {
 
 export const Router = () => {
   const language = useLanguage();
-  const basePath = useUrlPrefix();
+  const basepath = useUrlPrefix();
   const translateRoute = routeTranslator(language);
+  const reachRouterProps = basepath ? { basepath } : {};
 
   return (
-    <ReachRouter basepath={basePath}>
+    <ReachRouter {...reachRouterProps}>
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
       <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
@@ -46,6 +49,7 @@ export const Router = () => {
       <LazyPromotionDetail path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)} />
       <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
       <LazyPlayerValuables path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)} />
+      <LazyPlayerDepositValuables path={translateRoute(ROUTE_IDS.DEPOSIT)} />
       <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
       <LazyPlayerSettingsNotifications
         path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}
