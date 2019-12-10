@@ -37,6 +37,8 @@ const VALUABLE_ICON = {
     [CURRENCIES.NZD]: CurrencyCadIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
+  [VALUABLE_TYPES.FREE_BET]: CouponIcon,
+  [VALUABLE_TYPES.FREE_BET_LOCKED]: CouponIcon,
 };
 
 export const ValuableSymbol = ({
