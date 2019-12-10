@@ -1,2 +1,2 @@
 // @flow
-export { GamePageContainer as GamePage } from "./GamePageContainer";
+export * from "./GamePage";
