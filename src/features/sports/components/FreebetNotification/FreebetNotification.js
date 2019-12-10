@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { useState } from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
@@ -25,7 +25,8 @@ type Props = {
   description: string,
   translations: ValuableThumbnailTranslations,
   caveat: string,
-  onClose: (SyntheticEvent<HTMLElement>) => void,
+  onClose: () => void,
+  isHiddenByDefault: Boolean,
 };
 
 export const FreebetNotification = ({
@@ -39,7 +40,14 @@ export const FreebetNotification = ({
   description,
   caveat,
   onClose,
+  isHiddenByDefault,
 }: Props) => {
+  const [isHidden, setIsHidden] = useState(isHiddenByDefault);
+
+  if (isHidden) {
+    return null;
+  }
+
   return (
     <Media
       className="u-padding--md"
@@ -60,7 +68,10 @@ export const FreebetNotification = ({
           caveat,
           valuableState,
           valuableType,
-          onClose
+          () => {
+            onClose();
+            setIsHidden(true);
+          }
         )
       }
     ></Media>

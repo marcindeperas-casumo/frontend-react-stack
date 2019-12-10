@@ -47,4 +47,21 @@ describe("FreebetNotification", () => {
 
     expect(rendered.find(CrossIcon)).toHaveLength(0);
   });
+
+  test("should not render the component if it is hidden", () => {
+    const rendered = shallow(
+      <FreebetNotification {...freebetProps} isHidden />
+    );
+
+    expect(rendered.html()).toBeNull();
+  });
+
+  test("should call the onClose callback when you click on the close icon", () => {
+    const props = { ...freebetProps, onClose: jest.fn() };
+    const rendered = shallow(<FreebetNotification {...props} />).dive();
+
+    rendered.find(CrossIcon).simulate("click");
+
+    expect(props.onClose).toHaveBeenCalledTimes(1);
+  });
 });
