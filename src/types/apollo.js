@@ -39,7 +39,11 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
 };
 export type PlayerValuablesQuery_player_valuables =
   | {
-      __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+      __typename:
+        | "PlayerValuableDeposit"
+        | "PlayerValuableFreeBet"
+        | "PlayerValuableFreeBetLocked"
+        | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -658,6 +662,29 @@ export type PlayerVertical = {
 };
 
 // ====================================================
+// GraphQL query operation: FREEBET_QUERY
+// ====================================================
+
+export type FREEBET_QUERY_player_valuables = {
+  id: string,
+  backgroundImage: string,
+  currency: Currency,
+  expiryDate: BigInt,
+  market: string,
+  valuableState: PlayerValuableState,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+};
+export type FREEBET_QUERY_player = {
+  valuables: Array<FREEBET_QUERY_player_valuables>,
+};
+export type FREEBET_QUERY = {
+  player: FREEBET_QUERY_player,
+};
+
+// ====================================================
 // GraphQL mutation operation: LaunchKambi
 // ====================================================
 
@@ -1126,7 +1153,11 @@ export type Jackpots_Game = {
 // ====================================================
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -1345,6 +1376,8 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   __typename:
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   title: string,
@@ -1377,7 +1410,11 @@ export type ValuableCard_PlayerValuable =
 // ====================================================
 
 export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -1679,7 +1716,13 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type ValuableType = "cash" | "deposit" | "spins" | "sport";
+export type ValuableType =
+  | "cash"
+  | "deposit"
+  | "freeBet"
+  | "freeBetLocked"
+  | "spins"
+  | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
