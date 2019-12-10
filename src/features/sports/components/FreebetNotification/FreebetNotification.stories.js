@@ -5,7 +5,7 @@ import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { VALUABLE_STATES } from "Models/valuables";
 import { freebet } from "./__mocks__/freebet";
-import { FreebetNotification } from "./";
+import { FreebetNotification } from "./FreebetNotification";
 
 const stories = storiesOf("FreebetNotification", module);
 
