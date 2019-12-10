@@ -1,4 +1,5 @@
 export const ROUTE_IDS = {
+  DEPOSIT: "DEPOSIT",
   TOP_LISTS: "TOP_LISTS",
   GAMES_SEARCH: "GAMES_SEARCH",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
@@ -27,6 +28,7 @@ export const ROUTES = {
   [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
   [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
   [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
+  [ROUTE_IDS.DEPOSIT]: "cash/deposit",
   [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
   [ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS]: "player/settings/notifications",
   [ROUTE_IDS.PLAYER_SETTINGS_ACCOUNT_DETAILS]:

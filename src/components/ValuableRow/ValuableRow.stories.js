@@ -16,6 +16,7 @@ stories.add("Default", () => {
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
+  const isActive = boolean("Active", false);
   const onMoreInfo = () => {};
 
   const valuableDetails = mockData(valuableType);
@@ -30,6 +31,7 @@ stories.add("Default", () => {
       onClick={action("click")}
       translatedHoursUnit={translationsMock.hoursUnit}
       onMoreInfo={onMoreInfo}
+      isSelected={isActive}
     />
   );
 });
