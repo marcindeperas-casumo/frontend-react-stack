@@ -1,32 +1,34 @@
 // @flow
 
 import { useRef, useState, useEffect } from "react";
+import { isMobile } from "@casumo/fe-toolkit-ismobile";
+import { useSelector } from "react-redux";
 import logger from "Services/logger";
-import type { AppDevice, AppEnvironment } from "Src/types";
 import {
   getGameLaunchParameters,
   getGameProviderName,
 } from "Api/api.gameLaunch";
 import { getGameModel } from "GameProviders";
+import { ENVIRONMENTS, DEVICES } from "Src/constants";
+import { isTestEnv, languageSelector } from "Models/handshake";
 
 type Props = {
   slug: string,
   playForFun: boolean,
-  platform: AppDevice,
-  language: string,
-  environment: AppEnvironment,
 };
 
-export const useGameLaunchData = ({
-  slug,
-  playForFun,
-  platform,
-  language,
-  environment,
-}: Props) => {
+const platform = isMobile(window) ? DEVICES.MOBILE : DEVICES.DESKTOP;
+
+export const useGameLaunchData = ({ slug, playForFun }: Props) => {
   const [gameProviderModel, setGameProviderModel] = useState(null);
   const [failed, setFailed] = useState(false);
   const gameRef = useRef(null);
+  const environment = useSelector(isTestEnv)
+    ? ENVIRONMENTS.TEST
+    : ENVIRONMENTS.PRODUCTION;
+  const language = useSelector(languageSelector)
+    ? ENVIRONMENTS.TEST
+    : ENVIRONMENTS.PRODUCTION;
 
   useEffect(() => {
     (async () => {
@@ -50,7 +52,7 @@ export const useGameLaunchData = ({
         setFailed(true);
       }
     })();
-  }, [environment, language, platform, playForFun, slug]);
+  }, [environment, language, playForFun, slug]);
 
   const pauseGame = (): Promise<void> => {
     if (gameProviderModel) {
