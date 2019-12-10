@@ -14,8 +14,6 @@ import { GameLauncher } from "Components/GameLauncher";
 type Props = {
   slug: string,
   playForFun: boolean,
-  errorMessage: string,
-  fetchTranslations: () => {},
 };
 
 export const GamePage = ({ slug, playForFun }: Props) => {
