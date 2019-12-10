@@ -29,7 +29,7 @@ export const Router = ({ basePath, language }) => {
   return (
     <ReachRouter basepath={basePath}>
       <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
-      <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTISE)} />
+      <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
       <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
       <LazyMustDropJackpots

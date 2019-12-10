@@ -1,6 +1,6 @@
 export const ROUTE_IDS = {
   PLAY: "PLAY",
-  PRACTISE: "PRACTISE",
+  PRACTICE: "PRACTICE",
   TOP_LISTS: "TOP_LISTS",
   GAMES_SEARCH: "GAMES_SEARCH",
   MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
@@ -20,7 +20,7 @@ export const ROUTE_IDS = {
 };
 export const ROUTES = {
   [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
-  [ROUTE_IDS.PRACTISE]: "practise/:slug/launch",
+  [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
   [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
