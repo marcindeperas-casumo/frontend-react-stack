@@ -1,7 +1,8 @@
 import React from "react";
 import { Router as ReachRouter } from "@reach/router";
 import { useLanguage, useUrlPrefix } from "Utils/hooks";
-import { ROUTE_IDS } from "./constants";
+import { routeTranslator } from "Utils";
+import { ROUTE_IDS } from "Src/constants";
 import {
   LazyTopLists,
   LazyGameSearch,
@@ -22,7 +23,6 @@ import {
   LazyRealMoneyGamePage,
   LazyPlayForFunGamePage,
 } from "./routes";
-import { routeTranslator } from "./utils";
 
 export const Router = () => {
   const language = useLanguage();

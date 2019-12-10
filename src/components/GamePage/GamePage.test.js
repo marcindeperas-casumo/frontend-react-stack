@@ -2,6 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { ENVIRONMENTS, DEVICES } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
+import MockStore from "Components/MockStore";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GamePage } from "./GamePage";
 
@@ -17,8 +18,7 @@ const mockedProps = {
   fetchTranslations: () => {},
 };
 
-jest.mock("../../utils/hooks", () => ({
-  ...jest.requireActual("../../utils/hooks"),
+jest.mock("../../utils/hooks/useGameLaunchData.js", () => ({
   useGameLaunchData: jest.fn().mockImplementation(({ slug }) => {
     return {
       gameProviderModel: {
@@ -40,7 +40,11 @@ describe("GamePage", () => {
     jest.clearAllMocks();
   });
   test("should not render if error occurs", () => {
-    const rendered = mount(<GamePage {...mockedProps} />);
+    const rendered = mount(
+      <MockStore>
+        <GamePage {...mockedProps} />
+      </MockStore>
+    );
     expect(rendered.find(ErrorMessage)).toHaveLength(1);
   });
   test("should call onMount function of game provider model if model is provided", () => {
@@ -48,7 +52,11 @@ describe("GamePage", () => {
       ...mockedProps,
       slug: SUCCESSFUL_SLUG,
     };
-    mount(<GamePage {...props} />);
+    mount(
+      <MockStore>
+        <GamePage {...props} />
+      </MockStore>
+    );
     expect(mockedOnMount).toBeCalledTimes(1);
   });
   test("should render component with props as provided by game provider model if model is provided", () => {
@@ -57,9 +65,9 @@ describe("GamePage", () => {
       slug: SUCCESSFUL_SLUG,
     };
     const rendered = mount(
-      <div>
+      <MockStore>
         <GamePage {...props} />
-      </div>
+      </MockStore>
     );
     expect(rendered.find("div#game-wrapper")).toHaveLength(1);
   });

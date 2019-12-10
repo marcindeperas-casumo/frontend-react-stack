@@ -1,7 +1,9 @@
 // @flow
 import React, { useEffect } from "react";
 import LazyPortal from "Components/LazyPortal";
-import { Router, ROUTE_IDS, redirectToTranslatedUrl } from "Components/Router";
+import { Router } from "Components/Router";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
+import { ROUTE_IDS } from "Src/constants";
 
 type Props = {
   onAppStarted: () => void,
@@ -19,6 +21,7 @@ type Props = {
 
 export const App = (props: Props) => {
   const { onAppStarted, playerId, sessionId } = props;
+  const { navigateToKO } = useCrossCodebaseNavigation();
 
   useEffect(() => {
     onAppStarted();
@@ -37,8 +40,9 @@ export const App = (props: Props) => {
     return null;
   }
 
-  if (props.isAppHandshakeLoaded && !props.isAuthenticated) {
-    redirectToTranslatedUrl(props.language, ROUTE_IDS.LOGIN);
+  if (!props.isAuthenticated) {
+    navigateToKO(ROUTE_IDS.LOGIN);
+    return null;
   }
 
   return (

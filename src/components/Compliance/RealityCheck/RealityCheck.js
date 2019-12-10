@@ -4,13 +4,9 @@ import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import {
-  ROUTES,
-  ROUTE_IDS,
-  redirectToTranslatedUrl,
-  redirectTo,
-} from "Components/Router";
+import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency } from "Utils";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 
 type Props = {
   t: {
@@ -24,7 +20,6 @@ type Props = {
   onClickContinue: () => void,
   casumoName: string,
   locale: string,
-  language: string,
   currency: string,
   realityCheck: {
     totalWinAmount: {
@@ -40,18 +35,17 @@ type Props = {
 export function RealityCheck(props: Props) {
   const {
     t,
-    language,
     locale,
     currency,
     casumoName,
     realityCheck,
     onClickContinue,
   } = props;
+  const { navigateToKO } = useCrossCodebaseNavigation();
 
-  const onClickCancel = () =>
-    redirectToTranslatedUrl(language, ROUTE_IDS.TOP_LISTS);
+  const onClickCancel = () => navigateToKO(ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () =>
-    redirectTo(ROUTES.TRANSACTION_HISTORY_BETS);
+    navigateToKO(ROUTE_IDS.TRANSACTION_HISTORY_BETS);
 
   const formattedLostAmount = formatCurrency({
     locale,

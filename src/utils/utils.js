@@ -238,6 +238,9 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
+export const canBeInterpolated = (target: string) =>
+  target.match(INTERPOLATION_REGEX) !== null;
+
 const defaultTranslation = "[MISSING TRANSLATION]";
 export const interpolate = (
   target: string = defaultTranslation,
