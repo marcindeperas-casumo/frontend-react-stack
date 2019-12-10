@@ -42,6 +42,7 @@ export const FreebetNotification = ({
 }: Props) => {
   return (
     <Media
+      className="u-padding--md"
       renderImage={() =>
         renderValuableThumbnail(
           backgroundImage,
