@@ -1,5 +1,6 @@
 import React from "react";
 import { Router as ReachRouter } from "@reach/router";
+import { useLanguage, useUrlPrefix } from "Utils/hooks";
 import { ROUTE_IDS } from "./constants";
 import {
   LazyTopLists,
@@ -23,7 +24,9 @@ import {
 } from "./routes";
 import { routeTranslator } from "./utils";
 
-export const Router = ({ basePath, language }) => {
+export const Router = () => {
+  const language = useLanguage();
+  const basePath = useUrlPrefix();
   const translateRoute = routeTranslator(language);
 
   return (
