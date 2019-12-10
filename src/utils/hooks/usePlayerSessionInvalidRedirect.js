@@ -1,17 +1,17 @@
 // @flow
 import { useSelector, shallowEqual } from "react-redux";
 import { playerSessionIsValidSelector } from "Models/session";
-import { languageSelector } from "Models/handshake";
-import { redirectToTranslatedUrl, ROUTE_IDS } from "Components/Router";
+import { ROUTE_IDS } from "Src/constants";
+import { useCrossCodebaseNavigation } from "Utils/hooks";
 
 export function usePlayerSessionInvalidRedirect() {
+  const { navigateToKO } = useCrossCodebaseNavigation();
+
   return useSelector(state => {
     const valid = playerSessionIsValidSelector(state);
 
     if (valid === false) {
-      const language = languageSelector(state);
-
-      redirectToTranslatedUrl(language, ROUTE_IDS.LOGIN);
+      navigateToKO(ROUTE_IDS.LOGIN);
     }
 
     return valid;

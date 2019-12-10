@@ -1,5 +1,4 @@
 // @flow
-
 import type { AppLanguage, AppEnvironment } from "Src/types";
 import { PROVIDERS } from "./constants";
 
@@ -54,4 +53,15 @@ export type IframeGameApi = {
 export type IframeMessageEvent = {
   data: any,
   origin: string,
+};
+
+export type GameProviderModel = {
+  props: GameProviderModelProps,
+  componentProps: {},
+  componentTag: "div" | "iframe",
+  onMount: () => {},
+  onUnmount: () => {},
+  lobbyUrl: string,
+  pauseGame: () => Promise<void>,
+  resumeGame: () => {},
 };

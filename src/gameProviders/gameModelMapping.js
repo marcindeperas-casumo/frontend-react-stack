@@ -1,5 +1,5 @@
 // @flow
-import type { GameProviderType, GameRef } from "./types";
+import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
 import { EdictGame } from "./EdictGame";
@@ -34,7 +34,7 @@ export const getGameModel = (
   gameRef: GameRef,
   language: string,
   environment: string
-) => {
+): GameProviderModel => {
   const GameModel = models[gameData.providerType] || BaseGame;
 
   return new GameModel({ gameData, gameRef, language, environment });
