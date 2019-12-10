@@ -88,4 +88,15 @@ describe("ValuableSymbol", () => {
 
     expect(rendered.find(CurrencyRupIcon).exists()).toBe(true);
   });
+
+  test("should render cad icon if currency is USD", () => {
+    rendered = shallow(
+      <ValuableSymbol
+        valuableType={cashValuableType}
+        currency={CURRENCIES.USD}
+      />
+    );
+
+    expect(rendered.find(CurrencyCadIcon).exists()).toBe(true);
+  });
 });
