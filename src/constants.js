@@ -126,7 +126,7 @@ export const INTL_LOCALES = {
   [MARKETS.se_sv]: "sv-SE",
   [MARKETS.es_es]: "es-ES",
   [MARKETS.nz_en]: "en-NZ",
-  [MARKETS.jp_ja]: "ja_JP",
+  [MARKETS.jp_ja]: "ja-JP",
 };
 export const URL_PREFIXES = {
   [MARKETS.___en]: "en",
