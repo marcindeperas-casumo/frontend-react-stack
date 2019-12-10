@@ -5,7 +5,7 @@ import { URL_PREFIXES } from "Src/constants";
 import { marketSelector } from "Models/handshake";
 
 const isTLDMarketSpecific: string => boolean = R.pipe(
-  R.anyPass([R.equals("com"), R.equals("dev")]),
+  R.anyPass([R.equals("com"), R.equals("dev"), R.equals("localhost")]),
   R.not
 );
 
