@@ -4,10 +4,10 @@ import { useSelector, shallowEqual } from "react-redux";
 import { URL_PREFIXES } from "Src/constants";
 import { marketSelector } from "Models/handshake";
 
-const isTLDMarketSpecific: string => boolean = R.anyPass([
-  R.equals("com"),
-  R.equals("dev"),
-]);
+const isTLDMarketSpecific: string => boolean = R.pipe(
+  R.anyPass([R.equals("com"), R.equals("dev")]),
+  R.not
+);
 
 export function useUrlPrefix(): string | null {
   return useSelector(state => {
