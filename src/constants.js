@@ -138,7 +138,7 @@ export const URL_PREFIXES = {
   [MARKETS.in_en]: "en-in",
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
-  [MARKETS.es_es]: "",
+  [MARKETS.es_es]: "es",
   [MARKETS.nz_en]: "en-nz",
   [MARKETS.jp_ja]: "ja",
 };
