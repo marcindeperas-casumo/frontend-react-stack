@@ -6,7 +6,7 @@ import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow } from "Components/GameRow/GameRow";
 import { generateColumns } from "Utils";
 
@@ -84,7 +84,7 @@ export default class Jackpots extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
@@ -95,7 +95,7 @@ export default class Jackpots extends PureComponent<Props> {
                 padding={PADDING_PER_DEVICE}
               />
             </div>
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{

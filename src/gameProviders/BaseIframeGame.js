@@ -1,71 +1,82 @@
 // @flow
-
 import { equals } from "ramda";
 import logger from "Services/logger";
 import { BaseGame } from "./BaseGame";
-import type { IframeGameApi } from "./types";
+import type {
+  IframeGameApi,
+  GameProviderModelProps,
+  IframeMessageEvent,
+} from "./types";
+import { IFRAME_ID, GAME_IDLE_EVENT_NAME } from "./constants";
+import { EVENT_BUBBLER_PATH } from "./config";
+
+const DEFAULT_API = {
+  commands: {
+    pause: null,
+    resume: null,
+  },
+  events: {
+    onGameRoundStart: null,
+    onGameRoundEnd: null,
+  },
+  features: {
+    instantPause: false,
+  },
+};
 
 export class BaseIframeGame extends BaseGame {
   targetDomain: string = "*";
-  api: IframeGameApi = {
-    commands: {
-      pause: null,
-      resume: null,
-    },
-    events: {
-      onPauseEnded: null,
-      onGameRoundStart: null,
-      onGameRoundEnd: null,
-    },
-    features: {
-      instantPause: false,
-    },
-  };
+  api: IframeGameApi = DEFAULT_API;
+  messageGuard: Function;
 
-  get element() {
+  constructor(props: GameProviderModelProps) {
+    super(props);
+
+    const { url = null } = props.gameData;
+
+    if (url) {
+      const { origin } = new URL(url);
+      this.targetDomain = origin;
+    }
+  }
+
+  get eventBubblerUrl() {
+    return `${window.location.origin}/${EVENT_BUBBLER_PATH}`;
+  }
+
+  get componentTag() {
     return "iframe";
   }
 
-  get props() {
+  get componentProps() {
     return {
-      ...super.props,
+      ...super.componentProps,
       allow: "autoplay",
       style: {
         width: "100%",
         height: "100%",
         border: 0,
       },
-      src: this.gameData.url || "",
-      title: "casumo-game",
+      src: this.props.gameData.url || null,
+      title: IFRAME_ID,
+      id: IFRAME_ID,
     };
   }
 
   pauseGame() {
+    const { current: gameElement } = this.props.gameRef;
+    const { pause: pauseCommand } = this.api.commands;
+    const { instantPause } = this.api.features;
+
     return new Promise<void>((resolve, reject) => {
-      if (!this.api.commands.pause) {
-        reject();
-      }
+      if (gameElement instanceof HTMLIFrameElement && pauseCommand) {
+        gameElement.contentWindow.postMessage(pauseCommand, this.targetDomain);
 
-      const onPauseMessageHandler = (event: MessageEvent) => {
-        if (equals(event.data, this.api.events.onPauseEnded)) {
-          window.removeEventListener("message", onPauseMessageHandler);
+        if (instantPause || this.isGameIdle) {
           resolve();
+        } else {
+          this.resolveOnIdle(gameElement, resolve);
         }
-      };
-
-      if (!this.api.features.instantPause) {
-        window.addEventListener("message", onPauseMessageHandler);
-      }
-
-      if (
-        this.gameRef.current &&
-        this.gameRef.current instanceof HTMLIFrameElement
-      ) {
-        this.gameRef.current.contentWindow.postMessage(
-          this.api.commands.pause,
-          this.targetDomain
-        );
-        this.api.features.instantPause && resolve();
       } else {
         logger.error("Iframe reference not provided. PostMessage disabled");
         reject();
@@ -74,15 +85,65 @@ export class BaseIframeGame extends BaseGame {
   }
 
   resumeGame() {
-    if (
-      this.api.commands.resume &&
-      this.gameRef.current &&
-      this.gameRef.current instanceof HTMLIFrameElement
-    ) {
-      this.gameRef.current.contentWindow.postMessage(
-        this.api.commands.resume,
-        this.targetDomain
-      );
+    const { current: gameElement } = this.props.gameRef;
+    const { resume: resumeCommand } = this.api.commands;
+
+    if (resumeCommand && gameElement instanceof HTMLIFrameElement) {
+      gameElement.contentWindow.postMessage(resumeCommand, this.targetDomain);
     }
+  }
+
+  resolveOnIdle(
+    gameElement: HTMLIFrameElement,
+    resolve: (result: void) => void
+  ) {
+    gameElement.addEventListener(GAME_IDLE_EVENT_NAME, function(e: Event) {
+      gameElement.removeEventListener(GAME_IDLE_EVENT_NAME, this);
+      resolve();
+    });
+  }
+
+  messageGuard(event: IframeMessageEvent) {
+    if (event.origin === this.targetDomain) {
+      this.onMessageHandler(event);
+    }
+  }
+
+  parseMessageData(data: any) {
+    return data;
+  }
+
+  extractEventId(data: any) {
+    return data;
+  }
+
+  onMessageHandler(event: IframeMessageEvent) {
+    const { onGameRoundStart, onGameRoundEnd } = this.api.events;
+    const parsedData = this.parseMessageData(event.data);
+    const eventId = this.extractEventId(parsedData);
+
+    if (!onGameRoundStart || !onGameRoundEnd) {
+      return;
+    }
+
+    if (equals(eventId, this.extractEventId(onGameRoundStart))) {
+      this.setGameAsActive();
+    }
+
+    if (equals(eventId, this.extractEventId(onGameRoundEnd))) {
+      this.setGameAsIdle();
+    }
+  }
+
+  onMount() {
+    super.onMount();
+    window.addEventListener("message", event => {
+      this.messageGuard(event);
+    });
+  }
+
+  onUnmount() {
+    super.onUnmount();
+    window.removeEventListener("message", this.messageGuard);
   }
 }

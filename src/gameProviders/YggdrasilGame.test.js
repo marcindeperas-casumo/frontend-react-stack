@@ -1,18 +1,25 @@
 // @flow
+import { ENVIRONMENTS } from "Src/constants";
+import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { YggdrasilGame } from "./YggdrasilGame";
 
 describe("YggdrasilGame", () => {
-  const params = {
+  const gameData = {
     url:
       "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
     providerType: "YGGDRASIL_MOBILE",
     providerName: "YGGDRASIL",
   };
   const gameRef = { current: null };
-  const model = new YggdrasilGame(params, gameRef);
+  const model = new YggdrasilGame({
+    gameData,
+    gameRef,
+    language: DEFAULT_LANGUAGE,
+    environment: ENVIRONMENTS.TEST,
+  });
 
   test("should return the element as iframe", () => {
-    expect(model.element).toBe("iframe");
+    expect(model.componentTag).toBe("iframe");
   });
 
   test("should set api commands", () => {

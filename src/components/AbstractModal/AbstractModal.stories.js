@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import ReactModal from "react-modal";
 import { storiesOf } from "@storybook/react";
 import { WaitForHostElement } from "Components/WaitForHostElement";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { ORIENTATION_VALUES } from "Components/ResponsiveLayout/ResponsiveLayout.types";
 import { AbstractModal } from "./";
 import "./AbstractModal.stories.scss";
@@ -47,22 +47,22 @@ function AbstractModalWithResponsiveComponentsStory() {
           <h1>hello desktop</h1>
         </AbstractModal>
       </Desktop>
-      <Mobile orientation={ORIENTATION_VALUES.LANDSCAPE}>
+      <MobileAndTablet orientation={ORIENTATION_VALUES.LANDSCAPE}>
         <AbstractModal
           className="c-abstract-modal--mobile-landscape"
           {...commonProps}
         >
           <h1>hello mobile landscape</h1>
         </AbstractModal>
-      </Mobile>
-      <Mobile orientation={ORIENTATION_VALUES.PORTRAIT}>
+      </MobileAndTablet>
+      <MobileAndTablet orientation={ORIENTATION_VALUES.PORTRAIT}>
         <AbstractModal
           className="c-abstract-modal--mobile-portrait"
           {...commonProps}
         >
           <h1>hello mobile portrait</h1>
         </AbstractModal>
-      </Mobile>
+      </MobileAndTablet>
     </>
   );
 }
