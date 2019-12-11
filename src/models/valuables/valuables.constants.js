@@ -14,6 +14,7 @@ export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {
   FRESH: "Fresh",
   USED: "Used",
   LOCKED: "Locked",
+  USED: "Used",
 };
 
 export const VALUABLE_SPIN_TYPES = Object.freeze({

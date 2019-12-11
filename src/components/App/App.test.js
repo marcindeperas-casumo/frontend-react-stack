@@ -1,72 +1,87 @@
 import React from "react";
-import { shallow, mount } from "enzyme";
-import { MARKETS, LANGUAGES, URL_PREFIXES } from "Src/constants";
+import { mount } from "enzyme";
+import { Provider } from "react-redux";
 import { Router } from "Components/Router";
+import { createReduxStore } from "Services/reduxStore";
+import defaultState from "Models/__mocks__/state.mock";
 import { App } from "./App";
+
+const store = createReduxStore(defaultState);
 
 describe("App", () => {
   test("onAppStart is called when the component is mounted", () => {
+    // MockProvider could not be used here as MockedProvider
+    // from apollo seems to block the rendering of child components
     const fn = jest.fn();
-    shallow(
-      <App
-        onAppStarted={fn}
-        routeParams={[]}
-        subscribeToPlayerUpdates={() => {}}
-        unsubscribeToPlayerUpdates={() => {}}
-      />
+    mount(
+      <Provider store={store}>
+        <App
+          onAppStarted={fn}
+          routeParams={[]}
+          subscribeToUpdates={() => {}}
+          unsubscribeToUpdates={() => {}}
+        />
+      </Provider>
     );
     expect(fn).toHaveBeenCalledTimes(1);
   });
 
   test("does not render anything if not isAuthenticated", () => {
-    const rendered = shallow(
-      <App
-        onAppStarted={() => {}}
-        isAuthenticated={false}
-        subscribeToPlayerUpdates={() => {}}
-        unsubscribeToPlayerUpdates={() => {}}
-      />
+    // MockProvider could not be used here as MockedProvider
+    // from apollo seems to block the rendering of child components
+    const rendered = mount(
+      <Provider store={store}>
+        <App
+          isAppHandshakeLoaded={true}
+          onAppStarted={() => {}}
+          isAuthenticated={false}
+          subscribeToUpdates={() => {}}
+          unsubscribeToUpdates={() => {}}
+        />
+      </Provider>
     );
 
-    expect(rendered.get(0)).toBeNull();
+    expect(rendered.find(Router)).toHaveLength(0);
+  });
+
+  test("does not render anything if app handshake is not loaded", () => {
+    // MockProvider could not be used here as MockedProvider
+    // from apollo seems to block the rendering of child components
+    const rendered = mount(
+      <Provider store={store}>
+        <App
+          isAppHandshakeLoaded={false}
+          onAppStarted={() => {}}
+          isAuthenticated={true}
+          subscribeToUpdates={() => {}}
+          unsubscribeToUpdates={() => {}}
+        />
+      </Provider>
+    );
+
+    expect(rendered.find(Router)).toHaveLength(0);
   });
 
   test("should subscribe on initial load only", () => {
+    // MockProvider could not be used here as MockedProvider
+    // from apollo seems to block the rendering of child components
     const subscribeFn = jest.fn();
 
-    shallow(
-      <App
-        onAppStarted={() => {}}
-        isAuthenticated={true}
-        activeComponents={["foo"]}
-        routeParams={[]}
-        subscribeToPlayerUpdates={subscribeFn}
-        unsubscribeToPlayerUpdates={() => {}}
-      />
-    );
-
-    expect(subscribeFn).toHaveBeenCalledTimes(1);
-  });
-
-  Object.values(MARKETS).forEach(market => {
-    const marketLanguage = LANGUAGES[market];
-    const marketUrlPrefix = URL_PREFIXES[market];
-
-    test(`should pass '${marketUrlPrefix}' as basePath and '${marketLanguage}' as language to Router for ${market}`, () => {
-      const rendered = mount(
+    mount(
+      <Provider store={store}>
         <App
           onAppStarted={() => {}}
           isAuthenticated={true}
-          subscribeToPlayerUpdates={() => {}}
-          unsubscribeToPlayerUpdates={() => {}}
-          market={market}
-          language={marketLanguage}
+          activeComponents={["foo"]}
+          routeParams={[]}
+          subscribeToUpdates={subscribeFn}
+          unsubscribeToUpdates={() => {}}
+          playerId={"123"}
+          sessionId={"345"}
         />
-      );
-      const { basePath, language } = rendered.find(Router).props();
+      </Provider>
+    );
 
-      expect(basePath).toBe(marketUrlPrefix);
-      expect(language).toBe(marketLanguage);
-    });
+    expect(subscribeFn).toHaveBeenCalledTimes(1);
   });
 });

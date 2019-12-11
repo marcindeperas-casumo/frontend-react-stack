@@ -8,17 +8,21 @@ import {
   sessionIdSelector,
   languageSelector,
   marketSelector,
+  isApplicationHandshakeLoaded,
 } from "Models/handshake";
 import { activeComponents, routeParamsSelector } from "Models/router";
-import { App } from "Components/App/App";
 import {
   subscribeToPlayerUpdates,
   unsubscribeToPlayerUpdates,
+  subscribeToSessionUpdates,
+  unsubscribeToSessionUpdates,
 } from "Models/cometd";
+import { App } from "./App";
 
 export default hot(
   connect(
     state => ({
+      isAppHandshakeLoaded: isApplicationHandshakeLoaded(state),
       isAuthenticated: isAuthenticated(state),
       activeComponents: activeComponents(state),
       routeParams: routeParamsSelector(state),
@@ -29,22 +33,32 @@ export default hot(
     }),
     {
       onAppStarted: appStarted,
-      dispatchSubscribe: subscribeToPlayerUpdates,
-      dispatchUnsubscribe: unsubscribeToPlayerUpdates,
+      dispatchSubscribeToPlayer: subscribeToPlayerUpdates,
+      dispatchUnsubscribeToPlayer: unsubscribeToPlayerUpdates,
+      dispatchSubscribeToSession: subscribeToSessionUpdates,
+      dispatchUnsubscribeToSession: unsubscribeToSessionUpdates,
     },
     (stateProps, dispatchProps) => {
       const { playerId, sessionId } = stateProps;
       const {
-        dispatchSubscribe,
-        dispatchUnsubscribe,
+        dispatchSubscribeToPlayer,
+        dispatchUnsubscribeToPlayer,
+        dispatchSubscribeToSession,
+        dispatchUnsubscribeToSession,
         onAppStarted,
       } = dispatchProps;
 
       return {
         ...stateProps,
         onAppStarted,
-        subscribeToPlayerUpdates: () => dispatchSubscribe(playerId, sessionId),
-        unsubscribeToPlayerUpdates: () => dispatchUnsubscribe(playerId),
+        subscribeToUpdates: () => {
+          dispatchSubscribeToPlayer(playerId, sessionId);
+          dispatchSubscribeToSession(sessionId);
+        },
+        unsubscribeToUpdates: () => {
+          dispatchUnsubscribeToPlayer(playerId);
+          dispatchUnsubscribeToSession(playerId);
+        },
       };
     }
   )(App)
