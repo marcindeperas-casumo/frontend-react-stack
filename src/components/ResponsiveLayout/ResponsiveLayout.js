@@ -32,9 +32,21 @@ export const Desktop = ({ children }: { children: React.Node }) => {
   );
 };
 
-export const TabletAndDesktop = ({ children }: { children: React.Node }) => {
+export const TabletAndDesktop = ({
+  children,
+  orientation,
+}: {
+  children: React.Node,
+  orientation?: ORIENTATION_TYPE,
+}) => {
   return (
-    <RenderIfMatchBreakpoint breakpoint={tabletAndDesktopBreakpoint}>
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation
+          ? { ...tabletAndDesktopBreakpoint, orientation }
+          : tabletAndDesktopBreakpoint
+      }
+    >
       {children}
     </RenderIfMatchBreakpoint>
   );
