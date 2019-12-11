@@ -32,14 +32,18 @@ const NETENT_EVENTS = {
   BACK_TO_LOBBY: "goToLobby",
   PAUSE_AUTOPLAY: "pauseAutoplay",
   RESUME_AUTOPLAY: "resumeAutoplay",
+  GAME_ROUND_STARTED: "gameRoundStarted",
+  GAME_ROUND_ENDED: "gameRoundEnded",
 };
+
+const ELEMENT_ID = "netent-game";
 
 export class NetentGame extends BaseGame {
   extend: ?Extend = null;
 
   get componentProps() {
     return {
-      id: "netent-game",
+      id: ELEMENT_ID,
       ref: this.props.gameRef,
     };
   }
@@ -61,7 +65,7 @@ export class NetentGame extends BaseGame {
       width: "100%",
       height: "100%",
       enforceRatio: false,
-      targetElement: "netent-game",
+      targetElement: ELEMENT_ID,
       launchType: "iframe",
       applicationType: "browser",
     };
@@ -72,11 +76,19 @@ export class NetentGame extends BaseGame {
       netent.launch(
         this.config,
         (extend: Extend) => {
-          this.extend = extend;
-          this.extend.addEventListener(
+          extend.addEventListener(
             NETENT_EVENTS.BACK_TO_LOBBY,
             this.goToLobby.bind(this)
           );
+          extend.addEventListener(
+            NETENT_EVENTS.GAME_ROUND_STARTED,
+            this.setGameAsActive.bind(this)
+          );
+          extend.addEventListener(
+            NETENT_EVENTS.GAME_ROUND_ENDED,
+            this.setGameAsIdle.bind(this)
+          );
+          this.extend = extend;
         },
         (error: {}) => {
           logger.error("Cannot load game", { error });
@@ -86,9 +98,9 @@ export class NetentGame extends BaseGame {
   }
 
   onUnmount() {
-    if (this.extend) {
-      this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
-    }
+    this.extend && this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
+    this.extend &&
+      this.extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_ENDED);
   }
 
   pauseGame() {

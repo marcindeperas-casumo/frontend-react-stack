@@ -9,16 +9,18 @@ export class EdictGame extends BaseIframeGame {
     this.api.features.instantPause = true;
     this.api.commands.pause = "pauseGame";
     this.api.commands.resume = "resumeGame";
+    this.api.events.onGameRoundStart = "gameRoundStarted";
+    this.api.events.onGameRoundEnd = "gameRoundEnded";
   }
 
   get componentProps() {
-    // url contains &realityCheckLinkUrl=https://casumo.com/assets/return-from-3rd-party.html?destinationUrl%3D%252Fcash%252Fhistory%252Fbets
     const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
 
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&referrerUrl=${super.lobbyUrl}`,
+        src: `${url}&referrerUrl=${encodedLobbyUrl}`,
       };
     }
 

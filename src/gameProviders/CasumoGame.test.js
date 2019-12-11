@@ -1,6 +1,6 @@
 // @flow
-import { ENVIRONMENTS } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
+import { ENVIRONMENTS } from "Src/constants";
 import { CasumoGame } from "./CasumoGame";
 
 describe("CasumoGame", () => {

@@ -1,7 +1,7 @@
 // @flow
 import * as utils from "Utils";
-import { ENVIRONMENTS } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
+import { ENVIRONMENTS } from "Src/constants";
 import { NETENT_SCRIPT_URL, NetentGame } from "./NetentGame";
 
 jest.mock("../utils/utils.js", () => ({

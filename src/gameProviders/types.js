@@ -41,7 +41,6 @@ export type IframeGameApi = {
     resume: IframeGameApiMessage,
   },
   events: {
-    onPauseEnded: IframeGameApiMessage,
     onGameRoundStart: IframeGameApiMessage,
     onGameRoundEnd: IframeGameApiMessage,
   },

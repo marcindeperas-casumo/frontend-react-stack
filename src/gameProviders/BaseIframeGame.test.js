@@ -9,7 +9,6 @@ export const baseIframeGameApi = {
     resume: null,
   },
   events: {
-    onPauseEnded: null,
     onGameRoundStart: null,
     onGameRoundEnd: null,
   },
@@ -50,7 +49,7 @@ describe("BaseIframeGame", () => {
   });
 
   test("should set gameData params and gameRef in constructor", () => {
-    expect(model.targetDomain).toEqual("*");
+    expect(model.targetDomain).toEqual("https://d1k6j4zyghhevb.cloudfront.net");
     expect(model.api).toEqual(baseIframeGameApi);
   });
 
@@ -63,7 +62,9 @@ describe("BaseIframeGame", () => {
   });
 
   test("should return lobbyUrl", () => {
-    expect(model.lobbyUrl).toBe("http://localhost/games/top");
+    expect(model.lobbyUrl).toBe(
+      "http://localhost/react-stack/navigation-bubbler.html?target=games/top"
+    );
   });
 
   expect(model.onMount).toBeInstanceOf(Function);

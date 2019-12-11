@@ -3,6 +3,8 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
+// game idle not currently possible
+
 export class CasumoGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
@@ -19,13 +21,13 @@ export class CasumoGame extends BaseIframeGame {
 
   get componentProps() {
     const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+    const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
 
     if (url) {
       return {
         ...super.componentProps,
-        src: `${url}&lobbyUrl=${
-          super.lobbyUrl
-        }&iframeUrl=http://mobile.dev/en/games/top`,
+        src: `${url}&lobbyUrl=${encodedLobbyUrl}&iframeUrl=${encodedEventBubblerUrl}`,
       };
     }
 
