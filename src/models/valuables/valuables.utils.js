@@ -1,5 +1,14 @@
 /* @flow */
-import { equals, anyPass, filter } from "ramda";
+import {
+  equals,
+  anyPass,
+  filter,
+  sortWith,
+  prop,
+  descend,
+  pipe,
+  head,
+} from "ramda";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
@@ -115,3 +124,12 @@ export const getExpiryTimeLeft = (timestamp: number) => {
 
   return getDateTimeDifferenceFromNow(luxonDate);
 };
+
+export const orderValuablesByCreationTime = sortWith([
+  descend(prop("created")),
+]);
+
+export const getLatestValuable = pipe(
+  orderValuablesByCreationTime,
+  head
+);
