@@ -2,7 +2,7 @@
 import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
@@ -87,7 +87,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <ScrollableList
               itemClassName={className}
               title={title}
@@ -96,7 +96,7 @@ export class GameListHorizontal extends PureComponent<Props> {
               itemIds={itemIds}
               Component={itemRenderer}
             />
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
