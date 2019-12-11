@@ -3,7 +3,11 @@ import * as R from "ramda";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import * as storage from "Services/storage";
-import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
+import {
+  VALUABLE_STATES,
+  getValuablesByState,
+  getLatestValuable,
+} from "Models/valuables";
 import { FreebetNotification } from "./FreebetNotification";
 
 // We are persisting the users action of hiding the notification to localStorage.
@@ -20,6 +24,7 @@ const FREEBET_QUERY = gql`
         backgroundImage
         currency
         expiryDate
+        created
         market
         valuableState
         valuableType
@@ -39,7 +44,7 @@ export const FreebetNotificationContainer = () => {
   // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
   // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
   const lockedFreebets = getValuablesByState(VALUABLE_STATES.LOCKED)(valuables);
-  const [latestLockedFreebet = {}] = lockedFreebets;
+  const latestLockedFreebet = getLatestValuable(lockedFreebets) || {};
   const { id } = latestLockedFreebet;
   const onClose = () => {
     setIsHidden(true);
