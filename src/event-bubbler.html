@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Casumo Event Bubbler</title>
+  </head>
+  <body>
+    <script>
+      window.addEventListener("message", (message) => {
+        window.top.postMessage(message.data, "*");
+      });
+    </script>
+  </body>
+</html>

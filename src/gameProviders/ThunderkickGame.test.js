@@ -1,18 +1,25 @@
 // @flow
+import { ENVIRONMENTS } from "Src/constants";
+import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ThunderkickGame } from "./ThunderkickGame";
 
 describe("ThunderkickGame", () => {
-  const params = {
+  const gameData = {
     url:
       "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
     providerType: "THUNDERKICK_MOBILE",
     providerName: "THUNDERKICK",
   };
   const gameRef = { current: null };
-  const model = new ThunderkickGame(params, gameRef);
+  const model = new ThunderkickGame({
+    gameData,
+    gameRef,
+    language: DEFAULT_LANGUAGE,
+    environment: ENVIRONMENTS.TEST,
+  });
 
   test("should return the element as iframe", () => {
-    expect(model.element).toBe("iframe");
+    expect(model.componentTag).toBe("iframe");
   });
 
   test("should set api commands", () => {
