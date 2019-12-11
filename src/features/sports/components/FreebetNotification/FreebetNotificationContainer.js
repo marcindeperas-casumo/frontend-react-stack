@@ -8,6 +8,9 @@ import { FreebetNotification } from "./FreebetNotification";
 
 // We are persisting the users action of hiding the notification to localStorage.
 export const IS_HIDDEN_STORAGE_KEY = "isFreebetNotificationHidden";
+const getStorageKey = id => `${IS_HIDDEN_STORAGE_KEY}-${id}`;
+const getPersistedIsHidden = id => storage.get(getStorageKey(id), false);
+const persistIsHidden = id => storage.set(getStorageKey(id), true);
 
 const FREEBET_QUERY = gql`
   query FREEBET_QUERY {
@@ -30,20 +33,20 @@ const FREEBET_QUERY = gql`
 
 export const FreebetNotificationContainer = () => {
   const { data, loading } = useQuery(FREEBET_QUERY);
+  const [isHidden, setIsHidden] = useState();
   const valuables = R.pathOr([], ["player", "valuables"], data);
   // Only display it for locked free bets.
   // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
   // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
   const lockedFreebets = getValuablesByState(VALUABLE_STATES.LOCKED)(valuables);
   const [latestLockedFreebet = {}] = lockedFreebets;
-  const isHiddenDefaultValue = storage.get(IS_HIDDEN_STORAGE_KEY, false);
-  const [isHidden, setIsHidden] = useState(isHiddenDefaultValue);
+  const { id } = latestLockedFreebet;
   const onClose = () => {
-    storage.set(IS_HIDDEN_STORAGE_KEY, true);
     setIsHidden(true);
+    persistIsHidden(id);
   };
 
-  if (isHidden) {
+  if (isHidden || getPersistedIsHidden(id)) {
     return null;
   }
 
