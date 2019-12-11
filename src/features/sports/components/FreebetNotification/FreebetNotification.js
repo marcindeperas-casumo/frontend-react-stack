@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react";
+import React from "react";
 import Media from "@casumo/cmp-media";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
@@ -35,26 +35,11 @@ type Props = {
 const MOCKED_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
 
 export const FreebetNotification = (props: Props) => {
-  const { onClose, isHiddenByDefault } = props;
-  const [isHidden, setIsHidden] = useState(isHiddenByDefault);
-
-  if (isHidden) {
-    return null;
-  }
-
   return (
     <Media
-      className="u-padding--md"
+      className="u-padding--md t-background-white"
       renderImage={() => renderValuableThumbnail(props)}
-      renderText={() =>
-        renderValuableText({
-          ...props,
-          onClose: () => {
-            onClose();
-            setIsHidden(true);
-          },
-        })
-      }
+      renderText={() => renderValuableText(props)}
     ></Media>
   );
 };
