@@ -2,11 +2,11 @@ import React from "react";
 import * as R from "ramda";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import * as storage from "Lib/storage";
+import * as storage from "Services/storage";
 import { FreebetNotification } from "./FreebetNotification";
 
-export const IS_FREEBET_NOTIFICATION_HIDDEN_STORAGE_KEY =
-  "isFreebetNotificationHidden";
+// We are persisting the users action of hiding the notification to localStorage.
+export const IS_HIDDEN_STORAGE_KEY = "isFreebetNotificationHidden";
 
 const FREEBET_QUERY = gql`
   query FREEBET_QUERY {
@@ -30,12 +30,8 @@ const FREEBET_QUERY = gql`
 export const FreebetNotificationContainer = () => {
   const { data, loading } = useQuery(FREEBET_QUERY);
   const [valuable = {}] = R.pathOr([], ["player", "valuables"], data);
-  const isHiddenByDefault = storage.get(
-    IS_FREEBET_NOTIFICATION_HIDDEN_STORAGE_KEY,
-    false
-  );
-  const onClose = () =>
-    storage.set(IS_FREEBET_NOTIFICATION_HIDDEN_STORAGE_KEY, true);
+  const isHiddenByDefault = storage.get(IS_HIDDEN_STORAGE_KEY, false);
+  const onClose = () => storage.set(IS_HIDDEN_STORAGE_KEY, true);
 
   return loading ? null : (
     <FreebetNotification
