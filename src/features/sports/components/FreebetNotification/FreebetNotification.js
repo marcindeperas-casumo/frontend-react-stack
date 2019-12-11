@@ -29,6 +29,11 @@ type Props = {
   isHiddenByDefault: Boolean,
 };
 
+// The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
+// although locked valuables don't have this badge, so we can mock this data now.
+// Ideally <ValuableThumbnail> shouldn't make these properties mandatory.
+const MOCKED_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
+
 export const FreebetNotification = ({
   backgroundImage,
   currency,
@@ -78,8 +83,6 @@ export const FreebetNotification = ({
   );
 };
 
-const NO_NONSENSE_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
-
 const renderValuableThumbnail = (
   backgroundImage,
   currency,
@@ -102,7 +105,7 @@ const renderValuableThumbnail = (
       currency={currency}
       expiryTimeLeft={getExpiryTimeLeft(expiryDate)}
       market={market}
-      translations={NO_NONSENSE_TRANSLATIONS}
+      translations={MOCKED_TRANSLATIONS}
       valuableState={valuableState}
       valuableType={valuableType}
       size="small"
