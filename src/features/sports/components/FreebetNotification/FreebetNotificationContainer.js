@@ -31,6 +31,9 @@ const FREEBET_QUERY = gql`
 export const FreebetNotificationContainer = () => {
   const { data, loading } = useQuery(FREEBET_QUERY);
   const valuables = R.pathOr([], ["player", "valuables"], data);
+  // Only display it for locked free bets.
+  // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
+  // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
   const lockedFreebets = getValuablesByState(VALUABLE_STATES.LOCKED)(valuables);
   const [latestLockedFreebet = {}] = lockedFreebets;
   const isHiddenDefaultValue = storage.get(IS_HIDDEN_STORAGE_KEY, false);
@@ -39,13 +42,6 @@ export const FreebetNotificationContainer = () => {
     storage.set(IS_HIDDEN_STORAGE_KEY, true);
     setIsHidden(true);
   };
-
-  // Only display it for locked free bets.
-  // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
-  // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
-  if (latestLockedFreebet.valuableState !== VALUABLE_STATES.LOCKED) {
-    return null;
-  }
 
   if (isHidden) {
     return null;
