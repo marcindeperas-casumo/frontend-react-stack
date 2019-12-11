@@ -107,15 +107,12 @@ const renderValuableText = ({
         {valuableState === VALUABLE_STATES.LOCKED && (
           <LockIcon size="sm" className="u-margin-right--sm" />
         )}
-        <DangerousHtml data-test="freebet-notification-title" html={title} />
+        <DangerousHtml html={title} />
       </Text>
 
       {description && (
         <Text size="sm" tag="div">
-          <DangerousHtml
-            data-test="freebet-notification-description"
-            html={description}
-          />
+          <DangerousHtml html={description} />
         </Text>
       )}
 
