@@ -94,11 +94,14 @@ module.exports = {
     "no-unused-expressions": "error",
     "no-useless-catch": "error",
     "no-void": "error",
+    "no-unused-vars": "error",
     "prettier/prettier": "error",
+    "require-await": "error",
     "sonarjs/no-duplicate-string": "off",
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error",
     "flowtype/space-after-type-colon": "off",
+    "flowtype/generic-spacing": "off",
   },
   overrides: [
     {
@@ -120,6 +123,13 @@ module.exports = {
       files: ["**/models/**", "**/lib/**"],
       rules: {
         "filenames/match-exported": ["error", "dot"],
+      },
+    },
+    {
+      files: ["src/types/apollo.js"],
+      rules: {
+        "max-lines": "off",
+        "no-use-before-define": "off",
       },
     },
   ],

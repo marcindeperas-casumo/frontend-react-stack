@@ -27,7 +27,8 @@
           "Src": "./src",
           "Storybook": "./.storybook",
           "Types": "./src/types",
-          "Utils": "./src/utils"
+          "Utils": "./src/utils",
+          "GameProviders": "./src/gameProviders"
         }
       }
     ]

@@ -24,13 +24,8 @@ export const REACT_APP_EVENT_ON_OVERLAY_CHANGE =
 export const REACT_APP_SPORTS_SHOW_SEARCH = "REACT_APP_EVENT/sports/showSearch";
 export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
-export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/onPlaying";
-
-export const REACT_APP_EVENTS = {
-  SLOT_CONTROL_SYSTEM: {
-    CONFIGURATION_INIT: "REACT_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationInit",
-  },
-};
+export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
+export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.
@@ -43,6 +38,12 @@ export const KO_APP_EVENT_CHANGE_ROUTE = "KO_APP_EVENT/changeRoute";
 export const KO_APP_EVENT_SPAWN_OLD_PLAY_OKAY_VIEW =
   "KO_APP_EVENT/spawnOldPlayOkayView";
 export const KO_APP_EVENT_NAVIGATE = "KO_APP_EVENT/navigate";
+export const KO_APP_EVENT_MODAL_HIDDEN = "KO_APP_EVENT/modalHidden";
+export const KO_APP_EVENT_DEPOSIT_BONUS_SELECTED =
+  "KO_APP_EVENT/depositBonusSelected";
+export const KO_APP_EVENT_SHOW_BONUS_TERMS = "KO_APP_EVENT/showBonusTerms";
+
+export const ROOT_SCROLL_ELEMENT_ID = "main-content-wrapper";
 
 export const KO_EVENTS = {
   ACCOUNT_SETTINGS: {
@@ -51,12 +52,14 @@ export const KO_EVENTS = {
   VALUABLES: {
     ITEM_CREATED: "VALUABLES/ITEM_CREATED",
   },
-  SLOT_CONTROL_SYSTEM: {
-    CONFIGURATION_FINISHED:
-      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationFinished",
-    CONFIGURATION_EXITED:
-      "KO_APP_EVENT/SLOT_CONTROL_SYSTEM/configurationExited",
-  },
+};
+export const DEVICES = {
+  DESKTOP: "desktop",
+  MOBILE: "mobile",
+};
+export const ENVIRONMENTS = {
+  TEST: "test",
+  PRODUCTION: "production",
 };
 
 export const STORE_REHYDRATE = "REHYDRATE";
@@ -81,7 +84,76 @@ export const GAME_LIST_IDS = {
   PLAYER_GAMES: "playerGames",
   SUGGESTED_GAMES: "suggestedGames",
   SUGGESTED_GAMES_SEARCH: "suggestedGamesSearch",
+  MY_LIST: "myList",
 };
+
+export const ROUTE_IDS = {
+  DEPOSIT: "DEPOSIT",
+  LOGIN: "LOGIN",
+  PLAY: "PLAY",
+  PRACTICE: "PRACTICE",
+  TOP_LISTS: "TOP_LISTS",
+  GAMES_SEARCH: "GAMES_SEARCH",
+  MUST_DROP_JACKPOTS: "MUST_DROP_JACKPOTS",
+  GAME_PROVIDER_GAMES: "GAME_PROVIDER_GAMES",
+  LIVE_CASINO_DETAILS: "LIVE_CASINO_DETAILS",
+  PROMOTIONS: "PROMOTIONS",
+  PROMOTION_DETAILS: "PROMOTION_DETAILS",
+  PLAYER_DASHBOARD: "PLAYER_DASHBOARD",
+  PLAYER_VALUABLES: "PLAYER_VALUABLES",
+  PLAYER_SETTINGS: "PLAYER_SETTINGS",
+  PLAYER_SETTINGS_NOTIFICATIONS: "PLAYER_SETTINGS_NOTIFICATIONS",
+  PLAYER_SETTINGS_ACCOUNT_DETAILS: "PLAYER_SETTINGS_ACCOUNT_DETAILS",
+  PLAYER_SETTINGS_REALITY_CHECK: "PLAYER_SETTINGS_REALITY_CHECK",
+  SPORTS: "SPORTS",
+  TRANSACTION_HISTORY: "TRANSACTION_HISTORY",
+  TRANSACTION_HISTORY_BETS: "TRANSACTION_HISTORY_BETS",
+  TRANSACTION_ANNUAL_OVERVIEW: "TRANSACTION_ANNUAL_OVERVIEW",
+};
+
+export const ROUTES = {
+  [ROUTE_IDS.LOGIN]: "log-in",
+  [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
+  [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
+  [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
+  [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
+  [ROUTE_IDS.MUST_DROP_JACKPOTS]: "{{games}}/must-drop-jackpots",
+  [ROUTE_IDS.GAME_PROVIDER_GAMES]: "{{games}}/provider/:provider",
+  [ROUTE_IDS.LIVE_CASINO_DETAILS]: "{{games}}/live-casino-details",
+  [ROUTE_IDS.PROMOTIONS]: "promotions",
+  [ROUTE_IDS.PROMOTION_DETAILS]: "promotions/:slug",
+  [ROUTE_IDS.PLAYER_DASHBOARD]: "player",
+  [ROUTE_IDS.PLAYER_VALUABLES]: "player/valuables",
+  [ROUTE_IDS.PLAYER_SETTINGS]: "player/settings",
+  [ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS]: "player/settings/notifications",
+  [ROUTE_IDS.PLAYER_SETTINGS_ACCOUNT_DETAILS]:
+    "player/settings/account-details",
+  [ROUTE_IDS.PLAYER_SETTINGS_REALITY_CHECK]: "player/settings/reality-check",
+  [ROUTE_IDS.SPORTS]: "sports",
+  [ROUTE_IDS.TRANSACTION_HISTORY]: "cash/history",
+  [ROUTE_IDS.TRANSACTION_HISTORY_BETS]: "cash/history/bets",
+  [ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW]:
+    "cash/history/transactions-annual-overview/:selectedYear",
+  [ROUTE_IDS.DEPOSIT]: "cash/deposit",
+};
+
+export const TRANSLATED_ROUTES = {
+  GAMES: {
+    sv: "spel",
+    fi: "pelit",
+    no: "spillvelger",
+    de: "spiele",
+    DEFAULT: "games",
+  },
+  PLAY: {
+    sv: "spela",
+    fi: "pelaa",
+    no: "spill",
+    de: "spielen",
+    DEFAULT: "play",
+  },
+};
+
 export const MARKETS = {
   ___en: "___en",
   ca_en: "ca_en",
@@ -93,6 +165,8 @@ export const MARKETS = {
   no_no: "no_no",
   se_sv: "se_sv",
   es_es: "es_es",
+  nz_en: "nz_en",
+  jp_ja: "jp_ja",
 };
 export const LANGUAGES = {
   [MARKETS.___en]: "en",
@@ -105,6 +179,8 @@ export const LANGUAGES = {
   [MARKETS.no_no]: "no",
   [MARKETS.se_sv]: "sv",
   [MARKETS.es_es]: "es",
+  [MARKETS.nz_en]: "nz",
+  [MARKETS.jp_ja]: "jp",
 };
 export const INTL_LOCALES = {
   [MARKETS.___en]: "en",
@@ -117,8 +193,23 @@ export const INTL_LOCALES = {
   [MARKETS.no_no]: "no-NO",
   [MARKETS.se_sv]: "sv-SE",
   [MARKETS.es_es]: "es-ES",
+  [MARKETS.nz_en]: "en-NZ",
+  [MARKETS.jp_ja]: "ja-JP",
 };
-
+export const URL_PREFIXES = {
+  [MARKETS.___en]: "en",
+  [MARKETS.ca_en]: "en-ca",
+  [MARKETS.de_de]: "de",
+  [MARKETS.dk_da]: "da",
+  [MARKETS.fi_fi]: "fi",
+  [MARKETS.gb_en]: "en-gb",
+  [MARKETS.in_en]: "en-in",
+  [MARKETS.no_no]: "no",
+  [MARKETS.se_sv]: "sv",
+  [MARKETS.es_es]: "es",
+  [MARKETS.nz_en]: "en-nz",
+  [MARKETS.jp_ja]: "ja",
+};
 export const CURRENCY_SYMBOLS = {
   EUR: "\u20AC", // €
   GBP: "\u00A3", // £
@@ -127,7 +218,7 @@ export const CURRENCY_SYMBOLS = {
   CAD: "\u0024", // $
   NZD: "\u0024", // $
   INR: "\u20B9", // ₹
-  JPY: "\u00A5", // ¥
+  USD: "\u0024", // $
 };
 
 export const CURRENCIES = {
@@ -138,7 +229,7 @@ export const CURRENCIES = {
   CAD: "CAD",
   NZD: "NZD",
   INR: "INR",
-  JPY: "JPY",
+  USD: "USD",
 };
 
 export const VERTICALS = {
@@ -159,6 +250,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
+  MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
 };
 
 export const EVENT_PROPS = {
@@ -171,6 +263,7 @@ export const EVENT_PROPS = {
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
   PROMOTION_TYPE: "promotion type",
+  IS_FAVOURITE: "Is Favourite",
 };
 
 export const EVENT_LOCATIONS = {
@@ -180,6 +273,21 @@ export const EVENT_LOCATIONS = {
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
 };
+
+// Those modals are implemented on react side. They can be spawned from knockout.
+// Event KO_APP_EVENT_MODAL_HIDDEN will contain ID and RETURN_CODE of closed modal
+export const REACT_APP_MODAL = {
+  RETURN_CODE: {
+    ACCEPTED: "ACCEPTED",
+    CLOSED: "CLOSED",
+    DISMISSED: "DISMISSED",
+  },
+  ID: {
+    TERMS_AND_CONDITIONS_SPAIN: "TERMS_AND_CONDITIONS_SPAIN",
+    SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
+  },
+};
+// Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
 
 export const MODALS = {
   ACCOUNT_SETTINGS: {
@@ -191,6 +299,7 @@ export const MODALS = {
     VALUABLE_DETAILS: "VALUABLE_DETAILS/VALUABLE_DETAILS",
   },
   TOP_LIST: { REEL_RACE_CAVEATS: "TOP_LIST/REEL_RACE_CAVEATS" },
+  DEPOSIT: { SHOW_BONUS_TERMS: "DEPOSIT/SHOW_BONUS_TERMS" },
   ERROR: "ERROR",
 };
 

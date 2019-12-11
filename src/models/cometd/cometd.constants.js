@@ -14,6 +14,7 @@ export const CHANNELS = {
   REEL_RACES: "/public/tournaments",
   PLAYER: "/player",
   ADVENTURE: "/adventurer",
+  SESSION: "/session",
 };
 
 export const MESSAGES = {

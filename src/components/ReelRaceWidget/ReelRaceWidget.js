@@ -3,6 +3,7 @@ import * as React from "react";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import ReelRaceLeaderboardWidget from "Components/ReelRaceLeaderboardWidget/";
+import * as A from "Types/apollo";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
 import { ReelRaceWidgetHeader } from "./ReelRaceWidgetHeader";
@@ -17,7 +18,7 @@ type Props = {
   unsubscribeReelRacesUpdates: () => void,
   launchGame: () => void,
   areTranslationsFetched: boolean,
-  scheduledGame: GameRow_Game,
+  scheduledGame: A.GameRow_Game,
   gameSlug: string,
   playing: Playing,
   t: ReelRacesTranslations,

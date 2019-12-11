@@ -12,7 +12,7 @@ import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 
 const ids = R.map(R.toString, R.range(0, 8));
 
-describe("<MustDropJackpotsList /> - Mobile", () => {
+describe("<MustDropJackpotsList /> - Mobile and Tablet", () => {
   setMobileViewport();
   const rendered = mount(
     <MockStore state={defaultState}>

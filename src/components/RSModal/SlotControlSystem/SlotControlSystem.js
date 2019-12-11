@@ -1,17 +1,77 @@
 // @flow
 import * as React from "react";
-import Button from "@casumo/cmp-button";
+import { useSessionsState } from "Models/slotControlSystem";
+import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
+import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
+import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
+import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
+import { type ModalContentComponent } from "Components/RSModal";
+import { useWalletAmount } from "Utils/hooks";
+import { ModalSkin } from "./ModalSkin";
 
-type Props = {
-  hideModalSuccess: () => void,
+type SlotControlSystemContent = {
+  modal_title: string,
 };
 
-export function SlotControlSystem(props: Props) {
-  // TODO, will change when PCC-255 progresses (https://jira.casumocave.com/browse/PCC-255)
+export function SlotControlSystem(
+  props: ModalContentComponent<SlotControlSystemContent>
+) {
+  const { amount } = useWalletAmount();
+  const [continuePlaying, setContinuePlaying] = React.useState(false);
+  const {
+    activeSession,
+    isFetching,
+    lastEndedSessionDuringLastHour,
+    activeExclusion,
+  } = useSessionsState();
+
+  React.useEffect(() => {
+    if (hasEnoughFunds(amount) && activeSession) {
+      props.acceptModal();
+    }
+  }, [amount, activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (isFetching) {
+    return null;
+  }
+
+  if (activeExclusion) {
+    return (
+      <ModalSkin {...props}>
+        <StillOnBreakContainer
+          onClick={props.closeModal}
+          secondsTillEnd={(activeExclusion.expiringTime - Date.now()) / 1000}
+        />
+      </ModalSkin>
+    );
+  }
+
+  if (!hasEnoughFunds(amount)) {
+    return (
+      <ModalSkin {...props}>
+        <NotEnoughFundsContainer onClick={props.closeModal} />
+      </ModalSkin>
+    );
+  }
+
+  if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
+    return (
+      <ModalSkin {...props}>
+        <RememberToPlayWithinLimitsContainer
+          onClickYes={() => setContinuePlaying(true)}
+          onClickAbout={props.closeModal}
+        />
+      </ModalSkin>
+    );
+  }
+
   return (
-    <div>
-      <h1>Slot Control System</h1>
-      <Button onClick={props.hideModalSuccess}>Success</Button>
-    </div>
+    <ModalSkin {...props}>
+      <ConfigurationFormContainer />
+    </ModalSkin>
   );
+}
+
+function hasEnoughFunds(amount: number) {
+  return amount > 0.6;
 }

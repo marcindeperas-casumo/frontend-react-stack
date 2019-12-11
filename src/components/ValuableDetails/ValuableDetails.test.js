@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock.json";
+import mockTranslations from "Models/valuables/__mocks__/valuableDetailsTranslations.mock";
 import { VALUABLE_STATES } from "Models/valuables";
 import { getDateTimeDifferenceFromNow } from "Utils";
 import { ValuableDetails, expirationBadgeClasses } from "./ValuableDetails";
@@ -202,27 +202,6 @@ describe("ValuableDetails", () => {
     actionButton.simulate("click");
 
     await expect(onConsume).toHaveBeenCalledTimes(1);
-  });
-
-  test("should call not neither onConsume and onlaunch if type is deposit", () => {
-    mockValuable = mockValuables[1];
-
-    rendered = shallow(
-      <ValuableDetails
-        valuableDetails={mockValuable}
-        translations={mockTranslations}
-        onConsumeValuable={onConsume}
-      >
-        <Foo />
-      </ValuableDetails>
-    );
-
-    const actionButton = rendered.find({
-      "data-test": "valuable-action-button",
-    });
-    actionButton.simulate("click");
-
-    expect(onConsume).toHaveBeenCalledTimes(0);
   });
 
   test("should only call on consume if type is cash", () => {

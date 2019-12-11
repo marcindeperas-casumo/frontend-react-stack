@@ -1,4 +1,4 @@
-query PlayerValuablesQuery {
+query PlayerValuablesQuery($valuableType: ValuableType)  {
   listTitleLabel: getText(
     id: "root:mobile.valuables:fields.your_valuables"
   )
@@ -17,12 +17,17 @@ query PlayerValuablesQuery {
   seeAllLabel: getText(
     id: "root:mobile.valuables:fields.see_all_valuables_link"
   )
+  noValuablesLabel: getText(
+    id: "root:mobile.valuables:fields.no_valuables"
+  )
+  dontUseValuableLabel: getText(
+    id: "root:mobile.deposit:fields.dont_use_valuable_label"
+  )
   player {
-    valuables {
+    valuables (valuableType: $valuableType) {
       __typename
       id
       valuableState
-      expirationTimeInHours
       expiryDate
       valuableType
       title
@@ -52,7 +57,6 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     __typename
     id
     valuableState
-    expirationTimeInHours
     expiryDate
     valuableType
     title
@@ -74,4 +78,8 @@ fragment PlayerValuableList_PlayerValuable on PlayerValuable {
     ... on PlayerValuableCash {
       requirementType
     }
+}
+
+mutation UseValuable($id: String!, $source: String) {
+  useValuable(id: $id, source: $source)
 }

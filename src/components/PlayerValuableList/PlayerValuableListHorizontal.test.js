@@ -1,117 +1,115 @@
 //@flow
-import React from "react";
-import { shallow, mount } from "enzyme";
+import * as React from "react";
+import { mount } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
 import Scrollable from "@casumo/cmp-scrollable";
-import mockedValuables from "Components/ValuableCard/__mocks__/Valuable.json";
-import bridge from "Src/DurandalReactBridge";
-import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
+import {
+  actWait,
+  waitAndUpdateWrapper,
+  getCacheWithIntrospections,
+} from "Utils";
 import { ValuableCard } from "Components/ValuableCard";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
+import mockedValuables from "Components/ValuableCard/__mocks__/Valuable";
 import { PlayerValuableListHorizontal } from "./PlayerValuableListHorizontal";
+import { mocks } from "./__mocks__/playerValuableListMocks";
 import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListHorizontal", () => {
-  const consumeValuable = jest.fn();
-  const refetchMock = jest.fn();
-  let rendered;
-
-  beforeEach(() => {
-    rendered = shallow(
-      <PlayerValuableListHorizontal
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={refetchMock}
-      />
+  test("should render skeleton while loading", async () => {
+    const rendered = mount(
+      <MockedProvider mocks={[]}>
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
     );
-  });
 
-  test("should render skeleton while loading", () => {
-    rendered = shallow(
-      <PlayerValuableListHorizontal
-        valuables={mockedValuables}
-        loading={true}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-      />
-    );
+    await actWait();
 
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(true);
   });
 
-  test("should render the correct number of items", () => {
+  test("should render the correct number of items", async () => {
+    const rendered = mount(
+      <MockedProvider
+        mocks={mocks.mockedValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
+    );
+
+    await waitAndUpdateWrapper(rendered);
+
     expect(rendered.find("GameListHorizontalSkeleton").exists()).toBe(false);
     expect(rendered.find(Scrollable).find(ValuableCard)).toHaveLength(
       mockedValuables.length
     );
   });
 
-  test("should render the list title", () => {
+  test("should render the list title", async () => {
+    const rendered = mount(
+      <MockedProvider
+        mocks={mocks.mockedValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
+    );
+
+    await waitAndUpdateWrapper(rendered);
+
     expect(rendered.find(ScrollableListTitleRow).prop("title")).toEqual(
       translationsMock.listTitleLabel
     );
   });
 
-  test("should render a link to list view when valuables exist", () => {
+  test("should render a link to list view when valuables exist", async () => {
+    const rendered = mount(
+      <MockedProvider
+        mocks={mocks.mockedValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
+    );
+
+    await waitAndUpdateWrapper(rendered);
+
     expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
       translationsMock.seeAllLabel
     );
   });
 
-  test("should not render a link to list view when valuables exist", () => {
-    rendered = shallow(
-      <PlayerValuableListHorizontal
-        valuables={[]}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-      />
+  test("should hide link to list view when valuables doesn't exist", async () => {
+    const rendered = mount(
+      <MockedProvider
+        mocks={mocks.emptyValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
     );
+
+    await waitAndUpdateWrapper(rendered);
 
     expect(rendered.find(ScrollableListTitleRow).prop("seeMore").text).toEqual(
       ""
     );
   });
 
-  test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
-    const mock = jest.fn();
-    rendered = mount(
-      <PlayerValuableListHorizontal
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={mock}
-      />
+  test("should render EmptyValuablesList if no valuables are provided", async () => {
+    const rendered = mount(
+      <MockedProvider
+        mocks={mocks.emptyValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListHorizontal />
+      </MockedProvider>
     );
-    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
-      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
-      data: {
-        success: true,
-      },
-    });
-    expect(mock).toHaveBeenCalledTimes(1);
-  });
 
-  test("should not refetch when component is unmounted", () => {
-    const mock = jest.fn();
-    rendered = mount(
-      <PlayerValuableListHorizontal
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={mock}
-      />
-    );
-    rendered.unmount();
-    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
-      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
-      data: {
-        success: true,
-      },
-    });
-    expect(mock).toHaveBeenCalledTimes(0);
+    await waitAndUpdateWrapper(rendered);
+
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });

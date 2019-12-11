@@ -1,6 +1,5 @@
 import React from "react";
 import { mount } from "enzyme";
-import Scrollable from "@casumo/cmp-scrollable";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
@@ -10,7 +9,7 @@ const fetchCampaign = jest.fn();
 const fetchPromotions = jest.fn();
 const promotionSlugs = ["page-1", "page-2"];
 
-describe("<PromotionCardList /> - Mobile", () => {
+describe("<PromotionCardList /> - Mobile and Tablet", () => {
   let rendered;
 
   beforeEach(() => {

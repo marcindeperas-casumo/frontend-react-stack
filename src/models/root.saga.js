@@ -1,5 +1,4 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
-import { types as tocTypes, fetchTACListSaga } from "Models/tac";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
@@ -19,6 +18,7 @@ import {
   fetchGamesBySlugsSaga,
   fetchGameListSaga,
   fetchGamesByProviderSaga,
+  updateMyListSaga,
 } from "Models/games";
 import { types as cmsTypes, fetchPageBySlugSaga } from "Models/cms";
 import {
@@ -40,6 +40,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
   types as playerGamesTypes,
@@ -72,7 +73,6 @@ export default function* rootSaga(dispatch) {
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
   yield fork(takeEvery, jackpotsMustDropTypes.FETCH, fetchJackpotsMustDropSaga);
-  yield fork(takeEvery, tocTypes.fetchTACAcknowledgements, fetchTACListSaga);
   yield fork(
     takeEvery,
     takeChannel(cometdChannels.JACKPOTS),
@@ -143,6 +143,11 @@ export default function* rootSaga(dispatch) {
       gameSearchTypes.GAME_SEARCH_FETCH_PAGE,
       fetchGameSearchPageSaga
     ),
+    fork(
+      takeLatest,
+      gameSearchTypes.GAME_SEARCH_FETCH_COUNT,
+      resetGameSearchScrollPositionSaga
+    ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
@@ -166,4 +171,5 @@ export default function* rootSaga(dispatch) {
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
     fetchAnnualOverviewPdfUrlSaga
   );
+  yield fork(takeEvery, gameTypes.UPDATE_MY_LIST, updateMyListSaga);
 }

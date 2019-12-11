@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import { act } from "react-dom/test-utils";
 import LazyPortal from "Components/LazyPortal/LazyPortal";
 
 describe("<LazyPortal />", () => {
@@ -19,13 +20,14 @@ describe("<LazyPortal />", () => {
       <LazyPortal
         hostElementId={hostElementId}
         loader={() => import("Components/DangerousHtml")}
-        props={{
-          html,
-        }}
+        props={{ html }}
       />
     );
 
     setImmediate(() => {
+      act(() => {
+        rendered.update();
+      });
       const renderedHtml = rendered.html();
       const domHtml = document.getElementById(hostElementId).innerHTML;
 

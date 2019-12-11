@@ -5,12 +5,14 @@ import Flex from "@casumo/cmp-flex";
 import Badge from "@casumo/cmp-badge";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
+import * as A from "Types/apollo";
 import { interpolate, convertHoursToDays } from "Utils";
 import { launchErrorModal } from "Services/LaunchModalService";
+import { depositBonusSelected } from "Services/DepositBonusSelectedService";
 import { navigate } from "Services/NavigationService";
 import {
-  shouldUseValuable,
   type ValuableDetailsTranslations as Translations,
+  type ValuableActionProps,
   VALUABLE_STATES,
   getValuableDetailsAction,
   durationToTranslationKey,
@@ -19,6 +21,7 @@ import {
   type DurationProps,
 } from "Models/valuables";
 import MaskImage from "Components/MaskImage";
+import DangerousHtml from "Components/DangerousHtml";
 import { ValuableWageringProgressBar } from "./ValuableWageringProgressBar";
 import OpenPadlock from "./open-padlock.svg";
 import "./ValuableDetails.scss";
@@ -38,7 +41,7 @@ type BadgeInfoType = {
 };
 
 export type Props = {
-  valuableDetails: ValuableDetails_PlayerValuable,
+  valuableDetails: A.ValuableDetails_PlayerValuable,
   /** The function to be called to consume the valuable which will be triggered by each card click */
   onConsumeValuable: (id: string) => Promise<void>,
   translations: Translations,
@@ -119,25 +122,30 @@ export class ValuableDetails extends React.PureComponent<Props> {
     return null;
   }
 
-  handleAction = (url?: string) => {
-    const { valuableDetails } = this.props;
-    const { valuableType, id } = valuableDetails;
-    const { onConsumeValuable } = this.props;
+  handleAction = async (actionProps: ValuableActionProps) => {
+    const {
+      valuableDetails: { id },
+      onConsumeValuable,
+    } = this.props;
 
-    if (shouldUseValuable(valuableType)) {
-      onConsumeValuable(id)
-        .then(data => {
-          url && navigate({ url });
-        })
-        .catch(({ graphQLErrors }, data) => {
-          const {
-            extensions: { code },
-          } = graphQLErrors[0];
+    const { url, isDepositBonusSelected } = actionProps;
 
-          launchErrorModal({
-            rejectReasonId: code,
-          });
-        });
+    try {
+      await onConsumeValuable(id);
+
+      if (isDepositBonusSelected) {
+        depositBonusSelected({ badgeId: id });
+      }
+
+      url && navigate({ url });
+    } catch (error) {
+      const {
+        extensions: { exception },
+      } = error.graphQLErrors[0];
+
+      launchErrorModal({
+        rejectReasonId: exception.rejectReasonId,
+      });
     }
   };
 
@@ -166,6 +174,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
       expirationInfo.key,
       expirationInfo.value
     );
+    const requirementType = this.requirementType;
 
     const expirationValueText =
       translations[durationKey] &&
@@ -176,7 +185,7 @@ export class ValuableDetails extends React.PureComponent<Props> {
     const actionButtonProps = getValuableDetailsAction({
       valuableType,
       valuableState,
-      requirementType: this.requirementType,
+      requirementType,
       translations,
     });
 
@@ -244,20 +253,27 @@ export class ValuableDetails extends React.PureComponent<Props> {
               <hr className="c-valuable-details__separator t-border t-border-r--pill" />
             </Flex.Item>
             <Flex.Item>
-              <Text tag="strong" className="t-color-grey" size="xs">
+              <Text tag="strong" className="t-color-grey-dark-2" size="xs">
                 {termsAndConditionLabel}
               </Text>
             </Flex.Item>
-            <Flex.Item>
-              <Text className="t-color-grey u-text-align-left" size="sm">
-                {termsAndConditionsContent}
+            <Flex.Item className="u-width--full u-overflow-x--hidden">
+              <Text
+                tag="div"
+                className="t-color-grey-dark-2 u-text-align-left"
+                size="sm"
+              >
+                <DangerousHtml
+                  data-test="valuable-card-title"
+                  html={termsAndConditionsContent}
+                />
               </Text>
             </Flex.Item>
           </Flex>
-          <div className="c-valuable-details__footer u-padding--md">
+          <div className="c-valuable-details__footer u-padding--md u-position-sticky--bottom">
             <Button
               className="u-width--full"
-              onClick={() => this.handleAction(actionButtonProps.url)}
+              onClick={() => this.handleAction(actionButtonProps)}
               data-test="valuable-action-button"
               variant="primary"
             >

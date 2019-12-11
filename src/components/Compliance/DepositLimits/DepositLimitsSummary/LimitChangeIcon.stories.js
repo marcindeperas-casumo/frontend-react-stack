@@ -11,6 +11,7 @@ stories.add("Default", () => (
   <Flex direction="horizontal" justify="space-between" style={{ width: 180 }}>
     {["unchanged", "increase", "decrease", "removed"].map(x => (
       <div
+        key={x}
         justify="center"
         align="center"
         style={{ backgroundColor: "#ffcd32" }}

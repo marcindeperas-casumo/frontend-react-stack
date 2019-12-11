@@ -1,16 +1,16 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
 import SportsTopBar, { hashes } from "./SportsTopBar";
 import mocks from "./__mocks__/termMocks";
 
 const stories = storiesOf("Sports/SportsTopBar", module);
 
 stories.addDecorator(story => (
-  <MockedProviderWithContext mocks={mocks} addTypename={false}>
+  <MockedProvider mocks={mocks} addTypename={false}>
     {story()}
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 // set almost invisible background so chromatic can distinguish between `hidden` and `display: none`

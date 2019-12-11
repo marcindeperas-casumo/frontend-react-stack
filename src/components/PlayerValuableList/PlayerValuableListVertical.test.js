@@ -1,93 +1,41 @@
 //@flow
 import React from "react";
-import { shallow, mount } from "enzyme";
-import mockedValuables from "Components/ValuableRow/__mocks__/Valuable.json";
-import bridge from "Src/DurandalReactBridge";
-import { REACT_APP_EVENT_ON_CALLBACK, KO_EVENTS } from "Src/constants";
-import { getValuablesByState, VALUABLE_STATES } from "Models/valuables";
-import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import SectionList from "Components/SectionList";
+import { mount } from "enzyme";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper, getCacheWithIntrospections } from "Utils";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
+import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
+import { mocks } from "./__mocks__/playerValuableListMocks";
 import { PlayerValuableListVertical } from "./PlayerValuableListVertical";
-import translationsMock from "./__mocks__/translations.mock.json";
 
 describe("PlayerValuableListVertical", () => {
-  const consumeValuable = jest.fn();
-  const refetchMock = jest.fn();
-
-  test("should render skeleton while loading", () => {
-    const rendered = shallow(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={true}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-      />
-    );
-
-    expect(rendered.find(GameRowSkeleton).exists()).toBe(true);
-  });
-
-  test("Should render a SectionList", () => {
+  test("Should render a ValuablesVerticalList", async () => {
     const rendered = mount(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={refetchMock}
-      />
+      <MockedProvider
+        mocks={mocks.mockedValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListVertical />
+      </MockedProvider>
     );
-    expect(rendered.find(SectionList)).toHaveLength(1);
-    expect(rendered.find(SectionList).prop("sections")).toEqual([
-      {
-        title: translationsMock.availableListTitleLabel,
-        data: getValuablesByState(VALUABLE_STATES.FRESH)(mockedValuables),
-      },
-      {
-        title: translationsMock.lockedListTitleLabel,
-        data: getValuablesByState(VALUABLE_STATES.LOCKED)(mockedValuables),
-      },
-    ]);
+
+    await waitAndUpdateWrapper(rendered);
+
+    expect(rendered.find(ValuablesVerticalList).exists()).toBe(true);
   });
 
-  test("should refetch when VALUABLES/ITEM_CREATED event is received", () => {
-    const mock = jest.fn();
-    mount(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={mock}
-      />
-    );
-    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
-      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
-      data: {
-        success: true,
-      },
-    });
-    expect(mock).toHaveBeenCalledTimes(1);
-  });
-
-  test("should not refetch when component is unmounted", () => {
-    const mock = jest.fn();
+  test("should render one EmptyValuablesList if no valuables are provided", async () => {
     const rendered = mount(
-      <PlayerValuableListVertical
-        valuables={mockedValuables}
-        loading={false}
-        onConsumeValuable={consumeValuable}
-        translations={translationsMock}
-        refetch={mock}
-      />
+      <MockedProvider
+        mocks={mocks.emptyValuables}
+        cache={getCacheWithIntrospections()}
+      >
+        <PlayerValuableListVertical />
+      </MockedProvider>
     );
-    rendered.unmount();
-    bridge.emit(REACT_APP_EVENT_ON_CALLBACK, {
-      event: KO_EVENTS.VALUABLES.ITEM_CREATED,
-      data: {
-        success: true,
-      },
-    });
-    expect(mock).toHaveBeenCalledTimes(0);
+
+    await waitAndUpdateWrapper(rendered);
+
+    expect(rendered.find(EmptyValuablesList)).toHaveLength(1);
   });
 });

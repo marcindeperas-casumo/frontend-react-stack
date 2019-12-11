@@ -27,7 +27,7 @@ const provider = {
 };
 
 stories.add("ProviderGamesList (Presentational)", () => (
-  <MockStore state={{ game: defaultState.schema.game }}>
+  <MockStore>
     <ProviderGamesListPresentational
       areGamesLoaded={true}
       provider={provider}

@@ -4,6 +4,7 @@ import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
+import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
 import { interpolate } from "Utils";
 import { GameThumb } from "Components/GameThumb";
@@ -12,7 +13,7 @@ import "./ReelRaceWidget.scss";
 
 type Props = {
   launchGame: () => void,
-  scheduledGame: GameRow_Game,
+  scheduledGame: A.GameRow_Game,
   gameSlug: string,
   playing: Playing,
   t: ReelRacesTranslations,

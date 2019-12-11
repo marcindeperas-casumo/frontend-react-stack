@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { DateTime } from "luxon";
 import { F } from "ramda";
 import {
   bridgeFactory,
@@ -19,6 +18,8 @@ import {
   findOr,
   convertHoursToDays,
   convertTimestampToLuxonDate,
+  interpolateTimeInterval,
+  canBeInterpolated,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -159,7 +160,7 @@ describe("makeProtocolAwareUrl()", () => {
 });
 
 describe("generateColumns()", () => {
-  test("should group items of an array into columns", async () => {
+  test("should group items of an array into columns", () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8, 9];
     const numberByColumn = 3;
 
@@ -169,7 +170,7 @@ describe("generateColumns()", () => {
     expect(generateColumns(list, numberByColumn)[2]).toEqual([7, 8, 9]);
   });
 
-  test("should group items even if number of items is not dividable by column number", async () => {
+  test("should group items even if number of items is not dividable by column number", () => {
     const list = [1, 2, 3, 4, 5, 6, 7, 8];
     const numberByColumn = 3;
 
@@ -181,13 +182,13 @@ describe("generateColumns()", () => {
 });
 
 describe("renderBets()", () => {
-  test("should not render anything if bets dont exist", async () => {
+  test("should not render anything if bets dont exist", () => {
     const bets = null;
 
     expect(renderBets(bets)).toEqual(null);
   });
 
-  test("should render formatted bets", async () => {
+  test("should render formatted bets", () => {
     const bets = {
       symbol: "£",
       min: 1,
@@ -317,6 +318,17 @@ describe("getSymbolForCurrency()", () => {
     ).toBe("$");
   });
 });
+describe("canBeInterpolated()", () => {
+  test("should return false when passed string without placeholders", () => {
+    const input = "content without placeholders";
+    expect(canBeInterpolated(input)).toBe(false);
+  });
+
+  test("should return true when passed string contains placeholders", () => {
+    const input = "I am a {{var}}";
+    expect(canBeInterpolated(input)).toBe(true);
+  });
+});
 
 describe("interpolate()", () => {
   test("should replace dynamic strings", () => {
@@ -374,6 +386,51 @@ describe("convertHoursToDays()", () => {
       const result = convertTimestampToLuxonDate(timestamp);
 
       expect(result.isLuxonDateTime).toBe(true);
+    });
+  });
+
+  describe("interpolateTimeInterval()", () => {
+    const t = {
+      seconds: "{{seconds}}secs",
+      minutes: "{{minutes}}mins",
+      hours: "{{hours}}hrs",
+      days: "{{days}}days",
+    };
+
+    test("should return string for seconds if number of seconds is lower than in a minute", () => {
+      const props = {
+        seconds: 12,
+        t,
+      };
+
+      expect(interpolateTimeInterval(props)).toEqual("12secs");
+    });
+
+    test("should return string for minutes if number of seconds is lower than in an hour", () => {
+      const props = {
+        seconds: 77,
+        t,
+      };
+
+      expect(interpolateTimeInterval(props)).toEqual("1mins");
+    });
+
+    test("should return string for hours if number of seconds is lower than in a day", () => {
+      const props = {
+        seconds: 60 * 60 * 5,
+        t,
+      };
+
+      expect(interpolateTimeInterval(props)).toEqual("5hrs");
+    });
+
+    test("should return string for days if number of seconds is equal or greater than in a day", () => {
+      const props = {
+        seconds: 60 * 60 * 24 * 3,
+        t,
+      };
+
+      expect(interpolateTimeInterval(props)).toEqual("3days");
     });
   });
 });

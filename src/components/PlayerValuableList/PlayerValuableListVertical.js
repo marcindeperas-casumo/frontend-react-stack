@@ -1,93 +1,69 @@
 /* @flow */
 import * as React from "react";
+import { useMutation } from "@apollo/react-hooks";
+import Flex from "@casumo/cmp-flex";
+import * as A from "Types/apollo";
 import { VALUABLE_STATES, getValuablesByState } from "Models/valuables";
-import logger from "Services/logger";
-import { GameRowSkeleton } from "Components/GameRowSkeleton";
-import { ValuableCard } from "Components/ValuableCard";
-import SectionList from "Components/SectionList";
-import { ValuableDetailsWithModal } from "Components/ValuableDetails";
-import { ValuableRow } from "Components/ValuableRow";
-import { subscribeToItemCreatedEvent } from "./utils";
-import { type PlayerValuableListProps } from "./PlayerValuableList.types";
+import { EmptyValuablesList } from "Components/EmptyValuablesList";
+import { ValuablesVerticalList } from "Components/ValuablesVerticalList";
+import { UseValuable } from "Components/PlayerValuableList/PlayerValuables.graphql";
+import { usePlayerValuableList } from "./usePlayerValuableList";
 import "./PlayerValuableListHorizontal.scss";
 
-export function PlayerValuableListVertical(props: PlayerValuableListProps) {
+export function PlayerValuableListVertical() {
+  const { loading, valuables, translations } = usePlayerValuableList();
+  const [mutateValuable] = useMutation<A.UseValuable, A.UseValuableVariables>(
+    UseValuable
+  );
+  const consumeValuable = (id: string) =>
+    mutateValuable({
+      variables: {
+        id,
+        source: "mobile",
+      },
+    });
   const {
-    error,
-    loading = false,
-    valuables = [],
-    translations,
-    refetch = () => {},
-    onConsumeValuable,
-  } = props;
-  const { availableListTitleLabel, lockedListTitleLabel } = translations;
-  const [selectedValuable, setSelectedValuable] = React.useState(null);
+    availableListTitleLabel,
+    lockedListTitleLabel,
+    noValuablesLabel,
+  } = translations;
   const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
   const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
+  const sections = [
+    {
+      title: availableListTitleLabel,
+      data: getAvailableValuables(valuables),
+    },
+    {
+      title: lockedListTitleLabel,
+      data: getLockedValuables(valuables),
+    },
+  ].filter(section => section.data.length > 0);
 
-  const closeModal = () => {
-    setSelectedValuable(null);
-  };
-
-  React.useEffect(() => {
-    const handler = subscribeToItemCreatedEvent(({ success }) => {
-      if (success) {
-        refetch();
-      }
-    });
-
-    return function cleanup() {
-      handler.unsubscribe();
-    };
-  }, [refetch]);
-
-  if (error) {
-    logger.error("PlayerValuableListVertical failed", error);
-    return null;
-  }
-
-  if (loading) {
-    return <GameRowSkeleton />;
+  if (!valuables.length) {
+    return (
+      <div className="u-padding-top--lg">
+        <EmptyValuablesList message={noValuablesLabel} />
+      </div>
+    );
   }
 
   return (
-    <div className="u-padding-top--lg c-player-valuables-list u-padding-bottom--lg t-background-white">
-      <SectionList
-        sections={[
-          {
-            title: availableListTitleLabel,
-            data: getAvailableValuables(valuables),
-          },
-          {
-            title: lockedListTitleLabel,
-            data: getLockedValuables(valuables),
-          },
-        ]}
-        renderItem={valuable => (
-          <ValuableRow
-            key={`available-valuable-row-${valuable.id}`}
-            translations={translations}
-            {...valuable}
-            onClick={() => setSelectedValuable(valuable)}
-          />
-        )}
-      />
-      {selectedValuable && (
-        <ValuableDetailsWithModal
-          isOpen={Boolean(selectedValuable)}
-          onClose={closeModal}
-          onConsumeValuable={onConsumeValuable}
-          valuableDetails={selectedValuable}
-        >
-          <div className="c-valuable-list__valuable-card">
-            <ValuableCard
-              translations={translations}
-              {...selectedValuable}
-              caveat={null}
-            />
-          </div>
-        </ValuableDetailsWithModal>
-      )}
-    </div>
+    <Flex
+      direction="vertical"
+      className="c-player-valuables-list u-padding-bottom--lg t-background-white"
+    >
+      {sections.map(section => (
+        <ValuablesVerticalList
+          key={section.title}
+          valuables={valuables}
+          title={section.title}
+          translations={translations}
+          loading={loading}
+          onConsumeValuable={consumeValuable}
+          isItemSelectable={false}
+        />
+      ))}
+    </Flex>
   );
 }

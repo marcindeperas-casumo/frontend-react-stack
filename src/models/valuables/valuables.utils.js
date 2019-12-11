@@ -1,10 +1,11 @@
 /* @flow */
-import { equals, anyPass, filter, reject } from "ramda";
+import { equals, anyPass, filter } from "ramda";
 import {
   type ValuableDetailsTranslations,
   type ValuableRequirementType,
   type ValuableType,
   type ValuableState,
+  type ValuableActionProps,
   VALUABLE_STATES,
   VALUABLE_TYPES,
   VALUABLE_REQUIREMENT_TYPES,
@@ -16,8 +17,8 @@ import {
   getDateTimeDifferenceFromNow,
 } from "Utils";
 
-export const depositUrl = "/en/cash/deposit";
-export const gameBrowserUrl = "/en/games/top";
+export const depositRouteId = "deposit";
+export const gameBrowserRouteId = "games-top";
 
 export const isAboutToExpire = (hours: number): boolean =>
   hours >= 0 && hours <= 24;
@@ -38,34 +39,46 @@ export const getValuableDetailsAction = ({
   valuableState: ValuableState,
   requirementType?: ?ValuableRequirementType,
   translations: ValuableDetailsTranslations,
-}): {
-  text: string,
-  url: string,
-} => {
+}): ValuableActionProps => {
   const isCash = equals(valuableType, VALUABLE_TYPES.CASH);
   const isSpins = equals(valuableType, VALUABLE_TYPES.SPINS);
 
-  const setActionProps = (text = "", url = "") => ({
+  const setActionProps = (
+    text = "",
+    isDepositBonusSelected = false,
+    url = ""
+  ) => ({
     text,
+    isDepositBonusSelected,
     url,
   });
 
   if (equals(valuableType, VALUABLE_TYPES.DEPOSIT)) {
-    return setActionProps(translations.depositNowLabel, depositUrl);
+    // The redirection is being taken care of by the KO code, so url is not required
+    return setActionProps(translations.depositNowLabel, true);
   }
 
   if (anyPass(isSpins, isCash)) {
     if (equals(valuableState, VALUABLE_STATES.LOCKED)) {
       if (equals(requirementType, VALUABLE_REQUIREMENT_TYPES.DEPOSIT)) {
-        return setActionProps(translations.depositToUnlockLabel, depositUrl);
+        // The redirection is being taken care of by the KO code, so url is not required
+        return setActionProps(translations.depositToUnlockLabel, true);
       }
 
-      return setActionProps(translations.playToUnlockLabel, gameBrowserUrl);
+      return setActionProps(
+        translations.playToUnlockLabel,
+        false,
+        gameBrowserRouteId
+      );
     }
 
     return isSpins
       ? setActionProps(translations.spinsUnlockedActionLabel)
-      : setActionProps(translations.cashUnlockedActionLabel, gameBrowserUrl);
+      : setActionProps(
+          translations.cashUnlockedActionLabel,
+          false,
+          gameBrowserRouteId
+        );
   }
 
   return setActionProps();
@@ -95,13 +108,6 @@ export const coinValueToSpinType = (coinValue: number = 0) => {
   }
 
   return VALUABLE_SPIN_TYPES.BASIC_SPINS;
-};
-
-export const shouldUseValuable = (valuableType: ValuableType) => {
-  return (
-    equals(valuableType, VALUABLE_TYPES.SPINS) ||
-    equals(valuableType, VALUABLE_TYPES.CASH)
-  );
 };
 
 export const getExpiryTimeLeft = (timestamp: number) => {

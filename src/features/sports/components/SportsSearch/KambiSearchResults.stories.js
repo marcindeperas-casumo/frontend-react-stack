@@ -1,8 +1,8 @@
 // @flow
 import React from "react";
+import { MockedProvider } from "@apollo/react-testing";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
 import KambiSearchResults from "./KambiSearchResults";
 import mocks from "./__mocks__/kambiSearchResultsMocks";
 
@@ -20,19 +20,19 @@ const props = {
 };
 
 stories.add("Search Results", () => (
-  <MockedProviderWithContext mocks={mocks.hasResults} addTypename={false}>
+  <MockedProvider mocks={mocks.hasResults} addTypename={false}>
     <KambiSearchResults {...props.hasResults} />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("No Search Results", () => (
-  <MockedProviderWithContext mocks={mocks.noResults} addTypename={false}>
+  <MockedProvider mocks={mocks.noResults} addTypename={false}>
     <KambiSearchResults {...props.noResults} />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));
 
 stories.add("Not Searching", () => (
-  <MockedProviderWithContext mocks={mocks.notSearching} addTypename={false}>
+  <MockedProvider mocks={mocks.notSearching} addTypename={false}>
     <KambiSearchResults {...props.notSearching} />
-  </MockedProviderWithContext>
+  </MockedProvider>
 ));

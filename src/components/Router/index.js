@@ -1,3 +1,1 @@
-// @flow
-export { Route } from "./Route";
-export { Router } from "./Router";
+export * from "./Router";

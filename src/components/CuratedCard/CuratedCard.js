@@ -29,14 +29,11 @@ const spacing = {
   default: "lg",
 };
 
-export type Props = {|
+type PropsBase = {|
   header: string,
   subtitle: string,
   game: string,
   gameData: Object,
-  small_image: string,
-  medium_image: string,
-  large_image: string,
   primary_action_text: string,
   promotions_legal_text: string,
   promotion: Array<string>,
@@ -47,6 +44,18 @@ export type Props = {|
   slug: string,
   className?: string,
 |};
+type PropsNew = {|
+  ...PropsBase,
+  image: string,
+|};
+type PropsDeprecated = {|
+  ...PropsBase,
+  small_image: string,
+  medium_image: string,
+  large_image: string,
+|};
+
+export type Props = PropsNew | PropsDeprecated;
 
 export class CuratedCard extends PureComponent<Props> {
   get cardClickUrl() {
@@ -87,7 +96,9 @@ export class CuratedCard extends PureComponent<Props> {
     const { className = "" } = this.props;
     const backgroundProps = {
       ...this.props,
-      onLaunchGame: this.isGame ? this.props.onLaunchGame : null,
+      onLaunchGame: this.isGame
+        ? () => this.props.onLaunchGame(this.props.gameData.slug)
+        : null,
       link: this.cardClickUrl,
     };
 

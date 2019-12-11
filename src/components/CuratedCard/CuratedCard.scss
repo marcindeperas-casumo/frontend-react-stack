@@ -2,18 +2,11 @@
 
 // There is a link between those values and curatedCardOptions 'w' and 'h' in CuratedCardBackground.js
 // Ratio here needs to be reflected in `h`/`w` imgixOpts params
-//prettier-ignore
 $curated-card-ratios: (
   mobile: 100%,
-  phablet: (
-    264/496
-  ) * 100%,
-  tablet: (
-    254/545
-  ) * 100%,
-  desktop: (
-    432/1181
-  ) * 100%
+  phablet: percentage(264/496),
+  tablet: percentage(254/545),
+  desktop: percentage(432/1181),
 );
 
 .c-curated-card {

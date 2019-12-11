@@ -1,7 +1,8 @@
 import React from "react";
-import wait from "waait";
 import { mount } from "enzyme";
-import { MockedProvider } from "react-apollo/test-utils";
+import { act } from "react-dom/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
+import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "Components/Settings/SettingsRealityCheck/SettingsRealityCheckContainer";
 import {
   withMockQueries,
@@ -26,7 +27,7 @@ describe("SettingsRealityCheckContainer", () => {
       SettingsRealityCheckContainer = withContainer(Component);
     });
 
-    test("should render loader", async () => {
+    test("should render loader", () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerRealityCheckQueryMock, realityCheckLabelsQueryMock]}
@@ -46,8 +47,9 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("Component").prop("interval")).toStrictEqual(
         playerRealityCheckQueryMock.result.data.player.playOk.realityCheck
           .intervalInMinutes
@@ -62,8 +64,9 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
       ).toStrictEqual(realityCheckLabelsQueryMock.result.data);
@@ -81,8 +84,8 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await wait(0);
-      rendered.update();
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
@@ -98,8 +101,8 @@ describe("SettingsRealityCheckContainer", () => {
         </MockedProvider>
       );
 
-      await wait(0);
-      rendered.update();
+      await waitAndUpdateWrapper(rendered);
+
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
   });
@@ -115,12 +118,13 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
 
       rendered.find("Component").simulate("click");
 
-      rendered.update();
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(30);
@@ -145,14 +149,16 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
@@ -182,14 +188,16 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(0);
@@ -219,24 +227,27 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
 
+      await waitAndUpdateWrapper(rendered);
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
 
-      const {
-        data: { updateRealityCheckInterval },
-      } = await promiseFn();
-      expect(updateRealityCheckInterval).toBe(10 * 60);
+      await act(async () => {
+        const {
+          data: { updateRealityCheckInterval },
+        } = await promiseFn();
+        expect(updateRealityCheckInterval).toBe(10 * 60);
+      });
     });
 
     test("after successful mutation, state should be refetched", async () => {
@@ -258,32 +269,38 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
 
-      const {
-        data: { updateRealityCheckInterval },
-      } = await promiseFn();
-      expect(updateRealityCheckInterval).toBe(10 * 60);
+      // eslint-disable-next-line sonarjs/no-identical-functions
+      await act(async () => {
+        const {
+          data: { updateRealityCheckInterval },
+        } = await promiseFn();
+        expect(updateRealityCheckInterval).toBe(10 * 60);
+      });
 
-      await wait(10);
-      rendered.update();
+      await waitAndUpdateWrapper(rendered, 10);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);
     });
 
+    // TODO: this test is skipped due to it failing randomly in CI.
     test("after unsuccessful mutation, state should be refetched", async () => {
       //eslint-disable-next-line sonarjs/no-identical-functions
       Component = props => (
@@ -305,21 +322,28 @@ describe("SettingsRealityCheckContainer", () => {
           <SettingsRealityCheckContainer />
         </MockedProvider>
       );
-      await wait(0);
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
 
       rendered
         .find("Component")
         .childAt(0)
         .simulate("click");
-      rendered.update();
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(10);
 
       const promiseFn = rendered.find("Component").prop("onSave");
-      await promiseFn();
-      await wait(0);
+
+      await act(async () => {
+        await promiseFn();
+      });
+
+      await waitAndUpdateWrapper(rendered);
+
       expect(
         rendered.find("SettingsRealityCheckContainer").state("intervalMinutes")
       ).toBe(45);

@@ -6,6 +6,7 @@ import { Query } from "react-apollo";
 import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import * as A from "Types/apollo";
 import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/components/GraphQL";
 import MaskText from "Components/MaskText";
@@ -27,11 +28,9 @@ export const TOP_SEARCHES_QUERY = gql`
     }
   }
 `;
-class TopSearchesTypedQuery extends Query<TopSearches, TopSearchesVariables> {}
-
 type GroupByResultTypeType = (
-  SearchQuery_search[]
-) => { [string]: SearchQuery_search[] };
+  A.SearchQuery_search[]
+) => { [string]: A.SearchQuery_search[] };
 
 const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
@@ -96,16 +95,14 @@ const ResultRow = ({
   </div>
 );
 
-class SearchTypedQuery extends Query<SearchQuery, SearchQueryVariables> {}
-
 type Props = {
   query: string,
-  onResultClick: (SearchQuery_search | TopSearches_topSearches) => void,
+  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
   hideSearchResults?: boolean,
 };
 
 type State = {
-  searchHistory: Array<SearchQuery_search>,
+  searchHistory: Array<A.SearchQuery_search>,
 };
 
 class KambiSearchResults extends React.Component<Props, State> {
@@ -130,7 +127,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     this.state.searchHistory = this.persisted.searchHistory.get();
   }
 
-  saveSearchHistory = (searchResult: SearchQuery_search) => {
+  saveSearchHistory = (searchResult: A.SearchQuery_search) => {
     this.setState(prevState => {
       // make sure new entry is not duplicated, is added to beginning and limit to 10
       const newHistory = [
@@ -153,17 +150,17 @@ class KambiSearchResults extends React.Component<Props, State> {
       <GroupTitle>
         <DictionaryTerm termKey="search-results.heading.popular" />
       </GroupTitle>
-      <TopSearchesTypedQuery
+      <Query
         query={TOP_SEARCHES_QUERY}
-        variables={{ count: 5 }}
+        variables={({ count: 5 }: A.TopSearchesVariables)}
       >
-        {({ data = {} }) =>
+        {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
             propOr([], "topSearches"),
             map(this.renderPopularSearchItem)
           )(data)
         }
-      </TopSearchesTypedQuery>
+      </Query>
     </>
   );
 
@@ -201,7 +198,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     );
   };
 
-  renderPopularSearchItem = (eventGroup: TopSearches_topSearches) => {
+  renderPopularSearchItem = (eventGroup: A.TopSearches_topSearches) => {
     const [sport = eventGroup] = eventGroup.parentGroups;
 
     return (
@@ -240,7 +237,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   };
 
   renderSearchResult = (
-    result: SearchQuery_search,
+    result: A.SearchQuery_search,
     renderAllTextAsMatched: boolean = false
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
@@ -309,11 +306,11 @@ class KambiSearchResults extends React.Component<Props, State> {
     }
 
     return (
-      <SearchTypedQuery
+      <Query
         query={SEARCH_QUERY}
-        variables={{ query: this.props.query }}
+        variables={({ query: this.props.query }: A.SearchQueryVariables)}
       >
-        {res => {
+        {(res: { data: ?A.SearchQuery, loading: boolean, error: any }) => {
           if (res.error) {
             return this.renderNoResultsFound();
           }
@@ -327,7 +324,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           const groupedResults: {
-            [string]: SearchQuery_search[],
+            [string]: A.SearchQuery_search[],
           } = groupByResultType(res.data.search);
 
           if (isEmpty(groupedResults)) {
@@ -347,7 +344,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             </>
           );
         }}
-      </SearchTypedQuery>
+      </Query>
     );
   };
 

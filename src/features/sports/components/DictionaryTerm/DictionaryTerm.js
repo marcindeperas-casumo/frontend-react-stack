@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import gql from "graphql-tag";
-import { Query } from "react-apollo";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { compile, NOT_FOUND_STRING, LOADING_STRING } from "./utils";
 import type { Replacements } from "./utils";
 
@@ -15,11 +16,6 @@ type Props = {
   children?: (dictionaryTerm: string) => React.Node,
 };
 
-class DictionaryTermTypedQuery extends Query<
-  DictionaryTermQuery,
-  DictionaryTermQueryVariables
-> {}
-
 export const DICTIONARY_TERM_QUERY = gql`
   query DictionaryTermQuery($key: String!) {
     dictionaryTerm(key: $key)
@@ -27,7 +23,7 @@ export const DICTIONARY_TERM_QUERY = gql`
 `;
 
 const getDictionaryTerm = (
-  data?: DictionaryTermQuery,
+  data: ?A.DictionaryTermQuery,
   loading: boolean,
   replacements?: Replacements
 ): string => {
@@ -46,14 +42,13 @@ export const DictionaryTerm = ({
   termKey,
   replacements,
   children,
-}: Props): React.Node => (
-  <DictionaryTermTypedQuery
-    query={DICTIONARY_TERM_QUERY}
-    variables={{ key: termKey }}
-  >
-    {({ data, loading }) => {
-      const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
-      return children ? children(dictionaryTerm) : dictionaryTerm;
-    }}
-  </DictionaryTermTypedQuery>
-);
+}: Props): React.Node => {
+  const variables = { key: termKey };
+  const { data, loading } = useQuery<
+    A.DictionaryTermQuery,
+    A.DictionaryTermQueryVariables
+  >(DICTIONARY_TERM_QUERY, { variables });
+  const dictionaryTerm = getDictionaryTerm(data, loading, replacements);
+
+  return children ? children(dictionaryTerm) : dictionaryTerm;
+};

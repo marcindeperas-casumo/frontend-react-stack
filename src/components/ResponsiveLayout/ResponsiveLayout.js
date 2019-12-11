@@ -3,7 +3,10 @@ import * as React from "react";
 import useMedia from "react-use/lib/useMedia";
 import {
   mobileBreakpoint,
+  tabletBreakpoint,
+  tabletAndDesktopBreakpoint,
   desktopBreakpoint,
+  mobileAndTabletBreakpoint,
   getMediaQuery,
 } from "./ResponsiveLayout.utils";
 import { type ORIENTATION_TYPE } from "./ResponsiveLayout.types";
@@ -24,6 +27,64 @@ const RenderIfMatchBreakpoint = ({ breakpoint, children }: Props) => {
 export const Desktop = ({ children }: { children: React.Node }) => {
   return (
     <RenderIfMatchBreakpoint breakpoint={desktopBreakpoint}>
+      {children}
+    </RenderIfMatchBreakpoint>
+  );
+};
+
+export const TabletAndDesktop = ({
+  children,
+  orientation,
+}: {
+  children: React.Node,
+  orientation?: ORIENTATION_TYPE,
+}) => {
+  return (
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation
+          ? { ...tabletAndDesktopBreakpoint, orientation }
+          : tabletAndDesktopBreakpoint
+      }
+    >
+      {children}
+    </RenderIfMatchBreakpoint>
+  );
+};
+
+export const Tablet = ({
+  children,
+  orientation,
+}: {
+  children: React.Node,
+  orientation?: ORIENTATION_TYPE,
+}) => {
+  return (
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation ? { ...tabletBreakpoint, orientation } : tabletBreakpoint
+      }
+    >
+      {children}
+    </RenderIfMatchBreakpoint>
+  );
+};
+
+export const MobileAndTablet = ({
+  children,
+  orientation,
+}: {
+  children: React.Node,
+  orientation?: ORIENTATION_TYPE,
+}) => {
+  return (
+    <RenderIfMatchBreakpoint
+      breakpoint={
+        orientation
+          ? { ...mobileAndTabletBreakpoint, orientation }
+          : mobileAndTabletBreakpoint
+      }
+    >
       {children}
     </RenderIfMatchBreakpoint>
   );

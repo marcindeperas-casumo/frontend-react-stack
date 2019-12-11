@@ -2,7 +2,8 @@
 import * as React from "react";
 import { when, assoc, propEq, eqProps, prop } from "ramda";
 import gql from "graphql-tag";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
+import { getApolloContext } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
 import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";
@@ -63,7 +64,7 @@ class StageFavouritesProvider extends React.Component<
   ProviderProps,
   ProviderState
 > {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   constructor(props: ProviderProps) {
     super(props);
@@ -92,7 +93,7 @@ class StageFavouritesProvider extends React.Component<
     const {
       data: { groups: sports },
     }: {
-      data: FavouriteSportsSelectorContext,
+      data: A.FavouriteSportsSelectorContext,
     } = await this.context.client.query({
       query: FAVOURITE_SPORTS_SELECTOR_CONTEXT,
       fetchPolicy: "network-only",
@@ -103,7 +104,7 @@ class StageFavouritesProvider extends React.Component<
         player: { vertical },
       },
     }: {
-      data: PlayerVertical,
+      data: A.PlayerVertical,
     } = await this.context.client.query({
       query: PLAYER_VERTICAL_QUERY,
       fetchPolicy: "network-only",
@@ -127,7 +128,7 @@ class StageFavouritesProvider extends React.Component<
       .filter(g => g.canSelectSubgroups && g.favouriteCompetitions.length === 0)
       .map(g => {
         return this.context.client
-          .query<FavouriteSportsSelectorContextCompetitionSuggestions>({
+          .query<A.FavouriteSportsSelectorContextCompetitionSuggestions>({
             query: COMPETITION_SUGGESTIONS_QUERY,
             variables: { id: g.id },
           })

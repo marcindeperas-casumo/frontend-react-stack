@@ -8,6 +8,7 @@ const TerserPlugin = require("terser-webpack-plugin");
 const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
 const safePostCssParser = require("postcss-safe-parser");
 const ManifestPlugin = require("webpack-manifest-plugin");
+const HtmlWebpackPlugin = require("html-webpack-plugin");
 const WatchMissingNodeModulesPlugin = require("react-dev-utils/WatchMissingNodeModulesPlugin");
 const ModuleScopePlugin = require("react-dev-utils/ModuleScopePlugin");
 const ModuleNotFoundPlugin = require("react-dev-utils/ModuleNotFoundPlugin");
@@ -430,6 +431,20 @@ module.exports = function(webpackEnv, { isStorybook = false } = {}) {
       // https://github.com/jmblog/how-to-optimize-momentjs-with-webpack
       // You can remove this if you don't use Moment.js:
       new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),
+      new HtmlWebpackPlugin({
+        filename: `index.html`,
+        template: paths.appIndexHtml,
+      }),
+      new HtmlWebpackPlugin({
+        filename: `${staticFolderName}/event-bubbler.html`,
+        template: paths.eventBubblerHtml,
+        inject: false,
+      }),
+      new HtmlWebpackPlugin({
+        filename: `${staticFolderName}/navigation-bubbler.html`,
+        template: paths.navigationBubblerHtml,
+        inject: false,
+      }),
     ].filter(Boolean),
     // Some libraries import Node modules but don't use them in the browser.
     // Tell Webpack to provide empty mocks for them so importing them works.

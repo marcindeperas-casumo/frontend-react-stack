@@ -5,7 +5,10 @@ import { action } from "@storybook/addon-actions";
 import { select, number } from "@storybook/addon-knobs/react";
 import { LimitYourBudget } from "./LimitYourBudget";
 
-const stories = storiesOf("SlotControlSystem/LimitYourBudget", module);
+const stories = storiesOf(
+  "Compliance/SlotControlSystem/LimitYourBudget",
+  module
+);
 const t = {
   limit_your_budget: "Limit your budget",
   use_all_balance: "Use all balance {{balance}}",

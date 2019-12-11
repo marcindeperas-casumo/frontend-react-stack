@@ -1,8 +1,5 @@
-import {
-  getAcknowledgements,
-  getVersionContent,
-  getTACtext,
-} from "./tac.selectors";
+// @flow
+import { getAcknowledgements, getRelevantVersionsSlugs } from "./tac.selectors";
 
 describe("TAC selectors", () => {
   test("getAcknowledgements - exist", () => {
@@ -42,19 +39,7 @@ describe("TAC selectors", () => {
     expect(getAcknowledgements(state)).toEqual({});
   });
 
-  test("getVersionContent", () => {
-    const state = {
-      schema: {
-        cms: {
-          "toc.dgoj.v1.content": "content",
-        },
-      },
-    };
-
-    expect(getVersionContent("1")(state)).toEqual("content");
-  });
-
-  test("getTACtext", () => {
+  test("getRelevantVersionsSlugs", () => {
     const state = {
       schema: {
         cms: {
@@ -79,8 +64,9 @@ describe("TAC selectors", () => {
       },
     };
 
-    expect(getTACtext(state)).toEqual({
-      versions: { 1: "v1 fields", 2: "v2 fields" },
+    expect(getRelevantVersionsSlugs(state)).toEqual({
+      "1": "toc.dgoj.v1",
+      "2": "toc.dgoj.v2",
     });
   });
 });

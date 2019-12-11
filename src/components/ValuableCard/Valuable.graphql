@@ -5,7 +5,6 @@ fragment ValuableCard_PlayerValuable on PlayerValuable {
   content
   valuableState
   valuableType
-  expirationTimeInHours
   currency
   market
   caveat

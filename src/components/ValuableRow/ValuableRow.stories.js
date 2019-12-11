@@ -2,9 +2,10 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import { select, boolean, text } from "@storybook/addon-knobs/react";
+import { select, boolean } from "@storybook/addon-knobs/react";
 import { VALUABLE_TYPES, VALUABLE_STATES } from "Models/valuables";
 import translationsMock from "Components/PlayerValuableList/__mocks__/translations.mock.json";
+import { ValuableRowShell } from "./ValuableRowShell";
 import { mockValuable as mockData } from "./__mocks__/Valuable.mock";
 import { ValuableRow } from "./ValuableRow";
 
@@ -15,7 +16,8 @@ stories.add("Default", () => {
     select("Valuable Type", VALUABLE_TYPES, VALUABLE_TYPES.CASH) ||
     VALUABLE_TYPES.CASH;
   const isLocked = boolean("Locked", false);
-  const expiryHours = text("Expire in x hours", "100") || "100";
+  const isActive = boolean("Active", false);
+  const onMoreInfo = () => {};
 
   const valuableDetails = mockData(valuableType);
   const valuableState = isLocked
@@ -26,9 +28,14 @@ stories.add("Default", () => {
     <ValuableRow
       {...valuableDetails}
       valuableState={valuableState}
-      expirationTimeInHours={expiryHours}
       onClick={action("click")}
       translatedHoursUnit={translationsMock.hoursUnit}
+      onMoreInfo={onMoreInfo}
+      isSelected={isActive}
     />
   );
+});
+
+stories.add("Valuable Row - Shell", () => {
+  return <ValuableRowShell text="Don't use bonus" />;
 });

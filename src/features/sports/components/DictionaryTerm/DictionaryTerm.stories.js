@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { MockedProvider } from "react-apollo/test-utils";
+import { MockedProvider } from "@apollo/react-testing";
 import { text, number } from "@storybook/addon-knobs/react";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { DictionaryTerm } from "./DictionaryTerm";

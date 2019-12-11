@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import { act } from "react-dom/test-utils";
 import Lazy from "Components/Lazy";
 
 describe("<Lazy />", () => {
@@ -18,6 +19,9 @@ describe("<Lazy />", () => {
     );
 
     setImmediate(() => {
+      act(() => {
+        rendered.update();
+      });
       const renderedHtml = rendered.html();
 
       expect(renderedHtml).toMatch(html);

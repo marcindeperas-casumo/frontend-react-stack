@@ -21,6 +21,7 @@ describe("Models/Games/Sagas", () => {
       const market = "ROW";
       const playerId = "playerId-1";
       const handshake = { foo: "bar" };
+      const sessionId = "123";
       const areGamesFetched = false;
 
       generator.next();
@@ -28,6 +29,7 @@ describe("Models/Games/Sagas", () => {
       generator.next(currency);
       generator.next(market);
       generator.next(playerId);
+      generator.next(sessionId);
 
       expect(generator.next(areGamesFetched).value).toEqual(
         put(fetchGamesHandshake({ country }))
@@ -41,6 +43,7 @@ describe("Models/Games/Sagas", () => {
       expect(generator.next(handshake).value).toEqual(
         put(
           fetchTopLists({
+            sessionId,
             handshake,
             country,
             platform,
@@ -72,6 +75,7 @@ describe("Models/Games/Sagas", () => {
       const currency = "EUR";
       const market = "ROW";
       const playerId = "playerId-1";
+      const sessionId = "123";
       const areGamesFetched = true;
 
       generator.next();
@@ -79,6 +83,7 @@ describe("Models/Games/Sagas", () => {
       generator.next(currency);
       generator.next(market);
       generator.next(playerId);
+      generator.next(sessionId);
 
       const lastYieldedValue = generator.next(areGamesFetched);
 

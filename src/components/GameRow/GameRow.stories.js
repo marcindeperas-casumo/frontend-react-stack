@@ -5,32 +5,31 @@ import { action } from "@storybook/addon-actions";
 import game from "Components/GameTile/__mocks__/Game.json";
 import jackpotInfo from "Components/GameTile/__mocks__/JackpotGameInfo.json";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
-import MockStore from "Components/MockStore";
 import { GameRow } from "Components/GameRow/GameRow";
-import { GameRowContainer } from "Components/GameRow/GameRowContainer";
-import isNotChromatic from "Storybook/isNotChromatic";
 
 const stories = storiesOf("GameRow", module);
-
-if (isNotChromatic) {
-  stories.add("Default (Connected)", () => (
-    <MockStore>
-      <GameRowContainer id="hall-of-gods" />
-    </MockStore>
-  ));
-}
+const gonzosQuest = "gonzos-quest";
 
 stories.add("Default", () => (
-  <GameRow game={game} onLaunchGame={action("gonzos-quest")} />
+  <GameRow game={game} onLaunchGame={action(gonzosQuest)} />
 ));
 
-stories.add("With Jackpot", () => (
+stories.add("Default with Jackpot", () => (
+  <GameRow game={{ ...game, jackpotInfo }} onLaunchGame={action(gonzosQuest)} />
+));
+
+stories.add("Default with Live Casino", () => (
+  <GameRow game={liveCasinoGame} onLaunchGame={action("casumo-roulette")} />
+));
+
+stories.add("Search with match", () => (
   <GameRow
-    game={{ ...game, jackpotInfo }}
-    onLaunchGame={action("gonzos-quest")}
+    game={game}
+    onLaunchGame={action(gonzosQuest)}
+    search={{ query: "gon", highlightSearchQuery: true }}
   />
 ));
 
-stories.add("Live Casino", () => (
-  <GameRow game={liveCasinoGame} onLaunchGame={action("casumo-roulette")} />
+stories.add("Search with no match", () => (
+  <GameRow game={game} onLaunchGame={action(gonzosQuest)} search />
 ));

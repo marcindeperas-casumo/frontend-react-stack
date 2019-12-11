@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect, useCallback } from "react";
+import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -34,9 +34,7 @@ function YearSelector({
   setYear,
   htmlId,
 }: YearSelectorProps) {
-  const onChangeYear = useCallback(e =>
-    setYear(Number.parseInt(e.target.value, 10))
-  );
+  const onChangeYear = e => setYear(Number.parseInt(e.target.value, 10));
 
   return (
     <select
@@ -64,14 +62,14 @@ export function TransactionsAnnualOverviewYearSelector({
   selectorHtmlId,
   isAnnualOverviewLoading,
 }: Props) {
-  const [year, setYear] = useState(selectedYear);
-  const [isTriggeredFetch, triggerFetch] = useState(false);
+  const [year, setYear] = React.useState(selectedYear);
+  const [isTriggeredFetch, triggerFetch] = React.useState(false);
   const loading = isAnnualOverviewLoading(year);
-  const onClick = useCallback(() => {
+  const onClick = () => {
     triggerFetch(true);
-  });
+  };
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isTriggeredFetch) {
       return;
     }
@@ -80,7 +78,7 @@ export function TransactionsAnnualOverviewYearSelector({
     fetchYearOverview(year);
   }, [fetchYearOverview, isTriggeredFetch, year]);
 
-  useEffect(() => {
+  React.useEffect(() => {
     if (!isContentFetched) {
       fetchContent();
     }

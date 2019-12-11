@@ -17,6 +17,7 @@ import {
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
+  isTestEnv,
   languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
@@ -30,6 +31,7 @@ import {
   isSuspiciousAccount,
   verticalSelector,
   featureFlagSelector,
+  playerCasumoNameSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -170,6 +172,21 @@ describe("Handshake selectors", () => {
     expect(playerSelector(state)).toEqual({ id: "p1" });
   });
 
+  test("playerCasumoNameSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: { p1: { id: "p1", casumoName: "Maroto" } },
+          },
+        },
+      },
+    };
+
+    expect(playerCasumoNameSelector(state)).toEqual("Maroto");
+  });
+
   test("countrySelector", () => {
     const state = {
       handshake: {
@@ -293,6 +310,33 @@ describe("Handshake selectors", () => {
       };
 
       expect(isGamesHandshakeLoaded(state)).toBe(false);
+    });
+  });
+
+  describe("isTestEnv", () => {
+    test("returns false when site url is www.casumo.com", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/context": { siteUrl: "https://www.casumo.com" },
+          },
+        },
+      };
+
+      expect(isTestEnv(state)).toBe(false);
+    });
+    test("returns false when site url is www.casumotest.com", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/context": {
+              siteUrl: "https://www.casumotest.com",
+            },
+          },
+        },
+      };
+
+      expect(isTestEnv(state)).toBe(true);
     });
   });
 

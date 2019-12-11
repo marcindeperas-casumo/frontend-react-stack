@@ -2,13 +2,12 @@
 import React, { PureComponent } from "react";
 import { isEmpty, isNil } from "ramda";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
 import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
 import GameTileContainer from "Components/GameTile";
-import GameTileWithActiveOverlay from "Components/GameTileWithActiveOverlay";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 import "./GameListHorizontal.scss";
@@ -32,16 +31,15 @@ export const ITEM_RENDERERS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: GameTileExclusiveContainer,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: LiveCasinoCardContainer,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: LiveCasinoCardContainer,
-  [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: GameTileWithActiveOverlay,
   default: GameTileContainer,
 };
 
 export const TILE_HEIGHTS = {
-  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: 280,
+  [GAME_LIST_IDS.EXCLUSIVE_GAMES]: 300,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: 305,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: 305,
-  [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: 204,
-  default: 204,
+  [GAME_LIST_IDS.LATEST_PLAYED_GAMES]: 212,
+  default: 212,
 };
 
 const GAME_LIST_CLASS_NAME = {
@@ -89,7 +87,7 @@ export class GameListHorizontal extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <ScrollableList
               itemClassName={className}
               title={title}
@@ -98,7 +96,7 @@ export class GameListHorizontal extends PureComponent<Props> {
               itemIds={itemIds}
               Component={itemRenderer}
             />
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{

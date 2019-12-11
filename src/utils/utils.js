@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { DateTime } from "luxon";
+import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
 
 export const noop = () => {};
@@ -134,7 +135,7 @@ export function generateColumns<T>(
 }
 
 // TODO: make this a component
-export const renderBets = (bet: ?GameRow_Game_lobby_bets) =>
+export const renderBets = (bet: ?A.GameRow_Game_lobby_bets) =>
   R.cond([
     [R.isNil, R.always(null)],
     [
@@ -237,6 +238,9 @@ export function getSymbolForCurrency({
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
 
+export const canBeInterpolated = (target: string) =>
+  target.match(INTERPOLATION_REGEX) !== null;
+
 const defaultTranslation = "[MISSING TRANSLATION]";
 export const interpolate = (
   target: string = defaultTranslation,
@@ -276,6 +280,37 @@ export const isCmsEntryEmpty = R.pipe(
 
 export const convertHoursToDays = (hours: number) => {
   return Math.floor(hours / 24);
+};
+
+type InterpolateTimeIntervalType = {
+  seconds: number,
+  t: {
+    seconds: string,
+    minutes?: string,
+    hours?: string,
+    days?: string,
+  },
+};
+
+export const interpolateTimeInterval = ({
+  seconds,
+  t,
+}: InterpolateTimeIntervalType) => {
+  const minutes = Math.floor(seconds / 60);
+  const hours = Math.floor(minutes / 60);
+  const days = Math.floor(hours / 24);
+
+  if (t.days && days >= 1) {
+    return interpolate(t.days, { days });
+  }
+  if (t.hours && hours >= 1) {
+    return interpolate(t.hours, { hours });
+  }
+  if (t.minutes && minutes >= 1) {
+    return interpolate(t.minutes, { minutes });
+  }
+
+  return interpolate(t.seconds, { seconds });
 };
 
 export const convertTimestampToLuxonDate = (value: number) => {

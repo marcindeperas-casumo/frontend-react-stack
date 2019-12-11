@@ -4,20 +4,12 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { PillSelector } from "Components/PillSelector";
 
-const WANT_BREAK_AFTER_OPTS = [
-  { label: "Yes", value: true },
-  { label: "No", value: false },
-];
-const WANT_BREAK_AFTER_YES_OPTS = [
-  { label: "1 hr", value: 1 },
-  { label: "2 hr", value: 2 },
-  { label: "4 hr", value: 4 },
-  { label: "1 dy", value: 24 },
-];
+const castToBoolean = (value: string) => (value === "true" ? true : false);
 
 type WantBreakAfterRowType = {
   t: {
     want_break_after: string,
+    want_break_after_opts: Array<{ value: string, label: string }>,
     for_how_long: string,
   },
   /* if a user wants a break after playing or not */
@@ -25,11 +17,16 @@ type WantBreakAfterRowType = {
   onChange: boolean => void,
   /* how long a break should be */
   breakValue: ?number,
+  /* pill options where value is number of seconds */
+  breakOptions: Array<{ value: number, label: string }>,
   onChangeBreak: number => void,
 };
 
 export function WantBreakAfterRow(props: WantBreakAfterRowType) {
-  const { t, value, onChange, onChangeBreak, breakValue } = props;
+  const { t, value, onChangeBreak, breakValue, breakOptions } = props;
+  const onChange = v => {
+    props.onChange(castToBoolean(v));
+  };
 
   return (
     <Flex
@@ -40,9 +37,9 @@ export function WantBreakAfterRow(props: WantBreakAfterRowType) {
         {t.want_break_after}
       </Text>
       <PillSelector
-        options={WANT_BREAK_AFTER_OPTS}
+        options={t.want_break_after_opts}
         onChange={onChange}
-        value={value}
+        value={String(value)}
       />
       {value && (
         <>
@@ -50,7 +47,7 @@ export function WantBreakAfterRow(props: WantBreakAfterRowType) {
             {t.for_how_long}
           </Text>
           <PillSelector
-            options={WANT_BREAK_AFTER_YES_OPTS}
+            options={breakOptions}
             value={breakValue}
             onChange={onChangeBreak}
           />

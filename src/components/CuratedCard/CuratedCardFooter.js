@@ -5,7 +5,7 @@ import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { PlayIcon, MoreIcon } from "@casumo/cmp-icons";
 import { stringToHTML, convertHTMLToString } from "Utils";
-import { Mobile, Desktop } from "Components/ResponsiveLayout";
+import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import { GameThumb } from "Components/GameThumb";
 import TrackClick from "Components/TrackClick";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -47,13 +47,13 @@ export const CuratedCardFooterGame = ({
   onLaunchGame,
 }: GameProps) => (
   <>
-    <Mobile>
+    <MobileAndTablet>
       <CuratedCardFooterGameMobile
         gameData={gameData}
         buttonText={buttonText}
         onLaunchGame={onLaunchGame}
       />
-    </Mobile>
+    </MobileAndTablet>
     <Desktop>
       <CuratedCardFooterGameDesktop
         gameData={gameData}

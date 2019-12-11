@@ -1,13 +1,14 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import wait from "waait";
-import { MockedProviderWithContext } from "Features/sports/components/GraphQL";
+import { MockedProvider } from "@apollo/react-testing";
+import { actWait } from "Utils";
 import StageFavouritesProvider from "./StageFavouritesProvider";
 import {
   withFavouritesMock,
   noFavouritesMock,
 } from "./__mocks__/favouriteSportsSelectorContextQuery";
 import competitionsSuggestionsMock from "./__mocks__/competititonSuggestionsQuery";
+import playerVerticalMock from "./__mocks__/playerVerticalQuery";
 
 const areFavouritesPopulatedForCustomisableSports = sports =>
   sports.reduce((result, sport) => {
@@ -20,11 +21,15 @@ const areFavouritesPopulatedForCustomisableSports = sports =>
 describe("<StageFavouritesProvider />", () => {
   test("should fetch sports on mount", () => {
     const rendered = mount(
-      <MockedProviderWithContext
-        mocks={[noFavouritesMock, competitionsSuggestionsMock]}
+      <MockedProvider
+        mocks={[
+          playerVerticalMock,
+          noFavouritesMock,
+          competitionsSuggestionsMock,
+        ]}
       >
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const instance = rendered.find(StageFavouritesProvider).instance();
 
@@ -36,19 +41,23 @@ describe("<StageFavouritesProvider />", () => {
 
   test("should default to suggested competitions if user has none", async () => {
     const renderedNoFavourites = mount(
-      <MockedProviderWithContext
-        mocks={[noFavouritesMock, competitionsSuggestionsMock]}
+      <MockedProvider
+        mocks={[
+          playerVerticalMock,
+          noFavouritesMock,
+          competitionsSuggestionsMock,
+        ]}
       >
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
     const renderedWithFavourites = mount(
-      <MockedProviderWithContext mocks={[withFavouritesMock]}>
+      <MockedProvider mocks={[playerVerticalMock, withFavouritesMock]}>
         <StageFavouritesProvider />
-      </MockedProviderWithContext>
+      </MockedProvider>
     );
 
-    await wait(0);
+    await actWait(0);
 
     expect(
       areFavouritesPopulatedForCustomisableSports(
@@ -63,7 +72,7 @@ describe("<StageFavouritesProvider />", () => {
   });
 
   describe("toggleFavouriteSport()", () => {
-    test("should toggle whether the sport is selected", async () => {
+    test("should toggle whether the sport is selected", () => {
       const rendered = shallow(<StageFavouritesProvider />, {
         disableLifecycleMethods: true,
       });

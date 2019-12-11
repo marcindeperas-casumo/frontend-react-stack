@@ -19,8 +19,6 @@ const props = {
       "https://cms.casumo.com/wp-content/uploads/2014/06/GonzosQuest_Thumb.jpg",
     logo:
       "https://cms.casumo.com/wp-content/uploads/2014/02/GonzosQuest_Logo.png",
-    hasPlayForFun: true,
-    inMaintenanceMode: false,
     jackpotInfo: null,
     lobby: null,
   },

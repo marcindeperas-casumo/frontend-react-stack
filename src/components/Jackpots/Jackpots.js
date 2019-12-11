@@ -2,10 +2,11 @@
 import React, { PureComponent } from "react";
 import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
+import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow } from "Components/GameRow/GameRow";
 import { generateColumns } from "Utils";
 
@@ -16,12 +17,12 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
-  jackpots: Array<Jackpots_Game>,
+  jackpots: Array<A.Jackpots_Game>,
   className?: string,
   title: string,
 };
 
-const JackpotsColumn = ({ column }) => {
+const JackpotsColumn = ({ column }: { column: Array<A.Jackpots_Game> }) => {
   return (
     <List
       itemSpacing="sm"
@@ -37,44 +38,56 @@ const JackpotsColumn = ({ column }) => {
   );
 };
 
-// we are bond to use "id" because of the cellRenderer method inside ScrollableListPaginated.js
-const JackpotColumnRenderer = ({ id: idsInColumn, i }) => (
-  <JackpotsColumn key={`jackpots-column-${i}`} column={idsInColumn} />
-);
-
 export default class Jackpots extends PureComponent<Props> {
   static defaultProps = {
     jackpots: [],
     title: "",
   };
 
+  get columns(): Array<Array<A.Jackpots_Game>> {
+    return generateColumns(this.props.jackpots);
+  }
+
+  keyGetter = (i: number) => this.columns[i][0].slug;
+
+  mobileJackpotColumnRenderer = (i: number) => {
+    return <JackpotsColumn column={this.columns[i]} />;
+  };
+
+  desktopJackpotColumnRenderer = ({
+    id: gamesInColumn,
+    i,
+  }: {
+    id: Array<A.Jackpots_Game>,
+    i: number,
+  }) => <JackpotsColumn key={gamesInColumn[0].slug} column={gamesInColumn} />;
+
   render() {
-    const { jackpots, title } = this.props;
-    const columns = generateColumns(jackpots);
-    const itemClassName = "c-jackpots-list-tile";
+    const { title } = this.props;
 
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
-                itemClassName={itemClassName}
+                keyGetter={this.keyGetter}
+                itemRenderer={this.mobileJackpotColumnRenderer}
+                numberOfItems={this.columns.length}
+                itemClassName="c-jackpots-list-tile"
                 padding={PADDING_PER_DEVICE}
-              >
-                {columns.map((id, i) => JackpotColumnRenderer({ id, i }))}
-              </Scrollable>
+              />
             </div>
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
                 title,
-                itemIds: columns,
+                itemIds: this.columns,
               }}
-              Component={JackpotColumnRenderer}
-              className={itemClassName}
+              Component={this.desktopJackpotColumnRenderer}
+              className="c-jackpots-list-tile"
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
             />

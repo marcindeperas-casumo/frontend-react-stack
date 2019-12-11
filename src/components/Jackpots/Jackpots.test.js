@@ -17,7 +17,7 @@ describe("<Jackpots />", () => {
     expect(rendered.find(ScrollableListTitle)).toHaveLength(1);
   });
 
-  test("Should not render ScrollableListPaginated on Mobile", () => {
+  test("Should not render ScrollableListPaginated on Mobile and Tablet", () => {
     setMobileViewport();
     const rendered = mount(<Jackpots jackpots={jackpotsMock} />);
 

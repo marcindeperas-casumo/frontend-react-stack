@@ -16,6 +16,7 @@ describe("api.transactionsBetsHistory", () => {
     http = {
       get: jest.fn(),
       post: jest.fn(),
+      del: jest.fn(),
     };
   });
 

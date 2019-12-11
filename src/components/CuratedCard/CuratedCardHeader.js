@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import Text from "@casumo/cmp-text";
-import { Mobile, Desktop } from "Components/ResponsiveLayout";
+import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import { stringToHTML } from "Utils";
 
 type HeaderProps = {
@@ -14,14 +14,14 @@ type HeaderSubtitleProps = {
 
 export const CuratedCardHeader = ({ header }: HeaderProps) => (
   <>
-    <Mobile>
+    <MobileAndTablet>
       <Text
         data-test="curated-card-header"
         className="u-margin-bottom--none u-line-height--1 u-font-weight-bold t-color-white"
         size="2xlg"
         dangerouslySetInnerHTML={stringToHTML(header)}
       />
-    </Mobile>
+    </MobileAndTablet>
     <Desktop>
       <div className="o-wrapper">
         <Text

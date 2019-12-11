@@ -7,6 +7,7 @@ import {
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
   marketSelector,
+  sessionIdSelector,
   types as handshakeTypes,
 } from "Models/handshake";
 import { normalizeData, updateEntity } from "Models/schema";
@@ -21,6 +22,7 @@ export function* fetchGameListSaga() {
   const currency = yield select(currencySelector);
   const market = yield select(marketSelector);
   const playerId = yield select(playerIdSelector);
+  const sessionId = yield select(sessionIdSelector);
   const areGamesFetched = yield select(
     isFetchingStarted(handshakeTypes.FETCH_GAMES_HANDSHAKE)
   );
@@ -42,6 +44,7 @@ export function* fetchGameListSaga() {
 
   yield put(
     fetchTopLists({
+      sessionId,
       handshake,
       country,
       platform,

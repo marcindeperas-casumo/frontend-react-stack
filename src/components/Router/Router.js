@@ -1,33 +1,72 @@
 // @flow
-import React, { PureComponent } from "react";
-import type { Node } from "react";
-import { contains, intersection } from "ramda";
+import * as React from "react";
+import { Router as ReachRouter } from "@reach/router";
+import { useLanguage, useUrlPrefix } from "Utils/hooks";
+import { routeTranslator } from "Utils";
+import { ROUTE_IDS } from "Src/constants";
+import {
+  LazyTopLists,
+  LazyGameSearch,
+  LazyMustDropJackpots,
+  LazyGameProviders,
+  LazyLiveCasinoDetails,
+  LazyPromotions,
+  LazyPromotionDetail,
+  LazyPlayerValuables,
+  LazyPlayerDepositValuables,
+  LazyPlayer,
+  LazyPlayerSettings,
+  LazyPlayerSettingsNotifications,
+  LazyPlayerSettingsAccountDetails,
+  LazyPlayerSettingsRealityCheck,
+  LazySports,
+  LazyTransactionHistory,
+  LazyAnnualTransactionsOverview,
+  LazyRealMoneyGamePage,
+  LazyPlayForFunGamePage,
+} from "./routes";
 
-type Props = {
-  activePaths: string[],
-  children: any,
+export const Router = () => {
+  const language = useLanguage();
+  const basepath = useUrlPrefix();
+  const translateRoute = routeTranslator(language);
+  const reachRouterProps = basepath ? { basepath } : {};
+
+  return (
+    <ReachRouter {...reachRouterProps}>
+      <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
+      <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
+      <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
+      <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
+      <LazyMustDropJackpots
+        path={translateRoute(ROUTE_IDS.MUST_DROP_JACKPOTS)}
+      />
+      <LazyGameProviders path={translateRoute(ROUTE_IDS.GAME_PROVIDER_GAMES)} />
+      <LazyLiveCasinoDetails
+        path={translateRoute(ROUTE_IDS.LIVE_CASINO_DETAILS)}
+      />
+      <LazyPromotions path={translateRoute(ROUTE_IDS.PROMOTIONS)} />
+      <LazyPromotionDetail path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)} />
+      <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
+      <LazyPlayerValuables path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)} />
+      <LazyPlayerDepositValuables path={translateRoute(ROUTE_IDS.DEPOSIT)} />
+      <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
+      <LazyPlayerSettingsNotifications
+        path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}
+      />
+      <LazyPlayerSettingsAccountDetails
+        path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_ACCOUNT_DETAILS)}
+      />
+      <LazyPlayerSettingsRealityCheck
+        path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_REALITY_CHECK)}
+      />
+      <LazySports path={translateRoute(ROUTE_IDS.SPORTS)} />
+      <LazyTransactionHistory
+        path={translateRoute(ROUTE_IDS.TRANSACTION_HISTORY)}
+      />
+      <LazyAnnualTransactionsOverview
+        path={translateRoute(ROUTE_IDS.TRANSACTION_ANNUAL_OVERVIEW)}
+      />
+    </ReachRouter>
+  );
 };
-
-export class Router extends PureComponent<Props> {
-  render() {
-    return React.Children.toArray(this.props.children)
-      .filter(React.isValidElement)
-      .map<Node>(child => {
-        const { activePaths } = this.props;
-        const {
-          props: { path },
-        } = child;
-
-        if (path === "*") {
-          return child;
-        }
-
-        if (Array.isArray(path)) {
-          const intersectionKeys = intersection(path, activePaths);
-          return intersectionKeys.length > 0 ? child : null;
-        }
-
-        return contains(path, activePaths) ? child : null;
-      });
-  }
-}

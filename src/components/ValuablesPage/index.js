@@ -1,1 +1,0 @@
-export { ValuablesPage } from "./ValuablesPage";

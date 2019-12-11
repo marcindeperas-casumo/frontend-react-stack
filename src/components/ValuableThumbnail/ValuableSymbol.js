@@ -7,11 +7,11 @@ import {
   CurrencyGbpIcon,
   CurrencyKrnIcon,
   CurrencyRupIcon,
+  DepositIcon,
 } from "@casumo/cmp-icons";
 import { VALUABLE_TYPES, VALUABLE_SPIN_TYPES } from "Models/valuables";
 import { CURRENCIES } from "Src/constants";
 import {
-  DepositIcon,
   BasicSpinsIcon,
   BonusSpinsIcon,
   SuperSpinsIcon,
@@ -34,6 +34,8 @@ const VALUABLE_ICON = {
     [CURRENCIES.INR]: CurrencyRupIcon,
     [CURRENCIES.SEK]: CurrencyKrnIcon,
     [CURRENCIES.DKK]: CurrencyKrnIcon,
+    [CURRENCIES.NZD]: CurrencyCadIcon,
+    [CURRENCIES.USD]: CurrencyCadIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
 };

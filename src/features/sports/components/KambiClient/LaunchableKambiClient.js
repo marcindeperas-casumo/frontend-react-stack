@@ -3,7 +3,9 @@ import React from "react";
 import gql from "graphql-tag";
 import { connect } from "react-redux";
 import { Query, Mutation } from "react-apollo";
+import { getApolloContext } from "@apollo/react-hooks";
 import { propOr } from "ramda";
+import * as A from "Types/apollo";
 import { ErrorMessage } from "Components/ErrorMessage";
 import {
   currencySelector,
@@ -12,7 +14,6 @@ import {
 } from "Models/handshake";
 import { SESSION_TOUCH } from "Models/apollo/mutations";
 import { MutateOnMount } from "Features/sports/components/GraphQL";
-import { GraphQLClientContext } from "Components/GraphQLProvider";
 import KambiClientSkeleton from "./KambiClientSkeleton";
 import KambiClient from "./KambiClient";
 
@@ -44,14 +45,10 @@ type State = {
   firstLoadCompleted: boolean,
 };
 
-class LaunchableKambiClientQuery extends Query<
-  LaunchableKambiClientQuery,
-  null
-> {}
-class LaunchKambiMutationOnMount extends MutateOnMount<LaunchKambi> {}
+class LaunchKambiMutationOnMount extends MutateOnMount<A.LaunchKambi> {}
 
 export class LaunchableKambiClient extends React.Component<Props, State> {
-  static contextType = GraphQLClientContext;
+  static contextType = getApolloContext();
 
   state = {
     firstLoadCompleted: false,
@@ -63,7 +60,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
 
   setFirstLoadCompleted = () => this.setState({ firstLoadCompleted: true });
 
-  isKambiClientVisible = (kambiLaunchData: LaunchableKambiClientQuery) => {
+  isKambiClientVisible = (kambiLaunchData: A.LaunchableKambiClientQuery) => {
     return kambiLaunchData.kambiClientVisible && this.state.firstLoadCompleted;
   };
 
@@ -92,9 +89,12 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
           } = data.launchKambi;
 
           return (
-            <LaunchableKambiClientQuery query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
+            <Query query={LAUNCHABLE_KAMBI_CLIENT_QUERY}>
               {/* eslint-disable-next-line no-shadow */}
-              {({ data }) => {
+              {({ data }: { data: ?A.LaunchableKambiClientQuery }) => {
+                if (!data) {
+                  return null;
+                }
                 return (
                   <Mutation mutation={SESSION_TOUCH}>
                     {sessionTouch => (
@@ -123,7 +123,7 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
                   </Mutation>
                 );
               }}
-            </LaunchableKambiClientQuery>
+            </Query>
           );
         }}
       </LaunchKambiMutationOnMount>
