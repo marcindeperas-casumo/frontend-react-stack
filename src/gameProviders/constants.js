@@ -31,3 +31,7 @@ export const PROVIDERS = Object.freeze({
   YGGDRASIL_DESKTOP: "YGGDRASIL_DESKTOP",
   YGGDRASIL_MOBILE: "YGGDRASIL_MOBILE",
 });
+
+export const GAME_ACTIVE_EVENT_NAME = "gameActive";
+export const GAME_IDLE_EVENT_NAME = "gameIdle";
+export const IFRAME_ID = "casumo-game";

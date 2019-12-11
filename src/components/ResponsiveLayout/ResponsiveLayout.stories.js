@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { viewports } from "Storybook/viewports";
-import { Desktop, Mobile } from "./ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "./ResponsiveLayout";
 
 const stories = storiesOf("ResponsiveLayout", module);
 
@@ -26,7 +26,7 @@ stories.add(
           </p>
         }
       />
-      <Mobile
+      <MobileAndTablet
         children={
           <p>
             I'm a Mobile device
@@ -46,10 +46,10 @@ stories.add(
 );
 
 stories.add(
-  "Mobile - 768px viewport",
+  "MobileAndTablet - 768px viewport",
   () => (
     <div>
-      <Mobile
+      <MobileAndTablet
         children={
           <p>
             I'm a Mobile device

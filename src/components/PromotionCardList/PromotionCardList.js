@@ -3,7 +3,7 @@ import React, { PureComponent } from "react";
 import ScrollableList from "Components/ScrollableList";
 import PromotionCardContainer from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
 type Props = {
@@ -41,7 +41,7 @@ class PromotionCardList extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <ScrollableList
               itemClassName={itemClassName}
               title={title}
@@ -50,7 +50,7 @@ class PromotionCardList extends PureComponent<Props> {
               itemIds={promotionsSlugs}
               Component={promotionCardContainerRenderer}
             />
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{

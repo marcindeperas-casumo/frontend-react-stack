@@ -1,7 +1,9 @@
 // @flow
 import React from "react";
 import { path } from "ramda";
+import { connect } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
+import { localeSelector } from "Models/handshake";
 import Jackpots from "./Jackpots";
 import { JackpotsQuery } from "./Jackpots.graphql";
 
@@ -12,12 +14,24 @@ import { JackpotsQuery } from "./Jackpots.graphql";
 // Related issue: https://github.com/Casumo/Home/issues/26668
 const pollInterval = 30000;
 
-export const JackpotsContainer = () => {
+type JackpotsQueryInjectProps = {
+  locale: string,
+};
+
+export const JackpotsQueryInject = ({ locale }: JackpotsQueryInjectProps) => {
   const { data, loading } = useQuery(JackpotsQuery, { pollInterval });
   const getTitle = path(["gamesList", "title"]);
   const getGames = path(["gamesList", "games"]);
 
   return loading ? null : (
-    <Jackpots title={getTitle(data)} jackpots={getGames(data)} />
+    <Jackpots
+      title={getTitle(data)}
+      locale={locale}
+      jackpots={getGames(data)}
+    />
   );
 };
+
+export const JackpotsContainer = connect(state => ({
+  locale: localeSelector(state),
+}))(JackpotsQueryInject);

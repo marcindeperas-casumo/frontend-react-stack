@@ -5,7 +5,7 @@ import { generateColumns } from "Utils";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import JackpotsListTile from "Components/JackpotsListTile";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
 
 const PADDING_PER_DEVICE = {
@@ -68,7 +68,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <div className="u-padding-top--xlg">
               <ScrollableListTitleRow
                 paddingLeft
@@ -83,7 +83,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
                 padding={PADDING_PER_DEVICE}
               />
             </div>
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
