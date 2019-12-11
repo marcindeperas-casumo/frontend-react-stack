@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import { act } from "react-dom/test-utils";
 import { mount } from "enzyme";
 import * as ReactReduxHooks from "react-redux";
 import MockStore from "Components/MockStore";
@@ -37,6 +36,14 @@ describe("useRealityCheckModal", () => {
     </MockStore>
   );
 
+  const data = {
+    modalId: "REALITY_CHECK_MODAL",
+    result: class {},
+    returnCode: "ACCEPTED",
+    ev: "KO_APP_EVENT/modalHidden",
+  };
+  bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { data });
+
   it(`calls dispatch action type ${type.show} with config`, async () => {
     await waitAndUpdateWrapper(wrapper);
     expect(mockDispatch).toBeCalledWith({
@@ -52,18 +59,7 @@ describe("useRealityCheckModal", () => {
     expect(pauseGame).toBeCalledTimes(1);
   });
 
-  it("calls resumeGame", async () => {
-    const data = {
-      modalId: "REALITY_CHECK_MODAL",
-      result: class {},
-      returnCode: "ACCEPTED",
-      ev: "KO_APP_EVENT/modalHidden",
-    };
-    act(() => {
-      bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { data });
-    });
-    await waitAndUpdateWrapper(wrapper);
-
+  it("calls resumeGame", () => {
     expect(resumeGame).toBeCalledTimes(1);
   });
 });
