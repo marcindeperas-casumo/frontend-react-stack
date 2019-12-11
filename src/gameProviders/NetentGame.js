@@ -98,9 +98,13 @@ export class NetentGame extends BaseGame {
   }
 
   onUnmount() {
-    this.extend && this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
-    this.extend &&
+    if (this.extend) {
+      this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
+      // $FlowIgnore: flow doesn realise that we just checked for this.extend
+      this.extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_STARTED);
+      // $FlowIgnore: flow doesn realise that we just checked for this.extend
       this.extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_ENDED);
+    }
   }
 
   pauseGame() {

@@ -57,7 +57,7 @@ export class BaseIframeGame extends BaseGame {
         height: "100%",
         border: 0,
       },
-      src: this.props.gameData.url || "",
+      src: this.props.gameData.url || null,
       title: IFRAME_ID,
       id: IFRAME_ID,
     };
