@@ -27,12 +27,20 @@ type Props = {
   className?: string,
   /** The search props */
   search?: SearchProps | boolean,
+  /** The locale for displaying jackpots with the right format */
+  locale?: string,
 };
 
 export class GameRow extends PureComponent<Props> {
   render() {
-    const { game = {}, onLaunchGame, search, className = "" } = this.props;
-    const { name, logo, logoBackground, slug } = game;
+    const {
+      game = {},
+      onLaunchGame,
+      search,
+      className = "",
+      locale,
+    } = this.props;
+    const { name, logo, logoBackground, slug, jackpot } = game;
     const lobby = game.lobby || {};
     const { bets } = lobby;
 
@@ -53,7 +61,12 @@ export class GameRow extends PureComponent<Props> {
               {search ? (
                 <GameRowSearchText name={name} search={search} />
               ) : (
-                <GameRowText name={name} bets={bets} />
+                <GameRowText
+                  locale={locale}
+                  name={name}
+                  bets={bets}
+                  jackpot={jackpot}
+                />
               )}
             </Flex>
           </TrackClick>
