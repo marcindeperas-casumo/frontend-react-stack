@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8"/>
+    <title>Casumo Navigation Bubbler</title>
+  </head>
+  <body>
+    <script>
+      var urlParams = new URLSearchParams(window.location.search);
+      window.top.location.replace(window.location.origin + '/' + urlParams.get('target'));
+    </script>
+  </body>
+</html>
