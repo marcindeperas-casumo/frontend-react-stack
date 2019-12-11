@@ -26,7 +26,6 @@ type Props = {
   translations: ValuableThumbnailTranslations,
   caveat: string,
   onClose: () => void,
-  isHiddenByDefault: Boolean,
 };
 
 // The <ValubleThumbnail> would need the translations in order to display a badge for the expiry date,
