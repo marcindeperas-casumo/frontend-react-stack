@@ -1,5 +1,4 @@
 // @flow
-
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
