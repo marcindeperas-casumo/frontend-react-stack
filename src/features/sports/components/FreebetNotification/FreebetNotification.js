@@ -34,19 +34,8 @@ type Props = {
 // Ideally <ValuableThumbnail> shouldn't make these properties mandatory.
 const MOCKED_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
 
-export const FreebetNotification = ({
-  backgroundImage,
-  currency,
-  expiryDate,
-  market,
-  valuableState,
-  valuableType,
-  title,
-  description,
-  caveat,
-  onClose,
-  isHiddenByDefault,
-}: Props) => {
+export const FreebetNotification = (props: Props) => {
+  const { onClose, isHiddenByDefault } = props;
   const [isHidden, setIsHidden] = useState(isHiddenByDefault);
 
   if (isHidden) {
@@ -56,41 +45,28 @@ export const FreebetNotification = ({
   return (
     <Media
       className="u-padding--md"
-      renderImage={() =>
-        renderValuableThumbnail(
-          backgroundImage,
-          currency,
-          expiryDate,
-          market,
-          valuableState,
-          valuableType
-        )
-      }
+      renderImage={() => renderValuableThumbnail(props)}
       renderText={() =>
-        renderValuableText(
-          title,
-          description,
-          caveat,
-          valuableState,
-          valuableType,
-          () => {
+        renderValuableText({
+          ...props,
+          onClose: () => {
             onClose();
             setIsHidden(true);
-          }
-        )
+          },
+        })
       }
     ></Media>
   );
 };
 
-const renderValuableThumbnail = (
+const renderValuableThumbnail = ({
   backgroundImage,
   currency,
   expiryDate,
   market,
   valuableState,
-  valuableType
-) => (
+  valuableType,
+}) => (
   <div
     className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow"
     style={{ width: 56 }}
@@ -113,14 +89,14 @@ const renderValuableThumbnail = (
   </div>
 );
 
-const renderValuableText = (
+const renderValuableText = ({
   title,
   description,
   caveat,
   valuableState,
   valuableType,
-  onClose
-) => (
+  onClose,
+}) => (
   <Flex justify="space-between">
     <div className="u-padding-top">
       <Text
