@@ -5,6 +5,7 @@ import { waitAndUpdateWrapper } from "Utils";
 import { DEVICES } from "Src/constants";
 import { HookWrapper } from "Utils/HookWrapper";
 import { ThunderkickGame } from "GameProviders";
+import MockStore from "Components/MockStore";
 import { useGameLaunchData } from "./useGameLaunchData";
 
 const responseData = {
@@ -34,17 +35,19 @@ describe("useGameLaunchData", () => {
 
   test("returns gameProvider model", async () => {
     const wrapper = mount(
-      <HookWrapper
-        hook={useGameLaunchData}
-        args={[
-          {
-            slug: "fruit-warp",
-            playForFun: true,
-            platform: DEVICES.MOBILE,
-            language: "en",
-          },
-        ]}
-      />
+      <MockStore>
+        <HookWrapper
+          hook={useGameLaunchData}
+          args={[
+            {
+              slug: "fruit-warp",
+              playForFun: true,
+              platform: DEVICES.MOBILE,
+              language: "en",
+            },
+          ]}
+        />
+      </MockStore>
     );
 
     await waitAndUpdateWrapper(wrapper);

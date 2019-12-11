@@ -2,9 +2,10 @@ import { CHANNELS, takeChannel } from "Models/cometd";
 
 const DEFAULT_STATE = {
   wallet: {},
+  realityCheck: {},
 };
 
-const playerBalanceReducer = (state = DEFAULT_STATE, action) => {
+const playerReducer = (state = DEFAULT_STATE, action) => {
   if (takeChannel(CHANNELS.PLAYER)(action)) {
     const { data } = action;
 
@@ -25,9 +26,16 @@ const playerBalanceReducer = (state = DEFAULT_STATE, action) => {
         wallet,
       };
     }
+
+    if (data.realityCheck) {
+      return {
+        ...state,
+        realityCheck: data.realityCheck,
+      };
+    }
   }
 
   return state;
 };
 
-export default playerBalanceReducer;
+export default playerReducer;

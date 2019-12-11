@@ -55,13 +55,13 @@ export function PlayerValuableListVertical() {
     >
       {sections.map(section => (
         <ValuablesVerticalList
-          className="u-padding-x--md"
           key={section.title}
           valuables={valuables}
           title={section.title}
           translations={translations}
           loading={loading}
           onConsumeValuable={consumeValuable}
+          isItemSelectable={false}
         />
       ))}
     </Flex>

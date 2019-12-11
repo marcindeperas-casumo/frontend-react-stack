@@ -1,50 +1,23 @@
 // @flow
 
 import React, { useEffect } from "react";
-import { useGameLaunchData } from "Utils/hooks";
+import type { GameProviderModel } from "GameProviders";
 
 type Props = {
   className?: string,
-  environment: string,
-  language: string,
-  onError?: (error: any) => {},
-  platform: string,
-  playForFun: boolean,
-  slug: string,
+  gameProviderModel: GameProviderModel,
 };
 
-export const GameLauncher = ({
-  className,
-  environment,
-  language,
-  onError,
-  platform,
-  playForFun,
-  slug,
-}: Props) => {
-  const { gameProviderModel, error } = useGameLaunchData({
-    slug,
-    playForFun,
-    platform,
-    language,
-    environment,
-  });
-
+export const GameLauncher = ({ className, gameProviderModel }: Props) => {
   useEffect(() => {
-    if (error && onError) {
-      onError(error);
-    }
-  }, [error, onError]);
-
-  useEffect(() => {
-    if (gameProviderModel && !error) {
+    if (gameProviderModel) {
       gameProviderModel.onMount();
 
       return gameProviderModel.onUnmount;
     }
-  }, [error, gameProviderModel]);
+  }, [gameProviderModel]);
 
-  if (error || !gameProviderModel) {
+  if (!gameProviderModel) {
     return null;
   }
 
