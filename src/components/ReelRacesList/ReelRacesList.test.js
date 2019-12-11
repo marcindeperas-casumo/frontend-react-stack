@@ -35,7 +35,7 @@ const props = {
   },
 };
 
-describe("<ReelRacesList /> - Mobile", () => {
+describe("<ReelRacesList /> - Mobile and Tablet", () => {
   let rendered;
 
   beforeEach(() => {

@@ -1,6 +1,7 @@
 /* eslint-disable fp/no-mutation */
 import {
   mobileBreakpoint,
+  tabletBreakpoint,
   desktopBreakpoint,
   getMediaQuery,
 } from "Components/ResponsiveLayout/ResponsiveLayout.utils";
@@ -14,6 +15,17 @@ export const setDesktopViewport = () =>
   (window.matchMedia = jest.fn().mockImplementation(query => {
     return {
       matches: query === getMediaQuery(desktopBreakpoint) ? true : false,
+      media: query,
+      onchange: null,
+      addListener: jest.fn(),
+      removeListener: jest.fn(),
+    };
+  }));
+
+export const setTabletViewport = () =>
+  (window.matchMedia = jest.fn().mockImplementation(query => {
+    return {
+      matches: query === getMediaQuery(tabletBreakpoint) ? true : false,
       media: query,
       onchange: null,
       addListener: jest.fn(),

@@ -4,7 +4,7 @@ import type { ReelRacesTranslations } from "Models/reelRaces";
 import ScrollableList from "Components/ScrollableList";
 import ReelRaceCard from "Components/ReelRaceCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
 type Props = {
   areTranslationsFetched: boolean,
@@ -44,7 +44,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <ScrollableList
               title={t.title}
               seeMoreText={t.more_link}
@@ -52,7 +52,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
               itemIds={this.props.reelRacesIds}
               Component={ReelRaceCard}
             />
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
