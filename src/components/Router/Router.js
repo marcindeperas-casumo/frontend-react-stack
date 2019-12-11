@@ -1,6 +1,9 @@
-import React from "react";
+// @flow
+import * as React from "react";
 import { Router as ReachRouter } from "@reach/router";
-import { ROUTE_IDS } from "./constants";
+import { useLanguage, useUrlPrefix } from "Utils/hooks";
+import { routeTranslator } from "Utils";
+import { ROUTE_IDS } from "Src/constants";
 import {
   LazyTopLists,
   LazyGameSearch,
@@ -10,6 +13,7 @@ import {
   LazyPromotions,
   LazyPromotionDetail,
   LazyPlayerValuables,
+  LazyPlayerDepositValuables,
   LazyPlayer,
   LazyPlayerSettings,
   LazyPlayerSettingsNotifications,
@@ -18,14 +22,20 @@ import {
   LazySports,
   LazyTransactionHistory,
   LazyAnnualTransactionsOverview,
+  LazyRealMoneyGamePage,
+  LazyPlayForFunGamePage,
 } from "./routes";
-import { routeTranslator } from "./utils";
 
-export const Router = ({ basePath, language }) => {
+export const Router = () => {
+  const language = useLanguage();
+  const basepath = useUrlPrefix();
   const translateRoute = routeTranslator(language);
+  const reachRouterProps = basepath ? { basepath } : {};
 
   return (
-    <ReachRouter basepath={basePath}>
+    <ReachRouter {...reachRouterProps}>
+      <LazyRealMoneyGamePage path={translateRoute(ROUTE_IDS.PLAY)} />
+      <LazyPlayForFunGamePage path={translateRoute(ROUTE_IDS.PRACTICE)} />
       <LazyTopLists path={translateRoute(ROUTE_IDS.TOP_LISTS)} />
       <LazyGameSearch path={translateRoute(ROUTE_IDS.GAMES_SEARCH)} />
       <LazyMustDropJackpots
@@ -39,6 +49,7 @@ export const Router = ({ basePath, language }) => {
       <LazyPromotionDetail path={translateRoute(ROUTE_IDS.PROMOTION_DETAILS)} />
       <LazyPlayer path={translateRoute(ROUTE_IDS.PLAYER_DASHBOARD)} />
       <LazyPlayerValuables path={translateRoute(ROUTE_IDS.PLAYER_VALUABLES)} />
+      <LazyPlayerDepositValuables path={translateRoute(ROUTE_IDS.DEPOSIT)} />
       <LazyPlayerSettings path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS)} />
       <LazyPlayerSettingsNotifications
         path={translateRoute(ROUTE_IDS.PLAYER_SETTINGS_NOTIFICATIONS)}

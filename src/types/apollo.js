@@ -43,7 +43,11 @@ export type PlayerValuablesQuery_player_valuables_PlayerValuableSpins_game = {
 };
 export type PlayerValuablesQuery_player_valuables =
   | {
-      __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+      __typename:
+        | "PlayerValuableDeposit"
+        | "PlayerValuableFreeBet"
+        | "PlayerValuableFreeBetLocked"
+        | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
       expiryDate: BigInt,
@@ -1138,7 +1142,11 @@ export type Jackpots_Game = {
 // ====================================================
 
 export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
   expiryDate: BigInt,
@@ -1357,6 +1365,8 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
   __typename:
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   title: string,
@@ -1389,7 +1399,11 @@ export type ValuableCard_PlayerValuable =
 // ====================================================
 
 export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
-  __typename: "PlayerValuableDeposit" | "PlayerValuableSport",
+  __typename:
+    | "PlayerValuableDeposit"
+    | "PlayerValuableFreeBet"
+    | "PlayerValuableFreeBetLocked"
+    | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
   content: string,
@@ -1691,7 +1705,13 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type ValuableType = "cash" | "deposit" | "spins" | "sport";
+export type ValuableType =
+  | "cash"
+  | "deposit"
+  | "freeBet"
+  | "freeBetLocked"
+  | "spins"
+  | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"

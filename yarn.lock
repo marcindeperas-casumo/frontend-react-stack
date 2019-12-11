@@ -1685,6 +1685,11 @@
     "@casumo/cudl-zindex" "^1.0.6"
     sass-pathfinder "^0.0.5"
 
+"@casumo/fe-toolkit-ismobile@^1.0.2":
+  version "1.0.2"
+  resolved "http://npm.casumotest.local/@casumo%2ffe-toolkit-ismobile/-/fe-toolkit-ismobile-1.0.2.tgz#8c40e18e7a17bd010b9dbc7bf7b212ed32d4a86e"
+  integrity sha512-me1/irq/pP6KOKviNScZ7w0DfU8qmBiqlbVO/ez9PdFWWI6PUP02SdqFnx2nmVtHzX6GLgaJj011oAsx4tV7ew==
+
 "@chromaui/localtunnel@2.0.1":
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/@chromaui/localtunnel/-/localtunnel-2.0.1.tgz#2d4cef4efa189a2a2f015d639e754956c54cacd1"

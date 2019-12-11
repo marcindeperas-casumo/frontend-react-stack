@@ -19,6 +19,7 @@ import {
   convertHoursToDays,
   convertTimestampToLuxonDate,
   interpolateTimeInterval,
+  canBeInterpolated,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -315,6 +316,17 @@ describe("getSymbolForCurrency()", () => {
         locale: "en-GB",
       })
     ).toBe("$");
+  });
+});
+describe("canBeInterpolated()", () => {
+  test("should return false when passed string without placeholders", () => {
+    const input = "content without placeholders";
+    expect(canBeInterpolated(input)).toBe(false);
+  });
+
+  test("should return true when passed string contains placeholders", () => {
+    const input = "I am a {{var}}";
+    expect(canBeInterpolated(input)).toBe(true);
   });
 });
 
