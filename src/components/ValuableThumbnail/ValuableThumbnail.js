@@ -148,7 +148,6 @@ function getCoinClassModifier(valuableType: A.ValuableType) {
       return "t-color-blue-light-1";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-    case VALUABLE_TYPES.FREE_BET_LOCKED:
       return "t-color-green-light-1";
     case VALUABLE_TYPES.SPINS:
       return "t-color-grey-dark-3";
@@ -166,7 +165,6 @@ function getCoinTextClassModifier(valuableType: A.ValuableType) {
       return "t-color-blue-dark-3";
     case VALUABLE_TYPES.SPORT:
     case VALUABLE_TYPES.FREE_BET:
-    case VALUABLE_TYPES.FREE_BET_LOCKED:
       return "t-color-green-dark-3";
     case VALUABLE_TYPES.SPINS:
       return "t-color-yellow";

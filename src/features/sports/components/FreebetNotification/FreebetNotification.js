@@ -10,7 +10,7 @@ import { ValuableThumbnail } from "Components/ValuableThumbnail";
 import {
   getExpiryTimeLeft,
   type ValuableThumbnailTranslations,
-  VALUABLE_TYPES,
+  VALUABLE_STATES,
 } from "Models/valuables";
 import * as A from "Types/apollo";
 
@@ -125,7 +125,7 @@ const renderValuableText = (
         size="sm"
         tag="div"
       >
-        {valuableType === VALUABLE_TYPES.FREE_BET_LOCKED && (
+        {valuableState === VALUABLE_STATES.LOCKED && (
           <LockIcon size="sm" className="u-margin-right--sm" />
         )}
         <DangerousHtml data-test="freebet-notification-title" html={title} />

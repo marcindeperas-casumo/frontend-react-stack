@@ -39,7 +39,6 @@ const VALUABLE_ICON = {
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
   [VALUABLE_TYPES.FREE_BET]: CouponIcon,
-  [VALUABLE_TYPES.FREE_BET_LOCKED]: CouponIcon,
 };
 
 export const ValuableSymbol = ({

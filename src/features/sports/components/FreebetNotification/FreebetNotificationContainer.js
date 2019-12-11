@@ -11,7 +11,7 @@ export const IS_FREEBET_NOTIFICATION_HIDDEN_STORAGE_KEY =
 const FREEBET_QUERY = gql`
   query FREEBET_QUERY {
     player {
-      valuables(valuableType: freeBetLocked) {
+      valuables(valuableType: freeBet) {
         id
         backgroundImage
         currency

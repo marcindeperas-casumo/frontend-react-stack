@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import { boolean } from "@storybook/addon-knobs";
 import { VALUABLE_STATES } from "Models/valuables";
-import { freebet } from "./__mocks__/freebet";
+import { freebetProps } from "./__mocks__/freebetProps";
 import { FreebetNotification } from "./FreebetNotification";
 
 const stories = storiesOf("FreebetNotification", module);
@@ -16,7 +16,7 @@ stories.add("Default", () => {
     : VALUABLE_STATES.FRESH;
   return (
     <FreebetNotification
-      {...freebet}
+      {...freebetProps}
       valuableState={valuableState}
       onClose={action("close")}
     />
