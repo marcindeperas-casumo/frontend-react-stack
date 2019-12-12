@@ -7,8 +7,10 @@ import {
   MODALS as SCS_MODALS,
   CMS_SLUGS as SCS_CMS_SLUGS,
 } from "Models/slotControlSystem";
+import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { TermsAndConditions } from "./TermsAndConditions";
 import { SlotControlSystem } from "./SlotControlSystem";
+import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -36,6 +38,10 @@ export const mappings: Mapping = {
   [SCS_MODALS.CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.CONFIGURATION_SCREEN,
     Content: SlotControlSystem,
+  },
+  REALITY_CHECK_MODAL: {
+    slug: REALITY_CHECK_CMS_SLUG,
+    Content: RealityCheck,
   },
 };
 
