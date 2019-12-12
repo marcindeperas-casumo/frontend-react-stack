@@ -28,11 +28,10 @@ const state = {
   },
 };
 
-let mockDispatch;
-
 describe("useRealityCheckModal", () => {
   const pauseGame = jest.fn(() => Promise.resolve());
   const resumeGame = jest.fn();
+  let mockDispatch;
   jest
     .spyOn(ReactReduxHooks, "useDispatch")
     .mockImplementation(() => (mockDispatch = jest.fn()));
