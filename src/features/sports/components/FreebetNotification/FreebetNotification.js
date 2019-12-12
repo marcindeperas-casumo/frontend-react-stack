@@ -14,6 +14,8 @@ import {
 } from "Models/valuables";
 import * as A from "Types/apollo";
 
+import "./FreebetNotification.scss";
+
 type Props = {
   backgroundImage: string,
   currency: string,
@@ -51,10 +53,7 @@ const renderValuableThumbnail = ({
   valuableState,
   valuableType,
 }) => (
-  <div
-    className="t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow"
-    style={{ width: 56 }}
-  >
+  <div className="c-valuable-thumbnail t-background-white u-padding--sm t-border-r u-overflow-hidden t-box-shadow">
     <ValuableThumbnail
       backgroundRenderer={
         <ImageLazy
