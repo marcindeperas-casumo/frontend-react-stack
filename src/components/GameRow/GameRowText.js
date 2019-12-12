@@ -3,10 +3,21 @@ import React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
-import { renderBets } from "Utils";
+import { renderBets, formatCurrency } from "Utils";
 import DangerousHtml from "Components/DangerousHtml";
+import * as A from "Types/apollo";
 
-export const GameRowText = ({ name, bets }: { name: string, bets: Object }) => (
+export const GameRowText = ({
+  name,
+  bets,
+  jackpot,
+  locale,
+}: {
+  name: string,
+  locale: ?string,
+  bets: ?A.GameRow_Game_lobby_bets,
+  jackpot: ?A.GameRow_Game_jackpot,
+}) => (
   <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
     <Text
       tag="div"
@@ -15,6 +26,7 @@ export const GameRowText = ({ name, bets }: { name: string, bets: Object }) => (
     >
       <DangerousHtml html={name} />
     </Text>
+    <JackpotAmount {...jackpot} locale={locale} />
     <BetsLevels bets={renderBets(bets)} />
   </Flex.Block>
 );
@@ -29,4 +41,22 @@ function BetsLevels({ bets }) {
   }
 
   return null;
+}
+
+function JackpotAmount({ value, locale }) {
+  if (!value || !locale) {
+    return null;
+  }
+
+  const { currency, amount } = value;
+
+  return (
+    <Text
+      tag="div"
+      size="sm"
+      className="u-font-weight-bold t-color-red u-padding-bottom--sm"
+    >
+      {formatCurrency({ currency, locale, value: amount })}
+    </Text>
+  );
 }

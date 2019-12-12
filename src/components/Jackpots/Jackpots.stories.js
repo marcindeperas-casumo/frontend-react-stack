@@ -6,7 +6,7 @@ import jackpotsMock from "./__mocks__/response.games.mock";
 
 const stories = storiesOf("Jackpots", module);
 const DefaultStory = () => (
-  <Jackpots title="Jackpots" jackpots={jackpotsMock} />
+  <Jackpots title="Jackpots" jackpots={jackpotsMock} locale="en" />
 );
 
 stories.add("Default", DefaultStory);
