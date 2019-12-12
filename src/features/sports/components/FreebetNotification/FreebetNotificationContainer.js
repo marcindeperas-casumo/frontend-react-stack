@@ -51,11 +51,11 @@ export const FreebetNotificationContainer = () => {
     persistIsHidden(id);
   };
 
-  if (isHidden || getPersistedIsHidden(id)) {
+  if (isHidden || getPersistedIsHidden(id) || loading) {
     return null;
   }
 
-  return loading ? null : (
+  return (
     <FreebetNotification
       backgroundImage={latestLockedFreebet.backgroundImage}
       currency={latestLockedFreebet.currency}
