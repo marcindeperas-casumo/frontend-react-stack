@@ -33,15 +33,13 @@ type Props = {
 // Ideally <ValuableThumbnail> shouldn't make these properties mandatory.
 const MOCKED_TRANSLATIONS = { hoursLabel: "", minutesLabel: "" };
 
-export const FreebetNotification = (props: Props) => {
-  return (
-    <Media
-      className="u-padding--md t-background-white"
-      renderImage={() => renderValuableThumbnail(props)}
-      renderText={() => renderValuableText(props)}
-    />
-  );
-};
+export const FreebetNotification = (props: Props) => (
+  <Media
+    className="u-padding--md t-background-white"
+    renderImage={() => renderValuableThumbnail(props)}
+    renderText={() => renderValuableText(props)}
+  />
+);
 
 const renderValuableThumbnail = ({
   backgroundImage,
