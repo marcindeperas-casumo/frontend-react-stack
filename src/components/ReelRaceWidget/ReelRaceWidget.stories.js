@@ -41,6 +41,7 @@ const props = {
     inMaintenanceMode: false,
     jackpotInfo: null,
     lobby: null,
+    jackpot: null,
   },
   t: {
     spins: "Spins",
