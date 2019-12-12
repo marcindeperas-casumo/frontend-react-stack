@@ -13,20 +13,29 @@ import { useRealityCheckModal } from "./useRealityCheckModal.hook";
 const state = {
   player: {
     realityCheck: {
-      notEmpty: "something",
+      intervalSeconds: 60,
+      playerId: "5839ad10-695d-11e8-9bc7-0242ac110003",
+      sessionStartedTime: 1576082415583,
+      totalBetAmount: {
+        amount: 0.64,
+        iso4217CurrencyCode: "GBP",
+      },
+      totalWinAmount: {
+        amount: 0.52,
+        iso4217CurrencyCode: "GBP",
+      },
     },
   },
 };
 
 let mockDispatch;
 
-jest
-  .spyOn(ReactReduxHooks, "useDispatch")
-  .mockImplementation(() => (mockDispatch = jest.fn()));
-
 describe("useRealityCheckModal", () => {
   const pauseGame = jest.fn(() => Promise.resolve());
   const resumeGame = jest.fn();
+  jest
+    .spyOn(ReactReduxHooks, "useDispatch")
+    .mockImplementation(() => (mockDispatch = jest.fn()));
   const wrapper = mount(
     <MockStore state={state}>
       <HookWrapper
@@ -35,14 +44,6 @@ describe("useRealityCheckModal", () => {
       />
     </MockStore>
   );
-
-  const data = {
-    modalId: "REALITY_CHECK_MODAL",
-    result: class {},
-    returnCode: "ACCEPTED",
-    ev: "KO_APP_EVENT/modalHidden",
-  };
-  bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { data });
 
   it(`calls dispatch action type ${type.show} with config`, async () => {
     await waitAndUpdateWrapper(wrapper);
@@ -57,9 +58,20 @@ describe("useRealityCheckModal", () => {
 
   it("calls pauseGame function promise", () => {
     expect(pauseGame).toBeCalledTimes(1);
+    jest.resetAllMocks();
   });
 
-  it("calls resumeGame", () => {
+  it("calls resumeGame", async () => {
+    const data = {
+      modalId: "REALITY_CHECK_MODAL",
+      result: class {},
+      returnCode: "ACCEPTED",
+      ev: "KO_APP_EVENT/modalHidden",
+    };
+    bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { data });
+
+    await waitAndUpdateWrapper(wrapper);
+
     expect(resumeGame).toBeCalledTimes(1);
   });
 });
