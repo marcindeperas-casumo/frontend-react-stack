@@ -3,7 +3,7 @@ import {
   equals,
   anyPass,
   filter,
-  sortWith,
+  sort,
   prop,
   descend,
   pipe,
@@ -125,9 +125,7 @@ export const getExpiryTimeLeft = (timestamp: number) => {
   return getDateTimeDifferenceFromNow(luxonDate);
 };
 
-export const orderValuablesByCreationTime = sortWith([
-  descend(prop("created")),
-]);
+export const orderValuablesByCreationTime = sort(descend(prop("created")));
 
 export const getLatestValuable = pipe(
   orderValuablesByCreationTime,
