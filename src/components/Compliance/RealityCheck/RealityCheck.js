@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
-import type { RealityCheckTypes } from "Models/player";
+import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency } from "Utils";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -22,7 +22,7 @@ type Props = {
   casumoName: string,
   locale: string,
   currency: string,
-  realityCheck: RealityCheckTypes,
+  realityCheck: RealityCheckType,
 };
 
 export function RealityCheck(props: Props) {

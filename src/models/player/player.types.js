@@ -1,5 +1,5 @@
 // @flow
-export type RealityCheckTypes = {
+export type RealityCheckType = {
   totalWinAmount: {
     amount: number,
   },
