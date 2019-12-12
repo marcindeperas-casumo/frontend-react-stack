@@ -76,6 +76,6 @@ describe("useRealityCheckModal", () => {
   });
 
   afterAll(() => {
-    jest.resetAllMocks();
+    jest.clearAllMocks();
   });
 });
