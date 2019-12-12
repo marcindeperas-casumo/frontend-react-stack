@@ -45,23 +45,24 @@ describe("useRealityCheckModal", () => {
     </MockStore>
   );
 
-  it(`calls dispatch action type ${type.show} with config`, async () => {
-    await waitAndUpdateWrapper(wrapper);
-    expect(mockDispatch).toBeCalledWith({
-      config: {
-        mustAccept: true,
-      },
-      modalId: "REALITY_CHECK_MODAL",
-      type: type.show,
+  describe("reality check modal should be dispached", () => {
+    it(`calls dispatch action type ${type.show} with config`, async () => {
+      await waitAndUpdateWrapper(wrapper);
+      expect(mockDispatch).toBeCalledWith({
+        config: {
+          mustAccept: true,
+        },
+        modalId: "REALITY_CHECK_MODAL",
+        type: type.show,
+      });
+    });
+
+    it("calls pauseGame", () => {
+      expect(pauseGame).toBeCalledTimes(1);
     });
   });
 
-  it("calls pauseGame function promise", () => {
-    expect(pauseGame).toBeCalledTimes(1);
-    jest.resetAllMocks();
-  });
-
-  it("calls resumeGame", async () => {
+  describe("reality check modal is accepted and calls resumeGame", () => {
     const data = {
       modalId: "REALITY_CHECK_MODAL",
       result: class {},
@@ -70,8 +71,12 @@ describe("useRealityCheckModal", () => {
     };
     bridge.emit(KO_APP_EVENT_MODAL_HIDDEN, { data });
 
-    await waitAndUpdateWrapper(wrapper);
+    it("calls resumeGame", () => {
+      expect(resumeGame).toBeCalledTimes(1);
+    });
+  });
 
-    expect(resumeGame).toBeCalledTimes(1);
+  afterAll(() => {
+    jest.resetAllMocks();
   });
 });
