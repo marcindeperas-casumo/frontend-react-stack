@@ -1,8 +1,8 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { number } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
+import { number } from "@storybook/addon-knobs/react";
 import MockStore from "Components/MockStore";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import { SessionDetailsForLimitsReachedExcluded } from "./SessionDetailsForLimitsReachedExcluded";
@@ -50,7 +50,7 @@ stories.add("Default", () => {
         t={t}
         locale="en-GB"
         lastEndedSession={endedSessionMock}
-        secondsTillEndOfBreak={number("Seconds till end of break", 100)}
+        secondsTillEndOfBreak={number("Seconds till end of break", 200)}
         onClickButton={action("onClickButton")}
       />
     </MockStore>

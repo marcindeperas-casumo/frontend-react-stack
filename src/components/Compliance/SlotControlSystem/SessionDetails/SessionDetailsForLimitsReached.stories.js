@@ -2,6 +2,7 @@
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
+import { select } from "@storybook/addon-knobs/react";
 import MockStore from "Components/MockStore";
 import endedSessionMock from "Models/slotControlSystem/__mocks__/endedSession.mock";
 import { SessionDetailsForLimitsReached } from "./SessionDetailsForLimitsReached";
@@ -22,13 +23,15 @@ const stories = storiesOf(
   "Compliance/SlotControlSystem/SessionDetailsForLimitsReached",
   module
 );
+const gameIds = ["gonzos-quest", "bloodsuckers"];
+
 stories.add("Default", () => {
   return (
     <MockStore>
       <SessionDetailsForLimitsReached
         t={t}
         locale="en-GB"
-        playAgainGameId="gonzos-quest"
+        playAgainGameId={select("Game Id", gameIds, gameIds[0])}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}
       />
