@@ -6,7 +6,11 @@ import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
 import { TermsAndConditions } from "./TermsAndConditions";
-import { BeforePlaying, BeforeLoggingOut } from "./SlotControlSystem";
+import {
+  BeforePlaying,
+  BeforeLoggingOut,
+  AfterLimitsReached,
+} from "./SlotControlSystem";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -38,6 +42,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT]: {
     slug: SCS_CMS_SLUGS.AFTER_PLAYING,
     Content: BeforeLoggingOut,
+  },
+  [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED]: {
+    slug: SCS_CMS_SLUGS.AFTER_PLAYING,
+    Content: AfterLimitsReached,
   },
 };
 
