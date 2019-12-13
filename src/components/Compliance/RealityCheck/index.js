@@ -1,3 +1,3 @@
 // @flow
 export * from "./RealityCheckContainer";
-export { useRealityCheck } from "./useRealityCheck.hook";
+export { useRealityCheckModal } from "./useRealityCheckModal.hook";
