@@ -9,8 +9,8 @@ type Props = {
   text?: string,
   label?: string,
   Icon?: string,
-  isSelected?: boolean,
-  isWhiteRow?: boolean,
+  selected?: boolean,
+  secondary?: boolean,
   openNewTab?: boolean,
   link?: string,
   action?: Function,
@@ -21,8 +21,8 @@ export const SidebarRow = (props: Props) => {
     text,
     label,
     Icon,
-    isSelected,
-    isWhiteRow,
+    selected,
+    secondary,
     openNewTab,
     link,
     action,
@@ -36,9 +36,9 @@ export const SidebarRow = (props: Props) => {
     "u-overflow-hidden",
     "t-color-white",
     {
-      "c-sidebar__nav-item--active t-background-turquoise t-color-white": isSelected,
-      "c-sidebar__nav-item--white t-background-white t-color-grey-dark-1": isWhiteRow,
-      "c-sidebar__nav-item t-background-plum": !isWhiteRow,
+      "c-sidebar__nav-item--active t-background-turquoise t-color-white": selected,
+      "c-sidebar__nav-item--white t-background-white t-color-grey-dark-1": secondary,
+      "c-sidebar__nav-item t-background-plum": !secondary,
     }
   );
 
@@ -46,7 +46,7 @@ export const SidebarRow = (props: Props) => {
     <li className={rowClasses} data-test-id="sidebar-li">
       <a
         data-test-id="sidebar-link"
-        className={isWhiteRow ? "t-color-grey-dark-1" : "t-color-white"}
+        className={secondary ? "t-color-grey-dark-1" : "t-color-white"}
         onClick={action}
         href={link || "#"}
         target={openNewTab ? "_blank" : "_self"}

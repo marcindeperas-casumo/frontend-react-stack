@@ -43,7 +43,7 @@ describe("SidebarRow", () => {
   });
 
   test("should render selected class", () => {
-    const rendered = shallow(<SidebarRow isWhiteRow isSelected />);
+    const rendered = shallow(<SidebarRow secondary selected />);
     expect(
       rendered
         .find({ "data-test-id": "sidebar-li" })
@@ -52,7 +52,7 @@ describe("SidebarRow", () => {
   });
 
   test("should render white class", () => {
-    const rendered = shallow(<SidebarRow isWhiteRow />);
+    const rendered = shallow(<SidebarRow secondary />);
     expect(
       rendered
         .find({ "data-test-id": "sidebar-li" })

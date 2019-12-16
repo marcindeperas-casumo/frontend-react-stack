@@ -11,16 +11,16 @@ stories.add("Default", () => {
   const textVal = text("Text", "£987.65");
   const labelVal = text("Text Small", "+ £55.03 Bonus");
   const linkVal = text("Link", "/faq");
-  const isSelectedVal = boolean("Selected", false);
-  const isWhiteRowVal = boolean("White row", false);
+  const selectedVal = boolean("Selected", false);
+  const secondaryVal = boolean("Secondary white row", false);
 
   return (
     <SidebarRow
       text={textVal}
       label={labelVal}
       Icon={IconWallet}
-      isSelected={isSelectedVal}
-      isWhiteRow={isWhiteRowVal}
+      selected={selectedVal}
+      secondary={secondaryVal}
       link={linkVal}
     />
   );

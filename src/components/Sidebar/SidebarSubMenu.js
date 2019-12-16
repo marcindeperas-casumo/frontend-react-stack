@@ -28,38 +28,38 @@ export const SidebarSubMenu = ({
       <SidebarRow
         text={settings_link_text}
         action={() => navigateToKO(ROUTE_IDS.PLAYER_SETTINGS)}
-        isWhiteRow
+        secondary
       />
       <SidebarRow
         text={play_okay_settings_link_text}
         action={() => navigateToKO(ROUTE_IDS.PLAYER_PLAY_OKAY_SETTINGS)}
-        isWhiteRow
+        secondary
       />
       <SidebarRow
         text={contact_us_link_text}
         link="mailto:hey@casumo.com"
-        isWhiteRow
+        secondary
       />
       <SidebarRow
         text={play_okay_link_text}
         action={() => navigateToKO(ROUTE_IDS.PLAY_OKAY)}
-        isWhiteRow
+        secondary
       />
       <SidebarRow
         text={blog_menu_text}
         link="https://www.casumo.com/blog/"
-        isWhiteRow
+        secondary
         openNewTab
       />
       <SidebarRow
         text={faq_link_text}
         action={() => navigateToKO(ROUTE_IDS.FAQ)}
-        isWhiteRow
+        secondary
       />
       <SidebarRow
         text={about_us_link_text}
         action={() => navigateToKO(ROUTE_IDS.ABOUT_CASUMO)}
-        isWhiteRow
+        secondary
       />
     </>
   );

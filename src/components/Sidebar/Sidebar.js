@@ -59,8 +59,8 @@ export const Sidebar = (props: Props) => {
         <SidebarRow
           text={t?.game_browser_link_text}
           Icon={IconCherry}
-          isSelected={true}
           action={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}
+          selected
         />
 
         <SidebarSubMenu {...t} />
