@@ -11,7 +11,10 @@ const keyPayments = {
   text_deposit: "textDeposit",
 };
 
-export const playerWalletSelector = createSelector(player, prop("wallet"));
+export const playerWalletSelector = createSelector(
+  player,
+  prop("wallet")
+);
 
 export const playerWalletAmountSelector = createSelector(
   playerWalletSelector,
