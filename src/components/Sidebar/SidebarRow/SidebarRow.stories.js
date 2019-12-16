@@ -2,21 +2,20 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { text, boolean } from "@storybook/addon-knobs/react";
-import { walletUK } from "../__mocks__/SideBar.mock";
 import { IconWallet } from "../icons";
-import { SideBarRow } from "./SideBarRow";
+import { SidebarRow } from "./SidebarRow";
 
-const stories = storiesOf("SideBarRow", module);
+const stories = storiesOf("SidebarRow", module);
 
 stories.add("Default", () => {
-  const textVal = text("Text", walletUK.cash);
-  const labelVal = text("Text Small", walletUK.bonus);
+  const textVal = text("Text", "£987.65");
+  const labelVal = text("Text Small", "+ £55.03 Bonus");
   const linkVal = text("Link", "/faq");
   const isSelectedVal = boolean("Selected", false);
   const isWhiteRowVal = boolean("White row", false);
 
   return (
-    <SideBarRow
+    <SidebarRow
       text={textVal}
       label={labelVal}
       Icon={IconWallet}

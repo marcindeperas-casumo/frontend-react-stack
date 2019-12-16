@@ -1,5 +1,6 @@
 // @flow
 import React, { useEffect } from "react";
+import Loader from "@casumo/cmp-loader";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -11,12 +12,9 @@ type Props = {
   unsubscribeToUpdates: Function,
   playerId: string,
   sessionId: string,
-  language: string,
-  market: string,
   isAuthenticated: boolean,
   isAppHandshakeLoaded: Boolean,
   activeComponents: Array<string>,
-  routeParams: Array<Object>,
 };
 
 export const App = (props: Props) => {
@@ -37,7 +35,7 @@ export const App = (props: Props) => {
   }, [playerId, sessionId]);
 
   if (!props.isAppHandshakeLoaded) {
-    return null;
+    return <Loader className="u-height--screen" />;
   }
 
   if (!props.isAuthenticated) {

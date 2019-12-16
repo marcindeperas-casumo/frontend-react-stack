@@ -2,42 +2,48 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { IconProfile } from "../icons";
-import { SideBarRow } from "./SideBarRow";
+import { SidebarRow } from "./SidebarRow";
 
-describe("SideBarRow", () => {
+describe("SidebarRow", () => {
   test("should render link", () => {
-    const rendered = shallow(<SideBarRow text="FAQ" link="/faq" />);
+    const rendered = shallow(<SidebarRow text="FAQ" link="/faq" />);
     expect(rendered.find({ "data-test-id": "sidebar-link" }).length).toBe(1);
   });
 
   test("should render icon", () => {
-    const rendered = shallow(<SideBarRow text="FAQ" Icon={IconProfile} />);
+    const rendered = shallow(<SidebarRow text="FAQ" Icon={IconProfile} />);
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(1);
   });
 
   test("should not render icon", () => {
-    const rendered = shallow(<SideBarRow text="FAQ" />);
+    const rendered = shallow(<SidebarRow text="FAQ" />);
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(0);
   });
 
   test("should render text", () => {
     const text = "FAQ";
-    const rendered = shallow(<SideBarRow text={text} />);
-    expect(rendered.find({ "data-test-id": "sidebar-text" }).text()).toBe(text);
+    const rendered = shallow(<SidebarRow text={text} />);
+    expect(
+      rendered
+        .find({ "data-test-id": "sidebar-text" })
+        .dive()
+        .text()
+    ).toBe(text);
   });
 
   test("should render label", () => {
     const text = "SuperRandomText";
-    const rendered = shallow(<SideBarRow text="" label={text} />);
-    expect(rendered.find({ "data-test-id": "sidebar-text-small" }).text()).toBe(
-      text
-    );
+    const rendered = shallow(<SidebarRow label={text} />);
+    expect(
+      rendered
+        .find({ "data-test-id": "sidebar-text-small" })
+        .dive()
+        .text()
+    ).toBe(text);
   });
 
   test("should render selected class", () => {
-    const rendered = shallow(
-      <SideBarRow text="" isWhiteRow={true} isSelected={true} />
-    );
+    const rendered = shallow(<SidebarRow isWhiteRow isSelected />);
     expect(
       rendered
         .find({ "data-test-id": "sidebar-li" })
@@ -46,9 +52,7 @@ describe("SideBarRow", () => {
   });
 
   test("should render white class", () => {
-    const rendered = shallow(
-      <SideBarRow text="" isWhiteRow={true} isSelected={false} />
-    );
+    const rendered = shallow(<SidebarRow isWhiteRow />);
     expect(
       rendered
         .find({ "data-test-id": "sidebar-li" })
@@ -57,9 +61,7 @@ describe("SideBarRow", () => {
   });
 
   test("should render default", () => {
-    const rendered = shallow(
-      <SideBarRow text="" isWhiteRow={false} isSelected={false} />
-    );
+    const rendered = shallow(<SidebarRow />);
     expect(
       rendered
         .find({ "data-test-id": "sidebar-li" })
@@ -68,7 +70,7 @@ describe("SideBarRow", () => {
   });
 
   test("should not render small text", () => {
-    const rendered = shallow(<SideBarRow text="" />);
+    const rendered = shallow(<SidebarRow />);
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).length).toBe(
       0
     );
@@ -76,7 +78,7 @@ describe("SideBarRow", () => {
 
   test("action fires", () => {
     const action = jest.fn();
-    const rendered = shallow(<SideBarRow text="" action={action} />);
+    const rendered = shallow(<SidebarRow action={action} />);
 
     const a = rendered.find({ "data-test-id": "sidebar-link" });
     a.simulate("click");
