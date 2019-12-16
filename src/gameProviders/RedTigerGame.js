@@ -2,9 +2,9 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-// hardcoded back to lobby
+// ISSUES:
+// hardcoded back to lobby in backend
 // handle event queue
-// remove reality check
 
 export class RedTigerGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {

@@ -2,6 +2,7 @@
 import type { GameProviderType, GameRef, GameProviderModel } from "./types";
 import { PROVIDERS } from "./constants";
 import { BaseGame } from "./BaseGame";
+import { BaseIframeGame } from "./BaseIframeGame";
 import { EdictGame } from "./EdictGame";
 import { NetentGame } from "./NetentGame";
 import { ThunderkickGame } from "./ThunderkickGame";
@@ -27,6 +28,12 @@ export const models = {
   [PROVIDERS.REDTIGER_DESKTOP]: RedTigerGame,
   [PROVIDERS.REDTIGER_MOBILE]: RedTigerGame,
   [PROVIDERS.CASUMO_HTML5]: CasumoGame,
+  [PROVIDERS.EVOLUTION_DESKTOP]: BaseIframeGame,
+  [PROVIDERS.EVOLUTION_MOBILE]: BaseIframeGame,
+  [PROVIDERS.RGS_FLASH]: BaseIframeGame,
+  [PROVIDERS.RGS_HTML5]: BaseIframeGame,
+  [PROVIDERS.NYX_FLASH]: BaseIframeGame,
+  [PROVIDERS.NYX_HTML5]: BaseIframeGame,
 };
 
 export const getGameModel = (
