@@ -12,7 +12,6 @@ type Props = {
   isSelected?: boolean,
   isWhiteRow?: boolean,
   openNewTab?: boolean,
-  style?: string,
   link?: string,
   action?: Function,
 };
