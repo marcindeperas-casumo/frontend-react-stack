@@ -1,11 +1,8 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import * as ReactReduxHooks from "react-redux";
 import MockStore from "Components/MockStore";
 import { HookWrapper } from "Utils/HookWrapper";
-import { waitAndUpdateWrapper } from "Utils";
-import { type } from "Models/modal";
 import bridge from "Src/DurandalReactBridge";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import { useRealityCheckModal } from "./useRealityCheckModal.hook";
@@ -31,11 +28,7 @@ const state = {
 describe("useRealityCheckModal", () => {
   const pauseGame = jest.fn(() => Promise.resolve());
   const resumeGame = jest.fn();
-  let mockDispatch;
-  jest
-    .spyOn(ReactReduxHooks, "useDispatch")
-    .mockImplementation(() => (mockDispatch = jest.fn()));
-  const wrapper = mount(
+  mount(
     <MockStore state={state}>
       <HookWrapper
         hook={useRealityCheckModal}
@@ -45,17 +38,6 @@ describe("useRealityCheckModal", () => {
   );
 
   describe("reality check modal should be dispached", () => {
-    it(`calls dispatch action type ${type.show} with config`, async () => {
-      await waitAndUpdateWrapper(wrapper);
-      expect(mockDispatch).toBeCalledWith({
-        config: {
-          mustAccept: true,
-        },
-        modalId: "REALITY_CHECK_MODAL",
-        type: type.show,
-      });
-    });
-
     it("calls pauseGame", () => {
       expect(pauseGame).toBeCalledTimes(1);
     });
