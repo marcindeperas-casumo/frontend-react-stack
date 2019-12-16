@@ -36,12 +36,12 @@ export class SidebarRow extends PureComponent<Props> {
       "u-padding--none",
       "u-position-relative",
       "u-overflow-hidden",
-      isWhiteRow
-        ? "c-sidebar__nav-item--white t-background-white t-color-grey-dark-1"
-        : "c-sidebar__nav-item t-background-plum",
       "t-color-white",
-      isSelected &&
-        "c-sidebar__nav-item--active t-background-turquoise t-color-white"
+      {
+        "c-sidebar__nav-item--active t-background-turquoise t-color-white": isSelected,
+        "c-sidebar__nav-item--white t-background-white t-color-grey-dark-1": isWhiteRow,
+        "c-sidebar__nav-item t-background-plum": !isWhiteRow,
+      }
     );
 
     const stylesLink = classNames(
