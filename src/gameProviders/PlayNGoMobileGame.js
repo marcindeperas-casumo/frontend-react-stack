@@ -2,7 +2,7 @@
 import type { GameProviderModelProps, IframeMessageEvent } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-export class PlayNGoGame extends BaseIframeGame {
+export class PlayNGoMobileGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.commands.pause = { req: "gameDisable" };
