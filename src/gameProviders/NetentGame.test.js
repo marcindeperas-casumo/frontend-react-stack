@@ -1,5 +1,7 @@
 // @flow
 import * as utils from "Utils";
+import { DEFAULT_LANGUAGE } from "Models/handshake";
+import { ENVIRONMENTS } from "Src/constants";
 import { NETENT_SCRIPT_URL, NetentGame } from "./NetentGame";
 
 jest.mock("../utils/utils.js", () => ({
@@ -8,7 +10,7 @@ jest.mock("../utils/utils.js", () => ({
 }));
 
 describe("NetentGame", () => {
-  const params = {
+  const gameData = {
     casinoId: "casumo",
     gameId: "starburst_mobile_html_sw",
     gameServer: "https://casumo-game.casinomodule.com",
@@ -21,34 +23,31 @@ describe("NetentGame", () => {
   };
 
   const gameRef = { current: null };
-  const model = new NetentGame(params, gameRef);
+  const model = new NetentGame({
+    gameData,
+    gameRef,
+    language: DEFAULT_LANGUAGE,
+    environment: ENVIRONMENTS.TEST,
+  });
 
   it("should call injectScript when onMount is called", () => {
     model.onMount();
 
-    expect(utils.injectScript).toHaveBeenCalledWith(NETENT_SCRIPT_URL);
+    expect(utils.injectScript).toHaveBeenCalledWith(
+      NETENT_SCRIPT_URL[ENVIRONMENTS.TEST]
+    );
   });
 
   it("should return the element as div", () => {
-    expect(model.element).toBe("div");
-  });
-
-  it("should goToLobby", () => {
-    // eslint-disable-next-line fp/no-delete
-    delete window.location.replace;
-    window.location.replace = jest.fn();
-
-    model.goToLobby();
-
-    expect(window.location.replace).toHaveBeenCalledWith(`${window.location}`);
+    expect(model.componentTag).toBe("div");
   });
 
   it("should get the config", () => {
     expect(model.config).toStrictEqual({
-      gameId: params.gameId,
-      gameServerURL: params.gameServer,
-      sessionId: params.sessionId,
-      staticServer: params.staticServer,
+      gameId: gameData.gameId,
+      gameServerURL: gameData.gameServer,
+      sessionId: gameData.sessionId,
+      staticServer: gameData.staticServer,
       lobbyURL: "#",
       height: "100%",
       width: "100%",
@@ -56,12 +55,12 @@ describe("NetentGame", () => {
       enforceRatio: false,
       applicationType: "browser",
       targetElement: "netent-game",
-      language: "en",
+      language: DEFAULT_LANGUAGE,
     });
   });
 
   it("should get the props", () => {
-    expect(model.props).toStrictEqual({
+    expect(model.componentProps).toStrictEqual({
       id: "netent-game",
       ref: { current: null },
     });

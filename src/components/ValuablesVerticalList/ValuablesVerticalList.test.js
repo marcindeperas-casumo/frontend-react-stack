@@ -36,11 +36,54 @@ describe("ValuablesVerticalList", () => {
   });
 
   test("should render a list of valuable rows", () => {
-    expect(
-      rendered
-        .find(List)
-        .dive()
-        .find(ValuableRow).length
-    ).toEqual(mockedValuables.length);
+    expect(getValuableRows().length).toEqual(mockedValuables.length);
   });
+
+  test("should pass not selected to ValuableRow if valuable is active and isItemSelectable is false", () => {
+    const mockedData = [
+      {
+        ...mockedValuables[0],
+        valuableState: "Used",
+      },
+    ];
+
+    rendered = shallow(
+      <ValuablesVerticalList
+        valuables={mockedData}
+        loading={false}
+        translations={{}}
+        onMoreInfo={onMoreInfo}
+        isItemSelectable={false}
+      />
+    );
+
+    expect(getValuableRows().prop("isSelected")).toEqual(false);
+  });
+
+  test("should pass selected to ValuableRow if valuable is active and isItemSelectable is true", () => {
+    const mockedData = [
+      {
+        ...mockedValuables[0],
+        valuableState: "Used",
+      },
+    ];
+
+    rendered = shallow(
+      <ValuablesVerticalList
+        valuables={mockedData}
+        loading={false}
+        translations={{}}
+        onMoreInfo={onMoreInfo}
+        isItemSelectable={true}
+      />
+    );
+
+    expect(getValuableRows().prop("isSelected")).toEqual(true);
+  });
+
+  const getValuableRows = () =>
+    rendered
+      .find(List)
+      .dive()
+      .find(ValuableRow);
 });

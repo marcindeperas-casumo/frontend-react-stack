@@ -80,7 +80,7 @@ export default [
     content: "Gives you 10% back of your deposit! Do it now! Do it Good!",
     backgroundImage: "https://cms.casumo.com/wp-content/uploads/2019/04/background-deposit.png",
     expiryDate: 1569794399000,
-    valuableState: "Fresh",
+    valuableState: "Used",
     wageringThreshold: null,
     leftToWager: null,
     currency: "EUR",

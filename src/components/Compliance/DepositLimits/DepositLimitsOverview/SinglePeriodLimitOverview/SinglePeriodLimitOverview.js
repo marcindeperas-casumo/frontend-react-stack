@@ -7,7 +7,7 @@ import Button from "@casumo/cmp-button";
 import { DirectionRightIcon, MoreIcon } from "@casumo/cmp-icons";
 import { ProgressArc } from "Components/Compliance/ProgressArc";
 import { formatCurrency, interpolate } from "Utils";
-import { Mobile, Desktop } from "Components/ResponsiveLayout";
+import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import type { DepositKinds } from "Models/playOkay/depositLimits";
 import "./singlePeriodLimitOverview.scss";
 
@@ -47,7 +47,7 @@ export function SinglePeriodLimitOverview(props: Props) {
 
   return (
     <>
-      <Mobile>
+      <MobileAndTablet>
         <Flex
           onClick={props.onClick}
           spacing="none"
@@ -74,7 +74,7 @@ export function SinglePeriodLimitOverview(props: Props) {
             <DirectionRightIcon className="t-color-grey-light-2" />
           </Flex>
         </Flex>
-      </Mobile>
+      </MobileAndTablet>
       <Desktop>
         <Flex
           onClick={props.onClick}

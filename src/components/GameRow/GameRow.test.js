@@ -8,6 +8,7 @@ import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
 import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
 import { renderBets } from "Utils";
+import { CURRENCIES } from "Src/constants";
 
 describe("<GameRow />", () => {
   let rendered;
@@ -21,8 +22,12 @@ describe("<GameRow />", () => {
       name: "Foo Bar",
       logo: "http://foo.com/logo.jpg",
       logoBackground: "http://foo.com/logo-background.jpg",
-      jackpotInfo: {
-        formattedJackpotAmount: "€ 1,000,000",
+      jackpot: {
+        id: "netent-starburst",
+        value: {
+          currency: CURRENCIES.EUR,
+          amount: 10,
+        },
       },
     };
     rendered = shallow(<GameRow game={game} onLaunchGame={launchGame} />);

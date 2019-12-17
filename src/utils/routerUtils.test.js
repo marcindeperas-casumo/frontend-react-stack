@@ -1,8 +1,7 @@
 // @flow
 
-import { interpolate } from "Utils";
-import { routeTranslator } from "./utils";
-import { TRANSLATED_ROUTES, ROUTE_IDS, ROUTES } from "./constants";
+import { interpolate, routeTranslator } from "Utils";
+import { TRANSLATED_ROUTES, ROUTE_IDS, ROUTES } from "Src/constants";
 
 describe("<Router /> utils", () => {
   const testLanguage = "en";

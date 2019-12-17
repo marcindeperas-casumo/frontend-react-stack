@@ -25,7 +25,7 @@ const items = R.times(
 );
 const title = "Foo";
 
-describe("<GameProvidersList /> - Mobile", () => {
+describe("<GameProvidersList /> - Mobile and Tablet", () => {
   let rendered;
 
   beforeEach(() => {

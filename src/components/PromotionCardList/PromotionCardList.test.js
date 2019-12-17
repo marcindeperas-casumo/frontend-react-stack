@@ -9,7 +9,7 @@ const fetchCampaign = jest.fn();
 const fetchPromotions = jest.fn();
 const promotionSlugs = ["page-1", "page-2"];
 
-describe("<PromotionCardList /> - Mobile", () => {
+describe("<PromotionCardList /> - Mobile and Tablet", () => {
   let rendered;
 
   beforeEach(() => {

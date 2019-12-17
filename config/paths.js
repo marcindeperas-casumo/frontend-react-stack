@@ -68,6 +68,8 @@ module.exports = {
   appBuild: resolveApp("build"),
   appIndexJs: resolveModule(resolveApp, "src/index"),
   appIndexHtml: resolveApp("src/index.html"),
+  eventBubblerHtml: resolveApp("src/event-bubbler.html"),
+  navigationBubblerHtml: resolveApp("src/navigation-bubbler.html"),
   appPackageJson: resolveApp("package.json"),
   appSrc: resolveApp("src"),
   yarnLockFile: resolveApp("yarn.lock"),
