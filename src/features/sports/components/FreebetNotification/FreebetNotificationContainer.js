@@ -44,14 +44,14 @@ export const FreebetNotificationContainer = () => {
   // This is something that we would like to change to support both, but as we are short on time we would like go in small steps.
   // We have put it here in order to not pollute the generic the FreebetNotification component unnecessarily.
   const lockedFreebets = getValuablesByState(VALUABLE_STATES.LOCKED)(valuables);
-  const latestLockedFreebet = getLatestValuable(lockedFreebets) || {};
-  const { id } = latestLockedFreebet;
-  const onClose = () => {
-    setIsHidden(true);
-    persistIsHidden(id);
-  };
+  const latestLockedFreebet = getLatestValuable(lockedFreebets);
 
-  if (isHidden || getPersistedIsHidden(id) || loading) {
+  if (
+    isHidden ||
+    loading ||
+    !latestLockedFreebet ||
+    getPersistedIsHidden(latestLockedFreebet?.id)
+  ) {
     return null;
   }
 
@@ -66,7 +66,10 @@ export const FreebetNotificationContainer = () => {
       title={latestLockedFreebet.title}
       description={latestLockedFreebet.content}
       caveat={latestLockedFreebet.caveat}
-      onClose={onClose}
+      onClose={() => {
+        setIsHidden(true);
+        persistIsHidden(latestLockedFreebet.id);
+      }}
     />
   );
 };
