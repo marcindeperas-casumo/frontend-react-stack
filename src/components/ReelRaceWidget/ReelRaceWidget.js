@@ -57,8 +57,10 @@ export function ReelRaceWidget(props: Props) {
   }, [areTranslationsFetched]);
 
   React.useEffect(() => {
-    const timeRemaining = (rR: ReelRace): number =>
-      DateTime.fromMillis(reelRaceStarted ? rR.endTime : rR.startTime)
+    const timeRemaining = (reelRaceActive: ReelRace): number =>
+      DateTime.fromMillis(
+        reelRaceStarted ? reelRaceActive.endTime : reelRaceActive.startTime
+      )
         .diffNow()
         .valueOf();
 
