@@ -16,8 +16,8 @@ const now = Date.now();
 const minute = 60 * 1000;
 
 const props = {
-  started: null,
-  scheduled: {
+  reelRaceStarted: null,
+  reelRaceScheduled: {
     tournamentId: "1",
     color: "yellow-light-1",
     spins: 250,

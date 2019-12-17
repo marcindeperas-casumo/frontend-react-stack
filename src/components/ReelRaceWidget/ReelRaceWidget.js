@@ -2,7 +2,7 @@
 import * as React from "react";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
-import ReelRaceLeaderboard from "Components/ReelRaceLeaderboard";
+import { ReelRaceLeaderboard } from "Components/ReelRaceLeaderboard";
 import * as A from "Types/apollo";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
@@ -24,14 +24,14 @@ type Props = {
   t: ReelRacesTranslations,
   playerId: string,
   playerSpins: number,
-  started: ReelRace | null,
-  scheduled: ReelRace | null,
+  reelRaceStarted: ReelRace | null,
+  reelRaceScheduled: ReelRace | null,
 };
 
 export function ReelRaceWidget(props: Props) {
   const {
-    started,
-    scheduled,
+    reelRaceStarted,
+    reelRaceScheduled,
     isReelRacesFetched,
     areTranslationsFetched,
     fetchReelRaces,
@@ -40,7 +40,7 @@ export function ReelRaceWidget(props: Props) {
     unsubscribeReelRacesUpdates,
   } = props;
 
-  const reelRace = started || scheduled;
+  const reelRace = reelRaceStarted || reelRaceScheduled;
 
   React.useEffect(() => {
     if (!isReelRacesFetched) {
@@ -58,7 +58,7 @@ export function ReelRaceWidget(props: Props) {
 
   React.useEffect(() => {
     const timeRemaining = (rR: ReelRace): number =>
-      DateTime.fromMillis(started ? rR.endTime : rR.startTime)
+      DateTime.fromMillis(reelRaceStarted ? rR.endTime : rR.startTime)
         .diffNow()
         .valueOf();
 
@@ -87,7 +87,7 @@ export function ReelRaceWidget(props: Props) {
     >
       <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
       <ReelRaceWidgetInfo reelRace={reelRace} {...props} />
-      {started && <ReelRaceLeaderboard />}
+      {reelRaceStarted && <ReelRaceLeaderboard />}
     </Flex>
   );
 }

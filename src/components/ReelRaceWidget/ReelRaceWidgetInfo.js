@@ -9,7 +9,7 @@ type Props = {
   t: ReelRacesTranslations,
   playerSpins: number,
   reelRace: ReelRace,
-  started: ReelRace | null,
+  reelRaceStarted: ReelRace | null,
 };
 
 const getTimer = (time: number) => {
@@ -26,8 +26,8 @@ const getTimer = (time: number) => {
 };
 
 export function ReelRaceWidgetInfo(props: Props) {
-  const { t, reelRace, started } = props;
-  const time = started ? reelRace.endTime : reelRace.startTime;
+  const { t, reelRace, reelRaceStarted } = props;
+  const time = reelRaceStarted ? reelRace.endTime : reelRace.startTime;
 
   return (
     <Flex
@@ -37,7 +37,7 @@ export function ReelRaceWidgetInfo(props: Props) {
     >
       <Flex direction="vertical" spacing="none" className="flex-1">
         <Text tag="span" size="xs">
-          {started ? t.ending_in : t.starting_in}
+          {reelRaceStarted ? t.ending_in : t.starting_in}
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
           {getTimer(time)}
@@ -48,7 +48,7 @@ export function ReelRaceWidgetInfo(props: Props) {
           {t.spins}
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
-          {started && props.playerSpins !== null
+          {reelRaceStarted && props.playerSpins !== null
             ? props.playerSpins
             : reelRace.spins}
         </Text>

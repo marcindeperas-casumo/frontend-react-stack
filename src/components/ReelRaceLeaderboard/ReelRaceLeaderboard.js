@@ -1,6 +1,7 @@
 // @flow
 import * as React from "react";
 import * as R from "ramda";
+import classNames from "classnames";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
 import { PrizeIcon } from "@casumo/cmp-icons";
@@ -23,11 +24,10 @@ export function ReelRaceLeaderboard(props: Props) {
         <Flex
           direction="horizontal"
           key={p.playerId}
-          className={
-            props.playerId === p.playerId
-              ? "u-font-weight-bold t-background-turquoise t-color-white"
-              : ""
-          }
+          className={classNames({
+            "u-font-weight-bold t-background-turquoise t-color-white":
+              props.playerId === p.playerId,
+          })}
         >
           <Text
             tag="div"

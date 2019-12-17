@@ -1,2 +1,4 @@
 // @flow
-export { default } from "./ReelRaceLeaderboardContainer";
+export {
+  ReelRaceLeaderboardContainer as ReelRaceLeaderboard,
+} from "./ReelRaceLeaderboardContainer";
