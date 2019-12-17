@@ -34,6 +34,7 @@ export const SidebarRow = (props: Props) => {
     "u-padding--none",
     "u-position-relative",
     "u-overflow-hidden",
+    "u-cursor-pointer",
     "t-color-white",
     {
       "c-sidebar__nav-item--active t-background-turquoise t-color-white": selected,

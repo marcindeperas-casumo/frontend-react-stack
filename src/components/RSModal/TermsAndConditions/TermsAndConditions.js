@@ -47,6 +47,8 @@ type Props = ModalContentComponent<{
   table_of_contents_title: string,
   /** text that will be shown before changelog */
   changelog_title: string,
+  /** title of modal component */
+  terms_and_conditions_modal_title: string,
 }>;
 
 type TACVersionCMSData = {
@@ -91,7 +93,7 @@ export function TermsAndConditions({ t, ...props }: Props) {
     return (
       <>
         <ModalHeader
-          title="Version history"
+          title={t.button_version_history}
           {...headerProps}
           showBackButton
           backAction={() => setHistoryView(false)}
@@ -118,7 +120,10 @@ export function TermsAndConditions({ t, ...props }: Props) {
 
   return (
     <>
-      <ModalHeader title="Terms and Conditions" {...headerProps} />
+      <ModalHeader
+        title={t.terms_and_conditions_modal_title}
+        {...headerProps}
+      />
       {!isLatestVersion && (
         <ArchivedVersionHeader
           onClick={() => {

@@ -56,8 +56,4 @@ describe("useRealityCheckModal", () => {
       expect(resumeGame).toBeCalledTimes(1);
     });
   });
-
-  afterAll(() => {
-    jest.resetAllMocks();
-  });
 });
