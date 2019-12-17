@@ -35,8 +35,10 @@ const VALUABLE_ICON = {
     [CURRENCIES.SEK]: CurrencyKrnIcon,
     [CURRENCIES.DKK]: CurrencyKrnIcon,
     [CURRENCIES.NZD]: CurrencyCadIcon,
+    [CURRENCIES.USD]: CurrencyCadIcon,
   },
   [VALUABLE_TYPES.SPORT]: CouponIcon,
+  [VALUABLE_TYPES.FREE_BET]: CouponIcon,
 };
 
 export const ValuableSymbol = ({

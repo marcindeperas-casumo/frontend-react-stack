@@ -5,12 +5,14 @@ import { REACT_APP_MODAL } from "Src/constants";
 import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
+import { REALITY_CHECK_CMS_SLUG } from "Models/playOkay/realityCheck";
 import { TermsAndConditions } from "./TermsAndConditions";
 import {
   BeforePlaying,
   BeforeLoggingOut,
   AfterLimitsReached,
 } from "./SlotControlSystem";
+import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
 
 export type ModalContentComponent<T> = {|
@@ -46,6 +48,10 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED]: {
     slug: SCS_CMS_SLUGS.AFTER_PLAYING,
     Content: AfterLimitsReached,
+  },
+  REALITY_CHECK_MODAL: {
+    slug: REALITY_CHECK_CMS_SLUG,
+    Content: RealityCheck,
   },
 };
 

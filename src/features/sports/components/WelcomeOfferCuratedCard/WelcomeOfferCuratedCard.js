@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import { CuratedCard } from "Components/CuratedCard";
-import { Mobile } from "Components/ResponsiveLayout";
+import { MobileAndTablet } from "Components/ResponsiveLayout";
 import { VERTICALS } from "Src/constants";
 import "./WelcomeOfferCuratedCard.scss";
 
@@ -20,7 +20,7 @@ export const WelcomeOfferCuratedCard = ({ vertical, hasDeposited }: Props) => {
   }
 
   return (
-    <Mobile>
+    <MobileAndTablet>
       <div className="u-overflow-hidden">
         <div className="u-margin-y--md u-margin-x--md t-border-r--md u-overflow-hidden">
           <CuratedCard
@@ -29,6 +29,6 @@ export const WelcomeOfferCuratedCard = ({ vertical, hasDeposited }: Props) => {
           />
         </div>
       </div>
-    </Mobile>
+    </MobileAndTablet>
   );
 };

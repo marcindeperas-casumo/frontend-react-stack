@@ -10,8 +10,11 @@ fragment GameRow_Game on Game {
       symbol
     }
   }
-  jackpotInfo {
+  jackpot {
     id
-    formattedJackpotAmount
+    value {
+      amount
+      currency
+    }
   }
 }

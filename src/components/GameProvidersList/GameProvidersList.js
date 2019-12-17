@@ -4,7 +4,7 @@ import { isEmpty } from "ramda";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { Desktop, Mobile } from "Components/ResponsiveLayout";
+import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
 import GameProviderAvatar from "./GameProviderAvatar";
 
@@ -69,7 +69,7 @@ class GameProvidersList extends PureComponent<Props> {
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
-          <Mobile>
+          <MobileAndTablet>
             <div className="u-padding-top--xlg">
               <ScrollableListTitle paddingLeft title={title} />
               <Scrollable
@@ -81,7 +81,7 @@ class GameProvidersList extends PureComponent<Props> {
                 itemSpacing={DEFAULT_SPACING}
               />
             </div>
-          </Mobile>
+          </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{

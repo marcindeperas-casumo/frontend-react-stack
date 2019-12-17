@@ -1,11 +1,13 @@
 // @flow
 
-import type { GameLaunchData, GameRef } from "./types";
+import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
+// game idle not currently possible
+
 export class CasumoGame extends BaseIframeGame {
-  constructor(gameData: GameLaunchData, gameRef: GameRef) {
-    super(gameData, gameRef);
+  constructor(props: GameProviderModelProps) {
+    super(props);
     this.api.features.instantPause = true;
     this.api.commands.pause = {
       event: "game/pause",
@@ -17,16 +19,18 @@ export class CasumoGame extends BaseIframeGame {
     };
   }
 
-  get props() {
-    if (this.gameData && this.gameData.url) {
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+    const encodedEventBubblerUrl = encodeURIComponent(super.eventBubblerUrl);
+
+    if (url) {
       return {
-        ...super.props,
-        src: `${this.gameData.url}&lobbyUrl=${
-          super.lobbyUrl
-        }&iframeUrl=http://mobile.dev/en/games/top`,
+        ...super.componentProps,
+        src: `${url}&lobbyUrl=${encodedLobbyUrl}&iframeUrl=${encodedEventBubblerUrl}`,
       };
     }
 
-    return super.props;
+    return super.componentProps;
   }
 }
