@@ -6,13 +6,13 @@ import Flex from "@casumo/cmp-flex";
 import { PrizeIcon } from "@casumo/cmp-icons";
 import { useReelRaceLeaderboard } from "Models/reelRaceWidget";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
-import "./ReelRaceLeaderboardWidget.scss";
+import "./ReelRaceLeaderboard.scss";
 
 type Props = {
   playerId: string,
 };
 
-export function ReelRaceLeaderboardWidget(props: Props) {
+export function ReelRaceLeaderboard(props: Props) {
   const board = useReelRaceLeaderboard();
   const player = R.find(R.propEq("playerId", props.playerId))(board);
 

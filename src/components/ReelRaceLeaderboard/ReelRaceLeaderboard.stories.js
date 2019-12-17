@@ -2,9 +2,9 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import isNotChromatic from "Storybook/isNotChromatic";
-import { ReelRaceLeaderboardWidget } from "./ReelRaceLeaderboardWidget";
+import { ReelRaceLeaderboard } from "./ReelRaceLeaderboard";
 
-const stories = storiesOf("ReelRaceLeaderboardWidget", module);
+const stories = storiesOf("ReelRaceLeaderboard", module);
 
 const boosters = {
   triples: 0,
@@ -79,7 +79,7 @@ if (isNotChromatic) {
   stories.add("Default", () => {
     return (
       <div style={{ width: "300px" }}>
-        <ReelRaceLeaderboardWidget {...props} />
+        <ReelRaceLeaderboard {...props} />
       </div>
     );
   });
