@@ -7,3 +7,4 @@ export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
 export { useGameLaunchData } from "./useGameLaunchData";
 export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
+export { useJurisdiction } from "./useJurisdiction";

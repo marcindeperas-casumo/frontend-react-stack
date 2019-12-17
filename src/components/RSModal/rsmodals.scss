@@ -27,13 +27,15 @@
   opacity: 0;
   position: fixed;
   right: 0;
-  top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
+  top: 0;
   transition: opacity 150ms ease;
   z-index: $modal-z-index; // above the menu and chat
-
-  @include cudl-breakpoint(phablet) {
-    top: 0;
+  // stylelint-disable xi/selector-pattern
+  &.DGOJ,
+  &.SGA {
+    top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
   }
+  // stylelint-enable xi/selector-pattern
 }
 
 .c-rsmodal__acknowledgment-button-position {

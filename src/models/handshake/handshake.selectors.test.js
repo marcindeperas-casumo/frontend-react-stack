@@ -31,6 +31,7 @@ import {
   verticalSelector,
   featureFlagSelector,
   playerCasumoNameSelector,
+  jurisdictionSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -568,6 +569,23 @@ describe("Handshake selectors", () => {
 
     test("returns FALSE if the feature-flag is not in the handshake nor in the localStorage", () => {
       expect(featureFlagSelector("unknown")(stateMock)).toBe(false);
+    });
+  });
+
+  describe("jurisdictionSelector()", () => {
+    test("jurisdictionSelector", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", jurisdiction: "UKGC" } },
+            },
+          },
+        },
+      };
+
+      expect(jurisdictionSelector(state)).toEqual("UKGC");
     });
   });
 });

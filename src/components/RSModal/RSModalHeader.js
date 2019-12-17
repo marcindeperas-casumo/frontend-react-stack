@@ -32,7 +32,7 @@ const noIcon = <div style={{ height: 72, width: 72 }} />;
 export function ModalHeader(props: Props) {
   return (
     <Flex
-      className="t-background-white u-width--full"
+      className="u-width--full"
       direction="horizontal"
       align="center"
       spacing="md"
