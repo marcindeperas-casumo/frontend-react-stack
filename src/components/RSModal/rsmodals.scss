@@ -31,8 +31,8 @@
   transition: opacity 150ms ease;
   z-index: $modal-z-index; // above the menu and chat
   // stylelint-disable xi/selector-pattern
-  &.DGOJ,
-  &.SGA {
+  &--DGOJ,
+  &--SGA {
     top: var(--play-okay-bar-height, 40px); // to show Play Okay bar on mobile
   }
   // stylelint-enable xi/selector-pattern

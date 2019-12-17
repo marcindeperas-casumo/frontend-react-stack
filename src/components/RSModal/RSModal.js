@@ -25,7 +25,7 @@ export function Modal() {
       isOpen={Boolean(state.modalId)}
       onRequestClose={dismissModal}
       className="t-background-white o-flex--vertical t-border-r@tablet c-rsmodal"
-      overlayClassName={`c-rsmodal__overlay ${jurisdiction}`}
+      overlayClassName={`c-rsmodal__overlay c-rsmodal__overlay--${jurisdiction}`}
       closeTimeoutMS={CLOSING_ANIMATION_LENGTH_MS}
       shouldCloseOnOverlayClick={!state.config.mustAccept}
       shouldCloseOnEsc={!state.config.mustAccept}
