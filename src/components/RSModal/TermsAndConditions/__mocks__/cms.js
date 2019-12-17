@@ -327,4 +327,5 @@ export default {
   "date_published": "Published {{date}}",
   "date_agreed": "Agreed on registration {{date}}",
   "date_changes_accepted": "<b>Changes Accepted</b> {{date}}",
+  "terms_and_conditions_modal_title": "Terms and conditions",
 }

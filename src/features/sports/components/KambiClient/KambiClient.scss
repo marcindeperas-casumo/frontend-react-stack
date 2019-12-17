@@ -14,16 +14,6 @@
   height: auto !important;
 }
 
-#KambiBC-container {
-  @include cudl-breakpoint(tablet) {
-    padding: 0 map-get($cudl-spacer-sizes, 3xlg) !important;
-  }
-
-  @include cudl-breakpoint(desktop) {
-    padding: 0 !important;
-  }
-}
-
 .c-kambi-client--hidden {
   height: 0;
   overflow: hidden;

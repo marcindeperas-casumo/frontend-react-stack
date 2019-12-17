@@ -666,6 +666,29 @@ export type PlayerVertical = {
 };
 
 // ====================================================
+// GraphQL query operation: FREEBET_QUERY
+// ====================================================
+
+export type FREEBET_QUERY_player_valuables = {
+  id: string,
+  backgroundImage: string,
+  currency: Currency,
+  expiryDate: BigInt,
+  market: string,
+  valuableState: PlayerValuableState,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+};
+export type FREEBET_QUERY_player = {
+  valuables: Array<FREEBET_QUERY_player_valuables>,
+};
+export type FREEBET_QUERY = {
+  player: FREEBET_QUERY_player,
+};
+
+// ====================================================
 // GraphQL mutation operation: LaunchKambi
 // ====================================================
 

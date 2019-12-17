@@ -6,12 +6,13 @@ export const VALUABLE_TYPES: { [string]: A.ValuableType } = {
   SPINS: "spins",
   DEPOSIT: "deposit",
   SPORT: "sport",
+  FREE_BET: "freeBet",
 };
 
 export const VALUABLE_STATES: { [string]: A.PlayerValuableState } = {
   FRESH: "Fresh",
-  LOCKED: "Locked",
   USED: "Used",
+  LOCKED: "Locked",
 };
 
 export const VALUABLE_SPIN_TYPES = Object.freeze({
