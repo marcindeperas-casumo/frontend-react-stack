@@ -1,12 +1,4 @@
-import {
-  complement,
-  compose,
-  defaultTo,
-  propOr,
-  anyPass,
-  isNil,
-  isEmpty,
-} from "ramda";
+import { complement, defaultTo, propOr, anyPass, isNil, isEmpty } from "ramda";
 import { createSelector } from "reselect";
 import { gameProviderEntitiesSelector } from "Models/schema";
 
@@ -17,7 +9,7 @@ export const areGameProvidersLoaded = createSelector(
 
 export const activeGameProvidersSelector = createSelector(
   gameProviderEntitiesSelector,
-  compose(defaultTo({}))
+  defaultTo({})
 );
 
 export const gameProviderBySlug = slug =>

@@ -42,7 +42,7 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(http.get).toHaveBeenCalledWith(
         URL.GAMES_COUNT,
-        { providerSlugs: "foo,bar" },
+        { studioSlugs: "foo,bar" },
         headers
       );
     });
@@ -90,7 +90,7 @@ describe("API/casinoPlayerGames", () => {
       expect(http.get).toHaveBeenCalledTimes(1);
       expect(http.get).toHaveBeenCalledWith(
         URL.GAMES,
-        { page, pageSize, providerSlugs: "" },
+        { page, pageSize, studioSlugs: "" },
         headers
       );
     });

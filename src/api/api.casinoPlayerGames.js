@@ -32,7 +32,7 @@ const getHeaders = (token: string) => {
 };
 
 const getGamesCountParams = (providers?: Array<string>) =>
-  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
+  !isNilOrEmpty(providers) ? { studioSlugs: commaSeparated(providers) } : {};
 
 const buildGamesBatchIds = ids =>
   buildQueryParams(ids, { arrayFormat: "repeat" });
@@ -101,7 +101,7 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: commaSeparated(providers),
+      studioSlugs: commaSeparated(providers),
     },
     getHeaders(sessionId)
   );
