@@ -11,7 +11,7 @@ export const URL = {
   GAMES_BATCH: "/casino-player/casino-games/api/v1/games/batch",
   GAME_SEARCH: "/casino-player/casino-games/api/v1/games/search",
   GAME_SEARCH_COUNT: "/casino-player/casino-games/api/v1/games/search/count",
-  GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
+  GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gamestudios",
   GAME_LISTS: "/casino-player/casino-games/api/v1/gamelists",
   MY_LIST: "/casino-player/casino-games/api/v1/gamelists/myList",
 };

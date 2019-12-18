@@ -12,6 +12,7 @@ node_modules
 
 # misc
 .idea
+.iml
 .DS_Store
 .env.local
 .env.development.local
@@ -31,3 +32,5 @@ yarn-error.log*
 pact/pacts/
 pact/logs/
 .settings/
+
+yarn.lock

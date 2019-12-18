@@ -2,8 +2,6 @@ import {
   complement,
   compose,
   defaultTo,
-  filter,
-  propEq,
   propOr,
   anyPass,
   isNil,
@@ -19,10 +17,7 @@ export const areGameProvidersLoaded = createSelector(
 
 export const activeGameProvidersSelector = createSelector(
   gameProviderEntitiesSelector,
-  compose(
-    defaultTo({}),
-    filter(propEq("inMaintenance", false))
-  )
+  compose(defaultTo({}))
 );
 
 export const gameProviderBySlug = slug =>
