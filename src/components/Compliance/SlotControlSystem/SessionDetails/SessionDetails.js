@@ -1,10 +1,9 @@
 // @flow
 import * as React from "react";
-import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { formatCurrency } from "Utils";
+import { formatCurrency, formatTime } from "Utils";
 import { Row } from "./Row";
 import { Header } from "./Header";
 
@@ -82,8 +81,4 @@ export function SessionDetails(props: Props) {
       </Button>
     </Flex>
   );
-}
-
-function formatTime(millis: number): string {
-  return DateTime.fromMillis(millis).toFormat("TT");
 }
