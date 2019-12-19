@@ -39,7 +39,8 @@ type Props = {
 };
 
 export function SessionDetails(props: Props) {
-  const { t, currency, locale, isLogout, onClickButton } = props;
+  const { currency, locale, isLogout, onClickButton } = props;
+  const t = props.t || {};
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
@@ -57,18 +58,18 @@ export function SessionDetails(props: Props) {
           </Text>
         </>
       )}
-      <Header>{t?.session_details_header}</Header>
-      <Row label={t?.balance} value={formatCurrencyBound(props.balance)} />
+      <Header>{t.session_details_header}</Header>
+      <Row label={t.balance} value={formatCurrencyBound(props.balance)} />
       <Row
-        label={t?.money_wagered}
+        label={t.money_wagered}
         value={formatCurrencyBound(props.moneyWagered)}
       />
-      <Row label={t?.money_won} value={formatCurrencyBound(props.moneyWon)} />
-      <Row label={t?.money_left} value={formatCurrencyBound(props.moneyLeft)} />
-      <Row label={t?.play_started} value={formatTime(props.playStarted)} />
-      <Row label={t?.play_ended} value={formatTime(props.playEnded)} />
+      <Row label={t.money_won} value={formatCurrencyBound(props.moneyWon)} />
+      <Row label={t.money_left} value={formatCurrencyBound(props.moneyLeft)} />
+      <Row label={t.play_started} value={formatTime(props.playStarted)} />
+      <Row label={t.play_ended} value={formatTime(props.playEnded)} />
       <Row
-        label={t?.last_status_alert}
+        label={t.last_status_alert}
         value={formatTime(props.lastStatusAlert)}
       />
       <Button
@@ -76,7 +77,7 @@ export function SessionDetails(props: Props) {
         className="u-margin--md"
         onClick={onClickButton}
       >
-        {(isLogout ? t?.logout_button_label : t?.limits_reached_button_label) ||
+        {(isLogout ? t.logout_button_label : t.limits_reached_button_label) ||
           null}
       </Button>
     </Flex>
