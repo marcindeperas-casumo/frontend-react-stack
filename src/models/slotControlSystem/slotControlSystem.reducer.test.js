@@ -10,6 +10,8 @@ import activeExclusionMock from "./__mocks__/activeExclusion.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {
   const now = 1575462653148;
+  const fiveMinutesBefore = now - 1000 * 60 * 5;
+  const twoMinutesBefore = now - 1000 * 60 * 2;
   const responseActiveSession = { ...activeSessionMock };
   let nowSpy;
 
@@ -53,7 +55,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
-        lastUpdateTime: Date.now() - 1000 * 60 * 5,
+        lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
           id: "999-999-999",
@@ -84,7 +86,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
-        lastUpdateTime: Date.now() - 1000 * 60 * 5,
+        lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
           id: "999-999-999",
@@ -114,7 +116,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
-      lastUpdateTime: Date.now() - 1000 * 60 * 5,
+      lastUpdateTime: fiveMinutesBefore,
       activeSession: {
         ...activeSessionMock,
         id: "999-999-999",
@@ -127,7 +129,7 @@ describe("Models/slotControlSystem/Reducer", () => {
         ...endedSessionMock,
         id: "777-777-777",
         endReason: "Player logout",
-        endedTime: now - 1000 * 60 * 2,
+        endedTime: twoMinutesBefore,
       },
       activeExclusion: null,
     };
