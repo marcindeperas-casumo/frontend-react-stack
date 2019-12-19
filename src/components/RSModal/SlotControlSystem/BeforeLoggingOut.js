@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { omit } from "ramda";
 import { useLocale } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
 import { type ModalContentComponent } from "Components/RSModal";
@@ -28,11 +29,8 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   const { activeSession, isFresh, isFetching } = useSessionsState();
   const locale = useLocale();
   const now = Date.now();
-  const modalSkinProps = {
-    ...props,
-    t: {
-      modal_title: props.t?.logout_modal_title || "",
-    },
+  const tForModalSkin = {
+    modal_title: props.t?.logout_modal_title || "",
   };
 
   React.useEffect(() => {
@@ -46,10 +44,11 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
   }
 
   return (
-    // Flow thinks modalSkinProps are the same type as props and
-    // that props should contain modal_title
-    // $FlowFixMe
-    <ModalSkin {...modalSkinProps} closeAction={props.acceptModal}>
+    <ModalSkin
+      {...omit(["t"], props)}
+      t={tForModalSkin}
+      closeAction={props.acceptModal}
+    >
       <SessionDetails
         t={props.t}
         isLogout
