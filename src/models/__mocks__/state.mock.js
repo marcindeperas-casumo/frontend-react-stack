@@ -4510,6 +4510,7 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
           blog_menu_text: "Blog",
           faq_link_text: "FAQ",
           about_us_link_text: "About Casumo",
+          log_out_link_text: "Log out",
         }
       },
       "reel-races.reel-race-templates": {
