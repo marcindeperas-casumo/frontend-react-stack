@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import { REEL_RACE_STATE } from "Models/reelRaceWidget";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
-import { useReelRaceLeaderboard } from "./reelRaceWidget.leaderboard.hook";
+import { useReelRaceLeaderboard } from "./useReelRaceLeaderboard.hook";
 
 const THIRTY_MINUTES = 30 * 60 * 1000;
 const now = Date.now();
@@ -53,8 +53,8 @@ describe("useReelRaceLeaderboard", () => {
       </MockStore>
     );
 
-    test("returns leaderboard", () => {
-      expectHook(wrapper).toEqual(leaderboard);
+    test("returns leaderboard array", () => {
+      expectHook(wrapper).toEqual([leaderboard.player1]);
     });
   });
 });

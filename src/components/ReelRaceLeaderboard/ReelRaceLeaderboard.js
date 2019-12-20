@@ -7,10 +7,16 @@ import Flex from "@casumo/cmp-flex";
 import { PrizeIcon } from "@casumo/cmp-icons";
 import { useReelRaceLeaderboard } from "Models/reelRaceWidget";
 import { ReelRacePlayerBoosters } from "./ReelRacePlayerBoosters";
+import { ReelRacePlayerInfo } from "./ReelRacePlayerInfo";
 import "./ReelRaceLeaderboard.scss";
 
 type Props = {
   playerId: string,
+  endTime: number,
+  t: {
+    spins: string,
+    ending_in: string,
+  },
 };
 
 export function ReelRaceLeaderboard(props: Props) {
@@ -19,7 +25,12 @@ export function ReelRaceLeaderboard(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {player && <ReelRacePlayerBoosters boosters={player.boosters} />}
+      {player && (
+        <>
+          <ReelRacePlayerInfo spins={player.remainingSpins} {...props} />
+          <ReelRacePlayerBoosters boosters={player.boosters} />
+        </>
+      )}
       {board.map(p => (
         <Flex
           direction="horizontal"
@@ -42,7 +53,7 @@ export function ReelRaceLeaderboard(props: Props) {
           <Text
             tag="div"
             size="xs"
-            className="u-width--2/5 u-padding u-text-align-right"
+            className="u-width--1/5 u-padding u-text-align-right"
           >
             {p.points}
           </Text>

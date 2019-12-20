@@ -18,6 +18,11 @@ const props = {
     megaWins: 1,
   },
   tournamentId: "123",
+  t: {
+    spins: "Spins",
+    ending_in: "Starting in",
+  },
+  endTime: 1576698600000,
 };
 
 if (isNotChromatic) {

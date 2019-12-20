@@ -26,18 +26,18 @@ import { ReelRaceWidget } from "./ReelRaceWidget";
 
 export default connect(
   state => {
-    const started = reelRaceStartedSelector(state);
-    const scheduled = reelRaceScheduledSelector(state);
+    const reelRaceStarted = reelRaceStartedSelector(state);
+    const reelRaceScheduled = reelRaceScheduledSelector(state);
 
-    if (!started && !scheduled) {
+    if (!reelRaceStarted && !reelRaceScheduled) {
       return {};
     }
 
-    const { gameSlug } = started || scheduled;
+    const { gameSlug } = reelRaceStarted || reelRaceScheduled;
 
     return {
-      started,
-      scheduled,
+      reelRaceStarted,
+      reelRaceScheduled,
       gameSlug,
       scheduledGame: gameSelector(gameSlug)(state),
       playing: playingSelector(state),

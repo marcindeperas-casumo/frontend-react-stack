@@ -2,19 +2,18 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import Timer from "Components/Timer";
 
 type Props = {
-  t: ReelRacesTranslations,
-  playerSpins: number,
-  reelRace: ReelRace,
-  reelRaceStarted: ReelRace | null,
+  endTime: number,
+  spins: number,
+  t: {
+    spins: string,
+    ending_in: string,
+  },
 };
 
-export function ReelRaceWidgetInfo(props: Props) {
-  const { t, reelRace } = props;
-
+export function ReelRacePlayerInfo(props: Props) {
   return (
     <Flex
       direction="horizontal"
@@ -23,12 +22,12 @@ export function ReelRaceWidgetInfo(props: Props) {
     >
       <Flex direction="vertical" spacing="none" className="flex-1">
         <Text tag="span" size="xs">
-          {t.starting_in}
+          {props.t.ending_in}
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
           <Timer
-            key={reelRace.startTime}
-            endTime={reelRace.startTime}
+            key={props.endTime}
+            endTime={props.endTime}
             render={o => `${o.minutes}:${o.seconds}`}
             onEnd={() => "00:00"}
           />
@@ -36,10 +35,10 @@ export function ReelRaceWidgetInfo(props: Props) {
       </Flex>
       <Flex direction="vertical" spacing="none" className="u-text-align-right">
         <Text tag="span" size="xs">
-          {t.spins}
+          {props.t.spins}
         </Text>
         <Text tag="span" size="lg" className="u-font-weight-bold t-color-plum">
-          {reelRace.spins}
+          {props.spins}
         </Text>
       </Flex>
     </Flex>

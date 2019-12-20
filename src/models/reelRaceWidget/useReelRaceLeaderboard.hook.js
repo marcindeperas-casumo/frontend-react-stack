@@ -22,25 +22,27 @@ export function useReelRaceLeaderboard() {
     shallowEqual
   );
 
-  const subscriptionHandler = ({ data }) => {
+  const getVisibleLeaderBoard = list => {
     const sorted = R.pipe(
       R.values,
       R.sortBy(R.prop("position"))
-    )(data.leaderboard);
+    )(list);
     const playerPosition = R.findIndex(R.propEq("playerId", playerId), sorted);
-    const visibleLeaderboard = R.uniqBy(
+    return R.uniqBy(
       R.prop("playerId"),
       R.concat(
         R.take(3, sorted),
         R.slice(playerPosition - 2, playerPosition + 1, sorted)
       )
     );
+  };
 
-    setLeaderboard(visibleLeaderboard);
+  const subscriptionHandler = ({ data }) => {
+    setLeaderboard(getVisibleLeaderBoard(data.leaderboard));
   };
 
   React.useEffect(() => {
-    setLeaderboard(reelRaceLeaderboard);
+    setLeaderboard(getVisibleLeaderBoard(reelRaceLeaderboard));
     // why do we have to subscribe to all channels?
     tournamentChannels.forEach(channel =>
       cometd.subscribe(

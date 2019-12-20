@@ -48,32 +48,32 @@ export function ReelRaceWidgetHeader(props: Props) {
         </Text>
       </Flex>
     );
-  } else {
-    return (
-      <Flex
-        align="center"
-        className="u-padding--md u-cursor-pointer u-position-relative"
-        onClick={props.launchGame}
-      >
-        <GameThumb
-          src={scheduledGame.logoBackground}
-          alt={scheduledGame.name}
-          mark={scheduledGame.logo}
-        />
-        {reelRace.promoted && (
-          <GrandReelRaceBadge className="c-reel-race__badge" />
-        )}
-        <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
-          <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
-            {interpolate(t.compete_for, {
-              prize: reelRace.prize,
-            })}
-          </Text>
-          <Text tag="span" size="xs">
-            <DangerousHtml html={scheduledGame.name} />
-          </Text>
-        </Flex>
-      </Flex>
-    );
   }
+
+  return (
+    <Flex
+      align="center"
+      className="u-padding--md u-cursor-pointer u-position-relative"
+      onClick={props.launchGame}
+    >
+      <GameThumb
+        src={scheduledGame.logoBackground}
+        alt={scheduledGame.name}
+        mark={scheduledGame.logo}
+      />
+      {reelRace.promoted && (
+        <GrandReelRaceBadge className="c-reel-race__badge" />
+      )}
+      <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
+        <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
+          {interpolate(t.compete_for, {
+            prize: reelRace.prize,
+          })}
+        </Text>
+        <Text tag="span" size="xs">
+          <DangerousHtml html={scheduledGame.name} />
+        </Text>
+      </Flex>
+    </Flex>
+  );
 }
