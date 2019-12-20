@@ -15,7 +15,7 @@ describe("SidebarRow", () => {
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(1);
   });
 
-  test("should not render icon", () => {
+  test("should not render icon when icon is null", () => {
     const rendered = shallow(<SidebarRow text="FAQ" />);
     expect(rendered.find({ "data-test-id": "sidebar-icon" }).length).toBe(0);
   });
@@ -42,34 +42,7 @@ describe("SidebarRow", () => {
     ).toBe(text);
   });
 
-  test("should render selected class", () => {
-    const rendered = shallow(<SidebarRow secondary selected />);
-    expect(
-      rendered
-        .find({ "data-test-id": "sidebar-li" })
-        .hasClass("t-background-turquoise")
-    ).toBe(true);
-  });
-
-  test("should render white class", () => {
-    const rendered = shallow(<SidebarRow secondary />);
-    expect(
-      rendered
-        .find({ "data-test-id": "sidebar-li" })
-        .hasClass("t-background-white")
-    ).toBe(true);
-  });
-
-  test("should render default", () => {
-    const rendered = shallow(<SidebarRow />);
-    expect(
-      rendered
-        .find({ "data-test-id": "sidebar-li" })
-        .hasClass("t-background-plum")
-    ).toBe(true);
-  });
-
-  test("should not render small text", () => {
+  test("should not render small text when is null", () => {
     const rendered = shallow(<SidebarRow />);
     expect(rendered.find({ "data-test-id": "sidebar-text-small" }).length).toBe(
       0

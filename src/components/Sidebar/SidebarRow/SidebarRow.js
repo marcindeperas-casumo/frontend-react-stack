@@ -44,7 +44,7 @@ export const SidebarRow = (props: Props) => {
   );
 
   return (
-    <li className={rowClasses} data-test-id="sidebar-li">
+    <li className={rowClasses}>
       <a
         data-test-id="sidebar-link"
         className={secondary ? "t-color-grey-dark-1" : "t-color-white"}

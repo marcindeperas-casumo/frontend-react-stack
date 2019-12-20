@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { Sidebar } from "Components/Sidebar/Sidebar";
+import { SidebarRow } from "Components/Sidebar/SidebarRow";
 import MockStore from "Components/MockStore";
 
 describe("Sidebar", () => {
@@ -19,6 +20,6 @@ describe("Sidebar", () => {
         <Sidebar username="Sumo20" wallet="£987.65" bonus="+ £55.03 Bonus" />
       </MockStore>
     );
-    expect(rendered.find("SidebarRow").length).toBe(11);
+    expect(rendered.find(SidebarRow).length).toBe(11);
   });
 });
