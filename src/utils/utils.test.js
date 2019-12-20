@@ -437,7 +437,9 @@ describe("convertHoursToDays()", () => {
 
   describe("formatTime()", () => {
     test("should properly format Unix time in millis as localized 24-hour time with seconds", () => {
-      expect(formatTime(1576758921344)).toEqual("13:35:21");
+      expect(formatTime(1576758921344)).toEqual(
+        expect.stringMatching(/^\d\d:35:21/)
+      );
     });
   });
 });
