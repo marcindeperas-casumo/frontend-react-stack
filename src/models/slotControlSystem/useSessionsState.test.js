@@ -13,17 +13,18 @@ import endedSessionMock from "./__mocks__/endedSession.mock";
 import activeExclusionMock from "./__mocks__/activeExclusion.mock";
 
 describe("useSessionsState", () => {
-  const lastUpdateTime = Date.now();
+  const now = 1575462653148;
+  const lastUpdateTime = now;
   const activeSession = {
     ...activeSessionMock,
-    lastUpdateTime,
   };
-  const endTime = Date.now() - 10000;
+  const endTime = now - 10000;
   const lastEndedSession = {
     ...endedSessionMock,
     endTime,
   };
   const slotControlSystem: StateType = {
+    lastUpdateTime,
     activeSession,
     lastEndedSession,
     activeExclusion: null,
@@ -33,8 +34,16 @@ describe("useSessionsState", () => {
       isFetching: false,
     },
   };
+  let nowSpy;
 
-  test("returns object with activeSession, isFetching, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
+  beforeEach(() => {
+    nowSpy = jest.spyOn(Date, "now").mockImplementation(() => now);
+  });
+  afterEach(() => {
+    nowSpy.mockClear();
+  });
+
+  test("returns object with activeSession, isFetching, isFresh, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
     const state = {
       fetch,
       slotControlSystem,
@@ -48,6 +57,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      isFresh: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
@@ -59,9 +69,9 @@ describe("useSessionsState", () => {
       fetch,
       slotControlSystem: {
         ...slotControlSystem,
+        lastUpdateTime: now - 7 * 60 * 1000,
         activeSession: {
           ...activeSessionMock,
-          lastUpdateTime: Date.now() - 7 * 60 * 1000,
         },
       },
     };
@@ -74,6 +84,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession: null,
       isFetching: true,
+      isFresh: false,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
@@ -97,6 +108,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      isFresh: true,
       lastEndedSession: null,
       lastEndedSessionDuringLastHour: false,
       activeExclusion: null,
@@ -120,6 +132,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
+      isFresh: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: activeExclusionMock,

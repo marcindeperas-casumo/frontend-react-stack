@@ -11,7 +11,7 @@ import type {
 } from "./slotControlSystem.types";
 
 export const configurationFormContentSelector = createSelector(
-  getPage(CMS_SLUGS.CONFIGURATION_SCREEN),
+  getPage(CMS_SLUGS.BEFORE_PLAYING),
   getPage(CMS_SLUGS.UNITS),
   (configurationFormContent, unitsContent) => ({
     ...propOr({}, "fields", configurationFormContent),
@@ -65,5 +65,10 @@ export const activeExclusionSelector: (
   s: Object
 ) => ?ExclusionType = createSelector(
   path(["slotControlSystem", "activeExclusion"]),
+  identity
+);
+
+export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
+  path(["slotControlSystem", "lastUpdateTime"]),
   identity
 );
