@@ -232,5 +232,5 @@ export const featureFlagSelector = (featureFlag: string) =>
 
 export const jurisdictionSelector = createSelector(
   playerSelector,
-  prop(["jurisdiction"])
+  prop("jurisdiction")
 );
