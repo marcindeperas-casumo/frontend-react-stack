@@ -19,6 +19,6 @@ describe("Sidebar", () => {
         <Sidebar username="Sumo20" wallet="£987.65" bonus="+ £55.03 Bonus" />
       </MockStore>
     );
-    expect(rendered.find("SidebarRow").length).toBe(10);
+    expect(rendered.find("SidebarRow").length).toBe(11);
   });
 });

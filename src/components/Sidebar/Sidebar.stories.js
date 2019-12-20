@@ -8,6 +8,11 @@ const stories = storiesOf("Sidebar", module);
 
 stories.add("Default with bonus", () => (
   <MockStore>
-    <Sidebar username="Sumo20" wallet="£987.65" bonus="+ £55.03 Bonus" />
+    <Sidebar
+      username="Sumo20"
+      wallet="£987.65"
+      bonus="+ £55.03 Bonus"
+      logout={() => {}}
+    />
   </MockStore>
 ));

@@ -8,6 +8,7 @@ import {
   playerBonusTextSelector,
 } from "Models/player";
 import { formatCurrency } from "Utils";
+import { logout } from "Models/app";
 import { Sidebar } from "./Sidebar";
 
 const balanceBonusDisplay = (
@@ -23,19 +24,24 @@ const balanceBonusDisplay = (
   }
 };
 
-const SidebarContainer = connect(state => ({
-  username: playerCasumoNameSelector(state),
-  wallet: formatCurrency({
-    locale: localeSelector(state),
-    currency: playerCurrencySelector(state),
-    value: playerBalanceAmountSelector(state),
+const SidebarContainer = connect(
+  state => ({
+    username: playerCasumoNameSelector(state),
+    wallet: formatCurrency({
+      locale: localeSelector(state),
+      currency: playerCurrencySelector(state),
+      value: playerBalanceAmountSelector(state),
+    }),
+    bonus: balanceBonusDisplay(
+      playerWalletBonusSelector(state),
+      playerCurrencySelector(state),
+      playerBonusTextSelector(state),
+      localeSelector(state)
+    ),
   }),
-  bonus: balanceBonusDisplay(
-    playerWalletBonusSelector(state),
-    playerCurrencySelector(state),
-    playerBonusTextSelector(state),
-    localeSelector(state)
-  ),
-}))(Sidebar);
+  {
+    logout,
+  }
+)(Sidebar);
 
 export default SidebarContainer;
