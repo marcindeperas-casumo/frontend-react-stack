@@ -1,5 +1,4 @@
 // @flow
-import { omit } from "ramda";
 import {
   ACTION_TYPES,
   slotControlSystemReducer,
@@ -10,8 +9,10 @@ import endedSessionMock from "./__mocks__/endedSession.mock";
 import activeExclusionMock from "./__mocks__/activeExclusion.mock";
 
 describe("Models/slotControlSystem/Reducer", () => {
-  const now = Date.now();
-  const responseActiveSession = omit(["lastUpdateTime"], activeSessionMock);
+  const now = 1575462653148;
+  const fiveMinutesBefore = now - 1000 * 60 * 5;
+  const twoMinutesBefore = now - 1000 * 60 * 2;
+  const responseActiveSession = { ...activeSessionMock };
   let nowSpy;
 
   beforeEach(() => {
@@ -30,17 +31,18 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        lastUpdateTime: 0,
         activeSession: null,
         lastEndedSession: null,
         activeExclusion: null,
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: null,
         activeSession: {
           ...response.activeSession,
-          lastUpdateTime: now,
         },
       });
     });
@@ -53,10 +55,10 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
           id: "999-999-999",
-          lastUpdateTime: Date.now() - 1000 * 60 * 5,
           limit: {
             amount: 22,
             currency: "EUR",
@@ -67,11 +69,11 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: null,
         activeSession: {
           ...response.activeSession,
-          lastUpdateTime: now,
         },
       });
     });
@@ -84,10 +86,10 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
           id: "999-999-999",
-          lastUpdateTime: Date.now() - 1000 * 60 * 5,
           limit: {
             amount: 22,
             currency: "EUR",
@@ -98,6 +100,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: response.lastEndedSession,
         activeSession: null,
@@ -113,10 +116,10 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
+      lastUpdateTime: fiveMinutesBefore,
       activeSession: {
         ...activeSessionMock,
         id: "999-999-999",
-        lastUpdateTime: Date.now() - 1000 * 60 * 5,
         limit: {
           amount: 22,
           currency: "EUR",
@@ -126,17 +129,17 @@ describe("Models/slotControlSystem/Reducer", () => {
         ...endedSessionMock,
         id: "777-777-777",
         endReason: "Player logout",
-        endedTime: now - 1000 * 60 * 2,
+        endedTime: twoMinutesBefore,
       },
       activeExclusion: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      lastUpdateTime: now,
       activeExclusion: null,
       lastEndedSession: response.lastEndedSession,
       activeSession: {
         ...response.activeSession,
-        lastUpdateTime: now,
       },
     });
   });
@@ -149,12 +152,14 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
+      lastUpdateTime: 0,
       activeSession: null,
       lastEndedSession: null,
       activeExclusion: null,
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      lastUpdateTime: now,
       activeExclusion: activeExclusionMock,
       lastEndedSession: null,
       activeSession: null,

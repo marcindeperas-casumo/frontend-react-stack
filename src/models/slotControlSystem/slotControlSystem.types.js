@@ -3,8 +3,6 @@
 export type ActiveSessionType = {
   id: string,
   /** Unix time in millis */
-  lastUpdateTime: number,
-  /** Unix time in millis */
   expiringTime: number,
   /** Unix time in millis */
   startedTime: number,
@@ -35,13 +33,15 @@ export type ExclusionType = {
 };
 
 export type StateType = {
+  /** Unix time in millis */
+  lastUpdateTime: number,
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
 };
 
 export type SessionStateResponseType = {
-  activeSession: ?$Diff<ActiveSessionType, { lastUpdateTime: number }>,
+  activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
 };
@@ -58,6 +58,7 @@ export type NewSessionRequestType = {
 
 export type UseSessionsStateType = {
   isFetching: boolean,
+  isFresh: boolean,
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   lastEndedSessionDuringLastHour: boolean,

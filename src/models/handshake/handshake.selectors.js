@@ -234,3 +234,8 @@ export const featureFlagSelector = (featureFlag: string) =>
       return false;
     }
   );
+
+export const jurisdictionSelector = createSelector(
+  playerSelector,
+  prop("jurisdiction")
+);

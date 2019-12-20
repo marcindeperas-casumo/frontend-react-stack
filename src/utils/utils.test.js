@@ -20,6 +20,7 @@ import {
   convertTimestampToLuxonDate,
   interpolateTimeInterval,
   canBeInterpolated,
+  formatTime,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
@@ -431,6 +432,14 @@ describe("convertHoursToDays()", () => {
       };
 
       expect(interpolateTimeInterval(props)).toEqual("3days");
+    });
+  });
+
+  describe("formatTime()", () => {
+    test("should properly format Unix time in millis as localized 24-hour time with seconds", () => {
+      expect(formatTime(1576758921344)).toEqual(
+        expect.stringMatching(/^\d\d:35:21/)
+      );
     });
   });
 });

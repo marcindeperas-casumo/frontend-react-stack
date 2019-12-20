@@ -1,2 +1,3 @@
 // @flow
-export { SlotControlSystem } from "./SlotControlSystem";
+export { BeforePlaying } from "./BeforePlaying";
+export { BeforeLoggingOut } from "./BeforeLoggingOut";
