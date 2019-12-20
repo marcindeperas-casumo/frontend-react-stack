@@ -151,9 +151,12 @@ export default class KambiClient extends React.Component<Props> {
   render() {
     return (
       <div
-        className={classNames({
-          "c-kambi-client--hidden": this.props.isHidden,
-        })}
+        className={classNames(
+          "u-padding-x--xlg@tablet u-padding-x--2xlg@desktop t-background-chrome-light-2",
+          {
+            "c-kambi-client--hidden": this.props.isHidden,
+          }
+        )}
       >
         <div id="KambiBC" className="u-padding-top" />
 

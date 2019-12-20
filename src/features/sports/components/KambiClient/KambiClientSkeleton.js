@@ -11,7 +11,7 @@ type BaseSkeletonParams = {
 };
 
 const KambiClientSkeleton = () => (
-  <>
+  <div className="u-padding-x--xlg@tablet u-padding-x--2xlg@desktop">
     <KambiNavSkeleton />
     <Skeleton
       colorHi="#d3d8e1"
@@ -31,7 +31,7 @@ const KambiClientSkeleton = () => (
         />
       ))}
     </Skeleton>
-  </>
+  </div>
 );
 
 export default KambiClientSkeleton;
