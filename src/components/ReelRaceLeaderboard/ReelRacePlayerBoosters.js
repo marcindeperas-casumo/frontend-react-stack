@@ -32,7 +32,7 @@ export function ReelRacePlayerBoosters(props: Props) {
         <Text
           tag="div"
           size="xs"
-          className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold u-padding-y--sm"
+          className="c-reel-race-leaderboard-widget__boosters u-font-weight-bold u-padding-y--sm"
         >
           {boosters.triples}
         </Text>
@@ -44,7 +44,7 @@ export function ReelRacePlayerBoosters(props: Props) {
         <Text
           tag="div"
           size="xs"
-          className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold u-padding-y--sm"
+          className="c-reel-race-leaderboard-widget__boosters u-font-weight-bold u-padding-y--sm"
         >
           {boosters.bigWins}
         </Text>
@@ -56,7 +56,7 @@ export function ReelRacePlayerBoosters(props: Props) {
         <Text
           tag="div"
           size="xs"
-          className="c-reel-race-leaderboard-widget-boosters u-font-weight-bold u-padding-y--sm"
+          className="c-reel-race-leaderboard-widget__boosters u-font-weight-bold u-padding-y--sm"
         >
           {boosters.megaWins}
         </Text>

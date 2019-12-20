@@ -87,7 +87,11 @@ export function ReelRaceWidget(props: Props) {
       direction="vertical"
       className="t-border-bottom t-border-current-color t-color-grey-dark-2"
     >
-      <ReelRaceWidgetHeader reelRace={reelRace} {...props} />
+      <ReelRaceWidgetHeader
+        promoted={reelRace.promoted}
+        prize={reelRace.prize}
+        {...props}
+      />
       {reelRaceStarted ? (
         <ReelRaceLeaderboard endTime={reelRace.endTime} {...props} />
       ) : (

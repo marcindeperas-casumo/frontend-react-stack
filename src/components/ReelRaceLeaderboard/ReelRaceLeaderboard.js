@@ -43,7 +43,7 @@ export function ReelRaceLeaderboard(props: Props) {
           <Text
             tag="div"
             size="xs"
-            className="u-text-align-center u-padding c-reel-race-leaderboard-widget-position"
+            className="u-text-align-center u-padding c-reel-race-leaderboard-widget__position"
           >
             {p.position === 1 ? <PrizeIcon size="sm" /> : p.position}
           </Text>

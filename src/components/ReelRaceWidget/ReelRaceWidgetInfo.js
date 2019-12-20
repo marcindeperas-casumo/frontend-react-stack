@@ -7,9 +7,7 @@ import Timer from "Components/Timer";
 
 type Props = {
   t: ReelRacesTranslations,
-  playerSpins: number,
   reelRace: ReelRace,
-  reelRaceStarted: ReelRace | null,
 };
 
 export function ReelRaceWidgetInfo(props: Props) {

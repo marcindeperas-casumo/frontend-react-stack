@@ -2,7 +2,7 @@
 import * as React from "react";
 import Text from "@casumo/cmp-text";
 import Flex from "@casumo/cmp-flex";
-import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import type { ReelRacesTranslations } from "Models/reelRaces";
 import type { Playing } from "Models/playing";
 import * as A from "Types/apollo";
 import DangerousHtml from "Components/DangerousHtml";
@@ -17,11 +17,14 @@ type Props = {
   gameSlug: string,
   playing: Playing,
   t: ReelRacesTranslations,
-  reelRace: ReelRace,
+  promoted: boolean,
+  prize: string,
 };
 
 export function ReelRaceWidgetHeader(props: Props) {
-  const { t, scheduledGame, gameSlug, playing, reelRace } = props;
+  const { t, scheduledGame, gameSlug, playing, promoted, prize } = props;
+
+  const competeForText = interpolate(t.compete_for, { prize });
 
   if (playing.gameId === gameSlug) {
     if (!scheduledGame.name) {
@@ -42,9 +45,7 @@ export function ReelRaceWidgetHeader(props: Props) {
           tag="div"
           className="u-font-weight-bold u-text-align-center"
         >
-          {interpolate(t.compete_for, {
-            prize: reelRace.prize,
-          })}
+          {competeForText}
         </Text>
       </Flex>
     );
@@ -61,14 +62,10 @@ export function ReelRaceWidgetHeader(props: Props) {
         alt={scheduledGame.name}
         mark={scheduledGame.logo}
       />
-      {reelRace.promoted && (
-        <GrandReelRaceBadge className="c-reel-race__badge" />
-      )}
+      {promoted && <GrandReelRaceBadge className="c-reel-race__badge" />}
       <Flex direction="vertical" spacing="sm" className="u-margin-left--md">
         <Text tag="span" className="u-margin-bottom--sm u-font-weight-bold">
-          {interpolate(t.compete_for, {
-            prize: reelRace.prize,
-          })}
+          {competeForText}
         </Text>
         <Text tag="span" size="xs">
           <DangerousHtml html={scheduledGame.name} />
