@@ -1,0 +1,23 @@
+.c-sidebar__nav-item {
+  height: 100px;
+
+  &--white {
+    height: 91px;
+  }
+
+  &::after {
+    background: cudl-palette(turquoise);
+    border-left: 4px solid cudl-palette(plum, light-1);
+    content: "";
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    transition: width 100ms 0.3s ease-in;
+    width: 0;
+  }
+
+  &--active::after {
+    border-color: cudl-palette(turquoise);
+  }
+}

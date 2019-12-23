@@ -105,6 +105,11 @@ export const walletAmountSelector = createSelector(
   path(["wallet", "balance", "amount"])
 );
 
+export const bonusAmountSelector = createSelector(
+  playerSelector,
+  path(["bonus", "balance", "amount"])
+);
+
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")

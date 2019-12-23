@@ -14,6 +14,7 @@ import {
   countrySelector,
   currencySelector,
   walletAmountSelector,
+  bonusAmountSelector,
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
@@ -245,6 +246,26 @@ describe("Handshake selectors", () => {
     };
 
     expect(walletAmountSelector(state)).toEqual(777);
+  });
+
+  test("bonusAmountSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p3" },
+          "common/composition/players": {
+            players: {
+              p3: {
+                id: "p3",
+                bonus: { balance: { amount: 777 } },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(bonusAmountSelector(state)).toEqual(777);
   });
 
   test("marketSelector", () => {

@@ -2,8 +2,11 @@
 import { createSelector } from "reselect";
 import { propOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";
-import { walletAmountSelector, currencySelector } from "Models/handshake";
-import { SLUGS } from "Models/player";
+import {
+  walletAmountSelector,
+  bonusAmountSelector,
+  currencySelector,
+} from "Models/handshake";
 
 const player = state => state.player;
 
@@ -24,7 +27,10 @@ export const playerWalletAmountSelector = createSelector(
 
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
-  propOr(0, "bonus")
+  bonusAmountSelector,
+  (wallet, handshakeBonusAmount) => {
+    return prop("bonus")(wallet) || handshakeBonusAmount;
+  }
 );
 
 export const playerWalletCurrencySelector = createSelector(
@@ -47,7 +53,7 @@ export const mapPaymentTranslations = pipe(
 
 export const playerPaymentsTextsSelector = createSelector(
   getField({
-    slug: SLUGS.PAYMENTS,
+    slug: "features.payments",
     field: "text_fields",
     defaultValue: [],
   }),
