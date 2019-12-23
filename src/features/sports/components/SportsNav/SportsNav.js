@@ -125,6 +125,11 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     variables,
   });
 
+  // ensure live mode is kept in sync with changes to the hash made from elsewhere
+  React.useEffect(() => {
+    setIsLiveActive(navItemUtils.isInPlayHash(currentHash));
+  }, [currentHash]);
+
   // Decision was made that our nav doesn't add any benefit on the following kambi routes
   // and take too much focus away from what is happening
   if (/#event|#bethistory/.test(currentHash)) {
