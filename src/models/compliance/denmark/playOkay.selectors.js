@@ -1,21 +1,17 @@
 import { createSelector } from "reselect";
-import { compose, defaultTo, prop, propEq, find } from "ramda";
+import { propEq, find, pathOr, propOr } from "ramda";
 import { limitTypes } from "Models/compliance/denmark/constants";
 
-export const playOkaySelector = compose(
-  defaultTo({}),
-  prop("playOkay"),
-  prop("playOkay")
-);
+export const playOkaySelector = pathOr({}, ["playOkay", "playOkay"]);
 
 export const moneyLimitsSelector = createSelector(
   playOkaySelector,
-  compose(defaultTo([]), prop("moneyLimits"))
+  propOr([], "moneyLimits")
 );
 
 export const depositLimitHasBeenSetSelector = createSelector(
   playOkaySelector,
-  compose(defaultTo(false), prop("isDepositLimitProperlySet"))
+  propOr(false, "isDepositLimitProperlySet")
 );
 
 export const depositLimitSelector = createSelector(
