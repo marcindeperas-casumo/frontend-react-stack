@@ -1,6 +1,7 @@
 // @flow
 import React, { useEffect } from "react";
 import LazyPortal from "Components/LazyPortal";
+import { OverlayControlerContainer } from "Components/DanishOverlayFlow";
 import { Router } from "Components/Router";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 import { ROUTE_IDS } from "Src/constants";
@@ -52,6 +53,7 @@ export const App = (props: Props) => {
         }
         namedExport="DepositLimitsViewContainer"
       />
+      <OverlayControlerContainer />
     </>
   );
 };
