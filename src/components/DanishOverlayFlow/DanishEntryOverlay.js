@@ -132,7 +132,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
     return (
       <>
         <Header title={t.modal_title} />
-        <div className="u-padding-x--2xlg@tablet u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
+        <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
           <div className="u-padding u-padding-top-lg">
             <TickIcon size="xlg" className="t-color-plum" />
             <Text className="t-color-plum u-font-2xlg u-font-weight-bold">
@@ -159,7 +159,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
     return (
       <>
         <Header title={t.modal_title} />
-        <div className="u-padding-md@mobile u-padding-x--2xlg@tablet u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
+        <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
           <Text className="u-padding-x u-padding-y--lg">
             {t.modal_description}
           </Text>
@@ -196,7 +196,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
           backAction={goBack}
           title={t.modal_title}
         />
-        <div className="u-padding-x--2xlg@tablet u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
+        <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
           <Text className="u-padding-x u-padding-y--lg">
             {limitType ? periodLabels[limitType] : ""} {t.limit}
           </Text>
