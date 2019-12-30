@@ -322,3 +322,10 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
 
   return R.pick(["hours", "minutes", "seconds"], duration);
 };
+
+/**
+ * @link https://moment.github.io/luxon/docs/manual/formatting.html#table-of-tokens
+ */
+export const formatTime = (millis: number): string => {
+  return DateTime.fromMillis(millis).toFormat("TT");
+};

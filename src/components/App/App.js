@@ -11,12 +11,9 @@ type Props = {
   unsubscribeToUpdates: Function,
   playerId: string,
   sessionId: string,
-  language: string,
-  market: string,
   isAuthenticated: boolean,
   isAppHandshakeLoaded: Boolean,
   activeComponents: Array<string>,
-  routeParams: Array<Object>,
 };
 
 export const App = (props: Props) => {

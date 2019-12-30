@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
-import { DateTime } from "luxon";
-import { formatCurrency } from "Utils";
+import { formatCurrency, formatTime } from "Utils";
 import { Row } from "./Row";
 import { Header } from "./Header";
 
@@ -29,7 +28,6 @@ type Props = {
 
 export function Body(props: Props) {
   const {
-    t,
     locale,
     balance,
     currency,
@@ -40,6 +38,7 @@ export function Body(props: Props) {
     playEndedTime,
     lastStatusAlertTime,
   } = props;
+  const t = props.t || {};
   const formatCurrencyBound = (value: number) =>
     formatCurrency({
       value,
@@ -49,21 +48,17 @@ export function Body(props: Props) {
 
   return (
     <>
-      <Header>{t?.session_details_header}</Header>
-      <Row label={t?.balance} value={formatCurrencyBound(balance)} />
-      <Row label={t?.money_wagered} value={formatCurrencyBound(moneyWagered)} />
-      <Row label={t?.money_won} value={formatCurrencyBound(moneyWon)} />
-      <Row label={t?.money_left} value={formatCurrencyBound(moneyLeft)} />
-      <Row label={t?.play_started} value={formatTime(playStartedTime)} />
-      <Row label={t?.play_ended} value={formatTime(playEndedTime)} />
+      <Header>{t.session_details_header}</Header>
+      <Row label={t.balance} value={formatCurrencyBound(balance)} />
+      <Row label={t.money_wagered} value={formatCurrencyBound(moneyWagered)} />
+      <Row label={t.money_won} value={formatCurrencyBound(moneyWon)} />
+      <Row label={t.money_left} value={formatCurrencyBound(moneyLeft)} />
+      <Row label={t.play_started} value={formatTime(playStartedTime)} />
+      <Row label={t.play_ended} value={formatTime(playEndedTime)} />
       <Row
-        label={t?.last_status_alert}
+        label={t.last_status_alert}
         value={formatTime(lastStatusAlertTime)}
       />
     </>
   );
-}
-
-function formatTime(millis: number): string {
-  return DateTime.fromMillis(millis).toFormat("TT");
 }

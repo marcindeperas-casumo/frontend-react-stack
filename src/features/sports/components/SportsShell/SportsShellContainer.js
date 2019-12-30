@@ -104,7 +104,7 @@ export class SportsShellContainer extends React.Component<{}> {
             <>
               <SportsHashWatcher>
                 {({ currentHash }) => (
-                  <>
+                  <div className="t-background-chrome-light-2">
                     <SportsTopBar
                       currentHash={currentHash}
                       isSearchVisible={data.isSearchVisible}
@@ -119,7 +119,7 @@ export class SportsShellContainer extends React.Component<{}> {
                     ) : (
                       <SportsNav currentHash={currentHash} />
                     )}
-                  </>
+                  </div>
                 )}
               </SportsHashWatcher>
               {data.hasSelectedFavourites ? <KambiClient /> : null}
