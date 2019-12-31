@@ -6,7 +6,9 @@ import {
   walletAmountSelector,
   bonusAmountSelector,
   currencySelector,
+  localeSelector,
 } from "Models/handshake";
+import { getSymbolForCurrency } from "Utils";
 
 const player = state => state.player;
 
@@ -23,6 +25,11 @@ export const playerWalletSelector = createSelector(
 export const playerWalletAmountSelector = createSelector(
   playerWalletSelector,
   propOr(0, "amount")
+);
+
+export const playerCurrencySymbolSelector = createSelector(
+  [currencySelector, localeSelector],
+  (currency, locale) => getSymbolForCurrency({ locale, currency })
 );
 
 export const playerWalletBonusSelector = createSelector(
