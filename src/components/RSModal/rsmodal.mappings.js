@@ -2,6 +2,8 @@
 import * as React from "react";
 import * as R from "ramda";
 import { REACT_APP_MODAL } from "Src/constants";
+import { DanishEntryOverlayContainer } from "Components/DanishOverlayFlow";
+import { overlayContentCmsSlug } from "Models/compliance/denmark";
 import type { ModalId, ModalConfig } from "Models/modal";
 import { cmsSlugs } from "Models/tac";
 import { CMS_SLUGS as SCS_CMS_SLUGS } from "Models/slotControlSystem";
@@ -36,6 +38,14 @@ export const mappings: Mapping = {
   TERMS_AND_CONDITIONS_SPAIN: {
     slug: cmsSlugs.main,
     Content: TermsAndConditions,
+  },
+  REALITY_CHECK_MODAL: {
+    slug: REALITY_CHECK_CMS_SLUG,
+    Content: RealityCheck,
+  },
+  DANISH_ENTRY_OVERLAY: {
+    slug: overlayContentCmsSlug,
+    Content: DanishEntryOverlayContainer,
   },
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.BEFORE_PLAYING,
