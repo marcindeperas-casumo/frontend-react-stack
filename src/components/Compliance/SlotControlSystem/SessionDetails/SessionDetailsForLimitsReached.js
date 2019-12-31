@@ -21,7 +21,7 @@ type Props = {
     limits_reached_play_again_header: string,
   },
   locale: string,
-  playAgainGameId: string,
+  playAgainGameId?: string,
   onClickButton: () => void,
   lastEndedSession: EndedSessionType,
 };
@@ -32,8 +32,12 @@ export function SessionDetailsForLimitsReached(props: Props) {
 
   return (
     <Flex direction="vertical">
-      <Header>{t?.limits_reached_play_again_header}</Header>
-      <GameRow id={playAgainGameId} />
+      {Boolean(playAgainGameId) && (
+        <>
+          <Header>{t?.limits_reached_play_again_header}</Header>
+          <GameRow id={playAgainGameId} />
+        </>
+      )}
       <Body
         t={t}
         locale={locale}

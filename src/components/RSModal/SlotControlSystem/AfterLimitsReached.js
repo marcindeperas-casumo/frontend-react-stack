@@ -1,7 +1,9 @@
 // @flow
 import * as React from "react";
+import { head } from "ramda";
 import { useLocale } from "Utils/hooks";
 import { useSessionsState } from "Models/slotControlSystem";
+import { useLatestPlayed } from "Models/gameSearch";
 import { type ModalContentComponent } from "Components/RSModal";
 import {
   SessionDetailsForLimitsReached,
@@ -27,11 +29,14 @@ type ContentType = {
 export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const { activeExclusion, lastEndedSession } = useSessionsState();
   const locale = useLocale();
-  const modalSkinProps = {
-    ...props,
-    t: {
-      modal_title: props.t?.limits_reached_modal_title || "",
-    },
+  const { latestPlayedIds } = useLatestPlayed();
+  const tForModalSkin = {
+    modal_title: props.t?.limits_reached_modal_title || "",
+  };
+  const propsForModalSkin = {
+    t: tForModalSkin,
+    dismissModal: props.dismissModal,
+    closeAction: props.acceptModal,
   };
 
   if (!lastEndedSession) {
@@ -40,10 +45,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
 
   if (activeExclusion) {
     return (
-      // Flow thinks modalSkinProps are the same type as props and
-      // that props should contain modal_title
-      // $FlowFixMe
-      <ModalSkin {...modalSkinProps} closeAction={props.acceptModal}>
+      <ModalSkin {...propsForModalSkin}>
         <SessionDetailsForLimitsReachedExcluded
           t={props.t}
           locale={locale}
@@ -58,17 +60,13 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   }
 
   return (
-    // Flow thinks modalSkinProps are the same type as props and
-    // that props should contain modal_title
-    // $FlowFixMe
-    <ModalSkin {...modalSkinProps} closeAction={props.acceptModal}>
+    <ModalSkin {...propsForModalSkin}>
       <SessionDetailsForLimitsReached
         t={props.t}
         locale={locale}
         lastEndedSession={lastEndedSession}
         onClickButton={props.acceptModal}
-        // TODO retrieve correct game id
-        playAgainGameId="gonzos-quest"
+        playAgainGameId={head(latestPlayedIds)}
       />
     </ModalSkin>
   );

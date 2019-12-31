@@ -1,3 +1,4 @@
+export * from "./gameSearch.types";
 export * from "./gameSearch.constants";
 export * from "./gameSearch.actions";
 export * from "./gameSearch.selectors";
@@ -10,3 +11,4 @@ export * from "./gameSearch.saga.page.search";
 export * from "./gameSearch.saga.clear";
 export * from "./gameSearch.saga.resetScrollPosition";
 export * from "./gameSearch.utils";
+export * from "./useLatestPlayed";
