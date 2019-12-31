@@ -1,5 +1,4 @@
 import { connect } from "react-redux";
-import { playerCurrencySymbolSelector } from "Models/player";
 import { playerIdSelector, currencySelector } from "Models/handshake";
 import {
   saveLimitAction,
@@ -10,7 +9,6 @@ import { DanishEntryOverlay } from "./DanishEntryOverlay";
 export const DanishEntryOverlayContainer = connect(
   state => ({
     playerId: playerIdSelector(state),
-    currencySymbol: playerCurrencySymbolSelector(state),
     isDepositLimitProperlySet: depositLimitHasBeenSetSelector(state),
     iso4217CurrencyCode: currencySelector(state),
   }),

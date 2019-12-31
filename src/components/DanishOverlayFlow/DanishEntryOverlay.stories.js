@@ -29,6 +29,7 @@ const OverlayDecorator = ({ depositLimitSet }) => {
       <DanishEntryOverlay
         {...props}
         isDepositLimitProperlySet={depositLimitSet}
+        DGAComplianceState={{ depositLimit: 10000 }}
         saveLimit={() => {}}
       />
     </div>

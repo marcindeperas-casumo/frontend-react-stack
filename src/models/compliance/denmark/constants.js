@@ -1,5 +1,4 @@
 export const minFirstDepositLimit = 1;
-export const maxFirstDepositLimit = 10000;
 
 export const overlayContentCmsSlug =
   "shared.danish-login-mandatory-deposit-limit";
