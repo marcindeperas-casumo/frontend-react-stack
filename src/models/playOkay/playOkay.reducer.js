@@ -6,5 +6,5 @@ import { depositLimitsReducer } from "./depositLimits/depositLimits.reducer";
 
 export const playOkayReducer = combineReducers({
   depositLimits: depositLimitsReducer,
-  playOkay: playOkay,
+  playOkay,
 });
