@@ -24,7 +24,7 @@ type CmsContent = {
 type LmitData = {
   playerId: ?string,
   limit: any,
-  limitType: ?string,
+  periodSetting: ?string,
 };
 
 type OverlayProps = {
@@ -81,7 +81,7 @@ export function DanishEntryOverlay(props: OverlayProps) {
         amount,
         iso4217CurrencyCode,
       },
-      limitType,
+      periodSetting: limitType,
     });
   };
 
