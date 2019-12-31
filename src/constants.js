@@ -164,6 +164,11 @@ export const TRANSLATED_ROUTES = {
   },
 };
 
+export const COMPLIANCE_STATE_PROPERTY = {
+  DGA: "DGA",
+  AML: "AML",
+};
+
 export const MARKETS = {
   ___en: "___en",
   ca_en: "ca_en",
