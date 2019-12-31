@@ -10,18 +10,20 @@ export const types = {
     "PLAY_OKAY_DEPOSIT_LIMIT_SET_COMPLETED",
 };
 
-export const getAllLimits = playerId => ({
+export const getAllLimits = ({ playerId }) => ({
   type: fetchTypes.FETCH,
   name: types.PLAYOK_FETCH_ALL_LIMITS,
   postFetch: types.PLAYOK_FETCH_ALL_LIMITS_COMPLETED,
-  asyncCall: api.getAllLimits(playerId),
+  asyncCall: api.getAllLimits,
+  asyncCallData: { playerId },
 });
 
-export const saveLimitAction = (playerId, limit, periodSetting) => ({
+export const saveLimitAction = ({ playerId, limit, periodSetting }) => ({
   type: fetchTypes.FETCH,
   name: types.PLAY_OKAY_DEPOSIT_LIMIT_SET,
   postFetch: types.PLAY_OKAY_DEPOSIT_LIMIT_SET_COMPLETED,
-  asyncCall: api.setDepositLimit(playerId, limit, periodSetting),
+  asyncCall: api.setDepositLimit,
+  asyncCallData: { playerId, limit, periodSetting },
 });
 
 export const initPlayOkayComplianceCheck = {

@@ -14,7 +14,7 @@ export function* danishOverlaySaga(action) {
   const market = yield select(marketSelector);
 
   if (market === MARKETS.dk_da) {
-    yield put(getAllLimits(playerId));
+    yield put(getAllLimits({ playerId }));
 
     const { response } = yield take(types.PLAYOK_FETCH_ALL_LIMITS_COMPLETED);
 

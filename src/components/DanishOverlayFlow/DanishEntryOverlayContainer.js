@@ -13,7 +13,6 @@ export const DanishEntryOverlayContainer = connect(
     iso4217CurrencyCode: currencySelector(state),
   }),
   dispatch => ({
-    saveLimit: (playerId, limit, period) =>
-      dispatch(saveLimitAction(playerId, limit, period)),
+    saveLimit: limitData => dispatch(saveLimitAction(limitData)),
   })
 )(DanishEntryOverlay);

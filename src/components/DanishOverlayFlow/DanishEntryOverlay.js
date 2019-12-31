@@ -21,9 +21,15 @@ type CmsContent = {
   got_it_button: string,
 };
 
+type LmitData = {
+  playerId: ?string,
+  limit: any,
+  limitType: ?string,
+};
+
 type OverlayProps = {
   t: CmsContent,
-  saveLimit: (playerId: ?string, limit: any, limitType: ?string) => void,
+  saveLimit: (limitData: LmitData) => void,
   acceptModal?: () => void,
   playerId: ?string,
   isDepositLimitProperlySet: boolean,
@@ -69,14 +75,14 @@ export function DanishEntryOverlay(props: OverlayProps) {
 
   const confirmLimit = () => {
     setLoading(true);
-    saveLimit(
+    saveLimit({
       playerId,
-      {
+      limit: {
         amount,
         iso4217CurrencyCode,
       },
-      limitType
-    );
+      limitType,
+    });
   };
 
   const goBack = () => {
@@ -126,5 +132,5 @@ export function DanishEntryOverlay(props: OverlayProps) {
     );
   }
 
-  return "";
+  return null;
 }

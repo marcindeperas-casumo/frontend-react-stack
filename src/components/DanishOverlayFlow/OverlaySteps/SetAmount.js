@@ -45,7 +45,7 @@ export const SetAmount = ({
       </Text>
       <div className="u-padding-x">
         <TextInput
-          currencySign={currencySymbol + " "}
+          currencySign={currencySymbol}
           value={amount}
           onChange={onChangeAmount}
         />
