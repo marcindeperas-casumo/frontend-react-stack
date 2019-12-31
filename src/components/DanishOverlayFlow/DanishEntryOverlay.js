@@ -23,11 +23,11 @@ type CmsContent = {
 
 type OverlayProps = {
   t: CmsContent,
-  saveLimit: (playerId: any, limit: any, limitType: any) => void,
+  saveLimit: (playerId: ?string, limit: any, limitType: ?string) => void,
   acceptModal?: () => void,
-  playerId?: string,
+  playerId: ?string,
   isDepositLimitProperlySet: boolean,
-  iso4217CurrencyCode?: string,
+  iso4217CurrencyCode: ?string,
 };
 
 type HeaderProps = {

@@ -28,6 +28,8 @@ const OverlayDecorator = ({ depositLimitSet }) => {
     <div className="t-background-white o-flex--vertical t-border-r@tablet c-rsmodal">
       <DanishEntryOverlay
         {...props}
+        playerId={""}
+        iso4217CurrencyCode={"DGA"}
         isDepositLimitProperlySet={depositLimitSet}
         DGAComplianceState={{ depositLimit: 10000 }}
         saveLimit={() => {}}

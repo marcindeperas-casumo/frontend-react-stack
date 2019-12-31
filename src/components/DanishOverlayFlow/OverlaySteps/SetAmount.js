@@ -6,7 +6,7 @@ import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
 
 export const SetAmount = ({
   t,
-  currencySymbol = "€",
+  currencySymbol,
   confirmLimit,
   setAmount,
   amount,
