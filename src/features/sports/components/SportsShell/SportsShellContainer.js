@@ -18,7 +18,6 @@ import SportsTopBar from "Features/sports/components/SportsTopBar";
 import { SportsNav } from "Features/sports/components/SportsNav";
 import Modals, { MODAL } from "Features/sports/components/Modals";
 import { WelcomeOfferCuratedCard } from "Features/sports/components/WelcomeOfferCuratedCard";
-import { FreebetNotification } from "Features/sports/components/FreebetNotification";
 import {
   OPEN_MODAL_MUTATION,
   UPDATE_BETSLIP_STATE_MUTATION,
@@ -111,7 +110,6 @@ export class SportsShellContainer extends React.Component<{}> {
                     />
 
                     {/* Top Content Area */}
-                    <FreebetNotification />
                     <WelcomeOfferCuratedCard />
 
                     {data.isSearchVisible ? (
