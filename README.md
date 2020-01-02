@@ -20,13 +20,13 @@ Casumo React Stack contains a couple of services that enable us to build React c
 
 It started with a `create-react-app` and evolved into what it is today. `casumo-frontend` is being deprecated and we are in the process of migrating to this new `react-stack`.
 
-This service runs in dev mode (`yarn start`), so every time a change in the source files is made, the target app will be hot reloaded.
+This service runs in dev mode (`yarn install` the first time running the `frontend-react-stack`, followed by `yarn start`), so every time a change in the source files is made, the target app will be hot reloaded.
 
 ## Development instructions
 
 ### Setup
 
-- Required Node version: **>=10.14.2**
+- Required Node version: **>=10.14.2** (To update: `nvm install --lts`)
 - Required Docker version: **>=18.03**
 - Install [casumo-frontend-proxy](https://github.com/Casumo/casumo-frontend-proxy#install) (2.5.0+) along with [certificate](https://github.com/Casumo/casumo-frontend-proxy/blob/master/docs/HTTPS.md).
 - Clone [casumo-frontend](https://github.com/Casumo/casumo-frontend) repo and create file `.casumo-proxy-local` under `/web` with this snippet:

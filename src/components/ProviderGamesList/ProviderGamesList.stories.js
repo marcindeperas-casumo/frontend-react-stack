@@ -20,7 +20,6 @@ const games = [
   "diamond-mine",
 ];
 const provider = {
-  inMaintenance: false,
   name: "Nyx",
   slug: "casumo-services-ltd-nyx",
   games,
