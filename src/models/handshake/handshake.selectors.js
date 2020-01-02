@@ -239,3 +239,9 @@ export const jurisdictionSelector = createSelector(
   playerSelector,
   prop("jurisdiction")
 );
+
+export const complianceStatePropertySelector = (complianceProperty: string) =>
+  createSelector(
+    playerSelector,
+    path(["complianceState", complianceProperty])
+  );
