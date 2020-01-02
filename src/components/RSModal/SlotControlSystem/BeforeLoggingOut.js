@@ -1,0 +1,70 @@
+// @flow
+import * as React from "react";
+import { omit } from "ramda";
+import { useLocale } from "Utils/hooks";
+import { useSessionsState } from "Models/slotControlSystem";
+import { type ModalContentComponent } from "Components/RSModal";
+import { SessionDetails } from "Components/Compliance/SlotControlSystem/SessionDetails";
+import { ModalSkin } from "./ModalSkin";
+
+type ContentType = {
+  session_details_header: string,
+  balance: string,
+  money_wagered: string,
+  money_won: string,
+  money_left: string,
+  play_started: string,
+  play_ended: string,
+  last_status_alert: string,
+  limits_reached_play_again_header: string,
+  limits_reached_button_label: string,
+  limits_reached_modal_title: string,
+  limits_reached_exclusion_text: string,
+  logout_button_label: string,
+  logout_text: string,
+  logout_modal_title: string,
+};
+
+export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
+  const { activeSession, isFresh, isFetching } = useSessionsState();
+  const locale = useLocale();
+  const now = Date.now();
+  const tForModalSkin = {
+    modal_title: props.t?.logout_modal_title || "",
+  };
+
+  React.useEffect(() => {
+    if (!activeSession && isFresh && !isFetching) {
+      props.acceptModal();
+    }
+  }, [activeSession, isFresh, isFetching]); // eslint-disable-line react-hooks/exhaustive-deps
+
+  if (!activeSession) {
+    return null;
+  }
+
+  return (
+    <ModalSkin
+      {...omit(["t"], props)}
+      t={tForModalSkin}
+      closeAction={props.acceptModal}
+    >
+      <SessionDetails
+        t={props.t}
+        isLogout
+        locale={locale}
+        balance={activeSession.limit.amount}
+        currency={activeSession.limit.currency}
+        // TODO bind proper data when available in API
+        moneyWagered={10}
+        moneyWon={100}
+        moneyLeft={1000}
+        playStarted={activeSession.startedTime}
+        playEnded={now}
+        // TODO bind proper data when available in API
+        lastStatusAlert={now}
+        onClickButton={props.acceptModal}
+      />
+    </ModalSkin>
+  );
+}

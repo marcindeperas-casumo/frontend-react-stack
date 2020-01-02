@@ -1,5 +1,6 @@
 // @flow
 import {
+  lastUpdateTimeSelector,
   configurationFormContentSelector,
   isFetchingActiveSessionSelector,
   activeSessionSelector,
@@ -104,5 +105,19 @@ describe("Slot Control System selectors", () => {
     };
 
     expect(activeExclusionSelector(state)).toEqual(activeExclusion);
+  });
+
+  test("lastUpdateTimeSelector", () => {
+    const lastUpdateTime = 1575462320308;
+    const state = {
+      slotControlSystem: {
+        activeSession: null,
+        lastEndedSession: null,
+        activeExclusion: null,
+        lastUpdateTime,
+      },
+    };
+
+    expect(lastUpdateTimeSelector(state)).toEqual(lastUpdateTime);
   });
 });

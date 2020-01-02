@@ -30,7 +30,7 @@ export const ConfigurationFormContainer = connect(
   }),
   dispatch => ({
     fetchContentIfNecessary: () => {
-      dispatch(fetchPageBySlug(CMS_SLUGS.CONFIGURATION_SCREEN));
+      dispatch(fetchPageBySlug(CMS_SLUGS.BEFORE_PLAYING));
       dispatch(fetchPageBySlug(CMS_SLUGS.UNITS));
     },
     createSession: (formData: ConfigurationFormData) =>

@@ -14,6 +14,7 @@ import {
   countrySelector,
   currencySelector,
   walletAmountSelector,
+  bonusAmountSelector,
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
@@ -31,6 +32,7 @@ import {
   verticalSelector,
   featureFlagSelector,
   playerCasumoNameSelector,
+  jurisdictionSelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -244,6 +246,26 @@ describe("Handshake selectors", () => {
     };
 
     expect(walletAmountSelector(state)).toEqual(777);
+  });
+
+  test("bonusAmountSelector", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p3" },
+          "common/composition/players": {
+            players: {
+              p3: {
+                id: "p3",
+                bonus: { balance: { amount: 777 } },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    expect(bonusAmountSelector(state)).toEqual(777);
   });
 
   test("marketSelector", () => {
@@ -568,6 +590,23 @@ describe("Handshake selectors", () => {
 
     test("returns FALSE if the feature-flag is not in the handshake nor in the localStorage", () => {
       expect(featureFlagSelector("unknown")(stateMock)).toBe(false);
+    });
+  });
+
+  describe("jurisdictionSelector()", () => {
+    test("jurisdictionSelector", () => {
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", jurisdiction: "UKGC" } },
+            },
+          },
+        },
+      };
+
+      expect(jurisdictionSelector(state)).toEqual("UKGC");
     });
   });
 });

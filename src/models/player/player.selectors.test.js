@@ -26,6 +26,12 @@ const handshake = {
               iso4217CurrencyCode: "USD",
             },
           },
+          bonus: {
+            balance: {
+              amount: 111,
+              iso4217CurrencyCode: "USD",
+            },
+          },
         },
       },
     },
@@ -83,8 +89,8 @@ describe("Player selectors", () => {
       expect(playerWalletBonusSelector(state)).toEqual(wallet.bonus);
     });
 
-    test("Should get 0", () => {
-      expect(playerWalletBonusSelector(state2)).toEqual(0);
+    test("Should get handshake amount", () => {
+      expect(playerWalletBonusSelector(state2)).toEqual(111);
     });
   });
 

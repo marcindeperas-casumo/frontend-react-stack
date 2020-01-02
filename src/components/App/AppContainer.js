@@ -6,11 +6,9 @@ import {
   isAuthenticated,
   playerIdSelector,
   sessionIdSelector,
-  languageSelector,
-  marketSelector,
   isApplicationHandshakeLoaded,
 } from "Models/handshake";
-import { activeComponents, routeParamsSelector } from "Models/router";
+import { activeComponents } from "Models/router";
 import {
   subscribeToPlayerUpdates,
   unsubscribeToPlayerUpdates,
@@ -25,11 +23,8 @@ export default hot(
       isAppHandshakeLoaded: isApplicationHandshakeLoaded(state),
       isAuthenticated: isAuthenticated(state),
       activeComponents: activeComponents(state),
-      routeParams: routeParamsSelector(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
-      market: marketSelector(state),
-      language: languageSelector(state),
     }),
     {
       onAppStarted: appStarted,

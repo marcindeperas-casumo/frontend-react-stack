@@ -1,7 +1,8 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { Desktop } from "Components/ResponsiveLayout";
+import { TabletAndDesktop } from "Components/ResponsiveLayout";
+import Sidebar from "Components/Sidebar";
 
 type Props = {
   children: string,
@@ -10,14 +11,14 @@ type Props = {
 export const LayoutPage = (props: Props) => {
   return (
     <Flex spacing="none">
-      <Desktop>
+      <TabletAndDesktop>
         <Flex.Item
           style={{ width: "260px" }}
           className="u-position-relative u-height--screen u-overflow-y--auto"
         >
-          <div>{/* sidebar goes here */}</div>
+          <Sidebar />
         </Flex.Item>
-      </Desktop>
+      </TabletAndDesktop>
       <Flex.Block>
         <div className="u-height--screen">{props.children}</div>
       </Flex.Block>
