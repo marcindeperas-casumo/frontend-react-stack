@@ -1,5 +1,6 @@
 //@flow
 import { type ActiveSessionType } from "Models/slotControlSystem";
+import stats from "./gameplayStats.mock";
 
 const now = 1576065735032;
 
@@ -14,4 +15,5 @@ export default ({
     amount: 111,
     currency: "GBP",
   },
+  stats,
 } : ActiveSessionType);

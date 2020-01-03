@@ -37,7 +37,6 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
     secondsTillEndOfBreak,
     lastEndedSession,
   } = props;
-  const now = 1576065735032;
   const timeInterval = interpolateTimeInterval({
     seconds: secondsTillEndOfBreak,
     t: {
@@ -57,15 +56,14 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
       <Body
         t={t}
         locale={locale}
-        // TODO bind proper data when available in API
-        balance={455}
+        balance={lastEndedSession.stats.limit}
+        // TODO bind actual currency
         currency={"EUR"}
         playStartedTime={lastEndedSession.startedTime}
         playEndedTime={lastEndedSession.endedTime}
-        lastStatusAlertTime={now - 1000 * 50}
-        moneyWon={11}
-        moneyLeft={12}
-        moneyWagered={13}
+        moneyWon={lastEndedSession.stats.totalWins}
+        moneyLeft={lastEndedSession.stats.remainingBalance}
+        moneyWagered={lastEndedSession.stats.totalBets}
       />
       <Button
         variant="primary"

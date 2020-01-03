@@ -13,7 +13,6 @@ type Props = {
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
   },
   locale: string,
   balance: number,
@@ -23,7 +22,6 @@ type Props = {
   moneyLeft: number,
   playStartedTime: number,
   playEndedTime: number,
-  lastStatusAlertTime: number,
 };
 
 export function Body(props: Props) {
@@ -36,7 +34,6 @@ export function Body(props: Props) {
     moneyLeft,
     playStartedTime,
     playEndedTime,
-    lastStatusAlertTime,
   } = props;
   const t = props.t || {};
   const formatCurrencyBound = (value: number) =>
@@ -55,10 +52,6 @@ export function Body(props: Props) {
       <Row label={t.money_left} value={formatCurrencyBound(moneyLeft)} />
       <Row label={t.play_started} value={formatTime(playStartedTime)} />
       <Row label={t.play_ended} value={formatTime(playEndedTime)} />
-      <Row
-        label={t.last_status_alert}
-        value={formatTime(lastStatusAlertTime)}
-      />
     </>
   );
 }

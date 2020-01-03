@@ -1,5 +1,14 @@
 // @flow
 
+export type GameplayStatsType = {
+  consumedBalance: number,
+  remainingBalance: number,
+  limit: number,
+  totalBets: number,
+  totalWins: number,
+  lastUpdateTime: ?number,
+};
+
 export type ActiveSessionType = {
   id: string,
   /** Unix time in millis */
@@ -13,6 +22,7 @@ export type ActiveSessionType = {
     amount: number,
     currency: string,
   },
+  stats: GameplayStatsType,
 };
 
 export type EndedSessionType = {
@@ -22,6 +32,7 @@ export type EndedSessionType = {
   /** Unix time in millis */
   endedTime: number,
   endReason: string,
+  stats: GameplayStatsType,
 };
 
 export type ExclusionType = {
@@ -63,4 +74,12 @@ export type UseSessionsStateType = {
   lastEndedSession: ?EndedSessionType,
   lastEndedSessionDuringLastHour: boolean,
   activeExclusion: ?ExclusionType,
+};
+
+export type UpdateStatsCometdMessage = {
+  type: string,
+  channel: string,
+  data: {
+    "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification": GameplayStatsType,
+  },
 };

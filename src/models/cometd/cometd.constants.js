@@ -21,4 +21,8 @@ export const MESSAGES = {
   DEPOSIT_CONFIRMED: "depositConfirmed",
   NOTIFICATION_ADDED: "notificationAdded",
   ENRICHED_DEPOSIT_CONFIRMED: "enrichedDepositConfirmed",
+  SLOT_CONTROL_SYSTEM_STATS_UPDATED:
+    "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification",
+  SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED:
+    "com.casumo.es.slotsessions.notifications.LimitAlmostConsumedNotification",
 };

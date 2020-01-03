@@ -37,15 +37,13 @@ export function SessionDetailsForLogout(props: Props) {
       <Body
         t={t}
         locale={locale}
-        // TODO bind proper data when available in API
         balance={activeSession.limit.amount}
         currency={activeSession.limit.currency}
         playStartedTime={activeSession.startedTime}
         playEndedTime={now}
-        lastStatusAlertTime={now - 1000 * 50}
-        moneyWon={11}
-        moneyLeft={12}
-        moneyWagered={13}
+        moneyWon={activeSession.stats.totalWins}
+        moneyLeft={activeSession.stats.remainingBalance}
+        moneyWagered={activeSession.stats.totalBets}
       />
       <Button
         variant="primary"

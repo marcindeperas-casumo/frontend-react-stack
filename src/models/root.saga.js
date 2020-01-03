@@ -65,6 +65,10 @@ import {
   fetchAnnualOverviewPdfUrlSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/compliance/denmark";
+import {
+  updateStatsSaga,
+  limitAlmostConsumedSaga,
+} from "Models/slotControlSystem";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -102,6 +106,22 @@ export default function* rootSaga(dispatch) {
       cometdMessages.DEPOSIT_CONFIRMED
     ),
     updatePlayerFirstDepositDateSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.SLOT_CONTROL_SYSTEM_STATS_UPDATED
+    ),
+    updateStatsSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED
+    ),
+    limitAlmostConsumedSaga
   );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(
