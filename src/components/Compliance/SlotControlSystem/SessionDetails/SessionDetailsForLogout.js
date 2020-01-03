@@ -4,7 +4,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { type ActiveSessionType } from "Models/slotControlSystem";
-import { Body } from "./Body";
+import { SessionDetailsBody } from "./SessionDetailsBody";
 
 type Props = {
   t: ?{
@@ -34,7 +34,7 @@ export function SessionDetailsForLogout(props: Props) {
       <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
         {t?.logout_text}
       </Text>
-      <Body
+      <SessionDetailsBody
         t={t}
         locale={locale}
         // TODO bind proper data when available in API

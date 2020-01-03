@@ -2,11 +2,13 @@
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { gameListGamesSelector } from "Models/schema";
-import {
-  initFetchLatestPlayedGames,
-  type UseLatestPlayedType,
-} from "Models/gameSearch";
+import { initFetchLatestPlayedGames } from "Models/gameSearch";
 import { GAME_LIST_IDS } from "Src/constants";
+
+type UseLatestPlayedType = {
+  /** Ids of latest played games, as seen in Latest Played Game List */
+  latestPlayedIds: Array<string>,
+};
 
 export function useLatestPlayed(): UseLatestPlayedType {
   const dispatch = useDispatch();

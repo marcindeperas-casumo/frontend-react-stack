@@ -1,4 +1,3 @@
-export * from "./gameSearch.types";
 export * from "./gameSearch.constants";
 export * from "./gameSearch.actions";
 export * from "./gameSearch.selectors";

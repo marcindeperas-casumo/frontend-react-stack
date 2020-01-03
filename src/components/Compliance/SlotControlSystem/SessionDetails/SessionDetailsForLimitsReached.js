@@ -5,7 +5,7 @@ import Button from "@casumo/cmp-button";
 import { GameRow } from "Components/GameRow";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { Header } from "./Header";
-import { Body } from "./Body";
+import { SessionDetailsBody } from "./SessionDetailsBody";
 
 type Props = {
   t: ?{
@@ -38,7 +38,7 @@ export function SessionDetailsForLimitsReached(props: Props) {
           <GameRow id={playAgainGameId} />
         </>
       )}
-      <Body
+      <SessionDetailsBody
         t={t}
         locale={locale}
         // TODO bind proper data when available in API

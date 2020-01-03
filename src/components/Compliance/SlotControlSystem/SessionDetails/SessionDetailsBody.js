@@ -26,7 +26,7 @@ type Props = {
   lastStatusAlertTime: number,
 };
 
-export function Body(props: Props) {
+export function SessionDetailsBody(props: Props) {
   const {
     locale,
     balance,
