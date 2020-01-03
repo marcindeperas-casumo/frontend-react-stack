@@ -1,8 +1,8 @@
 import { createReducer } from "Utils";
-import { types, PLAYING_STATE } from "./playing.constants";
+import { types } from "./playing.constants";
 
 const DEFAULT_STATE = {
-  state: PLAYING_STATE.STOPPED,
+  state: false,
   gameId: null,
 };
 

@@ -7,6 +7,7 @@ import {
   playerPaymentsTextsSelector,
   playerBonusTextSelector,
   playerBalanceAmountSelector,
+  playerSessionIsValidSelector,
 } from "./player.selectors";
 
 const wallet = {
@@ -154,6 +155,14 @@ describe("Player selectors", () => {
         handshake.app["common/composition/players"].players["id-123"].wallet
           .balance.amount
       );
+    });
+  });
+
+  describe("playerSessionIsValidSelector", () => {
+    test("returns session object", () => {
+      expect(
+        playerSessionIsValidSelector({ player: { sessionValid: true } })
+      ).toBe(true);
     });
   });
 });

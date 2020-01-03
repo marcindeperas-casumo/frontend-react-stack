@@ -3,6 +3,7 @@ import { CHANNELS, takeChannel } from "Models/cometd";
 const DEFAULT_STATE = {
   wallet: {},
   realityCheck: {},
+  sessionValid: true,
 };
 
 const playerReducer = (state = DEFAULT_STATE, action) => {
@@ -33,6 +34,13 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
         realityCheck: data.realityCheck,
       };
     }
+  }
+
+  if (takeChannel(CHANNELS.SESSION)(action)) {
+    return {
+      ...state,
+      sessionValid: false,
+    };
   }
 
   return state;
