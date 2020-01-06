@@ -96,3 +96,9 @@ Whilst developing CUDL components should generally be done within the storybook 
 - In the react-stack find the file that consumes the component you've linked and append `/dist` to its path.
 - You can suppress a flow error on a specific line by prepending it with `// $FlowFixMe` so that webpack compiles.
 - Any changes you make to the component will now flow through to the React Stack
+
+### How can I debug production via React Devtools ?
+
+In order to prevent people from looking into our React tree with the react DevTools extension, we disable the DevTools integration.
+To bypass this and be able to use the Devtools, open the Chrome console and run:
+`localStorage.setItem('isDebugMode', true);`
