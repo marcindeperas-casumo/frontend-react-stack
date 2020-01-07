@@ -66,13 +66,26 @@ import {
 import { danishOverlaySaga } from "Models/compliance/denmark";
 
 export default function* rootSaga(dispatch) {
+  // __FIX__ (REMOVE) Fetches the common handshake
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
-  yield fork(takeEvery, gameTypes.INIT_FETCH_GAME_LISTS, fetchGameListSaga);
+
+  // __FIX__ (REMOVE) Fetch
+  // yield fork(takeEvery, gameTypes.INIT_FETCH_GAME_LISTS, fetchGameListSaga);
+
+  // __FIX__ Fetch anything.
   yield fork(takeEvery, fetchTypes.FETCH, fetchSaga);
+
+  // __FIX__ Launches a game
   yield fork(takeEvery, gameTypes.LAUNCH_GAME, launchGameSaga);
+
+  // __FIX__ Fetches a page by slug
   yield fork(takeEvery, cmsTypes.FETCH_PAGE_BY_SLUG, fetchPageBySlugSaga);
+
+  // __FIX__ CometD
   yield fork(takeEvery, cometdTypes.COMETD_UNSUBSCRIBE, cometdUnsubscribeSaga);
   yield fork(takeEvery, cometdTypes.COMETD_SUBSCRIBE, cometdSubscribeSaga);
+
+  // __FIX__ Jackpots
   yield fork(takeEvery, jackpotsMustDropTypes.FETCH, fetchJackpotsMustDropSaga);
   yield fork(
     takeEvery,
@@ -84,6 +97,7 @@ export default function* rootSaga(dispatch) {
     takeChannel(cometdChannels.MUST_DROP_JACKPOTS),
     jackpotsMustDropUpdateSaga
   );
+
   yield fork(
     takeEvery,
     takeChannel(cometdChannels.LIVE_CASINO_TABLE),
