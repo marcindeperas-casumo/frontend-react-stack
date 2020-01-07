@@ -6,9 +6,18 @@ import ImageAdaptive from "Components/Image/ImageAdaptive";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
 import imageData from "./__mocks__/image.json";
 
+jest.mock("../../constants", () => ({
+  ...jest.requireActual("../../constants"),
+  DEVICE_PIXEL_RATIO: 3,
+}));
+
 describe("ImageAdaptive", () => {
   const images = imageData.images;
   const defaultImgixOpts = { w: 1 };
+
+  beforeEach(() => {
+    jest.resetModules();
+  });
 
   describe("isIntersecting true", () => {
     test("should render Picture component", () => {
@@ -81,8 +90,7 @@ describe("ImageAdaptive", () => {
       const component = mount(
         <ImageAdaptive isIntersecting={false} images={images} />
       );
-      const { imgixOpts } = LOW_RES_IMAGE_SETTINGS;
-      const img = getImgixUrl(head(images).src, null, imgixOpts);
+      const img = getImgixUrl(head(images).src, null, LOW_RES_IMAGE_SETTINGS);
       const expected = component.find("img").prop("src");
       expect(img).toEqual(expected);
     });
