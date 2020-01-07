@@ -1,30 +1,56 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
+import { propOr } from "ramda";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS } from "Src/constants";
 import { GameListHorizontal } from "Components/GameListHorizontal/GameListHorizontal";
 import TrackProvider from "Components/TrackProvider";
-import { gameListSelector } from "Models/schema";
-import { isGameListLoaded } from "Models/games";
-import { getField } from "Models/cms";
-import { marketSelector } from "Models/handshake";
 
 type Props = {
   /** The id of the game list. */
   id: string,
 };
 
-const GameListHorizontalConnected = connect((state, { id }) => ({
-  isLoading: !isGameListLoaded(state),
-  list: gameListSelector(id)(state),
-  seeMoreText: getField({
-    slug: `built-pages.top-lists-${marketSelector(state)}`,
-    field: "more_link",
-  })(state),
-}))(GameListHorizontal);
+const QUERY = gql`
+  query gameListQuery($id: String!) {
+    gamesList(listId: $id) {
+      id
+      title
+      games {
+        backgroundImage
+        isInMaintenance
+        logo
+        name
+        slug
+        liveCasinoLobby {
+          tableId
+          symbol
+          provider
+          results
+          image
+          type
+          betBehind
+          bets {
+            min
+            max
+            symbol
+          }
+        }
+      }
+    }
+  }
+`;
 
-export const GameListHorizontalContainer = (props: Props) => (
-  <TrackProvider data={{ [EVENT_PROPS.LOCATION]: props.id }}>
-    <GameListHorizontalConnected {...props} />
-  </TrackProvider>
-);
+export const GameListHorizontalContainer = ({ id }: Props) => {
+  const variables = { id };
+  const { data, loading } = useQuery(QUERY, { variables });
+  const list = propOr({}, "gamesList", data);
+
+  return (
+    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+      {/* __FIX__ Fix the seeMoreText variable here to come from GraphQL */}
+      <GameListHorizontal seeMoreText="..." list={list} isLoading={loading} />
+    </TrackProvider>
+  );
+};
