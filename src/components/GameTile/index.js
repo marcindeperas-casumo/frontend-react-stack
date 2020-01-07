@@ -1,3 +1,3 @@
 // @flow
-export type * from "./GameTileContainer"; // eslint-disable-line import/export
-export { default } from "./GameTileContainer";
+export type * from "./GameTileContainer";
+export { GameTileContainer as GameTile } from "./GameTileContainer";

@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
 import MockStore from "Components/MockStore";
-import GameTileExclusiveConnected from "Components/GameTileExclusive";
+import { GameTileExclusive as GameTileExclusiveConnected } from "Components/GameTileExclusive";
 import GameTileExclusive from "Components/GameTileExclusive/GameTileExclusive";
 import isNotChromatic from "Storybook/isNotChromatic";
 import exclusiveGame from "./__mocks__/ExclusiveGame.json";

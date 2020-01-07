@@ -5,9 +5,9 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GAME_LIST_IDS } from "Src/constants";
 import ScrollableList from "Components/ScrollableList";
-import GameTileExclusiveContainer from "Components/GameTileExclusive";
 import LiveCasinoCardContainer from "Components/LiveCasinoCard";
-import GameTileContainer from "Components/GameTile";
+import { GameTileExclusive as GameTileExclusiveContainer } from "Components/GameTileExclusive";
+import { GameTile as GameTileContainer } from "Components/GameTile";
 import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 
 import "./GameListHorizontal.scss";
