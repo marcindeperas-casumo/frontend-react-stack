@@ -38,7 +38,6 @@ class PromotionHeaderImage extends PureComponent<Props> {
           className="o-ratio__content u-object-fit-cover"
           src={image}
           imgixOpts={{ w: 546 }}
-          dpr={3}
         />
         {badge && <PromotionHeaderBadge badge={badge} />}
       </div>
