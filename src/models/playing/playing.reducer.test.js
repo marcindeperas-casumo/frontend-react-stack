@@ -3,7 +3,7 @@ import reducer from "./playing.reducer";
 
 describe("Models/Playing/Reducer", () => {
   test("PLAYING", () => {
-    const playing = { state: true, gameId: "foo" };
+    const playing = { isPlaying: true, gameId: "foo" };
     const action = playingAction(playing);
     const state = {};
 

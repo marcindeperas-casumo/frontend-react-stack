@@ -36,7 +36,7 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     }
   }
 
-  if (takeChannel(CHANNELS.SESSION)(action)) {
+  if (takeChannel(CHANNELS.SESSION_ENDED)(action)) {
     return {
       ...state,
       sessionValid: false,

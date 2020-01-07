@@ -15,6 +15,7 @@ export const CHANNELS = {
   PLAYER: "/player",
   ADVENTURE: "/adventurer",
   SESSION: "/session",
+  SESSION_ENDED: "/session/([a-z0-9-]+)/ended",
 };
 
 export const MESSAGES = {

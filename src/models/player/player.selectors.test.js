@@ -159,10 +159,16 @@ describe("Player selectors", () => {
   });
 
   describe("playerSessionIsValidSelector", () => {
-    test("returns session object", () => {
+    test("returns true if player sessionValid is true", () => {
       expect(
         playerSessionIsValidSelector({ player: { sessionValid: true } })
       ).toBe(true);
+    });
+
+    test("returns false if player sessionValid is false", () => {
+      expect(
+        playerSessionIsValidSelector({ player: { sessionValid: false } })
+      ).toBe(false);
     });
   });
 });
