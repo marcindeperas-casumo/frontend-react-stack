@@ -5,7 +5,7 @@ import ScrollableList, {
   DEFAULT_SPACING,
 } from "Components/ScrollableList/ScrollableList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import GameTile from "Components/GameTile";
+import { GameTile } from "Components/GameTile";
 
 describe("ScrollableList", () => {
   test("render the title of the list", () => {

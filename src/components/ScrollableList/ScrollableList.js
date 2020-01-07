@@ -6,7 +6,7 @@ import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
-import GameTile from "Components/GameTile";
+import { GameTile } from "Components/GameTile";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
 export const DEFAULT_SPACING = "default";
@@ -39,6 +39,7 @@ export default class ScrollableList extends PureComponent<Props> {
 
   itemRenderer = (i: number) => {
     const { Component, itemIds } = this.props;
+    // __FIX__: change "id" to "item" here
     return <Component id={itemIds[i]} />;
   };
 
