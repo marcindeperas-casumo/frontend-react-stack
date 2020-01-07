@@ -1,6 +1,7 @@
 import React from "react";
 import { mount } from "enzyme";
 import { head } from "ramda";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import { getImgixUrl, getSrcSet } from "@casumo/cudl-react-utils";
 import ImageAdaptive from "Components/Image/ImageAdaptive";
 import { LOW_RES_IMAGE_SETTINGS } from "../../constants";
@@ -83,7 +84,7 @@ describe("ImageAdaptive", () => {
       const component = mount(
         <ImageAdaptive isIntersecting={false} images={images} />
       );
-      expect(component.find("ResponsiveImage").exists()).toBe(true);
+      expect(component.find(ResponsiveImage).exists()).toBe(true);
     });
 
     test("should render imgix src for small_image", () => {

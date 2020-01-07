@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import ResponsiveImage from "@casumo/cmp-responsive-image";
 import ImageResponsive from "Components/Image/ImageResponsive";
 import { DEVICE_PIXEL_RATIO, LOW_RES_IMAGE_SETTINGS } from "../../constants";
 import imageData from "./__mocks__/image.json";
@@ -20,8 +21,8 @@ describe("ImageResponsive", () => {
     const component = mount(
       <ImageResponsive isIntersecting={true} src={image.src} />
     );
-    expect(component.find("ResponsiveImage").exists()).toBe(true);
-    expect(component.find("ResponsiveImage").prop("src")).toBe(image.src);
+    expect(component.find(ResponsiveImage).exists()).toBe(true);
+    expect(component.find(ResponsiveImage).prop("src")).toBe(image.src);
   });
 
   describe("isIntersecting true", () => {
@@ -34,10 +35,10 @@ describe("ImageResponsive", () => {
           imgixOpts={imgixOpts}
         />
       );
-      expect(component.find("ResponsiveImage").prop("dpr")).toBe(
+      expect(component.find(ResponsiveImage).prop("dpr")).toBe(
         DEVICE_PIXEL_RATIO
       );
-      expect(component.find("ResponsiveImage").prop("imgixOpts")).toEqual(
+      expect(component.find(ResponsiveImage).prop("imgixOpts")).toEqual(
         imgixOpts
       );
     });
@@ -48,8 +49,8 @@ describe("ImageResponsive", () => {
       const component = mount(
         <ImageResponsive isIntersecting={false} src={image.src} />
       );
-      expect(component.find("ResponsiveImage").prop("dpr")).toBe(1);
-      expect(component.find("ResponsiveImage").prop("imgixOpts")).toEqual(
+      expect(component.find(ResponsiveImage).prop("dpr")).toBe(1);
+      expect(component.find(ResponsiveImage).prop("imgixOpts")).toEqual(
         LOW_RES_IMAGE_SETTINGS
       );
     });
