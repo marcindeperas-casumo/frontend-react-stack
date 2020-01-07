@@ -102,6 +102,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
       <div style={style}>
         <div className={elementClassNames}>
           <div className={className}>
+            {/* __FIX__ change "id" to "item" here */}
             <Component key={itemId} id={itemId} />
           </div>
         </div>

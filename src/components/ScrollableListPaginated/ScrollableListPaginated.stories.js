@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import MockStore from "Components/MockStore";
-import GameTileContainer from "Components/GameTile";
+import { GameTile as GameTileContainer } from "Components/GameTile";
 
 const stories = storiesOf("ScrollableListPaginated", module);
 const list = {
