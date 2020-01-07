@@ -35,9 +35,10 @@ export const GameTile = ({
   ratio = "game-tile",
   isInMyList = false,
 }: Props) => {
-  const { inMaintenanceMode, logoBackground, logo, name, slug } = game;
+  // __FIX__: fix the typing around here
+  const { isInMaintenance, backgroundImage, logo, name, slug } = game;
 
-  if (inMaintenanceMode) {
+  if (isInMaintenance) {
     return (
       <GameTileInMaintenance
         ratio={ratio}
@@ -63,7 +64,7 @@ export const GameTile = ({
         onClick={onLaunchGame}
       >
         <GameTileImage
-          logoBackground={logoBackground}
+          logoBackground={backgroundImage}
           logo={logo}
           name={name}
           imgixOpts={imgixOpts}
