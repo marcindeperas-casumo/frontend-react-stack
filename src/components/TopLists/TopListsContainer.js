@@ -13,7 +13,8 @@ const TopListsConnected = connect(
     isGameListLoaded: isGameListLoaded(state),
   }),
   dispatch => ({
-    fetchTopLists: () => dispatch(initFetchTopLists()),
+    // __FIX__
+    fetchTopLists: () => {},
   })
 )(TopLists);
 

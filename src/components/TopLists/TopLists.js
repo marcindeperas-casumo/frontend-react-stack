@@ -11,13 +11,8 @@ type Props = {
   isGameListLoaded: boolean,
 };
 
+// __FIX__ make this a functional component
 export default class TopLists extends PureComponent<Props> {
-  componentDidMount() {
-    if (!this.props.isGameListLoaded) {
-      this.props.fetchTopLists();
-    }
-  }
-
   render() {
     const { market } = this.props;
     const slug = getSlug(market);
