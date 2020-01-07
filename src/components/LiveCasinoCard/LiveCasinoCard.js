@@ -4,15 +4,15 @@ import Flex from "@casumo/cmp-flex";
 import Card from "@casumo/cmp-card";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
-import { compose, prop } from "ramda";
+import { prop } from "ramda";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
 import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import CardFooter from "Components/LiveCasinoCard/LiveCasinoCardFooter";
-import CardData from "Components/LiveCasinoCard/LiveCasinoCardData";
+import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
+import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
 import type { Game } from "Types/game";
 
 export type Props = {
@@ -24,43 +24,42 @@ export type Props = {
   unsubscribeFromUpdates: string => void,
 };
 
-export const getTableId = compose(
-  prop("tableId"),
-  prop("lobby")
-);
-
 export default class LiveCasinoCard extends PureComponent<Props> {
   static defaultProps = {
     isInMyList: false,
   };
 
   componentDidMount() {
-    const { game, subscribeToUpdates } = this.props;
-    const tableId = getTableId(game);
-    tableId && subscribeToUpdates(tableId);
+    if (this.liveCasinoTableId) {
+      this.props.subscribeToUpdates(this.liveCasinoTableId);
+    }
   }
 
   componentWillUnmount() {
-    const { game, unsubscribeFromUpdates } = this.props;
-    const tableId = getTableId(game);
-    tableId && unsubscribeFromUpdates(tableId);
+    if (this.liveCasinoTableId) {
+      this.props.unsubscribeFromUpdates(this.liveCasinoTableId);
+    }
   }
 
-  get lobby() {
-    const getLobby = prop("lobby");
+  get liveCasinoTableId() {
+    return prop("tableId", this.liveCasinoLobby);
+  }
 
-    return getLobby(this.props.game);
+  get liveCasinoLobby() {
+    return prop("liveCasinoLobby", this.props.game);
   }
 
   renderHeader = () => {
-    const { lobby } = this;
-
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
         onClick={this.props.launchGame}
       >
-        <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
+        <ImageLazy
+          className="o-ratio__content"
+          src={this.liveCasinoLobby.image}
+          dpr={3}
+        />
         <Flex
           direction="vertical"
           align="end"
@@ -85,7 +84,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
               />
             </TrackClick>
           </div>
-          <CardData lobby={lobby} />
+          <LiveCasinoCardData liveCasinoLobby={this.liveCasinoLobby} />
         </Flex>
       </div>
     );
@@ -93,7 +92,6 @@ export default class LiveCasinoCard extends PureComponent<Props> {
 
   renderContent = () => {
     const { game, launchGame } = this.props;
-
     return (
       <Flex onClick={launchGame} className="u-padding-x--md">
         <Flex.Block>
@@ -103,7 +101,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
           >
             {convertHTMLToString(game.name)}
           </Text>
-          <Text tag="span">{renderBets(game.lobby.bets)}</Text>
+          <Text tag="span">{renderBets(this.liveCasinoLobby.bets)}</Text>
         </Flex.Block>
         <Flex.Item>
           <TrackClick
@@ -126,15 +124,16 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderFooter = () => {
-    const { lobby } = this;
-
-    return <CardFooter players={lobby.players} provider={lobby.provider} />;
+    return (
+      <LiveCasinoCardFooter
+        players={this.liveCasinoLobby.players}
+        provider={this.liveCasinoLobby.provider}
+      />
+    );
   };
 
   render() {
-    const { lobby } = this;
-
-    if (!lobby) {
+    if (!this.liveCasinoLobby) {
       return null;
     }
 

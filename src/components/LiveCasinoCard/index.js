@@ -1,3 +1,3 @@
 // @flow
-export type * from "./LiveCasinoCardContainer"; // eslint-disable-line import/export
-export { default } from "./LiveCasinoCardContainer";
+export type * from "./LiveCasinoCardContainer";
+export { LiveCasinoCardContainer as LiveCasinoCard } from "./LiveCasinoCardContainer";

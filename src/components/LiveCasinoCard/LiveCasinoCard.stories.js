@@ -3,7 +3,7 @@ import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import isNotChromatic from "Storybook/isNotChromatic";
-import LiveCasinoCardConnected from "Components/LiveCasinoCard";
+import { LiveCasinoCard as LiveCasinoCardConnected } from "Components/LiveCasinoCard";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import MockStore from "Components/MockStore";
 import gameRoulette from "./__mocks__/Roulette.json";
