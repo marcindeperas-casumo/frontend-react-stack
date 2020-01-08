@@ -2,6 +2,7 @@
 export { useTranslations } from "./useTranslations";
 export { useDelayedCleanup } from "./useDelayedCleanup";
 export { useLocale } from "./useLocale";
+export { useActiveGameSession } from "./useActiveGameSession";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";
