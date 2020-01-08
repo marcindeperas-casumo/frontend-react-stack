@@ -59,10 +59,6 @@ export const mappings: Mapping = {
     slug: SCS_CMS_SLUGS.AFTER_PLAYING,
     Content: AfterLimitsReached,
   },
-  REALITY_CHECK_MODAL: {
-    slug: REALITY_CHECK_CMS_SLUG,
-    Content: RealityCheck,
-  },
 };
 
 export const getModalData: (

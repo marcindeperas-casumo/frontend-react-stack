@@ -28,6 +28,8 @@ export function* limitAlmostConsumedSaga(): Saga<void> {
     },
   });
   yield put(
-    showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED)
+    showModal(REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED, {
+      mustAccept: true,
+    })
   );
 }

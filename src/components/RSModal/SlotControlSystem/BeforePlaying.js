@@ -37,7 +37,7 @@ export function BeforePlaying(
 
   if (activeExclusion) {
     return (
-      <ModalSkin {...props}>
+      <ModalSkin {...props} showCloseButton>
         <StillOnBreakContainer
           onClick={props.closeModal}
           secondsTillEnd={(activeExclusion.expiringTime - Date.now()) / 1000}
@@ -48,7 +48,7 @@ export function BeforePlaying(
 
   if (!hasEnoughFunds(amount)) {
     return (
-      <ModalSkin {...props}>
+      <ModalSkin {...props} showCloseButton>
         <NotEnoughFundsContainer onClick={props.closeModal} />
       </ModalSkin>
     );
@@ -56,7 +56,7 @@ export function BeforePlaying(
 
   if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
     return (
-      <ModalSkin {...props}>
+      <ModalSkin {...props} showCloseButton>
         <RememberToPlayWithinLimitsContainer
           onClickYes={() => setContinuePlaying(true)}
           onClickAbout={props.closeModal}
@@ -66,7 +66,7 @@ export function BeforePlaying(
   }
 
   return (
-    <ModalSkin {...props}>
+    <ModalSkin {...props} showCloseButton>
       <ConfigurationFormContainer />
     </ModalSkin>
   );
