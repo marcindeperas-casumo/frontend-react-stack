@@ -24,7 +24,7 @@ type Props = {
 
 export const GameProvidersListContainer = ({ title }: Props) => {
   const { data, loading } = useQuery(QUERY);
-  const gameStudios = propOr({}, "gameStudios", data);
+  const gameStudios = propOr([], "gameStudios", data);
 
   return (
     <GameProvidersList title={title} isLoaded={!loading} items={gameStudios} />
