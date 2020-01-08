@@ -29,7 +29,6 @@ export class ContentImage extends PureComponent<Props> {
         className={className}
         src={src}
         alt={alt}
-        dpr={3}
         imgixOpts={{
           w: maxWidth,
         }}

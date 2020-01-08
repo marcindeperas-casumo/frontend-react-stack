@@ -1,5 +1,4 @@
 import {
-  activeGameProvidersSelector,
   gameProviderBySlug,
   areProviderGamesLoaded,
   areGameProvidersLoaded,
@@ -18,9 +17,7 @@ describe("Game Providers Selectors", () => {
       const state = {
         schema: {
           gameProvider: {
-            [PROVIDERS.NYX]: {
-              inMaintenance: false,
-            },
+            [PROVIDERS.NYX]: {},
           },
         },
       };
@@ -39,29 +36,6 @@ describe("Game Providers Selectors", () => {
     });
   });
 
-  describe("activeGameProvidersSelector", () => {
-    test("should return providers that are not in maintenance", () => {
-      const state = {
-        schema: {
-          gameProvider: {
-            [PROVIDERS.NYX]: {
-              inMaintenance: false,
-            },
-            [PROVIDERS.NETENT]: {
-              inMaintenance: true,
-            },
-          },
-        },
-      };
-
-      expect(activeGameProvidersSelector(state)).toEqual({
-        [PROVIDERS.NYX]: {
-          inMaintenance: false,
-        },
-      });
-    });
-  });
-
   describe("gameProviderBySlug", () => {
     test("should return correct provider", () => {
       const state = {
@@ -69,11 +43,9 @@ describe("Game Providers Selectors", () => {
           gameProvider: {
             [PROVIDERS.NYX]: {
               id: 1,
-              inMaintenance: false,
             },
             [PROVIDERS.NETENT]: {
               id: 2,
-              inMaintenance: false,
             },
           },
         },
@@ -81,7 +53,6 @@ describe("Game Providers Selectors", () => {
 
       expect(gameProviderBySlug(PROVIDERS.NYX)(state)).toEqual({
         id: 1,
-        inMaintenance: false,
       });
     });
 
@@ -91,7 +62,6 @@ describe("Game Providers Selectors", () => {
           gameProvider: {
             [PROVIDERS.NYX]: {
               id: 1,
-              inMaintenance: false,
             },
           },
         },
@@ -110,7 +80,6 @@ describe("Game Providers Selectors", () => {
               id: 1,
               games: ["foo"],
               gameCount: 1,
-              inMaintenance: false,
             },
           },
         },
@@ -125,7 +94,6 @@ describe("Game Providers Selectors", () => {
           gameProvider: {
             [PROVIDERS.NYX]: {
               id: 1,
-              inMaintenance: false,
             },
           },
         },
@@ -143,7 +111,6 @@ describe("Game Providers Selectors", () => {
             [PROVIDERS.NYX]: {
               id: 1,
               games: ["foo", "bar"],
-              inMaintenance: false,
             },
           },
         },
@@ -158,7 +125,6 @@ describe("Game Providers Selectors", () => {
           gameProvider: {
             [PROVIDERS.NYX]: {
               id: 1,
-              inMaintenance: false,
             },
           },
         },
@@ -175,7 +141,6 @@ describe("Game Providers Selectors", () => {
           gameProvider: {
             [PROVIDERS.NYX]: {
               id: 1,
-              inMaintenance: false,
             },
           },
         },
@@ -190,7 +155,6 @@ describe("Game Providers Selectors", () => {
             [PROVIDERS.NYX]: {
               id: 1,
               games: ["foo"],
-              inMaintenance: false,
             },
           },
         },
