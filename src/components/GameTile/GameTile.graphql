@@ -1,0 +1,7 @@
+mutation AddGameToMyList($gameSlug: String!) {
+  addGameToMyList(gameSlug: $gameSlug)
+}
+
+mutation RemoveGameFromMyList($gameSlug: String!) {
+  removeGameFromMyList(gameSlug: $gameSlug)
+}
