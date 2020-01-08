@@ -1,2 +1,4 @@
 // @flow
-export * from "./SessionDetails";
+export * from "./SessionDetailsForLogout";
+export * from "./SessionDetailsForLimitsReached";
+export * from "./SessionDetailsForLimitsReachedExcluded";

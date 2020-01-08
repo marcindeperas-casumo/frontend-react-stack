@@ -40,6 +40,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  fetchLatestPlayedSaga,
   resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
@@ -151,6 +152,11 @@ export default function* rootSaga(dispatch) {
     ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
+  yield fork(
+    takeLatest,
+    gameSearchTypes.GAME_SEARCH_FETCH_LATEST_PLAYED,
+    fetchLatestPlayedSaga
+  );
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
   yield fork(
     takeEvery,
