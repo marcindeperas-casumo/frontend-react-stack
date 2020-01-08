@@ -1,5 +1,8 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
-import { periodicReminderNotificationSaga } from "Models/slotControlSystem";
+import {
+  periodicReminderNotificationSaga,
+  statsUpdateNotificationSaga,
+} from "Models/slotControlSystem";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
@@ -111,6 +114,14 @@ export default function* rootSaga(dispatch) {
       cometdMessages.PERIODIC_REMINDER_NOTIFICATION
     ),
     periodicReminderNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.STATS_UPDATED_NOTIFICATION
+    ),
+    statsUpdateNotificationSaga
   );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(

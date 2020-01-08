@@ -6,3 +6,4 @@ export * from "./slotControlSystem.types";
 export * from "./slotControlSystem.actions";
 export * from "./useSessionsState";
 export * from "./periodicReminderNotification.saga";
+export * from "./statsUpdateNotification.saga";

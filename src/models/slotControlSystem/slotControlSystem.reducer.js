@@ -1,8 +1,10 @@
 // @flow
+import * as R from "ramda";
 import { createReducer } from "Utils";
 import type {
   StateType,
   SessionStateResponseType,
+  GameSessionStatsType,
 } from "./slotControlSystem.types";
 import { ACTION_TYPES } from "./slotControlSystem.constants";
 
@@ -25,6 +27,15 @@ const handlers = {
       activeSession: action.response.activeSession,
       lastEndedSession: action.response.lastEndedSession,
       activeExclusion: action.response.activeExclusion,
+    };
+  },
+  [ACTION_TYPES.UPDATE_ACTIVE_SESSION_STATS]: (
+    state,
+    { data }: { data: GameSessionStatsType }
+  ) => {
+    return {
+      ...state,
+      activeSession: R.mergeDeepRight(state.activeSession, data),
     };
   },
 };
