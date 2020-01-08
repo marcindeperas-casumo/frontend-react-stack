@@ -1,36 +1,32 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import {
-  fetchGameProviders,
-  areGameProvidersLoaded,
-} from "Models/gameProviders";
-import { gameProvidersListSelector } from "Models/categories";
-import GameProvidersList from "Components/GameProvidersList/GameProvidersList";
-import { types } from "./GameProvidersList.constants";
+import { useQuery } from "@apollo/react-hooks";
+import { propOr } from "ramda";
+import gql from "graphql-tag";
+import GameProvidersList from "./GameProvidersList";
+
+const QUERY = gql`
+  query gameStudiosQuery {
+    gameStudios {
+      id
+      url
+      background
+      logo
+      slug
+      name
+    }
+  }
+`;
 
 type Props = {
-  /** Type of list (e.g, game-providers) */
-  type: string,
-  /** The list title to show */
   title: string,
 };
 
-const GameProvidersListConnected = connect(
-  state => ({
-    isLoaded: areGameProvidersLoaded(state),
-    items: gameProvidersListSelector(state),
-  }),
-  dispatch => ({
-    fetch: () => dispatch(fetchGameProviders()),
-  })
-)(GameProvidersList);
+export const GameProvidersListContainer = ({ title }: Props) => {
+  const { data, loading } = useQuery(QUERY);
+  const gameStudios = propOr({}, "gameStudios", data);
 
-const GameProvidersListContainer = (props: Props) => {
-  if (props.type === types.GAME_PROVIDERS) {
-    return <GameProvidersListConnected title={props.title} />;
-  }
-  return <GameProvidersList title={props.title} />;
+  return (
+    <GameProvidersList title={title} isLoaded={!loading} items={gameStudios} />
+  );
 };
-
-export default GameProvidersListContainer;
