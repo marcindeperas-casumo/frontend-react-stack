@@ -1,10 +1,11 @@
 // stylelint-disable xi/selector-pattern
-.c-nav-chip-container {
-  position: relative;
-  transform: translateY(0);
-  transition: transform ease 0.3s;
-  &:hover {
-    transform: translateY(-5px);
+.c-nav-chip-container:hover {
+  button {
+    /* stylelint-disable value-no-vendor-prefix, property-no-vendor-prefix */
+    /* autoprefixer: ignore next */
+    -webkit-box-shadow: 0 3px 8px rgba(cudl-palette(grey, "70"), 0.1) !important;
+    box-shadow: 0 3px 8px rgba(cudl-palette(grey, "70"), 0.1) !important;
+    /* stylelint-enable value-no-vendor-prefix, property-no-vendor-prefix */
   }
 }
 // stylelint-enable xi/selector-pattern
