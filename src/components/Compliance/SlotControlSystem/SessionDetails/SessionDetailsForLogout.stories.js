@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import { storiesOf } from "@storybook/react";
-import { select, number, boolean } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
-import { SessionDetails } from "./SessionDetails";
+import activeSessionMock from "Models/slotControlSystem/__mocks__/activeSession.mock";
+import { SessionDetailsForLogout } from "./SessionDetailsForLogout";
 
 const t = {
   session_details_header: "Session details",
@@ -16,27 +16,17 @@ const t = {
   last_status_alert: "Last status alert",
   logout_button_label: "Logout",
   logout_text: "Here's a breakdown of your play session today:",
-  limits_reached_button_label: "Back to games",
 };
-const now = 1573824000160;
 const stories = storiesOf(
-  "Compliance/SlotControlSystem/SessionDetails",
+  "Compliance/SlotControlSystem/SessionDetailsForLogout",
   module
 );
 stories.add("Default", () => {
   return (
-    <SessionDetails
+    <SessionDetailsForLogout
       t={t}
-      isLogout={boolean("isLogout", true)}
       locale="en-GB"
-      balance={number("Balance", 112)}
-      currency={select("Currency", { EUR: "EUR", GBP: "GBP" }, "EUR")}
-      moneyWagered={number("Wagered", 10)}
-      moneyLeft={32}
-      moneyWon={12}
-      playStarted={now - 1000 * 60 * 5}
-      playEnded={now - 1000 * 60}
-      lastStatusAlert={now - 1000 * 60 * 2}
+      activeSession={activeSessionMock}
       onClickButton={action("onClickButton")}
     />
   );

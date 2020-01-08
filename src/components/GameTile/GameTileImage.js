@@ -15,7 +15,6 @@ const GameTileImage = ({ logoBackground, logo, name, ...rest }: Props) => {
       src={logoBackground}
       mark={logo}
       alt={name}
-      dpr={3}
       {...rest}
     />
   );

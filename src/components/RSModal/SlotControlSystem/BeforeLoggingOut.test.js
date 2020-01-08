@@ -4,7 +4,7 @@ import { mount } from "enzyme";
 import MockStore from "Components/MockStore";
 import activeSessionMock from "Models/slotControlSystem/__mocks__/activeSession.mock";
 import { useSessionsState } from "Models/slotControlSystem/useSessionsState";
-import { SessionDetails } from "Components/Compliance/SlotControlSystem/SessionDetails";
+import { SessionDetailsForLogout } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { BeforeLoggingOut } from "./BeforeLoggingOut";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
@@ -104,6 +104,6 @@ describe("RSModal/SlotControlSystem/BeforeLoggingOut", () => {
       </MockStore>
     );
 
-    expect(rendered.find(SessionDetails)).toHaveLength(1);
+    expect(rendered.find(SessionDetailsForLogout)).toHaveLength(1);
   });
 });

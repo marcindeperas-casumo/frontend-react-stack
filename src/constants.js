@@ -64,11 +64,8 @@ export const ENVIRONMENTS = {
 
 export const STORE_REHYDRATE = "REHYDRATE";
 export const STORE_PERSISTED_STATE_KEY = "persistedState";
-export const LOW_RES_IMAGE_SETTINGS = {
-  mark: "",
-  dpr: 1,
-  imgixOpts: { w: 5, blur: 2000 },
-};
+export const LOW_RES_IMAGE_SETTINGS = { w: 5, blur: 2000 };
+export const DEVICE_PIXEL_RATIO = Math.ceil(window.devicePixelRatio);
 export const GAME_LIST_IDS = {
   POPULAR_GAMES: "popularGames",
   LIVE_CASINO_GAMES: "liveCasinoGames", // TODO: remove this by using unique ids everywhere in the CMS
@@ -303,6 +300,8 @@ export const REACT_APP_MODAL = {
     SLOT_CONTROL_SYSTEM_CONFIGURATION: "SLOT_CONTROL_SYSTEM_CONFIGURATION",
     SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT:
       "SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT",
+    SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED:
+      "SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED",
   },
 };
 // Those modals are implemented on knockout side, you can spawn them with Services/LaunchModalService
