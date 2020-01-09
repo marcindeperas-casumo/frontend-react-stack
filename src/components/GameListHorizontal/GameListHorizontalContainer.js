@@ -18,6 +18,7 @@ export const GAME_LIST_QUERY = gql`
       id
       title
       games {
+        id
         backgroundImage
         isInMaintenance
         logo

@@ -2,7 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
-import GameProvidersList from "Components/GameProvidersList";
+import { GameProvidersList } from "Components/GameProvidersList";
 import GameProvidersListPresentational from "Components/GameProvidersList/GameProvidersList";
 import GameProvidersListSkeleton from "Components/GameProvidersList/GameProvidersListSkeleton";
 import isNotChromatic from "Storybook/isNotChromatic";

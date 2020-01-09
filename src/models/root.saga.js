@@ -9,10 +9,6 @@ import {
 } from "Models/liveCasino";
 import { jackpotsUpdatesSaga } from "Models/jackpots";
 import {
-  types as gameProviderTypes,
-  fetchGameProvidersSaga,
-} from "Models/gameProviders";
-import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
@@ -40,6 +36,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  fetchLatestPlayedSaga,
   resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
@@ -129,11 +126,6 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(
     takeEvery,
-    gameProviderTypes.FETCH_GAME_PROVIDERS_START,
-    fetchGameProvidersSaga
-  );
-  yield fork(
-    takeEvery,
     liveCasinoTypes.FETCH_ALL_LIVE_GAMES_INIT,
     fetchAllLiveCasinoGamesSaga
   );
@@ -165,6 +157,11 @@ export default function* rootSaga(dispatch) {
     ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
+  yield fork(
+    takeLatest,
+    gameSearchTypes.GAME_SEARCH_FETCH_LATEST_PLAYED,
+    fetchLatestPlayedSaga
+  );
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
   yield fork(
     takeEvery,

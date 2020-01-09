@@ -75,6 +75,10 @@ export const fetchGameSearchCount = ({
   asyncCallData: { sessionId, query },
 });
 
+export const initFetchLatestPlayedGames = () => ({
+  type: types.GAME_SEARCH_FETCH_LATEST_PLAYED,
+});
+
 export const fetchLatestPlayedGames = ({ playerId }: { playerId: string }) => ({
   type: fetchTypes.FETCH,
   name: types.GAME_SEARCH_FETCH_LATEST_PLAYED_START,

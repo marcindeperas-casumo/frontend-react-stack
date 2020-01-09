@@ -29,7 +29,6 @@ const PromotionGalleryCardHeader = ({ badge, dates }) => {
           height="30px"
           src={badge}
           imgixOpts={{ w: 30, h: 30 }}
-          dpr={3}
         />
       </Flex.Item>
     </Flex>
