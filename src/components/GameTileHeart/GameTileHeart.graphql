@@ -1,3 +1,11 @@
+query MyListGameIdsQuery {
+  gamesList(listId: "myList") {
+    games {
+      id
+    }
+  }
+}
+
 mutation AddGameToMyList($gameSlug: String!) {
   addGameToMyList(gameSlug: $gameSlug)
 }

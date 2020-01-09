@@ -15,9 +15,7 @@ export type Props = {
   game: Game,
   imgixOpts?: Object,
   onLaunchGame: Function,
-  onFavouriteGame: Function,
   ratio?: string,
-  isInMyList?: boolean,
 };
 
 export const DEFAULT_CLASSES =
@@ -27,16 +25,14 @@ export const GameTile = ({
   className,
   game = {},
   onLaunchGame,
-  onFavouriteGame,
   imgixOpts = {
     w: 170,
     q: 70,
   },
   ratio = "game-tile",
-  isInMyList = false,
 }: Props) => {
   // __FIX__: fix the typing around here
-  const { isInMaintenance, backgroundImage, logo, name, slug } = game;
+  const { isInMaintenance, backgroundImage, logo, name, slug, id } = game;
 
   if (isInMaintenance) {
     return (
@@ -92,14 +88,11 @@ export const GameTile = ({
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
               data={{
                 [EVENT_PROPS.GAME_NAME]: name,
-                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
+                // __FIX__ - this trackclick should happen inside the GameTileHeart component.
+                [EVENT_PROPS.IS_FAVOURITE]: true,
               }}
             >
-              <GameTileHeart
-                className="u-padding u-width--2xlg"
-                onClick={onFavouriteGame}
-                isActive={isInMyList}
-              />
+              <GameTileHeart gameId={id} gameSlug={slug} />
             </TrackClick>
           </Flex.Item>
         </Flex>
