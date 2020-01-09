@@ -25,6 +25,7 @@ const QUERY = gql`
         name
         slug
         liveCasinoLobby {
+          id
           tableId
           symbol
           provider
