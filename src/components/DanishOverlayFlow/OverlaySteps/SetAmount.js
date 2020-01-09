@@ -2,11 +2,13 @@ import React, { useCallback } from "react";
 import Button from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { TextInput } from "Components/Compliance/TextInput";
+import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
 
 export const SetAmount = ({
   t,
-  currencySymbol,
+  locale,
+  currency,
   confirmLimit,
   setAmount,
   amount,
@@ -38,6 +40,11 @@ export const SetAmount = ({
 
   const isLimitMaxed = value => value >= depositLimit;
 
+  const currencySign = getSymbolForCurrency({
+    locale: locale,
+    currency: currency,
+  });
+
   return (
     <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
       <Text className="u-padding-x u-padding-y--lg">
@@ -45,13 +52,19 @@ export const SetAmount = ({
       </Text>
       <div className="u-padding-x">
         <TextInput
-          currencySign={currencySymbol}
+          currencySign={currencySign}
           value={amount}
           onChange={onChangeAmount}
+          inputClassName="u-padding-left--md"
         />
         {!limitInRange(amount) || isLimitMaxed(amount) ? (
           <div className="t-color-red-light-1">
-            {currencySymbol} {minFirstDepositLimit} - {depositLimit}
+            {minFirstDepositLimit} -{" "}
+            {formatCurrency({
+              locale: locale,
+              currency: currency,
+              value: depositLimit,
+            })}
           </div>
         ) : (
           ""
