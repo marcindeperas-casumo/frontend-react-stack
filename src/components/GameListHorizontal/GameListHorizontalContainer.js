@@ -12,7 +12,7 @@ type Props = {
   id: string,
 };
 
-const QUERY = gql`
+export const GAME_LIST_QUERY = gql`
   query gameListQuery($id: String!) {
     gamesList(listId: $id) {
       id
@@ -44,7 +44,7 @@ const QUERY = gql`
 
 export const GameListHorizontalContainer = ({ id }: Props) => {
   const variables = { id };
-  const { data, loading } = useQuery(QUERY, { variables });
+  const { data, loading } = useQuery(GAME_LIST_QUERY, { variables });
   const list = propOr({}, "gamesList", data);
 
   return (
