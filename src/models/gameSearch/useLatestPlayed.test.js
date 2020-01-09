@@ -8,11 +8,11 @@ import { useLatestPlayed } from "Models/gameSearch";
 
 jest.mock("Models/gameSearch/gameSearch.saga.latestPlayed");
 
-beforeEach(() => {
-  jest.clearAllMocks();
-});
-
 describe("useLatestPlayed", () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
+
   test("it should return an object with latestPlayedIds that is an array of ids stored in latestPlayedGames list", () => {
     const wrapper = mount(
       <MockStore>

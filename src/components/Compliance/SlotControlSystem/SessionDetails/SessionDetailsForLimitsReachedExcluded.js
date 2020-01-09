@@ -6,7 +6,7 @@ import Button from "@casumo/cmp-button";
 import { interpolate, interpolateTimeInterval } from "Utils";
 import { useTranslations } from "Utils/hooks";
 import { CMS_SLUGS, type EndedSessionType } from "Models/slotControlSystem";
-import { Body } from "./Body";
+import { SessionDetailsBody } from "./SessionDetailsBody";
 
 type Props = {
   t: ?{
@@ -53,7 +53,7 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
       <Text className="t-color-grey-dark-1 u-padding--md u-padding-bottom--lg">
         {interpolate(t?.limits_reached_exclusion_text, { time: timeInterval })}
       </Text>
-      <Body
+      <SessionDetailsBody
         t={t}
         locale={locale}
         balance={lastEndedSession.stats.limit}

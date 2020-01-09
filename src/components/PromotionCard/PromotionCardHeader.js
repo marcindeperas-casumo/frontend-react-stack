@@ -33,7 +33,6 @@ const PromotionCardHeader = ({ badge, dates }) => {
             height="40px"
             src={badge}
             imgixOpts={{ w: 40, h: 40 }}
-            dpr={3}
           />
         )}
       </Flex.Item>

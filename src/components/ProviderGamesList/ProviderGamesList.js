@@ -12,7 +12,6 @@ import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import "./ProviderGamesList.scss";
 
 type ProviderObject = {
-  inMaintenance: boolean,
   name: string,
   games: Array<string>,
 };
@@ -114,11 +113,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
   };
 
   render() {
-    const { areGamesLoaded, provider, error, count } = this.props;
-
-    if (provider.inMaintenance) {
-      return <ErrorMessage errorMessage={"Provider in maintenance"} />;
-    }
+    const { areGamesLoaded, error, count } = this.props;
 
     if (error) {
       return <ErrorMessage errorMessage={error} />;

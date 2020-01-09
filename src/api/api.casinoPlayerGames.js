@@ -11,7 +11,7 @@ export const URL = {
   GAMES_BATCH: "/casino-player/casino-games/api/v1/games/batch",
   GAME_SEARCH: "/casino-player/casino-games/api/v1/games/search",
   GAME_SEARCH_COUNT: "/casino-player/casino-games/api/v1/games/search/count",
-  GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gameproviders",
+  GAME_PROVIDERS: "/casino-player/casino-games/api/v1/gamestudios",
   GAME_LISTS: "/casino-player/casino-games/api/v1/gamelists",
   MY_LIST: "/casino-player/casino-games/api/v1/gamelists/myList",
 };
@@ -32,7 +32,7 @@ const getHeaders = (token: string) => {
 };
 
 const getGamesCountParams = (providers?: Array<string>) =>
-  !isNilOrEmpty(providers) ? { providerSlugs: commaSeparated(providers) } : {};
+  !isNilOrEmpty(providers) ? { studioSlugs: commaSeparated(providers) } : {};
 
 const buildGamesBatchIds = ids =>
   buildQueryParams(ids, { arrayFormat: "repeat" });
@@ -101,7 +101,7 @@ export const getCasinoPlayerGames = async (
     {
       page,
       pageSize,
-      providerSlugs: commaSeparated(providers),
+      studioSlugs: commaSeparated(providers),
     },
     getHeaders(sessionId)
   );

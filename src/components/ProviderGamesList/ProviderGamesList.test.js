@@ -10,13 +10,6 @@ describe("ProviderGamesList", () => {
     expect(rendered.find("GameListSkeleton")).toHaveLength(1);
   });
 
-  test("renders error if in maintenance", () => {
-    const rendered = shallow(
-      <ProviderGamesList provider={{ inMaintenance: true }} />
-    );
-    expect(rendered.find("ErrorMessage")).toHaveLength(1);
-  });
-
   test("renders error on error message", () => {
     const rendered = shallow(
       <ProviderGamesList error={"Provider doesn't exist"} />
@@ -32,7 +25,6 @@ describe("ProviderGamesList", () => {
 
   test("renders provider virtuallist", () => {
     const provider = {
-      inMaintenance: false,
       name: "nyx",
       games: ["bloodsuckers", "easter-island"],
     };
