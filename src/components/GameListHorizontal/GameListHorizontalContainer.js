@@ -18,6 +18,7 @@ const QUERY = gql`
       id
       title
       games {
+        id
         backgroundImage
         isInMaintenance
         logo

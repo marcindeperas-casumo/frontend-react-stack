@@ -1,4 +1,5 @@
 fragment GameRow_Game on Game {
+  id
   slug
   name
   logo
