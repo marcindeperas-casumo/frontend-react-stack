@@ -73,14 +73,6 @@ export type UseSessionsStateType = {
   activeExclusion: ?ExclusionType,
 };
 
-export type UpdateStatsCometdMessage = {
-  type: string,
-  channel: string,
-  data: {
-    "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification": GameplayStatsType,
-  },
-};
-
 export type SessionEndedCometdMessage = {
   type: string,
   data: {
