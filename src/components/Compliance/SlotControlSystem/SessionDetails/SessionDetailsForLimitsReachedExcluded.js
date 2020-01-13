@@ -56,9 +56,8 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        balance={lastEndedSession.stats.limit}
-        // TODO bind actual currency
-        currency={"EUR"}
+        balance={lastEndedSession.stats.initialLimit}
+        currency={lastEndedSession.stats.currency}
         playStartedTime={lastEndedSession.startedTime}
         playEndedTime={lastEndedSession.endedTime}
         moneyWon={lastEndedSession.stats.totalWins}

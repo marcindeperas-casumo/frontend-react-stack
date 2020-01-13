@@ -26,6 +26,7 @@ stories.add("Default", () => {
     <SessionDetailsForLogout
       t={t}
       locale="en-GB"
+      playEndedTime={activeSessionMock.startedTime + 100 * 1000}
       activeSession={activeSessionMock}
       onClickButton={action("onClickButton")}
     />

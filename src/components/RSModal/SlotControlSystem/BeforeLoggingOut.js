@@ -47,6 +47,7 @@ export function BeforeLoggingOut(props: ModalContentComponent<ContentType>) {
       <SessionDetailsForLogout
         t={props.t}
         locale={locale}
+        playEndedTime={Date.now()}
         onClickButton={props.acceptModal}
         activeSession={activeSession}
       />

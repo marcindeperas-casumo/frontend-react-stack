@@ -1,12 +1,13 @@
 // @flow
 import * as React from "react";
+import { ROUTE_IDS } from "Src/constants";
 import { useSessionsState } from "Models/slotControlSystem";
 import { ConfigurationFormContainer } from "Components/Compliance/SlotControlSystem/ConfigurationForm";
 import { NotEnoughFundsContainer } from "Components/Compliance/SlotControlSystem/NotEnoughFunds";
 import { RememberToPlayWithinLimitsContainer } from "Components/Compliance/SlotControlSystem/RememberToPlayWithinLimits";
 import { StillOnBreakContainer } from "Components/Compliance/SlotControlSystem/StillOnBreak";
 import { type ModalContentComponent } from "Components/RSModal";
-import { useWalletAmount } from "Utils/hooks";
+import { useWalletAmount, useCrossCodebaseNavigation } from "Utils/hooks";
 import { ModalSkin } from "./ModalSkin";
 
 type SlotControlSystemContent = {
@@ -24,6 +25,7 @@ export function BeforePlaying(
     lastEndedSessionDuringLastHour,
     activeExclusion,
   } = useSessionsState();
+  const { navigateToKO } = useCrossCodebaseNavigation();
 
   React.useEffect(() => {
     if (hasEnoughFunds(amount) && activeSession) {
@@ -36,10 +38,15 @@ export function BeforePlaying(
   }
 
   if (activeExclusion) {
+    const onClick = () => {
+      props.closeModal();
+      navigateToKO(ROUTE_IDS.TOP_LISTS);
+    };
+
     return (
       <ModalSkin {...props} showCloseButton>
         <StillOnBreakContainer
-          onClick={props.closeModal}
+          onClick={onClick}
           secondsTillEnd={(activeExclusion.expiringTime - Date.now()) / 1000}
         />
       </ModalSkin>
@@ -47,19 +54,29 @@ export function BeforePlaying(
   }
 
   if (!hasEnoughFunds(amount)) {
+    const onClick = () => {
+      props.closeModal();
+      navigateToKO(ROUTE_IDS.CASH_DEPOSIT);
+    };
+
     return (
       <ModalSkin {...props} showCloseButton>
-        <NotEnoughFundsContainer onClick={props.closeModal} />
+        <NotEnoughFundsContainer onClick={onClick} />
       </ModalSkin>
     );
   }
 
   if (!activeSession && lastEndedSessionDuringLastHour && !continuePlaying) {
+    const onClickAbout = () => {
+      props.closeModal();
+      navigateToKO(ROUTE_IDS.PLAY_OKAY);
+    };
+
     return (
       <ModalSkin {...props} showCloseButton>
         <RememberToPlayWithinLimitsContainer
           onClickYes={() => setContinuePlaying(true)}
-          onClickAbout={props.closeModal}
+          onClickAbout={onClickAbout}
         />
       </ModalSkin>
     );

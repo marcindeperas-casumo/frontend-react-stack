@@ -1,9 +1,10 @@
 // @flow
 
 export type GameplayStatsType = {
+  currency: string,
   consumedBalance: number,
   remainingBalance: number,
-  limit: number,
+  initialLimit: number,
   totalBets: number,
   totalWins: number,
   lastUpdateTime: ?number,
@@ -18,10 +19,6 @@ export type ActiveSessionType = {
   durationInSecs: number,
   reminderFrequencyInSecs: number,
   postSessionExclusionInMinutes: ?number,
-  limit: {
-    amount: number,
-    currency: string,
-  },
   stats: GameplayStatsType,
 };
 
@@ -81,5 +78,12 @@ export type UpdateStatsCometdMessage = {
   channel: string,
   data: {
     "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification": GameplayStatsType,
+  },
+};
+
+export type SessionEndedCometdMessage = {
+  type: string,
+  data: {
+    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": EndedSessionType,
   },
 };

@@ -11,9 +11,5 @@ export default ({
   durationInSecs: 300,
   reminderFrequencyInSecs: 10 * 60,
   postSessionExclusionInMinutes: null,
-  limit: {
-    amount: 111,
-    currency: "GBP",
-  },
   stats,
 } : ActiveSessionType);

@@ -22,11 +22,11 @@ type Props = {
   onClickButton: () => void,
   activeSession: ActiveSessionType,
   locale: string,
+  playEndedTime: number,
 };
 
 export function SessionDetailsForLogout(props: Props) {
-  const { t, onClickButton, activeSession, locale } = props;
-  const now = 1576065735032;
+  const { t, onClickButton, activeSession, locale, playEndedTime } = props;
 
   return (
     <Flex direction="vertical">
@@ -37,10 +37,10 @@ export function SessionDetailsForLogout(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        balance={activeSession.limit.amount}
-        currency={activeSession.limit.currency}
+        balance={activeSession.stats.initialLimit}
+        currency={activeSession.stats.currency}
         playStartedTime={activeSession.startedTime}
-        playEndedTime={now}
+        playEndedTime={playEndedTime}
         moneyWon={activeSession.stats.totalWins}
         moneyLeft={activeSession.stats.remainingBalance}
         moneyWagered={activeSession.stats.totalBets}
