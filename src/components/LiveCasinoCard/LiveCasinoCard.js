@@ -17,7 +17,6 @@ import type { Game } from "Types/game";
 
 export type Props = {
   game: Game,
-  isInMyList: boolean,
   launchGame: Function,
   onFavouriteGame: Function,
   subscribeToUpdates: string => void,
@@ -55,7 +54,10 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         className="o-ratio o-ratio--live-casino-card"
         onClick={this.props.launchGame}
       >
-        <ImageLazy className="o-ratio__content" src={this.liveCasinoLobby.image} />
+        <ImageLazy
+          className="o-ratio__content"
+          src={this.liveCasinoLobby.image}
+        />
         <Flex
           direction="vertical"
           align="end"
@@ -75,8 +77,9 @@ export default class LiveCasinoCard extends PureComponent<Props> {
             >
               <GameTileHeart
                 className="u-width--4xlg u-height--4xlg u-padding--md"
-                onClick={this.props.onFavouriteGame}
-                isActive={this.props.isInMyList}
+                gameId={this.props.game.id}
+                gameSlug={this.props.game.slug}
+                isInMyList={this.props.game.isInMyList}
               />
             </TrackClick>
           </div>
