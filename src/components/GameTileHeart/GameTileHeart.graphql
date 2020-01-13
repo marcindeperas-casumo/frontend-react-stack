@@ -1,13 +1,13 @@
   # return game id and isFavourite here
-mutation AddGameToMyList($gameSlug: String!) {
-  addGameToMyList(gameSlug: $gameSlug) {
+mutation AddGameToMyList($gameSlug: String!, $id: String!) {
+  addGameToMyList(gameSlug: $gameSlug, id: $id) {
     id
     isInMyList
   }
 }
 
-mutation RemoveGameFromMyList($gameSlug: String!) {
-  removeGameFromMyList(gameSlug: $gameSlug) {
+mutation RemoveGameFromMyList($gameSlug: String!, $id: String!) {
+  removeGameFromMyList(gameSlug: $gameSlug, id: $id) {
     id
     isInMyList
   }

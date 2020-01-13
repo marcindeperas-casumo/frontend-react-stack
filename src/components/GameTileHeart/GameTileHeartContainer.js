@@ -22,10 +22,11 @@ export const GameTileHeartContainer = ({
   const [addGameToMyList] = useMutation(AddGameToMyList);
   const [removeGameFromMyList] = useMutation(RemoveGameFromMyList);
 
-  const addGame = (slug: string) =>
+  const addGame = (slug: string, id: string) =>
     addGameToMyList({
       variables: {
         gameSlug: slug,
+        id,
       },
       optimisticResponse: {
         __typename: "Mutation",
@@ -52,10 +53,11 @@ export const GameTileHeartContainer = ({
         });
       },
     });
-  const removeGame = (slug: string) =>
+  const removeGame = (slug: string, id: string) =>
     removeGameFromMyList({
       variables: {
         gameSlug: slug,
+        id,
       },
       optimisticResponse: {
         __typename: "Mutation",
@@ -83,7 +85,7 @@ export const GameTileHeartContainer = ({
       },
     });
   const onFavouriteGame = () =>
-    isInMyList ? removeGame(gameSlug) : addGame(gameSlug);
+    isInMyList ? removeGame(gameSlug, gameId) : addGame(gameSlug, gameId);
 
   return (
     <GameTileHeart
