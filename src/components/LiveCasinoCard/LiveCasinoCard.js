@@ -20,26 +20,12 @@ export type Props = {
   isInMyList: boolean,
   launchGame: Function,
   onFavouriteGame: Function,
-  subscribeToUpdates: string => void,
-  unsubscribeFromUpdates: string => void,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
   static defaultProps = {
     isInMyList: false,
   };
-
-  componentDidMount() {
-    if (this.liveCasinoTableId) {
-      this.props.subscribeToUpdates(this.liveCasinoTableId);
-    }
-  }
-
-  componentWillUnmount() {
-    if (this.liveCasinoTableId) {
-      this.props.unsubscribeFromUpdates(this.liveCasinoTableId);
-    }
-  }
 
   get liveCasinoTableId() {
     return prop("tableId", this.liveCasinoLobby);
@@ -55,7 +41,10 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         className="o-ratio o-ratio--live-casino-card"
         onClick={this.props.launchGame}
       >
-        <ImageLazy className="o-ratio__content" src={this.liveCasinoLobby.image} />
+        <ImageLazy
+          className="o-ratio__content"
+          src={this.liveCasinoLobby.image}
+        />
         <Flex
           direction="vertical"
           align="end"

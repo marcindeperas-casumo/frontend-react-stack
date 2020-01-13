@@ -3,13 +3,22 @@ import React from "react";
 import { propOr } from "ramda";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import { EVENT_PROPS } from "Src/constants";
+import { EVENT_PROPS, GAME_LIST_IDS } from "Src/constants";
 import { GameListHorizontal } from "Components/GameListHorizontal/GameListHorizontal";
 import TrackProvider from "Components/TrackProvider";
 
 type Props = {
   /** The id of the game list. */
   id: string,
+};
+
+// Polling for updates is temporary.
+// We are going to move to use subscriptions once the GraphQL server is ready for it.
+const THIRTY_SECONDS = 30000;
+const POLL_INTERVAL = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: THIRTY_SECONDS,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: THIRTY_SECONDS,
+  default: 0,
 };
 
 const QUERY = gql`
@@ -46,7 +55,8 @@ const QUERY = gql`
 
 export const GameListHorizontalContainer = ({ id }: Props) => {
   const variables = { id };
-  const { data, loading } = useQuery(QUERY, { variables });
+  const pollInterval = POLL_INTERVAL[id] || POLL_INTERVAL.default;
+  const { data, loading } = useQuery(QUERY, { variables, pollInterval });
   const list = propOr({}, "gamesList", data);
 
   return (
