@@ -32,7 +32,15 @@ export const GameTile = ({
   ratio = "game-tile",
 }: Props) => {
   // __FIX__: fix the typing around here
-  const { isInMaintenance, backgroundImage, logo, name, slug, id } = game;
+  const {
+    isInMaintenance,
+    backgroundImage,
+    logo,
+    name,
+    slug,
+    id,
+    isInMyList,
+  } = game;
 
   if (isInMaintenance) {
     return (
@@ -92,7 +100,11 @@ export const GameTile = ({
                 [EVENT_PROPS.IS_FAVOURITE]: true,
               }}
             >
-              <GameTileHeart gameId={id} gameSlug={slug} />
+              <GameTileHeart
+                gameId={id}
+                gameSlug={slug}
+                isInMyList={isInMyList}
+              />
             </TrackClick>
           </Flex.Item>
         </Flex>
