@@ -11,8 +11,6 @@ export const LiveCasinoCardContainer = ({ id }) => {
       isInMyList={false}
       launchGame={() => {}}
       onFavouriteGame={() => {}}
-      subscribeToUpdates={() => {}}
-      unsubscribeFromUpdates={() => {}}
     />
   ) : null;
 };
