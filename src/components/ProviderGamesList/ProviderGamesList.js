@@ -3,26 +3,17 @@ import React, { PureComponent } from "react";
 import { nth, contains } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
-import { GameRow } from "Components/GameRow";
-import { ErrorMessage } from "Components/ErrorMessage";
+import { GameRow } from "Components/GameRow/GameRow";
 import { EVENT_PROPS, ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import VirtualList from "Components/VirtualList";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import "./ProviderGamesList.scss";
 
-type ProviderObject = {
-  name: string,
-  games: Array<string>,
-};
-
 type Props = {
-  /** the function that fetches the games */
-  fetchGames: (page: number, pageSize: number) => void,
-  /**  has the game list completed loading? */
-  areGamesLoaded: boolean,
-  error?: string,
-  provider: ProviderObject,
+  loading: boolean,
+  title: string,
+  games: Array<Object>,
   count: number,
 };
 
@@ -42,9 +33,9 @@ class ProviderGamesList extends PureComponent<Props, State> {
   }
 
   static defaultProps = {
-    fetchGames: () => {},
-    areGamesLoaded: false,
-    provider: {},
+    loading: true,
+    title: "",
+    games: [],
     count: 0,
   };
 
@@ -55,26 +46,21 @@ class ProviderGamesList extends PureComponent<Props, State> {
 
   scrollElement: HTMLElement | null;
 
-  componentDidMount() {
-    this.props.fetchGames(this.state.currentPage, PAGE_SIZE);
-  }
-
   isRowLoaded = ({ index }: { index: number }) => {
-    const { games } = this.props.provider;
-    return Boolean(nth(index, games));
+    return Boolean(nth(index, this.props.games));
   };
 
   loadMoreRows = ({ stopIndex }: { stopIndex: number }) => {
-    const page = Math.ceil(stopIndex / PAGE_SIZE) - 1;
-    const pages = this.state.requestedPages;
-    this.setState(({ currentPage }) => ({ currentPage: page }));
-    if (!contains(page, pages)) {
-      this.setState(({ requestedPages }) => ({
-        requestedPages: [...requestedPages, page],
-      }));
-      this.props.fetchGames(page, PAGE_SIZE);
-    }
-    return Promise.resolve();
+    // const page = Math.ceil(stopIndex / PAGE_SIZE) - 1;
+    // const pages = this.state.requestedPages;
+    // this.setState(({ currentPage }) => ({ currentPage: page }));
+    // if (!contains(page, pages)) {
+    //   this.setState(({ requestedPages }) => ({
+    //     requestedPages: [...requestedPages, page],
+    //   }));
+    //   this.props.fetchGames(page, PAGE_SIZE);
+    // }
+    // return Promise.resolve();
   };
 
   rowRenderer = ({
@@ -87,7 +73,7 @@ class ProviderGamesList extends PureComponent<Props, State> {
     style: string,
   }) => {
     if (this.isRowLoaded({ index })) {
-      const { games } = this.props.provider;
+      const { games } = this.props;
       return (
         <div
           key={key}
@@ -95,10 +81,11 @@ class ProviderGamesList extends PureComponent<Props, State> {
           index={index}
           style={style}
         >
-          <GameRow id={nth(index, games)} />
+          <GameRow game={games[index]} onLaunchGame={() => {}} />
         </div>
       );
     }
+
     return (
       <Flex
         className="u-margin-x--md"
@@ -113,13 +100,9 @@ class ProviderGamesList extends PureComponent<Props, State> {
   };
 
   render() {
-    const { areGamesLoaded, error, count } = this.props;
+    const { loading, count } = this.props;
 
-    if (error) {
-      return <ErrorMessage errorMessage={error} />;
-    }
-
-    if (!areGamesLoaded) {
+    if (loading) {
       return (
         <div className="t-background-chrome-light-2 u-padding-top u-padding-x--md">
           <GameListSkeleton hasTitle={false} />

@@ -1,36 +1,55 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
+import { propOr } from "ramda";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
 import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
-import { fetchGamesByProvider } from "Models/games";
-import {
-  gameProviderBySlug,
-  areProviderGamesLoaded,
-  types,
-  gameProviderGameCount,
-} from "Models/gameProviders";
-import { isFetchError } from "Models/fetch";
 
 type Props = {
   /** Provider slug whose games will be fetched */
   provider: string,
 };
 
-const ProviderGamesListConnected = connect(
-  (state, { provider }) => ({
-    areGamesLoaded: areProviderGamesLoaded(provider)(state),
-    provider: gameProviderBySlug(provider)(state),
-    error: isFetchError(types.GET_GAME_PROVIDER_ERROR)(state),
-    count: gameProviderGameCount(provider)(state),
-  }),
-  (dispatch, { provider }) => ({
-    fetchGames: (page, pageSize) =>
-      dispatch(fetchGamesByProvider(provider, page, pageSize)),
-  })
-)(ProviderGamesList);
+const GAME_STUDIO_GAMES_QUERY = gql`
+  query gameStudioGamesQuery($slug: String!) {
+    gameStudioGames(slug: $slug) {
+      id
+      backgroundImage
+      isInMaintenance
+      logo
+      name
+      slug
+      liveCasinoLobby {
+        id
+        tableId
+        symbol
+        provider
+        results
+        image
+        type
+        betBehind
+        bets {
+          min
+          max
+          symbol
+        }
+      }
+    }
+  }
+`;
 
-const ProviderGamesListContainer = (props: Props) => (
-  <ProviderGamesListConnected {...props} />
-);
+export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
+  const variables = { slug };
+  const { data, loading } = useQuery(GAME_STUDIO_GAMES_QUERY, { variables });
+  const games = propOr([], "gameStudioGames", data);
+  const count = games.length;
 
-export default ProviderGamesListContainer;
+  return (
+    <ProviderGamesList
+      title="Lofasz"
+      games={games}
+      loading={loading}
+      count={count}
+    />
+  );
+};
