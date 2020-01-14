@@ -28,7 +28,9 @@ describe("SetAmount", () => {
 
     const component = mount(<SetAmount {...props} />);
 
-    expect(component.find("div.warning-message").exists()).toBe(true);
+    expect(component.find({ "data-test-id": "warning-message" }).exists()).toBe(
+      true
+    );
   });
 
   test("should not show error message if amount is lower than deposit limit", () => {
@@ -40,6 +42,8 @@ describe("SetAmount", () => {
 
     const component = mount(<SetAmount {...props} />);
 
-    expect(component.find("div.warning-message").exists()).toBe(false);
+    expect(component.find({ "data-test-id": "warning-message" }).exists()).toBe(
+      false
+    );
   });
 });
