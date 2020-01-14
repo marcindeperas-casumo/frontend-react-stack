@@ -35,6 +35,7 @@ export default class ScrollableList extends PureComponent<Props> {
     Component: GameTile,
   };
 
+  // __FIX__ - this needs solving elegantly.
   keyGetter = (i: number) => {
     if (typeof this.props.itemIds[i] === "object") {
       return this.props.itemIds[i].id;
