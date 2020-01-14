@@ -4,7 +4,7 @@ import classNames from "classnames";
 import "./GameTileHeart.scss";
 
 type Props = {
-  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => void,
+  onClick: (e: SyntheticInputEvent<HTMLInputElement>) => any,
   isActive: boolean,
   className?: string,
 };

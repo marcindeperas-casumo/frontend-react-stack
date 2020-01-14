@@ -10,7 +10,7 @@ type Props = {
   className: string,
   gameId: string,
   gameSlug: string,
-  isInMyList: Boolean,
+  isInMyList: boolean,
 };
 
 export const GameTileHeartContainer = ({
