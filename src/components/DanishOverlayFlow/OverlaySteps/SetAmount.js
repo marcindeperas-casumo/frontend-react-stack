@@ -58,10 +58,7 @@ export const SetAmount = ({
           inputClassName="u-padding-left--md"
         />
         {limitInRange(amount) && isLimitMaxed(amount) && (
-          <div
-            data-test-id="warning-message"
-            className="warning-message t-color-red-light-1"
-          >
+          <div data-test-id="warning-message" className="t-color-red-light-1">
             {minFirstDepositLimit} -{" "}
             {formatCurrency({
               locale: locale,

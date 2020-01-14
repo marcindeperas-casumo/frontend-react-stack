@@ -1,5 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
+import { TextInput } from "Components/Compliance/TextInput";
 import { SetAmount } from "./SetAmount";
 
 const baseProps = {
@@ -45,5 +46,15 @@ describe("SetAmount", () => {
     expect(component.find({ "data-test-id": "warning-message" }).exists()).toBe(
       false
     );
+  });
+
+  test("should always display TextInput component", () => {
+    const props = {
+      ...baseProps,
+    };
+
+    const component = mount(<SetAmount {...props} />);
+
+    expect(component.find(TextInput).exists()).toBe(true);
   });
 });

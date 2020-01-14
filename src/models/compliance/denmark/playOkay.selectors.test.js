@@ -32,7 +32,7 @@ describe("Denmark compliance playOkay selectors", () => {
       );
     });
 
-    test("should return [] when there is no moneLimits in the state", () => {
+    test("should return [] when there is no moneyLimits in the state", () => {
       const mockState = createMockWithData({});
 
       expect(moneyLimitsSelector(mockState)).toEqual([]);
