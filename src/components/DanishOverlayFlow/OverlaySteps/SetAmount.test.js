@@ -18,7 +18,7 @@ const createComplianceState = depositLimit => ({
   },
 });
 
-describe("CuratedCard", () => {
+describe("SetAmount", () => {
   test("should show error message if amount is higher than deposit limit", () => {
     const props = {
       ...baseProps,
