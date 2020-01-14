@@ -22,7 +22,7 @@ module.exports = ({ config, mode }) => {
        *
        * Example:
        * `import { useLocale } from "Hooks/useLocale";` ---> will resolve to:
-       *   `"Hooks/useLocale.mock.js"` or `"Hooks/__mocks__/useLocale"` if it exists.
+       *   `"Hooks/__mocks__/useLocale"` if it exists.
        *
        * Bare in mind that the related mock file will be **always** used if it exists
        * (like old auto-mocking feature in jest).
@@ -41,7 +41,7 @@ module.exports = ({ config, mode }) => {
        * gets removed or renamed.
        */
       new webpack.NormalModuleReplacementPlugin(/\.js$/, resource => {
-        if (/__mocks__|\.mock/.test(resource.request)) {
+        if (/__mocks__/.test(resource.request)) {
           // don't touch mocked files imports
           return;
         }
@@ -51,14 +51,11 @@ module.exports = ({ config, mode }) => {
           return;
         }
 
-        const dotMockPath = resPath.slice(0, -2) + "mock.js";
         const dirname = path.dirname(resPath);
         const basename = path.basename(resPath);
         const folderMockPath = `${dirname}/__mocks__/${basename}`;
 
-        if (fs.existsSync(dotMockPath)) {
-          resource.request = dotMockPath; // eslint-disable-line fp/no-mutation
-        } else if (fs.existsSync(folderMockPath)) {
+        if (fs.existsSync(folderMockPath)) {
           resource.request = folderMockPath; // eslint-disable-line fp/no-mutation
         } else {
           return;

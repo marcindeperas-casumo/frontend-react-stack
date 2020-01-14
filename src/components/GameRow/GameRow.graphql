@@ -5,6 +5,7 @@ fragment GameRow_Game on Game {
   logo
   logoBackground
   lobby {
+    id
     bets {
       min
       max
