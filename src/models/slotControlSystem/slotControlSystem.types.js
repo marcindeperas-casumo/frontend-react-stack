@@ -13,6 +13,14 @@ export type ActiveSessionType = {
     amount: number,
     currency: string,
   },
+  stats: {
+    consumedBalance: number,
+    initialLimit: number,
+    lastUpdateTime: number,
+    remainingBalance: number,
+    totalBets: number,
+    totalWins: number,
+  },
 };
 
 export type EndedSessionType = {
