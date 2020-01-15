@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import { navigate } from "@reach/router";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
 import { GameRow } from "Components/GameRow";
@@ -33,15 +32,10 @@ export function SessionDetailsForLimitsReached(props: Props) {
   return (
     <Flex direction="vertical">
       {Boolean(playAgainGameId) && (
-        <div
-          onClick={e => {
-            e.preventDefault();
-            navigate("/es/play/fruit-warp/launch");
-          }}
-        >
+        <>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow id={playAgainGameId} />
-        </div>
+        </>
       )}
       <SessionDetailsBody
         t={t}
