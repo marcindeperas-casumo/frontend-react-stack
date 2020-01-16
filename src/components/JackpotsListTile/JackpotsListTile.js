@@ -1,27 +1,27 @@
 // @flow
-import React, { PureComponent } from "react";
-import { GameRow } from "Components/GameRow";
+import React from "react";
+import { GameRow } from "Components/GameRow/GameRow";
+import { launchGame } from "Services/LaunchGameService";
+import type { Game } from "Src/types/game";
+
 import "./JackpotsListTile.scss";
 
 type Props = {
-  ids?: Array<string>,
+  games?: Array<Game>,
 };
 
-export default class JackpotsListTile extends PureComponent<Props> {
-  render() {
-    const { ids = [] } = this.props;
-
-    return (
-      <>
-        {ids.map(slug => (
-          <div key={slug} className="u-padding-y--sm">
-            <GameRow
-              id={slug}
-              className="t-background-white t-border-r--md t-box-shadow"
-            />
-          </div>
-        ))}
-      </>
-    );
-  }
-}
+export const JackpotsListTile = ({ games = [] }: Props) => (
+  <>
+    {games.map(game => {
+      return (
+        <div key={game.id} className="u-padding-y--sm">
+          <GameRow
+            game={game}
+            className="t-background-white t-border-r--md t-box-shadow"
+            onLaunchGame={() => launchGame({ slug: game.slug })}
+          />
+        </div>
+      );
+    })}
+  </>
+);
