@@ -1,4 +1,9 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
+import {
+  periodicReminderNotificationSaga,
+  statsUpdateNotificationSaga,
+  sessionEndedSaga,
+} from "Models/slotControlSystem";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
@@ -65,7 +70,6 @@ import {
   fetchAnnualOverviewPdfUrlSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/compliance/denmark";
-import { sessionEndedSaga } from "Models/slotControlSystem";
 
 export default function* rootSaga(dispatch) {
   yield fork(takeEvery, appTypes.APP_STARTED, appSaga);
@@ -111,6 +115,22 @@ export default function* rootSaga(dispatch) {
       cometdMessages.SLOT_CONTROL_SYSTEM_SESSION_ENDED
     ),
     sessionEndedSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.PERIODIC_REMINDER_NOTIFICATION
+    ),
+    periodicReminderNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.STATS_UPDATED_NOTIFICATION
+    ),
+    statsUpdateNotificationSaga
   );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(

@@ -1,13 +1,13 @@
 // @flow
 
-export type GameplayStatsType = {
-  currency: string,
+export type GameSessionStatsType = {
   consumedBalance: number,
-  remainingBalance: number,
   initialLimit: number,
+  lastUpdateTime: number,
+  remainingBalance: number,
   totalBets: number,
   totalWins: number,
-  lastUpdateTime: ?number,
+  currency: string,
 };
 
 export type ActiveSessionType = {
@@ -19,7 +19,7 @@ export type ActiveSessionType = {
   durationInSecs: number,
   reminderFrequencyInSecs: number,
   postSessionExclusionInMinutes: ?number,
-  stats: GameplayStatsType,
+  stats: GameSessionStatsType,
 };
 
 export type EndedSessionType = {
@@ -29,7 +29,7 @@ export type EndedSessionType = {
   /** Unix time in millis */
   endedTime: number,
   endReason: string,
-  stats: GameplayStatsType,
+  stats: GameSessionStatsType,
 };
 
 export type ExclusionType = {

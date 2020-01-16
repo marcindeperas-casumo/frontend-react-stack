@@ -1,5 +1,7 @@
 //@flow
-import { type GameplayStatsType } from "Models/slotControlSystem";
+import { type GameSessionStatsType } from "Models/slotControlSystem";
+
+const now = 1576065735032;
 
 export default ({
   currency: "EUR",
@@ -8,5 +10,5 @@ export default ({
   initialLimit: 40,
   totalBets: 5,
   totalWins: 11,
-  lastUpdateTime: null,
-} : GameplayStatsType);
+  lastUpdateTime: now,
+} : GameSessionStatsType);

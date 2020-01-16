@@ -37,7 +37,7 @@ describe("useJurisdiction", () => {
     });
   });
 
-  test("returns an object with jurisdiction prop equal to player's and isDGOJ flag", () => {
+  test("returns the correct jurisdiction info it is DGOJ", () => {
     const jurisdiction = "DGOJ";
 
     const wrapper = mount(
