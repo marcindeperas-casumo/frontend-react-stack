@@ -4,7 +4,13 @@ import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
 
 type Props = {
-  jackpot: Object,
+  jackpot: {
+    image: string,
+    label: string,
+    amount: {
+      formattedAmount: string,
+    },
+  },
 };
 
 const MustDropJackpot = ({ jackpot }: Props) => {

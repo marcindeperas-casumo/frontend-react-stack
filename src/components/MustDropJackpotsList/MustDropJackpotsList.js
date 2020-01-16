@@ -2,8 +2,10 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import { generateColumns } from "Utils";
+// import type { Game } from "Types/game";
+import * as A from "Types/apollo";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import JackpotsListTile from "Components/JackpotsListTile";
+import { JackpotsListTile } from "Components/JackpotsListTile";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
@@ -15,7 +17,7 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
-  ids: Array<string>,
+  jackpots: Array<A.GameRow_Game>,
   className?: string,
   title: string,
   seeMore: string,
@@ -24,11 +26,12 @@ export type Props = {
 const mustDropWidgetId = "must-drop-jackpots-widget";
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
-  get columns(): Array<Array<string>> {
-    const idsByColumns = generateColumns(this.props.ids);
-    return [[mustDropWidgetId], ...idsByColumns];
+  get columns(): Array<Array<Game>> {
+    // __FIX__ - add widget once wired up to graphQL
+    return generateColumns(this.props.jackpots);
+    // return [[mustDropWidgetId], ...idsByColumns];
   }
-
+  // __FIX__ - this will blow up.
   keyGetter = (i: number) =>
     this.columns[i].indexOf(mustDropWidgetId) !== -1
       ? mustDropWidgetId
@@ -37,11 +40,10 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   mobileMustDropJackpotRenderer = (i: number) => {
     const isIdMustDropWidgetId =
       this.columns[i].indexOf(mustDropWidgetId) !== -1;
-
     return isIdMustDropWidgetId ? (
       <MustDropJackpotsWidget />
     ) : (
-      <JackpotsListTile ids={this.columns[i]} />
+      <JackpotsListTile games={this.columns[i]} />
     );
   };
 
