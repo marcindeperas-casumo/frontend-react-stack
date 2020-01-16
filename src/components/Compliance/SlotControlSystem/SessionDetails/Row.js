@@ -4,8 +4,8 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 
 type Props = {
-  label: ?string,
-  value: string,
+  label: ?string | React.Node,
+  value: string | React.Node,
 };
 
 export function Row(props: Props) {

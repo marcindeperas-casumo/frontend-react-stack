@@ -10,8 +10,13 @@ export default ({
   durationInSecs: 300,
   reminderFrequencyInSecs: 10 * 60,
   postSessionExclusionInMinutes: null,
-  limit: {
-    amount: 111,
+  stats: {
     currency: "GBP",
+    consumedBalance: 11,
+    initialLimit: 111,
+    lastUpdateTime: Date.now() - 1000 * 60,
+    remainingBalance: 100,
+    totalBets: 11,
+    totalWins: 0,
   },
 } : ActiveSessionType);
