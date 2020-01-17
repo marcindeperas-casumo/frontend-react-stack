@@ -1,15 +1,16 @@
 // @flow
 import React from "react";
+import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
 import { launchGame } from "Services/LaunchGameService";
-import type { Game } from "Src/types/game";
 
 import "./JackpotsListTile.scss";
 
 type Props = {
-  games?: Array<Game>,
+  games?: Array<A.GameRow_Game>,
 };
-
+// __FIX__ this should be the source of truth for the MustDrop and
+// standard jackpot tiles.
 export const JackpotsListTile = ({ games = [] }: Props) => (
   <>
     {games.map(game => {
