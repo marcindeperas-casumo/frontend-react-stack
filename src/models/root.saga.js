@@ -1,4 +1,8 @@
 import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
+import {
+  periodicReminderNotificationSaga,
+  statsUpdateNotificationSaga,
+} from "Models/slotControlSystem";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
@@ -40,6 +44,7 @@ import {
   gameSearchCountSaga,
   clearSearchResultsSaga,
   fetchGameSearchPageSaga,
+  fetchLatestPlayedSaga,
   resetGameSearchScrollPositionSaga,
 } from "Models/gameSearch";
 import {
@@ -102,6 +107,22 @@ export default function* rootSaga(dispatch) {
     ),
     updatePlayerFirstDepositDateSaga
   );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.PERIODIC_REMINDER_NOTIFICATION
+    ),
+    periodicReminderNotificationSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.STATS_UPDATED_NOTIFICATION
+    ),
+    statsUpdateNotificationSaga
+  );
   yield fork(takeEvery, takeFetchedCuratedPages, fetchCuratedGameSaga);
   yield fork(
     takeEvery,
@@ -151,6 +172,11 @@ export default function* rootSaga(dispatch) {
     ),
     fork(takeLatest, gameSearchTypes.GAME_SEARCH_CLEAR, clearSearchResultsSaga),
   ]);
+  yield fork(
+    takeLatest,
+    gameSearchTypes.GAME_SEARCH_FETCH_LATEST_PLAYED,
+    fetchLatestPlayedSaga
+  );
   yield fork(takeEvery, reelRacesTypes.REEL_RACES_INIT, fetchReelRacesSaga);
   yield fork(
     takeEvery,

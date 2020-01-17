@@ -18,7 +18,7 @@ export function Modal() {
   const { slug, Content } = getModalData(modalId);
   const { closeModal, dismissModal, acceptModal } = useHideModal(modalId);
   const t = useTranslations(slug);
-  const jurisdiction = useJurisdiction();
+  const { jurisdiction } = useJurisdiction();
 
   return (
     <ReactModal

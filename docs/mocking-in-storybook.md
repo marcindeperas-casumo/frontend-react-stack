@@ -10,8 +10,8 @@ or something expensive being available in the context.
 ### Solution
 
 There's easy way to bypass that, for your `/sample.js` file you can create file
-`/sample.mock.js` or `/__mocks__/sample.js` that will be used instead. It can be
-as simple as just returning object that would be returned after all computations.
+`/__mocks__/sample.js` that will be used instead. It can be as simple as just
+returning object that would be returned after all computations.
 
 ### Known issues
 

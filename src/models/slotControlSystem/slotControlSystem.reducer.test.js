@@ -3,6 +3,7 @@ import {
   ACTION_TYPES,
   slotControlSystemReducer,
   type SessionStateResponseType,
+  type GameSessionStatsType,
 } from "Models/slotControlSystem";
 import activeSessionMock from "./__mocks__/activeSession.mock";
 import endedSessionMock from "./__mocks__/endedSession.mock";
@@ -105,6 +106,51 @@ describe("Models/slotControlSystem/Reducer", () => {
         lastEndedSession: response.lastEndedSession,
         activeSession: null,
       });
+    });
+  });
+
+  describe("UPDATE_ACTIVE_SESSION_STATS", () => {
+    test("properly updates stats in activeSession", () => {
+      const stats: GameSessionStatsType = {
+        consumedBalance: 1,
+        initialLimit: 10,
+        lastUpdateTime: now,
+        remainingBalance: 0,
+        totalBets: 1,
+        totalWins: 0,
+        currency: "EUR",
+      };
+      const action = {
+        type: ACTION_TYPES.UPDATE_ACTIVE_SESSION_STATS,
+        data: { stats },
+      };
+      const state = {
+        lastUpdateTime: 0,
+        lastEndedSession: null,
+        activeExclusion: null,
+        activeSession: {
+          id: "1",
+          expiringTime: now,
+          startedTime: now,
+          durationInSecs: 0,
+          reminderFrequencyInSecs: 0,
+          postSessionExclusionInMinutes: null,
+          stats: {
+            consumedBalance: 0,
+            initialLimit: 10,
+            lastUpdateTime: now,
+            remainingBalance: 0,
+            totalBets: 1,
+            totalWins: 0,
+            currency: "EUR",
+          },
+        },
+      };
+
+      expect(
+        slotControlSystemReducer(state, action).activeSession?.stats
+      ).toEqual(stats);
+      expect(state.activeSession.stats).not.toEqual(stats);
     });
   });
 
