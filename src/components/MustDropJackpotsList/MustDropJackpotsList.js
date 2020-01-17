@@ -2,7 +2,6 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import { generateColumns } from "Utils";
-// import type { Game } from "Types/game";
 import * as A from "Types/apollo";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 import { JackpotsListTile } from "Components/JackpotsListTile";
@@ -19,17 +18,17 @@ const PADDING_PER_DEVICE = {
 export type Props = {
   jackpots: Array<A.GameRow_Game>,
   className?: string,
-  title: string,
+  name: string,
   seeMore: string,
 };
 
 const mustDropWidgetId = "must-drop-jackpots-widget";
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
-  get columns(): Array<Array<Game>> {
-    // __FIX__ - add widget once wired up to graphQL
-    return generateColumns(this.props.jackpots);
-    // return [[mustDropWidgetId], ...idsByColumns];
+  get columns(): Array<Array<A.GameRow_Game>> {
+    // __FIX__ - sort out typing here. We're returning an array of strings or games.
+    const jackpotsByColumns = generateColumns(this.props.jackpots);
+    return [[mustDropWidgetId], ...jackpotsByColumns];
   }
   // __FIX__ - this will blow up.
   keyGetter = (i: number) =>
@@ -64,7 +63,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   };
 
   render() {
-    const { title, seeMore } = this.props;
+    const { name, seeMore } = this.props;
     const seeMoreUrl = "/games/must-drop-jackpots";
 
     return (
@@ -75,7 +74,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               <ScrollableListTitleRow
                 paddingLeft
                 seeMore={{ text: seeMore, url: seeMoreUrl }}
-                title={title}
+                title={name}
               />
               <Scrollable
                 keyGetter={this.keyGetter}
@@ -89,7 +88,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           <Desktop>
             <ScrollableListPaginated
               list={{
-                title,
+                name,
                 itemIds: this.columns,
               }}
               Component={this.desktopMustDropJackpotRenderer}
