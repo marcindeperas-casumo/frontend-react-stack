@@ -8,7 +8,7 @@ const STAGE = {
   STAGE_SET_AMOUNT: "STAGE_SET_AMOUNT",
 };
 
-type CmsContent = {
+export type CmsContent = {
   limit_type_daily: string,
   limit_type_weekly: string,
   limit_type_monthly: string,

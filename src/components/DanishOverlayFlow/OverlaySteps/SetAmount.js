@@ -1,21 +1,39 @@
+//@flow
 import React, { useCallback } from "react";
 import Button from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { TextInput } from "Components/Compliance/TextInput";
 import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
+import type { CmsContent } from "../DanishEntryOverlay";
 
-export const SetAmount = ({
-  t,
-  locale,
-  currency,
-  confirmLimit,
-  setAmount,
-  amount,
-  limitType,
-  loading,
-  DGAComplianceState,
-}) => {
+type Props = {
+  t: CmsContent,
+  locale: string,
+  currency: string,
+  confirmLimit: () => void,
+  setAmount: (value: number) => void,
+  amount: number,
+  limitType: string,
+  loading: boolean,
+  DGAComplianceState: {
+    depositLimit: number,
+  },
+};
+
+export const SetAmount = (props: Props) => {
+  const {
+    t,
+    locale,
+    currency,
+    confirmLimit,
+    setAmount,
+    amount,
+    limitType,
+    loading,
+    DGAComplianceState,
+  } = props;
+
   const depositLimit = DGAComplianceState ? DGAComplianceState.depositLimit : 0;
 
   const periodLabels = {
