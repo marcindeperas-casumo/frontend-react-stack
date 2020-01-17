@@ -1,36 +1,36 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget/MustDropJackpotsWidget";
-import { fetchPageBySlug } from "Models/cms";
-import {
-  fetchJackpotsMustDrop,
-  mergeJackpotsMustDropSelectorFactory,
-  isFetchedJackpotsMustDrop,
-} from "Models/jackpotsMustDrop";
-import {
-  subscribeMustDropJackpotUpdates,
-  unsubscribeMustDropJackpotUpdates,
-} from "Models/cometd";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
+import { MustDropJackpotsWidget } from "Components/MustDropJackpotsWidget/MustDropJackpotsWidget";
+import { MustDropJackpotsWidgetSkeleton } from "Components/MustDropJackpotsWidget/MustDropJackpotsWidgetSkeleton";
 
-type Props = {};
+const QUERY = gql`
+  query mustDropJackpotsQuery {
+    mustDropJackpots {
+      label
+      image
+      id
+      amount {
+        formattedAmount
+      }
+    }
+  }
+`;
 
-const SLUG = "must-drop-jackpots";
-const MustDropJackpotsWidgetConnected = connect(
-  state => ({
-    jackpots: mergeJackpotsMustDropSelectorFactory(SLUG)(state),
-    isFetched: isFetchedJackpotsMustDrop(state),
-  }),
-  dispatch => ({
-    fetchJackpots: () => dispatch(fetchJackpotsMustDrop()),
-    fetchCmsContent: () => dispatch(fetchPageBySlug(SLUG)),
-    subscribeToUpdates: () => dispatch(subscribeMustDropJackpotUpdates()),
-    unsubscribeFromUpdates: () => dispatch(unsubscribeMustDropJackpotUpdates()),
-  })
-)(MustDropJackpotsWidget);
+const MustDropJackpotsWidgetContainer = () => {
+  const { data, loading } = useQuery<A.mustDropJackpotsQuery, null>(QUERY);
+  if (loading) {
+    return <MustDropJackpotsWidgetSkeleton />;
+  }
 
-const MustDropJackpotsWidgetContainer = (props: Props) => (
-  <MustDropJackpotsWidgetConnected {...props} />
-);
+  return (
+    <MustDropJackpotsWidget
+      loading={loading}
+      jackpots={data.mustDropJackpots}
+    />
+  );
+};
 
 export default MustDropJackpotsWidgetContainer;
