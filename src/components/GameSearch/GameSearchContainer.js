@@ -36,9 +36,6 @@ export const GameSearchContainer = props => {
   }, [searchQuery, refetch]);
 
   const fetchMoreRows = () => {
-    console.log('------------------------------------');
-    console.log('fetchMoreRows');
-    console.log('------------------------------------');
     return fetchMore({
       variables: {
         query: searchQuery,
@@ -50,9 +47,6 @@ export const GameSearchContainer = props => {
         if (!fetchMoreResult) {
           return prevData;
         }
-        console.log('------------------------------------');
-        console.log('updateQuery');
-        console.log('------------------------------------');
 
         return R.mergeDeepRight(prevData, {
           gamesSearch: {
@@ -71,10 +65,6 @@ export const GameSearchContainer = props => {
   };
 
   const clearSearch = () => setSearchQuery("");
-
-  console.log('------------------------------------');
-  console.log(searchResults);
-  console.log('------------------------------------');
 
   return (
     <GameSearch
