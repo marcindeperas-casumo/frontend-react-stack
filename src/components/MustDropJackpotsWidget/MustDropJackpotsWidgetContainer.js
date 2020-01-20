@@ -1,36 +1,21 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { MustDropJackpotsWidget } from "Components/MustDropJackpotsWidget/MustDropJackpotsWidget";
 import { MustDropJackpotsWidgetSkeleton } from "Components/MustDropJackpotsWidget/MustDropJackpotsWidgetSkeleton";
-
-const QUERY = gql`
-  query mustDropJackpotsQuery {
-    mustDropJackpots {
-      label
-      image
-      id
-      amount {
-        formattedAmount
-      }
-    }
-  }
-`;
+import { MustDropJackpotsQuery } from "./MustDropJackpotsWidget.graphql";
 
 const MustDropJackpotsWidgetContainer = () => {
-  const { data, loading } = useQuery<A.mustDropJackpotsQuery, null>(QUERY);
+  const { data, loading } = useQuery<A.MustDropJackpotsQuery, null>(
+    MustDropJackpotsQuery
+  );
   if (loading) {
     return <MustDropJackpotsWidgetSkeleton />;
   }
-
-  return (
-    <MustDropJackpotsWidget
-      loading={loading}
-      jackpots={data.mustDropJackpots}
-    />
-  );
+  if (data && data.mustDropJackpots) {
+    return <MustDropJackpotsWidget jackpots={data.mustDropJackpots} />;
+  }
 };
 
 export default MustDropJackpotsWidgetContainer;

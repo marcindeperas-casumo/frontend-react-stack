@@ -2,15 +2,10 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
 import Media from "@casumo/cmp-media";
+import * as A from "Types/apollo";
 
 type Props = {
-  jackpot: {
-    image: string,
-    label: string,
-    amount: {
-      formattedAmount: string,
-    },
-  },
+  jackpot: A.MustDropJackpot_MustDropJackpot,
 };
 
 const MustDropJackpot = ({ jackpot }: Props) => {

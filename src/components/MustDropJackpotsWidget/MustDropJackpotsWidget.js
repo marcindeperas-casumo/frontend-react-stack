@@ -4,7 +4,7 @@ import MustDropJackpot from "Components/MustDropJackpot";
 import * as A from "Types/apollo";
 
 type Props = {
-  jackpots: Array<A.mustDropJackpotsQuery_mustDropJackpots>,
+  jackpots: Array<A.MustDropJackpotsWidget_MustDropJackpot>,
 };
 
 export const MustDropJackpotsWidget = ({ jackpots }: Props) => (
