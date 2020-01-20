@@ -11,7 +11,6 @@ const PromotionCardImage = ({ image }) => {
           className="o-ratio__content t-border-r-bottom-left t-border-r-bottom-right"
           src={image}
           imgixOpts={imgixOpts}
-          dpr={3}
         />
       </div>
     </div>

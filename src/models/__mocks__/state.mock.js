@@ -4497,6 +4497,14 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         id: "mustDropJackpotGames",
         title: "Must Drop Jackpots",
       },
+      latestPlayedGames: {
+        games: [
+          "reel-heist",
+          "fortune-charm",
+        ],
+        id: "latestPlayedGames",
+        title: "Latest Played Games",
+      },
     },
     cms: {
       "mobile.menu-2": {

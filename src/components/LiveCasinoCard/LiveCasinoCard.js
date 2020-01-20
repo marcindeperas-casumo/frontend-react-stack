@@ -60,7 +60,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
         className="o-ratio o-ratio--live-casino-card"
         onClick={this.props.launchGame}
       >
-        <ImageLazy className="o-ratio__content" src={lobby.image} dpr={3} />
+        <ImageLazy className="o-ratio__content" src={lobby.image} />
         <Flex
           direction="vertical"
           align="end"

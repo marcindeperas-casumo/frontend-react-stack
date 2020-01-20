@@ -4,6 +4,7 @@ import { types as fetchTypes } from "Models/fetch";
 import {
   ACTION_TYPES,
   type NewSessionRequestType,
+  type ActiveSessionType,
 } from "Models/slotControlSystem";
 
 export function initFetchActiveSessionAction() {
@@ -23,5 +24,12 @@ export function initCreateSessionAction(asyncCallData: NewSessionRequestType) {
     asyncCall: createSession,
     asyncCallData,
     postFetch: ACTION_TYPES.UPDATE_SESSION,
+  };
+}
+
+export function updateActiveSessionStats(data: ActiveSessionType) {
+  return {
+    type: ACTION_TYPES.UPDATE_ACTIVE_SESSION_STATS,
+    data,
   };
 }
