@@ -252,6 +252,42 @@ export type JackpotsQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: gamesListQuery
+// ====================================================
+
+export type gamesListQuery_gamesList_games = {
+  id: string,
+  name: string,
+  slug: string,
+  logo: string,
+  logoBackground: string,
+};
+export type gamesListQuery_gamesList = {
+  name: ?string,
+  games: Array<gamesListQuery_gamesList_games>,
+};
+export type gamesListQuery = {
+  gamesList: ?gamesListQuery_gamesList,
+};
+
+// ====================================================
+// GraphQL query operation: MustDropJackpotsQuery
+// ====================================================
+
+export type MustDropJackpotsQuery_mustDropJackpots_amount = {
+  formattedAmount: string,
+};
+export type MustDropJackpotsQuery_mustDropJackpots = {
+  label: string,
+  image: string,
+  id: string,
+  amount: MustDropJackpotsQuery_mustDropJackpots_amount,
+};
+export type MustDropJackpotsQuery = {
+  mustDropJackpots: Array<MustDropJackpotsQuery_mustDropJackpots>,
+};
+
+// ====================================================
 // GraphQL query operation: PlayerValuablesQuery
 // ====================================================
 
@@ -1519,6 +1555,34 @@ export type Jackpots_Game = {
   backgroundImage: string,
   lobby: ?Jackpots_Game_lobby,
   jackpot: ?Jackpots_Game_jackpot,
+};
+
+// ====================================================
+// GraphQL fragment: MustDropJackpot_MustDropJackpot
+// ====================================================
+
+export type MustDropJackpot_MustDropJackpot_amount = {
+  formattedAmount: string,
+};
+export type MustDropJackpot_MustDropJackpot = {
+  label: string,
+  image: string,
+  id: string,
+  amount: MustDropJackpot_MustDropJackpot_amount,
+};
+
+// ====================================================
+// GraphQL fragment: MustDropJackpotsWidget_MustDropJackpot
+// ====================================================
+
+export type MustDropJackpotsWidget_MustDropJackpot_amount = {
+  formattedAmount: string,
+};
+export type MustDropJackpotsWidget_MustDropJackpot = {
+  label: string,
+  image: string,
+  id: string,
+  amount: MustDropJackpotsWidget_MustDropJackpot_amount,
 };
 
 // ====================================================
