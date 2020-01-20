@@ -39,13 +39,6 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
   scrollElement: HTMLElement | null;
 
   isRowLoaded = ({ index }: { index: number }) => {
-    console.log(
-      "Is row loaded",
-      index,
-      this.props.games[index],
-      this.props.games,
-      this.props.games.length
-    );
     return Boolean(this.props.games[index]);
   };
 
@@ -85,7 +78,6 @@ export class GameSearchResultsVirtualList extends React.PureComponent<
   };
 
   fetchMoreRows = ({ startIndex, stopIndex }) => {
-    console.log("snarf", startIndex, stopIndex);
     const { games } = this.props;
 
     if (games[stopIndex]) {
