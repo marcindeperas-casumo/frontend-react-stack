@@ -1,15 +1,34 @@
 //@flow
+import { DateTime } from "luxon";
 import { type ActiveSessionType } from "Models/slotControlSystem";
-import stats from "./gameplayStats.mock";
 
-const now = 1576065735032;
+const initialLimit = 20;
+const totalBets = 10;
+const totalWins = 300;
+const consumedBalance = totalBets - totalWins;
+const remainingBalance = initialLimit - consumedBalance;
+
+const now = DateTime.fromISO("2020-01-01T00:00:00");
+const startedTime = now.minus({ minutes: 15 });
+const expiringTime = now.plus({ minutes: 15 });
+const durationInSecs = expiringTime.diff(startedTime, ["seconds"]).toFormat("s");
+const reminderFrequencyInSecs = 360; // 5 minutes
+const lastUpdateTime = now.minus({ seconds: reminderFrequencyInSecs });
 
 export default ({
-  id: "123-456-789",
-  expiringTime: now + 1000 * 60,
-  startedTime: now - 1000 * 60 * 5,
-  durationInSecs: 300,
-  reminderFrequencyInSecs: 10 * 60,
+  id: "1",
+  expiringTime: expiringTime.toMillis(),
+  startedTime: startedTime.toMillis(),
+  durationInSecs,
+  reminderFrequencyInSecs,
   postSessionExclusionInMinutes: null,
-  stats,
+  stats: {
+    currency: "EUR",
+    initialLimit,
+    totalBets,
+    totalWins,
+    consumedBalance,
+    remainingBalance,
+    lastUpdateTime: lastUpdateTime.toMillis(),
+  },
 } : ActiveSessionType);
