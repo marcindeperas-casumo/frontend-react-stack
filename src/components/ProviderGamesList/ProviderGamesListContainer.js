@@ -1,37 +1,40 @@
 // @flow
 import React from "react";
-import { propOr } from "ramda";
 import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
+import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
 
 type Props = {
   /** Provider slug whose games will be fetched */
   provider: string,
 };
 
-const GAME_STUDIO_GAMES_QUERY = gql`
-  query gameStudioGamesQuery($slug: String!) {
-    gameStudioGames(slug: $slug) {
+const GAME_STUDIO_QUERY = gql`
+  query gameStudioQuery($slug: String!, $page: Int!, $pageSize: Int!) {
+    gameStudio(slug: $slug) {
       id
-      backgroundImage
-      isInMaintenance
-      logo
-      name
-      slug
-      liveCasinoLobby {
+      gamesCount
+      games(page: $page, pageSize: $pageSize) {
         id
-        tableId
-        symbol
-        provider
-        results
-        image
-        type
-        betBehind
-        bets {
-          min
-          max
+        backgroundImage
+        isInMaintenance
+        logo
+        name
+        slug
+        lobby {
+          id
+          tableId
           symbol
+          provider
+          results
+          image
+          type
+          betBehind
+          bets {
+            min
+            max
+            symbol
+          }
         }
       }
     }
@@ -39,17 +42,40 @@ const GAME_STUDIO_GAMES_QUERY = gql`
 `;
 
 export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
-  const variables = { slug };
-  const { data, loading } = useQuery(GAME_STUDIO_GAMES_QUERY, { variables });
-  const games = propOr([], "gameStudioGames", data);
-  const count = games.length;
+  const { data, loading, fetchMore } = useQuery(GAME_STUDIO_QUERY, {
+    variables: { slug, page: 0, pageSize: PAGE_SIZE },
+    fetchPolicy: "cache-and-network",
+  });
+  const games = data?.gameStudio?.games || [];
+  const nextPage = Math.floor(games.length / PAGE_SIZE);
 
   return (
     <ProviderGamesList
-      title="Lofasz"
       games={games}
-      loading={loading}
-      count={count}
+      loading={loading && !games}
+      gamesCount={data?.gameStudio?.gamesCount}
+      onLoadMore={() =>
+        fetchMore({
+          variables: {
+            page: nextPage,
+          },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) {
+              return prev;
+            }
+
+            return {
+              gameStudio: {
+                ...prev.gameStudio,
+                games: [
+                  ...prev.gameStudio.games,
+                  ...fetchMoreResult.gameStudio.games,
+                ],
+              },
+            };
+          },
+        })
+      }
     />
   );
 };
