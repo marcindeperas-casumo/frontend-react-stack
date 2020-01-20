@@ -34,6 +34,7 @@ stories.add("Default", () => {
         playAgainGameId={select("Game Id", gameIds, gameIds[0])}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}
+        onClickPlayAgain={action("onClickPlayAgain")}
       />
     </MockStore>
   );
