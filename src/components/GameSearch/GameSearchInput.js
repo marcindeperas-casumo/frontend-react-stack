@@ -54,8 +54,6 @@ export class GameSearchInput extends PureComponent<Props, State> {
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
     const query = target.value.replace(/^\s+/g, "");
 
-    // remove initial leading spaces and doubles spaces become 1
-
     query && this.trackSearchInitiated(query);
 
     this.setState({
