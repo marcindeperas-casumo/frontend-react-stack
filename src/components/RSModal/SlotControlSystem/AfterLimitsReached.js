@@ -49,9 +49,10 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const onClickPlayAgain = e => {
     e.preventDefault();
     if (isPlayRouteActive(window.location.pathname)) {
+      // if we're in game iframe, perform soft rerender
       return navigateToRerender();
     }
-
+    // otherwise perform full browser redirect
     navigateToKO(ROUTE_IDS.PLAY, { slug: latestPlayedId });
   };
 
