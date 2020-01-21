@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from "react";
+import * as React from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import { isEmpty } from "ramda";
 import type {
@@ -26,9 +26,10 @@ type Props = {
   /** "see more" link translation */
   seeMoreText: string,
   itemClassName?: string,
+  itemRenderer: (i: number) => React.Node,
 };
 
-export default class ScrollableList extends PureComponent<Props> {
+export default class ScrollableList extends React.PureComponent<Props> {
   static defaultProps = {
     items: [],
     spacing: DEFAULT_SPACING,
@@ -37,10 +38,10 @@ export default class ScrollableList extends PureComponent<Props> {
 
   keyGetter = (i: number) => this.props.items[i].id;
 
-  itemRenderer = (i: number) => {
-    const { Component, items } = this.props;
-    return <Component item={items[i]} />;
-  };
+  // itemRenderer = (i: number) => {
+  //   const { Component, items } = this.props;
+  //   return <Component item={items[i]} />;
+  // };
 
   render() {
     const {
@@ -50,6 +51,7 @@ export default class ScrollableList extends PureComponent<Props> {
       spacing,
       title,
       itemClassName,
+      itemRenderer,
     } = this.props;
 
     if (isEmpty(items)) {
@@ -66,7 +68,7 @@ export default class ScrollableList extends PureComponent<Props> {
         <Scrollable
           numberOfItems={items.length}
           keyGetter={this.keyGetter}
-          itemRenderer={this.itemRenderer}
+          itemRenderer={itemRenderer}
           itemClassName={itemClassName}
           padding={PADDING_PER_DEVICE}
           itemSpacing={spacing}

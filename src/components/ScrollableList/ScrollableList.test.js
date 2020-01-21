@@ -5,7 +5,6 @@ import ScrollableList, {
   DEFAULT_SPACING,
 } from "Components/ScrollableList/ScrollableList";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import { GameTile } from "Components/GameTile";
 
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
@@ -23,24 +22,14 @@ describe("ScrollableList", () => {
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("renders with the GameTileContainer by default", () => {
-    const rendered = shallow(<ScrollableList items={[1, 2]} title="hi" />);
-
-    expect(
-      rendered
-        .find(Scrollable)
-        .dive()
-        .find(GameTile)
-    ).toHaveLength(2);
-  });
-
-  test("renders with the custom component if passed", () => {
+  test("should pass itemRenderer to Scrollable", () => {
     const SampleComponent = ({ id }) => <span>{id}</span>;
+    const items = [{ id: 1 }, { id: 2 }];
     const rendered = shallow(
       <ScrollableList
-        items={[{ id: 1 }, { id: 2 }]}
+        items={items}
         title="hi"
-        Component={SampleComponent}
+        itemRenderer={i => <SampleComponent id={items[i].id} />}
       />
     );
 
