@@ -2,6 +2,6 @@
 import { useSelector, shallowEqual } from "react-redux";
 import { isSidebarOpen } from "Models/sidebar";
 
-export function useIsMenuOpen() {
+export function useIsSidebarOpen() {
   return useSelector(isSidebarOpen, shallowEqual);
 }

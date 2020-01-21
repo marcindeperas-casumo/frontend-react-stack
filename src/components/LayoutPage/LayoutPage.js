@@ -3,8 +3,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import classNames from "classnames";
 import Sidebar from "Components/Sidebar";
-import { useIsScreenMinimumTablet } from "Utils/hooks";
-import { useIsMenuOpen } from "Utils/hooks/useIsMenuOpen";
+import { useIsScreenMinimumTablet, useIsSidebarOpen } from "Utils/hooks";
 import "./LayoutPage.scss";
 
 type Props = {
@@ -12,14 +11,14 @@ type Props = {
 };
 
 export const LayoutPage = (props: Props) => {
-  const isMenuOpen = useIsMenuOpen();
+  const isMenuOpen = useIsSidebarOpen();
   const isSidebarFixed = useIsScreenMinimumTablet();
 
   return (
     <Flex
       direction={isSidebarFixed ? "horizontal" : "vertical"}
       className={classNames(
-        isMenuOpen && "c-layout--menu-open",
+        isMenuOpen && "c-layout--sidebar-open",
         "u-height--full"
       )}
       spacing="none"
