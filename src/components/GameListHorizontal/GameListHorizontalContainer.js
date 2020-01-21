@@ -1,10 +1,11 @@
 // @flow
 import React from "react";
-import { propOr } from "ramda";
 import gql from "graphql-tag";
+import { propOr } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS, GAME_LIST_IDS } from "Src/constants";
 import { GameListHorizontal } from "Components/GameListHorizontal/GameListHorizontal";
+import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import TrackProvider from "Components/TrackProvider";
 
 type Props = {
@@ -12,16 +13,9 @@ type Props = {
   id: string,
 };
 
-// Polling for updates is temporary.
-// We are going to move to use subscriptions once the GraphQL server is ready for it.
-const THIRTY_SECONDS = 30000;
-const POLL_INTERVAL = {
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: THIRTY_SECONDS,
-  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: THIRTY_SECONDS,
-  default: 0,
-};
-
-export const GAME_LIST_QUERY = gql`
+// __FIX__ this should really live in a .graphql file and reference th
+// fragments for its child components. However when I try it explodes. :(
+export const GameListQuery = gql`
   query gameListQuery($id: String!) {
     gamesList(listId: $id) {
       id
@@ -54,14 +48,31 @@ export const GAME_LIST_QUERY = gql`
   }
 `;
 
+// Polling for updates is temporary.
+// We are going to move to use subscriptions once the GraphQL server is ready for it.
+const THIRTY_SECONDS = 30000;
+const POLL_INTERVAL = {
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES]: THIRTY_SECONDS,
+  [GAME_LIST_IDS.LIVE_CASINO_GAMES_ALIAS]: THIRTY_SECONDS,
+  default: 0,
+};
+
 export const GameListHorizontalContainer = ({ id }: Props) => {
   const variables = { id };
   const pollInterval = POLL_INTERVAL[id] || POLL_INTERVAL.default;
-  const { data, loading } = useQuery(GAME_LIST_QUERY, {
+  const { data, loading } = useQuery(GameListQuery, {
     variables,
     pollInterval,
   });
   const list = propOr({}, "gamesList", data);
+
+  if (loading) {
+    return (
+      <div className="o-wrapper">
+        <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
+      </div>
+    );
+  }
 
   return (
     <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>

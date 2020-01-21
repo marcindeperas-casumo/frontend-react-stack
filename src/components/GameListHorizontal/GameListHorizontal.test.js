@@ -7,7 +7,6 @@ import {
   ITEMS_CONTROL_STYLING,
 } from "Components/GameListHorizontal/GameListHorizontal";
 import ScrollableList from "Components/ScrollableList";
-import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
@@ -43,9 +42,9 @@ describe("<GameListHorizontal /> - Mobile and Tablet", () => {
   });
 
   test("passes the game-ids to the ScrollableList", () => {
-    const { itemIds } = rendered.find(ScrollableList).props();
+    const { items } = rendered.find(ScrollableList).props();
 
-    expect(itemIds).toBe(list.games);
+    expect(items).toBe(list.games);
   });
 
   test("uses the default renderer if it is not specified", () => {
@@ -64,17 +63,6 @@ describe("<GameListHorizontal /> - Mobile and Tablet", () => {
       .props();
 
     expect(seeMoreTextProp).toBe(seeMoreText);
-  });
-
-  test("displays a skeleton if the game-list is still loading", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <GameListHorizontal list={list} isLoading={true} />
-      </MockStore>
-    );
-
-    expect(rendered.find(GameListHorizontalSkeleton)).toHaveLength(1);
-    expect(rendered.find(ScrollableList)).toHaveLength(0);
   });
 
   test("does not render anything if it is loaded but has no games", () => {
@@ -111,17 +99,6 @@ describe("<GameListHorizontal /> - Desktop", () => {
     const { Component } = rendered.find(ScrollableListPaginated).props();
 
     expect(Component).toEqual(ITEM_RENDERERS.default);
-  });
-
-  test("displays a skeleton if the game-list is still loading", () => {
-    rendered = mount(
-      <MockStore state={defaultState}>
-        <GameListHorizontal list={list} isLoading={true} />
-      </MockStore>
-    );
-
-    expect(rendered.find(GameListHorizontalSkeleton)).toHaveLength(1);
-    expect(rendered.find(ScrollableListPaginated)).toHaveLength(0);
   });
 
   test("uses the default tileHeight if it is not specified", () => {

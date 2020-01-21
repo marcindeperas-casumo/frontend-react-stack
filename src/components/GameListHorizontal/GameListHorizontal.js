@@ -8,21 +8,19 @@ import ScrollableList from "Components/ScrollableList";
 import { GameTileExclusive as GameTileExclusiveContainer } from "Components/GameTileExclusive";
 import { LiveCasinoCard as LiveCasinoCardContainer } from "Components/LiveCasinoCard";
 import { GameTile as GameTileContainer } from "Components/GameTile";
-import { GameListHorizontalSkeleton } from "Components/GameListHorizontal/GameListHorizontalSkeleton";
+import * as A from "Types/apollo";
 
 import "./GameListHorizontal.scss";
 
 export type GameListObject = {
   id: string,
   title: string,
-  games: Array<string>,
+  games: Array<A.gameListQuery_gamesList_games>,
 };
 
 export type Props = {
-  /** The game list object got from the store. */
+  /** The game list object. */
   list: GameListObject,
-  /** The game list object is being loaded. */
-  isLoading: boolean,
   /** "see more" link translation */
   seeMoreText: string,
 };
@@ -62,23 +60,15 @@ export const ITEMS_CONTROL_STYLING = {
 
 export class GameListHorizontal extends PureComponent<Props> {
   render() {
-    const { list, isLoading, seeMoreText } = this.props;
-    const { id, title, games: itemIds } = list;
-    const hasNoGames = isEmpty(itemIds) || isNil(itemIds);
+    const { list, seeMoreText } = this.props;
+    const { id, title, games } = list;
+    const hasNoGames = isEmpty(games) || isNil(games);
     const seeMoreUrl = SEE_MORE_URL[id];
     const itemRenderer = ITEM_RENDERERS[id] || ITEM_RENDERERS.default;
     const className = GAME_LIST_CLASS_NAME[id] || GAME_LIST_CLASS_NAME.default;
     const tileHeight = TILE_HEIGHTS[id] || TILE_HEIGHTS.default;
     const itemControlClass =
       ITEMS_CONTROL_STYLING[id] || ITEMS_CONTROL_STYLING.default;
-
-    if (isLoading) {
-      return (
-        <div className="o-wrapper">
-          <GameListHorizontalSkeleton key={`game-list-skeleton-${id}`} />
-        </div>
-      );
-    }
 
     if (hasNoGames) {
       return null;
@@ -93,7 +83,7 @@ export class GameListHorizontal extends PureComponent<Props> {
               title={title}
               seeMoreText={seeMoreText}
               seeMoreUrl={seeMoreUrl}
-              itemIds={itemIds}
+              items={games}
               Component={itemRenderer}
             />
           </MobileAndTablet>
@@ -101,7 +91,7 @@ export class GameListHorizontal extends PureComponent<Props> {
             <ScrollableListPaginated
               list={{
                 title,
-                itemIds,
+                itemIds: games,
               }}
               Component={itemRenderer}
               className={className}
