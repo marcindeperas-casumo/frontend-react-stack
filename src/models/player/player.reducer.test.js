@@ -64,7 +64,7 @@ describe("Player/reducer", () => {
     expect(state).toMatchObject({ sessionValid: true });
   });
 
-  test("sessionValid is false when cometd message session ended is recieved", () => {
+  test("sessionValid is false when cometd message session ended is received", () => {
     const action = {
       type: "COMETD/MESSAGE",
       channel: "/session/d1be3423-d26e-4ce3-88c4-1916289ffb9b/ended",
