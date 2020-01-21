@@ -11,14 +11,12 @@ export type AnnualOverview = {
   convertedBonusesAmount: number,
   startingBalanceAmount: number,
   endBalanceAmount: number,
-  pdfUrl?: string,
 };
 
 export type AnnualOverviewWrapper = {
   data?: AnnualOverview,
   meta: {
     isFetching?: boolean,
-    isPdfUrlFetching?: boolean,
   },
 };
 
