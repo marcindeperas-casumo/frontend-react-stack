@@ -25,10 +25,7 @@ type Props = {
   renderItem: (game: string) => React.Node,
 };
 
-export class GamesVirtualList extends React.PureComponent<
-  Props,
-  State
-> {
+export class GamesVirtualList extends React.PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

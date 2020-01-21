@@ -1,7 +1,6 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList/GameSearchResultsVirtualList";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow } from "Components/GameRow/GameRow";
 import SearchNotFound from "Components/SearchNotFound";
