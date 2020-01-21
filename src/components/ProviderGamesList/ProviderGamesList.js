@@ -14,7 +14,7 @@ type Props = {
   loading: boolean,
   games: Array<Object>,
   gamesCount: number,
-  onLoadMore: () => Promise,
+  onLoadMore: () => Promise<boolean>,
 };
 
 export const PAGE_SIZE = 20;
@@ -33,7 +33,7 @@ export const ProviderGamesList = ({
   loading = true,
   games = [],
   gamesCount = 0,
-  onLoadMore = () => {},
+  onLoadMore,
 }: Props) => {
   if (loading) {
     return <ProviderGamesListSkeleton />;

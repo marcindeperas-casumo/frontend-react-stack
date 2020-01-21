@@ -47,13 +47,14 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
     fetchPolicy: "cache-and-network",
   });
   const games = data?.gameStudio?.games || [];
+  const gamesCount = data?.gameStudio?.gamesCount || 0;
   const nextPage = Math.floor(games.length / PAGE_SIZE);
 
   return (
     <ProviderGamesList
       games={games}
       loading={loading && !games}
-      gamesCount={data?.gameStudio?.gamesCount}
+      gamesCount={gamesCount}
       onLoadMore={() =>
         fetchMore({
           variables: {

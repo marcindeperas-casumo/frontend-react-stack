@@ -14,7 +14,7 @@ stories.add("Default", () => (
       loading={false}
       games={games}
       gamesCount={games.length}
-      onLoadMore={() => {}}
+      onLoadMore={() => Promise.resolve(true)}
     />
   </MockStore>
 ));
@@ -25,7 +25,7 @@ stories.add("Loading State", () => (
       loading={true}
       games={[]}
       gamesCount={0}
-      onLoadMore={() => {}}
+      onLoadMore={() => Promise.resolve(true)}
     />
   </MockStore>
 ));
