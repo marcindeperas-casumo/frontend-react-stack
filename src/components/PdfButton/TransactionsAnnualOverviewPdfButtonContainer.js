@@ -15,18 +15,13 @@ export const TransactionsAnnualOverviewPdfButtonContainer = ({
   year,
   label,
 }: Props) => {
-  const Connected = connect(
-    state => ({
-      href: getSummaryUrl({
-        forPdf: true,
-        date: DateTime.utc(year),
-        currency: currencySelector(state),
-      }),
+  const Connected = connect(state => ({
+    href: getSummaryUrl({
+      asPdf: true,
+      date: DateTime.utc(year),
+      currency: currencySelector(state),
     }),
-    {
-      fetchHref: () => {},
-    }
-  )(PdfButton);
+  }))(PdfButton);
 
   return <Connected label={label} />;
 };

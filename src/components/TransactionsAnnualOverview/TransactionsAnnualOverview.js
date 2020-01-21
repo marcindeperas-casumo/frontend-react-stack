@@ -19,9 +19,6 @@ type Content = {
 };
 
 type Props = {
-  /**
-   * Passed in from url.
-   */
   selectedYear: string,
   locale: string,
   t: Content,

@@ -40,7 +40,7 @@ type GetSummaryUrlProps = {
   date: DateTime,
   currency: $Values<typeof CURRENCIES>,
   periodicity?: "ANNUAL" | "MONTHLY" | "DAILY",
-  forPdf?: boolean,
+  asPdf?: boolean,
 };
 
 const getWalletTotalsUrl = ({
@@ -125,9 +125,9 @@ export const getSummaryUrl = ({
   periodicity = "ANNUAL",
   date,
   currency,
-  forPdf = false,
+  asPdf = false,
 }: GetSummaryUrlProps): string => {
   return `/casino-player/player-transactions/api/summaries/${periodicity}/${date.toFormat(
     "y-MM-dd"
-  )}/${currency}${forPdf ? "/PDF" : ""}`;
+  )}/${currency}${asPdf ? "/PDF" : ""}`;
 };

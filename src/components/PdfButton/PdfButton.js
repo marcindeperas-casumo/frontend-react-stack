@@ -6,10 +6,14 @@ import { DownloadIcon } from "@casumo/cmp-icons";
 export type PdfButtonProps = {
   href?: string,
   label: string,
-  fetchHref: () => void,
+  fetchHref?: () => void,
 };
 
-export function PdfButton({ href, fetchHref, label }: PdfButtonProps) {
+export function PdfButton({
+  href,
+  fetchHref = () => {},
+  label,
+}: PdfButtonProps) {
   const isDisabled = !href;
 
   useEffect(() => {
