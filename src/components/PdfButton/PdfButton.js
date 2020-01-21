@@ -16,7 +16,7 @@ export function PdfButton({ href, fetchHref, label }: PdfButtonProps) {
     if (!href) {
       fetchHref();
     }
-  });
+  }, [fetchHref, href]);
 
   return (
     <Button

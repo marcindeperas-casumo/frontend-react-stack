@@ -66,7 +66,6 @@ import {
 import {
   types as transactionsBetsHistoryTypes,
   fetchAnnualOverviewSaga,
-  fetchAnnualOverviewPdfUrlSaga,
 } from "Models/transactionsBetsHistory";
 import { danishOverlaySaga } from "Models/compliance/denmark";
 
@@ -192,11 +191,6 @@ export default function* rootSaga(dispatch) {
     takeEvery,
     transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_INIT,
     fetchAnnualOverviewSaga
-  );
-  yield fork(
-    takeEvery,
-    transactionsBetsHistoryTypes.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
-    fetchAnnualOverviewPdfUrlSaga
   );
   yield fork(takeEvery, gameTypes.UPDATE_MY_LIST, updateMyListSaga);
   yield fork(takeEvery, appTypes.APP_STARTED, danishOverlaySaga);

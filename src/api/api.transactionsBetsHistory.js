@@ -143,7 +143,7 @@ export const getSummaryUrl = ({
   currency,
   forPdf = false,
 }: GetSummaryUrlProps): string => {
-  return `/casino-player/player-transactions/api/summaries/${periodicity}/${date}/${currency}${
-    forPdf ? "/PDF" : ""
-  }`;
+  return `/casino-player/player-transactions/api/summaries/${periodicity}/${date.toFormat(
+    "y-MM-dd"
+  )}/${currency}${forPdf ? "/PDF" : ""}`;
 };

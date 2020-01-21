@@ -19,7 +19,10 @@ type Content = {
 };
 
 type Props = {
-  selectedYear: number,
+  /**
+   * Passed in from url.
+   */
+  selectedYear: string,
   locale: string,
   t: Content,
   data?: AnnualOverview,
@@ -129,7 +132,7 @@ export function TransactionsAnnualOverview({
         {...passedProps}
       />
       <PdfButton
-        year={selectedYear}
+        year={Number.parseInt(selectedYear, 10)}
         label={t.annual_transactions_download_pdf}
       />
     </div>
