@@ -1,20 +1,19 @@
 import { sidebarReducer } from "./sidebar.reducer";
+import { sidebarOpenAction, sidebarCloseAction } from "./sidebar.actions";
 
-describe("menu reducer", () => {
+describe("sidebar reducer", () => {
   test("initial state is closed", () => {
     const state = sidebarReducer(undefined, {});
     expect(state).toEqual({ open: false });
   });
 
-  test("menu open", () => {
-    const action = { type: "MENU/OPEN" };
-    const state = sidebarReducer({}, action);
+  test("sidebar is OPEN if sidebarCloseAction is dispatched", () => {
+    const state = sidebarReducer({}, sidebarOpenAction());
     expect(state).toMatchObject({ open: true });
   });
 
-  test("menu closed", () => {
-    const action = { type: "MENU/CLOSED" };
-    const state = sidebarReducer({}, action);
+  test("sidebar is CLOSED if sidebarCloseAction is dispatched", () => {
+    const state = sidebarReducer({}, sidebarCloseAction());
     expect(state).toMatchObject({ open: false });
   });
 });
