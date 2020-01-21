@@ -64,15 +64,13 @@ export class GameSearch extends React.PureComponent<Props> {
       <GameRow search={{ query, highlightSearchQuery: true }} game={game} />
     );
 
-    console.log(searchResults);
-
     if (!query.length) {
       return (
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
           <div className="c-game-search-virtual-list">
-            <GameSearchResultsVirtualList // GamesVirtualList
+            <GamesVirtualList // GamesVirtualList
               renderItem={GameRowHighlightSearch}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
               fetchMoreRows={fetchMoreRows}
@@ -106,7 +104,7 @@ export class GameSearch extends React.PureComponent<Props> {
             />
           ) : (
             <div className="c-game-search-virtual-list u-game-search-max-width">
-              <GameSearchResultsVirtualList
+              <GamesVirtualList
                 rowCount={searchResultsCount}
                 query={query}
                 games={searchResults}
