@@ -4,10 +4,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { CrossIcon } from "@casumo/cmp-icons";
 import { menuCloseAction } from "Models/menu";
-import { useIsSidebarFixed } from "./useIsSidebarFixed";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 
-export const MenuCloseIcon = () => {
-  const isSidebarFixed = useIsSidebarFixed();
+export const SidebarCloseIcon = () => {
+  const isSidebarFixed = useIsScreenMinimumTablet();
   const dispatch = useDispatch();
 
   return (

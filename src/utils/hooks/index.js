@@ -14,3 +14,4 @@ export { useGameLaunchData } from "./useGameLaunchData";
 export { useCrossCodebaseNavigation } from "./useCrossCodebaseNavigation";
 export { useJurisdiction } from "./useJurisdiction";
 export { useIsMenuOpen } from "./useIsMenuOpen";
+export { useIsScreenMinimumTablet } from "./useIsScreenMinimumTablet";

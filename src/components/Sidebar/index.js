@@ -1,4 +1,4 @@
 // @flow
 export { default } from "./SidebarContainer";
-export { MenuOpenIcon } from "./MenuOpenIcon";
-export { MenuCloseIcon } from "./MenuCloseIcon";
+export { SidebarOpenIcon } from "./SidebarOpenIcon";
+export { SidebarCloseIcon } from "./SidebarCloseIcon";

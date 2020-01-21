@@ -2,7 +2,7 @@ import { isMenuOpen } from "./menu.selectors";
 
 describe("menu selectors", () => {
   describe("isMenuOpen", () => {
-    test("menu is not open", () => {
+    test("returns FALSE if the menu is not open", () => {
       expect(
         isMenuOpen({
           menu: {
@@ -12,7 +12,7 @@ describe("menu selectors", () => {
       ).toEqual(false);
     });
 
-    test("menu is open", () => {
+    test("returns TRUE if the menu is open", () => {
       expect(
         isMenuOpen({
           menu: {

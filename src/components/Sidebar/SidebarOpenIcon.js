@@ -4,10 +4,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { MenuIcon } from "@casumo/cmp-icons";
 import { menuOpenAction } from "Models/menu";
-import { useIsSidebarFixed } from "./useIsSidebarFixed";
+import { useIsScreenMinimumTablet } from "Utils/hooks";
 
-export const MenuOpenIcon = () => {
-  const isSidebarFixed = useIsSidebarFixed();
+export const SidebarOpenIcon = () => {
+  const isSidebarFixed = useIsScreenMinimumTablet();
   const dispatch = useDispatch();
 
   return (
