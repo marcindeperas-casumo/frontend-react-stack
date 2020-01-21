@@ -77,7 +77,7 @@ export const GameListHorizontalContainer = ({ id }: Props) => {
   return (
     <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
       {/* __FIX__ Fix the seeMoreText variable here to come from GraphQL */}
-      <GameListHorizontal seeMoreText="..." list={list} isLoading={loading} />
+      <GameListHorizontal seeMoreText="..." list={list} />
     </TrackProvider>
   );
 };
