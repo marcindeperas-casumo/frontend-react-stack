@@ -48,11 +48,6 @@ type GetSummaryUrlProps = {
   forPdf?: boolean,
 };
 
-export const URLS = {
-  HANDSHAKE: "/api/common/handshake",
-  SUMMARIES: "/casino-player/player-transactions/api/summaries",
-};
-
 const getWalletTotalsUrl = ({
   walletId,
   startTime,
