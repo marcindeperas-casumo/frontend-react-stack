@@ -10,7 +10,7 @@ import { GameTile } from "Components/GameTile";
 describe("ScrollableList", () => {
   test("render the title of the list", () => {
     const title = "hi";
-    const rendered = shallow(<ScrollableList itemIds={[1]} title={title} />);
+    const rendered = shallow(<ScrollableList items={[1]} title={title} />);
     const titleComponent = rendered.find(ScrollableListTitleRow);
 
     expect(titleComponent.length).toBe(1);
@@ -18,13 +18,13 @@ describe("ScrollableList", () => {
   });
 
   test("do not render anything if the items are empty", () => {
-    const rendered = shallow(<ScrollableList itemIds={[]} title="hi" />);
+    const rendered = shallow(<ScrollableList items={[]} title="hi" />);
 
     expect(rendered.get(0)).toBeNull();
   });
 
   test("renders with the GameTileContainer by default", () => {
-    const rendered = shallow(<ScrollableList itemIds={[1, 2]} title="hi" />);
+    const rendered = shallow(<ScrollableList items={[1, 2]} title="hi" />);
 
     expect(
       rendered
@@ -37,7 +37,11 @@ describe("ScrollableList", () => {
   test("renders with the custom component if passed", () => {
     const SampleComponent = ({ id }) => <span>{id}</span>;
     const rendered = shallow(
-      <ScrollableList itemIds={[1, 2]} title="hi" Component={SampleComponent} />
+      <ScrollableList
+        items={[{ id: 1 }, { id: 2 }]}
+        title="hi"
+        Component={SampleComponent}
+      />
     );
 
     expect(
@@ -59,7 +63,7 @@ describe("ScrollableList", () => {
   });
 
   test("has default spacing", () => {
-    const rendered = shallow(<ScrollableList itemIds={[1]} title="hi" />);
+    const rendered = shallow(<ScrollableList items={[1]} title="hi" />);
     const scrollable = rendered.find(Scrollable);
 
     expect(scrollable.props()).toMatchObject({ itemSpacing: DEFAULT_SPACING });
@@ -68,7 +72,7 @@ describe("ScrollableList", () => {
   test("overrides the spacing if needed", () => {
     const spacing = "md";
     const rendered = shallow(
-      <ScrollableList itemIds={[1]} title="hi" spacing={spacing} />
+      <ScrollableList items={[1]} title="hi" spacing={spacing} />
     );
     const scrollable = rendered.find(Scrollable);
 

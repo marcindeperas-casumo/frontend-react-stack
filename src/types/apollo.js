@@ -1,13 +1,135 @@
 // @flow
 // ====================================================
+// GraphQL query operation: componentBuilderQuery
+// ====================================================
+export type componentBuilderQuery = {
+  /**
+   * "getCMSFieldAsJSON" is only needed for the component builder until we add type-definitions for all the
+   * component properties that are available to be used for the component builder.
+   * Task: https://jira.casumocave.com/browse/PRCA-308
+   */
+  componentDefinitionJSON: string,
+};
+export type componentBuilderQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: gameListQuery
+// ====================================================
+
+export type gameListQuery_gamesList_games_liveCasinoLobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type gameListQuery_gamesList_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?gameListQuery_gamesList_games_liveCasinoLobby_bets,
+};
+export type gameListQuery_gamesList_games = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+  liveCasinoLobby: ?gameListQuery_gamesList_games_liveCasinoLobby,
+};
+export type gameListQuery_gamesList = {
+  id: ?string,
+  title: ?string,
+  games: Array<gameListQuery_gamesList_games>,
+};
+export type gameListQuery = {
+  gamesList: ?gameListQuery_gamesList,
+};
+export type gameListQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: gameStudiosQuery
+// ====================================================
+
+export type gameStudiosQuery_gameStudios = {
+  id: string,
+  url: string,
+  background: string,
+  logo: string,
+  slug: string,
+  name: string,
+};
+export type gameStudiosQuery = {
+  gameStudios: Array<?gameStudiosQuery_gameStudios>,
+};
+
+// ====================================================
+// GraphQL query operation: GameTileHeartQuery
+// ====================================================
+
+export type GameTileHeartQuery_gamesList_games = {
+  id: string,
+};
+export type GameTileHeartQuery_gamesList = {
+  id: ?string,
+  games: Array<GameTileHeartQuery_gamesList_games>,
+};
+export type GameTileHeartQuery = {
+  gamesList: ?GameTileHeartQuery_gamesList,
+};
+
+// ====================================================
+// GraphQL mutation operation: AddGameToMyList
+// ====================================================
+
+export type AddGameToMyList_addGameToMyList = {
+  id: string,
+  isInMyList: boolean,
+};
+export type AddGameToMyList = {
+  addGameToMyList: ?AddGameToMyList_addGameToMyList,
+};
+export type AddGameToMyListVariables = {
+  slug: string,
+  id: string,
+};
+
+// ====================================================
+// GraphQL mutation operation: RemoveGameFromMyList
+// ====================================================
+
+export type RemoveGameFromMyList_removeGameFromMyList = {
+  id: string,
+  isInMyList: boolean,
+};
+export type RemoveGameFromMyList = {
+  removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList,
+};
+export type RemoveGameFromMyListVariables = {
+  slug: string,
+  id: string,
+};
+
+// ====================================================
 // GraphQL query operation: JackpotsQuery
 // ====================================================
+
 export type JackpotsQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
 export type JackpotsQuery_gamesList_games_lobby = {
+  id: ?string,
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
 export type JackpotsQuery_gamesList_games_jackpot_value = {
@@ -19,6 +141,7 @@ export type JackpotsQuery_gamesList_games_jackpot = {
   value: JackpotsQuery_gamesList_games_jackpot_value,
 };
 export type JackpotsQuery_gamesList_games = {
+  id: string,
   slug: string,
   name: string,
   logo: string,
@@ -28,7 +151,7 @@ export type JackpotsQuery_gamesList_games = {
 };
 export type JackpotsQuery_gamesList = {
   title: ?string,
-  games: ?Array<?JackpotsQuery_gamesList_games>,
+  games: Array<JackpotsQuery_gamesList_games>,
 };
 export type JackpotsQuery = {
   gamesList: ?JackpotsQuery_gamesList,
@@ -46,7 +169,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename:
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
-        | "PlayerValuableFreeBetLocked"
         | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
@@ -674,6 +796,7 @@ export type FREEBET_QUERY_player_valuables = {
   backgroundImage: string,
   currency: Currency,
   expiryDate: BigInt,
+  created: BigInt,
   market: string,
   valuableState: PlayerValuableState,
   valuableType: ValuableType,
@@ -1112,6 +1235,7 @@ export type GameRow_Game_lobby_bets = {
   symbol: ?string,
 };
 export type GameRow_Game_lobby = {
+  id: ?string,
   bets: ?GameRow_Game_lobby_bets,
 };
 export type GameRow_Game_jackpot_value = {
@@ -1123,12 +1247,37 @@ export type GameRow_Game_jackpot = {
   value: GameRow_Game_jackpot_value,
 };
 export type GameRow_Game = {
+  id: string,
   slug: string,
   name: string,
   logo: string,
   logoBackground: string,
   lobby: ?GameRow_Game_lobby,
   jackpot: ?GameRow_Game_jackpot,
+};
+
+// ====================================================
+// GraphQL fragment: GameTile_Game
+// ====================================================
+
+export type GameTile_Game = {
+  isInMaintenance: boolean,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
+  id: string,
+  isInMyList: boolean,
+};
+
+// ====================================================
+// GraphQL fragment: GameTileInMaintenance_Game
+// ====================================================
+
+export type GameTileInMaintenance_Game = {
+  backgroundImage: string,
+  logo: string,
+  name: string,
 };
 
 // ====================================================
@@ -1141,6 +1290,7 @@ export type Jackpots_Game_lobby_bets = {
   symbol: ?string,
 };
 export type Jackpots_Game_lobby = {
+  id: ?string,
   bets: ?Jackpots_Game_lobby_bets,
 };
 export type Jackpots_Game_jackpot_value = {
@@ -1152,6 +1302,7 @@ export type Jackpots_Game_jackpot = {
   value: Jackpots_Game_jackpot_value,
 };
 export type Jackpots_Game = {
+  id: string,
   slug: string,
   name: string,
   logo: string,
@@ -1168,7 +1319,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
@@ -1389,7 +1539,6 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   title: string,
@@ -1425,7 +1574,6 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
@@ -1728,20 +1876,14 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type ValuableType =
-  | "cash"
-  | "deposit"
-  | "freeBet"
-  | "freeBetLocked"
-  | "spins"
-  | "sport";
+export type ValuableType = "cash" | "deposit" | "freeBet" | "spins" | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD";
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD" | "SEK";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";

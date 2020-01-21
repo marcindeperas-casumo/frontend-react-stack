@@ -1,0 +1,5 @@
+fragment GameTileInMaintenance_Game on Game {
+  backgroundImage
+  logo
+  name
+}

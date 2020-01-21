@@ -1,0 +1,12 @@
+# import ./GameTileInMaintenance.graphql
+
+fragment GameTile_Game on Game {
+  isInMaintenance
+  backgroundImage
+  logo
+  name
+  slug
+  id
+  isInMyList
+  ...GameTileInMaintenance_Game
+}

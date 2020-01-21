@@ -13,13 +13,11 @@ import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
-import type { Game } from "Types/game";
+import * as A from "Types/apollo";
 
 export type Props = {
-  game: Game,
-  isInMyList: boolean,
+  game: A.gameListQuery_gamesList_games,
   launchGame: Function,
-  onFavouriteGame: Function,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
@@ -59,13 +57,14 @@ export default class LiveCasinoCard extends PureComponent<Props> {
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
               data={{
                 [EVENT_PROPS.GAME_NAME]: this.props.game.name,
-                [EVENT_PROPS.IS_FAVOURITE]: !this.props.isInMyList,
+                [EVENT_PROPS.IS_FAVOURITE]: !this.props.game.isInMyList,
               }}
             >
               <GameTileHeart
                 className="u-width--4xlg u-height--4xlg u-padding--md"
-                onClick={this.props.onFavouriteGame}
-                isActive={this.props.isInMyList}
+                gameId={this.props.game.id}
+                gameSlug={this.props.game.slug}
+                isInMyList={this.props.game.isInMyList}
               />
             </TrackClick>
           </div>

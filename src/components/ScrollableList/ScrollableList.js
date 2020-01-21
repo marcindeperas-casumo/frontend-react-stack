@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
-import { isEmpty, prop } from "ramda";
+import { isEmpty } from "ramda";
 import type {
   spacerSizes,
   responsiveSpacerSizes,
@@ -20,7 +20,7 @@ type Props = {
   title: string,
   /** url to "see more" page, if null will not render "see more" button */
   seeMoreUrl?: string,
-  itemIds: Array<string>,
+  items: Array<any>,
   Component: Function,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
@@ -30,22 +30,21 @@ type Props = {
 
 export default class ScrollableList extends PureComponent<Props> {
   static defaultProps = {
-    itemIds: [],
+    items: [],
     spacing: DEFAULT_SPACING,
     Component: GameTile,
   };
 
-  keyGetter = (i: number) => prop(i, this.props.itemIds);
+  keyGetter = (i: number) => this.props.items[i].id;
 
   itemRenderer = (i: number) => {
-    const { Component, itemIds } = this.props;
-    // __FIX__: change "id" to "item" here
-    return <Component id={itemIds[i]} />;
+    const { Component, items } = this.props;
+    return <Component item={items[i]} />;
   };
 
   render() {
     const {
-      itemIds,
+      items,
       seeMoreText,
       seeMoreUrl,
       spacing,
@@ -53,7 +52,7 @@ export default class ScrollableList extends PureComponent<Props> {
       itemClassName,
     } = this.props;
 
-    if (isEmpty(itemIds)) {
+    if (isEmpty(items)) {
       return null;
     }
 
@@ -65,7 +64,7 @@ export default class ScrollableList extends PureComponent<Props> {
           title={title}
         />
         <Scrollable
-          numberOfItems={itemIds.length}
+          numberOfItems={items.length}
           keyGetter={this.keyGetter}
           itemRenderer={this.itemRenderer}
           itemClassName={itemClassName}
