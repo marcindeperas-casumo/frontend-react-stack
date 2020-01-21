@@ -47,12 +47,9 @@ export function RealityCheck(props: Props) {
       realityCheck.totalWinAmount.amount - realityCheck.totalBetAmount.amount
     ),
   });
-  const amountLostMessage =
-    t.reality_check_amount_lost_message &&
-    t.reality_check_amount_lost_message.replace(
-      "{{ amount | € }}",
-      formattedLostAmount
-    );
+  const amountLostMessage = interpolate(t.reality_check_amount_lost_message, {
+    amount: formattedLostAmount,
+  });
   const hiTitle = interpolate(t.reality_check_title, {
     name: casumoName,
   });

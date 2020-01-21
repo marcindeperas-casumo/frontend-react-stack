@@ -1,15 +1,15 @@
 import { createReducer } from "Utils";
-import { types, PLAYING_STATE } from "./playing.constants";
+import { types } from "./playing.constants";
 
 const DEFAULT_STATE = {
-  state: PLAYING_STATE.STOPPED,
+  isPlaying: false,
   gameId: null,
 };
 
 const handlers = {
-  [types.PLAYING]: (prevState, { state, gameId = null }) => ({
+  [types.PLAYING]: (prevState, { isPlaying, gameId = null }) => ({
     ...prevState,
-    state,
+    isPlaying,
     gameId,
   }),
 };
