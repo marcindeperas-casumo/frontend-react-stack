@@ -11,14 +11,14 @@ type Props = {
 };
 
 export const LayoutPage = (props: Props) => {
-  const isMenuOpen = useIsSidebarOpen();
+  const isSidebarOpen = useIsSidebarOpen();
   const isSidebarFixed = useIsScreenMinimumTablet();
 
   return (
     <Flex
       direction={isSidebarFixed ? "horizontal" : "vertical"}
       className={classNames(
-        isMenuOpen && "c-layout--sidebar-open",
+        isSidebarOpen && "c-layout--sidebar-open",
         "u-height--full"
       )}
       spacing="none"
