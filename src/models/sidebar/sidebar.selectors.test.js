@@ -1,10 +1,10 @@
-import { isMenuOpen } from "./menu.selectors";
+import { isSidebarOpen } from "./sidebar.selectors";
 
 describe("menu selectors", () => {
   describe("isMenuOpen", () => {
     test("returns FALSE if the menu is not open", () => {
       expect(
-        isMenuOpen({
+        isSidebarOpen({
           menu: {
             open: false,
           },
@@ -14,7 +14,7 @@ describe("menu selectors", () => {
 
     test("returns TRUE if the menu is open", () => {
       expect(
-        isMenuOpen({
+        isSidebarOpen({
           menu: {
             open: true,
           },
