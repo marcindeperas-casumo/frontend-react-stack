@@ -45,23 +45,6 @@ export type Action = {
   type: string,
 };
 
-export type FetchAnnualOverviewPdfUrlProps = {
-  /** The full name of a player to generate pdf for */
-  name: string,
-  /** Player's Identification Number */
-  dni: string,
-  /** The year for which to generate the pdf */
-  year: number,
-  /** All the properties below are sent as formatted amounts with currency */
-  startingBalance: string,
-  endingBalance: string,
-  totalDeposits: string,
-  totalWithdrawals: string,
-  totalWagers: string,
-  totalWins: string,
-  totalBonusesConverted: string,
-};
-
 export type AmountWithCodeResponseRaw = {
   amount: number,
   iso4217CurrencyCode: string,

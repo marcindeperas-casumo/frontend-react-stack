@@ -8,7 +8,6 @@ import type {
   AnnualOverview,
   WalletTotalsProps,
   WalletTransactionsProps,
-  FetchAnnualOverviewPdfUrlProps,
   TransactionResponseRaw,
   AmountWithCodeResponseRaw,
   StartingEndBalance,
@@ -36,10 +35,6 @@ type GameroundsTotalsResponseRaw = Array<{
 }>;
 
 type TotalsResponse = $Diff<AnnualOverview, StartingEndBalance>;
-
-type AnnualOverviewPdfUrlResponseRaw = {
-  downloadUrl: string,
-};
 
 type GetSummaryUrlProps = {
   date: DateTime,
@@ -125,12 +120,6 @@ export const getTransactionsReq = (
   http: HTTPClient = clientHttp
 ): Promise<Array<TransactionResponseRaw>> =>
   http.get(getTransactionsUrl(props));
-
-export const getAnnualOverviewPdfUrlReq = (
-  props: FetchAnnualOverviewPdfUrlProps,
-  http: HTTPClient = clientHttp
-): Promise<AnnualOverviewPdfUrlResponseRaw> =>
-  http.post(`${COMMON_URLS.QUERY}/annual-summary-print`, props);
 
 export const getSummaryUrl = ({
   periodicity = "ANNUAL",
