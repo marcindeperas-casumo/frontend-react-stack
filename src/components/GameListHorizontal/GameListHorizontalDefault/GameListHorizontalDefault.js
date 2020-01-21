@@ -1,7 +1,7 @@
 // @flow
 import React, { PureComponent } from "react";
 import ScrollableList from "Components/ScrollableList";
-import { GameTileExclusive } from "Components/GameTileExclusive";
+import { GameTile } from "Components/GameTile";
 import { MobileAndTablet } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "../GameListHorizontal.scss";
@@ -16,7 +16,7 @@ export type Props = {
   list: GameListObject,
 };
 
-export class GameListHorizontalExclusive extends PureComponent<Props> {
+export class GameListHorizontalDefault extends PureComponent<Props> {
   render() {
     const { list } = this.props;
     const { title, games } = list;
@@ -27,7 +27,7 @@ export class GameListHorizontalExclusive extends PureComponent<Props> {
           <MobileAndTablet>
             <ScrollableList
               itemClassName="c-top-game"
-              itemRenderer={i => <GameTileExclusive item={games[i]} />}
+              itemRenderer={i => <GameTile item={games[i]} />}
               items={games}
               seeMoreText=""
               title={title}
