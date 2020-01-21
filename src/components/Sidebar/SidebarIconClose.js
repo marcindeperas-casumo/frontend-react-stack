@@ -3,10 +3,10 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { CrossIcon } from "@casumo/cmp-icons";
-import { menuCloseAction } from "Models/menu";
+import { sidebarCloseAction } from "Models/sidebar";
 import { useIsScreenMinimumTablet } from "Utils/hooks";
 
-export const SidebarCloseIcon = () => {
+export const SidebarIconClose = () => {
   const isSidebarFixed = useIsScreenMinimumTablet();
   const dispatch = useDispatch();
 
@@ -14,7 +14,8 @@ export const SidebarCloseIcon = () => {
     !isSidebarFixed && (
       <div
         className="u-position-absolute"
-        onClick={() => dispatch(menuCloseAction())}
+        onClick={() => dispatch(sidebarCloseAction())}
+        data-test-id="sidebar-close"
       >
         <CrossIcon
           size="md"

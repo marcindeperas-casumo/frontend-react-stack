@@ -1,7 +1,7 @@
 // @flow
 import { useSelector, shallowEqual } from "react-redux";
-import { isMenuOpen } from "Models/menu";
+import { isSidebarOpen } from "Models/sidebar";
 
 export function useIsMenuOpen() {
-  return useSelector(isMenuOpen, shallowEqual);
+  return useSelector(isSidebarOpen, shallowEqual);
 }

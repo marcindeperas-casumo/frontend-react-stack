@@ -11,7 +11,7 @@ import {
 import { CasumoLogo, IconProfile, IconWallet, IconCherry } from "./icons";
 import { SidebarRow } from "./SidebarRow";
 import { SidebarSubMenu } from "./SidebarSubMenu";
-import { SidebarCloseIcon } from "./SidebarCloseIcon";
+import { SidebarIconClose } from "./SidebarIconClose";
 import "./Sidebar.scss";
 
 export type SidebarTranslations = {
@@ -52,7 +52,7 @@ export const Sidebar = (props: Props) => {
         isSidebarFixed && "c-sidebar--fixed"
       )}
     >
-      <SidebarCloseIcon />
+      <SidebarIconClose />
       <ul className="u-margin--none u-padding--none">
         <li className="c-sidebar__logo t-background-plum">
           <a href="#top" onClick={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}>
