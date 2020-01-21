@@ -9,7 +9,6 @@ import { reducer as playerGames } from "Models/playerGames";
 import { reducer as promotions } from "Models/promotions";
 import { reducer as schema } from "Models/schema";
 import { reducer as playing } from "Models/playing";
-import { reducer as session } from "Models/session";
 import { modalReducer as modal } from "Models/modal";
 import { slotControlSystemReducer as slotControlSystem } from "Models/slotControlSystem";
 import { playOkayReducer } from "./playOkay/playOkay.reducer";
@@ -27,7 +26,6 @@ const rootReducer = combineReducers({
   playOkay: playOkayReducer,
   playing,
   slotControlSystem,
-  session,
 });
 
 export default rootReducer;
