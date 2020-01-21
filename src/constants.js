@@ -233,7 +233,7 @@ export const CURRENCY_SYMBOLS = {
   USD: "\u0024", // $
 };
 
-export const CURRENCIES = {
+export const CURRENCIES = Object.freeze({
   EUR: "EUR",
   GBP: "GBP",
   DKK: "KR",
@@ -242,7 +242,7 @@ export const CURRENCIES = {
   NZD: "NZD",
   INR: "INR",
   USD: "USD",
-};
+});
 
 export const VERTICALS = {
   SPORTS: "SPORTS",

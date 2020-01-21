@@ -71,8 +71,13 @@ export function TransactionsAnnualOverview({
   selectedYear,
   PdfButton,
 }: Props) {
+  React.useEffect(() => {
+    if (!data) {
+      navigateToHistory();
+    }
+  }, [data, navigateToHistory]);
+
   if (!data) {
-    navigateToHistory();
     return null;
   }
 

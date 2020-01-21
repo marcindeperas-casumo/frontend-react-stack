@@ -2,7 +2,8 @@
 import { DateTime } from "luxon";
 import { pick, path } from "ramda";
 import clientHttp from "Lib/http";
-import { URLS } from "Api/api.common";
+import { CURRENCIES } from "Src/constants";
+import { URLS as COMMON_URLS } from "Api/api.common";
 import type {
   AnnualOverview,
   WalletTotalsProps,
@@ -40,12 +41,24 @@ type AnnualOverviewPdfUrlResponseRaw = {
   downloadUrl: string,
 };
 
+type GetSummaryUrlProps = {
+  date: DateTime,
+  currency: $Values<typeof CURRENCIES>,
+  periodicity?: "ANNUAL" | "MONTHLY" | "DAILY",
+  forPdf?: boolean,
+};
+
+export const URLS = {
+  HANDSHAKE: "/api/common/handshake",
+  SUMMARIES: "/casino-player/player-transactions/api/summaries",
+};
+
 const getWalletTotalsUrl = ({
   walletId,
   startTime,
   endTime,
 }: WalletTotalsProps): string => {
-  const baseUrl = `${URLS.QUERY}/wallet/${walletId}/totals`;
+  const baseUrl = `${COMMON_URLS.QUERY}/wallet/${walletId}/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("startTime", startTime.toISO());
@@ -58,7 +71,7 @@ const getGameroundsTotalsUrl = ({
   startTime,
   endTime,
 }: GameroundsTotalsProps): string => {
-  const baseUrl = `${URLS.QUERY}/gamerounds/totals`;
+  const baseUrl = `${COMMON_URLS.QUERY}/gamerounds/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("from", startTime.toMillis());
@@ -108,7 +121,7 @@ const getTransactionsUrl = ({
   perPage = 50,
 }: WalletTransactionsProps): string => {
   return `${
-    URLS.QUERY
+    COMMON_URLS.QUERY
   }/wallet/${walletId}/transaction/${startTime.toISO()}/${endTime.toISO()}/${perPage}`;
 };
 
@@ -122,4 +135,15 @@ export const getAnnualOverviewPdfUrlReq = (
   props: FetchAnnualOverviewPdfUrlProps,
   http: HTTPClient = clientHttp
 ): Promise<AnnualOverviewPdfUrlResponseRaw> =>
-  http.post(`${URLS.QUERY}/annual-summary-print`, props);
+  http.post(`${COMMON_URLS.QUERY}/annual-summary-print`, props);
+
+export const getSummaryUrl = ({
+  periodicity = "ANNUAL",
+  date,
+  currency,
+  forPdf = false,
+}: GetSummaryUrlProps): string => {
+  return `/casino-player/player-transactions/api/summaries/${periodicity}/${date}/${currency}${
+    forPdf ? "/PDF" : ""
+  }`;
+};
