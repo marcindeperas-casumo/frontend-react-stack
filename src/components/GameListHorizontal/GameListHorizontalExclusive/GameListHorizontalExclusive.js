@@ -26,7 +26,7 @@ export class GameListHorizontalExclusive extends PureComponent<Props> {
         <div className="o-wrapper">
           <MobileAndTablet>
             <ScrollableList
-              itemClassName="c-top-game"
+              itemClassName="c-exclusive-game"
               itemRenderer={i => <GameTileExclusive item={games[i]} />}
               items={games}
               seeMoreText=""

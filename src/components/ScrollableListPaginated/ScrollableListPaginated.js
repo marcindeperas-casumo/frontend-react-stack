@@ -21,9 +21,9 @@ type ListObject = {
 };
 
 export type SeeMoreProps = {
-  /** The link where to redirect once clicking the seeMore button. */
-  text: string,
   /** The text to render on the seeMore button. */
+  text?: string,
+  /** The link where to redirect once clicking the seeMore button. */
   url?: string,
   /** The seeMore text color */
   color?: string,

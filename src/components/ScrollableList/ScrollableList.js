@@ -24,7 +24,7 @@ type Props = {
   Component: Function,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
-  seeMoreText: string,
+  seeMoreText?: string,
   itemClassName?: string,
   itemRenderer: (i: number) => React.Node,
 };
