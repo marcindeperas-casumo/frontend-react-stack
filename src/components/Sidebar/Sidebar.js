@@ -1,11 +1,14 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
 import { ROUTE_IDS } from "Src/constants";
 import { useCrossCodebaseNavigation, useTranslations } from "Utils/hooks";
 import { CasumoLogo, IconProfile, IconWallet, IconCherry } from "./icons";
 import { SidebarRow } from "./SidebarRow";
 import { SidebarSubMenu } from "./SidebarSubMenu";
+import { MenuCloseIcon } from "./MenuCloseIcon";
+import { useIsSidebarFixed } from "./useIsSidebarFixed";
 import "./Sidebar.scss";
 
 export type SidebarTranslations = {
@@ -30,6 +33,7 @@ type Props = {
 export const Sidebar = (props: Props) => {
   const { username, wallet, bonus, logout } = props;
   const { navigateToKO } = useCrossCodebaseNavigation();
+  const isSidebarFixed = useIsSidebarFixed();
 
   const t = useTranslations<SidebarTranslations>("mobile.menu-2");
   useTranslations("features.payments");
@@ -39,8 +43,14 @@ export const Sidebar = (props: Props) => {
   }
 
   return (
-    <div className="t-color-white u-font u-font-weight-bold">
-      <ul className="c-sidebar__nav u-margin--none u-padding--none">
+    <div
+      className={classNames(
+        "c-sidebar u-height--screen u-overflow-y--auto t-color-white u-font u-font-weight-bold",
+        isSidebarFixed && "c-sidebar--fixed"
+      )}
+    >
+      <MenuCloseIcon />
+      <ul className="u-margin--none u-padding--none">
         <li className="c-sidebar__logo t-background-plum">
           <a href="#top" onClick={() => navigateToKO(ROUTE_IDS.TOP_LISTS)}>
             <Flex align="center" justify="center" className="u-height--full">

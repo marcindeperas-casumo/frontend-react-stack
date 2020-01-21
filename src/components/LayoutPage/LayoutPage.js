@@ -1,27 +1,31 @@
 // @flow
 import React from "react";
 import Flex from "@casumo/cmp-flex";
-import { TabletAndDesktop } from "Components/ResponsiveLayout";
+import classNames from "classnames";
 import Sidebar from "Components/Sidebar";
+import { useIsSidebarFixed } from "Components/Sidebar/useIsSidebarFixed";
+import { useIsMenuOpen } from "Utils/hooks/useIsMenuOpen";
+import "./LayoutPage.scss";
 
 type Props = {
   children: string,
 };
 
 export const LayoutPage = (props: Props) => {
+  const isMenuOpen = useIsMenuOpen();
+  const isSidebarFixed = useIsSidebarFixed();
+
   return (
-    <Flex spacing="none">
-      <TabletAndDesktop>
-        <Flex.Item
-          style={{ width: "260px" }}
-          className="u-position-relative u-height--screen u-overflow-y--auto"
-        >
-          <Sidebar />
-        </Flex.Item>
-      </TabletAndDesktop>
-      <Flex.Block>
-        <div className="u-height--screen">{props.children}</div>
-      </Flex.Block>
+    <Flex
+      direction={isSidebarFixed ? "horizontal" : "vertical"}
+      className={classNames(
+        isMenuOpen && "c-layout--menu-open",
+        "u-height--full"
+      )}
+      spacing="none"
+    >
+      <Sidebar />
+      <div className="c-layout-content">{props.children}</div>
     </Flex>
   );
 };
