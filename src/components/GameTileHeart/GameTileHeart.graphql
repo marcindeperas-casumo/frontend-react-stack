@@ -1,0 +1,8 @@
+query GameTileHeartQuery {
+  gamesList(listId: "myList") {
+    id
+    games {
+      id
+    }
+  }
+}

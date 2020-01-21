@@ -7,7 +7,7 @@ import {
 } from "./GameTileHeart.Mutations";
 
 type Props = {
-  className: string,
+  className?: string,
   gameId: string,
   gameSlug: string,
   isInMyList: boolean,
@@ -22,7 +22,7 @@ export const GameTileHeartContainer = ({
   const addGame = useAddGameToMyList(gameSlug, gameId);
   const removeGame = useRemoveGameFromMyList(gameSlug, gameId);
 
-  const onFavouriteGame = () => (isInMyList ? removeGame() : addGame());
+  const onFavouriteGame = isInMyList ? removeGame : addGame;
 
   return (
     <GameTileHeart

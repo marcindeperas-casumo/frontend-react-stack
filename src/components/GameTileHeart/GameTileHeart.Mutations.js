@@ -2,8 +2,8 @@
 import gql from "graphql-tag";
 import { useMutation } from "@apollo/react-hooks";
 import { reject } from "ramda";
-import { GAME_LIST_IDS } from "Src/constants";
-import { GAME_LIST_QUERY } from "Components/GameListHorizontal/GameListHorizontalContainer";
+import * as A from "Types/apollo";
+import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 
 const ADD_GAME = gql`
   mutation AddGameToMyList($slug: String!, $id: String!) {
@@ -24,42 +24,52 @@ const REMOVE_GAME = gql`
 `;
 
 export const useAddGameToMyList = (slug: string, id: string) => {
-  const [addGame] = useMutation(ADD_GAME, {
-    variables: {
-      slug,
-      id,
-    },
-    optimisticResponse: {
-      __typename: "Mutation",
-      addGameToMyList: {
-        __typename: "Game",
+  const [addGame] = useMutation<A.AddGameToMyList, A.AddGameToMyListVariables>(
+    ADD_GAME,
+    {
+      variables: {
+        slug,
         id,
-        isInMyList: true,
       },
-    },
-    update: (proxy, { data: { addGameToMyList } }: { data: Object }) => {
-      const data = proxy.readQuery({
-        query: GAME_LIST_QUERY,
-        variables: { id: GAME_LIST_IDS.MY_LIST },
-      });
-      proxy.writeQuery({
-        query: GAME_LIST_QUERY,
-        variables: { id: GAME_LIST_IDS.MY_LIST },
-        data: {
-          gamesList: {
-            ...data.gamesList,
-            games: [addGameToMyList, ...data.gamesList.games],
-          },
+      optimisticResponse: {
+        __typename: "Mutation",
+        addGameToMyList: {
+          __typename: "Game",
+          id,
+          isInMyList: true,
         },
-      });
-    },
-  });
+      },
+      update: (cache, response) => {
+        // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
+        const cacheData = cache.readQuery<A.GameTileHeartQuery>({
+          query: GameTileHeartQuery,
+        });
+        if (cacheData && cacheData.gamesList) {
+          cache.writeQuery({
+            query: GameTileHeartQuery,
+            data: {
+              gamesList: {
+                ...cacheData.gamesList,
+                games: [
+                  response.data?.addGameToMyList,
+                  ...cacheData.gamesList.games,
+                ],
+              },
+            },
+          });
+        }
+      },
+    }
+  );
 
   return addGame;
 };
 
 export const useRemoveGameFromMyList = (slug: string, id: string) => {
-  const [removeGame] = useMutation(REMOVE_GAME, {
+  const [removeGame] = useMutation<
+    A.RemoveGameFromMyList,
+    A.RemoveGameFromMyListVariables
+  >(REMOVE_GAME, {
     variables: {
       slug,
       id,
@@ -72,21 +82,22 @@ export const useRemoveGameFromMyList = (slug: string, id: string) => {
         isInMyList: false,
       },
     },
-    update: (proxy, { data: { removeGameFromMyList } }) => {
-      const data = proxy.readQuery({
-        query: GAME_LIST_QUERY,
-        variables: { id: GAME_LIST_IDS.MY_LIST },
+    update: (cache, response) => {
+      // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
+      const cacheData = cache.readQuery<A.GameTileHeartQuery>({
+        query: GameTileHeartQuery,
       });
-      proxy.writeQuery({
-        query: GAME_LIST_QUERY,
-        variables: { id: GAME_LIST_IDS.MY_LIST },
-        data: {
-          gamesList: {
-            ...data.gamesList,
-            games: reject(game => game.id === id, data.gamesList.games),
+      if (cacheData && cacheData.gamesList) {
+        cache.writeQuery({
+          query: GameTileHeartQuery,
+          data: {
+            gamesList: {
+              ...cacheData.gamesList,
+              games: reject(game => game.id === id, cacheData.gamesList.games),
+            },
           },
-        },
-      });
+        });
+      }
     },
   });
 

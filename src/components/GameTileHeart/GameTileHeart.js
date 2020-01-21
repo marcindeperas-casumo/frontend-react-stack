@@ -9,7 +9,7 @@ type Props = {
   className?: string,
 };
 
-export const GameTileHeart = ({ onClick, isActive, className }: Props) => (
+export const GameTileHeart = ({ onClick, isActive, className = "" }: Props) => (
   <svg
     onClick={onClick}
     className={classNames(
