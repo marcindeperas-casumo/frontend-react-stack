@@ -38,12 +38,12 @@ type Props = {
   itemControlClass: string,
   /** The text and url to render on the seeMore button. */
   seeMore?: SeeMoreProps,
-  /** The item renderer. */
-  Component: Function,
   /** The list of items to be rendered. */
   list: ListObject,
   /** Apply margins to the scrollable items */
   itemSpacing?: spacerSizes | responsiveSpacerSizes,
+  /** The item renderer. */
+  itemRenderer: (i: number) => React.Node,
 };
 
 export class ScrollableListPaginated extends React.PureComponent<Props> {

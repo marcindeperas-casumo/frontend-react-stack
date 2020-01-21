@@ -21,7 +21,6 @@ type Props = {
   /** url to "see more" page, if null will not render "see more" button */
   seeMoreUrl?: string,
   items: Array<any>,
-  Component: Function,
   spacing: spacerSizes | responsiveSpacerSizes,
   /** "see more" link translation */
   seeMoreText?: string,
@@ -37,11 +36,6 @@ export default class ScrollableList extends React.PureComponent<Props> {
   };
 
   keyGetter = (i: number) => this.props.items[i].id;
-
-  // itemRenderer = (i: number) => {
-  //   const { Component, items } = this.props;
-  //   return <Component item={items[i]} />;
-  // };
 
   render() {
     const {
