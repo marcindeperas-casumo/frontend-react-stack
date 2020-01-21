@@ -7,12 +7,12 @@ import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
-import type { Game } from "Types/game";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
+import * as A from "Types/apollo";
 
 export type Props = {
   className?: string,
-  game: Game,
+  game: A.GameTile_Game,
   imgixOpts?: Object,
   onLaunchGame: Function,
   ratio?: string,
@@ -31,7 +31,6 @@ export const GameTile = ({
   },
   ratio = "game-tile",
 }: Props) => {
-  // __FIX__: fix the typing around here
   const {
     isInMaintenance,
     backgroundImage,
@@ -92,12 +91,14 @@ export const GameTile = ({
             </TrackClick>
           </Flex.Item>
           <Flex.Item onClick={e => e.stopPropagation()}>
+            {
+              // __FIX__ should this tracking live in the GameTileHeart.
+            }
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
               data={{
                 [EVENT_PROPS.GAME_NAME]: name,
-                // __FIX__ - this trackclick should happen inside the GameTileHeart component.
-                [EVENT_PROPS.IS_FAVOURITE]: true,
+                [EVENT_PROPS.IS_FAVOURITE]: isInMyList,
               }}
             >
               <GameTileHeart
