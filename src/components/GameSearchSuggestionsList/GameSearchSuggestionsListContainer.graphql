@@ -1,0 +1,31 @@
+#import "./GameSearchSuggestionsList.graphql"
+
+query GameSearchSuggestionsListContainer_SuggestedGames {
+  title: getText(id: "root:mobile.games-search:fields.similar_games")
+  gamesList(listId: "popularGames") {
+    id
+    games {
+      ...GameSearchSuggestionsList_Game
+    }
+  }
+}
+
+query GameSearchSuggestionsListContainer_LatestPlayedGames {
+  title: getText(id: "root:mobile.games-search:fields.continue_playing")
+  gamesList(listId: "latestPlayedGames") {
+    id
+    games {
+      ...GameSearchSuggestionsList_Game
+    }
+  }
+}
+
+query GameSearchSuggestionsListContainer_PopularGames {
+  title: getText(id: "root:mobile.games-search:fields.popular_games")
+  gamesList(listId: "popularGames") {
+    id
+    games {
+      ...GameSearchSuggestionsList_Game
+    }
+  }
+}

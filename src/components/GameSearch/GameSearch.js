@@ -113,7 +113,7 @@ export class GameSearch extends React.PureComponent<Props> {
             </div>
           )}
           {searchResultsCount === 1 && (
-            <GameSearchSuggestionsList className="u-game-search-max-width" />
+            <GameSearchSuggestionsList searchResults={searchResults} />
           )}
         </TrackProvider>
       );
@@ -123,7 +123,7 @@ export class GameSearch extends React.PureComponent<Props> {
           <div className="t-background-grey-light-2">
             <SearchNotFound className="u-game-search-max-width" />
           </div>
-          <GameSearchSuggestionsList className="u-game-search-max-width" />
+          <GameSearchSuggestionsList searchResults={searchResults} />
         </>
       );
     } else {
