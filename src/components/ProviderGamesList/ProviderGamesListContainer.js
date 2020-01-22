@@ -1,36 +1,81 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import ProviderGamesList from "Components/ProviderGamesList/ProviderGamesList";
-import { fetchGamesByProvider } from "Models/games";
-import {
-  gameProviderBySlug,
-  areProviderGamesLoaded,
-  types,
-  gameProviderGameCount,
-} from "Models/gameProviders";
-import { isFetchError } from "Models/fetch";
+import gql from "graphql-tag";
+import { useQuery } from "@apollo/react-hooks";
+import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
 
 type Props = {
   /** Provider slug whose games will be fetched */
   provider: string,
 };
 
-const ProviderGamesListConnected = connect(
-  (state, { provider }) => ({
-    areGamesLoaded: areProviderGamesLoaded(provider)(state),
-    provider: gameProviderBySlug(provider)(state),
-    error: isFetchError(types.GET_GAME_PROVIDER_ERROR)(state),
-    count: gameProviderGameCount(provider)(state),
-  }),
-  (dispatch, { provider }) => ({
-    fetchGames: (page, pageSize) =>
-      dispatch(fetchGamesByProvider(provider, page, pageSize)),
-  })
-)(ProviderGamesList);
+const GAME_STUDIO_QUERY = gql`
+  query gameStudioQuery($slug: String!, $page: Int!, $pageSize: Int!) {
+    gameStudio(slug: $slug) {
+      id
+      gamesCount
+      games(page: $page, pageSize: $pageSize) {
+        id
+        backgroundImage
+        isInMaintenance
+        logo
+        name
+        slug
+        lobby {
+          id
+          tableId
+          symbol
+          provider
+          results
+          image
+          type
+          betBehind
+          bets {
+            min
+            max
+            symbol
+          }
+        }
+      }
+    }
+  }
+`;
 
-const ProviderGamesListContainer = (props: Props) => (
-  <ProviderGamesListConnected {...props} />
-);
+export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
+  const { data, loading, fetchMore } = useQuery(GAME_STUDIO_QUERY, {
+    variables: { slug, page: 0, pageSize: PAGE_SIZE }
+  });
+  const games = data?.gameStudio?.games || [];
+  const gamesCount = data?.gameStudio?.gamesCount || 0;
+  const nextPage = Math.floor(games.length / PAGE_SIZE);
 
-export default ProviderGamesListContainer;
+  return (
+    <ProviderGamesList
+      games={games}
+      loading={loading && !games}
+      gamesCount={gamesCount}
+      onLoadMore={() =>
+        fetchMore({
+          variables: {
+            page: nextPage,
+          },
+          updateQuery: (prev, { fetchMoreResult }) => {
+            if (!fetchMoreResult) {
+              return prev;
+            }
+
+            return {
+              gameStudio: {
+                ...prev.gameStudio,
+                games: [
+                  ...prev.gameStudio.games,
+                  ...fetchMoreResult.gameStudio.games,
+                ],
+              },
+            };
+          },
+        })
+      }
+    />
+  );
+};

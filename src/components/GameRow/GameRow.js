@@ -40,7 +40,7 @@ export class GameRow extends PureComponent<Props> {
       className = "",
       locale,
     } = this.props;
-    const { name, logo, logoBackground, slug, jackpot } = game;
+    const { name, logo, backgroundImage, slug, jackpot } = game;
     const lobby = game.lobby || {};
     const { bets } = lobby;
 
@@ -56,7 +56,7 @@ export class GameRow extends PureComponent<Props> {
           >
             <Flex align="center">
               <Flex.Item className="o-flex__item--no-shrink">
-                <GameThumb src={logoBackground} alt={name} mark={logo} />
+                <GameThumb src={backgroundImage} alt={name} mark={logo} />
               </Flex.Item>
               {search ? (
                 <GameRowSearchText name={name} search={search} />
