@@ -42,6 +42,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const propsForModalSkin = {
     t: tForModalSkin,
     dismissModal: props.dismissModal,
+    closeAction: onClickButton,
   };
 
   if (!lastEndedSession) {
