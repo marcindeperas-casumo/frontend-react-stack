@@ -32,13 +32,11 @@ export const TOP_SEARCHES_QUERY = gql`
 const TOTAL_POPULAR_SEARCH_ITEMS = 4;
 const TOTAL_RECENT_SEARCH_ITEMS = 8;
 
-// TODO: adampilks - make these properly dynamic translations
-// eslint-disable-next-line no-unused-vars
-const resultTypesTranslationsMap = {
-  PARTICIPANT: "Team",
-  SPORT: "Sport",
-  REGION: "Region",
-  LEAGUE: "League",
+const resultType = {
+  PARTICIPANT: "PARTICIPANT",
+  SPORT: "SPORT",
+  LEAGUE: "LEAGUE",
+  REGION: "REGION",
 };
 
 export const SEARCH_QUERY = gql`
@@ -272,7 +270,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <Flex.Block className="u-text-overflow--ellipsis">
+              <div className="u-margin-x u-text-overflow--ellipsis">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
@@ -281,7 +279,12 @@ class KambiSearchResults extends React.Component<Props, State> {
                   search={this.props.query}
                   text={result.localizedName}
                 />
-              </Flex.Block>
+              </div>
+              {result.type === resultType.PARTICIPANT && result.sport && (
+                <Text size="sm" tag="span" className="t-color-chrome">
+                  {result.sport.name}
+                </Text>
+              )}
             </Flex>
           </ResultRow>
         )}
