@@ -152,7 +152,7 @@ class KambiSearchResults extends React.Component<Props, State> {
       </GroupTitle>
       <Query
         query={TOP_SEARCHES_QUERY}
-        variables={({ count: 5 }: A.TopSearchesVariables)}
+        variables={({ count: 4 }: A.TopSearchesVariables)}
       >
         {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
