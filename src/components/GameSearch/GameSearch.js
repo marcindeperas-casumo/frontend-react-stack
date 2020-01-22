@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
+import { GameSearchNotFound } from "Components/GameSearchNotFound";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow } from "Components/GameRow/GameRow";
-import SearchNotFound from "Components/SearchNotFound";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import {
@@ -118,14 +118,7 @@ export class GameSearch extends React.PureComponent<Props> {
         </TrackProvider>
       );
     } else if (query.length) {
-      return (
-        <>
-          <div className="t-background-grey-light-2">
-            <SearchNotFound className="u-game-search-max-width" />
-          </div>
-          <GameSearchSuggestionsList searchResults={searchResults} />
-        </>
-      );
+      return <GameSearchNotFound />;
     } else {
       return null;
     }

@@ -7,7 +7,7 @@ import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
 import * as A from "Types/apollo";
 
-type Props = {
+export type Props = {
   list: {
     games: Array<A.GameSearchSuggestionsList_Game>,
     title: string,

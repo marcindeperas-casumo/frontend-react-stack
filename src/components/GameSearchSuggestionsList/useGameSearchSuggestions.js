@@ -11,6 +11,7 @@ import {
 export const useGameSearchSuggestions = ({ searchResults }) => {
   // eslint-disable-next-line fp/no-let
   let list;
+
   const {
     data: suggestedGamesData,
     loading: suggestedGamesLoading,
@@ -31,7 +32,7 @@ export const useGameSearchSuggestions = ({ searchResults }) => {
   );
 
   const loading =
-    suggestedGamesLoading && latestPlayedGamesLoading && popularGamesLoading;
+    suggestedGamesLoading || latestPlayedGamesLoading || popularGamesLoading;
 
   /* eslint-disable fp/no-mutation */
   if (
@@ -43,18 +44,21 @@ export const useGameSearchSuggestions = ({ searchResults }) => {
       games: suggestedGamesData.gamesList.games,
       title: suggestedGamesData.title,
       location: EVENT_LOCATIONS.SUGGESTED_GAMES,
+      type: "suggested",
     };
   } else if (latestPlayedGamesData?.gamesList?.games.length) {
     list = {
       games: latestPlayedGamesData.gamesList.games,
       title: latestPlayedGamesData.title,
       location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
+      type: "latest",
     };
   } else {
     list = {
       games: popularGamesData?.gamesList?.games || [],
       title: popularGamesData?.title || "",
       location: EVENT_LOCATIONS.POPULAR_GAMES,
+      type: "popular",
     };
   }
   /* eslint-enable fp/no-mutation */
