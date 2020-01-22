@@ -1,4 +1,7 @@
 // @flow
 export function useJurisdiction() {
-  return "MGA";
+  return {
+    jurisdiction: "MGA",
+    isDGOJ: false,
+  };
 }

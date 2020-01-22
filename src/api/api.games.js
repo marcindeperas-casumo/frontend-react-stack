@@ -253,8 +253,12 @@ export const fetchGames = async ({
             allLiveGamesList: gamesLists,
           });
 
+          const liveGamesNotInMaintenance = liveGames.filter(
+            liveGame => !liveGame.inMaintenanceMode
+          );
+
           return {
-            games: liveGames,
+            games: liveGamesNotInMaintenance,
             id,
             title,
           };

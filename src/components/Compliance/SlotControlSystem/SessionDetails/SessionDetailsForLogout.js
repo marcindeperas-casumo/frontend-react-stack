@@ -38,8 +38,8 @@ export function SessionDetailsForLogout(props: Props) {
         t={t}
         locale={locale}
         // TODO bind proper data when available in API
-        balance={activeSession.limit.amount}
-        currency={activeSession.limit.currency}
+        balance={activeSession.stats.remainingBalance}
+        currency={activeSession.stats.currency}
         playStartedTime={activeSession.startedTime}
         playEndedTime={now}
         lastStatusAlertTime={now - 1000 * 50}

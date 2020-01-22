@@ -13,6 +13,7 @@ import {
   BeforePlaying,
   BeforeLoggingOut,
   AfterLimitsReached,
+  PeriodicReminderNotification,
 } from "./SlotControlSystem";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
@@ -47,6 +48,10 @@ export const mappings: Mapping = {
     slug: overlayContentCmsSlug,
     Content: DanishEntryOverlayContainer,
   },
+  SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.PERIODIC_REMINDER_NOTIFICATION,
+    Content: PeriodicReminderNotification,
+  },
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.BEFORE_PLAYING,
     Content: BeforePlaying,
@@ -58,10 +63,6 @@ export const mappings: Mapping = {
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_AFTER_LIMITS_REACHED]: {
     slug: SCS_CMS_SLUGS.AFTER_PLAYING,
     Content: AfterLimitsReached,
-  },
-  REALITY_CHECK_MODAL: {
-    slug: REALITY_CHECK_CMS_SLUG,
-    Content: RealityCheck,
   },
 };
 
