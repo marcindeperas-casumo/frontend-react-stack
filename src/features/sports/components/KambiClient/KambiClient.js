@@ -7,6 +7,8 @@ import * as A from "Types/apollo";
 import bridge from "Src/DurandalReactBridge";
 import { injectScript } from "Utils";
 import { showTerms } from "Services/ShowTermsService";
+import tracker from "Services/tracker";
+import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { getKambiWidgetAPI } from "Features/sports/kambi";
 import { deTaxMessageUrl } from "./widgets/deTaxMessage";
 
@@ -96,9 +98,24 @@ export default class KambiClient extends React.Component<Props> {
     window.addEventListener("message", this.onWidgetMessage, false);
   }
 
-  onNotification = (event: { [string]: * }) => {
+  trackPageView = (page: { type: string, title: string, path: string }) => {
+    tracker.track(EVENTS.MIXPANEL_SPORTS_PAGEVIEW, {
+      [EVENT_PROPS.SPORTS_PAGE_TYPE]: page.type,
+      [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
+      [EVENT_PROPS.SPORTS_PAGE_PATH]: page.path,
+    });
+  };
+
+  onNotification = (event: { [string]: any }) => {
     if (event.name === "loginRequestDone") {
       this.props.onLoginCompleted && this.props.onLoginCompleted();
+    }
+
+    if (
+      event.name === "dataLayerPushed" &&
+      event.data.event === "kambi page view"
+    ) {
+      event.data.kambi && this.trackPageView(event.data.kambi.page);
     }
   };
 

@@ -11,13 +11,11 @@ import { SessionDetailsBody } from "./SessionDetailsBody";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
     limits_reached_button_label: string,
     limits_reached_play_again_header: string,
     limits_reached_exclusion_text: string,
@@ -37,7 +35,6 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
     secondsTillEndOfBreak,
     lastEndedSession,
   } = props;
-  const now = 1576065735032;
   const timeInterval = interpolateTimeInterval({
     seconds: secondsTillEndOfBreak,
     t: {
@@ -57,15 +54,12 @@ export function SessionDetailsForLimitsReachedExcluded(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        // TODO bind proper data when available in API
-        balance={455}
-        currency={"EUR"}
+        currency={lastEndedSession.stats.currency}
         playStartedTime={lastEndedSession.startedTime}
         playEndedTime={lastEndedSession.endedTime}
-        lastStatusAlertTime={now - 1000 * 50}
-        moneyWon={11}
-        moneyLeft={12}
-        moneyWagered={13}
+        moneyWon={lastEndedSession.stats.totalWins}
+        moneyLeft={lastEndedSession.stats.remainingBalance}
+        moneyWagered={lastEndedSession.stats.totalBets}
       />
       <Button
         variant="primary"

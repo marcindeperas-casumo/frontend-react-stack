@@ -2,6 +2,7 @@ import { all, fork, takeEvery, takeLatest } from "redux-saga/effects";
 import {
   periodicReminderNotificationSaga,
   statsUpdateNotificationSaga,
+  sessionEndedSaga,
 } from "Models/slotControlSystem";
 import { types as appTypes, appSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
@@ -105,6 +106,14 @@ export default function* rootSaga(dispatch) {
       cometdMessages.DEPOSIT_CONFIRMED
     ),
     updatePlayerFirstDepositDateSaga
+  );
+  yield fork(
+    takeEvery,
+    takeMessageFromChannel(
+      cometdChannels.PLAYER,
+      cometdMessages.SLOT_CONTROL_SYSTEM_SESSION_ENDED
+    ),
+    sessionEndedSaga
   );
   yield fork(
     takeEvery,
