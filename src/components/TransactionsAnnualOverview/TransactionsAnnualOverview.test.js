@@ -7,7 +7,7 @@ import cmsMocks from "./__mocks__/cms.json";
 
 describe("TransactionsAnnualOverview", () => {
   const props = {
-    selectedYear: 2000,
+    selectedYear: "2000",
     locale: "en-GB",
     t: cmsMocks,
     data: annualOverviewMock,

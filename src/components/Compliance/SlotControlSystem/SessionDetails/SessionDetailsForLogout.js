@@ -9,24 +9,22 @@ import { SessionDetailsBody } from "./SessionDetailsBody";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
     logout_button_label: string,
     logout_text: string,
   },
   onClickButton: () => void,
   activeSession: ActiveSessionType,
   locale: string,
+  playEndedTime: number,
 };
 
 export function SessionDetailsForLogout(props: Props) {
-  const { t, onClickButton, activeSession, locale } = props;
-  const now = 1576065735032;
+  const { t, onClickButton, activeSession, locale, playEndedTime } = props;
 
   return (
     <Flex direction="vertical">
@@ -37,15 +35,12 @@ export function SessionDetailsForLogout(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        // TODO bind proper data when available in API
-        balance={activeSession.stats.remainingBalance}
         currency={activeSession.stats.currency}
         playStartedTime={activeSession.startedTime}
-        playEndedTime={now}
-        lastStatusAlertTime={now - 1000 * 50}
-        moneyWon={11}
-        moneyLeft={12}
-        moneyWagered={13}
+        playEndedTime={playEndedTime}
+        moneyWon={activeSession.stats.totalWins}
+        moneyLeft={activeSession.stats.remainingBalance}
+        moneyWagered={activeSession.stats.totalBets}
       />
       <Button
         variant="primary"
