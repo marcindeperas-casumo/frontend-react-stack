@@ -59,7 +59,6 @@ class PromotionCardList extends PureComponent<Props> {
               }}
               Component={promotionCardContainerRenderer}
               className={itemClassName}
-              itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={318}
               seeMore={{
                 text: seeMore,

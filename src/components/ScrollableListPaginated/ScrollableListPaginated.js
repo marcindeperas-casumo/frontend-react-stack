@@ -22,7 +22,7 @@ type Props = {
   /** The item height. */
   tileHeight: number,
   /** The style to apply to the list control buttons. */
-  itemControlClass: string,
+  itemControlClass?: string,
   /** The text and url to render on the seeMore button. */
   seeMore?: SeeMoreProps,
   /** The list of items to be rendered. */
@@ -39,7 +39,9 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
     hasPreviousPage: boolean,
     scrollableClickHandler: ClickHandlerType
   ) => {
-    const { itemControlClass } = this.props;
+    const {
+      itemControlClass = "c-scrollable-list-paginated__button",
+    } = this.props;
     const itemGenericClass = `t-background-white t-border-r--pill o-flex o-flex-align--center o-flex-justify--center u-cursor-pointer
       c-scrollable-list-paginated__button u-pointer-events-initial`;
     const previousClickHandler = () => scrollableClickHandler("previous");

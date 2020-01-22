@@ -109,7 +109,6 @@ class GameProvidersList extends PureComponent<Props> {
               list={this.itemsWithBackground}
               listTitle={title}
               itemRenderer={this.desktopItemRenderer}
-              itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
             />
           </Desktop>

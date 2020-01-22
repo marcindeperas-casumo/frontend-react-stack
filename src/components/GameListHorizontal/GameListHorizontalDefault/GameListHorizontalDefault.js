@@ -63,7 +63,6 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
                 games,
               })
             }
-            itemControlClass="c-scrollable-list-paginated__button"
             tileHeight={192}
             // seeMore={{
             //   text: seeMoreText,

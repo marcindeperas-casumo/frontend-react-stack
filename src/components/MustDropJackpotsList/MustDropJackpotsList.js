@@ -92,7 +92,6 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               }}
               Component={this.desktopMustDropJackpotRenderer}
               className="c-jackpots-list-tile u-height--full"
-              itemControlClass="c-scrollable-list-paginated__button"
               // 288 it's the result of each GameRow height (96px) times the rows (3)
               tileHeight={288}
               seeMore={{
