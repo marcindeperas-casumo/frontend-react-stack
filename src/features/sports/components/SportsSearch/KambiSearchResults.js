@@ -286,7 +286,7 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               )}
 
-              <Flex.Block>
+              <Flex.Block className="u-text-overflow--ellipsis">
                 <MaskText
                   matchRender={renderText({ isMatch: true })}
                   unmatchedRender={renderText({
