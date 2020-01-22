@@ -36,7 +36,8 @@ const groupByResultType: GroupByResultTypeType = groupBy(
   result => resultTypesGroupingMap[result.type]
 );
 
-const TOTAL_PLACEHOLDER_ITEMS = 5;
+const TOTAL_POPULAR_SEARCH_ITEMS = 4;
+const TOTAL_RECENT_SEARCH_ITEMS = 8;
 
 // TODO: adampilks - make these properly dynamic translations
 // eslint-disable-next-line no-unused-vars
@@ -152,7 +153,9 @@ class KambiSearchResults extends React.Component<Props, State> {
       </GroupTitle>
       <Query
         query={TOP_SEARCHES_QUERY}
-        variables={({ count: 4 }: A.TopSearchesVariables)}
+        variables={
+          ({ count: TOTAL_POPULAR_SEARCH_ITEMS }: A.TopSearchesVariables)
+        }
       >
         {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
@@ -182,11 +185,11 @@ class KambiSearchResults extends React.Component<Props, State> {
 
     const noOfSearchHistoryItems = Math.min(
       searchHistoryCount,
-      TOTAL_PLACEHOLDER_ITEMS
+      TOTAL_RECENT_SEARCH_ITEMS
     );
 
     const noOfPopularSearchItems = Math.max(
-      TOTAL_PLACEHOLDER_ITEMS - searchHistoryCount,
+      TOTAL_POPULAR_SEARCH_ITEMS - searchHistoryCount,
       0
     );
 
