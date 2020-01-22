@@ -9,13 +9,11 @@ import { SessionDetailsBody } from "./SessionDetailsBody";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
     logout_button_label: string,
     logout_text: string,
   },
@@ -37,7 +35,6 @@ export function SessionDetailsForLogout(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        balance={activeSession.stats.initialLimit}
         currency={activeSession.stats.currency}
         playStartedTime={activeSession.startedTime}
         playEndedTime={playEndedTime}
