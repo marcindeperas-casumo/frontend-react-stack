@@ -11,6 +11,7 @@ import {
   EVENT_LOCATIONS,
   ROOT_SCROLL_ELEMENT_ID,
 } from "Src/constants";
+import * as A from "Types/apollo";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
@@ -20,12 +21,12 @@ import "./GameSearch.scss";
 
 type Props = {
   query: string,
-  searchResults: Array<{}>,
+  searchResults: Array<A.GameSearch_Game>,
   searchResultsCount: number,
   loading: boolean,
   inputPromptPlaceholder: string,
   clearSearch: () => {},
-  fetchMoreRows: (query: string) => {},
+  fetchMoreRows: Function => Promise<any>,
   queryChanged: (query: string) => {},
 };
 
@@ -38,7 +39,7 @@ export class GameSearch extends React.PureComponent<Props> {
     );
   }
 
-  componentDidUpdate = prevProps => {
+  componentDidUpdate = (prevProps: Props) => {
     // when we change query we scroll to the top
     if (prevProps.query !== this.props.query) {
       const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
@@ -69,7 +70,7 @@ export class GameSearch extends React.PureComponent<Props> {
           data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
         >
           <div className="c-game-search-virtual-list">
-            <GamesVirtualList // GamesVirtualList
+            <GamesVirtualList
               renderItem={GameRowHighlightSearch}
               renderTitle={title => <GamesVirtualListTitle title={title} />}
               fetchMoreRows={fetchMoreRows}

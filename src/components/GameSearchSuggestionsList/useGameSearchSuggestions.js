@@ -8,28 +8,28 @@ import {
   GameSearchSuggestionsListContainer_PopularGames,
 } from "./GameSearchSuggestionsListContainer.graphql";
 
-export const useGameSearchSuggestions = ({ searchResults }) => {
+export type Props = {
+  searchResults: Array<any>,
+};
+
+export const useGameSearchSuggestions = ({ searchResults }: Props) => {
   // eslint-disable-next-line fp/no-let
   let list;
 
-  const {
-    data: suggestedGamesData,
-    loading: suggestedGamesLoading,
-  } = useQuery<A.GameSearchSuggestionsListContainer_SuggestedGames>(
-    GameSearchSuggestionsListContainer_SuggestedGames
-  );
+  const { data: suggestedGamesData, loading: suggestedGamesLoading } = useQuery<
+    A.GameSearchSuggestionsListContainer_SuggestedGames,
+    _
+  >(GameSearchSuggestionsListContainer_SuggestedGames);
   const {
     data: latestPlayedGamesData,
     loading: latestPlayedGamesLoading,
-  } = useQuery<A.GameSearchSuggestionsListContainer_LatestPlayedGames>(
+  } = useQuery<A.GameSearchSuggestionsListContainer_LatestPlayedGames, _>(
     GameSearchSuggestionsListContainer_LatestPlayedGames
   );
-  const {
-    data: popularGamesData,
-    loading: popularGamesLoading,
-  } = useQuery<A.GameSearchSuggestionsListContainer_PopularGames>(
-    GameSearchSuggestionsListContainer_PopularGames
-  );
+  const { data: popularGamesData, loading: popularGamesLoading } = useQuery<
+    A.GameSearchSuggestionsListContainer_PopularGames,
+    _
+  >(GameSearchSuggestionsListContainer_PopularGames);
 
   const loading =
     suggestedGamesLoading || latestPlayedGamesLoading || popularGamesLoading;
@@ -38,18 +38,18 @@ export const useGameSearchSuggestions = ({ searchResults }) => {
   if (
     searchResults &&
     searchResults.length === 1 &&
-    suggestedGamesData?.gamesList?.games.length
+    suggestedGamesData?.gamesList?.games?.length
   ) {
     list = {
-      games: suggestedGamesData.gamesList.games,
-      title: suggestedGamesData.title,
+      games: suggestedGamesData?.gamesList?.games,
+      title: suggestedGamesData?.title,
       location: EVENT_LOCATIONS.SUGGESTED_GAMES,
       type: "suggested",
     };
-  } else if (latestPlayedGamesData?.gamesList?.games.length) {
+  } else if (latestPlayedGamesData?.gamesList?.games?.length) {
     list = {
-      games: latestPlayedGamesData.gamesList.games,
-      title: latestPlayedGamesData.title,
+      games: latestPlayedGamesData?.gamesList?.games,
+      title: latestPlayedGamesData?.title,
       location: EVENT_LOCATIONS.LATEST_PLAYED_GAMES,
       type: "latest",
     };

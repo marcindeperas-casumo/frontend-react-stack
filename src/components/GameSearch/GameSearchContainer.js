@@ -9,7 +9,7 @@ import {
   GameSearchCMSQuery,
 } from "./GameSearchContainer.graphql";
 
-export const GameSearchContainer = props => {
+export const GameSearchContainer = () => {
   const [searchQuery, setSearchQuery] = React.useState("");
   const { data, loading, fetchMore, refetch } = useQuery<
     A.GameSearchQuery,
@@ -36,7 +36,7 @@ export const GameSearchContainer = props => {
   }, [searchQuery, refetch]);
 
   const fetchMoreRows = () => {
-    return fetchMore({
+    return fetchMore<A.GameSearchQueryVariables>({
       variables: {
         query: searchQuery,
         pageSize: 50,
@@ -50,7 +50,7 @@ export const GameSearchContainer = props => {
 
         return R.mergeDeepRight(prevData, {
           gamesSearch: {
-            searchResultsCount: fetchMoreResult.gamesSearch.searchResultsCount,
+            searchResultsCount: fetchMoreResult.gamesSearch.resultsCount,
             results: [
               ...prevData.gamesSearch.results,
               ...fetchMoreResult.gamesSearch.results,

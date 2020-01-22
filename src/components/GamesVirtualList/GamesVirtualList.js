@@ -10,22 +10,16 @@ const ROW_HEIGHT = 80;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
-  games: Array<{}>,
-  /** The search query for highlighting text in results */
-  query: string,
+  games: Array<any>,
   /** The function that triggers the action that fetches the next batch of games */
-  fetchMoreRows: ({
-    startIndex: number,
-    pageSize: number,
-    query: string,
-  }) => void,
+  fetchMoreRows: Function => Promise<any>,
   /** The total number of rows */
   rowCount: number,
   /** The element to render as a row  */
   renderItem: (game: string) => React.Node,
 };
 
-export class GamesVirtualList extends React.PureComponent<Props, State> {
+export class GamesVirtualList extends React.PureComponent<Props> {
   constructor(props: Props) {
     super(props);
 
@@ -73,7 +67,7 @@ export class GamesVirtualList extends React.PureComponent<Props, State> {
     );
   };
 
-  fetchMoreRows = ({ startIndex, stopIndex }) => {
+  fetchMoreRows = ({ stopIndex }: { stopIndex: number }) => {
     const { games } = this.props;
 
     if (games[stopIndex]) {
