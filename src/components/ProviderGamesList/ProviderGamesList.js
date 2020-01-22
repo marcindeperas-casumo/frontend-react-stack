@@ -40,24 +40,22 @@ export const ProviderGamesList = ({
   }
 
   return (
-    <>
-      <TrackProvider
-        data={{
-          [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
-        }}
-      >
-        <div className="c-provider-games-list u-padding-top">
-          <VirtualList
-            scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
-            isRowLoaded={({ index }) => Boolean(games[index])}
-            pageSize={PAGE_SIZE}
-            rowHeight={ROW_HEIGHT}
-            totalNumberOfRows={gamesCount}
-            loadMoreRows={onLoadMore}
-            rowRenderer={props => renderRow({ games, ...props })}
-          />
-        </div>
-      </TrackProvider>
-    </>
+    <TrackProvider
+      data={{
+        [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
+      }}
+    >
+      <div className="c-provider-games-list u-padding-top">
+        <VirtualList
+          scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
+          isRowLoaded={({ index }) => Boolean(games[index])}
+          pageSize={PAGE_SIZE}
+          rowHeight={ROW_HEIGHT}
+          totalNumberOfRows={gamesCount}
+          loadMoreRows={onLoadMore}
+          rowRenderer={props => renderRow({ games, ...props })}
+        />
+      </div>
+    </TrackProvider>
   );
 };
