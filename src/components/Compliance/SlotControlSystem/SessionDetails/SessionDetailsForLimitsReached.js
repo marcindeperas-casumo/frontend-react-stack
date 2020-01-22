@@ -10,13 +10,11 @@ import { SessionDetailsBody } from "./SessionDetailsBody";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
     limits_reached_button_label: string,
     limits_reached_play_again_header: string,
   },
@@ -52,7 +50,6 @@ export function SessionDetailsForLimitsReached(props: Props) {
       <SessionDetailsBody
         t={t}
         locale={locale}
-        balance={lastEndedSession.stats.initialLimit}
         currency={lastEndedSession.stats.currency}
         playStartedTime={lastEndedSession.startedTime}
         playEndedTime={lastEndedSession.endedTime}

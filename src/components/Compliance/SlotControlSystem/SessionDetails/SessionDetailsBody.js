@@ -7,7 +7,6 @@ import { Header } from "./Header";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
@@ -15,7 +14,6 @@ type Props = {
     play_ended: string,
   },
   locale: string,
-  balance: number,
   currency: string,
   moneyWagered: number,
   moneyWon: number,
@@ -27,7 +25,6 @@ type Props = {
 export function SessionDetailsBody(props: Props) {
   const {
     locale,
-    balance,
     currency,
     moneyWon,
     moneyWagered,
@@ -46,7 +43,6 @@ export function SessionDetailsBody(props: Props) {
   return (
     <>
       <Header>{t.session_details_header}</Header>
-      <Row label={t.balance} value={formatCurrencyBound(balance)} />
       <Row label={t.money_wagered} value={formatCurrencyBound(moneyWagered)} />
       <Row label={t.money_won} value={formatCurrencyBound(moneyWon)} />
       <Row label={t.money_left} value={formatCurrencyBound(moneyLeft)} />

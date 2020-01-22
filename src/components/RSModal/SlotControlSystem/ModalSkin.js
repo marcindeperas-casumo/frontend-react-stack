@@ -7,17 +7,18 @@ type ModalSkinProps = {
     modal_title: string,
   },
   dismissModal: () => void,
-  showCloseButton?: boolean,
+  closeAction?: () => void,
+  hideCloseButton?: boolean,
   children: React.Node,
 };
 
 export function ModalSkin(props: ModalSkinProps) {
-  const headerProps = props.showCloseButton
-    ? {
+  const headerProps = props.hideCloseButton
+    ? null
+    : {
         showCloseButton: true,
-        closeAction: props.dismissModal,
-      }
-    : null;
+        closeAction: props.closeAction || props.dismissModal,
+      };
 
   return (
     <>
