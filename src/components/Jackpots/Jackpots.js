@@ -1,7 +1,10 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import List from "@casumo/cmp-list";
 import Scrollable from "@casumo/cmp-scrollable";
+import type { CellRendererParams } from "react-virtualized";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
 import * as A from "Types/apollo";
 import { launchGame } from "Services/LaunchGameService";
 import ScrollableListTitle from "Components/ScrollableListTitle";
@@ -46,6 +49,8 @@ const JackpotsColumn = ({
   );
 };
 
+const SPACER_CLASSES = createModifierClasses("u-margin-left", "default");
+
 export default class Jackpots extends PureComponent<Props> {
   static defaultProps = {
     jackpots: [],
@@ -65,28 +70,36 @@ export default class Jackpots extends PureComponent<Props> {
   };
 
   desktopJackpotColumnRenderer = ({
-    id: gamesInColumn,
-    i,
-  }: {
-    id: Array<A.Jackpots_Game>,
-    i: number,
-  }) => (
-    <JackpotsColumn
-      key={gamesInColumn[0].slug}
-      column={gamesInColumn}
-      locale={this.props.locale}
-    />
-  );
+    columnIndex,
+    style,
+    games,
+  }: CellRendererParams) => {
+    const jackpotColumn = this.columns[columnIndex];
+    const isNotFirstElement = columnIndex > 0;
+    const elementClassNames = classNames(
+      "u-height--full",
+      isNotFirstElement && SPACER_CLASSES
+    );
+    return (
+      <div style={style}>
+        <div className={`${elementClassNames} c-jackpots-list-tile`}>
+          <JackpotsColumn
+            key={jackpotColumn[0].slug}
+            column={jackpotColumn}
+            locale={this.props.locale}
+          />
+        </div>
+      </div>
+    );
+  };
 
   render() {
-    const { title } = this.props;
-
     return (
       <div className="u-margin-x--3xlg@desktop">
         <div className="o-wrapper">
           <MobileAndTablet>
             <div className="u-padding-top--xlg" data-test="scrollable-jackpots">
-              <ScrollableListTitle paddingLeft title={title} />
+              <ScrollableListTitle paddingLeft title={this.props.title} />
               <Scrollable
                 keyGetter={this.keyGetter}
                 itemRenderer={this.mobileJackpotColumnRenderer}
@@ -98,12 +111,9 @@ export default class Jackpots extends PureComponent<Props> {
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={{
-                title,
-                itemIds: this.columns,
-              }}
-              Component={this.desktopJackpotColumnRenderer}
-              className="c-jackpots-list-tile"
+              list={this.columns}
+              listTitle={this.props.title}
+              itemRenderer={this.desktopJackpotColumnRenderer}
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={315}
             />

@@ -1,6 +1,9 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import { isEmpty } from "ramda";
+import type { CellRendererParams } from "react-virtualized";
+import { createModifierClasses } from "@casumo/cudl-react-utils";
 import Scrollable from "@casumo/cmp-scrollable";
 import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
@@ -31,6 +34,8 @@ type Props = {
   isLoaded: boolean,
 };
 
+const SPACER_CLASSES = createModifierClasses("u-margin-left", "md");
+
 class GameProvidersList extends PureComponent<Props> {
   static defaultProps = {
     fetch: () => {},
@@ -53,6 +58,23 @@ class GameProvidersList extends PureComponent<Props> {
 
   itemRenderer = (i: number) => {
     return <GameProviderAvatar {...this.itemsWithBackground[i]} />;
+  };
+
+  desktopItemRenderer = ({ columnIndex, style }: CellRendererParams) => {
+    const gameProvider = this.itemsWithBackground[columnIndex];
+    const isNotFirstElement = columnIndex > 0;
+    const elementClassNames = classNames(
+      "u-height--full",
+      isNotFirstElement && SPACER_CLASSES
+    );
+
+    return (
+      <div style={style}>
+        <div className={`${elementClassNames} c-game-provider-avatar`}>
+          <GameProviderAvatar {...gameProvider} />
+        </div>
+      </div>
+    );
   };
 
   render() {
@@ -84,16 +106,11 @@ class GameProvidersList extends PureComponent<Props> {
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={{
-                title: title,
-                itemIds: this.itemsWithBackground,
-              }}
-              // we are bound to "id" because of the cellRenderer method inside <ScrollableListPaginated />
-              Component={({ id: item }) => <GameProviderAvatar {...item} />}
-              className="c-game-provider-avatar"
+              list={this.itemsWithBackground}
+              listTitle={title}
+              itemRenderer={this.desktopItemRenderer}
               itemControlClass="c-scrollable-list-paginated__button"
               tileHeight={160}
-              itemSpacing="md"
             />
           </Desktop>
         </div>
