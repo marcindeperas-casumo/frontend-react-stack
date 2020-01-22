@@ -180,7 +180,8 @@ class KambiSearchResults extends React.Component<Props, State> {
     return (
       <>
         {this.renderSearchHistory(noOfSearchHistoryItems)}
-        {this.renderPopularSearches(noOfPopularSearchItems)}
+        {!searchHistoryCount &&
+          this.renderPopularSearches(noOfPopularSearchItems)}
       </>
     );
   };
