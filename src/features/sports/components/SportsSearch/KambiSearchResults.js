@@ -3,7 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { groupBy, isEmpty, map, pipe, propOr, take } from "ramda";
+import { isEmpty, map, pipe, propOr, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
@@ -28,13 +28,6 @@ export const TOP_SEARCHES_QUERY = gql`
     }
   }
 `;
-type GroupByResultTypeType = (
-  A.SearchQuery_search[]
-) => { [string]: A.SearchQuery_search[] };
-
-const groupByResultType: GroupByResultTypeType = groupBy(
-  result => resultTypesGroupingMap[result.type]
-);
 
 const TOTAL_POPULAR_SEARCH_ITEMS = 4;
 const TOTAL_RECENT_SEARCH_ITEMS = 8;
@@ -46,13 +39,6 @@ const resultTypesTranslationsMap = {
   SPORT: "Sport",
   REGION: "Region",
   LEAGUE: "League",
-};
-
-const resultTypesGroupingMap = {
-  PARTICIPANT: "Team",
-  SPORT: "Sports, Regions & Leagues",
-  REGION: "Sports, Regions & Leagues",
-  LEAGUE: "Sports, Regions & Leagues",
 };
 
 export const SEARCH_QUERY = gql`
@@ -326,26 +312,11 @@ class KambiSearchResults extends React.Component<Props, State> {
             );
           }
 
-          const groupedResults: {
-            [string]: A.SearchQuery_search[],
-          } = groupByResultType(res.data.search);
-
-          if (isEmpty(groupedResults)) {
+          if (isEmpty(res.data.search)) {
             return this.renderNoResultsFound();
           }
 
-          return (
-            <>
-              {Object.keys(groupedResults).map(typeTitle => (
-                <React.Fragment key={typeTitle}>
-                  <GroupTitle>{typeTitle}</GroupTitle>
-                  {groupedResults[typeTitle].map(result =>
-                    this.renderSearchResult(result)
-                  )}
-                </React.Fragment>
-              ))}
-            </>
-          );
+          return res.data.search.map(result => this.renderSearchResult(result));
         }}
       </Query>
     );
