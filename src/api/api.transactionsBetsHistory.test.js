@@ -6,7 +6,6 @@ import {
   getGameroundsTotalsReq,
   getTotalsReq,
   getTransactionsReq,
-  getAnnualOverviewPdfUrlReq,
 } from "./api.transactionsBetsHistory";
 
 describe("api.transactionsBetsHistory", () => {
@@ -120,33 +119,6 @@ describe("api.transactionsBetsHistory", () => {
       expect(http.get).toHaveBeenCalledWith(
         `${URLS.QUERY}/wallet/${props.walletId}/transaction/${startTimeInUrl}/${endTimeInUrl}/50`
       );
-    });
-  });
-
-  describe("getAnnualOverviewPdfUrlReq()", () => {
-    const props = {
-      name: "John Doe",
-      dni: "234234-sdfs-34243",
-      year: 2000,
-      startingBalance: "€44",
-      endingBalance: "€80",
-      totalDeposits: "€78",
-      totalWithdrawals: "€66",
-      totalWagers: "€2",
-      totalWins: "€45",
-      totalBonusesConverted: "€23",
-    };
-
-    test("should issue post with the props passed to the req body", () => {
-      const post = jest.fn();
-      http = {
-        ...http,
-        post,
-      };
-
-      getAnnualOverviewPdfUrlReq(props, http);
-
-      expect(post).toHaveBeenCalledWith(expect.any(String), props);
     });
   });
 });
