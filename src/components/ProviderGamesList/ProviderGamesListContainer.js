@@ -43,8 +43,7 @@ const GAME_STUDIO_QUERY = gql`
 
 export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
   const { data, loading, fetchMore } = useQuery(GAME_STUDIO_QUERY, {
-    variables: { slug, page: 0, pageSize: PAGE_SIZE },
-    fetchPolicy: "cache-and-network",
+    variables: { slug, page: 0, pageSize: PAGE_SIZE }
   });
   const games = data?.gameStudio?.games || [];
   const gamesCount = data?.gameStudio?.gamesCount || 0;
