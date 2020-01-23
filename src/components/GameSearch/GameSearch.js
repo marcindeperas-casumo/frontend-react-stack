@@ -30,40 +30,26 @@ type Props = {
   queryChanged: (query: string) => {},
 };
 
-export class GameSearch extends React.PureComponent<Props> {
-  get noResults() {
-    return Boolean(
-      !this.props.loading &&
-        !this.props.searchResultsCount &&
-        this.props.query.length
-    );
-  }
+const GameRowHighlightSearch = (game, query) => (
+  <GameRow search={{ query, highlightSearchQuery: true }} game={game} />
+);
 
-  componentDidUpdate = (prevProps: Props) => {
-    // when we change query we scroll to the top
-    if (prevProps.query !== this.props.query) {
-      const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+export const GameSearch = (props: Props) => {
+  const noResults = Boolean(
+    !props.loading && !props.searchResultsCount && props.query.length
+  );
+  const {
+    loading,
+    searchResults,
+    searchResultsCount,
+    fetchMoreRows,
+    query,
+    queryChanged,
+    clearSearch,
+    inputPromptPlaceholder,
+  } = props;
 
-      if (scrollElement && scrollElement.scrollTop) {
-        // eslint-disable-next-line fp/no-mutation
-        scrollElement.scrollTop = 0;
-      }
-    }
-  };
-
-  renderResults = () => {
-    const {
-      loading,
-      searchResults,
-      searchResultsCount,
-      fetchMoreRows,
-      query,
-    } = this.props;
-
-    const GameRowHighlightSearch = game => (
-      <GameRow search={{ query, highlightSearchQuery: true }} game={game} />
-    );
-
+  const renderResults = () => {
     if (!query.length) {
       return (
         <TrackProvider
@@ -120,27 +106,32 @@ export class GameSearch extends React.PureComponent<Props> {
       );
     } else if (query.length) {
       return <GameSearchNotFound />;
-    } else {
-      return null;
     }
   };
 
-  render() {
-    return (
-      <div className="c-game-search">
-        <div className="c-game-search-bar u-position-sticky--top">
-          <div className="t-background-chrome-light-2">
-            <GameSearchInput
-              className="u-game-search-max-width u-padding--md"
-              onChange={this.props.queryChanged}
-              clearSearch={this.props.clearSearch}
-              noResults={this.noResults}
-              placeholder={this.props.inputPromptPlaceholder}
-            />
-          </div>
+  React.useEffect(() => {
+    const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+
+    if (scrollElement && scrollElement.scrollTop) {
+      // eslint-disable-next-line fp/no-mutation
+      scrollElement.scrollTop = 0;
+    }
+  }, [props.query]);
+
+  return (
+    <div className="c-game-search">
+      <div className="c-game-search-bar u-position-sticky--top">
+        <div className="t-background-chrome-light-2">
+          <GameSearchInput
+            className="u-game-search-max-width u-padding--md"
+            onChange={queryChanged}
+            clearSearch={clearSearch}
+            noResults={noResults}
+            placeholder={inputPromptPlaceholder}
+          />
         </div>
-        {this.renderResults()}
       </div>
-    );
-  }
-}
+      {renderResults()}
+    </div>
+  );
+};
