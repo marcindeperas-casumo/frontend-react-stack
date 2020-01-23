@@ -7,9 +7,13 @@ import type { Props as GameSearchSuggestionsListProps } from "Components/GameSea
 
 export type Props = SearchNotFoundProps & GameSearchSuggestionsListProps;
 
-export const GameSearchNotFound = (props: Props) => {
-  const { image, title, content, list, loading } = props;
-
+export const GameSearchNotFound = ({
+  image,
+  title,
+  content,
+  list,
+  loading,
+}: Props) => {
   return (
     <>
       <div className="t-background-grey-light-2">
