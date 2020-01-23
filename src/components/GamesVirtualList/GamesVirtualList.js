@@ -67,23 +67,13 @@ export class GamesVirtualList extends React.PureComponent<Props> {
     );
   };
 
-  fetchMoreRows = ({ stopIndex }: { stopIndex: number }) => {
-    const { games } = this.props;
-
-    if (games[stopIndex]) {
-      return Promise.resolve(games);
-    }
-
-    return this.props.fetchMoreRows();
-  };
-
   render() {
     return (
       <VirtualList
         scrollElement={this.scrollElement}
         totalNumberOfRows={this.props.rowCount}
         rowHeight={ROW_HEIGHT}
-        loadMoreRows={this.fetchMoreRows}
+        loadMoreRows={this.props.fetchMoreRows}
         isRowLoaded={this.isRowLoaded}
         rowRenderer={this.renderRow}
         pageSize={PAGE_SIZE}
