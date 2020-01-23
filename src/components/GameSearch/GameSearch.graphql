@@ -1,0 +1,5 @@
+#import "./../GameRow/GameRow.graphql"
+
+fragment GameSearch_Game on Game {
+  ...GameRow_Game
+}

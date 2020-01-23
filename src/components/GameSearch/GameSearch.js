@@ -1,36 +1,36 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList";
+import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList/GameSearchResultsVirtualList";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
-import { GameRow } from "Components/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 import SearchNotFound from "Components/SearchNotFound";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
-import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import {
+  EVENT_PROPS,
+  EVENT_LOCATIONS,
+  ROOT_SCROLL_ELEMENT_ID,
+} from "Src/constants";
 import { PAGE_SIZE } from "Models/gameSearch";
-import { GamesVirtualList } from "Components/GamesVirtualList";
+import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
 
 import "./GameSearch.scss";
 
 type Props = {
-  searchResults: Array<string>,
+  query: string,
+  searchResults: Array<{}>,
   searchResultsCount: number,
   loading: boolean,
   inputPromptPlaceholder: string,
-  query: string,
   clearSearch: () => {},
-  initFetchGameSearchCount: () => {},
-  fetchPageBySlug: () => {},
+  fetchMoreRows: (query: string) => {},
+  queryChanged: (query: string) => {},
 };
 
 export class GameSearch extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.props.fetchPageBySlug();
-  }
-
   get noResults() {
     return Boolean(
       !this.props.loading &&
@@ -39,11 +39,50 @@ export class GameSearch extends React.PureComponent<Props> {
     );
   }
 
+  componentDidUpdate = prevProps => {
+    // when we change query we scroll to the top
+    if (prevProps.query !== this.props.query) {
+      const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+
+      if (scrollElement && scrollElement.scrollTop) {
+        // eslint-disable-next-line fp/no-mutation
+        scrollElement.scrollTop = 0;
+      }
+    }
+  };
+
   renderResults = () => {
-    const { loading, searchResults, searchResultsCount, query } = this.props;
-    const GameRowHighlightSearch = id => (
-      <GameRow search={{ query, highlightSearchQuery: true }} id={id} />
+    const {
+      loading,
+      searchResults,
+      searchResultsCount,
+      fetchMoreRows,
+      query,
+    } = this.props;
+
+    const GameRowHighlightSearch = game => (
+      <GameRow search={{ query, highlightSearchQuery: true }} game={game} />
     );
+
+    console.log(searchResults);
+
+    if (!query.length) {
+      return (
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
+        >
+          <div className="c-game-search-virtual-list">
+            <GameSearchResultsVirtualList // GamesVirtualList
+              renderItem={GameRowHighlightSearch}
+              renderTitle={title => <GamesVirtualListTitle title={title} />}
+              fetchMoreRows={fetchMoreRows}
+              games={searchResults}
+              rowCount={searchResultsCount}
+            />
+          </div>
+        </TrackProvider>
+      );
+    }
 
     if (loading) {
       return (
@@ -68,9 +107,11 @@ export class GameSearch extends React.PureComponent<Props> {
           ) : (
             <div className="c-game-search-virtual-list u-game-search-max-width">
               <GameSearchResultsVirtualList
+                rowCount={searchResultsCount}
                 query={query}
                 games={searchResults}
                 renderItem={GameRowHighlightSearch}
+                fetchMoreRows={fetchMoreRows}
               />
             </div>
           )}
@@ -89,18 +130,7 @@ export class GameSearch extends React.PureComponent<Props> {
         </>
       );
     } else {
-      return (
-        <TrackProvider
-          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
-        >
-          <div className="c-game-search-virtual-list">
-            <GamesVirtualList
-              renderItem={id => <GameRow search id={id} />}
-              renderTitle={title => <GamesVirtualListTitle title={title} />}
-            />
-          </div>
-        </TrackProvider>
-      );
+      return null;
     }
   };
 
@@ -111,7 +141,7 @@ export class GameSearch extends React.PureComponent<Props> {
           <div className="t-background-chrome-light-2">
             <GameSearchInput
               className="u-game-search-max-width u-padding--md"
-              initFetchGameSearchCount={this.props.initFetchGameSearchCount}
+              onChange={this.props.queryChanged}
               clearSearch={this.props.clearSearch}
               noResults={this.noResults}
               placeholder={this.props.inputPromptPlaceholder}
