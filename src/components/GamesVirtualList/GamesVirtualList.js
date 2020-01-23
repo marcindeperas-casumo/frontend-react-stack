@@ -74,9 +74,7 @@ export class GamesVirtualList extends React.PureComponent<Props> {
       return Promise.resolve(games);
     }
 
-    return this.props.fetchMoreRows().then(newGames => {
-      return newGames;
-    });
+    return this.props.fetchMoreRows();
   };
 
   render() {
