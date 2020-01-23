@@ -29,10 +29,10 @@ function substitutePathParams(
   path: string,
   routeParams: RouteParamsType
 ): string {
-  return Object.keys(routeParams).reduce((reducedPath, routeParamName) => {
-    return reducedPath.replace(
-      `:${routeParamName}`,
-      routeParams[routeParamName]
-    );
-  }, path);
+  return Object.entries(routeParams).reduce(
+    (reducedPath, [routeParamName, routeParamValue]) => {
+      return reducedPath.replace(`:${routeParamName}`, String(routeParamValue));
+    },
+    path
+  );
 }

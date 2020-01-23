@@ -24,7 +24,7 @@ type Props = {
    * This action is triggered instead of the default which
    * could not work in the game iframe.
    */
-  onClickPlayAgain: (e: Event) => void,
+  onClickPlayAgain: (e: MouseEvent) => void,
   onClickButton: () => void,
   lastEndedSession: EndedSessionType,
 };
