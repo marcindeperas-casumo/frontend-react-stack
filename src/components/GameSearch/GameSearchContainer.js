@@ -43,7 +43,6 @@ export const GameSearchContainer = () => {
         page: searchResults.length / 50,
       },
       updateQuery: (prevData, { fetchMoreResult }) => {
-        // if you do not get any new results, it just returns the old data
         if (!fetchMoreResult) {
           return prevData;
         }
