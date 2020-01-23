@@ -1,0 +1,11 @@
+// need it to cover sidebar being visible when closed behind .c-layout-content
+// stylelint-disable-next-line xi/selector-pattern, selector-max-id
+#root > div {
+  height: 100%;
+}
+
+.c-layout-content {
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
