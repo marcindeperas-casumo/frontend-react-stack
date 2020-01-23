@@ -1,20 +1,21 @@
+$sidebar-translate-x: -30%;
+$sidebar-fixed-width: 260px;
+$sidebar-transition: all 0.3s ease;
+
 .c-sidebar {
-  position: absolute;
-  transform: translate3d(-30%, 0, 0);
-  transition: all 0.3s ease;
-  width: 100%;
+  transform: translate3d($sidebar-translate-x, 0, 0);
+  transition: $sidebar-transition;
   z-index: 0;
 }
 
 .c-sidebar--fixed {
-  position: relative;
   transform: translate3d(0, 0, 0);
   transition: none;
-  width: 260px;
+  width: $sidebar-fixed-width;
 }
 
 .c-layout-content {
-  transition: all 0.3s ease;
+  transition: $sidebar-transition;
 }
 
 .c-sidebar__logo {
