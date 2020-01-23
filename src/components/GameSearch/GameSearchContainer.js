@@ -57,9 +57,6 @@ export const GameSearchContainer = () => {
           },
         });
       },
-    }).then(({ data: newData }) => {
-      // virtualist list expects this data to come back immediately as a Promise
-      return [...searchResults, ...newData.gamesSearch.results];
     });
   };
 
