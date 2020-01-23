@@ -48,8 +48,10 @@ export const Sidebar = (props: Props) => {
   return (
     <div
       className={classNames(
-        "c-sidebar u-width--full u-position-absolute u-height--screen u-overflow-y--auto t-color-white u-font u-font-weight-bold",
-        isSidebarFixed && "c-sidebar--fixed u-position-relative"
+        "c-sidebar u-height--screen u-overflow-y--auto t-color-white u-font u-font-weight-bold",
+        isSidebarFixed
+          ? "c-sidebar--fixed u-position-relative"
+          : "u-width--full u-position-absolute"
       )}
     >
       <SidebarIconClose />
