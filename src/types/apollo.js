@@ -135,120 +135,46 @@ export type GameSearchNotFoundContainerQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: GameSearchSuggestionsListContainer_SuggestedGames
+// GraphQL query operation: GameSearchSuggestionsListContainerQuery
 // ====================================================
 
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby_bets = {
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby = {
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby = {
   id: ?string,
-  bets: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby_bets,
+  bets: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot_value = {
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot_value = {
   amount: number,
   currency: Currency,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot = {
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot = {
   id: string,
-  value: GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot_value,
+  value: GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot_value,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games = {
+export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   id: string,
   slug: string,
   name: string,
   logo: string,
   backgroundImage: string,
-  lobby: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby,
-  jackpot: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot,
+  lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
+  jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList = {
+export type GameSearchSuggestionsListContainerQuery_gamesList = {
   id: ?string,
-  games: Array<GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games>,
+  games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
-export type GameSearchSuggestionsListContainer_SuggestedGames = {
+export type GameSearchSuggestionsListContainerQuery = {
   title: string,
-  gamesList: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList,
+  gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList,
 };
-
-// ====================================================
-// GraphQL query operation: GameSearchSuggestionsListContainer_LatestPlayedGames
-// ====================================================
-
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby = {
-  id: ?string,
-  bets: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby_bets,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot_value = {
-  amount: number,
-  currency: Currency,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot = {
-  id: string,
-  value: GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot_value,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games = {
-  id: string,
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  lobby: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby,
-  jackpot: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList = {
-  id: ?string,
-  games: Array<GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games>,
-};
-export type GameSearchSuggestionsListContainer_LatestPlayedGames = {
-  title: string,
-  gamesList: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList,
-};
-
-// ====================================================
-// GraphQL query operation: GameSearchSuggestionsListContainer_PopularGames
-// ====================================================
-
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby = {
-  id: ?string,
-  bets: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby_bets,
-};
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot_value = {
-  amount: number,
-  currency: Currency,
-};
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot = {
-  id: string,
-  value: GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot_value,
-};
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games = {
-  id: string,
-  slug: string,
-  name: string,
-  logo: string,
-  backgroundImage: string,
-  lobby: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby,
-  jackpot: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot,
-};
-export type GameSearchSuggestionsListContainer_PopularGames_gamesList = {
-  id: ?string,
-  games: Array<GameSearchSuggestionsListContainer_PopularGames_gamesList_games>,
-};
-export type GameSearchSuggestionsListContainer_PopularGames = {
-  title: string,
-  gamesList: ?GameSearchSuggestionsListContainer_PopularGames_gamesList,
+export type GameSearchSuggestionsListContainerQueryVariables = {
+  titleId: string,
+  listId: string,
 };
 
 // ====================================================

@@ -2,34 +2,48 @@
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { EVENT_LOCATIONS } from "Src/constants";
-import {
-  GameSearchSuggestionsListContainer_SuggestedGames,
-  GameSearchSuggestionsListContainer_LatestPlayedGames,
-  GameSearchSuggestionsListContainer_PopularGames,
-} from "./GameSearchSuggestionsListContainer.graphql";
+import { GameSearchSuggestionsListContainerQuery } from "./GameSearchSuggestionsListContainer.graphql";
 
 export type Props = {
   searchResults: Array<any>,
 };
+
+const PAGE_ROOT = "root:mobile.games-search:fields";
 
 export const useGameSearchSuggestions = ({ searchResults }: Props) => {
   // eslint-disable-next-line fp/no-let
   let list;
 
   const { data: suggestedGamesData, loading: suggestedGamesLoading } = useQuery<
-    A.GameSearchSuggestionsListContainer_SuggestedGames,
-    _
-  >(GameSearchSuggestionsListContainer_SuggestedGames);
+    A.GameSearchSuggestionsListContainerQuery,
+    A.GameSearchSuggestionsListContainerQueryVariables
+  >(GameSearchSuggestionsListContainerQuery, {
+    variables: {
+      titleId: `${PAGE_ROOT}.similar_games`,
+      listId: "suggestedGames",
+    },
+  });
   const {
     data: latestPlayedGamesData,
     loading: latestPlayedGamesLoading,
-  } = useQuery<A.GameSearchSuggestionsListContainer_LatestPlayedGames, _>(
-    GameSearchSuggestionsListContainer_LatestPlayedGames
-  );
+  } = useQuery<
+    A.GameSearchSuggestionsListContainerQuery,
+    A.GameSearchSuggestionsListContainerQueryVariables
+  >(GameSearchSuggestionsListContainerQuery, {
+    variables: {
+      titleId: `${PAGE_ROOT}.continue_playing`,
+      listId: "latestPlayedGames",
+    },
+  });
   const { data: popularGamesData, loading: popularGamesLoading } = useQuery<
-    A.GameSearchSuggestionsListContainer_PopularGames,
-    _
-  >(GameSearchSuggestionsListContainer_PopularGames);
+    A.GameSearchSuggestionsListContainerQuery,
+    A.GameSearchSuggestionsListContainerQueryVariables
+  >(GameSearchSuggestionsListContainerQuery, {
+    variables: {
+      titleId: `${PAGE_ROOT}.popular_games`,
+      listId: "popularGames",
+    },
+  });
 
   const loading =
     suggestedGamesLoading || latestPlayedGamesLoading || popularGamesLoading;
