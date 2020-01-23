@@ -56,7 +56,7 @@ export function PlayerValuableListVertical() {
       {sections.map(section => (
         <ValuablesVerticalList
           key={section.title}
-          valuables={valuables}
+          valuables={section.data}
           title={section.title}
           translations={translations}
           loading={loading}
