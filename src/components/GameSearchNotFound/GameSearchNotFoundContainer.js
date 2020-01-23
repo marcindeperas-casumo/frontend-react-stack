@@ -7,14 +7,15 @@ import { GameSearchNotFound } from "./GameSearchNotFound";
 import { GameSearchNotFoundContainerQuery } from "./GameSearchNotFoundContainer.graphql";
 
 export const GameSearchNotFoundContainer = () => {
-  const { data, loading } = useQuery<A.GameSearchNotFoundContainerQuery, _>(
-    GameSearchNotFoundContainerQuery
-  );
+  const { data, loading: translationsLoading } = useQuery<
+    A.GameSearchNotFoundContainerQuery,
+    _
+  >(GameSearchNotFoundContainerQuery);
   const { list, loading: listLoading } = useGameSearchSuggestions({
     searchResults: [],
   });
 
-  if (loading) {
+  if (translationsLoading) {
     return null;
   }
 
@@ -33,7 +34,7 @@ export const GameSearchNotFoundContainer = () => {
       title={data?.title || ""}
       content={getContent() || ""}
       list={list}
-      loading={loading}
+      loading={translationsLoading}
     />
   );
 };
