@@ -157,6 +157,164 @@ export type GameSearchCMSQuery = {
 // This file was automatically generated and should not be edited.
 
 // ====================================================
+// GraphQL query operation: GameSearchNotFoundContainerQuery
+// ====================================================
+
+export type GameSearchNotFoundContainerQuery = {
+  image: string,
+  title: string,
+  contentLatest: string,
+  contentPopular: string,
+};
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GameSearchSuggestionsListContainer_SuggestedGames
+// ====================================================
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby_bets,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot_value,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  logoBackground: string,
+  lobby: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_lobby,
+  jackpot: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games_jackpot,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames_gamesList = {
+  id: ?string,
+  games: Array<GameSearchSuggestionsListContainer_SuggestedGames_gamesList_games>,
+};
+
+export type GameSearchSuggestionsListContainer_SuggestedGames = {
+  title: string,
+  gamesList: ?GameSearchSuggestionsListContainer_SuggestedGames_gamesList,
+};
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GameSearchSuggestionsListContainer_LatestPlayedGames
+// ====================================================
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby_bets,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot_value,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  logoBackground: string,
+  lobby: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_lobby,
+  jackpot: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games_jackpot,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList = {
+  id: ?string,
+  games: Array<GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList_games>,
+};
+
+export type GameSearchSuggestionsListContainer_LatestPlayedGames = {
+  title: string,
+  gamesList: ?GameSearchSuggestionsListContainer_LatestPlayedGames_gamesList,
+};
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL query operation: GameSearchSuggestionsListContainer_PopularGames
+// ====================================================
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby_bets,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot_value,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList_games = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  logoBackground: string,
+  lobby: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_lobby,
+  jackpot: ?GameSearchSuggestionsListContainer_PopularGames_gamesList_games_jackpot,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames_gamesList = {
+  id: ?string,
+  games: Array<GameSearchSuggestionsListContainer_PopularGames_gamesList_games>,
+};
+
+export type GameSearchSuggestionsListContainer_PopularGames = {
+  title: string,
+  gamesList: ?GameSearchSuggestionsListContainer_PopularGames_gamesList,
+};
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
 // GraphQL query operation: GameTileHeartQuery
 // ====================================================
 
@@ -1623,6 +1781,44 @@ export type GameSearch_Game = {
   logoBackground: string,
   lobby: ?GameSearch_Game_lobby,
   jackpot: ?GameSearch_Game_jackpot,
+};
+/* @flow */
+/* eslint-disable */
+// This file was automatically generated and should not be edited.
+
+// ====================================================
+// GraphQL fragment: GameSearchSuggestionsList_Game
+// ====================================================
+
+export type GameSearchSuggestionsList_Game_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+
+export type GameSearchSuggestionsList_Game_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsList_Game_lobby_bets,
+};
+
+export type GameSearchSuggestionsList_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+
+export type GameSearchSuggestionsList_Game_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsList_Game_jackpot_value,
+};
+
+export type GameSearchSuggestionsList_Game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  logoBackground: string,
+  lobby: ?GameSearchSuggestionsList_Game_lobby,
+  jackpot: ?GameSearchSuggestionsList_Game_jackpot,
 };
 /* @flow */
 /* eslint-disable */
