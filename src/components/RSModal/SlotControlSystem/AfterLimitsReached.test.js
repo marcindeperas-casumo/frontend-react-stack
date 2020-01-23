@@ -12,7 +12,6 @@ import {
 import { AfterLimitsReached } from "./AfterLimitsReached";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
-jest.mock("Utils/hooks");
 
 describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
   const mock = (fn: any) => fn;

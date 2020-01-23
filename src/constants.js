@@ -233,7 +233,7 @@ export const CURRENCY_SYMBOLS = {
   USD: "\u0024", // $
 };
 
-export const CURRENCIES = {
+export const CURRENCIES = Object.freeze({
   EUR: "EUR",
   GBP: "GBP",
   DKK: "KR",
@@ -242,7 +242,7 @@ export const CURRENCIES = {
   NZD: "NZD",
   INR: "INR",
   USD: "USD",
-};
+});
 
 export const VERTICALS = {
   SPORTS: "SPORTS",
@@ -260,6 +260,7 @@ export const EVENTS = {
   MIXPANEL_PROMOTION_OPTED_IN: "Promotion opted in",
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
+  MIXPANEL_SPORTS_PAGEVIEW: "Sports Page View",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -274,6 +275,9 @@ export const EVENT_PROPS = {
   SPORTS_STATE: "State",
   SPORTS_SELECTED_NAV: "Sports",
   SPORTS_IS_LIVE_ACTIVE: "Is Live",
+  SPORTS_PAGE_TYPE: "type",
+  SPORTS_PAGE_TITLE: "title",
+  SPORTS_PAGE_PATH: "path",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };

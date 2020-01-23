@@ -19,7 +19,7 @@ type Content = {
 };
 
 type Props = {
-  selectedYear: number,
+  selectedYear: string,
   locale: string,
   t: Content,
   data?: AnnualOverview,
@@ -71,8 +71,13 @@ export function TransactionsAnnualOverview({
   selectedYear,
   PdfButton,
 }: Props) {
+  React.useEffect(() => {
+    if (!data) {
+      navigateToHistory();
+    }
+  }, [data, navigateToHistory]);
+
   if (!data) {
-    navigateToHistory();
     return null;
   }
 
@@ -124,7 +129,7 @@ export function TransactionsAnnualOverview({
         {...passedProps}
       />
       <PdfButton
-        year={selectedYear}
+        year={Number.parseInt(selectedYear, 10)}
         label={t.annual_transactions_download_pdf}
       />
     </div>
