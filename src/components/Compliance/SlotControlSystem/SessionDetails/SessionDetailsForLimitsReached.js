@@ -10,46 +10,52 @@ import { SessionDetailsBody } from "./SessionDetailsBody";
 type Props = {
   t: ?{
     session_details_header: string,
-    balance: string,
     money_wagered: string,
     money_won: string,
     money_left: string,
     play_started: string,
     play_ended: string,
-    last_status_alert: string,
     limits_reached_button_label: string,
     limits_reached_play_again_header: string,
   },
   locale: string,
   playAgainGameId?: string,
+  /**
+   * This action is triggered instead of the default which
+   * could not work in the game iframe.
+   */
+  onClickPlayAgain: (e: MouseEvent) => void,
   onClickButton: () => void,
   lastEndedSession: EndedSessionType,
 };
 
 export function SessionDetailsForLimitsReached(props: Props) {
-  const { t, playAgainGameId, onClickButton, locale, lastEndedSession } = props;
-  const now = 1576065735032;
+  const {
+    t,
+    playAgainGameId,
+    onClickPlayAgain,
+    onClickButton,
+    locale,
+    lastEndedSession,
+  } = props;
 
   return (
     <Flex direction="vertical">
       {Boolean(playAgainGameId) && (
-        <>
+        <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow id={playAgainGameId} />
-        </>
+        </div>
       )}
       <SessionDetailsBody
         t={t}
         locale={locale}
-        // TODO bind proper data when available in API
-        balance={455}
-        currency={"EUR"}
+        currency={lastEndedSession.stats.currency}
         playStartedTime={lastEndedSession.startedTime}
         playEndedTime={lastEndedSession.endedTime}
-        lastStatusAlertTime={now - 1000 * 50}
-        moneyWon={11}
-        moneyLeft={12}
-        moneyWagered={13}
+        moneyWon={lastEndedSession.stats.totalWins}
+        moneyLeft={lastEndedSession.stats.remainingBalance}
+        moneyWagered={lastEndedSession.stats.totalBets}
       />
       <Button
         variant="primary"

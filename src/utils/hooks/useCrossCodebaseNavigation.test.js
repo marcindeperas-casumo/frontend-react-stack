@@ -15,9 +15,11 @@ jest.mock("../../constants.js", () => ({
   },
   ROUTE_IDS: {
     myRouteId: "myRouteId",
+    myRouteIdWithParams: "myRouteIdWithParams",
   },
   ROUTES: {
     myRouteId: "myRoutePath",
+    myRouteIdWithParams: "myRouteIdWithParams/:param1/:param2",
   },
 }));
 
@@ -59,10 +61,12 @@ describe("useCrossCodebaseNavigation", () => {
   afterEach(() => {
     window.location = location;
   });
+
   test("returns navigateToKO function", () => {
     const { navigateToKO } = wrapper.find("div").props().hook;
     expect(typeof navigateToKO).toEqual("function");
   });
+
   test("calls window.location.replace with path", () => {
     const { navigateToKO } = wrapper.find("div").props().hook;
 
@@ -71,6 +75,19 @@ describe("useCrossCodebaseNavigation", () => {
     expect(window.location.replace).toHaveBeenCalledTimes(1);
     expect(window.location.replace).toHaveBeenCalledWith(
       "/myMarketUrlPrefix/myRoutePath"
+    );
+  });
+
+  test("calls window.location.replace with path with substituted url params", () => {
+    const { navigateToKO } = wrapper.find("div").props().hook;
+    const param1 = "substitutedParam1";
+    const param2 = "substitutedParam2";
+
+    navigateToKO("myRouteIdWithParams", { param1, param2 });
+
+    expect(window.location.replace).toHaveBeenCalledTimes(1);
+    expect(window.location.replace).toHaveBeenCalledWith(
+      `/myMarketUrlPrefix/myRouteIdWithParams/${param1}/${param2}`
     );
   });
 });

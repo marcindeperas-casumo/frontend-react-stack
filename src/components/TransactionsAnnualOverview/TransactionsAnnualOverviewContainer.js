@@ -1,7 +1,6 @@
 // @flow
 import { connect } from "react-redux";
-import DurandalReactBridge from "Src/DurandalReactBridge";
-import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
+import { navigateById } from "Services/NavigationService";
 import { localeSelector } from "Models/handshake";
 import {
   transactionsBetsHistoryContentSelector,
@@ -18,10 +17,6 @@ export const TransactionsAnnualOverviewContainer = connect(
     PdfButton: TransactionsAnnualOverviewPdfButton,
   }),
   () => ({
-    // Need to pack it as a router model function and hide bridge dependency
-    navigateToHistory: () =>
-      DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
-        routeId: "history",
-      }),
+    navigateToHistory: () => navigateById({ routeId: "history" }),
   })
 )(TransactionsAnnualOverview);

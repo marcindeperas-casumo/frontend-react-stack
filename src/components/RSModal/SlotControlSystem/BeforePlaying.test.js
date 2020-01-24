@@ -13,7 +13,7 @@ import { useWalletAmount } from "Utils/hooks";
 import { BeforePlaying } from "./BeforePlaying";
 
 jest.mock("Models/slotControlSystem/useSessionsState");
-jest.mock("Utils/hooks");
+jest.mock("Utils/hooks/useWalletAmount");
 
 describe("RSModal/SlotControlSystem/BeforePlaying", () => {
   const enoughFunds = 0.61;

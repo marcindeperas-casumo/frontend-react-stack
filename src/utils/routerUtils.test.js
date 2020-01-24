@@ -1,11 +1,27 @@
 // @flow
-
-import { interpolate, routeTranslator } from "Utils";
+import { navigate } from "@reach/router";
+import { interpolate, routeTranslator, navigateToRerender } from "Utils";
 import { TRANSLATED_ROUTES, ROUTE_IDS, ROUTES } from "Src/constants";
+
+jest.mock("@reach/router", () => ({
+  navigate: jest.fn(),
+}));
 
 describe("<Router /> utils", () => {
   const testLanguage = "en";
   const unknownLanguage = "casumo";
+  const pathname = "SOME PATH";
+
+  beforeEach(() => {
+    jest.resetAllMocks();
+
+    // eslint-disable-next-line fp/no-delete
+    delete window.location;
+
+    window.location = {
+      pathname,
+    };
+  });
 
   test("calling routeTranslator with a language should return a function", () => {
     const translateRoute = routeTranslator(testLanguage);
@@ -22,5 +38,11 @@ describe("<Router /> utils", () => {
     });
 
     expect(translatedRoute).toBe(expectedResult);
+  });
+
+  test("navigateToRerender calls router's navigate with current pathname", () => {
+    navigateToRerender();
+
+    expect(navigate).toHaveBeenCalledWith(pathname);
   });
 });

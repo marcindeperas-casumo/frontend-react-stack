@@ -79,3 +79,8 @@ export const playerBalanceAmountSelector = createSelector(
     return walletAmount || handsakeAmount;
   }
 );
+
+export const playerSessionIsValidSelector: any => boolean = createSelector(
+  player,
+  prop("sessionValid")
+);
