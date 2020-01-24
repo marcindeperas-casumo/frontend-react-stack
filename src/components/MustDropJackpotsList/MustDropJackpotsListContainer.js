@@ -20,7 +20,7 @@ const QUERY = gql`
         name
         slug
         logo
-        logoBackground
+        backgroundImage
       }
     }
   }
