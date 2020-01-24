@@ -1,0 +1,8 @@
+fragment MustDropJackpot_MustDropJackpot on MustDropJackpot {
+  label
+  image
+  id
+  amount {
+    formattedAmount
+  }
+}

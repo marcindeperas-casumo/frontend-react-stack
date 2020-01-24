@@ -1,0 +1,7 @@
+#import "./MustDropJackpotsWidget.graphql"
+
+query MustDropJackpotsQuery {
+  mustDropJackpots {
+    ...MustDropJackpotsWidget_MustDropJackpot
+  }
+}
