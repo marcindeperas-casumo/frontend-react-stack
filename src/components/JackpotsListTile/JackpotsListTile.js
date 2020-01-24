@@ -11,18 +11,13 @@ type Props = {
 };
 // __FIX__ this should be the source of truth for the MustDrop and
 // standard jackpot tiles.
-export const JackpotsListTile = ({ games = [] }: Props) => (
-  <>
-    {games.map(game => {
-      return (
-        <div key={game.id} className="u-padding-y--sm">
-          <GameRow
-            game={game}
-            className="t-background-white t-border-r--md t-box-shadow"
-            onLaunchGame={() => launchGame({ slug: game.slug })}
-          />
-        </div>
-      );
-    })}
-  </>
-);
+export const JackpotsListTile = ({ games = [] }: Props) =>
+  games.map(game => (
+    <div key={game.id} className="u-padding-y--sm">
+      <GameRow
+        game={game}
+        className="t-background-white t-border-r--md t-box-shadow"
+        onLaunchGame={() => launchGame({ slug: game.slug })}
+      />
+    </div>
+  ));
