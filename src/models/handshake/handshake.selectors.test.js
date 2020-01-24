@@ -618,7 +618,10 @@ describe("Handshake selectors", () => {
           "common/composition/session": { id: "p1" },
           "common/composition/players": {
             players: {
-              p1: { id: "p1", complianceState: { DGA: {}, AML: "any value" } },
+              p1: {
+                id: "p1",
+                complianceState: { DGA: { prop: "value" }, AML: "any value" },
+              },
             },
           },
         },
@@ -628,7 +631,7 @@ describe("Handshake selectors", () => {
     test("should return object for DGA compliance state property", () => {
       expect(
         complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.DGA)(state)
-      ).toEqual({});
+      ).toEqual({ prop: "value" });
     });
 
     test("should return 'any value' for AML complaince state property", () => {
