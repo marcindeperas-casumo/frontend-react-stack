@@ -52,13 +52,13 @@ export const SetAmount = (props: Props) => {
     [depositLimit, setAmount]
   );
 
-  const limitInRange = value => {
+  const limitInRange = (value: number): boolean => {
     return amount >= minFirstDepositLimit && value <= depositLimit;
   };
 
-  const isLimitMaxed = value => value >= depositLimit;
+  const isLimitMaxed = (value: number): boolean => value >= depositLimit;
 
-  const currencySign = getSymbolForCurrency({
+  const currencySign: string = getSymbolForCurrency({
     locale: locale,
     currency: currency,
   });
