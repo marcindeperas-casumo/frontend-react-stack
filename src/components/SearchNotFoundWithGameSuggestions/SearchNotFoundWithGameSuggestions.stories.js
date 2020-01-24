@@ -1,10 +1,8 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { SearchNotFoundWithGameSuggestions } from "./";
+import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions/SearchNotFoundWithGameSuggestions";
 
-const stories = storiesOf("GameSearchNotFound", module);
+const stories = storiesOf("SearchNotFoundWithGameSuggestions", module);
 
-stories.add("Default", () => (
-  <SearchNotFoundWithGameSuggestions msg="howdy! 🤠" />
-));
+stories.add("Default", () => <SearchNotFoundWithGameSuggestions />);
