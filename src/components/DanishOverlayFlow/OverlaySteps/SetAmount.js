@@ -58,10 +58,7 @@ export const SetAmount = (props: Props) => {
 
   const isLimitMaxed = (value: number): boolean => value >= depositLimit;
 
-  const currencySign: string = getSymbolForCurrency({
-    locale: locale,
-    currency: currency,
-  });
+  const currencySign: string = getSymbolForCurrency({ locale, currency });
 
   return (
     <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
@@ -79,8 +76,8 @@ export const SetAmount = (props: Props) => {
           <div data-test-id="warning-message" className="t-color-red-light-1">
             {minFirstDepositLimit} -{" "}
             {formatCurrency({
-              locale: locale,
-              currency: currency,
+              locale,
+              currency,
               value: depositLimit,
             })}
           </div>
