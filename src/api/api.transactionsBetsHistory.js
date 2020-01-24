@@ -2,12 +2,12 @@
 import { DateTime } from "luxon";
 import { pick, path } from "ramda";
 import clientHttp from "Lib/http";
-import { URLS } from "Api/api.common";
+import { CURRENCIES } from "Src/constants";
+import { URLS as COMMON_URLS } from "Api/api.common";
 import type {
   AnnualOverview,
   WalletTotalsProps,
   WalletTransactionsProps,
-  FetchAnnualOverviewPdfUrlProps,
   TransactionResponseRaw,
   AmountWithCodeResponseRaw,
   StartingEndBalance,
@@ -36,8 +36,11 @@ type GameroundsTotalsResponseRaw = Array<{
 
 type TotalsResponse = $Diff<AnnualOverview, StartingEndBalance>;
 
-type AnnualOverviewPdfUrlResponseRaw = {
-  downloadUrl: string,
+type GetSummaryUrlProps = {
+  date: DateTime,
+  currency: $Values<typeof CURRENCIES>,
+  periodicity?: "ANNUAL" | "MONTHLY" | "DAILY",
+  asPdf?: boolean,
 };
 
 const getWalletTotalsUrl = ({
@@ -45,7 +48,7 @@ const getWalletTotalsUrl = ({
   startTime,
   endTime,
 }: WalletTotalsProps): string => {
-  const baseUrl = `${URLS.QUERY}/wallet/${walletId}/totals`;
+  const baseUrl = `${COMMON_URLS.QUERY}/wallet/${walletId}/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("startTime", startTime.toISO());
@@ -58,7 +61,7 @@ const getGameroundsTotalsUrl = ({
   startTime,
   endTime,
 }: GameroundsTotalsProps): string => {
-  const baseUrl = `${URLS.QUERY}/gamerounds/totals`;
+  const baseUrl = `${COMMON_URLS.QUERY}/gamerounds/totals`;
   const urlParams = new URLSearchParams();
 
   urlParams.set("from", startTime.toMillis());
@@ -108,7 +111,7 @@ const getTransactionsUrl = ({
   perPage = 50,
 }: WalletTransactionsProps): string => {
   return `${
-    URLS.QUERY
+    COMMON_URLS.QUERY
   }/wallet/${walletId}/transaction/${startTime.toISO()}/${endTime.toISO()}/${perPage}`;
 };
 
@@ -118,8 +121,13 @@ export const getTransactionsReq = (
 ): Promise<Array<TransactionResponseRaw>> =>
   http.get(getTransactionsUrl(props));
 
-export const getAnnualOverviewPdfUrlReq = (
-  props: FetchAnnualOverviewPdfUrlProps,
-  http: HTTPClient = clientHttp
-): Promise<AnnualOverviewPdfUrlResponseRaw> =>
-  http.post(`${URLS.QUERY}/annual-summary-print`, props);
+export const getSummaryUrl = ({
+  periodicity = "ANNUAL",
+  date,
+  currency,
+  asPdf = false,
+}: GetSummaryUrlProps): string => {
+  return `/casino-player/player-transactions/api/summaries/${periodicity}/${date.toFormat(
+    "y-MM-dd"
+  )}/${currency}${asPdf ? "/PDF" : ""}`;
+};

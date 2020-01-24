@@ -1,9 +1,8 @@
 // @flow
 import { connect } from "react-redux";
 import { range } from "ramda";
-import DurandalReactBridge from "Src/DurandalReactBridge";
+import { navigateById } from "Services/NavigationService";
 import logger from "Services/logger";
-import { KO_APP_EVENT_CHANGE_ROUTE } from "Src/constants";
 import { walletIdSelector } from "Models/handshake";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
@@ -43,8 +42,7 @@ export const TransactionsAnnualOverviewYearSelectorContainer = connect(
       )
         .catch(e => logger.error(`Silenced error: ${e}`))
         .then(() =>
-          // Need to pack it as a router model function and hide bridge dependency
-          DurandalReactBridge.emit(KO_APP_EVENT_CHANGE_ROUTE, {
+          navigateById({
             routeId: "history-transactions-annual-overview",
             params: { year },
           })

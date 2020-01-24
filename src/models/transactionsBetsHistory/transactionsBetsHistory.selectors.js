@@ -1,6 +1,6 @@
 // @flow
 import { createSelector } from "reselect";
-import { pathOr, identity, reduce, pipe, prop } from "ramda";
+import { pathOr, identity, reduce, pipe } from "ramda";
 import { getPage } from "Models/cms";
 import { ENTITY_KEYS } from "Models/schema";
 import { CMS_CONTENT_SLUG } from "./transactionsBetsHistory.constants";
@@ -8,7 +8,6 @@ import type { AnnualOverview } from "./transactionsBetsHistory.types";
 
 type ContentSelector = Object => { [string]: string };
 type AnnualOverviewSelector = number => Object => AnnualOverview;
-type AnnualOverviewPdfUrlSelector = number => Object => string;
 type AnnualOverviewFetchingSelector = number => Object => boolean;
 
 export const annualOverviewSelector: AnnualOverviewSelector = year =>
@@ -35,12 +34,6 @@ export const transactionsBetsHistoryContentSelector: ContentSelector = createSel
     )
   )
 );
-
-export const transactionsAnnualOverviewPdfUrlSelector: AnnualOverviewPdfUrlSelector = year =>
-  pipe(
-    annualOverviewSelector(year),
-    prop("pdfUrl")
-  );
 
 export const isAnnualOverviewFetchingSelector: AnnualOverviewFetchingSelector = year =>
   createSelector(

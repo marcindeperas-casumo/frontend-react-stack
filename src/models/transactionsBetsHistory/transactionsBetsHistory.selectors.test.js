@@ -2,7 +2,6 @@ import { CMS_CONTENT_SLUG } from "./transactionsBetsHistory.constants";
 import {
   transactionsBetsHistoryContentSelector,
   annualOverviewSelector,
-  transactionsAnnualOverviewPdfUrlSelector,
   isAnnualOverviewFetchingSelector,
 } from "./transactionsBetsHistory.selectors";
 import annualOverview from "./__mocks__/annualOverview.mock";
@@ -46,34 +45,6 @@ describe("Transactions/Bets History Selectors", () => {
       expect(transactionsBetsHistoryContentSelector(state)).toEqual({
         label_1: "value_1",
       });
-    });
-  });
-
-  describe("transactionsAnnualOverviewPdfUrlSelector()", () => {
-    const year = 2019;
-    const pdfUrl = "PDF_URL";
-    const overview2019 = {
-      betsAmount: 123.4,
-      winningsAmount: 67.8,
-      withdrawalsAmount: 11.3,
-      bonusesAmount: 33.2,
-      depositsAmount: 19.6,
-      pdfUrl,
-    };
-    const state = {
-      schema: {
-        transactionsBetsHistoryAnnualOverview: {
-          [year]: {
-            data: overview2019,
-          },
-        },
-      },
-    };
-
-    test("returns pdf url when it exists", () => {
-      expect(transactionsAnnualOverviewPdfUrlSelector(year)(state)).toEqual(
-        pdfUrl
-      );
     });
   });
 
