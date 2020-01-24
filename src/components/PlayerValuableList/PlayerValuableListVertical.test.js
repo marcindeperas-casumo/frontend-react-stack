@@ -53,13 +53,22 @@ describe("PlayerValuableListVertical", () => {
     const expectedAvailable = mocks.allValuables.filter(
       val => val.valuableState === VALUABLE_STATES.FRESH
     ).length;
+    const expectedLocked = mocks.allValuables.filter(
+      val => val.valuableState === VALUABLE_STATES.LOCKED
+    ).length;
 
     await waitAndUpdateWrapper(rendered);
 
     const actualAvailable = rendered
       .find(ValuablesVerticalList)
+      .find({ "data-test-id": "list-available" })
+      .find(ValuableRow).length;
+    const actualLocked = rendered
+      .find(ValuablesVerticalList)
+      .find({ "data-test-id": "list-locked" })
       .find(ValuableRow).length;
 
     expect(actualAvailable).toEqual(expectedAvailable);
+    expect(actualLocked).toEqual(expectedLocked);
   });
 });
