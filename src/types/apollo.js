@@ -124,17 +124,6 @@ export type GameSearchCMSQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: GameSearchNotFoundContainerQuery
-// ====================================================
-
-export type GameSearchNotFoundContainerQuery = {
-  image: string,
-  title: string,
-  contentLatest: string,
-  contentPopular: string,
-};
-
-// ====================================================
 // GraphQL query operation: GameSearchSuggestionsListContainerQuery
 // ====================================================
 
@@ -394,6 +383,17 @@ export type gameStudioQueryVariables = {
   slug: string,
   page: number,
   pageSize: number,
+};
+
+// ====================================================
+// GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
+// ====================================================
+
+export type SearchNotFoundWithGameSuggestionsContainerQuery = {
+  image: string,
+  title: string,
+  contentLatest: string,
+  contentPopular: string,
 };
 
 // ====================================================

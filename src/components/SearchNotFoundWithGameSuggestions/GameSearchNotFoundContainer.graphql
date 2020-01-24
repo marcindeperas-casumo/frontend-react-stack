@@ -1,4 +1,4 @@
-query GameSearchNotFoundContainerQuery {
+query SearchNotFoundWithGameSuggestionsContainerQuery {
   image: getText(id: "root:mobile.games-search:fields.no_results_image")
   title: getText(id: "root:mobile.games-search:fields.no_results_title")
   contentLatest: getText(

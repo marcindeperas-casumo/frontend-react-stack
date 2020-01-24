@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import { GameSearchNotFound } from "Components/GameSearchNotFound";
+import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { GameRow } from "Components/GameRow/GameRow";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
@@ -105,7 +105,7 @@ export const GameSearch = (props: Props) => {
         </TrackProvider>
       );
     } else if (query.length) {
-      return <GameSearchNotFound />;
+      return <SearchNotFoundWithGameSuggestions />;
     }
   };
 

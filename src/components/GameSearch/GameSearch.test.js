@@ -4,7 +4,7 @@ import List from "@casumo/cmp-list";
 import { shallow } from "enzyme";
 import { GameSearch } from "Components/GameSearch/GameSearch";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
-import { GameSearchNotFound } from "Components/GameSearchNotFound";
+import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
 
@@ -60,7 +60,7 @@ describe("GameSearch", () => {
       />
     );
 
-    expect(rendered.find(GameSearchNotFound)).toHaveLength(1);
+    expect(rendered.find(SearchNotFoundWithGameSuggestions)).toHaveLength(1);
   });
 
   test("should render all games if query is empty", () => {
