@@ -1,0 +1,18 @@
+#import "./GameSearch.graphql"
+
+# Putting it in a separate query so we can only refetch the results
+query GameSearchQuery($query: String!, $page: Int!, $pageSize: Int!) {
+  gamesSearch(query: $query, page: $page, pageSize: $pageSize) {
+    resultsCount
+    results {
+      id
+      ...GameSearch_Game
+    }
+  }
+}
+
+query GameSearchCMSQuery {
+  searchSuggestionText: getText(
+    id: "root:mobile.games-search:fields.input_prompt"
+  )
+}

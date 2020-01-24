@@ -3,7 +3,7 @@ fragment GameRow_Game on Game {
   slug
   name
   logo
-  logoBackground
+  backgroundImage
   lobby {
     id
     bets {

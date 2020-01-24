@@ -73,6 +73,100 @@ export type gameStudiosQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: GameSearchQuery
+// ====================================================
+
+export type GameSearchQuery_gamesSearch_results_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameSearchQuery_gamesSearch_results_lobby = {
+  id: ?string,
+  bets: ?GameSearchQuery_gamesSearch_results_lobby_bets,
+};
+export type GameSearchQuery_gamesSearch_results_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameSearchQuery_gamesSearch_results_jackpot = {
+  id: string,
+  value: GameSearchQuery_gamesSearch_results_jackpot_value,
+};
+export type GameSearchQuery_gamesSearch_results = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  lobby: ?GameSearchQuery_gamesSearch_results_lobby,
+  jackpot: ?GameSearchQuery_gamesSearch_results_jackpot,
+};
+export type GameSearchQuery_gamesSearch = {
+  resultsCount: number,
+  results: Array<?GameSearchQuery_gamesSearch_results>,
+};
+export type GameSearchQuery = {
+  gamesSearch: GameSearchQuery_gamesSearch,
+};
+export type GameSearchQueryVariables = {
+  query: string,
+  page: number,
+  pageSize: number,
+};
+
+// ====================================================
+// GraphQL query operation: GameSearchCMSQuery
+// ====================================================
+
+export type GameSearchCMSQuery = {
+  searchSuggestionText: string,
+};
+
+// ====================================================
+// GraphQL query operation: GameSearchSuggestionsListContainerQuery
+// ====================================================
+
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby_bets,
+};
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot_value,
+};
+export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  lobby: ?GameSearchSuggestionsListContainerQuery_gamesList_games_lobby,
+  jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
+};
+export type GameSearchSuggestionsListContainerQuery_gamesList = {
+  id: ?string,
+  games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
+};
+export type GameSearchSuggestionsListContainerQuery = {
+  title: string,
+  gamesList: ?GameSearchSuggestionsListContainerQuery_gamesList,
+};
+export type GameSearchSuggestionsListContainerQueryVariables = {
+  titleId: string,
+  listId: string,
+};
+
+// ====================================================
 // GraphQL query operation: GameTileHeartQuery
 // ====================================================
 
@@ -145,7 +239,7 @@ export type JackpotsQuery_gamesList_games = {
   slug: string,
   name: string,
   logo: string,
-  logoBackground: string,
+  backgroundImage: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
   jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
@@ -246,6 +340,60 @@ export type UseValuable = {
 export type UseValuableVariables = {
   id: string,
   source?: ?string,
+};
+
+// ====================================================
+// GraphQL query operation: gameStudioQuery
+// ====================================================
+
+export type gameStudioQuery_gameStudio_games_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type gameStudioQuery_gameStudio_games_lobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?gameStudioQuery_gameStudio_games_lobby_bets,
+};
+export type gameStudioQuery_gameStudio_games = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+  lobby: ?gameStudioQuery_gameStudio_games_lobby,
+};
+export type gameStudioQuery_gameStudio = {
+  id: string,
+  gamesCount: number,
+  games: Array<?gameStudioQuery_gameStudio_games>,
+};
+export type gameStudioQuery = {
+  gameStudio: ?gameStudioQuery_gameStudio,
+};
+export type gameStudioQueryVariables = {
+  slug: string,
+  page: number,
+  pageSize: number,
+};
+
+// ====================================================
+// GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
+// ====================================================
+
+export type SearchNotFoundWithGameSuggestionsContainerQuery = {
+  image: string,
+  title: string,
+  contentLatest: string,
+  contentPopular: string,
 };
 
 // ====================================================
@@ -1251,9 +1399,71 @@ export type GameRow_Game = {
   slug: string,
   name: string,
   logo: string,
-  logoBackground: string,
+  backgroundImage: string,
   lobby: ?GameRow_Game_lobby,
   jackpot: ?GameRow_Game_jackpot,
+};
+
+// ====================================================
+// GraphQL fragment: GameSearch_Game
+// ====================================================
+
+export type GameSearch_Game_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameSearch_Game_lobby = {
+  id: ?string,
+  bets: ?GameSearch_Game_lobby_bets,
+};
+export type GameSearch_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameSearch_Game_jackpot = {
+  id: string,
+  value: GameSearch_Game_jackpot_value,
+};
+export type GameSearch_Game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  lobby: ?GameSearch_Game_lobby,
+  jackpot: ?GameSearch_Game_jackpot,
+};
+
+// ====================================================
+// GraphQL fragment: GameSearchSuggestionsList_Game
+// ====================================================
+
+export type GameSearchSuggestionsList_Game_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameSearchSuggestionsList_Game_lobby = {
+  id: ?string,
+  bets: ?GameSearchSuggestionsList_Game_lobby_bets,
+};
+export type GameSearchSuggestionsList_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameSearchSuggestionsList_Game_jackpot = {
+  id: string,
+  value: GameSearchSuggestionsList_Game_jackpot_value,
+};
+export type GameSearchSuggestionsList_Game = {
+  id: string,
+  slug: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  lobby: ?GameSearchSuggestionsList_Game_lobby,
+  jackpot: ?GameSearchSuggestionsList_Game_jackpot,
 };
 
 // ====================================================
@@ -1306,7 +1516,7 @@ export type Jackpots_Game = {
   slug: string,
   name: string,
   logo: string,
-  logoBackground: string,
+  backgroundImage: string,
   lobby: ?Jackpots_Game_lobby,
   jackpot: ?Jackpots_Game_jackpot,
 };
