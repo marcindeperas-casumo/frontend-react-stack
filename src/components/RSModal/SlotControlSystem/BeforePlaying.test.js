@@ -53,7 +53,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
       activeSession: activeSessionMock,
     };
     const walletAmount = {
-      amount: -0.1,
+      amount: -1,
       currency: "EUR",
     };
     mock(useSessionsState).mockReturnValue(sessionsState);
