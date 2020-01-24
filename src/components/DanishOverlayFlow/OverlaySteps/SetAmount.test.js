@@ -20,7 +20,7 @@ const createComplianceState = depositLimit => ({
 });
 
 describe("SetAmount", () => {
-  test("should show error message if amount is higher than deposit limit", () => {
+  test("should show error message if amount reaches deposit limit", () => {
     const props = {
       ...baseProps,
       ...createComplianceState(10000),
