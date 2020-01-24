@@ -19,7 +19,7 @@ export const SearchNotFoundWithGameSuggestionsContainer = () => {
     return null;
   }
 
-  // fetching latest played gaes takes its sweet time. We wanna show the not found image and text immediately.
+  // fetching latest played games takes its sweet time. We wanna show the not found image and text immediately.
   const getContent = () => {
     if (listLoading) {
       return "";
