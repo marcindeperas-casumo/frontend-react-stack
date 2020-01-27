@@ -14,9 +14,6 @@ import {
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
 const CURRENT_YEAR = new Date().getFullYear();
-/**
- * Hardcoded for audit to 2018-2019.
- */
 const AVAILABLE_YEARS = range(CURRENT_YEAR - 1, CURRENT_YEAR + 1);
 
 export const TransactionsAnnualOverviewYearSelectorContainer = connect(
