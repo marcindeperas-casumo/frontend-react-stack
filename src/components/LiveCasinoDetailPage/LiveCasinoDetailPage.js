@@ -3,7 +3,7 @@ import React from "react";
 import List from "@casumo/cmp-list";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
-import { EVENT_PROPS } from "Src/constants";
+import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import { launchGame } from "Services/LaunchGameService";
 import SectionTitle from "./SectionTitle";
@@ -22,7 +22,7 @@ export const LiveCasinoDetailPage = ({ groupedLiveCasinoGames }: Props) => {
   return (
     <div className="u-padding-x--md u-padding-bottom--md">
       <TrackProvider
-        data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
+        data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.LIVE_CASINO_DETAILS }}
       >
         {groupedLiveCasinoGames.map(({ title, games }) => (
           <React.Fragment key={title}>

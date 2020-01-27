@@ -288,6 +288,7 @@ export const EVENT_LOCATIONS = {
   LATEST_PLAYED_GAMES: "latestPlayedGames",
   POPULAR_GAMES: "popularGames",
   SUGGESTED_GAMES: "suggestedGames",
+  LIVE_CASINO_DETAILS: "Live Casino - Details Page",
 };
 
 // Those modals are implemented on react side. They can be spawned from knockout.
