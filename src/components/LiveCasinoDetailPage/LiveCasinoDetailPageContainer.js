@@ -6,7 +6,7 @@ import { LiveCasinoDetailPageQuery } from "./LiveCasinoDetailPage.graphql";
 import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";
 
 export const LiveCasinoDetailPageContainer = () => {
-  const { data, loading } = useQuery<A.LiveCasinoDetailPageQuery, null>(
+  const { data, loading } = useQuery<A.LiveCasinoDetailPageQuery, _>(
     LiveCasinoDetailPageQuery
   );
   const groupedLiveCasinoGames = data?.groupedLiveCasinoGames || [];
