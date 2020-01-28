@@ -26,6 +26,8 @@ export const MESSAGES = {
     "com.casumo.es.slotsessions.notifications.SessionEndedNotification",
   PERIODIC_REMINDER_NOTIFICATION:
     "com.casumo.es.slotsessions.notifications.PeriodicReminderNotification",
+  LIMIT_ALMOST_CONSUMED_NOTIFICATION:
+    "com.casumo.es.slotsessions.notifications.LimitAlmostConsumedNotification",
   STATS_UPDATED_NOTIFICATION:
     "com.casumo.es.slotsessions.notifications.StatsUpdatedNotification",
 };
