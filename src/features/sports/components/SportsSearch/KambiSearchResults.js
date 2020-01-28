@@ -3,7 +3,16 @@ import * as React from "react";
 import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { isEmpty, map, pipe, propOr, take } from "ramda";
+import {
+  isEmpty,
+  map,
+  pipe,
+  propOr,
+  propEq,
+  take,
+  reject,
+  compose,
+} from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import * as A from "Types/apollo";
@@ -322,11 +331,17 @@ class KambiSearchResults extends React.Component<Props, State> {
             );
           }
 
-          if (isEmpty(res.data.search)) {
+          // filter out SPORT and REGION result type
+          const results = compose(
+            reject(propEq("type", "SPORT")),
+            reject(propEq("type", "REGION"))
+          )(res.data.search);
+
+          if (isEmpty(results)) {
             return this.renderNoResultsFound();
           }
 
-          return res.data.search.map(result => this.renderSearchResult(result));
+          return results.map(result => this.renderSearchResult(result));
         }}
       </Query>
     );
