@@ -51,7 +51,9 @@ describe("PlayerValuableListVertical", () => {
       </MockedProvider>
     );
     const expectedAvailable = mocks.allValuables.filter(
-      val => val.valuableState === VALUABLE_STATES.FRESH
+      val =>
+        val.valuableState === VALUABLE_STATES.FRESH ||
+        val.valuableState === VALUABLE_STATES.USED
     ).length;
     const expectedLocked = mocks.allValuables.filter(
       val => val.valuableState === VALUABLE_STATES.LOCKED
