@@ -3,7 +3,7 @@ import { isPlayActive } from "./ConfigurationForm";
 
 describe("Compliance/SlotControlSystem/ConfigurationForm", () => {
   describe("isPlayActive()", () => {
-    test("Should return true if budget is 0", () => {
+    test("Should return true if budget is 0 because player might have free spins that will allow her to play", () => {
       const mockData = {
         balance: 100,
         budget: 0,
