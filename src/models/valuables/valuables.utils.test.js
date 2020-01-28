@@ -239,13 +239,21 @@ describe("Valuables.utils", () => {
         {
           valuableState: VALUABLE_STATES.FRESH,
         },
+        {
+          valuableState: VALUABLE_STATES.USED,
+        },
       ];
       expect(
-        getValuablesByState(VALUABLE_STATES.LOCKED)(valuables)
+        getValuablesByState([VALUABLE_STATES.LOCKED])(valuables)
       ).toHaveLength(1);
       expect(
-        getValuablesByState(VALUABLE_STATES.FRESH)(valuables)
+        getValuablesByState([VALUABLE_STATES.FRESH])(valuables)
       ).toHaveLength(2);
+      expect(
+        getValuablesByState([VALUABLE_STATES.FRESH, VALUABLE_STATES.USED])(
+          valuables
+        )
+      ).toHaveLength(3);
     });
   });
 
