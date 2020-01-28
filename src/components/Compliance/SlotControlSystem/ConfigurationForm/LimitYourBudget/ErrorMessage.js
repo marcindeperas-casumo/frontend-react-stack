@@ -24,7 +24,7 @@ export function ErrorMessage(props: ErrorMessageProps) {
     locale,
   });
   const formattedMinBudget = formatCurrency({
-    value: 0.1,
+    value: 0,
     currency,
     locale,
   });

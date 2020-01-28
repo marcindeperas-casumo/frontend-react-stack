@@ -90,5 +90,5 @@ export function BeforePlaying(
 }
 
 function hasEnoughFunds(amount: number) {
-  return amount > 0.6;
+  return amount >= 0;
 }
