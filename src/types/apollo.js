@@ -28,7 +28,7 @@ export type JackpotsQuery_gamesList_games = {
 };
 export type JackpotsQuery_gamesList = {
   title: ?string,
-  games: ?Array<?JackpotsQuery_gamesList_games>,
+  games: Array<JackpotsQuery_gamesList_games>,
 };
 export type JackpotsQuery = {
   gamesList: ?JackpotsQuery_gamesList,
@@ -46,7 +46,6 @@ export type PlayerValuablesQuery_player_valuables =
       __typename:
         | "PlayerValuableDeposit"
         | "PlayerValuableFreeBet"
-        | "PlayerValuableFreeBetLocked"
         | "PlayerValuableSport",
       id: string,
       valuableState: PlayerValuableState,
@@ -674,6 +673,7 @@ export type FREEBET_QUERY_player_valuables = {
   backgroundImage: string,
   currency: Currency,
   expiryDate: BigInt,
+  created: BigInt,
   market: string,
   valuableState: PlayerValuableState,
   valuableType: ValuableType,
@@ -886,6 +886,11 @@ export type SearchQuery_search = {
    * Translated name of the search result
    */
   localizedName: string,
+
+  /**
+   * The country this search result is associated
+   */
+  country: ?string,
 
   /**
    * The sport that this search result is associated to is nullable as relies on
@@ -1168,7 +1173,6 @@ export type PlayerValuableList_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   valuableState: PlayerValuableState,
@@ -1389,7 +1393,6 @@ export type ValuableCard_PlayerValuable_PlayerValuableCash = {
     | "PlayerValuableCash"
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   title: string,
@@ -1425,7 +1428,6 @@ export type ValuableDetails_PlayerValuable_PlayerValuableDeposit = {
   __typename:
     | "PlayerValuableDeposit"
     | "PlayerValuableFreeBet"
-    | "PlayerValuableFreeBetLocked"
     | "PlayerValuableSport",
   id: string,
   backgroundImage: string,
@@ -1728,20 +1730,14 @@ export type GroupPill_Group = {
 // START Enums and Input Objects
 //==============================================================
 
-export type ValuableType =
-  | "cash"
-  | "deposit"
-  | "freeBet"
-  | "freeBetLocked"
-  | "spins"
-  | "sport";
+export type ValuableType = "cash" | "deposit" | "freeBet" | "spins" | "sport";
 export type PlayerValuableState =
   | "Consumed"
   | "Expired"
   | "Fresh"
   | "Locked"
   | "Used";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD";
+export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD" | "SEK";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";

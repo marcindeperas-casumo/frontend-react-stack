@@ -45,6 +45,7 @@ export const SEARCH_QUERY = gql`
       type
       id
       localizedName
+      country
 
       sport {
         icon
@@ -284,6 +285,11 @@ class KambiSearchResults extends React.Component<Props, State> {
               {result.type === resultType.PARTICIPANT && result.sport && (
                 <Text size="sm" tag="span" className="t-color-chrome">
                   {result.sport.name}
+                </Text>
+              )}
+              {result.type === resultType.LEAGUE && (
+                <Text size="sm" tag="span" className="t-color-chrome">
+                  {result.country}
                 </Text>
               )}
             </Flex>
