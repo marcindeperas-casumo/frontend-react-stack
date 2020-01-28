@@ -1,0 +1,8 @@
+fragment PromotionCard_PromotionCard on Promotion {
+  id
+  slug
+  title
+  subtitle
+  image
+  badge
+}
