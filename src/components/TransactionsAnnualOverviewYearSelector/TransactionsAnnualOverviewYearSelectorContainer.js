@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 import { range } from "ramda";
 import { navigateById } from "Services/NavigationService";
 import logger from "Services/logger";
-import { walletIdSelector } from "Models/handshake";
+import { registrationDateSelector } from "Models/handshake";
 import { isPageFetchedSelector, fetchPageBySlug } from "Models/cms";
 import {
   CMS_CONTENT_SLUG,
@@ -14,12 +14,13 @@ import {
 import { TransactionsAnnualOverviewYearSelector } from "./TransactionsAnnualOverviewYearSelector";
 
 const CURRENT_YEAR = new Date().getFullYear();
-const AVAILABLE_YEARS = range(CURRENT_YEAR - 1, CURRENT_YEAR + 1);
+const getRegistrationYear = state => {
+  return new Date(registrationDateSelector(state)).getFullYear();
+};
 
 export const TransactionsAnnualOverviewYearSelectorContainer = connect(
   state => ({
-    walletId: walletIdSelector(state),
-    yearOptions: AVAILABLE_YEARS,
+    yearOptions: range(getRegistrationYear(state), CURRENT_YEAR + 1),
     selectedYear: CURRENT_YEAR,
     content: transactionsBetsHistoryContentSelector(state),
     isContentFetched: isPageFetchedSelector(CMS_CONTENT_SLUG)(state),
