@@ -1,11 +1,19 @@
 fragment GameRow_Game on Game {
   id
-  slug
-  name
-  logo
   backgroundImage
+  isInMaintenance
+  logo
+  name
+  slug
   lobby {
     id
+    tableId
+    symbol
+    provider
+    results
+    image
+    type
+    betBehind
     bets {
       min
       max
