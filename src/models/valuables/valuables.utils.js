@@ -128,4 +128,7 @@ export const getExpiryTimeLeft = (timestamp: number) => {
 
 export const orderValuablesByCreationTime = sort(descend(prop("created")));
 
-export const getLatestValuable = pipe(orderValuablesByCreationTime, head);
+export const getLatestValuable = pipe(
+  orderValuablesByCreationTime,
+  head
+);
