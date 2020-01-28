@@ -80,6 +80,7 @@ const error = [
 ];
 
 export const mocks = {
+  allValuables: mockValuables(),
   mockedValuables,
   mockedDepositValuables,
   emptyValuables,
