@@ -260,7 +260,7 @@ export type gamesListQuery_gamesList_games = {
   name: string,
   slug: string,
   logo: string,
-  logoBackground: string,
+  backgroundImage: string,
 };
 export type gamesListQuery_gamesList = {
   name: ?string,
@@ -376,6 +376,30 @@ export type UseValuable = {
 export type UseValuableVariables = {
   id: string,
   source?: ?string,
+};
+
+// ====================================================
+// GraphQL query operation: PromotionsListQuery
+// ====================================================
+
+export type PromotionsListQuery_promotionsList_promotions = {
+  id: string,
+  slug: string,
+  title: string,
+  subtitle: string,
+  image: string,
+  badge: ?string,
+};
+export type PromotionsListQuery_promotionsList = {
+  id: string,
+  name: string,
+  promotions: Array<PromotionsListQuery_promotionsList_promotions>,
+};
+export type PromotionsListQuery = {
+  promotionsList: ?PromotionsListQuery_promotionsList,
+};
+export type PromotionsListQueryVariables = {
+  slug: string,
 };
 
 // ====================================================
@@ -1649,6 +1673,19 @@ export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
+// GraphQL fragment: PromotionCard_PromotionCard
+// ====================================================
+
+export type PromotionCard_PromotionCard = {
+  id: string,
+  slug: string,
+  title: string,
+  subtitle: string,
+  image: string,
+  badge: ?string,
+};
+
+// ====================================================
 // GraphQL fragment: SETTINGS_PLAYER
 // ====================================================
 
