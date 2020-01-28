@@ -8,6 +8,7 @@ import {
   descend,
   pipe,
   head,
+  includes,
 } from "ramda";
 import {
   type ValuableDetailsTranslations,
@@ -35,8 +36,8 @@ export const isAboutToExpire = (hours: number): boolean =>
 export const showStateBadge = (valuableState: ValuableState, hours: number) =>
   valuableState === VALUABLE_STATES.LOCKED || isAboutToExpire(hours);
 
-export const getValuablesByState = (state: ValuableState) =>
-  filter(({ valuableState }) => valuableState === state);
+export const getValuablesByState = (states: ValuableState[]) =>
+  filter(({ valuableState }) => includes(valuableState, states));
 
 export const getValuableDetailsAction = ({
   valuableType,
@@ -127,7 +128,4 @@ export const getExpiryTimeLeft = (timestamp: number) => {
 
 export const orderValuablesByCreationTime = sort(descend(prop("created")));
 
-export const getLatestValuable = pipe(
-  orderValuablesByCreationTime,
-  head
-);
+export const getLatestValuable = pipe(orderValuablesByCreationTime, head);
