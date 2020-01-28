@@ -18,9 +18,6 @@ const props = {
   dismissModal: action("dismissModal"),
   config: {},
   t: {
-    session_start: "Session start:",
-    session_end: "Session end:",
-    session_time_limit: "Time limit:",
     time_played: "Time played:",
     session_loss_limit: "Session loss limit:",
     remaining_session_loss_limit: "Remaining session loss limit:",
