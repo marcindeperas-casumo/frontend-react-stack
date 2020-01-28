@@ -1,39 +1,37 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import { fetchPageBySlug, getField, getFieldIfNotSuspicious } from "Models/cms";
-import { marketSelector } from "Models/handshake";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import PromotionCardList from "./PromotionCardList";
-
+import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 type Props = {
-  /** The slug of the page in the CMS which has all the promotions available */
   slug: string,
 };
 
-const field = "promotions";
-const defaultValue = [];
-const getSlug = slug => `${slug}.*`;
-
-const PromotionCardListConnected = connect(
-  (state, { slug }) => ({
-    promotionsSlugs: getFieldIfNotSuspicious({
+const PromotionCardListContainer = ({ slug }: Props) => {
+  const { data, loading } = useQuery<
+    A.PromotionsListQuery,
+    A.PromotionsListQueryVariables
+  >(PromotionsListQuery, {
+    variables: {
       slug,
-      field,
-      defaultValue,
-    })(state),
-    seeMore: getField({
-      slug: `built-pages.top-lists-${marketSelector(state)}`,
-      field: "more_link",
-    })(state),
-  }),
-  (dispatch, { slug }) => ({
-    fetchCampaign: () => dispatch(fetchPageBySlug(getSlug(slug))),
-    fetchPromotions: () => dispatch(fetchPageBySlug("promotions.*")),
-  })
-)(PromotionCardList);
+    },
+  });
+  if (loading) {
+    // __FIX__ - use a skeleton here. 💀
+    return null;
+  }
 
-const PromotionCardListContainer = (props: Props) => (
-  <PromotionCardListConnected {...props} />
-);
+  if (data && data.promotionsList) {
+    return (
+      <PromotionCardList
+        seeMore="..."
+        id={data.promotionsList.id}
+        name={data.promotionsList.name}
+        promotions={data.promotionsList.promotions}
+      />
+    );
+  }
+};
 
 export default PromotionCardListContainer;

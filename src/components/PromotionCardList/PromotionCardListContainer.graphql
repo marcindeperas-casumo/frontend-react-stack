@@ -1,0 +1,11 @@
+#import "../PromotionCard/PromotionCard.graphql"
+
+query PromotionsListQuery($slug: String!) {
+  promotionsList(slug: $slug) {
+    id
+    name
+    promotions {
+      ...PromotionCard_PromotionCard
+    }
+  }
+}
