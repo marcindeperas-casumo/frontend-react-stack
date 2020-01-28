@@ -8,8 +8,8 @@ import {
 
 describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
   describe("isBudgetTooLow()", () => {
-    test("it returns true if budget is lower than 0.1", () => {
-      expect(isBudgetTooLow({ budget: 0.05 })).toEqual(true);
+    test("it returns true if budget is lower than 0", () => {
+      expect(isBudgetTooLow({ budget: -3 })).toEqual(true);
     });
   });
 
@@ -25,7 +25,7 @@ describe("Compliance/SlotControlSystem/ConfigurationForm/Utils", () => {
     });
 
     test("it returns true if budget is too low", () => {
-      expect(isBudgetInvalid({ budget: 0.03, balance: 54 })).toEqual(true);
+      expect(isBudgetInvalid({ budget: -2, balance: 54 })).toEqual(true);
     });
 
     test("it returns true if budget is too high", () => {

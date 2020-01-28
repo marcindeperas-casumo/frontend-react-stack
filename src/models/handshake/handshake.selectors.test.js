@@ -1,5 +1,5 @@
 import stateMock, { getStateMock } from "Models/__mocks__/state.mock";
-import { VERTICALS } from "Src/constants";
+import { VERTICALS, COMPLIANCE_STATE_PROPERTY } from "Src/constants";
 import * as storage from "Lib/storage";
 import {
   handshakeSelector,
@@ -33,6 +33,7 @@ import {
   featureFlagSelector,
   playerCasumoNameSelector,
   jurisdictionSelector,
+  complianceStatePropertySelector,
 } from "./handshake.selectors";
 
 describe("Handshake selectors", () => {
@@ -607,6 +608,36 @@ describe("Handshake selectors", () => {
       };
 
       expect(jurisdictionSelector(state)).toEqual("UKGC");
+    });
+  });
+
+  describe("complianceStatePropertySelector()", () => {
+    const state = {
+      handshake: {
+        app: {
+          "common/composition/session": { id: "p1" },
+          "common/composition/players": {
+            players: {
+              p1: {
+                id: "p1",
+                complianceState: { DGA: { prop: "value" }, AML: "any value" },
+              },
+            },
+          },
+        },
+      },
+    };
+
+    test("should return object for DGA compliance state property", () => {
+      expect(
+        complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.DGA)(state)
+      ).toEqual({ prop: "value" });
+    });
+
+    test("should return 'any value' for AML complaince state property", () => {
+      expect(
+        complianceStatePropertySelector(COMPLIANCE_STATE_PROPERTY.AML)(state)
+      ).toEqual("any value");
     });
   });
 });

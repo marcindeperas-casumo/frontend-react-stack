@@ -1,12 +1,16 @@
 import { connect } from "react-redux";
 import { COMPLIANCE_STATE_PROPERTY } from "Src/constants";
-import { complianceStatePropertySelector } from "Models/handshake";
-import { playerCurrencySymbolSelector } from "Models/player";
+import {
+  complianceStatePropertySelector,
+  localeSelector,
+  currencySelector,
+} from "Models/handshake";
 import { SetAmount } from "./SetAmount";
 
 export const SetAmountContainer = connect(state => ({
   DGAComplianceState: complianceStatePropertySelector(
     COMPLIANCE_STATE_PROPERTY.DGA
   )(state),
-  currencySymbol: playerCurrencySymbolSelector(state),
+  locale: localeSelector(state),
+  currency: currencySelector(state),
 }))(SetAmount);

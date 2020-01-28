@@ -14,6 +14,7 @@ import {
   BeforeLoggingOut,
   AfterLimitsReached,
   PeriodicReminderNotification,
+  LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
 import { RealityCheck } from "./RealityCheck";
 import { ModalLoadingState } from "./RSModalLoading";
@@ -51,6 +52,10 @@ export const mappings: Mapping = {
   SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION: {
     slug: SCS_CMS_SLUGS.PERIODIC_REMINDER_NOTIFICATION,
     Content: PeriodicReminderNotification,
+  },
+  SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.LIMIT_ALMOST_CONSUMED_NOTIFICATION,
+    Content: LimitAlmostConsumedNotification,
   },
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.BEFORE_PLAYING,
