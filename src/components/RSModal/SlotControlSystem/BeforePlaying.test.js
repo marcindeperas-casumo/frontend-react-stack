@@ -16,7 +16,7 @@ jest.mock("Models/slotControlSystem/useSessionsState");
 jest.mock("Utils/hooks/useWalletAmount");
 
 describe("RSModal/SlotControlSystem/BeforePlaying", () => {
-  const enoughFunds = 0.61;
+  const enoughFunds = 0;
   const mock = (fn: any) => fn;
 
   test("side effect is triggered with acceptModal fn if there is an activeSession and user has enough funds", () => {
@@ -53,7 +53,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
       activeSession: activeSessionMock,
     };
     const walletAmount = {
-      amount: 0,
+      amount: -1,
       currency: "EUR",
     };
     mock(useSessionsState).mockReturnValue(sessionsState);

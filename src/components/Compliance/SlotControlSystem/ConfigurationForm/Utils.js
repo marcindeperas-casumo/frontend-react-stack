@@ -4,7 +4,7 @@ import { type NewSessionRequestType } from "Models/slotControlSystem";
 import { type ConfigurationFormData } from "./ConfigurationForm";
 
 export function isBudgetTooLow({ budget }: { budget: number }) {
-  return budget < 0.1;
+  return budget < 0;
 }
 
 export function isBudgetTooHigh({
