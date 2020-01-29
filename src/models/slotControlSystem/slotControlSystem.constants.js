@@ -5,6 +5,10 @@ export const CMS_SLUGS = {
   AFTER_PLAYING: "slot-control-system.after-playing",
   PERIODIC_REMINDER_NOTIFICATION:
     "slot-control-system.periodic-reminder-notification",
+  LIMIT_ALMOST_CONSUMED_NOTIFICATION:
+    "slot-control-system.limit-almost-consumed-notification",
+  TIME_REMAINING_NOTIFICATION:
+    "slot-control-system.time-remaining-notification",
   UNITS: "units",
 };
 
