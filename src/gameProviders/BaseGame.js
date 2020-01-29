@@ -38,12 +38,6 @@ export class BaseGame {
     };
   }
 
-  pauseGame(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  resumeGame() {}
-
   setGameAsActive() {
     const { current: gameElement } = this.props.gameRef;
 
