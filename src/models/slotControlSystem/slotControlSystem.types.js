@@ -76,6 +76,6 @@ export type UseSessionsStateType = {
 export type SessionEndedCometdMessage = {
   type: string,
   data: {
-    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": EndedSessionType,
+    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": SessionStateResponseType,
   },
 };
