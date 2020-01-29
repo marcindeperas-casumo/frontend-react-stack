@@ -14,6 +14,7 @@ describe("Models/slotControlSystem/sessionEndedSaga", () => {
 
     expect(dispatchedAction.response).toEqual({
       activeSession: null,
+      activeExclusion: null,
       lastEndedSession: endedSessionMock,
     });
   });
