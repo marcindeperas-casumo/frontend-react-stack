@@ -252,7 +252,7 @@ class KambiSearchResults extends React.Component<Props, State> {
               navigateClient();
             }}
           >
-            <Flex className="u-padding-left" spacing="md" align="center">
+            <Flex className="u-padding-left" spacing="md" align="end">
               {result.sport && (
                 <img
                   src={result.sport.icon}
@@ -273,12 +273,20 @@ class KambiSearchResults extends React.Component<Props, State> {
                 />
               </div>
               {result.type === resultType.PARTICIPANT && result.sport && (
-                <Text size="sm" tag="span" className="t-color-chrome">
+                <Text
+                  size="sm"
+                  tag="span"
+                  className="t-color-chrome u-text-nowrap"
+                >
                   {result.sport.name}
                 </Text>
               )}
               {result.type === resultType.LEAGUE && (
-                <Text size="sm" tag="span" className="t-color-chrome">
+                <Text
+                  size="sm"
+                  tag="span"
+                  className="t-color-chrome u-text-nowrap"
+                >
                   {result.country}
                 </Text>
               )}
