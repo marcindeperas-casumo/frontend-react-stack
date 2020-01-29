@@ -1,12 +1,29 @@
 // @flow
-export default {
-  "startingBalanceAmount": 1000,
-  "endBalanceAmount": 1111,
-  "betsAmount": 66,
-  "depositsAmount": 72,
-  "withdrawalsAmount": 39,
-  "winningsAmount": 98.8,
-  "awardedBonusesAmount": 13,
-  "convertedBonusesAmount": 45,
-  "currency": "GBP"
-};
+import { type AnnualOverviewType } from "Models/transactionsBetsHistory";
+
+export default ({
+  startingBalance: {
+    real: 1000,
+    bonus: 0,
+  },
+  endingBalance: {
+    real: 1111,
+    bonus: 11,
+  },
+  bets: {
+    real: 66,
+    bonus: 32,
+  },
+  deposits: 72,
+  withdrawals: 39,
+  wins: {
+    real: 98.8,
+    bonus: 1.1,
+  },
+  bonus: {
+    awarded: 13,
+    converted: 45,
+  },
+  realMoneyGiven: 200,
+  currency: "GBP"
+}: AnnualOverviewType);

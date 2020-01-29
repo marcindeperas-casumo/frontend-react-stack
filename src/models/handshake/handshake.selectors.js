@@ -245,3 +245,8 @@ export const complianceStatePropertySelector = (complianceProperty: string) =>
     playerSelector,
     path(["complianceState", complianceProperty])
   );
+
+export const registrationDateSelector = createSelector(
+  playerSelector,
+  prop("registrationDate")
+);

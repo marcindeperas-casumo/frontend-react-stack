@@ -33,6 +33,7 @@ import {
   featureFlagSelector,
   playerCasumoNameSelector,
   jurisdictionSelector,
+  registrationDateSelector,
   complianceStatePropertySelector,
 } from "./handshake.selectors";
 
@@ -608,6 +609,24 @@ describe("Handshake selectors", () => {
       };
 
       expect(jurisdictionSelector(state)).toEqual("UKGC");
+    });
+  });
+
+  describe("registrationDateSelector()", () => {
+    test("it returns correct piece of state", () => {
+      const registrationDate = 1564746916000;
+      const state = {
+        handshake: {
+          app: {
+            "common/composition/session": { id: "p1" },
+            "common/composition/players": {
+              players: { p1: { id: "p1", registrationDate } },
+            },
+          },
+        },
+      };
+
+      expect(registrationDateSelector(state)).toEqual(registrationDate);
     });
   });
 

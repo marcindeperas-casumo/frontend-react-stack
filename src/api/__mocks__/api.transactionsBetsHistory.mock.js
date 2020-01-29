@@ -1,30 +1,4 @@
 // @flow
-export const walletTotals = [
-  {
-    currency: "GBP",
-    awardedBonuses: { amount: 13, iso4217CurrencyCode: "GBP" },
-    convertedBonuses: { amount: 45, iso4217CurrencyCode: "GBP" },
-    withdrawals: { amount: 39, iso4217CurrencyCode: "GBP" },
-    deposits: { amount: 72, iso4217CurrencyCode: "GBP" }
-  }
-];
-
-export const gameroundTotals = [
-  {
-    betsAmount: 66,
-    winningsAmount: 98.8,
-  }
-];
-
-export const totalsResponse = {
-  betsAmount: 66,
-  winningsAmount: 98.8,
-  currency: "GBP",
-  awardedBonusesAmount: 13,
-  convertedBonusesAmount: 45,
-  withdrawalsAmount: 39,
-  depositsAmount: 72
-};
 
 export const transactions = [
   {
