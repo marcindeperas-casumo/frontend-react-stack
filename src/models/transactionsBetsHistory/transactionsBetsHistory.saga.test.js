@@ -1,18 +1,12 @@
 import { DateTime } from "luxon";
 import { ENTITY_KEYS } from "Models/schema";
-import {
-  totalsResponse,
-  transactions,
-} from "Api/__mocks__/api.transactionsBetsHistory.mock";
-import {
-  getTotalsReq,
-  getTransactionsReq,
-} from "Api/api.transactionsBetsHistory";
+import { getSummaryReq } from "Api/api.transactionsBetsHistory";
+import annualOverviewMock from "Models/transactionsBetsHistory/__mocks__/annualOverview.mock";
 import { fetchAnnualOverviewSaga } from "./transactionsBetsHistory.saga";
 
 describe("fetchAnnualOverviewSaga()", () => {
   test("success flow", () => {
-    const walletId = "wallet-id-34";
+    const currency = "EUR";
     const action = {
       year: 2018,
       meta: {
@@ -23,7 +17,7 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     generator.next();
 
-    generator.next(walletId);
+    generator.next(currency);
 
     const isFetchingEffect = generator.next(null).value;
 
@@ -40,33 +34,19 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
-    const fetchAllEffect = generator.next(null).value;
-    const fetchTotalsEffect = fetchAllEffect.ALL[0].CALL;
-    const fetchTransactionsEffect = fetchAllEffect.ALL[1].CALL;
-    const startTime = DateTime.utc(action.year);
-    const endTime = DateTime.utc(action.year + 1);
+    const fetchSummaryEffect = generator.next(null).value;
+    const date = DateTime.utc(action.year);
 
-    expect(fetchTotalsEffect.fn).toEqual(getTotalsReq);
-    expect(fetchTotalsEffect.args[0]).toEqual({ startTime, endTime, walletId });
+    expect(fetchSummaryEffect.CALL.fn).toEqual(getSummaryReq);
+    expect(fetchSummaryEffect.CALL.args[0]).toEqual({ date, currency });
 
-    expect(fetchTransactionsEffect.fn).toEqual(getTransactionsReq);
-    expect(fetchTransactionsEffect.args[0]).toEqual({
-      walletId,
-      startTime,
-      endTime,
-      perPage: 10000,
-    });
-
-    const mergeEntityEffect = generator.next([totalsResponse, transactions])
-      .value;
+    const mergeEntityEffect = generator.next(annualOverviewMock).value;
 
     expect(mergeEntityEffect.PUT.action.payload).toEqual({
       [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
         [action.year]: {
           data: {
-            ...totalsResponse,
-            startingBalanceAmount: 249.2855,
-            endBalanceAmount: 289.2855,
+            ...annualOverviewMock,
           },
           meta: {
             isFetching: false,
@@ -83,7 +63,7 @@ describe("fetchAnnualOverviewSaga()", () => {
   });
 
   test("fail flow", () => {
-    const walletId = "wallet-id-34";
+    const currency = "GBP";
     const action = {
       year: 2010,
       meta: {
@@ -94,7 +74,7 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     generator.next();
 
-    generator.next(walletId);
+    generator.next(currency);
 
     const isFetchingEffect = generator.next(null).value;
 
@@ -111,22 +91,11 @@ describe("fetchAnnualOverviewSaga()", () => {
 
     // because state does not contain annualOverview (null) for the selected year
     // a fetch must happen
-    const fetchAllEffect = generator.next(null).value;
-    const fetchTotalsEffect = fetchAllEffect.ALL[0].CALL;
-    const fetchTransactionsEffect = fetchAllEffect.ALL[1].CALL;
-    const startTime = DateTime.utc(action.year);
-    const endTime = DateTime.utc(action.year + 1);
+    const fetchSummaryEffect = generator.next(null).value;
+    const date = DateTime.utc(action.year);
 
-    expect(fetchTotalsEffect.fn).toEqual(getTotalsReq);
-    expect(fetchTotalsEffect.args[0]).toEqual({ startTime, endTime, walletId });
-
-    expect(fetchTransactionsEffect.fn).toEqual(getTransactionsReq);
-    expect(fetchTransactionsEffect.args[0]).toEqual({
-      walletId,
-      startTime,
-      endTime,
-      perPage: 10000,
-    });
+    expect(fetchSummaryEffect.CALL.fn).toEqual(getSummaryReq);
+    expect(fetchSummaryEffect.CALL.args[0]).toEqual({ date, currency });
 
     const errorMsg = "smthg happened";
     const errorEffect = generator.throw(new Error(errorMsg)).value;

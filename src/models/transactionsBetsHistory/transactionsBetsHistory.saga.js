@@ -1,22 +1,16 @@
 // @flow
-import { call, put, select, all } from "redux-saga/effects";
+import { call, put, select } from "redux-saga/effects";
 import { DateTime } from "luxon";
-import { walletIdSelector, walletAmountSelector } from "Models/handshake";
+import { currencySelector } from "Models/handshake";
 import { mergeEntity, ENTITY_KEYS } from "Models/schema";
-import {
-  getTotalsReq,
-  getTransactionsReq,
-} from "Api/api.transactionsBetsHistory";
+import { getSummaryReq } from "Api/api.transactionsBetsHistory";
 import { annualOverviewSelector } from "./transactionsBetsHistory.selectors";
-import { getStartingEndBalanceFromTransactions } from "./transactionsBetsHistory.utils";
 import type { FetchAnnualOverviewProps } from "./transactionsBetsHistory.types";
 
 export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
   const { year, meta = {} } = action;
-  const startTime = DateTime.utc(year);
-  const endTime = DateTime.utc(year + 1);
-
-  const walletId = yield select(walletIdSelector);
+  const date = DateTime.utc(year);
+  const currency = yield select(currencySelector);
   const annualOverview = yield select(annualOverviewSelector(year));
 
   if (annualOverview) {
@@ -39,31 +33,17 @@ export function* fetchAnnualOverviewSaga(action: FetchAnnualOverviewProps): * {
     })
   );
 
-  const asyncCallData = { walletId, startTime, endTime };
+  const asyncCallData = { date, currency };
 
   try {
-    const responses = yield all([
-      call(getTotalsReq, asyncCallData),
-      call(getTransactionsReq, { ...asyncCallData, perPage: 10000 }),
-    ]);
-
-    /* 
-     Provide a fallback value for Spain audit for 2019 till new API is not developed
-     PCC-140
-    */
-    const walletAmountFallback =
-      year === 2019 ? yield select(walletAmountSelector) : 0;
+    const response = yield call(getSummaryReq, asyncCallData);
 
     yield put(
       mergeEntity({
         [ENTITY_KEYS.TRANSACTIONS_ANNUAL_OVERVIEW]: {
           [year]: {
             data: {
-              ...responses[0],
-              ...getStartingEndBalanceFromTransactions(
-                responses[1],
-                walletAmountFallback
-              ),
+              ...response,
             },
             meta: {
               isFetching: false,
