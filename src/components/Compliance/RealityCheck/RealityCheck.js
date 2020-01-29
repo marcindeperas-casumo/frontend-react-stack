@@ -4,6 +4,7 @@ import { DateTime } from "luxon";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
+import type { RealityCheckType } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { interpolate, formatCurrency } from "Utils";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -21,18 +22,11 @@ type Props = {
   casumoName: string,
   locale: string,
   currency: string,
-  realityCheck: {
-    totalWinAmount: {
-      amount: number,
-    },
-    totalBetAmount: {
-      amount: number,
-    },
-    sessionStartedTime: number,
-  },
+  realityCheck: RealityCheckType,
 };
 
 export function RealityCheck(props: Props) {
+  const { navigateToKO } = useCrossCodebaseNavigation();
   const {
     t,
     locale,
@@ -41,7 +35,6 @@ export function RealityCheck(props: Props) {
     realityCheck,
     onClickContinue,
   } = props;
-  const { navigateToKO } = useCrossCodebaseNavigation();
 
   const onClickCancel = () => navigateToKO(ROUTE_IDS.TOP_LISTS);
   const onClickViewHistoryBets = () =>
@@ -54,18 +47,14 @@ export function RealityCheck(props: Props) {
       realityCheck.totalWinAmount.amount - realityCheck.totalBetAmount.amount
     ),
   });
-  const amountLostMessage =
-    t.reality_check_amount_lost_message &&
-    t.reality_check_amount_lost_message.replace(
-      "{{ amount | € }}",
-      formattedLostAmount
-    );
+  const amountLostMessage = interpolate(t.reality_check_amount_lost_message, {
+    amount: formattedLostAmount,
+  });
   const hiTitle = interpolate(t.reality_check_title, {
     name: casumoName,
   });
   const timeDiff =
     DateTime.local() - DateTime.fromMillis(realityCheck.sessionStartedTime);
-
   const messageMinutesPlayed = interpolate(t.reality_check_message, {
     totalMinutesPlayed: DateTime.fromMillis(timeDiff).offset,
   });

@@ -14,6 +14,8 @@ import {
   isAboutToExpire,
   showStateBadge,
   getValuablesByState,
+  orderValuablesByCreationTime,
+  getLatestValuable,
 } from "./valuables.utils";
 import translations from "./__mocks__/valuableDetailsTranslations.mock";
 
@@ -237,13 +239,52 @@ describe("Valuables.utils", () => {
         {
           valuableState: VALUABLE_STATES.FRESH,
         },
+        {
+          valuableState: VALUABLE_STATES.USED,
+        },
       ];
       expect(
-        getValuablesByState(VALUABLE_STATES.LOCKED)(valuables)
+        getValuablesByState([VALUABLE_STATES.LOCKED])(valuables)
       ).toHaveLength(1);
       expect(
-        getValuablesByState(VALUABLE_STATES.FRESH)(valuables)
+        getValuablesByState([VALUABLE_STATES.FRESH])(valuables)
       ).toHaveLength(2);
+      expect(
+        getValuablesByState([VALUABLE_STATES.FRESH, VALUABLE_STATES.USED])(
+          valuables
+        )
+      ).toHaveLength(3);
+    });
+  });
+
+  describe("orderValuablesByCreationTime()", () => {
+    test("returns valuables ordered by created time descending", () => {
+      const valuables = [
+        { created: 1576070060 },
+        { created: 1576070040 },
+        { created: 1576070070 },
+        { created: 1576070030 },
+      ];
+
+      expect(orderValuablesByCreationTime(valuables)).toEqual([
+        { created: 1576070070 },
+        { created: 1576070060 },
+        { created: 1576070040 },
+        { created: 1576070030 },
+      ]);
+    });
+  });
+
+  describe("getLatestValuable()", () => {
+    test("returns latest created valuable from the list", () => {
+      const valuables = [
+        { created: 1576070060 },
+        { created: 1576070040 },
+        { created: 1576070070 },
+        { created: 1576070030 },
+      ];
+
+      expect(getLatestValuable(valuables)).toEqual({ created: 1576070070 });
     });
   });
 });

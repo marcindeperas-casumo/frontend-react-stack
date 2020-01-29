@@ -19,10 +19,17 @@ const PADDING_PER_DEVICE = {
 export type Props = {
   jackpots: Array<A.Jackpots_Game>,
   className?: string,
+  locale?: string,
   title: string,
 };
 
-const JackpotsColumn = ({ column }: { column: Array<A.Jackpots_Game> }) => {
+const JackpotsColumn = ({
+  column,
+  locale,
+}: {
+  column: Array<A.Jackpots_Game>,
+  locale: ?string,
+}) => {
   return (
     <List
       itemSpacing="sm"
@@ -30,6 +37,7 @@ const JackpotsColumn = ({ column }: { column: Array<A.Jackpots_Game> }) => {
       render={jackpot => (
         <GameRow
           game={jackpot}
+          locale={locale}
           className="t-background-white t-border-r--md t-box-shadow"
           onLaunchGame={() => launchGame({ slug: jackpot.slug })}
         />
@@ -51,7 +59,9 @@ export default class Jackpots extends PureComponent<Props> {
   keyGetter = (i: number) => this.columns[i][0].slug;
 
   mobileJackpotColumnRenderer = (i: number) => {
-    return <JackpotsColumn column={this.columns[i]} />;
+    return (
+      <JackpotsColumn column={this.columns[i]} locale={this.props.locale} />
+    );
   };
 
   desktopJackpotColumnRenderer = ({
@@ -60,7 +70,13 @@ export default class Jackpots extends PureComponent<Props> {
   }: {
     id: Array<A.Jackpots_Game>,
     i: number,
-  }) => <JackpotsColumn key={gamesInColumn[0].slug} column={gamesInColumn} />;
+  }) => (
+    <JackpotsColumn
+      key={gamesInColumn[0].slug}
+      column={gamesInColumn}
+      locale={this.props.locale}
+    />
+  );
 
   render() {
     const { title } = this.props;

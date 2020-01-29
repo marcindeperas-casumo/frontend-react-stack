@@ -1,6 +1,6 @@
 // @flow
 import { useSelector, shallowEqual } from "react-redux";
-import { playerSessionIsValidSelector } from "Models/session";
+import { playerSessionIsValidSelector } from "Models/player";
 import { ROUTE_IDS } from "Src/constants";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
 

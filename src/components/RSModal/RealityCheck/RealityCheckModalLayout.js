@@ -18,7 +18,7 @@ export function RealityCheckModalLayout(props: ModalContentSkinProps) {
         showCloseButton
         closeAction={props.dismissModal}
       />
-      <div className="u-padding-x--2xlg@tablet u-padding-bottom--2xlg@tablet u-padding-bottom--2xlg@desktop u-overflow-y--auto">
+      <div className="u-padding-x--2xlg u-padding-bottom--2xlg u-overflow-y--auto">
         {props.children}
       </div>
     </>

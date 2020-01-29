@@ -1,6 +1,6 @@
 // @flow
 
 export type Playing = {
-  status: string,
+  isPlaying: boolean,
   gameId?: string,
 };

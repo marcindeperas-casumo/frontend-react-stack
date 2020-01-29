@@ -4497,8 +4497,30 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         id: "mustDropJackpotGames",
         title: "Must Drop Jackpots",
       },
+      latestPlayedGames: {
+        games: [
+          "reel-heist",
+          "fortune-charm",
+        ],
+        id: "latestPlayedGames",
+        title: "Latest Played Games",
+      },
     },
     cms: {
+      "mobile.menu-2": {
+        slug: "mobile.menu-2",
+        fields: {
+          game_browser_link_text: "Game browser",
+          settings_link_text: "Your settings",
+          play_okay_settings_link_text: "Play Okay Settings",
+          contact_us_link_text: "Email us",
+          play_okay_link_text: "Play Okay",
+          blog_menu_text: "Blog",
+          faq_link_text: "FAQ",
+          about_us_link_text: "About Casumo",
+          log_out_link_text: "Log out",
+        }
+      },
       "reel-races.reel-race-templates": {
         slug: "reel-races.reel-race-templates",
         fields: {

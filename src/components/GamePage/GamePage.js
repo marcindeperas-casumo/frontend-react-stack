@@ -6,10 +6,13 @@ import {
   useGameLaunchData,
   useCrossCodebaseNavigation,
   useTranslations,
+  useJurisdiction,
 } from "Utils/hooks";
+import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
+import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
 
 type Props = {
   slug: string,
@@ -17,11 +20,16 @@ type Props = {
 };
 
 export const GamePage = ({ slug, playForFun }: Props) => {
+  const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
   const { gameProviderModel, error } = useGameLaunchData({
     playForFun,
     slug,
+  });
+
+  useBeforePlayingModal({
+    canLaunch: Boolean(!playForFun && !error && gameProviderModel),
   });
 
   if (error) {
@@ -37,6 +45,17 @@ export const GamePage = ({ slug, playForFun }: Props) => {
 
   if (!gameProviderModel) {
     return null;
+  }
+
+  if (isDGOJ) {
+    return (
+      <div className="u-height--full u-width--full">
+        <div className="u-width--full c-game-launcher-container--dgoj">
+          <GameLauncher gameProviderModel={gameProviderModel} />
+        </div>
+        <InfoBar />
+      </div>
+    );
   }
 
   return <GameLauncher gameProviderModel={gameProviderModel} />;

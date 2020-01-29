@@ -11,9 +11,13 @@ type RealityCheckContent = {
 export function RealityCheck(
   props: ModalContentComponent<RealityCheckContent>
 ) {
+  if (!props.t) {
+    return null;
+  }
+
   return (
     <RealityCheckModalLayout {...props}>
-      <RealityCheckContainer onClickContinue={props.acceptModal} />
+      <RealityCheckContainer onClickContinue={props.acceptModal} {...props} />
     </RealityCheckModalLayout>
   );
 }

@@ -3,7 +3,7 @@ import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import { formatCurrency } from "Utils";
-import type { AnnualOverview } from "Models/transactionsBetsHistory";
+import type { AnnualOverviewType } from "Models/transactionsBetsHistory";
 
 type Content = {
   annual_transactions_list_heading: string,
@@ -19,10 +19,10 @@ type Content = {
 };
 
 type Props = {
-  selectedYear: number,
+  selectedYear: string,
   locale: string,
   t: Content,
-  data?: AnnualOverview,
+  data?: AnnualOverviewType,
   navigateToHistory: () => void,
   PdfButton: any => React.Node,
 };
@@ -71,8 +71,13 @@ export function TransactionsAnnualOverview({
   selectedYear,
   PdfButton,
 }: Props) {
+  React.useEffect(() => {
+    if (!data) {
+      navigateToHistory();
+    }
+  }, [data, navigateToHistory]);
+
   if (!data) {
-    navigateToHistory();
     return null;
   }
 
@@ -85,46 +90,46 @@ export function TransactionsAnnualOverview({
       </Text>
       <ListItem
         label={t.annual_transactions_starting_balance}
-        amount={data.startingBalanceAmount}
+        amount={data.startingBalance.real}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_deposits}
-        amount={data.depositsAmount}
+        amount={data.deposits}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_withdrawals}
-        amount={data.withdrawalsAmount}
+        amount={data.withdrawals}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_wagers}
-        amount={data.betsAmount}
+        amount={data.bets.real}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_wins}
-        amount={data.winningsAmount}
+        amount={data.wins.real}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_bonus_awarded}
-        amount={data.awardedBonusesAmount}
+        amount={data.bonus.awarded}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_total_bonus_converted}
-        amount={data.convertedBonusesAmount}
+        amount={data.bonus.converted}
         {...passedProps}
       />
       <ListItem
         label={t.annual_transactions_end_balance}
-        amount={data.endBalanceAmount}
+        amount={data.endingBalance.real}
         {...passedProps}
       />
       <PdfButton
-        year={selectedYear}
+        year={Number.parseInt(selectedYear, 10)}
         label={t.annual_transactions_download_pdf}
       />
     </div>

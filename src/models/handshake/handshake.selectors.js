@@ -105,6 +105,11 @@ export const walletAmountSelector = createSelector(
   path(["wallet", "balance", "amount"])
 );
 
+export const bonusAmountSelector = createSelector(
+  playerSelector,
+  path(["bonus", "balance", "amount"])
+);
+
 export const marketSelector = createSelector(
   playerSelector,
   prop("market")
@@ -229,3 +234,19 @@ export const featureFlagSelector = (featureFlag: string) =>
       return false;
     }
   );
+
+export const jurisdictionSelector = createSelector(
+  playerSelector,
+  prop("jurisdiction")
+);
+
+export const complianceStatePropertySelector = (complianceProperty: string) =>
+  createSelector(
+    playerSelector,
+    path(["complianceState", complianceProperty])
+  );
+
+export const registrationDateSelector = createSelector(
+  playerSelector,
+  prop("registrationDate")
+);

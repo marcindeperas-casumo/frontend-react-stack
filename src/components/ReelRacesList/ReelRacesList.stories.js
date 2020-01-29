@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import MockStore from "Components/MockStore";
 import isNotChromatic from "Storybook/isNotChromatic";
 import { ReelRacesList } from "./ReelRacesList";
-import state from "./__mocks__/ReelRacesList";
+import state from "./__mocks__/reelRacesStore";
 const stories = storiesOf("ReelRacesList", module);
 
 const props = {

@@ -10,9 +10,13 @@ export type JackpotsQuery_gamesList_games_lobby_bets = {
 export type JackpotsQuery_gamesList_games_lobby = {
   bets: ?JackpotsQuery_gamesList_games_lobby_bets,
 };
-export type JackpotsQuery_gamesList_games_jackpotInfo = {
+export type JackpotsQuery_gamesList_games_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type JackpotsQuery_gamesList_games_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: JackpotsQuery_gamesList_games_jackpot_value,
 };
 export type JackpotsQuery_gamesList_games = {
   slug: string,
@@ -20,7 +24,7 @@ export type JackpotsQuery_gamesList_games = {
   logo: string,
   logoBackground: string,
   lobby: ?JackpotsQuery_gamesList_games_lobby,
-  jackpotInfo: ?JackpotsQuery_gamesList_games_jackpotInfo,
+  jackpot: ?JackpotsQuery_gamesList_games_jackpot,
 };
 export type JackpotsQuery_gamesList = {
   title: ?string,
@@ -662,6 +666,29 @@ export type PlayerVertical = {
 };
 
 // ====================================================
+// GraphQL query operation: FREEBET_QUERY
+// ====================================================
+
+export type FREEBET_QUERY_player_valuables = {
+  id: string,
+  backgroundImage: string,
+  currency: Currency,
+  expiryDate: BigInt,
+  market: string,
+  valuableState: PlayerValuableState,
+  valuableType: ValuableType,
+  title: string,
+  content: string,
+  caveat: ?string,
+};
+export type FREEBET_QUERY_player = {
+  valuables: Array<FREEBET_QUERY_player_valuables>,
+};
+export type FREEBET_QUERY = {
+  player: FREEBET_QUERY_player,
+};
+
+// ====================================================
 // GraphQL mutation operation: LaunchKambi
 // ====================================================
 
@@ -1087,9 +1114,13 @@ export type GameRow_Game_lobby_bets = {
 export type GameRow_Game_lobby = {
   bets: ?GameRow_Game_lobby_bets,
 };
-export type GameRow_Game_jackpotInfo = {
+export type GameRow_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameRow_Game_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: GameRow_Game_jackpot_value,
 };
 export type GameRow_Game = {
   slug: string,
@@ -1097,7 +1128,7 @@ export type GameRow_Game = {
   logo: string,
   logoBackground: string,
   lobby: ?GameRow_Game_lobby,
-  jackpotInfo: ?GameRow_Game_jackpotInfo,
+  jackpot: ?GameRow_Game_jackpot,
 };
 
 // ====================================================
@@ -1112,9 +1143,13 @@ export type Jackpots_Game_lobby_bets = {
 export type Jackpots_Game_lobby = {
   bets: ?Jackpots_Game_lobby_bets,
 };
-export type Jackpots_Game_jackpotInfo = {
+export type Jackpots_Game_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type Jackpots_Game_jackpot = {
   id: string,
-  formattedJackpotAmount: ?string,
+  value: Jackpots_Game_jackpot_value,
 };
 export type Jackpots_Game = {
   slug: string,
@@ -1122,7 +1157,7 @@ export type Jackpots_Game = {
   logo: string,
   logoBackground: string,
   lobby: ?Jackpots_Game_lobby,
-  jackpotInfo: ?Jackpots_Game_jackpotInfo,
+  jackpot: ?Jackpots_Game_jackpot,
 };
 
 // ====================================================

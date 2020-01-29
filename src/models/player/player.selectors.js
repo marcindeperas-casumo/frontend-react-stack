@@ -2,8 +2,13 @@
 import { createSelector } from "reselect";
 import { propOr, prop, map, fromPairs, pipe } from "ramda";
 import { getField } from "Models/cms";
-import { walletAmountSelector, currencySelector } from "Models/handshake";
-import { SLUGS } from "Models/player";
+import {
+  walletAmountSelector,
+  bonusAmountSelector,
+  currencySelector,
+  localeSelector,
+} from "Models/handshake";
+import { getSymbolForCurrency } from "Utils";
 
 const player = state => state.player;
 
@@ -22,9 +27,17 @@ export const playerWalletAmountSelector = createSelector(
   propOr(0, "amount")
 );
 
+export const playerCurrencySymbolSelector = createSelector(
+  [currencySelector, localeSelector],
+  (currency, locale) => getSymbolForCurrency({ locale, currency })
+);
+
 export const playerWalletBonusSelector = createSelector(
   playerWalletSelector,
-  propOr(0, "bonus")
+  bonusAmountSelector,
+  (wallet, handshakeBonusAmount) => {
+    return prop("bonus")(wallet) || handshakeBonusAmount;
+  }
 );
 
 export const playerWalletCurrencySelector = createSelector(
@@ -47,7 +60,7 @@ export const mapPaymentTranslations = pipe(
 
 export const playerPaymentsTextsSelector = createSelector(
   getField({
-    slug: SLUGS.PAYMENTS,
+    slug: "features.payments",
     field: "text_fields",
     defaultValue: [],
   }),
@@ -65,4 +78,9 @@ export const playerBalanceAmountSelector = createSelector(
   (walletAmount, handsakeAmount) => {
     return walletAmount || handsakeAmount;
   }
+);
+
+export const playerSessionIsValidSelector: any => boolean = createSelector(
+  player,
+  prop("sessionValid")
 );

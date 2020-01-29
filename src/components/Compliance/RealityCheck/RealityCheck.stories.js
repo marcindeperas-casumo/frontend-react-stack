@@ -35,7 +35,6 @@ stories.add("Default", () => {
         realityCheck={realityCheck}
         currency="GBP"
         locale="en-gb"
-        language="en"
         onClickCancel={action("onClickCancel")}
         onClickContinue={action("onClickContinue")}
         t={t}

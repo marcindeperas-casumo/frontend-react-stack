@@ -10,7 +10,7 @@ export function* fetchGameProvidersSaga() {
 
   const { response } = yield take(types.FETCH_GAME_PROVIDERS_COMPLETE);
   const { entities } = yield call(normalizeData, {
-    [`${ENTITY_KEYS.GAME_PROVIDER}s`]: response,
+    [`${ENTITY_KEYS.GAME_PROVIDER}s`]: response.gameStudios,
   });
   yield put(mergeEntity(entities));
 }
