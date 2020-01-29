@@ -68,7 +68,10 @@ export class BaseIframeGame extends BaseGame {
     const { pause: pauseCommand } = this.api.commands;
 
     return new Promise<void>((resolve, reject) => {
-      if (gameElement instanceof HTMLIFrameElement && pauseCommand) {
+      if (!pauseCommand) {
+        resolve();
+      }
+      if (gameElement instanceof HTMLIFrameElement) {
         gameElement.contentWindow.postMessage(pauseCommand, this.targetDomain);
 
         if (this.api.features.instantPause || this.isGameIdle) {
