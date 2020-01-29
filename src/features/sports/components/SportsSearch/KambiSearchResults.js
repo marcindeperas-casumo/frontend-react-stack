@@ -38,8 +38,8 @@ export const TOP_SEARCHES_QUERY = gql`
   }
 `;
 
-const TOTAL_POPULAR_SEARCH_ITEMS = 4;
 const TOTAL_RECENT_SEARCH_ITEMS = 8;
+const TOTAL_POPULAR_SEARCH_ITEMS = 4;
 
 const resultType = {
   PARTICIPANT: "PARTICIPANT",
@@ -172,27 +172,10 @@ class KambiSearchResults extends React.Component<Props, State> {
       </>
     ) : null;
 
-  renderSearchResultsPlaceholder = () => {
-    const searchHistoryCount = this.state.searchHistory.length;
-
-    const noOfSearchHistoryItems = Math.min(
-      searchHistoryCount,
-      TOTAL_RECENT_SEARCH_ITEMS
-    );
-
-    const noOfPopularSearchItems = Math.max(
-      TOTAL_POPULAR_SEARCH_ITEMS - searchHistoryCount,
-      0
-    );
-
-    return (
-      <>
-        {this.renderSearchHistory(noOfSearchHistoryItems)}
-        {!searchHistoryCount &&
-          this.renderPopularSearches(noOfPopularSearchItems)}
-      </>
-    );
-  };
+  renderSearchResultsPlaceholder = () =>
+    this.state.searchHistory.length
+      ? this.renderSearchHistory(TOTAL_RECENT_SEARCH_ITEMS)
+      : this.renderPopularSearches(TOTAL_POPULAR_SEARCH_ITEMS);
 
   renderPopularSearchItem = (eventGroup: A.TopSearches_topSearches) => {
     const [sport = eventGroup] = eventGroup.parentGroups;
