@@ -13,6 +13,7 @@ import {
   BeforePlaying,
   BeforeLoggingOut,
   AfterLimitsReached,
+  TimeRemainingNotification,
   PeriodicReminderNotification,
   LimitAlmostConsumedNotification,
 } from "./SlotControlSystem";
@@ -56,6 +57,10 @@ export const mappings: Mapping = {
   SLOT_CONTROL_SYSTEM_LIMIT_ALMOST_CONSUMED_NOTIFICATION: {
     slug: SCS_CMS_SLUGS.LIMIT_ALMOST_CONSUMED_NOTIFICATION,
     Content: LimitAlmostConsumedNotification,
+  },
+  SLOT_CONTROL_SYSTEM_TIME_REMAINING_NOTIFICATION: {
+    slug: SCS_CMS_SLUGS.TIME_REMAINING_NOTIFICATION,
+    Content: TimeRemainingNotification,
   },
   [REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_CONFIGURATION]: {
     slug: SCS_CMS_SLUGS.BEFORE_PLAYING,

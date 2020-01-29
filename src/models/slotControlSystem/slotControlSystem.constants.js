@@ -7,6 +7,8 @@ export const CMS_SLUGS = {
     "slot-control-system.periodic-reminder-notification",
   LIMIT_ALMOST_CONSUMED_NOTIFICATION:
     "slot-control-system.limit-almost-consumed-notification",
+  TIME_REMAINING_NOTIFICATION:
+    "slot-control-system.time-remaining-notification",
   UNITS: "units",
 };
 
