@@ -3,19 +3,19 @@ import { mount, shallow } from "enzyme";
 import { omit } from "ramda";
 import Card from "@casumo/cmp-card";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
-import { CuratedCardBackground } from "Components/CuratedCard/CuratedCardBackground";
-import { CuratedCard } from "Components/CuratedCard/CuratedCard";
-import {
-  CuratedCardHeader,
-  CuratedCardHeaderWithSubtitle,
-} from "Components/CuratedCard/CuratedCardHeader";
+import curatedData from "Models/curated/__mocks__/curated.json";
+import { CURATED_TYPE, CARD_CLICK_URL, CURATED_SLUG } from "Models/curated";
+import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 import {
   CuratedCardFooterGame,
   CuratedCardFooterText,
-} from "Components/CuratedCard/CuratedCardFooter";
-import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
-import curatedData from "Models/curated/__mocks__/curated.json";
-import { CURATED_TYPE, CARD_CLICK_URL, CURATED_SLUG } from "Models/curated";
+} from "./CuratedCardFooter";
+import { CuratedCardBackground } from "./CuratedCardBackground";
+import { CuratedCard } from "./CuratedCard";
+import {
+  CuratedCardHeader,
+  CuratedCardHeaderWithSubtitle,
+} from "./CuratedCardHeader";
 
 describe("CuratedCard", () => {
   let fetchCurated;
