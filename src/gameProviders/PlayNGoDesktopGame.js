@@ -22,8 +22,6 @@ export class PlayNGoDesktopGame extends BaseGame {
   }
 
   onMount() {
-    super.onMount();
-
     const { url = null } = this.props.gameData;
 
     if (url) {
@@ -44,8 +42,6 @@ export class PlayNGoDesktopGame extends BaseGame {
   }
 
   onUnmount() {
-    super.onUnmount();
-
     if (Engage) {
       // clear out previous engage session
       Engage.request(COMMANDS.END_GAME);

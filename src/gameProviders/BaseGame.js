@@ -38,10 +38,6 @@ export class BaseGame {
     };
   }
 
-  onMount() {}
-
-  onUnmount() {}
-
   pauseGame(): Promise<void> {
     return Promise.resolve();
   }
