@@ -147,9 +147,7 @@ class KambiSearchResults extends React.Component<Props, State> {
       </GroupTitle>
       <Query
         query={TOP_SEARCHES_QUERY}
-        variables={
-          ({ count: TOTAL_POPULAR_SEARCH_ITEMS }: A.TopSearchesVariables)
-        }
+        variables={({ count }: A.TopSearchesVariables)}
       >
         {({ data = {} }: { data: ?A.TopSearches }) =>
           pipe(
@@ -331,17 +329,16 @@ class KambiSearchResults extends React.Component<Props, State> {
             );
           }
 
-          // filter out SPORT and REGION result type
-          const results = compose(
+          const filteredResults = compose(
             reject(propEq("type", "SPORT")),
             reject(propEq("type", "REGION"))
           )(res.data.search);
 
-          if (isEmpty(results)) {
+          if (isEmpty(filteredResults)) {
             return this.renderNoResultsFound();
           }
 
-          return results.map(result => this.renderSearchResult(result));
+          return filteredResults.map(result => this.renderSearchResult(result));
         }}
       </Query>
     );

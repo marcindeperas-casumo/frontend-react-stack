@@ -32,6 +32,16 @@ const hasResults = {
         name: "Football",
       },
     },
+    {
+      type: "LEAGUE",
+      id: "/football/spain/la_liga",
+      localizedName: "La Liga",
+      country: "Spain",
+      sport: {
+        icon: "http://cms.casumotest.com/wp-content/uploads/2019/02/football3.svg",
+        name: "Football",
+      },
+    },
   ],
 };
 
