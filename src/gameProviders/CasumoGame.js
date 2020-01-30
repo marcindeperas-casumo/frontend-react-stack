@@ -1,10 +1,6 @@
 // @flow
-
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
-
-// ISSUES:
-// game idle not currently possible
 
 export class CasumoGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
