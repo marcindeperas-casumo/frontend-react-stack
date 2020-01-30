@@ -1,38 +1,16 @@
 // @flow
-import React, { PureComponent } from "react";
-import { replace } from "ramda";
+import React from "react";
 import classNames from "classnames";
 import Card from "@casumo/cmp-card";
 import TrackView from "Components/TrackView";
 import TrackClick from "Components/TrackClick";
-import { EVENTS, EVENT_PROPS } from "Src/constants";
-import {
-  CURATED_TYPE,
-  CARD_CLICK_URL,
-  prefixCuratedSlug,
-} from "Models/curated";
+import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
+import { getIsGame, getLink, getTrackData } from "./CuratedCard.utils";
 import { CuratedCardBackground } from "./CuratedCardBackground";
 import { CuratedCardFooter } from "./CuratedCardFooter";
 import { CuratedCardHeader } from "./CuratedCardHeader";
 import "./CuratedCard.scss";
-
-const getIsGame = ({ type }) => type === CURATED_TYPE.GAME;
-
-const getLink = ({ type, promotionSlug }) => {
-  const url = CARD_CLICK_URL[type] || null;
-
-  if (type === CURATED_TYPE.PROMOTION) {
-    return replace("#promotionSlug", promotionSlug, url);
-  }
-
-  return url;
-};
-
-const getTrackData = ({ type, slug }) => ({
-  [EVENT_PROPS.CURATED_TYPE]: type,
-  [EVENT_PROPS.CURATED_SLUG]: prefixCuratedSlug(slug),
-});
 
 type Props = {
   className?: string,
