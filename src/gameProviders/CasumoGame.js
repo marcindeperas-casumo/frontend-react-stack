@@ -18,6 +18,8 @@ export class CasumoGame extends BaseIframeGame {
       event: "game/resume",
       data: "",
     };
+    this.api.events.onGameRoundStart = "game-action/started";
+    this.api.events.onGameRoundEnd = "round/animation/ended";
   }
 
   get componentProps() {
@@ -33,5 +35,9 @@ export class CasumoGame extends BaseIframeGame {
     }
 
     return super.componentProps;
+  }
+
+  extractEventId(data: any) {
+    return data.event;
   }
 }
