@@ -15,6 +15,11 @@ const t = {
 const stories = storiesOf("Compliance/SlotControlSystem/StillOnBreak", module);
 stories.add("Default", () => {
   return (
-    <StillOnBreak t={t} onClick={action("clicked")} secondsTillEnd={900} />
+    <StillOnBreak
+      t={t}
+      onClick={action("clicked")}
+      secondsTillEnd={900}
+      fetchContent={action("fetchContent")}
+    />
   );
 });

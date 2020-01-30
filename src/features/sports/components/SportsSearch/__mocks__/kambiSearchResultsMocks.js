@@ -7,7 +7,7 @@ const topSearchesMock = {
   request: {
     query: TOP_SEARCHES_QUERY,
     variables: {
-      count: 5,
+      count: 4,
     },
   },
   result: {
