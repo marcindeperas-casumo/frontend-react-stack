@@ -1,9 +1,15 @@
 // @flow
+import { ENVIRONMENTS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 // ISSUES:
 // concern with multiple target domains (ref to targetDomain)
+
+export const TARGET_DOMAINS = {
+  [ENVIRONMENTS.TEST]: "https://mobile32.gameassists.co.uk",
+  [ENVIRONMENTS.PRODUCTION]: "https://mobile2.gameassists.co.uk",
+};
 
 export class MicrogamingGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
@@ -11,7 +17,7 @@ export class MicrogamingGame extends BaseIframeGame {
     this.api.commands.pause = "StopGamePlay";
     this.api.events.onGameRoundStart = { event: "gameBusy" };
     this.api.events.onGameRoundEnd = { event: "gameNotBusy" };
-    this.targetDomain = "https://mobile2.gameassists.co.uk";
+    this.targetDomain = TARGET_DOMAINS[this.props.environment];
   }
 
   get componentProps() {
