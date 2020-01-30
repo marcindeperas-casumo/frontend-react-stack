@@ -4,6 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import PromotionCardList from "./PromotionCardList";
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
+import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 type Props = {
   slug: string,
 };
@@ -17,14 +18,15 @@ const PromotionCardListContainer = ({ slug }: Props) => {
       slug,
     },
   });
+
   if (loading) {
-    // __FIX__ - use a skeleton here. 💀
-    return null;
+    return <PromotionCardListSkeleton />;
   }
 
   if (data && data.promotionsList) {
     return (
       <PromotionCardList
+        // __FIX__ - should use the translated page like all the rest of em.
         seeMore="..."
         id={data.promotionsList.id}
         name={data.promotionsList.name}
@@ -32,6 +34,8 @@ const PromotionCardListContainer = ({ slug }: Props) => {
       />
     );
   }
+
+  return null;
 };
 
 export default PromotionCardListContainer;
