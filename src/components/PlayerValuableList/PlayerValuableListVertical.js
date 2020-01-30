@@ -27,8 +27,11 @@ export function PlayerValuableListVertical() {
     lockedListTitleLabel,
     noValuablesLabel,
   } = translations;
-  const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
-  const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
+  const getAvailableValuables = getValuablesByState([
+    VALUABLE_STATES.FRESH,
+    VALUABLE_STATES.USED,
+  ]);
+  const getLockedValuables = getValuablesByState([VALUABLE_STATES.LOCKED]);
   const sections = [
     {
       id: "list-available",

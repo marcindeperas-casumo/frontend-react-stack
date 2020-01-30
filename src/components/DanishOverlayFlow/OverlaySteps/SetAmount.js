@@ -1,19 +1,39 @@
+//@flow
 import React, { useCallback } from "react";
 import Button from "@casumo/cmp-button";
 import Text from "@casumo/cmp-text";
 import { TextInput } from "Components/Compliance/TextInput";
+import { formatCurrency, getSymbolForCurrency } from "Utils";
 import { limitPeriod, minFirstDepositLimit } from "Models/compliance/denmark";
+import type { CmsContent } from "../DanishEntryOverlay";
 
-export const SetAmount = ({
-  t,
-  currencySymbol,
-  confirmLimit,
-  setAmount,
-  amount,
-  limitType,
-  loading,
-  DGAComplianceState,
-}) => {
+type Props = {
+  t: CmsContent,
+  locale: string,
+  currency: string,
+  confirmLimit: () => void,
+  setAmount: (value: number) => void,
+  amount: number,
+  limitType: string,
+  loading: boolean,
+  DGAComplianceState: {
+    depositLimit: number,
+  },
+};
+
+export const SetAmount = (props: Props) => {
+  const {
+    t,
+    locale,
+    currency,
+    confirmLimit,
+    setAmount,
+    amount,
+    limitType,
+    loading,
+    DGAComplianceState,
+  } = props;
+
   const depositLimit = DGAComplianceState ? DGAComplianceState.depositLimit : 0;
 
   const periodLabels = {
@@ -32,11 +52,13 @@ export const SetAmount = ({
     [depositLimit, setAmount]
   );
 
-  const limitInRange = value => {
+  const limitInRange = (value: number): boolean => {
     return amount >= minFirstDepositLimit && value <= depositLimit;
   };
 
-  const isLimitMaxed = value => value >= depositLimit;
+  const isLimitMaxed = (value: number): boolean => value >= depositLimit;
+
+  const currencySign: string = getSymbolForCurrency({ locale, currency });
 
   return (
     <div className="u-padding-x--lg u-padding-bottom--xlg u-overflow-y--auto">
@@ -45,16 +67,20 @@ export const SetAmount = ({
       </Text>
       <div className="u-padding-x">
         <TextInput
-          currencySign={currencySymbol}
+          currencySign={currencySign}
           value={amount}
           onChange={onChangeAmount}
+          inputClassName="u-padding-left--md"
         />
-        {!limitInRange(amount) || isLimitMaxed(amount) ? (
-          <div className="t-color-red-light-1">
-            {currencySymbol} {minFirstDepositLimit} - {depositLimit}
+        {limitInRange(amount) && isLimitMaxed(amount) && (
+          <div data-test-id="warning-message" className="t-color-red-light-1">
+            {minFirstDepositLimit} -{" "}
+            {formatCurrency({
+              locale,
+              currency,
+              value: depositLimit,
+            })}
           </div>
-        ) : (
-          ""
         )}
         <div className="u-padding-top--2xlg">
           <Button

@@ -1,32 +1,38 @@
 // @flow
-import type { DateTime } from "luxon";
+import { DateTime } from "luxon";
+import { CURRENCIES } from "Src/constants";
 
-export type AnnualOverview = {
-  currency: string,
-  betsAmount: number,
-  winningsAmount: number,
-  depositsAmount: number,
-  withdrawalsAmount: number,
-  awardedBonusesAmount: number,
-  convertedBonusesAmount: number,
-  startingBalanceAmount: number,
-  endBalanceAmount: number,
+type RealBonusAmountType = {
+  real: number,
+  bonus: number,
 };
 
-export type AnnualOverviewWrapper = {
-  data?: AnnualOverview,
+export type AnnualOverviewType = {
+  currency: $Values<typeof CURRENCIES>,
+  startingBalance: RealBonusAmountType,
+  endingBalance: RealBonusAmountType,
+  bets: RealBonusAmountType,
+  wins: RealBonusAmountType,
+  deposits: number,
+  withdrawals: number,
+  bonus: {
+    awarded: number,
+    converted: number,
+  },
+  realMoneyGiven: number,
+};
+
+export type AnnualOverviewTypeWrapper = {
+  data?: AnnualOverviewType,
   meta: {
     isFetching?: boolean,
   },
 };
 
-export type WalletTotalsProps = {
+export type WalletTransactionsProps = {
   walletId: string,
   startTime: DateTime,
   endTime: DateTime,
-};
-
-export type WalletTransactionsProps = WalletTotalsProps & {
   perPage?: number,
 };
 
@@ -62,9 +68,4 @@ export type TransactionResponseRaw = {
   walletId: string,
   walletUpdateSource: string,
   withdrawalLocked: boolean,
-};
-
-export type StartingEndBalance = {
-  startingBalanceAmount: number,
-  endBalanceAmount: number,
 };

@@ -1265,6 +1265,11 @@ export type SearchQuery_search = {
   localizedName: string,
 
   /**
+   * The country this search result is associated
+   */
+  country: ?string,
+
+  /**
    * The sport that this search result is associated to is nullable as relies on
    * finding by Kambi controlled data.
    */
