@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import { useRaf } from "react-use";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
@@ -20,18 +21,26 @@ type Props = {
   },
   onClick: () => void,
   secondsTillEnd: number,
+  fetchContent: () => void,
 };
 
 export function StillOnBreak(props: Props) {
-  const { t, secondsTillEnd } = props;
+  const { t, secondsTillEnd, fetchContent } = props;
+  const millisTillEnd = secondsTillEnd * 1000;
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
+
+  const elapsedTimePercentage = useRaf(millisTillEnd, 1000);
   const timeInterval = interpolateTimeInterval({
-    seconds: secondsTillEnd,
+    seconds: secondsTillEnd * (1 - elapsedTimePercentage),
     t,
   });
+
+  React.useEffect(() => {
+    fetchContent();
+  }, [fetchContent]);
 
   return (
     <Flex direction="vertical">
