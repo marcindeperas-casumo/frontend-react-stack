@@ -20,6 +20,7 @@ export const useValuableDetails = (
   ) => {
     const valuableDetails = pick(
       [
+        "__typename",
         "id",
         "backgroundImage",
         "content",

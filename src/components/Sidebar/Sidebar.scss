@@ -1,7 +1,35 @@
-.c-sidebar__nav {
-  max-width: 260px;
+$sidebar-translate-x: -30%;
+$sidebar-fixed-width: 260px;
+$sidebar-transition: all 0.3s ease;
+
+.c-sidebar {
+  transform: translate3d($sidebar-translate-x, 0, 0);
+  transition: $sidebar-transition;
+  z-index: 0;
+}
+
+.c-sidebar--fixed {
+  transform: translate3d(0, 0, 0);
+  transition: none;
+  width: $sidebar-fixed-width;
+}
+
+.c-layout-content {
+  transition: $sidebar-transition;
 }
 
 .c-sidebar__logo {
   height: 100px;
 }
+
+/* stylelint-disable xi/selector-pattern */
+.c-layout--sidebar-open {
+  .c-sidebar {
+    transform: translate3d(0, 0, 0);
+  }
+
+  .c-layout-content {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+/* stylelint-enable xi/selector-pattern */

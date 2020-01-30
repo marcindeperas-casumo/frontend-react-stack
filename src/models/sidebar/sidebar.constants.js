@@ -1,0 +1,4 @@
+export const types = {
+  SIDEBAR_OPEN: "SIDEBAR/OPEN",
+  SIDEBAR_CLOSED: "SIDEBAR/CLOSED",
+};

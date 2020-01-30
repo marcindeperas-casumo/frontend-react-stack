@@ -9,13 +9,11 @@ import { SessionDetailsForLimitsReached } from "./SessionDetailsForLimitsReached
 
 const t = {
   session_details_header: "Session details",
-  balance: "Balance",
   money_wagered: "Money wagered",
   money_won: "Money won",
   money_left: "Money left",
   play_started: "Play started",
   play_ended: "Play ended",
-  last_status_alert: "Last status alert",
   limits_reached_button_label: "Back to games",
   limits_reached_play_again_header: "Play it again",
 };
@@ -34,6 +32,7 @@ stories.add("Default", () => {
         playAgainGameId={select("Game Id", gameIds, gameIds[0])}
         lastEndedSession={endedSessionMock}
         onClickButton={action("onClickButton")}
+        onClickPlayAgain={action("onClickPlayAgain")}
       />
     </MockStore>
   );

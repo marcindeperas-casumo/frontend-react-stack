@@ -9,6 +9,7 @@ type Props = {
   value: ?(string | number),
   onChange: any => void,
   className?: string,
+  inputClassName?: string,
 };
 
 export function TextInput(props: Props) {
@@ -25,7 +26,10 @@ export function TextInput(props: Props) {
         type="text"
         pattern="[0-9]*"
         inputMode="numeric"
-        className="c-compliance-input u-padding-left--sm  u-font-3xlg u-font-weight-black u-line-height t-color-grey-dark-3 u-margin--none u-padding--none"
+        className={classNames(
+          "c-compliance-input u-padding-left--sm  u-font-3xlg u-font-weight-black u-line-height t-color-grey-dark-3 u-margin--none u-padding--none",
+          props.inputClassName
+        )}
         value={props.value || ""} // hides lonely 0 as well
         onChange={props.onChange}
       />

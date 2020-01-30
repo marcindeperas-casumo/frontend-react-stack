@@ -29,6 +29,7 @@ export type EndedSessionType = {
   /** Unix time in millis */
   endedTime: number,
   endReason: string,
+  stats: GameSessionStatsType,
 };
 
 export type ExclusionType = {
@@ -70,4 +71,11 @@ export type UseSessionsStateType = {
   lastEndedSession: ?EndedSessionType,
   lastEndedSessionDuringLastHour: boolean,
   activeExclusion: ?ExclusionType,
+};
+
+export type SessionEndedCometdMessage = {
+  type: string,
+  data: {
+    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": SessionStateResponseType,
+  },
 };

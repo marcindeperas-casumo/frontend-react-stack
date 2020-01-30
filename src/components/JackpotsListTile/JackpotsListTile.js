@@ -1,27 +1,23 @@
 // @flow
-import React, { PureComponent } from "react";
-import { GameRow } from "Components/GameRow";
+import React from "react";
+import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow/GameRow";
+import { launchGame } from "Services/LaunchGameService";
+
 import "./JackpotsListTile.scss";
 
 type Props = {
-  ids?: Array<string>,
+  games?: Array<A.GameRow_Game>,
 };
-
-export default class JackpotsListTile extends PureComponent<Props> {
-  render() {
-    const { ids = [] } = this.props;
-
-    return (
-      <>
-        {ids.map(slug => (
-          <div key={slug} className="u-padding-y--sm">
-            <GameRow
-              id={slug}
-              className="t-background-white t-border-r--md t-box-shadow"
-            />
-          </div>
-        ))}
-      </>
-    );
-  }
-}
+// __FIX__ this should be the source of truth for the MustDrop and
+// standard jackpot tiles.
+export const JackpotsListTile = ({ games = [] }: Props) =>
+  games.map(game => (
+    <div key={game.id} className="u-padding-y--sm">
+      <GameRow
+        game={game}
+        className="t-background-white t-border-r--md t-box-shadow"
+        onLaunchGame={() => launchGame({ slug: game.slug })}
+      />
+    </div>
+  ));

@@ -8,6 +8,7 @@ import {
   useTranslations,
   useJurisdiction,
 } from "Utils/hooks";
+import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
@@ -25,6 +26,10 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   const { gameProviderModel, error } = useGameLaunchData({
     playForFun,
     slug,
+  });
+
+  useBeforePlayingModal({
+    canLaunch: Boolean(!playForFun && !error && gameProviderModel),
   });
 
   if (error) {

@@ -44,6 +44,7 @@ stories.add("Default", () => (
         preloadFetchPlayerGames={() => {}}
         preloadFetchPlayerGamesCount={() => {}}
         rowCount={20}
+        fetchMoreRows={() => Promise.resolve(games)}
       />
     </div>
   </MockStore>

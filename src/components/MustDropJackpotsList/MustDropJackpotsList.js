@@ -2,8 +2,9 @@
 import React, { PureComponent } from "react";
 import Scrollable from "@casumo/cmp-scrollable";
 import { generateColumns } from "Utils";
+import * as A from "Types/apollo";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import JackpotsListTile from "Components/JackpotsListTile";
+import { JackpotsListTile } from "Components/JackpotsListTile";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget";
@@ -15,20 +16,21 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
-  ids: Array<string>,
+  jackpots: Array<A.GameRow_Game>,
   className?: string,
-  title: string,
+  name: string,
   seeMore: string,
 };
 
 const mustDropWidgetId = "must-drop-jackpots-widget";
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
-  get columns(): Array<Array<string>> {
-    const idsByColumns = generateColumns(this.props.ids);
-    return [[mustDropWidgetId], ...idsByColumns];
+  get columns(): Array<Array<A.GameRow_Game>> {
+    // __FIX__ - sort out typing here. We're returning an array of strings or games.
+    const jackpotsByColumns = generateColumns(this.props.jackpots);
+    return [[mustDropWidgetId], ...jackpotsByColumns];
   }
-
+  // __FIX__ - this will blow up.
   keyGetter = (i: number) =>
     this.columns[i].indexOf(mustDropWidgetId) !== -1
       ? mustDropWidgetId
@@ -37,11 +39,10 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   mobileMustDropJackpotRenderer = (i: number) => {
     const isIdMustDropWidgetId =
       this.columns[i].indexOf(mustDropWidgetId) !== -1;
-
     return isIdMustDropWidgetId ? (
       <MustDropJackpotsWidget />
     ) : (
-      <JackpotsListTile ids={this.columns[i]} />
+      <JackpotsListTile games={this.columns[i]} />
     );
   };
 
@@ -62,7 +63,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   };
 
   render() {
-    const { title, seeMore } = this.props;
+    const { name, seeMore } = this.props;
     const seeMoreUrl = "/games/must-drop-jackpots";
 
     return (
@@ -73,7 +74,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               <ScrollableListTitleRow
                 paddingLeft
                 seeMore={{ text: seeMore, url: seeMoreUrl }}
-                title={title}
+                title={name}
               />
               <Scrollable
                 keyGetter={this.keyGetter}
@@ -87,7 +88,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           <Desktop>
             <ScrollableListPaginated
               list={{
-                title,
+                name,
                 itemIds: this.columns,
               }}
               Component={this.desktopMustDropJackpotRenderer}

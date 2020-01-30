@@ -1,8 +1,5 @@
 // @flow
-import {
-  initFetchAnnualOverview,
-  initFetchAnnualOverviewPdfUrl,
-} from "./transactionsBetsHistory.actions";
+import { initFetchAnnualOverview } from "./transactionsBetsHistory.actions";
 import { types } from "./transactionsBetsHistory.constants";
 
 jest.mock("Api/api.transactionsBetsHistory");
@@ -17,16 +14,6 @@ describe("Models/transactionsBetsHistory/Actions", () => {
       year,
       meta: {},
       type: types.ANNUAL_OVERVIEW_FETCH_INIT,
-    });
-  });
-
-  test("initFetchAnnualOverviewPdfUrl()", () => {
-    const action = initFetchAnnualOverviewPdfUrl({ year });
-
-    expect(action).toEqual({
-      year,
-      meta: {},
-      type: types.ANNUAL_OVERVIEW_FETCH_PDF_URL_INIT,
     });
   });
 });
