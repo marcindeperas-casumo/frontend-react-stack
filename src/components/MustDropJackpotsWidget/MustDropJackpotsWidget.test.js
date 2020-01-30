@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import MustDropJackpotsWidget from "Components/MustDropJackpotsWidget/MustDropJackpotsWidget";
+import { MustDropJackpotsWidget } from "./MustDropJackpotsWidget";
 import jackpots from "./__mocks__/jackpots.json";
 
 describe("MustDropJackpotsWidget", () => {

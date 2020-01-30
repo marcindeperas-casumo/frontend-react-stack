@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { marketSelector } from "Models/handshake";
-import { initFetchTopLists, isGameListLoaded } from "Models/games";
+import { isGameListLoaded } from "Models/games";
 import TopLists from "Components/TopLists/TopLists";
 
 type Props = {};

@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow, mount } from "enzyme";
-import SearchNotFound from "Components/SearchNotFound/SearchNotFound";
+import { SearchNotFound } from "./SearchNotFound";
 
 describe("SearchNotFound", () => {
   let notFoundCMS;

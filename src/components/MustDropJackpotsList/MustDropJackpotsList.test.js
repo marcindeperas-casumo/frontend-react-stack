@@ -4,7 +4,7 @@ import * as R from "ramda";
 import MustDropJackpotsList from "Components/MustDropJackpotsList/MustDropJackpotsList";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
-import JackpotsListTile from "Components/JackpotsListTile";
+import { JackpotsListTile } from "Components/JackpotsListTile";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";

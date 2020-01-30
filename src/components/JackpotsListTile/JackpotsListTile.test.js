@@ -1,13 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { GameRow } from "Components/GameRow";
-import JackpotsTile from "./JackpotsListTile";
+import { JackpotsListTile } from "./JackpotsListTile";
 
 describe("<JackpotsListTile />", () => {
   test("renders a <GameRow /> for each game", () => {
-    const ids = ["one", "two", "three"];
-    const rendered = shallow(<JackpotsTile ids={ids} />);
+    const games = ["one", "two", "three"];
+    const rendered = shallow(<JackpotsListTile games={games} />);
 
-    expect(rendered.find(GameRow)).toHaveLength(ids.length);
+    expect(rendered.find(GameRow)).toHaveLength(games.length);
   });
 });
