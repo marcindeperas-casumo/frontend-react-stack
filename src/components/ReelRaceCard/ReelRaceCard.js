@@ -72,7 +72,6 @@ export class ReelRaceCard extends React.Component<Props> {
               variant="primary"
               className="u-padding-y--md u-padding-x--lg"
               onLaunchGame={() =>
-                // double check this
                 launchGame({ slug: this.props.reelRace.game.slug })
               }
             >
@@ -273,7 +272,6 @@ export class ReelRaceCard extends React.Component<Props> {
                 align="center"
                 className="u-cursor-pointer"
                 onClick={() =>
-                  // double check this
                   launchGame({ slug: this.props.reelRace.game.slug })
                 }
               >
