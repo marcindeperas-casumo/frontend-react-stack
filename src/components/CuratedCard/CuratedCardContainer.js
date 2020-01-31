@@ -1,23 +1,34 @@
 // @flow
-import { connect } from "react-redux";
-import { CuratedCard } from "Components/CuratedCard/CuratedCard";
-import { fetchPageBySlug } from "Models/cms";
-import { launchGame } from "Models/games";
-import {
-  curatedSelector,
-  isCuratedLoadedFactory,
-  prefixCuratedSlug,
-} from "Models/curated";
+import React from "react";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
+import { launchGame } from "Services/LaunchGameService";
+import { CuratedCardQuery } from "./CuratedCard.graphql";
+import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
+import { CuratedCard } from "./CuratedCard";
 
-export const CuratedCardContainer = connect(
-  (state, { slug }) => {
-    return {
-      ...curatedSelector(slug)(state),
-      isFetched: isCuratedLoadedFactory(slug)(state),
-    };
-  },
-  (dispatch, { slug }) => ({
-    fetchCurated: () => dispatch(fetchPageBySlug(prefixCuratedSlug(slug))),
-    onLaunchGame: (gameId: string) => dispatch(launchGame(gameId)),
-  })
-)(CuratedCard);
+type Props = {
+  className?: String,
+  slug: string,
+};
+
+export const CuratedCardContainer = ({ className, slug }: Props) => {
+  const variables = { slug };
+  const { data, loading } = useQuery<A.CuratedCardQuery, _>(CuratedCardQuery, {
+    variables,
+  });
+
+  if (loading) {
+    return <CuratedCardSkeleton />;
+  }
+
+  return (
+    <CuratedCard
+      className={className}
+      curatedCard={data?.curatedCard}
+      onLaunchGame={() =>
+        launchGame({ slug: data?.curatedCard?.game?.slug || "" })
+      }
+    />
+  );
+};
