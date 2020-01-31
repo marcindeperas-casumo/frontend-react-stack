@@ -71,4 +71,18 @@ describe("BaseIframeGame", () => {
   expect(model.onUnmount).toBeInstanceOf(Function);
   expect(model.pauseGame).toBeInstanceOf(Function);
   expect(model.resumeGame).toBeInstanceOf(Function);
+
+  test("parseMessageData should return data unaltered", () => {
+    const messageData = "SOME_MESSAGE";
+    const parsedData = model.parseMessageData(messageData);
+
+    expect(parsedData).toBe(messageData);
+  });
+
+  test("extractEventId should return original data as identifier", () => {
+    const messageData = "SOME_MESSAGE";
+    const eventIdentifier = model.extractEventId(messageData);
+
+    expect(eventIdentifier).toBe(messageData);
+  });
 });

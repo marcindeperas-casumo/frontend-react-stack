@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { RedTigerGame } from "./RedTigerGame";
+import { RedTigerGame, COMMANDS } from "./RedTigerGame";
 
 describe("RedTigerGame", () => {
   const gameData = {
@@ -24,7 +24,7 @@ describe("RedTigerGame", () => {
 
   test("should set api commands", () => {
     expect(model.api.features.instantPause).toBe(true);
-    expect(model.api.commands.pause).toEqual({ type: "popupDisplayed" });
-    expect(model.api.commands.resume).toEqual({ type: "popupClosed" });
+    expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
+    expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
   });
 });

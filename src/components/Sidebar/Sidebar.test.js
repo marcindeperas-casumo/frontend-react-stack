@@ -1,8 +1,8 @@
 import React from "react";
 import { mount } from "enzyme";
-import { Sidebar } from "Components/Sidebar/Sidebar";
-import { SidebarRow } from "Components/Sidebar/SidebarRow";
 import MockStore from "Components/MockStore";
+import { Sidebar } from "./Sidebar";
+import { SidebarRow } from "./SidebarRow";
 
 describe("Sidebar", () => {
   test("should render casumo link", () => {
