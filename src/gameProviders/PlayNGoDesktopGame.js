@@ -3,7 +3,7 @@ import { injectScript } from "Utils";
 import { BaseGame } from "./BaseGame";
 import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 
-// ISSUES:
+// TODO:
 // check out context and events
 // check out unmount scenario
 

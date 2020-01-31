@@ -3,9 +3,6 @@ import { ENVIRONMENTS } from "Src/constants";
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-// ISSUES:
-// concern with multiple target domains (ref to targetDomain)
-
 export const TARGET_DOMAINS = {
   [ENVIRONMENTS.TEST]: "https://mobile32.gameassists.co.uk",
   [ENVIRONMENTS.PRODUCTION]: "https://mobile2.gameassists.co.uk",

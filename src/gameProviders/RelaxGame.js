@@ -2,7 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-// ISSUES:
+// TODO:
 // timing issue with round started event (to be addressed with provider)
 
 export class RelaxGame extends BaseIframeGame {

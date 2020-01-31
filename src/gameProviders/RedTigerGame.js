@@ -2,7 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-// ISSUES:
+// TODO:
 // hardcoded back to lobby in backend
 // handle event queue
 

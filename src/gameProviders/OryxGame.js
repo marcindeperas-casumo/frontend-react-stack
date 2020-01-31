@@ -13,9 +13,6 @@ type OryxMessage = {
   origin: string,
 };
 
-// ISSUES:
-// concern with multiple target domains (ref to targetDomain)
-
 export class OryxGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);

@@ -2,7 +2,7 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
-// ISSUES:
+// TODO:
 // back to lobby hardcoded in backend
 
 export class GreentubeGame extends BaseIframeGame {
