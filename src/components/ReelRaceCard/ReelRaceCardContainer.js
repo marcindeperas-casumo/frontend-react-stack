@@ -1,35 +1,11 @@
 // @flow
-import { connect } from "react-redux";
-import {
-  reelRacesTranslationsSelector,
-  reelRacesByIdSelector,
-  optInForReelRace,
-} from "Models/reelRaces";
-import { launchGame } from "Models/games";
-import { gameSelector } from "Models/schema";
+import React from "react";
+import { useQuery } from "@apollo/react-hooks";
 import { ReelRaceCard } from "./ReelRaceCard";
+import { ReelRaceCardCMSQuery } from "./ReelRaceCard.graphql";
 
-export default connect(
-  (state, { id }) => {
-    const reelRace = reelRacesByIdSelector(id)(state);
-
-    if (!reelRace) {
-      return {};
-    }
-
-    return {
-      ...reelRace,
-      game: gameSelector(reelRace.gameSlug)(state),
-      t: reelRacesTranslationsSelector(state),
-    };
-  },
-  {
-    optInForReelRace,
-    launchGame,
-  },
-  (stateProps, dispatchProps, ownProps) => ({
-    ...stateProps,
-    optIn: () => dispatchProps.optInForReelRace(ownProps.id),
-    launchGame: () => dispatchProps.launchGame(stateProps.gameSlug),
-  })
-)(ReelRaceCard);
+// __FIX__: this should take a game but because of
+// https://github.com/Casumo/frontend-react-stack/blob/master/src/components/ScrollableList/ScrollableList.js#L42
+export const ReelRaceCardContainer = ({ item }) => {
+  return <ReelRaceCard reelRace={item} />;
+};

@@ -7,7 +7,7 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
-import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
+import type { ReelRace } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
 import { BUTTON_STATE } from "Models/reelRaces";
@@ -23,10 +23,8 @@ import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
 type Props = ReelRace & {
-  game: A.GameRow_Game,
-  t: ReelRacesTranslations,
+  reelRace: A.GameRow_Game,
   optIn: () => void,
-  launchGame: () => void,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
@@ -45,25 +43,25 @@ const THIRTY_MINUTES = 30 * 60 * 1000;
 export class ReelRaceCard extends React.Component<Props> {
   timeout: TimeoutID;
 
-  componentDidMount() {
-    this.scheduleUpdate();
-  }
+  // componentDidMount() {
+  //   this.scheduleUpdate();
+  // }
 
   componentWillUnmount() {
     clearTimeout(this.timeout);
   }
 
   get timeRemainingBeforeStart(): number {
-    return DateTime.fromMillis(this.props.startTime)
+    return DateTime.fromMillis(this.props.reelRace.startTime)
       .diffNow()
       .valueOf();
   }
 
   get button() {
-    const { t } = this.props;
+    const { translations: t } = this.props.reelRace;
 
     if (this.timeRemainingBeforeStart <= 0) {
-      if (this.props.opted) {
+      if (this.props.reelRace.opted) {
         return (
           <TrackClick
             eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
@@ -73,29 +71,29 @@ export class ReelRaceCard extends React.Component<Props> {
               size="sm"
               variant="primary"
               className="u-padding-y--md u-padding-x--lg"
-              onClick={this.props.launchGame}
+              // onClick={this.props.launchGame}
             >
               <PlayIcon size="sm" className="c-reel-race__button-icon" />
               <span className="u-margin-left">
-                {t.opted_in_cta_single_game_short}
+                {t.optedInCtaSingleGameShort}
               </span>
             </Button>
           </TrackClick>
         );
       }
 
-      return null; // In that case whole component should be hidden
+      return null;
     }
 
     const active = {
-      label: t.opt_in,
+      label: t.optIn,
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPT_IN },
-      onClick: this.props.optIn,
+      // onClick: this.props.optIn,
     };
 
     const disabled = {
-      label: t.opted_in,
+      label: t.optedIn,
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPTED_IN },
     };
@@ -105,13 +103,13 @@ export class ReelRaceCard extends React.Component<Props> {
         active={active}
         disabled={disabled}
         className="c-reel-race__button-icon"
-        isOptedIn={this.props.opted}
+        isOptedIn={this.props.reelRace.optedIn}
       />
     );
   }
 
   get countdown() {
-    const { t } = this.props;
+    const { translations: t } = this.props.reelRace;
 
     if (this.timeRemainingBeforeStart <= 0) {
       return (
@@ -125,7 +123,7 @@ export class ReelRaceCard extends React.Component<Props> {
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
-              endTime={this.props.endTime}
+              endTime={this.props.reelRace.endTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
             />
@@ -146,7 +144,7 @@ export class ReelRaceCard extends React.Component<Props> {
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
-              endTime={this.props.startTime}
+              endTime={this.props.reelRace.startTime}
               render={state => `${state.minutes}:${state.seconds}`}
               onEnd={() => "00:00"}
             />
@@ -155,7 +153,7 @@ export class ReelRaceCard extends React.Component<Props> {
       );
     }
 
-    const startTime = DateTime.fromMillis(this.props.startTime);
+    const startTime = DateTime.fromMillis(this.props.reelRace.startTime);
     return (
       <Flex spacing="none">
         <ClockIcon className="u-margin-right" />
@@ -171,53 +169,61 @@ export class ReelRaceCard extends React.Component<Props> {
   }
 
   get duration() {
-    return DateTime.fromMillis(this.props.endTime)
-      .diff(DateTime.fromMillis(this.props.startTime))
+    return DateTime.fromMillis(this.props.reelRace.endTime)
+      .diff(DateTime.fromMillis(this.props.reelRace.startTime))
       .toFormat("mm");
   }
 
-  scheduleUpdate() {
-    /**
-     * we have to update this component in 2 cases:
-     *   (start <= 30 min) - show "Starting in" with countdown
-     *   (start <= now) - show "Play" button
-     *
-     * Update happens through calling `forceUpdate` and render method
-     * takes over and renders what's currently needed.
-     */
-    const updateTime =
-      this.timeRemainingBeforeStart > THIRTY_MINUTES
-        ? this.timeRemainingBeforeStart - THIRTY_MINUTES
-        : this.timeRemainingBeforeStart;
+  // scheduleUpdate() {
+  //   /**
+  //    * we have to update this component in 2 cases:
+  //    *   (start <= 30 min) - show "Starting in" with countdown
+  //    *   (start <= now) - show "Play" button
+  //    *
+  //    * Update happens through calling `forceUpdate` and render method
+  //    * takes over and renders what's currently needed.
+  //    */
+  //   const updateTime =
+  //     this.timeRemainingBeforeStart > THIRTY_MINUTES
+  //       ? this.timeRemainingBeforeStart - THIRTY_MINUTES
+  //       : this.timeRemainingBeforeStart;
 
-    this.timeout = setTimeout(() => {
-      this.forceUpdate();
-    }, updateTime);
-  }
+  //   this.timeout = setTimeout(() => {
+  //     this.forceUpdate();
+  //   }, updateTime);
+  // }
 
   showCaveatsModal = () => {
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
   render() {
-    const { t } = this.props;
+    const { translations: t } = this.props.reelRace;
 
-    if (R.isEmpty(this.props.game)) {
+    // if (!this.props.areTranslationsFetched) {
+    //   return null;
+    // }
+
+    if (R.isEmpty(this.props.reelRace.game)) {
       return null;
     }
 
-    if (this.timeRemainingBeforeStart <= 0 && !this.props.opted) {
+    if (this.timeRemainingBeforeStart <= 0 && !this.props.reelRace.optedIn) {
       return null;
     }
+
+    console.log("------------------------------------");
+    console.log(this.duration);
+    console.log("------------------------------------");
 
     const trackData = {
       [EVENT_PROPS.LOCATION]: "Reel Race",
-      splinLimit: this.props.spins,
+      splinLimit: this.props.reelRace.spinLimit,
       timeLimit: this.duration,
-      minBet: this.props.minBet,
-      mainPrize: this.props.prize,
-      name: this.props.game.name,
-      isPromoted: this.props.promoted,
+      minBet: this.props.reelRace.minBet,
+      mainPrize: this.props.reelRace.formattedPrize,
+      name: this.props.reelRace.game.name,
+      isPromoted: this.props.reelRace.promoted,
     };
 
     return (
@@ -230,7 +236,7 @@ export class ReelRaceCard extends React.Component<Props> {
             "u-overflow-hidden",
             "o-ratio",
             "o-ratio--reel-race-card",
-            `t-color-${this.props.color}`,
+            `t-color-yellow-light-1`,
             "c-reel-race-card",
           ].join(" ")}
           direction="vertical"
@@ -239,8 +245,8 @@ export class ReelRaceCard extends React.Component<Props> {
         >
           <ImageLazy
             className="o-ratio__content"
-            src={this.props.game.logoBackground}
-            alt={this.props.game.name}
+            src={this.props.reelRace.game.backgroundImage}
+            alt={this.props.reelRace.game.name}
             imgixOpts={{
               w: 348,
               h: 232,
@@ -263,14 +269,15 @@ export class ReelRaceCard extends React.Component<Props> {
               <Flex
                 align="center"
                 className="u-cursor-pointer"
-                onClick={this.props.launchGame}
+                // onClick={() => launchGame({ slug: this.props.reelRace.game.slug })}
+                // onClick={this.props.launchGame}
               >
                 <GameThumb
-                  src={this.props.game.logoBackground}
-                  alt={this.props.game.name}
-                  mark={this.props.game.logo}
+                  src={this.props.reelRace.game.backgroundImage}
+                  alt={this.props.reelRace.game.name}
+                  mark={this.props.reelRace.game.logo}
                 />
-                {this.props.promoted && (
+                {this.props.reelRace.promoted && (
                   <GrandReelRaceBadge className="c-reel-race__badge" />
                 )}
                 <Flex
@@ -282,32 +289,34 @@ export class ReelRaceCard extends React.Component<Props> {
                     tag="span"
                     className="u-margin-bottom--sm u-font-weight-bold"
                   >
-                    {interpolate(t.compete_for, { prize: this.props.prize })}
+                    {interpolate(t.competeFor, {
+                      prize: this.props.reelRace.formattedPrize,
+                    })}
                   </Text>
                   <Text
                     tag="span"
                     size="xs"
                     className="t-color-white u-opacity-75"
                   >
-                    <DangerousHtml html={this.props.game.name} />
+                    <DangerousHtml html={this.props.reelRace.game.name} />
                   </Text>
                 </Flex>
               </Flex>
             </TrackClick>
 
             <Flex align="center">
-              <Column top={this.props.spins} bottom={t.spins} />
+              <Column top={this.props.reelRace.spinLimit} bottom={t.spins} />
               <div className="c-reel-race__separator u-margin-x--md" />
               <Column
-                top={interpolate(t.duration_template, {
+                top={interpolate(t.durationTemplate, {
                   duration: this.duration,
                 })}
                 bottom={t.duration}
               />
-              {this.props.minBet && (
+              {this.props.reelRace.minBet && (
                 <>
                   <div className="c-reel-race__separator u-margin-x--md" />
-                  <Column top={this.props.minBet} bottom={t.min_bet} />
+                  <Column top={this.props.reelRace.minBet} bottom={t.minBet} />
                 </>
               )}
             </Flex>
@@ -318,14 +327,14 @@ export class ReelRaceCard extends React.Component<Props> {
             </Flex>
           </Flex>
         </Flex>
-        {t.caveat_short && t.caveat_short !== "false" && (
+        {t.caveatShort && t.caveatShort !== "false" && (
           <Text
             size="xs"
             className="c-reel-race__terms t-color-grey"
             onClick={this.showCaveatsModal}
           >
             <DangerousHtml
-              html={interpolate(t.caveat_short, {
+              html={interpolate(t.caveatShort, {
                 ctaTermsAndConditions: 'class="t-color-black"',
               })}
             />

@@ -1,0 +1,31 @@
+fragment ReelRaceCard_ReelRace on ReelRace {
+    id
+    game {
+        id
+        name
+        logo
+        backgroundImage
+    }
+    startTime
+    optedIn
+    endTime
+    startTime
+    spinLimit
+    minBet
+    promoted
+    formattedPrize
+    remainingSpins
+    translations {
+        optedInCtaSingleGameShort
+        optIn
+        optedIn
+        endingIn
+        startingIn
+        competeFor
+        spins
+        duration
+        durationTemplate
+        minBet
+        caveatShort
+    }
+}
