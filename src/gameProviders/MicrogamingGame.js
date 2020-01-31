@@ -8,12 +8,21 @@ export const TARGET_DOMAINS = {
   [ENVIRONMENTS.PRODUCTION]: "https://mobile2.gameassists.co.uk",
 };
 
+export const COMMANDS = {
+  PAUSE: "StopGamePlay",
+};
+
+export const EVENTS = {
+  GAME_ROUND_START: { event: "gameBusy" },
+  GAME_ROUND_END: { event: "gameNotBusy" },
+};
+
 export class MicrogamingGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
-    this.api.commands.pause = "StopGamePlay";
-    this.api.events.onGameRoundStart = { event: "gameBusy" };
-    this.api.events.onGameRoundEnd = { event: "gameNotBusy" };
+    this.api.commands.pause = COMMANDS.PAUSE;
+    this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
+    this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.targetDomain = TARGET_DOMAINS[this.props.environment];
   }
 

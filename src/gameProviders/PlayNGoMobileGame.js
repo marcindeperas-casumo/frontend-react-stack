@@ -1,14 +1,15 @@
 // @flow
 import type { GameProviderModelProps, IframeMessageEvent } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
+import { COMMANDS, EVENTS } from "./PlayNGoGame.constants";
 
 export class PlayNGoMobileGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
-    this.api.commands.pause = { req: "gameDisable" };
-    this.api.commands.resume = { req: "gameEnable" };
-    this.api.events.onGameRoundStart = { type: "roundStarted" };
-    this.api.events.onGameRoundEnd = { type: "gameIdle" };
+    this.api.commands.pause = COMMANDS.PAUSE;
+    this.api.commands.resume = COMMANDS.RESUME;
+    this.api.events.onGameRoundStart = EVENTS.ON_GAME_ROUND_START;
+    this.api.events.onGameRoundEnd = EVENTS.ON_GAME_ROUND_END;
     this.targetDomain = window.location.origin;
   }
 

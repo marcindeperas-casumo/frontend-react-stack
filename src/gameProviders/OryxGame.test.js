@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { OryxGame } from "./OryxGame";
+import { OryxGame, COMMANDS } from "./OryxGame";
 
 describe("OryxGame", () => {
   const gameData = {
@@ -23,7 +23,7 @@ describe("OryxGame", () => {
   });
 
   test("should set api commands", () => {
-    expect(model.api.commands.pause).toEqual({ wpgaction: "doGamePause" });
-    expect(model.api.commands.resume).toEqual({ wpgaction: "doGameResume" });
+    expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
+    expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
   });
 });

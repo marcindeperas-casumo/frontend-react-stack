@@ -2,13 +2,23 @@
 import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
+export const COMMANDS = {
+  PAUSE: { eventid: "pausegame" },
+  RESUME: { eventid: "resumegame" },
+};
+
+export const EVENTS = {
+  GAME_ROUND_START: { eventid: "roundstarted" },
+  GAME_ROUND_END: { eventid: "roundended" },
+};
+
 export class ThunderkickGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
-    this.api.commands.pause = { eventid: "pausegame" };
-    this.api.commands.resume = { eventid: "resumegame" };
-    this.api.events.onGameRoundStart = { eventid: "roundstarted" };
-    this.api.events.onGameRoundEnd = { eventid: "roundended" };
+    this.api.commands.pause = COMMANDS.PAUSE;
+    this.api.commands.resume = COMMANDS.RESUME;
+    this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
+    this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
     this.api.features.instantPause = true;
   }
 

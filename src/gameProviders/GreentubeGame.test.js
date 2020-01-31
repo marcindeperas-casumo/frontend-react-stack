@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { GreentubeGame } from "./GreentubeGame";
+import { GreentubeGame, COMMANDS } from "./GreentubeGame";
 
 describe("GreentubeGame", () => {
   const gameData = {
@@ -23,7 +23,7 @@ describe("GreentubeGame", () => {
   });
 
   test("should set instant pause", () => {
-    expect(model.api.commands.pause).toBe("AUTOPLAYOFF:");
-    expect(model.api.commands.resume).toBe("AUTOPLAYTOGGLE:");
+    expect(model.api.commands.pause).toBe(COMMANDS.PAUSE);
+    expect(model.api.commands.resume).toBe(COMMANDS.RESUME);
   });
 });

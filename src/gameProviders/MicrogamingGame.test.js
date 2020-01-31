@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { MicrogamingGame } from "./MicrogamingGame";
+import { MicrogamingGame, COMMANDS, TARGET_DOMAINS } from "./MicrogamingGame";
 
 describe("MicrogamingGame", () => {
   const gameData = {
@@ -24,10 +24,10 @@ describe("MicrogamingGame", () => {
 
   test("should set api commands", () => {
     expect(model.api.features.instantPause).toBe(false);
-    expect(model.api.commands.pause).toBe("StopGamePlay");
+    expect(model.api.commands.pause).toBe(COMMANDS.PAUSE);
   });
 
   test("should set target domain", () => {
-    expect(model.targetDomain).toBe("https://mobile2.gameassists.co.uk");
+    expect(model.targetDomain).toBe(TARGET_DOMAINS[ENVIRONMENTS.TEST]);
   });
 });
