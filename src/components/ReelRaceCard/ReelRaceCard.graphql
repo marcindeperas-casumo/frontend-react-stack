@@ -5,6 +5,7 @@ fragment ReelRaceCard_ReelRace on ReelRace {
         name
         logo
         backgroundImage
+        slug
     }
     startTime
     optedIn

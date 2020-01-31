@@ -7,7 +7,6 @@ import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
 import * as A from "Types/apollo";
-import type { ReelRace } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
 import { launchGame } from "Services/LaunchGameService";
@@ -23,8 +22,8 @@ import { interpolate } from "Utils";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
-type Props = ReelRace & {
-  reelRace: A.GameRow_Game,
+type Props = {
+  reelRace: A.ReelRaceCard_ReelRace,
   optIn: () => void,
 };
 
@@ -62,7 +61,7 @@ export class ReelRaceCard extends React.Component<Props> {
     const { translations: t } = this.props.reelRace;
 
     if (this.timeRemainingBeforeStart <= 0) {
-      if (this.props.reelRace.opted) {
+      if (this.props.reelRace.optedIn) {
         return (
           <TrackClick
             eventName={EVENTS.MIXPANEL_REEL_RACE_CLICKED}
@@ -123,7 +122,7 @@ export class ReelRaceCard extends React.Component<Props> {
             size="xs"
             className="t-color-white u-font-weight-bold"
           >
-            {t.ending_in}
+            {t.endingIn}
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
@@ -144,7 +143,7 @@ export class ReelRaceCard extends React.Component<Props> {
             size="xs"
             className="t-color-white u-font-weight-bold"
           >
-            {t.starting_in}
+            {t.startingIn}
           </Text>
           <Text tag="span" size="lg" className="u-font-weight-bold">
             <Timer
