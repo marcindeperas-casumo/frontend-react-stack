@@ -1,0 +1,9 @@
+#import "../ReelRaceCard/ReelRaceCard.graphql"
+
+query ReelRaceListQuery {
+    title: getText(id: "root:mobile.reel-races.reel-race-templates:fields.title")
+    reelRaces {
+        id
+        ...ReelRaceCard_ReelRace
+    }
+}

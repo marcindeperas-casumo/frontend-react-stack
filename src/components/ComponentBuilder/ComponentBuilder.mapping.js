@@ -1,4 +1,5 @@
 // TODO: Make these components lazy-loaded
+import { ReelRacesList } from "Components/ReelRacesList";
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
@@ -18,7 +19,6 @@ import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
 import { GameProvidersList } from "Components/GameProvidersList";
-import ReelRacesList from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";
 

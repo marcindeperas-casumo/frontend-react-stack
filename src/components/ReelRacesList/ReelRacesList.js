@@ -2,43 +2,23 @@
 import * as React from "react";
 import type { ReelRacesTranslations } from "Models/reelRaces";
 import ScrollableList from "Components/ScrollableList";
-import ReelRaceCard from "Components/ReelRaceCard";
+import { ReelRaceCard } from "Components/ReelRaceCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
 type Props = {
   areTranslationsFetched: boolean,
-  fetchReelRaces: () => void,
-  fetchTranslations: () => void,
-  subscribeReelRacesUpdates: () => void,
-  unsubscribeReelRacesUpdates: () => void,
-  t: ReelRacesTranslations & { more_link: string },
-  reelRacesIds: Array<string>,
+  title: string,
+  reelRaces: Array<string>,
   isFetched: boolean,
 };
 
 export class ReelRacesList extends React.PureComponent<Props> {
-  componentDidMount() {
-    if (!this.props.isFetched) {
-      this.props.fetchReelRaces();
-    }
-
-    if (!this.props.areTranslationsFetched) {
-      this.props.fetchTranslations();
-    }
-
-    this.props.subscribeReelRacesUpdates();
-  }
-
-  componentWillUnmount() {
-    this.props.unsubscribeReelRacesUpdates();
-  }
-
   render() {
     if (!this.props.areTranslationsFetched) {
       return null;
     }
-    const { t } = this.props;
+    const { title } = this.props;
     const seeMoreUrl = "/reel-races";
 
     return (
@@ -46,25 +26,25 @@ export class ReelRacesList extends React.PureComponent<Props> {
         <div className="o-wrapper">
           <MobileAndTablet>
             <ScrollableList
-              title={t.title}
-              seeMoreText={t.more_link}
+              title={title}
+              seeMoreText="See More"
               seeMoreUrl={seeMoreUrl}
-              itemIds={this.props.reelRacesIds}
+              items={this.props.reelRaces}
               Component={ReelRaceCard}
             />
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
-                title: t.title,
-                itemIds: this.props.reelRacesIds,
+                title: title,
+                itemIds: this.props.reelRaces,
               }}
               Component={ReelRaceCard}
               className="c-reel-race-card"
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
-                text: t.more_link,
+                text: "See more",
                 url: seeMoreUrl,
               }}
             />
