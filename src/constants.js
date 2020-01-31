@@ -261,6 +261,12 @@ export const EVENTS = {
   MIXPANEL_SPORTS_LIVE_NAV_TOGGLE: "Sports Live Nav Toggled",
   MIXPANEL_SPORTS_NAV_SELECTED: "Sports Nav Selected",
   MIXPANEL_SPORTS_PAGEVIEW: "Sports Page View",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
+    "Sports Onboarding - favorite sport selected",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
+    "Sports Onboarding - favorite sport deselected",
+  MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL:
+    "Sports Onboarding - favorite sport selected all",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -278,6 +284,8 @@ export const EVENT_PROPS = {
   SPORTS_PAGE_TYPE: "type",
   SPORTS_PAGE_TITLE: "title",
   SPORTS_PAGE_PATH: "path",
+  SPORTS_ID: "sport id",
+  SPORTS_NAME: "sport name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };

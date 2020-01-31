@@ -5,6 +5,8 @@ import gql from "graphql-tag";
 import { getApolloContext } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
+import tracker from "Services/tracker";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
 import FavouriteSportsSelector from "../FavouriteSportsSelector/FavouriteSportsSelector";
 import type { StageFavouritesAPI, Competition } from "./types";
 import StageFavouritesContext from "./StageFavouritesContext";
@@ -151,7 +153,7 @@ class StageFavouritesProvider extends React.Component<
     });
   }
 
-  toggleFavouriteSport = (id: number) => {
+  toggleFavouriteSport = (id: number, name: string) => {
     this.setState(state => ({
       sports: state.sports.map(sport => ({
         ...sport,
@@ -159,9 +161,19 @@ class StageFavouritesProvider extends React.Component<
           id === sport.id ? !sport.userFavourite : sport.userFavourite,
       })),
     }));
+    if (this.state.isFirstTimeSelectingFavourites) {
+      const eventName = this.isSelected(id)
+        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED
+        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED;
+      const data = {
+        [EVENT_PROPS.SPORTS_ID]: id,
+        [EVENT_PROPS.SPORTS_NAME]: name,
+      };
+      tracker.track(eventName, data);
+    }
   };
 
-  toggleAllSports = () =>
+  toggleAllSports = () => {
     this.setState(state => {
       const areAllSelected =
         this.getSelectedSportsCount() === state.sports.length;
@@ -173,6 +185,13 @@ class StageFavouritesProvider extends React.Component<
         })),
       };
     });
+    if (this.state.isFirstTimeSelectingFavourites) {
+      tracker.track(
+        EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL,
+        {}
+      );
+    }
+  };
 
   getSelectedSportsCount = () => {
     return this.state.sports.filter(g => g.userFavourite).length;

@@ -1,0 +1,609 @@
+# This file was generated based on ".graphqlconfig". Do not edit manually.
+
+schema {
+    query: Query
+    mutation: Mutation
+}
+
+interface PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    id: ID!
+    leftToWager: Float
+    market: String!
+    rule: PlayerValuableRule!
+    title: String!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageringThreshold: Float
+}
+
+type Bets {
+    max: Int
+    min: Int
+    symbol: String
+}
+
+type Brand {
+    id: ID!
+}
+
+type Country {
+    code: String!
+    name: String!
+}
+
+type EventGroup {
+    "The active indicator for the sport group, used on the nav"
+    activeIndicator: String
+    "The number of active bet offers in the event group"
+    boCount: Int!
+    """
+    Whether to allow a custom selection of subgroups to be shown as sub-nav items
+    instead of just popular ones
+    """
+    canSelectSubgroups: Boolean!
+    "The full path in the kambi client to navigate to this group"
+    clientPath: String!
+    "The full path in the kambi client to navigate to the in-play bets for this group"
+    clientPathLive: String!
+    "The sub competitions of this group, based on the competition selection strategy that differs per group"
+    competitions: [EventGroup!]!
+    "The country this group belongs to"
+    country: String
+    "Proper english name of the group"
+    englishName: String!
+    "Total events in this event group"
+    eventCount: Int!
+    "The favourited competitions for this EventGroup"
+    favouriteCompetitions: [EventGroup!]!
+    "Emoji flag representing the country this event takes place in, if available"
+    flagEmoji: String
+    "Array of subgroups in this event group"
+    groups: [EventGroup!]
+    "The icon for the sport group"
+    icon: String
+    "Unique identifier of the event group"
+    id: Int!
+    "Name of the event group, localized according to the lang parameter"
+    name: String!
+    "Array of parents of this group in order, be careful with nesting!"
+    parentGroups: [EventGroup!]!
+    "Popular defines whether we consider the EventGroup to be popular"
+    popular: Boolean!
+    "The region code for the group, iso3166 code for most with some custom regions"
+    regionCode: String
+    "The sport of the event group"
+    sport: String!
+    "Normalized name of the group"
+    termKey: String!
+    "The 'count' number of sub competitions of this group ordered by most popular"
+    topCompetitions(count: Int!): [EventGroup!]!
+    "Whether this is one of the users, selected favourites"
+    userFavourite: Boolean!
+}
+
+type Game {
+    backgroundImage: String!
+    categories: [String]
+    description: String
+    disabledForLoggedOut: Boolean! @deprecated(reason : "Will be removed soon. Disabled games will not be in the response.")
+    hasPlayForFun: Boolean! @deprecated(reason : "Will be removed soon. This will be solved with query parameters.")
+    id: String!
+    inMaintenanceMode: Boolean! @deprecated(reason : "Please use isInMaintenance instead.")
+    isInMaintenance: Boolean!
+    jackpot: Jackpot
+    jackpotInfo: Jackpot @deprecated(reason : "Please use the property jackpot instead.")
+    liveCasinoLobby: LiveCasinoTable
+    lobby: LiveCasinoTable @deprecated(reason : "Please use liveCasinoLobby instead")
+    logo: String!
+    logoBackground: String! @deprecated(reason : "Please use backgroundImage instead")
+    name: String!
+    slug: String!
+    title: String! @deprecated(reason : "Please use name instead")
+}
+
+type GameStudio {
+    background: String!
+    id: String!
+    logo: String!
+    name: String!
+    slug: String!
+    url: String!
+}
+
+type GamesList {
+    gameIds: [String]
+    games(number: Int): [Game]
+    id: String
+    name: String
+    title: String @deprecated(reason : "Please use name instead.")
+}
+
+type GlossaryEntry {
+    aka: String
+    definition: String!
+    id: String!
+    term: String!
+}
+
+type Jackpot {
+    formattedJackpotAmount: String @deprecated(reason : "Will be removed soon please use the value property instead")
+    gameProvider: String
+    id: ID!
+    value: Money!
+}
+
+type KambiSession {
+    clientBootstrapUrl: String!
+    providerPlayerId: String!
+    sessionId: ID!
+    ticket: String!
+}
+
+type LiveCasinoTable {
+    availableSeats: Int
+    betBehind: Boolean
+    bets: Bets @deprecated(reason : "Please use the fields from the LiveCasinoTable instead")
+    id: String
+    image: String
+    maxBet: Int
+    minBet: Int
+    numberOfPlayers: Int
+    players: Int @deprecated(reason : "Please use numberOfPlayers instead")
+    provider: String
+    results: [String!]!
+    seats: Int @deprecated(reason : "Please use availableSeats instead")
+    symbol: String
+    tableId: String
+    type: String
+}
+
+type Money {
+    amount: Float!
+    currency: Currency!
+}
+
+type Mutation {
+    launchKambi: KambiSession
+    "Pings the current session to keep it alive, requires the session cookie to be present in the headers"
+    sessionTouch: Boolean
+    setAdventurerPublicity(input: ContactSettingsInput): Boolean
+    setContactByPhone(input: ContactSettingsInput): Boolean
+    setContactByPost(input: ContactSettingsInput): Boolean
+    setFavouriteCompetitions(groupId: Int!, ids: [Int!]!): [EventGroup!]!
+    setFavouriteGroups(ids: [Int!]!): [EventGroup!]!
+    setNewsletterSubscription(input: ContactSettingsInput): Boolean
+    setSMSNewsletterSubscription(input: ContactSettingsInput): Boolean
+    setWithdrawalNotifications(input: ContactSettingsInput): Boolean
+    toggleFavouriteGroup(id: Int!): EventGroup!
+    updatePlayerEmail(input: UpdatePlayerEmailInput): Boolean
+    updateRealityCheckInterval(input: UpdateRealityCheckIntervalInput): Int
+    useValuable(id: String!, source: String): Boolean
+}
+
+type NavigationItem {
+    sport: EventGroup!
+    subNav: [SubNavigationItem!]!
+}
+
+type PhoneNumber {
+    number: String!
+    prefix: String!
+    verified: Boolean!
+}
+
+type Player {
+    details: PlayerDetails!
+    id: ID!
+    loginHistory: [PlayerLoginHistoryRecord!]!
+    playOk: PlayerPlayOkSettings!
+    username: String!
+    valuables(valuableType: ValuableType): [PlayerValuable!]!
+    vertical: Vertical!
+}
+
+type PlayerAddress {
+    city: String!
+    country: Country!
+    postCode: String!
+    street: String!
+}
+
+type PlayerContactSettings {
+    adventurerPublic: Boolean!
+    contactByPhone: Boolean!
+    contactByPost: Boolean!
+    subscribedToNewsletters: Boolean!
+    subscribedToSMSNewsletters: Boolean!
+    withdrawalNotifications: Boolean!
+}
+
+type PlayerDetails {
+    address: PlayerAddress!
+    canChangePassword: Boolean!
+    contactSettings: PlayerContactSettings!
+    dateOfBirth: String!
+    email: String!
+    extentOfGambling: PlayerExtentOfGambling!
+    gender: Gender!
+    jurisdiction: PlayerJurisdiction!
+    name: PlayerName!
+    phoneNumber: PhoneNumber!
+}
+
+type PlayerExtentOfGambling {
+    canChange: Boolean!
+    from: Int
+    label: String
+    to: Int
+}
+
+type PlayerLoginHistoryRecord {
+    device: String
+    ipAddress: String
+    loginTime: Long!
+    logoutTime: Long
+}
+
+type PlayerName {
+    first: String!
+    last: String!
+}
+
+type PlayerPlayOkSettings {
+    realityCheck: PlayerRealityCheckSettings!
+}
+
+type PlayerRealityCheckSettings {
+    canChangeInterval: Boolean!
+    intervalInMinutes: Int!
+    isZeroIntervalAllowed: Boolean!
+}
+
+type PlayerValuableCash implements PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    id: ID!
+    leftToWager: Float
+    magnitude: Float!
+    market: String!
+    requirementType: RequirementType
+    rule: PlayerValuableRule!
+    title: String!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageredGame: Game
+    wageringThreshold: Float
+}
+
+type PlayerValuableDeposit implements PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    id: ID!
+    leftToWager: Float
+    magnitude: Float!
+    market: String!
+    maxBonusValue: Float!
+    minDepositValue: Float!
+    minimumContributingOdds: Float
+    rule: PlayerValuableRule!
+    title: String!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageringFactor: Float
+    wageringThreshold: Float
+}
+
+"Locked free-bets will have the valuableState=\"Locked\""
+type PlayerValuableFreeBet implements PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    id: ID!
+    leftToWager: Float
+    magnitude: Float!
+    market: String!
+    rule: PlayerValuableRule!
+    title: String!
+    unlockMinOdds: Float!
+    unlockMinStake: Float!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageringThreshold: Float
+}
+
+type PlayerValuableRule {
+    id: ID
+    name: String!
+}
+
+type PlayerValuableSpins implements PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    coinValue: Float!
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    description: String!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    game: Game
+    id: ID!
+    leftToWager: Float
+    magnitude: Float!
+    market: String!
+    requirementType: RequirementType
+    rule: PlayerValuableRule!
+    source: Platform
+    title: String!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageredGame: Game
+    wageringThreshold: Float
+}
+
+type PlayerValuableSport implements PlayerValuable {
+    backgroundImage: String!
+    caveat: String
+    content: String!
+    created: BigInt!
+    currency: Currency!
+    expirationTimeInHours: Int! @deprecated(reason : "This is soon deprecated. Please use expiryDate")
+    expiryDate: BigInt!
+    id: ID!
+    leftToWager: Float
+    magnitude: Float!
+    market: String!
+    rule: PlayerValuableRule!
+    title: String!
+    valuableState: PlayerValuableState!
+    valuableType: ValuableType!
+    wageringThreshold: Float
+}
+
+type PlayerValuableTranslations {
+    hoursLabel: String!
+    listTitleLabel: String!
+    minutesLabel: String!
+}
+
+type Query {
+    competitions(groupId: Int!, lang: String, market: String): [EventGroup!]!
+    dictionaryTerm(key: String!, lang: CMSLang): String!
+    favouriteCompetitions(groupId: Int!, lang: String, market: String): [EventGroup!]!
+    gameStudios: [GameStudio]!
+    gamesList(listId: String!, page: Int, pageSize: Int): GamesList
+    getCMSField(country: String, id: String!, market: String): String!
+    """
+    \"getCMSFieldAsJSON\" is only needed for the component builder until we add type-definitions for all the
+    component properties that are available to be used for the component builder.
+    Task: https://jira.casumocave.com/browse/PRCA-308
+    """
+    getCMSFieldAsJSON(country: String, id: String!, market: String): String!
+    getText(country: String, id: String!, market: String): String!
+    glossary(lang: CMSLang): [GlossaryEntry!]!
+    "Get list of sub-groups from a given group\""
+    group(groupId: Int!, lang: String, market: String): EventGroup!
+    "Get list of available event groups from the root level"
+    groups(lang: String, market: String): [EventGroup!]!
+    hasSelectedFavourites: Boolean!
+    jackpots: [Jackpot]!
+    player: Player!
+    "Search for events matching a given query, non english lang will search english results too\""
+    search(lang: String, market: String, query: String!): [SearchResult!]!
+    sportsCmsImage(key: String!, lang: CMSLang): String
+    sportsNavigation(live: Boolean): [NavigationItem!]!
+    "TopCompetitions returns the most popular subgroups of a group, currently based on number of events"
+    topCompetitions(count: Int!, groupIds: [Int!]!, lang: String, market: String): [EventGroup!]!
+    "Top searches returns the event groups for the groupIds marked as popular"
+    topSearches(count: Int!, lang: String, market: String): [EventGroup!]!
+    translations: Translations!
+    userHomepage: String
+}
+
+type SearchResult {
+    "ListView resource context (route key) for displaying search item (e.g. /football/all/all/liverpool)\""
+    id: String!
+    "Translated name of the search result"
+    localizedName: String!
+    "ListView resource context (route key) for present the parent group (e.g.  /football/all/all)"
+    parentId: String!
+    """
+    The sport that this search result is associated to is nullable as relies on
+    finding by Kambi controlled data.
+    """
+    sport: EventGroup
+    "The matched term key for the query. (e.g. liverpool)"
+    termKey: String!
+    "The type of search result, N.B Not overly reliable\""
+    type: SearchResultType!
+}
+
+type SubNavigationItem {
+    competition: EventGroup!
+}
+
+type Translations {
+    playerValuableTranslations: PlayerValuableTranslations @deprecated(reason : "This is soon deprecated. Do not repeat this")
+}
+
+type UserNavigationGroup {
+    "The active indicator for the sport group, used on the nav"
+    activeIndicator: String
+    "The number of active bet offers in the event group"
+    boCount: Int!
+    """
+    Whether to allow a custom selection of subgroups to be shown as sub-nav items,
+    instead of just popular ones
+    """
+    canSelectSubgroups: Boolean!
+    "The full path in the kambi client to navigate to this group"
+    clientPath: String!
+    "The full path in the kambi client to navigate to the in-play bets for this group"
+    clientPathLive: String!
+    "The sub competitions of this group, based on the competition selection strategy that differs per group"
+    competitions: [EventGroup!]!
+    "The country this group belongs to"
+    country: String
+    "Proper english name of the group"
+    englishName: String!
+    "Total events in this event group"
+    eventCount: Int!
+    "The favourited competitions for this EventGroup"
+    favouriteCompetitions: [EventGroup!]!
+    "Emoji flag representing the country this event takes place in, if available"
+    flagEmoji: String
+    "Array of subgroups in this event group"
+    groups: [UserNavigationGroup!]
+    "The icon for the sport group"
+    icon: String
+    "Unique identifier of the event group"
+    id: Int!
+    "Name of the event group, localized according to the lang parameter"
+    name: String!
+    "Array of parents of this group in order, be careful with nesting!"
+    parentGroups: [EventGroup!]!
+    "Popular defines whether we consider the EventGroup to be popular"
+    popular: Boolean!
+    "The region code for the group, iso3166 code for most with some custom regions"
+    regionCode: String
+    "The sport of the event group"
+    sport: String!
+    "Normalized name of the group"
+    termKey: String!
+    "The 'count' number of sub competitions of this group ordered by most popular"
+    topCompetitions(count: Int!): [EventGroup!]!
+    "Whether this is one of the users, selected favourites"
+    userFavourite: Boolean!
+}
+
+enum CMSLang {
+    ca
+    de
+    dk
+    en
+    fi
+    gb
+    no
+    nz
+    sv
+}
+
+enum CacheControlScope {
+    PRIVATE
+    PUBLIC
+}
+
+enum Currency {
+    CAD
+    DKK
+    EUR
+    GBP
+    NZD
+    SEK
+}
+
+enum Gender {
+    FEMALE
+    MALE
+}
+
+enum Platform {
+    desktop
+    mobile
+}
+
+enum PlayerJurisdiction {
+    DGA
+    MGA
+    SGA
+    UKGC
+}
+
+enum PlayerValuableState {
+    Consumed
+    Expired
+    Fresh
+    Locked
+    Used
+}
+
+enum RequirementType {
+    deposit
+    wager
+}
+
+enum SearchResultType {
+    #The league the event is in, e.g. Premier League
+    LEAGUE
+    #Can be a team, player, and sometimes an event
+    PARTICIPANT
+    #Normally a location of where the event is taking place e.g. England, Paris
+    REGION
+    #A sport result e.g. Boxing, Football
+    SPORT
+}
+
+enum ValuableType {
+    cash
+    deposit
+    freeBet
+    spins
+    sport
+}
+
+enum Vertical {
+    #The player registered as a casino player (selected the casino welcome offer)
+    CASINO
+    #The player registered as a sports player (selected the sports welcome offer)
+    SPORTS
+}
+
+input ContactSettingsInput {
+    on1: Boolean!
+}
+
+input UpdatePlayerEmailInput {
+email: String!
+plaintextPassword: String!
+}
+
+input UpdateRealityCheckIntervalInput {
+intervalSeconds: Int!
+}
+
+input UpdatedFavourite {
+id: Int!
+userFavourite: Boolean!
+}
+
+
+"The `BigInt` scalar type represents non-fractional signed whole numeric values. BigInt can represent values between -(2^53) + 1 and 2^53 - 1. "
+scalar BigInt
+
+scalar Long
+
+scalar DateTime
+
+"The `Upload` scalar type represents a file upload."
+scalar Upload

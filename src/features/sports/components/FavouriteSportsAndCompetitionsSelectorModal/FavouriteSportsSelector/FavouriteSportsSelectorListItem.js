@@ -16,7 +16,7 @@ type Props = {
   /** Whether we should show an intro to selecting competitions */
   showCompetitionIntro: boolean,
   /** What should happen with the sport data when the group is toggled */
-  onToggleFavouriteSport: (id: number) => void,
+  onToggleFavouriteSport: (id: number, name: string) => void,
   /** What should happen when the buttons to edit competitions for this group are clicked */
   onAddCompetition: (groupId: number) => void,
   /** Whether this list item should be in its favourited state */
@@ -48,7 +48,7 @@ const FavouriteSportsSelectorListItem = ({
           isActive={isFavourite}
         />
       }
-      onClick={() => onToggleFavouriteSport(group.id)}
+      onClick={() => onToggleFavouriteSport(group.id, group.name)}
       isFavourite={isFavourite}
       isFavouritable={isFavouritable}
     />
