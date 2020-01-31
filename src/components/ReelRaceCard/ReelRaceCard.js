@@ -10,6 +10,7 @@ import * as A from "Types/apollo";
 import type { ReelRace } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
+import { launchGame } from "Services/LaunchGameService";
 import { BUTTON_STATE } from "Models/reelRaces";
 import TrackProvider from "Components/TrackProvider";
 import TrackClick from "Components/TrackClick";
@@ -71,7 +72,10 @@ export class ReelRaceCard extends React.Component<Props> {
               size="sm"
               variant="primary"
               className="u-padding-y--md u-padding-x--lg"
-              // onClick={this.props.launchGame}
+              onLaunchGame={() =>
+                // double check this
+                launchGame({ slug: this.props.reelRace.game.slug })
+              }
             >
               <PlayIcon size="sm" className="c-reel-race__button-icon" />
               <span className="u-margin-left">
@@ -269,8 +273,10 @@ export class ReelRaceCard extends React.Component<Props> {
               <Flex
                 align="center"
                 className="u-cursor-pointer"
-                // onClick={() => launchGame({ slug: this.props.reelRace.game.slug })}
-                // onClick={this.props.launchGame}
+                onClick={() =>
+                  // double check this
+                  launchGame({ slug: this.props.reelRace.game.slug })
+                }
               >
                 <GameThumb
                   src={this.props.reelRace.game.backgroundImage}
