@@ -83,7 +83,10 @@ const ResultRow = ({
 
 type Props = {
   query: string,
-  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
+  onResultClick: (
+    A.SearchQuery_search | A.TopSearches_topSearches,
+    boolean
+  ) => void,
   hideSearchResults?: boolean,
 };
 
@@ -157,7 +160,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
-          result => this.renderSearchResult(result, true),
+          result => this.renderSearchResult(result, true, true),
           take(count, this.state.searchHistory)
         )}
       </>
@@ -184,7 +187,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             key={eventGroup.termKey}
             path={eventGroup.termKey}
             onClick={() => {
-              this.props.onResultClick(eventGroup);
+              this.props.onResultClick(eventGroup, true);
               navigateClient();
             }}
           >
@@ -208,7 +211,8 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   renderSearchResult = (
     result: A.SearchQuery_search,
-    renderAllTextAsMatched: boolean = false
+    renderAllTextAsMatched: boolean = false,
+    suggestion: boolean = false
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
       value: string
@@ -239,7 +243,7 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={result.id}
             onClick={() => {
               this.saveSearchHistory(result);
-              this.props.onResultClick(result);
+              this.props.onResultClick(result, suggestion);
               navigateClient();
             }}
           >
