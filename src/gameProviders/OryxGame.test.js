@@ -1,17 +1,17 @@
 // @flow
-import { ENVIRONMENTS } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
-import { ThunderkickGame, COMMANDS } from "./ThunderkickGame";
+import { ENVIRONMENTS } from "Src/constants";
+import { OryxGame, COMMANDS } from "./OryxGame";
 
-describe("ThunderkickGame", () => {
+describe("OryxGame", () => {
   const gameData = {
     url:
       "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
-    providerType: "THUNDERKICK_MOBILE",
-    providerName: "THUNDERKICK",
+    providerType: "ORYX_MOBILE",
+    providerName: "ORYX",
   };
   const gameRef = { current: null };
-  const model = new ThunderkickGame({
+  const model = new OryxGame({
     gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,
@@ -23,7 +23,6 @@ describe("ThunderkickGame", () => {
   });
 
   test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(true);
     expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
     expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
   });

@@ -1,7 +1,7 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { CasumoGame } from "./CasumoGame";
+import { CasumoGame, COMMANDS } from "./CasumoGame";
 
 describe("CasumoGame", () => {
   const gameData = {
@@ -29,16 +29,9 @@ describe("CasumoGame", () => {
   test("should return `src` property including `iframeUrl` for communication with the game", () => {
     expect(model.componentProps.src).toContain("iframeUrl");
   });
-
   test("should set api commands", () => {
     expect(model.api.features.instantPause).toBe(true);
-    expect(model.api.commands.pause).toStrictEqual({
-      event: "game/pause",
-      data: "",
-    });
-    expect(model.api.commands.resume).toStrictEqual({
-      event: "game/resume",
-      data: "",
-    });
+    expect(model.api.commands.pause).toStrictEqual(COMMANDS.PAUSE);
+    expect(model.api.commands.resume).toStrictEqual(COMMANDS.RESUME);
   });
 });

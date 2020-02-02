@@ -36,9 +36,4 @@ describe("BaseGame", () => {
       "http://localhost/react-stack/navigation-bubbler.html?target=games/top"
     );
   });
-
-  expect(model.onMount).toBeInstanceOf(Function);
-  expect(model.onUnmount).toBeInstanceOf(Function);
-  expect(model.pauseGame).toBeInstanceOf(Function);
-  expect(model.resumeGame).toBeInstanceOf(Function);
 });
