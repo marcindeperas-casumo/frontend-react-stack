@@ -8,7 +8,7 @@ import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 import { CuratedCard } from "./CuratedCard";
 
 type Props = {
-  className?: String,
+  className?: string,
   slug: string,
 };
 

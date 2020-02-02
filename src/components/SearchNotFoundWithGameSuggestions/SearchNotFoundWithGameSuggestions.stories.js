@@ -7,7 +7,6 @@ import { SearchNotFoundWithGameSuggestions } from "./SearchNotFoundWithGameSugge
 const stories = storiesOf("SearchNotFoundWithGameSuggestions", module);
 
 stories.add("Default", () => (
-  <MockStore>
+    {/* $FlowFixMe - __FIX__ pass in proper mocked properties here */}
     <SearchNotFoundWithGameSuggestions />
-  </MockStore>
 ));
