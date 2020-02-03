@@ -10,14 +10,8 @@ import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "../GameListHorizontal.scss";
 
-export type GameListObject = {
-  id: string,
-  title: string,
-  games: Array<A.gameListQuery_gamesList_games>,
-};
-
 export type Props = {
-  list: GameListObject,
+  list: A.GameListLiveCasinoQuery_gamesList,
   seeMoreText: string,
 };
 
@@ -43,7 +37,7 @@ const itemRenderer = ({ columnIndex, style, games }: CellRendererParams) => {
 };
 
 export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
-  const { title, games } = list;
+  const { name, games } = list;
 
   return (
     <div className="u-margin-x--3xlg@desktop">
@@ -55,12 +49,12 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
             items={games}
             seeMoreText={seeMoreText}
             seeMoreUrl="/games/live-casino-details"
-            title={title}
+            title={name}
           />
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={title}
+            listTitle={name}
             list={games}
             itemRenderer={props =>
               itemRenderer({

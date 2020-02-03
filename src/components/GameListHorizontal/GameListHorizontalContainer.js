@@ -16,7 +16,7 @@ type Props = {
 // __FIX__ this should really live in a .graphql file and reference th
 // fragments for its child components. However when I try it explodes. :(
 export const GameListQuery = gql`
-  query gameListQuery($id: String!) {
+  query OldGameListQuery($id: String!) {
     gamesList(listId: $id) {
       id
       title

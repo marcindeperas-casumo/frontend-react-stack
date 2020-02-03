@@ -14,10 +14,10 @@ type Props = {
 };
 
 export const GameListLiveCasinoQuery = gql`
-  query gameListQuery($id: String!) {
+  query GameListLiveCasinoQuery($id: String!) {
     gamesList(listId: $id) {
       id
-      title
+      name
       games {
         id
         backgroundImage

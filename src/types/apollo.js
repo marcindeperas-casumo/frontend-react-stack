@@ -15,15 +15,15 @@ export type componentBuilderQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: gameListQuery
+// GraphQL query operation: OldGameListQuery
 // ====================================================
 
-export type gameListQuery_gamesList_games_liveCasinoLobby_bets = {
+export type OldGameListQuery_gamesList_games_liveCasinoLobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type gameListQuery_gamesList_games_liveCasinoLobby = {
+export type OldGameListQuery_gamesList_games_liveCasinoLobby = {
   id: ?string,
   tableId: ?string,
   symbol: ?string,
@@ -32,8 +32,34 @@ export type gameListQuery_gamesList_games_liveCasinoLobby = {
   image: ?string,
   type: ?string,
   betBehind: ?boolean,
-  bets: ?gameListQuery_gamesList_games_liveCasinoLobby_bets,
+  bets: ?OldGameListQuery_gamesList_games_liveCasinoLobby_bets,
 };
+export type OldGameListQuery_gamesList_games = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+  liveCasinoLobby: ?OldGameListQuery_gamesList_games_liveCasinoLobby,
+};
+export type OldGameListQuery_gamesList = {
+  id: string,
+  title: ?string,
+  games: Array<OldGameListQuery_gamesList_games>,
+};
+export type OldGameListQuery = {
+  gamesList: ?OldGameListQuery_gamesList,
+};
+export type OldGameListQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: gameListQuery
+// ====================================================
+
 export type gameListQuery_gamesList_games = {
   id: string,
   backgroundImage: string,
@@ -42,10 +68,9 @@ export type gameListQuery_gamesList_games = {
   logo: string,
   name: string,
   slug: string,
-  liveCasinoLobby: ?gameListQuery_gamesList_games_liveCasinoLobby,
 };
 export type gameListQuery_gamesList = {
-  id: ?string,
+  id: string,
   title: ?string,
   games: Array<gameListQuery_gamesList_games>,
 };
@@ -53,6 +78,73 @@ export type gameListQuery = {
   gamesList: ?gameListQuery_gamesList,
 };
 export type gameListQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: GameListExclusiveQuery
+// ====================================================
+
+export type GameListExclusiveQuery_gamesList_games = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+};
+export type GameListExclusiveQuery_gamesList = {
+  id: string,
+  name: string,
+  games: Array<GameListExclusiveQuery_gamesList_games>,
+};
+export type GameListExclusiveQuery = {
+  gamesList: ?GameListExclusiveQuery_gamesList,
+};
+export type GameListExclusiveQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: GameListLiveCasinoQuery
+// ====================================================
+
+export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby_bets,
+};
+export type GameListLiveCasinoQuery_gamesList_games = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  isInMyList: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+  liveCasinoLobby: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
+};
+export type GameListLiveCasinoQuery_gamesList = {
+  id: string,
+  name: string,
+  games: Array<GameListLiveCasinoQuery_gamesList_games>,
+};
+export type GameListLiveCasinoQuery = {
+  gamesList: ?GameListLiveCasinoQuery_gamesList,
+};
+export type GameListLiveCasinoQueryVariables = {
   id: string,
 };
 
@@ -170,7 +262,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
 };
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
-  id: ?string,
+  id: string,
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
@@ -190,7 +282,7 @@ export type GameTileHeartQuery_gamesList_games = {
   id: string,
 };
 export type GameTileHeartQuery_gamesList = {
-  id: ?string,
+  id: string,
   games: Array<GameTileHeartQuery_gamesList_games>,
 };
 export type GameTileHeartQuery = {
@@ -333,7 +425,7 @@ export type gamesListQuery_gamesList_games = {
   backgroundImage: string,
 };
 export type gamesListQuery_gamesList = {
-  name: ?string,
+  name: string,
   games: Array<gamesListQuery_gamesList_games>,
 };
 export type gamesListQuery = {

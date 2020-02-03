@@ -14,10 +14,10 @@ type Props = {
 };
 
 export const GameListExclusiveQuery = gql`
-  query gameListQuery($id: String!) {
+  query GameListExclusiveQuery($id: String!) {
     gamesList(listId: $id) {
       id
-      title
+      name
       games {
         id
         backgroundImage
