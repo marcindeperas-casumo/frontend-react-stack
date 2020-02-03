@@ -91,7 +91,7 @@ export class ReelRaceCard extends React.Component<Props> {
       label: t.optIn,
       eventName: EVENTS.MIXPANEL_REEL_RACE_CLICKED,
       data: { state: BUTTON_STATE.OPT_IN },
-      // onClick: this.props.optIn,
+      onClick: () => this.props.optIn,
     };
 
     const disabled = {
