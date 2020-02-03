@@ -16,7 +16,7 @@ export const ReelRaceCardContainer = ({ item }) => {
       __typename: "Mutation",
       optInForReelRace: {
         __typename: "ReelRace",
-        tournamentId: id,
+        id,
         optedIn: true,
       },
     },
