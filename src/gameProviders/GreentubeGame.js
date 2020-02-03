@@ -3,30 +3,21 @@ import type { GameProviderModelProps } from "./types";
 import { BaseIframeGame } from "./BaseIframeGame";
 
 export const COMMANDS = {
-  PAUSE: { type: "popupDisplayed" },
-  RESUME: { type: "popupClosed" },
+  PAUSE: "AUTOPLAYOFF:",
+  RESUME: "AUTOPLAYTOGGLE:",
 };
 
 export const EVENTS = {
-  GAME_ROUND_START: { type: "playStart" },
-  GAME_ROUND_END: { type: "playEnd" },
+  GAME_ROUND_START: "GAME_MODE:SPINNING",
+  GAME_ROUND_END: "GAME_MODE:READY",
 };
 
-// TODO:
-// hardcoded back to lobby in backend
-// handle event queue
-
-export class RedTigerGame extends BaseIframeGame {
+export class GreentubeGame extends BaseIframeGame {
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.commands.pause = COMMANDS.PAUSE;
     this.api.commands.resume = COMMANDS.RESUME;
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
-    this.api.features.instantPause = true;
-  }
-
-  extractEventId(data: any) {
-    return data.type;
   }
 }

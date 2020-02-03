@@ -1,17 +1,17 @@
 // @flow
 import { DEFAULT_LANGUAGE } from "Models/handshake";
 import { ENVIRONMENTS } from "Src/constants";
-import { EdictGame, COMMANDS } from "./EdictGame";
+import { GreentubeGame, COMMANDS } from "./GreentubeGame";
 
-describe("EdictGame", () => {
+describe("GreentubeGame", () => {
   const gameData = {
     url:
       "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
-    providerType: "EDICT_MOBILE",
-    providerName: "EDICT",
+    providerType: "GREENTUBE_MOBILE",
+    providerName: "GREENTUBE",
   };
   const gameRef = { current: null };
-  const model = new EdictGame({
+  const model = new GreentubeGame({
     gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,
@@ -22,12 +22,7 @@ describe("EdictGame", () => {
     expect(model.componentTag).toBe("iframe");
   });
 
-  test("should return `src` property including `referrerUrl` for back to lobby functionality", () => {
-    expect(model.componentProps.src).toContain("referrerUrl");
-  });
-
-  test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(true);
+  test("should set instant pause", () => {
     expect(model.api.commands.pause).toBe(COMMANDS.PAUSE);
     expect(model.api.commands.resume).toBe(COMMANDS.RESUME);
   });

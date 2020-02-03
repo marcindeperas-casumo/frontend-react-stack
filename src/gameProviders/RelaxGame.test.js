@@ -1,17 +1,16 @@
 // @flow
-import { ENVIRONMENTS } from "Src/constants";
 import { DEFAULT_LANGUAGE } from "Models/handshake";
-import { ThunderkickGame, COMMANDS } from "./ThunderkickGame";
+import { ENVIRONMENTS } from "Src/constants";
+import { RelaxGame, COMMANDS } from "./RelaxGame";
 
-describe("ThunderkickGame", () => {
+describe("RelaxGame", () => {
   const gameData = {
-    url:
-      "https://edu004-p.edictmaltaservices.com.mt/gamesta…umo-mt&gameKey=adp_blackhole&gameMode=fun&lang=en",
-    providerType: "THUNDERKICK_MOBILE",
-    providerName: "THUNDERKICK",
+    url: "https://example.com",
+    providerType: "RELAX_MOBILE",
+    providerName: "RELAX",
   };
   const gameRef = { current: null };
-  const model = new ThunderkickGame({
+  const model = new RelaxGame({
     gameData,
     gameRef,
     language: DEFAULT_LANGUAGE,
@@ -23,7 +22,6 @@ describe("ThunderkickGame", () => {
   });
 
   test("should set api commands", () => {
-    expect(model.api.features.instantPause).toBe(true);
     expect(model.api.commands.pause).toEqual(COMMANDS.PAUSE);
     expect(model.api.commands.resume).toEqual(COMMANDS.RESUME);
   });
