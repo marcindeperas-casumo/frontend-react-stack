@@ -27,14 +27,19 @@ export function PlayerValuableListVertical() {
     lockedListTitleLabel,
     noValuablesLabel,
   } = translations;
-  const getAvailableValuables = getValuablesByState(VALUABLE_STATES.FRESH);
-  const getLockedValuables = getValuablesByState(VALUABLE_STATES.LOCKED);
+  const getAvailableValuables = getValuablesByState([
+    VALUABLE_STATES.FRESH,
+    VALUABLE_STATES.USED,
+  ]);
+  const getLockedValuables = getValuablesByState([VALUABLE_STATES.LOCKED]);
   const sections = [
     {
+      id: "list-available",
       title: availableListTitleLabel,
       data: getAvailableValuables(valuables),
     },
     {
+      id: "list-locked",
       title: lockedListTitleLabel,
       data: getLockedValuables(valuables),
     },
@@ -56,12 +61,13 @@ export function PlayerValuableListVertical() {
       {sections.map(section => (
         <ValuablesVerticalList
           key={section.title}
-          valuables={valuables}
+          valuables={section.data}
           title={section.title}
           translations={translations}
           loading={loading}
           onConsumeValuable={consumeValuable}
           isItemSelectable={false}
+          data-test-id={section.id}
         />
       ))}
     </Flex>

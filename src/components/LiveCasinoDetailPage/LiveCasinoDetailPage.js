@@ -1,49 +1,44 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import List from "@casumo/cmp-list";
-import { GameRow } from "Components/GameRow";
-import { EVENT_PROPS } from "Src/constants";
+import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow/GameRow";
+import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
-import type { GroupedGamesList, EvolutionLobbyType } from "Models/liveCasino";
+import { launchGame } from "Services/LaunchGameService";
 import SectionTitle from "./SectionTitle";
 
+export type GroupedLiveCasinoGame = {
+  title: string,
+  games: Array<A.GameRow_Game>,
+};
+export type GroupedLiveCasinoGames = Array<GroupedLiveCasinoGame>;
+
 type Props = {
-  /** grouped list of games to render */
-  groupedLiveGames: GroupedGamesList,
-  /** used to decide if data needs to be fetched */
-  areTranslationsFetched: boolean,
-  /** used to fetch page if areTranslationsFetched === false */
-  translations: { [EvolutionLobbyType]: string },
-  fetchTranslations: () => void,
-  initFetchAllLiveGames: () => void,
+  groupedLiveCasinoGames: GroupedLiveCasinoGames,
 };
 
-export default class LiveCasinoDetailPage extends PureComponent<Props> {
-  componentDidMount() {
-    this.props.initFetchAllLiveGames();
-
-    if (!this.props.areTranslationsFetched) {
-      this.props.fetchTranslations();
-    }
-  }
-
-  render() {
-    return (
-      <div className="u-padding-x--md u-padding-bottom--md">
-        <TrackProvider
-          data={{ [EVENT_PROPS.LOCATION]: "Live Casino - Details Page" }}
-        >
-          {this.props.groupedLiveGames.map(([id, gamesInSection]) => (
-            <React.Fragment key={id}>
-              <SectionTitle title={this.props.translations[id] || id} />
-              <List
-                items={gamesInSection}
-                render={slug => <GameRow id={slug} />}
-              />
-            </React.Fragment>
-          ))}
-        </TrackProvider>
-      </div>
-    );
-  }
-}
+export const LiveCasinoDetailPage = ({ groupedLiveCasinoGames }: Props) => {
+  return (
+    <div className="u-padding-x--md u-padding-bottom--md">
+      <TrackProvider
+        data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.LIVE_CASINO_DETAILS }}
+      >
+        {groupedLiveCasinoGames.map(({ title, games }) => (
+          <React.Fragment key={title}>
+            <SectionTitle title={title} />
+            <List
+              items={games}
+              render={game => (
+                <GameRow
+                  game={game}
+                  onLaunchGame={() => launchGame({ slug: game.slug })}
+                />
+              )}
+            />
+          </React.Fragment>
+        ))}
+      </TrackProvider>
+    </div>
+  );
+};

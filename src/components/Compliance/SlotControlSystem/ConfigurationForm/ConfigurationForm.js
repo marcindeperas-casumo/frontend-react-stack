@@ -10,6 +10,7 @@ import { LimitYourBudgetRow } from "./LimitYourBudgetRow";
 import { LimitYourTimeRow } from "./LimitYourTimeRow";
 import { StatusAlertsEveryRow } from "./StatusAlertsEveryRow";
 import { WantBreakAfterRow } from "./WantBreakAfterRow";
+import { isBudgetInvalid } from "./Utils";
 import "./ConfigurationForm.scss";
 
 const { useState, useCallback, useEffect } = React;
@@ -60,6 +61,7 @@ type ConfigurationFormProps = {
 };
 
 type IsPlayActiveType = {
+  balance: number,
   budget: ?number,
   time: ?number,
   alertsEvery: ?number,
@@ -70,6 +72,7 @@ type IsPlayActiveType = {
 export function ConfigurationForm(props: ConfigurationFormProps) {
   const {
     t,
+    balance,
     currency,
     fetchContentIfNecessary,
     createSession,
@@ -152,7 +155,14 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
         size="md"
         variant="primary"
         disabled={
-          !isPlayActive({ budget, time, alertsEvery, wantsBreak, breakAfter })
+          !isPlayActive({
+            balance,
+            budget,
+            time,
+            alertsEvery,
+            wantsBreak,
+            breakAfter,
+          })
         }
         loading={isCreatingSession}
         onClick={() => createSession(formData)}
@@ -167,10 +177,14 @@ export function ConfigurationForm(props: ConfigurationFormProps) {
 }
 
 export function isPlayActive(props: IsPlayActiveType): boolean {
-  const { budget, time, alertsEvery, wantsBreak, breakAfter } = props;
+  const { balance, budget, time, alertsEvery, wantsBreak, breakAfter } = props;
 
   return Boolean(
-    budget &&
+    typeof budget === "number" &&
+      !isBudgetInvalid({
+        budget,
+        balance,
+      }) &&
       time &&
       alertsEvery &&
       // check explicitly for false as unset is not accepted

@@ -1,12 +1,10 @@
 import React from "react";
 import { shallow } from "enzyme";
 import { omit } from "ramda";
-import {
-  CuratedCardBackground,
-  CuratedCardBackgroundNew,
-  CuratedCardBackgroundDeprecated,
-} from "Components/CuratedCard/CuratedCardBackground";
 import curatedData from "Models/curated/__mocks__/curated.json";
+import { CuratedCardBackgroundNew } from "../CuratedCardBackgroundNew";
+import { CuratedCardBackgroundDeprecated } from "../CuratedCardBackgroundDeprecated";
+import { CuratedCardBackground } from "../CuratedCardBackground";
 
 const deprecatedData = {
   ...omit("image", curatedData),
@@ -30,37 +28,5 @@ describe("CuratedCardBackground", () => {
     );
 
     expect(component.find(CuratedCardBackgroundDeprecated).length).toBe(1);
-  });
-});
-
-describe("CuratedCardBackgroundDeprecated", () => {
-  test("should trigger onClick", () => {
-    const onLaunchGame = jest.fn();
-    const component = shallow(
-      <CuratedCardBackgroundDeprecated
-        onLaunchGame={onLaunchGame}
-        {...deprecatedData}
-      />
-    );
-
-    component.find("a").simulate("click");
-
-    expect(onLaunchGame).toHaveBeenCalled();
-  });
-});
-
-describe("CuratedCardBackgroundNew", () => {
-  test("should trigger onClick", () => {
-    const onLaunchGame = jest.fn();
-    const component = shallow(
-      <CuratedCardBackgroundDeprecated
-        onLaunchGame={onLaunchGame}
-        {...curatedData}
-      />
-    );
-
-    component.find("a").simulate("click");
-
-    expect(onLaunchGame).toHaveBeenCalled();
   });
 });

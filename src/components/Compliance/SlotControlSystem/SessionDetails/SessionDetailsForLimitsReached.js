@@ -20,20 +20,32 @@ type Props = {
   },
   locale: string,
   playAgainGameId?: string,
+  /**
+   * This action is triggered instead of the default which
+   * could not work in the game iframe.
+   */
+  onClickPlayAgain: (e: MouseEvent) => void,
   onClickButton: () => void,
   lastEndedSession: EndedSessionType,
 };
 
 export function SessionDetailsForLimitsReached(props: Props) {
-  const { t, playAgainGameId, onClickButton, locale, lastEndedSession } = props;
+  const {
+    t,
+    playAgainGameId,
+    onClickPlayAgain,
+    onClickButton,
+    locale,
+    lastEndedSession,
+  } = props;
 
   return (
     <Flex direction="vertical">
       {Boolean(playAgainGameId) && (
-        <>
+        <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
           <GameRow id={playAgainGameId} />
-        </>
+        </div>
       )}
       <SessionDetailsBody
         t={t}

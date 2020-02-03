@@ -71,24 +71,34 @@ export class NetentGame extends BaseGame {
     };
   }
 
+  setupEvents(extend: Extend) {
+    extend.addEventListener(
+      NETENT_EVENTS.BACK_TO_LOBBY,
+      this.goToLobby.bind(this)
+    );
+    extend.addEventListener(
+      NETENT_EVENTS.GAME_ROUND_STARTED,
+      this.setGameAsActive.bind(this)
+    );
+    extend.addEventListener(
+      NETENT_EVENTS.GAME_ROUND_ENDED,
+      this.setGameAsIdle.bind(this)
+    );
+  }
+
+  teardownEvents(extend: Extend) {
+    extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
+    extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_STARTED);
+    extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_ENDED);
+  }
+
   onMount() {
     injectScript(NETENT_SCRIPT_URL[this.props.environment]).then(() => {
       netent.launch(
         this.config,
         (extend: Extend) => {
-          extend.addEventListener(
-            NETENT_EVENTS.BACK_TO_LOBBY,
-            this.goToLobby.bind(this)
-          );
-          extend.addEventListener(
-            NETENT_EVENTS.GAME_ROUND_STARTED,
-            this.setGameAsActive.bind(this)
-          );
-          extend.addEventListener(
-            NETENT_EVENTS.GAME_ROUND_ENDED,
-            this.setGameAsIdle.bind(this)
-          );
           this.extend = extend;
+          this.setupEvents(extend);
         },
         (error: {}) => {
           logger.error("Cannot load game", { error });
@@ -99,11 +109,7 @@ export class NetentGame extends BaseGame {
 
   onUnmount() {
     if (this.extend) {
-      this.extend.removeEventListener(NETENT_EVENTS.BACK_TO_LOBBY);
-      // $FlowIgnore: flow doesn realise that we just checked for this.extend
-      this.extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_STARTED);
-      // $FlowIgnore: flow doesn realise that we just checked for this.extend
-      this.extend.removeEventListener(NETENT_EVENTS.GAME_ROUND_ENDED);
+      this.teardownEvents(this.extend);
     }
   }
 
