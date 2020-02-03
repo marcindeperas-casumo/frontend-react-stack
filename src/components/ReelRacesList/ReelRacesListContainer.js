@@ -4,8 +4,12 @@ import { useQuery } from "@apollo/react-hooks";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
+// Polling for updates is temporary.
+// We are going to move to use subscriptions once the GraphQL server is ready for it
+const pollIntervall = 3000;
+
 export const ReelRacesListContainer = () => {
-  const { data, loading } = useQuery(ReelRaceListQuery);
+  const { data, loading } = useQuery(ReelRaceListQuery, { pollInterval });
 
   return (
     <ReelRacesList
