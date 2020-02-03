@@ -9,7 +9,7 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 const pollIntervall = 3000;
 
 export const ReelRacesListContainer = () => {
-  const { data, loading } = useQuery(ReelRaceListQuery, { pollInterval });
+  const { data, loading } = useQuery(ReelRaceListQuery, { pollIntervall });
 
   return (
     <ReelRacesList
