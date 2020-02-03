@@ -1,34 +1,21 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import Card from "@casumo/cmp-card";
 import PromotionCardHeader from "Components/PromotionCard/PromotionCardHeader";
 import PromotionCardContent from "Components/PromotionCard/PromotionCardContent";
 import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
-import PromotionCardSkeleton from "Components/PromotionCard/PromotionCardSkeleton";
 import "./PromotionCard.scss";
 import TrackClick from "Components/TrackClick";
 import TrackView from "Components/TrackView";
+import * as A from "Types/apollo";
 import { EVENT_PROPS, EVENTS } from "../../constants";
 
-type WrapperProps = {
-  image: string,
-  badge: string,
-  link: string,
-  dates: string,
-  title: string,
+type Props = {
+  promotion: A.PromotionCard_PromotionCard,
 };
 
-export type Props = WrapperProps & {
-  isFetched: boolean,
-};
-
-const PromotionCardWrapper = ({
-  link,
-  image,
-  badge,
-  dates,
-  title,
-}: WrapperProps) => {
+export const PromotionCard = ({ promotion }: Props) => {
+  const link = `promotions/${promotion.slug}`;
   return (
     <a
       href={link}
@@ -45,31 +32,16 @@ const PromotionCardWrapper = ({
         <Card
           className="o-ratio__content t-border-r--md t-background-white t-box-shadow"
           spacing="none"
-          header={() => <PromotionCardHeader badge={badge} dates={dates} />}
-          content={() => <PromotionCardContent title={title} />}
-          footer={() => <PromotionCardImage image={image} />}
+          header={() => (
+            <PromotionCardHeader
+              badge={promotion.badge}
+              dates={promotion.subtitle}
+            />
+          )}
+          content={() => <PromotionCardContent title={promotion.title} />}
+          footer={() => <PromotionCardImage image={promotion.image} />}
         />
       </TrackClick>
     </a>
   );
 };
-
-export default class PromotionCard extends PureComponent<Props> {
-  render() {
-    const { isFetched, image, badge, link, dates, title } = this.props;
-
-    if (!isFetched) {
-      return <PromotionCardSkeleton />;
-    }
-
-    return (
-      <PromotionCardWrapper
-        link={link}
-        image={image}
-        badge={badge}
-        dates={dates}
-        title={title}
-      />
-    );
-  }
-}

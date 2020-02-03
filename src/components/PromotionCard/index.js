@@ -1,1 +1,1 @@
-export { default } from "./PromotionCardContainer";
+export { PromotionCard as default } from "./PromotionCard";
