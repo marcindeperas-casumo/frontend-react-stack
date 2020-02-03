@@ -541,6 +541,30 @@ export type UseValuableVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: PromotionsListQuery
+// ====================================================
+
+export type PromotionsListQuery_promotionsList_promotions = {
+  id: string,
+  slug: string,
+  title: string,
+  subtitle: string,
+  image: string,
+  badge: ?string,
+};
+export type PromotionsListQuery_promotionsList = {
+  id: string,
+  name: string,
+  promotions: Array<PromotionsListQuery_promotionsList_promotions>,
+};
+export type PromotionsListQuery = {
+  promotionsList: ?PromotionsListQuery_promotionsList,
+};
+export type PromotionsListQueryVariables = {
+  slug: string,
+};
+
+// ====================================================
 // GraphQL query operation: gameStudioQuery
 // ====================================================
 
@@ -1848,6 +1872,19 @@ export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
+// GraphQL fragment: PromotionCard_Promotion
+// ====================================================
+
+export type PromotionCard_Promotion = {
+  id: string,
+  slug: string,
+  title: string,
+  subtitle: string,
+  image: string,
+  badge: ?string,
+};
+
+// ====================================================
 // GraphQL fragment: SETTINGS_PLAYER
 // ====================================================
 

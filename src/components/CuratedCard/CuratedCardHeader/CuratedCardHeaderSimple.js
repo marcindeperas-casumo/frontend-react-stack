@@ -4,15 +4,13 @@ import Text from "@casumo/cmp-text";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import { stringToHTML } from "Utils";
 
-type HeaderProps = {
+export type CuratedCardHeaderSimpleProps = {
   header: string,
 };
 
-type HeaderSubtitleProps = {
-  subtitle: string,
-};
-
-export const CuratedCardHeader = ({ header }: HeaderProps) => (
+export const CuratedCardHeaderSimple = ({
+  header,
+}: CuratedCardHeaderSimpleProps) => (
   <>
     <MobileAndTablet>
       <Text
@@ -33,20 +31,4 @@ export const CuratedCardHeader = ({ header }: HeaderProps) => (
       </div>
     </Desktop>
   </>
-);
-
-export const CuratedCardHeaderWithSubtitle = ({
-  header,
-  subtitle,
-}: HeaderProps & HeaderSubtitleProps) => (
-  <div className="o-wrapper">
-    <Text
-      data-test="curated-card-header-subtitle"
-      className="u-font-weight-bold t-color-white u-margin-bottom u-text-transform-uppercase u-opacity-75"
-      size="2xs"
-    >
-      {subtitle}
-    </Text>
-    <CuratedCardHeader header={header} />
-  </div>
 );

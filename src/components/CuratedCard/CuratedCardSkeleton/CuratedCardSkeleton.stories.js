@@ -1,9 +1,9 @@
 // @flow
-import { storiesOf } from "@storybook/react";
 import React from "react";
+import { storiesOf } from "@storybook/react";
 import { CuratedCardSkeleton } from "./CuratedCardSkeleton";
 
-const stories = storiesOf("CuratedCardSkeleton", module);
+const stories = storiesOf("CuratedCard/CuratedCardSkeleton", module);
 
 stories.add("Default", () => {
   return (

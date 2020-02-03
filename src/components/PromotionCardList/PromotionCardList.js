@@ -1,42 +1,30 @@
 // @flow
 import React, { PureComponent } from "react";
+import * as A from "Types/apollo";
 import ScrollableList from "Components/ScrollableList";
-import PromotionCardContainer from "Components/PromotionCard";
+import PromotionCard from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
 type Props = {
-  promotionsSlugs: Array<string>,
-  fetchCampaign: () => void,
-  fetchPromotions: () => void,
-  title?: string,
+  ...A.PromotionsListQuery_promotionsList,
   seeMore: string,
 };
 
-const promotionCardContainerRenderer = ({ id }) => (
-  <PromotionCardContainer
-    slug={`promotions.${id}`}
-    link={`promotions/${id}`}
-    key={id}
-  />
+const promotionCardRendererMobile = ({ item }) => (
+  <PromotionCard promotion={item} />
+);
+
+const promotionCardRendererDesktop = ({ id }) => (
+  <PromotionCard promotion={id} />
 );
 
 class PromotionCardList extends PureComponent<Props> {
-  componentDidMount() {
-    this.props.fetchCampaign();
-    this.props.fetchPromotions();
-  }
-
   render() {
-    const { title = "", promotionsSlugs, seeMore } = this.props;
-    const hasNoPromotionSlugs = !promotionsSlugs.length;
+    const { name = "", promotions, seeMore } = this.props;
     const seeMoreUrl = "/promotions";
     const itemClassName = "c-promotion-card";
-
-    if (hasNoPromotionSlugs) {
-      return null;
-    }
 
     return (
       <div className="u-margin-x--3xlg@desktop">
@@ -44,20 +32,20 @@ class PromotionCardList extends PureComponent<Props> {
           <MobileAndTablet>
             <ScrollableList
               itemClassName={itemClassName}
-              title={title}
+              title={name}
               seeMoreText={seeMore}
               seeMoreUrl={seeMoreUrl}
-              itemIds={promotionsSlugs}
-              Component={promotionCardContainerRenderer}
+              items={promotions}
+              Component={promotionCardRendererMobile}
             />
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
               list={{
-                title,
-                itemIds: promotionsSlugs,
+                title: name,
+                itemIds: promotions,
               }}
-              Component={promotionCardContainerRenderer}
+              Component={promotionCardRendererDesktop}
               className={itemClassName}
               tileHeight={318}
               seeMore={{

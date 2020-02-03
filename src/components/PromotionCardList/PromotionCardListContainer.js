@@ -1,39 +1,41 @@
 // @flow
 import React from "react";
-import { connect } from "react-redux";
-import { fetchPageBySlug, getField, getFieldIfNotSuspicious } from "Models/cms";
-import { marketSelector } from "Models/handshake";
+import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import PromotionCardList from "./PromotionCardList";
-
+import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
+import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 type Props = {
-  /** The slug of the page in the CMS which has all the promotions available */
   slug: string,
 };
 
-const field = "promotions";
-const defaultValue = [];
-const getSlug = slug => `${slug}.*`;
-
-const PromotionCardListConnected = connect(
-  (state, { slug }) => ({
-    promotionsSlugs: getFieldIfNotSuspicious({
+const PromotionCardListContainer = ({ slug }: Props) => {
+  const { data, loading } = useQuery<
+    A.PromotionsListQuery,
+    A.PromotionsListQueryVariables
+  >(PromotionsListQuery, {
+    variables: {
       slug,
-      field,
-      defaultValue,
-    })(state),
-    seeMore: getField({
-      slug: `built-pages.top-lists-${marketSelector(state)}`,
-      field: "more_link",
-    })(state),
-  }),
-  (dispatch, { slug }) => ({
-    fetchCampaign: () => dispatch(fetchPageBySlug(getSlug(slug))),
-    fetchPromotions: () => dispatch(fetchPageBySlug("promotions.*")),
-  })
-)(PromotionCardList);
+    },
+  });
 
-const PromotionCardListContainer = (props: Props) => (
-  <PromotionCardListConnected {...props} />
-);
+  if (loading) {
+    return <PromotionCardListSkeleton />;
+  }
+
+  if (data && data.promotionsList) {
+    return (
+      <PromotionCardList
+        // __FIX__ - should use the translated page like all the rest of em.
+        seeMore="..."
+        id={data.promotionsList.id}
+        name={data.promotionsList.name}
+        promotions={data.promotionsList.promotions}
+      />
+    );
+  }
+
+  return null;
+};
 
 export default PromotionCardListContainer;
