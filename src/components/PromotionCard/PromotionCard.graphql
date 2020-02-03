@@ -1,4 +1,4 @@
-fragment PromotionCard_PromotionCard on Promotion {
+fragment PromotionCard_Promotion on Promotion {
   id
   slug
   title

@@ -45,7 +45,7 @@ export type gameListQuery_gamesList_games = {
   liveCasinoLobby: ?gameListQuery_gamesList_games_liveCasinoLobby,
 };
 export type gameListQuery_gamesList = {
-  id: ?string,
+  id: string,
   title: ?string,
   games: Array<gameListQuery_gamesList_games>,
 };
@@ -154,7 +154,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
 };
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
-  id: ?string,
+  id: string,
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
@@ -174,7 +174,7 @@ export type GameTileHeartQuery_gamesList_games = {
   id: string,
 };
 export type GameTileHeartQuery_gamesList = {
-  id: ?string,
+  id: string,
   games: Array<GameTileHeartQuery_gamesList_games>,
 };
 export type GameTileHeartQuery = {
@@ -263,7 +263,7 @@ export type gamesListQuery_gamesList_games = {
   backgroundImage: string,
 };
 export type gamesListQuery_gamesList = {
-  name: ?string,
+  name: string,
   games: Array<gamesListQuery_gamesList_games>,
 };
 export type gamesListQuery = {
@@ -1673,10 +1673,10 @@ export type PlayerValuableList_PlayerValuable =
   | PlayerValuableList_PlayerValuable_PlayerValuableDeposit
   | PlayerValuableList_PlayerValuable_PlayerValuableSpins
   | PlayerValuableList_PlayerValuable_PlayerValuableCash; // ====================================================
-// GraphQL fragment: PromotionCard_PromotionCard
+// GraphQL fragment: PromotionCard_Promotion
 // ====================================================
 
-export type PromotionCard_PromotionCard = {
+export type PromotionCard_Promotion = {
   id: string,
   slug: string,
   title: string,

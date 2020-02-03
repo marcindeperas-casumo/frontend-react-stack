@@ -5,7 +5,7 @@ query PromotionsListQuery($slug: String!) {
     id
     name
     promotions {
-      ...PromotionCard_PromotionCard
+      ...PromotionCard_Promotion
     }
   }
 }
