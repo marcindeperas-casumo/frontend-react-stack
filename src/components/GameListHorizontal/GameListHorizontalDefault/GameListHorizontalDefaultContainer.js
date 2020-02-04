@@ -46,9 +46,13 @@ export const GameListHorizontalDefaultContainer = ({ id }: Props) => {
     );
   }
 
-  return (
-    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-      <GameListHorizontalDefault list={list} />
-    </TrackProvider>
-  );
+  if (data && data.gamesList && data.gamesList.games.length) {
+    return (
+      <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+        <GameListHorizontalDefault list={list} />
+      </TrackProvider>
+    );
+  }
+
+  return null;
 };
