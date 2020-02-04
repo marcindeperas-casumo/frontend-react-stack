@@ -15,6 +15,39 @@ export type componentBuilderQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: CuratedCardQuery
+// ====================================================
+
+export type CuratedCardQuery_curatedCard_game = {
+  id: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
+};
+export type CuratedCardQuery_curatedCard = {
+  id: string,
+  slug: string,
+  type: string,
+  image: ?string,
+  header: ?string,
+  subtitle: ?string,
+  promotionSlug: ?string,
+  promotionLegalText: ?string,
+  launchGameText: ?string,
+  smallImage: ?string,
+  mediumImage: ?string,
+  largeImage: ?string,
+  game: ?CuratedCardQuery_curatedCard_game,
+};
+export type CuratedCardQuery = {
+  curatedCard: CuratedCardQuery_curatedCard,
+};
+export type CuratedCardQueryVariables = {
+  slug: string,
+};
+
+// ====================================================
 // GraphQL query operation: OldGameListQuery
 // ====================================================
 
@@ -1598,6 +1631,18 @@ export type KambiClientVisible = {
 
 export type SearchVisible = {
   isSearchVisible: boolean,
+};
+
+// ====================================================
+// GraphQL fragment: CuratedCard_Game
+// ====================================================
+
+export type CuratedCard_Game = {
+  id: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
 };
 
 // ====================================================
