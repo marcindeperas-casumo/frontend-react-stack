@@ -43,10 +43,6 @@ const THIRTY_MINUTES = 30 * 60 * 1000;
 export class ReelRaceCard extends React.Component<Props> {
   timeout: TimeoutID;
 
-  // componentDidMount() {
-  //   this.scheduleUpdate();
-  // }
-
   componentWillUnmount() {
     clearTimeout(this.timeout);
   }
@@ -176,35 +172,12 @@ export class ReelRaceCard extends React.Component<Props> {
       .toFormat("mm");
   }
 
-  // scheduleUpdate() {
-  //   /**
-  //    * we have to update this component in 2 cases:
-  //    *   (start <= 30 min) - show "Starting in" with countdown
-  //    *   (start <= now) - show "Play" button
-  //    *
-  //    * Update happens through calling `forceUpdate` and render method
-  //    * takes over and renders what's currently needed.
-  //    */
-  //   const updateTime =
-  //     this.timeRemainingBeforeStart > THIRTY_MINUTES
-  //       ? this.timeRemainingBeforeStart - THIRTY_MINUTES
-  //       : this.timeRemainingBeforeStart;
-
-  //   this.timeout = setTimeout(() => {
-  //     this.forceUpdate();
-  //   }, updateTime);
-  // }
-
   showCaveatsModal = () => {
     launchModal({ modal: MODALS.TOP_LIST.REEL_RACE_CAVEATS });
   };
 
   render() {
     const { translations: t } = this.props.reelRace;
-
-    // if (!this.props.areTranslationsFetched) {
-    //   return null;
-    // }
 
     if (R.isEmpty(this.props.reelRace.game)) {
       return null;
@@ -213,10 +186,6 @@ export class ReelRaceCard extends React.Component<Props> {
     if (this.timeRemainingBeforeStart <= 0 && !this.props.reelRace.optedIn) {
       return null;
     }
-
-    console.log("------------------------------------");
-    console.log(this.duration);
-    console.log("------------------------------------");
 
     const trackData = {
       [EVENT_PROPS.LOCATION]: "Reel Race",
