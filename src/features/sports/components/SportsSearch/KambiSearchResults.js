@@ -86,11 +86,7 @@ const ResultRow = ({
 
 type Props = {
   query: string,
-  onResultClick: (
-    A.SearchQuery_search | A.TopSearches_topSearches,
-    "popular" | "history" | "result",
-    string
-  ) => void,
+  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
   hideSearchResults?: boolean,
 };
 
@@ -126,6 +122,33 @@ class KambiSearchResults extends React.Component<Props, State> {
       query,
       results,
     });
+
+  trackSearchClick = (
+    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches,
+    list: "popular" | "history" | "result"
+  ) => {
+    const id =
+      // $FlowIgnore: either type will have either prop
+      (resultOrEventGroup.id && `filter${resultOrEventGroup.id}`) ||
+      // $FlowIgnore: either type will have either prop
+      resultOrEventGroup.clientPath;
+    // $FlowIgnore: either type will have either prop
+    const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
+
+    if (list === "result") {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
+        query: this.props.query,
+        id,
+        name,
+      });
+    } else {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION, {
+        list,
+        id,
+        name,
+      });
+    }
+  };
 
   saveSearchHistory = (searchResult: A.SearchQuery_search) => {
     this.setState(prevState => {
@@ -198,7 +221,8 @@ class KambiSearchResults extends React.Component<Props, State> {
             key={eventGroup.termKey}
             path={eventGroup.termKey}
             onClick={() => {
-              this.props.onResultClick(eventGroup, "popular", this.props.query);
+              this.props.onResultClick(eventGroup);
+              this.trackSearchClick(eventGroup, "popular");
               navigateClient();
             }}
           >
@@ -254,7 +278,8 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={result.id}
             onClick={() => {
               this.saveSearchHistory(result);
-              this.props.onResultClick(result, trackType, this.props.query);
+              this.props.onResultClick(result);
+              this.trackSearchClick(result, trackType);
               navigateClient();
             }}
           >

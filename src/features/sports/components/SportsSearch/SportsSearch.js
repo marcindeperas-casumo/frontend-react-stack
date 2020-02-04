@@ -73,41 +73,15 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   handleSearchResultClick = (
-    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches,
-    list: "popular" | "history" | "result",
-    query: string
+    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches
   ) => {
     // $FlowIgnore: either type will have either prop
     const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
-    const id =
-      // $FlowIgnore: either type will have either prop
-      (resultOrEventGroup.id && `filter${resultOrEventGroup.id}`) ||
-      // $FlowIgnore: either type will have either prop
-      resultOrEventGroup.clientPath;
 
-    const track = () => {
-      if (list === "result") {
-        tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
-          query,
-          id,
-          name,
-        });
-      } else {
-        tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION, {
-          list,
-          id,
-          name,
-        });
-      }
-    };
-
-    this.setState(
-      {
-        query: name,
-        hideSearchResults: true,
-      },
-      track
-    );
+    this.setState({
+      query: name,
+      hideSearchResults: true,
+    });
 
     this.setClientVisible(true);
   };
