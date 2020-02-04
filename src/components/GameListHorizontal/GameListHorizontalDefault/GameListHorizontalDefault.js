@@ -2,7 +2,6 @@
 import React from "react";
 import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
-import { createModifierClasses } from "@casumo/cudl-react-utils";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTile } from "Components/GameTile";
@@ -20,27 +19,24 @@ export type Props = {
   list: GameListObject,
 };
 
-const SPACER_CLASSES = createModifierClasses("u-margin-left", "default");
-
-const itemRenderer = ({ columnIndex, style, games }: CellRendererParams) => {
-  const game = games[columnIndex];
-  const isNotFirstElement = columnIndex > 0;
-  const elementClassNames = classNames(
-    "u-height--full",
-    isNotFirstElement && SPACER_CLASSES
-  );
-
-  return (
-    <div style={style}>
-      <div className={`${elementClassNames} c-top-game`}>
-        <GameTile item={game} />
-      </div>
-    </div>
-  );
-};
-
 export const GameListHorizontalDefault = ({ list }: Props) => {
   const { title, games } = list;
+
+  const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
+    const game = games[columnIndex];
+    const isNotFirstElement = columnIndex > 0;
+    const elementClassNames = classNames("u-height--full c-top-game", {
+      "u-margin-left": isNotFirstElement,
+    });
+
+    return (
+      <div style={style}>
+        <div className={elementClassNames}>
+          <GameTile item={game} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="u-margin-x--3xlg@desktop">
@@ -57,12 +53,7 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
           <ScrollableListPaginated
             listTitle={title}
             list={games}
-            itemRenderer={props =>
-              itemRenderer({
-                ...props,
-                games,
-              })
-            }
+            itemRenderer={itemRenderer}
             tileHeight={192}
             // seeMore={{
             //   text: seeMoreText,

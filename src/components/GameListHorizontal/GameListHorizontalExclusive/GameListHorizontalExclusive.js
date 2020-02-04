@@ -2,7 +2,6 @@
 import React from "react";
 import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
-import { createModifierClasses } from "@casumo/cudl-react-utils";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileExclusive } from "Components/GameTileExclusive";
@@ -14,27 +13,23 @@ export type Props = {
   list: A.GameListExclusiveQuery_gamesList,
 };
 
-const SPACER_CLASSES = createModifierClasses("u-margin-left", "default");
-
-const itemRenderer = ({ columnIndex, style, games }: CellRendererParams) => {
-  const game = games[columnIndex];
-  const isNotFirstElement = columnIndex > 0;
-  const elementClassNames = classNames(
-    "u-height--full",
-    isNotFirstElement && SPACER_CLASSES
-  );
-
-  return (
-    <div style={style}>
-      <div className={`${elementClassNames} c-exclusive-game`}>
-        <GameTileExclusive item={game} />
-      </div>
-    </div>
-  );
-};
-
 export const GameListHorizontalExclusive = ({ list }: Props) => {
   const { name, games } = list;
+
+  const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
+    const game = games[columnIndex];
+    const isNotFirstElement = columnIndex > 0;
+    const elementClassNames = classNames("u-height--full", {
+      "u-margin-left": isNotFirstElement,
+    });
+    return (
+      <div style={style}>
+        <div className={`${elementClassNames} c-exclusive-game`}>
+          <GameTileExclusive item={game} />
+        </div>
+      </div>
+    );
+  };
 
   return (
     <div className="u-margin-x--3xlg@desktop">
@@ -51,12 +46,7 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
           <ScrollableListPaginated
             listTitle={name}
             list={games}
-            itemRenderer={props =>
-              itemRenderer({
-                ...props,
-                games,
-              })
-            }
+            itemRenderer={itemRenderer}
             tileHeight={300}
             // seeMore={{
             //   text: seeMoreText,
