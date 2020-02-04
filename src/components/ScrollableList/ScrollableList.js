@@ -6,7 +6,6 @@ import type {
   spacerSizes,
   responsiveSpacerSizes,
 } from "@casumo/cudl-react-prop-types";
-import { GameTile } from "Components/GameTile";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
 
 export const DEFAULT_SPACING = "default";
@@ -18,7 +17,7 @@ export const PADDING_PER_DEVICE = {
 
 type Props = {
   title: string,
-  /** url to "see more" page, if null will not render "see more" button */
+  /** url to "see more" page, if null will not render "see more" link */
   seeMoreUrl?: string,
   items: Array<any>,
   spacing: spacerSizes | responsiveSpacerSizes,
@@ -32,7 +31,6 @@ export default class ScrollableList extends React.PureComponent<Props> {
   static defaultProps = {
     items: [],
     spacing: DEFAULT_SPACING,
-    Component: GameTile,
   };
 
   keyGetter = (i: number) => this.props.items[i].id;
