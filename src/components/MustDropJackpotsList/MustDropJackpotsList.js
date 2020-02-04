@@ -1,6 +1,8 @@
 // @flow
 import React, { PureComponent } from "react";
+import classNames from "classnames";
 import Scrollable from "@casumo/cmp-scrollable";
+import type { CellRendererParams } from "react-virtualized";
 import { generateColumns } from "Utils";
 import * as A from "Types/apollo";
 import { ScrollableListTitleRow } from "Components/ScrollableListTitleRow";
@@ -22,43 +24,55 @@ export type Props = {
   seeMore: string,
 };
 
-const mustDropWidgetId = "must-drop-jackpots-widget";
+const MUST_DROP_WIDGET_ID = "must-drop-jackpots-widget";
 
 export default class MustDropJackpotsList extends PureComponent<Props> {
   get columns(): Array<Array<A.GameRow_Game>> {
-    // __FIX__ - sort out typing here. We're returning an array of strings or games.
     const jackpotsByColumns = generateColumns(this.props.jackpots);
-    return [[mustDropWidgetId], ...jackpotsByColumns];
+    // __FIX__ - sort out typing here. We're returning an array of string or game.
+    return [[MUST_DROP_WIDGET_ID], ...jackpotsByColumns];
   }
-  // __FIX__ - this will blow up.
+
   keyGetter = (i: number) =>
-    this.columns[i].indexOf(mustDropWidgetId) !== -1
-      ? mustDropWidgetId
-      : this.columns[i][0];
+    this.columns[i].indexOf(MUST_DROP_WIDGET_ID) !== -1
+      ? MUST_DROP_WIDGET_ID
+      : this.columns[i][0].id;
 
   mobileMustDropJackpotRenderer = (i: number) => {
     const isIdMustDropWidgetId =
-      this.columns[i].indexOf(mustDropWidgetId) !== -1;
+      this.columns[i].indexOf(MUST_DROP_WIDGET_ID) !== -1;
     return isIdMustDropWidgetId ? (
-      <MustDropJackpotsWidget />
+      <MustDropJackpotsWidget key={MUST_DROP_WIDGET_ID} />
     ) : (
       <JackpotsListTile games={this.columns[i]} />
     );
   };
 
   desktopMustDropJackpotRenderer = ({
-    id: idsInColumn,
-    i,
-  }: {
-    id: Array<string>,
-    i: number,
-  }) => {
-    const isIdMustDropWidgetId = idsInColumn.indexOf(mustDropWidgetId) !== -1;
+    columnIndex,
+    style,
+  }: CellRendererParams) => {
+    const isIdMustDropWidgetId =
+      this.columns[columnIndex].indexOf(MUST_DROP_WIDGET_ID) !== -1;
+    const isNotFirstElement = columnIndex > 0;
 
-    return isIdMustDropWidgetId ? (
-      <MustDropJackpotsWidget />
-    ) : (
-      <JackpotsListTile ids={idsInColumn} />
+    const elementClassNames = classNames(
+      "u-height--full c-jackpots-list-tile",
+      {
+        "u-margin-left": isNotFirstElement,
+      }
+    );
+
+    return (
+      <div style={style}>
+        <div className={elementClassNames}>
+          {isIdMustDropWidgetId ? (
+            <MustDropJackpotsWidget />
+          ) : (
+            <JackpotsListTile games={this.columns[columnIndex]} />
+          )}
+        </div>
+      </div>
     );
   };
 
@@ -87,18 +101,14 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={{
-                name,
-                itemIds: this.columns,
-              }}
-              Component={this.desktopMustDropJackpotRenderer}
-              className="c-jackpots-list-tile u-height--full"
-              // 288 it's the result of each GameRow height (96px) times the rows (3)
-              tileHeight={288}
-              seeMore={{
-                text: seeMore,
-                url: seeMoreUrl,
-              }}
+              listTitle={name}
+              list={this.columns}
+              itemRenderer={this.desktopMustDropJackpotRenderer}
+              tileHeight={288} // each GameRow height (96px) * n rows (3)
+              // seeMore={{
+              //   text: seeMore,
+              //   url: seeMoreUrl,
+              // }}
             />
           </Desktop>
         </div>
