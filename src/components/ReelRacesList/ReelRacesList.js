@@ -1,7 +1,7 @@
 // @flow
 import * as React from "react";
-import type { ReelRacesTranslations } from "Models/reelRaces";
 import ScrollableList from "Components/ScrollableList";
+import * as A from "Types/apollo";
 import { ReelRaceCard } from "Components/ReelRaceCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
@@ -9,7 +9,7 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 type Props = {
   areTranslationsFetched: boolean,
   title: string,
-  reelRaces: Array<string>,
+  reelRaces: Array<A.ReelRaceListQuery_reelRaces>,
   isFetched: boolean,
 };
 
@@ -19,6 +19,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
       return null;
     }
     const { title } = this.props;
+    const { reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
 
     return (
@@ -29,7 +30,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
               title={title}
               seeMoreText="..."
               seeMoreUrl={seeMoreUrl}
-              items={this.props.reelRaces}
+              items={reelRaces}
               Component={ReelRaceCard}
             />
           </MobileAndTablet>
@@ -37,7 +38,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
             <ScrollableListPaginated
               list={{
                 title: title,
-                itemIds: this.props.reelRaces,
+                itemIds: reelRaces,
               }}
               Component={ReelRaceCard}
               className="c-reel-race-card"
