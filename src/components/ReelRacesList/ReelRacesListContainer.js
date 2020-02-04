@@ -1,6 +1,7 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import * as A from "Types/apollo";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
@@ -9,7 +10,12 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 const pollInterval = 3000;
 
 export const ReelRacesListContainer = () => {
-  const { data, loading } = useQuery(ReelRaceListQuery, { pollInterval });
+  const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
+    ReelRaceListQuery,
+    {
+      pollInterval,
+    }
+  );
 
   return (
     <ReelRacesList
