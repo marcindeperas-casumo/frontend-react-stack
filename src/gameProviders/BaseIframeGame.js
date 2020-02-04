@@ -66,13 +66,15 @@ export class BaseIframeGame extends BaseGame {
   pauseGame() {
     const { current: gameElement } = this.props.gameRef;
     const { pause: pauseCommand } = this.api.commands;
-    const { instantPause } = this.api.features;
 
     return new Promise<void>((resolve, reject) => {
-      if (gameElement instanceof HTMLIFrameElement && pauseCommand) {
+      if (!pauseCommand) {
+        resolve();
+      }
+      if (gameElement instanceof HTMLIFrameElement) {
         gameElement.contentWindow.postMessage(pauseCommand, this.targetDomain);
 
-        if (instantPause || this.isGameIdle) {
+        if (this.api.features.instantPause || this.isGameIdle) {
           resolve();
         } else {
           this.resolveOnIdle(gameElement, resolve);
@@ -136,16 +138,10 @@ export class BaseIframeGame extends BaseGame {
   }
 
   onMount() {
-    super.onMount();
-    window.addEventListener("message", event => {
-      this.messageGuard(event);
-    });
+    window.addEventListener("message", this.messageGuard.bind(this));
   }
 
   onUnmount() {
-    super.onUnmount();
-    window.removeEventListener("message", event => {
-      this.messageGuard(event);
-    });
+    window.removeEventListener("message", this.messageGuard.bind(this));
   }
 }
