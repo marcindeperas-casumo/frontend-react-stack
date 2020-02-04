@@ -18,7 +18,6 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
   const { name, games } = list;
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
-    const game = games[columnIndex];
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames("u-height--full c-live-casino-card", {
       "u-margin-left": isNotFirstElement,
@@ -28,7 +27,7 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
       <div style={style}>
         <div className={elementClassNames}>
           <div className="u-margin-bottom--sm">
-            <LiveCasinoCard item={game} />
+            <LiveCasinoCard game={games[columnIndex]} />
           </div>
         </div>
       </div>
@@ -41,7 +40,7 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
         <MobileAndTablet>
           <ScrollableList
             itemClassName="c-live-casino-card u-margin-bottom--sm"
-            itemRenderer={i => <LiveCasinoCard item={games[i]} />}
+            itemRenderer={i => <LiveCasinoCard game={games[i]} />}
             items={games}
             seeMoreText={seeMoreText}
             seeMoreUrl="/games/live-casino-details"

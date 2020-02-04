@@ -17,7 +17,6 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
   const { name, games } = list;
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
-    const game = games[columnIndex];
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames("u-height--full", {
       "u-margin-left": isNotFirstElement,
@@ -25,7 +24,7 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
     return (
       <div style={style}>
         <div className={`${elementClassNames} c-exclusive-game`}>
-          <GameTileExclusive item={game} />
+          <GameTileExclusive game={games[columnIndex]} />
         </div>
       </div>
     );
@@ -37,7 +36,7 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
         <MobileAndTablet>
           <ScrollableList
             itemClassName="c-exclusive-game"
-            itemRenderer={i => <GameTileExclusive item={games[i]} />}
+            itemRenderer={i => <GameTileExclusive game={games[i]} />}
             items={games}
             title={name}
           />

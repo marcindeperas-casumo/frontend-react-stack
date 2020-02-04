@@ -23,7 +23,6 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
   const { title, games } = list;
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
-    const game = games[columnIndex];
     const isNotFirstElement = columnIndex > 0;
     const elementClassNames = classNames("u-height--full c-top-game", {
       "u-margin-left": isNotFirstElement,
@@ -32,7 +31,7 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
     return (
       <div style={style}>
         <div className={elementClassNames}>
-          <GameTile item={game} />
+          <GameTile game={games[columnIndex]} />
         </div>
       </div>
     );
@@ -44,7 +43,7 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
         <MobileAndTablet>
           <ScrollableList
             itemClassName="c-top-game"
-            itemRenderer={i => <GameTile item={games[i]} />}
+            itemRenderer={i => <GameTile game={games[i]} />}
             items={games}
             title={title}
           />

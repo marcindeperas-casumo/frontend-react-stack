@@ -16,7 +16,7 @@ import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData
 import * as A from "Types/apollo";
 
 export type Props = {
-  game: A.gameListQuery_gamesList_games,
+  game: A.GameListLiveCasinoQuery_gamesList_games,
   launchGame: Function,
 };
 
