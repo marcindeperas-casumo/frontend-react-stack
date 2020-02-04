@@ -21,6 +21,8 @@ export type SeeMoreProps = {
 type Props = {
   /** The item height. */
   tileHeight: number,
+  /** The item width. */
+  tileWidth?: number,
   /** The style to apply to the list control buttons. */
   itemControlClass?: string,
   /** The text and url to render on the seeMore button. */
@@ -92,6 +94,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
           buttonRenderer={this.buttonRenderer}
           height={tileHeight}
           overlappingItemCount={0}
+          defaultWidth={160}
         />
       </div>
     );
