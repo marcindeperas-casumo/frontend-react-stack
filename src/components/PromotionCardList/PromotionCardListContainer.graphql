@@ -1,6 +1,9 @@
 #import "../PromotionCard/PromotionCard.graphql"
 
 query PromotionsListQuery($slug: String!) {
+  seeMore: getText(
+    id: "root:built-pages.top-lists-translations:fields.more_link"
+  )
   promotionsList(slug: $slug) {
     id
     name
