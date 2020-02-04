@@ -11,7 +11,7 @@ import * as A from "Types/apollo";
 import { EVENT_PROPS, EVENTS } from "../../constants";
 
 type Props = {
-  promotion: A.PromotionCard_PromotionCard,
+  promotion: A.PromotionCard_Promotion,
 };
 
 export const PromotionCard = ({ promotion }: Props) => {
