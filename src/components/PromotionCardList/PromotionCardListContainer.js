@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
-import PromotionCardList from "./PromotionCardList";
+import { PromotionCardList } from "./PromotionCardList";
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 type Props = {
@@ -23,7 +23,7 @@ const PromotionCardListContainer = ({ slug }: Props) => {
     return <PromotionCardListSkeleton />;
   }
 
-  if (data && data.promotionsList) {
+  if (data && data.promotionsList && data.promotionsList.promotions.length) {
     return (
       <PromotionCardList
         // __FIX__ - should use the translated page like all the rest of em.
