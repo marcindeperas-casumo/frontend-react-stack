@@ -10,7 +10,7 @@ export const ReelRaceCardContainer = ({ item }) => {
   const { id } = item;
   const [optInForReelRace] = useMutation(OptInForReelRace, {
     variables: {
-      tournamentId: id,
+      id,
     },
     optimisticResponse: {
       __typename: "Mutation",

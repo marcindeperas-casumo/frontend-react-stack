@@ -31,8 +31,8 @@ fragment ReelRaceCard_ReelRace on ReelRace {
     }
 }
 
-mutation OptInForReelRace($tournamentId: String!) {
-    optInForReelRace(tournamentId: $tournamentId) {
+mutation OptInForReelRace($id: String!) {
+    optInForReelRace(id: $id) {
         id
         optedIn
     }
