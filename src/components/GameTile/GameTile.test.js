@@ -1,7 +1,8 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
-import { GameTile } from "Components/GameTile/GameTile";
-import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
+import MockStore from "Components/MockStore";
+import { GameTile } from "./GameTile";
+import { GameTileInMaintenance } from "./GameTileInMaintenance";
 import gameInfo from "./__mocks__/Game.json";
 
 describe("GameTile", () => {
@@ -16,7 +17,7 @@ describe("GameTile", () => {
 
     expect(rendered.find("GameTileImage").length).toBe(1);
     expect(renderedGameTileImageProps.logoBackground).toBe(
-      gameInfo.logoBackground
+      gameInfo.backgroundImage
     );
     expect(renderedGameTileImageProps.logo).toBe(gameInfo.logo);
     expect(renderedGameTileImageProps.name).toBe(gameInfo.name);
@@ -39,16 +40,20 @@ describe("GameTile", () => {
   });
 
   test("should not render GameTileInMaintenance when inMaintenanceMode is true", () => {
-    const inMaintenanceModeGame = { ...gameInfo, inMaintenanceMode: true };
-    const rendered = shallow(<GameTile game={inMaintenanceModeGame} />);
-    expect(rendered.find(GameTileInMaintenance).length).toBe(1);
+    const game = { ...gameInfo, isInMaintenance: true };
+    const rendered = shallow(<GameTile game={game} />);
+
+    expect(rendered.find(GameTileInMaintenance)).toHaveLength(1);
   });
 
   test("should launchGame if component is clicked", () => {
     const onLaunchGame = jest.fn();
     const rendered = mount(
-      <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
+      <MockStore>
+        <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
+      </MockStore>
     );
+
     rendered
       .find("Flex")
       .first()

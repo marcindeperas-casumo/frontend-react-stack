@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { propOr } from "ramda";
 import gql from "graphql-tag";
 import logger from "Services/logger";
-import { ComponentBuilderCMS } from "Components/ComponentBuilder/ComponentBuilderCMS";
+import { ComponentBuilderRenderer } from "./ComponentBuilderRenderer";
 
 type Props = {
   /** The slug of the CMS page containing the component definitions. */
@@ -30,7 +30,7 @@ export const ComponentBuilderContainer = ({ slug }: Props) => {
 
   try {
     return (
-      <ComponentBuilderCMS
+      <ComponentBuilderRenderer
         componentDefinitions={JSON.parse(componentDefinitionJSON)}
       />
     );

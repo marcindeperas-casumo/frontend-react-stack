@@ -19,7 +19,6 @@ import {
   types as gameTypes,
   launchGameSaga,
   fetchGamesBySlugsSaga,
-  fetchGameListSaga,
   fetchGamesByProviderSaga,
   updateMyListSaga,
 } from "Models/games";

@@ -1,2 +1,4 @@
 // @flow
-export { ProviderGamesListContainer as ProviderGamesList } from "./ProviderGamesListContainer";
+export {
+  ProviderGamesListContainer as ProviderGamesList,
+} from "./ProviderGamesListContainer";

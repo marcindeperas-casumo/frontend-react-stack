@@ -30,6 +30,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
     const jackpotsByColumns = generateColumns(this.props.jackpots);
     return [[mustDropWidgetId], ...jackpotsByColumns];
   }
+
   // __FIX__ - this will blow up.
   keyGetter = (i: number) =>
     this.columns[i].indexOf(mustDropWidgetId) !== -1

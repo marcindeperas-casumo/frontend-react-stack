@@ -3,17 +3,13 @@ import React from "react";
 import ImageLazy from "Components/Image/ImageLazy";
 import { addImageSourceToOptions } from "./CuratedCardBackground.utils";
 
-type PropsNew = {
+type Props = {
   onClick: ?Function,
   link: ?string,
   image: string,
 };
 
-export const CuratedCardBackgroundNew = ({
-  image,
-  onClick,
-  link,
-}: PropsNew) => {
+export const CuratedCardBackgroundNew = ({ image, onClick, link }: Props) => {
   const images = addImageSourceToOptions(image);
 
   return (

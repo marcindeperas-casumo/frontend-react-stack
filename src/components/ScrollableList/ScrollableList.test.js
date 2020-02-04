@@ -23,7 +23,7 @@ describe("ScrollableList", () => {
     expect(rendered.get(0)).toBeNull();
   });
 
-  test("renders with the GameTileContainer by default", () => {
+  test("renders with the GameTile by default", () => {
     const rendered = shallow(<ScrollableList items={[1, 2]} title="hi" />);
 
     expect(
@@ -36,12 +36,9 @@ describe("ScrollableList", () => {
 
   test("renders with the custom component if passed", () => {
     const SampleComponent = ({ id }) => <span>{id}</span>;
+    const items = [{ id: 1 }, { id: 2 }];
     const rendered = shallow(
-      <ScrollableList
-        items={[{ id: 1 }, { id: 2 }]}
-        title="hi"
-        Component={SampleComponent}
-      />
+      <ScrollableList items={items} title="hi" Component={SampleComponent} />
     );
 
     expect(
@@ -49,7 +46,8 @@ describe("ScrollableList", () => {
         .find(Scrollable)
         .dive()
         .find("SampleComponent")
-    ).toHaveLength(2);
+    ).toHaveLength(items.length);
+
     expect(
       rendered
         .find(Scrollable)
@@ -58,7 +56,7 @@ describe("ScrollableList", () => {
         .first()
         .props()
     ).toMatchObject({
-      id: 1,
+      item: items[0],
     });
   });
 

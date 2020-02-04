@@ -1,7 +1,6 @@
 // @flow
 import React, { PureComponent } from "react";
 import debounce from "lodash/debounce";
-import * as R from "ramda";
 import SearchInput from "Components/SearchInput";
 import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";

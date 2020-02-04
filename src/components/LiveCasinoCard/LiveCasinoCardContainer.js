@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
-import * as A from "Types/apollo";
 
 // __FIX__: rename "id" to "item" here and add types
 export const LiveCasinoCardContainer = ({ item }) => {

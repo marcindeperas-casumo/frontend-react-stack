@@ -5,13 +5,13 @@ import { CuratedCardBackgroundNew } from "../CuratedCardBackgroundNew";
 
 describe("CuratedCardBackgroundNew", () => {
   test("should trigger onClick", () => {
-    const onLaunchGame = jest.fn();
+    const onClick = jest.fn();
     const component = shallow(
-      <CuratedCardBackgroundNew onLaunchGame={onLaunchGame} {...curatedData} />
+      <CuratedCardBackgroundNew onClick={onClick} {...curatedData} />
     );
 
     component.find("a").simulate("click");
 
-    expect(onLaunchGame).toHaveBeenCalled();
+    expect(onClick).toHaveBeenCalled();
   });
 });

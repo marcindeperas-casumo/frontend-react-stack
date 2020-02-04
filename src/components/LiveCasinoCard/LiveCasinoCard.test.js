@@ -1,50 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
+import LiveCasinoCard from "./LiveCasinoCard";
 
 describe("LiveCasinoCard", () => {
-  const subscribeToUpdates = jest.fn();
-  const unsubscribeFromUpdates = jest.fn();
-
-  test("subscribes to updates when mounted", () => {
-    const game = { lobby: { tableId: "table" } };
-    shallow(
-      <LiveCasinoCard
-        game={game}
-        launchGame={() => {}}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
-    );
-
-    expect(subscribeToUpdates).toBeCalledTimes(1);
-  });
-
-  test("unsubscribes when unmounted", () => {
-    const game = { lobby: { tableId: "table" } };
-    const rendered = shallow(
-      <LiveCasinoCard
-        game={game}
-        launchGame={() => {}}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
-    );
-
-    expect(unsubscribeFromUpdates).toBeCalledTimes(0);
-    rendered.unmount();
-    expect(unsubscribeFromUpdates).toBeCalledTimes(1);
-  });
-
   test("returns null if no lobby", () => {
     const game = {};
     const rendered = shallow(
-      <LiveCasinoCard
-        game={game}
-        launchGame={() => {}}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
+      <LiveCasinoCard game={game} launchGame={() => {}} />
     );
 
     expect(rendered.isEmptyRender()).toBe(true);
@@ -52,14 +14,9 @@ describe("LiveCasinoCard", () => {
 
   test("launchGame is called when clicking in card header", () => {
     const launchGame = jest.fn();
-    const game = { lobby: { tableId: "table" } };
+    const game = { liveCasinoLobby: { tableId: "table" } };
     const rendered = shallow(
-      <LiveCasinoCard
-        game={game}
-        launchGame={launchGame}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
+      <LiveCasinoCard game={game} launchGame={launchGame} />
     );
 
     rendered
@@ -73,14 +30,9 @@ describe("LiveCasinoCard", () => {
 
   test("launchGame is called when clicking in card content", () => {
     const launchGame = jest.fn();
-    const game = { lobby: { tableId: "table" } };
+    const game = { liveCasinoLobby: { tableId: "table" } };
     const rendered = shallow(
-      <LiveCasinoCard
-        game={game}
-        launchGame={launchGame}
-        subscribeToUpdates={subscribeToUpdates}
-        unsubscribeFromUpdates={unsubscribeFromUpdates}
-      />
+      <LiveCasinoCard game={game} launchGame={launchGame} />
     );
 
     rendered
