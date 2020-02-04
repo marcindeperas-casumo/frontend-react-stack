@@ -255,7 +255,7 @@ export class ReelRaceCard extends React.Component<Props> {
                   alt={game.name}
                   mark={game.logo}
                 />
-                {this.props.reelRace.promoted && (
+                {promoted && (
                   <GrandReelRaceBadge className="c-reel-race__badge" />
                 )}
                 <Flex
@@ -294,12 +294,12 @@ export class ReelRaceCard extends React.Component<Props> {
                   bottom={t.duration}
                 />
               )}
-              {minBet && t.minBet && (
+              {
                 <>
                   <div className="c-reel-race__separator u-margin-x--md" />
                   <Column top={minBet} bottom={t.minBet} />
                 </>
-              )}
+              }
             </Flex>
 
             <Flex direction="horizontal" justify="space-between" align="end">
