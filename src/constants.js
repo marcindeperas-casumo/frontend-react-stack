@@ -266,11 +266,17 @@ export const EVENTS = {
   MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION: "Sports Search Clicked Suggestion",
   MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT: "Sports Search Clicked Result",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
-    "Sports Onboarding - favorite sport selected",
+    "onboarding - selected a favorite sport",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
-    "Sports Onboarding - favorite sport deselected",
+    "onboarding - deselected a favorite sport",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL:
-    "Sports Onboarding - favorite sport selected all",
+    "onboarding - clicked all sports",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT: "onboarding - add a league intent",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_DESELECTED:
+    "onboarding - deselected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_SELECTED:
+    "onboarding - selected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES: "onboarding - chose leagues",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -290,6 +296,10 @@ export const EVENT_PROPS = {
   SPORTS_PAGE_PATH: "path",
   SPORTS_ID: "sport id",
   SPORTS_NAME: "sport name",
+  LEAGUES_SELECTED: "leagues selected",
+  LEAGUES_SELECTED_NUMBER: "number of leagues selected",
+  COMPETITION_ID: "league id",
+  COMPETITION_NAME: "league name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };

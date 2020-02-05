@@ -12,7 +12,7 @@ import StageFavouritesConsumer from "../StageFavouritesContext/StageFavouritesCo
 
 type Props = {
   onClose: () => void,
-  onAddCompetition: (id: number) => void,
+  onAddCompetition: (id: number, name: string, isOnboarding: boolean) => void,
 };
 
 const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (

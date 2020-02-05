@@ -17,6 +17,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -38,6 +39,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -49,6 +51,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -60,6 +63,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -77,6 +81,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
     const renderedWithIntro = shallow(
@@ -87,6 +92,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={true}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -115,6 +121,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -133,6 +140,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={onAddCompetition}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
     const renderedWithIntro = shallow(
@@ -143,6 +151,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={true}
         onAddCompetition={onAddCompetition}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -170,6 +179,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={onRemoveFavouriteCompetition}
+        isOnboarding={false}
       />
     );
 

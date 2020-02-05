@@ -1,6 +1,8 @@
 // @flow
 import * as React from "react";
 import FavouriteCompetitionsSelectorModal from "Features/sports/components/FavouriteCompetitionsSelectorModal";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
+import tracker from "Services/tracker";
 import FavouriteSportsSelectorModal from "./FavouriteSportsSelectorModal";
 import {
   StageFavouritesProvider,
@@ -23,10 +25,23 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
     selectingCompetitionsFor: null,
   };
 
-  showCompetitionSelectorFor = (id: ?number) =>
+  showCompetitionSelectorFor = (
+    id: ?number,
+    name: ?string,
+    isOnboarding: ?boolean
+  ) => {
     this.setState({
       selectingCompetitionsFor: id,
     });
+    if (isOnboarding) {
+      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT;
+      const data = {
+        [EVENT_PROPS.SPORTS_ID]: id,
+        [EVENT_PROPS.SPORTS_NAME]: name,
+      };
+      tracker.track(eventName, data);
+    }
+  };
 
   hideCompetitionSelector = () => this.showCompetitionSelectorFor(null);
 

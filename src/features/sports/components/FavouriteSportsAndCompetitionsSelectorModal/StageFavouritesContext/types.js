@@ -8,7 +8,7 @@ export type StageFavouritesAPI = {
   isFirstTimeSelectingFavourites: boolean,
   isFirstTimeSelectingFavouriteCompetitions: boolean,
   isSportsPlayer: boolean,
-  toggleFavouriteSport: (id: number, name: string) => void,
+  toggleFavouriteSport: (id: number) => void,
   toggleAllSports: () => void,
   getSelectedSportsCount: () => number,
   setFavouriteCompetitions: (
@@ -20,5 +20,6 @@ export type StageFavouritesAPI = {
     competition: Competition
   ) => void,
   getSelectedIds: () => Array<number>,
+  getSportNameById: (sportId: number) => string,
   isSelected: (id: number) => boolean,
 };

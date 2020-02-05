@@ -16,9 +16,13 @@ type Props = {
   /** Whether we should show an intro to selecting competitions */
   showCompetitionIntro: boolean,
   /** What should happen with the sport data when the group is toggled */
-  onToggleFavouriteSport: (id: number, name: string) => void,
+  onToggleFavouriteSport: (id: number) => void,
   /** What should happen when the buttons to edit competitions for this group are clicked */
-  onAddCompetition: (groupId: number) => void,
+  onAddCompetition: (
+    groupId: number,
+    name: string,
+    isOnboarding: boolean
+  ) => void,
   /** Whether this list item should be in its favourited state */
   isFavourite: boolean,
   /** What should happen when a competition is removed  */
@@ -26,6 +30,8 @@ type Props = {
     groupId: number,
     competition: A.FavouriteSportsSelectorListItem_Group_favouriteCompetitions
   ) => void,
+  /** Is favorite list eq 0 **/
+  isOnboarding: boolean,
 };
 
 const FavouriteSportsSelectorListItem = ({
@@ -36,6 +42,7 @@ const FavouriteSportsSelectorListItem = ({
   onAddCompetition,
   isFavourite,
   onRemoveFavouriteCompetition,
+  isOnboarding,
 }: Props) => (
   <div>
     <FavouriteListItem
@@ -48,7 +55,7 @@ const FavouriteSportsSelectorListItem = ({
           isActive={isFavourite}
         />
       }
-      onClick={() => onToggleFavouriteSport(group.id, group.name)}
+      onClick={() => onToggleFavouriteSport(group.id)}
       isFavourite={isFavourite}
       isFavouritable={isFavouritable}
     />
@@ -56,7 +63,9 @@ const FavouriteSportsSelectorListItem = ({
       <>
         {showCompetitionIntro && (
           <div className="u-margin-top--md">
-            <CompetitionsIntro onAdd={() => onAddCompetition(group.id)} />
+            <CompetitionsIntro
+              onAdd={() => onAddCompetition(group.id, group.name, isOnboarding)}
+            />
           </div>
         )}
         <div className="u-margin-top--md">
@@ -67,7 +76,7 @@ const FavouriteSportsSelectorListItem = ({
             onAdd={
               showCompetitionIntro
                 ? undefined
-                : () => onAddCompetition(group.id)
+                : () => onAddCompetition(group.id, group.name, isOnboarding)
             }
           />
         </div>
