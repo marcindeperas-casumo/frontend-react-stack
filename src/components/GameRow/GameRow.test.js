@@ -21,7 +21,7 @@ describe("<GameRow />", () => {
       slug: "foo-bar",
       name: "Foo Bar",
       logo: "http://foo.com/logo.jpg",
-      logoBackground: "http://foo.com/logo-background.jpg",
+      backgroundImage: "http://foo.com/logo-background.jpg",
       jackpot: {
         id: "netent-starburst",
         value: {
@@ -38,7 +38,7 @@ describe("<GameRow />", () => {
     const thumbnailProps = thumbnail.length ? thumbnail.props() : {};
 
     expect(thumbnail.length).toBe(1);
-    expect(thumbnailProps.src).toBe(game.logoBackground);
+    expect(thumbnailProps.src).toBe(game.backgroundImage);
     expect(thumbnailProps.mark).toBe(game.logo);
     expect(thumbnailProps.alt).toBe(game.name);
   });

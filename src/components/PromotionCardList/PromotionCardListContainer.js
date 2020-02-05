@@ -26,8 +26,7 @@ const PromotionCardListContainer = ({ slug }: Props) => {
   if (data && data.promotionsList && data.promotionsList.promotions.length) {
     return (
       <PromotionCardList
-        // __FIX__ - should use the translated page like all the rest of em.
-        seeMore="..."
+        seeMore={data.seeMore}
         id={data.promotionsList.id}
         name={data.promotionsList.name}
         promotions={data.promotionsList.promotions}

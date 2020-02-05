@@ -48,48 +48,6 @@ export type CuratedCardQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: OldGameListQuery
-// ====================================================
-
-export type OldGameListQuery_gamesList_games_liveCasinoLobby_bets = {
-  min: ?number,
-  max: ?number,
-  symbol: ?string,
-};
-export type OldGameListQuery_gamesList_games_liveCasinoLobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
-  bets: ?OldGameListQuery_gamesList_games_liveCasinoLobby_bets,
-};
-export type OldGameListQuery_gamesList_games = {
-  id: string,
-  backgroundImage: string,
-  isInMaintenance: boolean,
-  isInMyList: boolean,
-  logo: string,
-  name: string,
-  slug: string,
-  liveCasinoLobby: ?OldGameListQuery_gamesList_games_liveCasinoLobby,
-};
-export type OldGameListQuery_gamesList = {
-  id: string,
-  title: ?string,
-  games: Array<OldGameListQuery_gamesList_games>,
-};
-export type OldGameListQuery = {
-  gamesList: ?OldGameListQuery_gamesList,
-};
-export type OldGameListQueryVariables = {
-  id: string,
-};
-
-// ====================================================
 // GraphQL query operation: gameListQuery
 // ====================================================
 
@@ -103,7 +61,7 @@ export type gameListQuery_gamesList_games = {
   slug: string,
 };
 export type gameListQuery_gamesList = {
-  id: string,
+  id: ?string,
   title: ?string,
   games: Array<gameListQuery_gamesList_games>,
 };
@@ -128,8 +86,8 @@ export type GameListExclusiveQuery_gamesList_games = {
   slug: string,
 };
 export type GameListExclusiveQuery_gamesList = {
-  id: string,
-  name: string,
+  id: ?string,
+  name: ?string,
   games: Array<GameListExclusiveQuery_gamesList_games>,
 };
 export type GameListExclusiveQuery = {
@@ -170,8 +128,8 @@ export type GameListLiveCasinoQuery_gamesList_games = {
   liveCasinoLobby: ?GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby,
 };
 export type GameListLiveCasinoQuery_gamesList = {
-  id: string,
-  name: string,
+  id: ?string,
+  name: ?string,
   games: Array<GameListLiveCasinoQuery_gamesList_games>,
 };
 export type GameListLiveCasinoQuery = {
@@ -295,7 +253,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
 };
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
-  id: string,
+  id: ?string,
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
@@ -315,7 +273,7 @@ export type GameTileHeartQuery_gamesList_games = {
   id: string,
 };
 export type GameTileHeartQuery_gamesList = {
-  id: string,
+  id: ?string,
   games: Array<GameTileHeartQuery_gamesList_games>,
 };
 export type GameTileHeartQuery = {
@@ -447,25 +405,6 @@ export type LiveCasinoDetailPageQuery = {
 };
 
 // ====================================================
-// GraphQL query operation: gamesListQuery
-// ====================================================
-
-export type gamesListQuery_gamesList_games = {
-  id: string,
-  name: string,
-  slug: string,
-  logo: string,
-  backgroundImage: string,
-};
-export type gamesListQuery_gamesList = {
-  name: string,
-  games: Array<gamesListQuery_gamesList_games>,
-};
-export type gamesListQuery = {
-  gamesList: ?gamesListQuery_gamesList,
-};
-
-// ====================================================
 // GraphQL query operation: MustDropJackpotsQuery
 // ====================================================
 
@@ -591,6 +530,7 @@ export type PromotionsListQuery_promotionsList = {
   promotions: Array<PromotionsListQuery_promotionsList_promotions>,
 };
 export type PromotionsListQuery = {
+  seeMore: string,
   promotionsList: ?PromotionsListQuery_promotionsList,
 };
 export type PromotionsListQueryVariables = {

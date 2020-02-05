@@ -38,7 +38,8 @@ describe("ScrollableList", () => {
         .find(Scrollable)
         .dive()
         .find("SampleComponent")
-    ).toHaveLength(2);
+    ).toHaveLength(items.length);
+
     expect(
       rendered
         .find(Scrollable)
@@ -47,7 +48,7 @@ describe("ScrollableList", () => {
         .first()
         .props()
     ).toMatchObject({
-      id: 1,
+      id: items[0].id,
     });
   });
 

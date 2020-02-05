@@ -6,19 +6,36 @@ import { CuratedCardBackgroundDeprecated } from "./CuratedCardBackgroundDeprecat
 type Props = {
   onClick: ?Function,
   link: ?string,
-  image?: string,
-  smallImage?: string,
-  mediumImage?: string,
-  largeImage?: string,
+  image: ?string,
+  smallImage: ?string,
+  mediumImage: ?string,
+  largeImage: ?string,
 };
 
 export const CuratedCardBackground = (props: Props) => {
   const { image, smallImage, mediumImage, largeImage } = props;
-  const isNewVersion = image && !smallImage && !mediumImage && !largeImage;
 
-  return isNewVersion ? (
-    <CuratedCardBackgroundNew {...props} />
-  ) : (
-    <CuratedCardBackgroundDeprecated {...props} />
-  );
+  if (image && !smallImage && !mediumImage && !largeImage) {
+    return (
+      <CuratedCardBackgroundNew
+        onClick={props.onClick}
+        link={props.link}
+        image={image}
+      />
+    );
+  }
+
+  if (smallImage && mediumImage && largeImage) {
+    return (
+      <CuratedCardBackgroundDeprecated
+        smallImage={smallImage}
+        mediumImage={mediumImage}
+        largeImage={largeImage}
+        onClick={props.onClick}
+        link={props.link}
+      />
+    );
+  }
+
+  return null;
 };

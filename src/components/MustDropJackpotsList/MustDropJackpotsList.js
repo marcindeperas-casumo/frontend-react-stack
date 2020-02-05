@@ -105,10 +105,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
               list={this.columns}
               itemRenderer={this.desktopMustDropJackpotRenderer}
               tileHeight={288} // each GameRow height (96px) * n rows (3)
-              // seeMore={{
-              //   text: seeMore,
-              //   url: seeMoreUrl,
-              // }}
+              seeMore={{ text: seeMore, url: seeMoreUrl }}
             />
           </Desktop>
         </div>

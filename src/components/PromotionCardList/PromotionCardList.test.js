@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
-import PromotionCardList from "./PromotionCardList";
+import { PromotionCardList } from "./PromotionCardList";
 
 const fetchCampaign = jest.fn();
 const fetchPromotions = jest.fn();
@@ -30,8 +30,8 @@ describe("<PromotionCardList /> - Mobile and Tablet", () => {
     expect(rendered.find("ScrollableListPaginated")).toHaveLength(0);
   });
 
-  test("should render a scrollable component", () => {
-    expect(rendered.find("Scrollable").exists()).toBe(true);
+  test("should render a ScrollableList component", () => {
+    expect(rendered.find("ScrollableList").exists()).toBe(true);
   });
 
   test("should fetch the page on component mount", () => {
@@ -50,7 +50,7 @@ describe("<PromotionCardList /> - Mobile and Tablet", () => {
       </MockStore>
     );
 
-    expect(rendered.find("Scrollable").exists()).toBe(false);
+    expect(rendered.find("ScrollableList").exists()).toBe(false);
   });
 });
 

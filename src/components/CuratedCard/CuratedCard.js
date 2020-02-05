@@ -14,7 +14,7 @@ import "./CuratedCard.scss";
 
 type Props = {
   className?: string,
-  curatedCard: A.CuratedCardQuery,
+  curatedCard: A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
 };
 

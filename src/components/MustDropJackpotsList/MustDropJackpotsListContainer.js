@@ -6,12 +6,11 @@ import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import MustDropJackpotsList from "./MustDropJackpotsList";
 
-//__FIX__ this query is missing the following information:
-// slug: `built-pages.top-lists-${marketSelector(state)}`,
-// field: "more_link",
-
 const QUERY = gql`
   query MustDropJackpotGamesListQuery {
+    seeMore: getText(
+      id: "root:built-pages.top-lists-translations:fields.more_link"
+    )
     gamesList(listId: "mustDropJackpotGames") {
       name
       games {
@@ -36,8 +35,7 @@ const MustDropJackpotsListContainer = () => {
         <MustDropJackpotsList
           jackpots={data.gamesList.games}
           name={data.gamesList.name}
-          //__FIX__ make sure to add in CMS field.
-          seeMore="..."
+          seeMore={data?.seeMore}
         />
       </TrackProvider>
     );
