@@ -115,7 +115,7 @@ describe("<GameListHorizontal /> - Desktop", () => {
   });
 
   test("passes seeMoreText to the ScrollableListPaginated", () => {
-    const { seeMore: seeMoreProp } = mount(
+    const { seeMoreText: seeMoreProp } = mount(
       <MockStore state={defaultState}>
         <GameListHorizontal list={list} seeMoreText={seeMoreText} />
       </MockStore>

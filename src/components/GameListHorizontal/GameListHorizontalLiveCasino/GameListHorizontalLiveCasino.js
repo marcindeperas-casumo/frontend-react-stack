@@ -16,6 +16,7 @@ export type Props = {
 
 export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
   const { name, games } = list;
+  const seeMoreUrl = "/games/live-casino-details";
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const isNotFirstElement = columnIndex > 0;
@@ -43,7 +44,7 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
             itemRenderer={i => <LiveCasinoCard game={games[i]} />}
             items={games}
             seeMoreText={seeMoreText}
-            seeMoreUrl="/games/live-casino-details"
+            seeMoreUrl={seeMoreUrl}
             title={name}
           />
         </MobileAndTablet>
@@ -54,10 +55,10 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
             itemRenderer={itemRenderer}
             itemControlClass="c-scrollable-list-paginated__live_casino-button"
             tileHeight={305}
-            // seeMore={{
-            //   text: seeMoreText,
-            //   url: seeMoreUrl,
-            // }}
+            seeMore={{
+              text: seeMoreText,
+              url: seeMoreUrl,
+            }}
           />
         </Desktop>
       </div>

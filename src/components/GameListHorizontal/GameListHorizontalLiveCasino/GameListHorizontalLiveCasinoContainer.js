@@ -14,7 +14,7 @@ type Props = {
 
 export const GameListLiveCasinoQuery = gql`
   query GameListLiveCasinoQuery($id: String!) {
-    seeMore: getText(
+    seeMoreText: getText(
       id: "root:built-pages.top-lists-translations:fields.more_link"
     )
     gamesList(listId: $id) {
@@ -64,7 +64,7 @@ export const GameListHorizontalLiveCasinoContainer = ({ id }: Props) => {
     return (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
         <GameListHorizontalLiveCasino
-          seeMoreText={data.seeMore}
+          seeMoreText={data.seeMoreText}
           list={data.gamesList}
         />
       </TrackProvider>

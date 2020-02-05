@@ -17,7 +17,7 @@ type Props = {
 // fragments for its child components. However when I try it explodes. :(
 export const GameListQuery = gql`
   query OldGameListQuery($id: String!) {
-    seeMore: getText(
+    seeMoreText: getText(
       id: "root:built-pages.top-lists-translations:fields.more_link"
     )
     gamesList(listId: $id) {
@@ -79,7 +79,7 @@ export const GameListHorizontalContainer = ({ id }: Props) => {
 
   return (
     <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-      <GameListHorizontal seeMoreText={data?.seeMore} list={list} />
+      <GameListHorizontal seeMoreText={data?.seeMoreText} list={list} />
     </TrackProvider>
   );
 };

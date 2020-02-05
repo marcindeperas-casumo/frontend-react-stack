@@ -10,13 +10,13 @@ import "./PromotionCardList.scss";
 
 type Props = {
   ...A.PromotionsListQuery_promotionsList,
-  seeMore: string,
+  seeMoreText: string,
 };
 
 export const PromotionCardList = ({
   name = "",
   promotions,
-  seeMore,
+  seeMoreText,
 }: Props) => {
   const seeMoreUrl = "/promotions";
 
@@ -39,7 +39,7 @@ export const PromotionCardList = ({
           <ScrollableList
             itemClassName={"c-promotion-card"}
             title={name}
-            seeMoreText={seeMore}
+            seeMoreText={seeMoreText}
             seeMoreUrl={seeMoreUrl}
             items={promotions}
             itemRenderer={i => <PromotionCard promotion={promotions[i]} />}
@@ -52,7 +52,7 @@ export const PromotionCardList = ({
             itemRenderer={itemRenderer}
             tileHeight={318}
             seeMore={{
-              text: seeMore,
+              text: seeMoreText,
               url: seeMoreUrl,
             }}
           />

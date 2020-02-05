@@ -8,7 +8,7 @@ import MustDropJackpotsList from "./MustDropJackpotsList";
 
 const QUERY = gql`
   query MustDropJackpotGamesListQuery {
-    seeMore: getText(
+    seeMoreText: getText(
       id: "root:built-pages.top-lists-translations:fields.more_link"
     )
     gamesList(listId: "mustDropJackpotGames") {
@@ -35,7 +35,7 @@ const MustDropJackpotsListContainer = () => {
         <MustDropJackpotsList
           jackpots={data.gamesList.games}
           name={data.gamesList.name}
-          seeMore={data?.seeMore}
+          seeMoreText={data?.seeMoreText}
         />
       </TrackProvider>
     );

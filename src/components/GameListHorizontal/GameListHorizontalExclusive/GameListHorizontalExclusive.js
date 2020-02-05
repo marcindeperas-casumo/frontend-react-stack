@@ -47,10 +47,6 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
             list={games}
             itemRenderer={itemRenderer}
             tileHeight={300}
-            // seeMore={{
-            //   text: seeMoreText,
-            //   url: seeMoreUrl,
-            // }}
           />
         </Desktop>
       </div>
