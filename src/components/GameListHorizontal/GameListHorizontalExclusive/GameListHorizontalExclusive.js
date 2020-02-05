@@ -43,8 +43,8 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={name}
-            list={games}
+            title={name}
+            itemCount={games.length}
             itemRenderer={itemRenderer}
             tileHeight={300}
           />

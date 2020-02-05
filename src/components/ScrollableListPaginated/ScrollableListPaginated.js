@@ -28,9 +28,9 @@ type Props = {
   /** The text and url to render on the seeMore button. */
   seeMore?: SeeMoreProps,
   /** The list of items to be rendered. */
-  list: Array<Object>,
+  itemCount: number,
   /** The list title */
-  listTitle: string,
+  title: ?string,
   /** The item renderer. */
   itemRenderer: CellRendererParams => any,
 };
@@ -80,16 +80,14 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
   };
 
   render() {
-    const { list, listTitle, tileHeight, seeMore, itemRenderer } = this.props;
+    const { itemCount, title, tileHeight, seeMore, itemRenderer } = this.props;
 
     return (
       <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
-        {listTitle && (
-          <ScrollableListTitleRow title={listTitle} seeMore={seeMore} />
-        )}
+        {title && <ScrollableListTitleRow title={title} seeMore={seeMore} />}
         <ScrollablePaginated
           className="c-scrollable-list-paginated"
-          columnCount={list.length}
+          columnCount={itemCount}
           cellRenderer={itemRenderer}
           buttonRenderer={this.buttonRenderer}
           height={tileHeight}

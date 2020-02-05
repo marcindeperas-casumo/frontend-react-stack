@@ -47,8 +47,8 @@ export const PromotionCardList = ({
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={name}
-            list={promotions}
+            title={name}
+            itemCount={promotions.length}
             itemRenderer={itemRenderer}
             tileHeight={318}
             seeMore={{

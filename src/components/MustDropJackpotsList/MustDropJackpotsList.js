@@ -30,6 +30,7 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
   get columns(): Array<Array<A.GameRow_Game>> {
     const jackpotsByColumns = generateColumns(this.props.jackpots);
     // __FIX__ - sort out typing here. We're returning an array of string or game.
+    // $FlowFixMe
     return [[MUST_DROP_WIDGET_ID], ...jackpotsByColumns];
   }
 
@@ -101,8 +102,8 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              listTitle={name}
-              list={this.columns}
+              title={name}
+              itemCount={this.columns.length}
               itemRenderer={this.desktopMustDropJackpotRenderer}
               tileHeight={288} // each GameRow height (96px) * n rows (3)
               seeMore={{ text: seeMoreText, url: seeMoreUrl }}

@@ -50,8 +50,8 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={name}
-            list={games}
+            title={name}
+            itemCount={games.length}
             itemRenderer={itemRenderer}
             itemControlClass="c-scrollable-list-paginated__live_casino-button"
             tileHeight={305}

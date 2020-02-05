@@ -16,7 +16,7 @@ export const PADDING_PER_DEVICE = {
 };
 
 type Props = {
-  title: string,
+  title: ?string,
   /** url to "see more" page, if null will not render "see more" link */
   seeMoreUrl?: string,
   items: Array<any>,
@@ -52,11 +52,13 @@ export default class ScrollableList extends React.PureComponent<Props> {
 
     return (
       <div className="u-padding-top--xlg">
-        <ScrollableListTitleRow
-          paddingLeft
-          seeMore={{ text: seeMoreText, url: seeMoreUrl }}
-          title={title}
-        />
+        {title && (
+          <ScrollableListTitleRow
+            paddingLeft
+            seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+            title={title}
+          />
+        )}
         <Scrollable
           numberOfItems={items.length}
           keyGetter={this.keyGetter}

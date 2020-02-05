@@ -26,7 +26,7 @@ const PromotionCardListContainer = ({ slug }: Props) => {
   if (data && data.promotionsList && data.promotionsList.promotions.length) {
     return (
       <PromotionCardList
-        seeMore={data.seeMore}
+        seeMoreText={data.seeMoreText}
         id={data.promotionsList.id}
         name={data.promotionsList.name}
         promotions={data.promotionsList.promotions}

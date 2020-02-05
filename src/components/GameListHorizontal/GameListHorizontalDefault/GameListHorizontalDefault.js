@@ -44,8 +44,8 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={name}
-            list={games}
+            title={name}
+            itemCount={games.length}
             itemRenderer={itemRenderer}
             tileHeight={192}
           />
