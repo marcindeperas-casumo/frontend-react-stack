@@ -1,7 +1,6 @@
 // @flow
 import React from "react";
 import gql from "graphql-tag";
-import { propOr } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
@@ -15,6 +14,9 @@ type Props = {
 
 export const GameListLiveCasinoQuery = gql`
   query GameListLiveCasinoQuery($id: String!) {
+    seeMore: getText(
+      id: "root:built-pages.top-lists-translations:fields.more_link"
+    )
     gamesList(listId: $id) {
       id
       name
@@ -49,7 +51,6 @@ export const GameListLiveCasinoQuery = gql`
 export const GameListHorizontalLiveCasinoContainer = ({ id }: Props) => {
   const variables = { id };
   const { data, loading } = useQuery(GameListLiveCasinoQuery, { variables });
-  const list = propOr({}, "gamesList", data);
 
   if (loading) {
     return (
@@ -59,9 +60,16 @@ export const GameListHorizontalLiveCasinoContainer = ({ id }: Props) => {
     );
   }
 
-  return (
-    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-      <GameListHorizontalLiveCasino seeMoreText="..." list={list} />
-    </TrackProvider>
-  );
+  if (data && data.gamesList && data.gamesList.games.length) {
+    return (
+      <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+        <GameListHorizontalLiveCasino
+          seeMoreText={data.seeMore}
+          list={data.gamesList}
+        />
+      </TrackProvider>
+    );
+  }
+
+  return null;
 };

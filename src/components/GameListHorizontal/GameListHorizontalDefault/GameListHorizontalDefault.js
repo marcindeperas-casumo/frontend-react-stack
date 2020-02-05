@@ -11,7 +11,7 @@ import "../GameListHorizontal.scss";
 
 export type GameListObject = {
   id: string,
-  title: string,
+  name: string,
   games: Array<A.gameListQuery_gamesList_games>,
 };
 
@@ -20,7 +20,7 @@ export type Props = {
 };
 
 export const GameListHorizontalDefault = ({ list }: Props) => {
-  const { title, games } = list;
+  const { name, games } = list;
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const isNotFirstElement = columnIndex > 0;
@@ -45,19 +45,15 @@ export const GameListHorizontalDefault = ({ list }: Props) => {
             itemClassName="c-top-game"
             itemRenderer={i => <GameTile game={games[i]} />}
             items={games}
-            title={title}
+            title={name}
           />
         </MobileAndTablet>
         <Desktop>
           <ScrollableListPaginated
-            listTitle={title}
+            listTitle={name}
             list={games}
             itemRenderer={itemRenderer}
             tileHeight={192}
-            // seeMore={{
-            //   text: seeMoreText,
-            //   url: seeMoreUrl,
-            // }}
           />
         </Desktop>
       </div>
