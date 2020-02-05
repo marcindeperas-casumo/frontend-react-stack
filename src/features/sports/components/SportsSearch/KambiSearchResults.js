@@ -3,7 +3,7 @@ import * as React from "react";
 import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { isEmpty, map, pipe, propOr, take } from "ramda";
+import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import tracker from "Services/tracker";
@@ -122,16 +122,14 @@ class KambiSearchResults extends React.Component<Props, State> {
     });
 
   trackSearchClick = (
-    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches,
+    resultOrGroup: A.SearchQuery_search | A.TopSearches_topSearches,
     list: "popular" | "history" | "result"
   ) => {
-    const id =
-      // $FlowIgnore: either type will have either prop
-      (resultOrEventGroup.id && `filter${resultOrEventGroup.id}`) ||
-      // $FlowIgnore: either type will have either prop
-      resultOrEventGroup.clientPath;
-    // $FlowIgnore: either type will have either prop
-    const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
+    // will have either props
+    const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
+    const name = propOr(prop("localizedName", resultOrGroup), "name")(
+      resultOrGroup
+    );
 
     if (list === "result") {
       tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
