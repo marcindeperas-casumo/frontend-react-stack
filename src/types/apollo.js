@@ -78,11 +78,12 @@ export type gameListQuery_gamesList_games = {
   liveCasinoLobby: ?gameListQuery_gamesList_games_liveCasinoLobby,
 };
 export type gameListQuery_gamesList = {
-  id: string,
+  id: ?string,
   title: ?string,
   games: Array<gameListQuery_gamesList_games>,
 };
 export type gameListQuery = {
+  seeMore: string,
   gamesList: ?gameListQuery_gamesList,
 };
 export type gameListQueryVariables = {
@@ -203,7 +204,7 @@ export type GameSearchSuggestionsListContainerQuery_gamesList_games = {
   jackpot: ?GameSearchSuggestionsListContainerQuery_gamesList_games_jackpot,
 };
 export type GameSearchSuggestionsListContainerQuery_gamesList = {
-  id: string,
+  id: ?string,
   games: Array<GameSearchSuggestionsListContainerQuery_gamesList_games>,
 };
 export type GameSearchSuggestionsListContainerQuery = {
@@ -223,7 +224,7 @@ export type GameTileHeartQuery_gamesList_games = {
   id: string,
 };
 export type GameTileHeartQuery_gamesList = {
-  id: string,
+  id: ?string,
   games: Array<GameTileHeartQuery_gamesList_games>,
 };
 export type GameTileHeartQuery = {
@@ -366,10 +367,11 @@ export type gamesListQuery_gamesList_games = {
   backgroundImage: string,
 };
 export type gamesListQuery_gamesList = {
-  name: string,
+  name: ?string,
   games: Array<gamesListQuery_gamesList_games>,
 };
 export type gamesListQuery = {
+  seeMore: string,
   gamesList: ?gamesListQuery_gamesList,
 };
 
@@ -499,6 +501,7 @@ export type PromotionsListQuery_promotionsList = {
   promotions: Array<PromotionsListQuery_promotionsList_promotions>,
 };
 export type PromotionsListQuery = {
+  seeMore: string,
   promotionsList: ?PromotionsListQuery_promotionsList,
 };
 export type PromotionsListQueryVariables = {
