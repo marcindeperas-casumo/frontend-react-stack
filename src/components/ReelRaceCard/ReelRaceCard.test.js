@@ -41,7 +41,7 @@ const minute = 60 * 1000;
 
 const launchGame = jest.fn();
 
-describe.only("ReelRaceCard", () => {
+describe("ReelRaceCard", () => {
   describe("Empty game object", () => {
     const reelRace = {
       id: "edc71c70-56d6-11e9-8587-0242ac11000b",
