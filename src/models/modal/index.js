@@ -1,9 +1,10 @@
 // @flow
 import * as R from "ramda";
 import { useDispatch, useSelector } from "react-redux";
-import { createSelector } from "reselect";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
+
+export * from "./modal.selectors";
 
 export const type = {
   hide: "MODAL/HIDE",
@@ -70,26 +71,6 @@ export function useHideModal(modalId: ?ModalId) {
     acceptModal: fn("ACCEPTED"),
   };
 }
-
-export const modalStateSelector = createSelector(
-  R.prop("modal"),
-  R.identity
-);
-
-export const isModalHiddenSelector = createSelector(
-  modalStateSelector,
-  R.propEq("modalId", null)
-);
-
-export const isModalOpenSelector = R.pipe(
-  isModalHiddenSelector,
-  R.not
-);
-
-export const isModalOpenToBeAcceptedSelector = createSelector(
-  modalStateSelector,
-  R.pathOr(false, ["config", "mustAccept"])
-);
 
 type Actions = typeof showModal | typeof hideModal;
 type Handler = {
