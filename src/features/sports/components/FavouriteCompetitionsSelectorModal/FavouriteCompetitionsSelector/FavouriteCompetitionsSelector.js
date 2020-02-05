@@ -16,6 +16,10 @@ type Competition = A.FavouriteCompetitionsSelectorQuery_group_groups_groups;
 type Props = {
   /** Id of Group to select competitions for */
   groupId: number,
+  /** Name of Group to select competitions for */
+  groupName: string,
+  /** Is favourites sports eq 0 */
+  isOnboarding: boolean,
   /** Is the competition with this id selected? */
   isCompetitionSelected: (
     competitionId: $ElementType<Competition, "id">
@@ -114,6 +118,10 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
           <Region
             key={group.id}
             group={group}
+            groupId={group.id}
+            sportName={props.groupName}
+            sportId={props.groupId}
+            isOnboarding={props.isOnboarding}
             isExpanded={group === popularRegionGroups[0]}
             isSelected={props.isCompetitionSelected}
             // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.
@@ -130,7 +138,11 @@ export const FavouriteCompetitionsSelector = (props: Props) => {
         render={group => (
           <Region
             key={group.id}
+            sportName={props.groupName}
+            sportId={props.groupId}
+            isOnboarding={props.isOnboarding}
             group={group}
+            groupId={group.id}
             isExpanded={false}
             isSelected={props.isCompetitionSelected}
             // $FlowFixMe - @adampilks when refactoring query to use Sports/Compeition types, remove this.

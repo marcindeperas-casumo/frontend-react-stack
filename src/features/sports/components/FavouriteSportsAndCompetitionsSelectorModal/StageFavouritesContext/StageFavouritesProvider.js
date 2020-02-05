@@ -242,8 +242,8 @@ class StageFavouritesProvider extends React.Component<
     }));
     if (this.state.isFirstTimeSelectingFavourites) {
       const eventName = this.isSelected(competition.id)
-        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_DESELECTED
-        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_SELECTED;
+        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE
+        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED;
       const data = {
         [EVENT_PROPS.SPORTS_ID]: sportId,
         [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),

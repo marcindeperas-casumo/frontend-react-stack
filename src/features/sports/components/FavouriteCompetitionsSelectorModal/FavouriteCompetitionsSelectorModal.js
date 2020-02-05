@@ -9,6 +9,8 @@ import {
   DictionaryTerm,
   PluralisableDictionaryTerm,
 } from "Features/sports/components/DictionaryTerm";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
+import tracker from "Services/tracker";
 import { FavouriteCompetitionsSelector } from "./FavouriteCompetitionsSelector";
 
 type SelectedCompetitions = Array<A.FavouriteCompetitionsSelectorModal_Group>;
@@ -19,6 +21,8 @@ type Props = {
   onSave: SelectedCompetitions => void,
   initiallySelectedCompetitions: SelectedCompetitions,
   groupId: number,
+  groupName?: string,
+  isOnboarding?: boolean,
 };
 
 type State = {
@@ -49,12 +53,26 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
     return Boolean(this.state.selectedCompetitions.find(c => c.id === groupId));
   };
 
-  toggleCompetition = (group: A.FavouriteCompetitionsSelectorModal_Group) =>
+  toggleCompetition = (group: A.FavouriteCompetitionsSelectorModal_Group) => {
     this.setState(state => ({
       selectedCompetitions: this.isCompetitionSelected(group.id)
         ? state.selectedCompetitions.filter(c => c.id !== group.id)
         : [...state.selectedCompetitions, group],
     }));
+    if (this.props.isOnboarding) {
+      const eventName = this.isCompetitionSelected(group.id)
+        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED
+        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED;
+      const data = {
+        [EVENT_PROPS.SPORTS_ID]: this.props.groupId,
+        [EVENT_PROPS.SPORTS_NAME]: this.props.groupName,
+        [EVENT_PROPS.COMPETITION_ID]: group.id,
+        // $FlowFixMe
+        [EVENT_PROPS.COMPETITION_NAME]: group.name,
+      };
+      tracker.track(eventName, data);
+    }
+  };
 
   onSave = () => {
     this.props.onSave(this.state.selectedCompetitions);
@@ -75,6 +93,8 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
         <SportsModal.Content>
           <FavouriteCompetitionsSelector
             groupId={this.props.groupId}
+            groupName={this.props.groupName}
+            isOnboarding={this.props.isOnboarding}
             isCompetitionSelected={this.isCompetitionSelected}
             toggleCompetition={this.toggleCompetition}
           />

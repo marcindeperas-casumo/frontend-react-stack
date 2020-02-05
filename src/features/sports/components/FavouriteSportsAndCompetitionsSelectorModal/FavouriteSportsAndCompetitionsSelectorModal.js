@@ -11,6 +11,8 @@ import {
 
 type State = {
   selectingCompetitionsFor: ?number,
+  selectingCompetitionsForName: ?string,
+  isOnboarding: ?boolean,
 };
 
 type Props = {
@@ -23,6 +25,8 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
 > {
   state = {
     selectingCompetitionsFor: null,
+    selectingCompetitionsForName: "",
+    isOnboarding: false,
   };
 
   showCompetitionSelectorFor = (
@@ -32,6 +36,8 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
   ) => {
     this.setState({
       selectingCompetitionsFor: id,
+      selectingCompetitionsForName: name,
+      isOnboarding: isOnboarding,
     });
     if (isOnboarding) {
       const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT;
@@ -43,14 +49,19 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
     }
   };
 
-  hideCompetitionSelector = () => this.showCompetitionSelectorFor(null);
+  hideCompetitionSelector = () =>
+    this.showCompetitionSelectorFor(null, "", false);
 
   get isSelectingCompetitions() {
     return Boolean(this.state.selectingCompetitionsFor);
   }
 
   renderCompetitionsSelector = () => {
-    const { selectingCompetitionsFor } = this.state;
+    const {
+      selectingCompetitionsFor,
+      selectingCompetitionsForName,
+      isOnboarding,
+    } = this.state;
 
     return (
       <StageFavouritesConsumer>
@@ -66,7 +77,9 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
           return (
             <FavouriteCompetitionsSelectorModal
               groupId={selectingCompetitionsFor}
+              groupName={selectingCompetitionsForName}
               initiallySelectedCompetitions={initiallySelectedCompetitions}
+              isOnboarding={isOnboarding}
               onBack={this.hideCompetitionSelector}
               onClose={this.props.onClose}
               onSave={selectedCompetitions => {

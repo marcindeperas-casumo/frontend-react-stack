@@ -272,11 +272,17 @@ export const EVENTS = {
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL:
     "onboarding - clicked all sports",
   MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT: "onboarding - add a league intent",
-  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_DESELECTED:
-    "onboarding - deselected a league from Edit Leagues",
-  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_SELECTED:
-    "onboarding - selected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE:
+    "onboarding - removed a league from edit sports",
+  MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED:
+    "onboarding - added a league from edit sports",
   MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES: "onboarding - chose leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED:
+    "onboarding - deselected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED:
+    "onboarding - selected a league from Edit Leagues",
+  MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND:
+    "onboarding - expanded leagues of a Country",
   MIXPANEL_PROMOTION_CLICKED: "Promotion Clicked",
   MIXPANEL_PROMOTION_VIEWED: "Promotion Viewed",
   MIXPANEL_GAME_FAVOURITE_CLICKED: "Game Favourite Clicked",
@@ -300,6 +306,8 @@ export const EVENT_PROPS = {
   LEAGUES_SELECTED_NUMBER: "number of leagues selected",
   COMPETITION_ID: "league id",
   COMPETITION_NAME: "league name",
+  COUNTRY_ID: "country id",
+  COUNTRY_NAME: "country name",
   PROMOTION_TYPE: "promotion type",
   IS_FAVOURITE: "Is Favourite",
 };

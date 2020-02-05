@@ -4,11 +4,20 @@ import classNames from "classnames";
 import type { Node } from "react";
 import { DirectionDownIcon } from "@casumo/cmp-icons";
 import Flex from "@casumo/cmp-flex";
+import { EVENT_PROPS, EVENTS } from "Src/constants";
+import tracker from "Services/tracker";
 
 type Props = {
   label: Node,
   children: Node,
   isExpanded?: boolean,
+  data?: {
+    isOnboarding?: boolean,
+    sportName?: string,
+    sportId?: number,
+    groupId?: number,
+    groupName?: string,
+  },
 };
 
 type State = {
@@ -20,7 +29,23 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
     isExpanded: Boolean(this.props.isExpanded),
   };
 
-  toggleExpanded = () => this.setState({ isExpanded: !this.state.isExpanded });
+  toggleExpanded = () => {
+    this.setState({ isExpanded: !this.state.isExpanded });
+    if (
+      !this.state.isExpanded &&
+      this.props.data &&
+      this.props.data.isOnboarding
+    ) {
+      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND;
+      const data = {
+        [EVENT_PROPS.SPORTS_ID]: this.props.data.sportId,
+        [EVENT_PROPS.SPORTS_NAME]: this.props.data.sportName,
+        [EVENT_PROPS.COUNTRY_ID]: this.props.data.groupId,
+        [EVENT_PROPS.COUNTRY_NAME]: this.props.data.groupName,
+      };
+      tracker.track(eventName, data);
+    }
+  };
 
   get icon() {
     return (
