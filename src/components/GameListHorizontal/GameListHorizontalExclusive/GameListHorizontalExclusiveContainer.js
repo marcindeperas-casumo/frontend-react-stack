@@ -43,10 +43,13 @@ export const GameListHorizontalExclusiveContainer = ({ id }: Props) => {
       </div>
     );
   }
+  if (data && data.gamesList && data.gamesList.games.length) {
+    return (
+      <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
+        <GameListHorizontalExclusive list={list} />
+      </TrackProvider>
+    );
+  }
 
-  return (
-    <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-      <GameListHorizontalExclusive list={list} />
-    </TrackProvider>
-  );
+  return null;
 };

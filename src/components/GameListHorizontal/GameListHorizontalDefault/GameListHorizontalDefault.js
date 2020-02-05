@@ -9,14 +9,8 @@ import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "../GameListHorizontal.scss";
 
-export type GameListObject = {
-  id: string,
-  name: string,
-  games: Array<A.gameListQuery_gamesList_games>,
-};
-
 export type Props = {
-  list: GameListObject,
+  list: A.GameListQuery_gamesList,
 };
 
 export const GameListHorizontalDefault = ({ list }: Props) => {
