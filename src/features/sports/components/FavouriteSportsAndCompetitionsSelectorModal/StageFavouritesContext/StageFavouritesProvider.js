@@ -84,6 +84,7 @@ class StageFavouritesProvider extends React.Component<
       getSportNameById: this.getSportNameById,
       isSelected: this.isSelected,
       isSportsPlayer: false,
+      trackOnbordingSports: this.trackOnbordingSports,
     };
   }
 
@@ -249,6 +250,19 @@ class StageFavouritesProvider extends React.Component<
         [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),
         [EVENT_PROPS.COMPETITION_ID]: competition.id,
         [EVENT_PROPS.COMPETITION_NAME]: competition.name,
+      };
+      tracker.track(eventName, data);
+    }
+  };
+
+  trackOnbordingSports = (): void => {
+    if (this.state.isFirstTimeSelectingFavourites) {
+      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_SPORTS;
+      const data = {
+        [EVENT_PROPS.SPORTS_SELECTED]: this.state.sports.filter(
+          g => g.userFavourite
+        ),
+        [EVENT_PROPS.SPORTS_SELECTED_NUMBER]: this.getSelectedSportsCount(),
       };
       tracker.track(eventName, data);
     }

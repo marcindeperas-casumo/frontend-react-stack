@@ -44,6 +44,7 @@ const FavouriteSportsSelectorModal = ({ onClose, onAddCompetition }: Props) => (
                   <ModalButtonFooter
                     onClick={() => {
                       setFavouriteGroups();
+                      api.trackOnbordingSports();
                       onClose();
                     }}
                   >
