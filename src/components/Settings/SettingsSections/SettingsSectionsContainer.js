@@ -2,6 +2,8 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
+import { appManualLogoutInit as logout } from "Models/app";
+import reduxStore from "Services/reduxStore";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -34,6 +36,7 @@ export const withContainer = (Component: Function) => (
         <Component
           playerLoginHistory={playerLoginHistory.data}
           labels={labels.data}
+          logout={() => reduxStore.dispatch(logout())}
         />
       );
     }}
