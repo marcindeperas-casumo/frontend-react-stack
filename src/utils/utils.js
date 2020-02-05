@@ -33,7 +33,9 @@ export const bridgeFactory = () => {
       }
     },
     emit: (ev: string, data: any) => {
-      console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
+      if (__DEV__) {
+        console.log("🌈 Emitting event", { ev, data }); // eslint-disable-line no-console
+      }
 
       if (obj[ev]) {
         obj[ev].forEach(listener => {
