@@ -165,8 +165,18 @@ describe("<FavouriteSportsSelectorListItem />", () => {
       .props()
       .onAdd();
 
-    expect(onAddCompetition).toHaveBeenNthCalledWith(1, footballGroup.id);
-    expect(onAddCompetition).toHaveBeenNthCalledWith(2, footballGroup.id);
+    expect(onAddCompetition).toHaveBeenNthCalledWith(
+      1,
+      footballGroup.id,
+      footballGroup.name,
+      false
+    );
+    expect(onAddCompetition).toHaveBeenNthCalledWith(
+      2,
+      footballGroup.id,
+      footballGroup.name,
+      false
+    );
   });
 
   test("should call onRemoveFavouriteCompetition call when user requests to remove a favourited competition in the CompetitionPillsList", () => {
