@@ -184,10 +184,10 @@ export type GameListLiveCasinoQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: gameStudiosQuery
+// GraphQL query operation: GameStudiosQuery
 // ====================================================
 
-export type gameStudiosQuery_gameStudios = {
+export type GameStudiosQuery_gameStudios = {
   id: string,
   url: string,
   background: string,
@@ -195,8 +195,8 @@ export type gameStudiosQuery_gameStudios = {
   slug: string,
   name: string,
 };
-export type gameStudiosQuery = {
-  gameStudios: Array<?gameStudiosQuery_gameStudios>,
+export type GameStudiosQuery = {
+  gameStudios: Array<?GameStudiosQuery_gameStudios>,
 };
 
 // ====================================================
