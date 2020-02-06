@@ -9,13 +9,12 @@ export class BaseGame {
   props: GameProviderModelProps;
   onGameActive: Event;
   onGameIdle: Event;
-  isGameIdle: boolean;
+  isGameIdle: boolean = true;
 
   constructor(props: GameProviderModelProps) {
     this.props = props;
     this.onGameActive = new Event(GAME_ACTIVE_EVENT_NAME);
     this.onGameIdle = new Event(GAME_IDLE_EVENT_NAME);
-    this.isGameIdle = true;
   }
 
   get lobbyUrl() {
@@ -39,29 +38,10 @@ export class BaseGame {
     };
   }
 
-  onMount() {
-    const { current: gameElement } = this.props.gameRef;
-
-    if (gameElement) {
-      gameElement.addEventListener(GAME_ACTIVE_EVENT_NAME, () => {
-        this.isGameIdle = false;
-      });
-      gameElement.addEventListener(GAME_IDLE_EVENT_NAME, () => {
-        this.isGameIdle = true;
-      });
-    }
-  }
-
-  onUnmount() {}
-
-  pauseGame(): Promise<void> {
-    return Promise.resolve();
-  }
-
-  resumeGame() {}
-
   setGameAsActive() {
     const { current: gameElement } = this.props.gameRef;
+
+    this.isGameIdle = false;
 
     if (gameElement) {
       gameElement.dispatchEvent(this.onGameActive);
@@ -70,6 +50,8 @@ export class BaseGame {
 
   setGameAsIdle() {
     const { current: gameElement } = this.props.gameRef;
+
+    this.isGameIdle = true;
 
     if (gameElement) {
       gameElement.dispatchEvent(this.onGameIdle);

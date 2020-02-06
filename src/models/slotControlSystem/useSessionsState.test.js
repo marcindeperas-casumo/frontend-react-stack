@@ -24,6 +24,7 @@ describe("useSessionsState", () => {
     endTime,
   };
   const slotControlSystem: StateType = {
+    slugToCategoryMap: {},
     lastUpdateTime,
     activeSession,
     lastEndedSession,

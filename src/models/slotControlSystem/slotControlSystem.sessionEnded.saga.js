@@ -14,11 +14,9 @@ export function* sessionEndedSaga(
   yield put({
     type: ACTION_TYPES.UPDATE_SESSION,
     response: {
-      activeSession: null,
-      lastEndedSession:
-        message.data[
-          "com.casumo.es.slotsessions.notifications.SessionEndedNotification"
-        ],
+      ...message.data[
+        "com.casumo.es.slotsessions.notifications.SessionEndedNotification"
+      ],
     },
   });
   yield put(

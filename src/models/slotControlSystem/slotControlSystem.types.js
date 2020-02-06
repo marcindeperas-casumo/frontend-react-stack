@@ -1,4 +1,5 @@
 // @flow
+import type { GameCategory } from "Api/api.casinoPlayerGames";
 
 export type GameSessionStatsType = {
   consumedBalance: number,
@@ -46,6 +47,7 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
+  slugToCategoryMap: { [string]: Array<GameCategory> },
 };
 
 export type SessionStateResponseType = {
@@ -76,6 +78,6 @@ export type UseSessionsStateType = {
 export type SessionEndedCometdMessage = {
   type: string,
   data: {
-    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": EndedSessionType,
+    "com.casumo.es.slotsessions.notifications.SessionEndedNotification": SessionStateResponseType,
   },
 };

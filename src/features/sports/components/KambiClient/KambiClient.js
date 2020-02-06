@@ -99,10 +99,13 @@ export default class KambiClient extends React.Component<Props> {
   }
 
   trackPageView = (page: { type: string, title: string, path: string }) => {
+    // clean up bethistory date in path
+    const cleanPath = page.type === "bethistory" ? "/bethistory" : page.path;
+
     tracker.track(EVENTS.MIXPANEL_SPORTS_PAGEVIEW, {
       [EVENT_PROPS.SPORTS_PAGE_TYPE]: page.type,
       [EVENT_PROPS.SPORTS_PAGE_TITLE]: page.title,
-      [EVENT_PROPS.SPORTS_PAGE_PATH]: page.path,
+      [EVENT_PROPS.SPORTS_PAGE_PATH]: cleanPath,
     });
   };
 
