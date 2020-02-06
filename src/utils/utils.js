@@ -239,7 +239,7 @@ export function getSymbolForCurrency({
 }
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
-const CURRENCY_INTERPOLATION_REGEX = /{{2}\s*(\w+)\s* \|\s*€}{2}/gm;
+const CURRENCY_INTERPOLATION_REGEX = /{{2}\s*(\w+)\s* \|\s*€\s*}{2}/gm;
 
 const defaultTranslation = "[MISSING TRANSLATION]";
 
