@@ -2,7 +2,7 @@
 import React from "react";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
-import { appManualLogoutInit as logout } from "Models/app";
+import { appManualLogoutInit } from "Models/app";
 import reduxStore from "Services/reduxStore";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
@@ -19,7 +19,7 @@ const Composed = adopt({
   ),
 });
 
-export const withContainer = (Component: Function) => (
+export const withContainer = (Component: Function, logout: () => void) => (
   <Composed>
     {({ playerLoginHistory, labels }) => {
       if (playerLoginHistory.loading || labels.loading) {
@@ -36,11 +36,14 @@ export const withContainer = (Component: Function) => (
         <Component
           playerLoginHistory={playerLoginHistory.data}
           labels={labels.data}
-          logout={() => reduxStore.dispatch(logout())}
+          logout={logout}
         />
       );
     }}
   </Composed>
 );
 
-export const SettingsSectionsContainer = () => withContainer(SettingsSections);
+export const SettingsSectionsContainer = () =>
+  withContainer(SettingsSections, () =>
+    reduxStore.dispatch(appManualLogoutInit())
+  );
