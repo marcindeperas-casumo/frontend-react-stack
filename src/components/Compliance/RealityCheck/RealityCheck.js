@@ -56,7 +56,7 @@ export function RealityCheck(props: Props) {
   const timeDiff =
     DateTime.local() - DateTime.fromMillis(realityCheck.sessionStartedTime);
   const messageMinutesPlayed = interpolate(t.reality_check_message, {
-    totalMinutesPlayed: DateTime.fromMillis(timeDiff).offset,
+    totalMinutesPlayed: DateTime.fromMillis(timeDiff).toFormat("m"),
   });
 
   return (
