@@ -4,7 +4,7 @@ import { put, call } from "redux-saga/effects";
 import { logout as logoutAction } from "Models/app";
 import { showModal, isModalHiddenSelector } from "Models/modal";
 import { REACT_APP_MODAL } from "Src/constants";
-import { waitForSelector } from "Utils";
+import { waitForSelector, navigateToRootWithReload } from "Utils";
 
 export function* appManualLogoutSaga(): Saga {
   yield put(
@@ -21,5 +21,5 @@ export function* appManualLogoutSaga(): Saga {
 
   yield delay(200);
 
-  yield call(() => window.location.assign("/"));
+  yield call(navigateToRootWithReload);
 }

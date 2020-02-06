@@ -23,3 +23,5 @@ export const routeTranslator = (language: string) => {
 export const navigateToRerender = () => {
   navigate(window.location.pathname);
 };
+
+export const navigateToRootWithReload = () => window.location.assign("/");

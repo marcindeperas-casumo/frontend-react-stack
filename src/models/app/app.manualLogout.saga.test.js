@@ -2,7 +2,7 @@
 import { cloneableGenerator } from "redux-saga/utils";
 import { REACT_APP_MODAL } from "Src/constants";
 import { showModal, isModalHiddenSelector } from "Models/modal";
-import { waitForSelector } from "Utils";
+import { waitForSelector, navigateToRootWithReload } from "Utils";
 import { appManualLogoutSaga, logout } from "Models/app";
 
 describe("appManualLogoutSaga()", () => {
@@ -42,10 +42,10 @@ describe("appManualLogoutSaga()", () => {
 
   test("next it triggers delay", delayTest);
 
-  test("next it calls a function to navigate browser", () => {
+  test("next it calls a function to navigate browser to root", () => {
     const effect = clonedGenerator.next();
 
-    expect(effect.value.CALL.fn).toBeInstanceOf(Function);
+    expect(effect.value.CALL.fn).toEqual(navigateToRootWithReload);
   });
 
   test("next it's done", () => {
