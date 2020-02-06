@@ -91,14 +91,11 @@ export const GameTile = ({
             </TrackClick>
           </Flex.Item>
           <Flex.Item onClick={e => e.stopPropagation()}>
-            {
-              // __FIX__ should this tracking live in the GameTileHeart.
-            }
             <TrackClick
               eventName={EVENTS.MIXPANEL_GAME_FAVOURITE_CLICKED}
               data={{
                 [EVENT_PROPS.GAME_NAME]: name,
-                [EVENT_PROPS.IS_FAVOURITE]: isInMyList,
+                [EVENT_PROPS.IS_FAVOURITE]: !isInMyList,
               }}
             >
               <GameTileHeart
