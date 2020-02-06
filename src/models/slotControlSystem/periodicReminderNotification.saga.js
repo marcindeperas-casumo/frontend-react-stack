@@ -1,10 +1,19 @@
 // @flow
 import * as R from "ramda";
-import { put } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 import { MESSAGES as cometdMessages } from "Models/cometd";
 import { showModal } from "Models/modal";
+import { shouldShowSlotControlSystemSaga } from ".";
 
 export function* periodicReminderNotificationSaga(action: any): any {
+  const shouldShowSlotControlSystem = yield call(
+    shouldShowSlotControlSystemSaga
+  );
+
+  if (!shouldShowSlotControlSystem) {
+    return;
+  }
+
   const config = R.path(
     ["data", cometdMessages.PERIODIC_REMINDER_NOTIFICATION],
     action

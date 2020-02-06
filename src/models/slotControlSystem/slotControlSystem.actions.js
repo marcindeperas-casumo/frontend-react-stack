@@ -6,6 +6,7 @@ import {
   type NewSessionRequestType,
   type ActiveSessionType,
 } from "Models/slotControlSystem";
+import type { GameCategory } from "Api/api.casinoPlayerGames";
 
 export function initFetchActiveSessionAction() {
   return {
@@ -31,5 +32,16 @@ export function updateActiveSessionStats(data: ActiveSessionType) {
   return {
     type: ACTION_TYPES.UPDATE_ACTIVE_SESSION_STATS,
     data,
+  };
+}
+
+export function updateSlugToCategoryMap(
+  slug: string,
+  categories: Array<GameCategory>
+) {
+  return {
+    type: ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP,
+    slug,
+    categories,
   };
 }

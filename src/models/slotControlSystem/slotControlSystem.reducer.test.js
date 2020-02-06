@@ -32,6 +32,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        slugToCategoryMap: {},
         lastUpdateTime: 0,
         activeSession: null,
         lastEndedSession: null,
@@ -39,6 +40,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        slugToCategoryMap: {},
         lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: null,
@@ -56,6 +58,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        slugToCategoryMap: {},
         lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
@@ -70,6 +73,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        slugToCategoryMap: {},
         lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: null,
@@ -87,6 +91,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
       const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
       const state = {
+        slugToCategoryMap: {},
         lastUpdateTime: fiveMinutesBefore,
         activeSession: {
           ...activeSessionMock,
@@ -101,6 +106,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action)).toEqual({
+        slugToCategoryMap: {},
         lastUpdateTime: now,
         activeExclusion: null,
         lastEndedSession: response.lastEndedSession,
@@ -125,6 +131,7 @@ describe("Models/slotControlSystem/Reducer", () => {
         data: { stats },
       };
       const state = {
+        slugToCategoryMap: {},
         lastUpdateTime: 0,
         lastEndedSession: null,
         activeExclusion: null,
@@ -154,6 +161,29 @@ describe("Models/slotControlSystem/Reducer", () => {
     });
   });
 
+  describe("UPDATE_SLUG_TO_CATEGORY_MAP", () => {
+    test("properly updates slug to category map", () => {
+      const slug = "tiger-rush";
+      const categories = ["SLOT_MACHINE"];
+      const action = {
+        type: ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP,
+        slug,
+        categories,
+      };
+      const state = {
+        slugToCategoryMap: {},
+        lastUpdateTime: 0,
+        lastEndedSession: null,
+        activeExclusion: null,
+        activeSession: null,
+      };
+
+      expect(slotControlSystemReducer(state, action).slugToCategoryMap).toEqual(
+        { [slug]: categories }
+      );
+    });
+  });
+
   test("response contains lastEndedSession and activeSession, state contains activeSession and lastEndedSession", () => {
     const response: SessionStateResponseType = {
       activeSession: responseActiveSession,
@@ -162,6 +192,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
+      slugToCategoryMap: {},
       lastUpdateTime: fiveMinutesBefore,
       activeSession: {
         ...activeSessionMock,
@@ -181,6 +212,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      slugToCategoryMap: {},
       lastUpdateTime: now,
       activeExclusion: null,
       lastEndedSession: response.lastEndedSession,
@@ -198,6 +230,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
     const action = { type: ACTION_TYPES.UPDATE_SESSION, response };
     const state = {
+      slugToCategoryMap: {},
       lastUpdateTime: 0,
       activeSession: null,
       lastEndedSession: null,
@@ -205,6 +238,7 @@ describe("Models/slotControlSystem/Reducer", () => {
     };
 
     expect(slotControlSystemReducer(state, action)).toEqual({
+      slugToCategoryMap: {},
       lastUpdateTime: now,
       activeExclusion: activeExclusionMock,
       lastEndedSession: null,
