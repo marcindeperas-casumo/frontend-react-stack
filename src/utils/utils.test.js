@@ -344,6 +344,12 @@ describe("interpolate()", () => {
     const input = "I am a {{var}}";
     expect(interpolate(input, { foo: "bar" })).toBe(input);
   });
+
+  test("should replace currency with value if provided", () => {
+    const input = "I am a {{  var  }} to be replaced with {{ something | € }}";
+    const output = "I am a variable to be replaced with 12";
+    expect(interpolate(input, { var: "variable", something: 12 })).toBe(output);
+  });
 });
 
 describe("interpolateWithJSX()", () => {

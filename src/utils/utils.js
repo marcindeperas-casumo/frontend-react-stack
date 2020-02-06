@@ -239,18 +239,24 @@ export function getSymbolForCurrency({
 }
 
 const INTERPOLATION_REGEX = /{{2,3}\s*(\w+)\s*}{2,3}/gm;
+const CURRENCY_INTERPOLATION_REGEX = /{{2}\s*(\w+)\s* \|\s*€\s*}{2}/gm;
+
+const defaultTranslation = "[MISSING TRANSLATION]";
 
 export const canBeInterpolated = (target: string) =>
   target.match(INTERPOLATION_REGEX) !== null;
 
-const defaultTranslation = "[MISSING TRANSLATION]";
 export const interpolate = (
   target: string = defaultTranslation,
   replacements: { [string]: string | number }
 ) =>
-  target.replace(INTERPOLATION_REGEX, (match, param) =>
-    R.propOr(match, param, replacements)
-  );
+  target
+    .replace(INTERPOLATION_REGEX, (match, param) =>
+      R.propOr(match, param, replacements)
+    )
+    .replace(CURRENCY_INTERPOLATION_REGEX, (match, param) =>
+      R.propOr(match, param, replacements)
+    );
 
 export const interpolateWithJSX = R.curry(
   (replacements: { [string]: React.Node }, target: string) =>
