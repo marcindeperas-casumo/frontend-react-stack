@@ -1,12 +1,13 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { propOr } from "ramda";
+import { propOr, isEmpty } from "ramda";
 import gql from "graphql-tag";
-import GameProvidersList from "./GameProvidersList";
+import { GameProvidersList } from "./GameProvidersList";
+import GameProvidersListSkeleton from "./GameProvidersListSkeleton";
 
 const QUERY = gql`
-  query gameStudiosQuery {
+  query GameStudiosQuery {
     gameStudios {
       id
       url
@@ -26,7 +27,13 @@ export const GameProvidersListContainer = ({ title }: Props) => {
   const { data, loading } = useQuery(QUERY);
   const gameStudios = propOr([], "gameStudios", data);
 
-  return (
-    <GameProvidersList title={title} isLoaded={!loading} items={gameStudios} />
-  );
+  if (loading) {
+    return <GameProvidersListSkeleton />;
+  }
+
+  if (!loading && isEmpty(gameStudios)) {
+    return null;
+  }
+
+  return <GameProvidersList title={title} gameStudios={gameStudios} />;
 };
