@@ -18,12 +18,12 @@ export const GameListHorizontalExclusive = ({ list }: Props) => {
 
   const itemRenderer = ({ columnIndex, style }: CellRendererParams) => {
     const isNotFirstElement = columnIndex > 0;
-    const elementClassNames = classNames("u-height--full", {
+    const elementClassNames = classNames("u-height--full c-exclusive-game", {
       "u-margin-left": isNotFirstElement,
     });
     return (
       <div style={style}>
-        <div className={`${elementClassNames} c-exclusive-game`}>
+        <div className={elementClassNames}>
           <GameTileExclusive game={games[columnIndex]} />
         </div>
       </div>
