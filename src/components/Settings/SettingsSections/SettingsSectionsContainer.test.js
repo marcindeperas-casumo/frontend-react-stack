@@ -44,23 +44,23 @@ describe("SettingsSections", () => {
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    test("should pass correct player to child", async () => {
-      const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-        >
-          <SettingsSectionsContainer />
-        </MockedProvider>
-      );
+    // test("should pass correct player to child", async () => {
+    //   const rendered = mount(
+    //     <MockedProvider
+    //       mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+    //     >
+    //       <SettingsSectionsContainer />
+    //     </MockedProvider>
+    //   );
 
-      await waitAndUpdateWrapper(rendered);
+    //   await waitAndUpdateWrapper(rendered);
 
-      expect(
-        JSON.parse(
-          JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
-        )
-      ).toStrictEqual(playerSectionsQueryMock.result.data);
-    });
+    //   expect(
+    //     JSON.parse(
+    //       JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
+    //     )
+    //   ).toStrictEqual(playerSectionsQueryMock.result.data);
+    // });
   });
 
   describe("Labels", () => {
