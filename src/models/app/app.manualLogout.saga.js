@@ -19,7 +19,7 @@ export function* appManualLogoutSaga(): Saga {
 
   yield put(logoutAction());
 
-  yield delay(200);
+  yield delay(400);
 
   yield call(navigateToRootWithReload);
 }
