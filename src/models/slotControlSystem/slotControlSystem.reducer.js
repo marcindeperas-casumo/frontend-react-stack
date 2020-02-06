@@ -1,6 +1,7 @@
 // @flow
 import * as R from "ramda";
 import { createReducer } from "Utils";
+import type { GameCategory } from "Api/api.casinoPlayerGames";
 import type {
   StateType,
   SessionStateResponseType,
@@ -9,6 +10,7 @@ import type {
 import { ACTION_TYPES } from "./slotControlSystem.constants";
 
 const DEFAULT_STATE: StateType = {
+  slugToCategoryMap: {},
   lastUpdateTime: 0,
   activeSession: null,
   lastEndedSession: null,
@@ -36,6 +38,18 @@ const handlers = {
     return {
       ...state,
       activeSession: R.mergeDeepRight(state.activeSession, data),
+    };
+  },
+  [ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP]: (
+    state,
+    { slug, categories }: { slug: string, categories: Array<GameCategory> }
+  ) => {
+    return {
+      ...state,
+      slugToCategoryMap: {
+        ...state.slugToCategoryMap,
+        [slug]: categories,
+      },
     };
   },
 };
