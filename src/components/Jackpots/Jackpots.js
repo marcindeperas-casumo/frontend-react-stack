@@ -111,8 +111,8 @@ export default class Jackpots extends PureComponent<Props> {
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={this.columns}
-              listTitle={this.props.title}
+              itemCount={this.columns.length}
+              title={this.props.title}
               itemRenderer={this.desktopJackpotColumnRenderer}
               tileHeight={315}
             />
