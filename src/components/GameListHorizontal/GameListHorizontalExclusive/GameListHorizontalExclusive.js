@@ -7,7 +7,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { GameTileExclusive } from "Components/GameTileExclusive";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
-import "../GameListHorizontal.scss";
+import "./GameListHorizontalExclusive.scss";
 
 export type Props = {
   list: A.GameListExclusiveQuery_gamesList,

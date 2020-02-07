@@ -7,7 +7,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { LiveCasinoCard } from "Components/LiveCasinoCard";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
-import "../GameListHorizontal.scss";
+import "./GameListHorizontalLiveCasino.scss";
 
 export type Props = {
   list: A.GameListLiveCasinoQuery_gamesList,
