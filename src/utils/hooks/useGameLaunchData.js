@@ -10,7 +10,8 @@ import {
 } from "Api/api.gameLaunch";
 import { getGameModel } from "GameProviders";
 import { ENVIRONMENTS, DEVICES } from "Src/constants";
-import { isTestEnv, languageSelector } from "Models/handshake";
+import { isTestEnv } from "Utils";
+import { languageSelector } from "Models/handshake";
 
 type Props = {
   slug: string,
@@ -23,9 +24,7 @@ export const useGameLaunchData = ({ slug, playForFun }: Props) => {
   const [gameProviderModel, setGameProviderModel] = useState(null);
   const [failed, setFailed] = useState(false);
   const gameRef = useRef(null);
-  const environment = useSelector(isTestEnv)
-    ? ENVIRONMENTS.TEST
-    : ENVIRONMENTS.PRODUCTION;
+  const environment = isTestEnv() ? ENVIRONMENTS.TEST : ENVIRONMENTS.PRODUCTION;
   const language = useSelector(languageSelector);
 
   useEffect(() => {
