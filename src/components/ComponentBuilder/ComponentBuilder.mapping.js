@@ -2,7 +2,7 @@
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
-import { GameListHorizontalCMS } from "Components/GameListHorizontal";
+import { GameListHorizontalCMS } from "Components/GameListHorizontal/GameListHorizontalCMS";
 import { ContentGameList as GameListVertical } from "Components/ContentGameList";
 import { ContentImage } from "Components/ContentImage";
 import { ContentSeparator } from "Components/ContentSeparator";
