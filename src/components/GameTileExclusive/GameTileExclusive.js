@@ -1,22 +1,17 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { GameTile } from "Components/GameTile/GameTile";
 
-class GameTileExclusive extends PureComponent {
-  imgixOpts = {
-    w: 188,
-    h: 280,
-    fit: "crop",
-  };
-
-  render() {
-    return (
-      <GameTile
-        {...this.props}
-        ratio="game-tile-exclusive"
-        imgixOpts={this.imgixOpts}
-      />
-    );
-  }
-}
+const EXCLUSIVE_GAME_TILE_IMGIX_OPTS = {
+  w: 188,
+  h: 280,
+  fit: "crop",
+};
+const GameTileExclusive = props => (
+  <GameTile
+    {...props}
+    ratio="game-tile-exclusive"
+    imgixOpts={EXCLUSIVE_GAME_TILE_IMGIX_OPTS}
+  />
+);
 
 export default GameTileExclusive;
