@@ -2,6 +2,9 @@
 
 query ReelRaceListQuery {
     title: getText(id: "root:reel-races.reel-race-templates:fields.title")
+    seeMore: getText(
+        id: "root:built-pages.top-lists-translations:fields.more_link"
+    )
     reelRaces {
         id
         ...ReelRaceCard_ReelRace

@@ -20,11 +20,11 @@ export const ReelRacesListContainer = () => {
   return (
     <ReelRacesList
       isFetched={!loading}
-      areTranslationsFetched={!loading}
       // $FlowFixMe I'm struggling fixing this error
       reelRaces={data?.reelRaces}
       // $FlowFixMe I'm struggling fixing this error
       title={data?.title}
+      seeMore={data?.seeMore}
     />
   );
 };

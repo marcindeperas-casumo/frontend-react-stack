@@ -7,19 +7,18 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
 type Props = {
-  areTranslationsFetched: boolean,
   title: string,
   reelRaces: Array<A.ReelRaceListQuery_reelRaces>,
   isFetched: boolean,
+  seeMore: string,
 };
 
 export class ReelRacesList extends React.PureComponent<Props> {
   render() {
-    if (!this.props.areTranslationsFetched) {
+    if (!this.props.isFetched) {
       return null;
     }
-    const { title } = this.props;
-    const { reelRaces } = this.props;
+    const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
 
     return (
@@ -28,7 +27,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
           <MobileAndTablet>
             <ScrollableList
               title={title}
-              seeMoreText="..."
+              seeMoreText={seeMore}
               seeMoreUrl={seeMoreUrl}
               items={reelRaces}
               Component={ReelRaceCard}
@@ -45,7 +44,7 @@ export class ReelRacesList extends React.PureComponent<Props> {
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
-                text: "...",
+                text: seeMore,
                 url: seeMoreUrl,
               }}
             />
