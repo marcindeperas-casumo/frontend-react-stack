@@ -201,7 +201,7 @@ export class ReelRaceCard extends React.Component<Props> {
       timeLimit: this.duration,
       minBet,
       mainPrize: formattedPrize,
-      name: game?.name,
+      name: game.name,
       isPromoted: promoted,
     };
 
