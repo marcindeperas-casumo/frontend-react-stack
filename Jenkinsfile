@@ -11,7 +11,7 @@ if (env.BRANCH_NAME=="master"){
             .checkout()
             .customStep('Install dependencies', this.&installDependencies)
             .customStep('Build', this.&runBuild)
-            .with(Docker) { it.publishDockerImages() }
+            .with(Docker) { it.publishDockerImage() }
             .with(Release) { it.release() }
             .with(DeployService){ it.deployToProduction('frontend-react-stack') }
             .customStep('Rollbar Deploy Tracking', this.&rollbarDeployTracking)
@@ -41,7 +41,7 @@ Started by: *${env.gitAuthor}* :eyes:
             "Sonar": {it.gradleSonarTask()}
         ])
         .customStep('Build', this.&runBuild)
-        .with(Docker) { it.publishDockerImages() }
+        .with(Docker) { it.publishDockerImage() }
         .with(Release) { it.release() }
         .with(DeployService){ it.deployToTest('frontend-react-stack') }
         .build('js-builder')
