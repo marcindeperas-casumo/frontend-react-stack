@@ -7,6 +7,7 @@ import {
   playerSectionsQueryMock,
   playerSectionsLabelsQueryMock,
   playerSectionsQueryErrorMock,
+  playerSectionsLabelsQueryErrorMock,
 } from "./__mocks__/Queries.mock";
 
 let Component, SettingsSectionsContainer;
@@ -43,54 +44,54 @@ describe("SettingsSections", () => {
       expect(rendered.find("ErrorMessage")).toHaveLength(1);
     });
 
-    // test("should pass correct player to child", async () => {
-    //   const rendered = mount(
-    //     <MockedProvider
-    //       mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-    //     >
-    //       <SettingsSectionsContainer />
-    //     </MockedProvider>
-    //   );
+    test("should pass correct player to child", async () => {
+      const rendered = mount(
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        >
+          <SettingsSectionsContainer />
+        </MockedProvider>
+      );
 
-    //   await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
-    //   expect(
-    //     JSON.parse(
-    //       JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
-    //     )
-    //   ).toStrictEqual(playerSectionsQueryMock.result.data);
-    // });
+      expect(
+        JSON.parse(
+          JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
+        )
+      ).toStrictEqual(playerSectionsQueryMock.result.data);
+    });
   });
 
-  // describe("Labels", () => {
-  //   test("should show error", async () => {
-  //     const rendered = mount(
-  //       <MockedProvider
-  //         mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
-  //       >
-  //         <SettingsSectionsContainer />
-  //       </MockedProvider>
-  //     );
+  describe("Labels", () => {
+    test("should show error", async () => {
+      const rendered = mount(
+        <MockedProvider
+          mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
+        >
+          <SettingsSectionsContainer />
+        </MockedProvider>
+      );
 
-  //     await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
-  //     expect(rendered.find("ErrorMessage")).toHaveLength(1);
-  //   });
+      expect(rendered.find("ErrorMessage")).toHaveLength(1);
+    });
 
-  //   test("should pass correct player to child", async () => {
-  //     const rendered = mount(
-  //       <MockedProvider
-  //         mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-  //       >
-  //         <SettingsSectionsContainer />
-  //       </MockedProvider>
-  //     );
+    test("should pass correct player to child", async () => {
+      const rendered = mount(
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        >
+          <SettingsSectionsContainer />
+        </MockedProvider>
+      );
 
-  //     await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered);
 
-  //     expect(
-  //       JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
-  //     ).toStrictEqual(playerSectionsLabelsQueryMock.result.data);
-  //   });
-  // });
+      expect(
+        JSON.parse(JSON.stringify(rendered.find("Component").prop("labels")))
+      ).toStrictEqual(playerSectionsLabelsQueryMock.result.data);
+    });
+  });
 });
