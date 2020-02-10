@@ -5,6 +5,7 @@ import com.casumo.jenkins.PluggablePipelineBuilder
 import com.casumo.jenkins.pipeline.features.release.Release
 import com.casumo.jenkins.pipeline.features.Docker
 import com.casumo.jenkins.pipeline.features.DeployService
+import com.casumo.jenkins.pipeline.features.GradleAnalyze
 
 if (env.BRANCH_NAME=="master"){
     try {
@@ -30,8 +31,8 @@ Started by: *${env.gitAuthor}* :eyes:
         throw ex
     }
 } else {
-    new PluggablePipelineBuilder(this)
-        .checkout()
+    def builder = new PluggablePipelineBuilder(this)
+   builder.checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .parallel([
@@ -39,7 +40,7 @@ Started by: *${env.gitAuthor}* :eyes:
             "Lint": {it.customStepTask('Lint', this.&runLint)},
             "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
             "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
-            "Sonar": {it.gradleSonarTask()}
+            "Sonar": { new GradleAnalyze(builder).sonarTask() }
         ])
         .customStep('Build', this.&runBuild)
         .with(Docker) { it.publishDockerImage() }
