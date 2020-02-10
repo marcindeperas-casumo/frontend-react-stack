@@ -36,7 +36,7 @@ Started by: *${env.gitAuthor}* :eyes:
             "Lint": {it.customStepTask('Lint', this.&runLint)},
             "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
             "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
-            "Sonar": {it.gradleSonarTask()}
+            "Sonar": {it.customStepTask('Sonar', this.&sonar)}
         ])
         .customStep('Build', this.&runBuild)
         .gradleDockerPublish()
@@ -71,6 +71,10 @@ def runLint() {
 
 def runChromatic () {
     sh "yarn chromatic"
+}
+
+def sonar() {
+    sh "yarn sonar"
 }
 
 def rollbarDeployTracking () {

@@ -57,6 +57,7 @@
     "reselect": "^4.0.0",
     "rollbar": "^2.7.1",
     "sass-resources-loader": "^2.0.1",
+    "sonarqube-scanner": "^2.5.0",
     "store": "^2.0.12"
   },
   "scripts": {
@@ -70,6 +71,7 @@
     "pact:can-i-deploy": "node pact/can-i-deploy.js",
     "pact:ci": "yarn pact && yarn pact:publish && yarn pact:can-i-deploy",
     "test:ci": "CI=yes npm run test --coverage",
+    "sonar": "node sonar-project.js",
     "lint": "yarn lint:js && yarn lint:css",
     "lint:js": "eslint '**/*.js'",
     "lint:css": "stylelint '**/*.scss'",
@@ -173,7 +175,7 @@
     "@storybook/react": "5.0.11",
     "@storybook/theming": "5.0.11",
     "@svgr/webpack": "^4.3.0",
-    "apollo": "2.21.0",
+    "apollo": "^2.21.0",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^24.9.0",

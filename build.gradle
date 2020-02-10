@@ -7,35 +7,9 @@ buildscript {
     }
 }
 
-plugins {
-    id "org.sonarqube" version "2.7"
-}
+
 apply plugin: 'casumo-docker'
 apply plugin: 'casumo-release'
-
-tasks.sonarqube.doFirst {
-    def version = "${project.version.endsWith("SNAPSHOT") ? project.version.replace("-SNAPSHOT", "") : "master"}"
-    def testFiles = "**/*.stories.js, **/*.test.js"
-    sonarqube {
-        properties {
-            property "sonar.host.url", "http://sonar.casumo.cloud/"
-            property "sonar.projectKey", "${project.name}"
-            property "sonar.projectName", "${project.name}"
-            property "sonar.sources", "src"
-            property "sonar.javascript.lcov.reportPaths", "coverage/lcov.info"
-            property "sonar.javascript.exclusions", "**/__mocks__/*.js"
-            property "sonar.coverage.exclusions", testFiles
-            property "sonar.cpd.exclusions", testFiles
-
-            // Pull Request settings
-            if (version != 'master') {
-                property "sonar.pullrequest.branch", version
-                property "sonar.pullrequest.key", "${System.getProperty('prkey')}"
-                property "sonar.pullrequest.github.repository", "Casumo/${System.getProperty('reponame')}"
-            }
-        }
-    }
-}
 
 casumoDocker.image 'frontend-react-stack'
 
