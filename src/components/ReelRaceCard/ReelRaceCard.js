@@ -197,9 +197,9 @@ export class ReelRaceCard extends React.Component<Props> {
 
     const trackData = {
       [EVENT_PROPS.LOCATION]: "Reel Race",
-      splinLimit: spinLimit,
+      spinLimit,
       timeLimit: this.duration,
-      minBet: minBet,
+      minBet,
       mainPrize: formattedPrize,
       name: game?.name,
       isPromoted: promoted,
