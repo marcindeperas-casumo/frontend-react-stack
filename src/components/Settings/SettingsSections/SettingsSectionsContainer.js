@@ -1,9 +1,10 @@
 // @flow
 import React from "react";
+import { connect } from "react-redux";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
 import { appManualLogoutInit } from "Models/app";
-import reduxStore from "Services/reduxStore";
+// import reduxStore from "Services/reduxStore";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -19,7 +20,7 @@ const Composed = adopt({
   ),
 });
 
-export const withContainer = (Component: Function, logout: () => void) => (
+export const withContainer = (Component: Function) => (
   <Composed>
     {({ playerLoginHistory, labels }) => {
       if (playerLoginHistory.loading || labels.loading) {
@@ -36,7 +37,6 @@ export const withContainer = (Component: Function, logout: () => void) => (
         <Component
           playerLoginHistory={playerLoginHistory.data}
           labels={labels.data}
-          logout={logout}
         />
       );
     }}
@@ -44,6 +44,12 @@ export const withContainer = (Component: Function, logout: () => void) => (
 );
 
 export const SettingsSectionsContainer = () =>
-  withContainer(SettingsSections, () =>
-    reduxStore.dispatch(appManualLogoutInit())
+  // withContainer(SettingsSections, () =>
+  //   reduxStore.dispatch(appManualLogoutInit())
+  // );
+  withContainer(
+    connect(
+      null,
+      { logout: appManualLogoutInit }
+    )(SettingsSections)
   );

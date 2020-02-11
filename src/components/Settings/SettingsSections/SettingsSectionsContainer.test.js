@@ -14,7 +14,7 @@ let Component, SettingsSectionsContainer;
 describe("SettingsSections", () => {
   beforeEach(() => {
     Component = props => <div />;
-    SettingsSectionsContainer = () => withContainer(Component, () => null);
+    SettingsSectionsContainer = () => withContainer(Component);
   });
 
   describe("Player Settings", () => {
