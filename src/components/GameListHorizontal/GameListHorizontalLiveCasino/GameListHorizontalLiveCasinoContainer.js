@@ -1,56 +1,23 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS } from "Src/constants";
+import * as A from "Types/apollo";
 import TrackProvider from "Components/TrackProvider";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
-
+import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
 type Props = {
   /** The id of the game list. */
   id: string,
 };
 
-export const GameListLiveCasinoQuery = gql`
-  query GameListLiveCasinoQuery($id: String!) {
-    seeMoreText: getText(
-      id: "root:built-pages.top-lists-translations:fields.more_link"
-    )
-    gamesList(listId: $id) {
-      id
-      name
-      games {
-        id
-        backgroundImage
-        isInMaintenance
-        isInMyList
-        logo
-        name
-        slug
-        liveCasinoLobby {
-          id
-          tableId
-          symbol
-          provider
-          results
-          image
-          type
-          betBehind
-          bets {
-            min
-            max
-            symbol
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const GameListHorizontalLiveCasinoContainer = ({ id }: Props) => {
   const variables = { id };
-  const { data, loading } = useQuery(GameListLiveCasinoQuery, { variables });
+  const { data, loading } = useQuery<
+    A.GameListLiveCasinoQuery,
+    A.GameListLiveCasinoQueryVariables
+  >(GameListLiveCasinoQuery, { variables });
 
   if (loading) {
     return (

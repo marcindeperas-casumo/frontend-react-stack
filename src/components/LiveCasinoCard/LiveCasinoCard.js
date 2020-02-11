@@ -110,7 +110,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   renderFooter = () => {
     return (
       <LiveCasinoCardFooter
-        players={this.liveCasinoLobby.players}
+        players={this.liveCasinoLobby.numberOfPlayers}
         provider={this.liveCasinoLobby.provider}
       />
     );

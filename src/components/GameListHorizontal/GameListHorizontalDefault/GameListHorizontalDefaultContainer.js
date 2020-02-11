@@ -1,42 +1,24 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
-import { propOr } from "ramda";
 import { useQuery } from "@apollo/react-hooks";
 import { EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
+import * as A from "Types/apollo";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalDefault } from "./GameListHorizontalDefault";
+import { GameListQuery } from "./GameListHorizontalDefault.graphql";
 
 type Props = {
-  /** The id of the game list. */
+  /** The game list id */
   id: string,
 };
 
-// __FIX__ this should really live in a .graphql file and reference th
-// fragments for its child components. However when I try it explodes. :(
-export const GameListQuery = gql`
-  query GameListQuery($id: String!) {
-    gamesList(listId: $id) {
-      id
-      name
-      games {
-        id
-        backgroundImage
-        isInMaintenance
-        isInMyList
-        logo
-        name
-        slug
-      }
-    }
-  }
-`;
-
 export const GameListHorizontalDefaultContainer = ({ id }: Props) => {
   const variables = { id };
-  const { data, loading } = useQuery(GameListQuery, { variables });
-  const list = propOr({}, "gamesList", data);
+  const { data, loading } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
+    GameListQuery,
+    { variables }
+  );
 
   if (loading) {
     return (
@@ -49,7 +31,7 @@ export const GameListHorizontalDefaultContainer = ({ id }: Props) => {
   if (data && data.gamesList && data.gamesList.games.length) {
     return (
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
-        <GameListHorizontalDefault list={list} />
+        <GameListHorizontalDefault list={data.gamesList} />
       </TrackProvider>
     );
   }
