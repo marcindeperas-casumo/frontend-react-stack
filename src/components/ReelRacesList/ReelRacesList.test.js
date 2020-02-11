@@ -11,6 +11,7 @@ const props = {
   isFetched: false,
   areTranslationsFetched: true,
   title: "Reel Race",
+  seeMore: "See more",
   reelRaces: [
     {
       id: "edc71c70-56d6-11e9-8587-0242ac11000b",
