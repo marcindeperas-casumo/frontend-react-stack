@@ -2,6 +2,7 @@
 @Library('casumo-jenkins-libraries') _
 
 import com.casumo.jenkins.PipelineBuilder
+import com.casumo.jenkins.pipeline.versioning.GitReleaseVersionFactory
 
 if (env.BRANCH_NAME=="master"){
     try {
@@ -46,6 +47,8 @@ Started by: *${env.gitAuthor}* :eyes:
 }
 
 def installDependencies() {
+
+
     sh "yarn"
 }
 
@@ -74,7 +77,7 @@ def runChromatic () {
 }
 
 def sonar() {
-    sh "yarn sonar"
+    sh "yarn sonar -- --prkey=${env.CHANGE_ID} --version=${env.BRANCH_NAME}"
 }
 
 def rollbarDeployTracking () {
