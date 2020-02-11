@@ -1,4 +1,5 @@
 // @flow
+import type { GameCategory } from "Api/api.casinoPlayerGames";
 
 export type GameSessionStatsType = {
   consumedBalance: number,
@@ -46,6 +47,7 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
+  slugToCategoryMap: { [string]: Array<GameCategory> },
 };
 
 export type SessionStateResponseType = {

@@ -10,3 +10,5 @@ export * from "./periodicReminderNotification.saga";
 export * from "./limitAlmostConsumedNotification.saga";
 export * from "./timeRemainingNotification.saga";
 export * from "./statsUpdateNotification.saga";
+export * from "./shouldShowSlotControlSystem.utils";
+export * from "./shouldShowSlotControlSystem.saga";
