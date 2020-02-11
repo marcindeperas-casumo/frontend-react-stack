@@ -84,10 +84,12 @@ const toSubNavItem = (
   text: (
     <>
       {subNav.competition.regionCode && (
-        <RegionFlag
-          regionCode={subNav.competition.regionCode}
-          className="u-margin-right"
-        />
+        <div className="u-width--lg u-height--md">
+          <RegionFlag
+            regionCode={subNav.competition.regionCode}
+            className="u-margin-right"
+          />
+        </div>
       )}
       {subNav.competition.name}
     </>
