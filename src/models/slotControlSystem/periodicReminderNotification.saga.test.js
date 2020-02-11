@@ -1,24 +1,56 @@
-import * as R from "ramda";
-import { cloneableGenerator } from "redux-saga/utils";
+// @flow
+import { recordSaga } from "Utils";
 import { MESSAGES as cometdMessages } from "Models/cometd";
 import { periodicReminderNotificationSaga } from "./periodicReminderNotification.saga";
+import { shouldShowSlotControlSystemSaga } from "./shouldShowSlotControlSystem.saga";
 
-test("Models/slotControlSystem/periodicReminderNotificationSaga()", () => {
-  const gen = cloneableGenerator(periodicReminderNotificationSaga)({
-    data: {
-      [cometdMessages.PERIODIC_REMINDER_NOTIFICATION]: "object goes here",
-    },
+jest.mock("./shouldShowSlotControlSystem.saga", () => ({
+  shouldShowSlotControlSystemSaga: jest.fn(),
+}));
+
+const expectedAction = {
+  config: "object goes here",
+  modalId: "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION",
+  type: "MODAL/SHOW",
+};
+
+describe("Models/slotControlSystem/periodicReminderNotificationSaga()", () => {
+  beforeEach(() => {
+    // $FlowIgnore
+    shouldShowSlotControlSystemSaga.mockReset();
   });
-  const expectedAction = {
-    config: "object goes here",
-    modalId: "SLOT_CONTROL_SYSTEM_PERIODIC_REMINDER_NOTIFICATION",
-    type: "MODAL/SHOW",
-  };
+  test("spawns modal if shouldShowSlotControlSystemSaga returns true", async () => {
+    // $FlowIgnore
+    shouldShowSlotControlSystemSaga.mockReturnValueOnce(true);
+    const { effects } = await recordSaga({
+      saga: periodicReminderNotificationSaga,
+      args: [
+        {
+          data: {
+            [cometdMessages.PERIODIC_REMINDER_NOTIFICATION]: "object goes here",
+          },
+        },
+      ],
+    });
 
-  const periodicReminderNotification = gen.clone();
-  const getAction = R.path(["value", "PUT", "action"]);
+    expect(effects.put).toHaveLength(1);
+    expect(effects.put[0].result).toStrictEqual(expectedAction);
+  });
 
-  expect(getAction(periodicReminderNotification.next())).toStrictEqual(
-    expectedAction
-  );
+  test("does nothing if shouldShowSlotControlSystemSaga returns false", async () => {
+    // $FlowIgnore
+    shouldShowSlotControlSystemSaga.mockReturnValueOnce(false);
+    const { effects } = await recordSaga({
+      saga: periodicReminderNotificationSaga,
+      args: [
+        {
+          data: {
+            [cometdMessages.PERIODIC_REMINDER_NOTIFICATION]: "object goes here",
+          },
+        },
+      ],
+    });
+
+    expect(effects.put).toBeUndefined();
+  });
 });
