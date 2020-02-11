@@ -9,15 +9,11 @@ import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 type Props = {
   title: string,
   reelRaces: Array<A.ReelRaceListQuery_reelRaces>,
-  isFetched: boolean,
   seeMore: string,
 };
 
 export class ReelRacesList extends React.PureComponent<Props> {
   render() {
-    if (!this.props.isFetched) {
-      return null;
-    }
     const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
 

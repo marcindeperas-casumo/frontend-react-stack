@@ -17,14 +17,20 @@ export const ReelRacesListContainer = () => {
     }
   );
 
-  return (
-    <ReelRacesList
-      isFetched={!loading}
-      // $FlowFixMe I'm struggling fixing this error
-      reelRaces={data?.reelRaces}
-      // $FlowFixMe I'm struggling fixing this error
-      title={data?.title}
-      seeMore={data?.seeMore}
-    />
-  );
+  if (loading) {
+    // We need a beaut skeleton!
+    return null;
+  }
+
+  if (data && data.reelRaces && data.reelRaces.length) {
+    return (
+      <ReelRacesList
+        reelRaces={data.reelRaces}
+        title={data.title}
+        seeMore={data.seeMore}
+      />
+    );
+  }
+
+  return null;
 };
