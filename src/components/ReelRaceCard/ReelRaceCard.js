@@ -68,7 +68,7 @@ export class ReelRaceCard extends React.Component<Props> {
               size="sm"
               variant="primary"
               className="u-padding-y--md u-padding-x--lg"
-              onLaunchGame={() => launchGame({ slug: game.slug })}
+              onClick={() => launchGame({ slug: game.slug })}
             >
               <PlayIcon size="sm" className="c-reel-race__button-icon" />
               <span className="u-margin-left">
