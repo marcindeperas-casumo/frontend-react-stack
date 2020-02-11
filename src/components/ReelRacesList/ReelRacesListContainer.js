@@ -7,7 +7,7 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 
 // Polling for updates is temporary.
 // We are going to move to use subscriptions once the GraphQL server is ready for it
-const pollInterval = 3000;
+const pollInterval = 8000;
 
 export const ReelRacesListContainer = () => {
   const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
