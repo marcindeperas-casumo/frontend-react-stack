@@ -4,7 +4,6 @@ import { connect } from "react-redux";
 import { Query } from "react-apollo";
 import { adopt } from "react-adopt";
 import { appManualLogoutInit } from "Models/app";
-// import reduxStore from "Services/reduxStore";
 import { SettingsSections } from "Components/Settings/SettingsSections/SettingsSections";
 import { SettingsRowListSkeleton } from "Components/Settings/SettingsRow/SettingsRowListSkeleton";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -44,9 +43,6 @@ export const withContainer = (Component: Function) => (
 );
 
 export const SettingsSectionsContainer = () =>
-  // withContainer(SettingsSections, () =>
-  //   reduxStore.dispatch(appManualLogoutInit())
-  // );
   withContainer(
     connect(
       null,
