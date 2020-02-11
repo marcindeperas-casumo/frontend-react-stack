@@ -24,6 +24,7 @@
     "@casumo/fe-toolkit-ismobile": "^1.0.2",
     "@reach/router": "^1.2.1",
     "@researchgate/react-intersection-observer": "^1.0.1",
+    "@typescript-eslint/eslint-plugin": "^2.19.2",
     "apollo-cache-inmemory": "^1.6.3",
     "apollo-client": "^2.6.4",
     "apollo-link-context": "^1.0.19",
