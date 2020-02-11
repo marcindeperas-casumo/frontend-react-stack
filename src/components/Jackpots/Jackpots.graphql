@@ -2,7 +2,7 @@
 
 query JackpotsQuery {
   gamesList(listId: "casumoJackpotGames") {
-    title
+    name
     games {
       ...Jackpots_Game
     }
