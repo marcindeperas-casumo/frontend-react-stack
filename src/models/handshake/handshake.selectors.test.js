@@ -18,7 +18,6 @@ import {
   marketSelector,
   gamesHandshakeSelector,
   isGamesHandshakeLoaded,
-  isTestEnv,
   languageSelector,
   getCmsHash,
   hasMadeFirstDepositSelector,
@@ -333,33 +332,6 @@ describe("Handshake selectors", () => {
       };
 
       expect(isGamesHandshakeLoaded(state)).toBe(false);
-    });
-  });
-
-  describe("isTestEnv", () => {
-    test("returns false when site url is www.casumo.com", () => {
-      const state = {
-        handshake: {
-          app: {
-            "common/composition/context": { siteUrl: "https://www.casumo.com" },
-          },
-        },
-      };
-
-      expect(isTestEnv(state)).toBe(false);
-    });
-    test("returns false when site url is www.casumotest.com", () => {
-      const state = {
-        handshake: {
-          app: {
-            "common/composition/context": {
-              siteUrl: "https://www.casumotest.com",
-            },
-          },
-        },
-      };
-
-      expect(isTestEnv(state)).toBe(true);
     });
   });
 
