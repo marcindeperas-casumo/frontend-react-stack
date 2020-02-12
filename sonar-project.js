@@ -12,17 +12,6 @@ const sonarQubeConfig = {
     "sonar.cpd.exclusions": testFiles,
   },
 };
-// eslint-disable-next-line import/order
-const argv = require("yargs").argv;
-
-if (argv.version !== "master") {
-  // eslint-disable-next-line fp/no-mutation
-  sonarQubeConfig.options["sonar.pullrequest.branch"] = argv.version;
-  // eslint-disable-next-line fp/no-mutation
-  sonarQubeConfig.options["sonar.pullrequest.github.repository"] = projectName;
-  // eslint-disable-next-line fp/no-mutation
-  sonarQubeConfig.options["sonar.pullrequest.key"] = argv.prkey;
-}
 
 const sonarqubeScanner = require("sonarqube-scanner");
 sonarqubeScanner(sonarQubeConfig, () => {});

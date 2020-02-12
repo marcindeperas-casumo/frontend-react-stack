@@ -77,12 +77,20 @@ def runChromatic () {
 
 def sonar(apply_fix=true) {
     try {
-        sh "yarn sonar -- --prkey=${env.CHANGE_ID} --version=${env.BRANCH_NAME}"
+        if (env.BRANCH_NAME != 'master'){
+            sh "yarn sonar -- sonar.pullrequest.branch=${env.BRANCH_NAME} sonar.pullrequest.key=${env.CHANGE_ID} sonar.pullrequest.github.repository=frontend-react-stack"
+
+        } else {
+            sh "yarn sonar"
+        }
+
     } catch (e){
         if (apply_fix){
             sh "sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /home/jenkins/.sonar/native-sonar-scanner/\$(ls -1tr /home/jenkins/.sonar/native-sonar-scanner/ | head -1)/bin/sonar-scanner"
             sonar(false)
-        } else throw e
+        } else {
+            throw e
+        }
     }
 }
 
