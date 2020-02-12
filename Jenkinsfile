@@ -2,7 +2,6 @@
 @Library('casumo-jenkins-libraries') _
 
 import com.casumo.jenkins.PipelineBuilder
-import com.casumo.jenkins.pipeline.versioning.GitReleaseVersionFactory
 
 if (env.BRANCH_NAME=="master"){
     try {
@@ -76,8 +75,15 @@ def runChromatic () {
     sh "yarn chromatic"
 }
 
-def sonar() {
-    sh "yarn sonar -- --prkey=${env.CHANGE_ID} --version=${env.BRANCH_NAME}"
+def sonar(apply_fix=true) {
+    try {
+        sh "yarn sonar -- --prkey=${env.CHANGE_ID} --version=${env.BRANCH_NAME}"
+    } catch (e){
+        if (apply_fix){
+            sh "sed -i 's/use_embedded_jre=true/use_embedded_jre=false/g' /home/jenkins/.sonar/native-sonar-scanner/\$(ls -1tr /home/jenkins/.sonar/native-sonar-scanner/ | head -1)/bin/sonar-scanner"
+            sonar(false)
+        } else throw e
+    }
 }
 
 def rollbarDeployTracking () {
