@@ -1,17 +1,21 @@
 #!groovy
 @Library('casumo-jenkins-libraries') _
 
-import com.casumo.jenkins.PipelineBuilder
+import com.casumo.jenkins.PluggablePipelineBuilder
+import com.casumo.jenkins.pipeline.features.release.Release
+import com.casumo.jenkins.pipeline.features.Docker
+import com.casumo.jenkins.pipeline.features.DeployService
+import com.casumo.jenkins.pipeline.features.GradleAnalyze
 
 if (env.BRANCH_NAME=="master"){
     try {
-        new PipelineBuilder(this)
+        new PluggablePipelineBuilder(this)
             .checkout()
             .customStep('Install dependencies', this.&installDependencies)
             .customStep('Build', this.&runBuild)
-            .gradleDockerPublish()
-            .gradleRelease()
-            .deployToProduction('frontend-react-stack')
+            .with(Docker) { it.publishDockerImage() }
+            .with(Release) { it.release() }
+            .with(DeployService){ it.deployToProduction('frontend-react-stack') }
             .customStep('Rollbar Deploy Tracking', this.&rollbarDeployTracking)
             .build('js-builder')
 
@@ -27,8 +31,8 @@ Started by: *${env.gitAuthor}* :eyes:
         throw ex
     }
 } else {
-    new PipelineBuilder(this)
-        .checkout()
+    def builder = new PluggablePipelineBuilder(this)
+   builder.checkout()
         .customStep('Install dependencies', this.&installDependencies)
         .customStep('Tests', this.&runTests)
         .parallel([
@@ -36,12 +40,12 @@ Started by: *${env.gitAuthor}* :eyes:
             "Lint": {it.customStepTask('Lint', this.&runLint)},
             "Visual Regression": {it.customStepTask('Visual Regression', this.&runChromatic)},
             "Contract Tests": {it.customStepTask('Contract Tests', this.&pact)},
-            "Sonar": {it.gradleSonarTask()}
+            "Sonar": { new GradleAnalyze(builder).sonarTask() }
         ])
         .customStep('Build', this.&runBuild)
-        .gradleDockerPublish()
-        .gradleRelease()
-        .deployToTest('frontend-react-stack')
+        .with(Docker) { it.publishDockerImage() }
+        .with(Release) { it.release() }
+        .with(DeployService){ it.deployToTest('frontend-react-stack') }
         .build('js-builder')
 }
 
