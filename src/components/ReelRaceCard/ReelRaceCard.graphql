@@ -1,0 +1,39 @@
+fragment ReelRaceCard_ReelRace on ReelRace {
+    id
+    game {
+        id
+        name
+        logo
+        backgroundImage
+        slug
+    }
+    startTime
+    optedIn
+    endTime
+    startTime
+    spinLimit
+    minBet
+    promoted
+    formattedPrize
+    remainingSpins
+    translations {
+        optedInCtaSingleGameShort
+        optIn
+        optedIn
+        endingIn
+        startingIn
+        competeFor
+        spins
+        duration
+        durationTemplate
+        minBet
+        caveatShort
+    }
+}
+
+mutation OptInForReelRace($id: String!) {
+    optInForReelRace(id: $id) {
+        id
+        optedIn
+    }
+}
