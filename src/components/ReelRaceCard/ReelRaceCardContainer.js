@@ -6,13 +6,11 @@ import { ReelRaceCard } from "./ReelRaceCard";
 import { OptInForReelRace } from "./ReelRaceCard.graphql";
 
 type Props = {
-  item: A.ReelRaceCard_ReelRace,
+  reelRace: A.ReelRaceCard_ReelRace,
 };
 
-// __FIX__: this should take a game but because of
-// https://github.com/Casumo/frontend-react-stack/blob/master/src/components/ScrollableList/ScrollableList.js#L42
-export const ReelRaceCardContainer = ({ item }: Props) => {
-  const { id } = item;
+export const ReelRaceCardContainer = ({ reelRace }: Props) => {
+  const { id } = reelRace;
   const [optInForReelRace] = useMutation(OptInForReelRace, {
     variables: {
       id,
@@ -27,5 +25,5 @@ export const ReelRaceCardContainer = ({ item }: Props) => {
     },
   });
 
-  return <ReelRaceCard reelRace={item} optIn={optInForReelRace} />;
+  return <ReelRaceCard reelRace={reelRace} optIn={optInForReelRace} />;
 };

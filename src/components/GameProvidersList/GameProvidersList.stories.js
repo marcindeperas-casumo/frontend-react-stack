@@ -14,9 +14,8 @@ const title = "Game Providers";
 stories.add("Game Providers List (Presentational)", () => (
   <MockStore>
     <GameProvidersListPresentational
-      isLoaded={true}
       title={title}
-      items={GameProvidersListData}
+      gameStudios={GameProvidersListData}
     />
   </MockStore>
 ));

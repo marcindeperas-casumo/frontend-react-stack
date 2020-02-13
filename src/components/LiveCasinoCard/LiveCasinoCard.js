@@ -16,7 +16,7 @@ import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData
 import * as A from "Types/apollo";
 
 export type Props = {
-  game: A.gameListQuery_gamesList_games,
+  game: A.GameListLiveCasinoQuery_gamesList_games,
   launchGame: Function,
 };
 
@@ -110,7 +110,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   renderFooter = () => {
     return (
       <LiveCasinoCardFooter
-        players={this.liveCasinoLobby.players}
+        players={this.liveCasinoLobby.numberOfPlayers}
         provider={this.liveCasinoLobby.provider}
       />
     );

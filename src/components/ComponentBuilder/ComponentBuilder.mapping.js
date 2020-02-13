@@ -2,7 +2,7 @@
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
-import { GameListHorizontal } from "Components/GameListHorizontal";
+import { GameListHorizontalCMS } from "Components/GameListHorizontal/GameListHorizontalCMS";
 import { ContentGameList as GameListVertical } from "Components/ContentGameList";
 import { ContentImage } from "Components/ContentImage";
 import { ContentSeparator } from "Components/ContentSeparator";
@@ -24,8 +24,8 @@ import { TopListCuratedCard } from "Components/TopListCuratedCard";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
-  GAMES_LIST: GameListHorizontal,
-  GAMES_LIST_HORIZONTAL: GameListHorizontal,
+  GAMES_LIST: GameListHorizontalCMS,
+  GAMES_LIST_HORIZONTAL: GameListHorizontalCMS,
   GAMES_LIST_VERTICAL: GameListVertical,
   GROUPED_LIST_HORIZONTAL: GameProvidersList,
   CURATED_CARD: TopListCuratedCard,

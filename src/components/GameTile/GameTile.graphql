@@ -1,4 +1,4 @@
-# import ./GameTileInMaintenance.graphql
+#import "./GameTileInMaintenance.graphql"
 
 fragment GameTile_Game on Game {
   isInMaintenance

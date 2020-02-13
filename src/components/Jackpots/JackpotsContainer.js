@@ -1,6 +1,5 @@
 // @flow
 import React from "react";
-import { path } from "ramda";
 import { connect } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
 import { localeSelector } from "Models/handshake";
@@ -20,14 +19,12 @@ type JackpotsQueryInjectProps = {
 
 export const JackpotsQueryInject = ({ locale }: JackpotsQueryInjectProps) => {
   const { data, loading } = useQuery(JackpotsQuery, { pollInterval });
-  const getTitle = path(["gamesList", "title"]);
-  const getGames = path(["gamesList", "games"]);
 
   return loading ? null : (
     <Jackpots
-      title={getTitle(data)}
+      title={data?.name}
       locale={locale}
-      jackpots={getGames(data)}
+      jackpots={data?.gamesList?.games}
     />
   );
 };

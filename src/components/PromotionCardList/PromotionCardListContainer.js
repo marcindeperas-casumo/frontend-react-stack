@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
-import PromotionCardList from "./PromotionCardList";
+import { PromotionCardList } from "./PromotionCardList";
 import { PromotionsListQuery } from "./PromotionCardListContainer.graphql";
 import { PromotionCardListSkeleton } from "./PromotionCardListSkeleton";
 type Props = {
@@ -23,10 +23,10 @@ const PromotionCardListContainer = ({ slug }: Props) => {
     return <PromotionCardListSkeleton />;
   }
 
-  if (data && data.promotionsList) {
+  if (data && data.promotionsList && data.promotionsList.promotions.length) {
     return (
       <PromotionCardList
-        seeMore={data.seeMore}
+        seeMoreText={data.seeMoreText}
         id={data.promotionsList.id}
         name={data.promotionsList.name}
         promotions={data.promotionsList.promotions}

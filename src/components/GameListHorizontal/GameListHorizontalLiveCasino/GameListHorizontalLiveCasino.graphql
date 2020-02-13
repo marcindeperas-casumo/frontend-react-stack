@@ -1,0 +1,14 @@
+#import "../../LiveCasinoCard/LiveCasinoCard.graphql"
+
+query GameListLiveCasinoQuery($id: String!) {
+  seeMoreText: getText(
+    id: "root:built-pages.top-lists-translations:fields.more_link"
+  )
+  gamesList(listId: $id) {
+    id
+    name
+    games {
+      ...LiveCasinoCard
+    }
+  }
+}

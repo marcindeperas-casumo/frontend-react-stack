@@ -3,7 +3,7 @@ import { mount } from "enzyme";
 import { setDesktopViewport, setMobileViewport } from "Utils/testUtils";
 import MockStore from "Components/MockStore/index";
 import defaultState from "Models/__mocks__/state.mock";
-import PromotionCardList from "./PromotionCardList";
+import { PromotionCardList } from "./PromotionCardList";
 
 const fetchCampaign = jest.fn();
 const fetchPromotions = jest.fn();
