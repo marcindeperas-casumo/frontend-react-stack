@@ -1290,6 +1290,13 @@
     "@casumo/cudl-react-utils" "^1.0.6"
     ramda "^0.26.1"
 
+"@casumo/cmp-loader-global@^1.0.2":
+  version "1.0.2"
+  resolved "http://npm.casumotest.local/@casumo%2fcmp-loader-global/-/cmp-loader-global-1.0.2.tgz#fe818a1747e40d6fbe0d3efdc60320155cccffd2"
+  integrity sha512-Qn0Q4mPPdk6DkikrX9ZHbMYpghYEB+ijWVr5wsqTPpzDSIETk6Rx1TjEfps1/nA8fzCencZJV6EVw5KcnmrNbQ==
+  dependencies:
+    "@casumo/cudl-react-utils" "^1.0.6"
+
 "@casumo/cmp-media@^2.0.4":
   version "2.0.4"
   resolved "http://npm.casumotest.local/@casumo%2fcmp-media/-/cmp-media-2.0.4.tgz#6d0cf70cff62d731df37016a892eebf8eb2f2fdb"

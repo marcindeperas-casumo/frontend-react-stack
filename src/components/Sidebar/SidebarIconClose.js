@@ -19,7 +19,7 @@ export const SidebarIconClose = () => {
       >
         <CrossIcon
           size="md"
-          className="u-padding-y--xlg u-padding-x--md u-cursor-pointer"
+          className="u-padding-y--sm u-padding-x--sm u-cursor-pointer"
         />
       </div>
     )

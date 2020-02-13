@@ -24,7 +24,9 @@ export const LayoutPage = (props: Props) => {
       spacing="none"
     >
       <Sidebar />
-      <div className="c-layout-content">{props.children}</div>
+      <div className="c-layout-content t-background-chrome-dark-3">
+        {props.children}
+      </div>
     </Flex>
   );
 };

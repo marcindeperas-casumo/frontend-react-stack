@@ -1,20 +1,25 @@
 // @flow
 
-import React from "react";
+import React, { useState } from "react";
 import Flex from "@casumo/cmp-flex";
+import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
   useGameLaunchData,
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
   useGameCategories,
+  usePlayerSessionInvalidRedirect,
 } from "Utils/hooks";
+import { DGOJBar } from "Components/Compliance/DGOJBar";
+import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
+import "./GamePage.scss";
 
 type Props = {
   slug: string,
@@ -22,15 +27,29 @@ type Props = {
 };
 
 export const GamePage = ({ slug, playForFun }: Props) => {
+  const [isGameActive, setGameActive] = useState(false);
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
-  const { gameProviderModel, error } = useGameLaunchData({
-    playForFun,
-    slug,
-  });
   const { loading, gameCategories } = useGameCategories(slug);
-  const shouldShowSlotControlSystem = !loading && isSlotGame(gameCategories);
+  const shouldShowSlotControlSystem =
+    !loading && isDGOJ && isSlotGame(gameCategories);
+  const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
+    {
+      playForFun,
+      slug,
+      callbacks: {
+        onGameActive: () => {
+          setGameActive(true);
+        },
+        onGameIdle: () => {
+          setGameActive(false);
+        },
+      },
+    }
+  );
+  useRealityCheckModal({ pauseGame, resumeGame });
+  usePlayerSessionInvalidRedirect();
 
   useBeforePlayingModal({
     canLaunch: Boolean(
@@ -42,7 +61,7 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     ),
   });
 
-  if (error) {
+  if (error && !isGameActive) {
     return (
       <Flex className="t-background-chrome-light-2 u-height--screen">
         <ErrorMessage
@@ -54,19 +73,27 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   }
 
   if (!gameProviderModel || loading) {
-    return null;
+    return <LoaderGlobal />;
   }
 
-  if (isDGOJ && shouldShowSlotControlSystem) {
-    return (
-      <div className="u-height--full u-width--full">
-        <div className="u-width--full c-game-launcher-container--dgoj">
-          <GameLauncher gameProviderModel={gameProviderModel} />
+  return (
+    <Flex
+      className="u-height--full t-background-chrome-dark-3 t-color-white"
+      direction="vertical"
+      spacing="none"
+    >
+      <Flex.Item>
+        <DGOJBar />
+      </Flex.Item>
+      <Flex.Block className="u-position-relative">
+        <div className="c-game-page__game-wrapper">
+          <GameLauncher
+            gameProviderModel={gameProviderModel}
+            className="c-game-page__game-launcher"
+          />
         </div>
-        <InfoBar />
-      </div>
-    );
-  }
-
-  return <GameLauncher gameProviderModel={gameProviderModel} />;
+      </Flex.Block>
+      <Flex.Item>{shouldShowSlotControlSystem && <InfoBar />}</Flex.Item>
+    </Flex>
+  );
 };
