@@ -28,8 +28,6 @@ export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
 export const REACT_APP_EVENT_INIT_MANUAL_LOGOUT =
   "REACT_APP_EVENT/initManualLogout";
-export const REACT_APP_EVENT_INIT_AUTOMATIC_LOGOUT =
-  "REACT_APP_EVENT/initAutomaticLogout";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.

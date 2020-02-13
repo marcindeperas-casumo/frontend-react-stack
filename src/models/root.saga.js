@@ -229,7 +229,7 @@ export default function* rootSaga(dispatch) {
   yield fork(takeLatest, appTypes.APP_MANUAL_LOGOUT_INIT, appManualLogoutSaga);
   yield fork(
     takeLatest,
-    appTypes.APP_AUTOMATIC_LOGOUT_INIT,
+    takeChannel(cometdChannels.SESSION_ENDED),
     appAutomaticLogoutSaga
   );
 }

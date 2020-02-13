@@ -16,7 +16,3 @@ export const logout = () => ({
 export const appManualLogoutInit = () => ({
   type: types.APP_MANUAL_LOGOUT_INIT,
 });
-
-export const appAutomaticLogoutInit = () => ({
-  type: types.APP_AUTOMATIC_LOGOUT_INIT,
-});

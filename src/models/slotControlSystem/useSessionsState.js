@@ -21,23 +21,23 @@ export function useSessionsState(): UseSessionsStateType {
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const lastUpdateTime: number = useSelector(lastUpdateTimeSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  const isOlderThan15s = lastUpdateTime + 1000 * 15 < Date.now();
+  const isFresh = lastUpdateTime > 0;
   const lastEndedSessionDuringLastHour = Boolean(
-    lastEndedSession && lastEndedSession.endedTime + 1000 * 60 * 60 > Date.now()
+    lastEndedSession?.endedTime + 1000 * 60 * 60 > Date.now()
   );
 
   useEffect(() => {
-    if (isOlderThan15s) {
+    if (!isFresh) {
       dispatch(initFetchActiveSessionAction());
     }
-  }, [dispatch, isOlderThan15s]);
+  }, [dispatch, isFresh]);
 
   return {
-    activeSession: isOlderThan15s ? null : activeSession,
+    activeSession,
     lastEndedSession,
     lastEndedSessionDuringLastHour,
     activeExclusion,
     isFetching,
-    isFresh: !isOlderThan15s,
+    isFresh,
   };
 }
