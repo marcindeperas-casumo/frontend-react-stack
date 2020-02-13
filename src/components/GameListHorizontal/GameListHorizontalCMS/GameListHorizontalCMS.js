@@ -5,7 +5,7 @@ import { GameListHorizontalExclusive } from "../GameListHorizontalExclusive";
 import { GameListHorizontalLiveCasino } from "../GameListHorizontalLiveCasino";
 import { GameListHorizontalDefault } from "../GameListHorizontalDefault";
 
-export const GAMES_LISTS = {
+const GAMES_LISTS = {
   [GAME_LIST_IDS.EXCLUSIVE_GAMES]: GameListHorizontalExclusive,
   [GAME_LIST_IDS.LIVE_CASINO_GAMES]: GameListHorizontalLiveCasino,
   // Let's check if we still need this

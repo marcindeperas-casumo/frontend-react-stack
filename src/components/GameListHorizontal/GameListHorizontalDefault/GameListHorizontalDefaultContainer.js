@@ -14,10 +14,9 @@ type Props = {
 };
 
 export const GameListHorizontalDefaultContainer = ({ id }: Props) => {
-  const variables = { id };
   const { data, loading } = useQuery<A.GameListQuery, A.GameListQueryVariables>(
     GameListQuery,
-    { variables }
+    { variables: { id } }
   );
 
   if (loading) {

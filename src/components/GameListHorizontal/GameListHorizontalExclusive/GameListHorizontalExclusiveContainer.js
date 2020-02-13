@@ -14,11 +14,10 @@ type Props = {
 };
 
 export const GameListHorizontalExclusiveContainer = ({ id }: Props) => {
-  const variables = { id };
   const { data, loading } = useQuery<
     A.GameListExclusiveQuery,
     A.GameListExclusiveQueryVariables
-  >(GameListExclusiveQuery, { variables });
+  >(GameListExclusiveQuery, { variables: { id } });
 
   if (loading) {
     return (
