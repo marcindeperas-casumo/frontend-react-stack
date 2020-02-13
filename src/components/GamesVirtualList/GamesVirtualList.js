@@ -2,6 +2,7 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
+import type { Game } from "Types/game";
 import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
@@ -16,7 +17,7 @@ type Props = {
   /** The total number of rows */
   rowCount: number,
   /** The element to render as a row  */
-  renderItem: (game: string) => React.Node,
+  renderItem: (game: Game) => React.Node,
 };
 
 export class GamesVirtualList extends React.PureComponent<Props> {

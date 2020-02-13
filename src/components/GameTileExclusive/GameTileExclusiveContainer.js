@@ -8,6 +8,5 @@ type Props = {
 };
 
 export const GameTileExclusiveContainer = ({ game }: Props) => {
-  // __FIX__: update all properties to come from the Apollo store
-  return <GameTileExclusive game={game} onLaunchGame={() => {}} />;
+  return <GameTileExclusive game={game} />;
 };
