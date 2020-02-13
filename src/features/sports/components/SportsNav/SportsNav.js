@@ -2,7 +2,7 @@
 import * as React from "react";
 import { useQuery, getApolloContext } from "@apollo/react-hooks";
 import { USER_NAVIGATION_QUERY } from "Features/sports/components/SportsNav/SportsNavQueries";
-import { ErrorMessage } from "Components/ErrorMessage";
+import { losNavigationData } from "Features/sports/components/SportsNav/__mocks__/losNavigationData";
 import { OpenModalMutation } from "Features/sports/components/GraphQL";
 import {
   SportsMainNav,
@@ -121,7 +121,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     navItemUtils.isInPlayHash(currentHash)
   );
   const variables = { live: isLiveActive };
-  const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
+  // eslint-disable-next-line fp/no-let
+  let { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
   });
 
@@ -141,7 +142,8 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   }
 
   if (error) {
-    return <ErrorMessage direction="horizontal" />;
+    // eslint-disable-next-line  fp/no-mutation
+    data = losNavigationData;
   }
 
   if (
@@ -158,7 +160,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
     setIsLiveActive(liveActive);
 
     const path = liveActive
-      ? navItemUtils.ALL_SPORTS_PATH
+      ? navItemUtils.ALL_SPORTS_PATH // $FlowFixMe
       : data.sportsNavigation[0].sport.clientPath;
 
     navItemUtils.selectPath(client, path);

@@ -2,9 +2,10 @@
 import React, { useEffect } from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
-import { useCrossCodebaseNavigation } from "Utils/hooks";
-import { ROUTE_IDS } from "Src/constants";
-
+import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
+// import SportsLOS from "Features/sports/components/SportsLOS";
+// import { useCrossCodebaseNavigation } from "Utils/hooks";
+// import { ROUTE_IDS } from "Src/constants";
 type Props = {
   onAppStarted: () => void,
   subscribeToUpdates: Function,
@@ -18,7 +19,7 @@ type Props = {
 
 export const App = (props: Props) => {
   const { onAppStarted, playerId, sessionId } = props;
-  const { navigateToKO } = useCrossCodebaseNavigation();
+  // const { navigateToKO } = useCrossCodebaseNavigation();
 
   useEffect(() => {
     onAppStarted();
@@ -33,14 +34,14 @@ export const App = (props: Props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerId, sessionId]);
 
-  if (!props.isAppHandshakeLoaded) {
-    return null;
-  }
+  // if (!props.isAppHandshakeLoaded) {
+  //   return null;
+  // }
 
-  if (!props.isAuthenticated) {
-    navigateToKO(ROUTE_IDS.LOGIN);
-    return null;
-  }
+  // if (!props.isAuthenticated) {
+  //   navigateToKO(ROUTE_IDS.LOGIN);
+  //   return null;
+  // }
 
   return (
     <>
@@ -51,6 +52,13 @@ export const App = (props: Props) => {
           import("Components/Compliance/DepositLimits/DepositLimitsView")
         }
         namedExport="DepositLimitsViewContainer"
+      />
+      <LazyPortal
+        hostElementId="sports-los-portal"
+        loader={() => import("Features/sports/components/SportsLOS")}
+        fallback={<SportsShellSkeleton />}
+        namedExport="SportsLOSContainer"
+        props={props}
       />
     </>
   );
