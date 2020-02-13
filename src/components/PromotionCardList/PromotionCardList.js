@@ -8,8 +8,7 @@ import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";
 
-type Props = {
-  ...A.PromotionsListQuery_promotionsList,
+type Props = A.PromotionsListQuery_promotionsList & {
   seeMoreText: string,
 };
 
@@ -37,7 +36,7 @@ export const PromotionCardList = ({
       <div className="o-wrapper">
         <MobileAndTablet>
           <ScrollableList
-            itemClassName={"c-promotion-card"}
+            itemClassName="c-promotion-card"
             title={name}
             seeMoreText={seeMoreText}
             seeMoreUrl={seeMoreUrl}

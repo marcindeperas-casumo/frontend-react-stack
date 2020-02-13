@@ -1,21 +1,28 @@
 // @flow
 import * as React from "react";
+import classNames from "classnames";
 import ScrollableList from "Components/ScrollableList";
 import * as A from "Types/apollo";
 import { ReelRaceCard } from "Components/ReelRaceCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 
-type Props = {
-  title: string,
-  reelRaces: Array<A.ReelRaceListQuery_reelRaces>,
-  seeMore: string,
-};
-
-export class ReelRacesList extends React.PureComponent<Props> {
+export class ReelRacesList extends React.PureComponent<A.ReelRaceListQuery> {
   render() {
     const { title, seeMore, reelRaces } = this.props;
     const seeMoreUrl = "/reel-races";
+
+    const itemRenderer = ({ columnIndex, style }) => (
+      <div style={style}>
+        <div
+          className={classNames("c-reel-race-card", {
+            "u-margin-left": columnIndex > 0,
+          })}
+        >
+          <ReelRaceCard reelRace={reelRaces[columnIndex]} />
+        </div>
+      </div>
+    );
 
     return (
       <div className="u-margin-x--3xlg@desktop">
@@ -23,20 +30,19 @@ export class ReelRacesList extends React.PureComponent<Props> {
           <MobileAndTablet>
             <ScrollableList
               title={title}
+              itemClassName="c-reel-race-card"
               seeMoreText={seeMore}
               seeMoreUrl={seeMoreUrl}
               items={reelRaces}
+              itemRenderer={i => <ReelRaceCard reelRace={reelRaces[i]} />}
               Component={ReelRaceCard}
             />
           </MobileAndTablet>
           <Desktop>
             <ScrollableListPaginated
-              list={{
-                title: title,
-                itemIds: reelRaces,
-              }}
-              Component={ReelRaceCard}
-              className="c-reel-race-card"
+              title={title}
+              itemCount={reelRaces.length}
+              itemRenderer={itemRenderer}
               itemControlClass="c-scrollable-list-paginated__reel_races-button"
               tileHeight={248}
               seeMore={{
