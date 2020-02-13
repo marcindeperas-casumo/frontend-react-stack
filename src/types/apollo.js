@@ -603,6 +603,64 @@ export type gameStudioQueryVariables = {
 };
 
 // ====================================================
+// GraphQL mutation operation: OptInForReelRace
+// ====================================================
+
+export type OptInForReelRace_optInForReelRace = {
+  id: string,
+  optedIn: boolean,
+};
+export type OptInForReelRace = {
+  optInForReelRace: ?OptInForReelRace_optInForReelRace,
+};
+export type OptInForReelRaceVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: ReelRaceListQuery
+// ====================================================
+
+export type ReelRaceListQuery_reelRaces_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  slug: string,
+};
+export type ReelRaceListQuery_reelRaces_translations = {
+  optedInCtaSingleGameShort: string,
+  optIn: string,
+  optedIn: string,
+  endingIn: string,
+  startingIn: string,
+  competeFor: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  minBet: string,
+  caveatShort: string,
+};
+export type ReelRaceListQuery_reelRaces = {
+  id: string,
+  game: ReelRaceListQuery_reelRaces_game,
+  startTime: BigInt,
+  optedIn: boolean,
+  endTime: BigInt,
+  spinLimit: number,
+  minBet: ?string,
+  promoted: boolean,
+  formattedPrize: string,
+  remainingSpins: number,
+  translations: ReelRaceListQuery_reelRaces_translations,
+};
+export type ReelRaceListQuery = {
+  title: string,
+  seeMore: string,
+  reelRaces: Array<ReelRaceListQuery_reelRaces>,
+};
+
+// ====================================================
 // GraphQL query operation: SearchNotFoundWithGameSuggestionsContainerQuery
 // ====================================================
 
@@ -1953,6 +2011,44 @@ export type PromotionCard_Promotion = {
   subtitle: string,
   image: string,
   badge: ?string,
+};
+
+// ====================================================
+// GraphQL fragment: ReelRaceCard_ReelRace
+// ====================================================
+
+export type ReelRaceCard_ReelRace_game = {
+  id: string,
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  slug: string,
+};
+export type ReelRaceCard_ReelRace_translations = {
+  optedInCtaSingleGameShort: string,
+  optIn: string,
+  optedIn: string,
+  endingIn: string,
+  startingIn: string,
+  competeFor: string,
+  spins: string,
+  duration: string,
+  durationTemplate: string,
+  minBet: string,
+  caveatShort: string,
+};
+export type ReelRaceCard_ReelRace = {
+  id: string,
+  game: ReelRaceCard_ReelRace_game,
+  startTime: BigInt,
+  optedIn: boolean,
+  endTime: BigInt,
+  spinLimit: number,
+  minBet: ?string,
+  promoted: boolean,
+  formattedPrize: string,
+  remainingSpins: number,
+  translations: ReelRaceCard_ReelRace_translations,
 };
 
 // ====================================================
