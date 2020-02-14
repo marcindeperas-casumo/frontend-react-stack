@@ -331,3 +331,9 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
 export const formatTime = (millis: number): string => {
   return DateTime.fromMillis(millis).toFormat("TT");
 };
+
+export const timeRemainingBeforeStart = (time: number): number => {
+  return DateTime.fromMillis(time)
+    .diffNow()
+    .valueOf();
+};

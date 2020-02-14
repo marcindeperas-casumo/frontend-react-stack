@@ -17,7 +17,7 @@ import { GameThumb } from "Components/GameThumb";
 import DangerousHtml from "Components/DangerousHtml";
 import ImageLazy from "Components/Image/ImageLazy";
 import OptInButton from "Components/OptInButton/OptInButton";
-import { interpolate } from "Utils";
+import { interpolate, timeRemainingBeforeStart } from "Utils";
 import GrandReelRaceBadge from "./GrandReelRaceBadge.svg";
 import "./ReelRaceCard.scss";
 
@@ -47,16 +47,10 @@ const Column = (props: {
 const THIRTY_MINUTES = 30 * 60 * 1000;
 
 export class ReelRaceCard extends React.Component<Props> {
-  get timeRemainingBeforeStart(): number {
-    return DateTime.fromMillis(this.props.reelRace.startTime)
-      .diffNow()
-      .valueOf();
-  }
-
   get button() {
-    const { translations: t, game, optedIn } = this.props.reelRace;
+    const { translations: t, game, optedIn, startTime } = this.props.reelRace;
 
-    if (this.timeRemainingBeforeStart <= 0) {
+    if (timeRemainingBeforeStart(startTime) <= 0) {
       if (optedIn) {
         return (
           <TrackClick
@@ -107,7 +101,7 @@ export class ReelRaceCard extends React.Component<Props> {
   get countdown() {
     const { translations: t, endTime, startTime } = this.props.reelRace;
 
-    if (this.timeRemainingBeforeStart <= 0) {
+    if (timeRemainingBeforeStart(startTime) <= 0) {
       return (
         <Flex direction="vertical" spacing="none">
           <Text
@@ -128,7 +122,7 @@ export class ReelRaceCard extends React.Component<Props> {
       );
     }
 
-    if (this.timeRemainingBeforeStart <= THIRTY_MINUTES) {
+    if (timeRemainingBeforeStart(startTime) <= THIRTY_MINUTES) {
       return (
         <Flex direction="vertical" spacing="none">
           <Text
