@@ -5,6 +5,7 @@ import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import GameTileImage from "Components/GameTile/GameTileImage";
 import { GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenance";
+import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
@@ -14,7 +15,6 @@ export type Props = {
   className?: string,
   game: A.GameTile_Game,
   imgixOpts?: Object,
-  onLaunchGame: Function,
   ratio?: string,
 };
 
@@ -24,7 +24,6 @@ export const DEFAULT_CLASSES =
 export const GameTile = ({
   className,
   game = {},
-  onLaunchGame,
   imgixOpts = {
     w: 170,
     q: 70,
@@ -64,7 +63,7 @@ export const GameTile = ({
           `o-ratio--${ratio}`,
           className
         )}
-        onClick={onLaunchGame}
+        onClick={() => launchGame({ slug: game.slug })}
       >
         <GameTileImage
           logoBackground={backgroundImage}
