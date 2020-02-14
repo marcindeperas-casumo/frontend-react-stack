@@ -1,6 +1,8 @@
 // @flow
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
+import * as R from "ramda";
+import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { ReelRacesList } from "./ReelRacesList";
 import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
@@ -8,6 +10,12 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 // Polling for updates is temporary.
 // We are going to move to use subscriptions once the GraphQL server is ready for it
 const pollInterval = 8000;
+
+const timeRemainingBeforeStart = startTime => {
+  return DateTime.fromMillis(startTime)
+    .diffNow()
+    .valueOf();
+};
 
 export const ReelRacesListContainer = () => {
   const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
@@ -22,10 +30,19 @@ export const ReelRacesListContainer = () => {
     return null;
   }
 
-  if (data && data.reelRaces && data.reelRaces.length) {
+  const validReelRaces =
+    data &&
+    data.reelRaces.filter(reelRace => {
+      const reelRaceStartedPlayerNotOptedIn =
+        timeRemainingBeforeStart(reelRace.startTime) <= 0 && !reelRace.optedIn;
+
+      return !R.isEmpty(reelRace.game) && !reelRaceStartedPlayerNotOptedIn;
+    });
+
+  if (data && validReelRaces && validReelRaces.length) {
     return (
       <ReelRacesList
-        reelRaces={data.reelRaces}
+        reelRaces={validReelRaces}
         title={data.title}
         seeMore={data.seeMore}
       />

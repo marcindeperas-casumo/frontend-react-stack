@@ -1,6 +1,5 @@
 // @flow
 import * as React from "react";
-import * as R from "ramda";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -180,20 +179,11 @@ export class ReelRaceCard extends React.Component<Props> {
     const {
       translations: t,
       game,
-      optedIn,
       spinLimit,
       minBet,
       formattedPrize,
       promoted,
     } = this.props.reelRace;
-
-    if (R.isEmpty(game)) {
-      return null;
-    }
-
-    if (this.timeRemainingBeforeStart <= 0 && !optedIn) {
-      return null;
-    }
 
     const trackData = {
       [EVENT_PROPS.LOCATION]: "Reel Race",
