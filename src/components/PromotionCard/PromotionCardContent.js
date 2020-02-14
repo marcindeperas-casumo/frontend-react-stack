@@ -1,7 +1,7 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
 
-const PromotionCardContent = ({ title }) => {
+export const PromotionCardContent = ({ title }) => {
   return (
     <Text
       tag="div"
@@ -12,5 +12,3 @@ const PromotionCardContent = ({ title }) => {
     </Text>
   );
 };
-
-export default PromotionCardContent;

@@ -3,7 +3,7 @@ import React from "react";
 import classNames from "classnames";
 import * as A from "Types/apollo";
 import ScrollableList from "Components/ScrollableList";
-import PromotionCard from "Components/PromotionCard";
+import { PromotionCard } from "Components/PromotionCard";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import "./PromotionCardList.scss";

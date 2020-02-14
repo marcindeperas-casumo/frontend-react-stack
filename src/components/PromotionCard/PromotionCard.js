@@ -1,9 +1,9 @@
 // @flow
 import React from "react";
 import Card from "@casumo/cmp-card";
-import PromotionCardHeader from "Components/PromotionCard/PromotionCardHeader";
-import PromotionCardContent from "Components/PromotionCard/PromotionCardContent";
-import PromotionCardImage from "Components/PromotionCard/PromotionCardImage";
+import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
+import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
+import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
 import "./PromotionCard.scss";
 import TrackClick from "Components/TrackClick";
 import TrackView from "Components/TrackView";
