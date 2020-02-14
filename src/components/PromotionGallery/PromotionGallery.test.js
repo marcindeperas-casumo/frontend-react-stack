@@ -78,18 +78,18 @@ describe("PromotionGallery", () => {
     expect(rendered.first().props().className).not.toMatch("t-color-");
   });
 
-  test("should render a see more link", () => {
-    const rendered = shallow(
-      <PromotionGallery
-        slug="foo"
-        fetchCampaign={fetchCampaign}
-        fetchPromotions={fetchPromotions}
-        promotionsSlugs={["page-1", "page-2"]}
-        seeMore="👀"
-      />
-    );
+  // test("should render a see more link", () => {
+  //   const rendered = shallow(
+  //     <PromotionGallery
+  //       slug="foo"
+  //       fetchCampaign={fetchCampaign}
+  //       fetchPromotions={fetchPromotions}
+  //       promotionsSlugs={["page-1", "page-2"]}
+  //       seeMore="👀"
+  //     />
+  //   );
 
-    expect(rendered.find("a").prop("href")).toBe("/promotions");
-    expect(rendered.find("a").html()).toContain("👀");
-  });
+  //   expect(rendered.find("a").prop("href")).toBe("/promotions");
+  //   expect(rendered.find("a").html()).toContain("👀");
+  // });
 });

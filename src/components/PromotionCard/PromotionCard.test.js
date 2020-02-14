@@ -1,86 +1,47 @@
 import React from "react";
 import { shallow } from "enzyme";
-import PromotionCard from "Components/PromotionCard/PromotionCard";
-
-const promotionsInfo = {
-  image: "i-am-an-image",
-  badge: "i-am-a-badge",
+import Card from "@casumo/cmp-card";
+import { PromotionCard } from "Components/PromotionCard/PromotionCard";
+import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
+import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
+import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
+const promotion = {
+  id: "promotion",
+  slug: "/promotion-1",
+  image: "/image.jpg",
+  badge: "/badge.jpg",
   title: "i-am-title",
-  dates: "i-am-dates",
+  subtitle: "i-am-the-subtitle",
 };
 
 describe("PromotionCard", () => {
-  test("should render the PromotionCardWrapper component", () => {
-    const rendered = shallow(
-      <PromotionCard
-        isFetched={true}
-        image={promotionsInfo.image}
-        badge={promotionsInfo.badge}
-        title={promotionsInfo.title}
-        dates={promotionsInfo.dates}
-      />
-    );
+  let rendered;
 
-    expect(rendered.find("PromotionCardWrapper").exists()).toBe(true);
-    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(false);
-
-    const renderedPromotionCardWrapperProps = rendered
-      .find("PromotionCardWrapper")
-      .props();
-
-    expect(renderedPromotionCardWrapperProps.image).toBe(promotionsInfo.image);
-
-    expect(renderedPromotionCardWrapperProps.badge).toBe(promotionsInfo.badge);
-
-    expect(renderedPromotionCardWrapperProps.title).toBe(promotionsInfo.title);
-
-    expect(renderedPromotionCardWrapperProps.dates).toBe(promotionsInfo.dates);
+  beforeEach(() => {
+    rendered = shallow(<PromotionCard promotion={promotion} />);
   });
 
   test("should render PromotionCardHeader component", () => {
-    const rendered = shallow(
-      <PromotionCard
-        isFetched={true}
-        image={promotionsInfo.image}
-        badge={promotionsInfo.badge}
-        title={promotionsInfo.title}
-        dates={promotionsInfo.dates}
-      />
-    );
-
     expect(
       rendered
+        .find(Card)
         .dive()
-        .find("Card")
-        .dive()
-        .find("PromotionCardHeader")
+        .find(PromotionCardHeader)
         .exists()
     ).toBe(true);
 
     const renderedPromotionCardHeaderProps = rendered
-      .dive()
       .find("Card")
       .dive()
       .find("PromotionCardHeader")
       .props();
 
-    expect(renderedPromotionCardHeaderProps.badge).toBe(promotionsInfo.badge);
+    expect(renderedPromotionCardHeaderProps.badge).toBe(promotion.badge);
   });
 
   test("should render PromotionCardContent component", () => {
-    const rendered = shallow(
-      <PromotionCard
-        isFetched={true}
-        image={promotionsInfo.image}
-        badge={promotionsInfo.badge}
-        title={promotionsInfo.title}
-        dates={promotionsInfo.dates}
-      />
-    );
-
     expect(
       rendered
-        .dive()
         .find("Card")
         .dive()
         .find("PromotionCardContent")
@@ -89,19 +50,8 @@ describe("PromotionCard", () => {
   });
 
   test("should render PromotionCardImage component", () => {
-    const rendered = shallow(
-      <PromotionCard
-        isFetched={true}
-        image={promotionsInfo.image}
-        badge={promotionsInfo.badge}
-        title={promotionsInfo.title}
-        dates={promotionsInfo.dates}
-      />
-    );
-
     expect(
       rendered
-        .dive()
         .find("Card")
         .dive()
         .find("PromotionCardImage")
@@ -109,26 +59,11 @@ describe("PromotionCard", () => {
     ).toBe(true);
 
     const renderedPromotionCardImageProps = rendered
-      .dive()
       .find("Card")
       .dive()
       .find("PromotionCardImage")
       .props();
 
-    expect(renderedPromotionCardImageProps.image).toBe(promotionsInfo.image);
-  });
-
-  test("should render the skeleton if CMS is not fetched yet", () => {
-    const rendered = shallow(
-      <PromotionCard
-        image={promotionsInfo.image}
-        badge={promotionsInfo.badge}
-        title={promotionsInfo.title}
-        dates={promotionsInfo.dates}
-        isFetched={false}
-      />
-    );
-
-    expect(rendered.find("PromotionCardSkeleton").exists()).toBe(true);
+    expect(renderedPromotionCardImageProps.image).toBe(promotion.image);
   });
 });

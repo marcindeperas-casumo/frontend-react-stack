@@ -7,7 +7,7 @@ import { CuratedCardBackground } from "../CuratedCardBackground";
 
 describe("CuratedCardBackground", () => {
   test("should use CuratedCardBackgroundNew if image is passed in", () => {
-    const component = shallow(
+    const rendered = shallow(
       <CuratedCardBackground
         link="/promotions"
         onClick={() => {}}
@@ -15,19 +15,19 @@ describe("CuratedCardBackground", () => {
       />
     );
 
-    expect(component.find(CuratedCardBackgroundNew).length).toBe(1);
+    expect(rendered.find(CuratedCardBackgroundNew).length).toBe(1);
   });
 
   test("should use CuratedCardBackgroundDeprecated if small, medium, and large images are passed in", () => {
-    const component = shallow(
+    const rendered = shallow(
       <CuratedCardBackground
         link="/promotions"
-        small_image={curatedData.image}
-        medium_image={curatedData.image}
-        large_image={curatedData.image}
+        smallImage={curatedData.image}
+        mediumImage={curatedData.image}
+        largeImage={curatedData.image}
       />
     );
 
-    expect(component.find(CuratedCardBackgroundDeprecated).length).toBe(1);
+    expect(rendered.find(CuratedCardBackgroundDeprecated).length).toBe(1);
   });
 });
