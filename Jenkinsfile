@@ -81,7 +81,7 @@ def runChromatic() {
 def sonar(apply_fix = true) {
     try {
         if (env.BRANCH_NAME != 'master') {
-            sh "yarn sonar -- sonar.pullrequest.branch=${env.BRANCH_NAME} sonar.pullrequest.key=${env.CHANGE_ID} sonar.pullrequest.github.repository=frontend-react-stack"
+            sh "yarn sonar -Dsonar.pullrequest.branch=${env.BRANCH_NAME} -Dsonar.pullrequest.key=${env.CHANGE_ID} -Dsonar.pullrequest.github.repository=frontend-react-stack"
 
         } else {
             sh "yarn sonar"
