@@ -1,5 +1,2 @@
 // @flow
-export type * from "./GameTileExclusiveContainer";
-export {
-  GameTileExclusiveContainer as GameTileExclusive,
-} from "./GameTileExclusiveContainer";
+export { GameTileExclusive } from "./GameTileExclusive";
