@@ -19,7 +19,7 @@ describe("Models/slotControlSystem/shouldShowSlotControlSystem", () => {
   test("isSlotGame", () => {
     expect(isSlotGame(["BINGO"])).toBe(true);
     expect(isSlotGame(["LIVE_CASINO"])).toBe(false);
-    expect(isSlotGame(["OTHER", "NONE"])).toBe(false);
+    expect(isSlotGame(["OTHER"])).toBe(false);
     expect(isSlotGame(["SPORTS_BETTING", "SLOT_MACHINE"])).toBe(true);
   });
 
