@@ -2,8 +2,6 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
-import isNotChromatic from "Storybook/isNotChromatic";
-import { LiveCasinoCard as LiveCasinoCardConnected } from "Components/LiveCasinoCard";
 import LiveCasinoCard from "Components/LiveCasinoCard/LiveCasinoCard";
 import MockStore from "Components/MockStore";
 import gameRoulette from "./__mocks__/Roulette.json";
@@ -18,16 +16,6 @@ const stories = storiesOf("LiveCasinoCard", module);
 
 const subscribeToUpdates = () => {};
 const unsubscribeFromUpdates = () => {};
-
-if (isNotChromatic) {
-  stories.add("Card (connected)", () => (
-    <div className="c-live-casino-card">
-      <MockStore>
-        <LiveCasinoCardConnected id="topwheel-treasures" />
-      </MockStore>
-    </div>
-  ));
-}
 
 stories.add("Card MoneyWheel", () => (
   <div className="c-live-casino-card">
