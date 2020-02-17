@@ -14,7 +14,7 @@ type Props = {
   loading: boolean,
   games: Array<Object>,
   gamesCount: number,
-  onLoadMore: () => Promise<boolean>,
+  onLoadMore: () => Promise<any>,
 };
 
 export const PAGE_SIZE = 20;

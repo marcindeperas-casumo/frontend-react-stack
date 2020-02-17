@@ -560,15 +560,15 @@ export type PromotionsListQueryVariables = {
 };
 
 // ====================================================
-// GraphQL query operation: gameStudioQuery
+// GraphQL query operation: GameStudioQuery
 // ====================================================
 
-export type gameStudioQuery_gameStudio_games_lobby_bets = {
+export type GameStudioQuery_gameStudio_games_lobby_bets = {
   min: ?number,
   max: ?number,
   symbol: ?string,
 };
-export type gameStudioQuery_gameStudio_games_lobby = {
+export type GameStudioQuery_gameStudio_games_lobby = {
   id: ?string,
   tableId: ?string,
   symbol: ?string,
@@ -577,26 +577,26 @@ export type gameStudioQuery_gameStudio_games_lobby = {
   image: ?string,
   type: ?string,
   betBehind: ?boolean,
-  bets: ?gameStudioQuery_gameStudio_games_lobby_bets,
+  bets: ?GameStudioQuery_gameStudio_games_lobby_bets,
 };
-export type gameStudioQuery_gameStudio_games = {
+export type GameStudioQuery_gameStudio_games = {
   id: string,
   backgroundImage: string,
   isInMaintenance: boolean,
   logo: string,
   name: string,
   slug: string,
-  lobby: ?gameStudioQuery_gameStudio_games_lobby,
+  lobby: ?GameStudioQuery_gameStudio_games_lobby,
 };
-export type gameStudioQuery_gameStudio = {
+export type GameStudioQuery_gameStudio = {
   id: string,
   gamesCount: number,
-  games: Array<?gameStudioQuery_gameStudio_games>,
+  games: Array<?GameStudioQuery_gameStudio_games>,
 };
-export type gameStudioQuery = {
-  gameStudio: ?gameStudioQuery_gameStudio,
+export type GameStudioQuery = {
+  gameStudio: ?GameStudioQuery_gameStudio,
 };
-export type gameStudioQueryVariables = {
+export type GameStudioQueryVariables = {
   slug: string,
   page: number,
   pageSize: number,
@@ -2560,7 +2560,15 @@ export type PlayerValuableState =
   | "Fresh"
   | "Locked"
   | "Used";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD" | "SEK";
+export type Currency =
+  | "CAD"
+  | "DKK"
+  | "EUR"
+  | "GBP"
+  | "INR"
+  | "NZD"
+  | "SEK"
+  | "USD";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
