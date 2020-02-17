@@ -7,7 +7,9 @@ import {
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
+  useGameCategories,
 } from "Utils/hooks";
+import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
@@ -27,9 +29,17 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     playForFun,
     slug,
   });
+  const { loading, gameCategories } = useGameCategories(slug);
+  const shouldShowSlotControlSystem = !loading && isSlotGame(gameCategories);
 
   useBeforePlayingModal({
-    canLaunch: Boolean(!playForFun && !error && gameProviderModel),
+    canLaunch: Boolean(
+      !playForFun &&
+        !error &&
+        !loading &&
+        gameProviderModel &&
+        shouldShowSlotControlSystem
+    ),
   });
 
   if (error) {
@@ -43,11 +53,11 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     );
   }
 
-  if (!gameProviderModel) {
+  if (!gameProviderModel || loading) {
     return null;
   }
 
-  if (isDGOJ) {
+  if (isDGOJ && shouldShowSlotControlSystem) {
     return (
       <div className="u-height--full u-width--full">
         <div className="u-width--full c-game-launcher-container--dgoj">
