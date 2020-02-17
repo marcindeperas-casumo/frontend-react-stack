@@ -154,7 +154,7 @@ export type GameStudiosQuery_gameStudios = {
   name: string,
 };
 export type GameStudiosQuery = {
-  gameStudios: Array<?GameStudiosQuery_gameStudios>,
+  gameStudios: Array<GameStudiosQuery_gameStudios>,
 };
 
 // ====================================================
@@ -591,7 +591,7 @@ export type GameStudioQuery_gameStudio_games = {
 export type GameStudioQuery_gameStudio = {
   id: string,
   gamesCount: number,
-  games: Array<?GameStudioQuery_gameStudio_games>,
+  games: Array<GameStudioQuery_gameStudio_games>,
 };
 export type GameStudioQuery = {
   gameStudio: ?GameStudioQuery_gameStudio,
