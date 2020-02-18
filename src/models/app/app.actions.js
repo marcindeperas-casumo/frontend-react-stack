@@ -12,3 +12,7 @@ export const logout = () => ({
   asyncCall: commandLogout,
   asyncCallData: {},
 });
+
+export const appManualLogoutInit = () => ({
+  type: types.APP_MANUAL_LOGOUT_INIT,
+});
