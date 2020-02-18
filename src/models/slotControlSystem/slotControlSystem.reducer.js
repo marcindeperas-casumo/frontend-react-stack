@@ -42,13 +42,13 @@ const handlers = {
   },
   [ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP]: (
     state,
-    { slug, categories }: { slug: string, categories: Array<GameCategory> }
+    { slug, category }: { slug: string, category: GameCategory }
   ) => {
     return {
       ...state,
       slugToCategoryMap: {
         ...state.slugToCategoryMap,
-        [slug]: categories,
+        [slug]: category,
       },
     };
   },

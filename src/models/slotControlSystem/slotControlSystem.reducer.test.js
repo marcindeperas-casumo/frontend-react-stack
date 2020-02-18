@@ -164,11 +164,11 @@ describe("Models/slotControlSystem/Reducer", () => {
   describe("UPDATE_SLUG_TO_CATEGORY_MAP", () => {
     test("properly updates slug to category map", () => {
       const slug = "tiger-rush";
-      const categories = ["SLOT_MACHINE"];
+      const category = "SLOT_MACHINE";
       const action = {
         type: ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP,
         slug,
-        categories,
+        category,
       };
       const state = {
         slugToCategoryMap: {},
@@ -179,7 +179,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       };
 
       expect(slotControlSystemReducer(state, action).slugToCategoryMap).toEqual(
-        { [slug]: categories }
+        { [slug]: category }
       );
     });
   });
