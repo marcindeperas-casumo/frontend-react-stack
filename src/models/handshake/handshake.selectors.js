@@ -10,7 +10,6 @@ import {
   complement,
   anyPass,
   propSatisfies,
-  includes,
 } from "ramda";
 import * as storage from "Lib/storage";
 import { INTL_LOCALES, LANGUAGES, MARKETS, VERTICALS } from "Src/constants";
@@ -128,14 +127,6 @@ export const gamesHandshakeSelector = createSelector(
 export const isGamesHandshakeLoaded = createSelector(
   gamesHandshakeSelector,
   complement(anyPass([isNil, isEmpty]))
-);
-
-export const isTestEnv = createSelector(
-  applicationHandshakeSelector,
-  compose(
-    propSatisfies(includes("casumotest"), "siteUrl"),
-    prop("common/composition/context")
-  )
 );
 
 export const languageSelector = createSelector(

@@ -124,7 +124,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="ES" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="ES" />
+              </div>
               Liga ACB
             </React.Fragment>
           ),
@@ -148,7 +150,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="PL" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="PL" />
+              </div>
               Energa Basket Liga
             </React.Fragment>
           ),
@@ -160,7 +164,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="EU" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="EU" />
+              </div>
               Euroleague
             </React.Fragment>
           ),
@@ -192,7 +198,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="ES" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="ES" />
+              </div>
               Liga ACB
             </React.Fragment>
           ),
@@ -216,7 +224,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="PL" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="PL" />
+              </div>
               Energa Basket Liga
             </React.Fragment>
           ),
@@ -228,7 +238,9 @@ describe("toNavItem()", () => {
         {
           text: (
             <React.Fragment>
-              <RegionFlag className="u-margin-right" regionCode="EU" />
+              <div className="u-width--lg u-height--md">
+                <RegionFlag className="u-margin-right" regionCode="EU" />
+              </div>
               Euroleague
             </React.Fragment>
           ),
