@@ -53,6 +53,14 @@ describe("CuratedCard", () => {
     expect(component.find(CuratedCardHeaderSimple).length).toBe(1);
   });
 
+  test("should not render a header if the data is missing", () => {
+    const component = mount(
+      <CuratedCard curatedCard={{ ...curatedGameMock, header: null }} />
+    );
+
+    expect(component.find(CuratedCardHeaderSimple).length).toBe(0);
+  });
+
   test("should not link to anywhere if it is displaying a game", () => {
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 

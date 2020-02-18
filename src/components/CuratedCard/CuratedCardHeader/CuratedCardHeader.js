@@ -14,13 +14,15 @@ export const CuratedCardHeader = ({
   header,
   subtitle,
 }: CuratedCardHeaderProps) => {
-  if (!header || !subtitle) {
-    return null;
+  if (isGame && header) {
+    return <CuratedCardHeaderSimple header={header} />;
   }
 
-  return isGame ? (
-    <CuratedCardHeaderSimple header={header} />
-  ) : (
-    <CuratedCardHeaderWithSubtitle header={header} subtitle={subtitle} />
-  );
+  if (header && subtitle) {
+    return (
+      <CuratedCardHeaderWithSubtitle header={header} subtitle={subtitle} />
+    );
+  }
+
+  return null;
 };
