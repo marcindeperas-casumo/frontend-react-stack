@@ -11,8 +11,8 @@ import {
 
 type State = {
   selectingCompetitionsFor: ?number,
-  selectingCompetitionsForName: ?string,
-  isOnboarding: ?boolean,
+  selectingCompetitionsForName: string,
+  isOnboarding: boolean,
 };
 
 type Props = {
@@ -31,22 +31,28 @@ class FavouriteSportsAndCompetitionsSelectorModal extends React.Component<
 
   showCompetitionSelectorFor = (
     id: ?number,
-    name: ?string,
-    isOnboarding: ?boolean
+    name: string,
+    isOnboarding: boolean
   ) => {
-    this.setState({
-      selectingCompetitionsFor: id,
-      selectingCompetitionsForName: name,
-      isOnboarding: isOnboarding,
-    });
-    if (isOnboarding) {
-      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT;
-      const data = {
-        [EVENT_PROPS.SPORTS_ID]: id,
-        [EVENT_PROPS.SPORTS_NAME]: name,
-      };
-      tracker.track(eventName, data);
-    }
+    const trackIntent = () => {
+      if (isOnboarding) {
+        const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_INTENT;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: id,
+          [EVENT_PROPS.SPORTS_NAME]: name,
+        };
+        tracker.track(eventName, data);
+      }
+    };
+
+    this.setState(
+      {
+        selectingCompetitionsFor: id,
+        selectingCompetitionsForName: name,
+        isOnboarding: isOnboarding,
+      },
+      trackIntent
+    );
   };
 
   hideCompetitionSelector = () =>

@@ -156,26 +156,41 @@ class StageFavouritesProvider extends React.Component<
   }
 
   toggleFavouriteSport = (id: number) => {
-    this.setState(state => ({
-      sports: state.sports.map(sport => ({
-        ...sport,
-        userFavourite:
-          id === sport.id ? !sport.userFavourite : sport.userFavourite,
-      })),
-    }));
-    if (this.state.isFirstTimeSelectingFavourites) {
-      const eventName = this.isSelected(id)
-        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED
-        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED;
-      const data = {
-        [EVENT_PROPS.SPORTS_ID]: id,
-        [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(id),
-      };
-      tracker.track(eventName, data);
-    }
+    const trackToggleFavouriteSport = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        const eventName = this.isSelected(id)
+          ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED
+          : EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: id,
+          [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(id),
+        };
+        tracker.track(eventName, data);
+      }
+    };
+
+    this.setState(
+      state => ({
+        sports: state.sports.map(sport => ({
+          ...sport,
+          userFavourite:
+            id === sport.id ? !sport.userFavourite : sport.userFavourite,
+        })),
+      }),
+      trackToggleFavouriteSport
+    );
   };
 
   toggleAllSports = () => {
+    const trackToggleAllSports = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(
+          EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL,
+          {}
+        );
+      }
+    };
+
     this.setState(state => {
       const areAllSelected =
         this.getSelectedSportsCount() === state.sports.length;
@@ -186,13 +201,7 @@ class StageFavouritesProvider extends React.Component<
           userFavourite: !areAllSelected,
         })),
       };
-    });
-    if (this.state.isFirstTimeSelectingFavourites) {
-      tracker.track(
-        EVENTS.MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED_ALL,
-        {}
-      );
-    }
+    }, trackToggleAllSports);
   };
 
   getSelectedSportsCount = () => {
@@ -203,56 +212,67 @@ class StageFavouritesProvider extends React.Component<
     sportId: number,
     competitions: Array<Competition>
   ) => {
-    this.setState(state => ({
-      sports: state.sports.map(
-        when(
-          propEq("id", sportId),
-          assoc("favouriteCompetitions", competitions)
-        )
-      ),
-    }));
-    if (this.state.isFirstTimeSelectingFavourites) {
-      tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES, {
-        [EVENT_PROPS.LEAGUES_SELECTED]: competitions,
-        [EVENT_PROPS.LEAGUES_SELECTED_NUMBER]: competitions.length,
-      });
-    }
+    const trackSetFavouriteCompetitions = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_CHOSE_LEAGUES, {
+          [EVENT_PROPS.LEAGUES_SELECTED]: competitions,
+          [EVENT_PROPS.LEAGUES_SELECTED_NUMBER]: competitions.length,
+        });
+      }
+    };
+
+    this.setState(
+      state => ({
+        sports: state.sports.map(
+          when(
+            propEq("id", sportId),
+            assoc("favouriteCompetitions", competitions)
+          )
+        ),
+      }),
+      trackSetFavouriteCompetitions
+    );
   };
 
   toggleFavouriteCompetition = (sportId: number, competition: Competition) => {
+    const trackToggleFavouriteCompetition = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        const eventName = this.isSelected(competition.id)
+          ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED
+          : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: sportId,
+          [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),
+          [EVENT_PROPS.COMPETITION_ID]: competition.id,
+          [EVENT_PROPS.COMPETITION_NAME]: competition.name,
+        };
+        tracker.track(eventName, data);
+      }
+    };
     // either add or remove competition from favourite competitions depending on whether its already in the list
-    this.setState(state => ({
-      sports: state.sports.map(sport => {
-        if (sportId === sport.id) {
-          const existingCompetition = sport.favouriteCompetitions.find(
-            eqProps("id", competition)
-          );
+    this.setState(
+      state => ({
+        sports: state.sports.map(sport => {
+          if (sportId === sport.id) {
+            const existingCompetition = sport.favouriteCompetitions.find(
+              eqProps("id", competition)
+            );
 
-          return {
-            ...sport,
-            favouriteCompetitions: existingCompetition
-              ? sport.favouriteCompetitions.filter(
-                  c => c.id !== existingCompetition.id
-                )
-              : [...sport.favouriteCompetitions, competition],
-          };
-        }
+            return {
+              ...sport,
+              favouriteCompetitions: existingCompetition
+                ? sport.favouriteCompetitions.filter(
+                    c => c.id !== existingCompetition.id
+                  )
+                : [...sport.favouriteCompetitions, competition],
+            };
+          }
 
-        return sport;
+          return sport;
+        }),
       }),
-    }));
-    if (this.state.isFirstTimeSelectingFavourites) {
-      const eventName = this.isSelected(competition.id)
-        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_REMOVE
-        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_COMPETITION_ADDED;
-      const data = {
-        [EVENT_PROPS.SPORTS_ID]: sportId,
-        [EVENT_PROPS.SPORTS_NAME]: this.getSportNameById(sportId),
-        [EVENT_PROPS.COMPETITION_ID]: competition.id,
-        [EVENT_PROPS.COMPETITION_NAME]: competition.name,
-      };
-      tracker.track(eventName, data);
-    }
+      trackToggleFavouriteCompetition
+    );
   };
 
   trackOnbordingSports = (): void => {

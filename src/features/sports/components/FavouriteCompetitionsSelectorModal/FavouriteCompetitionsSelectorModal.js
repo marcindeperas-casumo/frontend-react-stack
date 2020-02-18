@@ -54,24 +54,30 @@ export default class FavouriteCompetitionsSelectorModal extends React.Component<
   };
 
   toggleCompetition = (group: A.FavouriteCompetitionsSelectorModal_Group) => {
-    this.setState(state => ({
-      selectedCompetitions: this.isCompetitionSelected(group.id)
-        ? state.selectedCompetitions.filter(c => c.id !== group.id)
-        : [...state.selectedCompetitions, group],
-    }));
-    if (this.props.isOnboarding) {
-      const eventName = this.isCompetitionSelected(group.id)
-        ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED
-        : EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED;
-      const data = {
-        [EVENT_PROPS.SPORTS_ID]: this.props.groupId,
-        [EVENT_PROPS.SPORTS_NAME]: this.props.groupName,
-        [EVENT_PROPS.COMPETITION_ID]: group.id,
-        // $FlowFixMe
-        [EVENT_PROPS.COMPETITION_NAME]: group.name,
-      };
-      tracker.track(eventName, data);
-    }
+    const trackToggleCompetition = () => {
+      if (this.props.isOnboarding) {
+        const eventName = this.isCompetitionSelected(group.id)
+          ? EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_SELECTED
+          : EVENTS.MIXPANEL_SPORTS_ONBOARDING_LEAGUE_DESELECTED;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: this.props.groupId,
+          [EVENT_PROPS.SPORTS_NAME]: this.props.groupName,
+          [EVENT_PROPS.COMPETITION_ID]: group.id,
+          // $FlowFixMe
+          [EVENT_PROPS.COMPETITION_NAME]: group.name,
+        };
+        tracker.track(eventName, data);
+      }
+    };
+
+    this.setState(
+      state => ({
+        selectedCompetitions: this.isCompetitionSelected(group.id)
+          ? state.selectedCompetitions.filter(c => c.id !== group.id)
+          : [...state.selectedCompetitions, group],
+      }),
+      trackToggleCompetition
+    );
   };
 
   onSave = () => {

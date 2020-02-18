@@ -18,7 +18,7 @@ type Props = {
   groupId: number,
   /** Name of Group to select competitions for */
   groupName: string,
-  /** Is favourites sports eq 0 */
+  /** Is player onboarding on sports*/
   isOnboarding: boolean,
   /** Is the competition with this id selected? */
   isCompetitionSelected: (

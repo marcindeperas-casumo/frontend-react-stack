@@ -30,21 +30,27 @@ export default class ExpandableListItem extends PureComponent<Props, State> {
   };
 
   toggleExpanded = () => {
-    this.setState({ isExpanded: !this.state.isExpanded });
-    if (
-      !this.state.isExpanded &&
-      this.props.data &&
-      this.props.data.isOnboarding
-    ) {
-      const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND;
-      const data = {
-        [EVENT_PROPS.SPORTS_ID]: this.props.data.sportId,
-        [EVENT_PROPS.SPORTS_NAME]: this.props.data.sportName,
-        [EVENT_PROPS.COUNTRY_ID]: this.props.data.groupId,
-        [EVENT_PROPS.COUNTRY_NAME]: this.props.data.groupName,
-      };
-      tracker.track(eventName, data);
-    }
+    const trackingToggleExpanded = () => {
+      if (
+        this.state.isExpanded &&
+        this.props.data &&
+        this.props.data.isOnboarding
+      ) {
+        const eventName = EVENTS.MIXPANEL_SPORTS_ONBOARDING_COUNTRY_EXPAND;
+        const data = {
+          [EVENT_PROPS.SPORTS_ID]: this.props.data.sportId,
+          [EVENT_PROPS.SPORTS_NAME]: this.props.data.sportName,
+          [EVENT_PROPS.COUNTRY_ID]: this.props.data.groupId,
+          [EVENT_PROPS.COUNTRY_NAME]: this.props.data.groupName,
+        };
+        tracker.track(eventName, data);
+      }
+    };
+
+    this.setState(
+      { isExpanded: !this.state.isExpanded },
+      trackingToggleExpanded
+    );
   };
 
   get icon() {
