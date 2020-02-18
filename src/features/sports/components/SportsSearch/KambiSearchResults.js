@@ -94,6 +94,8 @@ type State = {
   searchHistory: Array<A.SearchQuery_search>,
 };
 
+type TrackSearchClickListType = "popular" | "history" | "result";
+
 class KambiSearchResults extends React.Component<Props, State> {
   state = {
     searchHistory: [],
@@ -125,7 +127,7 @@ class KambiSearchResults extends React.Component<Props, State> {
 
   trackSearchClick = (
     resultOrGroup: A.SearchQuery_search | A.TopSearches_topSearches,
-    list: "popular" | "history" | "result"
+    list: TrackSearchClickListType
   ) => {
     // will have either props
     const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
@@ -245,7 +247,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderSearchResult = (
     result: A.SearchQuery_search,
     renderAllTextAsMatched: boolean = false,
-    trackType: "history" | "result" = "result"
+    trackType: TrackSearchClickListType = "result"
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
       value: string
