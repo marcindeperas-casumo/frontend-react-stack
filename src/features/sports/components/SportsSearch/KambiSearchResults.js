@@ -4,6 +4,7 @@ import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
 import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
+import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import tracker from "Services/tracker";
@@ -113,6 +114,7 @@ class KambiSearchResults extends React.Component<Props, State> {
     super(props);
 
     this.state.searchHistory = this.persisted.searchHistory.get();
+    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 
   trackSearchInitiated = (query: string, results: boolean) =>
