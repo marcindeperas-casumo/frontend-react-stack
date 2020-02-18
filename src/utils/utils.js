@@ -9,6 +9,8 @@ export const noop = () => {};
 
 export const isNilOrEmpty = R.either(R.isNil, R.isEmpty);
 
+export const isTestEnv = () => R.includes("casumotest", window.location.origin);
+
 export const bridgeFactory = () => {
   const obj = {};
   return {

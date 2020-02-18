@@ -1,17 +1,6 @@
-buildscript {
-    repositories {
-        maven { url 'https://repository.casumocave.com/repository/releases' }
-    }
-    dependencies {
-        classpath 'com.casumo.plugins:casumo-artifact-plugins:6.+'
-    }
-}
-
 plugins {
     id "org.sonarqube" version "2.7"
 }
-apply plugin: 'casumo-docker'
-apply plugin: 'casumo-release'
 
 tasks.sonarqube.doFirst {
     def version = "${project.version.endsWith("SNAPSHOT") ? project.version.replace("-SNAPSHOT", "") : "master"}"
@@ -34,17 +23,5 @@ tasks.sonarqube.doFirst {
                 property "sonar.pullrequest.github.repository", "Casumo/${System.getProperty('reponame')}"
             }
         }
-    }
-}
-
-casumoDocker.image 'frontend-react-stack'
-
-repositories {
-    maven { url 'https://repository.casumocave.com/repository/releases' }
-}
-
-casumoRelease {
-    github {
-        repoName 'frontend-react-stack'
     }
 }
