@@ -11,6 +11,14 @@ import { ReelRaceListQuery } from "./ReelRacesListContainer.graphql";
 // We are going to move to use subscriptions once the GraphQL server is ready for it
 const pollInterval = 8000;
 
+export const getValidReelRaces = (
+  reelRaces: Array<A.ReelRaceListQuery_reelRaces>
+): Array<A.ReelRaceListQuery_reelRaces> =>
+  reelRaces.filter(
+    ({ game, startTime, optedIn }) =>
+      !R.isEmpty(game) && (optedIn || timeRemainingBeforeStart(startTime) > 0)
+  );
+
 export const ReelRacesListContainer = () => {
   const { data, loading } = useQuery<A.ReelRaceListQuery, _>(
     ReelRaceListQuery,
@@ -24,14 +32,8 @@ export const ReelRacesListContainer = () => {
     return null;
   }
 
-  const validReelRaces =
-    data &&
-    data.reelRaces.filter(reelRace => {
-      const reelRaceStartedPlayerNotOptedIn =
-        timeRemainingBeforeStart(reelRace.startTime) <= 0 && !reelRace.optedIn;
-
-      return !R.isEmpty(reelRace.game) && !reelRaceStartedPlayerNotOptedIn;
-    });
+  const reelRaces = data?.reelRaces || [];
+  const validReelRaces = getValidReelRaces(reelRaces);
 
   if (data && validReelRaces && validReelRaces.length) {
     return (
