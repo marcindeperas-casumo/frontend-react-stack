@@ -1,9 +1,12 @@
 import React from "react";
 import { mount, shallow } from "enzyme";
 import MockStore from "Components/MockStore";
+import { launchGame } from "Services/LaunchGameService";
 import { GameTile } from "./GameTile";
 import { GameTileInMaintenance } from "./GameTileInMaintenance";
 import gameInfo from "./__mocks__/Game.json";
+
+jest.mock("../../applicationService/LaunchGameService.js");
 
 describe("GameTile", () => {
   test("should render GameTileImage", () => {
@@ -46,11 +49,10 @@ describe("GameTile", () => {
     expect(rendered.find(GameTileInMaintenance)).toHaveLength(1);
   });
 
-  test("should launchGame if component is clicked", () => {
-    const onLaunchGame = jest.fn();
+  test("should launchGame if component is clickedd", () => {
     const rendered = mount(
       <MockStore>
-        <GameTile game={gameInfo} onLaunchGame={onLaunchGame} />
+        <GameTile game={gameInfo} />
       </MockStore>
     );
 
@@ -59,6 +61,6 @@ describe("GameTile", () => {
       .first()
       .simulate("click");
 
-    expect(onLaunchGame).toHaveBeenCalled();
+    expect(launchGame).toHaveBeenCalledTimes(1);
   });
 });
