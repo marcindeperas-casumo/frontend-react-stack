@@ -5,13 +5,13 @@ import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import * as A from "Types/apollo";
 import MustDropJackpotsList from "./MustDropJackpotsList";
-import { MustDropJackpotGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
+import { MustDropJackpotsGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
 const MustDropJackpotsListContainer = () => {
   const { data, loading } = useQuery<
-    A.MustDropJackpotGamesListQuery,
-    A.MustDropJackpotGamesListQueryVariables
-  >(MustDropJackpotGamesListQuery, {
+    A.MustDropJackpotsGamesListQuery,
+    A.MustDropJackpotsGamesListQueryVariables
+  >(MustDropJackpotsGamesListQuery, {
     variables: {
       id: GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES,
       numberOfGames: 20,

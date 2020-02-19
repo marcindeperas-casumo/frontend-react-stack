@@ -1,5 +1,4 @@
-
-query MustDropJackpotGamesListQuery ($id: String!, $numberOfGames: Int!) {
+query MustDropJackpotsGamesListQuery ($id: String!, $numberOfGames: Int!) {
   seeMoreText: getText(
     id: "root:built-pages.top-lists-translations:fields.more_link"
   )
