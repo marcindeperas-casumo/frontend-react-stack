@@ -2,7 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
-import { GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
+import { GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT } from "Src/constants";
 import { localeSelector } from "Models/handshake";
 import Jackpots from "./Jackpots";
 import { JackpotsQuery } from "./Jackpots.graphql";
@@ -22,8 +22,7 @@ type JackpotsQueryInjectProps = {
 
 export const JackpotsQueryInject = ({
   locale,
-  // As jackpots are shown 3 by  3, we want the "number" to be a multiple of 3
-  number = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT + 1,
+  number = GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT,
 }: JackpotsQueryInjectProps) => {
   const { data, loading } = useQuery(JackpotsQuery, {
     pollInterval,
