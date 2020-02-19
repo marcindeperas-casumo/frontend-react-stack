@@ -11,7 +11,9 @@ const stories = storiesOf("ScrollableListPaginated", module);
 const ScrollableListPaginatedStory = () => {
   const itemRenderer = ({ style, columnIndex }) => (
     <div style={style}>
-      <GameTile game={gamesListMock.games[columnIndex]} />
+      <div style={{ width: "160px" }} className="u-margin-left--sm">
+        <GameTile game={gamesListMock.games[columnIndex]} />
+      </div>
     </div>
   );
 
@@ -21,7 +23,6 @@ const ScrollableListPaginatedStory = () => {
         title={gamesListMock.name}
         itemCount={gamesListMock.games.length}
         tileHeight={204}
-        tileWidth={204}
         itemControlClass="c-scrollable-list-paginated__button"
         seeMore={{
           url: "/aw-gidi",
