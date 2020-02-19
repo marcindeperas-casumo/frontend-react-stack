@@ -3,8 +3,6 @@ import { shallow } from "enzyme";
 import Card from "@casumo/cmp-card";
 import { PromotionCard } from "Components/PromotionCard/PromotionCard";
 import { PromotionCardHeader } from "Components/PromotionCard/PromotionCardHeader";
-import { PromotionCardContent } from "Components/PromotionCard/PromotionCardContent";
-import { PromotionCardImage } from "Components/PromotionCard/PromotionCardImage";
 const promotion = {
   id: "promotion",
   slug: "/promotion-1",
