@@ -1,33 +1,32 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { GameRow } from "Components/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 import MockStore from "Components/MockStore";
+import { games } from "./__mock__";
 import SectionList from "./";
 
 const stories = storiesOf("SectionList", module);
 
 const sections = [
-  { title: "D", data: ["dancing-in-rio", "divine-fortune"] },
-  { title: "H", data: ["hall-of-gods"] },
-  { title: "I", data: ["irish-riches"] },
-  { title: "J", data: ["jackpot-diamonds"] },
-  { title: "K", data: ["keystone-kops"] },
+  { title: "D", data: [games[0], games[1]] },
+  { title: "H", data: [games[2]] },
+  { title: "I", data: [games[3]] },
+  { title: "J", data: [games[4]] },
+  { title: "K", data: [games[5]] },
   {
     title: "M",
-    data: [
-      "mega-fortune",
-      "mega-fortune-dreams",
-      "mega-moolah",
-      "monkeys-millions",
-    ],
+    data: [games[6], games[7], games[8]],
   },
-  { title: "P", data: ["power-force-heroes"] },
-  { title: "T", data: ["top-cat"] },
+  { title: "P", data: [games[9]] },
+  { title: "T", data: [games[10]] },
 ];
 
 stories.add("Alphabetical", () => (
   <MockStore>
-    <SectionList sections={sections} renderItem={id => <GameRow id={id} />} />
+    <SectionList
+      sections={sections}
+      renderItem={game => <GameRow game={game} onLaunchGame={() => {}} />}
+    />
   </MockStore>
 ));
 
