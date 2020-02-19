@@ -59,7 +59,11 @@ export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
         page: nextPage,
       },
       updateQuery: (prev, { fetchMoreResult }) => {
-        if (!fetchMoreResult) {
+        if (
+          !fetchMoreResult ||
+          !fetchMoreResult.gameStudio ||
+          !prev.gameStudio
+        ) {
           return prev;
         }
 
