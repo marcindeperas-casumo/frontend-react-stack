@@ -1,7 +1,7 @@
 {
   "name": "Casumo Roulette",
   "slug": "casumo-roulette",
-  "logoBackground": "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-roulette.png",
+  "backgroundImage": "https://cms.casumo.com/wp-content/uploads/2017/09/img-back-roulette.png",
   "logo": "https://cms.casumo.com/wp-content/uploads/2017/09/img-logo-roulette.png",
   "hasPlayForFun": false,
   "inMaintenanceMode": false,
@@ -17,18 +17,7 @@
       "max": 10000
     },
     "players": 6,
-    "results": [
-      "26",
-      "34",
-      "4",
-      "21",
-      "29",
-      "33",
-      "0",
-      "33",
-      "0",
-      "32"
-    ],
+    "results": ["26", "34", "4", "21", "29", "33", "0", "33", "0", "32"],
     "betBehind": null,
     "seats": null,
     "provider": "casumo"
