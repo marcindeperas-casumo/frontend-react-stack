@@ -1,8 +1,8 @@
 import React from "react";
 import { shallow } from "enzyme";
-import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions/SearchNotFoundWithGameSuggestions";
 import { SearchNotFound } from "Components/SearchNotFound";
-import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList/GameSearchSuggestionsList";
+import { SearchNotFoundWithGameSuggestions } from "./SearchNotFoundWithGameSuggestions";
 
 describe("SearchNotFoundWithGameSuggestions", () => {
   test("should render a SearchNotFound and a GameSearchSuggestionsList components", () => {

@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { SearchNotFound } from "Components/SearchNotFound";
-import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList/GameSearchSuggestionsList";
 import type { Props as SearchNotFoundProps } from "Components/SearchNotFound";
 import type { Props as GameSearchSuggestionsListProps } from "Components/GameSearchSuggestionsList/GameSearchSuggestionsList";
 
