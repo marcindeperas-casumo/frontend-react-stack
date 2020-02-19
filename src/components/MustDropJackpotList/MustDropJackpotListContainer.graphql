@@ -1,0 +1,11 @@
+query MustDropJackpotGamesListQuery($id: String!) {
+  gamesList(listId: $id) {
+    games {
+      id
+      name
+      slug
+      logo
+      backgroundImage
+    }
+  }
+}

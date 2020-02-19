@@ -419,14 +419,35 @@ export type MustDropJackpotGamesListQuery_gamesList_games = {
   backgroundImage: string,
 };
 export type MustDropJackpotGamesListQuery_gamesList = {
-  name: ?string,
   games: Array<MustDropJackpotGamesListQuery_gamesList_games>,
 };
 export type MustDropJackpotGamesListQuery = {
-  seeMoreText: string,
   gamesList: ?MustDropJackpotGamesListQuery_gamesList,
 };
 export type MustDropJackpotGamesListQueryVariables = {
+  id: string,
+};
+
+// ====================================================
+// GraphQL query operation: MustDropJackpotsGamesListQuery
+// ====================================================
+
+export type MustDropJackpotsGamesListQuery_gamesList_games = {
+  id: string,
+  name: string,
+  slug: string,
+  logo: string,
+  backgroundImage: string,
+};
+export type MustDropJackpotsGamesListQuery_gamesList = {
+  name: ?string,
+  games: Array<MustDropJackpotsGamesListQuery_gamesList_games>,
+};
+export type MustDropJackpotsGamesListQuery = {
+  seeMoreText: string,
+  gamesList: ?MustDropJackpotsGamesListQuery_gamesList,
+};
+export type MustDropJackpotsGamesListQueryVariables = {
   id: string,
   numberOfGames: number,
 };
