@@ -3,9 +3,12 @@ import * as React from "react";
 import classNames from "classnames";
 import gql from "graphql-tag";
 import { Query } from "react-apollo";
-import { isEmpty, map, pipe, propOr, take } from "ramda";
+import { isEmpty, map, pipe, propOr, prop, take } from "ramda";
+import debounce from "lodash/debounce";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
+import tracker from "Services/tracker";
+import { EVENTS } from "Src/constants";
 import * as A from "Types/apollo";
 import { PersistedData } from "Utils";
 import { NavigateClientMutation } from "Features/sports/components/GraphQL";
@@ -83,16 +86,15 @@ const ResultRow = ({
 
 type Props = {
   query: string,
-  onResultClick: (
-    A.SearchQuery_search | A.TopSearches_topSearches,
-    boolean
-  ) => void,
+  onResultClick: (A.SearchQuery_search | A.TopSearches_topSearches) => void,
   hideSearchResults?: boolean,
 };
 
 type State = {
   searchHistory: Array<A.SearchQuery_search>,
 };
+
+type TrackSearchClickListType = "popular" | "history" | "result";
 
 class KambiSearchResults extends React.Component<Props, State> {
   state = {
@@ -114,7 +116,39 @@ class KambiSearchResults extends React.Component<Props, State> {
     super(props);
 
     this.state.searchHistory = this.persisted.searchHistory.get();
+    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
+
+  trackSearchInitiated = (query: string, results: boolean) =>
+    tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INITIATED, {
+      query,
+      results,
+    });
+
+  trackSearchClick = (
+    resultOrGroup: A.SearchQuery_search | A.TopSearches_topSearches,
+    list: TrackSearchClickListType
+  ) => {
+    // will have either props
+    const id = propOr(prop("clientPath", resultOrGroup), "id")(resultOrGroup);
+    const name = propOr(prop("localizedName", resultOrGroup), "name")(
+      resultOrGroup
+    );
+
+    if (list === "result") {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT, {
+        query: this.props.query,
+        id,
+        name,
+      });
+    } else {
+      tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION, {
+        list,
+        id,
+        name,
+      });
+    }
+  };
 
   saveSearchHistory = (searchResult: A.SearchQuery_search) => {
     this.setState(prevState => {
@@ -160,7 +194,7 @@ class KambiSearchResults extends React.Component<Props, State> {
           <DictionaryTerm termKey="search-results.heading.historic" />
         </GroupTitle>
         {map(
-          result => this.renderSearchResult(result, true, true),
+          result => this.renderSearchResult(result, true, "history"),
           take(count, this.state.searchHistory)
         )}
       </>
@@ -187,7 +221,8 @@ class KambiSearchResults extends React.Component<Props, State> {
             key={eventGroup.termKey}
             path={eventGroup.termKey}
             onClick={() => {
-              this.props.onResultClick(eventGroup, true);
+              this.props.onResultClick(eventGroup);
+              this.trackSearchClick(eventGroup, "popular");
               navigateClient();
             }}
           >
@@ -212,7 +247,7 @@ class KambiSearchResults extends React.Component<Props, State> {
   renderSearchResult = (
     result: A.SearchQuery_search,
     renderAllTextAsMatched: boolean = false,
-    suggestion: boolean = false
+    trackType: TrackSearchClickListType = "result"
   ) => {
     const renderText = ({ isMatch }: { isMatch: boolean }) => (
       value: string
@@ -243,7 +278,8 @@ class KambiSearchResults extends React.Component<Props, State> {
             path={result.id}
             onClick={() => {
               this.saveSearchHistory(result);
-              this.props.onResultClick(result, suggestion);
+              this.props.onResultClick(result);
+              this.trackSearchClick(result, trackType);
               navigateClient();
             }}
           >
@@ -316,8 +352,12 @@ class KambiSearchResults extends React.Component<Props, State> {
           }
 
           if (isEmpty(res.data.search)) {
+            this.trackSearchInitiated(this.props.query, false);
+
             return this.renderNoResultsFound();
           }
+
+          this.trackSearchInitiated(this.props.query, true);
 
           return res.data.search.map(result => this.renderSearchResult(result));
         }}
