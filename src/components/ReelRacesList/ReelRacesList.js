@@ -3,7 +3,8 @@ import * as React from "react";
 import classNames from "classnames";
 import ScrollableList from "Components/ScrollableList";
 import * as A from "Types/apollo";
-import { ReelRaceCard } from "Components/ReelRaceCard";
+// __FIX__ Why can't it resolve "Components/ReelRaceCard"?
+import { ReelRaceCardContainer as ReelRaceCard } from "Components/ReelRaceCard/ReelRaceCardContainer";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 

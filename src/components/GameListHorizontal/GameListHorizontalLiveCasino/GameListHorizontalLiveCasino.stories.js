@@ -17,7 +17,7 @@ const mocks = [
     },
     result: {
       data: {
-        gamesList: { gamesListMock },
+        gamesList: gamesListMock,
         seeMoreText: "See more",
       },
     },
