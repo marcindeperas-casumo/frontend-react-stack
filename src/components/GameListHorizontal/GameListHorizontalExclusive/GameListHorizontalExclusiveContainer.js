@@ -2,7 +2,7 @@
 import React from "react";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
-import { EVENT_PROPS } from "Src/constants";
+import { EVENT_PROPS, GAMES_LIST_HORIZONTAL_ITEMS_LIMIT } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import { GameListHorizontalSkeleton } from "../GameListHorizontalSkeleton";
 import { GameListHorizontalExclusive } from "./GameListHorizontalExclusive";
@@ -11,13 +11,18 @@ import { GameListExclusiveQuery } from "./GameListHorizontalExclusive.graphql";
 type Props = {
   /** The id of the game list. */
   id: string,
+  /** The number of games to show */
+  number: number,
 };
 
-export const GameListHorizontalExclusiveContainer = ({ id }: Props) => {
+export const GameListHorizontalExclusiveContainer = ({
+  id,
+  number = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+}: Props) => {
   const { data, loading } = useQuery<
     A.GameListExclusiveQuery,
     A.GameListExclusiveQueryVariables
-  >(GameListExclusiveQuery, { variables: { id } });
+  >(GameListExclusiveQuery, { variables: { id, number } });
 
   if (loading) {
     return (

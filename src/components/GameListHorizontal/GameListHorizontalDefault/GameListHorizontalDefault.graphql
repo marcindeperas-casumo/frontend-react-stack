@@ -1,10 +1,10 @@
 #import "../../GameTile/GameTile.graphql"
 
-query GameListQuery($id: String!) {
+query GameListQuery($id: String!, $number: Int!) {
   gamesList(listId: $id) {
     id
     name
-    games {
+    games(number: $number) {
       ...GameTile_Game
     }
   }

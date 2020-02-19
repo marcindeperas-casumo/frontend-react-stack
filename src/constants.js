@@ -335,3 +335,5 @@ export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };
+
+export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
