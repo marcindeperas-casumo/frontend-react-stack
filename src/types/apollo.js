@@ -426,6 +426,10 @@ export type MustDropJackpotGamesListQuery = {
   seeMoreText: string,
   gamesList: ?MustDropJackpotGamesListQuery_gamesList,
 };
+export type MustDropJackpotGamesListQueryVariables = {
+  id: string,
+  numberOfGames: number,
+};
 
 // ====================================================
 // GraphQL query operation: MustDropJackpotsQuery

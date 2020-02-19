@@ -18,6 +18,7 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
+  // __FIX__ - type this properly.
   jackpots: Array<A.GameRow_Game>,
   className?: string,
   name: string,

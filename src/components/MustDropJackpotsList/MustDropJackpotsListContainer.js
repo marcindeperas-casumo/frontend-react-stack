@@ -1,31 +1,27 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
-import { EVENT_PROPS } from "Src/constants";
+import { GAME_LIST_IDS, EVENT_PROPS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
+import * as A from "Types/apollo";
 import MustDropJackpotsList from "./MustDropJackpotsList";
-
-const QUERY = gql`
-  query MustDropJackpotGamesListQuery {
-    seeMoreText: getText(
-      id: "root:built-pages.top-lists-translations:fields.more_link"
-    )
-    gamesList(listId: "mustDropJackpotGames") {
-      name
-      games {
-        id
-        name
-        slug
-        logo
-        backgroundImage
-      }
-    }
-  }
-`;
+import { MustDropJackpotGamesListQuery } from "./MustDropJackpotsListContainer.graphql";
 
 const MustDropJackpotsListContainer = () => {
-  const { data } = useQuery(QUERY);
+  const { data, loading } = useQuery<
+    A.MustDropJackpotGamesListQuery,
+    A.MustDropJackpotGamesListQueryVariables
+  >(MustDropJackpotGamesListQuery, {
+    variables: {
+      id: GAME_LIST_IDS.MUST_DROP_JACKPOTS_GAMES,
+      numberOfGames: 20,
+    },
+  });
+
+  if (loading) {
+    // __FIX__ - do we need a skeleton here?
+    return null;
+  }
 
   if (data && data.gamesList && data.gamesList.games) {
     return (
