@@ -36,15 +36,15 @@ stories.add("Section with no games", () => (
       sections={[
         {
           title: "I'm a section with results",
-          data: ["mega-fortune-dreams", "mega-fortune"],
+          data: [games[0], games[1], games[2], games[3]],
         },
         { title: "I'm an empty section" },
         {
           title: "I'm a section with other results",
-          data: ["hall-of-gods", "divine-fortune"],
+          data: [games[4], games[5], games[6], games[7]],
         },
       ]}
-      renderItem={id => <GameRow id={id} />}
+      renderItem={game => <GameRow game={game} onLaunchGame={() => {}} />}
     />
   </MockStore>
 ));
