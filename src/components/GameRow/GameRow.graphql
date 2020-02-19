@@ -1,3 +1,5 @@
+# __FIX__ I have a terrible feeling that we are querying GameRow_Game everywhere however we wouldn't need all these
+# props in every component (e.g. GameSearch)
 fragment GameRow_Game on Game {
   id
   backgroundImage
