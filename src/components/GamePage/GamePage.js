@@ -9,7 +9,6 @@ import {
   useTranslations,
   useJurisdiction,
   useGameCategories,
-  usePlayerSessionInvalidRedirect,
 } from "Utils/hooks";
 import { DGOJBar } from "Components/Compliance/DGOJBar";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
@@ -49,7 +48,6 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
-  usePlayerSessionInvalidRedirect();
 
   useBeforePlayingModal({
     canLaunch: Boolean(
@@ -82,9 +80,7 @@ export const GamePage = ({ slug, playForFun }: Props) => {
       direction="vertical"
       spacing="none"
     >
-      <Flex.Item>
-        <DGOJBar />
-      </Flex.Item>
+      <Flex.Item>{isDGOJ && <DGOJBar />}</Flex.Item>
       <Flex.Block className="u-position-relative">
         <div className="c-game-page__game-wrapper">
           <GameLauncher
