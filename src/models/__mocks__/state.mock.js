@@ -36,7 +36,6 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
     app: {
       "common/composition/context": {
         cometUrl: "/cometd/",
-        siteUrl: "https://www.casumotest.com/",
         restrictionType: "UNAVAILABLE",
         unavailableCountries: [
           "tm",
@@ -149,7 +148,6 @@ export const getStateMock = ({ firstDepositDate = null } = {}) => ({
         ],
         jurisdiction: "MGA",
         contextPath: "",
-        mobileUrl: "https://m.casumotest.com/",
         traceEnabled: false,
         countryCodeByIp: "__",
         crawl: false,
