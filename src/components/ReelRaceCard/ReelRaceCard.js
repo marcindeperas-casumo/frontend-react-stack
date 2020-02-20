@@ -1,5 +1,6 @@
 // @flow
 import * as React from "react";
+import * as R from "ramda";
 import { DateTime } from "luxon";
 import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
@@ -177,6 +178,8 @@ export class ReelRaceCard extends React.Component<Props> {
       minBet,
       formattedPrize,
       promoted,
+      optedIn,
+      startTime,
     } = this.props.reelRace;
 
     const trackData = {
@@ -188,6 +191,14 @@ export class ReelRaceCard extends React.Component<Props> {
       name: game.name,
       isPromoted: promoted,
     };
+
+    if (R.isEmpty(game)) {
+      return null;
+    }
+
+    if (timeRemainingBeforeStart(startTime) <= 0 && !optedIn) {
+      return null;
+    }
 
     return (
       <TrackProvider data={trackData}>
