@@ -4,7 +4,8 @@ import classNames from "classnames";
 import type { CellRendererParams } from "react-virtualized";
 import ScrollableList from "Components/ScrollableList";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import { LiveCasinoCard } from "Components/LiveCasinoCard";
+// __FIX__ Fix this import as well.
+import { LiveCasinoCardContainer as LiveCasinoCard } from "Components/LiveCasinoCard/LiveCasinoCardContainer";
 import { MobileAndTablet, Desktop } from "Components/ResponsiveLayout";
 import * as A from "Types/apollo";
 import "./GameListHorizontalLiveCasino.scss";
