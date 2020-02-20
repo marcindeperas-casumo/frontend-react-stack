@@ -2,6 +2,7 @@
 import React from "react";
 import { storiesOf } from "@storybook/react";
 import { MockedProvider } from "@apollo/react-testing";
+import MockStore from "Components/MockStore";
 import { GameListHorizontalLiveCasino } from "./GameListHorizontalLiveCasino";
 import { GameListLiveCasinoQuery } from "./GameListHorizontalLiveCasino.graphql";
 import { gamesListMock } from "./__mock__";
@@ -17,7 +18,7 @@ const mocks = [
     },
     result: {
       data: {
-        gamesList: { gamesListMock },
+        gamesList: gamesListMock,
         seeMoreText: "See more",
       },
     },
@@ -26,9 +27,11 @@ const mocks = [
 
 stories.add("Default", () => (
   <MockedProvider mocks={mocks}>
-    <GameListHorizontalLiveCasino
-      list={mocks[0].result.data.gamesList}
-      seeMoreText={mocks[0].result.data.seeMoreText}
-    />
+    <MockStore>
+      <GameListHorizontalLiveCasino
+        list={mocks[0].result.data.gamesList}
+        seeMoreText={mocks[0].result.data.seeMoreText}
+      />
+    </MockStore>
   </MockedProvider>
 ));

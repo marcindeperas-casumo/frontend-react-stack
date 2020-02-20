@@ -1,45 +1,23 @@
 // @flow
 import { storiesOf } from "@storybook/react";
 import React from "react";
-import { pick } from "ramda";
-import PromotionCardConnected from "Components/PromotionCard";
-import PromotionCard from "Components/PromotionCard/PromotionCard";
-import promotions from "Components/PromotionCard/__mocks__/promotions.json";
-import MockStore from "Components/MockStore";
-import isNotChromatic from "Storybook/isNotChromatic";
+import { PromotionCard } from "./PromotionCard";
 
 const stories = storiesOf("PromotionCard", module);
 
-const state = {
-  schema: {
-    cms: promotions,
-  },
+const promotion = {
+  id: "boosted-reel-races",
+  slug: "boosted-reel-races",
+  title: "Boosted Reel Races",
+  subtitle: "",
+  image:
+    "https://cms.casumo.com/wp-content/uploads/2018/11/boosted-reel-races.png",
+  badge:
+    'https://cms.casumo.com/wp-content/uploads/2018/10/promobadge-boostedreelraces.png"',
 };
-
-const promotionFields = pick(
-  ["image", "campaign_badge", "link", "dates", "title"],
-  promotions["promotions.boosted-reelraces"].fields
-);
-
-if (isNotChromatic) {
-  stories.add("Default (Connected)", () => (
-    <div className="c-promotion-card">
-      <MockStore state={state}>
-        <PromotionCardConnected slug="promotions.boosted-reelraces" />
-      </MockStore>
-    </div>
-  ));
-}
 
 stories.add("Default (Presentational)", () => (
   <div className="c-promotion-card">
-    <PromotionCard
-      badge={promotionFields.campaign_badge}
-      dates={promotionFields.dates}
-      image={promotionFields.image}
-      link={promotionFields.link}
-      title={promotionFields.title}
-      isFetched={true}
-    />
+    <PromotionCard promotion={promotion} />
   </div>
 ));

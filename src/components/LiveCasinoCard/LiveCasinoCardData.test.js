@@ -3,19 +3,21 @@ import { shallow } from "enzyme";
 import Text from "@casumo/cmp-text";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
 import { topCardLettersDisplay } from "./utils";
-import roulette from "./__mocks__/Roulette.json";
-import topCard from "./__mocks__/TopCard.json";
-import moneyWheel from "./__mocks__/MoneyWheel.json";
-import blackjack from "./__mocks__/Blackjack.json";
-import blackjackFull from "./__mocks__/BlackjackFull.json";
+import {
+  Roulette,
+  TopCard,
+  MoneyWheel,
+  Blackjack,
+  BlackjackFull,
+} from "./__mocks__";
 
 describe("LiveCasinoCardData", () => {
   describe("Roulette", () => {
     test("renders 10 results with correct values", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={roulette.lobby} />
+        <LiveCasinoCardData liveCasinoLobby={Roulette.liveCasinoLobby} />
       );
-      const results = roulette.lobby.results.slice(0, 10);
+      const results = Roulette.liveCasinoLobby.results.slice(0, 10);
       const numbersTexts = component
         .find("LobbyType")
         .shallow()
@@ -32,10 +34,10 @@ describe("LiveCasinoCardData", () => {
   describe("TopCard (Football Studio)", () => {
     test("renders 10 Football letter results", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={topCard.lobby} />
+        <LiveCasinoCardData liveCasinoLobby={TopCard.liveCasinoLobby} />
       );
       const data = component.find("LobbyType").shallow();
-      const results = topCard.lobby.results
+      const results = TopCard.liveCasinoLobby.results
         .slice(0, 10)
         .map(v => topCardLettersDisplay[v]);
       const rendered = data
@@ -49,10 +51,10 @@ describe("LiveCasinoCardData", () => {
   describe("MoneyWheel", () => {
     test("renders 10 results with no leading 0", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={moneyWheel.lobby} />
+        <LiveCasinoCardData liveCasinoLobby={MoneyWheel.liveCasinoLobby} />
       );
       const data = component.find("LobbyType").shallow();
-      const results = moneyWheel.lobby.results
+      const results = MoneyWheel.liveCasinoLobby.results
         .slice(0, 10)
         .map(n => (isNaN(parseInt(n, 10)) ? n : parseInt(n, 10)).toString());
       const rendered = data
@@ -67,7 +69,7 @@ describe("LiveCasinoCardData", () => {
   describe("Blackjack (Open Seats)", () => {
     test("should render open seats text", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={blackjack.lobby} />
+        <LiveCasinoCardData liveCasinoLobby={Blackjack.liveCasinoLobby} />
       );
       const data = component.find("LobbyType").shallow();
       const cmsField = data.find("Connect(CMSField)").props().field;
@@ -79,7 +81,7 @@ describe("LiveCasinoCardData", () => {
   describe("Blackjack No Seats", () => {
     test("renders bet behind text", () => {
       const component = shallow(
-        <LiveCasinoCardData liveCasinoLobby={blackjackFull.lobby} />
+        <LiveCasinoCardData liveCasinoLobby={BlackjackFull.liveCasinoLobby} />
       );
       const data = component.find("LobbyType").shallow();
       const cmsField = data

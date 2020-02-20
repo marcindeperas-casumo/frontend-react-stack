@@ -80,7 +80,14 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
   };
 
   render() {
-    const { itemCount, title, tileHeight, seeMore, itemRenderer } = this.props;
+    const {
+      itemCount,
+      title,
+      tileHeight,
+      tileWidth,
+      seeMore,
+      itemRenderer,
+    } = this.props;
 
     return (
       <div className="u-padding-top--xlg" data-test="scrollable-list-paginated">
@@ -92,7 +99,7 @@ export class ScrollableListPaginated extends React.PureComponent<Props> {
           buttonRenderer={this.buttonRenderer}
           height={tileHeight}
           overlappingItemCount={0}
-          defaultWidth={160}
+          defaultWidth={tileWidth}
         />
       </div>
     );

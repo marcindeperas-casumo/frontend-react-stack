@@ -4,7 +4,7 @@ import { storiesOf } from "@storybook/react";
 import { boolean, withKnobs } from "@storybook/addon-knobs/react";
 import { action } from "@storybook/addon-actions";
 import MockStore from "Components/MockStore";
-import { GameTile } from "Components/GameTile";
+import { GameTile } from "Components/GameTile/GameTile";
 import game from "./__mocks__/Game.json";
 
 const stories = storiesOf("GameTile", module);

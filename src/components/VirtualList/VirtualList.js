@@ -17,9 +17,9 @@ type Props = {
   /** The height of a row. Can be a number or a function that returns the height of a row by index. */
   rowHeight: Function | number,
   /** Callback to load rows as user scrolls. */
-  loadMoreRows: Function => Promise<any>,
+  loadMoreRows: () => Promise<any>,
   /** Function to check if a row is loaded */
-  isRowLoaded: Function => boolean,
+  isRowLoaded: ({ index: number }) => boolean,
   /** Render Prop to render a row. */
   rowRenderer: ({
     index: number,

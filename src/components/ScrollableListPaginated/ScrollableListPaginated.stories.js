@@ -1,44 +1,36 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
-import MockStore from "Components/MockStore";
-import { GameTile as GameTileContainer } from "Components/GameTile";
+import { MockedProvider } from "@apollo/react-testing";
+import { GameTile } from "Components/GameTile/GameTile";
+import { gamesListMock } from "Components/GameListHorizontal/GameListHorizontalDefault/__mock__";
+import { ScrollableListPaginated } from "./ScrollableListPaginated";
 
 const stories = storiesOf("ScrollableListPaginated", module);
-const list = {
-  games: [
-    "book-of-ra-deluxe",
-    "diamond-mine",
-    "raging-rhino",
-    "jammin-jars",
-    "legacy-of-egypt",
-    "big-bad-wolf",
-    "starburst",
-  ],
-  id: "popularGames",
-  title: "Popular",
-};
 
 const ScrollableListPaginatedStory = () => {
+  const itemRenderer = ({ style, columnIndex }) => (
+    <div style={style}>
+      <div style={{ width: "160px" }} className="u-margin-left--sm">
+        <GameTile game={gamesListMock.games[columnIndex]} />
+      </div>
+    </div>
+  );
+
   return (
-    <MockStore>
+    <MockedProvider>
       <ScrollableListPaginated
-        list={{
-          id: list.id,
-          title: list.title,
-          itemIds: list.games,
-        }}
+        title={gamesListMock.name}
+        itemCount={gamesListMock.games.length}
         tileHeight={204}
-        className="c-top-game"
         itemControlClass="c-scrollable-list-paginated__button"
         seeMore={{
-          url: "whatever",
+          url: "/aw-gidi",
           text: "Aw gidi",
         }}
-        Component={GameTileContainer}
+        itemRenderer={itemRenderer}
       />
-    </MockStore>
+    </MockedProvider>
   );
 };
 
