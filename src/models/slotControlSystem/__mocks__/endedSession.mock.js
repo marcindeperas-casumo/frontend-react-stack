@@ -8,6 +8,6 @@ export default ({
   id: "123-456-789",
   startedTime: now - 1000 * 60 * 14,
   endedTime: now - 1000 * 60 * 7,
-  endReason: "Session Timeout",
+  endReason: "LOGGED_OUT",
   stats,
 } : EndedSessionType);

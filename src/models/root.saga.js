@@ -6,7 +6,7 @@ import {
   statsUpdateNotificationSaga,
   sessionEndedSaga,
 } from "Models/slotControlSystem";
-import { types as appTypes, appSaga } from "Models/app";
+import { types as appTypes, appSaga, appManualLogoutSaga } from "Models/app";
 import { types as fetchTypes, fetchSaga } from "Models/fetch";
 import { fetchCuratedGameSaga, takeFetchedCuratedPages } from "Models/curated";
 import {
@@ -225,4 +225,5 @@ export default function* rootSaga(dispatch) {
   );
   yield fork(takeEvery, gameTypes.UPDATE_MY_LIST, updateMyListSaga);
   yield fork(takeEvery, appTypes.APP_STARTED, danishOverlaySaga);
+  yield fork(takeLatest, appTypes.APP_MANUAL_LOGOUT_INIT, appManualLogoutSaga);
 }

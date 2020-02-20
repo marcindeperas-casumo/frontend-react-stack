@@ -2,7 +2,6 @@
 import React from "react";
 import { getApolloContext } from "@apollo/react-hooks";
 import Flex from "@casumo/cmp-flex";
-import debounce from "lodash/debounce";
 import * as A from "Types/apollo";
 import SearchInput from "Components/SearchInput";
 import tracker from "Services/tracker";
@@ -25,19 +24,9 @@ export default class SportsSearch extends React.Component<{}, State> {
     hideSearchResults: false, // hide search results when a result has been selected and the client is filtering on the result
   };
 
-  constructor() {
-    super();
-    this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
-  }
-
   componentDidMount() {
     tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INTENT);
   }
-
-  trackSearchInitiated = (query: string) =>
-    tracker.track(EVENTS.MIXPANEL_SPORTS_SEARCH_INITIATED, {
-      query,
-    });
 
   resetHash = () => {
     // this determines whether to show or hide the kambi client
@@ -58,13 +47,10 @@ export default class SportsSearch extends React.Component<{}, State> {
     this.resetHash();
 
     if (event.currentTarget instanceof HTMLInputElement) {
-      this.setState(
-        {
-          query: event.currentTarget.value,
-          hideSearchResults: false,
-        },
-        () => this.state.query && this.trackSearchInitiated(this.state.query)
-      );
+      this.setState({
+        query: event.currentTarget.value,
+        hideSearchResults: false,
+      });
 
       this.setClientVisible(false);
     }
@@ -87,25 +73,15 @@ export default class SportsSearch extends React.Component<{}, State> {
   };
 
   handleSearchResultClick = (
-    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches,
-    suggestion: boolean
+    resultOrEventGroup: A.SearchQuery_search | A.TopSearches_topSearches
   ) => {
     // $FlowIgnore: either type will have either prop
-    const query = resultOrEventGroup.localizedName || resultOrEventGroup.name;
-    const event = suggestion
-      ? EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION
-      : EVENTS.MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT;
+    const name = resultOrEventGroup.localizedName || resultOrEventGroup.name;
 
-    this.setState(
-      {
-        query,
-        hideSearchResults: true,
-      },
-      () =>
-        tracker.track(event, {
-          query,
-        })
-    );
+    this.setState({
+      query: name,
+      hideSearchResults: true,
+    });
 
     this.setClientVisible(true);
   };

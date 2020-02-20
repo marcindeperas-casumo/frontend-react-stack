@@ -7,11 +7,11 @@ import * as A from "Types/apollo";
 import { SettingsSectionsLastLogin } from "Components/Settings/SettingsSections/SettingsSectionsLastLogin";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
 import { SettingsHeadline } from "Components/Settings/SettingsHeadline/SettingsHeadline";
-import { logout } from "Services/Logout";
 
 type Props = {
   playerLoginHistory: A.PLAYER_LOGIN_HISTORY_QUERY,
   labels: A.PLAYER_SECTIONS_LABELS_QUERY,
+  logout: () => void,
 };
 
 const SettingsSection = ({ title, description, href }) => (
@@ -42,6 +42,7 @@ export class SettingsSections extends PureComponent<Props> {
         accountActivity,
         logout: logoutLabel,
       },
+      logout,
     } = this.props;
 
     return (
