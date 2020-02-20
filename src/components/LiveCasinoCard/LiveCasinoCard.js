@@ -17,7 +17,7 @@ import * as A from "Types/apollo";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
-  launchGame: Function,
+  onLaunchGame: Function,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
@@ -37,7 +37,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
-        onClick={this.props.launchGame}
+        onClick={this.props.onLaunchGame}
       >
         <ImageLazy
           className="o-ratio__content"
@@ -75,9 +75,9 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderContent = () => {
-    const { game, launchGame } = this.props;
+    const { game, onLaunchGame } = this.props;
     return (
-      <Flex onClick={launchGame} className="u-padding-x--md">
+      <Flex onClick={onLaunchGame} className="u-padding-x--md">
         <Flex.Block>
           <Text
             tag="h3"

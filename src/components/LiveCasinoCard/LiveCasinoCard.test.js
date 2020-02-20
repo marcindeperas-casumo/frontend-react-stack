@@ -6,17 +6,17 @@ describe("LiveCasinoCard", () => {
   test("returns null if no lobby", () => {
     const game = {};
     const rendered = shallow(
-      <LiveCasinoCard game={game} launchGame={() => {}} />
+      <LiveCasinoCard game={game} onLaunchGame={() => {}} />
     );
 
     expect(rendered.isEmptyRender()).toBe(true);
   });
 
-  test("launchGame is called when clicking in card header", () => {
-    const launchGame = jest.fn();
+  test("onLaunchGame is called when clicking in card header", () => {
+    const onLaunchGame = jest.fn();
     const game = { liveCasinoLobby: { tableId: "table" } };
     const rendered = shallow(
-      <LiveCasinoCard game={game} launchGame={launchGame} />
+      <LiveCasinoCard game={game} onLaunchGame={onLaunchGame} />
     );
 
     rendered
@@ -25,14 +25,14 @@ describe("LiveCasinoCard", () => {
       .find("div.o-ratio--live-casino-card")
       .simulate("click");
 
-    expect(launchGame).toBeCalledTimes(1);
+    expect(onLaunchGame).toBeCalledTimes(1);
   });
 
-  test("launchGame is called when clicking in card content", () => {
-    const launchGame = jest.fn();
+  test("onLaunchGame is called when clicking in card content", () => {
+    const onLaunchGame = jest.fn();
     const game = { liveCasinoLobby: { tableId: "table" } };
     const rendered = shallow(
-      <LiveCasinoCard game={game} launchGame={launchGame} />
+      <LiveCasinoCard game={game} onLaunchGame={onLaunchGame} />
     );
 
     rendered
@@ -43,6 +43,6 @@ describe("LiveCasinoCard", () => {
       .childAt(0)
       .simulate("click");
 
-    expect(launchGame).toBeCalledTimes(1);
+    expect(onLaunchGame).toBeCalledTimes(1);
   });
 });
