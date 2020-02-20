@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { KO_APP_EVENT_MODAL_HIDDEN } from "Src/constants";
 import bridge from "Src/DurandalReactBridge";
 
+export * from "./modal.selectors";
+
 export const type = {
   hide: "MODAL/HIDE",
   show: "MODAL/SHOW",

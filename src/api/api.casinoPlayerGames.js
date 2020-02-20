@@ -180,8 +180,7 @@ export type GameCategory =
   | "TABLE_GAME"
   | "VIDEO_POKER"
   | "SPORTS_BETTING"
-  | "OTHER"
-  | "NONE";
+  | "OTHER";
 type GameMarket =
   | "SWEDEN"
   | "NORWAY"

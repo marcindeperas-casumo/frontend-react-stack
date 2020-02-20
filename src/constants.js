@@ -26,6 +26,8 @@ export const REACT_APP_EVENT_OLD_PLAY_OKAY_CLOSED =
   "REACT_APP_EVENT/oldPlayOkayClosed";
 export const REACT_APP_EVENT_PLAYING = "REACT_APP_EVENT/playing";
 export const REACT_APP_EVENT_LAUNCH_MODAL = "REACT_APP_EVENT/launchModal";
+export const REACT_APP_EVENT_INIT_MANUAL_LOGOUT =
+  "REACT_APP_EVENT/initManualLogout";
 
 // KO_APP* events are events that the KO app will be responsible to react
 // to.

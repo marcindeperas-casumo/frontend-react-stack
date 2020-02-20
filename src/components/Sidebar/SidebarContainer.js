@@ -8,7 +8,7 @@ import {
   playerBonusTextSelector,
 } from "Models/player";
 import { formatCurrency } from "Utils";
-import { logout } from "Models/app";
+import { appManualLogoutInit as logout } from "Models/app";
 import { Sidebar } from "./Sidebar";
 
 const balanceBonusDisplay = (

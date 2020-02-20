@@ -205,7 +205,7 @@ describe("Models/slotControlSystem/Reducer", () => {
       lastEndedSession: {
         ...endedSessionMock,
         id: "777-777-777",
-        endReason: "Player logout",
+        endReason: "LOGGED_OUT",
         endedTime: twoMinutesBefore,
       },
       activeExclusion: null,
