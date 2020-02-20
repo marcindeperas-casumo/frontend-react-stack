@@ -8,8 +8,5 @@ type Props = {
 };
 
 export const LiveCasinoCardContainer = ({ game }: Props) => {
-  // __FIX__: connect the rest of the props to the Apollo stack as well
-  return game.liveCasinoLobby ? (
-    <LiveCasinoCard game={game} launchGame={() => {}} />
-  ) : null;
+  return game.liveCasinoLobby ? <LiveCasinoCard game={game} /> : null;
 };
