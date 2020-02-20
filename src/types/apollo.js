@@ -111,6 +111,7 @@ export type GameListLiveCasinoQuery_gamesList_games_liveCasinoLobby = {
   tableId: ?string,
   symbol: ?string,
   numberOfPlayers: ?number,
+  seats: ?number,
   provider: ?string,
   results: Array<string>,
   image: ?string,
@@ -154,7 +155,7 @@ export type GameStudiosQuery_gameStudios = {
   name: string,
 };
 export type GameStudiosQuery = {
-  gameStudios: Array<GameStudiosQuery_gameStudios>,
+  gameStudios: Array<?GameStudiosQuery_gameStudios>,
 };
 
 // ====================================================
@@ -591,7 +592,7 @@ export type GameStudioQuery_gameStudio_games = {
 export type GameStudioQuery_gameStudio = {
   id: string,
   gamesCount: number,
-  games: Array<GameStudioQuery_gameStudio_games>,
+  games: Array<?GameStudioQuery_gameStudio_games>,
 };
 export type GameStudioQuery = {
   gameStudio: ?GameStudioQuery_gameStudio,
@@ -1869,6 +1870,7 @@ export type LiveCasinoCard_Lobby = {
   tableId: ?string,
   symbol: ?string,
   numberOfPlayers: ?number,
+  seats: ?number,
   provider: ?string,
   results: Array<string>,
   image: ?string,
@@ -1891,6 +1893,7 @@ export type LiveCasinoCard_liveCasinoLobby = {
   tableId: ?string,
   symbol: ?string,
   numberOfPlayers: ?number,
+  seats: ?number,
   provider: ?string,
   results: Array<string>,
   image: ?string,
