@@ -14,9 +14,11 @@ import {
 } from "Src/constants";
 import * as A from "Types/apollo";
 import { PAGE_SIZE } from "Models/gameSearch";
-import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
-import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+import {
+  GamesVirtualList,
+  GamesVirtualListTitle,
+} from "Components/GamesVirtualList";
 
 import "./GameSearch.scss";
 

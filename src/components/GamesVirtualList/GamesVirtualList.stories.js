@@ -1,10 +1,10 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { GamesVirtualList } from "Components/GamesVirtualList/GamesVirtualList";
 import MockStore from "Components/MockStore";
 import { GameRow } from "Components/GameRow/GameRow";
-import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
+import { GamesVirtualList } from "./GamesVirtualList";
+import { GamesVirtualListTitle } from "./GamesVirtualListTitle";
 import { games } from "./__mock__";
 
 const stories = storiesOf("GamesVirtualList", module);
