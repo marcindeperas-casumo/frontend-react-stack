@@ -44,13 +44,13 @@ describe("CuratedCard", () => {
   test("should render the header with a subtitle if it is a promotion", () => {
     const component = mount(<CuratedCard curatedCard={curatedPromotionMock} />);
 
-    expect(component.find(CuratedCardHeaderWithSubtitle).length).toBe(1);
+    expect(component.find(CuratedCardHeaderWithSubtitle)).toHaveLength(1);
   });
 
   test("should render the simple header if it is a game", () => {
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 
-    expect(component.find(CuratedCardHeaderSimple).length).toBe(1);
+    expect(component.find(CuratedCardHeaderSimple)).toHaveLength(1);
   });
 
   test("should not render a header if the data is missing", () => {
@@ -58,7 +58,7 @@ describe("CuratedCard", () => {
       <CuratedCard curatedCard={{ ...curatedGameMock, header: null }} />
     );
 
-    expect(component.find(CuratedCardHeaderSimple).length).toBe(0);
+    expect(component.find(CuratedCardHeaderSimple)).toHaveLength(0);
   });
 
   test("should not link to anywhere if it is displaying a game", () => {
