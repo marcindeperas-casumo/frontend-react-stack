@@ -13,11 +13,11 @@ import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
 import { LiveCasinoCardData } from "Components/LiveCasinoCard/LiveCasinoCardData";
-import { launchGame } from "Services/LaunchGameService";
 import * as A from "Types/apollo";
 
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
+  launchGame: Function,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
@@ -37,7 +37,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
     return (
       <div
         className="o-ratio o-ratio--live-casino-card"
-        onClick={() => launchGame({ slug: this.props.game.slug })}
+        onClick={this.props.launchGame}
       >
         <ImageLazy
           className="o-ratio__content"
@@ -75,12 +75,9 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderContent = () => {
-    const { game } = this.props;
+    const { game, launchGame } = this.props;
     return (
-      <Flex
-        onClick={() => launchGame({ slug: game.slug })}
-        className="u-padding-x--md"
-      >
+      <Flex onClick={launchGame} className="u-padding-x--md">
         <Flex.Block>
           <Text
             tag="h3"
