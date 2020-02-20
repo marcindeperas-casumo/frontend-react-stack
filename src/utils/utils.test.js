@@ -24,7 +24,6 @@ import {
   formatTime,
   timeRemainingBeforeStart,
   isTestEnv,
-  timeRemainingBeforeStart,
 } from "./utils";
 
 describe("bridgeFactory()", () => {
