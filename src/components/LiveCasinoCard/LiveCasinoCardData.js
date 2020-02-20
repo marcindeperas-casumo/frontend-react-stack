@@ -58,15 +58,17 @@ const renderResults = ({ results, type }) => {
   );
 };
 
-const renderSeats = ({ seats }) => (
-  <Text
-    size="sm"
-    tag="span"
-    className="t-color-white u-font-weight-bold u-text-transform-capitalize"
-  >
-    {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
-  </Text>
-);
+const renderSeats = ({ seats }) => {
+  return (
+    <Text
+      size="sm"
+      tag="span"
+      className="t-color-white u-font-weight-bold u-text-transform-capitalize"
+    >
+      {seats || getText("bet_behind")} {seats ? getText("open_seats") : ""}
+    </Text>
+  );
+};
 
 const getText = field => (
   <CMSField slug="mobile.live-casino-cards-content" field={field} />

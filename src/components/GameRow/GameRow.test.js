@@ -6,7 +6,7 @@ import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
-import liveCasinoGame from "Components/LiveCasinoCard/__mocks__/Roulette.json";
+import { Roulette as liveCasinoGame } from "Components/LiveCasinoCard/__mocks__";
 import { renderBets } from "Utils";
 import { CURRENCIES } from "Src/constants";
 
@@ -79,6 +79,9 @@ describe("<GameRow />", () => {
   });
 
   test("should render betsLevels if LiveCasino game", () => {
+    // __FIX__ Remove this once the GameRow is using the "liveCasinoLobby" instead of the deprecated "lobby"
+    liveCasinoGame.lobby = liveCasinoGame.liveCasinoLobby;
+
     game = liveCasinoGame;
     rendered = shallow(
       <GameRow game={liveCasinoGame} onLaunchGame={launchGame} />
