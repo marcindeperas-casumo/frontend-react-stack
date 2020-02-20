@@ -14,6 +14,7 @@ type Props = {
   loading: boolean,
   games: Array<Object>,
   gamesCount: number,
+  // __FIX__ Check if this ANY here can be solved in a REASONABLE amount of time.
   onLoadMore: () => Promise<any>,
 };
 
