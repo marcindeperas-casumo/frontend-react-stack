@@ -17,16 +17,16 @@ const pollInterval = 30000;
 type JackpotsQueryInjectProps = {
   locale: string,
   /** The number of games to show */
-  number: number,
+  numberOfGames: number,
 };
 
 export const JackpotsQueryInject = ({
   locale,
-  number = GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT,
+  numberOfGames = GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT,
 }: JackpotsQueryInjectProps) => {
   const { data, loading } = useQuery(JackpotsQuery, {
     pollInterval,
-    variables: { number },
+    variables: { numberOfGames },
   });
 
   return loading ? null : (

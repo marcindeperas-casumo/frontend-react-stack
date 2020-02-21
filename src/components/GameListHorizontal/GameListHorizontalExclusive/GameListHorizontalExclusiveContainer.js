@@ -12,17 +12,17 @@ type Props = {
   /** The id of the game list. */
   id: string,
   /** The number of games to show */
-  number: number,
+  numberOfGames: number,
 };
 
 export const GameListHorizontalExclusiveContainer = ({
   id,
-  number = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+  numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
 }: Props) => {
   const { data, loading } = useQuery<
     A.GameListExclusiveQuery,
     A.GameListExclusiveQueryVariables
-  >(GameListExclusiveQuery, { variables: { id, number } });
+  >(GameListExclusiveQuery, { variables: { id, numberOfGames } });
 
   if (loading) {
     return (

@@ -70,6 +70,7 @@ export type GameListQuery = {
 };
 export type GameListQueryVariables = {
   id: string,
+  numberOfGames: number,
 };
 
 // ====================================================
@@ -95,6 +96,7 @@ export type GameListExclusiveQuery = {
 };
 export type GameListExclusiveQueryVariables = {
   id: string,
+  numberOfGames: number,
 };
 
 // ====================================================
@@ -139,6 +141,7 @@ export type GameListLiveCasinoQuery = {
 };
 export type GameListLiveCasinoQueryVariables = {
   id: string,
+  numberOfGames: number,
 };
 
 // ====================================================
@@ -358,6 +361,9 @@ export type JackpotsQuery_gamesList = {
 };
 export type JackpotsQuery = {
   gamesList: ?JackpotsQuery_gamesList,
+};
+export type JackpotsQueryVariables = {
+  numberOfGames: number,
 };
 
 // ====================================================

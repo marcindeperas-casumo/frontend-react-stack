@@ -11,17 +11,17 @@ type Props = {
   /** The id of the game list. */
   id: string,
   /** The number of games to show */
-  number: number,
+  numberOfGames: number,
 };
 
 export const GameListHorizontalLiveCasinoContainer = ({
   id,
-  number = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+  numberOfGames = GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
 }: Props) => {
   const { data, loading } = useQuery<
     A.GameListLiveCasinoQuery,
     A.GameListLiveCasinoQueryVariables
-  >(GameListLiveCasinoQuery, { variables: { id, number } });
+  >(GameListLiveCasinoQuery, { variables: { id, numberOfGames } });
 
   if (loading) {
     return (
