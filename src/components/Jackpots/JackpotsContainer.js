@@ -2,6 +2,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { useQuery } from "@apollo/react-hooks";
+import { GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT } from "Src/constants";
 import { localeSelector } from "Models/handshake";
 import Jackpots from "./Jackpots";
 import { JackpotsQuery } from "./Jackpots.graphql";
@@ -15,10 +16,18 @@ const pollInterval = 30000;
 
 type JackpotsQueryInjectProps = {
   locale: string,
+  /** The number of games to show */
+  numberOfGames: number,
 };
 
-export const JackpotsQueryInject = ({ locale }: JackpotsQueryInjectProps) => {
-  const { data, loading } = useQuery(JackpotsQuery, { pollInterval });
+export const JackpotsQueryInject = ({
+  locale,
+  numberOfGames = GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT,
+}: JackpotsQueryInjectProps) => {
+  const { data, loading } = useQuery(JackpotsQuery, {
+    pollInterval,
+    variables: { numberOfGames },
+  });
 
   return loading ? null : (
     <Jackpots

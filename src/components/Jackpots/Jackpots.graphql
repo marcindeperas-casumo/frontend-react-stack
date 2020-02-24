@@ -1,9 +1,9 @@
 #import "../GameRow/GameRow.graphql"
 
-query JackpotsQuery {
+query JackpotsQuery($numberOfGames: Int!) {
   gamesList(listId: "casumoJackpotGames") {
     name
-    games {
+    games(numberOfGames: $numberOfGames) {
       ...Jackpots_Game
     }
   }
