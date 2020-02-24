@@ -5,6 +5,8 @@ export { useLocale } from "./useLocale";
 export { useActiveGameSession } from "./useActiveGameSession";
 export { useGameCategories } from "./useGameCategories";
 export { useMarket } from "./useMarket";
+export { useCountry } from "./useCountry";
+export { useCurrency } from "./useCurrency";
 export { useUrlPrefix } from "./useUrlPrefix";
 export { useLanguage } from "./useLanguage";
 export { useWalletAmount } from "./useWalletAmount";

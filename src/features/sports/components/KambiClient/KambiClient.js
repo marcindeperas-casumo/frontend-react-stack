@@ -88,7 +88,6 @@ export default class KambiClient extends React.Component<Props> {
       },
     };
     /* eslint-enable fp/no-mutation */
-
     injectScript(this.props.bootstrapUrl);
 
     window.addEventListener("hashchange", this.handleHashChange);
