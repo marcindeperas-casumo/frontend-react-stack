@@ -9,6 +9,7 @@ import defaultState from "Models/__mocks__/state.mock";
 type Props = {
   state?: Object,
   queryMocks?: Array<Object>,
+  addGqlTypename?: boolean,
 } & ElementProps<any>;
 // ⚠️ This is a utility component that can be used to
 // write stories for connected components that depend
@@ -20,12 +21,17 @@ type Props = {
 //    <MockStore>
 //        <YourConnectedComponent />
 //    </MockStore>
-const MockStore = ({ children, state = {}, queryMocks = [] }: Props) => {
+const MockStore = ({
+  children,
+  state = {},
+  queryMocks = [],
+  addGqlTypename = false,
+}: Props) => {
   const store = createReduxStore(mergeDeepRight(defaultState, state));
 
   return (
     <Provider store={store}>
-      <MockedProvider mocks={queryMocks} addTypename={false}>
+      <MockedProvider mocks={queryMocks} addTypename={addGqlTypename}>
         {children}
       </MockedProvider>
     </Provider>
