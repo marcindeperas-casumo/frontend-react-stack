@@ -16,7 +16,7 @@ describe("<MustDropJackpotsList /> - Mobile and Tablet", () => {
     <MustDropJackpotsList
       jackpots={jackpotsMocked}
       seeMore="👀"
-      title="This cute list!"
+      name="This cute list!"
     />
   );
 
