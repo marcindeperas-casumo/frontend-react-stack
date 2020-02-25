@@ -6,8 +6,8 @@ import { countrySelector } from "Models/handshake";
 
 export function* fetchCuratedGameSaga(action) {
   const platform = "mobile";
-  const slug = action.type.split("-")[1];
-  const curated = yield select(curatedSelector(slug));
+  const pageSlug = action.type.split("-")[1];
+  const curated = yield select(curatedSelector(pageSlug));
   const country = yield select(countrySelector);
 
   const { gameData } = curated;
@@ -23,6 +23,5 @@ export function* fetchCuratedGameSaga(action) {
   // pause execution until request is completed, normalize and update the store
   const { response } = yield take(types.CURATED_FETCH_GAME_COMPLETE);
   const { entities } = yield call(normalizeData, response);
-
   yield put(updateEntity(entities));
 }
