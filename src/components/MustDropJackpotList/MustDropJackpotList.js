@@ -10,10 +10,6 @@ type Props = {
 
 export const MustDropJackpotList = ({ jackpots }: Props) => (
   <div className="u-padding-x--md u-padding-bottom--md o-list-wrapper">
-    <List
-      items={jackpots}
-      data-test="must-drop-jackpots-list"
-      render={jackpot => <GameRow game={jackpot} />}
-    />
+    <List items={jackpots} render={jackpot => <GameRow game={jackpot} />} />
   </div>
 );
