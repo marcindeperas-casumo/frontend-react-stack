@@ -83,7 +83,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn flow"
+      "pre-commit": "lint-staged && yarn flow && yarn graphql-generate && git add ./src/types/apollo.js"
     }
   },
   "jest": {

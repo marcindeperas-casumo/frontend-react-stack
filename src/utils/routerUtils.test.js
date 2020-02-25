@@ -1,6 +1,11 @@
 // @flow
 import { navigate } from "@reach/router";
-import { interpolate, routeTranslator, navigateToRerender } from "Utils";
+import {
+  interpolate,
+  routeTranslator,
+  navigateToRerender,
+  navigateToRootWithReload,
+} from "Utils";
 import { TRANSLATED_ROUTES, ROUTE_IDS, ROUTES } from "Src/constants";
 
 jest.mock("@reach/router", () => ({
@@ -20,6 +25,7 @@ describe("<Router /> utils", () => {
 
     window.location = {
       pathname,
+      assign: jest.fn(),
     };
   });
 
@@ -44,5 +50,11 @@ describe("<Router /> utils", () => {
     navigateToRerender();
 
     expect(navigate).toHaveBeenCalledWith(pathname);
+  });
+
+  test("navigateToRootWithReload calls location's assign with '/' argument", () => {
+    navigateToRootWithReload();
+
+    expect(window.location.assign).toHaveBeenCalledWith("/");
   });
 });

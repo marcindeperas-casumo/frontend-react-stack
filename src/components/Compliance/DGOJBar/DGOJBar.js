@@ -13,7 +13,7 @@ export const DGOJBar = () => (
   >
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href="/es/play-okay">
-        <PlayOkayIcon />
+        <PlayOkayIcon className="c-dgoj-bar__icon" />
       </a>
     </Flex.Item>
 
@@ -23,7 +23,7 @@ export const DGOJBar = () => (
         target="_blank"
         href="http://www.ordenacionjuego.es/es/rgiaj"
       >
-        <RGIAJIcon />
+        <RGIAJIcon className="c-dgoj-bar__icon" />
       </a>
     </Flex.Item>
     <Flex.Item>
@@ -32,7 +32,7 @@ export const DGOJBar = () => (
         rel="noopener noreferrer"
         target="_blank"
       >
-        <JugarbienIcon />
+        <JugarbienIcon className="c-dgoj-bar__icon" />
       </a>
     </Flex.Item>
   </Flex>
