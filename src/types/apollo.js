@@ -1737,7 +1737,15 @@ export type PlayerValuableState =
   | "Fresh"
   | "Locked"
   | "Used";
-export type Currency = "CAD" | "DKK" | "EUR" | "GBP" | "NZD" | "SEK";
+export type Currency =
+  | "CAD"
+  | "DKK"
+  | "EUR"
+  | "GBP"
+  | "INR"
+  | "NZD"
+  | "SEK"
+  | "USD";
 export type RequirementType = "deposit" | "wager";
 export type Vertical = "CASINO" | "SPORTS";
 export type SearchResultType = "LEAGUE" | "PARTICIPANT" | "REGION" | "SPORT";
