@@ -30,7 +30,7 @@ const MustDropJackpotsListContainer = () => {
       >
         <MustDropJackpotsList
           jackpots={data.gamesList.games}
-          name={data.gamesList.name}
+          name={data.gamesList?.name}
           seeMoreText={data?.seeMoreText}
         />
       </TrackProvider>

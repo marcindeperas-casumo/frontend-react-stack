@@ -1,15 +1,13 @@
+#import "./../GameRow/GameRow.graphql"
+
 query MustDropJackpotsGamesListQuery ($id: String!, $numberOfGames: Int!) {
   seeMoreText: getText(
     id: "root:built-pages.top-lists-translations:fields.more_link"
   )
   gamesList(listId: $id) {
     name
-    games(number: $numberOfGames) {
-      id
-      name
-      slug
-      logo
-      backgroundImage
+    games(numberOfGames: $numberOfGames) {
+      ...GameRow_Game
     }
   }
 }
