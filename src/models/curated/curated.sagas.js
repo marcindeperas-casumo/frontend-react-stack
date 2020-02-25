@@ -1,13 +1,23 @@
 import { select, put, take, call } from "redux-saga/effects";
 import { pathOr } from "ramda";
-import { types, curatedSelector, fetchCuratedGame } from "Models/curated";
+import {
+  types,
+  curatedSelector,
+  fetchCuratedGame,
+  prefixCuratedSlug,
+} from "Models/curated";
 import { normalizeData, updateEntity } from "Models/schema";
 import { countrySelector } from "Models/handshake";
 
 export function* fetchCuratedGameSaga(action) {
   const platform = "mobile";
-  const pageSlug = action.type.split("-")[1];
-  const curated = yield select(curatedSelector(pageSlug));
+  const pageSlug = pathOr(null, ["response", "slug"], action);
+
+  if (!pageSlug) {
+    return;
+  }
+
+  const curated = yield select(curatedSelector(prefixCuratedSlug(pageSlug)));
   const country = yield select(countrySelector);
 
   const { gameData } = curated;
