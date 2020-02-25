@@ -1,6 +1,6 @@
 import React from "react";
 import { mount } from "enzyme";
-import MockStore from "Components/MockStore";
+import { MockedProvider } from "@apollo/react-testing";
 import { waitAndUpdateWrapper } from "Utils";
 import { withContainer } from "./SettingsSectionsContainer";
 import {
@@ -20,12 +20,11 @@ describe("SettingsSections", () => {
   describe("Player Settings", () => {
     test("should render loader", () => {
       const rendered = mount(
-        <MockStore
-          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-          addGqlTypename
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockStore>
+        </MockedProvider>
       );
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
@@ -33,15 +32,11 @@ describe("SettingsSections", () => {
 
     test("should show error", async () => {
       const rendered = mount(
-        <MockStore
-          queryMocks={[
-            playerSectionsLabelsQueryMock,
-            playerSectionsQueryErrorMock,
-          ]}
-          addGqlTypename
+        <MockedProvider
+          mocks={[playerSectionsLabelsQueryMock, playerSectionsQueryErrorMock]}
         >
           <SettingsSectionsContainer />
-        </MockStore>
+        </MockedProvider>
       );
 
       await waitAndUpdateWrapper(rendered);
@@ -51,12 +46,11 @@ describe("SettingsSections", () => {
 
     test("should pass correct player to child", async () => {
       const rendered = mount(
-        <MockStore
-          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-          addGqlTypename
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockStore>
+        </MockedProvider>
       );
 
       await waitAndUpdateWrapper(rendered);
@@ -72,15 +66,11 @@ describe("SettingsSections", () => {
   describe("Labels", () => {
     test("should show error", async () => {
       const rendered = mount(
-        <MockStore
-          queryMocks={[
-            playerSectionsLabelsQueryErrorMock,
-            playerSectionsQueryMock,
-          ]}
-          addGqlTypename
+        <MockedProvider
+          mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockStore>
+        </MockedProvider>
       );
 
       await waitAndUpdateWrapper(rendered);
@@ -90,12 +80,11 @@ describe("SettingsSections", () => {
 
     test("should pass correct player to child", async () => {
       const rendered = mount(
-        <MockStore
-          queryMocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-          addGqlTypename
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
-        </MockStore>
+        </MockedProvider>
       );
 
       await waitAndUpdateWrapper(rendered);
