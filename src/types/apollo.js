@@ -146,6 +146,51 @@ export type GameListLiveCasinoQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: GameListVerticalQuery
+// ====================================================
+
+export type GameListVerticalQuery_gamesBySlugs_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameListVerticalQuery_gamesBySlugs_lobby = {
+  id: ?string,
+  tableId: ?string,
+  symbol: ?string,
+  provider: ?string,
+  results: Array<string>,
+  image: ?string,
+  type: ?string,
+  betBehind: ?boolean,
+  bets: ?GameListVerticalQuery_gamesBySlugs_lobby_bets,
+};
+export type GameListVerticalQuery_gamesBySlugs_jackpot_value = {
+  amount: number,
+  currency: Currency,
+};
+export type GameListVerticalQuery_gamesBySlugs_jackpot = {
+  id: string,
+  value: GameListVerticalQuery_gamesBySlugs_jackpot_value,
+};
+export type GameListVerticalQuery_gamesBySlugs = {
+  id: string,
+  backgroundImage: string,
+  isInMaintenance: boolean,
+  logo: string,
+  name: string,
+  slug: string,
+  lobby: ?GameListVerticalQuery_gamesBySlugs_lobby,
+  jackpot: ?GameListVerticalQuery_gamesBySlugs_jackpot,
+};
+export type GameListVerticalQuery = {
+  gamesBySlugs: Array<GameListVerticalQuery_gamesBySlugs>,
+};
+export type GameListVerticalQueryVariables = {
+  slugs: Array<string>,
+};
+
+// ====================================================
 // GraphQL query operation: GameStudiosQuery
 // ====================================================
 
