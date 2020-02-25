@@ -17,9 +17,5 @@ export const GameListVerticalContainer = ({ slugs }: Props) => {
     A.GameListVerticalQueryVariables
   >(GameListVerticalQuery, { variables });
 
-  if (loading || !data) {
-    return null;
-  }
-
-  return <GameListVertical games={data.gamesBySlugs} />;
+  return <GameListVertical games={data?.gamesBySlugs} loading={loading} />;
 };
