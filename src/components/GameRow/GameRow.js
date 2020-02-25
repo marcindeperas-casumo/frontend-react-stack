@@ -1,5 +1,5 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
@@ -31,52 +31,49 @@ type Props = {
   locale?: string,
 };
 
-export class GameRow extends PureComponent<Props> {
-  render() {
-    const {
-      game = {},
-      onLaunchGame,
-      search,
-      className = "",
-      locale,
-    } = this.props;
-    const { name, logo, backgroundImage, slug, jackpot } = game;
-    const lobby = game.lobby || {};
-    const { bets } = lobby;
+export const GameRow = ({
+  game = {},
+  onLaunchGame,
+  search,
+  className = "",
+  locale,
+}: Props) => {
+  const { name, logo, backgroundImage, slug, jackpot } = game;
+  const lobby = game.lobby || {};
+  const { bets } = lobby;
 
-    return (
-      <Flex
-        align="center"
-        className={classNames({ "u-padding--md": !search }, className)}
-      >
-        <Flex.Block onClick={onLaunchGame}>
-          <TrackClick
-            eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
-            data={{ [EVENT_PROPS.GAME_NAME]: name }}
-          >
-            <Flex align="center">
-              <Flex.Item className="o-flex__item--no-shrink">
-                <GameThumb src={backgroundImage} alt={name} mark={logo} />
-              </Flex.Item>
-              {search ? (
-                <GameRowSearchText name={name} search={search} />
-              ) : (
-                <GameRowText
-                  locale={locale}
-                  name={name}
-                  bets={bets}
-                  jackpot={jackpot}
-                />
-              )}
-            </Flex>
-          </TrackClick>
-        </Flex.Block>
-        {game.lobby ? (
-          <GameRowTrackPlayIcon name={name} onLaunchGame={onLaunchGame} />
-        ) : (
-          <GameRowTrackMoreIcon name={name} slug={slug} />
-        )}
-      </Flex>
-    );
-  }
-}
+  return (
+    <Flex
+      align="center"
+      className={classNames({ "u-padding--md": !search }, className)}
+    >
+      <Flex.Block onClick={onLaunchGame}>
+        <TrackClick
+          eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
+          data={{ [EVENT_PROPS.GAME_NAME]: name }}
+        >
+          <Flex align="center">
+            <Flex.Item className="o-flex__item--no-shrink">
+              <GameThumb src={backgroundImage} alt={name} mark={logo} />
+            </Flex.Item>
+            {search ? (
+              <GameRowSearchText name={name} search={search} />
+            ) : (
+              <GameRowText
+                locale={locale}
+                name={name}
+                bets={bets}
+                jackpot={jackpot}
+              />
+            )}
+          </Flex>
+        </TrackClick>
+      </Flex.Block>
+      {game.lobby ? (
+        <GameRowTrackPlayIcon name={name} onLaunchGame={onLaunchGame} />
+      ) : (
+        <GameRowTrackMoreIcon name={name} slug={slug} />
+      )}
+    </Flex>
+  );
+};
