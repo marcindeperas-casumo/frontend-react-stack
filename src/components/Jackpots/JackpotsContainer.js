@@ -31,7 +31,7 @@ export const JackpotsQueryInject = ({
 
   return loading ? null : (
     <Jackpots
-      title={data?.name}
+      title={data?.gamesList?.name}
       locale={locale}
       jackpots={data?.gamesList?.games}
     />

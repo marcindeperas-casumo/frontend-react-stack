@@ -18,9 +18,10 @@ const PADDING_PER_DEVICE = {
 };
 
 export type Props = {
+  // __FIX__ - type this properly.
   jackpots: Array<A.GameRow_Game>,
   className?: string,
-  name: string,
+  name: ?string,
   seeMoreText: string,
 };
 
@@ -86,11 +87,13 @@ export default class MustDropJackpotsList extends PureComponent<Props> {
         <div className="o-wrapper">
           <MobileAndTablet>
             <div className="u-padding-top--xlg">
-              <ScrollableListTitleRow
-                paddingLeft
-                seeMore={{ text: seeMoreText, url: seeMoreUrl }}
-                title={name}
-              />
+              {name && (
+                <ScrollableListTitleRow
+                  paddingLeft
+                  seeMore={{ text: seeMoreText, url: seeMoreUrl }}
+                  title={name}
+                />
+              )}
               <Scrollable
                 keyGetter={this.keyGetter}
                 numberOfItems={this.columns.length}
