@@ -6,7 +6,7 @@ import {
   CuratedCardBackgroundNew,
   CuratedCardBackgroundDeprecated,
 } from "Components/CuratedCard/CuratedCardBackground";
-import curatedData from "Models/curated/__mocks__/curated.json";
+import curatedData from "./__mocks__/curated.json";
 
 const deprecatedData = {
   ...omit("image", curatedData),
