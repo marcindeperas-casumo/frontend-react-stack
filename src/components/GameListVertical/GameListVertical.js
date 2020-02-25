@@ -1,11 +1,12 @@
 // @flow
 import React from "react";
 import List from "@casumo/cmp-list";
+import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
 
 type Props = {
   /** The list of game objects. */
-  games: Array<any>,
+  games: Array<A.GameListVerticalQuery_gamesBySlugs>,
 };
 
 export const GameListVertical = ({ games }: Props) => {
