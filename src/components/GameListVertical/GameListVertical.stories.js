@@ -1,15 +1,9 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import MockStore from "Components/MockStore";
-import { GameListVertical } from "./";
+import { GameListVertical } from "./GameListVertical";
+import { games } from "./__mock__";
 
 const stories = storiesOf("GameListVertical", module);
 
-stories.add("Default", () => (
-  <MockStore>
-    <GameListVertical
-      ids={["hall-of-gods", "mega-moolah", "book-of-ra-deluxe-jackpot-edition"]}
-    />
-  </MockStore>
-));
+stories.add("Default", () => <GameListVertical games={games} />);

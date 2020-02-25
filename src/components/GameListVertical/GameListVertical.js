@@ -1,34 +1,21 @@
 // @flow
-import React, { PureComponent } from "react";
+import React from "react";
 import List from "@casumo/cmp-list";
-import { GameRow } from "Components/GameRow";
+import { GameRow } from "Components/GameRow/GameRow";
 
 type Props = {
-  /** The list of game ids. */
-  ids: Array<string>,
-  /** the function that fetches the games */
-  fetch: () => void,
+  /** The list of game objects. */
+  games: Array<any>,
 };
 
-export class GameListVertical extends PureComponent<Props> {
-  componentDidMount() {
-    this.props.fetch();
-  }
-
-  render() {
-    // TODO: Previously if the content builder passed in an empty
-    // string it broke. Figure out how we can properly handle
-    // these errors without having to do really defensive coding
-    // in all the components.
-    const ids = this.props.ids || [];
-    return (
-      <div className="o-list-wrapper">
-        <List
-          itemSpacing="none"
-          items={ids}
-          render={id => <GameRow id={id} />}
-        />
-      </div>
-    );
-  }
-}
+export const GameListVertical = ({ games }: Props) => {
+  return (
+    <div className="o-list-wrapper">
+      <List
+        itemSpacing="none"
+        items={games}
+        render={game => <GameRow game={game} />}
+      />
+    </div>
+  );
+};

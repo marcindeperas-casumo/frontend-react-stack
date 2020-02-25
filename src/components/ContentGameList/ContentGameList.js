@@ -17,7 +17,7 @@ export class ContentGameList extends PureComponent<Props> {
         <TrackProvider
           data={{ [EVENT_PROPS.LOCATION]: "Promotions - Detail Page" }}
         >
-          <GameListVertical ids={ids} />
+          <GameListVertical slugs={ids} />
         </TrackProvider>
       </div>
     );
