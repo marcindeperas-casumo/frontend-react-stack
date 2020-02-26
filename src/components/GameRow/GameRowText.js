@@ -14,9 +14,9 @@ export const GameRowText = ({
   locale,
 }: {
   name: string,
-  locale: ?string,
-  bets: ?A.GameRow_Game_lobby_bets,
-  jackpot: ?A.GameRow_Game_jackpot,
+  locale?: ?string,
+  bets?: ?A.GameRow_Game_lobby_bets,
+  jackpot?: ?A.GameRow_Game_jackpot,
 }) => (
   <Flex.Block className="t-color-grey-dark-3 u-padding-left--sm">
     <Text
