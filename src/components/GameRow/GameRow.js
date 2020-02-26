@@ -8,13 +8,6 @@ import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import TrackClick from "Components/TrackClick";
 
-export type SearchProps = {
-  /** The search query */
-  query?: string,
-  /** Whether highlight the search query on the game title or not  */
-  highlightSearchQuery?: boolean,
-};
-
 type Props = {
   /** The Game object */
   game: A.GameRow_Game,
@@ -24,8 +17,6 @@ type Props = {
   className?: string,
   /** a function that renders some text */
   renderText: () => React.Node,
-  /** The search props */
-  search?: SearchProps | boolean,
 };
 
 export const GameRow = ({
