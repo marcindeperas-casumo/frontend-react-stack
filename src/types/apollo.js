@@ -610,20 +610,11 @@ export type GameStudioQuery_gameStudio_games_lobby_bets = {
   symbol: ?string,
 };
 export type GameStudioQuery_gameStudio_games_lobby = {
-  id: ?string,
-  tableId: ?string,
-  symbol: ?string,
-  provider: ?string,
-  results: Array<string>,
-  image: ?string,
-  type: ?string,
-  betBehind: ?boolean,
   bets: ?GameStudioQuery_gameStudio_games_lobby_bets,
 };
 export type GameStudioQuery_gameStudio_games = {
   id: string,
   backgroundImage: string,
-  isInMaintenance: boolean,
   logo: string,
   name: string,
   slug: string,
