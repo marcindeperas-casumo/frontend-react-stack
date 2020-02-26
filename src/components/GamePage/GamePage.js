@@ -1,6 +1,6 @@
 // @flow
 
-import React, { useState } from "react";
+import React from "react";
 import Flex from "@casumo/cmp-flex";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
@@ -26,7 +26,6 @@ type Props = {
 };
 
 export const GamePage = ({ slug, playForFun }: Props) => {
-  const [isGameActive, setGameActive] = useState(false);
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
@@ -37,14 +36,6 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     {
       playForFun,
       slug,
-      callbacks: {
-        onGameActive: () => {
-          setGameActive(true);
-        },
-        onGameIdle: () => {
-          setGameActive(false);
-        },
-      },
     }
   );
   useRealityCheckModal({ pauseGame, resumeGame });
@@ -59,7 +50,7 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     ),
   });
 
-  if (error && !isGameActive) {
+  if (error) {
     return (
       <Flex className="t-background-chrome-light-2 u-height--screen">
         <ErrorMessage
@@ -80,7 +71,11 @@ export const GamePage = ({ slug, playForFun }: Props) => {
       direction="vertical"
       spacing="none"
     >
-      <Flex.Item>{isDGOJ && <DGOJBar />}</Flex.Item>
+      {isDGOJ && (
+        <Flex.Item>
+          <DGOJBar />
+        </Flex.Item>
+      )}
       <Flex.Block className="u-position-relative">
         <div className="c-game-page__game-wrapper">
           <GameLauncher
@@ -89,7 +84,11 @@ export const GamePage = ({ slug, playForFun }: Props) => {
           />
         </div>
       </Flex.Block>
-      <Flex.Item>{shouldShowSlotControlSystem && <InfoBar />}</Flex.Item>
+      {shouldShowSlotControlSystem && (
+        <Flex.Item>
+          <InfoBar />
+        </Flex.Item>
+      )}
     </Flex>
   );
 };
