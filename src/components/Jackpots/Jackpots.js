@@ -11,6 +11,7 @@ import ScrollableListTitle from "Components/ScrollableListTitle";
 import { ScrollableListPaginated } from "Components/ScrollableListPaginated";
 import { Desktop, MobileAndTablet } from "Components/ResponsiveLayout";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 import { generateColumns } from "Utils";
 
 const PADDING_PER_DEVICE = {
@@ -41,7 +42,15 @@ const JackpotsColumn = ({
         <GameRow
           game={jackpot}
           locale={locale}
-          className="t-background-white t-border-r--md t-box-shadow"
+          className="t-background-white u-padding--md t-border-r--md t-box-shadow"
+          renderText={() => (
+            <GameRowText
+              locale={locale}
+              name={jackpot.name}
+              bets={jackpot.lobby?.bets}
+              jackpot={jackpot.jackpot}
+            />
+          )}
           onLaunchGame={() => launchGame({ slug: jackpot.slug })}
         />
       )}

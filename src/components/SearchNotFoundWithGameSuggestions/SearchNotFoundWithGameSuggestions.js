@@ -16,7 +16,7 @@ export const SearchNotFoundWithGameSuggestions = ({
 }: Props) => {
   return (
     <>
-      <div className="t-background-grey-light-2">
+      <div className="t-background-chrome-light-2">
         <SearchNotFound
           image={image}
           title={title}

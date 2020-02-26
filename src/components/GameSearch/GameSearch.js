@@ -5,6 +5,7 @@ import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWith
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
 import { launchGame } from "Services/LaunchGameService";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import {
@@ -33,14 +34,6 @@ type Props = {
   queryChanged: (query: string) => {},
 };
 
-const GameRowHighlightSearch = (game, query) => (
-  <GameRow
-    search={{ query, highlightSearchQuery: true }}
-    game={game}
-    onLaunchGame={() => launchGame({ slug: game.slug })}
-  />
-);
-
 export const GameSearch = (props: Props) => {
   const noResults = Boolean(
     !props.loading && !props.searchResultsCount && props.query.length
@@ -55,6 +48,19 @@ export const GameSearch = (props: Props) => {
     clearSearch,
     inputPromptPlaceholder,
   } = props;
+
+  const GameRowHighlightSearch = game => (
+    <GameRow
+      game={game}
+      onLaunchGame={() => launchGame({ slug: game.slug })}
+      renderText={() => (
+        <GameRowSearchText
+          name={game.name}
+          search={{ query, highlightSearchQuery: true }}
+        />
+      )}
+    />
+  );
 
   const renderResults = () => {
     if (!query.length) {
@@ -90,7 +96,7 @@ export const GameSearch = (props: Props) => {
         >
           {searchResultsCount < PAGE_SIZE ? (
             <List
-              className="u-padding-top u-padding-x--md u-game-search-max-width"
+              className="u-padding-x--md u-game-search-max-width"
               items={searchResults}
               itemSpacing="default"
               render={GameRowHighlightSearch}
