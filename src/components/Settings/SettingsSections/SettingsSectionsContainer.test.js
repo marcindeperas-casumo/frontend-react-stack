@@ -18,7 +18,7 @@ describe("SettingsSections", () => {
   });
 
   describe("Player Settings", () => {
-    test("should render loader", () => {
+    test("should render loader", async () => {
       const rendered = mount(
         <MockedProvider
           mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
@@ -28,6 +28,8 @@ describe("SettingsSections", () => {
       );
 
       expect(rendered.find("SettingsRowListSkeleton")).toHaveLength(1);
+
+      await waitAndUpdateWrapper(rendered);
     });
 
     test("should show error", async () => {
@@ -54,8 +56,6 @@ describe("SettingsSections", () => {
       );
 
       await waitAndUpdateWrapper(rendered, 100);
-
-      console.log("LOG", rendered.find("Component").prop("playerLoginHistory")); // eslint-disable-line no-console
 
       expect(
         rendered.find("Component").prop("playerLoginHistory")
