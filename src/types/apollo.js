@@ -189,6 +189,33 @@ export type GameStudiosQuery = {
 };
 
 // ====================================================
+// GraphQL query operation: GameRowSessionDetailsQuery
+// ====================================================
+
+export type GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets = {
+  min: ?number,
+  max: ?number,
+  symbol: ?string,
+};
+export type GameRowSessionDetailsQuery_gamesBySlugs_lobby = {
+  bets: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby_bets,
+};
+export type GameRowSessionDetailsQuery_gamesBySlugs = {
+  id: string,
+  backgroundImage: string,
+  logo: string,
+  name: string,
+  slug: string,
+  lobby: ?GameRowSessionDetailsQuery_gamesBySlugs_lobby,
+};
+export type GameRowSessionDetailsQuery = {
+  gamesBySlugs: Array<GameRowSessionDetailsQuery_gamesBySlugs>,
+};
+export type GameRowSessionDetailsQueryVariables = {
+  slugs: Array<string>,
+};
+
+// ====================================================
 // GraphQL query operation: GameSearchQuery
 // ====================================================
 
