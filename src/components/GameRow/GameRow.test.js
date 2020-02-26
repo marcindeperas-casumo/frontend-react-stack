@@ -5,8 +5,6 @@ import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import { GameThumb } from "Components/GameThumb";
-// import { Roulette as liveCasinoGame } from "Components/LiveCasinoCard/__mocks__";
-// import { renderBets } from "Utils";
 import { CURRENCIES } from "Src/constants";
 
 describe("<GameRow />", () => {
