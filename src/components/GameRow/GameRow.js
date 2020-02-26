@@ -1,12 +1,9 @@
 // @flow
-import React from "react";
-import classNames from "classnames";
+import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import * as A from "Types/apollo";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import { GameThumb } from "Components/GameThumb";
-import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
-import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowTrackMoreIcon } from "Components/GameRow/GameRowTrackMoreIcon";
 import { GameRowTrackPlayIcon } from "Components/GameRow/GameRowTrackPlayIcon";
 import TrackClick from "Components/TrackClick";
@@ -25,28 +22,22 @@ type Props = {
   onLaunchGame: () => void,
   /** Class name to apply to the game row */
   className?: string,
+  /** a function that renders some text */
+  renderText: () => React.Node,
   /** The search props */
   search?: SearchProps | boolean,
-  /** The locale for displaying jackpots with the right format */
-  locale?: string,
 };
 
 export const GameRow = ({
   game = {},
   onLaunchGame,
-  search,
+  renderText,
   className = "",
-  locale,
 }: Props) => {
-  const { name, logo, backgroundImage, slug, jackpot } = game;
-  const lobby = game.lobby || {};
-  const { bets } = lobby;
+  const { name, logo, backgroundImage, slug } = game;
 
   return (
-    <Flex
-      align="center"
-      className={classNames({ "u-padding--md": !search }, className)}
-    >
+    <Flex align="center" className={className}>
       <Flex.Block onClick={onLaunchGame}>
         <TrackClick
           eventName={EVENTS.MIXPANEL_GAME_LAUNCH}
@@ -56,16 +47,7 @@ export const GameRow = ({
             <Flex.Item className="o-flex__item--no-shrink">
               <GameThumb src={backgroundImage} alt={name} mark={logo} />
             </Flex.Item>
-            {search ? (
-              <GameRowSearchText name={name} search={search} />
-            ) : (
-              <GameRowText
-                locale={locale}
-                name={name}
-                bets={bets}
-                jackpot={jackpot}
-              />
-            )}
+            {renderText()}
           </Flex>
         </TrackClick>
       </Flex.Block>
