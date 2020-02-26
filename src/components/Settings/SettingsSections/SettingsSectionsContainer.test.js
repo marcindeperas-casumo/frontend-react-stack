@@ -53,12 +53,12 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await waitAndUpdateWrapper(rendered);
+      await waitAndUpdateWrapper(rendered, 100);
+
+      console.log("LOG", rendered.find("Component").prop("playerLoginHistory")); // eslint-disable-line no-console
 
       expect(
-        JSON.parse(
-          JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
-        )
+        rendered.find("Component").prop("playerLoginHistory")
       ).toStrictEqual(playerSectionsQueryMock.result.data);
     });
   });
