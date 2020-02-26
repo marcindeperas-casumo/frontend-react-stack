@@ -17,10 +17,7 @@ export const SidebarIconClose = () => {
         onClick={() => dispatch(sidebarCloseAction())}
         data-test-id="sidebar-close"
       >
-        <CrossIcon
-          size="md"
-          className="u-padding-y--sm u-padding-x--sm u-cursor-pointer"
-        />
+        <CrossIcon size="md" className="u-padding--sm u-cursor-pointer" />
       </div>
     )
   );
