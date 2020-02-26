@@ -20,9 +20,7 @@ describe("SettingsSections", () => {
   describe("Player Settings", () => {
     test("should render loader", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
-        >
+        <MockedProvider mocks={[]}>
           <SettingsSectionsContainer />
         </MockedProvider>
       );
@@ -34,9 +32,7 @@ describe("SettingsSections", () => {
 
     test("should show error", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsLabelsQueryMock, playerSectionsQueryErrorMock]}
-        >
+        <MockedProvider mocks={[playerSectionsQueryErrorMock]}>
           <SettingsSectionsContainer />
         </MockedProvider>
       );
@@ -66,9 +62,7 @@ describe("SettingsSections", () => {
   describe("Labels", () => {
     test("should show error", async () => {
       const rendered = mount(
-        <MockedProvider
-          mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
-        >
+        <MockedProvider mocks={[playerSectionsLabelsQueryErrorMock]}>
           <SettingsSectionsContainer />
         </MockedProvider>
       );
