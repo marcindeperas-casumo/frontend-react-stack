@@ -20,4 +20,18 @@ export class GreentubeGame extends BaseIframeGame {
     this.api.events.onGameRoundStart = EVENTS.GAME_ROUND_START;
     this.api.events.onGameRoundEnd = EVENTS.GAME_ROUND_END;
   }
+
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+
+    if (url) {
+      return {
+        ...super.componentProps,
+        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+      };
+    }
+
+    return super.componentProps;
+  }
 }

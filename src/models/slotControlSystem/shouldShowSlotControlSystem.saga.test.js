@@ -1,14 +1,14 @@
 // @flow
 import { recordSaga } from "Utils";
-import { getGameCategories } from "Api/api.casinoPlayerGames";
+import { getGameCategory } from "Api/api.casinoPlayerGames";
 import { shouldShowSlotControlSystemSaga } from "./shouldShowSlotControlSystem.saga";
 
-const gameCategories = ["SLOT_MACHINE"];
+const gameCategory = "SLOT_MACHINE";
 const slug = "tiger-rush";
 const state = {
   slotControlSystem: {
     slugToCategoryMap: {
-      [slug]: gameCategories,
+      [slug]: gameCategory,
     },
   },
 };
@@ -26,16 +26,16 @@ function setPathname(pathname) {
 
 // jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests here 🐛
 jest.mock("Api/api.casinoPlayerGames", () => ({
-  getGameCategories: jest.fn(),
+  getGameCategory: jest.fn(),
 }));
 
 // $FlowIgnore
-getGameCategories.mockResolvedValue(gameCategories);
+getGameCategory.mockResolvedValue(gameCategory);
 // $FlowIgnore
 describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
   beforeEach(() => {
     // $FlowIgnore
-    getGameCategories.mockClear();
+    getGameCategory.mockClear();
     window.location = location;
   });
 
@@ -45,7 +45,7 @@ describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
       saga: shouldShowSlotControlSystemSaga,
     });
 
-    expect(getGameCategories).toHaveBeenCalledTimes(1);
+    expect(getGameCategory).toHaveBeenCalledTimes(1);
     expect(result).toBe(true);
   });
 
@@ -56,7 +56,7 @@ describe("Models/slotControlSystem/shouldShowSlotControlSystemSaga()", () => {
       state,
     });
 
-    expect(getGameCategories).toHaveBeenCalledTimes(0);
+    expect(getGameCategory).toHaveBeenCalledTimes(0);
     expect(result).toBe(true);
   });
 
