@@ -20,7 +20,9 @@ describe("SettingsSections", () => {
   describe("Player Settings", () => {
     test("should render loader", async () => {
       const rendered = mount(
-        <MockedProvider mocks={[]}>
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryMock]}
+        >
           <SettingsSectionsContainer />
         </MockedProvider>
       );
