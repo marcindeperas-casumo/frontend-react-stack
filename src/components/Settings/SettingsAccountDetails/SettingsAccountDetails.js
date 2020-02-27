@@ -8,7 +8,11 @@ import { SettingsLabelAndValue } from "Components/Settings/SettingsLabelAndValue
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, KO_EVENTS } from "Src/constants";
 import { SettingsRow } from "Components/Settings/SettingsRow/SettingsRow";
-import { PASSWORD_PLACEHOLDER_VALUE, onOldStackEvent } from "./utils";
+import {
+  PASSWORD_PLACEHOLDER_VALUE,
+  onOldStackEvent,
+  doesContainJapaneseCharacters,
+} from "./utils";
 
 type Props = {
   player: A.SETTINGS_PLAYER,
@@ -77,7 +81,7 @@ export class SettingsAccountDetails extends PureComponent<Props> {
 }
 
 const Name = ({ labels, details }) => {
-  const fullName = !/[a-zA-Z]+/i.test(details.name.first)
+  const fullName = doesContainJapaneseCharacters(details.name.first)
     ? `${details.name.last} ${details.name.first}`
     : `${details.name.first} ${details.name.last}`;
 
