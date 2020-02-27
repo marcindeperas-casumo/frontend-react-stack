@@ -76,12 +76,13 @@ export class SettingsAccountDetails extends PureComponent<Props> {
   }
 }
 
-const Name = ({ labels, details }) => (
-  <RowTemplate
-    label={labels.name}
-    value={`${details.name.first} ${details.name.last}`}
-  />
-);
+const Name = ({ labels, details }) => {
+  const fullName = !/[a-zA-Z]+/i.test(details.name.first)
+    ? `${details.name.last} ${details.name.first}`
+    : `${details.name.first} ${details.name.last}`;
+
+  return <RowTemplate label={labels.name} value={fullName} />;
+};
 
 const Email = ({ labels, details }) => (
   <RowTemplate
