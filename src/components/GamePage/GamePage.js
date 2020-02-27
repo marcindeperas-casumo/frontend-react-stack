@@ -7,7 +7,7 @@ import {
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
-  useGameCategories,
+  useGameCategory,
 } from "Utils/hooks";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -29,8 +29,8 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     playForFun,
     slug,
   });
-  const { loading, gameCategories } = useGameCategories(slug);
-  const shouldShowSlotControlSystem = !loading && isSlotGame(gameCategories);
+  const { loading, gameCategory } = useGameCategory(slug);
+  const shouldShowSlotControlSystem = !loading && isSlotGame(gameCategory);
 
   useBeforePlayingModal({
     canLaunch: Boolean(

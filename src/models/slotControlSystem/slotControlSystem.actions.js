@@ -35,13 +35,10 @@ export function updateActiveSessionStats(data: ActiveSessionType) {
   };
 }
 
-export function updateSlugToCategoryMap(
-  slug: string,
-  categories: Array<GameCategory>
-) {
+export function updateSlugToCategoryMap(slug: string, category: GameCategory) {
   return {
     type: ACTION_TYPES.UPDATE_SLUG_TO_CATEGORY_MAP,
     slug,
-    categories,
+    category,
   };
 }

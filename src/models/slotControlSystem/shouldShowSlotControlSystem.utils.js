@@ -2,7 +2,7 @@
 import * as R from "ramda";
 import type { GameCategory } from "Api/api.casinoPlayerGames";
 
-export function isSlotGame(categories: Array<GameCategory>) {
+export function isSlotGame(category: ?GameCategory): boolean {
   // slotCategories should be the same as on the backend! see: https://github.com/Casumo/es-slot-sessions/blob/master/domain/src/main/kotlin/com/casumo/es/slotsessions/domain/services/CasinoGamesPort.kt#L12
   const slotCategories: Array<GameCategory> = [
     "BINGO",
@@ -10,7 +10,7 @@ export function isSlotGame(categories: Array<GameCategory>) {
     "VIDEO_POKER",
   ];
 
-  return R.any(R.anyPass(R.map(R.equals, slotCategories)), categories);
+  return R.includes(category, slotCategories);
 }
 
 export function getSlugFromGamePage(): ?string {
