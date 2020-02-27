@@ -18,9 +18,6 @@ export const SportsLOSContainer = () => {
     LAUNCH_KAMBI_LOS_MUTATION
   );
   const language = useLanguage();
-  // const currency = useCurrency();
-  // const country = useCountry();
-  // const market = useMarket();
 
   React.useEffect(() => {
     launchKambi({ variables: { playForFun: true } }).then(({ data }) => {

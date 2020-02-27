@@ -1068,8 +1068,8 @@ export type SessionTouch = {
 
 export type LaunchKambi_launchKambi = {
   clientBootstrapUrl: string,
-  providerPlayerId: string,
-  ticket: string,
+  providerPlayerId: ?string,
+  ticket: ?string,
 };
 export type LaunchKambi = {
   launchKambi: ?LaunchKambi_launchKambi,

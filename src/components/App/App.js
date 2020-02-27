@@ -3,9 +3,6 @@ import React, { useEffect } from "react";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
-// import SportsLOS from "Features/sports/components/SportsLOS";
-// import { useCrossCodebaseNavigation } from "Utils/hooks";
-// import { ROUTE_IDS } from "Src/constants";
 type Props = {
   onAppStarted: () => void,
   subscribeToUpdates: Function,
