@@ -336,3 +336,11 @@ export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
 };
+
+export const JURISDICTIONS = {
+  DGA: "DGA",
+  DGOJ: "DGOJ",
+  MGA: "MGA",
+  SGA: "SGA",
+  UKGC: "UKGC",
+};

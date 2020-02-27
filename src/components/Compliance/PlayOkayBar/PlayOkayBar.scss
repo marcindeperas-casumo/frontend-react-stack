@@ -1,0 +1,21 @@
+.c-playokay-bar {
+  height: var(--play-okay-bar-height, 40px);
+}
+.c-playokay-bar__icon {
+  color: #fff;
+  display: block;
+  height: 16px;
+
+  &--spelpaus {
+    width: 56px;
+  }
+  &--spelgranser {
+    width: 66px;
+  }
+  &--sjalvtest {
+    width: 55px;
+  }
+}
+.c-playokay-bar__clock {
+  width: 6.5em;
+}

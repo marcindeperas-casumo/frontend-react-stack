@@ -3,17 +3,17 @@ import Flex from "@casumo/cmp-flex";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
 import PlayOkayIcon from "./icons/playokay.svg";
-import "./DGOJBar.scss";
+import "./PlayOkayBar.scss";
 
 export const DGOJBar = () => (
   <Flex
     justify="end"
     align="center"
-    className="c-dgoj-bar t-background-chrome-dark-3 t-color-white u-padding-x"
+    className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Item>
-      <a rel="noopener noreferrer" target="_blank" href="/es/play-okay">
-        <PlayOkayIcon className="c-dgoj-bar__icon" />
+      <a rel="noopener noreferrer" target="_blank" href="/play-okay">
+        <PlayOkayIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
 
@@ -23,7 +23,7 @@ export const DGOJBar = () => (
         target="_blank"
         href="http://www.ordenacionjuego.es/es/rgiaj"
       >
-        <RGIAJIcon className="c-dgoj-bar__icon" />
+        <RGIAJIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
     <Flex.Item>
@@ -32,7 +32,7 @@ export const DGOJBar = () => (
         rel="noopener noreferrer"
         target="_blank"
       >
-        <JugarbienIcon className="c-dgoj-bar__icon" />
+        <JugarbienIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
   </Flex>
