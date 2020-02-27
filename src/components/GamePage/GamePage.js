@@ -8,7 +8,7 @@ import {
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
-  useGameCategories,
+  useGameCategory,
 } from "Utils/hooks";
 import { DGOJBar } from "Components/Compliance/DGOJBar";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
@@ -29,9 +29,9 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
-  const { loading, gameCategories } = useGameCategories(slug);
+  const { loading, gameCategory } = useGameCategory(slug);
   const shouldShowSlotControlSystem =
-    !loading && isDGOJ && isSlotGame(gameCategories);
+    !loading && isDGOJ && isSlotGame(gameCategory);
   const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
     {
       playForFun,

@@ -32,37 +32,38 @@
     #root {
       height: 100%;
     }
-
-    /* TODO: fix in Cudl React - for react cudl loader loading before css is injected
-     * https://jira.casumocave.com/browse/PRR-623
-     */
-    .t-background-plum {
-      background-color: #4C00C2;
-    }
-
-    .t-color-teal {
-      color: #0CD0CD;
-    }
-
-    .c-splash,
-    .Loader-c-splash {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      height: 100%;
-      width: 100%;
-    }
-
-    .c-splash__logo,
-    .Loader-c-splash__logo {
-      max-width: 240px;
-      width: 100%;
-    }
   </style>
 </head>
 
 <body>
   <div id="root">
+    <style>
+      /* TODO: fix in Cudl React - for react cudl loader loading before css is injected
+      * https://jira.casumocave.com/browse/PRR-623
+      */
+      .t-background-plum {
+        background-color: #4C00C2;
+      }
+
+      .t-color-teal {
+        color: #0CD0CD;
+      }
+
+      .c-splash,
+      .Loader-c-splash {
+        align-items: center;
+        display: flex;
+        justify-content: center;
+        height: 100%;
+        width: 100%;
+      }
+
+      .c-splash__logo,
+      .Loader-c-splash__logo {
+        max-width: 240px;
+        width: 100%;
+      }
+    </style>
     <div id="casumo-loader" style="height: 100%; width: 100%; position: absolute; top: 0; left: 0;">
       <style>
         .c-splash_flash {
