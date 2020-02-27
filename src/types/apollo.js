@@ -689,19 +689,6 @@ export type FREEBET_QUERY = {
 };
 
 // ====================================================
-// GraphQL mutation operation: LaunchKambi
-// ====================================================
-
-export type LaunchKambi_launchKambi = {
-  clientBootstrapUrl: string,
-  providerPlayerId: string,
-  ticket: string,
-};
-export type LaunchKambi = {
-  launchKambi: ?LaunchKambi_launchKambi,
-};
-
-// ====================================================
 // GraphQL query operation: LaunchableKambiClientQuery
 // ====================================================
 
@@ -709,17 +696,6 @@ export type LaunchableKambiClientQuery = {
   userHomepage: ?string,
   kambiClientVisible: boolean,
   isBetslipVisible: boolean,
-};
-
-// ====================================================
-// GraphQL mutation operation: LaunchKambiLoS
-// ====================================================
-
-export type LaunchKambiLoS_launchKambi = {
-  clientBootstrapUrl: string,
-};
-export type LaunchKambiLoS = {
-  launchKambi: ?LaunchKambiLoS_launchKambi,
 };
 
 // ====================================================
@@ -1084,6 +1060,36 @@ export type SessionTouch = {
    * Pings the current session to keep it alive, requires the session cookie to be present in the headers
    */
   sessionTouch: ?boolean,
+};
+
+// ====================================================
+// GraphQL mutation operation: LaunchKambi
+// ====================================================
+
+export type LaunchKambi_launchKambi = {
+  clientBootstrapUrl: string,
+  providerPlayerId: string,
+  ticket: string,
+};
+export type LaunchKambi = {
+  launchKambi: ?LaunchKambi_launchKambi,
+};
+export type LaunchKambiVariables = {
+  playForFun: boolean,
+};
+
+// ====================================================
+// GraphQL mutation operation: LaunchKambiLoS
+// ====================================================
+
+export type LaunchKambiLoS_launchKambi = {
+  clientBootstrapUrl: string,
+};
+export type LaunchKambiLoS = {
+  launchKambi: ?LaunchKambiLoS_launchKambi,
+};
+export type LaunchKambiLoSVariables = {
+  playForFun: boolean,
 };
 
 // ====================================================

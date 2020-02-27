@@ -82,3 +82,21 @@ export const SESSION_TOUCH = gql`
     sessionTouch
   }
 `;
+
+export const LAUNCH_KAMBI_MUTATION = gql`
+  mutation LaunchKambi($playForFun: Boolean!) {
+    launchKambi(playForFun: $playForFun) {
+      clientBootstrapUrl
+      providerPlayerId
+      ticket
+    }
+  }
+`;
+
+export const LAUNCH_KAMBI_LOS_MUTATION = gql`
+  mutation LaunchKambiLoS($playForFun: Boolean!) {
+    launchKambi(playForFun: $playForFun) {
+      clientBootstrapUrl
+    }
+  }
+`;
