@@ -34,7 +34,9 @@ describe("SettingsSections", () => {
 
     test("should show error", async () => {
       const rendered = mount(
-        <MockedProvider mocks={[playerSectionsQueryErrorMock]}>
+        <MockedProvider
+          mocks={[playerSectionsQueryErrorMock, playerSectionsLabelsQueryMock]}
+        >
           <SettingsSectionsContainer />
         </MockedProvider>
       );
@@ -53,7 +55,7 @@ describe("SettingsSections", () => {
         </MockedProvider>
       );
 
-      await waitAndUpdateWrapper(rendered, 100);
+      await waitAndUpdateWrapper(rendered);
 
       expect(
         rendered.find("Component").prop("playerLoginHistory")
@@ -64,7 +66,9 @@ describe("SettingsSections", () => {
   describe("Labels", () => {
     test("should show error", async () => {
       const rendered = mount(
-        <MockedProvider mocks={[playerSectionsLabelsQueryErrorMock]}>
+        <MockedProvider
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryErrorMock]}
+        >
           <SettingsSectionsContainer />
         </MockedProvider>
       );
