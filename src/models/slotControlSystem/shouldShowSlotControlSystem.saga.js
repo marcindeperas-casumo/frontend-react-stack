@@ -1,6 +1,6 @@
 // @flow
 import { call, put, select } from "redux-saga/effects";
-import { getGameCategories } from "Api/api.casinoPlayerGames";
+import { getGameCategory } from "Api/api.casinoPlayerGames";
 import { slugToCategorySelector } from "./slotControlSystem.selectors";
 import { updateSlugToCategoryMap } from "./slotControlSystem.actions";
 import {
@@ -21,7 +21,7 @@ export function* shouldShowSlotControlSystemSaga(): * {
     return isSlotGame(categoriesFromStore);
   }
 
-  const categories = yield call(getGameCategories, slug);
+  const categories = yield call(getGameCategory, slug);
   yield put(updateSlugToCategoryMap(slug, categories));
 
   return isSlotGame(categories);

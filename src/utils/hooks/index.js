@@ -3,7 +3,7 @@ export { useTranslations } from "./useTranslations";
 export { useDelayedCleanup } from "./useDelayedCleanup";
 export { useLocale } from "./useLocale";
 export { useActiveGameSession } from "./useActiveGameSession";
-export { useGameCategories } from "./useGameCategories";
+export { useGameCategory } from "./useGameCategory";
 export { useMarket } from "./useMarket";
 export { useCountry } from "./useCountry";
 export { useCurrency } from "./useCurrency";

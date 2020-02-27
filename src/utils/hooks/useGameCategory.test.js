@@ -1,57 +1,57 @@
 // @flow
 import * as React from "react";
 import { mount } from "enzyme";
-import { getGameCategories } from "Api/api.casinoPlayerGames";
+import { getGameCategory } from "Api/api.casinoPlayerGames";
 import MockStore from "Components/MockStore";
 import { HookWrapper, expectHook } from "Utils/HookWrapper";
 import { waitAndUpdateWrapper } from "Utils";
-import { useGameCategories } from "./useGameCategories";
+import { useGameCategory } from "./useGameCategory";
 
 jest.mock("Lib/cometd"); // For some reason, this file executes and breaks tests here 🐛
 
-const gameCategories = ["SLOT_MACHINE"];
+const gameCategory = "SLOT_MACHINE";
 
 jest.mock("Api/api.casinoPlayerGames", () => ({
-  getGameCategories: jest.fn(),
+  getGameCategory: jest.fn(),
 }));
 
 // $FlowIgnore
-getGameCategories.mockReturnValue(Promise.resolve(gameCategories));
+getGameCategory.mockReturnValue(Promise.resolve(gameCategory));
 
 const slug = "tiger-rush";
 const state = {
   slotControlSystem: {
     slugToCategoryMap: {
-      [slug]: gameCategories,
+      [slug]: gameCategory,
     },
   },
 };
 
-describe("useGameCategories", () => {
+describe("useGameCategory", () => {
   beforeEach(() => {
     // $FlowIgnore
-    getGameCategories.mockClear();
+    getGameCategory.mockClear();
   });
 
   describe("no data in store", () => {
     test("fetch data if nothing is saved in store", async () => {
       const wrapper = mount(
         <MockStore state={{}}>
-          <HookWrapper hook={useGameCategories} args={[slug]} />
+          <HookWrapper hook={useGameCategory} args={[slug]} />
         </MockStore>
       );
       await waitAndUpdateWrapper(wrapper);
 
       expectHook(wrapper).toEqual({
         loading: false,
-        gameCategories,
+        gameCategory,
       });
     });
 
     test("request will be sent only once", async () => {
       const wrapper = mount(
         <MockStore state={{}}>
-          <HookWrapper hook={useGameCategories} args={[slug]} />
+          <HookWrapper hook={useGameCategory} args={[slug]} />
         </MockStore>
       );
 
@@ -60,7 +60,7 @@ describe("useGameCategories", () => {
         await waitAndUpdateWrapper(wrapper);
       }
 
-      expect(getGameCategories).toHaveBeenCalledTimes(1);
+      expect(getGameCategory).toHaveBeenCalledTimes(1);
     });
   });
 
@@ -68,20 +68,20 @@ describe("useGameCategories", () => {
     test("get data from store", () => {
       const wrapper = mount(
         <MockStore state={state}>
-          <HookWrapper hook={useGameCategories} args={[slug]} />
+          <HookWrapper hook={useGameCategory} args={[slug]} />
         </MockStore>
       );
 
       expectHook(wrapper).toEqual({
         loading: false,
-        gameCategories,
+        gameCategory,
       });
     });
 
     test("request will be sent 0 times", async () => {
       const wrapper = mount(
         <MockStore state={state}>
-          <HookWrapper hook={useGameCategories} args={[slug]} />
+          <HookWrapper hook={useGameCategory} args={[slug]} />
         </MockStore>
       );
 
@@ -90,7 +90,7 @@ describe("useGameCategories", () => {
         await waitAndUpdateWrapper(wrapper);
       }
 
-      expect(getGameCategories).toHaveBeenCalledTimes(0);
+      expect(getGameCategory).toHaveBeenCalledTimes(0);
     });
   });
 });

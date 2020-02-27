@@ -48,7 +48,7 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
-  slugToCategoryMap: { [string]: Array<GameCategory> },
+  slugToCategoryMap: { [string]: GameCategory },
 };
 
 export type SessionStateResponseType = {

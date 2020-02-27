@@ -198,7 +198,7 @@ type GameBig = {
   aspectRatioHeight: string,
   aspectRatioWidth: string,
   backgroundImage: string,
-  categories: Array<GameCategory>,
+  category: GameCategory,
   description: string,
   gameStudio: string,
   hasPlayForFun: boolean,
@@ -224,14 +224,12 @@ type GameBig = {
 export const gameById = (gameId: string): Promise<GameBig> =>
   clientHttp.get(`${URL.GAMES}/${gameId}`);
 
-export async function getGameCategories(
-  slug: string
-): Promise<Array<GameCategory>> {
+export async function getGameCategory(slug: string): Promise<?GameCategory> {
   if (!slug) {
-    return [];
+    return;
   }
   const { id } = await gameSlugToId(slug);
-  const { categories } = await gameById(id);
+  const { category } = await gameById(id);
 
-  return categories;
+  return category;
 }
