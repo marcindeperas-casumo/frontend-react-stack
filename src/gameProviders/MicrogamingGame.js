@@ -26,13 +26,6 @@ export class MicrogamingGame extends BaseIframeGame {
     this.targetDomain = TARGET_DOMAINS[this.props.environment];
   }
 
-  get componentProps() {
-    return {
-      ...super.componentProps,
-      scrolling: "no",
-    };
-  }
-
   parseMessageData(data: any) {
     return JSON.parse(data);
   }
