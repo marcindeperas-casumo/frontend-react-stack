@@ -9,13 +9,13 @@ import { SportsNav } from "Features/sports/components/SportsNav";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 import { useLanguage } from "Utils/hooks";
 
-export type PlayForFun = { playForFun: boolean };
-
 export const SportsLOSContainer = () => {
   const [bootstrapUrl, setBootstrapUrl] = useState(null);
-  const [launchKambi, { data }] = useMutation<A.LaunchKambiLoS, PlayForFun>(
-    LAUNCH_KAMBI_LOS_MUTATION
-  );
+  const [launchKambi, { data }] = useMutation<
+    A.LaunchKambiLoS,
+    A.LaunchKambiLoSVariables
+  >(LAUNCH_KAMBI_LOS_MUTATION);
+
   const language = useLanguage();
 
   React.useEffect(() => {
