@@ -1,7 +1,7 @@
 // @flow
 import React from "react";
 import { storiesOf } from "@storybook/react";
-import { select } from "@storybook/addon-knobs/react";
+import { select, boolean } from "@storybook/addon-knobs/react";
 import MockDate from "mockdate";
 import { isChromatic } from "Storybook/isNotChromatic";
 import { ReelRaceCard } from "./ReelRaceCard";
@@ -38,7 +38,12 @@ stories.add("Default", () => {
 
   return (
     <div className="c-reel-race-card">
-      <ReelRaceCard reelRace={reelRace} optIn={() => {}} />
+      <ReelRaceCard
+        reelRace={reelRace}
+        optIn={() => {}}
+        locale="en"
+        loading={boolean("Loading", false)}
+      />
     </div>
   );
 });

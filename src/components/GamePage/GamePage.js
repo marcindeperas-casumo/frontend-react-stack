@@ -2,19 +2,23 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
   useGameLaunchData,
   useCrossCodebaseNavigation,
   useTranslations,
   useJurisdiction,
-  useGameCategories,
+  useGameCategory,
 } from "Utils/hooks";
+import { DGOJBar } from "Components/Compliance/DGOJBar";
+import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
 import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
+import "./GamePage.scss";
 
 type Props = {
   slug: string,
@@ -25,12 +29,16 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   const { isDGOJ } = useJurisdiction();
   const { navigateToKO } = useCrossCodebaseNavigation();
   const errorMessages = useTranslations("mobile.errors");
-  const { gameProviderModel, error } = useGameLaunchData({
-    playForFun,
-    slug,
-  });
-  const { loading, gameCategories } = useGameCategories(slug);
-  const shouldShowSlotControlSystem = !loading && isSlotGame(gameCategories);
+  const { loading, gameCategory } = useGameCategory(slug);
+  const shouldShowSlotControlSystem =
+    !loading && isDGOJ && isSlotGame(gameCategory);
+  const { gameProviderModel, error, pauseGame, resumeGame } = useGameLaunchData(
+    {
+      playForFun,
+      slug,
+    }
+  );
+  useRealityCheckModal({ pauseGame, resumeGame });
 
   useBeforePlayingModal({
     canLaunch: Boolean(
@@ -54,19 +62,33 @@ export const GamePage = ({ slug, playForFun }: Props) => {
   }
 
   if (!gameProviderModel || loading) {
-    return null;
+    return <LoaderGlobal />;
   }
 
-  if (isDGOJ && shouldShowSlotControlSystem) {
-    return (
-      <div className="u-height--full u-width--full">
-        <div className="u-width--full c-game-launcher-container--dgoj">
-          <GameLauncher gameProviderModel={gameProviderModel} />
+  return (
+    <Flex
+      className="u-height--full t-background-chrome-dark-3 t-color-white"
+      direction="vertical"
+      spacing="none"
+    >
+      {isDGOJ && (
+        <Flex.Item>
+          <DGOJBar />
+        </Flex.Item>
+      )}
+      <Flex.Block className="u-position-relative">
+        <div className="c-game-page__game-wrapper">
+          <GameLauncher
+            gameProviderModel={gameProviderModel}
+            className="c-game-page__game-launcher"
+          />
         </div>
-        <InfoBar />
-      </div>
-    );
-  }
-
-  return <GameLauncher gameProviderModel={gameProviderModel} />;
+      </Flex.Block>
+      {shouldShowSlotControlSystem && (
+        <Flex.Item>
+          <InfoBar />
+        </Flex.Item>
+      )}
+    </Flex>
+  );
 };

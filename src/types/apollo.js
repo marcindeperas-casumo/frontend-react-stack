@@ -749,6 +749,17 @@ export type OptInForReelRaceVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: ReelRaceCardQuery
+// ====================================================
+
+export type ReelRaceCardQuery_session = {
+  locale: string,
+};
+export type ReelRaceCardQuery = {
+  session: ReelRaceCardQuery_session,
+};
+
+// ====================================================
 // GraphQL query operation: ReelRaceListQuery
 // ====================================================
 

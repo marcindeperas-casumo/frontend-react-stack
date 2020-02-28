@@ -6,6 +6,7 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
+import "@formatjs/intl-relativetimeformat/polyfill-locales";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
@@ -25,6 +26,8 @@ import "./ReelRaceCard.scss";
 type Props = {
   reelRace: A.ReelRaceCard_ReelRace,
   optIn: () => void,
+  locale: string,
+  loading: boolean,
 };
 
 const Column = (props: {
@@ -153,7 +156,8 @@ export class ReelRaceCard extends React.Component<Props> {
           size="sm"
           className="t-color-white u-font-weight-bold u-text-transform-capitalize"
         >
-          {startTimeDate.toRelativeCalendar()} {startTimeDate.toFormat("t")}
+          {startTimeDate.setLocale(this.props.locale).toRelativeCalendar()} {""}
+          {startTimeDate.toFormat("t")}
         </Text>
       </Flex>
     );
@@ -171,6 +175,7 @@ export class ReelRaceCard extends React.Component<Props> {
   };
 
   render() {
+    const isLocaleLoading = this.props.loading || !this.props.locale;
     const {
       translations: t,
       game,
@@ -191,6 +196,10 @@ export class ReelRaceCard extends React.Component<Props> {
       name: game.name,
       isPromoted: promoted,
     };
+
+    if (isLocaleLoading) {
+      return null;
+    }
 
     if (R.isEmpty(game)) {
       return null;

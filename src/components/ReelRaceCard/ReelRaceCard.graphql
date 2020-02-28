@@ -37,3 +37,9 @@ mutation OptInForReelRace($id: String!) {
         optedIn
     }
 }
+
+query ReelRaceCardQuery {
+    session {
+        locale
+    }
+}
