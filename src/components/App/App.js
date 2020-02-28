@@ -1,25 +1,37 @@
 // @flow
-import React, { useEffect } from "react";
-import LazyPortal from "Components/LazyPortal";
-import { Router } from "Components/Router";
-import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
+import React, { useEffect, useState } from "react";
+import bridge from "Src/DurandalReactBridge";
+import { REACT_APP_EVENT_ON_LOGIN } from "Src/constants";
+import { AppLiS } from "./AppLiS";
+import { AppLoS } from "./AppLoS";
 type Props = {
   onAppStarted: () => void,
   subscribeToUpdates: Function,
   unsubscribeToUpdates: Function,
   playerId: string,
   sessionId: string,
-  isAuthenticated: boolean,
+  isAuthenticatedHandshake: boolean,
   isAppHandshakeLoaded: Boolean,
-  activeComponents: Array<string>,
 };
 
 export const App = (props: Props) => {
-  const { onAppStarted, playerId, sessionId } = props;
+  const { onAppStarted, playerId, sessionId, isAuthenticatedHandshake } = props;
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   useEffect(() => {
-    onAppStarted();
-  }, [onAppStarted]);
+    setIsAuthenticated(isAuthenticatedHandshake);
+
+    if (!isAuthenticatedHandshake) {
+      onAppStarted();
+      bridge.on(REACT_APP_EVENT_ON_LOGIN, () => {
+        if (!isAuthenticated) {
+          setIsAuthenticated(true);
+          onAppStarted(); // refetch new handshake with session
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isAuthenticatedHandshake]);
 
   useEffect(() => {
     if (playerId && sessionId) {
@@ -34,28 +46,5 @@ export const App = (props: Props) => {
     return null;
   }
 
-  if (!props.isAuthenticated) {
-    return (
-      <LazyPortal
-        hostElementId="sports-los-portal"
-        loader={() => import("Features/sports/components/SportsLOS")}
-        fallback={<SportsShellSkeleton />}
-        namedExport="SportsLOSContainer"
-        props={props}
-      />
-    );
-  }
-
-  return (
-    <>
-      <Router></Router>
-      <LazyPortal
-        hostElementId="react-host-deposit-limits"
-        loader={() =>
-          import("Components/Compliance/DepositLimits/DepositLimitsView")
-        }
-        namedExport="DepositLimitsViewContainer"
-      />
-    </>
-  );
+  return isAuthenticated ? <AppLiS /> : <AppLoS />;
 };

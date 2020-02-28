@@ -8,7 +8,6 @@ import {
   sessionIdSelector,
   isApplicationHandshakeLoaded,
 } from "Models/handshake";
-import { activeComponents } from "Models/router";
 import {
   subscribeToPlayerUpdates,
   unsubscribeToPlayerUpdates,
@@ -21,8 +20,7 @@ export default hot(
   connect(
     state => ({
       isAppHandshakeLoaded: isApplicationHandshakeLoaded(state),
-      isAuthenticated: isAuthenticated(state),
-      activeComponents: activeComponents(state),
+      isAuthenticatedHandshake: isAuthenticated(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
     }),
