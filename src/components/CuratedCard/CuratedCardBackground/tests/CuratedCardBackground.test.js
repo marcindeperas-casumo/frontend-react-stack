@@ -1,6 +1,6 @@
 import React from "react";
 import { shallow } from "enzyme";
-import curatedData from "Models/curated/__mocks__/curated.json";
+import curatedData from "../../__mocks__/curated.json";
 import { CuratedCardBackgroundNew } from "../CuratedCardBackgroundNew";
 import { CuratedCardBackgroundDeprecated } from "../CuratedCardBackgroundDeprecated";
 import { CuratedCardBackground } from "../CuratedCardBackground";
