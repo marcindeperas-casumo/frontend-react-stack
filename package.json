@@ -79,7 +79,7 @@
     "storybook:build": "build-storybook -c .storybook -s ./.storybook/static -o .out",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --build-script-name storybook:build --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components",
-    "add-generated-types": "git add ./src/types/apollo.js && git add ./src/models/apollo/introspections.json",
+    "add-generated-types": "git add ./src/types/apollo.js ./src/models/apollo/introspections.json",
     "graphql-generate": "node ./scripts/graphql-generate.js"
   },
   "husky": {
