@@ -22,11 +22,7 @@ export const baseIframeGameProps = {
   src: "src",
   title: "casumo-game",
   id: "casumo-game",
-  style: {
-    border: 0,
-    height: "100%",
-    width: "100%",
-  },
+  scrolling: "no",
 };
 
 describe("BaseIframeGame", () => {
