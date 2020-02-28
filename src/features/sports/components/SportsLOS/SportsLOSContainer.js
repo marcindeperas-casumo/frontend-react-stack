@@ -41,6 +41,7 @@ export const SportsLOSContainer = () => {
         market={"GB"}
         locale={`${language}_GB`}
         bootstrapUrl={bootstrapUrl}
+        homeRoute={"#filter/football"}
       />
     </div>
   );

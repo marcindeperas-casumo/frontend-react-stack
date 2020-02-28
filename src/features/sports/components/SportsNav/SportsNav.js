@@ -126,6 +126,7 @@ export const SportsNav = ({ currentHash }: { currentHash: string }) => {
   const variables = { live: isLiveActive };
   const { loading, error, data } = useQuery(USER_NAVIGATION_QUERY, {
     variables,
+    fetchPolicy: "cache-and-network",
   });
 
   // ensure live mode is kept in sync with changes to the hash made from elsewhere
