@@ -9,6 +9,7 @@ import {
 import { waitAndUpdateWrapper } from "Utils";
 import { SportsNavSkeleton } from "Features/sports/components/SportsNav/SportsNavSkeleton";
 import { multipleSports } from "Features/sports/components/SportsNav/__mocks__/userNavigationQuery";
+jest.mock("Utils/hooks/useIsAuthenticated");
 
 const renderMocked = children =>
   mount(
