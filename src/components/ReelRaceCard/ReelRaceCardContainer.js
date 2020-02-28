@@ -7,6 +7,7 @@ import {
 } from "Models/reelRaces";
 import { launchGame } from "Models/games";
 import { gameSelector } from "Models/schema";
+import { localeSelector } from "Models/handshake";
 import { ReelRaceCard } from "./ReelRaceCard";
 
 export default connect(
@@ -19,6 +20,7 @@ export default connect(
 
     return {
       ...reelRace,
+      locale: localeSelector(state),
       game: gameSelector(reelRace.gameSlug)(state),
       t: reelRacesTranslationsSelector(state),
     };
