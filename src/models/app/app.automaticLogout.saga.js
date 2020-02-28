@@ -12,7 +12,9 @@ export function* appAutomaticLogoutSaga(): Saga {
     })
   );
 
-  yield delay(200);
+  // let the store update and modal show just to be sure next check blocks
+  // until modal is approved
+  yield delay(1);
 
   yield call(waitForSelector, isModalHiddenSelector);
 

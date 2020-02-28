@@ -1,8 +1,6 @@
 // @flow
-import { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector } from "react-redux";
 import {
-  initFetchActiveSessionAction,
   activeSessionSelector,
   endedSessionSelector,
   activeExclusionSelector,
@@ -15,7 +13,6 @@ import {
 } from "Models/slotControlSystem";
 
 export function useSessionsState(): UseSessionsStateType {
-  const dispatch = useDispatch();
   const activeSession: ActiveSessionType = useSelector(activeSessionSelector);
   const lastEndedSession: EndedSessionType = useSelector(endedSessionSelector);
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
@@ -25,12 +22,6 @@ export function useSessionsState(): UseSessionsStateType {
   const lastEndedSessionDuringLastHour = Boolean(
     lastEndedSession?.endedTime + 1000 * 60 * 60 > Date.now()
   );
-
-  useEffect(() => {
-    if (!isFresh) {
-      dispatch(initFetchActiveSessionAction());
-    }
-  }, [dispatch, isFresh]);
 
   return {
     activeSession,
