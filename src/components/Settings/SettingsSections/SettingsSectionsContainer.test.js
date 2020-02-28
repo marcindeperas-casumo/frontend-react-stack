@@ -11,7 +11,8 @@ import {
 } from "./__mocks__/Queries.mock";
 
 let Component, SettingsSectionsContainer;
-describe("SettingsSections", () => {
+// TODO PCC-469 REMOVE REACT-ADOPT AND REWRITE COMPONENTS/TESTS
+describe.skip("SettingsSections", () => {
   beforeEach(() => {
     Component = props => <div />;
     SettingsSectionsContainer = () => withContainer(Component);
@@ -33,7 +34,7 @@ describe("SettingsSections", () => {
     test("should show error", async () => {
       const rendered = mount(
         <MockedProvider
-          mocks={[playerSectionsLabelsQueryMock, playerSectionsQueryErrorMock]}
+          mocks={[playerSectionsQueryErrorMock, playerSectionsLabelsQueryMock]}
         >
           <SettingsSectionsContainer />
         </MockedProvider>
@@ -56,9 +57,7 @@ describe("SettingsSections", () => {
       await waitAndUpdateWrapper(rendered);
 
       expect(
-        JSON.parse(
-          JSON.stringify(rendered.find("Component").prop("playerLoginHistory"))
-        )
+        rendered.find("Component").prop("playerLoginHistory")
       ).toStrictEqual(playerSectionsQueryMock.result.data);
     });
   });
@@ -67,7 +66,7 @@ describe("SettingsSections", () => {
     test("should show error", async () => {
       const rendered = mount(
         <MockedProvider
-          mocks={[playerSectionsLabelsQueryErrorMock, playerSectionsQueryMock]}
+          mocks={[playerSectionsQueryMock, playerSectionsLabelsQueryErrorMock]}
         >
           <SettingsSectionsContainer />
         </MockedProvider>

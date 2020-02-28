@@ -1,5 +1,6 @@
 import React from "react";
 import Text from "@casumo/cmp-text";
+import DangerousHtml from "Components/DangerousHtml";
 
 export const PromotionCardContent = ({ title }) => {
   return (
@@ -8,7 +9,7 @@ export const PromotionCardContent = ({ title }) => {
       className="t-color-chrome-dark-3 u-padding-x--lg u-padding-top u-padding-bottom--md u-font-weight-bold"
       size="lg"
     >
-      {title}
+      <DangerousHtml html={title} />
     </Text>
   );
 };
