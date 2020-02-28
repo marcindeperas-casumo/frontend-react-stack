@@ -1,9 +1,9 @@
 // @flow
 import * as React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { equals } from "ramda";
 import bridge from "Src/DurandalReactBridge";
-import { showModal } from "Models/modal";
+import { showModal, isModalOpenToBeAcceptedSelector } from "Models/modal";
 import {
   ROUTE_IDS,
   REACT_APP_MODAL,
@@ -21,6 +21,7 @@ export function useBeforePlayingModal({
   canLaunch,
 }: UseBeforePlayingModalProps): void {
   const dispatch = useDispatch();
+  const isModalOpenToBeAccepted = useSelector(isModalOpenToBeAcceptedSelector);
   const { navigateToKO } = useCrossCodebaseNavigation();
   const { isDGOJ } = useJurisdiction();
   const navigateToHome = React.useCallback(
@@ -33,7 +34,7 @@ export function useBeforePlayingModal({
   );
 
   React.useEffect(() => {
-    if (!isDGOJ || !canLaunch) {
+    if (!isDGOJ || !canLaunch || isModalOpenToBeAccepted) {
       return;
     }
 
@@ -44,5 +45,5 @@ export function useBeforePlayingModal({
     return function unsubscribe() {
       bridge.off(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
     };
-  }, [dispatch, isDGOJ, canLaunch, navigateToHome]);
+  }, [dispatch, isDGOJ, canLaunch, navigateToHome, isModalOpenToBeAccepted]);
 }

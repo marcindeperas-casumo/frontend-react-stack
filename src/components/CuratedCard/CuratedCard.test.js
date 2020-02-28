@@ -14,8 +14,8 @@ import {
   CuratedCardFooterText,
 } from "Components/CuratedCard/CuratedCardFooter";
 import { CuratedCardSkeleton } from "Components/CuratedCard/CuratedCardSkeleton";
-import curatedData from "Models/curated/__mocks__/curated.json";
 import { CURATED_TYPE, CARD_CLICK_URL, CURATED_SLUG } from "Models/curated";
+import curatedData from "./__mocks__/curated.json";
 
 describe("CuratedCard", () => {
   let fetchCurated;

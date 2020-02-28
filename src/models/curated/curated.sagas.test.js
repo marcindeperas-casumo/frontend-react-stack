@@ -1,33 +1,34 @@
 import { put, take, call } from "redux-saga/effects";
-import curatedMock from "Models/curated/__mocks__/curated.json";
+import curatedMockAction from "Models/curated/__mocks__/curated.json";
+import curatedMockGameData from "Models/curated/__mocks__/curated.game.json";
 import { types, fetchCuratedGameSaga } from "Models/curated";
 import { normalizeData, updateEntity } from "Models/schema";
 
 describe("Models/curated/sagas", () => {
   describe("fetchCuratedGameSaga", () => {
-    test("success flow game in store", () => {
-      const type = "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune";
-      const generator = fetchCuratedGameSaga({ type });
-      const curated = curatedMock;
-      const { gameData, game } = curated;
+    test("finishes if no page slug", () => {
+      const generator = fetchCuratedGameSaga({
+        type: "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.ramses-book-cc",
+      });
 
-      generator.next({ curated });
-      generator.next({ gameData, game });
+      expect(generator.next().done).toBe(true);
+    });
+
+    test("success flow game in store", () => {
+      const generator = fetchCuratedGameSaga(curatedMockAction);
+      generator.next();
+      generator.next({ gameData: curatedMockGameData });
+      generator.next({ response: { foo: "bar" } });
 
       expect(generator.next().done).toBe(true);
     });
 
     test("success flow fetch game not in store", () => {
-      const type = "CMS/FETCH_PAGE_BY_SLUG_COMPLETE-curated.sakura-fortune";
-      const generator = fetchCuratedGameSaga({ type });
-      const curated = curatedMock;
-      const gameData = null;
-      const { game } = curated;
-      const country = "gb";
+      const generator = fetchCuratedGameSaga(curatedMockAction);
 
-      generator.next({ curated });
-      generator.next({ gameData, game });
-      generator.next(country);
+      generator.next();
+      generator.next({ gameData: null });
+      generator.next({ response: { foo: "bar" } });
 
       expect(generator.next().value).toEqual(
         take(types.CURATED_FETCH_GAME_COMPLETE)

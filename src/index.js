@@ -14,6 +14,7 @@ import reduxStore from "Services/reduxStore";
 import { BridgeToNavigationService } from "Services/BridgeToNavigationService";
 import { Modal } from "Components/RSModal";
 import { bridgeToLaunchModalService } from "Services/LaunchModalService";
+import { BridgeToLogoutService } from "Services/BridgeToLogoutService";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
@@ -21,6 +22,7 @@ import "./styles/index.scss";
 window.bridge = bridge;
 BridgeToNavigationService();
 bridgeToLaunchModalService(reduxStore);
+BridgeToLogoutService(reduxStore);
 
 ReactModal.setAppElement("#root");
 

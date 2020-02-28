@@ -26,6 +26,20 @@ export class RedTigerGame extends BaseIframeGame {
     this.api.features.instantPause = true;
   }
 
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+
+    if (url) {
+      return {
+        ...super.componentProps,
+        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+      };
+    }
+
+    return super.componentProps;
+  }
+
   extractEventId(data: any) {
     return data.type;
   }

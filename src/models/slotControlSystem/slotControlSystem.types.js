@@ -1,5 +1,6 @@
 // @flow
 import type { GameCategory } from "Api/api.casinoPlayerGames";
+import { END_SESSION_REASONS } from "Models/slotControlSystem";
 
 export type GameSessionStatsType = {
   consumedBalance: number,
@@ -29,7 +30,7 @@ export type EndedSessionType = {
   startedTime: number,
   /** Unix time in millis */
   endedTime: number,
-  endReason: string,
+  endReason: $Values<typeof END_SESSION_REASONS>,
   stats: GameSessionStatsType,
 };
 
@@ -47,7 +48,7 @@ export type StateType = {
   activeSession: ?ActiveSessionType,
   lastEndedSession: ?EndedSessionType,
   activeExclusion: ?ExclusionType,
-  slugToCategoryMap: { [string]: Array<GameCategory> },
+  slugToCategoryMap: { [string]: GameCategory },
 };
 
 export type SessionStateResponseType = {
