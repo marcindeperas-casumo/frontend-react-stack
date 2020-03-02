@@ -20,6 +20,8 @@ stories.add("Default", () => (
   <MockedProvider mocks={mocks} addTypename={false}>
     <FavouriteCompetitionsSelector
       groupId={1}
+      groupName={"test"}
+      isOnboarding={false}
       isCompetitionSelected={F}
       toggleCompetition={action("toggleCompetition")}
     />
@@ -32,6 +34,8 @@ stories.add("With selections", () => (
   <MockedProvider mocks={mocks} addTypename={false}>
     <FavouriteCompetitionsSelector
       groupId={1}
+      groupName={"test"}
+      isOnboarding={false}
       isCompetitionSelected={id => id % 3 === 0}
       toggleCompetition={action("toggleCompetition")}
     />
