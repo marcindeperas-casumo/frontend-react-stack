@@ -36,6 +36,7 @@ const props = {
   },
   launchGame: () => {},
   optIn: () => {},
+  locale: "en",
 };
 const minute = 60 * 1000;
 
@@ -68,6 +69,7 @@ describe("ReelRaceCard", () => {
       },
       launchGame: () => {},
       optIn: () => {},
+      locale: "en",
     };
 
     const now = Date.now();
@@ -78,6 +80,7 @@ describe("ReelRaceCard", () => {
         opted={false}
         startTime={now + 30 * minute}
         endTime={now + 60 * minute}
+        locale={propsNoGame.locale}
       />
     );
 
@@ -95,6 +98,7 @@ describe("ReelRaceCard", () => {
         opted={false}
         startTime={now + 30 * minute}
         endTime={now + 60 * minute}
+        locale={props.locale}
       />
     );
 
@@ -131,6 +135,7 @@ describe("ReelRaceCard", () => {
         startTime={now}
         endTime={now + 30 * minute}
         launchGame={launchGame}
+        locale={props.locale}
       />
     );
 
@@ -172,6 +177,7 @@ describe("ReelRaceCard", () => {
         opted
         startTime={now}
         endTime={now + 30 * minute}
+        locale={props.locale}
       />
     );
 

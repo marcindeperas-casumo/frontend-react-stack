@@ -2,6 +2,7 @@
 import React from "react";
 import classNames from "classnames";
 import Text from "@casumo/cmp-text";
+import DangerousHtml from "Components/DangerousHtml";
 
 type Props = {
   /** The text to show */
@@ -26,7 +27,7 @@ export default function ScrollableListTitle({ title, paddingLeft }: Props) {
       data-test="scrollable-list-title"
       tag="h3"
     >
-      {title}
+      <DangerousHtml html={title} />
     </Text>
   );
 }
