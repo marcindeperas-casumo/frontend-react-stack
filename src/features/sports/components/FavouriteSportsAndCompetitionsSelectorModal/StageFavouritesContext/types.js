@@ -20,5 +20,7 @@ export type StageFavouritesAPI = {
     competition: Competition
   ) => void,
   getSelectedIds: () => Array<number>,
+  trackOnbordingSports: () => void,
+  getSportNameById: (sportId: number) => string,
   isSelected: (id: number) => boolean,
 };
