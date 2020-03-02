@@ -1,0 +1,6 @@
+#import "../GameRow.graphql"
+query GameRowSessionDetailsQuery($slugs: [String!]!) {
+  gamesBySlugs(slugs: $slugs) {
+    ...GameRow_Game
+  }
+}

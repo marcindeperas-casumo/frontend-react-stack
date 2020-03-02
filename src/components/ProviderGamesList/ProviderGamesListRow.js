@@ -3,6 +3,7 @@ import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { launchGame } from "Services/LaunchGameService";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 import { GameRowSkeleton } from "Components/GameRowSkeleton";
 import type { Game } from "Types/game";
 
@@ -16,7 +17,11 @@ export const ProviderGamesListRow = ({
   game,
 }: ProviderGamesListRowProps) => (
   <div className="u-padding-x--md t-border-bottom" style={style}>
-    <GameRow game={game} onLaunchGame={() => launchGame({ slug: game.slug })} />
+    <GameRow
+      game={game}
+      onLaunchGame={() => launchGame({ slug: game.slug })}
+      renderText={() => <GameRowText name={game.name} />}
+    />
   </div>
 );
 

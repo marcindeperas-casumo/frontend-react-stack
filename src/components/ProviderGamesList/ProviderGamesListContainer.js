@@ -1,52 +1,19 @@
 // @flow
 import React from "react";
-import gql from "graphql-tag";
 import { useQuery } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { ProviderGamesList, PAGE_SIZE } from "./ProviderGamesList";
-
+import { GameStudioQuery } from "./ProviderGamesList.graphql";
 type Props = {
   /** Provider slug whose games will be fetched */
   provider: string,
 };
 
-const GAME_STUDIO_QUERY = gql`
-  query GameStudioQuery($slug: String!, $page: Int!, $pageSize: Int!) {
-    gameStudio(slug: $slug) {
-      id
-      gamesCount
-      games(page: $page, pageSize: $pageSize) {
-        id
-        backgroundImage
-        isInMaintenance
-        logo
-        name
-        slug
-        lobby {
-          id
-          tableId
-          symbol
-          provider
-          results
-          image
-          type
-          betBehind
-          bets {
-            min
-            max
-            symbol
-          }
-        }
-      }
-    }
-  }
-`;
-
 export const ProviderGamesListContainer = ({ provider: slug }: Props) => {
   const { data, loading, fetchMore } = useQuery<
     A.GameStudioQuery,
     A.GameStudioQueryVariables
-  >(GAME_STUDIO_QUERY, {
+  >(GameStudioQuery, {
     variables: { slug, page: 0, pageSize: PAGE_SIZE },
   });
   const games = data?.gameStudio?.games || [];

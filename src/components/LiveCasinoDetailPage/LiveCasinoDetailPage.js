@@ -3,6 +3,7 @@ import React from "react";
 import List from "@casumo/cmp-list";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
 import TrackProvider from "Components/TrackProvider";
 import { launchGame } from "Services/LaunchGameService";
@@ -33,6 +34,9 @@ export const LiveCasinoDetailPage = ({ groupedLiveCasinoGames }: Props) => {
                 <GameRow
                   game={game}
                   onLaunchGame={() => launchGame({ slug: game.slug })}
+                  renderText={() => (
+                    <GameRowText name={game.name} bets={game.lobby?.bets} />
+                  )}
                 />
               )}
             />

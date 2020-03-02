@@ -3,6 +3,7 @@ import { storiesOf } from "@storybook/react";
 import { action } from "@storybook/addon-actions";
 import Flex from "@casumo/cmp-flex";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 import games from "./__mocks__/games";
 import VirtualList from "./";
 
@@ -53,6 +54,9 @@ class MyComponent extends PureComponent {
           <GameRow
             game={this.state.list[index]}
             onLaunchGame={() => action(this.state.list[index].name)}
+            renderText={() => (
+              <GameRowText name={this.state.list[index].name} />
+            )}
           />
         </div>
       );

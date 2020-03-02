@@ -11,4 +11,11 @@ query JackpotsQuery($numberOfGames: Int!) {
 
 fragment Jackpots_Game on Game {
   ...GameRow_Game
+  jackpot {
+    id
+    value {
+      amount
+      currency
+    }
+  }
 }

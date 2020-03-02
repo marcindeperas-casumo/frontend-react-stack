@@ -2,6 +2,7 @@
 import React, { PureComponent } from "react";
 import SectionList from "Components/SectionList";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
 import { EVENT_PROPS } from "Src/constants";
@@ -38,7 +39,12 @@ export class GameSearchSuggestionsList extends PureComponent<Props> {
               data: games,
             },
           ]}
-          renderItem={game => <GameRow game={game} search />}
+          renderItem={game => (
+            <GameRow
+              game={game}
+              renderText={() => <GameRowSearchText name={game.name} search />}
+            />
+          )}
         />
       </TrackProvider>
     ) : (

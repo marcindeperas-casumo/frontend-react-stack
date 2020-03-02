@@ -4,6 +4,7 @@ import List from "@casumo/cmp-list";
 import { GameListSkeleton } from "Components/GameListSkeleton";
 import * as A from "Types/apollo";
 import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowText } from "Components/GameRow/GameRowText";
 
 type Props = {
   /** The list of game objects. */
@@ -25,7 +26,12 @@ export const GameListVertical = ({ games, loading = false }: Props) => {
       <List
         itemSpacing="none"
         items={games}
-        render={game => <GameRow game={game} />}
+        render={game => (
+          <GameRow
+            game={game}
+            renderText={() => <GameRowText name={game.name} />}
+          />
+        )}
       />
     </div>
   );

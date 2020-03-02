@@ -7,7 +7,7 @@ import VirtualList from "Components/VirtualList";
 import { PAGE_SIZE } from "Models/gameSearch";
 import { ROOT_SCROLL_ELEMENT_ID } from "Src/constants";
 
-const ROW_HEIGHT = 80;
+const ROW_HEIGHT = 74;
 
 type Props = {
   /** The array of games slugs to render within the AllGamesList */
