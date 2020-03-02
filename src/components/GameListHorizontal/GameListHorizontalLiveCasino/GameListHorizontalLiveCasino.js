@@ -13,9 +13,14 @@ import "./GameListHorizontalLiveCasino.scss";
 export type Props = {
   list: A.GameListLiveCasinoQuery_gamesList,
   seeMoreText: string,
+  playNowText: string,
 };
 
-export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
+export const GameListHorizontalLiveCasino = ({
+  list,
+  seeMoreText,
+  playNowText,
+}: Props) => {
   const { name, games } = list;
   const seeMoreUrl = "/games/live-casino-details";
 
@@ -29,7 +34,10 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
       <div style={style}>
         <div className={elementClassNames}>
           <div className="u-margin-bottom--sm">
-            <LiveCasinoCard game={games[columnIndex]} />
+            <LiveCasinoCard
+              game={games[columnIndex]}
+              playNowText={playNowText}
+            />
           </div>
         </div>
       </div>
@@ -42,7 +50,9 @@ export const GameListHorizontalLiveCasino = ({ list, seeMoreText }: Props) => {
         <MobileAndTablet>
           <ScrollableList
             itemClassName="c-live-casino-card u-margin-bottom--sm"
-            itemRenderer={i => <LiveCasinoCard game={games[i]} />}
+            itemRenderer={i => (
+              <LiveCasinoCard game={games[i]} playNowText={playNowText} />
+            )}
             items={games}
             seeMoreText={seeMoreText}
             seeMoreUrl={seeMoreUrl}

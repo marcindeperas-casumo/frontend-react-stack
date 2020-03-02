@@ -138,6 +138,7 @@ export type GameListLiveCasinoQuery_gamesList = {
 };
 export type GameListLiveCasinoQuery = {
   seeMoreText: string,
+  playNowText: string,
   gamesList: ?GameListLiveCasinoQuery_gamesList,
 };
 export type GameListLiveCasinoQueryVariables = {

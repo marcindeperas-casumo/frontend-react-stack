@@ -20,6 +20,7 @@ const mocks = [
       data: {
         gamesList: gamesListMock,
         seeMoreText: "See more",
+        playNowText: "Play Now",
       },
     },
   },
@@ -31,6 +32,7 @@ stories.add("Default", () => (
       <GameListHorizontalLiveCasino
         list={mocks[0].result.data.gamesList}
         seeMoreText={mocks[0].result.data.seeMoreText}
+        playNowText={mocks[0].result.data.playNowText}
       />
     </MockStore>
   </MockedProvider>

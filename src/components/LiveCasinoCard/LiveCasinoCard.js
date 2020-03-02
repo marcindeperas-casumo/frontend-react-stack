@@ -8,7 +8,6 @@ import { prop } from "ramda";
 import { convertHTMLToString, renderBets } from "Utils";
 import { EVENTS, EVENT_PROPS } from "Src/constants";
 import ImageLazy from "Components/Image/ImageLazy";
-import { CMSField } from "Components/CMSField";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";
 import { LiveCasinoCardFooter } from "Components/LiveCasinoCard/LiveCasinoCardFooter";
@@ -18,6 +17,7 @@ import * as A from "Types/apollo";
 export type Props = {
   game: A.GameListLiveCasinoQuery_gamesList_games,
   onLaunchGame: Function,
+  playNowText: string,
 };
 
 export default class LiveCasinoCard extends PureComponent<Props> {
@@ -75,7 +75,8 @@ export default class LiveCasinoCard extends PureComponent<Props> {
   };
 
   renderContent = () => {
-    const { game, onLaunchGame } = this.props;
+    const { game, onLaunchGame, playNowText } = this.props;
+
     return (
       <Flex onClick={onLaunchGame} className="u-padding-x--md">
         <Flex.Block>
@@ -96,10 +97,7 @@ export default class LiveCasinoCard extends PureComponent<Props> {
               variant="primary"
               className="u-text-nowrap u-text-transform-capitalize"
             >
-              <CMSField
-                slug="mobile.live-casino-cards-content"
-                field="play_now"
-              />
+              <span>{playNowText}</span>
             </Button>
           </TrackClick>
         </Flex.Item>
