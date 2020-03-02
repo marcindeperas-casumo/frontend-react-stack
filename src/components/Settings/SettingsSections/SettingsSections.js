@@ -29,7 +29,7 @@ export class SettingsSections extends PureComponent<Props> {
     const {
       playerLoginHistory: {
         player: {
-          loginHistory: [lastLogin],
+          loginHistory: [, lastLogin],
         },
       },
       labels: {
