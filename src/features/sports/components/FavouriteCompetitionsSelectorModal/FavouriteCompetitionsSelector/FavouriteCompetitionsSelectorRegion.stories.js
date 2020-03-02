@@ -17,6 +17,10 @@ stories.add("No selections", () => (
     isExpanded={false}
     isSelected={F}
     onClick={action("Competition clicked")}
+    groupId={1}
+    sportName={"test"}
+    sportId={2}
+    isOnboarding={false}
   />
 ));
 
@@ -26,6 +30,10 @@ stories.add("No selections - expanded", () => (
     isExpanded={true}
     isSelected={F}
     onClick={action("Competition clicked")}
+    groupId={1}
+    sportName={"test"}
+    sportId={2}
+    isOnboarding={false}
   />
 ));
 
@@ -35,6 +43,10 @@ stories.add("With selections", () => (
     isExpanded={false}
     isSelected={id => id % 2 === 0}
     onClick={action("Competition clicked")}
+    groupId={1}
+    sportName={"test"}
+    sportId={2}
+    isOnboarding={false}
   />
 ));
 
@@ -44,5 +56,9 @@ stories.add("With selections - expanded", () => (
     isExpanded={true}
     isSelected={id => id % 2 === 0}
     onClick={action("Competition clicked")}
+    groupId={1}
+    sportName={"test"}
+    sportId={2}
+    isOnboarding={false}
   />
 ));
