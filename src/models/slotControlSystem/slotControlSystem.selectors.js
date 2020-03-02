@@ -76,7 +76,7 @@ export const lastUpdateTimeSelector: (s: Object) => number = createSelector(
 
 export const slugToCategorySelector = (
   slug: ?string
-): ((s: Object) => Array<GameCategory> | null) =>
+): ((s: Object) => GameCategory | null) =>
   createSelector(
     pathOr(null, ["slotControlSystem", "slugToCategoryMap", slug]),
     identity

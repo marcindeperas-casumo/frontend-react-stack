@@ -52,11 +52,7 @@ export class BaseIframeGame extends BaseGame {
     return {
       ...super.componentProps,
       allow: "autoplay",
-      style: {
-        width: "100%",
-        height: "100%",
-        border: 0,
-      },
+      scrolling: "no",
       src: this.props.gameData.url || null,
       title: IFRAME_ID,
       id: IFRAME_ID,

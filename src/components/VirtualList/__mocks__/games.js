@@ -13,7 +13,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/06/123_bingo_thumbnail.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["BINGO"],
+    category: "BINGO",
     media: [],
   },
   {
@@ -30,7 +30,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/07/108_heroes_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -47,7 +47,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/09/108_heroes_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -64,7 +64,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/06/thirteen_bg.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -82,7 +82,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/09/voyages_of_zheng_he_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -100,7 +100,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2014/06/UnchartedSeas_Thumb.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -118,7 +118,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/02/bakerstreet_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -135,7 +135,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/01/three_elements_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -152,7 +152,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/3_genie_wishes_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -169,7 +169,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/3_kingdoms_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -186,7 +186,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/12/300-shields_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -204,7 +204,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/06/Greentube_4ReelKings_Thumbnail.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -220,7 +220,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/5_lions_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -237,7 +237,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/7_monkeys_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -254,7 +254,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/7_piggies_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -271,7 +271,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/11/7_sins_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -288,7 +288,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2015/04/7stoburnbg-thumb.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -305,7 +305,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/8_dragons_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -323,7 +323,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/06/88_fortune_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -340,7 +340,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/08/888_dragons_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -358,7 +358,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/01/a_dragons_story_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -375,7 +375,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/07/a_la_carte_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -392,7 +392,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/04/abracardabra_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -409,7 +409,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/07/ace_of_spades_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: [],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -426,7 +426,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/09/green_bg_vp_mg.png",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["VIDEO_POKER"],
+    category: "VIDEO_POKER",
     media: [],
   },
   {
@@ -443,7 +443,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/09/blue_bg_vp_mg.png",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["VIDEO_POKER"],
+    category: "VIDEO_POKER",
     media: [],
   },
   {
@@ -461,7 +461,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2015/04/action-bank_game-backgroundplate.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -478,7 +478,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/11/action_ops_snow_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [
       {
         order: 1,
@@ -503,7 +503,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/09/AdventureCab_thumbnail_bg.png",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: [],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -521,7 +521,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/07/adventure_palace_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -539,7 +539,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/09/african_simba_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -557,7 +557,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/07/age_of_discovery_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -574,7 +574,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/07/age_of_privateers_bg.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -591,7 +591,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/04/aladdins_legacy_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -609,7 +609,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/04/Alaskan-Fishing_game-thumb-plate.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -626,7 +626,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/06/alchymedes_bg.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -643,7 +643,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/10/garden-of-persephone_thumbnail.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -660,7 +660,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/03/aloha_bp.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -678,7 +678,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/09/always_hot_bg.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -695,7 +695,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/05/amazing_aztecs_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -712,7 +712,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/04/amazing_fruits_thumbnail.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -730,7 +730,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/09/amazing_stars_bg.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -748,7 +748,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2015/03/amazonqueen_backplate.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -766,7 +766,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2017/05/amazons_diamonds_bg.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -783,7 +783,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/05/ambassador_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -800,7 +800,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2016/08/Greentube-AmericanPokerII-thumbnail.jpg",
     hasPlayForFun: false,
     inMaintenance: false,
-    categories: ["VIDEO_POKER"],
+    category: "VIDEO_POKER",
     media: [],
   },
   {
@@ -818,7 +818,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2012/05/AmericanRouletteBack.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["TABLE_GAME"],
+    category: "TABLE_GAME",
     media: [],
   },
   {
@@ -835,7 +835,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/06/anchorman_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -852,7 +852,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/09/ancient_egypt_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
   {
@@ -869,7 +869,7 @@ export default [
       "https://cms.casumo.com/wp-content/uploads/2018/10/ancient_egypt_thumbnail.jpg",
     hasPlayForFun: true,
     inMaintenance: false,
-    categories: ["SLOT_MACHINE"],
+    category: "SLOT_MACHINE",
     media: [],
   },
 ];

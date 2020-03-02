@@ -1,4 +1,5 @@
 import { select, put, take, call } from "redux-saga/effects";
+import { pathOr } from "ramda";
 import {
   types,
   curatedSelector,
@@ -10,10 +11,13 @@ import { countrySelector } from "Models/handshake";
 
 export function* fetchCuratedGameSaga(action) {
   const platform = "mobile";
-  const { type } = action;
-  const gameId = type.split(".")[1];
-  const slug = prefixCuratedSlug(gameId);
-  const curated = yield select(curatedSelector(slug));
+  const pageSlug = pathOr(null, ["response", "slug"], action);
+
+  if (!pageSlug) {
+    return;
+  }
+
+  const curated = yield select(curatedSelector(prefixCuratedSlug(pageSlug)));
   const country = yield select(countrySelector);
 
   const { gameData } = curated;
@@ -22,7 +26,7 @@ export function* fetchCuratedGameSaga(action) {
     return;
   }
 
-  const slugs = [gameId];
+  const slugs = pathOr([], ["response", "fields", "game"], action);
 
   yield put(fetchCuratedGame({ platform, country, slugs }));
 
