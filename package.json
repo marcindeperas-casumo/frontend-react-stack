@@ -23,6 +23,7 @@
     "@casumo/cmp-text": "^2.0.3",
     "@casumo/cudl": "^8.0.1",
     "@casumo/fe-toolkit-ismobile": "^1.0.2",
+    "@formatjs/intl-relativetimeformat": "^4.5.9",
     "@reach/router": "^1.2.1",
     "@researchgate/react-intersection-observer": "^1.0.1",
     "apollo-cache-inmemory": "^1.6.3",
@@ -79,11 +80,12 @@
     "storybook:build": "build-storybook -c .storybook -s ./.storybook/static -o .out",
     "chromatic": "CI=true CHROMATIC_APP_CODE=$REACT_POC_CHROMATIC_APP_CODE chromatic test --build-script-name storybook:build --exit-zero-on-changes",
     "generate-component": "./scripts/generate-component.js ./src/components",
+    "add-generated-types": "git add ./src/types/apollo.js ./src/models/apollo/introspections.json",
     "graphql-generate": "node ./scripts/graphql-generate.js"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn flow && yarn graphql-generate && git add ./src/types/apollo.js"
+      "pre-commit": "lint-staged && yarn flow && yarn graphql-generate && yarn add-generated-types"
     }
   },
   "jest": {

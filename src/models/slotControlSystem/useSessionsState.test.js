@@ -65,33 +65,6 @@ describe("useSessionsState", () => {
     });
   });
 
-  test("does not return activeSession if it's older than 1 minute", () => {
-    const state = {
-      fetch,
-      slotControlSystem: {
-        ...slotControlSystem,
-        lastUpdateTime: now - 7 * 60 * 1000,
-        activeSession: {
-          ...activeSessionMock,
-        },
-      },
-    };
-    const wrapper = mount(
-      <MockStore state={state}>
-        <HookWrapper hook={useSessionsState} args={[]} />
-      </MockStore>
-    );
-
-    expectHook(wrapper).toEqual({
-      activeSession: null,
-      isFetching: true,
-      isFresh: false,
-      lastEndedSession,
-      lastEndedSessionDuringLastHour: true,
-      activeExclusion: null,
-    });
-  });
-
   test("returns endedSessionDuringLastHour = false if there is no prev session", () => {
     const state = {
       fetch,
