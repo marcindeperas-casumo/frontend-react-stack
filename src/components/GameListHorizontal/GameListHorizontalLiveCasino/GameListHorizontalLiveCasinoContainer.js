@@ -36,6 +36,7 @@ export const GameListHorizontalLiveCasinoContainer = ({
       <TrackProvider data={{ [EVENT_PROPS.LOCATION]: id }}>
         <GameListHorizontalLiveCasino
           seeMoreText={data.seeMoreText}
+          playNowText={data.playNowText}
           list={data.gamesList}
         />
       </TrackProvider>
