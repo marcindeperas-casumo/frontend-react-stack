@@ -1,7 +1,7 @@
-query GameTileHeartQuery {
-  gamesList(listId: "myList") {
+query GameTileHeartQuery($listId: String!, $numberOfGames: Int!) {
+  gamesList(listId: $listId) {
     id
-    games {
+    games(numberOfGames: $numberOfGames) {
       id
     }
   }
