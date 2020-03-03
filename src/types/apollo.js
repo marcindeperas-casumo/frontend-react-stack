@@ -1074,9 +1074,6 @@ export type LaunchKambi_launchKambi = {
 export type LaunchKambi = {
   launchKambi: ?LaunchKambi_launchKambi,
 };
-export type LaunchKambiVariables = {
-  playForFun: boolean,
-};
 
 // ====================================================
 // GraphQL mutation operation: LaunchKambiLoS

@@ -84,8 +84,8 @@ export const SESSION_TOUCH = gql`
 `;
 
 export const LAUNCH_KAMBI_MUTATION = gql`
-  mutation LaunchKambi($playForFun: Boolean!) {
-    launchKambi(playForFun: $playForFun) {
+  mutation LaunchKambi {
+    launchKambi {
       clientBootstrapUrl
       providerPlayerId
       ticket
