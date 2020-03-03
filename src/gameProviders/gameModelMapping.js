@@ -15,6 +15,7 @@ import { RelaxGame } from "./RelaxGame";
 import { PlayNGoDesktopGame } from "./PlayNGoDesktopGame";
 import { PlayNGoMobileGame } from "./PlayNGoMobileGame";
 import { CasumoGame } from "./CasumoGame";
+import { NyxGame } from "./NyxGame";
 
 export type GameProps = {
   providerType: GameProviderType,
@@ -34,7 +35,7 @@ export const models = {
   [PROVIDERS.NETENT_FLASH]: NetentGame,
   [PROVIDERS.NETENT_LIVE]: NetentGame,
   [PROVIDERS.NETENT_GAME_INCLUSION]: NetentGame,
-  [PROVIDERS.NYX_HTML5]: BaseIframeGame,
+  [PROVIDERS.NYX_HTML5]: NyxGame,
   [PROVIDERS.NYX_FLASH]: BaseIframeGame,
   [PROVIDERS.PLAYNGO_DESKTOP]: PlayNGoDesktopGame,
   [PROVIDERS.PLAYNGO_MOBILE]: PlayNGoMobileGame,
