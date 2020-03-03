@@ -3,7 +3,7 @@ import { mount, shallow } from "enzyme";
 import MockStore from "Components/MockStore";
 import { launchGame } from "Services/LaunchGameService";
 import { GameTile } from "./GameTile";
-import { GameTileInMaintenance } from "./GameTileInMaintenance";
+import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "./GameTileInMaintenanceContainer";
 import gameInfo from "./__mocks__/Game.json";
 
 jest.mock("../../applicationService/LaunchGameService.js");

@@ -11,15 +11,12 @@ const stories = storiesOf("GameTile", module);
 stories.addDecorator(withKnobs);
 
 stories.add("Default", () => {
-  const inMaintenanceMode = boolean(
-    "In maintenance mode",
-    game.inMaintenanceMode
-  );
+  const isInMaintenance = boolean("In maintenance mode", game.isInMaintenance);
   return (
     <div className="c-top-game">
       <MockStore>
         <GameTile
-          game={{ ...game, inMaintenanceMode }}
+          game={{ ...game, isInMaintenance }}
           onLaunchGame={action(game.name)}
           onFavouriteGame={action("favourite game")}
         />
