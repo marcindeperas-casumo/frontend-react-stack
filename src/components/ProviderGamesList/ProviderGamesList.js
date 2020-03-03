@@ -46,7 +46,7 @@ export const ProviderGamesList = ({
         [EVENT_PROPS.LOCATION]: "Game Provider - Filtered Games Page",
       }}
     >
-      <div className="c-provider-games-list u-padding-top">
+      <div className="c-provider-games-list">
         <VirtualList
           scrollElement={document.getElementById(ROOT_SCROLL_ELEMENT_ID)}
           isRowLoaded={({ index }) => Boolean(games[index])}
