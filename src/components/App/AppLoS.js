@@ -6,8 +6,8 @@ import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsSh
 export const AppLoS = () => (
   <LazyPortal
     hostElementId="sports-los-portal"
-    loader={() => import("Features/sports/components/SportsLOS")}
+    loader={() => import("Features/sports/components/_SportsLoS")}
     fallback={<SportsShellSkeleton />}
-    namedExport="SportsLOSContainer"
+    namedExport="SportsLoSContainer"
   />
 );

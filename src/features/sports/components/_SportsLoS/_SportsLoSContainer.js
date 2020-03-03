@@ -9,7 +9,7 @@ import { SportsNav } from "Features/sports/components/SportsNav";
 import SportsShellSkeleton from "Features/sports/components/SportsShell/SportsShellSkeleton";
 import { useLanguage } from "Utils/hooks";
 
-export const SportsLOSContainer = () => {
+export const SportsLoSContainer = () => {
   const [bootstrapUrl, setBootstrapUrl] = useState(null);
   const [launchKambi, { data }] = useMutation<
     A.LaunchKambiLoS,
