@@ -29,7 +29,8 @@ export class SettingsSections extends PureComponent<Props> {
     const {
       playerLoginHistory: {
         player: {
-          loginHistory: [, lastLogin],
+          // 0-indexed is the currentSession, 1-indexed is refering to last session
+          loginHistory: [, previousLogin],
         },
       },
       labels: {
@@ -68,10 +69,10 @@ export class SettingsSections extends PureComponent<Props> {
           />
         </Flex.Item>
         <Flex.Item className="u-text-align-center">
-          {lastLogin && (
+          {previousLogin && (
             <SettingsSectionsLastLogin
               currentSessionMessageLabel={currentSessionMessage}
-              time={lastLogin.loginTime}
+              time={previousLogin.loginTime}
               lastSessionMessageLabel={lastSessionMessage}
               accountActivityLabel={accountActivity}
             />
