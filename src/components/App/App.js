@@ -16,7 +16,9 @@ type Props = {
 
 export const App = (props: Props) => {
   const { onAppStarted, playerId, sessionId, isAuthenticatedHandshake } = props;
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    isAuthenticatedHandshake
+  );
 
   useEffect(() => {
     setIsAuthenticated(isAuthenticatedHandshake);
@@ -26,7 +28,7 @@ export const App = (props: Props) => {
       bridge.on(REACT_APP_EVENT_ON_LOGIN, () => {
         if (!isAuthenticated) {
           setIsAuthenticated(true);
-          onAppStarted(); // refetch new handshake with session
+          onAppStarted(); // fetch new handshake with session
         }
       });
     }
