@@ -15,6 +15,7 @@ import { BridgeToNavigationService } from "Services/BridgeToNavigationService";
 import { Modal } from "Components/RSModal";
 import { bridgeToLaunchModalService } from "Services/LaunchModalService";
 import { BridgeToLogoutService } from "Services/BridgeToLogoutService";
+import "@formatjs/intl-relativetimeformat/polyfill-locales";
 import "Services/logger"; // side effect, initializes rollbar
 import "./styles/index.scss";
 
