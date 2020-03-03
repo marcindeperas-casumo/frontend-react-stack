@@ -14,7 +14,11 @@ type Props = {
   /** Whether the introduction to how to favourite competitions should be shown */
   showCompetitionIntro: boolean,
   /** What should be done when we want to edit competitions for this group */
-  onAddCompetition: (groupId: number) => void,
+  onAddCompetition: (
+    groupId: number,
+    name: string,
+    isOnboarding: boolean
+  ) => void,
 };
 
 const FavouriteSportsSelector = (props: Props) => (
@@ -48,6 +52,7 @@ const FavouriteSportsSelector = (props: Props) => (
                   onToggleFavouriteSport={api.toggleFavouriteSport}
                   isFavourite={api.isSelected(group.id)}
                   onRemoveFavouriteCompetition={api.toggleFavouriteCompetition}
+                  isOnboarding={api.isFirstTimeSelectingFavourites}
                 />
               )}
             />
@@ -100,6 +105,7 @@ const FavouriteSportsSelector = (props: Props) => (
                         onRemoveFavouriteCompetition={
                           api.toggleFavouriteCompetition
                         }
+                        isOnboarding={api.isFirstTimeSelectingFavourites}
                       />
                     );
                   }}

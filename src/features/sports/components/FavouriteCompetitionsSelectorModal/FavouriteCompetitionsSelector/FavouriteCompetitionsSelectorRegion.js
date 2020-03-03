@@ -20,6 +20,14 @@ type Props = {
   isSelected: (groupId: $ElementType<Competition, "id">) => boolean,
   /** What to do when a competition is clicked, given the competition data */
   onClick: (group: Competition) => void,
+  /** Id of Group to select competitions for */
+  sportId: number,
+  /** Name of Group to select competitions for */
+  sportName: string,
+  /** Is favourites sports eq 0 */
+  isOnboarding: boolean,
+  /** group ID **/
+  groupId: number,
 };
 
 const FavouriteCompetitionsSelectorRegion = ({
@@ -27,11 +35,22 @@ const FavouriteCompetitionsSelectorRegion = ({
   isExpanded,
   isSelected,
   onClick,
+  sportName,
+  sportId,
+  isOnboarding,
+  groupId,
 }: Props): React.Node =>
   !group.groups || isNilOrEmpty(group.groups) ? null : (
     <div className="u-margin-y">
       <ExpandableListItem
         isExpanded={isExpanded}
+        data={{
+          sportName,
+          sportId,
+          isOnboarding,
+          groupName: group.name,
+          groupId: groupId,
+        }}
         label={
           <Flex align="center">
             <Flex.Item>

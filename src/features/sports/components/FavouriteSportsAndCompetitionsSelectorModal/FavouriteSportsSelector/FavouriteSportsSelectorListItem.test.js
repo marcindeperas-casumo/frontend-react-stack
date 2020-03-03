@@ -17,6 +17,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -38,6 +39,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -49,6 +51,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -60,6 +63,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -77,6 +81,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
     const renderedWithIntro = shallow(
@@ -87,6 +92,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={true}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -115,6 +121,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -133,6 +140,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={onAddCompetition}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
     const renderedWithIntro = shallow(
@@ -143,6 +151,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={true}
         onAddCompetition={onAddCompetition}
         onRemoveFavouriteCompetition={() => {}}
+        isOnboarding={false}
       />
     );
 
@@ -156,8 +165,18 @@ describe("<FavouriteSportsSelectorListItem />", () => {
       .props()
       .onAdd();
 
-    expect(onAddCompetition).toHaveBeenNthCalledWith(1, footballGroup.id);
-    expect(onAddCompetition).toHaveBeenNthCalledWith(2, footballGroup.id);
+    expect(onAddCompetition).toHaveBeenNthCalledWith(
+      1,
+      footballGroup.id,
+      footballGroup.name,
+      false
+    );
+    expect(onAddCompetition).toHaveBeenNthCalledWith(
+      2,
+      footballGroup.id,
+      footballGroup.name,
+      false
+    );
   });
 
   test("should call onRemoveFavouriteCompetition call when user requests to remove a favourited competition in the CompetitionPillsList", () => {
@@ -170,6 +189,7 @@ describe("<FavouriteSportsSelectorListItem />", () => {
         showCompetitionIntro={false}
         onAddCompetition={() => {}}
         onRemoveFavouriteCompetition={onRemoveFavouriteCompetition}
+        isOnboarding={false}
       />
     );
 
