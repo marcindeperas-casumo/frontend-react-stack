@@ -38,18 +38,16 @@ export class PlayNGoMobileGame extends BaseIframeGame {
       gameElement instanceof HTMLIFrameElement &&
       event.data.type === "initialized"
     ) {
-      gameElement.contentWindow.postMessage(
-        {
-          addEvent: "roundStarted",
-        },
-        "*"
-      );
-      gameElement.contentWindow.postMessage(
-        {
-          addEvent: "gameIdle",
-        },
-        "*"
-      );
+      gameElement.contentWindow.postMessage({ addEvent: "roundStarted" }, "*");
+      gameElement.contentWindow.postMessage({ addEvent: "gameIdle" }, "*");
+      gameElement.contentWindow.postMessage({ addEvent: "backToLobby" }, "*");
+    }
+
+    if (
+      gameElement instanceof HTMLIFrameElement &&
+      event.data.type === "backToLobby"
+    ) {
+      this.goToLobby();
     }
   }
 
