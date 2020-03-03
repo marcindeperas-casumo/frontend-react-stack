@@ -134,45 +134,56 @@ export function TermsAndConditions({ t, ...props }: Props) {
         />
       )}
       <Flex className="u-overflow-x--hidden" direction="vertical">
-        <TermsAndConditionsVersionDetails
-          onShowHistory={() => setHistoryView(true)}
-          currentVersion={version}
-          shouldAllowHistoryView={hasNewerVersions && !props.config.mustAccept}
-          formatVersionDate={formatVersionDate}
-          formatVersion={formatVersion}
-          versionData={visibleVersionData}
-          t={{
-            button_download_pdf: t.button_download_pdf,
-            button_version_history: t.button_version_history,
-          }}
-        />
-
-        {isLatestVersion && hasNewerVersions && (
-          <Changelog
-            locale={locale}
+        <Flex.Item>
+          <TermsAndConditionsVersionDetails
+            onShowHistory={() => setHistoryView(true)}
+            currentVersion={version}
+            shouldAllowHistoryView={
+              hasNewerVersions && !props.config.mustAccept
+            }
+            formatVersionDate={formatVersionDate}
+            formatVersion={formatVersion}
+            versionData={visibleVersionData}
             t={{
-              date_changes_accepted: t.date_changes_accepted,
-              changelog_title: t.changelog_title,
+              button_download_pdf: t.button_download_pdf,
+              button_version_history: t.button_version_history,
             }}
-            ackTimestamp={acks.last.timestamp}
-            changelog={visibleVersionData.changelog}
           />
-        )}
+        </Flex.Item>
 
-        <Text
-          tag="span"
-          size="sm"
-          className="u-font-weight-bold u-padding-x--md u-padding-y--lg"
-        >
-          {t.table_of_contents_title}
-        </Text>
-        <TermsAndConditionsContent version={version} />
+        {isLatestVersion && hasNewerVersions && visibleVersionData.changelog && (
+          <Flex.Item>
+            <Changelog
+              locale={locale}
+              t={{
+                date_changes_accepted: t.date_changes_accepted,
+                changelog_title: t.changelog_title,
+              }}
+              ackTimestamp={acks.last.timestamp}
+              changelog={visibleVersionData.changelog}
+            />
+          </Flex.Item>
+        )}
+        <Flex.Item>
+          <Text
+            tag="span"
+            size="sm"
+            className="u-font-weight-bold u-padding-x--md u-padding-y--lg"
+          >
+            {t.table_of_contents_title}
+          </Text>
+        </Flex.Item>
+        <Flex.Item>
+          <TermsAndConditionsContent version={version} />
+        </Flex.Item>
       </Flex>
       {props.config.mustAccept && (
-        <ModalAcknowledgment
-          title="Accept General terms"
-          onPress={props.acceptModal}
-        />
+        <Flex.Item>
+          <ModalAcknowledgment
+            title="Accept General terms"
+            onPress={props.acceptModal}
+          />
+        </Flex.Item>
       )}
     </>
   );
