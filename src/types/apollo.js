@@ -48,6 +48,39 @@ export type CuratedCardQueryVariables = {
 };
 
 // ====================================================
+// GraphQL query operation: GetGame
+// ====================================================
+
+export type GetGame_game_media = {
+  type: string,
+  path: string,
+  order: number,
+};
+export type GetGame_game = {
+  name: string,
+  logo: string,
+  backgroundImage: string,
+  description: ?string,
+  categories: ?Array<?string>,
+  media: Array<?GetGame_game_media>,
+  hasPlayForFun: boolean,
+};
+export type GetGame = {
+  game: ?GetGame_game,
+  playButtonText: string,
+  practiceButtonText: string,
+  signUpButtonText: string,
+  trophiesHeading: string,
+  gameInMaintenanceText: string,
+  gameOnlyOnDesktopText: string,
+  allGamesText: string,
+  gameReviewsHeadingText: string,
+};
+export type GetGameVariables = {
+  slug: string,
+};
+
+// ====================================================
 // GraphQL query operation: GameListQuery
 // ====================================================
 

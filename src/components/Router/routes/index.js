@@ -1,5 +1,6 @@
 export * from "./LazyTopLists";
 export * from "./LazyGameSearch";
+export * from "./LazyGameDetails";
 export * from "./LazyMustDropJackpots";
 export * from "./LazyGameProviderGames";
 export * from "./LazyLiveCasinoDetails";

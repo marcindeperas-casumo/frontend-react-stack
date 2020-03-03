@@ -8,10 +8,66 @@
 
 .u-position-sticky--top {
   position: sticky;
+}
+
+.u-position-fixed {
+  position: fixed;
+}
+
+.u-inset-0 {
+  bottom: 0;
+  left: 0;
+  right: 0;
   top: 0;
 }
 
 .u-position-sticky--bottom {
   bottom: 0;
   position: sticky;
+}
+
+.u-inset-x {
+  left: 0;
+  right: 0;
+}
+
+.u-inset-y {
+  bottom: 0;
+  top: 0;
+}
+
+.u-top-0 {
+  top: 0;
+}
+
+.u-bottom-0 {
+  bottom: 0;
+}
+
+.u-right-0 {
+  right: 0;
+}
+
+.u-left-0 {
+  left: 0;
+}
+
+.u-left-shell-offset {
+  left: var(--shell-offset-left);
+}
+
+.u-top-auto {
+  top: auto;
+}
+
+.u-bottom-auto {
+  bottom: auto;
+}
+
+.u-left-auto {
+  left: auto;
+}
+
+.u-right-auto {
+  right: auto;
 }
