@@ -19,7 +19,7 @@ type Props = {
 };
 
 export const PAGE_SIZE = 20;
-export const ROW_HEIGHT = 104;
+export const ROW_HEIGHT = 72;
 
 // Called by react-virtualized
 const renderRow = ({ games, key, index, style }) => {
