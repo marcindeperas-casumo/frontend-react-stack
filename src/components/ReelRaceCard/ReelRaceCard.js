@@ -27,7 +27,6 @@ type Props = ReelRace & {
   t: ReelRacesTranslations,
   optIn: () => void,
   launchGame: () => void,
-  locale: string,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
@@ -165,7 +164,7 @@ export class ReelRaceCard extends React.Component<Props> {
           size="sm"
           className="t-color-white u-font-weight-bold u-text-transform-capitalize"
         >
-          {startTime.setLocale(this.props.locale).toRelativeCalendar()} {""}
+          {startTime.toRelativeCalendar()} {""}
           {startTime.toFormat("t")}
         </Text>
       </Flex>
