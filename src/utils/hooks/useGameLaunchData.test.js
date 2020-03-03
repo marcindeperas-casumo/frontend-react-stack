@@ -50,7 +50,8 @@ describe("useGameLaunchData", () => {
       </MockStore>
     );
 
-    await waitAndUpdateWrapper(wrapper);
+    // FixMe - this needs better fixing, we should not pass 10, but the test is quite flaky atm.
+    await waitAndUpdateWrapper(wrapper, 10);
 
     const { gameProviderModel } = wrapper.find("div").props().hook;
 
