@@ -40,7 +40,7 @@ export const App = (props: Props) => {
       // eslint-disable-next-line fp/no-mutation
       Settings.defaultLocale = locale;
     }
-  });
+  }, [locale]);
 
   if (!props.isAppHandshakeLoaded) {
     return null;
