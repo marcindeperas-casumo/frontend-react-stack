@@ -305,6 +305,7 @@ export type GameTileHeartQuery = {
   gamesList: ?GameTileHeartQuery_gamesList,
 };
 export type GameTileHeartQueryVariables = {
+  listId: string,
   numberOfGames: number,
 };
 
