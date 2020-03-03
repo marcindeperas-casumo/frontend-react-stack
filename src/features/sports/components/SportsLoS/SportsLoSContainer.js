@@ -1,5 +1,5 @@
 // @flow
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useMutation } from "@apollo/react-hooks";
 import * as A from "Types/apollo";
 import { LAUNCH_KAMBI_LOS_MUTATION } from "Models/apollo/mutations";
@@ -18,7 +18,7 @@ export const SportsLoSContainer = () => {
 
   const language = useLanguage();
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!bootstrapUrl) {
       launchKambi({ variables: { playForFun: true } });
       if (data && data.launchKambi) {
