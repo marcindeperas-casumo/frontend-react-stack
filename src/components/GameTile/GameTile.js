@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Flex from "@casumo/cmp-flex";
 import { MoreIcon } from "@casumo/cmp-icons";
 import GameTileImage from "Components/GameTile/GameTileImage";
-import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile/GameTileInMaintenanceContainer";
+import { GameTileInMaintenanceContainer as GameTileInMaintenance } from "Components/GameTile";
 import { launchGame } from "Services/LaunchGameService";
 import TrackClick from "Components/TrackClick";
 import { GameTileHeart } from "Components/GameTileHeart";

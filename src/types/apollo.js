@@ -41,7 +41,7 @@ export type CuratedCardQuery_curatedCard = {
   game: ?CuratedCardQuery_curatedCard_game,
 };
 export type CuratedCardQuery = {
-  curatedCard: CuratedCardQuery_curatedCard,
+  curatedCard: ?CuratedCardQuery_curatedCard,
 };
 export type CuratedCardQueryVariables = {
   slug: string,
