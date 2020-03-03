@@ -62,7 +62,10 @@ export class LaunchableKambiClient extends React.Component<Props, State> {
     }
 
     return (
-      <LaunchKambiMutationOnMount mutation={LAUNCH_KAMBI_MUTATION}>
+      <LaunchKambiMutationOnMount
+        mutation={LAUNCH_KAMBI_MUTATION}
+        variables={{ playForFun: false }}
+      >
         {({ loading, error, data }) => {
           if (error) {
             return <ErrorMessage />;
