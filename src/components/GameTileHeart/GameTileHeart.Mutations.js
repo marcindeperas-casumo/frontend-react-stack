@@ -57,6 +57,10 @@ export const useAddGameToMyList = (slug: string, id: string) => {
         if (cacheData && cacheData.gamesList) {
           cache.writeQuery({
             query: GameTileHeartQuery,
+            variables: {
+              numberOfGames: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+              listId: LIST_ID,
+            },
             data: {
               gamesList: {
                 ...cacheData.gamesList,
@@ -96,10 +100,18 @@ export const useRemoveGameFromMyList = (slug: string, id: string) => {
       // $FlowFixMe - at first glance this appears to be a problem with react-hooks type defs
       const cacheData = cache.readQuery<A.GameTileHeartQuery>({
         query: GameTileHeartQuery,
+        variables: {
+          numberOfGames: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+          listId: LIST_ID,
+        },
       });
       if (cacheData && cacheData.gamesList) {
         cache.writeQuery({
           query: GameTileHeartQuery,
+          variables: {
+            numberOfGames: GAMES_LIST_HORIZONTAL_ITEMS_LIMIT,
+            listId: LIST_ID,
+          },
           data: {
             gamesList: {
               ...cacheData.gamesList,
