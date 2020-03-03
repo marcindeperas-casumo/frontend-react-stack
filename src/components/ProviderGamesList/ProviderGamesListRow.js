@@ -16,7 +16,7 @@ export const ProviderGamesListRow = ({
   style,
   game,
 }: ProviderGamesListRowProps) => (
-  <div className="u-padding-x--md t-border-bottom" style={style}>
+  <div className="u-padding-x--md u-padding-y t-border-bottom" style={style}>
     <GameRow
       game={game}
       onLaunchGame={() => launchGame({ slug: game.slug })}
@@ -32,7 +32,7 @@ type ProviderGamesListRowSkeletonProps = {
 export const ProviderGamesListRowSkeleton = ({
   style,
 }: ProviderGamesListRowSkeletonProps) => (
-  <Flex className="u-margin-x--md" align="center" style={style}>
+  <Flex className="u-margin-x--md u-padding-y" align="center" style={style}>
     <GameRowSkeleton />
   </Flex>
 );
