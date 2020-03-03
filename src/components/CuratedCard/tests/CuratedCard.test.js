@@ -20,6 +20,12 @@ describe("CuratedCard", () => {
     onLaunchGame = jest.fn();
   });
 
+  test("should render nothing if curated-card is not defined", () => {
+    const component = mount(<CuratedCard curatedCard={null} />);
+
+    expect(component.isEmptyRender()).toBe(true);
+  });
+
   test("should render CuratedCardBackground and Card", () => {
     const component = mount(<CuratedCard curatedCard={curatedGameMock} />);
 

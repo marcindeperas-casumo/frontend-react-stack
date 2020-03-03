@@ -14,7 +14,7 @@ import "./CuratedCard.scss";
 
 type Props = {
   className?: string,
-  curatedCard: A.CuratedCardQuery_curatedCard,
+  curatedCard: ?A.CuratedCardQuery_curatedCard,
   onLaunchGame: () => void,
 };
 
@@ -23,6 +23,10 @@ export const CuratedCard = ({
   curatedCard,
   onLaunchGame,
 }: Props) => {
+  if (!curatedCard) {
+    return null;
+  }
+
   const link = getLink(curatedCard);
   const isGame = getIsGame(curatedCard);
   const trackData = getTrackData(curatedCard);
