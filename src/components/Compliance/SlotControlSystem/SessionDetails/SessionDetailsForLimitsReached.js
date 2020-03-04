@@ -2,7 +2,8 @@
 import * as React from "react";
 import Flex from "@casumo/cmp-flex";
 import Button from "@casumo/cmp-button";
-import { GameRow } from "Components/GameRow";
+import * as A from "Types/apollo";
+import { GameRow } from "Components/GameRow/GameRow";
 import { type EndedSessionType } from "Models/slotControlSystem";
 import { Header } from "./Header";
 import { SessionDetailsBody } from "./SessionDetailsBody";
@@ -19,7 +20,7 @@ type Props = {
     limits_reached_play_again_header: string,
   },
   locale: string,
-  playAgainGameId?: string,
+  playAgainGame: ?A.GameRow_Game,
   /**
    * This action is triggered instead of the default which
    * could not work in the game iframe.
@@ -32,7 +33,7 @@ type Props = {
 export function SessionDetailsForLimitsReached(props: Props) {
   const {
     t,
-    playAgainGameId,
+    playAgainGame,
     onClickPlayAgain,
     onClickButton,
     locale,
@@ -41,10 +42,10 @@ export function SessionDetailsForLimitsReached(props: Props) {
 
   return (
     <Flex direction="vertical">
-      {Boolean(playAgainGameId) && (
+      {Boolean(playAgainGame) && (
         <div onClick={onClickPlayAgain}>
           <Header>{t?.limits_reached_play_again_header}</Header>
-          <GameRow id={playAgainGameId} />
+          <GameRow game={playAgainGame} />
         </div>
       )}
       <SessionDetailsBody
