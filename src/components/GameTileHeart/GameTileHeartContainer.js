@@ -9,18 +9,16 @@ import {
 type Props = {
   className?: string,
   gameId: string,
-  gameSlug: string,
   isInMyList: boolean,
 };
 
 export const GameTileHeartContainer = ({
   className = "u-padding u-width--2xlg",
   gameId,
-  gameSlug,
   isInMyList,
 }: Props) => {
-  const addGame = useAddGameToMyList(gameSlug, gameId);
-  const removeGame = useRemoveGameFromMyList(gameSlug, gameId);
+  const addGame = useAddGameToMyList(gameId);
+  const removeGame = useRemoveGameFromMyList(gameId);
 
   const onFavouriteGame = isInMyList ? removeGame : addGame;
 

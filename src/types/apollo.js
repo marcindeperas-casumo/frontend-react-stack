@@ -329,7 +329,6 @@ export type AddGameToMyList = {
   addGameToMyList: ?AddGameToMyList_addGameToMyList,
 };
 export type AddGameToMyListVariables = {
-  slug: string,
   id: string,
 };
 
@@ -345,7 +344,6 @@ export type RemoveGameFromMyList = {
   removeGameFromMyList: ?RemoveGameFromMyList_removeGameFromMyList,
 };
 export type RemoveGameFromMyListVariables = {
-  slug: string,
   id: string,
 };
 

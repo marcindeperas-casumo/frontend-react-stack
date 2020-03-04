@@ -12,8 +12,8 @@ import { GameTileHeartQuery } from "./GameTileHeart.graphql";
 const LIST_ID = GAME_LIST_IDS.MY_LIST;
 
 const ADD_GAME = gql`
-  mutation AddGameToMyList($slug: String!, $id: String!) {
-    addGameToMyList(slug: $slug, id: $id) {
+  mutation AddGameToMyList($id: String!) {
+    addGameToMyList(id: $id) {
       id
       isInMyList
     }
@@ -21,20 +21,19 @@ const ADD_GAME = gql`
 `;
 
 const REMOVE_GAME = gql`
-  mutation RemoveGameFromMyList($slug: String!, $id: String!) {
-    removeGameFromMyList(slug: $slug, id: $id) {
+  mutation RemoveGameFromMyList($id: String!) {
+    removeGameFromMyList(id: $id) {
       id
       isInMyList
     }
   }
 `;
 
-export const useAddGameToMyList = (slug: string, id: string) => {
+export const useAddGameToMyList = (id: string) => {
   const [addGame] = useMutation<A.AddGameToMyList, A.AddGameToMyListVariables>(
     ADD_GAME,
     {
       variables: {
-        slug,
         id,
       },
       optimisticResponse: {
@@ -79,13 +78,12 @@ export const useAddGameToMyList = (slug: string, id: string) => {
   return addGame;
 };
 
-export const useRemoveGameFromMyList = (slug: string, id: string) => {
+export const useRemoveGameFromMyList = (id: string) => {
   const [removeGame] = useMutation<
     A.RemoveGameFromMyList,
     A.RemoveGameFromMyListVariables
   >(REMOVE_GAME, {
     variables: {
-      slug,
       id,
     },
     optimisticResponse: {
