@@ -1,9 +1,11 @@
 import { CHANNELS, takeChannel } from "Models/cometd";
+import { ACTION_TYPES } from "Models/player";
 
 const DEFAULT_STATE = {
   wallet: {},
   realityCheck: {},
   sessionValid: true,
+  logoutStarted: false,
 };
 
 const playerReducer = (state = DEFAULT_STATE, action) => {
@@ -40,6 +42,13 @@ const playerReducer = (state = DEFAULT_STATE, action) => {
     return {
       ...state,
       sessionValid: false,
+    };
+  }
+
+  if (action.type === ACTION_TYPES.SET_LOGOUT_STARTED) {
+    return {
+      ...state,
+      logoutStarted: true,
     };
   }
 
