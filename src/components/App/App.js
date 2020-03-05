@@ -1,5 +1,6 @@
 // @flow
 import React, { useEffect } from "react";
+import { Settings } from "luxon";
 import LazyPortal from "Components/LazyPortal";
 import { Router } from "Components/Router";
 import { useCrossCodebaseNavigation } from "Utils/hooks";
@@ -11,13 +12,14 @@ type Props = {
   unsubscribeToUpdates: Function,
   playerId: string,
   sessionId: string,
+  locale: string,
   isAuthenticated: boolean,
   isAppHandshakeLoaded: Boolean,
   activeComponents: Array<string>,
 };
 
 export const App = (props: Props) => {
-  const { onAppStarted, playerId, sessionId } = props;
+  const { onAppStarted, playerId, sessionId, locale } = props;
   const { navigateToKO } = useCrossCodebaseNavigation();
 
   useEffect(() => {
@@ -32,6 +34,13 @@ export const App = (props: Props) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [playerId, sessionId]);
+
+  useEffect(() => {
+    if (locale) {
+      // eslint-disable-next-line fp/no-mutation
+      Settings.defaultLocale = locale;
+    }
+  }, [locale]);
 
   if (!props.isAppHandshakeLoaded) {
     return null;

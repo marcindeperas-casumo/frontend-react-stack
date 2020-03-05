@@ -6,15 +6,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
-import "@formatjs/intl-relativetimeformat/polyfill";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/ja";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/de";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/en";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/da";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/fi";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/nb";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/sv";
-import "@formatjs/intl-relativetimeformat/dist/locale-data/es";
 import * as A from "Types/apollo";
 import type { ReelRace, ReelRacesTranslations } from "Models/reelRaces";
 import { launchModal } from "Services/LaunchModalService";
@@ -36,7 +27,6 @@ type Props = ReelRace & {
   t: ReelRacesTranslations,
   optIn: () => void,
   launchGame: () => void,
-  locale: string,
 };
 
 const Column = (props: { top: string | number, bottom: string | number }) => (
@@ -174,7 +164,7 @@ export class ReelRaceCard extends React.Component<Props> {
           size="sm"
           className="t-color-white u-font-weight-bold u-text-transform-capitalize"
         >
-          {startTime.setLocale(this.props.locale).toRelativeCalendar()} {""}
+          {startTime.toRelativeCalendar()} {""}
           {startTime.toFormat("t")}
         </Text>
       </Flex>
