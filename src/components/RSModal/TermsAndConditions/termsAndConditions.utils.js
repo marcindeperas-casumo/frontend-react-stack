@@ -37,15 +37,11 @@ export function useVersion(lastVersion: number) {
   return [version, setVersion];
 }
 
-export function formatWithDateMedium(
-  text: string,
-  timestamp: number,
-  locale: string
-) {
+export function formatWithDateMedium(text: string, timestamp: number) {
   return interpolate(text, {
-    date: DateTime.fromMillis(timestamp)
-      .setLocale(locale)
-      .toLocaleString(DateTime.DATETIME_MED_WITH_SECONDS),
+    date: DateTime.fromMillis(timestamp).toLocaleString(
+      DateTime.DATETIME_MED_WITH_SECONDS
+    ),
   });
 }
 
@@ -57,21 +53,17 @@ export function createVersionDateFormatter(data: {
       timestamp: number,
     },
   },
-  locale: string,
 }) {
   return (version: number, iso8601: string) => {
     if (version === data.acks.first.version) {
       return formatWithDateMedium(
         data.t.date_agreed,
-        data.acks.first.timestamp,
-        data.locale
+        data.acks.first.timestamp
       );
     }
 
     return interpolate(data.t.date_published, {
-      date: DateTime.fromISO(iso8601)
-        .setLocale(data.locale)
-        .toLocaleString(DateTime.DATE_FULL),
+      date: DateTime.fromISO(iso8601).toLocaleString(DateTime.DATE_FULL),
     });
   };
 }

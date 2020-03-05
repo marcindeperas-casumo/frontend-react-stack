@@ -106,9 +106,9 @@ export function DepositLimitsHistory({ t, ...props }: Props) {
                 {t.adjustment_status_success}
               </Text>
               <Text tag="span" size="sm" className="t-color-grey-dark-1">
-                {DateTime.fromISO(historyItem.timestamp)
-                  .setLocale(props.locale)
-                  .toLocaleString(DateTime.DATETIME_SHORT)}
+                {DateTime.fromISO(historyItem.timestamp).toLocaleString(
+                  DateTime.DATETIME_SHORT
+                )}
               </Text>
             </Flex>
 
