@@ -57,26 +57,4 @@ export class BaseGame {
       gameElement.dispatchEvent(this.onGameIdle);
     }
   }
-
-  onResize = () => {
-    const hostElement = document.getElementById("root");
-
-    if (hostElement) {
-      // eslint-disable-next-line fp/no-mutation
-      hostElement.style.height = "2000px";
-
-      setTimeout(() => {
-        // eslint-disable-next-line fp/no-mutation
-        hostElement.style.height = "";
-      }, 500);
-    }
-  };
-
-  onMount() {
-    window.addEventListener("resize", this.onResize);
-  }
-
-  onUnmount() {
-    window.removeEventListener("resize", this.onResize);
-  }
 }
