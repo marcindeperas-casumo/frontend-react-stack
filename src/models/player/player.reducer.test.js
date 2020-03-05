@@ -1,9 +1,14 @@
-import { reducer } from "Models/player";
+import { reducer, ACTION_TYPES } from "Models/player";
 
 describe("Player/reducer", () => {
   test("initial state", () => {
     const state = reducer(undefined, {});
-    expect(state).toEqual({ wallet: {}, realityCheck: {}, sessionValid: true });
+    expect(state).toEqual({
+      wallet: {},
+      realityCheck: {},
+      sessionValid: true,
+      logoutStarted: false,
+    });
   });
 
   test("update player wallet", () => {
@@ -72,5 +77,18 @@ describe("Player/reducer", () => {
     };
     const state = reducer({}, action);
     expect(state).toMatchObject({ sessionValid: false });
+  });
+
+  test("logoutStarted is false by default", () => {
+    const state = reducer(undefined, {});
+    expect(state).toMatchObject({ logoutStarted: false });
+  });
+
+  test("logoutStarted is true when specific action is dispatched", () => {
+    const action = {
+      type: ACTION_TYPES.SET_LOGOUT_STARTED,
+    };
+    const state = reducer({}, action);
+    expect(state).toMatchObject({ logoutStarted: true });
   });
 });

@@ -33,7 +33,7 @@ export function BeforePlaying(
     }
   }, [amount, activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isFetching) {
+  if (isFetching || activeSession) {
     return null;
   }
 

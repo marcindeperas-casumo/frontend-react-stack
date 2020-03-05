@@ -50,7 +50,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
 
   test("it renders NotEnoughFunds and does not call acceptModal if there is no enough funds", () => {
     const sessionsState = {
-      activeSession: activeSessionMock,
+      activeSession: null,
     };
     const walletAmount = {
       amount: -1,
