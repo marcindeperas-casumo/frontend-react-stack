@@ -4,12 +4,17 @@ import { labels } from "./__mocks__/Queries.mock";
 import { SettingsSections } from "./SettingsSections";
 
 const ONE_MINUTE_AGO = Date.now() - 60 * 1000;
+const TWO_MINUTES_AGO = Date.now() - 120 * 1000;
+
 const props = {
   playerLoginHistory: {
     player: {
       loginHistory: [
         {
           loginTime: ONE_MINUTE_AGO,
+        },
+        {
+          loginTime: TWO_MINUTES_AGO,
         },
       ],
     },
@@ -82,7 +87,7 @@ describe("SettingsSections", () => {
         />
       );
       const Timer = rendered.find("Timer");
-      expect(Timer.prop("startTime")).toEqual(ONE_MINUTE_AGO);
+      expect(Timer.prop("startTime")).toEqual(TWO_MINUTES_AGO);
     });
 
     it("should interpolate and display last session message", () => {

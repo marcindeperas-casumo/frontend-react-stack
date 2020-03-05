@@ -7,6 +7,7 @@ import {
   playerIdSelector,
   sessionIdSelector,
   isApplicationHandshakeLoaded,
+  localeSelector,
 } from "Models/handshake";
 import { activeComponents } from "Models/router";
 import {
@@ -25,6 +26,7 @@ export default hot(
       activeComponents: activeComponents(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
+      locale: localeSelector(state),
     }),
     {
       onAppStarted: appStarted,

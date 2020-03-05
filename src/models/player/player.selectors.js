@@ -84,3 +84,8 @@ export const playerSessionIsValidSelector: any => boolean = createSelector(
   player,
   prop("sessionValid")
 );
+
+export const playerLogoutStartedSelector: any => boolean = createSelector(
+  player,
+  prop("logoutStarted")
+);
