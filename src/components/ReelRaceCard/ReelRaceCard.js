@@ -6,7 +6,6 @@ import Flex from "@casumo/cmp-flex";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import { PlayIcon, ClockIcon } from "@casumo/cmp-icons";
-import "@formatjs/intl-relativetimeformat/polyfill-locales";
 import * as A from "Types/apollo";
 import { launchModal } from "Services/LaunchModalService";
 import { MODALS, EVENTS, EVENT_PROPS } from "Src/constants";
@@ -156,7 +155,7 @@ export class ReelRaceCard extends React.Component<Props> {
           size="sm"
           className="t-color-white u-font-weight-bold u-text-transform-capitalize"
         >
-          {startTimeDate.setLocale(this.props.locale).toRelativeCalendar()} {""}
+          {startTimeDate.toRelativeCalendar()} {""}
           {startTimeDate.toFormat("t")}
         </Text>
       </Flex>
