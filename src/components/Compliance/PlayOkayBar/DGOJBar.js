@@ -2,6 +2,7 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import { FullscreenToggle } from "Components/FullscreenView";
 import RGIAJIcon from "./icons/rgiaj.svg";
 import JugarbienIcon from "./icons/jugarbien.svg";
 import PlayOkayIcon from "./icons/playokay.svg";
@@ -19,6 +20,9 @@ export const DGOJBar = () => (
     align="center"
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
+    <Flex.Block>
+      <FullscreenToggle />
+    </Flex.Block>
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href={links.playokay}>
         <PlayOkayIcon className="c-playokay-bar__icon" />
