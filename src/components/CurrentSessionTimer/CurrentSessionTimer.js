@@ -3,7 +3,7 @@ import { useQuery } from "@apollo/react-hooks";
 import PLAYER_LOGIN_HISTORY_QUERY from "Components/Settings/SettingsSections/PlayerLoginHistoryQuery.graphql";
 import Timer from "Components/Timer";
 
-export const CurrentSessionTimerContainer = () => {
+export const CurrentSessionTimer = () => {
   const { data, loading } = useQuery(PLAYER_LOGIN_HISTORY_QUERY);
 
   if (loading || !data) {
