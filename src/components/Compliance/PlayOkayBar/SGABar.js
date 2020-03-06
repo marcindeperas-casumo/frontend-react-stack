@@ -7,6 +7,12 @@ import SpelGranserIcon from "./icons/spelgranser.svg";
 import SjalvTestIcon from "./icons/sjalvtest.svg";
 import "./PlayOkayBar.scss";
 
+const links = {
+  playokaysettings: "/sv/player/play-okay-settings",
+  spelpaus: "https://www.spelpaus.se/?cos=true",
+  stodlinjen: "https://www.stodlinjen.se/#!/spelberoende-test-pgsi",
+};
+
 export const SGABar = () => (
   <Flex
     justify="end"
@@ -14,18 +20,14 @@ export const SGABar = () => (
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Item>
-      <a
-        href="https://www.spelpaus.se/?cos=true"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">
         <SpelPausIcon className="c-playokay-bar__icon c-playokay-bar__icon--spelpaus" />
       </a>
     </Flex.Item>
 
     <Flex.Item>
       <a
-        href="/sv/player/play-okay-settings"
+        href={links.playokaysettings}
         rel="noopener noreferrer"
         target="_blank"
       >
@@ -33,11 +35,7 @@ export const SGABar = () => (
       </a>
     </Flex.Item>
     <Flex.Item>
-      <a
-        href="https://www.stodlinjen.se/#!/spelberoende-test-pgsi"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <a href={links.stodlinjen} rel="noopener noreferrer" target="_blank">
         <SjalvTestIcon className="c-playokay-bar__icon c-playokay-bar__icon--sjalvtest" />
       </a>
     </Flex.Item>

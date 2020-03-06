@@ -7,6 +7,13 @@ import StopSpilletIcon from "./icons/stopspillet.svg";
 import DanishLicenseIcon from "./icons/danishlicense.svg";
 import "./PlayOkayBar.scss";
 
+const links = {
+  rofus: "https://www.rofus.nu/",
+  spillemyndigheden:
+    "https://www.spillemyndigheden.dk/tilladelsesindehaver/casumo-service-ltd",
+  stopspillet: "https://www.stopspillet.dk/",
+};
+
 export const DGABar = () => (
   <Flex
     justify="end"
@@ -18,7 +25,7 @@ export const DGABar = () => (
       <Text tag="span" size="2xs">
         <a
           className="t-color-grey-light-1 u-display--flex"
-          href="https://www.rofus.nu/"
+          href={links.rofus}
           rel="noopener noreferrer"
           target="_blank"
         >
@@ -27,17 +34,13 @@ export const DGABar = () => (
       </Text>
     </Flex.Item>
     <Flex.Item>
-      <a
-        href="https://www.stopspillet.dk/"
-        rel="noopener noreferrer"
-        target="_blank"
-      >
+      <a href={links.stopspillet} rel="noopener noreferrer" target="_blank">
         <StopSpilletIcon className="c-playokay-bar__icon" />
       </a>
     </Flex.Item>
     <Flex.Item>
       <a
-        href="https://www.spillemyndigheden.dk/tilladelsesindehaver/casumo-service-ltd"
+        href={links.spillemyndigheden}
         rel="noopener noreferrer"
         target="_blank"
       >
