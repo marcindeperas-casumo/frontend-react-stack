@@ -1,1 +1,3 @@
-export * from "./CurrentSessionTimer";
+export {
+  CurrentSessionTimerContainer as CurrentSessionTimer,
+} from "./CurrentSessionTimerContainer";
