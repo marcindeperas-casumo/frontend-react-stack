@@ -5,10 +5,9 @@ import { CurrentSessionTimer } from "./CurrentSessionTimer";
 
 export const CurrentSessionTimerContainer = () => {
   const { data, loading } = useQuery(PLAYER_LOGIN_HISTORY_QUERY);
-  const currentTime = Date.now();
 
   if (loading || !data) {
-    return currentTime;
+    return null;
   }
 
   // eslint-disable-next-line no-unused-vars
