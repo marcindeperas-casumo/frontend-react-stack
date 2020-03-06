@@ -15,7 +15,6 @@ type Props = {
     changelog_title: string,
     date_changes_accepted: string,
   },
-  locale: string,
   changelog: string,
   ackTimestamp: ?number,
 };
@@ -57,8 +56,7 @@ export function Changelog({ t, ...props }: Props) {
             <DangerousHtml
               html={formatWithDateMedium(
                 t.date_changes_accepted,
-                props.ackTimestamp,
-                props.locale
+                props.ackTimestamp
               )}
             />
           </Text>

@@ -3,7 +3,8 @@ import * as React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { equals } from "ramda";
 import bridge from "Src/DurandalReactBridge";
-import { showModal, isModalOpenToBeAcceptedSelector } from "Models/modal";
+import { playerLogoutStartedSelector } from "Models/player";
+import { showModal } from "Models/modal";
 import {
   ROUTE_IDS,
   REACT_APP_MODAL,
@@ -21,9 +22,9 @@ export function useBeforePlayingModal({
   canLaunch,
 }: UseBeforePlayingModalProps): void {
   const dispatch = useDispatch();
-  const isModalOpenToBeAccepted = useSelector(isModalOpenToBeAcceptedSelector);
   const { navigateToKO } = useCrossCodebaseNavigation();
   const { isDGOJ } = useJurisdiction();
+  const logoutStarted = useSelector(playerLogoutStartedSelector);
   const navigateToHome = React.useCallback(
     ({ returnCode }) => {
       if (isModalDismissed(returnCode)) {
@@ -34,7 +35,7 @@ export function useBeforePlayingModal({
   );
 
   React.useEffect(() => {
-    if (!isDGOJ || !canLaunch || isModalOpenToBeAccepted) {
+    if (!isDGOJ || !canLaunch || logoutStarted) {
       return;
     }
 
@@ -45,5 +46,5 @@ export function useBeforePlayingModal({
     return function unsubscribe() {
       bridge.off(KO_APP_EVENT_MODAL_HIDDEN, navigateToHome);
     };
-  }, [dispatch, isDGOJ, canLaunch, navigateToHome, isModalOpenToBeAccepted]);
+  }, [dispatch, isDGOJ, canLaunch, navigateToHome, logoutStarted]);
 }
