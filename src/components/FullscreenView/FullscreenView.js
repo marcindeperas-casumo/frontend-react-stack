@@ -1,11 +1,13 @@
 // @flow
 import * as React from "react";
 
-export const FullscreenViewContext = React.createContext<any>({});
+export const FullscreenViewContext = React.createContext<HTMLElement | null>(
+  null
+);
 
 type Props = {
   children: React.Node,
-  className: string,
+  className?: string,
 };
 
 export const FullscreenView = ({ children, className }: Props) => {
