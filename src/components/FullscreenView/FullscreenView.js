@@ -1,9 +1,30 @@
-import React from "react";
+// @flow
+import * as React from "react";
 
-export const FullscreenViewContext = React.createContext({});
+export const FullscreenViewContext = React.createContext<any>({});
 
-export const FullscreenView = ({ children }) => {
+type Props = {
+  children: React.Node,
+  className: string,
+};
+
+export const FullscreenView = ({ children, className }: Props) => {
+  const ref = React.useRef(null);
+  const [refState, setRefState] = React.useState(null);
+
+  React.useEffect(() => {
+    if (!ref.current) {
+      return;
+    }
+
+    setRefState(ref.current);
+  }, []);
+
   return (
-    <FullscreenViewContext.Provider>{children}</FullscreenViewContext.Provider>
+    <div className={className} ref={ref}>
+      <FullscreenViewContext.Provider value={refState}>
+        {children}
+      </FullscreenViewContext.Provider>
+    </div>
   );
 };

@@ -1,8 +1,9 @@
 // @flow
 
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import { FullscreenIcon, CloseFullscreenIcon } from "@casumo/cmp-icons";
 import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
+import { FullscreenViewContext } from "./FullscreenView";
 
 type Props = {
   element: ?HTMLElement,
@@ -10,11 +11,14 @@ type Props = {
 
 export const FullscreenToggle = ({ element }: Props) => {
   const [isFullscreen, setIsFullscreen] = useState(false);
-  const elementSupportsFullscreen = supportsTogglingFullscreen(element);
+  const fullscreenElement = useContext(FullscreenViewContext);
+  const elementSupportsFullscreen = supportsTogglingFullscreen(
+    fullscreenElement
+  );
 
   const triggerFullscreen = () => {
-    if (element && elementSupportsFullscreen) {
-      element.requestFullscreen();
+    if (fullscreenElement && elementSupportsFullscreen) {
+      fullscreenElement.requestFullscreen();
     }
   };
 
