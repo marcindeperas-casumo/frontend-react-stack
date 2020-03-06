@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react";
 import { useJurisdiction } from "Utils/hooks";
 import { PlayOkayBar } from "./PlayOkayBar";

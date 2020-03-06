@@ -1,3 +1,5 @@
+// @flow
+
 import React from "react";
 import Flex from "@casumo/cmp-flex";
 import { ClockIcon } from "@casumo/cmp-icons";
