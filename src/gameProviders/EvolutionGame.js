@@ -16,6 +16,8 @@ declare var EvolutionGaming: { init: Function };
 
 export class EvolutionGame extends BaseIframeGame {
   onMount() {
+    super.onMount();
+
     injectScript(EVOLUTION_SCRIPT_URL[this.props.environment]).then(() => {
       EvolutionGaming.init({
         iframeId: IFRAME_ID,
