@@ -6,6 +6,7 @@ import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
 import { FullscreenViewContext } from "./FullscreenView";
 
 export const FullscreenToggle = () => {
+  const isNative = Boolean(window.native);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const fullscreenElement = useContext(FullscreenViewContext);
   const elementSupportsFullscreen = supportsTogglingFullscreen(
@@ -38,7 +39,7 @@ export const FullscreenToggle = () => {
     };
   }, []);
 
-  if (!elementSupportsFullscreen) {
+  if (isNative || !elementSupportsFullscreen) {
     return null;
   }
 
