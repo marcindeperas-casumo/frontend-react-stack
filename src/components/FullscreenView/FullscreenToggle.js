@@ -5,11 +5,7 @@ import { FullscreenIcon, CloseFullscreenIcon } from "@casumo/cmp-icons";
 import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
 import { FullscreenViewContext } from "./FullscreenView";
 
-type Props = {
-  element: ?HTMLElement,
-};
-
-export const FullscreenToggle = ({ element }: Props) => {
+export const FullscreenToggle = () => {
   const [isFullscreen, setIsFullscreen] = useState(false);
   const fullscreenElement = useContext(FullscreenViewContext);
   const elementSupportsFullscreen = supportsTogglingFullscreen(
