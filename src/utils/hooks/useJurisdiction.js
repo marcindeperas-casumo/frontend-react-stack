@@ -12,7 +12,11 @@ export function useJurisdiction(): UseJurisdictionType {
   const jurisdiction = useSelector(jurisdictionSelector);
 
   return {
-    jurisdiction,
+    isDGA: equals("DGA")(jurisdiction),
     isDGOJ: equals("DGOJ")(jurisdiction),
+    isMGA: equals("MGA")(jurisdiction),
+    isSGA: equals("SGA")(jurisdiction),
+    isUKGC: equals("UKGC")(jurisdiction),
+    jurisdiction,
   };
 }
