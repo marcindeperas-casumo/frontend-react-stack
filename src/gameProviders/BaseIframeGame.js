@@ -1,6 +1,7 @@
 // @flow
 import { equals } from "ramda";
 import logger from "Services/logger";
+import { expandIframeHeightToMatchItsParent } from "Utils";
 import { BaseGame } from "./BaseGame";
 import type {
   IframeGameApi,
@@ -133,15 +134,26 @@ export class BaseIframeGame extends BaseGame {
     }
   }
 
+  timeoutId = null;
+  onScreenResize = () => {
+    clearTimeout(this.timeoutId);
+    this.timeoutId = setTimeout(() => {
+      expandIframeHeightToMatchItsParent(this.props.gameRef);
+    }, 500);
+  };
+
   onMount() {
     super.onMount();
 
+    expandIframeHeightToMatchItsParent(this.props.gameRef);
+
+    window.addEventListener("resize", this.onScreenResize);
     window.addEventListener("message", this.messageGuard.bind(this));
   }
 
   onUnmount() {
     super.onUnmount();
-
+    window.removeEventListener("resize", this.onScreenResize);
     window.removeEventListener("message", this.messageGuard.bind(this));
   }
 }
