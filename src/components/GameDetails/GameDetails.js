@@ -67,7 +67,6 @@ export const GameDetails = ({ slug }: { slug: string }) => {
   }
 
   if (!loading && data && data.game) {
-    // console.log(data.game);
     return (
       <div className="t-background-white u-margin-x--auto">
         <GameDetailsImage
@@ -78,19 +77,21 @@ export const GameDetails = ({ slug }: { slug: string }) => {
           <Text size="md" className="u-font-weight-bold u-margin-bottom--md">
             {data.game.name}
           </Text>
-          <Text className="u-margin-bottom">
-            <DangerousHtml html={data.game.description} />
-          </Text>
-          {data.game.media.map((media: ?A.GetGame_game_media) => (
+          {data.game.description && (
+            <Text tag="div" className="u-margin-bottom">
+              <DangerousHtml html={data.game.description} />
+            </Text>
+          )}
+          {data.game.media.map((media: A.GetGame_game_media) => (
             <img
               key={media.path}
-              className="u-margin-bottom"
+              className="u-margin-top u-margin-bottom"
               src={media.path}
               alt=""
             />
           ))}
         </div>
-        <div className="u-position-fixed u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
+        <div className="u-position-fixed@mobile u-bottom-0 u-left-shell-offset u-right-0 t-background-white u-padding--md">
           <Button
             className="u-width--full u-margin-bottom--md"
             variant="primary"

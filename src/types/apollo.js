@@ -62,7 +62,7 @@ export type GetGame_game = {
   backgroundImage: string,
   description: ?string,
   categories: ?Array<?string>,
-  media: Array<?GetGame_game_media>,
+  media: Array<GetGame_game_media>,
   hasPlayForFun: boolean,
 };
 export type GetGame = {
