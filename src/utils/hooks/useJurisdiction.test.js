@@ -22,7 +22,7 @@ const getState = jurisdiction => ({
 });
 
 describe("useJurisdiction", () => {
-  test("returns an object with jurisdiction prop equal to player's and isDGOJ flag", () => {
+  test("returns an object with jurisdiction prop equal to player's and isMGA flag set to true", () => {
     const jurisdiction = "MGA";
 
     const wrapper = mount(
@@ -33,7 +33,11 @@ describe("useJurisdiction", () => {
 
     expectHook(wrapper).toEqual({
       jurisdiction,
+      isDGA: false,
       isDGOJ: false,
+      isMGA: true,
+      isSGA: false,
+      isUKGC: false,
     });
   });
 
@@ -48,7 +52,11 @@ describe("useJurisdiction", () => {
 
     expectHook(wrapper).toEqual({
       jurisdiction,
+      isDGA: false,
       isDGOJ: true,
+      isMGA: false,
+      isSGA: false,
+      isUKGC: false,
     });
   });
 });

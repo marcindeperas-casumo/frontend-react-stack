@@ -10,7 +10,7 @@ export const labels = {
   notificationsDescription: "Manage your notification preferences",
   notificationsTitle: "Notifications",
   accountActivity: "Account Activity",
-  logout: "Logout"
+  logout: "Logout",
 };
 
 export const playerSectionsQueryMock = {
@@ -20,12 +20,13 @@ export const playerSectionsQueryMock = {
   result: {
     data: {
       player: {
+        id: "c9bf9550-0df9-11e2-bd1a-0050568c7151",
+        loginHistory: [
+          { loginTime: 1583472493000, __typename: "PlayerLoginHistoryRecord" },
+          { loginTime: 1583327798000, __typename: "PlayerLoginHistoryRecord" },
+          { loginTime: 1583233118000, __typename: "PlayerLoginHistoryRecord" },
+        ],
         __typename: "Player",
-        id: 1,
-        loginHistory: {
-          __typename: "[PlayerLoginHistoryRecord]",
-          loginTime: "1558430103000",
-        },
       },
     },
   },
@@ -44,7 +45,7 @@ export const playerSectionsLabelsQueryMock = {
   },
   result: {
     data: {
-      ...labels
+      ...labels,
     },
   },
 };

@@ -267,6 +267,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_SEARCH_INITIATED: "Sports Search Initiated",
   MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION: "Sports Search Clicked Suggestion",
   MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT: "Sports Search Clicked Result",
+  MIXPANEL_SPORTS_ONBOARDING_START: "Sports Onboarding - starts",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
     "Sports Onboarding - selected a favorite sport",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
@@ -370,3 +371,11 @@ export const FEATURE_FLAGS = {
 
 export const GAMES_LIST_HORIZONTAL_ITEMS_LIMIT = 20;
 export const GAMES_LIST_HORIZONTAL_JACKPOTS_ITEMS_LIMIT = 21;
+
+export const JURISDICTIONS = {
+  DGA: "DGA",
+  DGOJ: "DGOJ",
+  MGA: "MGA",
+  SGA: "SGA",
+  UKGC: "UKGC",
+};
