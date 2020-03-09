@@ -4,7 +4,6 @@ import * as R from "ramda";
 import { DateTime } from "luxon";
 import * as A from "Types/apollo";
 import { CURRENCY_SYMBOLS } from "Src/constants";
-import type { GameRef } from "../gameProviders";
 
 export const noop = () => {};
 
@@ -336,9 +335,4 @@ export const getDateTimeDifferenceFromNow = (value: DateTime) => {
  */
 export const formatTime = (millis: number): string => {
   return DateTime.fromMillis(millis).toFormat("TT");
-};
-
-export const expandIframeHeightToMatchItsParent = (iframeDOM: GameRef) => {
-  //eslint-disable-next-line fp/no-mutation
-  iframeDOM.current.style.height = `${iframeDOM.current.parentNode.clientHeight}px`;
 };

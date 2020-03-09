@@ -1,7 +1,7 @@
 // @flow
 import { equals } from "ramda";
 import logger from "Services/logger";
-import { expandIframeHeightToMatchItsParent } from "Utils";
+import { expandIframeHeightToMatchItsParent } from "./utils";
 import { BaseGame } from "./BaseGame";
 import type {
   IframeGameApi,
