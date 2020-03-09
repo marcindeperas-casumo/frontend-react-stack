@@ -3,6 +3,7 @@ import * as React from "react";
 import { storiesOf } from "@storybook/react";
 import { select } from "@storybook/addon-knobs/react";
 import { MockedProvider } from "@apollo/react-testing";
+import { FullscreenView } from "Components/FullscreenView";
 import { playerSectionsQueryMock } from "Components/Settings/SettingsSections/__mocks__/Queries.mock";
 import { PlayOkayBar } from "./PlayOkayBar";
 
@@ -15,7 +16,9 @@ stories.add("Default", () => {
 
   return (
     <MockedProvider mocks={[playerSectionsQueryMock]}>
-      <PlayOkayBar jurisdiction={jurisdiction} />
+      <FullscreenView>
+        <PlayOkayBar jurisdiction={jurisdiction} />
+      </FullscreenView>
     </MockedProvider>
   );
 });
