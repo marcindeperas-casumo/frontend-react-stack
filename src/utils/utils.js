@@ -171,7 +171,10 @@ export const injectScript = (url: string) =>
     }
   });
 
-export const commaSeparated = R.compose(R.join(","), R.filter(R.identity));
+export const commaSeparated = R.compose(
+  R.join(","),
+  R.filter(R.identity)
+);
 type Handlers<S> = {
   [type: string]: (state: S, action: Object) => S,
 };
