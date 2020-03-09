@@ -1,6 +1,7 @@
 .c-game-page__game-wrapper {
   bottom: 0;
   left: 0;
+  padding: 0 env(safe-area-inset-right) 0 env(safe-area-inset-left);
   position: absolute;
   right: 0;
   top: 0;
