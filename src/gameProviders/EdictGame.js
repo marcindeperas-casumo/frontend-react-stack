@@ -13,6 +13,8 @@ export const EVENTS = {
 };
 
 export class EdictGame extends BaseIframeGame {
+  iframeWrapperClasses = ["u-safe-area-inset-left"];
+
   constructor(props: GameProviderModelProps) {
     super(props);
     this.api.features.instantPause = true;

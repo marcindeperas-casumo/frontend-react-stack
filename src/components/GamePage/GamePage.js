@@ -2,6 +2,7 @@
 
 import React from "react";
 import Flex from "@casumo/cmp-flex";
+import classNames from "classnames";
 import LoaderGlobal from "@casumo/cmp-loader-global";
 import {
   useGameLaunchData,
@@ -75,7 +76,12 @@ export const GamePage = ({ slug, playForFun }: Props) => {
         <PlayOkayBar />
       </Flex.Item>
       <Flex.Block className="u-position-relative">
-        <div className="c-game-page__game-wrapper">
+        <div
+          className={classNames(
+            "c-game-page__game-wrapper",
+            gameProviderModel.iframeWrapperClasses || []
+          )}
+        >
           <GameLauncher
             gameProviderModel={gameProviderModel}
             className="c-game-page__game-launcher"
