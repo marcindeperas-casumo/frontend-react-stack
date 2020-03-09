@@ -26,6 +26,20 @@ export class MicrogamingGame extends BaseIframeGame {
     this.targetDomain = TARGET_DOMAINS[this.props.environment];
   }
 
+  get componentProps() {
+    const { url = null } = this.props.gameData;
+    const encodedLobbyUrl = encodeURIComponent(super.lobbyUrl);
+
+    if (url) {
+      return {
+        ...super.componentProps,
+        src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+      };
+    }
+
+    return super.componentProps;
+  }
+
   parseMessageData(data: any) {
     return JSON.parse(data);
   }
