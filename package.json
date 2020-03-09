@@ -84,7 +84,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged && yarn flow && yarn graphql-generate"
+      "pre-commit": "lint-staged && yarn flow"
     }
   },
   "jest": {
