@@ -18,7 +18,7 @@ export function useSessionsState(): UseSessionsStateType {
   const activeExclusion: ExclusionType = useSelector(activeExclusionSelector);
   const lastUpdateTime: number = useSelector(lastUpdateTimeSelector);
   const isFetching = useSelector(isFetchingActiveSessionSelector);
-  const isFresh = lastUpdateTime > 0;
+  const isSynced = lastUpdateTime > 0;
   const lastEndedSessionDuringLastHour = Boolean(
     lastEndedSession?.endedTime + 1000 * 60 * 60 > Date.now()
   );
@@ -29,6 +29,6 @@ export function useSessionsState(): UseSessionsStateType {
     lastEndedSessionDuringLastHour,
     activeExclusion,
     isFetching,
-    isFresh,
+    isSynced,
   };
 }

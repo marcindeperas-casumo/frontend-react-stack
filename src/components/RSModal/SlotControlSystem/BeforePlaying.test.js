@@ -51,7 +51,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
   test("it renders NotEnoughFunds and does not call acceptModal if there is no enough funds", () => {
     const sessionsState = {
       activeSession: null,
-      isFresh: true,
+      isSynced: true,
     };
     const walletAmount = {
       amount: -1,
@@ -83,7 +83,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
   test("it renders StillOnBreak and does not call acceptModal if there is an active exclusion", () => {
     const sessionsState = {
       activeExclusion: activeExclusionMock,
-      isFresh: true,
+      isSynced: true,
     };
     const walletAmount = {
       amount: enoughFunds,
@@ -115,7 +115,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
   test("it renders RememberToPlayWithinLimits and does not call acceptModal if there was an active session during last hour", () => {
     const sessionsState = {
       lastEndedSessionDuringLastHour: true,
-      isFresh: true,
+      isSynced: true,
     };
     const walletAmount = {
       amount: enoughFunds,
@@ -146,7 +146,7 @@ describe("RSModal/SlotControlSystem/BeforePlaying", () => {
 
   test("it renders ConfigurationForm and does not call acceptModal if there is no active session, no active exclusion and last session ended more than an hour ago and user has enough funds", () => {
     const sessionsState = {
-      isFresh: true,
+      isSynced: true,
     };
     const walletAmount = {
       amount: enoughFunds,
