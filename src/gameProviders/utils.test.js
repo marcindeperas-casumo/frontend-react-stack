@@ -1,24 +1,16 @@
+//@flow
 import { expandIframeHeightToMatchItsParent } from "./utils";
-
-const createIframeModel = () => ({
-  current: {
-    style: {
-      height: 0,
-      width: 0,
-    },
-    parentNode: {
-      clientHeight: 100,
-      clientWidth: 200,
-    },
-  },
-});
 
 describe("Game providers utils", () => {
   test("should set iframe size to fits it's parent size", () => {
-    const iframe = createIframeModel();
-    expandIframeHeightToMatchItsParent(iframe);
+    const gameRef = {
+      current: (document.createElement("iframe"): HTMLIFrameElement),
+    };
 
-    expect(iframe.current.style.height).toEqual("100px");
-    expect(iframe.current.style.width).toEqual("200px");
+    expandIframeHeightToMatchItsParent(gameRef);
+
+    //expecting 0px as unmounted element will always have 0 width/height
+    expect(gameRef.current.style.height).toEqual("0px");
+    expect(gameRef.current.style.width).toEqual("0px");
   });
 });
