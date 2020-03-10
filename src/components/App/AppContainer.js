@@ -7,6 +7,7 @@ import {
   playerIdSelector,
   sessionIdSelector,
   isApplicationHandshakeLoaded,
+  localeSelector,
 } from "Models/handshake";
 import {
   subscribeToPlayerUpdates,
@@ -23,6 +24,7 @@ export default hot(
       isAuthenticatedHandshake: isAuthenticated(state),
       playerId: playerIdSelector(state),
       sessionId: sessionIdSelector(state),
+      locale: localeSelector(state),
     }),
     {
       onAppStarted: appStarted,

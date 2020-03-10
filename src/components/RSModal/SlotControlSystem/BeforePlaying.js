@@ -21,7 +21,7 @@ export function BeforePlaying(
   const [continuePlaying, setContinuePlaying] = React.useState(false);
   const {
     activeSession,
-    isFetching,
+    isSynced,
     lastEndedSessionDuringLastHour,
     activeExclusion,
   } = useSessionsState();
@@ -33,7 +33,7 @@ export function BeforePlaying(
     }
   }, [amount, activeSession]); // eslint-disable-line react-hooks/exhaustive-deps
 
-  if (isFetching) {
+  if (!isSynced || activeSession) {
     return null;
   }
 

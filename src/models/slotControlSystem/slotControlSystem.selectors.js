@@ -3,8 +3,8 @@ import { createSelector } from "reselect";
 import { propOr, pipe, pick, path, pathOr, identity } from "ramda";
 import { getPage } from "Models/cms";
 import { getFetch } from "Models/fetch";
-import { CMS_SLUGS, ACTION_TYPES } from "Models/slotControlSystem";
 import type { GameCategory } from "Api/api.casinoPlayerGames";
+import { CMS_SLUGS, ACTION_TYPES } from "./slotControlSystem.constants";
 import type {
   ActiveSessionType,
   EndedSessionType,
@@ -45,14 +45,8 @@ export const isCreatingSessionSelector: (s: Object) => boolean = createSelector(
 export const activeSessionSelector: (
   s: Object
 ) => ?ActiveSessionType = createSelector(
-  isFetchingActiveSessionSelector,
   path(["slotControlSystem", "activeSession"]),
-  (isFetching, activeSession) => {
-    if (isFetching) {
-      return null;
-    }
-    return activeSession;
-  }
+  identity
 );
 
 export const endedSessionSelector: (

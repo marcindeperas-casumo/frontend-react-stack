@@ -1,6 +1,7 @@
 // @flow
 import { cloneableGenerator } from "redux-saga/utils";
 import { REACT_APP_MODAL } from "Src/constants";
+import { setPlayerLogoutStarted } from "Models/player";
 import { showModal, isModalHiddenSelector } from "Models/modal";
 import { waitForSelector, navigateToRootWithReload } from "Utils";
 import { appManualLogoutSaga, logout } from "Models/app";
@@ -13,7 +14,14 @@ describe("appManualLogoutSaga()", () => {
     expect(effect.value).toBeInstanceOf(Promise);
   };
 
-  test("it triggers showing Slot System Modal first", () => {
+  test("it sets flag that logout has started", () => {
+    const effect = clonedGenerator.next();
+    const expectedAction = setPlayerLogoutStarted();
+
+    expect(effect.value.PUT.action).toEqual(expectedAction);
+  });
+
+  test("it triggers showing Slot System Modal", () => {
     const expectedAction = showModal(
       REACT_APP_MODAL.ID.SLOT_CONTROL_SYSTEM_BEFORE_LOGGING_OUT,
       {

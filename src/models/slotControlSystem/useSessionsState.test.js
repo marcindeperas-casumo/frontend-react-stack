@@ -44,7 +44,7 @@ describe("useSessionsState", () => {
     nowSpy.mockClear();
   });
 
-  test("returns object with activeSession, isFetching, isFresh, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
+  test("returns object with activeSession, isFetching, isSynced, endedSession, endedSessionDuringLastHour and activeExclusion keys", () => {
     const state = {
       fetch,
       slotControlSystem,
@@ -58,7 +58,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      isFresh: true,
+      isSynced: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: null,
@@ -82,7 +82,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      isFresh: true,
+      isSynced: true,
       lastEndedSession: null,
       lastEndedSessionDuringLastHour: false,
       activeExclusion: null,
@@ -106,7 +106,7 @@ describe("useSessionsState", () => {
     expectHook(wrapper).toEqual({
       activeSession,
       isFetching: false,
-      isFresh: true,
+      isSynced: true,
       lastEndedSession,
       lastEndedSessionDuringLastHour: true,
       activeExclusion: activeExclusionMock,

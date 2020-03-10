@@ -89,6 +89,7 @@ export const GAME_LIST_IDS = {
 export const ROUTE_IDS = {
   LOGIN: "LOGIN",
   PLAY: "PLAY",
+  PLAY_NATIVE: "PLAY_NATIVE",
   DEPOSIT: "DEPOSIT",
   PRACTICE: "PRACTICE",
   TOP_LISTS: "TOP_LISTS",
@@ -119,6 +120,7 @@ export const ROUTES = {
   [ROUTE_IDS.LOGIN]: "log-in",
   [ROUTE_IDS.DEPOSIT]: "deposit",
   [ROUTE_IDS.PLAY]: "{{play}}/:slug/launch",
+  [ROUTE_IDS.PLAY_NATIVE]: "gamelaunchers/:slug/launch",
   [ROUTE_IDS.PRACTICE]: "practice/:slug/launch",
   [ROUTE_IDS.TOP_LISTS]: "{{games}}/top",
   [ROUTE_IDS.GAMES_SEARCH]: "{{games}}/search",
@@ -267,6 +269,7 @@ export const EVENTS = {
   MIXPANEL_SPORTS_SEARCH_INITIATED: "Sports Search Initiated",
   MIXPANEL_SPORTS_SEARCH_CLICKED_SUGGESTION: "Sports Search Clicked Suggestion",
   MIXPANEL_SPORTS_SEARCH_CLICKED_RESULT: "Sports Search Clicked Result",
+  MIXPANEL_SPORTS_ONBOARDING_START: "Sports Onboarding - starts",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_SELECTED:
     "Sports Onboarding - selected a favorite sport",
   MIXPANEL_SPORTS_ONBOARDING_FAVORITE_SPORT_DESELECTED:
@@ -365,4 +368,12 @@ export const MODALS = {
 export const FEATURE_FLAGS = {
   SPORTS: "sports",
   TOP_LIST_CURATED_SHOW_ORIGINAL: "top-list-curated-show-original",
+};
+
+export const JURISDICTIONS = {
+  DGA: "DGA",
+  DGOJ: "DGOJ",
+  MGA: "MGA",
+  SGA: "SGA",
+  UKGC: "UKGC",
 };
