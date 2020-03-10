@@ -21,7 +21,7 @@ export const DGOJBar = () => (
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle />
+      <FullscreenToggle elementOverride={document.body} />
     </Flex.Block>
     <Flex.Item>
       <a rel="noopener noreferrer" target="_blank" href={links.playokay}>
