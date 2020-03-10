@@ -1,5 +1,6 @@
 // @flow
 import { equals } from "ramda";
+import debounce from "lodash.debounce";
 import logger from "Services/logger";
 import { expandIframeHeightToMatchItsParent } from "./utils";
 import { BaseGame } from "./BaseGame";
@@ -134,26 +135,23 @@ export class BaseIframeGame extends BaseGame {
     }
   }
 
-  timeoutId = null;
-  onScreenResize = () => {
-    clearTimeout(this.timeoutId);
-    this.timeoutId = setTimeout(() => {
-      expandIframeHeightToMatchItsParent(this.props.gameRef);
-    }, 500);
-  };
+  debouncedOnScreenResize = debounce(
+    () => expandIframeHeightToMatchItsParent(this.props.gameRef),
+    500
+  );
 
   onMount() {
     super.onMount();
 
     expandIframeHeightToMatchItsParent(this.props.gameRef);
 
-    window.addEventListener("resize", this.onScreenResize);
+    window.addEventListener("resize", this.debouncedOnScreenResize);
     window.addEventListener("message", this.messageGuard.bind(this));
   }
 
   onUnmount() {
     super.onUnmount();
-    window.removeEventListener("resize", this.onScreenResize);
+    window.removeEventListener("resize", this.debouncedOnScreenResize);
     window.removeEventListener("message", this.messageGuard.bind(this));
   }
 }
