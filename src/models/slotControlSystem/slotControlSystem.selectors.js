@@ -45,14 +45,8 @@ export const isCreatingSessionSelector: (s: Object) => boolean = createSelector(
 export const activeSessionSelector: (
   s: Object
 ) => ?ActiveSessionType = createSelector(
-  isFetchingActiveSessionSelector,
   path(["slotControlSystem", "activeSession"]),
-  (isFetching, activeSession) => {
-    if (isFetching) {
-      return null;
-    }
-    return activeSession;
-  }
+  identity
 );
 
 export const endedSessionSelector: (

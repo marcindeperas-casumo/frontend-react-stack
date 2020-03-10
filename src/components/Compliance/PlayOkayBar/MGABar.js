@@ -14,7 +14,7 @@ export const MGABar = () => (
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle />
+      <FullscreenToggle elementOverride={document.body} />
     </Flex.Block>
     <Flex.Item className="c-playokay-bar__clock u-font-xs t-color-grey-light-1 u-display--flex">
       <ClockIcon size="sm" className="u-margin-right" />
