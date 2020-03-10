@@ -18,44 +18,42 @@ import {
 } from "Components/Compliance/SlotControlSystem/SessionDetails";
 import { ModalSkin } from "./ModalSkin";
 
-const GAME_QUERY = gql`
+const gameFields = `
+  id
+  slug
+  logo
+  logoBackground
+  name
+`;
+
+export const GAME_BY_SLUG_QUERY = gql`
   query playAgainGameBySlugQuery($slug: String!) {
     gamesBySlugs(slugs: [$slug]) {
-      id
-      slug
-      logo
-      logoBackground
-      name
+      ${gameFields}
     }
   }
 `;
 
-const GAME_QUERY_2 = gql`
-  query playAgainGameByIdQuery($id: String!) {
-    games(ids: [$id]) {
-      id
-      slug
-      logo
-      logoBackground
-      name
-    }
-  }
-`;
-
-const LATEST_PLAYED_QUERY = gql`
+export const LATEST_PLAYED_QUERY = gql`
   query latestPlayedQuery {
     gamesList(listId: "latestPlayedGames") {
-      gameIds
+      games(numberOfGames: 1) {
+        ${gameFields}
+      }
     }
   }
 `;
 
-type GameQueryResult = {
+type GameBySlugQueryResult = {
   gamesBySlugs: Array<A.GameRow_Game>,
 };
 
-type GameQueryVars = {
+type GameBySlugQueryVars = {
   slug: string,
+};
+
+type LatestPlayedQueryResult = {
+  gamesList: A.latestPlayedQuery_gamesList,
 };
 
 type ContentType = {
@@ -79,22 +77,25 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
   const locale = useLocale();
   const gameSlug = getSlugFromGamePage();
   const isPlayRouteActive = Boolean(gameSlug);
-  const gameQueryProps = useQuery<GameQueryResult, GameQueryVars>(GAME_QUERY, {
-    skip: !isPlayRouteActive,
-    variables: { slug: gameSlug || "" },
-  });
-  const gameBySlug = path(["data", "gamesBySlugs", 0])(gameQueryProps);
-  const latestPlayedIdsQueryProps = useQuery(LATEST_PLAYED_QUERY, {
-    skip: isPlayRouteActive,
-  });
-  const latestPlayedId = path(["data", "gamesList", "gameIds", 0])(
-    latestPlayedIdsQueryProps
+  const gameQueryProps = useQuery<GameBySlugQueryResult, GameBySlugQueryVars>(
+    GAME_BY_SLUG_QUERY,
+    {
+      skip: !isPlayRouteActive,
+      variables: { slug: gameSlug || "" },
+    }
   );
-  const latestPlayedGameQueryProps = useQuery(GAME_QUERY_2, {
-    skip: isPlayRouteActive || !latestPlayedId,
-    variables: { id: latestPlayedId },
-  });
-  const gameById = path(["data", "games", 0])(latestPlayedGameQueryProps);
+  const gameBySlug: ?A.GameRow_Game = path(["data", "gamesBySlugs", 0])(
+    gameQueryProps
+  );
+  const latestPlayedQueryProps = useQuery<LatestPlayedQueryResult, _>(
+    LATEST_PLAYED_QUERY,
+    {
+      skip: isPlayRouteActive,
+    }
+  );
+  const gameById: ?A.GameRow_Game = path(["data", "gamesList", "games", 0])(
+    latestPlayedQueryProps
+  );
 
   const tForModalSkin = {
     modal_title: props.t?.limits_reached_modal_title || "",
@@ -115,7 +116,7 @@ export function AfterLimitsReached(props: ModalContentComponent<ContentType>) {
       return navigateToRerender();
     }
     // otherwise perform full browser redirect
-    navigateToKO(ROUTE_IDS.PLAY, { slug: latestPlayedId });
+    navigateToKO(ROUTE_IDS.PLAY, { slug: gameById?.slug || "" });
   };
 
   if (!lastEndedSession) {
