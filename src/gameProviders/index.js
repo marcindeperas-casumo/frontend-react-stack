@@ -2,6 +2,7 @@ export * from "./BaseGame";
 export { BaseIframeGame } from "./BaseIframeGame";
 export { CasumoGame } from "./CasumoGame";
 export { EdictGame } from "./EdictGame";
+export { EvolutionGame } from "./EvolutionGame";
 export { GreentubeGame } from "./GreentubeGame";
 export { MicrogamingGame } from "./MicrogamingGame";
 export { NetentGame } from "./NetentGame";

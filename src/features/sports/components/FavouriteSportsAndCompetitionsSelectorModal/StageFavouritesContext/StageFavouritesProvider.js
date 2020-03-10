@@ -142,6 +142,12 @@ class StageFavouritesProvider extends React.Component<
           }));
       });
 
+    const trackOnboardingStart = () => {
+      if (this.state.isFirstTimeSelectingFavourites) {
+        tracker.track(EVENTS.MIXPANEL_SPORTS_ONBOARDING_START, {});
+      }
+    };
+
     Promise.all(promisesToCompetitionSuggestions).then(results => {
       results.forEach(result => {
         const index = sports.findIndex(g => g.id === result.id);
@@ -149,9 +155,12 @@ class StageFavouritesProvider extends React.Component<
         sports[index].favouriteCompetitions = result.favouriteCompetitions;
       });
 
-      this.setState({
-        sports,
-      });
+      this.setState(
+        {
+          sports,
+        },
+        trackOnboardingStart
+      );
     });
   }
 
