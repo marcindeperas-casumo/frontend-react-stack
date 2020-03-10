@@ -1,5 +1,6 @@
 // @flow
 import React from "react";
+import { FullscreenView } from "Components/FullscreenView";
 import "./LayoutPage.scss";
 
 type Props = {
@@ -8,8 +9,8 @@ type Props = {
 
 export const LayoutPage = (props: Props) => {
   return (
-    <div className="u-height--full u-width--full t-background-chrome-dark-3">
+    <FullscreenView className="u-height--full u-width--full t-background-chrome-dark-3">
       {props.children}
-    </div>
+    </FullscreenView>
   );
 };

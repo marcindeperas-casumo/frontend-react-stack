@@ -10,7 +10,7 @@ import {
   useJurisdiction,
   useGameCategory,
 } from "Utils/hooks";
-import { DGOJBar } from "Components/Compliance/DGOJBar";
+import { PlayOkayBar } from "Components/Compliance/PlayOkayBar";
 import { useRealityCheckModal } from "Components/Compliance/RealityCheck";
 import { isSlotGame } from "Models/slotControlSystem";
 import { useBeforePlayingModal } from "Components/RSModal/SlotControlSystem";
@@ -71,11 +71,9 @@ export const GamePage = ({ slug, playForFun }: Props) => {
       direction="vertical"
       spacing="none"
     >
-      {isDGOJ && (
-        <Flex.Item>
-          <DGOJBar />
-        </Flex.Item>
-      )}
+      <Flex.Item>
+        <PlayOkayBar />
+      </Flex.Item>
       <Flex.Block className="u-position-relative">
         <div className="c-game-page__game-wrapper">
           <GameLauncher
