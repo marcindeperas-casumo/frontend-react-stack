@@ -25,7 +25,7 @@ export const DGABar = () => (
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle />
+      <FullscreenToggle elementOverride={document.body} />
     </Flex.Block>
     <Flex.Item>
       <Text tag="span" size="2xs">
