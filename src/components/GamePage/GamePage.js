@@ -79,7 +79,7 @@ export const GamePage = ({ slug, playForFun }: Props) => {
         <div
           className={classNames(
             "c-game-page__game-wrapper",
-            gameProviderModel.iframeWrapperClasses || []
+            gameProviderModel.gameWrapperClasses || []
           )}
         >
           <GameLauncher
