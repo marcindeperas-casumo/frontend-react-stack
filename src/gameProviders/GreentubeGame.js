@@ -29,6 +29,7 @@ export class GreentubeGame extends BaseIframeGame {
       return {
         ...super.componentProps,
         src: `${url}&lobbyUrl=${encodedLobbyUrl}`,
+        sandbox: "allow-scripts allow-same-origin allow-top-navigation",
       };
     }
 
