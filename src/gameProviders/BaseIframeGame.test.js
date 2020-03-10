@@ -59,7 +59,7 @@ describe("BaseIframeGame", () => {
 
   test("should return lobbyUrl", () => {
     expect(model.lobbyUrl).toBe(
-      "http://localhost/react-stack/navigation-bubbler.html?target=en/games/top"
+      "http://localhost/gamelaunchers/navigation-bubbler.html?target=en/games/top"
     );
   });
 
