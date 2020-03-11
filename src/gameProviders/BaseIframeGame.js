@@ -143,7 +143,7 @@ export class BaseIframeGame extends BaseGame {
   onMount() {
     super.onMount();
 
-    expandIframeHeightToMatchItsParent(this.props.gameRef);
+    this.debouncedOnScreenResize();
 
     window.addEventListener("resize", this.debouncedOnScreenResize);
     window.addEventListener("message", this.messageGuard.bind(this));
