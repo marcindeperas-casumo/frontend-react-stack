@@ -23,7 +23,7 @@ export const SGABar = () => (
     className="c-playokay-bar t-background-chrome-dark-3 t-color-white u-padding-x"
   >
     <Flex.Block>
-      <FullscreenToggle />
+      <FullscreenToggle elementOverride={document.body} />
     </Flex.Block>
     <Flex.Item>
       <a href={links.spelpaus} rel="noopener noreferrer" target="_blank">
