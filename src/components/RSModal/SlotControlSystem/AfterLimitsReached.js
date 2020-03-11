@@ -53,7 +53,7 @@ type GameBySlugQueryVars = {
 };
 
 type LatestPlayedQueryResult = {
-  gamesList: A.latestPlayedQuery_gamesList,
+  gamesList: any,
 };
 
 type ContentType = {

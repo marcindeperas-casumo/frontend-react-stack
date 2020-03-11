@@ -41,8 +41,6 @@ describe("RSModal/SlotControlSystem/AfterLimitsReached", () => {
   const { location } = window;
 
   beforeEach(() => {
-    jest.resetAllMocks();
-
     // eslint-disable-next-line fp/no-delete
     delete window.location;
 
