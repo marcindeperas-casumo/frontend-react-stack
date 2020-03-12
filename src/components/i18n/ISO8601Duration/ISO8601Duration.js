@@ -2,6 +2,7 @@
 import * as React from "react";
 import * as R from "ramda";
 import { Duration } from "luxon";
+import { interpolate } from "Utils";
 
 type DurationTranslations = {
   year_singular: string,
@@ -52,10 +53,9 @@ export function ISO8601Duration(props: Props): string {
     R.map((key: LuxonDurationKey) => {
       const value = duration[key];
 
-      return props.t[durationToTranslationKey(key, value)].replace(
-        "{value}",
-        value.toString()
-      );
+      return interpolate(props.t[durationToTranslationKey(key, value)], {
+        value: value.toString(),
+      });
     }),
     R.join(props.t.separator)
   )([
