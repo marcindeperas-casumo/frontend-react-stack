@@ -19,6 +19,7 @@ import { ROUTE_IDS } from "Src/constants";
 import { ErrorMessage } from "Components/ErrorMessage";
 import { GameLauncher } from "Components/GameLauncher";
 import { InfoBar } from "Components/Compliance/SlotControlSystem/InfoBar";
+import { isNativeByUserAgent } from "GameProviders";
 import "./GamePage.scss";
 
 type Props = {
@@ -66,9 +67,14 @@ export const GamePage = ({ slug, playForFun }: Props) => {
     return <LoaderGlobal />;
   }
 
+  const isNative = isNativeByUserAgent();
+
   return (
     <Flex
-      className="u-height--full t-background-chrome-dark-3 t-color-white"
+      className={classNames(
+        isNative ? "u-height--screen" : "u-height--full",
+        "u-width--screen t-background-chrome-dark-3 t-color-white"
+      )}
       direction="vertical"
       spacing="none"
     >
