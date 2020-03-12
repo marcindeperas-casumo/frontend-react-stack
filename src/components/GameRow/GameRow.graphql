@@ -1,20 +1,14 @@
 fragment GameRow_Game on Game {
-  slug
-  name
+  id
+  backgroundImage
   logo
-  logoBackground
+  name
+  slug
   lobby {
     bets {
       min
       max
       symbol
-    }
-  }
-  jackpot {
-    id
-    value {
-      amount
-      currency
     }
   }
 }

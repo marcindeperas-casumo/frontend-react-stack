@@ -41,15 +41,16 @@ export default class GameProvidersListSkeleton extends PureComponent<Props> {
         className={className}
         width={numberOfItems * tileSpan}
         height="240"
+        preserveAspectRatio="xMinYMin meet"
       >
         <rect x="0" y="0" rx="8" ry="8" width="150" height="15" />
         {times(
           n => (
             <circle
               key={`tile-list-horizontal-skeleton-${n}`}
-              r="80"
+              r={tileRadius}
               cx={tileSpan * n + tileRadius}
-              cy="120"
+              cy={tileRadius + 40}
             />
           ),
           numberOfItems

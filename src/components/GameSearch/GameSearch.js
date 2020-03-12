@@ -1,49 +1,85 @@
 // @flow
 import * as React from "react";
 import List from "@casumo/cmp-list";
-import { GameSearchResultsVirtualList } from "Components/GameSearchResultsVirtualList";
+import { SearchNotFoundWithGameSuggestions } from "Components/SearchNotFoundWithGameSuggestions";
 import { GameSearchInput } from "Components/GameSearch/GameSearchInput";
-import { GameRow } from "Components/GameRow";
-import SearchNotFound from "Components/SearchNotFound";
+import { launchGame } from "Services/LaunchGameService";
+import { GameRow } from "Components/GameRow/GameRow";
+import { GameRowSearchText } from "Components/GameRow/GameRowSearchText";
 import { GameListSkeleton } from "Components/GameListSkeleton/GameListSkeleton";
 import TrackProvider from "Components/TrackProvider";
-import { EVENT_PROPS, EVENT_LOCATIONS } from "Src/constants";
+import {
+  EVENT_PROPS,
+  EVENT_LOCATIONS,
+  ROOT_SCROLL_ELEMENT_ID,
+} from "Src/constants";
+import * as A from "Types/apollo";
 import { PAGE_SIZE } from "Models/gameSearch";
-import { GamesVirtualList } from "Components/GamesVirtualList";
-import { GamesVirtualListTitle } from "Components/GamesVirtualList/GamesVirtualListTitle";
 import { GameSearchSuggestionsList } from "Components/GameSearchSuggestionsList";
+import {
+  GamesVirtualList,
+  GamesVirtualListTitle,
+} from "Components/GamesVirtualList";
 
 import "./GameSearch.scss";
 
 type Props = {
-  searchResults: Array<string>,
+  query: string,
+  searchResults: Array<A.GameSearch_Game>,
   searchResultsCount: number,
   loading: boolean,
   inputPromptPlaceholder: string,
-  query: string,
   clearSearch: () => {},
-  initFetchGameSearchCount: () => {},
-  fetchPageBySlug: () => {},
+  fetchMoreRows: Function => Promise<any>,
+  queryChanged: (query: string) => {},
 };
 
-export class GameSearch extends React.PureComponent<Props> {
-  componentDidMount() {
-    this.props.fetchPageBySlug();
-  }
+export const GameSearch = (props: Props) => {
+  const noResults = Boolean(
+    !props.loading && !props.searchResultsCount && props.query.length
+  );
+  const {
+    loading,
+    searchResults,
+    searchResultsCount,
+    fetchMoreRows,
+    query,
+    queryChanged,
+    clearSearch,
+    inputPromptPlaceholder,
+  } = props;
 
-  get noResults() {
-    return Boolean(
-      !this.props.loading &&
-        !this.props.searchResultsCount &&
-        this.props.query.length
-    );
-  }
+  const GameRowHighlightSearch = game => (
+    <GameRow
+      game={game}
+      onLaunchGame={() => launchGame({ slug: game.slug })}
+      renderText={() => (
+        <GameRowSearchText
+          name={game.name}
+          search={{ query, highlightSearchQuery: true }}
+        />
+      )}
+    />
+  );
 
-  renderResults = () => {
-    const { loading, searchResults, searchResultsCount, query } = this.props;
-    const GameRowHighlightSearch = id => (
-      <GameRow search={{ query, highlightSearchQuery: true }} id={id} />
-    );
+  const renderResults = () => {
+    if (!query.length) {
+      return (
+        <TrackProvider
+          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
+        >
+          <div className="c-game-search-virtual-list u-game-search-max-width">
+            <GamesVirtualList
+              renderItem={GameRowHighlightSearch}
+              renderTitle={title => <GamesVirtualListTitle title={title} />}
+              fetchMoreRows={fetchMoreRows}
+              games={searchResults}
+              rowCount={searchResultsCount}
+            />
+          </div>
+        </TrackProvider>
+      );
+    }
 
     if (loading) {
       return (
@@ -60,66 +96,55 @@ export class GameSearch extends React.PureComponent<Props> {
         >
           {searchResultsCount < PAGE_SIZE ? (
             <List
-              className="u-padding-top u-padding-x--md u-game-search-max-width"
+              className="u-padding-x--md u-game-search-max-width"
               items={searchResults}
               itemSpacing="default"
               render={GameRowHighlightSearch}
             />
           ) : (
             <div className="c-game-search-virtual-list u-game-search-max-width">
-              <GameSearchResultsVirtualList
+              <GamesVirtualList
+                rowCount={searchResultsCount}
                 query={query}
                 games={searchResults}
                 renderItem={GameRowHighlightSearch}
+                fetchMoreRows={fetchMoreRows}
               />
             </div>
           )}
           {searchResultsCount === 1 && (
-            <GameSearchSuggestionsList className="u-game-search-max-width" />
+            <GameSearchSuggestionsList searchResults={searchResults} />
           )}
         </TrackProvider>
       );
     } else if (query.length) {
-      return (
-        <>
-          <div className="t-background-grey-light-2">
-            <SearchNotFound className="u-game-search-max-width" />
-          </div>
-          <GameSearchSuggestionsList className="u-game-search-max-width" />
-        </>
-      );
-    } else {
-      return (
-        <TrackProvider
-          data={{ [EVENT_PROPS.LOCATION]: EVENT_LOCATIONS.ALL_GAMES }}
-        >
-          <div className="c-game-search-virtual-list">
-            <GamesVirtualList
-              renderItem={id => <GameRow search id={id} />}
-              renderTitle={title => <GamesVirtualListTitle title={title} />}
-            />
-          </div>
-        </TrackProvider>
-      );
+      return <SearchNotFoundWithGameSuggestions />;
     }
   };
 
-  render() {
-    return (
-      <div className="c-game-search">
-        <div className="c-game-search-bar u-position-sticky--top">
-          <div className="t-background-chrome-light-2">
-            <GameSearchInput
-              className="u-game-search-max-width u-padding--md"
-              initFetchGameSearchCount={this.props.initFetchGameSearchCount}
-              clearSearch={this.props.clearSearch}
-              noResults={this.noResults}
-              placeholder={this.props.inputPromptPlaceholder}
-            />
-          </div>
+  React.useEffect(() => {
+    const scrollElement = document.getElementById(ROOT_SCROLL_ELEMENT_ID);
+
+    if (scrollElement && scrollElement.scrollTop) {
+      // eslint-disable-next-line fp/no-mutation
+      scrollElement.scrollTop = 0;
+    }
+  }, [props.query]);
+
+  return (
+    <div className="c-game-search">
+      <div className="c-game-search-bar u-position-sticky--top">
+        <div className="t-background-chrome-light-2">
+          <GameSearchInput
+            className="u-game-search-max-width u-padding--md"
+            onChange={queryChanged}
+            clearSearch={clearSearch}
+            noResults={noResults}
+            placeholder={inputPromptPlaceholder}
+          />
         </div>
-        {this.renderResults()}
       </div>
-    );
-  }
-}
+      {renderResults()}
+    </div>
+  );
+};

@@ -6,7 +6,7 @@ import tracker from "Services/tracker";
 import { EVENTS } from "Src/constants";
 
 type Props = {
-  initFetchGameSearchCount: Function,
+  onChange: (query: string) => {},
   clearSearch: Function,
   noResults: boolean,
   placeholder: string,
@@ -28,13 +28,13 @@ export class GameSearchInput extends PureComponent<Props, State> {
 
   constructor(props: Props) {
     super(props);
-    this.fetchSearchResults = debounce(this.fetchSearchResults, 250);
+    this.onChange = debounce(this.onChange, 250);
     this.trackSearchInitiated = debounce(this.trackSearchInitiated, 1000);
   }
 
   componentDidUpdate(prevProps: Props, prevState: State) {
     if (prevState.query !== this.state.query) {
-      this.fetchSearchResults();
+      this.onChange();
     }
   }
 
@@ -48,11 +48,10 @@ export class GameSearchInput extends PureComponent<Props, State> {
     });
   };
 
-  fetchSearchResults = () =>
-    this.props.initFetchGameSearchCount(this.state.query);
+  onChange = () => this.props.onChange(this.state.query);
 
   handleSearchInput = ({ target }: { target: HTMLInputElement }) => {
-    const query = target.value;
+    const query = target.value.replace(/^\s+/g, "");
 
     query && this.trackSearchInitiated(query);
 

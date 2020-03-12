@@ -2,22 +2,18 @@
 import React from "react";
 import { shallow } from "enzyme";
 import List from "@casumo/cmp-list";
-import { GameRow } from "Components/GameRow";
 import SectionTitle from "./SectionTitle";
-import LiveCasinoDetailPage from "./LiveCasinoDetailPage";
+import { LiveCasinoDetailPage } from "./LiveCasinoDetailPage";
 
-const data = [["Roulette", ["1", "2"]], ["MoneyWheel", ["3"]]];
+const groupedLiveCasinoGames = [
+  { title: "Roulette", games: ["1", "2"] },
+  { title: "MoneyWheel", games: ["3"] },
+];
 
 describe("<LiveCasinoDetailPage />", () => {
   test("renders correctly", () => {
     const rendered = shallow(
-      <LiveCasinoDetailPage
-        groupedLiveGames={data}
-        areTranslationsFetched
-        translations={{}}
-        fetchTranslations={() => {}}
-        initFetchAllLiveGames={() => {}}
-      />
+      <LiveCasinoDetailPage groupedLiveCasinoGames={groupedLiveCasinoGames} />
     );
     // Two titles...
     expect(rendered.find(SectionTitle).length).toBe(2);
@@ -29,7 +25,7 @@ describe("<LiveCasinoDetailPage />", () => {
         .find(List)
         .at(0)
         .dive()
-        .find(GameRow).length
+        .find("li").length
     ).toBe(2);
     // ...second list with one row...
     expect(
@@ -37,22 +33,7 @@ describe("<LiveCasinoDetailPage />", () => {
         .find(List)
         .at(1)
         .dive()
-        .find(GameRow).length
+        .find("li").length
     ).toBe(1);
-  });
-
-  test("properly initializes data", () => {
-    const initFetchAllLiveGames = jest.fn();
-    shallow(
-      <LiveCasinoDetailPage
-        groupedLiveGames={data}
-        areTranslationsFetched
-        translations={{}}
-        fetchTranslations={() => {}}
-        initFetchAllLiveGames={initFetchAllLiveGames}
-      />
-    );
-
-    expect(initFetchAllLiveGames).toBeCalledTimes(1);
   });
 });

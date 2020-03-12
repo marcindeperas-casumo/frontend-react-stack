@@ -2,7 +2,7 @@
 import { ContentHtml } from "Components/ContentHtml";
 import { Jackpots } from "Components/Jackpots";
 import MustDropJackpotsList from "Components/MustDropJackpotsList";
-import { GameListHorizontal } from "Components/GameListHorizontal";
+import { GameListHorizontalCMS } from "Components/GameListHorizontal/GameListHorizontalCMS";
 import { ContentGameList as GameListVertical } from "Components/ContentGameList";
 import { ContentImage } from "Components/ContentImage";
 import { ContentSeparator } from "Components/ContentSeparator";
@@ -17,15 +17,15 @@ import PromotionHeaderImage from "Components/PromotionHeaderImage";
 import PromotionTitle from "Components/PromotionTitle";
 import PromotionPrizeTable from "Components/PromotionPrizeTable";
 import { ContentMustDropJackpotsWidget } from "Components/ContentMustDropJackpotsWidget";
-import GameProvidersList from "Components/GameProvidersList";
-import ReelRacesList from "Components/ReelRacesList";
+import { GameProvidersList } from "Components/GameProvidersList";
+import { ReelRacesList } from "Components/ReelRacesList";
 import PromotionOptInButton from "Components/PromotionOptInButton";
 import { TopListCuratedCard } from "Components/TopListCuratedCard";
 
 export const COMPONENT_MAPPING = {
   HTML_CONTENT: ContentHtml,
-  GAMES_LIST: GameListHorizontal,
-  GAMES_LIST_HORIZONTAL: GameListHorizontal,
+  GAMES_LIST: GameListHorizontalCMS,
+  GAMES_LIST_HORIZONTAL: GameListHorizontalCMS,
   GAMES_LIST_VERTICAL: GameListVertical,
   GROUPED_LIST_HORIZONTAL: GameProvidersList,
   CURATED_CARD: TopListCuratedCard,

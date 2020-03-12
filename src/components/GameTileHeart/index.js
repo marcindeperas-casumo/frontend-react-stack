@@ -1,2 +1,4 @@
 // @flow
-export { GameTileHeart } from "./GameTileHeart";
+export {
+  GameTileHeartContainer as GameTileHeart,
+} from "./GameTileHeartContainer";

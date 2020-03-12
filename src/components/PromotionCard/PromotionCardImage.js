@@ -3,7 +3,7 @@ import ImageLazy from "Components/Image/ImageLazy";
 
 const imgixOpts = { w: 240, h: 140, fit: "crop" };
 
-const PromotionCardImage = ({ image }) => {
+export const PromotionCardImage = ({ image }) => {
   return (
     <div className="u-margin">
       <div className="o-ratio o-ratio--promotion-card-image">
@@ -16,5 +16,3 @@ const PromotionCardImage = ({ image }) => {
     </div>
   );
 };
-
-export default PromotionCardImage;
