@@ -24,7 +24,9 @@ export type NetentGameLaunchData = {|
 
 export type GameLaunchData = IframeGameLaunchData | NetentGameLaunchData;
 
-export type GameRef = { current: null | HTMLIFrameElement | HTMLDivElement };
+export type GameRef = {
+  current: null | HTMLIFrameElement | HTMLDivElement,
+};
 
 export type GameProviderModelProps = {
   gameData: GameLaunchData,
