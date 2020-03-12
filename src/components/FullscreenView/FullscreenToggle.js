@@ -2,6 +2,7 @@
 
 import React, { useEffect, useState, useContext } from "react";
 import { FullscreenIcon, CloseFullscreenIcon } from "@casumo/cmp-icons";
+import { isNativeByUserAgent } from "GameProviders";
 import { supportsTogglingFullscreen } from "./FullscreenToggle.utils";
 import { FullscreenViewContext } from "./FullscreenView";
 
@@ -10,7 +11,7 @@ type Props = {
 };
 
 export const FullscreenToggle = ({ elementOverride }: Props) => {
-  const isNative = Boolean(window.native);
+  const isNative = isNativeByUserAgent();
   const [isFullscreen, setIsFullscreen] = useState(false);
   const fullscreenElementFromContext = useContext(FullscreenViewContext);
   const fullscreenElement = elementOverride || fullscreenElementFromContext;
