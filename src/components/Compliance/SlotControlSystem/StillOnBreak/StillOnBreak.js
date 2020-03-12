@@ -1,11 +1,15 @@
 // @flow
 import * as React from "react";
-import { useRaf } from "react-use";
+import { useInterval } from "react-use";
 import Text from "@casumo/cmp-text";
 import Button from "@casumo/cmp-button";
 import Flex from "@casumo/cmp-flex";
 import { navigateById } from "Services/NavigationService";
-import { interpolate, interpolateTimeInterval } from "Utils";
+import { interpolateWithJSX } from "Utils";
+import {
+  ISO8601DurationContainer,
+  convertSecondsToISO8601Duration,
+} from "Components/i18n/ISO8601Duration";
 import StillOnBreakImage from "./StillOnBreak.svg";
 import "./StillOnBreak.scss";
 
@@ -26,17 +30,18 @@ type Props = {
 
 export function StillOnBreak(props: Props) {
   const { t, secondsTillEnd, fetchContent } = props;
-  const millisTillEnd = secondsTillEnd * 1000;
+  const [elapsedSecs, setElapsedSecs] = React.useState(0);
+  const duration = convertSecondsToISO8601Duration(
+    secondsTillEnd - elapsedSecs,
+    { isShort: true }
+  );
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
+  const timeInterval = <ISO8601DurationContainer duration={duration} />;
 
-  const elapsedTimePercentage = useRaf(millisTillEnd, 1000);
-  const timeInterval = interpolateTimeInterval({
-    seconds: secondsTillEnd * (1 - elapsedTimePercentage),
-    t,
-  });
+  useInterval(() => setElapsedSecs(elapsedSecs + 1), 1000);
 
   React.useEffect(() => {
     fetchContent();
@@ -53,7 +58,7 @@ export function StillOnBreak(props: Props) {
         {t.still_on_break}
       </Text>
       <Text className="u-padding u-margin-bottom--2xlg">
-        {interpolate(t.still_on_break_subtext, { time: timeInterval })}
+        {interpolateWithJSX({ time: timeInterval }, t.still_on_break_subtext)}
       </Text>
       <Button
         size="md"
