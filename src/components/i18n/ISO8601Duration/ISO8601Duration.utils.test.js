@@ -1,5 +1,8 @@
 // @flow
-import { convertSecondsToISO8601Duration } from "./ISO8601Duration.utils";
+import {
+  convertSecondsToISO8601Duration,
+  durationToTranslationKey,
+} from "./ISO8601Duration.utils";
 
 const HOUR = 60 * 60;
 const DAY = 24 * HOUR;
@@ -66,6 +69,22 @@ describe("Components/i18n/ISO8601Duration.utils", () => {
       test("should show seconds if passed value is less than one minute", () => {
         expect(convertSecondsToISO8601Duration(7)).toEqual("PT7S");
       });
+    });
+  });
+
+  describe("durationToTranslationKey()", () => {
+    test("it returns week_abbreviated if preferAbbreviated is true and week is requested", () => {
+      expect(durationToTranslationKey("weeks", 3, true)).toEqual(
+        "week_abbreviated"
+      );
+    });
+
+    test("it returns day_plural if value is greater than 1", () => {
+      expect(durationToTranslationKey("days", 3)).toEqual("day_plural");
+    });
+
+    test("it returns year_singular if value equals 1", () => {
+      expect(durationToTranslationKey("years", 1)).toEqual("year_singular");
     });
   });
 });
