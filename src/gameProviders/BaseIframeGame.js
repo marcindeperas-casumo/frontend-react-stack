@@ -143,7 +143,13 @@ export class BaseIframeGame extends BaseGame {
   onMount() {
     super.onMount();
 
-    this.debouncedOnScreenResize();
+    const { current: gameIframe } = this.props.gameRef;
+
+    if (gameIframe) {
+      gameIframe.addEventListener("load", () => {
+        this.debouncedOnScreenResize();
+      });
+    }
 
     window.addEventListener("resize", this.debouncedOnScreenResize);
     window.addEventListener("message", this.messageGuard.bind(this));
