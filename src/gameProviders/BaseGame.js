@@ -20,8 +20,10 @@ export class BaseGame {
   get lobbyUrl() {
     const getRoute = routeTranslator(this.props.language);
     const encodedTranslatedRoute = getRoute(ROUTE_IDS.TOP_LISTS);
+    const tld = window.location.origin.split(".").pop(); // eslint-disable-line fp/no-mutating-methods
+    const langPart = tld === "es" ? "" : `${this.props.language}/`;
 
-    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${this.props.language}/${encodedTranslatedRoute}`;
+    return `${window.location.origin}/${NAVIGATION_BUBBLER_PATH}?target=${langPart}${encodedTranslatedRoute}`;
   }
 
   goToLobby() {
