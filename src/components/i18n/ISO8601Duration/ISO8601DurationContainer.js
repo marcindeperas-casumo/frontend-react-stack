@@ -5,9 +5,18 @@ import { ISO8601Duration } from "./ISO8601Duration";
 
 const slug = "i18n.durations";
 export const ISO8601DurationContainer = connect(
-  (state, ownProps) => ({
-    t: getPage(slug)(state).fields,
-  }),
+  (state, ownProps) => {
+    const { fields } = getPage(slug)(state);
+
+    return {
+      t: fields
+        ? {
+            ...fields,
+            ...ownProps.t,
+          }
+        : null,
+    };
+  },
   dispatch => ({
     fetchTranslations: () => {
       dispatch(fetchPageBySlug(slug));

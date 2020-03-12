@@ -2,6 +2,9 @@
 import { Duration } from "luxon";
 
 type OptionsType = {
+  /**
+   * Display only first non-zero major unit and a subunit i.e. hours and minutes.
+   */
   isShort?: boolean,
   withMillis?: boolean,
 };

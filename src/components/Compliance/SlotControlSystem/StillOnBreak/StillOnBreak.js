@@ -18,34 +18,34 @@ type Props = {
     still_on_break: string,
     still_on_break_subtext: string,
     still_on_break_button_label: string,
-    days?: string,
-    minutes?: string,
-    hours?: string,
-    seconds: string,
   },
   onClick: () => void,
   secondsTillEnd: number,
-  fetchContent: () => void,
 };
 
 export function StillOnBreak(props: Props) {
-  const { t, secondsTillEnd, fetchContent } = props;
-  const [elapsedSecs, setElapsedSecs] = React.useState(0);
-  const duration = convertSecondsToISO8601Duration(
-    secondsTillEnd - elapsedSecs,
-    { isShort: true }
-  );
+  const { t } = props;
+  const [elapsedSecs, setElapsedSecs] = React.useState<number>(0);
+  const secondsTillEnd = props.secondsTillEnd - elapsedSecs;
+  const duration = convertSecondsToISO8601Duration(secondsTillEnd, {
+    isShort: true,
+  });
   const onClick = () => {
     props.onClick();
     navigateById({ routeId: "games" });
   };
-  const timeInterval = <ISO8601DurationContainer duration={duration} />;
+  const timeInterval = (
+    <ISO8601DurationContainer
+      duration={duration}
+      t={{ separator: " " }}
+      preferAbbreviated
+    />
+  );
 
-  useInterval(() => setElapsedSecs(elapsedSecs + 1), 1000);
-
-  React.useEffect(() => {
-    fetchContent();
-  }, [fetchContent]);
+  useInterval(
+    () => setElapsedSecs(elapsedSecs + 1),
+    secondsTillEnd <= 0 ? null : 1000
+  );
 
   return (
     <Flex direction="vertical">
